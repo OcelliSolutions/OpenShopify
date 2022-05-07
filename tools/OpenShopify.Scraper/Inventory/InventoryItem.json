@@ -1,0 +1,487 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "InventoryItem",
+    "description": "        <p>An inventory item represents a physical good. It holds essential information about the physical good, including its SKU and whether its inventory is tracked.</p>\n        <p>There is a 1:1 relationship between a product variant and an inventory item. Each product variant includes the ID of its related inventory item. You can use the inventory item ID to query the <a href=\"/api/admin-rest/latest/resources/inventorylevel\">InventoryLevel</a> resource to retrieve the location and quantity for an inventory item.</p>\n        <p>Use the InventoryItem resource together with the <a href=\"/api/admin-rest/latest/resources/inventorylevel\">InventoryLevel</a> and <a href=\"/api/admin-rest/latest/resources/location\">Location</a> resources to manage a store's inventory across multiple locations.</p>\n",
+    "x-owner": "https://vault.shopify.io/teams/126",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Retrieves a list of inventory items. <strong>Note:</strong> This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to <a href='/api/usage/pagination-rest'>Making requests to paginated REST Admin API endpoints</a>.",
+      "summary": "Retrieves a list of inventory items",
+      "operationId": "Retrievesalistofinventoryitems",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "ids",
+          "description": "Show only inventory items specified by a comma-separated list of IDs.",
+          "in": "query",
+          "schema": {
+            "type": "x-string",
+            "maximum": "100"
+          },
+          "required": true
+        },
+        {
+          "name": "limit",
+          "description": "The maximum number of results to show.",
+          "in": "query",
+          "schema": {
+            "type": "x-string",
+            "default": 50,
+            "maximum": 250
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of inventory items",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a list of inventory items": {
+                  "value": {
+                    "inventory_items": [
+                      {
+                        "id": 39072856,
+                        "sku": "IPOD2008GREEN",
+                        "created_at": "2022-04-05T11:05:24-06:00",
+                        "updated_at": "2022-04-05T11:05:24-06:00",
+                        "requires_shipping": true,
+                        "cost": "25.00",
+                        "country_code_of_origin": null,
+                        "province_code_of_origin": null,
+                        "harmonized_system_code": null,
+                        "tracked": true,
+                        "country_harmonized_system_codes": [],
+                        "admin_graphql_api_id": "gid://shopify/InventoryItem/39072856"
+                      },
+                      {
+                        "id": 457924702,
+                        "sku": "IPOD2008BLACK",
+                        "created_at": "2022-04-05T11:05:24-06:00",
+                        "updated_at": "2022-04-05T11:05:24-06:00",
+                        "requires_shipping": true,
+                        "cost": "25.00",
+                        "country_code_of_origin": null,
+                        "province_code_of_origin": null,
+                        "harmonized_system_code": null,
+                        "tracked": true,
+                        "country_harmonized_system_codes": [],
+                        "admin_graphql_api_id": "gid://shopify/InventoryItem/457924702"
+                      },
+                      {
+                        "id": 808950810,
+                        "sku": "IPOD2008PINK",
+                        "created_at": "2022-04-05T11:05:24-06:00",
+                        "updated_at": "2022-04-05T11:05:24-06:00",
+                        "requires_shipping": true,
+                        "cost": "25.00",
+                        "country_code_of_origin": null,
+                        "province_code_of_origin": null,
+                        "harmonized_system_code": null,
+                        "tracked": true,
+                        "country_harmonized_system_codes": [],
+                        "admin_graphql_api_id": "gid://shopify/InventoryItem/808950810"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "ids=808950810%2C39072856%2C457924702",
+          "request_path": "/admin/api/2022-04/inventory_items.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/inventory_items.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"inventory_items\":[{\"id\":39072856,\"sku\":\"IPOD2008GREEN\",\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"requires_shipping\":true,\"cost\":\"25.00\",\"country_code_of_origin\":null,\"province_code_of_origin\":null,\"harmonized_system_code\":null,\"tracked\":true,\"country_harmonized_system_codes\":[],\"admin_graphql_api_id\":\"gid://shopify/InventoryItem/39072856\"},{\"id\":457924702,\"sku\":\"IPOD2008BLACK\",\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"requires_shipping\":true,\"cost\":\"25.00\",\"country_code_of_origin\":null,\"province_code_of_origin\":null,\"harmonized_system_code\":null,\"tracked\":true,\"country_harmonized_system_codes\":[],\"admin_graphql_api_id\":\"gid://shopify/InventoryItem/457924702\"},{\"id\":808950810,\"sku\":\"IPOD2008PINK\",\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"requires_shipping\":true,\"cost\":\"25.00\",\"country_code_of_origin\":null,\"province_code_of_origin\":null,\"harmonized_system_code\":null,\"tracked\":true,\"country_harmonized_system_codes\":[],\"admin_graphql_api_id\":\"gid://shopify/InventoryItem/808950810\"}]}"
+          },
+          "name": "Retrieve a list of inventory items",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_items.json?ids=808950810%2C39072856%2C457924702\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::InventoryItem.all(\n  session: test_session,\n  ids: \"808950810,39072856,457924702\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {InventoryItem} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryItem.all({\n  session: test_session,\n  ids: \"808950810,39072856,457924702\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryItem;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nInventoryItem::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"ids\" => \"808950810,39072856,457924702\"], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/inventory_items.json?ids=808950810,39072856,457924702",
+      "action": "get"
+    },
+    {
+      "description": "Retrieves a single inventory item by ID",
+      "summary": "Retrieves a single inventory item by ID",
+      "operationId": "RetrievesasingleinventoryitembyID",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "inventory_item_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a single inventory item by ID",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve an inventory item by ID": {
+                  "value": {
+                    "inventory_item": {
+                      "id": 808950810,
+                      "sku": "IPOD2008PINK",
+                      "created_at": "2022-04-05T11:05:24-06:00",
+                      "updated_at": "2022-04-05T11:05:24-06:00",
+                      "requires_shipping": true,
+                      "cost": "25.00",
+                      "country_code_of_origin": null,
+                      "province_code_of_origin": null,
+                      "harmonized_system_code": null,
+                      "tracked": true,
+                      "country_harmonized_system_codes": [],
+                      "admin_graphql_api_id": "gid://shopify/InventoryItem/808950810"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/inventory_items/808950810.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/inventory_items/808950810.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"inventory_item\":{\"id\":808950810,\"sku\":\"IPOD2008PINK\",\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"requires_shipping\":true,\"cost\":\"25.00\",\"country_code_of_origin\":null,\"province_code_of_origin\":null,\"harmonized_system_code\":null,\"tracked\":true,\"country_harmonized_system_codes\":[],\"admin_graphql_api_id\":\"gid://shopify/InventoryItem/808950810\"}}"
+          },
+          "name": "Retrieve an inventory item by ID",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_items/808950810.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::InventoryItem.find(\n  session: test_session,\n  id: 808950810,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {InventoryItem} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryItem.find({\n  session: test_session,\n  id: 808950810,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryItem;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nInventoryItem::find(\n    $this->test_session, // Session\n    808950810, // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/inventory_items/{inventory_item_id}.json",
+      "action": "get"
+    },
+    {
+      "description": "Updates an existing inventory item",
+      "summary": "Updates an existing inventory item",
+      "operationId": "Updatesanexistinginventoryitem",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "inventory_item_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Updates an existing inventory item",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Update an inventory item's SKU": {
+                  "value": {
+                    "inventory_item": {
+                      "id": 808950810,
+                      "sku": "new sku",
+                      "created_at": "2022-04-05T11:05:24-06:00",
+                      "updated_at": "2022-04-05T11:17:13-06:00",
+                      "requires_shipping": true,
+                      "cost": "25.00",
+                      "country_code_of_origin": null,
+                      "province_code_of_origin": null,
+                      "harmonized_system_code": null,
+                      "tracked": true,
+                      "country_harmonized_system_codes": [],
+                      "admin_graphql_api_id": "gid://shopify/InventoryItem/808950810"
+                    }
+                  }
+                },
+                "Update an inventory item's unit cost": {
+                  "value": {
+                    "inventory_item": {
+                      "id": 808950810,
+                      "sku": "IPOD2008PINK",
+                      "created_at": "2022-04-05T11:05:24-06:00",
+                      "updated_at": "2022-04-05T11:05:24-06:00",
+                      "requires_shipping": true,
+                      "cost": "25.00",
+                      "country_code_of_origin": null,
+                      "province_code_of_origin": null,
+                      "harmonized_system_code": null,
+                      "tracked": true,
+                      "country_harmonized_system_codes": [],
+                      "admin_graphql_api_id": "gid://shopify/InventoryItem/808950810"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/inventory_items/808950810.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/inventory_items/808950810.json",
+            "headers": {},
+            "body": "{\"inventory_item\":{\"id\":808950810,\"sku\":\"new sku\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"inventory_item\":{\"id\":808950810,\"sku\":\"new sku\",\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:17:13-04:00\",\"requires_shipping\":true,\"cost\":\"25.00\",\"country_code_of_origin\":null,\"province_code_of_origin\":null,\"harmonized_system_code\":null,\"tracked\":true,\"country_harmonized_system_codes\":[],\"admin_graphql_api_id\":\"gid://shopify/InventoryItem/808950810\"}}"
+          },
+          "name": "Update an inventory item's SKU",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"inventory_item\":{\"id\":808950810,\"sku\":\"new sku\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_items/808950810.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ninventory_item = ShopifyAPI::InventoryItem.new(session: test_session)\ninventory_item.id = 808950810\ninventory_item.sku = \"new sku\"\ninventory_item.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {InventoryItem} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_item = new InventoryItem({session: test_session});\ninventory_item.id = 808950810;\ninventory_item.sku = \"new sku\";\nawait inventory_item.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryItem;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_item = new InventoryItem($this->test_session);\n$inventory_item->id = 808950810;\n$inventory_item->sku = \"new sku\";\n$inventory_item->save();"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/inventory_items/808950810.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/inventory_items/808950810.json",
+            "headers": {},
+            "body": "{\"inventory_item\":{\"id\":808950810,\"cost\":\"25.00\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"inventory_item\":{\"id\":808950810,\"sku\":\"IPOD2008PINK\",\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"requires_shipping\":true,\"cost\":\"25.00\",\"country_code_of_origin\":null,\"province_code_of_origin\":null,\"harmonized_system_code\":null,\"tracked\":true,\"country_harmonized_system_codes\":[],\"admin_graphql_api_id\":\"gid://shopify/InventoryItem/808950810\"}}"
+          },
+          "name": "Update an inventory item's unit cost",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"inventory_item\":{\"id\":808950810,\"cost\":\"25.00\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_items/808950810.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ninventory_item = ShopifyAPI::InventoryItem.new(session: test_session)\ninventory_item.id = 808950810\ninventory_item.cost = \"25.00\"\ninventory_item.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {InventoryItem} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_item = new InventoryItem({session: test_session});\ninventory_item.id = 808950810;\ninventory_item.cost = \"25.00\";\nawait inventory_item.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryItem;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_item = new InventoryItem($this->test_session);\n$inventory_item->id = 808950810;\n$inventory_item->cost = \"25.00\";\n$inventory_item->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/inventory_items/{inventory_item_id}.json",
+      "action": "put"
+    }
+  ],
+  "components": [
+    {
+      "name": "InventoryItem",
+      "title": "InventoryItem",
+      "type": "object",
+      "properties": [
+        {
+          "description": "The unit cost of the inventory item. The shop's default currency is used.",
+          "type": "x-string",
+          "example": "25.00",
+          "name": "cost"
+        },
+        {
+          "description": "          The country code (<a href=\"https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2\" target=\"_blank\">ISO 3166-1 alpha-2</a>) of where the item came from.\n",
+          "type": "x-string",
+          "example": "FR",
+          "name": "country_code_of_origin"
+        },
+        {
+          "description": "          An array of country-specific <a href=\"https://en.wikipedia.org/wiki/Harmonized_System\" target=\"_blank\">Harmonized System</a> (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.\n",
+          "type": "x-string",
+          "example": [
+            {
+              "harmonized_system_code": "1234561111",
+              "country_code": "CA"
+            },
+            {
+              "harmonized_system_code": "1234562222",
+              "country_code": "US"
+            }
+          ],
+          "name": "country_harmonized_system_codes"
+        },
+        {
+          "description": "          The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601 format</a>) when the inventory item was created.\n",
+          "type": "x-string",
+          "readOnly": true,
+          "example": "2012-08-24T12:01:47-06:00",
+          "name": "created_at"
+        },
+        {
+          "description": "          The general <a href=\"https://en.wikipedia.org/wiki/Harmonized_System\" target=\"_blank\">Harmonized System</a> (HS) code for the inventory item. Used if a country-specific HS code (`countryHarmonizedSystemCode`) is not available.\n",
+          "type": "x-string",
+          "example": 123456,
+          "name": "harmonized_system_code"
+        },
+        {
+          "description": "The ID of the inventory item.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": 450789469,
+          "name": "id"
+        },
+        {
+          "description": "          The province code (<a href=\"https://en.wikipedia.org/wiki/ISO_3166-2\" target=\"_blank\">ISO 3166-2 alpha-2</a>) of where the item came from. The province code is only used if the shipping provider for the inventory item is Canada Post.\n",
+          "type": "x-string",
+          "example": "QC",
+          "name": "province_code_of_origin"
+        },
+        {
+          "description": "The unique SKU (stock keeping unit) of the inventory item.",
+          "type": "x-string",
+          "example": "IPOD2008PINK",
+          "name": "sku"
+        },
+        {
+          "description": "Whether inventory levels are tracked for the item. If true, then the inventory quantity changes are tracked by Shopify.",
+          "type": "x-string",
+          "example": true,
+          "name": "tracked"
+        },
+        {
+          "description": "          The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601 format</a>) when the inventory item was last modified.\n",
+          "type": "x-string",
+          "readOnly": true,
+          "example": "2012-08-24T12:01:47-06:00",
+          "name": "updated_at"
+        },
+        {
+          "description": "          Whether a customer needs to provide a shipping address when placing an order containing the inventory item.\n",
+          "type": "x-string",
+          "example": true,
+          "name": "requires_shipping"
+        }
+      ],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "inventory/inventoryitem",
+    "gid": "de22b32c-6c68-4884-b8a1-7af1508e7c7c",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/inventoryitem"
+    ],
+    "meta_description": "List or update the inventory of a variant's inventory item. Each variant can have one inventory item, and each inventory item can have multiple locations. Each location can have multiple inventory items for multiple variants.",
+    "postman_group": "Inventory",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

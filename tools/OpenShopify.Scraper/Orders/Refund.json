@@ -1,0 +1,1793 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Refund",
+    "description": "        <p>The Refund resource has two major components:</p>\n        <ul>\n          <li>Transaction records of money returned to the customer</li>\n          <li>The line items included in the refund, along with restocking instructions</li>\n        </ul>\n        <p>Before you create a refund, use the <code>calculate</code> endpoint to generate accurate refund transactions. Specify the line items that are being refunded, their quantity and restock instructions, and whether you're refunding shipping costs. You can then use the response of the <code>calculate</code> endpoint to create the actual refund.</p>\n        <p>When you create a refund using the response from the <code>calculate</code> endpoint, you can set additional options, such as whether to notify the customer of the refund. You can refund less than the calculated amount for either shipping or the line items by setting a custom value for the <code>amount</code> property.</p>\n        <p>If a refund includes shipping costs, or if you choose to refund line items for less than their calculated amount, then an order adjustment is created automatically to account for the discrepancy in the store's financial reports.</p>\n",
+    "x-owner": "https://vault.shopify.io/teams/873",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Retrieves a list of refunds for an order. <strong>Note:</strong> This endpoint implements pagination by using links that are provided in the response header. To learn more, see <a href=\"/tutorials/make-paginated-requests-to-rest-admin-api\"> <em>Making requests to paginated REST Admin API endpoints</em></a>.",
+      "summary": "Retrieves a list of refunds for an order",
+      "operationId": "Retrievesalistofrefundsforanorder",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fields",
+          "description": "Show only certain fields, specified by a comma-separated list of field names.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "in_shop_currency",
+          "description": "Show amounts in the shop currency for the underlying transaction.",
+          "in": "query",
+          "schema": {
+            "type": "x-string",
+            "default": "false"
+          }
+        },
+        {
+          "name": "limit",
+          "description": "The maximum number of results to retrieve.",
+          "in": "query",
+          "schema": {
+            "type": "x-string",
+            "default": 50,
+            "maximum": 250
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of refunds for an order",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve all refunds from a specific order": {
+                  "value": {
+                    "refunds": [
+                      {
+                        "id": 509562969,
+                        "order_id": 450789469,
+                        "created_at": "2022-04-05T10:51:55-06:00",
+                        "note": "it broke during shipping",
+                        "user_id": 548380009,
+                        "processed_at": "2022-04-05T10:51:55-06:00",
+                        "restock": true,
+                        "admin_graphql_api_id": "gid://shopify/Refund/509562969",
+                        "refund_line_items": [
+                          {
+                            "id": 104689539,
+                            "quantity": 1,
+                            "line_item_id": 703073504,
+                            "location_id": 487838322,
+                            "restock_type": "legacy_restock",
+                            "subtotal": 195.67,
+                            "total_tax": 3.98,
+                            "subtotal_set": {
+                              "shop_money": {
+                                "amount": "195.67",
+                                "currency_code": "USD"
+                              },
+                              "presentment_money": {
+                                "amount": "195.67",
+                                "currency_code": "USD"
+                              }
+                            },
+                            "total_tax_set": {
+                              "shop_money": {
+                                "amount": "3.98",
+                                "currency_code": "USD"
+                              },
+                              "presentment_money": {
+                                "amount": "3.98",
+                                "currency_code": "USD"
+                              }
+                            },
+                            "line_item": {
+                              "id": 703073504,
+                              "variant_id": 457924702,
+                              "title": "IPod Nano - 8gb",
+                              "quantity": 1,
+                              "sku": "IPOD2008BLACK",
+                              "variant_title": "black",
+                              "vendor": null,
+                              "fulfillment_service": "manual",
+                              "product_id": 632910392,
+                              "requires_shipping": true,
+                              "taxable": true,
+                              "gift_card": false,
+                              "name": "IPod Nano - 8gb - black",
+                              "variant_inventory_management": "shopify",
+                              "properties": [],
+                              "product_exists": true,
+                              "fulfillable_quantity": 1,
+                              "grams": 200,
+                              "price": "199.00",
+                              "total_discount": "0.00",
+                              "fulfillment_status": null,
+                              "price_set": {
+                                "shop_money": {
+                                  "amount": "199.00",
+                                  "currency_code": "USD"
+                                },
+                                "presentment_money": {
+                                  "amount": "199.00",
+                                  "currency_code": "USD"
+                                }
+                              },
+                              "total_discount_set": {
+                                "shop_money": {
+                                  "amount": "0.00",
+                                  "currency_code": "USD"
+                                },
+                                "presentment_money": {
+                                  "amount": "0.00",
+                                  "currency_code": "USD"
+                                }
+                              },
+                              "discount_allocations": [
+                                {
+                                  "amount": "3.33",
+                                  "discount_application_index": 0,
+                                  "amount_set": {
+                                    "shop_money": {
+                                      "amount": "3.33",
+                                      "currency_code": "USD"
+                                    },
+                                    "presentment_money": {
+                                      "amount": "3.33",
+                                      "currency_code": "USD"
+                                    }
+                                  }
+                                }
+                              ],
+                              "admin_graphql_api_id": "gid://shopify/LineItem/703073504",
+                              "tax_lines": [
+                                {
+                                  "title": "State Tax",
+                                  "price": "3.98",
+                                  "rate": 0.06,
+                                  "price_set": {
+                                    "shop_money": {
+                                      "amount": "3.98",
+                                      "currency_code": "USD"
+                                    },
+                                    "presentment_money": {
+                                      "amount": "3.98",
+                                      "currency_code": "USD"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "id": 709875399,
+                            "quantity": 1,
+                            "line_item_id": 466157049,
+                            "location_id": 487838322,
+                            "restock_type": "legacy_restock",
+                            "subtotal": 195.66,
+                            "total_tax": 3.98,
+                            "subtotal_set": {
+                              "shop_money": {
+                                "amount": "195.66",
+                                "currency_code": "USD"
+                              },
+                              "presentment_money": {
+                                "amount": "195.66",
+                                "currency_code": "USD"
+                              }
+                            },
+                            "total_tax_set": {
+                              "shop_money": {
+                                "amount": "3.98",
+                                "currency_code": "USD"
+                              },
+                              "presentment_money": {
+                                "amount": "3.98",
+                                "currency_code": "USD"
+                              }
+                            },
+                            "line_item": {
+                              "id": 466157049,
+                              "variant_id": 39072856,
+                              "title": "IPod Nano - 8gb",
+                              "quantity": 1,
+                              "sku": "IPOD2008GREEN",
+                              "variant_title": "green",
+                              "vendor": null,
+                              "fulfillment_service": "manual",
+                              "product_id": 632910392,
+                              "requires_shipping": true,
+                              "taxable": true,
+                              "gift_card": false,
+                              "name": "IPod Nano - 8gb - green",
+                              "variant_inventory_management": "shopify",
+                              "properties": [
+                                {
+                                  "name": "Custom Engraving Front",
+                                  "value": "Happy Birthday"
+                                },
+                                {
+                                  "name": "Custom Engraving Back",
+                                  "value": "Merry Christmas"
+                                }
+                              ],
+                              "product_exists": true,
+                              "fulfillable_quantity": 1,
+                              "grams": 200,
+                              "price": "199.00",
+                              "total_discount": "0.00",
+                              "fulfillment_status": null,
+                              "price_set": {
+                                "shop_money": {
+                                  "amount": "199.00",
+                                  "currency_code": "USD"
+                                },
+                                "presentment_money": {
+                                  "amount": "199.00",
+                                  "currency_code": "USD"
+                                }
+                              },
+                              "total_discount_set": {
+                                "shop_money": {
+                                  "amount": "0.00",
+                                  "currency_code": "USD"
+                                },
+                                "presentment_money": {
+                                  "amount": "0.00",
+                                  "currency_code": "USD"
+                                }
+                              },
+                              "discount_allocations": [
+                                {
+                                  "amount": "3.34",
+                                  "discount_application_index": 0,
+                                  "amount_set": {
+                                    "shop_money": {
+                                      "amount": "3.34",
+                                      "currency_code": "USD"
+                                    },
+                                    "presentment_money": {
+                                      "amount": "3.34",
+                                      "currency_code": "USD"
+                                    }
+                                  }
+                                }
+                              ],
+                              "admin_graphql_api_id": "gid://shopify/LineItem/466157049",
+                              "tax_lines": [
+                                {
+                                  "title": "State Tax",
+                                  "price": "3.98",
+                                  "rate": 0.06,
+                                  "price_set": {
+                                    "shop_money": {
+                                      "amount": "3.98",
+                                      "currency_code": "USD"
+                                    },
+                                    "presentment_money": {
+                                      "amount": "3.98",
+                                      "currency_code": "USD"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "transactions": [
+                          {
+                            "id": 179259969,
+                            "order_id": 450789469,
+                            "kind": "refund",
+                            "gateway": "bogus",
+                            "status": "success",
+                            "message": null,
+                            "created_at": "2005-08-05T10:59:12-06:00",
+                            "test": false,
+                            "authorization": "authorization-key",
+                            "location_id": null,
+                            "user_id": null,
+                            "parent_id": 801038806,
+                            "processed_at": "2005-08-05T10:59:12-06:00",
+                            "device_id": null,
+                            "error_code": null,
+                            "source_name": "web",
+                            "receipt": {},
+                            "amount": "209.00",
+                            "currency": "USD",
+                            "admin_graphql_api_id": "gid://shopify/OrderTransaction/179259969"
+                          }
+                        ],
+                        "order_adjustments": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/refunds.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/orders/450789469/refunds.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"refunds\":[{\"id\":509562969,\"order_id\":450789469,\"created_at\":\"2022-04-05T12:51:55-04:00\",\"note\":\"it broke during shipping\",\"user_id\":548380009,\"processed_at\":\"2022-04-05T12:51:55-04:00\",\"restock\":true,\"admin_graphql_api_id\":\"gid://shopify/Refund/509562969\",\"refund_line_items\":[{\"id\":104689539,\"quantity\":1,\"line_item_id\":703073504,\"location_id\":487838322,\"restock_type\":\"legacy_restock\",\"subtotal\":195.67,\"total_tax\":3.98,\"subtotal_set\":{\"shop_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"}},\"total_tax_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}},\"line_item\":{\"id\":703073504,\"variant_id\":457924702,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008BLACK\",\"variant_title\":\"black\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - black\",\"variant_inventory_management\":\"shopify\",\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.33\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"}}}],\"admin_graphql_api_id\":\"gid://shopify/LineItem/703073504\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}},{\"id\":709875399,\"quantity\":1,\"line_item_id\":466157049,\"location_id\":487838322,\"restock_type\":\"legacy_restock\",\"subtotal\":195.66,\"total_tax\":3.98,\"subtotal_set\":{\"shop_money\":{\"amount\":\"195.66\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"195.66\",\"currency_code\":\"USD\"}},\"total_tax_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}},\"line_item\":{\"id\":466157049,\"variant_id\":39072856,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008GREEN\",\"variant_title\":\"green\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - green\",\"variant_inventory_management\":\"shopify\",\"properties\":[{\"name\":\"Custom Engraving Front\",\"value\":\"Happy Birthday\"},{\"name\":\"Custom Engraving Back\",\"value\":\"Merry Christmas\"}],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.34\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"}}}],\"admin_graphql_api_id\":\"gid://shopify/LineItem/466157049\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}}],\"transactions\":[{\"id\":179259969,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-05T12:59:12-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2005-08-05T12:59:12-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"receipt\":{},\"amount\":\"209.00\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/179259969\"}],\"order_adjustments\":[]}]}"
+          },
+          "name": "Retrieve all refunds from a specific order",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/refunds.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Refund.all(\n  session: test_session,\n  order_id: 450789469,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Refund} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Refund.all({\n  session: test_session,\n  order_id: 450789469,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRefund::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/refunds.json",
+      "action": "get"
+    },
+    {
+      "description": "<aside class=\"note caution\">\n            <h4>Caution</h4>\n            <p>For multi-currency orders, the <code>currency</code> property is required whenever the <code>amount</code> property is provided. </p>\n          </aside>\n          <p>Creates a refund. Use the <code>calculate</code> endpoint to produce the transactions to submit.</p>\n          <br/>\n          <aside class=\"note\">\n            <h4>Note</h4>\n            <p>When you use this endpoint with a Partner development store or a trial store, you can create only five refunds per minute.</p>\n          </aside>",
+      "summary": "Creates a refund",
+      "operationId": "Createsarefund",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "currency",
+          "description": "        <p>The three-letter code (<a href=\"https://en.wikipedia.org/wiki/ISO_4217\" target=\"_blank\">ISO 4217</a> format) for the currency used for the refund.</p>\n",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "discrepancy_reason",
+          "description": "An optional comment that explains a discrepancy between calculated and actual refund amounts. Used to populate the <code>reason</code> property of the resulting <code>order_adjustment</code> object attached to the refund. Valid values: <code>restock</code>, <code>damage</code>, <code>customer</code>, and <code>other</code>.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "note",
+          "description": "An optional note attached to a refund.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "notify",
+          "description": "Whether to send a refund notification to the customer.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "refund_line_items",
+          "description": "A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          },
+          "examples": {
+            "line_item_id": {
+              "summary": "The ID of a line item to refund.",
+              "value": "line_item_id"
+            },
+            "quantity": {
+              "summary": "The quantity to refund.",
+              "value": "quantity"
+            },
+            "restock_type": {
+              "summary": "          How this refund line item affects inventory levels. Valid values:\n          <ul>\n            <li><strong>no_restock</strong>: Refunding these items won't affect inventory.</li>\n            <li><strong>cancel</strong>: The items have not yet been fulfilled.\n            The canceled quantity will be added back to the available count.\n            The number of fulfillable units for this line item will decrease.</li>\n            <li><strong>return</strong>: The items were already delivered but will be returned to the merchant.\n            The returned quantity will be added back to the available count. The number of fulfillable units for this\n            line item will remain unchanged.</li>\n          </ul>\n",
+              "value": "restock_type"
+            },
+            "location_id": {
+              "summary": "          The ID of the <a href= \"/api/admin-rest/current/resources/location\">location</a> where the items should be\n          restocked. This is required when the value of <code>restock_type</code> is <code>return</code> or <code>cancel</code>.\n          If the item is not already stocked at the location, then\n          the item is connected to the location. An error is returned when the item is connected to\n          a <a href=\"/api/admin-rest/current/resources/inventorylevel\">\n          fulfillment service location</a> and a different location is provided.\n",
+              "value": "location_id"
+            }
+          }
+        },
+        {
+          "name": "restock",
+          "description": "Whether to add the line items back to the store inventory. Use <code>restock_type</code> for refund line items instead.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          },
+          "deprecated": true
+        },
+        {
+          "name": "shipping",
+          "description": "Specify how much shipping to refund. It has the following properties:",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          },
+          "examples": {
+            "full_refund": {
+              "summary": "Whether to refund all remaining shipping.",
+              "value": "full_refund"
+            },
+            "amount": {
+              "summary": "Set a specific amount to refund for shipping. Takes precedence over <code>full_refund</code>.",
+              "value": "amount"
+            }
+          }
+        },
+        {
+          "name": "transactions",
+          "description": "          A list of <a href=\"/api/admin-rest/current/resources/transaction\">transactions</a>\n          to process as refunds. Use the <code>calculate</code> endpoint to obtain these transactions.\n",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        }
+      ],
+      "responses": {
+        "201": {
+          "description": "Creates a refund",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Refund a specific amount of shipping": {
+                  "value": {
+                    "refund": {
+                      "id": 929361464,
+                      "order_id": 450789469,
+                      "created_at": "2022-04-05T10:55:25-06:00",
+                      "note": null,
+                      "user_id": null,
+                      "processed_at": "2022-04-05T10:55:25-06:00",
+                      "restock": false,
+                      "duties": [],
+                      "total_duties_set": {
+                        "shop_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        },
+                        "presentment_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        }
+                      },
+                      "additional_fees": [],
+                      "total_additional_fees_set": {
+                        "shop_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        },
+                        "presentment_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        }
+                      },
+                      "admin_graphql_api_id": "gid://shopify/Refund/929361464",
+                      "refund_line_items": [],
+                      "transactions": [
+                        {
+                          "id": 1068278467,
+                          "order_id": 450789469,
+                          "kind": "refund",
+                          "gateway": "bogus",
+                          "status": "success",
+                          "message": "Bogus Gateway: Forced success",
+                          "created_at": "2022-04-05T10:55:25-06:00",
+                          "test": true,
+                          "authorization": null,
+                          "location_id": null,
+                          "user_id": null,
+                          "parent_id": 801038806,
+                          "processed_at": "2022-04-05T10:55:25-06:00",
+                          "device_id": null,
+                          "error_code": null,
+                          "source_name": "755357713",
+                          "receipt": {},
+                          "amount": "5.00",
+                          "currency": "USD",
+                          "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278467"
+                        }
+                      ],
+                      "order_adjustments": [
+                        {
+                          "id": 1030976843,
+                          "order_id": 450789469,
+                          "refund_id": 929361464,
+                          "amount": "-5.00",
+                          "tax_amount": "0.00",
+                          "kind": "shipping_refund",
+                          "reason": "Shipping refund",
+                          "amount_set": {
+                            "shop_money": {
+                              "amount": "-5.00",
+                              "currency_code": "USD"
+                            },
+                            "presentment_money": {
+                              "amount": "-5.00",
+                              "currency_code": "USD"
+                            }
+                          },
+                          "tax_amount_set": {
+                            "shop_money": {
+                              "amount": "0.00",
+                              "currency_code": "USD"
+                            },
+                            "presentment_money": {
+                              "amount": "0.00",
+                              "currency_code": "USD"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "Create a refund for an order": {
+                  "value": {
+                    "refund": {
+                      "id": 929361465,
+                      "order_id": 450789469,
+                      "created_at": "2022-04-05T10:55:34-06:00",
+                      "note": "wrong size",
+                      "user_id": null,
+                      "processed_at": "2022-04-05T10:55:34-06:00",
+                      "restock": false,
+                      "duties": [],
+                      "total_duties_set": {
+                        "shop_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        },
+                        "presentment_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        }
+                      },
+                      "additional_fees": [],
+                      "total_additional_fees_set": {
+                        "shop_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        },
+                        "presentment_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        }
+                      },
+                      "admin_graphql_api_id": "gid://shopify/Refund/929361465",
+                      "refund_line_items": [
+                        {
+                          "location_id": null,
+                          "restock_type": "no_restock",
+                          "quantity": 1,
+                          "id": 1058498308,
+                          "line_item_id": 518995019,
+                          "subtotal": 195.67,
+                          "total_tax": 3.98,
+                          "subtotal_set": {
+                            "shop_money": {
+                              "amount": "195.67",
+                              "currency_code": "USD"
+                            },
+                            "presentment_money": {
+                              "amount": "195.67",
+                              "currency_code": "USD"
+                            }
+                          },
+                          "total_tax_set": {
+                            "shop_money": {
+                              "amount": "3.98",
+                              "currency_code": "USD"
+                            },
+                            "presentment_money": {
+                              "amount": "3.98",
+                              "currency_code": "USD"
+                            }
+                          },
+                          "line_item": {
+                            "id": 518995019,
+                            "variant_id": 49148385,
+                            "title": "IPod Nano - 8gb",
+                            "quantity": 1,
+                            "sku": "IPOD2008RED",
+                            "variant_title": "red",
+                            "vendor": null,
+                            "fulfillment_service": "manual",
+                            "product_id": 632910392,
+                            "requires_shipping": true,
+                            "taxable": true,
+                            "gift_card": false,
+                            "name": "IPod Nano - 8gb - red",
+                            "variant_inventory_management": "shopify",
+                            "properties": [],
+                            "product_exists": true,
+                            "fulfillable_quantity": 1,
+                            "grams": 200,
+                            "price": "199.00",
+                            "total_discount": "0.00",
+                            "fulfillment_status": null,
+                            "price_set": {
+                              "shop_money": {
+                                "amount": "199.00",
+                                "currency_code": "USD"
+                              },
+                              "presentment_money": {
+                                "amount": "199.00",
+                                "currency_code": "USD"
+                              }
+                            },
+                            "total_discount_set": {
+                              "shop_money": {
+                                "amount": "0.00",
+                                "currency_code": "USD"
+                              },
+                              "presentment_money": {
+                                "amount": "0.00",
+                                "currency_code": "USD"
+                              }
+                            },
+                            "discount_allocations": [
+                              {
+                                "amount": "3.33",
+                                "discount_application_index": 0,
+                                "amount_set": {
+                                  "shop_money": {
+                                    "amount": "3.33",
+                                    "currency_code": "USD"
+                                  },
+                                  "presentment_money": {
+                                    "amount": "3.33",
+                                    "currency_code": "USD"
+                                  }
+                                }
+                              }
+                            ],
+                            "duties": [],
+                            "admin_graphql_api_id": "gid://shopify/LineItem/518995019",
+                            "tax_lines": [
+                              {
+                                "title": "State Tax",
+                                "price": "3.98",
+                                "rate": 0.06,
+                                "channel_liable": null,
+                                "price_set": {
+                                  "shop_money": {
+                                    "amount": "3.98",
+                                    "currency_code": "USD"
+                                  },
+                                  "presentment_money": {
+                                    "amount": "3.98",
+                                    "currency_code": "USD"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "transactions": [
+                        {
+                          "id": 1068278468,
+                          "order_id": 450789469,
+                          "kind": "refund",
+                          "gateway": "bogus",
+                          "status": "success",
+                          "message": "Bogus Gateway: Forced success",
+                          "created_at": "2022-04-05T10:55:34-06:00",
+                          "test": true,
+                          "authorization": null,
+                          "location_id": null,
+                          "user_id": null,
+                          "parent_id": 801038806,
+                          "processed_at": "2022-04-05T10:55:34-06:00",
+                          "device_id": null,
+                          "error_code": null,
+                          "source_name": "755357713",
+                          "receipt": {},
+                          "amount": "41.94",
+                          "currency": "USD",
+                          "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278468"
+                        }
+                      ],
+                      "order_adjustments": []
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/refunds.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/orders/450789469/refunds.json",
+            "headers": {},
+            "body": "{\"refund\":{\"currency\":\"USD\",\"shipping\":{\"amount\":5.0},\"transactions\":[{\"parent_id\":801038806,\"amount\":5.0,\"kind\":\"refund\",\"gateway\":\"bogus\"}]}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"refund\":{\"id\":929361464,\"order_id\":450789469,\"created_at\":\"2022-04-05T12:55:25-04:00\",\"note\":null,\"user_id\":null,\"processed_at\":\"2022-04-05T12:55:25-04:00\",\"restock\":false,\"duties\":[],\"total_duties_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"additional_fees\":[],\"total_additional_fees_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"admin_graphql_api_id\":\"gid://shopify/Refund/929361464\",\"refund_line_items\":[],\"transactions\":[{\"id\":1068278467,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-04-05T12:55:25-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2022-04-05T12:55:25-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"receipt\":{},\"amount\":\"5.00\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278467\"}],\"order_adjustments\":[{\"id\":1030976843,\"order_id\":450789469,\"refund_id\":929361464,\"amount\":\"-5.00\",\"tax_amount\":\"0.00\",\"kind\":\"shipping_refund\",\"reason\":\"Shipping refund\",\"amount_set\":{\"shop_money\":{\"amount\":\"-5.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"-5.00\",\"currency_code\":\"USD\"}},\"tax_amount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}}}]}}"
+          },
+          "name": "Refund a specific amount of shipping",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"refund\":{\"currency\":\"USD\",\"shipping\":{\"amount\":5.0},\"transactions\":[{\"parent_id\":801038806,\"amount\":5.0,\"kind\":\"refund\",\"gateway\":\"bogus\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/refunds.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nrefund = ShopifyAPI::Refund.new(session: test_session)\nrefund.order_id = 450789469\nrefund.currency = \"USD\"\nrefund.shipping = {\n  \"amount\" => 5.0\n}\nrefund.transactions = [\n  {\n    \"parent_id\" => 801038806,\n    \"amount\" => 5.0,\n    \"kind\" => \"refund\",\n    \"gateway\" => \"bogus\"\n  }\n]\nrefund.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Refund} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst refund = new Refund({session: test_session});\nrefund.order_id = 450789469;\nrefund.currency = \"USD\";\nrefund.shipping = {\n  \"amount\": 5.0\n};\nrefund.transactions = [\n  {\n    \"parent_id\": 801038806,\n    \"amount\": 5.0,\n    \"kind\": \"refund\",\n    \"gateway\": \"bogus\"\n  }\n];\nawait refund.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$refund = new Refund($this->test_session);\n$refund->order_id = 450789469;\n$refund->currency = \"USD\";\n$refund->shipping = [\n    \"amount\" => 5.0\n];\n$refund->transactions = [\n    [\n        \"parent_id\" => 801038806,\n        \"amount\" => 5.0,\n        \"kind\" => \"refund\",\n        \"gateway\" => \"bogus\"\n    ]\n];\n$refund->save();"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/refunds.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/orders/450789469/refunds.json",
+            "headers": {},
+            "body": "{\"refund\":{\"currency\":\"USD\",\"notify\":true,\"note\":\"wrong size\",\"shipping\":{\"full_refund\":true},\"refund_line_items\":[{\"line_item_id\":518995019,\"quantity\":1,\"restock_type\":\"return\",\"location_id\":487838322}],\"transactions\":[{\"parent_id\":801038806,\"amount\":41.94,\"kind\":\"refund\",\"gateway\":\"bogus\"}]}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"refund\":{\"id\":929361465,\"order_id\":450789469,\"created_at\":\"2022-04-05T12:55:34-04:00\",\"note\":\"wrong size\",\"user_id\":null,\"processed_at\":\"2022-04-05T12:55:34-04:00\",\"restock\":false,\"duties\":[],\"total_duties_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"additional_fees\":[],\"total_additional_fees_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"admin_graphql_api_id\":\"gid://shopify/Refund/929361465\",\"refund_line_items\":[{\"location_id\":null,\"restock_type\":\"no_restock\",\"quantity\":1,\"id\":1058498308,\"line_item_id\":518995019,\"subtotal\":195.67,\"total_tax\":3.98,\"subtotal_set\":{\"shop_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"}},\"total_tax_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}},\"line_item\":{\"id\":518995019,\"variant_id\":49148385,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008RED\",\"variant_title\":\"red\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - red\",\"variant_inventory_management\":\"shopify\",\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.33\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"}}}],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/518995019\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"channel_liable\":null,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}}],\"transactions\":[{\"id\":1068278468,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-04-05T12:55:34-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2022-04-05T12:55:34-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"receipt\":{},\"amount\":\"41.94\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278468\"}],\"order_adjustments\":[]}}"
+          },
+          "name": "Create a refund for an order",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"refund\":{\"currency\":\"USD\",\"notify\":true,\"note\":\"wrong size\",\"shipping\":{\"full_refund\":true},\"refund_line_items\":[{\"line_item_id\":518995019,\"quantity\":1,\"restock_type\":\"return\",\"location_id\":487838322}],\"transactions\":[{\"parent_id\":801038806,\"amount\":41.94,\"kind\":\"refund\",\"gateway\":\"bogus\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/refunds.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nrefund = ShopifyAPI::Refund.new(session: test_session)\nrefund.order_id = 450789469\nrefund.currency = \"USD\"\nrefund.notify = true\nrefund.note = \"wrong size\"\nrefund.shipping = {\n  \"full_refund\" => true\n}\nrefund.refund_line_items = [\n  {\n    \"line_item_id\" => 518995019,\n    \"quantity\" => 1,\n    \"restock_type\" => \"return\",\n    \"location_id\" => 487838322\n  }\n]\nrefund.transactions = [\n  {\n    \"parent_id\" => 801038806,\n    \"amount\" => 41.94,\n    \"kind\" => \"refund\",\n    \"gateway\" => \"bogus\"\n  }\n]\nrefund.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Refund} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst refund = new Refund({session: test_session});\nrefund.order_id = 450789469;\nrefund.currency = \"USD\";\nrefund.notify = true;\nrefund.note = \"wrong size\";\nrefund.shipping = {\n  \"full_refund\": true\n};\nrefund.refund_line_items = [\n  {\n    \"line_item_id\": 518995019,\n    \"quantity\": 1,\n    \"restock_type\": \"return\",\n    \"location_id\": 487838322\n  }\n];\nrefund.transactions = [\n  {\n    \"parent_id\": 801038806,\n    \"amount\": 41.94,\n    \"kind\": \"refund\",\n    \"gateway\": \"bogus\"\n  }\n];\nawait refund.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$refund = new Refund($this->test_session);\n$refund->order_id = 450789469;\n$refund->currency = \"USD\";\n$refund->notify = true;\n$refund->note = \"wrong size\";\n$refund->shipping = [\n    \"full_refund\" => true\n];\n$refund->refund_line_items = [\n    [\n        \"line_item_id\" => 518995019,\n        \"quantity\" => 1,\n        \"restock_type\" => \"return\",\n        \"location_id\" => 487838322\n    ]\n];\n$refund->transactions = [\n    [\n        \"parent_id\" => 801038806,\n        \"amount\" => 41.94,\n        \"kind\" => \"refund\",\n        \"gateway\" => \"bogus\"\n    ]\n];\n$refund->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/refunds.json",
+      "action": "post"
+    },
+    {
+      "description": "Retrieves a specific refund.",
+      "summary": "Retrieves a specific refund",
+      "operationId": "Retrievesaspecificrefund",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "refund_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fields",
+          "description": "Show only certain fields, specified by a comma-separated list of field names.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "in_shop_currency",
+          "description": "Show amounts in the shop currency for the underlying transaction.",
+          "in": "query",
+          "schema": {
+            "type": "x-string",
+            "default": "false"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a specific refund",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a specific refund": {
+                  "value": {
+                    "refund": {
+                      "id": 509562969,
+                      "order_id": 450789469,
+                      "created_at": "2022-04-05T10:51:55-06:00",
+                      "note": "it broke during shipping",
+                      "user_id": 548380009,
+                      "processed_at": "2022-04-05T10:51:55-06:00",
+                      "restock": true,
+                      "duties": [],
+                      "total_duties_set": {
+                        "shop_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        },
+                        "presentment_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        }
+                      },
+                      "additional_fees": [],
+                      "total_additional_fees_set": {
+                        "shop_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        },
+                        "presentment_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        }
+                      },
+                      "admin_graphql_api_id": "gid://shopify/Refund/509562969",
+                      "refund_line_items": [
+                        {
+                          "id": 104689539,
+                          "quantity": 1,
+                          "line_item_id": 703073504,
+                          "location_id": 487838322,
+                          "restock_type": "legacy_restock",
+                          "subtotal": 195.67,
+                          "total_tax": 3.98,
+                          "subtotal_set": {
+                            "shop_money": {
+                              "amount": "195.67",
+                              "currency_code": "USD"
+                            },
+                            "presentment_money": {
+                              "amount": "195.67",
+                              "currency_code": "USD"
+                            }
+                          },
+                          "total_tax_set": {
+                            "shop_money": {
+                              "amount": "3.98",
+                              "currency_code": "USD"
+                            },
+                            "presentment_money": {
+                              "amount": "3.98",
+                              "currency_code": "USD"
+                            }
+                          },
+                          "line_item": {
+                            "id": 703073504,
+                            "variant_id": 457924702,
+                            "title": "IPod Nano - 8gb",
+                            "quantity": 1,
+                            "sku": "IPOD2008BLACK",
+                            "variant_title": "black",
+                            "vendor": null,
+                            "fulfillment_service": "manual",
+                            "product_id": 632910392,
+                            "requires_shipping": true,
+                            "taxable": true,
+                            "gift_card": false,
+                            "name": "IPod Nano - 8gb - black",
+                            "variant_inventory_management": "shopify",
+                            "properties": [],
+                            "product_exists": true,
+                            "fulfillable_quantity": 1,
+                            "grams": 200,
+                            "price": "199.00",
+                            "total_discount": "0.00",
+                            "fulfillment_status": null,
+                            "price_set": {
+                              "shop_money": {
+                                "amount": "199.00",
+                                "currency_code": "USD"
+                              },
+                              "presentment_money": {
+                                "amount": "199.00",
+                                "currency_code": "USD"
+                              }
+                            },
+                            "total_discount_set": {
+                              "shop_money": {
+                                "amount": "0.00",
+                                "currency_code": "USD"
+                              },
+                              "presentment_money": {
+                                "amount": "0.00",
+                                "currency_code": "USD"
+                              }
+                            },
+                            "discount_allocations": [
+                              {
+                                "amount": "3.33",
+                                "discount_application_index": 0,
+                                "amount_set": {
+                                  "shop_money": {
+                                    "amount": "3.33",
+                                    "currency_code": "USD"
+                                  },
+                                  "presentment_money": {
+                                    "amount": "3.33",
+                                    "currency_code": "USD"
+                                  }
+                                }
+                              }
+                            ],
+                            "duties": [],
+                            "admin_graphql_api_id": "gid://shopify/LineItem/703073504",
+                            "tax_lines": [
+                              {
+                                "title": "State Tax",
+                                "price": "3.98",
+                                "rate": 0.06,
+                                "channel_liable": null,
+                                "price_set": {
+                                  "shop_money": {
+                                    "amount": "3.98",
+                                    "currency_code": "USD"
+                                  },
+                                  "presentment_money": {
+                                    "amount": "3.98",
+                                    "currency_code": "USD"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "id": 709875399,
+                          "quantity": 1,
+                          "line_item_id": 466157049,
+                          "location_id": 487838322,
+                          "restock_type": "legacy_restock",
+                          "subtotal": 195.66,
+                          "total_tax": 3.98,
+                          "subtotal_set": {
+                            "shop_money": {
+                              "amount": "195.66",
+                              "currency_code": "USD"
+                            },
+                            "presentment_money": {
+                              "amount": "195.66",
+                              "currency_code": "USD"
+                            }
+                          },
+                          "total_tax_set": {
+                            "shop_money": {
+                              "amount": "3.98",
+                              "currency_code": "USD"
+                            },
+                            "presentment_money": {
+                              "amount": "3.98",
+                              "currency_code": "USD"
+                            }
+                          },
+                          "line_item": {
+                            "id": 466157049,
+                            "variant_id": 39072856,
+                            "title": "IPod Nano - 8gb",
+                            "quantity": 1,
+                            "sku": "IPOD2008GREEN",
+                            "variant_title": "green",
+                            "vendor": null,
+                            "fulfillment_service": "manual",
+                            "product_id": 632910392,
+                            "requires_shipping": true,
+                            "taxable": true,
+                            "gift_card": false,
+                            "name": "IPod Nano - 8gb - green",
+                            "variant_inventory_management": "shopify",
+                            "properties": [
+                              {
+                                "name": "Custom Engraving Front",
+                                "value": "Happy Birthday"
+                              },
+                              {
+                                "name": "Custom Engraving Back",
+                                "value": "Merry Christmas"
+                              }
+                            ],
+                            "product_exists": true,
+                            "fulfillable_quantity": 1,
+                            "grams": 200,
+                            "price": "199.00",
+                            "total_discount": "0.00",
+                            "fulfillment_status": null,
+                            "price_set": {
+                              "shop_money": {
+                                "amount": "199.00",
+                                "currency_code": "USD"
+                              },
+                              "presentment_money": {
+                                "amount": "199.00",
+                                "currency_code": "USD"
+                              }
+                            },
+                            "total_discount_set": {
+                              "shop_money": {
+                                "amount": "0.00",
+                                "currency_code": "USD"
+                              },
+                              "presentment_money": {
+                                "amount": "0.00",
+                                "currency_code": "USD"
+                              }
+                            },
+                            "discount_allocations": [
+                              {
+                                "amount": "3.34",
+                                "discount_application_index": 0,
+                                "amount_set": {
+                                  "shop_money": {
+                                    "amount": "3.34",
+                                    "currency_code": "USD"
+                                  },
+                                  "presentment_money": {
+                                    "amount": "3.34",
+                                    "currency_code": "USD"
+                                  }
+                                }
+                              }
+                            ],
+                            "duties": [],
+                            "admin_graphql_api_id": "gid://shopify/LineItem/466157049",
+                            "tax_lines": [
+                              {
+                                "title": "State Tax",
+                                "price": "3.98",
+                                "rate": 0.06,
+                                "channel_liable": null,
+                                "price_set": {
+                                  "shop_money": {
+                                    "amount": "3.98",
+                                    "currency_code": "USD"
+                                  },
+                                  "presentment_money": {
+                                    "amount": "3.98",
+                                    "currency_code": "USD"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "transactions": [
+                        {
+                          "id": 179259969,
+                          "order_id": 450789469,
+                          "kind": "refund",
+                          "gateway": "bogus",
+                          "status": "success",
+                          "message": null,
+                          "created_at": "2005-08-05T10:59:12-06:00",
+                          "test": false,
+                          "authorization": "authorization-key",
+                          "location_id": null,
+                          "user_id": null,
+                          "parent_id": 801038806,
+                          "processed_at": "2005-08-05T10:59:12-06:00",
+                          "device_id": null,
+                          "error_code": null,
+                          "source_name": "web",
+                          "receipt": {},
+                          "amount": "209.00",
+                          "currency": "USD",
+                          "admin_graphql_api_id": "gid://shopify/OrderTransaction/179259969"
+                        }
+                      ],
+                      "order_adjustments": []
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/refunds/509562969.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/orders/450789469/refunds/509562969.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"refund\":{\"id\":509562969,\"order_id\":450789469,\"created_at\":\"2022-04-05T12:51:55-04:00\",\"note\":\"it broke during shipping\",\"user_id\":548380009,\"processed_at\":\"2022-04-05T12:51:55-04:00\",\"restock\":true,\"duties\":[],\"total_duties_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"additional_fees\":[],\"total_additional_fees_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"admin_graphql_api_id\":\"gid://shopify/Refund/509562969\",\"refund_line_items\":[{\"id\":104689539,\"quantity\":1,\"line_item_id\":703073504,\"location_id\":487838322,\"restock_type\":\"legacy_restock\",\"subtotal\":195.67,\"total_tax\":3.98,\"subtotal_set\":{\"shop_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"195.67\",\"currency_code\":\"USD\"}},\"total_tax_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}},\"line_item\":{\"id\":703073504,\"variant_id\":457924702,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008BLACK\",\"variant_title\":\"black\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - black\",\"variant_inventory_management\":\"shopify\",\"properties\":[],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.33\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.33\",\"currency_code\":\"USD\"}}}],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/703073504\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"channel_liable\":null,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}},{\"id\":709875399,\"quantity\":1,\"line_item_id\":466157049,\"location_id\":487838322,\"restock_type\":\"legacy_restock\",\"subtotal\":195.66,\"total_tax\":3.98,\"subtotal_set\":{\"shop_money\":{\"amount\":\"195.66\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"195.66\",\"currency_code\":\"USD\"}},\"total_tax_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}},\"line_item\":{\"id\":466157049,\"variant_id\":39072856,\"title\":\"IPod Nano - 8gb\",\"quantity\":1,\"sku\":\"IPOD2008GREEN\",\"variant_title\":\"green\",\"vendor\":null,\"fulfillment_service\":\"manual\",\"product_id\":632910392,\"requires_shipping\":true,\"taxable\":true,\"gift_card\":false,\"name\":\"IPod Nano - 8gb - green\",\"variant_inventory_management\":\"shopify\",\"properties\":[{\"name\":\"Custom Engraving Front\",\"value\":\"Happy Birthday\"},{\"name\":\"Custom Engraving Back\",\"value\":\"Merry Christmas\"}],\"product_exists\":true,\"fulfillable_quantity\":1,\"grams\":200,\"price\":\"199.00\",\"total_discount\":\"0.00\",\"fulfillment_status\":null,\"price_set\":{\"shop_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"199.00\",\"currency_code\":\"USD\"}},\"total_discount_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"discount_allocations\":[{\"amount\":\"3.34\",\"discount_application_index\":0,\"amount_set\":{\"shop_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.34\",\"currency_code\":\"USD\"}}}],\"duties\":[],\"admin_graphql_api_id\":\"gid://shopify/LineItem/466157049\",\"tax_lines\":[{\"title\":\"State Tax\",\"price\":\"3.98\",\"rate\":0.06,\"channel_liable\":null,\"price_set\":{\"shop_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"3.98\",\"currency_code\":\"USD\"}}}]}}],\"transactions\":[{\"id\":179259969,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-05T12:59:12-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2005-08-05T12:59:12-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"receipt\":{},\"amount\":\"209.00\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/179259969\"}],\"order_adjustments\":[]}}"
+          },
+          "name": "Retrieve a specific refund",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/refunds/509562969.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Refund.find(\n  session: test_session,\n  order_id: 450789469,\n  id: 509562969,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Refund} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Refund.find({\n  session: test_session,\n  order_id: 450789469,\n  id: 509562969,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRefund::find(\n    $this->test_session, // Session\n    509562969, // Id\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/refunds/{refund_id}.json",
+      "action": "get"
+    },
+    {
+      "description": "<aside class=\"note caution\">\n          <h4>Caution</h4>\n          <p>For multi-currency orders, the <code>currency</code> property is required whenever the <code>amount</code> property is provided.</p>\n        </aside>\n          <p>Calculates refund transactions based on line items and shipping. When you want to create a refund,\n          you should first use the <code>calculate</code> endpoint to generate accurate refund transactions. Specify the line items\n          that are being refunded, their quantity and restock instructions, and whether you intend to refund\n          shipping costs. If the restock instructions can't be met—for example, because you try to return more items than have been\n          fulfilled—then the endpoint returns modified restock instructions. You can then use the response in the body of the request to create the actual refund.</p>\n          <p>The response includes a <code>transactions</code> object with <code>\"kind\": \"suggested_refund\"</code>,\n          which must to be changed to <code>\"kind\" : \"refund\"</code> for the refund to be accepted.",
+      "summary": "Calculates a refund",
+      "operationId": "Calculatesarefund",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "currency",
+          "description": "          <p>The three-letter code (<a href=\"https://en.wikipedia.org/wiki/ISO_4217\" target=\"_blank\">ISO 4217</a> format) for the\n          currency used for the refund. <strong>Note:</strong> Required whenever the shipping <code>amount</code> property is provided.</p>\n\n",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "refund_line_items",
+          "description": "A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          },
+          "examples": {
+            "line_item_id": {
+              "summary": "The ID of a line item to refund.",
+              "value": "line_item_id"
+            },
+            "quantity": {
+              "summary": "The quantity to refund.",
+              "value": "quantity"
+            },
+            "restock_type": {
+              "summary": "          How this refund line item affects inventory levels. Valid values:\n          <ul>\n            <li><strong>no_restock</strong>: Refunding these items won't affect inventory.</li>\n            <li><strong>cancel</strong>: The items have not yet been fulfilled. The canceled quantity will be added\n            back to the available count. The number of fulfillable units for this line item will decrease.</li>\n            <li><strong>return</strong>: The items were already delivered but will be returned to the merchant.\n            The returned quantity will be added back to the available count.\n            The number of fulfillable units for this line item will remain unchanged.</li>\n          </ul>\n",
+              "value": "restock_type"
+            },
+            "location_id": {
+              "summary": "          The ID of the <a href=\"https://shopify.dev/api/admin-rest/current/resources/location\">location</a>\n          where the items should be restocked. If <code>location_id</code> is not provided and the value of\n          <code>restock_type</code> is <code>return</code> or <code>cancel</code>, then the endpoint returns a suitable\n          location ID.\n",
+              "value": "location_id"
+            },
+            "already_stocked": {
+              "summary": "          Whether the item is already stocked at\n          the location. If this is <code>false</code>, then creating the refund will connect the item to the location and start\n          stocking it there.\n",
+              "value": "already_stocked"
+            }
+          }
+        },
+        {
+          "name": "shipping",
+          "description": "Specify how much shipping to refund. It has the following properties:",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          },
+          "examples": {
+            "full_refund": {
+              "summary": "Whether to refund all remaining shipping.",
+              "value": "full_refund"
+            },
+            "amount": {
+              "summary": "Set a specific amount to refund for shipping. Takes precedence over <code>full_refund</code>.",
+              "value": "amount"
+            }
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Calculates a refund",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Calculate the refund without specifying currency": {
+                  "value": {
+                    "refund": {
+                      "shipping": {
+                        "amount": "5.00",
+                        "tax": "0.00",
+                        "maximum_refundable": "5.00"
+                      },
+                      "duties": [],
+                      "total_duties_set": {
+                        "shop_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        },
+                        "presentment_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        }
+                      },
+                      "additional_fees": [],
+                      "total_additional_fees_set": {
+                        "shop_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        },
+                        "presentment_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        }
+                      },
+                      "refund_line_items": [
+                        {
+                          "quantity": 1,
+                          "line_item_id": 518995019,
+                          "location_id": null,
+                          "restock_type": "no_restock",
+                          "price": "199.00",
+                          "subtotal": "195.67",
+                          "total_tax": "3.98",
+                          "discounted_price": "199.00",
+                          "discounted_total_price": "199.00",
+                          "total_cart_discount_amount": "3.33"
+                        }
+                      ],
+                      "transactions": [
+                        {
+                          "order_id": 450789469,
+                          "kind": "suggested_refund",
+                          "gateway": "bogus",
+                          "parent_id": 801038806,
+                          "amount": "41.94",
+                          "currency": "USD",
+                          "maximum_refundable": "41.94"
+                        }
+                      ],
+                      "currency": "USD"
+                    }
+                  }
+                },
+                "Calculate the refund for a line item and shipping": {
+                  "value": {
+                    "refund": {
+                      "shipping": {
+                        "amount": "5.00",
+                        "tax": "0.00",
+                        "maximum_refundable": "5.00"
+                      },
+                      "duties": [],
+                      "total_duties_set": {
+                        "shop_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        },
+                        "presentment_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        }
+                      },
+                      "additional_fees": [],
+                      "total_additional_fees_set": {
+                        "shop_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        },
+                        "presentment_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        }
+                      },
+                      "refund_line_items": [
+                        {
+                          "quantity": 1,
+                          "line_item_id": 518995019,
+                          "location_id": null,
+                          "restock_type": "no_restock",
+                          "price": "199.00",
+                          "subtotal": "195.67",
+                          "total_tax": "3.98",
+                          "discounted_price": "199.00",
+                          "discounted_total_price": "199.00",
+                          "total_cart_discount_amount": "3.33"
+                        }
+                      ],
+                      "transactions": [
+                        {
+                          "order_id": 450789469,
+                          "kind": "suggested_refund",
+                          "gateway": "bogus",
+                          "parent_id": 801038806,
+                          "amount": "41.94",
+                          "currency": "USD",
+                          "maximum_refundable": "41.94"
+                        }
+                      ],
+                      "currency": "USD"
+                    }
+                  }
+                },
+                "Calculate a refund for a partial amount of shipping": {
+                  "value": {
+                    "refund": {
+                      "shipping": {
+                        "amount": "2.00",
+                        "tax": "0.00",
+                        "maximum_refundable": "5.00"
+                      },
+                      "duties": [],
+                      "total_duties_set": {
+                        "shop_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        },
+                        "presentment_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        }
+                      },
+                      "additional_fees": [],
+                      "total_additional_fees_set": {
+                        "shop_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        },
+                        "presentment_money": {
+                          "amount": "0.00",
+                          "currency_code": "USD"
+                        }
+                      },
+                      "refund_line_items": [],
+                      "transactions": [
+                        {
+                          "order_id": 450789469,
+                          "kind": "suggested_refund",
+                          "gateway": "bogus",
+                          "parent_id": 801038806,
+                          "amount": "2.00",
+                          "currency": "USD",
+                          "maximum_refundable": "41.94"
+                        }
+                      ],
+                      "currency": "USD"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/refunds/calculate.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/orders/450789469/refunds/calculate.json",
+            "headers": {},
+            "body": "{\"refund\":{\"shipping\":{\"full_refund\":true},\"refund_line_items\":[{\"line_item_id\":518995019,\"quantity\":1,\"restock_type\":\"no_restock\"}]}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"refund\":{\"shipping\":{\"amount\":\"5.00\",\"tax\":\"0.00\",\"maximum_refundable\":\"5.00\"},\"duties\":[],\"total_duties_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"additional_fees\":[],\"total_additional_fees_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"refund_line_items\":[{\"quantity\":1,\"line_item_id\":518995019,\"location_id\":null,\"restock_type\":\"no_restock\",\"price\":\"199.00\",\"subtotal\":\"195.67\",\"total_tax\":\"3.98\",\"discounted_price\":\"199.00\",\"discounted_total_price\":\"199.00\",\"total_cart_discount_amount\":\"3.33\"}],\"transactions\":[{\"order_id\":450789469,\"kind\":\"suggested_refund\",\"gateway\":\"bogus\",\"parent_id\":801038806,\"amount\":\"41.94\",\"currency\":\"USD\",\"maximum_refundable\":\"41.94\"}],\"currency\":\"USD\"}}"
+          },
+          "name": "Calculate the refund without specifying currency",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"refund\":{\"shipping\":{\"full_refund\":true},\"refund_line_items\":[{\"line_item_id\":518995019,\"quantity\":1,\"restock_type\":\"no_restock\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/refunds/calculate.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nrefund = ShopifyAPI::Refund.new(session: test_session)\nrefund.order_id = 450789469\nrefund.calculate(\n  session: test_session,\n  body: {\"refund\" => {\"shipping\" => {\"full_refund\" => true}, \"refund_line_items\" => [{\"line_item_id\" => 518995019, \"quantity\" => 1, \"restock_type\" => \"no_restock\"}]}},\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Refund} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst refund = new Refund({session: test_session});\nrefund.order_id = 450789469;\nawait refund.calculate({\n  body: {\"refund\": {\"shipping\": {\"full_refund\": true}, \"refund_line_items\": [{\"line_item_id\": 518995019, \"quantity\": 1, \"restock_type\": \"no_restock\"}]}},\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$refund = new Refund($this->test_session);\n$refund->order_id = 450789469;\n$refund->calculate(\n    [], // Params\n    [\"refund\" => [\"shipping\" => [\"full_refund\" => true], \"refund_line_items\" => [[\"line_item_id\" => 518995019, \"quantity\" => 1, \"restock_type\" => \"no_restock\"]]]], // Body\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/refunds/calculate.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/orders/450789469/refunds/calculate.json",
+            "headers": {},
+            "body": "{\"refund\":{\"currency\":\"USD\",\"shipping\":{\"full_refund\":true},\"refund_line_items\":[{\"line_item_id\":518995019,\"quantity\":1,\"restock_type\":\"no_restock\"}]}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"refund\":{\"shipping\":{\"amount\":\"5.00\",\"tax\":\"0.00\",\"maximum_refundable\":\"5.00\"},\"duties\":[],\"total_duties_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"additional_fees\":[],\"total_additional_fees_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"refund_line_items\":[{\"quantity\":1,\"line_item_id\":518995019,\"location_id\":null,\"restock_type\":\"no_restock\",\"price\":\"199.00\",\"subtotal\":\"195.67\",\"total_tax\":\"3.98\",\"discounted_price\":\"199.00\",\"discounted_total_price\":\"199.00\",\"total_cart_discount_amount\":\"3.33\"}],\"transactions\":[{\"order_id\":450789469,\"kind\":\"suggested_refund\",\"gateway\":\"bogus\",\"parent_id\":801038806,\"amount\":\"41.94\",\"currency\":\"USD\",\"maximum_refundable\":\"41.94\"}],\"currency\":\"USD\"}}"
+          },
+          "name": "Calculate the refund for a line item and shipping",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"refund\":{\"currency\":\"USD\",\"shipping\":{\"full_refund\":true},\"refund_line_items\":[{\"line_item_id\":518995019,\"quantity\":1,\"restock_type\":\"no_restock\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/refunds/calculate.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nrefund = ShopifyAPI::Refund.new(session: test_session)\nrefund.order_id = 450789469\nrefund.calculate(\n  session: test_session,\n  body: {\"refund\" => {\"currency\" => \"USD\", \"shipping\" => {\"full_refund\" => true}, \"refund_line_items\" => [{\"line_item_id\" => 518995019, \"quantity\" => 1, \"restock_type\" => \"no_restock\"}]}},\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Refund} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst refund = new Refund({session: test_session});\nrefund.order_id = 450789469;\nawait refund.calculate({\n  body: {\"refund\": {\"currency\": \"USD\", \"shipping\": {\"full_refund\": true}, \"refund_line_items\": [{\"line_item_id\": 518995019, \"quantity\": 1, \"restock_type\": \"no_restock\"}]}},\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$refund = new Refund($this->test_session);\n$refund->order_id = 450789469;\n$refund->calculate(\n    [], // Params\n    [\"refund\" => [\"currency\" => \"USD\", \"shipping\" => [\"full_refund\" => true], \"refund_line_items\" => [[\"line_item_id\" => 518995019, \"quantity\" => 1, \"restock_type\" => \"no_restock\"]]]], // Body\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/refunds/calculate.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/orders/450789469/refunds/calculate.json",
+            "headers": {},
+            "body": "{\"refund\":{\"currency\":\"USD\",\"shipping\":{\"amount\":2.0}}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"refund\":{\"shipping\":{\"amount\":\"2.00\",\"tax\":\"0.00\",\"maximum_refundable\":\"5.00\"},\"duties\":[],\"total_duties_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"additional_fees\":[],\"total_additional_fees_set\":{\"shop_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"},\"presentment_money\":{\"amount\":\"0.00\",\"currency_code\":\"USD\"}},\"refund_line_items\":[],\"transactions\":[{\"order_id\":450789469,\"kind\":\"suggested_refund\",\"gateway\":\"bogus\",\"parent_id\":801038806,\"amount\":\"2.00\",\"currency\":\"USD\",\"maximum_refundable\":\"41.94\"}],\"currency\":\"USD\"}}"
+          },
+          "name": "Calculate a refund for a partial amount of shipping",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"refund\":{\"currency\":\"USD\",\"shipping\":{\"amount\":2.0}}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/refunds/calculate.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nrefund = ShopifyAPI::Refund.new(session: test_session)\nrefund.order_id = 450789469\nrefund.calculate(\n  session: test_session,\n  body: {\"refund\" => {\"currency\" => \"USD\", \"shipping\" => {\"amount\" => 2.0}}},\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Refund} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst refund = new Refund({session: test_session});\nrefund.order_id = 450789469;\nawait refund.calculate({\n  body: {\"refund\": {\"currency\": \"USD\", \"shipping\": {\"amount\": 2.0}}},\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Refund;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$refund = new Refund($this->test_session);\n$refund->order_id = 450789469;\n$refund->calculate(\n    [], // Params\n    [\"refund\" => [\"currency\" => \"USD\", \"shipping\" => [\"amount\" => 2.0]]], // Body\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/refunds/calculate.json",
+      "action": "post"
+    }
+  ],
+  "components": [
+    {
+      "name": "Refund",
+      "title": "Refund",
+      "type": "object",
+      "properties": [
+        {
+          "description": "The date and time (<a href='https://en.wikipedia.org/wiki/ISO_8601'target=\"_blank\">ISO 8601</a>  format) when the refund was created.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": "2008-01-10T09:00:00-07:00",
+          "name": "created_at"
+        },
+        {
+          "description": "A list of duties that have been reimbursed as part of the refund.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": {
+            "duties": [
+              {
+                "duty_id": 1,
+                "amount_set": {
+                  "shop_money": {
+                    "amount": "9.83",
+                    "currency_code": "CAD"
+                  },
+                  "presentment_money": {
+                    "amount": "9.83",
+                    "currency_code": "CAD"
+                  }
+                }
+              }
+            ]
+          },
+          "name": "duties"
+        },
+        {
+          "description": "The unique identifier for the refund.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": 92738740,
+          "name": "id"
+        },
+        {
+          "description": "An optional note attached to a refund.",
+          "type": "x-string",
+          "example": "Item was damaged during shipping",
+          "name": "note"
+        },
+        {
+          "description": "          <p>A list of order adjustments attached to the refund. Order adjustments are generated to account for refunded shipping costs and differences between calculated and actual refund amounts. Each entry has the following properties:</p>\n          <ul>\n            <li><strong>id</strong>: The unique identifier for the order adjustment.</li>\n            <li><strong>order_id</strong>: The unique identifier for the order that the order adjustment is associated with.</li>\n            <li><strong>refund_id</strong>: The unique identifier for the refund that the order adjustment is associated with.</li>\n            <li><strong>amount</strong>: The value of the discrepancy between the calculated refund and the actual refund. If the <code>kind</code> property's value is <code>shipping_refund</code>, then <code>amount</code> returns the value of shipping charges refunded to the customer.</li>\n            <li><strong>tax_amount</strong>: The taxes that are added to <code>amount</code>, such as applicable shipping taxes added to a shipping refund.</li>\n            <li><strong>kind</strong>: The order adjustment type. Valid values: <code>shipping_refund</code> and <code>refund_discrepancy</code>.</li>\n            <li><strong>reason</strong>: The reason for the order adjustment. To set this value, include <code>discrepancy_reason</code> when you create a refund.</li>\n            <li><strong>amount_set</strong>: The amount of the order adjustment in shop and presentment currencies.</li>\n            <li><strong>tax_amount_set</strong>: The tax amount of the order adjustment in shop and presentment currencies.</li>\n          </ul>\n",
+          "type": "x-string",
+          "readOnly": true,
+          "example": [
+            {
+              "id": 4221763620,
+              "order_id": 171016912932,
+              "refund_id": 8244756516,
+              "amount": "-8.00",
+              "tax_amount": "0.00",
+              "kind": "shipping_refund",
+              "reason": "Shipping refund",
+              "amount_set": {
+                "shop_money": {
+                  "amount": 10.99,
+                  "currency_code": "USD"
+                },
+                "presentment_money": {
+                  "amount": 12.95,
+                  "currency_code": "CAD"
+                }
+              },
+              "tax_amount_set": {
+                "shop_money": {
+                  "amount": 1.67,
+                  "currency_code": "USD"
+                },
+                "presentment_money": {
+                  "amount": 2.32,
+                  "currency_code": "CAD"
+                }
+              }
+            }
+          ],
+          "name": "order_adjustments"
+        },
+        {
+          "description": "The date and time (<a href='https://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a> format) when the refund was imported. This value can be set to a date in the past when importing from other systems. If no value is provided, then it will be auto-generated as the current time in Shopify. Public apps need to be granted permission by Shopify to import orders with the <code>processed_at</code> timestamp set to a value earlier the <code>created_at</code> timestamp. Private apps can't be granted permission by Shopify.",
+          "type": "x-string",
+          "example": "2007-01-10T09:00:00-07:00",
+          "name": "processed_at"
+        },
+        {
+          "description": "          <p>A list of refunded duties. Each entry has the following properties:</p>\n          <ul>\n            <li><strong>duty_id</strong>: The unique identifier of the duty.</li>\n            <li><strong>refund_type</strong>: Specifies how you want the duty refunded. Valid values:</li>\n              <ul>\n                <li><code>FULL</code>: Refunds all the duties associated with a duty ID. You do not need to include refund line items if you are using the full refund type.</li>\n                <li><code>PROPORTIONAL</code>: Refunds duties in proportion to the line item quantity that you want to refund. If you choose the proportional refund type, then you must also pass the refund line items to calculate the portion of duties to refund.</li>\n              </ul>\n          </ul>\n",
+          "type": "x-string",
+          "example": [
+            {
+              "duty_id": 1,
+              "refund_type": "FULL"
+            }
+          ],
+          "name": "refund_duties"
+        },
+        {
+          "description": "        A list of refunded line items. Each entry has the following properties:\n          <ul>\n            <li><strong>id</strong>: The unique identifier of the line item in the refund.</li>\n            <li><strong>line_item</strong>: A line item being refunded.</li>\n            <li><strong>line_item_id</strong>: The ID of the related line item in the order.</li>\n            <li><strong>quantity</strong>: The refunded quantity of the associated line item.</li>\n            <li><strong>restock_type</strong>: How this refund line item affects inventory levels. Valid values:\n              <ul>\n                <li><strong>no_restock</strong>: Refunding these items won't affect inventory. The number of fulfillable units for this line item will remain unchanged. For example, a refund payment can be issued but no items will be refunded or made available for sale again.</li>\n                <li><strong>cancel</strong>: The items have not yet been fulfilled. The canceled quantity will be added back to the available count. The number of fulfillable units for this line item will decrease.</li>\n                <li><strong>return</strong>: The items were already delivered, and will be returned to the merchant. The refunded quantity will be added back to the available count. The number of fulfillable units for this line item will remain unchanged.</li>\n                <li><strong>legacy_restock</strong>: The deprecated <code>restock</code> property was used for this refund. These items were made available for sale again. This value is not accepted when creating new refunds.</li>\n              </ul>\n            </li>\n            <li><strong>location_id</strong>: The unique identifier of the <a href=\"/api/admin-rest/current/resources/location\">location</a> where the items will be restocked. Required when <code>restock_type</code> has the value <code>return</code> or <code>cancel</code>.</li>\n            <li><strong>subtotal</strong>: The subtotal of the refund line item.</li>\n            <li><strong>total_tax</strong>: The total tax on the refund line item.</li>\n            <li><strong>subtotal_set</strong>: The subtotal of the refund line item in shop and presentment currencies.</li>\n            <li><strong>total_tax_set</strong>: The total tax of the line item in shop and presentment currencies.</li>\n          </ul>\n",
+          "type": "x-string",
+          "example": [
+            {
+              "id": 209341123,
+              "line_item": {},
+              "line_item_id": 128323456,
+              "quantity": 2,
+              "location_id": 40642626,
+              "restock_type": "return",
+              "subtotal": 10.99,
+              "total_tax": 2.67,
+              "subtotal_set": {
+                "shop_money": {
+                  "amount": 10.99,
+                  "currency_code": "CAD"
+                },
+                "presentment_money": {
+                  "amount": 8.95,
+                  "currency_code": "USD"
+                }
+              },
+              "total_tax_set": {
+                "shop_money": {
+                  "amount": 1.67,
+                  "currency_code": "CAD"
+                },
+                "presentment_money": {
+                  "amount": 1.32,
+                  "currency_code": "USD"
+                }
+              }
+            }
+          ],
+          "name": "refund_line_items"
+        },
+        {
+          "description": "Whether to add the line items back to the store's inventory.",
+          "type": "x-string",
+          "deprecated": true,
+          "example": true,
+          "x-deprecation-recommendation": "Provide a <code>restock_type</code> to influence how this refund affects inventory instead",
+          "name": "restock"
+        },
+        {
+          "description": "A list of transactions involved in the refund. A single order can have multiple transactions associated with it. For more information, see the   <a href=\"/api/admin-rest/current/resources/transaction\"> Transaction</a> resource.",
+          "type": "x-string",
+          "example": [
+            {
+              "id": 179259969,
+              "order_id": 450789469,
+              "amount": "209.00",
+              "kind": "refund",
+              "gateway": "shopify_payments",
+              "status": "success",
+              "message": null,
+              "created_at": "2005-08-05T10:59:12-06:00",
+              "test": false,
+              "authorization": "authorization-key",
+              "currency": "USD",
+              "location_id": null,
+              "user_id": null,
+              "parent_id": 801038806,
+              "device_id": null,
+              "receipt": {},
+              "error_code": null,
+              "source_name": "web"
+            }
+          ],
+          "name": "transactions"
+        },
+        {
+          "description": "The unique identifier of the user who performed the refund.",
+          "type": "x-string",
+          "example": 238478920,
+          "name": "user_id"
+        }
+      ],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "orders/refund",
+    "gid": "dc67cfa6-8307-4291-b0b1-0e3e4050746c",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/refund"
+    ],
+    "meta_description": "Create and retrieve refunds for an order. Each refund is a record of money being returned to the customer. Use the calculate endpoint to make sure that any refund that you create is accurate.",
+    "postman_group": "Orders",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

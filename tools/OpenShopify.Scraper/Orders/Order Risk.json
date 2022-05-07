@@ -1,0 +1,574 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Order Risk",
+    "description": "        <p>The Order Risk resource allows you to create, retrieve, update, and delete order risks. Order risks represent the results of fraud checks that have been completed for an order.</p>\n        <h4>Usage notes</h4>\n        <ul>\n          <li>When determining an order's risk level, Shopify takes into account only those order risks that have the display property set to <code>true</code>. Orders with a display set to <code>false</code> will not be returned through the Order Risk resource. It's not advised to create order risks with a display set to <code>false</code>. This property might be removed in future API versions.</li>\n          <li>Risk assessments will favor the most severe risk recommendation for an order. Keep this in mind when creating new order risks.</li>\n        </ul>\n",
+    "x-owner": "https://vault.shopify.io/teams/1429",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Creates an order risk for an order",
+      "summary": "Creates an order risk for an order",
+      "operationId": "Createsanorderriskforanorder",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "201": {
+          "description": "Creates an order risk for an order",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create an order risk showing a fraud risk for proxy detection": {
+                  "value": {
+                    "risk": {
+                      "id": 1029151489,
+                      "order_id": 450789469,
+                      "checkout_id": 901414060,
+                      "source": "External",
+                      "score": "1.0",
+                      "recommendation": "cancel",
+                      "display": true,
+                      "cause_cancel": true,
+                      "message": "This order came from an anonymous proxy",
+                      "merchant_message": "This order came from an anonymous proxy"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/risks.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/orders/450789469/risks.json",
+            "headers": {},
+            "body": "{\"risk\":{\"message\":\"This order came from an anonymous proxy\",\"recommendation\":\"cancel\",\"score\":1.0,\"source\":\"External\",\"cause_cancel\":true,\"display\":true}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"risk\":{\"id\":1029151489,\"order_id\":450789469,\"checkout_id\":901414060,\"source\":\"External\",\"score\":\"1.0\",\"recommendation\":\"cancel\",\"display\":true,\"cause_cancel\":true,\"message\":\"This order came from an anonymous proxy\",\"merchant_message\":\"This order came from an anonymous proxy\"}}"
+          },
+          "name": "Create an order risk showing a fraud risk for proxy detection",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"risk\":{\"message\":\"This order came from an anonymous proxy\",\"recommendation\":\"cancel\",\"score\":1.0,\"source\":\"External\",\"cause_cancel\":true,\"display\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/risks.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder_risk = ShopifyAPI::OrderRisk.new(session: test_session)\norder_risk.order_id = 450789469\norder_risk.message = \"This order came from an anonymous proxy\"\norder_risk.recommendation = \"cancel\"\norder_risk.score = 1.0\norder_risk.source = \"External\"\norder_risk.cause_cancel = true\norder_risk.display = true\norder_risk.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order_risk = new OrderRisk({session: test_session});\norder_risk.order_id = 450789469;\norder_risk.message = \"This order came from an anonymous proxy\";\norder_risk.recommendation = \"cancel\";\norder_risk.score = 1.0;\norder_risk.source = \"External\";\norder_risk.cause_cancel = true;\norder_risk.display = true;\nawait order_risk.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\OrderRisk;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order_risk = new OrderRisk($this->test_session);\n$order_risk->order_id = 450789469;\n$order_risk->message = \"This order came from an anonymous proxy\";\n$order_risk->recommendation = \"cancel\";\n$order_risk->score = 1.0;\n$order_risk->source = \"External\";\n$order_risk->cause_cancel = true;\n$order_risk->display = true;\n$order_risk->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/risks.json",
+      "action": "post"
+    },
+    {
+      "description": "Retrieves a list of all order risks for an order. <strong>Note:</strong> As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/tutorials/make-paginated-requests-to-rest-admin-api\"><em>Making requests to paginated REST Admin API endpoints</em></a>.",
+      "summary": "Retrieves a list of all order risks for an order",
+      "operationId": "Retrievesalistofallorderrisksforanorder",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of all order risks for an order",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve all order risks for an order": {
+                  "value": {
+                    "risks": [
+                      {
+                        "id": 284138680,
+                        "order_id": 450789469,
+                        "checkout_id": null,
+                        "source": "External",
+                        "score": "1.0",
+                        "recommendation": "cancel",
+                        "display": true,
+                        "cause_cancel": true,
+                        "message": "This order was placed from a proxy IP",
+                        "merchant_message": "This order was placed from a proxy IP"
+                      },
+                      {
+                        "id": 1029151491,
+                        "order_id": 450789469,
+                        "checkout_id": 901414060,
+                        "source": "External",
+                        "score": "1.0",
+                        "recommendation": "cancel",
+                        "display": true,
+                        "cause_cancel": true,
+                        "message": "This order came from an anonymous proxy",
+                        "merchant_message": "This order came from an anonymous proxy"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/risks.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/orders/450789469/risks.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"risks\":[{\"id\":284138680,\"order_id\":450789469,\"checkout_id\":null,\"source\":\"External\",\"score\":\"1.0\",\"recommendation\":\"cancel\",\"display\":true,\"cause_cancel\":true,\"message\":\"This order was placed from a proxy IP\",\"merchant_message\":\"This order was placed from a proxy IP\"},{\"id\":1029151491,\"order_id\":450789469,\"checkout_id\":901414060,\"source\":\"External\",\"score\":\"1.0\",\"recommendation\":\"cancel\",\"display\":true,\"cause_cancel\":true,\"message\":\"This order came from an anonymous proxy\",\"merchant_message\":\"This order came from an anonymous proxy\"}]}"
+          },
+          "name": "Retrieve all order risks for an order",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/risks.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::OrderRisk.all(\n  session: test_session,\n  order_id: 450789469,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait OrderRisk.all({\n  session: test_session,\n  order_id: 450789469,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\OrderRisk;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrderRisk::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/risks.json",
+      "action": "get"
+    },
+    {
+      "description": "Retrieves a single order risk by its ID",
+      "summary": "Retrieves a single order risk by its ID",
+      "operationId": "RetrievesasingleorderriskbyitsID",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "risk_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a single order risk by its ID",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a single order risk": {
+                  "value": {
+                    "risk": {
+                      "id": 284138680,
+                      "order_id": 450789469,
+                      "checkout_id": null,
+                      "source": "External",
+                      "score": "1.0",
+                      "recommendation": "cancel",
+                      "display": true,
+                      "cause_cancel": true,
+                      "message": "This order was placed from a proxy IP",
+                      "merchant_message": "This order was placed from a proxy IP"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/risks/284138680.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/orders/450789469/risks/284138680.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"risk\":{\"id\":284138680,\"order_id\":450789469,\"checkout_id\":null,\"source\":\"External\",\"score\":\"1.0\",\"recommendation\":\"cancel\",\"display\":true,\"cause_cancel\":true,\"message\":\"This order was placed from a proxy IP\",\"merchant_message\":\"This order was placed from a proxy IP\"}}"
+          },
+          "name": "Retrieve a single order risk",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/risks/284138680.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::OrderRisk.find(\n  session: test_session,\n  order_id: 450789469,\n  id: 284138680,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait OrderRisk.find({\n  session: test_session,\n  order_id: 450789469,\n  id: 284138680,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\OrderRisk;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrderRisk::find(\n    $this->test_session, // Session\n    284138680, // Id\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/risks/{risk_id}.json",
+      "action": "get"
+    },
+    {
+      "description": "<p>Updates an order risk</p>\n          <br/>\n          <aside class=\"note\">\n            <h4>Note</h4>\n            <p>You cannot modify an order risk that was created by another application.</p>\n          </aside>",
+      "summary": "Updates an order risk",
+      "operationId": "Updatesanorderrisk",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "risk_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Updates an order risk",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Update an existing order risk for an order": {
+                  "value": {
+                    "risk": {
+                      "order_id": 450789469,
+                      "cause_cancel": false,
+                      "message": "After further review, this is a legitimate order",
+                      "recommendation": "accept",
+                      "score": "0.0",
+                      "source": "External",
+                      "id": 284138680,
+                      "checkout_id": null,
+                      "display": true,
+                      "merchant_message": "After further review, this is a legitimate order"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/risks/284138680.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/orders/450789469/risks/284138680.json",
+            "headers": {},
+            "body": "{\"risk\":{\"id\":284138680,\"message\":\"After further review, this is a legitimate order\",\"recommendation\":\"accept\",\"source\":\"External\",\"cause_cancel\":false,\"score\":0.0}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"risk\":{\"order_id\":450789469,\"cause_cancel\":false,\"message\":\"After further review, this is a legitimate order\",\"recommendation\":\"accept\",\"score\":\"0.0\",\"source\":\"External\",\"id\":284138680,\"checkout_id\":null,\"display\":true,\"merchant_message\":\"After further review, this is a legitimate order\"}}"
+          },
+          "name": "Update an existing order risk for an order",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"risk\":{\"id\":284138680,\"message\":\"After further review, this is a legitimate order\",\"recommendation\":\"accept\",\"source\":\"External\",\"cause_cancel\":false,\"score\":0.0}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/risks/284138680.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder_risk = ShopifyAPI::OrderRisk.new(session: test_session)\norder_risk.order_id = 450789469\norder_risk.id = 284138680\norder_risk.message = \"After further review, this is a legitimate order\"\norder_risk.recommendation = \"accept\"\norder_risk.source = \"External\"\norder_risk.cause_cancel = false\norder_risk.score = 0.0\norder_risk.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order_risk = new OrderRisk({session: test_session});\norder_risk.order_id = 450789469;\norder_risk.id = 284138680;\norder_risk.message = \"After further review, this is a legitimate order\";\norder_risk.recommendation = \"accept\";\norder_risk.source = \"External\";\norder_risk.cause_cancel = false;\norder_risk.score = 0.0;\nawait order_risk.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\OrderRisk;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order_risk = new OrderRisk($this->test_session);\n$order_risk->order_id = 450789469;\n$order_risk->id = 284138680;\n$order_risk->message = \"After further review, this is a legitimate order\";\n$order_risk->recommendation = \"accept\";\n$order_risk->source = \"External\";\n$order_risk->cause_cancel = false;\n$order_risk->score = 0.0;\n$order_risk->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/risks/{risk_id}.json",
+      "action": "put"
+    },
+    {
+      "description": "<p>Deletes an order risk for an order</p>\n          <br/>\n          <aside class=\"note\">\n            <h4>Note</h4>\n            <p>You cannot delete an order risk that was created by another application.</p>\n          </aside>",
+      "summary": "Deletes an order risk for an order",
+      "operationId": "Deletesanorderriskforanorder",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "risk_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Deletes an order risk for an order",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Delete an order risk for an order": {
+                  "value": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/risks/284138680.json",
+          "request_method": "DELETE",
+          "request": {
+            "action": "DELETE /admin/api/unstable/orders/450789469/risks/284138680.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{}"
+          },
+          "name": "Delete an order risk for an order",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/risks/284138680.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::OrderRisk.delete(\n  session: test_session,\n  order_id: 450789469,\n  id: 284138680,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait OrderRisk.delete({\n  session: test_session,\n  order_id: 450789469,\n  id: 284138680,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\OrderRisk;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrderRisk::delete(\n    $this->test_session, // Session\n    284138680, // Id\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/risks/{risk_id}.json",
+      "action": "delete"
+    }
+  ],
+  "components": [
+    {
+      "name": "OrderRisk",
+      "title": "Order Risk",
+      "type": "object",
+      "properties": [
+        {
+          "description": "          Whether this order risk is severe enough to force the cancellation of the order. If <code>true</code>, then this order risk is included in the <strong>Order canceled</strong> message that's shown on the details page of the canceled order.\n          <p><strong>Note:</strong> Setting this property to <code>true</code> does not cancel the order. Use this property only if your app automatically cancels the order using the <a href=\"/docs/admin-api/rest/reference/orders/order/#cancel-{{ current_version }}\">Order</a> resource. If your app doesn't automatically cancel orders based on order risks, then leave this property set to <code>false</code>.</p>\n",
+          "type": "x-string",
+          "example": false,
+          "name": "cause_cancel"
+        },
+        {
+          "description": "The ID of the checkout that the order risk belongs to.",
+          "type": "x-string",
+          "example": 901414060,
+          "name": "checkout_id"
+        },
+        {
+          "description": "Whether the order risk is displayed on the order details page in the Shopify admin. If <code>false</code>, then this order risk is ignored when Shopify determines your app's overall risk level for the order.<p>It's not advised to create order risks with a display set to <code>false</code>. <aside class='note'><p>This property can't be changed after an order risk is created.</p></aside><aside class='caution'>This property might be removed in future API versions.</p></aside>",
+          "type": "x-string",
+          "example": true,
+          "name": "display"
+        },
+        {
+          "description": "A unique numeric identifier for the order risk.",
+          "type": "x-string",
+          "example": 284138680,
+          "name": "id"
+        },
+        {
+          "description": "The message that's displayed to the merchant to indicate the results of the fraud check. The message is displayed only if <code>display</code> is set to<code>true</code>.",
+          "type": "x-string",
+          "deprecated": true,
+          "example": "This order came from an anonymous proxy.",
+          "x-deprecation-recommendation": "Use <code>message</code> instead.",
+          "name": "merchant_message"
+        },
+        {
+          "description": "The message that's displayed to the merchant to indicate the results of the fraud check. The message is displayed only if <code>display</code> is set to<code>true</code>.",
+          "type": "x-string",
+          "example": "This order came from an anonymous proxy.",
+          "name": "message"
+        },
+        {
+          "description": "The ID of the order that the order risk belongs to.",
+          "type": "x-string",
+          "example": 450789469,
+          "name": "order_id"
+        },
+        {
+          "description": "          The recommended action given to the merchant. Valid values:\n            <ul>\n              <li><strong>cancel</strong>: There is a high level of risk that this order is fraudulent. The merchant should cancel the order.</li>\n              <li><strong>investigate</strong>: There is a medium level of risk that this order is fraudulent. The merchant should investigate the order.</li>\n              <li><strong>accept</strong>: There is a low level of risk that this order is fraudulent. The order risk found no indication of fraud.</li>\n            </ul>\n",
+          "type": "x-string",
+          "example": "cancel",
+          "name": "recommendation"
+        },
+        {
+          "description": "          <strong>For internal use only</strong>. A number between 0 and 1 that's assigned to the order.\n          The closer the score is to 1, the more likely it is that the order is fraudulent.\n          <aside class=\"note\">\n            <h4>Note</h4>\n            <p>There is no guarantee of stability in risk scores. Scores are not probabilities. The relationship between scores and the probability of fraud can vary over time and between risk providers.</p>\n          </aside>\n",
+          "type": "x-string",
+          "example": 1.0,
+          "name": "score"
+        },
+        {
+          "description": "The source of the order risk.",
+          "type": "x-string",
+          "example": "External",
+          "name": "source"
+        }
+      ],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "orders/order-risk",
+    "gid": "d78f0863-ff0b-48c2-8bce-568139401124",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/order_risks",
+      "/api/reference/orders/order_risk"
+    ],
+    "meta_description": "Display a fraud analysis and recommendations on the details page of an order.",
+    "postman_group": "Orders",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

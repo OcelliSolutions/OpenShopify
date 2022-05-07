@@ -1,0 +1,534 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "TenderTransaction",
+    "description": "        <p>Each tender transaction represents money passing between the merchant and a customer. A tender transaction\n        with a positive amount represents a transaction where the customer paid money to the merchant. A negative\n        amount represents a transaction where the merchant refunded money back to the customer. Tender transactions\n        represent transactions that modify the shop's balance.</p>\n",
+    "x-owner": "https://vault.shopify.io/teams/255",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Retrieves a list of tender transactions. <strong>Note:</strong> As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. To learn more, see <a href=\"/tutorials/make-paginated-requests-to-rest-admin-api\"><em>Making requests to paginated REST Admin API endpoints</em></a>.",
+      "summary": "Retrieves a list of tender transactions",
+      "operationId": "Retrievesalistoftendertransactions",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "limit",
+          "description": "The maximum number of results to retrieve.",
+          "in": "query",
+          "schema": {
+            "type": "x-string",
+            "default": 50,
+            "maximum": 250
+          }
+        },
+        {
+          "name": "order",
+          "description": "Show tender transactions ordered by processed_at in ascending or descending order.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "processed_at",
+          "description": "Show tender transactions processed at the specified date.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "processed_at_max",
+          "description": "Show tender transactions processed_at or before the specified date.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "processed_at_min",
+          "description": "Show tender transactions processed_at or after the specified date.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "since_id",
+          "description": "Retrieve only transactions after the specified ID.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of tender transactions",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve all tender transactions": {
+                  "value": {
+                    "tender_transactions": [
+                      {
+                        "id": 1011222856,
+                        "order_id": 450789469,
+                        "amount": "250.94",
+                        "currency": "USD",
+                        "user_id": null,
+                        "test": false,
+                        "processed_at": "2005-08-07T08:22:51-06:00",
+                        "remote_reference": "authorization-key",
+                        "payment_details": null,
+                        "payment_method": "unknown"
+                      },
+                      {
+                        "id": 1011222855,
+                        "order_id": 450789469,
+                        "amount": "250.94",
+                        "currency": "USD",
+                        "user_id": null,
+                        "test": false,
+                        "processed_at": "2005-08-05T08:22:51-06:00",
+                        "remote_reference": "authorization-key",
+                        "payment_details": null,
+                        "payment_method": "unknown"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve tender transactions after the specified ID": {
+                  "value": {
+                    "tender_transactions": [
+                      {
+                        "id": 1011222858,
+                        "order_id": 450789469,
+                        "amount": "250.94",
+                        "currency": "USD",
+                        "user_id": null,
+                        "test": false,
+                        "processed_at": "2005-08-07T08:22:51-06:00",
+                        "remote_reference": "authorization-key",
+                        "payment_details": null,
+                        "payment_method": "unknown"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve tender transactions processed_at or after the specified date": {
+                  "value": {
+                    "tender_transactions": [
+                      {
+                        "id": 1011222860,
+                        "order_id": 450789469,
+                        "amount": "250.94",
+                        "currency": "USD",
+                        "user_id": null,
+                        "test": false,
+                        "processed_at": "2005-08-07T08:22:51-06:00",
+                        "remote_reference": "authorization-key",
+                        "payment_details": null,
+                        "payment_method": "unknown"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve tender transactions processed_at or before the specified date": {
+                  "value": {
+                    "tender_transactions": [
+                      {
+                        "id": 1011222861,
+                        "order_id": 450789469,
+                        "amount": "250.94",
+                        "currency": "USD",
+                        "user_id": null,
+                        "test": false,
+                        "processed_at": "2005-08-05T08:22:51-06:00",
+                        "remote_reference": "authorization-key",
+                        "payment_details": null,
+                        "payment_method": "unknown"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve tender transactions processed_at the specified date": {
+                  "value": {
+                    "tender_transactions": [
+                      {
+                        "id": 1011222863,
+                        "order_id": 450789469,
+                        "amount": "250.94",
+                        "currency": "USD",
+                        "user_id": null,
+                        "test": false,
+                        "processed_at": "2005-08-05T08:22:51-06:00",
+                        "remote_reference": "authorization-key",
+                        "payment_details": null,
+                        "payment_method": "unknown"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve tender transactions ordered by <code>processed_at</code>": {
+                  "value": {
+                    "tender_transactions": [
+                      {
+                        "id": 1011222865,
+                        "order_id": 450789469,
+                        "amount": "250.94",
+                        "currency": "USD",
+                        "user_id": null,
+                        "test": false,
+                        "processed_at": "2005-08-05T08:22:51-06:00",
+                        "remote_reference": "authorization-key",
+                        "payment_details": null,
+                        "payment_method": "unknown"
+                      },
+                      {
+                        "id": 1011222866,
+                        "order_id": 450789469,
+                        "amount": "250.94",
+                        "currency": "USD",
+                        "user_id": null,
+                        "test": false,
+                        "processed_at": "2005-08-07T08:22:51-06:00",
+                        "remote_reference": "authorization-key",
+                        "payment_details": null,
+                        "payment_method": "unknown"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/tender_transactions.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/tender_transactions.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"tender_transactions\":[{\"id\":1011222856,\"order_id\":450789469,\"amount\":\"250.94\",\"currency\":\"USD\",\"user_id\":null,\"test\":false,\"processed_at\":\"2005-08-07T10:22:51-04:00\",\"remote_reference\":\"authorization-key\",\"payment_details\":null,\"payment_method\":\"unknown\"},{\"id\":1011222855,\"order_id\":450789469,\"amount\":\"250.94\",\"currency\":\"USD\",\"user_id\":null,\"test\":false,\"processed_at\":\"2005-08-05T10:22:51-04:00\",\"remote_reference\":\"authorization-key\",\"payment_details\":null,\"payment_method\":\"unknown\"}]}"
+          },
+          "name": "Retrieve all tender transactions",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/tender_transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::TenderTransaction.all(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "since_id=1011222857",
+          "request_path": "/admin/api/2022-04/tender_transactions.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/tender_transactions.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"tender_transactions\":[{\"id\":1011222858,\"order_id\":450789469,\"amount\":\"250.94\",\"currency\":\"USD\",\"user_id\":null,\"test\":false,\"processed_at\":\"2005-08-07T10:22:51-04:00\",\"remote_reference\":\"authorization-key\",\"payment_details\":null,\"payment_method\":\"unknown\"}]}"
+          },
+          "name": "Retrieve tender transactions after the specified ID",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/tender_transactions.json?since_id=1011222857\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::TenderTransaction.all(\n  session: test_session,\n  since_id: \"1011222857\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n  since_id: \"1011222857\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"1011222857\"], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "processed_at_min=2005-08-06+10%3A22%3A51+-0400",
+          "request_path": "/admin/api/2022-04/tender_transactions.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/tender_transactions.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"tender_transactions\":[{\"id\":1011222860,\"order_id\":450789469,\"amount\":\"250.94\",\"currency\":\"USD\",\"user_id\":null,\"test\":false,\"processed_at\":\"2005-08-07T10:22:51-04:00\",\"remote_reference\":\"authorization-key\",\"payment_details\":null,\"payment_method\":\"unknown\"}]}"
+          },
+          "name": "Retrieve tender transactions processed_at or after the specified date",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/tender_transactions.json?processed_at_min=2005-08-06+10%3A22%3A51+-0400\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::TenderTransaction.all(\n  session: test_session,\n  processed_at_min: \"2005-08-06 10:22:51 -0400\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n  processed_at_min: \"2005-08-06 10:22:51 -0400\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"processed_at_min\" => \"2005-08-06 10:22:51 -0400\"], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "processed_at_max=2005-08-06+10%3A22%3A51+-0400",
+          "request_path": "/admin/api/2022-04/tender_transactions.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/tender_transactions.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"tender_transactions\":[{\"id\":1011222861,\"order_id\":450789469,\"amount\":\"250.94\",\"currency\":\"USD\",\"user_id\":null,\"test\":false,\"processed_at\":\"2005-08-05T10:22:51-04:00\",\"remote_reference\":\"authorization-key\",\"payment_details\":null,\"payment_method\":\"unknown\"}]}"
+          },
+          "name": "Retrieve tender transactions processed_at or before the specified date",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/tender_transactions.json?processed_at_max=2005-08-06+10%3A22%3A51+-0400\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::TenderTransaction.all(\n  session: test_session,\n  processed_at_max: \"2005-08-06 10:22:51 -0400\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n  processed_at_max: \"2005-08-06 10:22:51 -0400\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"processed_at_max\" => \"2005-08-06 10:22:51 -0400\"], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "processed_at_max=2005-08-05+10%3A22%3A51+-0400",
+          "request_path": "/admin/api/2022-04/tender_transactions.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/tender_transactions.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"tender_transactions\":[{\"id\":1011222863,\"order_id\":450789469,\"amount\":\"250.94\",\"currency\":\"USD\",\"user_id\":null,\"test\":false,\"processed_at\":\"2005-08-05T10:22:51-04:00\",\"remote_reference\":\"authorization-key\",\"payment_details\":null,\"payment_method\":\"unknown\"}]}"
+          },
+          "name": "Retrieve tender transactions processed_at the specified date",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/tender_transactions.json?processed_at_max=2005-08-05+10%3A22%3A51+-0400\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::TenderTransaction.all(\n  session: test_session,\n  processed_at_max: \"2005-08-05 10:22:51 -0400\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n  processed_at_max: \"2005-08-05 10:22:51 -0400\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"processed_at_max\" => \"2005-08-05 10:22:51 -0400\"], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "order=processed_at+ASC",
+          "request_path": "/admin/api/2022-04/tender_transactions.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/tender_transactions.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"tender_transactions\":[{\"id\":1011222865,\"order_id\":450789469,\"amount\":\"250.94\",\"currency\":\"USD\",\"user_id\":null,\"test\":false,\"processed_at\":\"2005-08-05T10:22:51-04:00\",\"remote_reference\":\"authorization-key\",\"payment_details\":null,\"payment_method\":\"unknown\"},{\"id\":1011222866,\"order_id\":450789469,\"amount\":\"250.94\",\"currency\":\"USD\",\"user_id\":null,\"test\":false,\"processed_at\":\"2005-08-07T10:22:51-04:00\",\"remote_reference\":\"authorization-key\",\"payment_details\":null,\"payment_method\":\"unknown\"}]}"
+          },
+          "name": "Retrieve tender transactions ordered by <code>processed_at</code>",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/tender_transactions.json?order=processed_at+ASC\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::TenderTransaction.all(\n  session: test_session,\n  order: \"processed_at ASC\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n  order: \"processed_at ASC\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"order\" => \"processed_at ASC\"], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/tender_transactions.json",
+      "action": "get"
+    }
+  ],
+  "components": [
+    {
+      "name": "TenderTransaction",
+      "title": "TenderTransaction",
+      "type": "object",
+      "properties": [
+        {
+          "description": "The ID of the transaction.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": 999225661,
+          "name": "id"
+        },
+        {
+          "description": "The ID of the order that the tender transaction belongs to.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": 450789469,
+          "name": "order_id"
+        },
+        {
+          "description": "The amount of the tender transaction in the shop's currency.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": "10.00",
+          "name": "amount"
+        },
+        {
+          "description": "The three-letter code (<a href=\"https://en.wikipedia.org/wiki/ISO_4217\">ISO 4217</a> format) for the currency used for the tender transaction.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": "USD",
+          "name": "currency"
+        },
+        {
+          "description": "The ID of the user logged into the Shopify POS device that processed the tender transaction, if applicable.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": 106045196,
+          "name": "user_id"
+        },
+        {
+          "description": "Whether the tender transaction is a test transaction.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": true,
+          "name": "test"
+        },
+        {
+          "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the tender transaction was processed.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": "2012-03-13T14:09:54-06:00",
+          "name": "processed_at"
+        },
+        {
+          "description": "The remote (gateway) reference associated with the tender.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": "ch_1AtJu6CktlpKSclI4zjeQb2t",
+          "name": "remote_reference"
+        },
+        {
+          "description": "          Information about the payment instrument used for this transaction. It has the following properties:\n          <ul>\n            <li><strong>credit_card_company</strong>: The name of the company that issued the customer's credit card.</li>\n            <li><strong>credit_card_number</strong>: The customer's credit card number, with most of the leading digits redacted.</li>\n          </ul>\n",
+          "type": "x-string",
+          "readOnly": true,
+          "example": {
+            "credit_card_number": "•••• •••• •••• 4242",
+            "credit_card_company": "Visa"
+          },
+          "name": "payment_details"
+        },
+        {
+          "description": "          Information about the payment method used for this transaction. Valid values:\n          <ul>\n            <li><strong>credit_card</strong></li>\n            <li><strong>cash</strong></li>\n            <li><strong>android_pay</strong></li>\n            <li><strong>apple_pay</strong></li>\n            <li><strong>google_pay</strong></li>\n            <li><strong>samsung_pay</strong></li>\n            <li><strong>shopify_pay</strong></li>\n            <li><strong>amazon</strong></li>\n            <li><strong>klarna</strong></li>\n            <li><strong>paypal</strong></li>\n            <li><strong>unknown</strong></li>\n            <li><strong>other</strong></li>\n          </ul>\n",
+          "type": "x-string",
+          "readOnly": true,
+          "example": "credit_card",
+          "name": "payment_method"
+        }
+      ],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "tendertransaction",
+    "gid": "226d0d97-25ad-417d-bc91-17bf1f4f08f4",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": null,
+    "meta_description": "Retrieve tender transactions for your shop. Tender transactions represent transactions that modify the shop's balance.",
+    "postman_group": "Tendertransaction",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

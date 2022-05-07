@@ -1,0 +1,832 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Redirect",
+    "description": "        A redirect causes a visitor on a specific path on the shop's site to be automatically sent to a different location, called the <strong>target</strong>. The target can be a new path on the shop's site or a full URL. The new URL can even be on a completely different domain. Redirect paths are unique, so a shop can't have more than one redirect with the same path.\n",
+    "x-owner": "https://vault.shopify.io/teams/469",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Retrieves a list of URL redirects. <strong>Note:</strong> As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/tutorials/make-paginated-requests-to-rest-admin-api\"><em>Making requests to paginated REST Admin API endpoints</em></a>.",
+      "summary": "Retrieves a list of URL redirects",
+      "operationId": "RetrievesalistofURLredirects",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fields",
+          "description": "Show only certain fields, specified by a comma-separated list of field names.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "limit",
+          "description": "The maximum number of results to show.",
+          "in": "query",
+          "schema": {
+            "type": "x-string",
+            "default": 50,
+            "maximum": 250
+          }
+        },
+        {
+          "name": "path",
+          "description": "Show redirects with a given path.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "since_id",
+          "description": "Restrict results to after the specified ID.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "target",
+          "description": "Show redirects with a given target.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of URL redirects",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a list of all redirects": {
+                  "value": {
+                    "redirects": [
+                      {
+                        "id": 304339089,
+                        "path": "/products.php",
+                        "target": "/products"
+                      },
+                      {
+                        "id": 668809255,
+                        "path": "/leopard",
+                        "target": "/pages/macosx"
+                      },
+                      {
+                        "id": 950115854,
+                        "path": "/ibook",
+                        "target": "/products/macbook"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve a list of URL redirects after a specified ID": {
+                  "value": {
+                    "redirects": [
+                      {
+                        "id": 950115854,
+                        "path": "/ibook",
+                        "target": "/products/macbook"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/redirects.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/redirects.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"redirects\":[{\"id\":304339089,\"path\":\"/products.php\",\"target\":\"/products\"},{\"id\":668809255,\"path\":\"/leopard\",\"target\":\"/pages/macosx\"},{\"id\":950115854,\"path\":\"/ibook\",\"target\":\"/products/macbook\"}]}"
+          },
+          "name": "Retrieve a list of all redirects",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/redirects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Redirect.all(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Redirect.all({\n  session: test_session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRedirect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "since_id=668809255",
+          "request_path": "/admin/api/2022-04/redirects.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/redirects.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"redirects\":[{\"id\":950115854,\"path\":\"/ibook\",\"target\":\"/products/macbook\"}]}"
+          },
+          "name": "Retrieve a list of URL redirects after a specified ID",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/redirects.json?since_id=668809255\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Redirect.all(\n  session: test_session,\n  since_id: \"668809255\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Redirect.all({\n  session: test_session,\n  since_id: \"668809255\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRedirect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"668809255\"], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/redirects.json",
+      "action": "get"
+    },
+    {
+      "description": "Creates a redirect. When you provide a full URL as the value of the <code>path</code> property, it will be saved as an absolute path without the domain.\n          For example, <code>\"path\": \"http://www.johns-apparel.com/springwear\"</code> will be saved as <code>\"path\": \"springwear\"</code>.",
+      "summary": "Creates a redirect",
+      "operationId": "Createsaredirect",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "422": {
+          "description": "Creates a redirect",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Creating a redirect without a path or target fails and returns an error": {
+                  "value": {
+                    "errors": {
+                      "path": [
+                        "can't be blank"
+                      ],
+                      "target": [
+                        "can't be blank",
+                        "can't be the same as path"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "201": {
+          "description": "Creates a redirect",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a redirect": {
+                  "value": {
+                    "redirect": {
+                      "id": 984542199,
+                      "path": "/ipod",
+                      "target": "/pages/itunes"
+                    }
+                  }
+                },
+                "Create a redirect using a full URL for the path, which will be saved as an absolute path without a domain": {
+                  "value": {
+                    "redirect": {
+                      "id": 984542200,
+                      "path": "/forums",
+                      "target": "http://forums.apple.com/"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "422",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/redirects.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/redirects.json",
+            "headers": {},
+            "body": "{\"redirect\":{\"body\":\"foobar\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 422 Unprocessable Entity",
+            "headers": {},
+            "body": "{\"errors\":{\"path\":[\"can't be blank\"],\"target\":[\"can't be blank\",\"can't be the same as path\"]}}"
+          },
+          "name": "Creating a redirect without a path or target fails and returns an error",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"redirect\":{\"body\":\"foobar\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/redirects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nredirect = ShopifyAPI::Redirect.new(session: test_session)\nredirect.body = \"foobar\"\nredirect.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst redirect = new Redirect({session: test_session});\nredirect.body = \"foobar\";\nawait redirect.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->body = \"foobar\";\n$redirect->save();"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/redirects.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/redirects.json",
+            "headers": {},
+            "body": "{\"redirect\":{\"path\":\"/ipod\",\"target\":\"/pages/itunes\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"redirect\":{\"id\":984542199,\"path\":\"/ipod\",\"target\":\"/pages/itunes\"}}"
+          },
+          "name": "Create a redirect",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"redirect\":{\"path\":\"/ipod\",\"target\":\"/pages/itunes\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/redirects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nredirect = ShopifyAPI::Redirect.new(session: test_session)\nredirect.path = \"/ipod\"\nredirect.target = \"/pages/itunes\"\nredirect.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst redirect = new Redirect({session: test_session});\nredirect.path = \"/ipod\";\nredirect.target = \"/pages/itunes\";\nawait redirect.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->path = \"/ipod\";\n$redirect->target = \"/pages/itunes\";\n$redirect->save();"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/redirects.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/redirects.json",
+            "headers": {},
+            "body": "{\"redirect\":{\"path\":\"http://www.apple.com/forums\",\"target\":\"http://forums.apple.com\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"redirect\":{\"id\":984542200,\"path\":\"/forums\",\"target\":\"http://forums.apple.com/\"}}"
+          },
+          "name": "Create a redirect using a full URL for the path, which will be saved as an absolute path without a domain",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"redirect\":{\"path\":\"http://www.apple.com/forums\",\"target\":\"http://forums.apple.com\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/redirects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nredirect = ShopifyAPI::Redirect.new(session: test_session)\nredirect.path = \"http://www.apple.com/forums\"\nredirect.target = \"http://forums.apple.com\"\nredirect.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst redirect = new Redirect({session: test_session});\nredirect.path = \"http://www.apple.com/forums\";\nredirect.target = \"http://forums.apple.com\";\nawait redirect.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->path = \"http://www.apple.com/forums\";\n$redirect->target = \"http://forums.apple.com\";\n$redirect->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/redirects.json",
+      "action": "post"
+    },
+    {
+      "description": "Retrieves a count of URL redirects",
+      "summary": "Retrieves a count of URL redirects",
+      "operationId": "RetrievesacountofURLredirects",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "path",
+          "description": "Count redirects with given path.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "target",
+          "description": "Count redirects with given target.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a count of URL redirects",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Count all redirects": {
+                  "value": {
+                    "count": 3
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/redirects/count.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/redirects/count.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"count\":3}"
+          },
+          "name": "Count all redirects",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/redirects/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Redirect.count(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Redirect.count({\n  session: test_session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRedirect::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/redirects/count.json",
+      "action": "get"
+    },
+    {
+      "description": "Retrieves a single redirect",
+      "summary": "Retrieves a single redirect",
+      "operationId": "Retrievesasingleredirect",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "redirect_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fields",
+          "description": "Show only certain fields, specified by a comma-separated list of field names.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a single redirect",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a single redirect by its ID": {
+                  "value": {
+                    "redirect": {
+                      "id": 668809255,
+                      "path": "/leopard",
+                      "target": "/pages/macosx"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/redirects/668809255.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/redirects/668809255.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"redirect\":{\"id\":668809255,\"path\":\"/leopard\",\"target\":\"/pages/macosx\"}}"
+          },
+          "name": "Retrieve a single redirect by its ID",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/redirects/668809255.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Redirect.find(\n  session: test_session,\n  id: 668809255,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Redirect.find({\n  session: test_session,\n  id: 668809255,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRedirect::find(\n    $this->test_session, // Session\n    668809255, // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/redirects/{redirect_id}.json",
+      "action": "get"
+    },
+    {
+      "description": "Updates an existing [redirect](https://shopify.dev/api/admin-rest/latest/resources/redirect)",
+      "summary": "Updates an existing redirect",
+      "operationId": "Updatesanexistingredirect",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "redirect_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Updates an existing redirect",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Update the source (path) URI of a redirect": {
+                  "value": {
+                    "redirect": {
+                      "path": "/tiger",
+                      "target": "/pages/macosx",
+                      "id": 668809255
+                    }
+                  }
+                },
+                "Update the target URI of a redirect": {
+                  "value": {
+                    "redirect": {
+                      "target": "/pages/macpro",
+                      "path": "/leopard",
+                      "id": 668809255
+                    }
+                  }
+                },
+                "Update both the source (path) and target URIs of a redirect": {
+                  "value": {
+                    "redirect": {
+                      "path": "/powermac",
+                      "target": "/pages/macpro",
+                      "id": 950115854
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/redirects/668809255.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/redirects/668809255.json",
+            "headers": {},
+            "body": "{\"redirect\":{\"id\":668809255,\"path\":\"/tiger\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"redirect\":{\"path\":\"/tiger\",\"target\":\"/pages/macosx\",\"id\":668809255}}"
+          },
+          "name": "Update the source (path) URI of a redirect",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"redirect\":{\"id\":668809255,\"path\":\"/tiger\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/redirects/668809255.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nredirect = ShopifyAPI::Redirect.new(session: test_session)\nredirect.id = 668809255\nredirect.path = \"/tiger\"\nredirect.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst redirect = new Redirect({session: test_session});\nredirect.id = 668809255;\nredirect.path = \"/tiger\";\nawait redirect.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->id = 668809255;\n$redirect->path = \"/tiger\";\n$redirect->save();"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/redirects/668809255.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/redirects/668809255.json",
+            "headers": {},
+            "body": "{\"redirect\":{\"id\":668809255,\"target\":\"/pages/macpro\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"redirect\":{\"target\":\"/pages/macpro\",\"path\":\"/leopard\",\"id\":668809255}}"
+          },
+          "name": "Update the target URI of a redirect",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"redirect\":{\"id\":668809255,\"target\":\"/pages/macpro\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/redirects/668809255.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nredirect = ShopifyAPI::Redirect.new(session: test_session)\nredirect.id = 668809255\nredirect.target = \"/pages/macpro\"\nredirect.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst redirect = new Redirect({session: test_session});\nredirect.id = 668809255;\nredirect.target = \"/pages/macpro\";\nawait redirect.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->id = 668809255;\n$redirect->target = \"/pages/macpro\";\n$redirect->save();"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/redirects/950115854.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/redirects/950115854.json",
+            "headers": {},
+            "body": "{\"redirect\":{\"id\":950115854,\"path\":\"/powermac\",\"target\":\"/pages/macpro\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"redirect\":{\"path\":\"/powermac\",\"target\":\"/pages/macpro\",\"id\":950115854}}"
+          },
+          "name": "Update both the source (path) and target URIs of a redirect",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"redirect\":{\"id\":950115854,\"path\":\"/powermac\",\"target\":\"/pages/macpro\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/redirects/950115854.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nredirect = ShopifyAPI::Redirect.new(session: test_session)\nredirect.id = 950115854\nredirect.path = \"/powermac\"\nredirect.target = \"/pages/macpro\"\nredirect.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst redirect = new Redirect({session: test_session});\nredirect.id = 950115854;\nredirect.path = \"/powermac\";\nredirect.target = \"/pages/macpro\";\nawait redirect.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$redirect = new Redirect($this->test_session);\n$redirect->id = 950115854;\n$redirect->path = \"/powermac\";\n$redirect->target = \"/pages/macpro\";\n$redirect->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/redirects/{redirect_id}.json",
+      "action": "put"
+    },
+    {
+      "description": "Deletes a redirect",
+      "summary": "Deletes a redirect",
+      "operationId": "Deletesaredirect",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "redirect_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Deletes a redirect",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Delete an existing redirect": {
+                  "value": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/redirects/668809255.json",
+          "request_method": "DELETE",
+          "request": {
+            "action": "DELETE /admin/api/unstable/redirects/668809255.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{}"
+          },
+          "name": "Delete an existing redirect",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/redirects/668809255.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Redirect.delete(\n  session: test_session,\n  id: 668809255,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Redirect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Redirect.delete({\n  session: test_session,\n  id: 668809255,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Redirect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nRedirect::delete(\n    $this->test_session, // Session\n    668809255, // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/redirects/{redirect_id}.json",
+      "action": "delete"
+    }
+  ],
+  "components": [
+    {
+      "name": "Redirect",
+      "title": "Redirect",
+      "type": "object",
+      "properties": [
+        {
+          "description": "The ID for the redirect.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": 304339089,
+          "name": "id"
+        },
+        {
+          "description": "          The old path to be redirected. When the user visits this path, they will be redirected to the target. (maximum: 1024 characters)\n",
+          "type": "x-string",
+          "example": "/products.php",
+          "name": "path"
+        },
+        {
+          "description": "The target location where the user will be redirected. When the user visits the old path specified by the <code>path</code> property, they will be redirected to this location. This property can be set to any path on the shop's site, or to an external URL. (maximum: 255 characters)",
+          "type": "x-string",
+          "example": "/products",
+          "name": "target"
+        }
+      ],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "online-store/redirect",
+    "gid": "8ac4b306-f865-48be-9169-776162ff743e",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/redirect",
+      "/api/reference/online_store/redirect"
+    ],
+    "meta_description": "Manage 301 redirects for a merchant's online store.",
+    "postman_group": "Online store",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

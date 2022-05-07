@@ -1,0 +1,697 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Province",
+    "description": "        <p>The Province resource represents the sales tax that's applied to orders based the sub-regions of a country. Sub-regions might include counties, emirates, governorates, prefectures, provinces, regions, states, and territories.</p>\n        {{ '/api/reference/province.png' | image }}\n        <p>You can use the Province resource to retrieve and update <a href=\"#countries-that-have-provinces-in-shopify\">available sub-regions</a> for only the countries that a shop owner has added to a shipping zone. Merchants add countries to a shipping zone from the <strong>Shipping</strong> page of their Shopify admin.</p>\n        <p>For information on accessing the tax information for an entire country, including its provinces, see the <a href=\"/api/admin-rest/latest/resources/country\">Country</a> resource.</p>\n        <div class=\"note-caution note\">\n          <h4>Caution</h4>\n          <p>As of version 2020-10, you can no longer update custom tax values for the Province resource.</p>\n        </div>\n\n        <h2>Countries that have provinces in Shopify</h2>\n        <p>Shopify provides provincial tax rates for the following countries:</p>\n        <table>\n          <tr>\n            <th>A-J</th>\n            <th>M-Z</th>\n          </tr>\n          <tr>\n            <td>Argentina (24 provinces)</td>\n            <td>Mexico (32 states)</td>\n          </tr>\n          <tr>\n            <td>Australia (8 states/territories)</td>\n            <td>New Zealand (16 regions)</td>\n          </tr>\n          <tr>\n            <td>Brazil (27 states)</td>\n            <td>Nigeria (37 states)</td>\n          </tr>\n          <tr>\n            <td>Canada (13 provinces/territories)</td>\n            <td>Panama (13 regions)</td>\n          </tr>\n          <tr>\n            <td>Chile (16 regions)</td>\n            <td>Peru (26 regions)</td>\n          </tr>\n          <tr>\n            <td>China (31 provinces)</td>\n            <td>Philippines (82 provinces)</td>\n          </tr>\n          <tr>\n            <td>Colombia (33 provinces)</td>\n            <td>Portugal (20 regions)</td>\n          </tr>\n          <tr>\n            <td>Egypt (29 governorates)</td>\n            <td>Romania (42 counties)</td>\n          </tr>\n          <tr>\n            <td>Guatemala (22 regions)</td>\n            <td>Russia (82 regions)</td>\n          </tr>\n          <tr>\n            <td>Hong Kong (3 regions)</td>\n            <td>South Africa (9 provinces)</td>\n          <tr>\n            <td>India (36 states)</td>\n            <td>South Korea (17 provinces)</td>\n          </tr>\n          <tr>\n            <td>Indonesia (34 provinces)</td>\n            <td>Spain (52 provinces)</td>\n          </tr>\n          <tr>\n            <td>Ireland (26 counties)</td>\n            <td>Thailand (78 provinces)</td>\n          </tr>\n          <tr>\n            <td>Italy (110 provinces)</td>\n            <td>United Arab Emirates (7 emirates)</td>\n          </tr>\n          <tr>\n            <td>Japan (47 prefectures)</td>\n            <td>United Kingdom (5 constituent countries/provinces)</td>\n          </tr>\n          <tr>\n            <td>Malaysia (16 states/territories)</td>\n            <td>United States (62 states/territories)</td>\n          </tr>\n        </table>\n",
+    "x-owner": "https://vault.shopify.io/teams/2310",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Retrieves a list of provinces",
+      "summary": "Retrieves a list of provinces for a country",
+      "operationId": "Retrievesalistofprovincesforacountry",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "country_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fields",
+          "description": "Show only certain fields, specified by a comma-separated list of fields names.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "since_id",
+          "description": "Restrict results to after the specified ID.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of provinces for a country",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve all provinces for a country": {
+                  "value": {
+                    "provinces": [
+                      {
+                        "id": 205434194,
+                        "country_id": 879921427,
+                        "name": "Alberta",
+                        "code": "AB",
+                        "tax_name": null,
+                        "tax_type": null,
+                        "shipping_zone_id": null,
+                        "tax": 0.08,
+                        "tax_percentage": 8.0
+                      },
+                      {
+                        "id": 170405627,
+                        "country_id": 879921427,
+                        "name": "British Columbia",
+                        "code": "BC",
+                        "tax_name": null,
+                        "tax_type": null,
+                        "shipping_zone_id": null,
+                        "tax": 0.07,
+                        "tax_percentage": 7.0
+                      },
+                      {
+                        "id": 342345110,
+                        "country_id": 879921427,
+                        "name": "Manitoba",
+                        "code": "MB",
+                        "tax_name": null,
+                        "tax_type": null,
+                        "shipping_zone_id": null,
+                        "tax": 0.07,
+                        "tax_percentage": 7.0
+                      },
+                      {
+                        "id": 92264567,
+                        "country_id": 879921427,
+                        "name": "New Brunswick",
+                        "code": "NB",
+                        "tax_name": null,
+                        "tax_type": null,
+                        "shipping_zone_id": null,
+                        "tax": 0.15,
+                        "tax_percentage": 15.0
+                      },
+                      {
+                        "id": 243284171,
+                        "country_id": 879921427,
+                        "name": "Newfoundland",
+                        "code": "NL",
+                        "tax_name": null,
+                        "tax_type": null,
+                        "shipping_zone_id": null,
+                        "tax": 0.15,
+                        "tax_percentage": 15.0
+                      },
+                      {
+                        "id": 439598329,
+                        "country_id": 879921427,
+                        "name": "Northwest Territories",
+                        "code": "NT",
+                        "tax_name": null,
+                        "tax_type": null,
+                        "shipping_zone_id": null,
+                        "tax": 0.0,
+                        "tax_percentage": 0.0
+                      },
+                      {
+                        "id": 448070559,
+                        "country_id": 879921427,
+                        "name": "Nova Scotia",
+                        "code": "NS",
+                        "tax_name": null,
+                        "tax_type": "harmonized",
+                        "shipping_zone_id": null,
+                        "tax": 0.15,
+                        "tax_percentage": 15.0
+                      },
+                      {
+                        "id": 670206421,
+                        "country_id": 879921427,
+                        "name": "Nunavut",
+                        "code": "NU",
+                        "tax_name": null,
+                        "tax_type": null,
+                        "shipping_zone_id": null,
+                        "tax": 0.0,
+                        "tax_percentage": 0.0
+                      },
+                      {
+                        "id": 702530425,
+                        "country_id": 879921427,
+                        "name": "Ontario",
+                        "code": "ON",
+                        "tax_name": null,
+                        "tax_type": null,
+                        "shipping_zone_id": null,
+                        "tax": 0.08,
+                        "tax_percentage": 8.0
+                      },
+                      {
+                        "id": 570891722,
+                        "country_id": 879921427,
+                        "name": "Prince Edward Island",
+                        "code": "PE",
+                        "tax_name": null,
+                        "tax_type": null,
+                        "shipping_zone_id": null,
+                        "tax": 0.1,
+                        "tax_percentage": 10.0
+                      },
+                      {
+                        "id": 224293623,
+                        "country_id": 879921427,
+                        "name": "Quebec",
+                        "code": "QC",
+                        "tax_name": "HST",
+                        "tax_type": "compounded",
+                        "shipping_zone_id": null,
+                        "tax": 0.09,
+                        "tax_percentage": 9.0
+                      },
+                      {
+                        "id": 473391800,
+                        "country_id": 879921427,
+                        "name": "Saskatchewan",
+                        "code": "SK",
+                        "tax_name": null,
+                        "tax_type": null,
+                        "shipping_zone_id": null,
+                        "tax": 0.09,
+                        "tax_percentage": 9.0
+                      },
+                      {
+                        "id": 1005264686,
+                        "country_id": 879921427,
+                        "name": "Yukon",
+                        "code": "YT",
+                        "tax_name": null,
+                        "tax_type": null,
+                        "shipping_zone_id": null,
+                        "tax": 0.0,
+                        "tax_percentage": 0.0
+                      }
+                    ]
+                  }
+                },
+                "Retrieve all provinces for a country after the specified ID": {
+                  "value": {
+                    "provinces": [
+                      {
+                        "id": 570891722,
+                        "country_id": 879921427,
+                        "name": "Prince Edward Island",
+                        "code": "PE",
+                        "tax_name": null,
+                        "tax_type": null,
+                        "shipping_zone_id": null,
+                        "tax": 0.1,
+                        "tax_percentage": 10.0
+                      },
+                      {
+                        "id": 670206421,
+                        "country_id": 879921427,
+                        "name": "Nunavut",
+                        "code": "NU",
+                        "tax_name": null,
+                        "tax_type": null,
+                        "shipping_zone_id": null,
+                        "tax": 0.0,
+                        "tax_percentage": 0.0
+                      },
+                      {
+                        "id": 702530425,
+                        "country_id": 879921427,
+                        "name": "Ontario",
+                        "code": "ON",
+                        "tax_name": null,
+                        "tax_type": null,
+                        "shipping_zone_id": null,
+                        "tax": 0.08,
+                        "tax_percentage": 8.0
+                      },
+                      {
+                        "id": 1005264686,
+                        "country_id": 879921427,
+                        "name": "Yukon",
+                        "code": "YT",
+                        "tax_name": null,
+                        "tax_type": null,
+                        "shipping_zone_id": null,
+                        "tax": 0.0,
+                        "tax_percentage": 0.0
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/countries/879921427/provinces.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/countries/879921427/provinces.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"provinces\":[{\"id\":205434194,\"country_id\":879921427,\"name\":\"Alberta\",\"code\":\"AB\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.08,\"tax_percentage\":8.0},{\"id\":170405627,\"country_id\":879921427,\"name\":\"British Columbia\",\"code\":\"BC\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.07,\"tax_percentage\":7.0},{\"id\":342345110,\"country_id\":879921427,\"name\":\"Manitoba\",\"code\":\"MB\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.07,\"tax_percentage\":7.0},{\"id\":92264567,\"country_id\":879921427,\"name\":\"New Brunswick\",\"code\":\"NB\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.15,\"tax_percentage\":15.0},{\"id\":243284171,\"country_id\":879921427,\"name\":\"Newfoundland\",\"code\":\"NL\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.15,\"tax_percentage\":15.0},{\"id\":439598329,\"country_id\":879921427,\"name\":\"Northwest Territories\",\"code\":\"NT\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.0,\"tax_percentage\":0.0},{\"id\":448070559,\"country_id\":879921427,\"name\":\"Nova Scotia\",\"code\":\"NS\",\"tax_name\":null,\"tax_type\":\"harmonized\",\"shipping_zone_id\":null,\"tax\":0.15,\"tax_percentage\":15.0},{\"id\":670206421,\"country_id\":879921427,\"name\":\"Nunavut\",\"code\":\"NU\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.0,\"tax_percentage\":0.0},{\"id\":702530425,\"country_id\":879921427,\"name\":\"Ontario\",\"code\":\"ON\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.08,\"tax_percentage\":8.0},{\"id\":570891722,\"country_id\":879921427,\"name\":\"Prince Edward Island\",\"code\":\"PE\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.1,\"tax_percentage\":10.0},{\"id\":224293623,\"country_id\":879921427,\"name\":\"Quebec\",\"code\":\"QC\",\"tax_name\":\"HST\",\"tax_type\":\"compounded\",\"shipping_zone_id\":null,\"tax\":0.09,\"tax_percentage\":9.0},{\"id\":473391800,\"country_id\":879921427,\"name\":\"Saskatchewan\",\"code\":\"SK\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.09,\"tax_percentage\":9.0},{\"id\":1005264686,\"country_id\":879921427,\"name\":\"Yukon\",\"code\":\"YT\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.0,\"tax_percentage\":0.0}]}"
+          },
+          "name": "Retrieve all provinces for a country",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/countries/879921427/provinces.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Province.all(\n  session: test_session,\n  country_id: 879921427,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Province} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Province.all({\n  session: test_session,\n  country_id: 879921427,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Province;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nProvince::all(\n    $this->test_session, // Session\n    [\"country_id\" => \"879921427\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "since_id=536137098",
+          "request_path": "/admin/api/2022-04/countries/879921427/provinces.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/countries/879921427/provinces.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"provinces\":[{\"id\":570891722,\"country_id\":879921427,\"name\":\"Prince Edward Island\",\"code\":\"PE\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.1,\"tax_percentage\":10.0},{\"id\":670206421,\"country_id\":879921427,\"name\":\"Nunavut\",\"code\":\"NU\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.0,\"tax_percentage\":0.0},{\"id\":702530425,\"country_id\":879921427,\"name\":\"Ontario\",\"code\":\"ON\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.08,\"tax_percentage\":8.0},{\"id\":1005264686,\"country_id\":879921427,\"name\":\"Yukon\",\"code\":\"YT\",\"tax_name\":null,\"tax_type\":null,\"shipping_zone_id\":null,\"tax\":0.0,\"tax_percentage\":0.0}]}"
+          },
+          "name": "Retrieve all provinces for a country after the specified ID",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/countries/879921427/provinces.json?since_id=536137098\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Province.all(\n  session: test_session,\n  country_id: 879921427,\n  since_id: \"536137098\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Province} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Province.all({\n  session: test_session,\n  country_id: 879921427,\n  since_id: \"536137098\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Province;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nProvince::all(\n    $this->test_session, // Session\n    [\"country_id\" => \"879921427\"], // Url Ids\n    [\"since_id\" => \"536137098\"], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/countries/{country_id}/provinces.json",
+      "action": "get"
+    },
+    {
+      "description": "Retrieves a count of provinces for a country",
+      "summary": "Retrieves a count of provinces for a country",
+      "operationId": "Retrievesacountofprovincesforacountry",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "country_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a count of provinces for a country",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Count all provinces": {
+                  "value": {
+                    "count": 13
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/countries/879921427/provinces/count.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/countries/879921427/provinces/count.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"count\":13}"
+          },
+          "name": "Count all provinces",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/countries/879921427/provinces/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Province.count(\n  session: test_session,\n  country_id: 879921427,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Province} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Province.count({\n  session: test_session,\n  country_id: 879921427,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Province;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nProvince::count(\n    $this->test_session, // Session\n    [\"country_id\" => \"879921427\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/countries/{country_id}/provinces/count.json",
+      "action": "get"
+    },
+    {
+      "description": "Retrieves a single province for a country",
+      "summary": "Retrieves a single province for a country",
+      "operationId": "Retrievesasingleprovinceforacountry",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "country_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "province_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fields",
+          "description": "Show only certain fields, specified by a comma-separated list of field names.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a single province for a country",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a single province": {
+                  "value": {
+                    "province": {
+                      "id": 224293623,
+                      "country_id": 879921427,
+                      "name": "Quebec",
+                      "code": "QC",
+                      "tax_name": "HST",
+                      "tax_type": "compounded",
+                      "shipping_zone_id": null,
+                      "tax": 0.09,
+                      "tax_percentage": 9.0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/countries/879921427/provinces/224293623.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/countries/879921427/provinces/224293623.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"province\":{\"id\":224293623,\"country_id\":879921427,\"name\":\"Quebec\",\"code\":\"QC\",\"tax_name\":\"HST\",\"tax_type\":\"compounded\",\"shipping_zone_id\":null,\"tax\":0.09,\"tax_percentage\":9.0}}"
+          },
+          "name": "Retrieve a single province",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/countries/879921427/provinces/224293623.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Province.find(\n  session: test_session,\n  country_id: 879921427,\n  id: 224293623,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Province} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Province.find({\n  session: test_session,\n  country_id: 879921427,\n  id: 224293623,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Province;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nProvince::find(\n    $this->test_session, // Session\n    224293623, // Id\n    [\"country_id\" => \"879921427\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/countries/{country_id}/provinces/{province_id}.json",
+      "action": "get"
+    },
+    {
+      "description": "<aside class=\"note caution\">\n  <h4>Caution</h4>\n  <p>As of version 2020-10, the tax field is deprecated.</p>\n</aside>\nUpdates an existing province for a country.",
+      "summary": "Updates an existing province for a country",
+      "operationId": "Updatesanexistingprovinceforacountry",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "country_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "province_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Updates an existing province for a country",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Update a province's tax rate": {
+                  "value": {
+                    "province": {
+                      "country_id": 879921427,
+                      "id": 224293623,
+                      "name": "Quebec",
+                      "code": "QC",
+                      "tax_name": "HST",
+                      "tax_type": "compounded",
+                      "shipping_zone_id": null,
+                      "tax": 0.09,
+                      "tax_percentage": 9.0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/countries/879921427/provinces/224293623.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/countries/879921427/provinces/224293623.json",
+            "headers": {},
+            "body": "{\"province\":{\"id\":224293623,\"tax\":0.09}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"province\":{\"country_id\":879921427,\"id\":224293623,\"name\":\"Quebec\",\"code\":\"QC\",\"tax_name\":\"HST\",\"tax_type\":\"compounded\",\"shipping_zone_id\":null,\"tax\":0.09,\"tax_percentage\":9.0}}"
+          },
+          "name": "Update a province's tax rate",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"province\":{\"id\":224293623,\"tax\":0.09}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/countries/879921427/provinces/224293623.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nprovince = ShopifyAPI::Province.new(session: test_session)\nprovince.country_id = 879921427\nprovince.id = 224293623\nprovince.tax = 0.09\nprovince.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Province} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst province = new Province({session: test_session});\nprovince.country_id = 879921427;\nprovince.id = 224293623;\nprovince.tax = 0.09;\nawait province.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Province;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$province = new Province($this->test_session);\n$province->country_id = 879921427;\n$province->id = 224293623;\n$province->tax = 0.09;\n$province->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/countries/{country_id}/provinces/{province_id}.json",
+      "action": "put"
+    }
+  ],
+  "components": [
+    {
+      "name": "Province",
+      "title": "Province",
+      "type": "object",
+      "properties": [
+        {
+          "description": "The standard abbreviation for the province.",
+          "type": "x-string",
+          "example": "AB",
+          "name": "code"
+        },
+        {
+          "description": "The ID for the country that the province belongs to.",
+          "type": "x-string",
+          "example": 879921427,
+          "name": "country_id"
+        },
+        {
+          "description": "The ID for the province.",
+          "type": "x-string",
+          "example": 205434194,
+          "name": "id"
+        },
+        {
+          "description": "The full name of the province.",
+          "type": "x-string",
+          "example": "Alberta",
+          "name": "name"
+        },
+        {
+          "description": "The ID for the shipping zone that the province belongs to.",
+          "type": "x-string",
+          "example": 2038345,
+          "name": "shipping_zone_id"
+        },
+        {
+          "description": "The sales tax rate to be applied to orders made by customers from this province.",
+          "type": "x-string",
+          "example": 0.08,
+          "name": "tax"
+        },
+        {
+          "description": "The name of the tax for this province.",
+          "type": "x-string",
+          "example": "PST",
+          "name": "tax_name"
+        },
+        {
+          "description": "        The tax type. Valid values: <code>null</code>, <code>normal</code>, <code>harmonized</code>, or <code>compounded</code>.\n\n        <p>A harmonized tax is a combination of provincial and federal sales taxes.</p>\n\n        <p>Normal and harmonized tax rates are applied to the pre-tax value of an order, but a compounded tax rate is applied on top of other tax rates.\n        For example, if a $100 order receives a 5% normal tax rate and a 2% compound tax rate, then the post-tax total is $107.10 (<code>(100 x 1.05) x 1.02 = 107.1</code>).</p>\n",
+          "type": "x-string",
+          "example": "normal",
+          "name": "tax_type"
+        },
+        {
+          "description": "The province's tax in percent format.",
+          "type": "x-string",
+          "example": 8.0,
+          "name": "tax_percentage"
+        }
+      ],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "store-properties/province",
+    "gid": "9dc43b98-1fcb-488a-9a70-7e48bf113bea",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/province",
+      "/api/reference/store_properties/province"
+    ],
+    "meta_description": "Manage the tax rates that are applied to orders from a specific province or state.",
+    "postman_group": "Store properties",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

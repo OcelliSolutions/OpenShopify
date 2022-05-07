@@ -1,0 +1,113 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Balance",
+    "description": "The account's current balance. This amount is comprised of any\n<a href=\"/docs/admin-api/rest/reference/shopify_payments/transaction\">Transaction</a> not yet included in a\n<a href=\"/docs/admin-api/rest/reference/shopify_payments/payout\">Payout</a>.\n",
+    "x-owner": "https://vault.shopify.io/teams/663",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Retrieves the account's current balance.",
+      "summary": "Return the current balance",
+      "operationId": "Returnthecurrentbalance",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Return the current balance",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieves the account's current balance.": {
+                  "value": {
+                    "balance": [
+                      {
+                        "currency": "USD",
+                        "amount": "53.99"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/shopify_payments/balance.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/shopify_payments/balance.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"balance\":[{\"currency\":\"USD\",\"amount\":\"53.99\"}]}"
+          },
+          "name": "Retrieves the account's current balance.",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/shopify_payments/balance.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Balance.all(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Balance} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Balance.all({\n  session: test_session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Balance;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nBalance::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/shopify_payments/balance.json",
+      "action": "get"
+    }
+  ],
+  "components": [
+    {
+      "name": "Balance",
+      "title": "Balance",
+      "type": "object",
+      "properties": [],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "shopify_payments/balance",
+    "gid": "ba041685-c2a3-4bbd-b00f-6c75d1201aa7",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": null,
+    "meta_description": "View the current balance for a Shopify Payments account",
+    "postman_group": "Shopify Payments",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

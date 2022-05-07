@@ -1,0 +1,1709 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Payment",
+    "description": "    <div class=\"note\">\n      <h4>Note</h4>\n      <p>Sales channels require elevated permissions to interact with the Payment resource. For more information, see\n      <a href=\"/tutorials/build-a-sales-channel#request-payment-processing\">\n      <em>Request payment processing</em></a>.</p>\n    </div>\n\n    <p>The Payment resource allows sales channels to build a fully native checkout experience by submitting a customer's\n    payment details directly to Shopify.</p>\n\n    <p>To complete a payment using the Payment resource, first create a payment session by submitting the card details to\n    Shopify's card vault in exchange for a session ID. The session ID can then be used to create a payment for an\n    existing <a href=\"/docs/admin-api/rest/reference/sales-channels/checkout\">Checkout</a>.</p>\n\n    <p>For more information about using the Payment resource, see\n    <a href=\"/tutorials/complete-a-sales-channel-payment-with-checkout-api\"><em>Completing a payment</em></a>.</p>\n\n    <p>The Payment resource is compatible only with direct payment gateways. For a list of all supported payment gateways, see\n    <a href=\"https://help.shopify.com/manual/payments/third-party-providers/direct-and-external-providers\"><em>Direct and external credit card\n    payment providers</em></a>.</p>\n",
+    "x-owner": "https://vault.shopify.io/teams/2048",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Stores a credit card in the card vault. Credit cards cannot be sent to the Checkout API directly. They must be\n        sent to the card vault, which in response will return a session ID. This session ID can then be used when\n        calling the POST #{token}/payments.json endpoint. A session ID is valid only for a single call to the endpoint.\n        The card vault has a static URL and is located at https://elb.deposit.shopifycs.com/sessions.\n        It is also provided via the <code>payment_url</code> property on the\n        <a href=/docs/admin-api/rest/reference/sales-channels/checkout>Checkout</a> resource.",
+      "summary": "Stores a credit card in the card vault",
+      "operationId": "Storesacreditcardinthecardvault",
+      "parameters": [
+        {
+          "name": "credit_card",
+          "description": "The credit card used for payment. See the properties table above for a description of its attributes.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Stores a credit card in the card vault",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a payment session with the specified billing details.": {
+                  "value": {
+                    "id": "83hru3obno3hu434b3u"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "https://elb.deposit.shopifycs.com/sessions",
+          "request_method": "POST",
+          "request": {
+            "action": "POST https://elb.deposit.shopifycs.com/sessions",
+            "headers": {},
+            "body": "{\"credit_card\":{\"number\":\"1\",\"first_name\":\"John\",\"last_name\":\"Smith\",\"month\":\"5\",\"year\":\"15\",\"verification_value\":\"123\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"id\":\"83hru3obno3hu434b3u\"}"
+          },
+          "name": "Create a payment session with the specified billing details.",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"credit_card\":{\"number\":\"1\",\"first_name\":\"John\",\"last_name\":\"Smith\",\"month\":\"5\",\"year\":\"15\",\"verification_value\":\"123\"}}' \\\n-X POST \"https://elb.deposit.shopifycs.com/sessions\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": ""
+            },
+            {
+              "language": "node",
+              "example_code": ""
+            },
+            {
+              "language": "php",
+              "example_code": ""
+            }
+          ]
+        }
+      ],
+      "url": "https://elb.deposit.shopifycs.com/sessions",
+      "action": "post"
+    },
+    {
+      "description": "Creates a payment on a checkout using the session ID returned by the card vault",
+      "summary": "Creates a new payment",
+      "operationId": "Createsanewpayment",
+      "parameters": [
+        {
+          "name": "amount",
+          "description": "The amount of the payment.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          },
+          "required": true
+        },
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "request_details",
+          "description": "The details of the request, including the following attributes:",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          },
+          "required": true,
+          "examples": {
+            "ip_address": {
+              "summary": "The IP address of the customer.",
+              "value": "ip_address"
+            },
+            "accept_language": {
+              "summary": "The language preferences of the customer, in the same format as a standard <a href=\n\"https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4\">Accept-Language</a> request header.\n",
+              "value": "accept_language"
+            },
+            "user_agent": {
+              "summary": "The user agent string for the customer's device.",
+              "value": "user_agent"
+            }
+          }
+        },
+        {
+          "name": "session_id",
+          "description": "A session ID provided by the card vault when creating a payment session.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          },
+          "required": true
+        },
+        {
+          "name": "token",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "unique_token",
+          "description": "A unique idempotency token generated by your app. This can be any value, but must be unique across all payment requests.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "202": {
+          "description": "Creates a new payment",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create an authorization using a valid <code>session_id</code> stored in the vault": {
+                  "value": {
+                    "payment": {
+                      "id": 1071573807,
+                      "unique_token": "client-side-idempotency-token",
+                      "payment_processing_error_message": null,
+                      "next_action": {
+                        "redirect_url": null
+                      },
+                      "fraudulent": false,
+                      "transaction": null,
+                      "credit_card": {
+                        "first_name": "Bob",
+                        "last_name": "Norman",
+                        "first_digits": "424242",
+                        "last_digits": "4242",
+                        "brand": "bogus",
+                        "expiry_month": 9,
+                        "expiry_year": 2023,
+                        "customer_id": 207119551
+                      },
+                      "checkout": {
+                        "completed_at": null,
+                        "created_at": "2012-10-12T05:05:27-06:00",
+                        "currency": "USD",
+                        "presentment_currency": "USD",
+                        "customer_id": 207119551,
+                        "customer_locale": "en",
+                        "device_id": null,
+                        "discount_code": null,
+                        "email": "bob.norman@mail.example.com",
+                        "legal_notice_url": null,
+                        "location_id": null,
+                        "name": "#446514532",
+                        "note": "",
+                        "note_attributes": {
+                          "custom engraving": "Happy Birthday",
+                          "colour": "green"
+                        },
+                        "order_id": null,
+                        "order_status_url": null,
+                        "order": null,
+                        "payment_due": "398.00",
+                        "payment_url": "https://app.local/cardserver/sessions",
+                        "payments": [
+                          {
+                            "id": 25428999,
+                            "unique_token": "e01e661f4a99acd9dcdg6f1422d0d6f7",
+                            "payment_processing_error_message": null,
+                            "fraudulent": false,
+                            "transaction": {
+                              "amount": "598.94",
+                              "amount_in": null,
+                              "amount_out": null,
+                              "amount_rounding": null,
+                              "authorization": "authorization-key",
+                              "created_at": "2005-08-01T09:57:11-06:00",
+                              "currency": "USD",
+                              "error_code": null,
+                              "parent_id": null,
+                              "gateway": "bogus",
+                              "id": 389404469,
+                              "kind": "authorization",
+                              "message": null,
+                              "status": "success",
+                              "test": false,
+                              "receipt": {
+                                "testcase": true,
+                                "authorization": "123456"
+                              },
+                              "location_id": null,
+                              "user_id": null,
+                              "transaction_group_id": null,
+                              "device_id": null,
+                              "payment_details": {
+                                "credit_card_bin": null,
+                                "avs_result_code": null,
+                                "cvv_result_code": null,
+                                "credit_card_number": "•••• •••• •••• 4242",
+                                "credit_card_company": "Visa",
+                                "credit_card_name": null,
+                                "credit_card_wallet": null,
+                                "credit_card_expiration_month": null,
+                                "credit_card_expiration_year": null
+                              }
+                            },
+                            "credit_card": null
+                          },
+                          {
+                            "id": 1071573807,
+                            "unique_token": "client-side-idempotency-token",
+                            "payment_processing_error_message": null,
+                            "fraudulent": false,
+                            "transaction": null,
+                            "credit_card": {
+                              "first_name": "Bob",
+                              "last_name": "Norman",
+                              "first_digits": "424242",
+                              "last_digits": "4242",
+                              "brand": "bogus",
+                              "expiry_month": 9,
+                              "expiry_year": 2023,
+                              "customer_id": 207119551
+                            }
+                          }
+                        ],
+                        "phone": null,
+                        "shopify_payments_account_id": null,
+                        "privacy_policy_url": null,
+                        "refund_policy_url": null,
+                        "requires_shipping": true,
+                        "reservation_time_left": 0,
+                        "reservation_time": null,
+                        "source_identifier": null,
+                        "source_name": "web",
+                        "source_url": null,
+                        "subscription_policy_url": null,
+                        "subtotal_price": "398.00",
+                        "shipping_policy_url": null,
+                        "tax_exempt": false,
+                        "taxes_included": false,
+                        "terms_of_sale_url": null,
+                        "terms_of_service_url": null,
+                        "token": "7yjf4v2we7gamku6a6h7tvm8h3mmvs4x",
+                        "total_price": "398.00",
+                        "total_tax": "0.00",
+                        "total_tip_received": "0.00",
+                        "total_line_items_price": "398.00",
+                        "updated_at": "2022-04-05T11:09:18-06:00",
+                        "user_id": null,
+                        "web_url": "https://checkout.local/548380009/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x",
+                        "total_duties": null,
+                        "total_additional_fees": null,
+                        "line_items": [
+                          {
+                            "id": "ae00054d23496845",
+                            "key": "ae00054d23496845",
+                            "product_id": 632910392,
+                            "variant_id": 49148385,
+                            "sku": "IPOD2008RED",
+                            "vendor": "Apple",
+                            "title": "IPod Nano - 8GB",
+                            "variant_title": "Red",
+                            "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1649178324",
+                            "taxable": true,
+                            "requires_shipping": true,
+                            "gift_card": false,
+                            "price": "199.00",
+                            "compare_at_price": null,
+                            "line_price": "199.00",
+                            "properties": {},
+                            "quantity": 1,
+                            "grams": 200,
+                            "fulfillment_service": "manual",
+                            "applied_discounts": [],
+                            "discount_allocations": [],
+                            "tax_lines": []
+                          },
+                          {
+                            "id": "c3c24fca4e2bb8c6",
+                            "key": "c3c24fca4e2bb8c6",
+                            "product_id": 632910392,
+                            "variant_id": 808950810,
+                            "sku": "IPOD2008PINK",
+                            "vendor": "Apple",
+                            "title": "IPod Nano - 8GB",
+                            "variant_title": "Pink",
+                            "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1649178324",
+                            "taxable": true,
+                            "requires_shipping": true,
+                            "gift_card": false,
+                            "price": "199.00",
+                            "compare_at_price": null,
+                            "line_price": "199.00",
+                            "properties": {},
+                            "quantity": 1,
+                            "grams": 200,
+                            "fulfillment_service": "manual",
+                            "applied_discounts": [],
+                            "discount_allocations": [],
+                            "tax_lines": []
+                          }
+                        ],
+                        "gift_cards": [],
+                        "tax_lines": [],
+                        "tax_manipulations": [],
+                        "shipping_line": {
+                          "handle": "shopify-Free%20Shipping-0.00",
+                          "price": "0.00",
+                          "title": "Free Shipping",
+                          "tax_lines": []
+                        },
+                        "shipping_rate": {
+                          "id": "shopify-Free%20Shipping-0.00",
+                          "price": "0.00",
+                          "title": "Free Shipping"
+                        },
+                        "shipping_address": {
+                          "id": 550558813,
+                          "first_name": "Bob",
+                          "last_name": "Norman",
+                          "phone": "555-625-1199",
+                          "company": null,
+                          "address1": "Chestnut Street 92",
+                          "address2": "",
+                          "city": "Louisville",
+                          "province": "Kentucky",
+                          "province_code": "KY",
+                          "country": "United States",
+                          "country_code": "US",
+                          "zip": "40202"
+                        },
+                        "credit_card": {
+                          "first_name": "Bob",
+                          "last_name": "Norman",
+                          "first_digits": "424242",
+                          "last_digits": "4242",
+                          "brand": "bogus",
+                          "expiry_month": 9,
+                          "expiry_year": 2023,
+                          "customer_id": 207119551
+                        },
+                        "billing_address": {
+                          "id": 550558813,
+                          "first_name": "Bob",
+                          "last_name": "Norman",
+                          "phone": "555-625-1199",
+                          "company": null,
+                          "address1": "Chestnut Street 92",
+                          "address2": "",
+                          "city": "Louisville",
+                          "province": "Kentucky",
+                          "province_code": "KY",
+                          "country": "United States",
+                          "country_code": "US",
+                          "zip": "40202"
+                        },
+                        "applied_discount": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "422": {
+          "description": "Creates a new payment",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Creating an authorization with a valid session ID but an invalid credit card number fails and returns errors": {
+                  "value": {
+                    "errors": {
+                      "amount": [
+                        {
+                          "code": "total_price_mismatch",
+                          "message": "The amount of the payment must match the total of 398.00.",
+                          "options": {
+                            "amount": "398.00"
+                          }
+                        }
+                      ],
+                      "credit_card": {
+                        "brand": [
+                          {
+                            "code": "invalid",
+                            "message": "is invalid",
+                            "options": {}
+                          }
+                        ],
+                        "number": [
+                          {
+                            "code": "invalid",
+                            "message": "is invalid",
+                            "options": {}
+                          }
+                        ]
+                      },
+                      "checkout": {
+                        "credit_card": {
+                          "brand": [
+                            {
+                              "code": "invalid",
+                              "message": "is invalid",
+                              "options": {}
+                            }
+                          ],
+                          "number": [
+                            {
+                              "code": "invalid",
+                              "message": "is invalid",
+                              "options": {}
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "Creating an authorization with an invalid session ID fails and returns errors": {
+                  "value": {
+                    "errors": {
+                      "amount": [
+                        {
+                          "code": "total_price_mismatch",
+                          "message": "The amount of the payment must match the total of 398.00.",
+                          "options": {
+                            "amount": "398.00"
+                          }
+                        }
+                      ],
+                      "payment_gateway": [
+                        {
+                          "code": "invalid",
+                          "message": "is invalid",
+                          "options": {}
+                        }
+                      ],
+                      "checkout": {
+                        "payment_gateway": [
+                          {
+                            "code": "invalid",
+                            "message": "is invalid",
+                            "options": {}
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                "Creating an authorization with a valid session can fail for various reasons": {
+                  "value": {
+                    "errors": {
+                      "base": [
+                        {
+                          "code": "processing_error",
+                          "message": "Your payment could not be processed at this time, please try again in a few minutes",
+                          "options": {
+                            "raw_gateway_error": "Service is unavailable."
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "202",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
+            "headers": {
+              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/1071573807.json",
+              "Retry-After": "1"
+            },
+            "body": "{\"payment\":{\"request_details\":{\"ip_address\":\"123.1.1.1\",\"accept_language\":\"en-US,en;q=0.8,fr;q=0.6\",\"user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"},\"amount\":\"398.00\",\"session_id\":\"global-771baf31bac9f4e1\",\"unique_token\":\"client-side-idempotency-token\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 202 Accepted",
+            "headers": {
+              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/1071573807.json",
+              "Retry-After": "1"
+            },
+            "body": "{\"payment\":{\"id\":1071573807,\"unique_token\":\"client-side-idempotency-token\",\"payment_processing_error_message\":null,\"next_action\":{\"redirect_url\":null},\"fraudulent\":false,\"transaction\":null,\"credit_card\":{\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"first_digits\":\"424242\",\"last_digits\":\"4242\",\"brand\":\"bogus\",\"expiry_month\":9,\"expiry_year\":2023,\"customer_id\":207119551},\"checkout\":{\"completed_at\":null,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":207119551,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"email\":\"bob.norman@mail.example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#446514532\",\"note\":\"\",\"note_attributes\":{\"custom engraving\":\"Happy Birthday\",\"colour\":\"green\"},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"398.00\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[{\"id\":25428999,\"unique_token\":\"e01e661f4a99acd9dcdg6f1422d0d6f7\",\"payment_processing_error_message\":null,\"fraudulent\":false,\"transaction\":{\"amount\":\"598.94\",\"amount_in\":null,\"amount_out\":null,\"amount_rounding\":null,\"authorization\":\"authorization-key\",\"created_at\":\"2005-08-01T11:57:11-04:00\",\"currency\":\"USD\",\"error_code\":null,\"parent_id\":null,\"gateway\":\"bogus\",\"id\":389404469,\"kind\":\"authorization\",\"message\":null,\"status\":\"success\",\"test\":false,\"receipt\":{\"testcase\":true,\"authorization\":\"123456\"},\"location_id\":null,\"user_id\":null,\"transaction_group_id\":null,\"device_id\":null,\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null}},\"credit_card\":null},{\"id\":1071573807,\"unique_token\":\"client-side-idempotency-token\",\"payment_processing_error_message\":null,\"fraudulent\":false,\"transaction\":null,\"credit_card\":{\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"first_digits\":\"424242\",\"last_digits\":\"4242\",\"brand\":\"bogus\",\"expiry_month\":9,\"expiry_year\":2023,\"customer_id\":207119551}}],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":true,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"web\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"398.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\"total_price\":\"398.00\",\"total_tax\":\"0.00\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"398.00\",\"updated_at\":\"2022-04-05T13:09:18-04:00\",\"user_id\":null,\"web_url\":\"https://checkout.local/548380009/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":\"ae00054d23496845\",\"key\":\"ae00054d23496845\",\"product_id\":632910392,\"variant_id\":49148385,\"sku\":\"IPOD2008RED\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Red\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1649178324\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]},{\"id\":\"c3c24fca4e2bb8c6\",\"key\":\"c3c24fca4e2bb8c6\",\"product_id\":632910392,\"variant_id\":808950810,\"sku\":\"IPOD2008PINK\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Pink\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1649178324\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[],\"tax_manipulations\":[],\"shipping_line\":{\"handle\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\",\"tax_lines\":[]},\"shipping_rate\":{\"id\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\"},\"shipping_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"credit_card\":{\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"first_digits\":\"424242\",\"last_digits\":\"4242\",\"brand\":\"bogus\",\"expiry_month\":9,\"expiry_year\":2023,\"customer_id\":207119551},\"billing_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"applied_discount\":null}}}"
+          },
+          "name": "Create an authorization using a valid <code>session_id</code> stored in the vault",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"payment\":{\"request_details\":{\"ip_address\":\"123.1.1.1\",\"accept_language\":\"en-US,en;q=0.8,fr;q=0.6\",\"user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"},\"amount\":\"398.00\",\"session_id\":\"global-771baf31bac9f4e1\",\"unique_token\":\"client-side-idempotency-token\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/1071573807.json\" \\\n-H \"Retry-After: 1\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npayment = ShopifyAPI::Payment.new(session: test_session)\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"\npayment.request_details = {\n  \"ip_address\" => \"123.1.1.1\",\n  \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n}\npayment.amount = \"398.00\"\npayment.session_id = \"global-771baf31bac9f4e1\"\npayment.unique_token = \"client-side-idempotency-token\"\npayment.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst payment = new Payment({session: test_session});\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\npayment.request_details = {\n  \"ip_address\": \"123.1.1.1\",\n  \"accept_language\": \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n};\npayment.amount = \"398.00\";\npayment.session_id = \"global-771baf31bac9f4e1\";\npayment.unique_token = \"client-side-idempotency-token\";\nawait payment.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$payment = new Payment($this->test_session);\n$payment->checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\n$payment->request_details = [\n    \"ip_address\" => \"123.1.1.1\",\n    \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n    \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n];\n$payment->amount = \"398.00\";\n$payment->session_id = \"global-771baf31bac9f4e1\";\n$payment->unique_token = \"client-side-idempotency-token\";\n$payment->save();"
+            }
+          ]
+        },
+        {
+          "status": "422",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
+            "headers": {},
+            "body": "{\"payment\":{\"request_details\":{\"ip_address\":\"123.1.1.1\",\"accept_language\":\"en-US,en;q=0.8,fr;q=0.6\",\"user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"},\"amount\":\"419.49\",\"session_id\":\"global-683a547abf18c5f8\",\"unique_token\":\"client-side-idempotency-token\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 422 Unprocessable Entity",
+            "headers": {},
+            "body": "{\"errors\":{\"amount\":[{\"code\":\"total_price_mismatch\",\"message\":\"The amount of the payment must match the total of 398.00.\",\"options\":{\"amount\":\"398.00\"}}],\"credit_card\":{\"brand\":[{\"code\":\"invalid\",\"message\":\"is invalid\",\"options\":{}}],\"number\":[{\"code\":\"invalid\",\"message\":\"is invalid\",\"options\":{}}]},\"checkout\":{\"credit_card\":{\"brand\":[{\"code\":\"invalid\",\"message\":\"is invalid\",\"options\":{}}],\"number\":[{\"code\":\"invalid\",\"message\":\"is invalid\",\"options\":{}}]}}}}"
+          },
+          "name": "Creating an authorization with a valid session ID but an invalid credit card number fails and returns errors",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"payment\":{\"request_details\":{\"ip_address\":\"123.1.1.1\",\"accept_language\":\"en-US,en;q=0.8,fr;q=0.6\",\"user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"},\"amount\":\"419.49\",\"session_id\":\"global-683a547abf18c5f8\",\"unique_token\":\"client-side-idempotency-token\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npayment = ShopifyAPI::Payment.new(session: test_session)\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"\npayment.request_details = {\n  \"ip_address\" => \"123.1.1.1\",\n  \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n}\npayment.amount = \"419.49\"\npayment.session_id = \"global-683a547abf18c5f8\"\npayment.unique_token = \"client-side-idempotency-token\"\npayment.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst payment = new Payment({session: test_session});\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\npayment.request_details = {\n  \"ip_address\": \"123.1.1.1\",\n  \"accept_language\": \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n};\npayment.amount = \"419.49\";\npayment.session_id = \"global-683a547abf18c5f8\";\npayment.unique_token = \"client-side-idempotency-token\";\nawait payment.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$payment = new Payment($this->test_session);\n$payment->checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\n$payment->request_details = [\n    \"ip_address\" => \"123.1.1.1\",\n    \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n    \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n];\n$payment->amount = \"419.49\";\n$payment->session_id = \"global-683a547abf18c5f8\";\n$payment->unique_token = \"client-side-idempotency-token\";\n$payment->save();"
+            }
+          ]
+        },
+        {
+          "status": "422",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
+            "headers": {},
+            "body": "{\"payment\":{\"request_details\":{\"ip_address\":\"123.1.1.1\",\"accept_language\":\"en-US,en;q=0.8,fr;q=0.6\",\"user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"},\"amount\":\"419.49\",\"session_id\":\"global-an_invalid_session_id\",\"unique_token\":\"client-side-idempotency-token\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 422 Unprocessable Entity",
+            "headers": {},
+            "body": "{\"errors\":{\"amount\":[{\"code\":\"total_price_mismatch\",\"message\":\"The amount of the payment must match the total of 398.00.\",\"options\":{\"amount\":\"398.00\"}}],\"payment_gateway\":[{\"code\":\"invalid\",\"message\":\"is invalid\",\"options\":{}}],\"checkout\":{\"payment_gateway\":[{\"code\":\"invalid\",\"message\":\"is invalid\",\"options\":{}}]}}}"
+          },
+          "name": "Creating an authorization with an invalid session ID fails and returns errors",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"payment\":{\"request_details\":{\"ip_address\":\"123.1.1.1\",\"accept_language\":\"en-US,en;q=0.8,fr;q=0.6\",\"user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"},\"amount\":\"419.49\",\"session_id\":\"global-an_invalid_session_id\",\"unique_token\":\"client-side-idempotency-token\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npayment = ShopifyAPI::Payment.new(session: test_session)\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"\npayment.request_details = {\n  \"ip_address\" => \"123.1.1.1\",\n  \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n}\npayment.amount = \"419.49\"\npayment.session_id = \"global-an_invalid_session_id\"\npayment.unique_token = \"client-side-idempotency-token\"\npayment.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst payment = new Payment({session: test_session});\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\npayment.request_details = {\n  \"ip_address\": \"123.1.1.1\",\n  \"accept_language\": \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n};\npayment.amount = \"419.49\";\npayment.session_id = \"global-an_invalid_session_id\";\npayment.unique_token = \"client-side-idempotency-token\";\nawait payment.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$payment = new Payment($this->test_session);\n$payment->checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\n$payment->request_details = [\n    \"ip_address\" => \"123.1.1.1\",\n    \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n    \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n];\n$payment->amount = \"419.49\";\n$payment->session_id = \"global-an_invalid_session_id\";\n$payment->unique_token = \"client-side-idempotency-token\";\n$payment->save();"
+            }
+          ]
+        },
+        {
+          "status": "422",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
+            "headers": {},
+            "body": "{\"payment\":{\"request_details\":{\"ip_address\":\"123.1.1.1\",\"accept_language\":\"en-US,en;q=0.8,fr;q=0.6\",\"user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"},\"amount\":\"398.00\",\"session_id\":\"global-944c253c9332c62d\",\"unique_token\":\"client-side-idempotency-token\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 422 Unprocessable Entity",
+            "headers": {},
+            "body": "{\"errors\":{\"base\":[{\"code\":\"processing_error\",\"message\":\"Your payment could not be processed at this time, please try again in a few minutes\",\"options\":{\"raw_gateway_error\":\"Service is unavailable.\"}}]}}"
+          },
+          "name": "Creating an authorization with a valid session can fail for various reasons",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"payment\":{\"request_details\":{\"ip_address\":\"123.1.1.1\",\"accept_language\":\"en-US,en;q=0.8,fr;q=0.6\",\"user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"},\"amount\":\"398.00\",\"session_id\":\"global-944c253c9332c62d\",\"unique_token\":\"client-side-idempotency-token\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npayment = ShopifyAPI::Payment.new(session: test_session)\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"\npayment.request_details = {\n  \"ip_address\" => \"123.1.1.1\",\n  \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n}\npayment.amount = \"398.00\"\npayment.session_id = \"global-944c253c9332c62d\"\npayment.unique_token = \"client-side-idempotency-token\"\npayment.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst payment = new Payment({session: test_session});\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\npayment.request_details = {\n  \"ip_address\": \"123.1.1.1\",\n  \"accept_language\": \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n};\npayment.amount = \"398.00\";\npayment.session_id = \"global-944c253c9332c62d\";\npayment.unique_token = \"client-side-idempotency-token\";\nawait payment.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$payment = new Payment($this->test_session);\n$payment->checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\n$payment->request_details = [\n    \"ip_address\" => \"123.1.1.1\",\n    \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n    \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n];\n$payment->amount = \"398.00\";\n$payment->session_id = \"global-944c253c9332c62d\";\n$payment->unique_token = \"client-side-idempotency-token\";\n$payment->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/checkouts/{token}/payments.json",
+      "action": "post"
+    },
+    {
+      "description": "Retrieves a list of payments on a particular checkout",
+      "summary": "Retrieves a list of payments on a particular checkout",
+      "operationId": "Retrievesalistofpaymentsonaparticularcheckout",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "token",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of payments on a particular checkout",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve all the payments on a checkout": {
+                  "value": {
+                    "payments": [
+                      {
+                        "id": 25428999,
+                        "unique_token": "e01e661f4a99acd9dcdg6f1422d0d6f7",
+                        "payment_processing_error_message": null,
+                        "transaction": {
+                          "amount": "598.94",
+                          "amount_in": null,
+                          "amount_out": null,
+                          "amount_rounding": null,
+                          "authorization": "authorization-key",
+                          "created_at": "2005-08-01T09:57:11-06:00",
+                          "currency": "USD",
+                          "error_code": null,
+                          "parent_id": null,
+                          "gateway": "bogus",
+                          "id": 389404469,
+                          "kind": "authorization",
+                          "message": null,
+                          "status": "success",
+                          "test": false
+                        },
+                        "credit_card": null,
+                        "checkout": {
+                          "completed_at": null,
+                          "created_at": "2012-10-12T05:05:27-06:00",
+                          "currency": "USD",
+                          "presentment_currency": "USD",
+                          "customer_id": 207119551,
+                          "customer_locale": "en",
+                          "device_id": null,
+                          "discount_code": null,
+                          "email": "bob.norman@mail.example.com",
+                          "legal_notice_url": null,
+                          "location_id": null,
+                          "name": "#446514532",
+                          "note": "",
+                          "note_attributes": {
+                            "custom engraving": "Happy Birthday",
+                            "colour": "green"
+                          },
+                          "order_id": null,
+                          "order_status_url": null,
+                          "order": null,
+                          "payment_due": "419.49",
+                          "payment_url": "https://app.local/cardserver/sessions",
+                          "payments": [
+                            {
+                              "id": 25428999,
+                              "unique_token": "e01e661f4a99acd9dcdg6f1422d0d6f7",
+                              "payment_processing_error_message": null,
+                              "transaction": {
+                                "amount": "598.94",
+                                "amount_in": null,
+                                "amount_out": null,
+                                "amount_rounding": null,
+                                "authorization": "authorization-key",
+                                "created_at": "2005-08-01T09:57:11-06:00",
+                                "currency": "USD",
+                                "error_code": null,
+                                "parent_id": null,
+                                "gateway": "bogus",
+                                "id": 389404469,
+                                "kind": "authorization",
+                                "message": null,
+                                "status": "success",
+                                "test": false
+                              },
+                              "credit_card": null
+                            }
+                          ],
+                          "phone": null,
+                          "shopify_payments_account_id": null,
+                          "privacy_policy_url": null,
+                          "refund_policy_url": null,
+                          "requires_shipping": true,
+                          "reservation_time_left": 0,
+                          "reservation_time": null,
+                          "source_identifier": null,
+                          "source_name": "web",
+                          "source_url": null,
+                          "subscription_policy_url": null,
+                          "subtotal_price": "398.00",
+                          "shipping_policy_url": null,
+                          "tax_exempt": false,
+                          "taxes_included": false,
+                          "terms_of_sale_url": null,
+                          "terms_of_service_url": null,
+                          "token": "7yjf4v2we7gamku6a6h7tvm8h3mmvs4x",
+                          "total_price": "419.49",
+                          "total_tax": "21.49",
+                          "total_tip_received": "0.00",
+                          "total_line_items_price": "398.00",
+                          "updated_at": "2012-10-12T05:05:27-06:00",
+                          "user_id": null,
+                          "web_url": "https://checkout.local/548380009/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x",
+                          "total_duties": null,
+                          "total_additional_fees": null,
+                          "line_items": [
+                            {
+                              "id": "ae00054d23496845",
+                              "key": "ae00054d23496845",
+                              "product_id": 632910392,
+                              "variant_id": 49148385,
+                              "sku": "IPOD2008RED",
+                              "vendor": "Apple",
+                              "title": "IPod Nano - 8GB",
+                              "variant_title": "Red",
+                              "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1649178324",
+                              "taxable": true,
+                              "requires_shipping": true,
+                              "gift_card": false,
+                              "price": "199.00",
+                              "compare_at_price": null,
+                              "line_price": "199.00",
+                              "properties": {},
+                              "quantity": 1,
+                              "grams": 200,
+                              "fulfillment_service": "manual",
+                              "applied_discounts": [],
+                              "discount_allocations": [],
+                              "tax_lines": []
+                            },
+                            {
+                              "id": "c3c24fca4e2bb8c6",
+                              "key": "c3c24fca4e2bb8c6",
+                              "product_id": 632910392,
+                              "variant_id": 808950810,
+                              "sku": "IPOD2008PINK",
+                              "vendor": "Apple",
+                              "title": "IPod Nano - 8GB",
+                              "variant_title": "Pink",
+                              "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1649178324",
+                              "taxable": true,
+                              "requires_shipping": true,
+                              "gift_card": false,
+                              "price": "199.00",
+                              "compare_at_price": null,
+                              "line_price": "199.00",
+                              "properties": {},
+                              "quantity": 1,
+                              "grams": 200,
+                              "fulfillment_service": "manual",
+                              "applied_discounts": [],
+                              "discount_allocations": [],
+                              "tax_lines": []
+                            }
+                          ],
+                          "gift_cards": [],
+                          "tax_lines": [
+                            {
+                              "price": "21.49",
+                              "rate": 0.06,
+                              "title": "State Tax",
+                              "compare_at": 0.06
+                            }
+                          ],
+                          "tax_manipulations": [],
+                          "shipping_line": {
+                            "handle": "shopify-Free%20Shipping-0.00",
+                            "price": "0.00",
+                            "title": "Free Shipping",
+                            "tax_lines": []
+                          },
+                          "shipping_rate": {
+                            "id": "shopify-Free%20Shipping-0.00",
+                            "price": "0.00",
+                            "title": "Free Shipping"
+                          },
+                          "shipping_address": {
+                            "id": 550558813,
+                            "first_name": "Bob",
+                            "last_name": "Norman",
+                            "phone": "555-625-1199",
+                            "company": null,
+                            "address1": "Chestnut Street 92",
+                            "address2": "",
+                            "city": "Louisville",
+                            "province": "Kentucky",
+                            "province_code": "KY",
+                            "country": "United States",
+                            "country_code": "US",
+                            "zip": "40202"
+                          },
+                          "credit_card": {
+                            "first_name": "Bob",
+                            "last_name": "Norman",
+                            "first_digits": "1",
+                            "last_digits": "1",
+                            "brand": "bogus",
+                            "expiry_month": 8,
+                            "expiry_year": 2042,
+                            "customer_id": null
+                          },
+                          "billing_address": {
+                            "id": 550558813,
+                            "first_name": "Bob",
+                            "last_name": "Norman",
+                            "phone": "555-625-1199",
+                            "company": null,
+                            "address1": "Chestnut Street 92",
+                            "address2": "",
+                            "city": "Louisville",
+                            "province": "Kentucky",
+                            "province_code": "KY",
+                            "country": "United States",
+                            "country_code": "US",
+                            "zip": "40202"
+                          },
+                          "applied_discount": null
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"payments\":[{\"id\":25428999,\"unique_token\":\"e01e661f4a99acd9dcdg6f1422d0d6f7\",\"payment_processing_error_message\":null,\"transaction\":{\"amount\":\"598.94\",\"amount_in\":null,\"amount_out\":null,\"amount_rounding\":null,\"authorization\":\"authorization-key\",\"created_at\":\"2005-08-01T11:57:11-04:00\",\"currency\":\"USD\",\"error_code\":null,\"parent_id\":null,\"gateway\":\"bogus\",\"id\":389404469,\"kind\":\"authorization\",\"message\":null,\"status\":\"success\",\"test\":false},\"credit_card\":null,\"checkout\":{\"completed_at\":null,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":207119551,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"email\":\"bob.norman@mail.example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#446514532\",\"note\":\"\",\"note_attributes\":{\"custom engraving\":\"Happy Birthday\",\"colour\":\"green\"},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"419.49\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[{\"id\":25428999,\"unique_token\":\"e01e661f4a99acd9dcdg6f1422d0d6f7\",\"payment_processing_error_message\":null,\"transaction\":{\"amount\":\"598.94\",\"amount_in\":null,\"amount_out\":null,\"amount_rounding\":null,\"authorization\":\"authorization-key\",\"created_at\":\"2005-08-01T11:57:11-04:00\",\"currency\":\"USD\",\"error_code\":null,\"parent_id\":null,\"gateway\":\"bogus\",\"id\":389404469,\"kind\":\"authorization\",\"message\":null,\"status\":\"success\",\"test\":false},\"credit_card\":null}],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":true,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"web\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"398.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\"total_price\":\"419.49\",\"total_tax\":\"21.49\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"398.00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"user_id\":null,\"web_url\":\"https://checkout.local/548380009/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":\"ae00054d23496845\",\"key\":\"ae00054d23496845\",\"product_id\":632910392,\"variant_id\":49148385,\"sku\":\"IPOD2008RED\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Red\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1649178324\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]},{\"id\":\"c3c24fca4e2bb8c6\",\"key\":\"c3c24fca4e2bb8c6\",\"product_id\":632910392,\"variant_id\":808950810,\"sku\":\"IPOD2008PINK\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Pink\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1649178324\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"compare_at\":0.06}],\"tax_manipulations\":[],\"shipping_line\":{\"handle\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\",\"tax_lines\":[]},\"shipping_rate\":{\"id\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\"},\"shipping_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"credit_card\":{\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"first_digits\":\"1\",\"last_digits\":\"1\",\"brand\":\"bogus\",\"expiry_month\":8,\"expiry_year\":2042,\"customer_id\":null},\"billing_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"applied_discount\":null}}]}"
+          },
+          "name": "Retrieve all the payments on a checkout",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Payment.all(\n  session: test_session,\n  checkout_id: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payment.all({\n  session: test_session,\n  checkout_id: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayment::all(\n    $this->test_session, // Session\n    [\"checkout_id\" => \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/checkouts/{token}/payments.json",
+      "action": "get"
+    },
+    {
+      "description": "Retrieves the payment information for an existing payment",
+      "summary": "Retrieves a single payment",
+      "operationId": "Retrievesasinglepayment",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "payment_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "token",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a single payment",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a payment with a succesful transaction": {
+                  "value": {
+                    "payment": {
+                      "id": 25428999,
+                      "unique_token": "e01e661f4a99acd9dcdg6f1422d0d6f7",
+                      "payment_processing_error_message": null,
+                      "next_action": {
+                        "redirect_url": null
+                      },
+                      "fraudulent": false,
+                      "transaction": {
+                        "amount": "419.49",
+                        "amount_in": null,
+                        "amount_out": null,
+                        "amount_rounding": null,
+                        "authorization": null,
+                        "created_at": "2022-04-05T11:09:31-06:00",
+                        "currency": "USD",
+                        "error_code": null,
+                        "parent_id": null,
+                        "gateway": "bogus",
+                        "id": 1068278474,
+                        "kind": "authorization",
+                        "message": null,
+                        "status": "success",
+                        "test": false,
+                        "receipt": {},
+                        "location_id": null,
+                        "user_id": null,
+                        "transaction_group_id": null,
+                        "device_id": null,
+                        "payment_details": null
+                      },
+                      "credit_card": null,
+                      "checkout": {
+                        "completed_at": null,
+                        "created_at": "2012-10-12T05:05:27-06:00",
+                        "currency": "USD",
+                        "presentment_currency": "USD",
+                        "customer_id": 207119551,
+                        "customer_locale": "en",
+                        "device_id": null,
+                        "discount_code": null,
+                        "email": "bob.norman@mail.example.com",
+                        "legal_notice_url": null,
+                        "location_id": null,
+                        "name": "#446514532",
+                        "note": "",
+                        "note_attributes": {
+                          "custom engraving": "Happy Birthday",
+                          "colour": "green"
+                        },
+                        "order_id": null,
+                        "order_status_url": null,
+                        "order": null,
+                        "payment_due": "419.49",
+                        "payment_url": "https://app.local/cardserver/sessions",
+                        "payments": [
+                          {
+                            "id": 25428999,
+                            "unique_token": "e01e661f4a99acd9dcdg6f1422d0d6f7",
+                            "payment_processing_error_message": null,
+                            "fraudulent": false,
+                            "transaction": {
+                              "amount": "419.49",
+                              "amount_in": null,
+                              "amount_out": null,
+                              "amount_rounding": null,
+                              "authorization": null,
+                              "created_at": "2022-04-05T11:09:31-06:00",
+                              "currency": "USD",
+                              "error_code": null,
+                              "parent_id": null,
+                              "gateway": "bogus",
+                              "id": 1068278474,
+                              "kind": "authorization",
+                              "message": null,
+                              "status": "success",
+                              "test": false,
+                              "receipt": {},
+                              "location_id": null,
+                              "user_id": null,
+                              "transaction_group_id": null,
+                              "device_id": null,
+                              "payment_details": null
+                            },
+                            "credit_card": null
+                          }
+                        ],
+                        "phone": null,
+                        "shopify_payments_account_id": null,
+                        "privacy_policy_url": null,
+                        "refund_policy_url": null,
+                        "requires_shipping": true,
+                        "reservation_time_left": 0,
+                        "reservation_time": null,
+                        "source_identifier": null,
+                        "source_name": "web",
+                        "source_url": null,
+                        "subscription_policy_url": null,
+                        "subtotal_price": "398.00",
+                        "shipping_policy_url": null,
+                        "tax_exempt": false,
+                        "taxes_included": false,
+                        "terms_of_sale_url": null,
+                        "terms_of_service_url": null,
+                        "token": "7yjf4v2we7gamku6a6h7tvm8h3mmvs4x",
+                        "total_price": "419.49",
+                        "total_tax": "21.49",
+                        "total_tip_received": "0.00",
+                        "total_line_items_price": "398.00",
+                        "updated_at": "2012-10-12T05:05:27-06:00",
+                        "user_id": null,
+                        "web_url": "https://checkout.local/548380009/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x",
+                        "total_duties": null,
+                        "total_additional_fees": null,
+                        "line_items": [
+                          {
+                            "id": "ae00054d23496845",
+                            "key": "ae00054d23496845",
+                            "product_id": 632910392,
+                            "variant_id": 49148385,
+                            "sku": "IPOD2008RED",
+                            "vendor": "Apple",
+                            "title": "IPod Nano - 8GB",
+                            "variant_title": "Red",
+                            "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1649178324",
+                            "taxable": true,
+                            "requires_shipping": true,
+                            "gift_card": false,
+                            "price": "199.00",
+                            "compare_at_price": null,
+                            "line_price": "199.00",
+                            "properties": {},
+                            "quantity": 1,
+                            "grams": 200,
+                            "fulfillment_service": "manual",
+                            "applied_discounts": [],
+                            "discount_allocations": [],
+                            "tax_lines": []
+                          },
+                          {
+                            "id": "c3c24fca4e2bb8c6",
+                            "key": "c3c24fca4e2bb8c6",
+                            "product_id": 632910392,
+                            "variant_id": 808950810,
+                            "sku": "IPOD2008PINK",
+                            "vendor": "Apple",
+                            "title": "IPod Nano - 8GB",
+                            "variant_title": "Pink",
+                            "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1649178324",
+                            "taxable": true,
+                            "requires_shipping": true,
+                            "gift_card": false,
+                            "price": "199.00",
+                            "compare_at_price": null,
+                            "line_price": "199.00",
+                            "properties": {},
+                            "quantity": 1,
+                            "grams": 200,
+                            "fulfillment_service": "manual",
+                            "applied_discounts": [],
+                            "discount_allocations": [],
+                            "tax_lines": []
+                          }
+                        ],
+                        "gift_cards": [],
+                        "tax_lines": [
+                          {
+                            "price": "21.49",
+                            "rate": 0.06,
+                            "title": "State Tax",
+                            "compare_at": 0.06
+                          }
+                        ],
+                        "tax_manipulations": [],
+                        "shipping_line": {
+                          "handle": "shopify-Free%20Shipping-0.00",
+                          "price": "0.00",
+                          "title": "Free Shipping",
+                          "tax_lines": []
+                        },
+                        "shipping_rate": {
+                          "id": "shopify-Free%20Shipping-0.00",
+                          "price": "0.00",
+                          "title": "Free Shipping"
+                        },
+                        "shipping_address": {
+                          "id": 550558813,
+                          "first_name": "Bob",
+                          "last_name": "Norman",
+                          "phone": "555-625-1199",
+                          "company": null,
+                          "address1": "Chestnut Street 92",
+                          "address2": "",
+                          "city": "Louisville",
+                          "province": "Kentucky",
+                          "province_code": "KY",
+                          "country": "United States",
+                          "country_code": "US",
+                          "zip": "40202"
+                        },
+                        "credit_card": {
+                          "first_name": "Bob",
+                          "last_name": "Norman",
+                          "first_digits": "1",
+                          "last_digits": "1",
+                          "brand": "bogus",
+                          "expiry_month": 8,
+                          "expiry_year": 2042,
+                          "customer_id": null
+                        },
+                        "billing_address": {
+                          "id": 550558813,
+                          "first_name": "Bob",
+                          "last_name": "Norman",
+                          "phone": "555-625-1199",
+                          "company": null,
+                          "address1": "Chestnut Street 92",
+                          "address2": "",
+                          "city": "Louisville",
+                          "province": "Kentucky",
+                          "province_code": "KY",
+                          "country": "United States",
+                          "country_code": "US",
+                          "zip": "40202"
+                        },
+                        "applied_discount": null
+                      }
+                    }
+                  }
+                },
+                "Retrieve a payment with a failed transaction": {
+                  "value": {
+                    "payment": {
+                      "id": 25428999,
+                      "unique_token": "e01e661f4a99acd9dcdg6f1422d0d6f7",
+                      "payment_processing_error_message": null,
+                      "next_action": {
+                        "redirect_url": null
+                      },
+                      "fraudulent": false,
+                      "transaction": {
+                        "amount": "419.49",
+                        "amount_in": null,
+                        "amount_out": null,
+                        "amount_rounding": null,
+                        "authorization": null,
+                        "created_at": "2022-04-05T11:09:36-06:00",
+                        "currency": "USD",
+                        "error_code": null,
+                        "parent_id": null,
+                        "gateway": "bogus",
+                        "id": 1068278475,
+                        "kind": "authorization",
+                        "message": null,
+                        "status": "failure",
+                        "test": false,
+                        "receipt": {},
+                        "location_id": null,
+                        "user_id": null,
+                        "transaction_group_id": null,
+                        "device_id": null,
+                        "payment_details": null
+                      },
+                      "credit_card": null,
+                      "checkout": {
+                        "completed_at": null,
+                        "created_at": "2012-10-12T05:05:27-06:00",
+                        "currency": "USD",
+                        "presentment_currency": "USD",
+                        "customer_id": 207119551,
+                        "customer_locale": "en",
+                        "device_id": null,
+                        "discount_code": null,
+                        "email": "bob.norman@mail.example.com",
+                        "legal_notice_url": null,
+                        "location_id": null,
+                        "name": "#446514532",
+                        "note": "",
+                        "note_attributes": {
+                          "custom engraving": "Happy Birthday",
+                          "colour": "green"
+                        },
+                        "order_id": null,
+                        "order_status_url": null,
+                        "order": null,
+                        "payment_due": "419.49",
+                        "payment_url": "https://app.local/cardserver/sessions",
+                        "payments": [
+                          {
+                            "id": 25428999,
+                            "unique_token": "e01e661f4a99acd9dcdg6f1422d0d6f7",
+                            "payment_processing_error_message": null,
+                            "fraudulent": false,
+                            "transaction": {
+                              "amount": "419.49",
+                              "amount_in": null,
+                              "amount_out": null,
+                              "amount_rounding": null,
+                              "authorization": null,
+                              "created_at": "2022-04-05T11:09:36-06:00",
+                              "currency": "USD",
+                              "error_code": null,
+                              "parent_id": null,
+                              "gateway": "bogus",
+                              "id": 1068278475,
+                              "kind": "authorization",
+                              "message": null,
+                              "status": "failure",
+                              "test": false,
+                              "receipt": {},
+                              "location_id": null,
+                              "user_id": null,
+                              "transaction_group_id": null,
+                              "device_id": null,
+                              "payment_details": null
+                            },
+                            "credit_card": null
+                          }
+                        ],
+                        "phone": null,
+                        "shopify_payments_account_id": null,
+                        "privacy_policy_url": null,
+                        "refund_policy_url": null,
+                        "requires_shipping": true,
+                        "reservation_time_left": 0,
+                        "reservation_time": null,
+                        "source_identifier": null,
+                        "source_name": "web",
+                        "source_url": null,
+                        "subscription_policy_url": null,
+                        "subtotal_price": "398.00",
+                        "shipping_policy_url": null,
+                        "tax_exempt": false,
+                        "taxes_included": false,
+                        "terms_of_sale_url": null,
+                        "terms_of_service_url": null,
+                        "token": "7yjf4v2we7gamku6a6h7tvm8h3mmvs4x",
+                        "total_price": "419.49",
+                        "total_tax": "21.49",
+                        "total_tip_received": "0.00",
+                        "total_line_items_price": "398.00",
+                        "updated_at": "2012-10-12T05:05:27-06:00",
+                        "user_id": null,
+                        "web_url": "https://checkout.local/548380009/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x",
+                        "total_duties": null,
+                        "total_additional_fees": null,
+                        "line_items": [
+                          {
+                            "id": "ae00054d23496845",
+                            "key": "ae00054d23496845",
+                            "product_id": 632910392,
+                            "variant_id": 49148385,
+                            "sku": "IPOD2008RED",
+                            "vendor": "Apple",
+                            "title": "IPod Nano - 8GB",
+                            "variant_title": "Red",
+                            "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1649178324",
+                            "taxable": true,
+                            "requires_shipping": true,
+                            "gift_card": false,
+                            "price": "199.00",
+                            "compare_at_price": null,
+                            "line_price": "199.00",
+                            "properties": {},
+                            "quantity": 1,
+                            "grams": 200,
+                            "fulfillment_service": "manual",
+                            "applied_discounts": [],
+                            "discount_allocations": [],
+                            "tax_lines": []
+                          },
+                          {
+                            "id": "c3c24fca4e2bb8c6",
+                            "key": "c3c24fca4e2bb8c6",
+                            "product_id": 632910392,
+                            "variant_id": 808950810,
+                            "sku": "IPOD2008PINK",
+                            "vendor": "Apple",
+                            "title": "IPod Nano - 8GB",
+                            "variant_title": "Pink",
+                            "image_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1649178324",
+                            "taxable": true,
+                            "requires_shipping": true,
+                            "gift_card": false,
+                            "price": "199.00",
+                            "compare_at_price": null,
+                            "line_price": "199.00",
+                            "properties": {},
+                            "quantity": 1,
+                            "grams": 200,
+                            "fulfillment_service": "manual",
+                            "applied_discounts": [],
+                            "discount_allocations": [],
+                            "tax_lines": []
+                          }
+                        ],
+                        "gift_cards": [],
+                        "tax_lines": [
+                          {
+                            "price": "21.49",
+                            "rate": 0.06,
+                            "title": "State Tax",
+                            "compare_at": 0.06
+                          }
+                        ],
+                        "tax_manipulations": [],
+                        "shipping_line": {
+                          "handle": "shopify-Free%20Shipping-0.00",
+                          "price": "0.00",
+                          "title": "Free Shipping",
+                          "tax_lines": []
+                        },
+                        "shipping_rate": {
+                          "id": "shopify-Free%20Shipping-0.00",
+                          "price": "0.00",
+                          "title": "Free Shipping"
+                        },
+                        "shipping_address": {
+                          "id": 550558813,
+                          "first_name": "Bob",
+                          "last_name": "Norman",
+                          "phone": "555-625-1199",
+                          "company": null,
+                          "address1": "Chestnut Street 92",
+                          "address2": "",
+                          "city": "Louisville",
+                          "province": "Kentucky",
+                          "province_code": "KY",
+                          "country": "United States",
+                          "country_code": "US",
+                          "zip": "40202"
+                        },
+                        "credit_card": {
+                          "first_name": "Bob",
+                          "last_name": "Norman",
+                          "first_digits": "1",
+                          "last_digits": "1",
+                          "brand": "bogus",
+                          "expiry_month": 8,
+                          "expiry_year": 2042,
+                          "customer_id": null
+                        },
+                        "billing_address": {
+                          "id": 550558813,
+                          "first_name": "Bob",
+                          "last_name": "Norman",
+                          "phone": "555-625-1199",
+                          "company": null,
+                          "address1": "Chestnut Street 92",
+                          "address2": "",
+                          "city": "Louisville",
+                          "province": "Kentucky",
+                          "province_code": "KY",
+                          "country": "United States",
+                          "country_code": "US",
+                          "zip": "40202"
+                        },
+                        "applied_discount": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json",
+            "headers": {
+              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json"
+            },
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {
+              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json"
+            },
+            "body": "{\"payment\":{\"id\":25428999,\"unique_token\":\"e01e661f4a99acd9dcdg6f1422d0d6f7\",\"payment_processing_error_message\":null,\"next_action\":{\"redirect_url\":null},\"fraudulent\":false,\"transaction\":{\"amount\":\"419.49\",\"amount_in\":null,\"amount_out\":null,\"amount_rounding\":null,\"authorization\":null,\"created_at\":\"2022-04-05T13:09:31-04:00\",\"currency\":\"USD\",\"error_code\":null,\"parent_id\":null,\"gateway\":\"bogus\",\"id\":1068278474,\"kind\":\"authorization\",\"message\":null,\"status\":\"success\",\"test\":false,\"receipt\":{},\"location_id\":null,\"user_id\":null,\"transaction_group_id\":null,\"device_id\":null,\"payment_details\":null},\"credit_card\":null,\"checkout\":{\"completed_at\":null,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":207119551,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"email\":\"bob.norman@mail.example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#446514532\",\"note\":\"\",\"note_attributes\":{\"custom engraving\":\"Happy Birthday\",\"colour\":\"green\"},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"419.49\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[{\"id\":25428999,\"unique_token\":\"e01e661f4a99acd9dcdg6f1422d0d6f7\",\"payment_processing_error_message\":null,\"fraudulent\":false,\"transaction\":{\"amount\":\"419.49\",\"amount_in\":null,\"amount_out\":null,\"amount_rounding\":null,\"authorization\":null,\"created_at\":\"2022-04-05T13:09:31-04:00\",\"currency\":\"USD\",\"error_code\":null,\"parent_id\":null,\"gateway\":\"bogus\",\"id\":1068278474,\"kind\":\"authorization\",\"message\":null,\"status\":\"success\",\"test\":false,\"receipt\":{},\"location_id\":null,\"user_id\":null,\"transaction_group_id\":null,\"device_id\":null,\"payment_details\":null},\"credit_card\":null}],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":true,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"web\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"398.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\"total_price\":\"419.49\",\"total_tax\":\"21.49\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"398.00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"user_id\":null,\"web_url\":\"https://checkout.local/548380009/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":\"ae00054d23496845\",\"key\":\"ae00054d23496845\",\"product_id\":632910392,\"variant_id\":49148385,\"sku\":\"IPOD2008RED\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Red\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1649178324\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]},{\"id\":\"c3c24fca4e2bb8c6\",\"key\":\"c3c24fca4e2bb8c6\",\"product_id\":632910392,\"variant_id\":808950810,\"sku\":\"IPOD2008PINK\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Pink\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1649178324\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"compare_at\":0.06}],\"tax_manipulations\":[],\"shipping_line\":{\"handle\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\",\"tax_lines\":[]},\"shipping_rate\":{\"id\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\"},\"shipping_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"credit_card\":{\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"first_digits\":\"1\",\"last_digits\":\"1\",\"brand\":\"bogus\",\"expiry_month\":8,\"expiry_year\":2042,\"customer_id\":null},\"billing_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"applied_discount\":null}}}"
+          },
+          "name": "Retrieve a payment with a succesful transaction",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Payment.find(\n  session: test_session,\n  checkout_id: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n  id: 25428999,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payment.find({\n  session: test_session,\n  checkout_id: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n  id: 25428999,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayment::find(\n    $this->test_session, // Session\n    25428999, // Id\n    [\"checkout_id\" => \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json",
+            "headers": {
+              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json"
+            },
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {
+              "Location": "https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json"
+            },
+            "body": "{\"payment\":{\"id\":25428999,\"unique_token\":\"e01e661f4a99acd9dcdg6f1422d0d6f7\",\"payment_processing_error_message\":null,\"next_action\":{\"redirect_url\":null},\"fraudulent\":false,\"transaction\":{\"amount\":\"419.49\",\"amount_in\":null,\"amount_out\":null,\"amount_rounding\":null,\"authorization\":null,\"created_at\":\"2022-04-05T13:09:36-04:00\",\"currency\":\"USD\",\"error_code\":null,\"parent_id\":null,\"gateway\":\"bogus\",\"id\":1068278475,\"kind\":\"authorization\",\"message\":null,\"status\":\"failure\",\"test\":false,\"receipt\":{},\"location_id\":null,\"user_id\":null,\"transaction_group_id\":null,\"device_id\":null,\"payment_details\":null},\"credit_card\":null,\"checkout\":{\"completed_at\":null,\"created_at\":\"2012-10-12T07:05:27-04:00\",\"currency\":\"USD\",\"presentment_currency\":\"USD\",\"customer_id\":207119551,\"customer_locale\":\"en\",\"device_id\":null,\"discount_code\":null,\"email\":\"bob.norman@mail.example.com\",\"legal_notice_url\":null,\"location_id\":null,\"name\":\"#446514532\",\"note\":\"\",\"note_attributes\":{\"custom engraving\":\"Happy Birthday\",\"colour\":\"green\"},\"order_id\":null,\"order_status_url\":null,\"order\":null,\"payment_due\":\"419.49\",\"payment_url\":\"https://app.local/cardserver/sessions\",\"payments\":[{\"id\":25428999,\"unique_token\":\"e01e661f4a99acd9dcdg6f1422d0d6f7\",\"payment_processing_error_message\":null,\"fraudulent\":false,\"transaction\":{\"amount\":\"419.49\",\"amount_in\":null,\"amount_out\":null,\"amount_rounding\":null,\"authorization\":null,\"created_at\":\"2022-04-05T13:09:36-04:00\",\"currency\":\"USD\",\"error_code\":null,\"parent_id\":null,\"gateway\":\"bogus\",\"id\":1068278475,\"kind\":\"authorization\",\"message\":null,\"status\":\"failure\",\"test\":false,\"receipt\":{},\"location_id\":null,\"user_id\":null,\"transaction_group_id\":null,\"device_id\":null,\"payment_details\":null},\"credit_card\":null}],\"phone\":null,\"shopify_payments_account_id\":null,\"privacy_policy_url\":null,\"refund_policy_url\":null,\"requires_shipping\":true,\"reservation_time_left\":0,\"reservation_time\":null,\"source_identifier\":null,\"source_name\":\"web\",\"source_url\":null,\"subscription_policy_url\":null,\"subtotal_price\":\"398.00\",\"shipping_policy_url\":null,\"tax_exempt\":false,\"taxes_included\":false,\"terms_of_sale_url\":null,\"terms_of_service_url\":null,\"token\":\"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\"total_price\":\"419.49\",\"total_tax\":\"21.49\",\"total_tip_received\":\"0.00\",\"total_line_items_price\":\"398.00\",\"updated_at\":\"2012-10-12T07:05:27-04:00\",\"user_id\":null,\"web_url\":\"https://checkout.local/548380009/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\"total_duties\":null,\"total_additional_fees\":null,\"line_items\":[{\"id\":\"ae00054d23496845\",\"key\":\"ae00054d23496845\",\"product_id\":632910392,\"variant_id\":49148385,\"sku\":\"IPOD2008RED\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Red\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1649178324\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]},{\"id\":\"c3c24fca4e2bb8c6\",\"key\":\"c3c24fca4e2bb8c6\",\"product_id\":632910392,\"variant_id\":808950810,\"sku\":\"IPOD2008PINK\",\"vendor\":\"Apple\",\"title\":\"IPod Nano - 8GB\",\"variant_title\":\"Pink\",\"image_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano-2.png?v=1649178324\",\"taxable\":true,\"requires_shipping\":true,\"gift_card\":false,\"price\":\"199.00\",\"compare_at_price\":null,\"line_price\":\"199.00\",\"properties\":{},\"quantity\":1,\"grams\":200,\"fulfillment_service\":\"manual\",\"applied_discounts\":[],\"discount_allocations\":[],\"tax_lines\":[]}],\"gift_cards\":[],\"tax_lines\":[{\"price\":\"21.49\",\"rate\":0.06,\"title\":\"State Tax\",\"compare_at\":0.06}],\"tax_manipulations\":[],\"shipping_line\":{\"handle\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\",\"tax_lines\":[]},\"shipping_rate\":{\"id\":\"shopify-Free%20Shipping-0.00\",\"price\":\"0.00\",\"title\":\"Free Shipping\"},\"shipping_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"credit_card\":{\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"first_digits\":\"1\",\"last_digits\":\"1\",\"brand\":\"bogus\",\"expiry_month\":8,\"expiry_year\":2042,\"customer_id\":null},\"billing_address\":{\"id\":550558813,\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"company\":null,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"province\":\"Kentucky\",\"province_code\":\"KY\",\"country\":\"United States\",\"country_code\":\"US\",\"zip\":\"40202\"},\"applied_discount\":null}}}"
+          },
+          "name": "Retrieve a payment with a failed transaction",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Payment.find(\n  session: test_session,\n  checkout_id: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n  id: 25428999,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payment.find({\n  session: test_session,\n  checkout_id: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n  id: 25428999,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayment::find(\n    $this->test_session, // Session\n    25428999, // Id\n    [\"checkout_id\" => \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/checkouts/{token}/payments/{payment_id}.json",
+      "action": "get"
+    },
+    {
+      "description": "Counts the number of payments attempted on a checkout",
+      "summary": "Counts the number of payments attempted on a checkout",
+      "operationId": "Countsthenumberofpaymentsattemptedonacheckout",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "token",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Counts the number of payments attempted on a checkout",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve the number of payments on a checkout": {
+                  "value": {
+                    "count": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/count.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/count.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"count\":1}"
+          },
+          "name": "Retrieve the number of payments on a checkout",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Payment.count(\n  session: test_session,\n  checkout_id: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payment.count({\n  session: test_session,\n  checkout_id: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayment::count(\n    $this->test_session, // Session\n    [\"checkout_id\" => \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/checkouts/{token}/payments/count.json",
+      "action": "get"
+    }
+  ],
+  "components": [
+    {
+      "name": "Payment",
+      "title": "Payment",
+      "type": "object",
+      "properties": [
+        {
+          "description": "        The details of the credit card used for payment. The following attributes are available:\n        <ul>\n          <li><strong>first_name:</strong> The first name of the cardholder.</li>\n          <li><strong>last_name:</strong> The last name of the cardholder.</li>\n          <li><strong>first_digits:</strong> The first six digits of the credit card.</li>\n          <li><strong>last_digits:</strong> The last four digits of the credit card.</li>\n          <li><strong>brand:</strong> The credit card brand.</li>\n          <li><strong>expiry_month:</strong> The expiry month of the credit card.</li>\n          <li><strong>expiry_year:</strong> The expiry year of the credit card.</li>\n        </ul>\n",
+          "type": "x-string",
+          "example": {
+            "first_name": "Bob",
+            "last_name": "Norman",
+            "first_digits": "424242",
+            "last_digits": "4242",
+            "brand": "visa",
+            "expiry_month": 12,
+            "expiry_year": 2020
+          },
+          "name": "credit_card"
+        },
+        {
+          "description": "A unique identifer for the payment generated by Shopify.",
+          "type": "x-string",
+          "example": 367556198456,
+          "name": "id"
+        },
+        {
+          "description": "A message describing the error that occured when attempting to process payment, if any.",
+          "type": "x-string",
+          "example": "Card was declined",
+          "name": "payment_processing_error_message"
+        },
+        {
+          "description": "        Specifies the URL that your app or sales channel needs to send the customer to so that they can authenticate their payment. To learn more about how to use this property, refer to <a href=\"/tutorials/authenticating-payments-with-3d-secure\"><em>Authenticating payments with 3D Secure</em></a>.\n",
+          "type": "x-string",
+          "example": {
+            "redirect_url": "https://shop-domain-url.myshopify.com/:shop_id/checkouts/:token/authentications/:auth_token/3ds"
+          },
+          "name": "next_action"
+        },
+        {
+          "description": "        The details of the transaction, including the following attributes:\n        <ul>\n          <li><strong>amount:</strong> The amount of the transaction.</li>\n          <li><strong>amount_in:</strong> The amount in before rounding is applied. Not applicable to credit card payments.</li>\n          <li><strong>amount_out:</strong> The amount out after rounding is applied. Not applicable to credit card payments. </li>\n          <li><strong>amount_rounding:</strong> The amount of rounding applied. Not applicable to credit card payments. </li>\n          <li><strong>authorization:</strong> The authorization code returned by the payment provider.</li>\n          <li><strong>created_at:</strong> The date and time when the transaction was created.</li>\n          <li><strong>currency:</strong> The currency of the transaction.</li>\n          <li><strong>error_code:</strong> The error code returned by the payment provider, if any.</li>\n          <li><strong>gateway:</strong> The name of the payment provider which processed the transaction.</li>\n          <li><strong>id:</strong> The unique identifier of the transaction.</li>\n          <li><strong>kind:</strong> The kind of transaction processed, either <em>authorization</em> or <em>sale</em>.</li>\n          <li><strong>message:</strong> The message returned by the payment provider, if any.</li>\n          <li><strong>status:</strong> The status of the transaction, either <em>success</em> or <em>failure</em>.</li>\n          <li><strong>test:</strong> Whether or not the transaction was a test.</li>\n        </ul>\n",
+          "type": "x-string",
+          "example": {
+            "amount": "323.17",
+            "amount_in": null,
+            "amount_out": null,
+            "amount_rounding": null,
+            "authorization": "ch_1CfBrOCNqnO8CNQxAtf5k9iX",
+            "created_at": "2018-06-20T13:20:53-06:00",
+            "currency": "USD",
+            "error_code": null,
+            "gateway": "shopify_payments",
+            "id": 597850423352,
+            "kind": "sale",
+            "message": "Transaction approved",
+            "status": "success",
+            "test": true
+          },
+          "name": "transaction"
+        },
+        {
+          "description": "A unique idempotency token generated by the app that created the payment request.\n        For more information, refer to <a href=/concepts/about-apis/idempotent-requests>Idempotent requests</a>.",
+          "type": "x-string",
+          "example": "client-side-idempotency-token",
+          "name": "unique_token"
+        }
+      ],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "sales-channels/payment",
+    "gid": "8ec8190d-a291-4676-954e-c9fb6fff1747",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/sales_channels/payment"
+    ],
+    "meta_description": "Create and update payments to provide a custom checkout experience for your sales channel.",
+    "postman_group": "Sales channels",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

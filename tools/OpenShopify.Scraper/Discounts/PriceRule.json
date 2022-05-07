@@ -1,0 +1,941 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PriceRule",
+    "description": "        <div class=\"note\">\n          <h4>Note</h4>\n          <p>We recommend using the GraphQL Admin API to manage discounts. The <a href=\"/api/examples/discounts\">Discount types</a>\n          available in the GraphQL Admin API are intended to replace the GraphQL Admin <code>PriceRule</code> object and REST Admin <code>PriceRule</code>\n          and <code>DiscountCode</code> resources.</p>\n        </div>\n        <p>You can use the PriceRule resource to create discounts using conditions. You can then associate the conditions with a discount code by using the <a href=\"/docs/admin-api/rest/reference/discounts/discountcode\">DiscountCode</a> resource. Merchants can distribute the discount codes to their customers.</p>\n        <p>Using the PriceRule resource, you can create discounts that specify a discount as a percentage, a fixed amount, or free shipping. You use entitlements and prerequisites to dynamically build these discounts.</p>\n        <p>To learn about how to associate a price rule with a discount code, see the <a href=\"/docs/admin-api/rest/reference/discounts/discountcode\">DiscountCode</a> resource.</p>\n\n\n        <h2>Create a price rule</h2>\n\n        <p>You can create price rules with entitlements and prerequisites. Entitlements describe the designated resources that a discount applies to, such as specific products, variants, or collections.\n        Prerequisites describe the requirements that must be met in order for the discount to apply to the entitled resources.\n        For example, you might want a discount to apply only to a certain shipping price range, or a certain subtotal range.</p>\n\n        <p>You can use entitlements, prereqisites, and other conditions to create discounts, such as the following examples:\n        <ul>\n          <li>$10 off the buyer's order if the total exceeds $40</li>\n          <li>15% off certain collections</li>\n          <li>free shipping on orders over $100.00 for Canadian buyers, redeemable up to 20 times</li>\n        </ul>\n        </p>\n        <p>For examples of how to create price rules, see the <a href=\"/docs/admin-api/rest/reference/discounts/pricerule/#create-{{ current_version }}\">POST method</a>.</p>\n\n",
+    "x-owner": "https://vault.shopify.io/teams/146",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Creates a price rule",
+      "summary": "Creates a price rule",
+      "operationId": "Createsapricerule",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "201": {
+          "description": "Creates a price rule",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a price rule that gives the buyer $10.00 off an order": {
+                  "value": "{\"price_rule\":{\"id\":996341478,\"value_type\":\"fixed_amount\",\"value\":\"-10.0\",\"customer_selection\":\"all\",\"target_type\":\"line_item\",\"target_selection\":\"all\",\"allocation_method\":\"across\",\"allocation_limit\":null,\"once_per_customer\":false,\"usage_limit\":null,\"starts_at\":\"2017-01-19T12:59:10-05:00\",\"ends_at\":null,\"created_at\":\"2022-03-11T11:11:26-05:00\",\"updated_at\":\"2022-03-11T11:11:26-05:00\",\"entitled_product_ids\":[],\"entitled_variant_ids\":[],\"entitled_collection_ids\":[],\"entitled_country_ids\":[],\"prerequisite_product_ids\":[],\"prerequisite_variant_ids\":[],\"prerequisite_collection_ids\":[],\"customer_segment_prerequisite_ids\":[],\"prerequisite_customer_ids\":[],\"prerequisite_subtotal_range\":null,\"prerequisite_quantity_range\":null,\"prerequisite_shipping_price_range\":null,\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":null,\"entitled_quantity\":null},\"prerequisite_to_entitlement_purchase\":{\"prerequisite_amount\":null},\"title\":\"SUMMERSALE10OFF\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/PriceRule\\/996341478\"}}"
+                },
+                "Create a price rule that gives the buyer 15% off a specific collection": {
+                  "value": "{\"price_rule\":{\"id\":996341479,\"value_type\":\"percentage\",\"value\":\"-15.0\",\"customer_selection\":\"all\",\"target_type\":\"line_item\",\"target_selection\":\"entitled\",\"allocation_method\":\"across\",\"allocation_limit\":null,\"once_per_customer\":false,\"usage_limit\":null,\"starts_at\":\"2017-01-19T12:59:10-05:00\",\"ends_at\":null,\"created_at\":\"2022-03-11T11:11:27-05:00\",\"updated_at\":\"2022-03-11T11:11:27-05:00\",\"entitled_product_ids\":[],\"entitled_variant_ids\":[],\"entitled_collection_ids\":[841564295],\"entitled_country_ids\":[],\"prerequisite_product_ids\":[],\"prerequisite_variant_ids\":[],\"prerequisite_collection_ids\":[],\"customer_segment_prerequisite_ids\":[],\"prerequisite_customer_ids\":[],\"prerequisite_subtotal_range\":null,\"prerequisite_quantity_range\":null,\"prerequisite_shipping_price_range\":null,\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":null,\"entitled_quantity\":null},\"prerequisite_to_entitlement_purchase\":{\"prerequisite_amount\":null},\"title\":\"15OFFCOLLECTION\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/PriceRule\\/996341479\"}}"
+                },
+                "Create a price rule that gives the buyer free shipping on orders\n        over $50.00 that can be used up to 20 times": {
+                  "value": "{\"price_rule\":{\"id\":996341480,\"value_type\":\"percentage\",\"value\":\"-100.0\",\"customer_selection\":\"all\",\"target_type\":\"shipping_line\",\"target_selection\":\"all\",\"allocation_method\":\"each\",\"allocation_limit\":null,\"once_per_customer\":false,\"usage_limit\":20,\"starts_at\":\"2017-01-19T12:59:10-05:00\",\"ends_at\":null,\"created_at\":\"2022-03-11T11:11:28-05:00\",\"updated_at\":\"2022-03-11T11:11:28-05:00\",\"entitled_product_ids\":[],\"entitled_variant_ids\":[],\"entitled_collection_ids\":[],\"entitled_country_ids\":[],\"prerequisite_product_ids\":[],\"prerequisite_variant_ids\":[],\"prerequisite_collection_ids\":[],\"customer_segment_prerequisite_ids\":[],\"prerequisite_customer_ids\":[],\"prerequisite_subtotal_range\":{\"greater_than_or_equal_to\":\"50.0\"},\"prerequisite_quantity_range\":null,\"prerequisite_shipping_price_range\":null,\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":null,\"entitled_quantity\":null},\"prerequisite_to_entitlement_purchase\":{\"prerequisite_amount\":null},\"title\":\"FREESHIPPING\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/PriceRule\\/996341480\"}}"
+                },
+                "Create a Buy X Get Y price rule that gives one free ipod touch if customer buys 2 ipods ": {
+                  "value": "{\"price_rule\":{\"id\":996341481,\"value_type\":\"percentage\",\"value\":\"-100.0\",\"customer_selection\":\"all\",\"target_type\":\"line_item\",\"target_selection\":\"entitled\",\"allocation_method\":\"each\",\"allocation_limit\":3,\"once_per_customer\":false,\"usage_limit\":null,\"starts_at\":\"2018-03-21T20:00:00-04:00\",\"ends_at\":null,\"created_at\":\"2022-03-11T11:11:30-05:00\",\"updated_at\":\"2022-03-11T11:11:30-05:00\",\"entitled_product_ids\":[921728736],\"entitled_variant_ids\":[],\"entitled_collection_ids\":[],\"entitled_country_ids\":[],\"prerequisite_product_ids\":[],\"prerequisite_variant_ids\":[],\"prerequisite_collection_ids\":[841564295],\"customer_segment_prerequisite_ids\":[],\"prerequisite_customer_ids\":[],\"prerequisite_subtotal_range\":null,\"prerequisite_quantity_range\":null,\"prerequisite_shipping_price_range\":null,\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":2,\"entitled_quantity\":1},\"prerequisite_to_entitlement_purchase\":{\"prerequisite_amount\":null},\"title\":\"Buy2iPodsGetiPodTouchForFree\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/PriceRule\\/996341481\"}}"
+                }
+              }
+            }
+          }
+        },
+        "422": {
+          "description": "Creates a price rule",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a price rule that gives a select group of customers $5 off their order": {
+                  "value": "{\"errors\":{\"customer_segment_prerequisite_ids\":[\"segment with id: 210588551 is invalid\"]}}"
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/price_rules.json",
+            "headers": {},
+            "body": "{\"price_rule\":{\"title\":\"SUMMERSALE10OFF\",\"target_type\":\"line_item\",\"target_selection\":\"all\",\"allocation_method\":\"across\",\"value_type\":\"fixed_amount\",\"value\":\"-10.0\",\"customer_selection\":\"all\",\"starts_at\":\"2017-01-19T17:59:10Z\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"price_rule\":{\"id\":996341478,\"value_type\":\"fixed_amount\",\"value\":\"-10.0\",\"customer_selection\":\"all\",\"target_type\":\"line_item\",\"target_selection\":\"all\",\"allocation_method\":\"across\",\"allocation_limit\":null,\"once_per_customer\":false,\"usage_limit\":null,\"starts_at\":\"2017-01-19T12:59:10-05:00\",\"ends_at\":null,\"created_at\":\"2022-03-11T11:11:26-05:00\",\"updated_at\":\"2022-03-11T11:11:26-05:00\",\"entitled_product_ids\":[],\"entitled_variant_ids\":[],\"entitled_collection_ids\":[],\"entitled_country_ids\":[],\"prerequisite_product_ids\":[],\"prerequisite_variant_ids\":[],\"prerequisite_collection_ids\":[],\"customer_segment_prerequisite_ids\":[],\"prerequisite_customer_ids\":[],\"prerequisite_subtotal_range\":null,\"prerequisite_quantity_range\":null,\"prerequisite_shipping_price_range\":null,\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":null,\"entitled_quantity\":null},\"prerequisite_to_entitlement_purchase\":{\"prerequisite_amount\":null},\"title\":\"SUMMERSALE10OFF\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/PriceRule\\/996341478\"}}"
+          },
+          "name": "Create a price rule that gives the buyer $10.00 off an order",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"price_rule\":{\"title\":\"SUMMERSALE10OFF\",\"target_type\":\"line_item\",\"target_selection\":\"all\",\"allocation_method\":\"across\",\"value_type\":\"fixed_amount\",\"value\":\"-10.0\",\"customer_selection\":\"all\",\"starts_at\":\"2017-01-19T17:59:10Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nprice_rule = ShopifyAPI::PriceRule.new(session: test_session)\nprice_rule.title = \"SUMMERSALE10OFF\"\nprice_rule.target_type = \"line_item\"\nprice_rule.target_selection = \"all\"\nprice_rule.allocation_method = \"across\"\nprice_rule.value_type = \"fixed_amount\"\nprice_rule.value = \"-10.0\"\nprice_rule.customer_selection = \"all\"\nprice_rule.starts_at = \"2017-01-19T17:59:10Z\"\nprice_rule.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {PriceRule} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst price_rule = new PriceRule({session: test_session});\nprice_rule.title = \"SUMMERSALE10OFF\";\nprice_rule.target_type = \"line_item\";\nprice_rule.target_selection = \"all\";\nprice_rule.allocation_method = \"across\";\nprice_rule.value_type = \"fixed_amount\";\nprice_rule.value = \"-10.0\";\nprice_rule.customer_selection = \"all\";\nprice_rule.starts_at = \"2017-01-19T17:59:10Z\";\nawait price_rule.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\PriceRule;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$price_rule = new PriceRule($this->test_session);\n$price_rule->title = \"SUMMERSALE10OFF\";\n$price_rule->target_type = \"line_item\";\n$price_rule->target_selection = \"all\";\n$price_rule->allocation_method = \"across\";\n$price_rule->value_type = \"fixed_amount\";\n$price_rule->value = \"-10.0\";\n$price_rule->customer_selection = \"all\";\n$price_rule->starts_at = \"2017-01-19T17:59:10Z\";\n$price_rule->save();"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/price_rules.json",
+            "headers": {},
+            "body": "{\"price_rule\":{\"title\":\"15OFFCOLLECTION\",\"target_type\":\"line_item\",\"target_selection\":\"entitled\",\"allocation_method\":\"across\",\"value_type\":\"percentage\",\"value\":\"-15.0\",\"customer_selection\":\"all\",\"entitled_collection_ids\":[841564295],\"starts_at\":\"2017-01-19T17:59:10Z\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"price_rule\":{\"id\":996341479,\"value_type\":\"percentage\",\"value\":\"-15.0\",\"customer_selection\":\"all\",\"target_type\":\"line_item\",\"target_selection\":\"entitled\",\"allocation_method\":\"across\",\"allocation_limit\":null,\"once_per_customer\":false,\"usage_limit\":null,\"starts_at\":\"2017-01-19T12:59:10-05:00\",\"ends_at\":null,\"created_at\":\"2022-03-11T11:11:27-05:00\",\"updated_at\":\"2022-03-11T11:11:27-05:00\",\"entitled_product_ids\":[],\"entitled_variant_ids\":[],\"entitled_collection_ids\":[841564295],\"entitled_country_ids\":[],\"prerequisite_product_ids\":[],\"prerequisite_variant_ids\":[],\"prerequisite_collection_ids\":[],\"customer_segment_prerequisite_ids\":[],\"prerequisite_customer_ids\":[],\"prerequisite_subtotal_range\":null,\"prerequisite_quantity_range\":null,\"prerequisite_shipping_price_range\":null,\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":null,\"entitled_quantity\":null},\"prerequisite_to_entitlement_purchase\":{\"prerequisite_amount\":null},\"title\":\"15OFFCOLLECTION\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/PriceRule\\/996341479\"}}"
+          },
+          "name": "Create a price rule that gives the buyer 15% off a specific collection",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"price_rule\":{\"title\":\"15OFFCOLLECTION\",\"target_type\":\"line_item\",\"target_selection\":\"entitled\",\"allocation_method\":\"across\",\"value_type\":\"percentage\",\"value\":\"-15.0\",\"customer_selection\":\"all\",\"entitled_collection_ids\":[841564295],\"starts_at\":\"2017-01-19T17:59:10Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nprice_rule = ShopifyAPI::PriceRule.new(session: test_session)\nprice_rule.title = \"15OFFCOLLECTION\"\nprice_rule.target_type = \"line_item\"\nprice_rule.target_selection = \"entitled\"\nprice_rule.allocation_method = \"across\"\nprice_rule.value_type = \"percentage\"\nprice_rule.value = \"-15.0\"\nprice_rule.customer_selection = \"all\"\nprice_rule.entitled_collection_ids = [\n  841564295\n]\nprice_rule.starts_at = \"2017-01-19T17:59:10Z\"\nprice_rule.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {PriceRule} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst price_rule = new PriceRule({session: test_session});\nprice_rule.title = \"15OFFCOLLECTION\";\nprice_rule.target_type = \"line_item\";\nprice_rule.target_selection = \"entitled\";\nprice_rule.allocation_method = \"across\";\nprice_rule.value_type = \"percentage\";\nprice_rule.value = \"-15.0\";\nprice_rule.customer_selection = \"all\";\nprice_rule.entitled_collection_ids = [\n  841564295\n];\nprice_rule.starts_at = \"2017-01-19T17:59:10Z\";\nawait price_rule.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\PriceRule;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$price_rule = new PriceRule($this->test_session);\n$price_rule->title = \"15OFFCOLLECTION\";\n$price_rule->target_type = \"line_item\";\n$price_rule->target_selection = \"entitled\";\n$price_rule->allocation_method = \"across\";\n$price_rule->value_type = \"percentage\";\n$price_rule->value = \"-15.0\";\n$price_rule->customer_selection = \"all\";\n$price_rule->entitled_collection_ids = [\n    841564295\n];\n$price_rule->starts_at = \"2017-01-19T17:59:10Z\";\n$price_rule->save();"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/price_rules.json",
+            "headers": {},
+            "body": "{\"price_rule\":{\"title\":\"FREESHIPPING\",\"target_type\":\"shipping_line\",\"target_selection\":\"all\",\"allocation_method\":\"each\",\"value_type\":\"percentage\",\"value\":\"-100.0\",\"usage_limit\":20,\"customer_selection\":\"all\",\"prerequisite_subtotal_range\":{\"greater_than_or_equal_to\":\"50.0\"},\"starts_at\":\"2017-01-19T17:59:10Z\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"price_rule\":{\"id\":996341480,\"value_type\":\"percentage\",\"value\":\"-100.0\",\"customer_selection\":\"all\",\"target_type\":\"shipping_line\",\"target_selection\":\"all\",\"allocation_method\":\"each\",\"allocation_limit\":null,\"once_per_customer\":false,\"usage_limit\":20,\"starts_at\":\"2017-01-19T12:59:10-05:00\",\"ends_at\":null,\"created_at\":\"2022-03-11T11:11:28-05:00\",\"updated_at\":\"2022-03-11T11:11:28-05:00\",\"entitled_product_ids\":[],\"entitled_variant_ids\":[],\"entitled_collection_ids\":[],\"entitled_country_ids\":[],\"prerequisite_product_ids\":[],\"prerequisite_variant_ids\":[],\"prerequisite_collection_ids\":[],\"customer_segment_prerequisite_ids\":[],\"prerequisite_customer_ids\":[],\"prerequisite_subtotal_range\":{\"greater_than_or_equal_to\":\"50.0\"},\"prerequisite_quantity_range\":null,\"prerequisite_shipping_price_range\":null,\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":null,\"entitled_quantity\":null},\"prerequisite_to_entitlement_purchase\":{\"prerequisite_amount\":null},\"title\":\"FREESHIPPING\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/PriceRule\\/996341480\"}}"
+          },
+          "name": "Create a price rule that gives the buyer free shipping on orders\n        over $50.00 that can be used up to 20 times",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"price_rule\":{\"title\":\"FREESHIPPING\",\"target_type\":\"shipping_line\",\"target_selection\":\"all\",\"allocation_method\":\"each\",\"value_type\":\"percentage\",\"value\":\"-100.0\",\"usage_limit\":20,\"customer_selection\":\"all\",\"prerequisite_subtotal_range\":{\"greater_than_or_equal_to\":\"50.0\"},\"starts_at\":\"2017-01-19T17:59:10Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nprice_rule = ShopifyAPI::PriceRule.new(session: test_session)\nprice_rule.title = \"FREESHIPPING\"\nprice_rule.target_type = \"shipping_line\"\nprice_rule.target_selection = \"all\"\nprice_rule.allocation_method = \"each\"\nprice_rule.value_type = \"percentage\"\nprice_rule.value = \"-100.0\"\nprice_rule.usage_limit = 20\nprice_rule.customer_selection = \"all\"\nprice_rule.prerequisite_subtotal_range = {\n  \"greater_than_or_equal_to\" => \"50.0\"\n}\nprice_rule.starts_at = \"2017-01-19T17:59:10Z\"\nprice_rule.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {PriceRule} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst price_rule = new PriceRule({session: test_session});\nprice_rule.title = \"FREESHIPPING\";\nprice_rule.target_type = \"shipping_line\";\nprice_rule.target_selection = \"all\";\nprice_rule.allocation_method = \"each\";\nprice_rule.value_type = \"percentage\";\nprice_rule.value = \"-100.0\";\nprice_rule.usage_limit = 20;\nprice_rule.customer_selection = \"all\";\nprice_rule.prerequisite_subtotal_range = {\n  \"greater_than_or_equal_to\": \"50.0\"\n};\nprice_rule.starts_at = \"2017-01-19T17:59:10Z\";\nawait price_rule.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\PriceRule;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$price_rule = new PriceRule($this->test_session);\n$price_rule->title = \"FREESHIPPING\";\n$price_rule->target_type = \"shipping_line\";\n$price_rule->target_selection = \"all\";\n$price_rule->allocation_method = \"each\";\n$price_rule->value_type = \"percentage\";\n$price_rule->value = \"-100.0\";\n$price_rule->usage_limit = 20;\n$price_rule->customer_selection = \"all\";\n$price_rule->prerequisite_subtotal_range = [\n    \"greater_than_or_equal_to\" => \"50.0\"\n];\n$price_rule->starts_at = \"2017-01-19T17:59:10Z\";\n$price_rule->save();"
+            }
+          ]
+        },
+        {
+          "status": "422",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/price_rules.json",
+            "headers": {},
+            "body": "{\"price_rule\":{\"title\":\"5OFFCUSTOMERGROUP\",\"target_type\":\"line_item\",\"target_selection\":\"all\",\"allocation_method\":\"across\",\"value_type\":\"fixed_amount\",\"value\":\"-5.0\",\"customer_selection\":\"prerequisite\",\"customer_segment_prerequisite_ids\":[210588551],\"starts_at\":\"2017-01-19T17:59:10Z\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 422 Unprocessable Entity",
+            "headers": {},
+            "body": "{\"errors\":{\"customer_segment_prerequisite_ids\":[\"segment with id: 210588551 is invalid\"]}}"
+          },
+          "name": "Create a price rule that gives a select group of customers $5 off their order",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"price_rule\":{\"title\":\"5OFFCUSTOMERGROUP\",\"target_type\":\"line_item\",\"target_selection\":\"all\",\"allocation_method\":\"across\",\"value_type\":\"fixed_amount\",\"value\":\"-5.0\",\"customer_selection\":\"prerequisite\",\"customer_segment_prerequisite_ids\":[210588551],\"starts_at\":\"2017-01-19T17:59:10Z\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nprice_rule = ShopifyAPI::PriceRule.new(session: test_session)\nprice_rule.title = \"5OFFCUSTOMERGROUP\"\nprice_rule.target_type = \"line_item\"\nprice_rule.target_selection = \"all\"\nprice_rule.allocation_method = \"across\"\nprice_rule.value_type = \"fixed_amount\"\nprice_rule.value = \"-5.0\"\nprice_rule.customer_selection = \"prerequisite\"\nprice_rule.customer_segment_prerequisite_ids = [\n  210588551\n]\nprice_rule.starts_at = \"2017-01-19T17:59:10Z\"\nprice_rule.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {PriceRule} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst price_rule = new PriceRule({session: test_session});\nprice_rule.title = \"5OFFCUSTOMERGROUP\";\nprice_rule.target_type = \"line_item\";\nprice_rule.target_selection = \"all\";\nprice_rule.allocation_method = \"across\";\nprice_rule.value_type = \"fixed_amount\";\nprice_rule.value = \"-5.0\";\nprice_rule.customer_selection = \"prerequisite\";\nprice_rule.customer_segment_prerequisite_ids = [\n  210588551\n];\nprice_rule.starts_at = \"2017-01-19T17:59:10Z\";\nawait price_rule.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\PriceRule;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$price_rule = new PriceRule($this->test_session);\n$price_rule->title = \"5OFFCUSTOMERGROUP\";\n$price_rule->target_type = \"line_item\";\n$price_rule->target_selection = \"all\";\n$price_rule->allocation_method = \"across\";\n$price_rule->value_type = \"fixed_amount\";\n$price_rule->value = \"-5.0\";\n$price_rule->customer_selection = \"prerequisite\";\n$price_rule->customer_segment_prerequisite_ids = [\n    210588551\n];\n$price_rule->starts_at = \"2017-01-19T17:59:10Z\";\n$price_rule->save();"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/price_rules.json",
+            "headers": {},
+            "body": "{\"price_rule\":{\"title\":\"Buy2iPodsGetiPodTouchForFree\",\"value_type\":\"percentage\",\"value\":\"-100.0\",\"customer_selection\":\"all\",\"target_type\":\"line_item\",\"target_selection\":\"entitled\",\"allocation_method\":\"each\",\"starts_at\":\"2018-03-22T00:00:00-00:00\",\"prerequisite_collection_ids\":[841564295],\"entitled_product_ids\":[921728736],\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":2,\"entitled_quantity\":1},\"allocation_limit\":3}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"price_rule\":{\"id\":996341481,\"value_type\":\"percentage\",\"value\":\"-100.0\",\"customer_selection\":\"all\",\"target_type\":\"line_item\",\"target_selection\":\"entitled\",\"allocation_method\":\"each\",\"allocation_limit\":3,\"once_per_customer\":false,\"usage_limit\":null,\"starts_at\":\"2018-03-21T20:00:00-04:00\",\"ends_at\":null,\"created_at\":\"2022-03-11T11:11:30-05:00\",\"updated_at\":\"2022-03-11T11:11:30-05:00\",\"entitled_product_ids\":[921728736],\"entitled_variant_ids\":[],\"entitled_collection_ids\":[],\"entitled_country_ids\":[],\"prerequisite_product_ids\":[],\"prerequisite_variant_ids\":[],\"prerequisite_collection_ids\":[841564295],\"customer_segment_prerequisite_ids\":[],\"prerequisite_customer_ids\":[],\"prerequisite_subtotal_range\":null,\"prerequisite_quantity_range\":null,\"prerequisite_shipping_price_range\":null,\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":2,\"entitled_quantity\":1},\"prerequisite_to_entitlement_purchase\":{\"prerequisite_amount\":null},\"title\":\"Buy2iPodsGetiPodTouchForFree\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/PriceRule\\/996341481\"}}"
+          },
+          "name": "Create a Buy X Get Y price rule that gives one free ipod touch if customer buys 2 ipods ",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"price_rule\":{\"title\":\"Buy2iPodsGetiPodTouchForFree\",\"value_type\":\"percentage\",\"value\":\"-100.0\",\"customer_selection\":\"all\",\"target_type\":\"line_item\",\"target_selection\":\"entitled\",\"allocation_method\":\"each\",\"starts_at\":\"2018-03-22T00:00:00-00:00\",\"prerequisite_collection_ids\":[841564295],\"entitled_product_ids\":[921728736],\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":2,\"entitled_quantity\":1},\"allocation_limit\":3}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nprice_rule = ShopifyAPI::PriceRule.new(session: test_session)\nprice_rule.title = \"Buy2iPodsGetiPodTouchForFree\"\nprice_rule.value_type = \"percentage\"\nprice_rule.value = \"-100.0\"\nprice_rule.customer_selection = \"all\"\nprice_rule.target_type = \"line_item\"\nprice_rule.target_selection = \"entitled\"\nprice_rule.allocation_method = \"each\"\nprice_rule.starts_at = \"2018-03-22T00:00:00-00:00\"\nprice_rule.prerequisite_collection_ids = [\n  841564295\n]\nprice_rule.entitled_product_ids = [\n  921728736\n]\nprice_rule.prerequisite_to_entitlement_quantity_ratio = {\n  \"prerequisite_quantity\" => 2,\n  \"entitled_quantity\" => 1\n}\nprice_rule.allocation_limit = 3\nprice_rule.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {PriceRule} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst price_rule = new PriceRule({session: test_session});\nprice_rule.title = \"Buy2iPodsGetiPodTouchForFree\";\nprice_rule.value_type = \"percentage\";\nprice_rule.value = \"-100.0\";\nprice_rule.customer_selection = \"all\";\nprice_rule.target_type = \"line_item\";\nprice_rule.target_selection = \"entitled\";\nprice_rule.allocation_method = \"each\";\nprice_rule.starts_at = \"2018-03-22T00:00:00-00:00\";\nprice_rule.prerequisite_collection_ids = [\n  841564295\n];\nprice_rule.entitled_product_ids = [\n  921728736\n];\nprice_rule.prerequisite_to_entitlement_quantity_ratio = {\n  \"prerequisite_quantity\": 2,\n  \"entitled_quantity\": 1\n};\nprice_rule.allocation_limit = 3;\nawait price_rule.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\PriceRule;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$price_rule = new PriceRule($this->test_session);\n$price_rule->title = \"Buy2iPodsGetiPodTouchForFree\";\n$price_rule->value_type = \"percentage\";\n$price_rule->value = \"-100.0\";\n$price_rule->customer_selection = \"all\";\n$price_rule->target_type = \"line_item\";\n$price_rule->target_selection = \"entitled\";\n$price_rule->allocation_method = \"each\";\n$price_rule->starts_at = \"2018-03-22T00:00:00-00:00\";\n$price_rule->prerequisite_collection_ids = [\n    841564295\n];\n$price_rule->entitled_product_ids = [\n    921728736\n];\n$price_rule->prerequisite_to_entitlement_quantity_ratio = [\n    \"prerequisite_quantity\" => 2,\n    \"entitled_quantity\" => 1\n];\n$price_rule->allocation_limit = 3;\n$price_rule->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/price_rules.json",
+      "action": "post"
+    },
+    {
+      "description": "Retrieves a list of price rules. <strong>Note:</strong> As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/tutorials/make-paginated-requests-to-rest-admin-api\"><em>Making requests to paginated REST Admin API endpoints</em></a>.",
+      "summary": "Retrieves a list of price rules",
+      "operationId": "Retrievesalistofpricerules",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "created_at_max",
+          "description": "Show price rules created before date (format 2017-03-25T16:15:47-04:00).",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "created_at_min",
+          "description": "Show price rules created after date (format 2017-03-25T16:15:47-04:00).",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "ends_at_max",
+          "description": "Show price rules ending before date (format 2017-03-25T16:15:47-04:00).",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "ends_at_min",
+          "description": "Show price rules ending after date (format 2017-03-25T16:15:47-04:00).",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "limit",
+          "description": "The maximum number of results to retrieve.",
+          "in": "query",
+          "schema": {
+            "type": "x-string",
+            "default": 50,
+            "maximum": 250
+          }
+        },
+        {
+          "name": "since_id",
+          "description": "Restrict results to after the specified ID.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "starts_at_max",
+          "description": "Show price rules starting before date (format 2017-03-25T16:15:47-04:00).",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "starts_at_min",
+          "description": "Show price rules starting after date (format 2017-03-25T16:15:47-04:00).",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "times_used",
+          "description": "Show price rules with times used.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "updated_at_max",
+          "description": "Show price rules last updated before date (format 2017-03-25T16:15:47-04:00).",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "updated_at_min",
+          "description": "Show price rules last updated after date (format 2017-03-25T16:15:47-04:00).",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of price rules",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve all price rules": {
+                  "value": "{\"price_rules\":[{\"id\":507328175,\"value_type\":\"fixed_amount\",\"value\":\"-10.0\",\"customer_selection\":\"all\",\"target_type\":\"line_item\",\"target_selection\":\"all\",\"allocation_method\":\"across\",\"allocation_limit\":null,\"once_per_customer\":false,\"usage_limit\":null,\"starts_at\":\"2022-03-05T11:02:04-05:00\",\"ends_at\":\"2022-03-17T11:02:04-04:00\",\"created_at\":\"2022-03-11T11:02:04-05:00\",\"updated_at\":\"2022-03-11T11:02:04-05:00\",\"entitled_product_ids\":[],\"entitled_variant_ids\":[],\"entitled_collection_ids\":[],\"entitled_country_ids\":[],\"prerequisite_product_ids\":[],\"prerequisite_variant_ids\":[],\"prerequisite_collection_ids\":[],\"prerequisite_saved_search_ids\":[],\"prerequisite_customer_ids\":[],\"prerequisite_subtotal_range\":null,\"prerequisite_quantity_range\":null,\"prerequisite_shipping_price_range\":null,\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":null,\"entitled_quantity\":null},\"title\":\"SUMMERSALE10OFF\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/PriceRule\\/507328175\"},{\"id\":106886544,\"value_type\":\"fixed_amount\",\"value\":\"-10.0\",\"customer_selection\":\"all\",\"target_type\":\"line_item\",\"target_selection\":\"all\",\"allocation_method\":\"across\",\"allocation_limit\":null,\"once_per_customer\":false,\"usage_limit\":null,\"starts_at\":\"2022-03-09T11:02:04-05:00\",\"ends_at\":\"2022-03-13T11:02:04-04:00\",\"created_at\":\"2022-03-11T11:02:04-05:00\",\"updated_at\":\"2022-03-11T11:02:04-05:00\",\"entitled_product_ids\":[],\"entitled_variant_ids\":[],\"entitled_collection_ids\":[],\"entitled_country_ids\":[],\"prerequisite_product_ids\":[],\"prerequisite_variant_ids\":[],\"prerequisite_collection_ids\":[],\"prerequisite_saved_search_ids\":[],\"prerequisite_customer_ids\":[],\"prerequisite_subtotal_range\":null,\"prerequisite_quantity_range\":null,\"prerequisite_shipping_price_range\":null,\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":null,\"entitled_quantity\":null},\"title\":\"TENOFF\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/PriceRule\\/106886544\"}]}"
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/price_rules.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"price_rules\":[{\"id\":507328175,\"value_type\":\"fixed_amount\",\"value\":\"-10.0\",\"customer_selection\":\"all\",\"target_type\":\"line_item\",\"target_selection\":\"all\",\"allocation_method\":\"across\",\"allocation_limit\":null,\"once_per_customer\":false,\"usage_limit\":null,\"starts_at\":\"2022-03-05T11:02:04-05:00\",\"ends_at\":\"2022-03-17T11:02:04-04:00\",\"created_at\":\"2022-03-11T11:02:04-05:00\",\"updated_at\":\"2022-03-11T11:02:04-05:00\",\"entitled_product_ids\":[],\"entitled_variant_ids\":[],\"entitled_collection_ids\":[],\"entitled_country_ids\":[],\"prerequisite_product_ids\":[],\"prerequisite_variant_ids\":[],\"prerequisite_collection_ids\":[],\"prerequisite_saved_search_ids\":[],\"prerequisite_customer_ids\":[],\"prerequisite_subtotal_range\":null,\"prerequisite_quantity_range\":null,\"prerequisite_shipping_price_range\":null,\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":null,\"entitled_quantity\":null},\"title\":\"SUMMERSALE10OFF\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/PriceRule\\/507328175\"},{\"id\":106886544,\"value_type\":\"fixed_amount\",\"value\":\"-10.0\",\"customer_selection\":\"all\",\"target_type\":\"line_item\",\"target_selection\":\"all\",\"allocation_method\":\"across\",\"allocation_limit\":null,\"once_per_customer\":false,\"usage_limit\":null,\"starts_at\":\"2022-03-09T11:02:04-05:00\",\"ends_at\":\"2022-03-13T11:02:04-04:00\",\"created_at\":\"2022-03-11T11:02:04-05:00\",\"updated_at\":\"2022-03-11T11:02:04-05:00\",\"entitled_product_ids\":[],\"entitled_variant_ids\":[],\"entitled_collection_ids\":[],\"entitled_country_ids\":[],\"prerequisite_product_ids\":[],\"prerequisite_variant_ids\":[],\"prerequisite_collection_ids\":[],\"prerequisite_saved_search_ids\":[],\"prerequisite_customer_ids\":[],\"prerequisite_subtotal_range\":null,\"prerequisite_quantity_range\":null,\"prerequisite_shipping_price_range\":null,\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":null,\"entitled_quantity\":null},\"title\":\"TENOFF\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/PriceRule\\/106886544\"}]}"
+          },
+          "name": "Retrieve all price rules",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::PriceRule.all(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {PriceRule} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait PriceRule.all({\n  session: test_session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\PriceRule;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPriceRule::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/price_rules.json",
+      "action": "get"
+    },
+    {
+      "description": "Updates an existing a price rule",
+      "summary": "Updates an existing a price rule",
+      "operationId": "Updatesanexistingapricerule",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "price_rule_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Updates an existing a price rule",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Update the title of a price rule": {
+                  "value": "{\"price_rule\":{\"id\":507328175,\"value_type\":\"fixed_amount\",\"value\":\"-10.0\",\"customer_selection\":\"all\",\"target_type\":\"line_item\",\"target_selection\":\"all\",\"allocation_method\":\"across\",\"allocation_limit\":null,\"once_per_customer\":false,\"usage_limit\":null,\"starts_at\":\"2022-03-05T11:02:04-05:00\",\"ends_at\":\"2022-03-17T11:02:04-04:00\",\"created_at\":\"2022-03-11T11:02:04-05:00\",\"updated_at\":\"2022-03-11T11:11:32-05:00\",\"entitled_product_ids\":[],\"entitled_variant_ids\":[],\"entitled_collection_ids\":[],\"entitled_country_ids\":[],\"prerequisite_product_ids\":[],\"prerequisite_variant_ids\":[],\"prerequisite_collection_ids\":[],\"customer_segment_prerequisite_ids\":[],\"prerequisite_customer_ids\":[],\"prerequisite_subtotal_range\":null,\"prerequisite_quantity_range\":null,\"prerequisite_shipping_price_range\":null,\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":null,\"entitled_quantity\":null},\"prerequisite_to_entitlement_purchase\":{\"prerequisite_amount\":null},\"title\":\"WINTER SALE\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/PriceRule\\/507328175\"}}"
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules/507328175.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/price_rules/507328175.json",
+            "headers": {},
+            "body": "{\"price_rule\":{\"id\":507328175,\"title\":\"WINTER SALE\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"price_rule\":{\"id\":507328175,\"value_type\":\"fixed_amount\",\"value\":\"-10.0\",\"customer_selection\":\"all\",\"target_type\":\"line_item\",\"target_selection\":\"all\",\"allocation_method\":\"across\",\"allocation_limit\":null,\"once_per_customer\":false,\"usage_limit\":null,\"starts_at\":\"2022-03-05T11:02:04-05:00\",\"ends_at\":\"2022-03-17T11:02:04-04:00\",\"created_at\":\"2022-03-11T11:02:04-05:00\",\"updated_at\":\"2022-03-11T11:11:32-05:00\",\"entitled_product_ids\":[],\"entitled_variant_ids\":[],\"entitled_collection_ids\":[],\"entitled_country_ids\":[],\"prerequisite_product_ids\":[],\"prerequisite_variant_ids\":[],\"prerequisite_collection_ids\":[],\"customer_segment_prerequisite_ids\":[],\"prerequisite_customer_ids\":[],\"prerequisite_subtotal_range\":null,\"prerequisite_quantity_range\":null,\"prerequisite_shipping_price_range\":null,\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":null,\"entitled_quantity\":null},\"prerequisite_to_entitlement_purchase\":{\"prerequisite_amount\":null},\"title\":\"WINTER SALE\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/PriceRule\\/507328175\"}}"
+          },
+          "name": "Update the title of a price rule",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"price_rule\":{\"id\":507328175,\"title\":\"WINTER SALE\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules/507328175.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nprice_rule = ShopifyAPI::PriceRule.new(session: test_session)\nprice_rule.id = 507328175\nprice_rule.title = \"WINTER SALE\"\nprice_rule.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {PriceRule} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst price_rule = new PriceRule({session: test_session});\nprice_rule.id = 507328175;\nprice_rule.title = \"WINTER SALE\";\nawait price_rule.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\PriceRule;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$price_rule = new PriceRule($this->test_session);\n$price_rule->id = 507328175;\n$price_rule->title = \"WINTER SALE\";\n$price_rule->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}.json",
+      "action": "put"
+    },
+    {
+      "description": "Retrieves a single price rule",
+      "summary": "Retrieves a single price rule",
+      "operationId": "Retrievesasinglepricerule",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "price_rule_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a single price rule",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a single price rule by its ID": {
+                  "value": "{\"price_rule\":{\"id\":507328175,\"value_type\":\"fixed_amount\",\"value\":\"-10.0\",\"customer_selection\":\"all\",\"target_type\":\"line_item\",\"target_selection\":\"all\",\"allocation_method\":\"across\",\"allocation_limit\":null,\"once_per_customer\":false,\"usage_limit\":null,\"starts_at\":\"2022-03-05T11:02:04-05:00\",\"ends_at\":\"2022-03-17T11:02:04-04:00\",\"created_at\":\"2022-03-11T11:02:04-05:00\",\"updated_at\":\"2022-03-11T11:02:04-05:00\",\"entitled_product_ids\":[],\"entitled_variant_ids\":[],\"entitled_collection_ids\":[],\"entitled_country_ids\":[],\"prerequisite_product_ids\":[],\"prerequisite_variant_ids\":[],\"prerequisite_collection_ids\":[],\"customer_segment_prerequisite_ids\":[],\"prerequisite_customer_ids\":[],\"prerequisite_subtotal_range\":null,\"prerequisite_quantity_range\":null,\"prerequisite_shipping_price_range\":null,\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":null,\"entitled_quantity\":null},\"prerequisite_to_entitlement_purchase\":{\"prerequisite_amount\":null},\"title\":\"SUMMERSALE10OFF\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/PriceRule\\/507328175\"}}"
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules/507328175.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/price_rules/507328175.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"price_rule\":{\"id\":507328175,\"value_type\":\"fixed_amount\",\"value\":\"-10.0\",\"customer_selection\":\"all\",\"target_type\":\"line_item\",\"target_selection\":\"all\",\"allocation_method\":\"across\",\"allocation_limit\":null,\"once_per_customer\":false,\"usage_limit\":null,\"starts_at\":\"2022-03-05T11:02:04-05:00\",\"ends_at\":\"2022-03-17T11:02:04-04:00\",\"created_at\":\"2022-03-11T11:02:04-05:00\",\"updated_at\":\"2022-03-11T11:02:04-05:00\",\"entitled_product_ids\":[],\"entitled_variant_ids\":[],\"entitled_collection_ids\":[],\"entitled_country_ids\":[],\"prerequisite_product_ids\":[],\"prerequisite_variant_ids\":[],\"prerequisite_collection_ids\":[],\"customer_segment_prerequisite_ids\":[],\"prerequisite_customer_ids\":[],\"prerequisite_subtotal_range\":null,\"prerequisite_quantity_range\":null,\"prerequisite_shipping_price_range\":null,\"prerequisite_to_entitlement_quantity_ratio\":{\"prerequisite_quantity\":null,\"entitled_quantity\":null},\"prerequisite_to_entitlement_purchase\":{\"prerequisite_amount\":null},\"title\":\"SUMMERSALE10OFF\",\"admin_graphql_api_id\":\"gid:\\/\\/shopify\\/PriceRule\\/507328175\"}}"
+          },
+          "name": "Retrieve a single price rule by its ID",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules/507328175.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::PriceRule.find(\n  session: test_session,\n  id: 507328175,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {PriceRule} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait PriceRule.find({\n  session: test_session,\n  id: 507328175,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\PriceRule;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPriceRule::find(\n    $this->test_session, // Session\n    507328175, // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}.json",
+      "action": "get"
+    },
+    {
+      "description": "Deletes a price rule",
+      "summary": "Remove an existing PriceRule",
+      "operationId": "RemoveanexistingPriceRule",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "price_rule_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "204": {
+          "description": "Remove an existing PriceRule",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Delete a price rule": {
+                  "value": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "204",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules/507328175.json",
+          "request_method": "DELETE",
+          "request": {
+            "action": "DELETE /admin/api/unstable/price_rules/507328175.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 204 No Content",
+            "headers": {},
+            "body": ""
+          },
+          "name": "Delete a price rule",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules/507328175.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::PriceRule.delete(\n  session: test_session,\n  id: 507328175,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {PriceRule} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait PriceRule.delete({\n  session: test_session,\n  id: 507328175,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\PriceRule;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPriceRule::delete(\n    $this->test_session, // Session\n    507328175, // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}.json",
+      "action": "delete"
+    },
+    {
+      "description": "Retrieves a count of all price rules.",
+      "summary": "Retrieves a count of all price rules",
+      "operationId": "Retrievesacountofallpricerules",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a count of all price rules",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a count of all price rules": {
+                  "value": "{\"count\":2}"
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules/count.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/price_rules/count.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"count\":2}"
+          },
+          "name": "Retrieve a count of all price rules",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::PriceRule.count(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {PriceRule} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait PriceRule.count({\n  session: test_session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\PriceRule;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPriceRule::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/price_rules/count.json",
+      "action": "get"
+    }
+  ],
+  "components": [
+    {
+      "name": "PriceRule",
+      "title": "PriceRule",
+      "type": "object",
+      "properties": [
+        {
+          "description": "          <p>The allocation method of the price rule. Valid values:</p>\n          <ul>\n            <li><strong>each</strong>: The discount is applied to each of the entitled items. For example, for a price rule that takes $15 off,\n            each entitled line item in a checkout will be discounted by $15.</li>\n            <li><strong>across</strong>: The calculated discount amount will be applied across the entitled items. For example, for a price rule\n            that takes $15 off, the discount will be applied across all the entitled items.</li>\n          </ul>\n          <p>When the value of <code>target_type</code> is <code>shipping_line</code>, then this value must be <code>each</code>.</p>\n",
+          "type": "x-string",
+          "example": "each",
+          "name": "allocation_method"
+        },
+        {
+          "description": "          <p>The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the price rule was created.</p>\n",
+          "type": "x-string",
+          "readOnly": true,
+          "example": "2017-03-13T14:09:54-06:00",
+          "name": "created_at"
+        },
+        {
+          "description": "          <p>The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the price rule was updated.</p>\n",
+          "type": "x-string",
+          "readOnly": true,
+          "example": "2017-03-14T14:09:54-06:00",
+          "name": "updated_at"
+        },
+        {
+          "description": "          <p>The customer selection for the price rule. Valid values:</p>\n          <ul>\n            <li><strong>all</strong>: The price rule is valid for all customers.</li>\n            <li><strong>prerequisite</strong>: The customer must either belong to one of the customer segments specified by <code>customer_segment_prerequisite_ids</code>, or be one of the customers specified by <code>prerequisite_customer_ids</code>.</li>\n          </ul>\n",
+          "type": "x-string",
+          "example": "prerequisite",
+          "name": "customer_selection"
+        },
+        {
+          "description": "          <p>The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a>  format) when the price rule ends. Must be after <code>starts_at</code>.</p>\n",
+          "type": "x-string",
+          "example": "2017-04-19T17:59:10Z",
+          "name": "ends_at"
+        },
+        {
+          "description": "          <p>A list of IDs of collections whose products will be eligible to the discount. It can be used only with\n          <code>target_type</code> set to <code>line_item</code> and <code>target_selection</code> set to <code>entitled</code>.\n          It can't be used in combination with <code>entitled_product_ids</code> or <code>entitled_variant_ids</code>.</p>\n",
+          "type": "x-string",
+          "example": [
+            4564654869,
+            8979761006
+          ],
+          "name": "entitled_collection_ids"
+        },
+        {
+          "description": "          <p>A list of IDs of shipping countries that will be entitled to the discount. It can be used only with <code>target_type</code> set to <code>shipping_line</code> and <code>target_selection</code> set to <code>entitled</code>.</p>\n",
+          "type": "x-string",
+          "example": {
+            " entitled_country_ids": [
+              7897987023,
+              3569053679
+            ]
+          },
+          "name": "entitled_country_ids"
+        },
+        {
+          "description": "          <p>A list of IDs of products that will be entitled to the discount. It can be used only with <code>target_type</code> set to <code>line_item</code>\n          and <code>target_selection</code> set to <code>entitled</code>.</p>\n          <div class=\"note note-caution\">\n            <p>If a product variant is included in <code>entitled_variant_ids</code>, then <code>entitled_product_ids</code> can't include the ID of the product associated with that variant.</p>\n          </div>\n",
+          "type": "x-string",
+          "example": [
+            7897397755,
+            42382368242
+          ],
+          "name": "entitled_product_ids"
+        },
+        {
+          "description": "          <p>A list of IDs of product variants that will be entitled to the discount. It can be used only with <code>target_type</code> set to <code>line_item</code>\n          and <code>target_selection</code> set to <code>entitled</code>.</p>\n          <div class=\"note note-caution\">\n            <p>If a product is included in <code>entitled_product_ids</code>, then <code>entitled_variant_ids</code> can't include the ID of any variants associated with that product.</p>\n          </div>\n",
+          "type": "x-string",
+          "example": [
+            6798798798,
+            5675765905
+          ],
+          "name": "entitled_variant_ids"
+        },
+        {
+          "description": "The ID for the price rule.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": 9808080986,
+          "name": "id"
+        },
+        {
+          "description": "          <p>Whether the generated discount code will be valid only for a single use per customer. This is tracked using customer ID.</p>\n",
+          "type": "x-string",
+          "example": true,
+          "name": "once_per_customer"
+        },
+        {
+          "description": "          <p>A list of customer IDs. For the price rule to be applicable, the customer must match one of the specified <a href=\"/docs/admin-api/rest/reference/customers/customer\">customers</a>.</p>\n          <p>If <code>prerequisite_customer_ids</code> is populated, then <code>customer_segment_prerequisite_ids</code> must be empty.</p>\n",
+          "type": "x-string",
+          "example": [
+            384028349005,
+            3492039843
+          ],
+          "name": "prerequisite_customer_ids"
+        },
+        {
+          "description": "          <p>The minimum number of items for the price rule to be applicable. It has the following property:</p>\n          <ul>\n            <li><strong>greater_than_or_equal_to</strong>: The quantity of an entitled cart item must be greater than or equal to this value.</li>\n          </ul>\n",
+          "type": "x-string",
+          "example": {
+            "greater_than_or_equal_to": 2
+          },
+          "name": "prerequisite_quantity_range"
+        },
+        {
+          "description": "          <p>A list of customer segment IDs. For the price rule to be applicable, the customer must be in the group of customers matching a customer segment.</p>\n          <p>If <code>customer_segment_prerequisite_ids</code> is populated, then <code>prerequisite_customer_ids</code> must be empty.</p>\n",
+          "type": "x-string",
+          "example": [
+            1122345432,
+            43535360314
+          ],
+          "name": "customer_segment_prerequisite_ids"
+        },
+        {
+          "description": "          <p>The maximum shipping price for the price rule to be applicable. It has the following property:</p>\n          <ul>\n            <li><strong>less_than_or_equal_to</strong>: The shipping price must be less than or equal to this value.</li>\n          </ul>\n",
+          "type": "x-string",
+          "example": {
+            "less_than_or_equal_to": "10.0"
+          },
+          "name": "prerequisite_shipping_price_range"
+        },
+        {
+          "description": "          <p>The minimum subtotal for the price rule to be applicable. It has the following property:</p>\n          <ul>\n            <li><strong>greater_than_or_equal_to</strong>: The subtotal of the entitled cart items must be greater than or equal to this value for the discount to apply.</li>\n          </ul>\n",
+          "type": "x-string",
+          "example": {
+            "greater_than_or_equal_to": "40.0"
+          },
+          "name": "prerequisite_subtotal_range"
+        },
+        {
+          "description": "          <p>The prerequisite purchase for a Buy X Get Y discount. It has the following property:</p>\n          <ul>\n            <li><strong>prerequisite_amount</strong>: The minimum purchase amount required to be entitled to the discount.</li>\n          </ul>\n",
+          "type": "x-string",
+          "example": {
+            "prerequisite_amount": "80.00"
+          },
+          "name": "prerequisite_to_entitlement_purchase"
+        },
+        {
+          "description": "          <p>The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the price rule starts.\n",
+          "type": "x-string",
+          "example": "2017-01-19T17:59:10Z",
+          "name": "starts_at"
+        },
+        {
+          "description": "          <p>The target selection method of the price rule. Valid values:</p>\n          <ul>\n            <li><strong>all</strong>: The price rule applies the discount to all line items in the checkout.</li>\n            <li><strong>entitled</strong>: The price rule applies the discount to selected entitlements only.</li>\n          </ul>\n",
+          "type": "x-string",
+          "example": "entitled",
+          "name": "target_selection"
+        },
+        {
+          "description": "          <p>The target type that the price rule applies to. Valid values:</p>\n          <ul>\n            <li><strong>line_item</strong>: The price rule applies to the cart's line items.</li>\n            <li><strong>shipping_line</strong>: The price rule applies to the cart's shipping lines.</li>\n          </ul>\n",
+          "type": "x-string",
+          "example": "line_item",
+          "name": "target_type"
+        },
+        {
+          "description": "          <p>The title of the price rule. This is used by the Shopify admin search to retrieve discounts. It is also displayed on the <strong>Discounts</strong> page of the Shopify admin for bulk discounts.</p>\n          <p>For non-bulk discounts, the discount code is displayed on the admin.</p>\n          <div class=\"note note-caution\">\n            <p>For a consistent search experience, use the same value for <code>title</code> as the <code>code</code> property of the associated discount code.</p>\n          </div>\n",
+          "type": "x-string",
+          "example": "SUMMERSALE10OFF",
+          "name": "title"
+        },
+        {
+          "description": "The maximum number of times the price rule can be used, per discount code.",
+          "type": "x-string",
+          "example": 10,
+          "name": "usage_limit"
+        },
+        {
+          "description": "          <p>List of product ids that will be a prerequisites for a Buy X Get Y type discount. The <code>prerequisite_product_ids</code> can be used only with:</p>\n          <ul>\n            <li><code>target_type</code> set to <code>line_item</code>,</li>\n            <li><code>target_selection</code> set to <code>entitled</code>,</li>\n            <li><code>allocation_method</code> set to <code>each</code> and</li>\n            <li><code>prerequisite_to_entitlement_quantity_ratio</code> defined.</li>\n          </ul>\n          <div class=\"note note-caution\">\n            <h4>Caution</h4>\n            <p>If a product variant is included in <code>prerequisite_variant_ids</code>, then <code>prerequisite_product_ids</code> can't include the ID of the product associated with that variant.</p>\n          </div>\n",
+          "type": "x-string",
+          "example": [
+            7897397755,
+            42382368242
+          ],
+          "name": "prerequisite_product_ids"
+        },
+        {
+          "description": "          <p>List of variant ids that will be a prerequisites for a Buy X Get Y type discount. The <code>entitled_variant_ids</code> can be used only with:</p>\n          <ul>\n            <li><code>target_type</code> set to <code>line_item</code>,</li>\n            <li><code>target_selection</code> set to <code>entitled</code>,</li>\n            <li><code>allocation_method</code> set to <code>each</code> and</li>\n            <li><code>prerequisite_to_entitlement_quantity_ratio</code> defined.</li>\n          </ul>\n          <div class=\"note note-caution\">\n            <h4>Caution</h4>\n            <p>If a product is included in <code>prerequisite_product_ids</code>, then <code>prerequisite_variant_ids</code> can't include the ID of any variants associated with that product.</p>\n          </div>\n",
+          "type": "x-string",
+          "example": [
+            6798798798,
+            5675765905
+          ],
+          "name": "prerequisite_variant_ids"
+        },
+        {
+          "description": "          <p>List of collection ids that will be a prerequisites for a Buy X Get Y discount. The <code>entitled_collection_ids</code> can be used only with:</p>\n          <ul>\n            <li><code>target_type</code> set to <code>line_item</code>,</li>\n            <li><code>target_selection</code> set to <code>entitled</code>,</li>\n            <li><code>allocation_method</code> set to <code>each</code> and</li>\n            <li><code>prerequisite_to_entitlement_quantity_ratio</code> defined.</li>\n          </ul>\n          Cannot be used in combination with <code>prerequisite_product_ids</code> or <code>prerequisite_variant_ids</code>.</p>\n",
+          "type": "x-string",
+          "example": [
+            4564654869,
+            8979761006
+          ],
+          "name": "prerequisite_collection_ids"
+        },
+        {
+          "description": "          <p>The value of the price rule. If if the value of <code>target_type</code> is <code>shipping_line</code>, then only <code>-100</code> is accepted.\n          The value must be negative.</p>\n",
+          "type": "x-string",
+          "example": -35,
+          "name": "value"
+        },
+        {
+          "description": "          <p>The value type of the price rule. Valid values:</p>\n          <ul>\n            <li><strong>fixed_amount</strong>: Applies a discount of <code>value</code> as a unit of the store's currency. For example, if <code>value</code> is -30 and the store's currency is USD,\n            then $30 USD is deducted when the discount is applied.</li>\n            <li><strong>percentage</strong>: Applies a percentage discount of <code>value</code>. For example, if <code>value</code> is -30, then 30% will be deducted when the discount is applied.</li>\n          </ul>\n          <p>If <code>target_type</code> is <code>shipping_line</code>, then only <code>percentage</code> is accepted.</p>\n",
+          "type": "x-string",
+          "example": "fixed_amount",
+          "name": "value_type"
+        },
+        {
+          "description": "          <p>Buy/Get ratio for a Buy X Get Y discount. <code>prerequisite_quantity</code> defines the necessary 'buy' quantity and <code>entitled_quantity</code> the offered 'get' quantity.</p>\n          <p>The <code>prerequisite_to_entitlement_quantity_ratio</code> can be used only with:</p>\n          <ul>\n            <li><code>value_type</code> set to <code>percentage</code>,</li>\n            <li><code>target_type</code> set to <code>line_item</code>,</li>\n            <li><code>target_selection</code> set to <code>entitled</code>,</li>\n            <li><code>allocation_method</code> set to <code>each</code>,</li>\n            <li><code>prerequisite_product_ids</code> or <code>prerequisite_variant_ids</code> or <code>prerequisite_collection_ids</code> defined and</li>\n            <li><code>entitled_product_ids</code> or <code>entitled_variant_ids</code> or <code>entitled_collection_ids</code> defined.</li>\n          </ul>\n          <div class=\"note note-caution\">\n            <h4>Caution</h4>\n            <p>Cannot be used in combination with <code>prerequisite_subtotal_range</code>, <code>prerequisite_quantity_range</code> or <code>prerequisite_shipping_price_range</code>.</p>\n          </div>\n",
+          "type": "x-string",
+          "example": {
+            "prerequisite_quantity": 2,
+            "entitled_quantity": 1
+          },
+          "name": "prerequisite_to_entitlement_quantity_ratio"
+        },
+        {
+          "description": "          <p>The number of times the discount can be allocated on the cart - if eligible. For example a Buy 1 hat Get 1 hat for free discount can be applied 3 times on a cart having more than 6 hats, where maximum of 3 hats get discounted - if the <code>allocation_limit</code> is 3. Empty (<code>null</code>) <code>allocation_limit</code> means unlimited number of allocations.</p>\n          <div class=\"note note-caution\">\n            <h4>Caution</h4>\n            <p><code>allocation_limit</code> is only working with Buy X Get Y discount. The default value on creation will be <code>null</code> (unlimited).</p>\n          </div>\n",
+          "type": "x-string",
+          "example": 3,
+          "name": "allocation_limit"
+        }
+      ],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "discounts/pricerule",
+    "gid": "848cce19-4b20-4f91-993e-06260f19b0fb",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/pricerule"
+    ],
+    "meta_description": "Create the logic for a discount, and then use the DiscountCode API to associate a code with the discount so it can be applied at checkout.",
+    "postman_group": "Discounts",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

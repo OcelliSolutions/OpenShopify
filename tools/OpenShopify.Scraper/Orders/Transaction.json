@@ -1,0 +1,1031 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Transaction",
+    "description": "        <p>Transactions are created for every order that results in an exchange of money.</p>\n        {{ '/api/reference/transaction.png' | image }}\n        <p>There are five types of transactions:</p>\n        <ul>\n         <li><strong>Authorization</strong>: An amount reserved against the cardholder's funding source. Money does not change hands until the authorization is captured.</li>\n         <li><strong>Sale</strong>: An authorization and capture performed together in a single step.</li>\n         <li><strong>Capture</strong>: A transfer of the money that was reserved during the authorization stage.</li>\n         <li><strong>Void</strong>: A cancellation of a pending authorization or capture.</li>\n         <li><strong>Refund</strong>: A partial or full return of captured funds to the cardholder. A refund can happen only after a capture is processed.</li>\n        </ul>\n        <p>Refund transactions must be created by using the <a href=\"/docs/admin-api/rest/reference/orders/refund\">Refund resource</a>.</p>\n        <div class=\"note\">\n          <h4>Note</h4>\n          <p>An order can have more than one authorization transaction associated with it. This might happen when an order is edited or when a post-purchase upsell is added to the order. To be notified when an order is edited subscribe to the OrderEdit webhook.</p>\n          <p>If your app captures payments, you should make a <code>GET</code> request to the <code>/admin/api/{version}/orders/{order_id}/transactions.json</code> endpoint to retrieve the\n           authorization transactions associated with an order. Then, to complete the full order payment capture, you should use the <code>authorization</code> or <code>parent_id</code>\n           properties in separate capture <code>POST</code> requests to the same endpoint for each authorization transaction.</p>\n        </div>\n        <div class=\"note\">\n          <h4>Note</h4>\n          <p>An order can have no more than 100 transactions associated with it.</p>\n        </div>\n",
+    "x-owner": "https://vault.shopify.io/teams/255",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "<p>Retrieves a list of transactions.</p>\n<p>Transactions attached to multi-currency orders are in the presentment currency by default. To retrieve transactions in the shop currency, include the URL parameter <code>in_shop_currency=true</code>.</p>",
+      "summary": "Retrieves a list of transactions",
+      "operationId": "Retrievesalistoftransactions",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fields",
+          "description": "Show only certain fields, specifed by a comma-separated list of fields names.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "in_shop_currency",
+          "description": "Show amounts in the shop currency.",
+          "in": "query",
+          "schema": {
+            "type": "x-string",
+            "default": "false"
+          }
+        },
+        {
+          "name": "since_id",
+          "description": "Retrieve only transactions after the specified ID.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of transactions",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve an order's transactions": {
+                  "value": {
+                    "transactions": [
+                      {
+                        "id": 179259969,
+                        "order_id": 450789469,
+                        "kind": "refund",
+                        "gateway": "bogus",
+                        "status": "success",
+                        "message": null,
+                        "created_at": "2005-08-05T10:59:12-06:00",
+                        "test": false,
+                        "authorization": "authorization-key",
+                        "location_id": null,
+                        "user_id": null,
+                        "parent_id": 801038806,
+                        "processed_at": "2005-08-05T10:59:12-06:00",
+                        "device_id": null,
+                        "error_code": null,
+                        "source_name": "web",
+                        "receipt": {},
+                        "currency_exchange_adjustment": null,
+                        "amount": "209.00",
+                        "currency": "USD",
+                        "admin_graphql_api_id": "gid://shopify/OrderTransaction/179259969"
+                      },
+                      {
+                        "id": 389404469,
+                        "order_id": 450789469,
+                        "kind": "authorization",
+                        "gateway": "bogus",
+                        "status": "success",
+                        "message": null,
+                        "created_at": "2005-08-01T09:57:11-06:00",
+                        "test": false,
+                        "authorization": "authorization-key",
+                        "location_id": null,
+                        "user_id": null,
+                        "parent_id": null,
+                        "processed_at": "2005-08-01T09:57:11-06:00",
+                        "device_id": null,
+                        "error_code": null,
+                        "source_name": "web",
+                        "payment_details": {
+                          "credit_card_bin": null,
+                          "avs_result_code": null,
+                          "cvv_result_code": null,
+                          "credit_card_number": "•••• •••• •••• 4242",
+                          "credit_card_company": "Visa",
+                          "credit_card_name": null,
+                          "credit_card_wallet": null,
+                          "credit_card_expiration_month": null,
+                          "credit_card_expiration_year": null
+                        },
+                        "receipt": {
+                          "testcase": true,
+                          "authorization": "123456"
+                        },
+                        "currency_exchange_adjustment": null,
+                        "amount": "598.94",
+                        "currency": "USD",
+                        "admin_graphql_api_id": "gid://shopify/OrderTransaction/389404469"
+                      },
+                      {
+                        "id": 801038806,
+                        "order_id": 450789469,
+                        "kind": "capture",
+                        "gateway": "bogus",
+                        "status": "success",
+                        "message": null,
+                        "created_at": "2005-08-05T08:22:51-06:00",
+                        "test": false,
+                        "authorization": "authorization-key",
+                        "location_id": null,
+                        "user_id": null,
+                        "parent_id": 389404469,
+                        "processed_at": "2005-08-05T08:22:51-06:00",
+                        "device_id": null,
+                        "error_code": null,
+                        "source_name": "web",
+                        "receipt": {},
+                        "currency_exchange_adjustment": null,
+                        "amount": "250.94",
+                        "currency": "USD",
+                        "admin_graphql_api_id": "gid://shopify/OrderTransaction/801038806"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve an order's transactions after a specified ID": {
+                  "value": {
+                    "transactions": [
+                      {
+                        "id": 1068278469,
+                        "order_id": 450789469,
+                        "kind": "capture",
+                        "gateway": "bogus",
+                        "status": "success",
+                        "message": "Bogus Gateway: Forced success",
+                        "created_at": "2022-04-05T11:06:17-06:00",
+                        "test": true,
+                        "authorization": null,
+                        "location_id": null,
+                        "user_id": null,
+                        "parent_id": 389404469,
+                        "processed_at": "2022-04-05T11:06:17-06:00",
+                        "device_id": null,
+                        "error_code": null,
+                        "source_name": "755357713",
+                        "payment_details": {
+                          "credit_card_bin": null,
+                          "avs_result_code": null,
+                          "cvv_result_code": null,
+                          "credit_card_number": "•••• •••• •••• 4242",
+                          "credit_card_company": "Visa",
+                          "credit_card_name": null,
+                          "credit_card_wallet": null,
+                          "credit_card_expiration_month": null,
+                          "credit_card_expiration_year": null
+                        },
+                        "receipt": {},
+                        "currency_exchange_adjustment": null,
+                        "amount": "10.00",
+                        "currency": "USD",
+                        "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278469"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/transactions.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/orders/450789469/transactions.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"transactions\":[{\"id\":179259969,\"order_id\":450789469,\"kind\":\"refund\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-05T12:59:12-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":801038806,\"processed_at\":\"2005-08-05T12:59:12-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"209.00\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/179259969\"},{\"id\":389404469,\"order_id\":450789469,\"kind\":\"authorization\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-01T11:57:11-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":null,\"processed_at\":\"2005-08-01T11:57:11-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{\"testcase\":true,\"authorization\":\"123456\"},\"currency_exchange_adjustment\":null,\"amount\":\"598.94\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/389404469\"},{\"id\":801038806,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-05T10:22:51-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2005-08-05T10:22:51-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"250.94\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/801038806\"}]}"
+          },
+          "name": "Retrieve an order's transactions",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Transaction.all(\n  session: test_session,\n  order_id: 450789469,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.all({\n  session: test_session,\n  order_id: 450789469,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "since_id=801038806",
+          "request_path": "/admin/api/2022-04/orders/450789469/transactions.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/orders/450789469/transactions.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"transactions\":[{\"id\":1068278469,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-04-05T13:06:17-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-04-05T13:06:17-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278469\"}]}"
+          },
+          "name": "Retrieve an order's transactions after a specified ID",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/transactions.json?since_id=801038806\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Transaction.all(\n  session: test_session,\n  order_id: 450789469,\n  since_id: \"801038806\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.all({\n  session: test_session,\n  order_id: 450789469,\n  since_id: \"801038806\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [\"since_id\" => \"801038806\"], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/transactions.json",
+      "action": "get"
+    },
+    {
+      "description": "<aside class=\"note caution\">\n  <h4>Caution</h4>\n  <p>For multi-currency orders, the <code>currency</code> property is required when creating refund and capture transactions. The value should be the presentment currency from the order. For more information, see <a href=\"/tutorials/migrate-your-app-to-support-multi-currency\"><i>Migrating to support multiple currencies</i></a>.</p>\n</aside>\n  <p>Creates a transaction for an order.</p>",
+      "summary": "Creates a transaction for an order",
+      "operationId": "Createsatransactionforanorder",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "source",
+          "description": "An optional origin of the transaction. Set to <code>external</code> to import a cash transaction for the associated order.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        }
+      ],
+      "responses": {
+        "201": {
+          "description": "Creates a transaction for an order",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Capture a specified amount on an authorized order, and associate the capture with an authorization by including its ID": {
+                  "value": {
+                    "transaction": {
+                      "id": 1068278470,
+                      "order_id": 450789469,
+                      "kind": "capture",
+                      "gateway": "bogus",
+                      "status": "success",
+                      "message": "Bogus Gateway: Forced success",
+                      "created_at": "2022-04-05T11:06:22-06:00",
+                      "test": true,
+                      "authorization": null,
+                      "location_id": null,
+                      "user_id": null,
+                      "parent_id": 389404469,
+                      "processed_at": "2022-04-05T11:06:22-06:00",
+                      "device_id": null,
+                      "error_code": null,
+                      "source_name": "755357713",
+                      "payment_details": {
+                        "credit_card_bin": null,
+                        "avs_result_code": null,
+                        "cvv_result_code": null,
+                        "credit_card_number": "•••• •••• •••• 4242",
+                        "credit_card_company": "Visa",
+                        "credit_card_name": null,
+                        "credit_card_wallet": null,
+                        "credit_card_expiration_month": null,
+                        "credit_card_expiration_year": null
+                      },
+                      "receipt": {},
+                      "currency_exchange_adjustment": null,
+                      "amount": "10.00",
+                      "currency": "USD",
+                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278470"
+                    }
+                  }
+                },
+                "Void a transaction": {
+                  "value": {
+                    "transaction": {
+                      "id": 1068278471,
+                      "order_id": 450789469,
+                      "kind": "void",
+                      "gateway": "bogus",
+                      "status": "success",
+                      "message": "Bogus Gateway: Forced success",
+                      "created_at": "2022-04-05T11:06:23-06:00",
+                      "test": true,
+                      "authorization": null,
+                      "location_id": null,
+                      "user_id": null,
+                      "parent_id": 389404469,
+                      "processed_at": "2022-04-05T11:06:23-06:00",
+                      "device_id": null,
+                      "error_code": null,
+                      "source_name": "755357713",
+                      "payment_details": {
+                        "credit_card_bin": null,
+                        "avs_result_code": null,
+                        "cvv_result_code": null,
+                        "credit_card_number": "•••• •••• •••• 4242",
+                        "credit_card_company": "Visa",
+                        "credit_card_name": null,
+                        "credit_card_wallet": null,
+                        "credit_card_expiration_month": null,
+                        "credit_card_expiration_year": null
+                      },
+                      "receipt": {},
+                      "currency_exchange_adjustment": null,
+                      "amount": "0.00",
+                      "currency": "USD",
+                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278471"
+                    }
+                  }
+                },
+                "Create a test transaction": {
+                  "value": {
+                    "transaction": {
+                      "id": 1068278472,
+                      "order_id": 450789469,
+                      "kind": "capture",
+                      "gateway": "bogus",
+                      "status": "success",
+                      "message": "Bogus Gateway: Forced success",
+                      "created_at": "2022-04-05T11:06:25-06:00",
+                      "test": true,
+                      "authorization": null,
+                      "location_id": null,
+                      "user_id": null,
+                      "parent_id": 389404469,
+                      "processed_at": "2022-04-05T11:06:25-06:00",
+                      "device_id": null,
+                      "error_code": null,
+                      "source_name": "755357713",
+                      "payment_details": {
+                        "credit_card_bin": null,
+                        "avs_result_code": null,
+                        "cvv_result_code": null,
+                        "credit_card_number": "•••• •••• •••• 4242",
+                        "credit_card_company": "Visa",
+                        "credit_card_name": null,
+                        "credit_card_wallet": null,
+                        "credit_card_expiration_month": null,
+                        "credit_card_expiration_year": null
+                      },
+                      "receipt": {},
+                      "currency_exchange_adjustment": null,
+                      "amount": "10.00",
+                      "currency": "USD",
+                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278472"
+                    }
+                  }
+                },
+                "Capture the full amount for one authorization on an order, and associate the capture with an authorization by including its authorization code": {
+                  "value": {
+                    "transaction": {
+                      "id": 1068278473,
+                      "order_id": 450789469,
+                      "kind": "capture",
+                      "gateway": "bogus",
+                      "status": "success",
+                      "message": "Bogus Gateway: Forced success",
+                      "created_at": "2022-04-05T11:06:27-06:00",
+                      "test": true,
+                      "authorization": null,
+                      "location_id": null,
+                      "user_id": null,
+                      "parent_id": 389404469,
+                      "processed_at": "2022-04-05T11:06:27-06:00",
+                      "device_id": null,
+                      "error_code": null,
+                      "source_name": "755357713",
+                      "payment_details": {
+                        "credit_card_bin": null,
+                        "avs_result_code": null,
+                        "cvv_result_code": null,
+                        "credit_card_number": "•••• •••• •••• 4242",
+                        "credit_card_company": "Visa",
+                        "credit_card_name": null,
+                        "credit_card_wallet": null,
+                        "credit_card_expiration_month": null,
+                        "credit_card_expiration_year": null
+                      },
+                      "receipt": {},
+                      "currency_exchange_adjustment": null,
+                      "amount": "598.94",
+                      "currency": "USD",
+                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/1068278473"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/transactions.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/orders/450789469/transactions.json",
+            "headers": {},
+            "body": "{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"capture\",\"parent_id\":389404469}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"transaction\":{\"id\":1068278470,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-04-05T13:06:22-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-04-05T13:06:22-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278470\"}}"
+          },
+          "name": "Capture a specified amount on an authorized order, and associate the capture with an authorization by including its ID",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"capture\",\"parent_id\":389404469}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.currency = \"USD\"\ntransaction.amount = \"10.00\"\ntransaction.kind = \"capture\"\ntransaction.parent_id = 389404469\ntransaction.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"capture\";\ntransaction.parent_id = 389404469;\nawait transaction.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->currency = \"USD\";\n$transaction->amount = \"10.00\";\n$transaction->kind = \"capture\";\n$transaction->parent_id = 389404469;\n$transaction->save();"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/transactions.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/orders/450789469/transactions.json",
+            "headers": {},
+            "body": "{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"void\",\"parent_id\":389404469}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"transaction\":{\"id\":1068278471,\"order_id\":450789469,\"kind\":\"void\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-04-05T13:06:23-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-04-05T13:06:23-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"0.00\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278471\"}}"
+          },
+          "name": "Void a transaction",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"void\",\"parent_id\":389404469}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.currency = \"USD\"\ntransaction.amount = \"10.00\"\ntransaction.kind = \"void\"\ntransaction.parent_id = 389404469\ntransaction.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"void\";\ntransaction.parent_id = 389404469;\nawait transaction.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->currency = \"USD\";\n$transaction->amount = \"10.00\";\n$transaction->kind = \"void\";\n$transaction->parent_id = 389404469;\n$transaction->save();"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/transactions.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/orders/450789469/transactions.json",
+            "headers": {},
+            "body": "{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"capture\",\"parent_id\":389404469,\"test\":true}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"transaction\":{\"id\":1068278472,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-04-05T13:06:25-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-04-05T13:06:25-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"10.00\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278472\"}}"
+          },
+          "name": "Create a test transaction",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"capture\",\"parent_id\":389404469,\"test\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.currency = \"USD\"\ntransaction.amount = \"10.00\"\ntransaction.kind = \"capture\"\ntransaction.parent_id = 389404469\ntransaction.test = true\ntransaction.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"capture\";\ntransaction.parent_id = 389404469;\ntransaction.test = true;\nawait transaction.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->currency = \"USD\";\n$transaction->amount = \"10.00\";\n$transaction->kind = \"capture\";\n$transaction->parent_id = 389404469;\n$transaction->test = true;\n$transaction->save();"
+            }
+          ]
+        },
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/transactions.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/orders/450789469/transactions.json",
+            "headers": {},
+            "body": "{\"transaction\":{\"kind\":\"capture\",\"authorization\":\"authorization-key\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"transaction\":{\"id\":1068278473,\"order_id\":450789469,\"kind\":\"capture\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":\"Bogus Gateway: Forced success\",\"created_at\":\"2022-04-05T13:06:27-04:00\",\"test\":true,\"authorization\":null,\"location_id\":null,\"user_id\":null,\"parent_id\":389404469,\"processed_at\":\"2022-04-05T13:06:27-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"755357713\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\",\"credit_card_name\":null,\"credit_card_wallet\":null,\"credit_card_expiration_month\":null,\"credit_card_expiration_year\":null},\"receipt\":{},\"currency_exchange_adjustment\":null,\"amount\":\"598.94\",\"currency\":\"USD\",\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/1068278473\"}}"
+          },
+          "name": "Capture the full amount for one authorization on an order, and associate the capture with an authorization by including its authorization code",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"transaction\":{\"kind\":\"capture\",\"authorization\":\"authorization-key\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.kind = \"capture\"\ntransaction.authorization = \"authorization-key\"\ntransaction.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.kind = \"capture\";\ntransaction.authorization = \"authorization-key\";\nawait transaction.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->kind = \"capture\";\n$transaction->authorization = \"authorization-key\";\n$transaction->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/transactions.json",
+      "action": "post"
+    },
+    {
+      "description": "Retrieves a count of an order's transactions.",
+      "summary": "Retrieves a count of an order's transactions",
+      "operationId": "Retrievesacountofanorder'stransactions",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a count of an order's transactions",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Count an order's transactions": {
+                  "value": {
+                    "count": 3
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/transactions/count.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/orders/450789469/transactions/count.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"count\":3}"
+          },
+          "name": "Count an order's transactions",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/transactions/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Transaction.count(\n  session: test_session,\n  order_id: 450789469,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.count({\n  session: test_session,\n  order_id: 450789469,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::count(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/transactions/count.json",
+      "action": "get"
+    },
+    {
+      "description": "<p>Retrieves a specific transaction.</p>\n<p>Transactions attached to multi-currency orders are in the presentment currency by default. To retrieve transactions in the shop currency, include the URL parameter <code>in_shop_currency=true</code>.</p>\n<p><code>extended_authorization_attributes</code> are available on this endpoint only to stores on the <a href=\"https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9\">Shopify Plus</a> plan that use Shopify Payments. To learn more about extended authorization periods, refer to <a href=\"https://help.shopify.com/en/manual/payments/payment-authorization\">Payment authorization</a>.</p>",
+      "summary": "Retrieves a specific transaction",
+      "operationId": "Retrievesaspecifictransaction",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "transaction_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fields",
+          "description": "Show only certain fields, specified by a comma-separated list of field names.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "in_shop_currency",
+          "description": "Show amounts in the shop currency.",
+          "in": "query",
+          "schema": {
+            "type": "x-string",
+            "default": "false"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a specific transaction",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a specific transaction for an order": {
+                  "value": {
+                    "transaction": {
+                      "id": 389404469,
+                      "order_id": 450789469,
+                      "kind": "authorization",
+                      "gateway": "bogus",
+                      "status": "success",
+                      "message": null,
+                      "created_at": "2005-08-01T09:57:11-06:00",
+                      "test": false,
+                      "authorization": "authorization-key",
+                      "location_id": null,
+                      "user_id": null,
+                      "parent_id": null,
+                      "processed_at": "2005-08-01T09:57:11-06:00",
+                      "device_id": null,
+                      "error_code": null,
+                      "source_name": "web",
+                      "payment_details": {
+                        "credit_card_bin": null,
+                        "avs_result_code": null,
+                        "cvv_result_code": null,
+                        "credit_card_number": "•••• •••• •••• 4242",
+                        "credit_card_company": "Visa"
+                      },
+                      "receipt": {
+                        "testcase": true,
+                        "authorization": "123456"
+                      },
+                      "currency_exchange_adjustment": null,
+                      "amount": "598.94",
+                      "currency": "USD",
+                      "authorization_expires_at": null,
+                      "extended_authorization_attributes": {},
+                      "admin_graphql_api_id": "gid://shopify/OrderTransaction/389404469"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/transactions/389404469.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2021-01/orders/450789469/transactions/389404469.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"transaction\":{\"id\":389404469,\"order_id\":450789469,\"kind\":\"authorization\",\"gateway\":\"bogus\",\"status\":\"success\",\"message\":null,\"created_at\":\"2005-08-01T11:57:11-04:00\",\"test\":false,\"authorization\":\"authorization-key\",\"location_id\":null,\"user_id\":null,\"parent_id\":null,\"processed_at\":\"2005-08-01T11:57:11-04:00\",\"device_id\":null,\"error_code\":null,\"source_name\":\"web\",\"payment_details\":{\"credit_card_bin\":null,\"avs_result_code\":null,\"cvv_result_code\":null,\"credit_card_number\":\"•••• •••• •••• 4242\",\"credit_card_company\":\"Visa\"},\"receipt\":{\"testcase\":true,\"authorization\":\"123456\"},\"currency_exchange_adjustment\":null,\"amount\":\"598.94\",\"currency\":\"USD\",\"authorization_expires_at\":null,\"extended_authorization_attributes\":{},\"admin_graphql_api_id\":\"gid://shopify/OrderTransaction/389404469\"}}"
+          },
+          "name": "Retrieve a specific transaction for an order",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/transactions/389404469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Transaction.find(\n  session: test_session,\n  order_id: 450789469,\n  id: 389404469,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.find({\n  session: test_session,\n  order_id: 450789469,\n  id: 389404469,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::find(\n    $this->test_session, // Session\n    389404469, // Id\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/transactions/{transaction_id}.json",
+      "action": "get"
+    }
+  ],
+  "components": [
+    {
+      "name": "Transaction",
+      "title": "Transaction",
+      "type": "object",
+      "properties": [
+        {
+          "description": "The amount of money included in the transaction. If you don't provide a value for `amount`, then it defaults to the total cost of the order (even if a previous transaction has been made towards it).\n",
+          "type": "x-string",
+          "example": "10.00",
+          "name": "amount"
+        },
+        {
+          "description": "The authorization code associated with the transaction.",
+          "type": "x-string",
+          "example": "ch_1AtJu6CktlpKSclI4zjeQb2t",
+          "name": "authorization"
+        },
+        {
+          "description": "The date and time (<a href='https://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a> format) when the Shopify Payments authorization expires.\n",
+          "type": "x-string",
+          "example": "2021-03-13T13:09:54-07:00",
+          "name": "authorization_expires_at"
+        },
+        {
+          "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the transaction was created.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": "2012-03-13T14:09:54-06:00",
+          "name": "created_at"
+        },
+        {
+          "description": "<p>The three-letter code (<a href=\"https://en.wikipedia.org/wiki/ISO_4217\">ISO 4217</a> format) for the currency used for the payment.</p>\n",
+          "type": "x-string",
+          "example": "USD",
+          "name": "currency"
+        },
+        {
+          "description": "The ID for the device.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": 1,
+          "name": "device_id"
+        },
+        {
+          "description": "          A standardized error code, independent of the payment provider. Valid values:\n          <ul>\n            <li><strong>incorrect_number</strong></li>\n            <li><strong>invalid_number</strong></li>\n            <li><strong>invalid_expiry_date</strong></li>\n            <li><strong>invalid_cvc</strong></li>\n            <li><strong>expired_card</strong></li>\n            <li><strong>incorrect_cvc</strong></li>\n            <li><strong>incorrect_zip</strong></li>\n            <li><strong>incorrect_address</strong></li>\n            <li><strong>card_declined</strong></li>\n            <li><strong>processing_error</strong></li>\n            <li><strong>call_issuer</strong></li>\n            <li><strong>pick_up_card</strong></li>\n          </ul>\n",
+          "type": "x-string",
+          "readOnly": true,
+          "example": "invalid_cvc",
+          "name": "error_code"
+        },
+        {
+          "description": "          The attributes associated with a Shopify Payments extended authorization period. It has the following attributes:\n            <ul>\n              <li><strong>standard_authorization_expires_at</strong>: The date and time (<a href='https://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a> format) when the standard authorization period expires. After expiry, an extended authorization fee is applied upon capturing the payment.</li>\n              <li><strong>extended_authorization_expires_at</strong>: The date and time (<a href='https://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a> format) when the extended authorization period expires. After expiry, the merchant can't capture the payment.</li>\n            </ul>\n\n          <code>extended_authorization_attributes</code> are available on the <strong>Retrieve a specific transaction for an order</strong> endpoint only if the following criteria applies:\n            <ul>\n              <li>The store is on a <a href=\"https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9\">Shopify Plus</a> plan.</li>\n              <li>The store uses Shopify Payments.</li>\n              <li>The transaction being retrieved is an extended authorization, which is determined by the <code>capture_before</code> date in the charge.</li>\n            </ul>\n\n           If the criteria isn't met, then an empty JSON is returned for <code>extended_authorization_attributes</code>.\n\n           To learn more about extended authorization periods, refer to <a href=\"https://help.shopify.com/en/manual/payments/payment-authorization\">Payment authorization</a>.\n",
+          "type": "x-string",
+          "example": {
+            "standard_authorization_expires_at": "2020-10-07T22:00:00-06:00",
+            "extended_authorization_expires_at": "2020-10-29T22:00:00-06:00"
+          },
+          "name": "extended_authorization_attributes"
+        },
+        {
+          "description": "          The name of the gateway the transaction was issued through. A list of gateways can be found on Shopify's <a href=\"//www.shopify.com/payment-gateways\" target=\"_blank\">payment gateways page</a>.\n",
+          "type": "x-string",
+          "example": "shopify_payments",
+          "name": "gateway"
+        },
+        {
+          "description": "The ID for the transaction.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": 999225661,
+          "name": "id"
+        },
+        {
+          "description": "          The transaction's type. Valid values:\n          <ul>\n            <li><strong>authorization</strong>: Money that the customer has agreed to pay. The authorization period can be between 7 and 30 days (depending on your payment service) while a store waits for a payment to be captured.</li>\n            <li><strong>capture</strong>: A transfer of money that was reserved during the authorization of a shop.</li>\n            <li><strong>sale</strong>: The authorization and capture of a payment performed in one single step.</li>\n            <li><strong>void</strong>: The cancellation of a pending authorization or capture.</li>\n            <li><strong>refund</strong>: The partial or full return of captured money to the customer.</li>\n          </ul>\n",
+          "type": "x-string",
+          "example": "capture",
+          "name": "kind"
+        },
+        {
+          "description": "The ID of the physical location where the transaction was processed.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": {
+            "id": 49202758
+          },
+          "name": "location_id"
+        },
+        {
+          "description": "          A string generated by the payment provider with additional information about why the transaction succeeded or failed.\n",
+          "type": "x-string",
+          "readOnly": true,
+          "example": "Marked the Cash on Delivery (COD) payment as received",
+          "name": "message"
+        },
+        {
+          "description": "The ID for the order that the transaction is associated with.",
+          "type": "x-string",
+          "example": 450789469,
+          "name": "order_id"
+        },
+        {
+          "description": "          Information about the credit card used for this transaction. It has the following attributes:\n          <ul>\n            <li><strong>credit_card_bin</strong>: The <a href=\"https://en.wikipedia.org/wiki/ISO/IEC_7812\" target=\"_blank\">issuer identification number</a> (IIN), formerly known as bank identification number (BIN) of the customer's credit card. This is made up of the first few digits of the credit card number.</li>\n            <li><strong>avs_result_code</strong>: The response code from the <a href=\"https://en.wikipedia.org/wiki/Address_Verification_System\" target=\"_blank\">address verification system</a>. The code is always a single letter. Refer to <a href='http://www.emsecommerce.net/avs_cvv2_response_codes.htm' target=\"_blank\">this chart</a> for the codes and their definitions.</li>\n            <li><strong>cvv_result_code</strong>: The response code from the credit card company indicating whether the customer entered the <a href=\"https://en.wikipedia.org/wiki/Card_Security_Code\" target=\"_blank\">card security code</a>, or card verification value, correctly. The code is a single letter or empty string; see <a href=\"http://www.emsecommerce.net/avs_cvv2_response_codes.htm\" target=\"_blank\">this chart</a> for the codes and their definitions.</li>\n            <li><strong>credit_card_number</strong>: The customer's credit card number, with most of the leading digits redacted.</li>\n            <li><strong>credit_card_company</strong>: The name of the company that issued the customer's credit card.</li>\n          </ul>\n",
+          "type": "x-string",
+          "readOnly": true,
+          "example": {
+            "credit_card_bin": "123456",
+            "avs_result_code": "Y",
+            "cvv_result_code": "M",
+            "credit_card_number": "•••• •••• •••• 4242",
+            "credit_card_company": "Visa"
+          },
+          "name": "payment_details"
+        },
+        {
+          "description": "          The ID of an associated transaction.\n          <ul>\n            <li>For <code>capture</code> transactions, the parent needs to be an <code>authorization</code> transaction.</li>\n            <li>For <code>void</code> transactions, the parent needs to be an <code>authorization</code> transaction.</li>\n            <li>For <code>refund</code> transactions, the parent needs to be a <code>capture</code> or <code>sale</code> transaction.</li>\n          </ul>\n",
+          "type": "x-string",
+          "example": 584698724408,
+          "name": "parent_id"
+        },
+        {
+          "description": "          The attributes associated with a Shopify Payments refund. It has the following attributes:\n            <ul>\n              <li><strong>status</strong>: The current status of the refund. Valid values: <code>pending</code>, <code>failure</code>, <code>success</code>, and <code>error</code>.</li>\n              <li><strong>acquirer_reference_number</strong>: A unique number associated with the transaction that can be used to track the refund. This property has a value only for transactions completed with Visa or Mastercard.</li>\n            </ul>\n\n          <code>payments_refund_attributes</code> are available on any JSON serialization of the order transaction only if the following criteria apply:\n            <ul>\n              <li>The store is on a <a href=\"https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9\">Shopify Plus</a> plan.</li>\n              <li>The store uses Shopify Payments.</li>\n              <li>The order transaction <strong>kind</strong> is either <code>refund</code> or <code>void</code>.</li>\n            </ul>\n\n           If the criteria isn't met, then the <code>payments_refund_attributes</code> property is omitted.\n\n",
+          "type": "x-string",
+          "example": {
+            "status": "success",
+            "acquirer_reference_number": "123456789012345678901234"
+          },
+          "name": "payments_refund_attributes"
+        },
+        {
+          "description": "          The date and time (<a href='https://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a> format)\n          when a transaction was processed. This value is the date that's used in the analytic reports. By default,\n          it matches the <code>created_at</code> value. If you're importing transactions from an app or another\n          platform, then you can set <code>processed_at</code> to a date and time in the past to match when the\n          original transaction was processed.\n",
+          "type": "x-string",
+          "example": "2018-01-10T09:00:00-07:00",
+          "name": "processed_at"
+        },
+        {
+          "description": "          A transaction receipt attached to the transaction by the gateway. The value of this field depends on which gateway the shop is using.\n",
+          "type": "x-string",
+          "readOnly": true,
+          "example": {},
+          "name": "receipt"
+        },
+        {
+          "description": "          The origin of the transaction. This is set by Shopify and can't be overridden. Example values: <code>web</code>, <code>pos</code>, <code>iphone</code>, and <code>android</code>.\n",
+          "type": "x-string",
+          "readOnly": true,
+          "example": "web",
+          "name": "source_name"
+        },
+        {
+          "description": "The status of the transaction. Valid values: <code>pending</code>, <code>failure</code>, <code>success</code>, and <code>error</code>.",
+          "type": "x-string",
+          "example": "success",
+          "name": "status"
+        },
+        {
+          "description": "Whether the transaction is a test transaction.",
+          "type": "x-string",
+          "example": true,
+          "name": "test"
+        },
+        {
+          "description": "The ID for the user who was logged into the Shopify POS device when the order was processed, if applicable.",
+          "type": "x-string",
+          "example": 106045196,
+          "name": "user_id"
+        },
+        {
+          "description": "          An adjustment on the transaction showing the amount lost or gained due to fluctuations in the currency exchange rate. It has the following attributes:\n          <ul>\n            <li><strong>ID</strong>: The ID of the adjustment.</li>\n            <li><strong>adjustment</strong>: The difference between the amounts on the associated transaction and the parent transaction.</li>\n            <li><strong>original_amount</strong>: The amount of the parent transaction in the shop currency.</li>\n            <li><strong>final_amount</strong>: The amount of the associated transaction in the shop currency.</li>\n            <li><strong>currency</strong>: The shop currency.</li>\n          </ul>\n          Requires the header <code>X-Shopify-Api-Features = include-currency-exchange-adjustments</code>.\n",
+          "type": "x-string",
+          "example": {
+            "id": 1,
+            "adjustment": "-0.01",
+            "original_amount": "-53.62",
+            "final_amount": "-53.63",
+            "currency": "CAD"
+          },
+          "name": "currency_exchange_adjustment"
+        }
+      ],
+      "required": [
+        "kind"
+      ]
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "orders/transaction",
+    "gid": "226d0d97-25ad-417d-bc91-17bf1f4f07f4",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/transaction"
+    ],
+    "meta_description": "Create and retrieve transactions for an order. Transactions are created for every order that results in an exchange of money.",
+    "postman_group": "Orders",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

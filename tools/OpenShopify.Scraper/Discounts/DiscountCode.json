@@ -1,0 +1,988 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "DiscountCode",
+    "description": "        <div class=\"note\">\n          <h4>Note</h4>\n          <p>We recommend using the GraphQL Admin API to manage discounts. The <a href=\"/api/examples/discounts\">Discount types</a>\n          available in the GraphQL Admin API are intended to replace the GraphQL Admin <code>PriceRule</code> object and\n          REST Admin <code>PriceRule</code> and <code>DiscountCode</code> resources.</p>\n        </div>\n        <p>You can use the PriceRule DiscountCode resource to create discount codes that enable specific discounts to be redeemed.\n        Merchants can distribute discount codes to their customers using a variety of means, such as an email or URL, and customers can apply these codes at checkout.</p>\n        <p>Each discount code belongs to a price rule, which holds the logic for the discount. For more information, see the <a href=\"/docs/admin-api/rest/reference/discounts/pricerule\">PriceRule</a> resource.</p>\n        <p>To create multiple discount codes that use the same price rule logic, use the batch endpoint. For example, you might allow merchants to create a batch of discount codes that belong to the same price rule but are each personalized for a different customer.</p>\n",
+    "x-owner": "https://vault.shopify.io/teams/146",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Creates a discount code",
+      "summary": "Creates a discount code",
+      "operationId": "Createsadiscountcode",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "price_rule_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "201": {
+          "description": "Creates a discount code",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a discount code": {
+                  "value": {
+                    "discount_code": {
+                      "id": 1054381139,
+                      "price_rule_id": 507328175,
+                      "code": "SUMMERSALE10OFF",
+                      "usage_count": 0,
+                      "created_at": "2022-04-05T11:06:57-06:00",
+                      "updated_at": "2022-04-05T11:06:57-06:00"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules/507328175/discount_codes.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/price_rules/507328175/discount_codes.json",
+            "headers": {},
+            "body": "{\"discount_code\":{\"code\":\"SUMMERSALE10OFF\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"discount_code\":{\"id\":1054381139,\"price_rule_id\":507328175,\"code\":\"SUMMERSALE10OFF\",\"usage_count\":0,\"created_at\":\"2022-04-05T13:06:57-04:00\",\"updated_at\":\"2022-04-05T13:06:57-04:00\"}}"
+          },
+          "name": "Create a discount code",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"discount_code\":{\"code\":\"SUMMERSALE10OFF\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules/507328175/discount_codes.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ndiscount_code = ShopifyAPI::DiscountCode.new(session: test_session)\ndiscount_code.price_rule_id = 507328175\ndiscount_code.code = \"SUMMERSALE10OFF\"\ndiscount_code.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst discount_code = new DiscountCode({session: test_session});\ndiscount_code.price_rule_id = 507328175;\ndiscount_code.code = \"SUMMERSALE10OFF\";\nawait discount_code.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\DiscountCode;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$discount_code = new DiscountCode($this->test_session);\n$discount_code->price_rule_id = 507328175;\n$discount_code->code = \"SUMMERSALE10OFF\";\n$discount_code->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}/discount_codes.json",
+      "action": "post"
+    },
+    {
+      "description": "Retrieve a list of discount codes. <strong>Note:</strong> As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/tutorials/make-paginated-requests-to-rest-admin-api\"><em>Making requests to paginated REST Admin API endpoints</em></a>.",
+      "summary": "Retrieves a list of discount codes",
+      "operationId": "Retrievesalistofdiscountcodes",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "price_rule_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of discount codes",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a list of all discount codes": {
+                  "value": {
+                    "discount_codes": [
+                      {
+                        "id": 507328175,
+                        "price_rule_id": 507328175,
+                        "code": "SUMMERSALE10OFF",
+                        "usage_count": 0,
+                        "created_at": "2022-04-05T11:05:24-06:00",
+                        "updated_at": "2022-04-05T11:05:24-06:00"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules/507328175/discount_codes.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/price_rules/507328175/discount_codes.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"discount_codes\":[{\"id\":507328175,\"price_rule_id\":507328175,\"code\":\"SUMMERSALE10OFF\",\"usage_count\":0,\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\"}]}"
+          },
+          "name": "Retrieve a list of all discount codes",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules/507328175/discount_codes.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::DiscountCode.all(\n  session: test_session,\n  price_rule_id: 507328175,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DiscountCode.all({\n  session: test_session,\n  price_rule_id: 507328175,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\DiscountCode;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDiscountCode::all(\n    $this->test_session, // Session\n    [\"price_rule_id\" => \"507328175\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}/discount_codes.json",
+      "action": "get"
+    },
+    {
+      "description": "Updates an existing discount code",
+      "summary": "Updates an existing discount code",
+      "operationId": "Updatesanexistingdiscountcode",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "discount_code_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "price_rule_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Updates an existing discount code",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Update the code for a discount": {
+                  "value": {
+                    "discount_code": {
+                      "id": 507328175,
+                      "price_rule_id": 507328175,
+                      "code": "WINTERSALE20OFF",
+                      "usage_count": 0,
+                      "created_at": "2022-04-05T11:05:24-06:00",
+                      "updated_at": "2022-04-05T11:06:58-06:00"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules/507328175/discount_codes/507328175.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/price_rules/507328175/discount_codes/507328175.json",
+            "headers": {},
+            "body": "{\"discount_code\":{\"id\":507328175,\"code\":\"WINTERSALE20OFF\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"discount_code\":{\"id\":507328175,\"price_rule_id\":507328175,\"code\":\"WINTERSALE20OFF\",\"usage_count\":0,\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:06:58-04:00\"}}"
+          },
+          "name": "Update the code for a discount",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"discount_code\":{\"id\":507328175,\"code\":\"WINTERSALE20OFF\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules/507328175/discount_codes/507328175.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ndiscount_code = ShopifyAPI::DiscountCode.new(session: test_session)\ndiscount_code.price_rule_id = 507328175\ndiscount_code.id = 507328175\ndiscount_code.code = \"WINTERSALE20OFF\"\ndiscount_code.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst discount_code = new DiscountCode({session: test_session});\ndiscount_code.price_rule_id = 507328175;\ndiscount_code.id = 507328175;\ndiscount_code.code = \"WINTERSALE20OFF\";\nawait discount_code.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\DiscountCode;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$discount_code = new DiscountCode($this->test_session);\n$discount_code->price_rule_id = 507328175;\n$discount_code->id = 507328175;\n$discount_code->code = \"WINTERSALE20OFF\";\n$discount_code->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json",
+      "action": "put"
+    },
+    {
+      "description": "Retrieves a single discount code",
+      "summary": "Retrieves a single discount code",
+      "operationId": "Retrievesasinglediscountcode",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "discount_code_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "price_rule_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a single discount code",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a single discount code": {
+                  "value": {
+                    "discount_code": {
+                      "id": 507328175,
+                      "price_rule_id": 507328175,
+                      "code": "SUMMERSALE10OFF",
+                      "usage_count": 0,
+                      "created_at": "2022-04-05T11:05:24-06:00",
+                      "updated_at": "2022-04-05T11:05:24-06:00"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules/507328175/discount_codes/507328175.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/price_rules/507328175/discount_codes/507328175.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"discount_code\":{\"id\":507328175,\"price_rule_id\":507328175,\"code\":\"SUMMERSALE10OFF\",\"usage_count\":0,\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\"}}"
+          },
+          "name": "Retrieve a single discount code",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules/507328175/discount_codes/507328175.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::DiscountCode.find(\n  session: test_session,\n  price_rule_id: 507328175,\n  id: 507328175,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DiscountCode.find({\n  session: test_session,\n  price_rule_id: 507328175,\n  id: 507328175,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\DiscountCode;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDiscountCode::find(\n    $this->test_session, // Session\n    507328175, // Id\n    [\"price_rule_id\" => \"507328175\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json",
+      "action": "get"
+    },
+    {
+      "description": "Deletes a discount code",
+      "summary": "Deletes a discount code",
+      "operationId": "Deletesadiscountcode",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "discount_code_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "price_rule_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "204": {
+          "description": "Deletes a discount code",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Delete a discount code": {
+                  "value": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "204",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules/507328175/discount_codes/507328175.json",
+          "request_method": "DELETE",
+          "request": {
+            "action": "DELETE /admin/api/unstable/price_rules/507328175/discount_codes/507328175.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 204 No Content",
+            "headers": {},
+            "body": ""
+          },
+          "name": "Delete a discount code",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules/507328175/discount_codes/507328175.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::DiscountCode.delete(\n  session: test_session,\n  price_rule_id: 507328175,\n  id: 507328175,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DiscountCode.delete({\n  session: test_session,\n  price_rule_id: 507328175,\n  id: 507328175,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\DiscountCode;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDiscountCode::delete(\n    $this->test_session, // Session\n    507328175, // Id\n    [\"price_rule_id\" => \"507328175\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json",
+      "action": "delete"
+    },
+    {
+      "description": "<p>Retrieves the location of a discount code.</p>\n          <p>The discount code's location is returned in the location header, not in the DiscountCode object itself.\n            Depending on your HTTP client, the location of the discount code might follow the location header automatically.</p>",
+      "summary": "Retrieves the location of a discount code",
+      "operationId": "Retrievesthelocationofadiscountcode",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "code",
+          "description": "Retrieves the location of a discount code by code name.",
+          "in": "query",
+          "schema": {
+            "type": "x-string",
+            "maximum": "100"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "303": {
+          "description": "Retrieves the location of a discount code",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Search for a discount code": {
+                  "value": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "303",
+          "request_query": "code=SUMMERSALE10OFF",
+          "request_path": "/admin/api/2022-04/discount_codes/lookup.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/discount_codes/lookup.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 303 See Other",
+            "headers": {},
+            "body": ""
+          },
+          "name": "Search for a discount code",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/discount_codes/lookup.json?code=SUMMERSALE10OFF\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::DiscountCode.lookup(\n  session: test_session,\n  code: \"SUMMERSALE10OFF\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DiscountCode.lookup({\n  session: test_session,\n  code: \"SUMMERSALE10OFF\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\DiscountCode;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDiscountCode::lookup(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"code\" => \"SUMMERSALE10OFF\"], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/discount_codes/lookup.json?code=SUMMERSALE10OFF",
+      "action": "get"
+    },
+    {
+      "description": "Retrieves a count of discount codes for a shop",
+      "summary": "Retrieves a count of discount codes for a shop",
+      "operationId": "Retrievesacountofdiscountcodesforashop",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "times_used",
+          "description": "Show discount codes with times used.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "times_used_max",
+          "description": "Show discount codes used greater than or equal to this value.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "times_used_min",
+          "description": "Show discount codes used less than or equal to this value.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a count of discount codes for a shop",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a count of discount codes for a shop": {
+                  "value": {
+                    "count": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/discount_codes/count.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2021-04/discount_codes/count.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"count\":2}"
+          },
+          "name": "Retrieve a count of discount codes for a shop",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/discount_codes/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::DiscountCode.count(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DiscountCode.count({\n  session: test_session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\DiscountCode;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDiscountCode::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/discount_codes/count.json",
+      "action": "get"
+    },
+    {
+      "description": "<p>Creates a discount code creation job.</p>\n          <p>The batch endpoint can be used to asynchronously create up to 100 discount codes in a single request. It\n          enqueues and returns a <code>discount_code_creation</code> object that can be monitored for completion.\n          You can enqueue a single creation job per a shop and you can't enqueue more until the job completes.</p>\n          <p>Response fields that are specific to the batch endpoint include:\n          <ul>\n            <li><code>status</code>: The state of the discount code creation job. Possible values are:\n              <ul>\n                <li><code>queued</code>: The job is acknowledged, but not started.</li>\n                <li><code>running</code>: The job is in process.</li>\n                <li><code>completed</code>: The job has finished.</li>\n              </ul>\n            <li><code>codes_count</code>: The number of discount codes to create.</li>\n            <li><code>imported_count</code>: The number of discount codes created successfully.</li>\n            <li><code>failed_count</code>: The number of discount codes that were not created successfully. Unsuccessful attempts will retry up to three times.</li>\n            <li><code>logs</code>: A report that specifies when no discount codes were created because the provided data was invalid. Example responses:\n              <ul>\n                <li>\"Price rule target selection can't be blank\"</li>\n                <li>\"Price rule allocation method can't be blank\"</li>\n              </ul>\n            </li>\n          </ul>\n          </p>",
+      "summary": "Creates a discount code creation job",
+      "operationId": "Createsadiscountcodecreationjob",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "price_rule_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "201": {
+          "description": "Creates a discount code creation job",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a discount code creation job": {
+                  "value": {
+                    "discount_code_creation": {
+                      "id": 989355119,
+                      "price_rule_id": 507328175,
+                      "started_at": null,
+                      "completed_at": null,
+                      "created_at": "2022-04-05T11:06:51-06:00",
+                      "updated_at": "2022-04-05T11:06:51-06:00",
+                      "status": "queued",
+                      "codes_count": 3,
+                      "imported_count": 0,
+                      "failed_count": 0,
+                      "logs": []
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules/507328175/batch.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/price_rules/507328175/batch.json",
+            "headers": {},
+            "body": "{\"discount_codes\":[{\"code\":\"SUMMER1\"},{\"code\":\"SUMMER2\"},{\"code\":\"SUMMER3\"}]}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"discount_code_creation\":{\"id\":989355119,\"price_rule_id\":507328175,\"started_at\":null,\"completed_at\":null,\"created_at\":\"2022-04-05T13:06:51-04:00\",\"updated_at\":\"2022-04-05T13:06:51-04:00\",\"status\":\"queued\",\"codes_count\":3,\"imported_count\":0,\"failed_count\":0,\"logs\":[]}}"
+          },
+          "name": "Create a discount code creation job",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"discount_codes\":[{\"code\":\"SUMMER1\"},{\"code\":\"SUMMER2\"},{\"code\":\"SUMMER3\"}]}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules/507328175/batch.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ndiscount_code = ShopifyAPI::DiscountCode.new(session: test_session)\ndiscount_code.price_rule_id = 507328175\ndiscount_code.batch(\n  session: test_session,\n  body: {\"discount_codes\" => [{\"code\" => \"SUMMER1\"}, {\"code\" => \"SUMMER2\"}, {\"code\" => \"SUMMER3\"}]},\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst discount_code = new DiscountCode({session: test_session});\ndiscount_code.price_rule_id = 507328175;\nawait discount_code.batch({\n  body: {\"discount_codes\": [{\"code\": \"SUMMER1\"}, {\"code\": \"SUMMER2\"}, {\"code\": \"SUMMER3\"}]},\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\DiscountCode;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$discount_code = new DiscountCode($this->test_session);\n$discount_code->price_rule_id = 507328175;\n$discount_code->batch(\n    [], // Params\n    [\"discount_codes\" => [[\"code\" => \"SUMMER1\"], [\"code\" => \"SUMMER2\"], [\"code\" => \"SUMMER3\"]]], // Body\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}/batch.json",
+      "action": "post"
+    },
+    {
+      "description": "<p>Retrieves a discount code creation job</p>",
+      "summary": "Retrieves a discount code creation job",
+      "operationId": "Retrievesadiscountcodecreationjob",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "batch_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "price_rule_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a discount code creation job",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a discount code creation job": {
+                  "value": {
+                    "discount_code_creation": {
+                      "id": 173232803,
+                      "price_rule_id": 507328175,
+                      "started_at": null,
+                      "completed_at": null,
+                      "created_at": "2022-04-05T11:05:24-06:00",
+                      "updated_at": "2022-04-05T11:05:24-06:00",
+                      "status": "queued",
+                      "codes_count": 3,
+                      "imported_count": 0,
+                      "failed_count": 0,
+                      "logs": []
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules/507328175/batch/173232803.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/price_rules/507328175/batch/173232803.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"discount_code_creation\":{\"id\":173232803,\"price_rule_id\":507328175,\"started_at\":null,\"completed_at\":null,\"created_at\":\"2022-04-05T13:05:24-04:00\",\"updated_at\":\"2022-04-05T13:05:24-04:00\",\"status\":\"queued\",\"codes_count\":3,\"imported_count\":0,\"failed_count\":0,\"logs\":[]}}"
+          },
+          "name": "Retrieve a discount code creation job",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules/507328175/batch/173232803.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::DiscountCode.get_all(\n  session: test_session,\n  price_rule_id: 507328175,\n  batch_id: 173232803,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DiscountCode.get_all({\n  session: test_session,\n  price_rule_id: 507328175,\n  batch_id: 173232803,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\DiscountCode;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDiscountCode::get_all(\n    $this->test_session, // Session\n    [\"price_rule_id\" => \"507328175\", \"batch_id\" => \"173232803\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}/batch/{batch_id}.json",
+      "action": "get"
+    },
+    {
+      "description": "<p>Retrieves a list of discount codes for a discount code creation job.</p>\n          <p>Discount codes that have been successfully created include a populated <code>id</code> field. Discount codes that\n          encountered errors during the creation process include a populated <code>errors</code> field.</p>",
+      "summary": "Retrieves a list of discount codes for a discount code creation job",
+      "operationId": "Retrievesalistofdiscountcodesforadiscountcodecreationjob",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "batch_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "price_rule_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of discount codes for a discount code creation job",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a list of discount codes for a discount code creation job": {
+                  "value": {
+                    "discount_codes": [
+                      {
+                        "id": null,
+                        "code": "foo",
+                        "errors": {}
+                      },
+                      {
+                        "id": null,
+                        "code": "",
+                        "errors": {}
+                      },
+                      {
+                        "id": null,
+                        "code": "bar",
+                        "errors": {}
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/price_rules/507328175/batch/173232803/discount_codes.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/price_rules/507328175/batch/173232803/discount_codes.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"discount_codes\":[{\"id\":null,\"code\":\"foo\",\"errors\":{}},{\"id\":null,\"code\":\"\",\"errors\":{}},{\"id\":null,\"code\":\"bar\",\"errors\":{}}]}"
+          },
+          "name": "Retrieve a list of discount codes for a discount code creation job",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/price_rules/507328175/batch/173232803/discount_codes.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::DiscountCode.all(\n  session: test_session,\n  price_rule_id: 507328175,\n  batch_id: 173232803,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {DiscountCode} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DiscountCode.all({\n  session: test_session,\n  price_rule_id: 507328175,\n  batch_id: 173232803,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\DiscountCode;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDiscountCode::all(\n    $this->test_session, // Session\n    [\"price_rule_id\" => \"507328175\", \"batch_id\" => \"173232803\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}/batch/{batch_id}/discount_codes.json",
+      "action": "get"
+    }
+  ],
+  "components": [
+    {
+      "name": "DiscountCode",
+      "title": "DiscountCode",
+      "type": "object",
+      "properties": [
+        {
+          "description": "          <p>The case-insensitive discount code that customers use at checkout. (maximum: 255 characters)</p>\n          <div class=\"note note-caution\">\n            <p>Use the same value for <code>code</code> as the <code>title</code> property of the associated <a href=\"/docs/admin-api/rest/reference/discounts/pricerule/#title-property\">price rule</a>.</p>\n          </div>\n",
+          "type": "x-string",
+          "example": "SUMMERSALE10OFF",
+          "name": "code"
+        },
+        {
+          "description": "          <p>The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the discount code was created.</p>\n",
+          "type": "x-string",
+          "readOnly": true,
+          "example": "2017-03-13T14:09:54-06:00",
+          "name": "created_at"
+        },
+        {
+          "description": "          <p>The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the discount code was updated.</p>\n",
+          "type": "x-string",
+          "readOnly": true,
+          "example": "2017-03-13T14:09:54-06:00",
+          "name": "updated_at"
+        },
+        {
+          "description": "The ID for the discount code.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": 9808080986,
+          "name": "id"
+        },
+        {
+          "description": "The ID for the price rule that this discount code belongs to.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": 423748927342,
+          "name": "price_rule_id"
+        },
+        {
+          "description": "The number of times that the discount code has been redeemed.",
+          "type": "x-string",
+          "readOnly": true,
+          "example": 3,
+          "name": "usage_count"
+        }
+      ],
+      "required": [
+        "code"
+      ]
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "discounts/discountcode",
+    "gid": "3e4c06b5-4d61-427a-a904-5ee12f918ab8",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/discountcode"
+    ],
+    "meta_description": "After setting up the logic for a discount using the PriceRule API, use the DiscountCode API to associate the discount with a code, which can be entered at the checkout to apply the discount.",
+    "postman_group": "Discounts",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

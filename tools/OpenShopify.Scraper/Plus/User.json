@@ -1,0 +1,629 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "User",
+    "description": "        <div class=\"note note-plus\">\n          <h4>Shopify Plus</h4>\n          <p>The User resource is available for <a href=\"/concepts/apps#private-apps\">private apps</a> and <a href=\"/concepts/apps#custom-apps\">custom apps</a> installed on <strong><a href=\"https://help.shopify.com/en/manual/intro-to-shopify/pricing-plans/shopify-plus\">Shopify Plus</a></strong> stores. Contact Shopify Plus Support to enable this API resource for your store.</p>\n        </div>\n        <p>The User resource lets you retrieve information about staff on a Shopify shop, including\n        <a href=\"https://help.shopify.com/en/manual/your-account/staff-accounts/staff-permissions\">staff permissions</a>.</p>\n        <p>Permissions determine the level of access that staff have to a merchant's store. From the Shopify admin, merchants can give each staff\n        individual permissions that control access to a part of Shopify. The API only lets you retrieve information about staff.\n        </p>\n",
+    "x-owner": "https://vault.shopify.io/teams/1772",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Retrieves a list of all users. <strong>Note:</strong> As of version 2021-01, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/tutorials/make-paginated-requests-to-rest-admin-api\"><em>Making requests to paginated REST Admin API endpoints</em></a>.",
+      "summary": "Retrieves a list of all users",
+      "operationId": "Retrievesalistofallusers",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "limit",
+          "description": "The maximum number of results to show on a page.",
+          "in": "query",
+          "schema": {
+            "type": "x-string",
+            "default": 50,
+            "maximum": 250
+          }
+        },
+        {
+          "name": "page_info",
+          "description": "A unique ID used to access a certain page of results.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of all users",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a list of all users": {
+                  "value": {
+                    "users": [
+                      {
+                        "id": 548380009,
+                        "first_name": "John",
+                        "email": "j.smith@example.com",
+                        "url": "www.example.com",
+                        "im": null,
+                        "screen_name": null,
+                        "phone": null,
+                        "last_name": "Smith",
+                        "account_owner": true,
+                        "receive_announcements": 1,
+                        "bio": null,
+                        "permissions": [
+                          "applications",
+                          "beacons",
+                          "billing_application_charges",
+                          "channels",
+                          "content",
+                          "customers",
+                          "dashboard",
+                          "domains",
+                          "draft_orders",
+                          "edit_orders",
+                          "edit_private_apps",
+                          "gift_cards",
+                          "links",
+                          "locations",
+                          "marketing",
+                          "marketing_section",
+                          "orders",
+                          "overviews",
+                          "pages",
+                          "pay_draft_orders_by_credit_card",
+                          "pay_orders_by_credit_card",
+                          "pay_orders_by_vaulted_card",
+                          "preferences",
+                          "products",
+                          "reports",
+                          "translations",
+                          "themes",
+                          "view_private_apps",
+                          "shopify_payments_accounts",
+                          "shopify_payments_transfers",
+                          "staff_audit_log_view",
+                          "staff_management_update",
+                          "applications_billing",
+                          "attestation_authority",
+                          "authentication_management",
+                          "balance_bank_accounts_management",
+                          "billing_charges",
+                          "billing_invoices_pay",
+                          "billing_invoices_view",
+                          "billing_payment_methods_manage",
+                          "billing_payment_methods_view",
+                          "billing_settings",
+                          "billing_subscriptions",
+                          "capital",
+                          "customer_private_data",
+                          "domains_management",
+                          "enable_private_apps",
+                          "experiments_management",
+                          "gdpr_actions",
+                          "payment_settings",
+                          "shopify_payments",
+                          "staff_api_permission_management",
+                          "staff_management",
+                          "staff_management_activation",
+                          "staff_management_create",
+                          "staff_management_delete",
+                          "support_methods",
+                          "collaborator_request_management",
+                          "collaborator_request_settings",
+                          "export_customers",
+                          "export_draft_orders",
+                          "export_orders",
+                          "export_products"
+                        ],
+                        "locale": "en",
+                        "user_type": "regular",
+                        "admin_graphql_api_id": "gid://shopify/StaffMember/548380009",
+                        "tfa_enabled?": false
+                      },
+                      {
+                        "id": 930143300,
+                        "first_name": "John",
+                        "email": "j.limited@example.com",
+                        "url": "www.example.com",
+                        "im": null,
+                        "screen_name": null,
+                        "phone": null,
+                        "last_name": "Limited",
+                        "account_owner": false,
+                        "receive_announcements": 1,
+                        "bio": null,
+                        "permissions": [],
+                        "locale": "en",
+                        "user_type": "regular",
+                        "admin_graphql_api_id": "gid://shopify/StaffMember/930143300",
+                        "tfa_enabled?": false
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/users.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/users.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"users\":[{\"id\":548380009,\"first_name\":\"John\",\"email\":\"j.smith@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Smith\",\"account_owner\":true,\"receive_announcements\":1,\"bio\":null,\"permissions\":[\"applications\",\"beacons\",\"billing_application_charges\",\"channels\",\"content\",\"customers\",\"dashboard\",\"domains\",\"draft_orders\",\"edit_orders\",\"edit_private_apps\",\"gift_cards\",\"links\",\"locations\",\"marketing\",\"marketing_section\",\"orders\",\"overviews\",\"pages\",\"pay_draft_orders_by_credit_card\",\"pay_orders_by_credit_card\",\"pay_orders_by_vaulted_card\",\"preferences\",\"products\",\"reports\",\"translations\",\"themes\",\"view_private_apps\",\"shopify_payments_accounts\",\"shopify_payments_transfers\",\"staff_audit_log_view\",\"staff_management_update\",\"applications_billing\",\"attestation_authority\",\"authentication_management\",\"balance_bank_accounts_management\",\"billing_charges\",\"billing_invoices_pay\",\"billing_invoices_view\",\"billing_payment_methods_manage\",\"billing_payment_methods_view\",\"billing_settings\",\"billing_subscriptions\",\"capital\",\"customer_private_data\",\"domains_management\",\"enable_private_apps\",\"experiments_management\",\"gdpr_actions\",\"payment_settings\",\"shopify_payments\",\"staff_api_permission_management\",\"staff_management\",\"staff_management_activation\",\"staff_management_create\",\"staff_management_delete\",\"support_methods\",\"collaborator_request_management\",\"collaborator_request_settings\",\"export_customers\",\"export_draft_orders\",\"export_orders\",\"export_products\"],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/548380009\",\"tfa_enabled?\":false},{\"id\":930143300,\"first_name\":\"John\",\"email\":\"j.limited@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Limited\",\"account_owner\":false,\"receive_announcements\":1,\"bio\":null,\"permissions\":[],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/930143300\",\"tfa_enabled?\":false}]}"
+          },
+          "name": "Retrieve a list of all users",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/users.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::User.all(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.all({\n  session: test_session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\User;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUser::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/users.json",
+      "action": "get"
+    },
+    {
+      "description": "Retrieves a single user",
+      "summary": "Retrieves a single user",
+      "operationId": "Retrievesasingleuser",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "user_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a single user",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a single user": {
+                  "value": {
+                    "user": {
+                      "id": 548380009,
+                      "first_name": "John",
+                      "email": "j.smith@example.com",
+                      "url": "www.example.com",
+                      "im": null,
+                      "screen_name": null,
+                      "phone": null,
+                      "last_name": "Smith",
+                      "account_owner": true,
+                      "receive_announcements": 1,
+                      "bio": null,
+                      "permissions": [
+                        "applications",
+                        "beacons",
+                        "billing_application_charges",
+                        "channels",
+                        "content",
+                        "customers",
+                        "dashboard",
+                        "domains",
+                        "draft_orders",
+                        "edit_orders",
+                        "edit_private_apps",
+                        "gift_cards",
+                        "links",
+                        "locations",
+                        "marketing",
+                        "marketing_section",
+                        "orders",
+                        "overviews",
+                        "pages",
+                        "pay_draft_orders_by_credit_card",
+                        "pay_orders_by_credit_card",
+                        "pay_orders_by_vaulted_card",
+                        "preferences",
+                        "products",
+                        "reports",
+                        "translations",
+                        "themes",
+                        "view_private_apps",
+                        "shopify_payments_accounts",
+                        "shopify_payments_transfers",
+                        "staff_audit_log_view",
+                        "staff_management_update",
+                        "applications_billing",
+                        "attestation_authority",
+                        "authentication_management",
+                        "balance_bank_accounts_management",
+                        "billing_charges",
+                        "billing_invoices_pay",
+                        "billing_invoices_view",
+                        "billing_payment_methods_manage",
+                        "billing_payment_methods_view",
+                        "billing_settings",
+                        "billing_subscriptions",
+                        "capital",
+                        "customer_private_data",
+                        "domains_management",
+                        "enable_private_apps",
+                        "experiments_management",
+                        "gdpr_actions",
+                        "payment_settings",
+                        "shopify_payments",
+                        "staff_api_permission_management",
+                        "staff_management",
+                        "staff_management_activation",
+                        "staff_management_create",
+                        "staff_management_delete",
+                        "support_methods",
+                        "collaborator_request_management",
+                        "collaborator_request_settings",
+                        "export_customers",
+                        "export_draft_orders",
+                        "export_orders",
+                        "export_products"
+                      ],
+                      "locale": "en",
+                      "user_type": "regular",
+                      "admin_graphql_api_id": "gid://shopify/StaffMember/548380009",
+                      "tfa_enabled?": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/users/548380009.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/users/548380009.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"user\":{\"id\":548380009,\"first_name\":\"John\",\"email\":\"j.smith@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Smith\",\"account_owner\":true,\"receive_announcements\":1,\"bio\":null,\"permissions\":[\"applications\",\"beacons\",\"billing_application_charges\",\"channels\",\"content\",\"customers\",\"dashboard\",\"domains\",\"draft_orders\",\"edit_orders\",\"edit_private_apps\",\"gift_cards\",\"links\",\"locations\",\"marketing\",\"marketing_section\",\"orders\",\"overviews\",\"pages\",\"pay_draft_orders_by_credit_card\",\"pay_orders_by_credit_card\",\"pay_orders_by_vaulted_card\",\"preferences\",\"products\",\"reports\",\"translations\",\"themes\",\"view_private_apps\",\"shopify_payments_accounts\",\"shopify_payments_transfers\",\"staff_audit_log_view\",\"staff_management_update\",\"applications_billing\",\"attestation_authority\",\"authentication_management\",\"balance_bank_accounts_management\",\"billing_charges\",\"billing_invoices_pay\",\"billing_invoices_view\",\"billing_payment_methods_manage\",\"billing_payment_methods_view\",\"billing_settings\",\"billing_subscriptions\",\"capital\",\"customer_private_data\",\"domains_management\",\"enable_private_apps\",\"experiments_management\",\"gdpr_actions\",\"payment_settings\",\"shopify_payments\",\"staff_api_permission_management\",\"staff_management\",\"staff_management_activation\",\"staff_management_create\",\"staff_management_delete\",\"support_methods\",\"collaborator_request_management\",\"collaborator_request_settings\",\"export_customers\",\"export_draft_orders\",\"export_orders\",\"export_products\"],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/548380009\",\"tfa_enabled?\":false}}"
+          },
+          "name": "Retrieve a single user",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/users/548380009.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::User.find(\n  session: test_session,\n  id: 548380009,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.find({\n  session: test_session,\n  id: 548380009,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\User;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUser::find(\n    $this->test_session, // Session\n    548380009, // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/users/{user_id}.json",
+      "action": "get"
+    },
+    {
+      "description": "Retrieves information about the user account associated with the access token used to make this API request. This request works only when the access token was created for a specific user of the shop.",
+      "summary": "Retrieves the currently logged-in user",
+      "operationId": "Retrievesthecurrentlylogged-inuser",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves the currently logged-in user",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve the the currently logged-in user": {
+                  "value": {
+                    "user": {
+                      "id": 548380009,
+                      "first_name": "John",
+                      "email": "j.smith@example.com",
+                      "url": "www.example.com",
+                      "im": null,
+                      "screen_name": null,
+                      "phone": null,
+                      "last_name": "Smith",
+                      "account_owner": true,
+                      "receive_announcements": 1,
+                      "bio": null,
+                      "permissions": [
+                        "applications",
+                        "beacons",
+                        "billing_application_charges",
+                        "channels",
+                        "content",
+                        "customers",
+                        "dashboard",
+                        "domains",
+                        "draft_orders",
+                        "edit_orders",
+                        "edit_private_apps",
+                        "gift_cards",
+                        "links",
+                        "locations",
+                        "marketing",
+                        "marketing_section",
+                        "orders",
+                        "overviews",
+                        "pages",
+                        "pay_draft_orders_by_credit_card",
+                        "pay_orders_by_credit_card",
+                        "pay_orders_by_vaulted_card",
+                        "preferences",
+                        "products",
+                        "reports",
+                        "translations",
+                        "themes",
+                        "view_private_apps",
+                        "shopify_payments_accounts",
+                        "shopify_payments_transfers",
+                        "staff_audit_log_view",
+                        "staff_management_update",
+                        "applications_billing",
+                        "attestation_authority",
+                        "authentication_management",
+                        "balance_bank_accounts_management",
+                        "billing_charges",
+                        "billing_invoices_pay",
+                        "billing_invoices_view",
+                        "billing_payment_methods_manage",
+                        "billing_payment_methods_view",
+                        "billing_settings",
+                        "billing_subscriptions",
+                        "capital",
+                        "customer_private_data",
+                        "domains_management",
+                        "enable_private_apps",
+                        "experiments_management",
+                        "gdpr_actions",
+                        "payment_settings",
+                        "shopify_payments",
+                        "staff_api_permission_management",
+                        "staff_management",
+                        "staff_management_activation",
+                        "staff_management_create",
+                        "staff_management_delete",
+                        "support_methods",
+                        "collaborator_request_management",
+                        "collaborator_request_settings",
+                        "export_customers",
+                        "export_draft_orders",
+                        "export_orders",
+                        "export_products"
+                      ],
+                      "locale": "en",
+                      "user_type": "regular",
+                      "admin_graphql_api_id": "gid://shopify/StaffMember/548380009",
+                      "tfa_enabled?": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/users/current.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/users/current.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"user\":{\"id\":548380009,\"first_name\":\"John\",\"email\":\"j.smith@example.com\",\"url\":\"www.example.com\",\"im\":null,\"screen_name\":null,\"phone\":null,\"last_name\":\"Smith\",\"account_owner\":true,\"receive_announcements\":1,\"bio\":null,\"permissions\":[\"applications\",\"beacons\",\"billing_application_charges\",\"channels\",\"content\",\"customers\",\"dashboard\",\"domains\",\"draft_orders\",\"edit_orders\",\"edit_private_apps\",\"gift_cards\",\"links\",\"locations\",\"marketing\",\"marketing_section\",\"orders\",\"overviews\",\"pages\",\"pay_draft_orders_by_credit_card\",\"pay_orders_by_credit_card\",\"pay_orders_by_vaulted_card\",\"preferences\",\"products\",\"reports\",\"translations\",\"themes\",\"view_private_apps\",\"shopify_payments_accounts\",\"shopify_payments_transfers\",\"staff_audit_log_view\",\"staff_management_update\",\"applications_billing\",\"attestation_authority\",\"authentication_management\",\"balance_bank_accounts_management\",\"billing_charges\",\"billing_invoices_pay\",\"billing_invoices_view\",\"billing_payment_methods_manage\",\"billing_payment_methods_view\",\"billing_settings\",\"billing_subscriptions\",\"capital\",\"customer_private_data\",\"domains_management\",\"enable_private_apps\",\"experiments_management\",\"gdpr_actions\",\"payment_settings\",\"shopify_payments\",\"staff_api_permission_management\",\"staff_management\",\"staff_management_activation\",\"staff_management_create\",\"staff_management_delete\",\"support_methods\",\"collaborator_request_management\",\"collaborator_request_settings\",\"export_customers\",\"export_draft_orders\",\"export_orders\",\"export_products\"],\"locale\":\"en\",\"user_type\":\"regular\",\"admin_graphql_api_id\":\"gid://shopify/StaffMember/548380009\",\"tfa_enabled?\":false}}"
+          },
+          "name": "Retrieve the the currently logged-in user",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/users/current.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::User.current(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.current({\n  session: test_session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\User;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUser::current(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/users/current.json",
+      "action": "get"
+    }
+  ],
+  "components": [
+    {
+      "name": "User",
+      "title": "User",
+      "type": "object",
+      "properties": [
+        {
+          "description": "Whether the user is the owner of the Shopify account.",
+          "type": "x-string",
+          "example": false,
+          "name": "account_owner"
+        },
+        {
+          "description": "The description the user has written for themselves.",
+          "type": "x-string",
+          "example": "A person on a mission",
+          "name": "bio"
+        },
+        {
+          "description": "The user's email address.",
+          "type": "x-string",
+          "example": "joe@example.com",
+          "name": "email"
+        },
+        {
+          "description": "The user's first name.",
+          "type": "x-string",
+          "example": "Joe",
+          "name": "first_name"
+        },
+        {
+          "description": "The ID of the user's staff.",
+          "type": "x-string",
+          "example": 1234567890,
+          "name": "id"
+        },
+        {
+          "description": "The user's IM account address.",
+          "type": "x-string",
+          "example": "joe-chat@example.com",
+          "name": "im"
+        },
+        {
+          "description": "The user's last name.",
+          "type": "x-string",
+          "example": "Smith",
+          "name": "last_name"
+        },
+        {
+          "description": "           <p>The permissions granted to the user's staff account. Valid values:</p>\n           <ul>\n             <li><strong>applications</strong>: The user can authorize the installation of applications.</li>\n             <li><strong>billing_application_charges</strong>: The user can approve application charges.</li>\n             <li><strong>billing_charges</strong>: The user can view and export billing charges.</li>\n             <li><strong>billing_invoices_view</strong>: The user can view billing invoices.</li>\n             <li><strong>billing_payment_methods_view</strong>: The user can view billing payment methods.</li>\n             <li><strong>customers</strong>: The user can view, create, edit, and delete customers, and respond to customer messages in Shopify Ping.</li>\n             <li><strong>dashboard</strong>: The user can view the <strong>Home</strong> page, which includes sales information and other store data.</li>\n             <li><strong>domains</strong>: The user can view, buy, and manage domains.</li>\n             <li><strong>draft_orders</strong>: The user can create, update, and delete draft orders.</li>\n             <li><strong>edit_orders</strong>: The user can edit orders.</li>\n             <li><strong>edit_private_apps</strong>: The user can give permission to private apps to read, write, and make changes to the store.</li>\n             <li><strong>export_customers</strong>: The user can export customers.</li>\n             <li><strong>export_draft_orders</strong>: The user can export draft orders.</li>\n             <li><strong>export_products</strong>: The user can export products and inventory.</li>\n             <li><strong>export_orders</strong>: The user can export orders.</li>\n             <li><strong>gift_cards</strong>: The user can view, create, issue, and export gift cards to a CSV file.</li>\n             <li><strong>links</strong>: The user can view and modify links and navigation menus.</li>\n             <li><strong>locations</strong>: The user can create, update, and delete locations where you stock or manage inventory.</li>\n             <li><strong>marketing</strong>: The user can view and create discount codes and automatic discounts, and export discounts to a CSV file.</li>\n             <li><strong>marketing_section</strong>: The user can view, create, and automate marketing campaigns.</li>\n             <li><strong>orders</strong>: The user can view, create, update, delete, and cancel orders, and receive order notifications.</li>\n             <li><strong>overviews</strong>: The user can view the <strong>Overview</strong> and <strong>Live view</strong> pages,\n             which include sales information, and other store and sales channels data.</li>\n             <li><strong>pages</strong>: The user can view, create, update, publish, and delete blog posts and pages.</li>\n             <li><strong>preferences</strong>: The user can view the preferences and configuration of a shop.</li>\n             <li><strong>products</strong>: The user can view, create, import, and update products, collections, and inventory.</li>\n             <li><strong>reports</strong>: The user can view and create all reports, which includes sales information and other store data.</li>\n             <li><strong>shopify_payments_accounts</strong>: The user can view Shopify Payments account details.</li>\n             <li><strong>shopify_payments_transfers</strong>: The user can view Shopify Payments payouts.</li>\n             <li><strong>staff_audit_log_view</strong>: The user can view Shopify admin browser sessions.</li>\n             <li><strong>staff_management_activation</strong>: The user can activate or deactivate staff in the store.</li>\n             <li><strong>staff_management_create</strong>: The user can add staff to the store.</li>\n             <li><strong>staff_management_delete</strong>: The user can delete staff from the store.</li>\n             <li><strong>staff_management_update</strong>: The user can update staff in the store.</li>\n             <li><strong>themes</strong>: The user can view, update, and publish themes.</li>\n             <li><strong>view_private_apps</strong>: The user can view private apps installed on the store.</li>\n           </ul>\n",
+          "type": "x-string",
+          "example": [
+            "customers",
+            "dashboard",
+            "reports"
+          ],
+          "name": "permissions"
+        },
+        {
+          "description": "The user's phone number.",
+          "type": "x-string",
+          "example": "(555) 555-5555",
+          "name": "phone"
+        },
+        {
+          "description": "          Whether this account will receive email announcements from Shopify. Valid values: <code>0</code>, <code>1</code>\n",
+          "type": "x-string",
+          "example": 0,
+          "name": "receive_announcements"
+        },
+        {
+          "description": "This property is deprecated.",
+          "type": "x-string",
+          "deprecated": true,
+          "example": "joesmith",
+          "name": "screen_name"
+        },
+        {
+          "description": "The user's homepage or other web address.",
+          "type": "x-string",
+          "example": "http://example.com",
+          "name": "url"
+        },
+        {
+          "description": "The user's preferred locale. Locale values use the format <code>language</code> or <code>language-COUNTRY</code>, where <code>language</code> is a two-letter language code, and <code>COUNTRY</code> is a two-letter country code. For example: <code>en</code> or <code>en-US</code>",
+          "type": "x-string",
+          "example": "en",
+          "name": "locale"
+        },
+        {
+          "description": "          <p>The type of account the user has. Valid values:</p>\n          <ul>\n            <li><strong>regular</strong>: The user's account can access the Shopify admin.</li>\n            <li><strong>restricted</strong>: The user's account cannot access the Shopify admin.</li>\n            <li><strong>invited</strong>: The user has not yet accepted the invitation to create staff.</li>\n            <li><strong>collaborator</strong>: The user account of a partner who collaborates with the merchant.</li>\n          </ul>\n",
+          "type": "x-string",
+          "example": "regular",
+          "name": "user_type"
+        }
+      ],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "plus/user",
+    "gid": "23202da7-06fb-4df6-89f6-b38cb699189d",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/user"
+    ],
+    "meta_description": "Retrieve the permissions on staff. From the Shopify admin, merchants can give each staff individual permissions that control access to a part of Shopify.",
+    "postman_group": "Plus",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": true,
+    "weight": null,
+    "usage-notes": null
+  }
+}

@@ -1,0 +1,585 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "FulfillmentEvent",
+    "description": "        <p>\n          The FulfillmentEvent resource represents tracking events that belong to a\n          <a href=\"/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment\">fulfillment</a> of one or\n          more items in an <a href=\"/docs/admin-api/rest/reference/orders/order\">order</a>. Fulfillment events are displayed on the\n          <a href=\"https://help.shopify.com/manual/orders/status-tracking\">order status page</a> to update customers on the status of their shipment.</p>\n",
+    "x-owner": "https://vault.shopify.io/teams/457",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Retrieves a list of fulfillment events for a specific fulfillment",
+      "summary": "Retrieves a list of fulfillment events for a specific fulfillment",
+      "operationId": "Retrievesalistoffulfillmenteventsforaspecificfulfillment",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_id",
+          "description": "The ID of the fulfillment that's associated with the fulfillment event.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        },
+        {
+          "name": "order_id",
+          "description": "The ID of the order that's associated with the fulfillment event.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of fulfillment events for a specific fulfillment",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a list of all the fulfillment events that are associated with a specific fulfillment": {
+                  "value": {
+                    "fulfillment_events": [
+                      {
+                        "id": 944956391,
+                        "fulfillment_id": 255858046,
+                        "status": "in_transit",
+                        "message": null,
+                        "happened_at": "2022-04-05T10:55:35-06:00",
+                        "city": null,
+                        "province": null,
+                        "country": null,
+                        "zip": null,
+                        "address1": null,
+                        "latitude": null,
+                        "longitude": null,
+                        "shop_id": 548380009,
+                        "created_at": "2022-04-05T10:55:35-06:00",
+                        "updated_at": "2022-04-05T10:55:35-06:00",
+                        "estimated_delivery_at": null,
+                        "order_id": 450789469,
+                        "admin_graphql_api_id": "gid://shopify/FulfillmentEvent/944956391"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/fulfillments/255858046/events.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/orders/450789469/fulfillments/255858046/events.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_events\":[{\"id\":944956391,\"fulfillment_id\":255858046,\"status\":\"in_transit\",\"message\":null,\"happened_at\":\"2022-04-05T12:55:35-04:00\",\"city\":null,\"province\":null,\"country\":null,\"zip\":null,\"address1\":null,\"latitude\":null,\"longitude\":null,\"shop_id\":548380009,\"created_at\":\"2022-04-05T12:55:35-04:00\",\"updated_at\":\"2022-04-05T12:55:35-04:00\",\"estimated_delivery_at\":null,\"order_id\":450789469,\"admin_graphql_api_id\":\"gid://shopify/FulfillmentEvent/944956391\"}]}"
+          },
+          "name": "Retrieve a list of all the fulfillment events that are associated with a specific fulfillment",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/fulfillments/255858046/events.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::FulfillmentEvent.all(\n  session: test_session,\n  order_id: 450789469,\n  fulfillment_id: 255858046,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentEvent} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait FulfillmentEvent.all({\n  session: test_session,\n  order_id: 450789469,\n  fulfillment_id: 255858046,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillmentEvent::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\", \"fulfillment_id\" => \"255858046\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/fulfillments/{fulfillment_id}/events.json",
+      "action": "get"
+    },
+    {
+      "description": "Creates a fulfillment event",
+      "summary": "Creates a fulfillment event",
+      "operationId": "Createsafulfillmentevent",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "201": {
+          "description": "Creates a fulfillment event",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a fulfillment event": {
+                  "value": {
+                    "fulfillment_event": {
+                      "id": 944956393,
+                      "fulfillment_id": 255858046,
+                      "status": "in_transit",
+                      "message": null,
+                      "happened_at": "2022-04-05T10:55:38-06:00",
+                      "city": null,
+                      "province": null,
+                      "country": null,
+                      "zip": null,
+                      "address1": null,
+                      "latitude": null,
+                      "longitude": null,
+                      "shop_id": 548380009,
+                      "created_at": "2022-04-05T10:55:38-06:00",
+                      "updated_at": "2022-04-05T10:55:38-06:00",
+                      "estimated_delivery_at": null,
+                      "order_id": 450789469,
+                      "admin_graphql_api_id": "gid://shopify/FulfillmentEvent/944956393"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/fulfillments/255858046/events.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/orders/450789469/fulfillments/255858046/events.json",
+            "headers": {},
+            "body": "{\"event\":{\"status\":\"in_transit\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"fulfillment_event\":{\"id\":944956393,\"fulfillment_id\":255858046,\"status\":\"in_transit\",\"message\":null,\"happened_at\":\"2022-04-05T12:55:38-04:00\",\"city\":null,\"province\":null,\"country\":null,\"zip\":null,\"address1\":null,\"latitude\":null,\"longitude\":null,\"shop_id\":548380009,\"created_at\":\"2022-04-05T12:55:38-04:00\",\"updated_at\":\"2022-04-05T12:55:38-04:00\",\"estimated_delivery_at\":null,\"order_id\":450789469,\"admin_graphql_api_id\":\"gid://shopify/FulfillmentEvent/944956393\"}}"
+          },
+          "name": "Create a fulfillment event",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"event\":{\"status\":\"in_transit\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/fulfillments/255858046/events.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nfulfillment_event = ShopifyAPI::FulfillmentEvent.new(session: test_session)\nfulfillment_event.order_id = 450789469\nfulfillment_event.fulfillment_id = 255858046\nfulfillment_event.status = \"in_transit\"\nfulfillment_event.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentEvent} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_event = new FulfillmentEvent({session: test_session});\nfulfillment_event.order_id = 450789469;\nfulfillment_event.fulfillment_id = 255858046;\nfulfillment_event.status = \"in_transit\";\nawait fulfillment_event.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_event = new FulfillmentEvent($this->test_session);\n$fulfillment_event->order_id = 450789469;\n$fulfillment_event->fulfillment_id = 255858046;\n$fulfillment_event->status = \"in_transit\";\n$fulfillment_event->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/fulfillments/{fulfillment_id}/events.json",
+      "action": "post"
+    },
+    {
+      "description": "Retrieves a specific fulfillment event",
+      "summary": "Retrieves a specific fulfillment event",
+      "operationId": "Retrievesaspecificfulfillmentevent",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "event_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "event_id",
+          "description": "The ID of the fulfillment event.",
+          "in": "query",
+          "schema": {
+            "type": "x-string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a specific fulfillment event",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a specific fulfillment event": {
+                  "value": {
+                    "fulfillment_event": {
+                      "id": 944956392,
+                      "fulfillment_id": 255858046,
+                      "status": "in_transit",
+                      "message": null,
+                      "happened_at": "2022-04-05T10:55:36-06:00",
+                      "city": null,
+                      "province": null,
+                      "country": null,
+                      "zip": null,
+                      "address1": null,
+                      "latitude": null,
+                      "longitude": null,
+                      "shop_id": 548380009,
+                      "created_at": "2022-04-05T10:55:36-06:00",
+                      "updated_at": "2022-04-05T10:55:36-06:00",
+                      "estimated_delivery_at": null,
+                      "order_id": 450789469,
+                      "admin_graphql_api_id": "gid://shopify/FulfillmentEvent/944956392"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/fulfillments/255858046/events/944956392.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/orders/450789469/fulfillments/255858046/events/944956392.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_event\":{\"id\":944956392,\"fulfillment_id\":255858046,\"status\":\"in_transit\",\"message\":null,\"happened_at\":\"2022-04-05T12:55:36-04:00\",\"city\":null,\"province\":null,\"country\":null,\"zip\":null,\"address1\":null,\"latitude\":null,\"longitude\":null,\"shop_id\":548380009,\"created_at\":\"2022-04-05T12:55:36-04:00\",\"updated_at\":\"2022-04-05T12:55:36-04:00\",\"estimated_delivery_at\":null,\"order_id\":450789469,\"admin_graphql_api_id\":\"gid://shopify/FulfillmentEvent/944956392\"}}"
+          },
+          "name": "Retrieve a specific fulfillment event",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/fulfillments/255858046/events/944956392.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::FulfillmentEvent.find(\n  session: test_session,\n  order_id: 450789469,\n  fulfillment_id: 255858046,\n  id: 944956392,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentEvent} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait FulfillmentEvent.find({\n  session: test_session,\n  order_id: 450789469,\n  fulfillment_id: 255858046,\n  id: 944956392,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillmentEvent::find(\n    $this->test_session, // Session\n    944956392, // Id\n    [\"order_id\" => \"450789469\", \"fulfillment_id\" => \"255858046\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json",
+      "action": "get"
+    },
+    {
+      "description": "Deletes a fulfillment event",
+      "summary": "Deletes a fulfillment event",
+      "operationId": "Deletesafulfillmentevent",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "event_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Deletes a fulfillment event",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Delete a fulfillment event": {
+                  "value": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/fulfillments/255858046/events/944956394.json",
+          "request_method": "DELETE",
+          "request": {
+            "action": "DELETE /admin/api/unstable/orders/450789469/fulfillments/255858046/events/944956394.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{}"
+          },
+          "name": "Delete a fulfillment event",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/fulfillments/255858046/events/944956394.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::FulfillmentEvent.delete(\n  session: test_session,\n  order_id: 450789469,\n  fulfillment_id: 255858046,\n  id: 944956394,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentEvent} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait FulfillmentEvent.delete({\n  session: test_session,\n  order_id: 450789469,\n  fulfillment_id: 255858046,\n  id: 944956394,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentEvent;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillmentEvent::delete(\n    $this->test_session, // Session\n    944956394, // Id\n    [\"order_id\" => \"450789469\", \"fulfillment_id\" => \"255858046\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/#{api_version}/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json",
+      "action": "delete"
+    }
+  ],
+  "components": [
+    {
+      "name": "FulfillmentEvent",
+      "title": "FulfillmentEvent",
+      "type": "object",
+      "properties": [
+        {
+          "description": "The street address where the fulfillment event occurred.",
+          "type": "x-string",
+          "example": "3575 Boul. Saint-Laurent",
+          "name": "address1"
+        },
+        {
+          "description": "The city where the fulfillment event occurred.",
+          "type": "x-string",
+          "example": "Montreal",
+          "name": "city"
+        },
+        {
+          "description": "The country where the fulfillment event occurred.",
+          "type": "x-string",
+          "example": "Canada",
+          "name": "country"
+        },
+        {
+          "description": "The date and time (<a href='http://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a> format) when the fulfillment event was created.\n",
+          "type": "x-string",
+          "example": "2012-03-13T14:09:54-06:00",
+          "name": "created_at"
+        },
+        {
+          "description": "The estimated delivery date based on the fulfillment's tracking number, as long as it's provided by one of the following carriers: USPS, FedEx, UPS, or Canada Post (Canada only). Value is <code>null</code> if no tracking number is available or if the tracking number is from an unsupported carrier. This property is available only when <a href=\"https://help.shopify.com/manual/shipping/rates-and-methods/custom-calculated-rates\">carrier calculated rates</a> are in use.'\n",
+          "type": "x-string",
+          "example": "2014-04-13T14:09:54-06:00",
+          "name": "estimated_delivery_at"
+        },
+        {
+          "description": "An ID for the fulfillment that's associated with the fulfillment event.\n",
+          "type": "x-string",
+          "example": 450789469,
+          "name": "fulfillment_id"
+        },
+        {
+          "description": "The date and time (<a href='http://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a> format)  when the fulfillment event occurred.\n",
+          "type": "x-string",
+          "example": "2012-03-13T14:09:54-06:00",
+          "name": "happened_at"
+        },
+        {
+          "description": "An ID for the fulfillment event.",
+          "type": "x-string",
+          "example": 255858046,
+          "name": "id"
+        },
+        {
+          "description": "A geographic coordinate specifying the latitude of the fulfillment event.",
+          "type": "x-string",
+          "example": 45.5017,
+          "name": "latitude"
+        },
+        {
+          "description": "A geographic coordinate specifying the longitude of the fulfillment event.",
+          "type": "x-string",
+          "example": 73.5673,
+          "name": "longitude"
+        },
+        {
+          "description": "An arbitrary message describing the status. Can be provided by a shipping carrier.",
+          "type": "x-string",
+          "example": "IN_TRANSIT",
+          "name": "message"
+        },
+        {
+          "description": "The ID of the order that's associated with the fulfillment event.",
+          "type": "x-string",
+          "example": 3183479,
+          "name": "order_id"
+        },
+        {
+          "description": "The province where the fulfillment event occurred.",
+          "type": "x-string",
+          "example": "QC",
+          "name": "province"
+        },
+        {
+          "description": "An ID for the shop that's associated with the fulfillment event.",
+          "type": "x-string",
+          "example": 255858046,
+          "name": "shop_id"
+        },
+        {
+          "description": "          <p>The status of the fulfillment event. Valid values:</p>\n          <ul>\n            <li><strong>label_printed</strong>: A label for the shipment was purchased and printed.</li>\n            <li><strong>label_purchased</strong>: A label for the shipment was purchased, but not printed.</li>\n            <li><strong>attempted_delivery</strong>: Delivery of the shipment was attempted, but unable to be completed.</li>\n            <li><strong>ready_for_pickup</strong>: The shipment is ready for pickup at a shipping depot.</li>\n            <li><strong>picked_up</strong>: The fulfillment was successfully picked up.</li>\n            <li><strong>confirmed</strong>: The carrier is aware of the shipment, but hasn't received it yet.</li>\n            <li><strong>in_transit</strong>: The shipment is being transported between shipping facilities on the way to its destination.</li>\n            <li><strong>out_for_delivery</strong>: The shipment is being delivered to its final destination.</li>\n            <li><strong>delivered</strong>: The shipment was successfully delivered.</li>\n            <li><strong>failure</strong>: Something went wrong when pulling tracking information for the shipment, such as the tracking number was invalid or the shipment was canceled.</li>\n          </ul>\n",
+          "type": "x-string",
+          "example": "in_transit",
+          "name": "status"
+        },
+        {
+          "description": "The date and time (<a href='https://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a> format) when the fulfillment event was updated.",
+          "type": "x-string",
+          "example": "2012-03-15T14:09:54-06:00",
+          "name": "updated_at"
+        },
+        {
+          "description": "The zip code of the location where the fulfillment event occurred.",
+          "type": "x-string",
+          "example": "H2X 2R7",
+          "name": "zip"
+        }
+      ],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "shipping-and-fulfillment/fulfillmentevent",
+    "gid": "451c72ec-4443-4576-abf1-2d4201434cc0",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/fulfillmentevent",
+      "/api/reference/shipping_and_fulfillment/fulfillmentevent"
+    ],
+    "meta_description": "Create fulfillment events for an order's fulfillments. The fulfillment events are displayed on the order status page so the customer can track the progress of their delivery.",
+    "postman_group": "Shipping and fulfillment",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}
