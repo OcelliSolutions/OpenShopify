@@ -266,7 +266,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/application_credits.json",
+      "url": "/admin/api/{api_version}/application_credits.json",
       "action": "post"
     },
     {
@@ -287,7 +287,7 @@
           "description": "A comma-separated list of fields to include in the response.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -351,7 +351,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/application_credits.json",
+      "url": "/admin/api/{api_version}/application_credits.json",
       "action": "get"
     },
     {
@@ -380,7 +380,7 @@
           "description": "A comma-separated list of fields to include in the response.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -442,7 +442,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/application_credits/{application_credit_id}.json",
+      "url": "/admin/api/{api_version}/application_credits/{application_credit_id}.json",
       "action": "get"
     }
   ],
@@ -454,25 +454,25 @@
       "properties": [
         {
           "description": "The description of the application credit.",
-          "type": "x-string",
+          "type": "string",
           "example": "Super Mega Plan 1000 emails",
           "name": "description"
         },
         {
           "description": "The ID of the application credit.",
-          "type": "x-string",
+          "type": "string",
           "example": 675931192,
           "name": "id"
         },
         {
           "description": "The amount refunded by the application credit.",
-          "type": "x-string",
+          "type": "string",
           "example": 10,
           "name": "amount"
         },
         {
           "description": "Whether the application credit is a test transaction. Valid values: <code>true</code>,<code>null</code>",
-          "type": "x-string",
+          "type": "string",
           "example": null,
           "name": "test"
         }

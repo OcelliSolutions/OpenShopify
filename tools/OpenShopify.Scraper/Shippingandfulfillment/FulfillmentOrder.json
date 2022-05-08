@@ -1,0 +1,1531 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "FulfillmentOrder",
+    "description": "        <p>\n          The FulfillmentOrder resource represents either an item or a group of items in an\n          <a href=\"/docs/admin-api/rest/reference/orders/order\">order</a> that are to be fulfilled from the same location.\n          There can be more than one fulfillment order for an <a href=\"/docs/admin-api/rest/reference/orders/order\">order</a> at a given location.\n        </p>\n",
+    "x-owner": "https://vault.shopify.io/teams/457",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Retrieves a list of fulfillment orders for a specific order.",
+      "summary": "Retrieves a list of fulfillment orders for a specific order",
+      "operationId": "Retrievesalistoffulfillmentordersforaspecificorder",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "description": "The ID of the order that is associated with the fulfillment orders.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of fulfillment orders for a specific order",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a list of all fulfillment orders for an order": {
+                  "value": {
+                    "fulfillment_orders": [
+                      {
+                        "id": 1046000800,
+                        "shop_id": 548380009,
+                        "order_id": 450789469,
+                        "assigned_location_id": 24826418,
+                        "request_status": "submitted",
+                        "status": "open",
+                        "supported_actions": [
+                          "cancel_fulfillment_order"
+                        ],
+                        "destination": {
+                          "id": 1046000800,
+                          "address1": "Chestnut Street 92",
+                          "address2": "",
+                          "city": "Louisville",
+                          "company": null,
+                          "country": "United States",
+                          "email": "bob.norman@mail.example.com",
+                          "first_name": "Bob",
+                          "last_name": "Norman",
+                          "phone": "555-625-1199",
+                          "province": "Kentucky",
+                          "zip": "40202"
+                        },
+                        "line_items": [
+                          {
+                            "id": 1058737504,
+                            "shop_id": 548380009,
+                            "fulfillment_order_id": 1046000800,
+                            "quantity": 1,
+                            "line_item_id": 518995019,
+                            "inventory_item_id": 49148385,
+                            "fulfillable_quantity": 1,
+                            "variant_id": 49148385
+                          }
+                        ],
+                        "fulfillment_service_handle": "mars-fulfillment",
+                        "assigned_location": {
+                          "address1": null,
+                          "address2": null,
+                          "city": null,
+                          "country_code": "DE",
+                          "location_id": 24826418,
+                          "name": "Apple Api Shipwire",
+                          "phone": null,
+                          "province": null,
+                          "zip": null
+                        },
+                        "merchant_requests": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/orders/450789469/fulfillment_orders.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2020-01/orders/450789469/fulfillment_orders.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_orders\":[{\"id\":1046000800,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"submitted\",\"status\":\"open\",\"supported_actions\":[\"cancel_fulfillment_order\"],\"destination\":{\"id\":1046000800,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"line_items\":[{\"id\":1058737504,\"shop_id\":548380009,\"fulfillment_order_id\":1046000800,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"fulfillment_service_handle\":\"mars-fulfillment\",\"assigned_location\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"merchant_requests\":[]}]}"
+          },
+          "name": "Retrieve a list of all fulfillment orders for an order",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/fulfillment_orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::FulfillmentOrder.all(\n  session: test_session,\n  order_id: 450789469,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentOrder} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait FulfillmentOrder.all({\n  session: test_session,\n  order_id: 450789469,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentOrder;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillmentOrder::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/orders/{order_id}/fulfillment_orders.json",
+      "action": "get"
+    },
+    {
+      "description": "Retrieves a specific fulfillment order.",
+      "summary": "Retrieves a specific fulfillment order",
+      "operationId": "Retrievesaspecificfulfillmentorder",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a specific fulfillment order",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Get a single fulfillment order by its ID": {
+                  "value": {
+                    "fulfillment_order": {
+                      "id": 1046000801,
+                      "shop_id": 548380009,
+                      "order_id": 450789469,
+                      "assigned_location_id": 24826418,
+                      "request_status": "submitted",
+                      "status": "open",
+                      "supported_actions": [
+                        "cancel_fulfillment_order"
+                      ],
+                      "destination": {
+                        "id": 1046000801,
+                        "address1": "Chestnut Street 92",
+                        "address2": "",
+                        "city": "Louisville",
+                        "company": null,
+                        "country": "United States",
+                        "email": "bob.norman@mail.example.com",
+                        "first_name": "Bob",
+                        "last_name": "Norman",
+                        "phone": "555-625-1199",
+                        "province": "Kentucky",
+                        "zip": "40202"
+                      },
+                      "line_items": [
+                        {
+                          "id": 1058737505,
+                          "shop_id": 548380009,
+                          "fulfillment_order_id": 1046000801,
+                          "quantity": 1,
+                          "line_item_id": 518995019,
+                          "inventory_item_id": 49148385,
+                          "fulfillable_quantity": 1,
+                          "variant_id": 49148385
+                        }
+                      ],
+                      "fulfillment_service_handle": "mars-fulfillment",
+                      "assigned_location": {
+                        "address1": null,
+                        "address2": null,
+                        "city": null,
+                        "country_code": "DE",
+                        "location_id": 24826418,
+                        "name": "Apple Api Shipwire",
+                        "phone": null,
+                        "province": null,
+                        "zip": null
+                      },
+                      "merchant_requests": []
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/fulfillment_orders/1046000801.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2020-01/fulfillment_orders/1046000801.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_order\":{\"id\":1046000801,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"submitted\",\"status\":\"open\",\"supported_actions\":[\"cancel_fulfillment_order\"],\"destination\":{\"id\":1046000801,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"line_items\":[{\"id\":1058737505,\"shop_id\":548380009,\"fulfillment_order_id\":1046000801,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"fulfillment_service_handle\":\"mars-fulfillment\",\"assigned_location\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"merchant_requests\":[]}}"
+          },
+          "name": "Get a single fulfillment order by its ID",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_orders/1046000801.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::FulfillmentOrder.find(\n  session: test_session,\n  id: 1046000801,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentOrder} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait FulfillmentOrder.find({\n  session: test_session,\n  id: 1046000801,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentOrder;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillmentOrder::find(\n    $this->test_session, // Session\n    1046000801, // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}.json",
+      "action": "get"
+    },
+    {
+      "description": "Marks a fulfillment order as cancelled.",
+      "summary": "Cancel a fulfillment order",
+      "operationId": "Cancelafulfillmentorder",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Cancel a fulfillment order",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Cancel a fulfillment order": {
+                  "value": {
+                    "fulfillment_order": {
+                      "id": 1046000802,
+                      "shop_id": 548380009,
+                      "order_id": 450789469,
+                      "assigned_location_id": 24826418,
+                      "request_status": "submitted",
+                      "status": "closed",
+                      "supported_actions": [],
+                      "destination": {
+                        "id": 1046000802,
+                        "address1": "Chestnut Street 92",
+                        "address2": "",
+                        "city": "Louisville",
+                        "company": null,
+                        "country": "United States",
+                        "email": "bob.norman@mail.example.com",
+                        "first_name": "Bob",
+                        "last_name": "Norman",
+                        "phone": "555-625-1199",
+                        "province": "Kentucky",
+                        "zip": "40202"
+                      },
+                      "line_items": [
+                        {
+                          "id": 1058737506,
+                          "shop_id": 548380009,
+                          "fulfillment_order_id": 1046000802,
+                          "quantity": 1,
+                          "line_item_id": 518995019,
+                          "inventory_item_id": 49148385,
+                          "fulfillable_quantity": 1,
+                          "variant_id": 49148385
+                        }
+                      ],
+                      "fulfillment_service_handle": "mars-fulfillment",
+                      "assigned_location": {
+                        "address1": null,
+                        "address2": null,
+                        "city": null,
+                        "country_code": "DE",
+                        "location_id": 24826418,
+                        "name": "Apple Api Shipwire",
+                        "phone": null,
+                        "province": null,
+                        "zip": null
+                      },
+                      "merchant_requests": []
+                    },
+                    "replacement_fulfillment_order": {
+                      "id": 1046000803,
+                      "shop_id": 548380009,
+                      "order_id": 450789469,
+                      "assigned_location_id": 24826418,
+                      "request_status": "unsubmitted",
+                      "status": "open",
+                      "supported_actions": [
+                        "request_fulfillment",
+                        "create_fulfillment"
+                      ],
+                      "destination": {
+                        "id": 1046000803,
+                        "address1": "Chestnut Street 92",
+                        "address2": "",
+                        "city": "Louisville",
+                        "company": null,
+                        "country": "United States",
+                        "email": "bob.norman@mail.example.com",
+                        "first_name": "Bob",
+                        "last_name": "Norman",
+                        "phone": "555-625-1199",
+                        "province": "Kentucky",
+                        "zip": "40202"
+                      },
+                      "line_items": [
+                        {
+                          "id": 1058737507,
+                          "shop_id": 548380009,
+                          "fulfillment_order_id": 1046000803,
+                          "quantity": 1,
+                          "line_item_id": 518995019,
+                          "inventory_item_id": 49148385,
+                          "fulfillable_quantity": 1,
+                          "variant_id": 49148385
+                        }
+                      ],
+                      "fulfillment_service_handle": "mars-fulfillment",
+                      "assigned_location": {
+                        "address1": null,
+                        "address2": null,
+                        "city": null,
+                        "country_code": "DE",
+                        "location_id": 24826418,
+                        "name": "Apple Api Shipwire",
+                        "phone": null,
+                        "province": null,
+                        "zip": null
+                      },
+                      "merchant_requests": []
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/fulfillment_orders/1046000802/cancel.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2020-01/fulfillment_orders/1046000802/cancel.json",
+            "headers": {},
+            "body": "{}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_order\":{\"id\":1046000802,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"submitted\",\"status\":\"closed\",\"supported_actions\":[],\"destination\":{\"id\":1046000802,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"line_items\":[{\"id\":1058737506,\"shop_id\":548380009,\"fulfillment_order_id\":1046000802,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"fulfillment_service_handle\":\"mars-fulfillment\",\"assigned_location\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"merchant_requests\":[]},\"replacement_fulfillment_order\":{\"id\":1046000803,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"unsubmitted\",\"status\":\"open\",\"supported_actions\":[\"request_fulfillment\",\"create_fulfillment\"],\"destination\":{\"id\":1046000803,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"line_items\":[{\"id\":1058737507,\"shop_id\":548380009,\"fulfillment_order_id\":1046000803,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"fulfillment_service_handle\":\"mars-fulfillment\",\"assigned_location\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"merchant_requests\":[]}}"
+          },
+          "name": "Cancel a fulfillment order",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_orders/1046000802/cancel.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nfulfillment_order = ShopifyAPI::FulfillmentOrder.new(session: test_session)\nfulfillment_order.id = 1046000802\nfulfillment_order.cancel(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentOrder} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_order = new FulfillmentOrder({session: test_session});\nfulfillment_order.id = 1046000802;\nawait fulfillment_order.cancel({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentOrder;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_order = new FulfillmentOrder($this->test_session);\n$fulfillment_order->id = 1046000802;\n$fulfillment_order->cancel(\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/cancel.json",
+      "action": "post"
+    },
+    {
+      "description": "Marks an in progress fulfillment order as incomplete, indicating the fulfillment service\n        is unable to ship any remaining items and intends to close the fulfillment order.",
+      "summary": "Marks a fulfillment order as incomplete",
+      "operationId": "Marksafulfillmentorderasincomplete",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "message",
+          "description": "An optional reason for marking the fulfillment order as incomplete.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Marks a fulfillment order as incomplete",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Transition a fulfillment order from in progress to incomplete": {
+                  "value": {
+                    "fulfillment_order": {
+                      "id": 1046000791,
+                      "shop_id": 548380009,
+                      "order_id": 450789469,
+                      "assigned_location_id": 24826418,
+                      "request_status": "closed",
+                      "status": "incomplete",
+                      "supported_actions": [
+                        "request_fulfillment",
+                        "create_fulfillment"
+                      ],
+                      "destination": {
+                        "id": 1046000791,
+                        "address1": "Chestnut Street 92",
+                        "address2": "",
+                        "city": "Louisville",
+                        "company": null,
+                        "country": "United States",
+                        "email": "bob.norman@mail.example.com",
+                        "first_name": "Bob",
+                        "last_name": "Norman",
+                        "phone": "555-625-1199",
+                        "province": "Kentucky",
+                        "zip": "40202"
+                      },
+                      "line_items": [
+                        {
+                          "id": 1058737495,
+                          "shop_id": 548380009,
+                          "fulfillment_order_id": 1046000791,
+                          "quantity": 1,
+                          "line_item_id": 518995019,
+                          "inventory_item_id": 49148385,
+                          "fulfillable_quantity": 1,
+                          "variant_id": 49148385
+                        }
+                      ],
+                      "fulfillment_service_handle": "mars-fulfillment",
+                      "assigned_location": {
+                        "address1": null,
+                        "address2": null,
+                        "city": null,
+                        "country_code": "DE",
+                        "location_id": 24826418,
+                        "name": "Apple Api Shipwire",
+                        "phone": null,
+                        "province": null,
+                        "zip": null
+                      },
+                      "merchant_requests": []
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/fulfillment_orders/1046000791/close.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2020-01/fulfillment_orders/1046000791/close.json",
+            "headers": {},
+            "body": "{\"fulfillment_order\":{\"message\":\"Not enough inventory to complete this work.\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_order\":{\"id\":1046000791,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"closed\",\"status\":\"incomplete\",\"supported_actions\":[\"request_fulfillment\",\"create_fulfillment\"],\"destination\":{\"id\":1046000791,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"line_items\":[{\"id\":1058737495,\"shop_id\":548380009,\"fulfillment_order_id\":1046000791,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"fulfillment_service_handle\":\"mars-fulfillment\",\"assigned_location\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"merchant_requests\":[]}}"
+          },
+          "name": "Transition a fulfillment order from in progress to incomplete",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"fulfillment_order\":{\"message\":\"Not enough inventory to complete this work.\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_orders/1046000791/close.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nfulfillment_order = ShopifyAPI::FulfillmentOrder.new(session: test_session)\nfulfillment_order.id = 1046000791\nfulfillment_order.close(\n  session: test_session,\n  body: {\"fulfillment_order\" => {\"message\" => \"Not enough inventory to complete this work.\"}},\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentOrder} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_order = new FulfillmentOrder({session: test_session});\nfulfillment_order.id = 1046000791;\nawait fulfillment_order.close({\n  body: {\"fulfillment_order\": {\"message\": \"Not enough inventory to complete this work.\"}},\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentOrder;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_order = new FulfillmentOrder($this->test_session);\n$fulfillment_order->id = 1046000791;\n$fulfillment_order->close(\n    [], // Params\n    [\"fulfillment_order\" => [\"message\" => \"Not enough inventory to complete this work.\"]], // Body\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/close.json",
+      "action": "post"
+    },
+    {
+      "description": "Moves a fulfillment order from one merchant managed location to another merchant managed location.",
+      "summary": "Moves a fulfillment order to a new location",
+      "operationId": "Movesafulfillmentordertoanewlocation",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "new_location_id",
+          "description": "The id of the location to which the fulfillment order will be moved.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Moves a fulfillment order to a new location",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Move a fulfillment order to a new location": {
+                  "value": {
+                    "original_fulfillment_order": {
+                      "id": 1046000792,
+                      "shop_id": 548380009,
+                      "order_id": 450789469,
+                      "assigned_location_id": 487838322,
+                      "request_status": "submitted",
+                      "status": "closed",
+                      "supported_actions": [],
+                      "destination": {
+                        "id": 1046000792,
+                        "address1": "Chestnut Street 92",
+                        "address2": "",
+                        "city": "Louisville",
+                        "company": null,
+                        "country": "United States",
+                        "email": "bob.norman@mail.example.com",
+                        "first_name": "Bob",
+                        "last_name": "Norman",
+                        "phone": "555-625-1199",
+                        "province": "Kentucky",
+                        "zip": "40202"
+                      },
+                      "line_items": [
+                        {
+                          "id": 1058737496,
+                          "shop_id": 548380009,
+                          "fulfillment_order_id": 1046000792,
+                          "quantity": 1,
+                          "line_item_id": 518995019,
+                          "inventory_item_id": 49148385,
+                          "fulfillable_quantity": 1,
+                          "variant_id": 49148385
+                        }
+                      ],
+                      "fulfillment_service_handle": "manual",
+                      "assigned_location": {
+                        "address1": null,
+                        "address2": null,
+                        "city": null,
+                        "country_code": "DE",
+                        "location_id": 24826418,
+                        "name": "Apple Api Shipwire",
+                        "phone": null,
+                        "province": null,
+                        "zip": null
+                      },
+                      "merchant_requests": []
+                    },
+                    "moved_fulfillment_order": {
+                      "id": 1046000793,
+                      "shop_id": 548380009,
+                      "order_id": 450789469,
+                      "assigned_location_id": 655441491,
+                      "request_status": "unsubmitted",
+                      "status": "open",
+                      "supported_actions": [
+                        "create_fulfillment",
+                        "move"
+                      ],
+                      "destination": {
+                        "id": 1046000793,
+                        "address1": "Chestnut Street 92",
+                        "address2": "",
+                        "city": "Louisville",
+                        "company": null,
+                        "country": "United States",
+                        "email": "bob.norman@mail.example.com",
+                        "first_name": "Bob",
+                        "last_name": "Norman",
+                        "phone": "555-625-1199",
+                        "province": "Kentucky",
+                        "zip": "40202"
+                      },
+                      "line_items": [
+                        {
+                          "id": 1058737497,
+                          "shop_id": 548380009,
+                          "fulfillment_order_id": 1046000793,
+                          "quantity": 1,
+                          "line_item_id": 518995019,
+                          "inventory_item_id": 49148385,
+                          "fulfillable_quantity": 1,
+                          "variant_id": 49148385
+                        }
+                      ],
+                      "fulfillment_service_handle": "manual",
+                      "assigned_location": {
+                        "address1": "50 Rideau Street",
+                        "address2": null,
+                        "city": "Ottawa",
+                        "country_code": "CA",
+                        "location_id": 655441491,
+                        "name": "50 Rideau Street",
+                        "phone": null,
+                        "province": "Ontario",
+                        "zip": "K1N 9J7"
+                      },
+                      "merchant_requests": []
+                    },
+                    "remaining_fulfillment_order": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/fulfillment_orders/1046000792/move.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2020-01/fulfillment_orders/1046000792/move.json",
+            "headers": {},
+            "body": "{\"fulfillment_order\":{\"new_location_id\":655441491}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"original_fulfillment_order\":{\"id\":1046000792,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":487838322,\"request_status\":\"submitted\",\"status\":\"closed\",\"supported_actions\":[],\"destination\":{\"id\":1046000792,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"line_items\":[{\"id\":1058737496,\"shop_id\":548380009,\"fulfillment_order_id\":1046000792,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"fulfillment_service_handle\":\"manual\",\"assigned_location\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"merchant_requests\":[]},\"moved_fulfillment_order\":{\"id\":1046000793,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":655441491,\"request_status\":\"unsubmitted\",\"status\":\"open\",\"supported_actions\":[\"create_fulfillment\",\"move\"],\"destination\":{\"id\":1046000793,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"line_items\":[{\"id\":1058737497,\"shop_id\":548380009,\"fulfillment_order_id\":1046000793,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"fulfillment_service_handle\":\"manual\",\"assigned_location\":{\"address1\":\"50 Rideau Street\",\"address2\":null,\"city\":\"Ottawa\",\"country_code\":\"CA\",\"location_id\":655441491,\"name\":\"50 Rideau Street\",\"phone\":null,\"province\":\"Ontario\",\"zip\":\"K1N 9J7\"},\"merchant_requests\":[]},\"remaining_fulfillment_order\":null}"
+          },
+          "name": "Move a fulfillment order to a new location",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"fulfillment_order\":{\"new_location_id\":655441491}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_orders/1046000792/move.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nfulfillment_order = ShopifyAPI::FulfillmentOrder.new(session: test_session)\nfulfillment_order.id = 1046000792\nfulfillment_order.move(\n  session: test_session,\n  body: {\"fulfillment_order\" => {\"new_location_id\" => 655441491}},\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentOrder} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_order = new FulfillmentOrder({session: test_session});\nfulfillment_order.id = 1046000792;\nawait fulfillment_order.move({\n  body: {\"fulfillment_order\": {\"new_location_id\": 655441491}},\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentOrder;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_order = new FulfillmentOrder($this->test_session);\n$fulfillment_order->id = 1046000792;\n$fulfillment_order->move(\n    [], // Params\n    [\"fulfillment_order\" => [\"new_location_id\" => 655441491]], // Body\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/move.json",
+      "action": "post"
+    },
+    {
+      "description": "Marks a scheduled fulfillment order as ready for fulfillment.\n          This endpoint allows merchants to work on a scheduled fulfillment order before its expected <code>fulfill_at</code> datetime.",
+      "summary": "Marks the fulfillment order as open",
+      "operationId": "Marksthefulfillmentorderasopen",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Marks the fulfillment order as open",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Transition a fulfillment order from scheduled to open": {
+                  "value": {
+                    "fulfillment_order": {
+                      "id": 1046000794,
+                      "shop_id": 548380009,
+                      "order_id": 450789469,
+                      "assigned_location_id": 24826418,
+                      "request_status": "unsubmitted",
+                      "status": "open",
+                      "supported_actions": [
+                        "request_fulfillment",
+                        "create_fulfillment"
+                      ],
+                      "destination": {
+                        "id": 1046000794,
+                        "address1": "Chestnut Street 92",
+                        "address2": "",
+                        "city": "Louisville",
+                        "company": null,
+                        "country": "United States",
+                        "email": "bob.norman@mail.example.com",
+                        "first_name": "Bob",
+                        "last_name": "Norman",
+                        "phone": "555-625-1199",
+                        "province": "Kentucky",
+                        "zip": "40202"
+                      },
+                      "line_items": [
+                        {
+                          "id": 1058737498,
+                          "shop_id": 548380009,
+                          "fulfillment_order_id": 1046000794,
+                          "quantity": 1,
+                          "line_item_id": 518995019,
+                          "inventory_item_id": 49148385,
+                          "fulfillable_quantity": 1,
+                          "variant_id": 49148385
+                        }
+                      ],
+                      "fulfillment_service_handle": "mars-fulfillment",
+                      "fulfill_at": null,
+                      "assigned_location": {
+                        "address1": null,
+                        "address2": null,
+                        "city": null,
+                        "country_code": "DE",
+                        "location_id": 24826418,
+                        "name": "Apple Api Shipwire",
+                        "phone": null,
+                        "province": null,
+                        "zip": null
+                      },
+                      "merchant_requests": []
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/fulfillment_orders/1046000794/open.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2021-01/fulfillment_orders/1046000794/open.json",
+            "headers": {},
+            "body": "{}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_order\":{\"id\":1046000794,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"unsubmitted\",\"status\":\"open\",\"supported_actions\":[\"request_fulfillment\",\"create_fulfillment\"],\"destination\":{\"id\":1046000794,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"line_items\":[{\"id\":1058737498,\"shop_id\":548380009,\"fulfillment_order_id\":1046000794,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"fulfillment_service_handle\":\"mars-fulfillment\",\"fulfill_at\":null,\"assigned_location\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"merchant_requests\":[]}}"
+          },
+          "name": "Transition a fulfillment order from scheduled to open",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_orders/1046000794/open.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nfulfillment_order = ShopifyAPI::FulfillmentOrder.new(session: test_session)\nfulfillment_order.id = 1046000794\nfulfillment_order.open(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentOrder} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_order = new FulfillmentOrder({session: test_session});\nfulfillment_order.id = 1046000794;\nawait fulfillment_order.open({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentOrder;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_order = new FulfillmentOrder($this->test_session);\n$fulfillment_order->id = 1046000794;\n$fulfillment_order->open(\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/open.json",
+      "action": "post"
+    },
+    {
+      "description": "Updates the <code>fulfill_at</code> time of a scheduled fulfillment order.\n          This endpoint is used to manage the time a scheduled fulfillment order will be marked as ready for fulfillment.",
+      "summary": "Reschedules the fulfill_at time of a scheduled fulfillment order",
+      "operationId": "Reschedulesthefulfill_attimeofascheduledfulfillmentorder",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Reschedules the fulfill_at time of a scheduled fulfillment order",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Update the fulfill_at time of a scheduled fulfillment order": {
+                  "value": {
+                    "fulfillment_order": {
+                      "id": 1046000795,
+                      "shop_id": 548380009,
+                      "order_id": 450789469,
+                      "assigned_location_id": 24826418,
+                      "request_status": "unsubmitted",
+                      "status": "scheduled",
+                      "supported_actions": [
+                        "mark_as_open"
+                      ],
+                      "destination": {
+                        "id": 1046000795,
+                        "address1": "Chestnut Street 92",
+                        "address2": "",
+                        "city": "Louisville",
+                        "company": null,
+                        "country": "United States",
+                        "email": "bob.norman@mail.example.com",
+                        "first_name": "Bob",
+                        "last_name": "Norman",
+                        "phone": "555-625-1199",
+                        "province": "Kentucky",
+                        "zip": "40202"
+                      },
+                      "line_items": [
+                        {
+                          "id": 1058737499,
+                          "shop_id": 548380009,
+                          "fulfillment_order_id": 1046000795,
+                          "quantity": 1,
+                          "line_item_id": 518995019,
+                          "inventory_item_id": 49148385,
+                          "fulfillable_quantity": 1,
+                          "variant_id": 49148385
+                        }
+                      ],
+                      "fulfillment_service_handle": "mars-fulfillment",
+                      "fulfill_at": "2023-05-14T12:54:00-06:00",
+                      "assigned_location": {
+                        "address1": null,
+                        "address2": null,
+                        "city": null,
+                        "country_code": "DE",
+                        "location_id": 24826418,
+                        "name": "Apple Api Shipwire",
+                        "phone": null,
+                        "province": null,
+                        "zip": null
+                      },
+                      "merchant_requests": []
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/fulfillment_orders/1046000795/reschedule.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2021-01/fulfillment_orders/1046000795/reschedule.json",
+            "headers": {},
+            "body": "{\"fulfillment_order\":{\"new_fulfill_at\":\"2023-05-14 18:54 UTC\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_order\":{\"id\":1046000795,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"unsubmitted\",\"status\":\"scheduled\",\"supported_actions\":[\"mark_as_open\"],\"destination\":{\"id\":1046000795,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"line_items\":[{\"id\":1058737499,\"shop_id\":548380009,\"fulfillment_order_id\":1046000795,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"fulfillment_service_handle\":\"mars-fulfillment\",\"fulfill_at\":\"2023-05-14T14:54:00-04:00\",\"assigned_location\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"merchant_requests\":[]}}"
+          },
+          "name": "Update the fulfill_at time of a scheduled fulfillment order",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"fulfillment_order\":{\"new_fulfill_at\":\"2023-05-14 18:54 UTC\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_orders/1046000795/reschedule.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nfulfillment_order = ShopifyAPI::FulfillmentOrder.new(session: test_session)\nfulfillment_order.id = 1046000795\nfulfillment_order.reschedule(\n  session: test_session,\n  body: {\"fulfillment_order\" => {\"new_fulfill_at\" => \"2023-05-14 18:54 UTC\"}},\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentOrder} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_order = new FulfillmentOrder({session: test_session});\nfulfillment_order.id = 1046000795;\nawait fulfillment_order.reschedule({\n  body: {\"fulfillment_order\": {\"new_fulfill_at\": \"2023-05-14 18:54 UTC\"}},\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentOrder;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_order = new FulfillmentOrder($this->test_session);\n$fulfillment_order->id = 1046000795;\n$fulfillment_order->reschedule(\n    [], // Params\n    [\"fulfillment_order\" => [\"new_fulfill_at\" => \"2023-05-14 18:54 UTC\"]], // Body\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/reschedule.json",
+      "action": "post"
+    },
+    {
+      "description": "Halts all fulfillment work on a fulfillment order with status <code>OPEN</code>\n          and changes the status of the fulfillment order to <code>ON_HOLD</code>.",
+      "summary": "Applies a fulfillment hold on a fulfillment order with status <code>OPEN</code>",
+      "operationId": "Appliesafulfillmentholdonafulfillmentorderwithstatus<code>OPEN</code>",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "notify_merchant",
+          "description": "Whether the merchant should receive a notification about the fulfillment hold. If set to true, then the merchant will be notified on the Shopify mobile app (if they use it to manage their store). The default value is false.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "reason",
+          "description": "A mandatory reason for the fulfillment hold.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "examples": {
+            "awaiting_payment": {
+              "summary": "The fulfillment hold is applied because payment is pending.",
+              "value": "awaiting_payment"
+            },
+            "high_risk_of_fraud": {
+              "summary": "The fulfillment hold is applied because of a high risk of fraud.",
+              "value": "high_risk_of_fraud"
+            },
+            "incorrect_address": {
+              "summary": "The fulfillment hold is applied because of an incorrect address.",
+              "value": "incorrect_address"
+            },
+            "inventory_out_of_stock": {
+              "summary": "The fulfillment hold is applied because inventory is out of stock.",
+              "value": "inventory_out_of_stock"
+            },
+            "other": {
+              "summary": "The fulfillment hold is applied for any other reason.",
+              "value": "other"
+            }
+          }
+        },
+        {
+          "name": "reason_notes",
+          "description": "Optional additional information about the fulfillment hold reason.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Applies a fulfillment hold on a fulfillment order with status <code>OPEN</code>",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Apply a fulfillment hold on a fulfillment order because some inventory is out of stock": {
+                  "value": {
+                    "fulfillment_order": {
+                      "id": 1046000796,
+                      "shop_id": 548380009,
+                      "order_id": 450789469,
+                      "assigned_location_id": 24826418,
+                      "request_status": "unsubmitted",
+                      "status": "on_hold",
+                      "supported_actions": [
+                        "release_hold"
+                      ],
+                      "destination": {
+                        "id": 1046000796,
+                        "address1": "Chestnut Street 92",
+                        "address2": "",
+                        "city": "Louisville",
+                        "company": null,
+                        "country": "United States",
+                        "email": "bob.norman@mail.example.com",
+                        "first_name": "Bob",
+                        "last_name": "Norman",
+                        "phone": "555-625-1199",
+                        "province": "Kentucky",
+                        "zip": "40202"
+                      },
+                      "line_items": [
+                        {
+                          "id": 1058737500,
+                          "shop_id": 548380009,
+                          "fulfillment_order_id": 1046000796,
+                          "quantity": 1,
+                          "line_item_id": 518995019,
+                          "inventory_item_id": 49148385,
+                          "fulfillable_quantity": 1,
+                          "variant_id": 49148385
+                        }
+                      ],
+                      "fulfill_at": null,
+                      "international_duties": {
+                        "incoterm": "DAP"
+                      },
+                      "fulfillment_holds": [
+                        {
+                          "reason": "inventory_out_of_stock",
+                          "reason_notes": "Not enough inventory to complete this work."
+                        }
+                      ],
+                      "delivery_method": null,
+                      "assigned_location": {
+                        "address1": null,
+                        "address2": null,
+                        "city": null,
+                        "country_code": "DE",
+                        "location_id": 24826418,
+                        "name": "Apple Api Shipwire",
+                        "phone": null,
+                        "province": null,
+                        "zip": null
+                      },
+                      "merchant_requests": []
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/fulfillment_orders/1046000796/hold.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2021-10/fulfillment_orders/1046000796/hold.json",
+            "headers": {},
+            "body": "{\"fulfillment_hold\":{\"reason\":\"inventory_out_of_stock\",\"reason_notes\":\"Not enough inventory to complete this work.\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_order\":{\"id\":1046000796,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"unsubmitted\",\"status\":\"on_hold\",\"supported_actions\":[\"release_hold\"],\"destination\":{\"id\":1046000796,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"line_items\":[{\"id\":1058737500,\"shop_id\":548380009,\"fulfillment_order_id\":1046000796,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"fulfill_at\":null,\"international_duties\":{\"incoterm\":\"DAP\"},\"fulfillment_holds\":[{\"reason\":\"inventory_out_of_stock\",\"reason_notes\":\"Not enough inventory to complete this work.\"}],\"delivery_method\":null,\"assigned_location\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"merchant_requests\":[]}}"
+          },
+          "name": "Apply a fulfillment hold on a fulfillment order because some inventory is out of stock",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"fulfillment_hold\":{\"reason\":\"inventory_out_of_stock\",\"reason_notes\":\"Not enough inventory to complete this work.\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_orders/1046000796/hold.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nfulfillment_order = ShopifyAPI::FulfillmentOrder.new(session: test_session)\nfulfillment_order.id = 1046000796\nfulfillment_order.hold(\n  session: test_session,\n  body: {\"fulfillment_hold\" => {\"reason\" => \"inventory_out_of_stock\", \"reason_notes\" => \"Not enough inventory to complete this work.\"}},\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentOrder} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_order = new FulfillmentOrder({session: test_session});\nfulfillment_order.id = 1046000796;\nawait fulfillment_order.hold({\n  body: {\"fulfillment_hold\": {\"reason\": \"inventory_out_of_stock\", \"reason_notes\": \"Not enough inventory to complete this work.\"}},\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentOrder;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_order = new FulfillmentOrder($this->test_session);\n$fulfillment_order->id = 1046000796;\n$fulfillment_order->hold(\n    [], // Params\n    [\"fulfillment_hold\" => [\"reason\" => \"inventory_out_of_stock\", \"reason_notes\" => \"Not enough inventory to complete this work.\"]], // Body\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/hold.json",
+      "action": "post"
+    },
+    {
+      "description": "Release the fulfillment hold on a fulfillment order and changes the status\n          of the fulfillment order to <code>OPEN</code> or <code>SCHEDULED</code>",
+      "summary": "Releases the fulfillment hold on a fulfillment order",
+      "operationId": "Releasesthefulfillmentholdonafulfillmentorder",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Releases the fulfillment hold on a fulfillment order",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Transition a fulfillment order from on_hold to open": {
+                  "value": {
+                    "fulfillment_order": {
+                      "id": 1046000799,
+                      "shop_id": 548380009,
+                      "order_id": 450789469,
+                      "assigned_location_id": 24826418,
+                      "request_status": "submitted",
+                      "status": "open",
+                      "supported_actions": [
+                        "cancel_fulfillment_order"
+                      ],
+                      "destination": {
+                        "id": 1046000799,
+                        "address1": "Chestnut Street 92",
+                        "address2": "",
+                        "city": "Louisville",
+                        "company": null,
+                        "country": "United States",
+                        "email": "bob.norman@mail.example.com",
+                        "first_name": "Bob",
+                        "last_name": "Norman",
+                        "phone": "555-625-1199",
+                        "province": "Kentucky",
+                        "zip": "40202"
+                      },
+                      "line_items": [
+                        {
+                          "id": 1058737503,
+                          "shop_id": 548380009,
+                          "fulfillment_order_id": 1046000799,
+                          "quantity": 1,
+                          "line_item_id": 518995019,
+                          "inventory_item_id": 49148385,
+                          "fulfillable_quantity": 1,
+                          "variant_id": 49148385
+                        }
+                      ],
+                      "fulfill_at": null,
+                      "international_duties": {
+                        "incoterm": "DAP"
+                      },
+                      "fulfillment_holds": [],
+                      "delivery_method": null,
+                      "assigned_location": {
+                        "address1": null,
+                        "address2": null,
+                        "city": null,
+                        "country_code": "DE",
+                        "location_id": 24826418,
+                        "name": "Apple Api Shipwire",
+                        "phone": null,
+                        "province": null,
+                        "zip": null
+                      },
+                      "merchant_requests": []
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/fulfillment_orders/1046000799/release_hold.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2021-10/fulfillment_orders/1046000799/release_hold.json",
+            "headers": {},
+            "body": "{}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_order\":{\"id\":1046000799,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"submitted\",\"status\":\"open\",\"supported_actions\":[\"cancel_fulfillment_order\"],\"destination\":{\"id\":1046000799,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"line_items\":[{\"id\":1058737503,\"shop_id\":548380009,\"fulfillment_order_id\":1046000799,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"fulfill_at\":null,\"international_duties\":{\"incoterm\":\"DAP\"},\"fulfillment_holds\":[],\"delivery_method\":null,\"assigned_location\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"merchant_requests\":[]}}"
+          },
+          "name": "Transition a fulfillment order from on_hold to open",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_orders/1046000799/release_hold.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nfulfillment_order = ShopifyAPI::FulfillmentOrder.new(session: test_session)\nfulfillment_order.id = 1046000799\nfulfillment_order.release_hold(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentOrder} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_order = new FulfillmentOrder({session: test_session});\nfulfillment_order.id = 1046000799;\nawait fulfillment_order.release_hold({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentOrder;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_order = new FulfillmentOrder($this->test_session);\n$fulfillment_order->id = 1046000799;\n$fulfillment_order->release_hold(\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/release_hold.json",
+      "action": "post"
+    }
+  ],
+  "components": [
+    {
+      "name": "FulfillmentOrder",
+      "title": "FulfillmentOrder",
+      "type": "object",
+      "properties": [
+        {
+          "description": "The ID of the location that has been assigned to do the work.",
+          "type": "string",
+          "example": 3183479,
+          "name": "assigned_location_id"
+        },
+        {
+          "description": "        <p>The destination where the items should be sent.</p>\n        <ul>\n          <li><strong>id</strong>: The ID of the fulfillment order destination.</li>\n          <li><strong>address1</strong>: The street address of the assigned location.</li>\n          <li><strong>address2</strong>: An optional additional field for the street address of the assigned location.</li>\n          <li><strong>city</strong>: The city of the destination.</li>\n          <li><strong>company</strong>: The company of the destination.</li>\n          <li><strong>country</strong>: The country of the destination.</li>\n          <li><strong>email</strong>: The email of the customer at the destination.</li>\n          <li><strong>first_name</strong>: The first name of the customer at the destination.</li>\n          <li><strong>last_name</strong>: The last name of the customer at the destination.</li>\n          <li><strong>phone</strong>: The phone number of the customer at the destination.</li>\n          <li><strong>province</strong>: The province of the destination.</li>\n          <li><strong>zip</strong>: The ZIP code of the destination.</li>\n        </ul>\n",
+          "type": "string",
+          "example": {
+            "id": 54433189,
+            "address1": "123 Amoebobacterieae St",
+            "address2": "Unit 806",
+            "city": "Ottawa",
+            "company": "",
+            "country": "Canada",
+            "email": "bob@customer.com",
+            "first_name": "Bob",
+            "last_name": "Bobsen",
+            "phone": "+1(613)555-1212",
+            "province": "Ontario",
+            "zip": "K2P0V6"
+          },
+          "name": "destination"
+        },
+        {
+          "description": "        <p>The type of method used to transfer a product or service to a customer.</p>\n        <ul>\n          <li><strong>id</strong>: The ID of the delivery method.</li>\n          <li><strong>method_type</strong>: The type of delivery method. Valid values:\n            <ul>\n              <li><strong>local</strong>: A delivery to a customer's doorstep.</li>\n              <li><strong>none</strong>: No delivery method.</li>\n              <li><strong>pick_up</strong>: A delivery that a customer picks up at your retail store, curbside, or any location that you choose.</li>\n              <li><strong>retail</strong>: Items delivered immediately in a retail store.</li>\n              <li><strong>shipping</strong>: A delivery to a customer using a shipping carrier.</li>\n            </ul>\n          </li>\n          <li><strong>min_delivery_date_time</strong>: The minimum date and time by which the delivery is expected to be completed.</li>\n          <li><strong>max_delivery_date_time</strong>: The maximum date and time by which the delivery is expected to be completed.</li>\n        </ul>\n",
+          "type": "string",
+          "example": {
+            "id": 64434189,
+            "method_type": "local",
+            "min_delivery_date_time": "2022-04-20T21:59:59-06:00",
+            "max_delivery_date_time": "2022-04-28T21:59:59-06:00"
+          },
+          "name": "delivery_method"
+        },
+        {
+          "description": "          The date and time at which the fulfillment order will be fulfillable.\n          When this date and time is reached, a <code>scheduled</code> fulfillment order is automatically transitioned to <code>open</code>.\n          For more information about fulfillment statuses, refer to the <strong>status</strong> property.\n",
+          "type": "string",
+          "example": "2021-01-01",
+          "name": "fulfill_at"
+        },
+        {
+          "description": "          The latest date and time by which all items in the fulfillment order need to be fulfilled.\n",
+          "type": "string",
+          "example": "2021-01-01",
+          "name": "fulfill_by"
+        },
+        {
+          "description": "<p>Represents the fulfillment holds applied on the fulfillment order.</p>\n<ul>\n  <li><strong>reason</strong>: The reason for the fulfillment hold.</li>\n  <li><strong>reason_notes</strong>: Additional information about the fulfillment hold reason.</li>\n</ul>\n",
+          "type": "string",
+          "example": [
+            {
+              "reason": "incorrect_address",
+              "reason_notes": "the apartment number is missing."
+            }
+          ],
+          "name": "fulfillment_holds"
+        },
+        {
+          "description": "An ID for the fulfillment order.",
+          "type": "string",
+          "example": 255858046,
+          "name": "id"
+        },
+        {
+          "description": "<p>The international duties relevant to the fulfillment order.</p>\n<ul>\n  <li><strong>incoterm</strong>: The method of duties payment. Valid values:\n      <ul>\n          <li><strong>DAP</strong>: Delivered at place.</li>\n          <li><strong>DDP</strong>: Delivered duty paid.</li>\n      </ul>\n   </li>\n</ul>\n",
+          "type": "string",
+          "example": {
+            "incoterm": "DAP"
+          },
+          "name": "international_duties"
+        },
+        {
+          "description": "<p>Represents line items belonging to a fulfillment order:</p>\n<ul>\n  <li><strong>id</strong>: The ID of the fulfillment order line item.</li>\n  <li><strong>shop_id</strong>: The ID of the shop associated with the fulfillment order line item.</li>\n  <li><strong>fulfillment_order_id</strong>: The ID of the fulfillment order associated with this line item.</li>\n  <li><strong>line_item_id</strong>: The ID of the line item associated with this fulfillment order line item.</li>\n  <li><strong>inventory_item_id</strong>: The ID of the inventory item associated with this fulfillment order line item.</li>\n  <li><strong>quantity</strong>: The total number of units to be fulfilled.</li>\n  <li><strong>fulfillable_quantity</strong>: The number of units remaining to be fulfilled.</li>\n  <li><strong>variant_id</strong>: The ID of the variant associated with this fulfillment order line item.</li>\n</ul>\n",
+          "type": "string",
+          "example": [
+            {
+              "id": 466157049,
+              "shop_id": 3998762,
+              "fulfillment_order_id": 1568020,
+              "line_item_id": 466157049,
+              "inventory_item_id": 6588097,
+              "quantity": 1,
+              "fulfillable_quantity": 1,
+              "variant_id": 2385087
+            }
+          ],
+          "name": "line_items"
+        },
+        {
+          "description": "The ID of the order that's associated with the fulfillment order.",
+          "type": "string",
+          "example": 3183479,
+          "name": "order_id"
+        },
+        {
+          "description": "          <p>The request status of the fulfillment order. Valid values:</p>\n          <ul>\n            <li>\n              <strong>unsubmitted</strong>:\n              The initial request status for newly-created fulfillment orders. This is the only valid request\n              status for fulfillment orders that aren't assigned to a fulfillment service.\n            </li>\n            <li>\n              <strong>submitted</strong>: The merchant requested fulfillment for this fulfillment order.\n            </li>\n            <li>\n              <strong>accepted</strong>: The fulfillment service accepted the merchant's fulfillment request.\n            </li>\n            <li>\n              <strong>rejected</strong>: The fulfillment service rejected the merchant's fulfillment request.\n            </li>\n            <li>\n              <strong>cancellation_requested</strong>: The merchant requested a cancellation of the fulfillment request for this fulfillment order.\n            </li>\n            <li>\n              <strong>cancellation_accepted</strong>: The fulfillment service accepted the merchant's fulfillment cancellation request.\n            </li>\n            <li>\n              <strong>cancellation_rejected</strong>: The fulfillment service rejected the merchant's fulfillment cancellation request.\n            </li>\n            <li>\n              <strong>closed</strong>: The fulfillment service closed the fulfillment order without completing it.\n            </li>\n          </ul>\n",
+          "type": "string",
+          "example": "unsubmitted",
+          "name": "request_status"
+        },
+        {
+          "description": "The ID of the shop that's associated with the fulfillment order.",
+          "type": "string",
+          "example": 255858046,
+          "name": "shop_id"
+        },
+        {
+          "description": "          <p>The status of the fulfillment order. Valid values:</p>\n          <ul>\n            <li>\n              <strong>open</strong>: The fulfillment order is ready for fulfillment.\n            </li>\n            <li>\n              <strong>in_progress</strong>: The fulfillment order is being processed.\n            </li>\n            <li>\n              <strong>scheduled</strong>: The fulfillment order is deferred and will be ready for fulfillment\n                after the datetime specified in <code>fulfill_at</code>.\n            </li>\n            <li>\n              <strong>cancelled</strong>: The fulfillment order has been cancelled by the merchant.\n            </li>\n            <li>\n              <strong>on_hold</strong>: The fulfillment order is on hold. The fulfillment process can't be initiated until the hold on the fulfillment order is released.\n            </li>\n            <li>\n              <strong>incomplete</strong>: The fulfillment order cannot be completed as requested.\n            </li>\n            <li>\n              <strong>closed</strong>: The fulfillment order has been completed and closed.\n            </li>\n          </ul>\n",
+          "type": "string",
+          "example": "open",
+          "name": "status"
+        },
+        {
+          "description": "        <p>The actions that can be performed on this fulfillment order.</p>\n",
+          "type": "string",
+          "example": [
+            "create_fulfillment",
+            "request_fulfillment",
+            "cancel_fulfillment_order",
+            "request_cancellation"
+          ],
+          "name": "supported_actions"
+        },
+        {
+          "description": "        <p>A list of requests sent by the merchant to the fulfillment service for this fulfillment order.</p>\n        <ul>\n          <li><strong>message</strong>: The message returned by the merchant, if any.</li>\n          <li><strong>request_options</strong>: The request options returned by the merchant, if any.</li>\n          <li><strong>kind</strong>: The kind of request. Valid values: <em>fulfillment_request</em>, <em>cancellation_request</em>, or <em>legacy_fulfill_request</em>.</li>\n        </ul>\n",
+          "type": "string",
+          "example": [
+            {
+              "message": "Hello, World!",
+              "request_options": {
+                "shipping_method": "pidgeon carrier",
+                "note": "handle with care",
+                "date": "2019-08-13T14:09:58-06:00"
+              },
+              "kind": "fulfillment_request"
+            }
+          ],
+          "name": "merchant_requests"
+        },
+        {
+          "description": "        <p>The fulfillment order's assigned location. This is the location expected to perform fulfillment.</p>\n        <ul>\n          <li><strong>address1</strong>: The street address of the assigned location.</li>\n          <li><strong>address2</strong>: An optional additional field for the street address of the assigned location.</li>\n          <li><strong>city</strong>: The city of the assigned location.</li>\n          <li><strong>country_code</strong>: The two-letter code for the country of the assigned location.</li>\n          <li><strong>location_id</strong>: The ID of the assigned location.</li>\n          <li><strong>name</strong>: The name of the assigned location.</li>\n          <li><strong>phone</strong>: The phone number of the assigned location.</li>\n          <li><strong>province</strong>: The province of the assigned location.</li>\n          <li><strong>zip</strong>: The ZIP code of the assigned location.</li>\n        </ul>\n",
+          "type": "string",
+          "example": {
+            "address1": "123 Amoebobacterieae St",
+            "address2": "Unit 806",
+            "city": "Ottawa",
+            "country_code": "CA",
+            "location_id": 17232953366,
+            "name": "Bob Bobsen",
+            "phone": "+1(613)555-1212",
+            "province": "Ontario",
+            "zip": "K2P0V6"
+          },
+          "name": "assigned_location"
+        }
+      ],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "shipping-and-fulfillment/fulfillmentorder",
+    "gid": "1a391d81-be3b-4b9f-990a-1b6b79353488",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/shipping-and-fulfillment/unstable/fulfillmentorder"
+    ],
+    "meta_description": "Manage an item or a group of items in an order that are to be fulfilled from the same location. Retrieve and cancel fulfillment orders, mark fulfillment orders as incomplete, or move fulfillment orders to a new location.",
+    "postman_group": "Shipping and fulfillment",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

@@ -181,7 +181,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/locations.json",
+      "url": "/admin/api/{api_version}/locations.json",
       "action": "get"
     },
     {
@@ -277,7 +277,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/locations/{location_id}.json",
+      "url": "/admin/api/{api_version}/locations/{location_id}.json",
       "action": "get"
     },
     {
@@ -347,7 +347,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/locations/count.json",
+      "url": "/admin/api/{api_version}/locations/count.json",
       "action": "get"
     },
     {
@@ -454,7 +454,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/locations/{location_id}/inventory_levels.json",
+      "url": "/admin/api/{api_version}/locations/{location_id}/inventory_levels.json",
       "action": "get"
     }
   ],
@@ -466,103 +466,103 @@
       "properties": [
         {
           "description": "Whether the location is active. If <code>true</code>, then the location can be used to sell products,\nstock inventory, and fulfill orders. Merchants can deactivate locations from the Shopify admin.\nDeactivated locations don't contribute to the shop's\n<a href=\"https://help.shopify.com/manual/locations/setting-up-your-locations\">location limit</a>.\n",
-          "type": "x-string",
+          "type": "string",
           "example": true,
           "name": "active"
         },
         {
           "description": "The location's street address.",
-          "type": "x-string",
+          "type": "string",
           "example": "126 York Street",
           "name": "address1"
         },
         {
           "description": "The optional second line of the location's street address.",
-          "type": "x-string",
+          "type": "string",
           "example": "Unit 42",
           "name": "address2"
         },
         {
           "description": "The city the location is in.",
-          "type": "x-string",
+          "type": "string",
           "example": "Ottawa",
           "name": "city"
         },
         {
           "description": "The country the location is in.",
-          "type": "x-string",
+          "type": "string",
           "example": "Canada",
           "name": "country"
         },
         {
           "description": "The two-letter code (<a href=\"https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2\" target=\"_blank\">ISO 3166-1 alpha-2</a> format) corresponding to country the location is in.",
-          "type": "x-string",
+          "type": "string",
           "example": "CA",
           "name": "country_code"
         },
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601 format</a>) when the location was created.",
-          "type": "x-string",
+          "type": "string",
           "example": "2008-12-31T17:00:00-07:00",
           "name": "created_at"
         },
         {
           "description": "The ID of the location.",
-          "type": "x-string",
+          "type": "string",
           "example": 121,
           "name": "id"
         },
         {
           "description": "          Whether this is a fulfillment service location. If <code>true</code>, then the location is a\n          fulfillment service location. If <code>false</code>, then the location was created by the\n          merchant and isn't tied to a fulfillment service.\n",
-          "type": "x-string",
+          "type": "string",
           "example": true,
           "name": "legacy"
         },
         {
           "description": "The name of the location.",
-          "type": "x-string",
+          "type": "string",
           "example": "Ottawa Store",
           "name": "name"
         },
         {
           "description": "The phone number of the location. This value can contain special characters, such as <code>-</code> or <code>+</code>.",
-          "type": "x-string",
+          "type": "string",
           "example": "18883290139",
           "name": "phone"
         },
         {
           "description": "The province, state, or district of the location.",
-          "type": "x-string",
+          "type": "string",
           "example": "Ontario",
           "name": "province"
         },
         {
           "description": "The province, state, or district code (<a href=\"https://en.wikipedia.org/wiki/ISO_3166-2\" target=\"_blank\">ISO 3166-2 alpha-2 format</a>) of the location.",
-          "type": "x-string",
+          "type": "string",
           "example": "ON",
           "name": "province_code"
         },
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601 format</a>) when the location was last updated.",
-          "type": "x-string",
+          "type": "string",
           "example": "2009-01-31T17:00:00-07:00",
           "name": "updated_at"
         },
         {
           "description": "The zip or postal code.",
-          "type": "x-string",
+          "type": "string",
           "example": "k1n5t5",
           "name": "zip"
         },
         {
           "description": "The localized name of the location's country.",
-          "type": "x-string",
+          "type": "string",
           "example": "Canada",
           "name": "localized_country_name"
         },
         {
           "description": "The localized name of the location's region. Typically a province, state, or district.",
-          "type": "x-string",
+          "type": "string",
           "example": "Ontario",
           "name": "localized_province_name"
         }

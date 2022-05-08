@@ -26,7 +26,7 @@
           "description": "A comma-separated list of inventory item IDs. To find the ID of an inventory item, use the <a href='/api/admin-rest/latest/resources/inventoryitem'>Inventory Item resource</a>",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "maximum": 50
           }
         },
@@ -35,7 +35,7 @@
           "description": "The maximum number of results to show.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": 50,
             "maximum": 250
           }
@@ -45,7 +45,7 @@
           "description": "A comma-separated list of location IDs. To find the ID of a location, use the <a href='/api/admin-rest/latest/resources/location'>Location resource</a>",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "maximum": 50
           }
         },
@@ -54,7 +54,7 @@
           "description": "Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -311,7 +311,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/inventory_levels.json",
+      "url": "/admin/api/{api_version}/inventory_levels.json",
       "action": "get"
     },
     {
@@ -332,7 +332,7 @@
           "description": "The amount to adjust the available inventory quantity. Send negative values to subtract from the current available quantity. For example, <code>\"available_adjustment\": 2</code> increases the current available quantity by 2, and <code>\"available_adjustment\": -3</code>decreases the current available quantity by 3.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "required": true
         },
@@ -341,7 +341,7 @@
           "description": "The ID of the inventory item.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "required": true
         },
@@ -350,7 +350,7 @@
           "description": "The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href='/api/admin-rest/latest/resources/location'>Location resource</a>",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "required": true
         }
@@ -510,7 +510,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/inventory_levels/adjust.json",
+      "url": "/admin/api/{api_version}/inventory_levels/adjust.json",
       "action": "post"
     },
     {
@@ -531,7 +531,7 @@
           "description": "The ID for the inventory item.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "required": true
         },
@@ -540,7 +540,7 @@
           "description": "The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href='/api/admin-rest/latest/resources/location'>Location resource</a>",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "required": true
         }
@@ -596,7 +596,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/inventory_levels.json?inventory_item_id=808950810&location_id=655441491",
+      "url": "/admin/api/{api_version}/inventory_levels.json?inventory_item_id=808950810&location_id=655441491",
       "action": "delete"
     },
     {
@@ -617,7 +617,7 @@
           "description": "The ID of the inventory item.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "required": true
         },
@@ -626,7 +626,7 @@
           "description": "The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href='/api/admin-rest/latest/resources/location'>Location resource</a>",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "required": true
         },
@@ -635,7 +635,7 @@
           "description": "Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, refer to <a href=\"#inventory-levels-and-fulfillment-service-locations\"><em>Inventory levels and fulfillment service locations</em></a>.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": "false"
           }
         }
@@ -799,7 +799,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/inventory_levels/connect.json",
+      "url": "/admin/api/{api_version}/inventory_levels/connect.json",
       "action": "post"
     },
     {
@@ -820,7 +820,7 @@
           "description": "Sets the available inventory quantity.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "required": true
         },
@@ -829,7 +829,7 @@
           "description": "The ID of the inventory item associated with the inventory level. To find the ID of the inventory item, use the <a href='/api/admin-rest/latest/resources/inventoryitem'>Inventory Item resource</a>",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "required": true
         },
@@ -838,7 +838,7 @@
           "description": "The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href='/api/admin-rest/latest/resources/location'>Location resource</a>",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "required": true
         },
@@ -847,7 +847,7 @@
           "description": "Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, refer to <a href=\"#inventory-levels-and-fulfillment-service-locations\"><em>Inventory levels and fulfillment service locations</em></a>.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": "false"
           }
         }
@@ -962,7 +962,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/inventory_levels/set.json",
+      "url": "/admin/api/{api_version}/inventory_levels/set.json",
       "action": "post"
     }
   ],
@@ -974,26 +974,26 @@
       "properties": [
         {
           "description": "The available quantity of an inventory item at the inventory level's associated location. Returns <code>null</code> if the inventory item is not tracked.",
-          "type": "x-string",
+          "type": "string",
           "example": 6,
           "name": "available"
         },
         {
           "description": "The ID of the inventory item associated with the inventory level. To find the ID of an inventory item, use the <a href='/api/admin-rest/latest/resources/inventoryitem'>Inventory Item resource</a>",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": 450789469,
           "name": "inventory_item_id"
         },
         {
           "description": "The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href='/api/admin-rest/latest/resources/location'>Location resource</a>",
-          "type": "x-string",
+          "type": "string",
           "example": 40642626,
           "name": "location_id"
         },
         {
           "description": "          The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601 format</a>) when the inventory level was last modified.\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "2012-08-24T12:01:47-06:00",
           "name": "updated_at"

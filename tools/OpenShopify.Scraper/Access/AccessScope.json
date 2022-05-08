@@ -76,7 +76,7 @@
       "properties": [
         {
           "description": "The list of access scopes associated with the access token.",
-          "type": "x-string",
+          "type": "string",
           "example": [
             {
               "handle": "write_product_listings"

@@ -26,7 +26,7 @@
           "description": "Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -34,7 +34,7 @@
           "description": "Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -42,7 +42,7 @@
           "description": "Show only certain fields, specified by a comma-separated list of field names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -50,7 +50,7 @@
           "description": "Show events specified in this filter.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -58,7 +58,7 @@
           "description": "The number of results to show.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": 50,
             "maximum": 250
           }
@@ -68,7 +68,7 @@
           "description": "Show only results after the specified ID.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -76,7 +76,7 @@
           "description": "Show events of a certain type.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -631,7 +631,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/events.json",
+      "url": "/admin/api/{api_version}/events.json",
       "action": "get"
     },
     {
@@ -660,7 +660,7 @@
           "description": "Show only certain fields, specified by a comma-separated list of field names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -731,7 +731,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/events/{event_id}.json",
+      "url": "/admin/api/{api_version}/events/{event_id}.json",
       "action": "get"
     },
     {
@@ -752,7 +752,7 @@
           "description": "Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -760,7 +760,7 @@
           "description": "Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -857,7 +857,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/events/count.json?created_at_min=2008-01-10T13:00:00+00:00",
+      "url": "/admin/api/{api_version}/events/count.json?created_at_min=2008-01-10T13:00:00+00:00",
       "action": "get"
     }
   ],
@@ -869,62 +869,62 @@
       "properties": [
         {
           "description": "Refers to a certain event and its resources.",
-          "type": "x-string",
+          "type": "string",
           "example": "IPod Nano - 8GB",
           "name": "arguments"
         },
         {
           "description": "A text field containing information about the event.",
-          "type": "x-string",
+          "type": "string",
           "example": null,
           "name": "body"
         },
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601 format</a>) when the event was created.",
-          "type": "x-string",
+          "type": "string",
           "example": "2015-04-20T13:33:57-06:00",
           "name": "created_at"
         },
         {
           "description": "The ID of the event.",
-          "type": "x-string",
+          "type": "string",
           "example": 164748010,
           "name": "id"
         },
         {
           "description": "A human readable description of the event.",
-          "type": "x-string",
+          "type": "string",
           "deprecated": true,
           "example": "Received a new order",
           "name": "description"
         },
         {
           "description": "A relative URL to the resource the event is for, if applicable.",
-          "type": "x-string",
+          "type": "string",
           "example": "/admin/orders/406514653/transactions/#1145",
           "name": "path"
         },
         {
           "description": "A human readable description of the event. Can contain some HTML formatting.",
-          "type": "x-string",
+          "type": "string",
           "example": "Received new order",
           "name": "message"
         },
         {
           "description": "The ID of the resource that generated the event.",
-          "type": "x-string",
+          "type": "string",
           "example": 406514653,
           "name": "subject_id"
         },
         {
           "description": "          <p>The type of the resource that generated the event. Valid values:</p>\n          <ul>\n            <li><code>Article</code></li>\n            <li><code>Blog</code></li>\n            <li><code>Collection</code></li>\n            <li><code>Comment</code></li>\n            <li><code>Order</code></li>\n            <li><code>Page</code></li>\n            <li><code>PriceRule</code></li>\n            <li><code>Product</code></li>\n            <li><code>ApiPermission</code></li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": "Order",
           "name": "subject_type"
         },
         {
           "description": "          The type of event that occurred. Different resources generate different types of event.\n          See the <a href=\"#resources-that-can-create-events\">Resources</a> section for a list of possible verbs.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "confirmed",
           "name": "verb"
         }

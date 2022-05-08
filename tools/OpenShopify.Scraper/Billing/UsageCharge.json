@@ -148,7 +148,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/recurring_application_charges/{recurring_application_charge_id}/usage_charges.json",
+      "url": "/admin/api/{api_version}/recurring_application_charges/{recurring_application_charge_id}/usage_charges.json",
       "action": "post"
     },
     {
@@ -177,7 +177,7 @@
           "description": "A comma-separated list of fields to include in the response.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -245,7 +245,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/recurring_application_charges/{recurring_application_charge_id}/usage_charges.json",
+      "url": "/admin/api/{api_version}/recurring_application_charges/{recurring_application_charge_id}/usage_charges.json",
       "action": "get"
     },
     {
@@ -282,7 +282,7 @@
           "description": "A comma-separated list of fields to include in the response.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -348,7 +348,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/recurring_application_charges/{recurring_application_charge_id}/usage_charges/{usage_charge_id}.json",
+      "url": "/admin/api/{api_version}/recurring_application_charges/{recurring_application_charge_id}/usage_charges/{usage_charge_id}.json",
       "action": "get"
     }
   ],
@@ -360,37 +360,37 @@
       "properties": [
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the usage charge was created.",
-          "type": "x-string",
+          "type": "string",
           "example": "2013-06-27T06:48:27-06:00",
           "name": "created_at"
         },
         {
           "description": "The description of the usage charge.",
-          "type": "x-string",
+          "type": "string",
           "example": "Super Mega Plan 1000 emails",
           "name": "description"
         },
         {
           "description": "The ID of the usage charge.",
-          "type": "x-string",
+          "type": "string",
           "example": 675931192,
           "name": "id"
         },
         {
           "description": "The price of the usage charge.",
-          "type": "x-string",
+          "type": "string",
           "example": 1,
           "name": "price"
         },
         {
           "description": "The ID of the recurring application charge that the usage charge belongs to.",
-          "type": "x-string",
+          "type": "string",
           "example": 527669426,
           "name": "recurring_application_charge_id"
         },
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the usage charge was last updated.",
-          "type": "x-string",
+          "type": "string",
           "example": "2013-06-27T06:48:27-06:00",
           "name": "updated_at"
         }

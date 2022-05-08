@@ -1,0 +1,959 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Asset",
+    "description": "        <p>Theme assets are the individual files that make up a shop's theme.</p>\n        {{ '/api/reference/asset.png' | image }}\n        <p>A theme's assets include its templates, images, stylesheets, and extra snippets of code. They are arranged among the theme's directories, such as <strong>layout</strong>, <strong>templates</strong>, and <strong>assets</strong>. You can use the Asset resource to add, change, or remove asset files from a shop's theme. For a complete list of theme directories, see <a href=\"/tutorials/develop-theme-templates#theme-structure\"><em>Theme structure</em></a>.</p>\n        <p>To learn how to create your own theme, see <a href=\"/concepts/themes\"><em>Building themes</em></a>.</p>\n",
+    "x-owner": "https://vault.shopify.io/teams/469",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "<p>Retrieves a list of assets for a theme.</p>\n          <p><strong>Note:</strong> Retrieving a list of assets returns only metadata about each asset. To retrieve an asset's content, you need to retrieve the asset individually.</p>",
+      "summary": "Retrieves a list of assets for a theme",
+      "operationId": "Retrievesalistofassetsforatheme",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "theme_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fields",
+          "description": "Specify which fields to show using a comma-separated list of field names.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of assets for a theme",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a list of all assets for a theme": {
+                  "value": {
+                    "assets": [
+                      {
+                        "key": "layout/theme.liquid",
+                        "public_url": null,
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2010-07-12T13:31:50-06:00",
+                        "content_type": "application/x-liquid",
+                        "size": 3252,
+                        "checksum": null,
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "assets/sidebar-devider.gif",
+                        "public_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/sidebar-devider.gif?v=1649179242",
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2022-04-05T11:20:42-06:00",
+                        "content_type": "image/gif",
+                        "size": 1016,
+                        "checksum": "ed8d4b8c040fcac8b7e3ed0509bb297a",
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "assets/bg-body-pink.gif",
+                        "public_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-body-pink.gif?v=1649179242",
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2022-04-05T11:20:42-06:00",
+                        "content_type": "image/gif",
+                        "size": 1562,
+                        "checksum": "d18b3a9b940cb1a20cf783923b9cacf8",
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "assets/bg-content.gif",
+                        "public_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-content.gif?v=1649179242",
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2022-04-05T11:20:42-06:00",
+                        "content_type": "image/gif",
+                        "size": 134,
+                        "checksum": "7a5aab7934b2c80df50d061e70287507",
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "sections/header_section.liquid",
+                        "public_url": null,
+                        "created_at": "2017-04-28T08:30:00-06:00",
+                        "updated_at": "2017-04-28T08:30:00-06:00",
+                        "content_type": "application/x-liquid",
+                        "size": 998,
+                        "checksum": null,
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "assets/shop.css.liquid",
+                        "public_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/shop.css.liquid?v=1649179242",
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2022-04-05T11:20:42-06:00",
+                        "content_type": "application/x-liquid",
+                        "size": 14675,
+                        "checksum": "1f559e456e88a5f8d0308ef861da9f28",
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "assets/shop.js",
+                        "public_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/shop.js?v=1649179242",
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2022-04-05T11:20:42-06:00",
+                        "content_type": "application/javascript",
+                        "size": 348,
+                        "checksum": "88d7cbd167fbd3be0249f4f1f6e404ea",
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "assets/bg-main.gif",
+                        "public_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-main.gif?v=1649179242",
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2022-04-05T11:20:42-06:00",
+                        "content_type": "image/gif",
+                        "size": 297,
+                        "checksum": "18905282d4955d4e4c5028da9ae88bca",
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "sections/content_section.liquid",
+                        "public_url": null,
+                        "created_at": "2016-02-11T12:31:50-07:00",
+                        "updated_at": "2016-02-11T12:31:50-07:00",
+                        "content_type": "application/x-liquid",
+                        "size": 997,
+                        "checksum": null,
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "templates/page.liquid",
+                        "public_url": null,
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2010-07-12T13:31:50-06:00",
+                        "content_type": "application/x-liquid",
+                        "size": 147,
+                        "checksum": null,
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "assets/bg-body-green.gif",
+                        "public_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-body-green.gif?v=1649179242",
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2022-04-05T11:20:42-06:00",
+                        "content_type": "image/gif",
+                        "size": 1542,
+                        "checksum": "2169a9ff29848ec56359263d0a8d8166",
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "assets/shop.css",
+                        "public_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/shop.css?v=1649179242",
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2022-04-05T11:20:42-06:00",
+                        "content_type": "text/css",
+                        "size": 14138,
+                        "checksum": "b3d706d74997b378c0cac8dbdcf75695",
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "config/settings_schema.json",
+                        "public_url": null,
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2010-07-12T13:31:50-06:00",
+                        "content_type": "application/json",
+                        "size": 4570,
+                        "checksum": null,
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "sections/product_section.liquid",
+                        "public_url": null,
+                        "created_at": "2016-02-14T14:31:41-07:00",
+                        "updated_at": "2016-02-14T14:31:41-07:00",
+                        "content_type": "application/x-liquid",
+                        "size": 2440,
+                        "checksum": null,
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "templates/blog.liquid",
+                        "public_url": null,
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2010-07-12T13:31:50-06:00",
+                        "content_type": "application/x-liquid",
+                        "size": 786,
+                        "checksum": null,
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "templates/article.liquid",
+                        "public_url": null,
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2010-07-12T13:31:50-06:00",
+                        "content_type": "application/x-liquid",
+                        "size": 2486,
+                        "checksum": null,
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "templates/product.liquid",
+                        "public_url": null,
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2010-07-12T13:31:50-06:00",
+                        "content_type": "application/x-liquid",
+                        "size": 2796,
+                        "checksum": null,
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "sections/footer_section.liquid",
+                        "public_url": null,
+                        "created_at": "2017-04-28T08:30:00-06:00",
+                        "updated_at": "2017-04-28T08:30:00-06:00",
+                        "content_type": "application/x-liquid",
+                        "size": 999,
+                        "checksum": null,
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "assets/bg-footer.gif",
+                        "public_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-footer.gif?v=1649179242",
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2022-04-05T11:20:42-06:00",
+                        "content_type": "image/gif",
+                        "size": 1434,
+                        "checksum": "f90351e66f70b0ffc3a84f9e60f4ecf9",
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "assets/bg-sidebar.gif",
+                        "public_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-sidebar.gif?v=1649179242",
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2022-04-05T11:20:42-06:00",
+                        "content_type": "image/gif",
+                        "size": 124,
+                        "checksum": "e3c398a169841859e330e264363ddadd",
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "assets/bg-body-orange.gif",
+                        "public_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-body-orange.gif?v=1649179242",
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2022-04-05T11:20:42-06:00",
+                        "content_type": "image/gif",
+                        "size": 1548,
+                        "checksum": "e6f3b060844d9b49d849b42cf721d641",
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "templates/collection.liquid",
+                        "public_url": null,
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2010-07-12T13:31:50-06:00",
+                        "content_type": "application/x-liquid",
+                        "size": 946,
+                        "checksum": null,
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "assets/sidebar-menu.jpg",
+                        "public_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/sidebar-menu.jpg?v=1649179242",
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2022-04-05T11:20:42-06:00",
+                        "content_type": "image/jpeg",
+                        "size": 1609,
+                        "checksum": "ed24e939ab1831d4528928492b067221",
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "templates/cart.liquid",
+                        "public_url": null,
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2010-07-12T13:31:50-06:00",
+                        "content_type": "application/x-liquid",
+                        "size": 2047,
+                        "checksum": null,
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "config/settings_data.json",
+                        "public_url": null,
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2010-07-12T13:31:50-06:00",
+                        "content_type": "application/json",
+                        "size": 4570,
+                        "checksum": null,
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "templates/index.liquid",
+                        "public_url": null,
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2010-07-12T13:31:50-06:00",
+                        "content_type": "application/x-liquid",
+                        "size": 1068,
+                        "checksum": null,
+                        "theme_id": 828155753
+                      },
+                      {
+                        "key": "assets/bg-body.gif",
+                        "public_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-body.gif?v=1649179242",
+                        "created_at": "2010-07-12T13:31:50-06:00",
+                        "updated_at": "2022-04-05T11:20:42-06:00",
+                        "content_type": "image/gif",
+                        "size": 1571,
+                        "checksum": "141775df5ce156a7cb50732a22689ff7",
+                        "theme_id": 828155753
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/themes/828155753/assets.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/themes/828155753/assets.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"assets\":[{\"key\":\"layout/theme.liquid\",\"public_url\":null,\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2010-07-12T15:31:50-04:00\",\"content_type\":\"application/x-liquid\",\"size\":3252,\"checksum\":null,\"theme_id\":828155753},{\"key\":\"assets/sidebar-devider.gif\",\"public_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/sidebar-devider.gif?v=1649179242\",\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2022-04-05T13:20:42-04:00\",\"content_type\":\"image/gif\",\"size\":1016,\"checksum\":\"ed8d4b8c040fcac8b7e3ed0509bb297a\",\"theme_id\":828155753},{\"key\":\"assets/bg-body-pink.gif\",\"public_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-body-pink.gif?v=1649179242\",\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2022-04-05T13:20:42-04:00\",\"content_type\":\"image/gif\",\"size\":1562,\"checksum\":\"d18b3a9b940cb1a20cf783923b9cacf8\",\"theme_id\":828155753},{\"key\":\"assets/bg-content.gif\",\"public_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-content.gif?v=1649179242\",\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2022-04-05T13:20:42-04:00\",\"content_type\":\"image/gif\",\"size\":134,\"checksum\":\"7a5aab7934b2c80df50d061e70287507\",\"theme_id\":828155753},{\"key\":\"sections/header_section.liquid\",\"public_url\":null,\"created_at\":\"2017-04-28T10:30:00-04:00\",\"updated_at\":\"2017-04-28T10:30:00-04:00\",\"content_type\":\"application/x-liquid\",\"size\":998,\"checksum\":null,\"theme_id\":828155753},{\"key\":\"assets/shop.css.liquid\",\"public_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/shop.css.liquid?v=1649179242\",\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2022-04-05T13:20:42-04:00\",\"content_type\":\"application/x-liquid\",\"size\":14675,\"checksum\":\"1f559e456e88a5f8d0308ef861da9f28\",\"theme_id\":828155753},{\"key\":\"assets/shop.js\",\"public_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/shop.js?v=1649179242\",\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2022-04-05T13:20:42-04:00\",\"content_type\":\"application/javascript\",\"size\":348,\"checksum\":\"88d7cbd167fbd3be0249f4f1f6e404ea\",\"theme_id\":828155753},{\"key\":\"assets/bg-main.gif\",\"public_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-main.gif?v=1649179242\",\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2022-04-05T13:20:42-04:00\",\"content_type\":\"image/gif\",\"size\":297,\"checksum\":\"18905282d4955d4e4c5028da9ae88bca\",\"theme_id\":828155753},{\"key\":\"sections/content_section.liquid\",\"public_url\":null,\"created_at\":\"2016-02-11T14:31:50-05:00\",\"updated_at\":\"2016-02-11T14:31:50-05:00\",\"content_type\":\"application/x-liquid\",\"size\":997,\"checksum\":null,\"theme_id\":828155753},{\"key\":\"templates/page.liquid\",\"public_url\":null,\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2010-07-12T15:31:50-04:00\",\"content_type\":\"application/x-liquid\",\"size\":147,\"checksum\":null,\"theme_id\":828155753},{\"key\":\"assets/bg-body-green.gif\",\"public_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-body-green.gif?v=1649179242\",\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2022-04-05T13:20:42-04:00\",\"content_type\":\"image/gif\",\"size\":1542,\"checksum\":\"2169a9ff29848ec56359263d0a8d8166\",\"theme_id\":828155753},{\"key\":\"assets/shop.css\",\"public_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/shop.css?v=1649179242\",\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2022-04-05T13:20:42-04:00\",\"content_type\":\"text/css\",\"size\":14138,\"checksum\":\"b3d706d74997b378c0cac8dbdcf75695\",\"theme_id\":828155753},{\"key\":\"config/settings_schema.json\",\"public_url\":null,\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2010-07-12T15:31:50-04:00\",\"content_type\":\"application/json\",\"size\":4570,\"checksum\":null,\"theme_id\":828155753},{\"key\":\"sections/product_section.liquid\",\"public_url\":null,\"created_at\":\"2016-02-14T16:31:41-05:00\",\"updated_at\":\"2016-02-14T16:31:41-05:00\",\"content_type\":\"application/x-liquid\",\"size\":2440,\"checksum\":null,\"theme_id\":828155753},{\"key\":\"templates/blog.liquid\",\"public_url\":null,\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2010-07-12T15:31:50-04:00\",\"content_type\":\"application/x-liquid\",\"size\":786,\"checksum\":null,\"theme_id\":828155753},{\"key\":\"templates/article.liquid\",\"public_url\":null,\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2010-07-12T15:31:50-04:00\",\"content_type\":\"application/x-liquid\",\"size\":2486,\"checksum\":null,\"theme_id\":828155753},{\"key\":\"templates/product.liquid\",\"public_url\":null,\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2010-07-12T15:31:50-04:00\",\"content_type\":\"application/x-liquid\",\"size\":2796,\"checksum\":null,\"theme_id\":828155753},{\"key\":\"sections/footer_section.liquid\",\"public_url\":null,\"created_at\":\"2017-04-28T10:30:00-04:00\",\"updated_at\":\"2017-04-28T10:30:00-04:00\",\"content_type\":\"application/x-liquid\",\"size\":999,\"checksum\":null,\"theme_id\":828155753},{\"key\":\"assets/bg-footer.gif\",\"public_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-footer.gif?v=1649179242\",\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2022-04-05T13:20:42-04:00\",\"content_type\":\"image/gif\",\"size\":1434,\"checksum\":\"f90351e66f70b0ffc3a84f9e60f4ecf9\",\"theme_id\":828155753},{\"key\":\"assets/bg-sidebar.gif\",\"public_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-sidebar.gif?v=1649179242\",\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2022-04-05T13:20:42-04:00\",\"content_type\":\"image/gif\",\"size\":124,\"checksum\":\"e3c398a169841859e330e264363ddadd\",\"theme_id\":828155753},{\"key\":\"assets/bg-body-orange.gif\",\"public_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-body-orange.gif?v=1649179242\",\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2022-04-05T13:20:42-04:00\",\"content_type\":\"image/gif\",\"size\":1548,\"checksum\":\"e6f3b060844d9b49d849b42cf721d641\",\"theme_id\":828155753},{\"key\":\"templates/collection.liquid\",\"public_url\":null,\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2010-07-12T15:31:50-04:00\",\"content_type\":\"application/x-liquid\",\"size\":946,\"checksum\":null,\"theme_id\":828155753},{\"key\":\"assets/sidebar-menu.jpg\",\"public_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/sidebar-menu.jpg?v=1649179242\",\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2022-04-05T13:20:42-04:00\",\"content_type\":\"image/jpeg\",\"size\":1609,\"checksum\":\"ed24e939ab1831d4528928492b067221\",\"theme_id\":828155753},{\"key\":\"templates/cart.liquid\",\"public_url\":null,\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2010-07-12T15:31:50-04:00\",\"content_type\":\"application/x-liquid\",\"size\":2047,\"checksum\":null,\"theme_id\":828155753},{\"key\":\"config/settings_data.json\",\"public_url\":null,\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2010-07-12T15:31:50-04:00\",\"content_type\":\"application/json\",\"size\":4570,\"checksum\":null,\"theme_id\":828155753},{\"key\":\"templates/index.liquid\",\"public_url\":null,\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2010-07-12T15:31:50-04:00\",\"content_type\":\"application/x-liquid\",\"size\":1068,\"checksum\":null,\"theme_id\":828155753},{\"key\":\"assets/bg-body.gif\",\"public_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-body.gif?v=1649179242\",\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2022-04-05T13:20:42-04:00\",\"content_type\":\"image/gif\",\"size\":1571,\"checksum\":\"141775df5ce156a7cb50732a22689ff7\",\"theme_id\":828155753}]}"
+          },
+          "name": "Retrieve a list of all assets for a theme",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753/assets.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Asset.all(\n  session: test_session,\n  theme_id: 828155753,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Asset.all({\n  session: test_session,\n  theme_id: 828155753,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAsset::all(\n    $this->test_session, // Session\n    [\"theme_id\" => \"828155753\"], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/themes/{theme_id}/assets.json",
+      "action": "get"
+    },
+    {
+      "description": "<p>Creates or updates an asset for a theme.</p>\n          <p>In the PUT request, you can include the <code>src</code> or <code>source_key</code> property to create the asset from an existing file.</p>",
+      "summary": "Creates or updates an asset for a theme",
+      "operationId": "Createsorupdatesanassetforatheme",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "theme_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "source_key",
+          "description": "The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "src",
+          "description": "The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Creates or updates an asset for a theme",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Change an existing Liquid template's value": {
+                  "value": {
+                    "asset": {
+                      "key": "templates/index.liquid",
+                      "public_url": null,
+                      "created_at": "2010-07-12T13:31:50-06:00",
+                      "updated_at": "2022-04-05T11:20:45-06:00",
+                      "content_type": "application/x-liquid",
+                      "size": 110,
+                      "checksum": "cd71db2e14df976c8aa44b44c8dae77b",
+                      "theme_id": 828155753
+                    }
+                  }
+                },
+                "Create an image asset by providing a base64-encoded attachment": {
+                  "value": {
+                    "asset": {
+                      "key": "assets/empty.gif",
+                      "public_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/empty.gif?v=1649179246",
+                      "created_at": "2022-04-05T11:20:46-06:00",
+                      "updated_at": "2022-04-05T11:20:46-06:00",
+                      "content_type": "image/gif",
+                      "size": 43,
+                      "checksum": "45cf913e5d9d3c9b2058033056d3dd23",
+                      "theme_id": 828155753
+                    }
+                  }
+                },
+                "Create an image asset by providing a source URL from which to upload the image": {
+                  "value": {
+                    "asset": {
+                      "key": "assets/bg-body.gif",
+                      "public_url": "https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-body.gif?v=1649179248",
+                      "created_at": "2010-07-12T13:31:50-06:00",
+                      "updated_at": "2022-04-05T11:20:48-06:00",
+                      "content_type": "image/gif",
+                      "size": 43,
+                      "checksum": "45cf913e5d9d3c9b2058033056d3dd23",
+                      "theme_id": 828155753
+                    }
+                  }
+                },
+                "Duplicate an existing asset by providing a source key": {
+                  "value": {
+                    "asset": {
+                      "key": "layout/alternate.liquid",
+                      "public_url": null,
+                      "created_at": "2022-04-05T11:20:49-06:00",
+                      "updated_at": "2022-04-05T11:20:49-06:00",
+                      "content_type": "application/x-liquid",
+                      "size": 3049,
+                      "checksum": "1879a06996941b2ff1ff485a1fe60a97",
+                      "theme_id": 828155753
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/themes/828155753/assets.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/themes/828155753/assets.json",
+            "headers": {},
+            "body": "{\"asset\":{\"key\":\"templates/index.liquid\",\"value\":\"<img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"asset\":{\"key\":\"templates/index.liquid\",\"public_url\":null,\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2022-04-05T13:20:45-04:00\",\"content_type\":\"application/x-liquid\",\"size\":110,\"checksum\":\"cd71db2e14df976c8aa44b44c8dae77b\",\"theme_id\":828155753}}"
+          },
+          "name": "Change an existing Liquid template's value",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"asset\":{\"key\":\"templates/index.liquid\",\"value\":\"<img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753/assets.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nasset = ShopifyAPI::Asset.new(session: test_session)\nasset.theme_id = 828155753\nasset.key = \"templates/index.liquid\"\nasset.value = \"<img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>\"\nasset.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst asset = new Asset({session: test_session});\nasset.theme_id = 828155753;\nasset.key = \"templates/index.liquid\";\nasset.value = \"<img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>\";\nawait asset.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$asset = new Asset($this->test_session);\n$asset->theme_id = 828155753;\n$asset->key = \"templates/index.liquid\";\n$asset->value = \"<img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>\";\n$asset->save();"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/themes/828155753/assets.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/themes/828155753/assets.json",
+            "headers": {},
+            "body": "{\"asset\":{\"key\":\"assets/empty.gif\",\"attachment\":\"R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\\n\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"asset\":{\"key\":\"assets/empty.gif\",\"public_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/empty.gif?v=1649179246\",\"created_at\":\"2022-04-05T13:20:46-04:00\",\"updated_at\":\"2022-04-05T13:20:46-04:00\",\"content_type\":\"image/gif\",\"size\":43,\"checksum\":\"45cf913e5d9d3c9b2058033056d3dd23\",\"theme_id\":828155753}}"
+          },
+          "name": "Create an image asset by providing a base64-encoded attachment",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"asset\":{\"key\":\"assets/empty.gif\",\"attachment\":\"R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\\n\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753/assets.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nasset = ShopifyAPI::Asset.new(session: test_session)\nasset.theme_id = 828155753\nasset.key = \"assets/empty.gif\"\nasset.attachment = \"R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\\n\"\nasset.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst asset = new Asset({session: test_session});\nasset.theme_id = 828155753;\nasset.key = \"assets/empty.gif\";\nasset.attachment = \"R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\\n\";\nawait asset.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$asset = new Asset($this->test_session);\n$asset->theme_id = 828155753;\n$asset->key = \"assets/empty.gif\";\n$asset->attachment = \"R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\\n\";\n$asset->save();"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/themes/828155753/assets.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/themes/828155753/assets.json",
+            "headers": {},
+            "body": "{\"asset\":{\"key\":\"assets/bg-body.gif\",\"src\":\"http://apple.com/new_bg.gif\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"asset\":{\"key\":\"assets/bg-body.gif\",\"public_url\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/t/1/assets/bg-body.gif?v=1649179248\",\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2022-04-05T13:20:48-04:00\",\"content_type\":\"image/gif\",\"size\":43,\"checksum\":\"45cf913e5d9d3c9b2058033056d3dd23\",\"theme_id\":828155753}}"
+          },
+          "name": "Create an image asset by providing a source URL from which to upload the image",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"asset\":{\"key\":\"assets/bg-body.gif\",\"src\":\"http://apple.com/new_bg.gif\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753/assets.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nasset = ShopifyAPI::Asset.new(session: test_session)\nasset.theme_id = 828155753\nasset.key = \"assets/bg-body.gif\"\nasset.src = \"http://apple.com/new_bg.gif\"\nasset.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst asset = new Asset({session: test_session});\nasset.theme_id = 828155753;\nasset.key = \"assets/bg-body.gif\";\nasset.src = \"http://apple.com/new_bg.gif\";\nawait asset.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$asset = new Asset($this->test_session);\n$asset->theme_id = 828155753;\n$asset->key = \"assets/bg-body.gif\";\n$asset->src = \"http://apple.com/new_bg.gif\";\n$asset->save();"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/themes/828155753/assets.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/themes/828155753/assets.json",
+            "headers": {},
+            "body": "{\"asset\":{\"key\":\"layout/alternate.liquid\",\"source_key\":\"layout/theme.liquid\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"asset\":{\"key\":\"layout/alternate.liquid\",\"public_url\":null,\"created_at\":\"2022-04-05T13:20:49-04:00\",\"updated_at\":\"2022-04-05T13:20:49-04:00\",\"content_type\":\"application/x-liquid\",\"size\":3049,\"checksum\":\"1879a06996941b2ff1ff485a1fe60a97\",\"theme_id\":828155753}}"
+          },
+          "name": "Duplicate an existing asset by providing a source key",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"asset\":{\"key\":\"layout/alternate.liquid\",\"source_key\":\"layout/theme.liquid\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753/assets.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nasset = ShopifyAPI::Asset.new(session: test_session)\nasset.theme_id = 828155753\nasset.key = \"layout/alternate.liquid\"\nasset.source_key = \"layout/theme.liquid\"\nasset.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst asset = new Asset({session: test_session});\nasset.theme_id = 828155753;\nasset.key = \"layout/alternate.liquid\";\nasset.source_key = \"layout/theme.liquid\";\nawait asset.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$asset = new Asset($this->test_session);\n$asset->theme_id = 828155753;\n$asset->key = \"layout/alternate.liquid\";\n$asset->source_key = \"layout/theme.liquid\";\n$asset->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/themes/{theme_id}/assets.json",
+      "action": "put"
+    },
+    {
+      "description": "<p>Retrieves a single asset for a theme by its key.</p>\n          <p>To retrieve a single asset, include <code>asset[key]=#{asset_key}</code> as a request parameter. For example, to retrieve the asset with a key of <code>templates/index.liquid</code>, the request might be <code>/admin/themes/828155753/assets.json?asset[key]=templates/index.liquid</code>.</p>\n          <p>For more information on the <code>key</code> property, refer to Asset properties.</p>",
+      "summary": "Retrieves a single asset for a theme",
+      "operationId": "Retrievesasingleassetforatheme",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "asset[key]",
+          "description": "Retrieves a single asset for a theme by specifying the asset's key. ",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "maximum": "100"
+          },
+          "required": true
+        },
+        {
+          "name": "theme_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fields",
+          "description": "Specify which fields to show using a comma-separated list of field names.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a single asset for a theme",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a Liquid template": {
+                  "value": {
+                    "asset": {
+                      "key": "templates/index.liquid",
+                      "public_url": null,
+                      "value": "<!-- LIST 3 PER ROW -->\n<h2>Featured Products</h2>\n<table id=\"products\" cellspacing=\"0\" cellpadding=\"0\">\n  {% tablerow product in collections.frontpage.products cols:3 %}\n    <a href=\"{{product.url}}\">{{ product.featured_image | product_img_url: 'small' | img_tag }}</a>\n    <h3><a href=\"{{product.url}}\">{{product.title}}</a></h3>\n    <ul class=\"attributes\">\n      <li><span class=\"money\">{{product.price_min | money}}</span></li>\n    </ul>\n  {% endtablerow %}\n</table>\n<!-- /LIST 3 PER ROW -->\n\n{{ content_for_index }}\n\n<div id=\"articles\">\n  {% assign article = pages.frontpage %}\n  <div class=\"article\">\n    {% if article.content != \"\" %}\n      <h3>{{ article.title }}</h3>\n      <div class=\"article-body textile\">\n        {{ article.content }}\n      </div>\n    {% else %}\n      <div class=\"article-body textile\">\n        In <em>Admin &gt; Blogs &amp; Pages</em>, create a page with the handle <strong><code>frontpage</code></strong> and it will show up here.\n        <br />\n        {{ \"Learn more about handles\" | link_to \"http://wiki.shopify.com/Handle\" }}\n      </div>\n    {% endif %}\n  </div>\n</div>\n",
+                      "created_at": "2010-07-12T13:31:50-06:00",
+                      "updated_at": "2010-07-12T13:31:50-06:00",
+                      "content_type": "application/x-liquid",
+                      "size": 1068,
+                      "checksum": null,
+                      "theme_id": 828155753
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "asset%5Bkey%5D=templates%2Findex.liquid",
+          "request_path": "/admin/api/2022-04/themes/828155753/assets.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/themes/828155753/assets.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"asset\":{\"key\":\"templates/index.liquid\",\"public_url\":null,\"value\":\"<!-- LIST 3 PER ROW -->\\n<h2>Featured Products</h2>\\n<table id=\\\"products\\\" cellspacing=\\\"0\\\" cellpadding=\\\"0\\\">\\n  {% tablerow product in collections.frontpage.products cols:3 %}\\n    <a href=\\\"{{product.url}}\\\">{{ product.featured_image | product_img_url: 'small' | img_tag }}</a>\\n    <h3><a href=\\\"{{product.url}}\\\">{{product.title}}</a></h3>\\n    <ul class=\\\"attributes\\\">\\n      <li><span class=\\\"money\\\">{{product.price_min | money}}</span></li>\\n    </ul>\\n  {% endtablerow %}\\n</table>\\n<!-- /LIST 3 PER ROW -->\\n\\n{{ content_for_index }}\\n\\n<div id=\\\"articles\\\">\\n  {% assign article = pages.frontpage %}\\n  <div class=\\\"article\\\">\\n    {% if article.content != \\\"\\\" %}\\n      <h3>{{ article.title }}</h3>\\n      <div class=\\\"article-body textile\\\">\\n        {{ article.content }}\\n      </div>\\n    {% else %}\\n      <div class=\\\"article-body textile\\\">\\n        In <em>Admin &gt; Blogs &amp; Pages</em>, create a page with the handle <strong><code>frontpage</code></strong> and it will show up here.\\n        <br />\\n        {{ \\\"Learn more about handles\\\" | link_to \\\"http://wiki.shopify.com/Handle\\\" }}\\n      </div>\\n    {% endif %}\\n  </div>\\n</div>\\n\",\"created_at\":\"2010-07-12T15:31:50-04:00\",\"updated_at\":\"2010-07-12T15:31:50-04:00\",\"content_type\":\"application/x-liquid\",\"size\":1068,\"checksum\":null,\"theme_id\":828155753}}"
+          },
+          "name": "Retrieve a Liquid template",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753/assets.json?asset%5Bkey%5D=templates%2Findex.liquid\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Asset.all(\n  session: test_session,\n  theme_id: 828155753,\n  asset: {\"key\" => \"templates/index.liquid\"},\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Asset.all({\n  session: test_session,\n  theme_id: 828155753,\n  asset: {\"key\": \"templates/index.liquid\"},\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAsset::all(\n    $this->test_session, // Session\n    [\"theme_id\" => \"828155753\"], // Url Ids\n    [\"asset\" => [\"key\" => \"templates/index.liquid\"]], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/themes/{theme_id}/assets.json?asset[key]=templates/index.liquid",
+      "action": "get"
+    },
+    {
+      "description": "Deletes an asset from a theme.",
+      "summary": "Deletes an asset from a theme",
+      "operationId": "Deletesanassetfromatheme",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "asset[key]",
+          "description": "Deletes a single asset from a theme by specifying the asset's key. ",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "maximum": "100"
+          },
+          "required": true
+        },
+        {
+          "name": "theme_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Deletes an asset from a theme",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Delete an image from a theme": {
+                  "value": {
+                    "message": "assets/bg-body.gif was successfully deleted"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "403": {
+          "description": "Deletes an asset from a theme",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Deleting an asset required by the theme fails with an error": {
+                  "value": {
+                    "message": "layout/theme.liquid could not be deleted"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "asset%5Bkey%5D=assets%2Fbg-body.gif",
+          "request_path": "/admin/api/2022-04/themes/828155753/assets.json",
+          "request_method": "DELETE",
+          "request": {
+            "action": "DELETE /admin/api/unstable/themes/828155753/assets.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"message\":\"assets/bg-body.gif was successfully deleted\"}"
+          },
+          "name": "Delete an image from a theme",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753/assets.json?asset%5Bkey%5D=assets%2Fbg-body.gif\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Asset.delete(\n  session: test_session,\n  theme_id: 828155753,\n  asset: {\"key\" => \"assets/bg-body.gif\"},\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Asset.delete({\n  session: test_session,\n  theme_id: 828155753,\n  asset: {\"key\": \"assets/bg-body.gif\"},\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAsset::delete(\n    $this->test_session, // Session\n    [\"theme_id\" => \"828155753\"], // Url Ids\n    [\"asset\" => [\"key\" => \"assets/bg-body.gif\"]], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "403",
+          "request_query": "asset%5Bkey%5D=layout%2Ftheme.liquid",
+          "request_path": "/admin/api/2022-04/themes/828155753/assets.json",
+          "request_method": "DELETE",
+          "request": {
+            "action": "DELETE /admin/api/unstable/themes/828155753/assets.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 403 Forbidden",
+            "headers": {},
+            "body": "{\"message\":\"layout/theme.liquid could not be deleted\"}"
+          },
+          "name": "Deleting an asset required by the theme fails with an error",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753/assets.json?asset%5Bkey%5D=layout%2Ftheme.liquid\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Asset.delete(\n  session: test_session,\n  theme_id: 828155753,\n  asset: {\"key\" => \"layout/theme.liquid\"},\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Asset.delete({\n  session: test_session,\n  theme_id: 828155753,\n  asset: {\"key\": \"layout/theme.liquid\"},\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAsset::delete(\n    $this->test_session, // Session\n    [\"theme_id\" => \"828155753\"], // Url Ids\n    [\"asset\" => [\"key\" => \"layout/theme.liquid\"]], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/themes/{theme_id}/assets.json?asset[key]=assets/bg-body.gif",
+      "action": "delete"
+    }
+  ],
+  "components": [
+    {
+      "name": "Asset",
+      "title": "Asset",
+      "type": "object",
+      "properties": [
+        {
+          "description": "A base64-encoded image.",
+          "type": "string",
+          "example": "R0lGODlhAQABAPABAP///wAAACH5Ow==\n",
+          "name": "attachment"
+        },
+        {
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/MD5\">MD5</a> representation of the content, consisting of a string of 32 hexadecimal digits. May be null if an asset has not been updated recently.",
+          "type": "string",
+          "readOnly": true,
+          "example": "f69db2c563b5be32648ac7367557c09c",
+          "name": "checksum"
+        },
+        {
+          "description": "The <a href=\"https://en.wikipedia.org/wiki/Media_type\">MIME</a> representation of the content, consisting of the type and subtype of the asset.",
+          "type": "string",
+          "readOnly": true,
+          "example": "image/gif",
+          "name": "content_type"
+        },
+        {
+          "description": "The date and time (<a href='https://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a> format) when the asset was created.",
+          "type": "string",
+          "readOnly": true,
+          "example": "2010-07-12T13:31:50-06:00",
+          "name": "created_at"
+        },
+        {
+          "description": "The path to the asset within a theme. It consists of the file's directory and filename. For example, the asset <code>assets/bg-body-green.gif</code> is in the <strong>assets</strong> directory, so its key is <code>assets/bg-body-green.gif</code>.",
+          "type": "string",
+          "example": "assets/bg-body-green.gif",
+          "name": "key"
+        },
+        {
+          "description": "The public-facing URL of the asset.",
+          "type": "string",
+          "readOnly": true,
+          "example": "http://static.shopify.com/assets/bg.gif?1",
+          "name": "public_url"
+        },
+        {
+          "description": "The asset size in bytes.",
+          "type": "string",
+          "readOnly": true,
+          "example": 1542,
+          "name": "size"
+        },
+        {
+          "description": "The ID for the theme that an asset belongs to.",
+          "type": "string",
+          "readOnly": true,
+          "example": 828155753,
+          "name": "theme_id"
+        },
+        {
+          "description": "The date and time (<a href='https://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a> format) when an asset was last updated.",
+          "type": "string",
+          "readOnly": true,
+          "example": "2010-07-12T13:31:50-06:00",
+          "name": "updated_at"
+        },
+        {
+          "description": "The text content of the asset, such as the HTML and Liquid markup of a template file.",
+          "type": "string",
+          "example": "<div id=\"page\">\n<h1>404 Page not found</h1>\n<p>We couldn't find the page you were looking for.</p>\n</div>",
+          "name": "value"
+        }
+      ],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "online-store/asset",
+    "gid": "cf9ba8e6-626a-4d37-9fe2-bb086478010d",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/asset",
+      "/api/reference/online_store/asset"
+    ],
+    "meta_description": "Manage the files that make up a store's theme to change the look of the online store.",
+    "postman_group": "Online store",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

@@ -1,0 +1,447 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "CancellationRequest",
+    "description": "        <p>\n          The CancellationRequest resource represents a cancellation request made by the merchant to a <a href=\"/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice\">fulfillment service</a>\n          for a <a href=\"/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder\">fulfillment order</a>.\n        </p>\n",
+    "x-owner": "https://vault.shopify.io/teams/457",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Sends a cancellation request to the fulfillment service of a fulfillment order.",
+      "summary": "Sends a cancellation request",
+      "operationId": "Sendsacancellationrequest",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "message",
+          "description": "An optional reason for the cancellation request.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Sends a cancellation request",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Sends a cancellation request to the fulfillment service of a fulfillment order and updates the fulfillment order": {
+                  "value": {
+                    "fulfillment_order": {
+                      "id": 1046000807,
+                      "shop_id": 548380009,
+                      "order_id": 450789469,
+                      "assigned_location_id": 24826418,
+                      "request_status": "cancellation_requested",
+                      "status": "in_progress",
+                      "supported_actions": [
+                        "revert_to_unfulfilled",
+                        "create_fulfillment"
+                      ],
+                      "destination": {
+                        "id": 1046000801,
+                        "address1": "Chestnut Street 92",
+                        "address2": "",
+                        "city": "Louisville",
+                        "company": null,
+                        "country": "United States",
+                        "email": "bob.norman@mail.example.com",
+                        "first_name": "Bob",
+                        "last_name": "Norman",
+                        "phone": "555-625-1199",
+                        "province": "Kentucky",
+                        "zip": "40202"
+                      },
+                      "origin": {
+                        "address1": null,
+                        "address2": null,
+                        "city": null,
+                        "country_code": "DE",
+                        "location_id": 24826418,
+                        "name": "Apple Api Shipwire",
+                        "phone": null,
+                        "province": null,
+                        "zip": null
+                      },
+                      "line_items": [
+                        {
+                          "id": 1058737521,
+                          "shop_id": 548380009,
+                          "fulfillment_order_id": 1046000807,
+                          "quantity": 1,
+                          "line_item_id": 518995019,
+                          "inventory_item_id": 49148385,
+                          "fulfillable_quantity": 1,
+                          "variant_id": 49148385
+                        }
+                      ],
+                      "outgoing_requests": [],
+                      "fulfillment_service_handle": "shipwire-app"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/fulfillment_orders/1046000807/cancellation_request.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2020-01/fulfillment_orders/1046000807/cancellation_request.json",
+            "headers": {},
+            "body": "{\"cancellation_request\":{\"message\":\"The customer changed his mind.\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_order\":{\"id\":1046000807,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"cancellation_requested\",\"status\":\"in_progress\",\"supported_actions\":[\"revert_to_unfulfilled\",\"create_fulfillment\"],\"destination\":{\"id\":1046000801,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737521,\"shop_id\":548380009,\"fulfillment_order_id\":1046000807,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"outgoing_requests\":[],\"fulfillment_service_handle\":\"shipwire-app\"}}"
+          },
+          "name": "Sends a cancellation request to the fulfillment service of a fulfillment order and updates the fulfillment order",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"cancellation_request\":{\"message\":\"The customer changed his mind.\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_orders/1046000807/cancellation_request.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncancellation_request = ShopifyAPI::CancellationRequest.new(session: test_session)\ncancellation_request.fulfillment_order_id = 1046000807\ncancellation_request.message = \"The customer changed his mind.\"\ncancellation_request.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {CancellationRequest} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst cancellation_request = new CancellationRequest({session: test_session});\ncancellation_request.fulfillment_order_id = 1046000807;\ncancellation_request.message = \"The customer changed his mind.\";\nawait cancellation_request.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\CancellationRequest;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$cancellation_request = new CancellationRequest($this->test_session);\n$cancellation_request->fulfillment_order_id = 1046000807;\n$cancellation_request->message = \"The customer changed his mind.\";\n$cancellation_request->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/cancellation_request.json",
+      "action": "post"
+    },
+    {
+      "description": "Accepts a cancellation request sent to a fulfillment service for a fulfillment order.",
+      "summary": "Accepts a cancellation request",
+      "operationId": "Acceptsacancellationrequest",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "message",
+          "description": "An optional reason for accepting the cancellation request.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Accepts a cancellation request",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Accepts a cancellation request sent to a fulfillment service and updates the fulfillment order": {
+                  "value": {
+                    "fulfillment_order": {
+                      "id": 1046000808,
+                      "shop_id": 548380009,
+                      "order_id": 450789469,
+                      "assigned_location_id": 24826418,
+                      "request_status": "cancellation_accepted",
+                      "status": "cancelled",
+                      "supported_actions": [
+                        "request_fulfillment",
+                        "create_fulfillment"
+                      ],
+                      "destination": {
+                        "id": 1046000802,
+                        "address1": "Chestnut Street 92",
+                        "address2": "",
+                        "city": "Louisville",
+                        "company": null,
+                        "country": "United States",
+                        "email": "bob.norman@mail.example.com",
+                        "first_name": "Bob",
+                        "last_name": "Norman",
+                        "phone": "555-625-1199",
+                        "province": "Kentucky",
+                        "zip": "40202"
+                      },
+                      "origin": {
+                        "address1": null,
+                        "address2": null,
+                        "city": null,
+                        "country_code": "DE",
+                        "location_id": 24826418,
+                        "name": "Apple Api Shipwire",
+                        "phone": null,
+                        "province": null,
+                        "zip": null
+                      },
+                      "line_items": [
+                        {
+                          "id": 1058737522,
+                          "shop_id": 548380009,
+                          "fulfillment_order_id": 1046000808,
+                          "quantity": 1,
+                          "line_item_id": 518995019,
+                          "inventory_item_id": 49148385,
+                          "fulfillable_quantity": 1,
+                          "variant_id": 49148385
+                        }
+                      ],
+                      "outgoing_requests": [],
+                      "fulfillment_service_handle": "shipwire-app"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/fulfillment_orders/1046000808/cancellation_request/accept.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2020-01/fulfillment_orders/1046000808/cancellation_request/accept.json",
+            "headers": {},
+            "body": "{\"cancellation_request\":{\"message\":\"We had not started any processing yet.\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_order\":{\"id\":1046000808,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"cancellation_accepted\",\"status\":\"cancelled\",\"supported_actions\":[\"request_fulfillment\",\"create_fulfillment\"],\"destination\":{\"id\":1046000802,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737522,\"shop_id\":548380009,\"fulfillment_order_id\":1046000808,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"outgoing_requests\":[],\"fulfillment_service_handle\":\"shipwire-app\"}}"
+          },
+          "name": "Accepts a cancellation request sent to a fulfillment service and updates the fulfillment order",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"cancellation_request\":{\"message\":\"We had not started any processing yet.\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_orders/1046000808/cancellation_request/accept.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncancellation_request = ShopifyAPI::CancellationRequest.new(session: test_session)\ncancellation_request.fulfillment_order_id = 1046000808\ncancellation_request.accept(\n  session: test_session,\n  body: {\"cancellation_request\" => {\"message\" => \"We had not started any processing yet.\"}},\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {CancellationRequest} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst cancellation_request = new CancellationRequest({session: test_session});\ncancellation_request.fulfillment_order_id = 1046000808;\nawait cancellation_request.accept({\n  body: {\"cancellation_request\": {\"message\": \"We had not started any processing yet.\"}},\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\CancellationRequest;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$cancellation_request = new CancellationRequest($this->test_session);\n$cancellation_request->fulfillment_order_id = 1046000808;\n$cancellation_request->accept(\n    [], // Params\n    [\"cancellation_request\" => [\"message\" => \"We had not started any processing yet.\"]], // Body\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json",
+      "action": "post"
+    },
+    {
+      "description": "Rejects a cancellation request sent to a fulfillment service for a fulfillment order.",
+      "summary": "Rejects a cancellation request",
+      "operationId": "Rejectsacancellationrequest",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_order_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "message",
+          "description": "An optional reason for rejecting the cancellation request.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Rejects a cancellation request",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Rejects a cancellation request sent to a fulfillment service and updates the fulfillment order": {
+                  "value": {
+                    "fulfillment_order": {
+                      "id": 1046000809,
+                      "shop_id": 548380009,
+                      "order_id": 450789469,
+                      "assigned_location_id": 24826418,
+                      "request_status": "cancellation_rejected",
+                      "status": "in_progress",
+                      "supported_actions": [
+                        "create_fulfillment"
+                      ],
+                      "destination": {
+                        "id": 1046000803,
+                        "address1": "Chestnut Street 92",
+                        "address2": "",
+                        "city": "Louisville",
+                        "company": null,
+                        "country": "United States",
+                        "email": "bob.norman@mail.example.com",
+                        "first_name": "Bob",
+                        "last_name": "Norman",
+                        "phone": "555-625-1199",
+                        "province": "Kentucky",
+                        "zip": "40202"
+                      },
+                      "origin": {
+                        "address1": null,
+                        "address2": null,
+                        "city": null,
+                        "country_code": "DE",
+                        "location_id": 24826418,
+                        "name": "Apple Api Shipwire",
+                        "phone": null,
+                        "province": null,
+                        "zip": null
+                      },
+                      "line_items": [
+                        {
+                          "id": 1058737523,
+                          "shop_id": 548380009,
+                          "fulfillment_order_id": 1046000809,
+                          "quantity": 1,
+                          "line_item_id": 518995019,
+                          "inventory_item_id": 49148385,
+                          "fulfillable_quantity": 1,
+                          "variant_id": 49148385
+                        }
+                      ],
+                      "outgoing_requests": [],
+                      "fulfillment_service_handle": "shipwire-app"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/fulfillment_orders/1046000809/cancellation_request/reject.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2020-01/fulfillment_orders/1046000809/cancellation_request/reject.json",
+            "headers": {},
+            "body": "{\"cancellation_request\":{\"message\":\"We have already send the shipment out.\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_order\":{\"id\":1046000809,\"shop_id\":548380009,\"order_id\":450789469,\"assigned_location_id\":24826418,\"request_status\":\"cancellation_rejected\",\"status\":\"in_progress\",\"supported_actions\":[\"create_fulfillment\"],\"destination\":{\"id\":1046000803,\"address1\":\"Chestnut Street 92\",\"address2\":\"\",\"city\":\"Louisville\",\"company\":null,\"country\":\"United States\",\"email\":\"bob.norman@mail.example.com\",\"first_name\":\"Bob\",\"last_name\":\"Norman\",\"phone\":\"555-625-1199\",\"province\":\"Kentucky\",\"zip\":\"40202\"},\"origin\":{\"address1\":null,\"address2\":null,\"city\":null,\"country_code\":\"DE\",\"location_id\":24826418,\"name\":\"Apple Api Shipwire\",\"phone\":null,\"province\":null,\"zip\":null},\"line_items\":[{\"id\":1058737523,\"shop_id\":548380009,\"fulfillment_order_id\":1046000809,\"quantity\":1,\"line_item_id\":518995019,\"inventory_item_id\":49148385,\"fulfillable_quantity\":1,\"variant_id\":49148385}],\"outgoing_requests\":[],\"fulfillment_service_handle\":\"shipwire-app\"}}"
+          },
+          "name": "Rejects a cancellation request sent to a fulfillment service and updates the fulfillment order",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"cancellation_request\":{\"message\":\"We have already send the shipment out.\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_orders/1046000809/cancellation_request/reject.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncancellation_request = ShopifyAPI::CancellationRequest.new(session: test_session)\ncancellation_request.fulfillment_order_id = 1046000809\ncancellation_request.reject(\n  session: test_session,\n  body: {\"cancellation_request\" => {\"message\" => \"We have already send the shipment out.\"}},\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {CancellationRequest} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst cancellation_request = new CancellationRequest({session: test_session});\ncancellation_request.fulfillment_order_id = 1046000809;\nawait cancellation_request.reject({\n  body: {\"cancellation_request\": {\"message\": \"We have already send the shipment out.\"}},\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\CancellationRequest;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$cancellation_request = new CancellationRequest($this->test_session);\n$cancellation_request->fulfillment_order_id = 1046000809;\n$cancellation_request->reject(\n    [], // Params\n    [\"cancellation_request\" => [\"message\" => \"We have already send the shipment out.\"]], // Body\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json",
+      "action": "post"
+    }
+  ],
+  "components": [
+    {
+      "name": "CancellationRequest",
+      "title": "CancellationRequest",
+      "type": "object",
+      "properties": [],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "shipping-and-fulfillment/cancellationrequest",
+    "gid": "8180e4cf-5bb3-4f9b-b958-285830c03525",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/shipping-and-fulfillment/unstable/cancellationrequest"
+    ],
+    "meta_description": "Manage the cancellation request flow of fulfillment orders assigned to fulfillment services.",
+    "postman_group": "Shipping and fulfillment",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

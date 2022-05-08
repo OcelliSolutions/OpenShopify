@@ -26,7 +26,7 @@
           "description": "Show only certain fields, specified by a comma-separated list of field names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -34,7 +34,7 @@
           "description": "Filter results by smart collection handle.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -42,7 +42,7 @@
           "description": "Show only the smart collections specified by a comma-separated list of IDs.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -50,7 +50,7 @@
           "description": "The number of results to show.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": 50,
             "maximum": 250
           }
@@ -60,7 +60,7 @@
           "description": "Show smart collections that includes the specified product.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -68,7 +68,7 @@
           "description": "Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -76,7 +76,7 @@
           "description": "Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -84,7 +84,7 @@
           "description": "Filter results based on the published status of smart collections.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": "any"
           },
           "examples": {
@@ -107,7 +107,7 @@
           "description": "Restrict results to after the specified ID.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -115,7 +115,7 @@
           "description": "Show smart collections with the specified title.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -123,7 +123,7 @@
           "description": "Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -131,7 +131,7 @@
           "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -433,7 +433,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/smart_collections.json",
+      "url": "/admin/api/{api_version}/smart_collections.json",
       "action": "get"
     },
     {
@@ -825,7 +825,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/smart_collections.json",
+      "url": "/admin/api/{api_version}/smart_collections.json",
       "action": "post"
     },
     {
@@ -846,7 +846,7 @@
           "description": "Show smart collections that include the specified product.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -854,7 +854,7 @@
           "description": "Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -862,7 +862,7 @@
           "description": "Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -870,7 +870,7 @@
           "description": "Filter results based on the published status of smart collections.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": "any"
           },
           "examples": {
@@ -893,7 +893,7 @@
           "description": "Show smart collections with the specified title.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -901,7 +901,7 @@
           "description": "Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -909,7 +909,7 @@
           "description": "Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -1006,7 +1006,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/smart_collections/count.json",
+      "url": "/admin/api/{api_version}/smart_collections/count.json",
       "action": "get"
     },
     {
@@ -1035,7 +1035,7 @@
           "description": "Show only certain fields, specified by a comma-separated list of field names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -1119,7 +1119,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/smart_collections/{smart_collection_id}.json",
+      "url": "/admin/api/{api_version}/smart_collections/{smart_collection_id}.json",
       "action": "get"
     },
     {
@@ -1546,7 +1546,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/smart_collections/{smart_collection_id}.json",
+      "url": "/admin/api/{api_version}/smart_collections/{smart_collection_id}.json",
       "action": "put"
     },
     {
@@ -1622,7 +1622,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/smart_collections/{smart_collection_id}.json",
+      "url": "/admin/api/{api_version}/smart_collections/{smart_collection_id}.json",
       "action": "delete"
     },
     {
@@ -1651,7 +1651,7 @@
           "description": "An array of product IDs, in the order that you want them to appear at the top of the collection. When <code>products</code> is specified but empty, any previously sorted products are cleared.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -1659,7 +1659,7 @@
           "description": "The type of sorting to apply. Valid values are listed in the <a href=\"#properties\">Properties</a> section above.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": "(current value)"
           }
         }
@@ -1753,7 +1753,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/smart_collections/{smart_collection_id}/order.json?products[]=921728736&products[]=632910392",
+      "url": "/admin/api/{api_version}/smart_collections/{smart_collection_id}/order.json?products[]=921728736&products[]=632910392",
       "action": "put"
     }
   ],
@@ -1765,25 +1765,25 @@
       "properties": [
         {
           "description": "          The description of the smart collection. Includes HTML markup. Many shop themes display this on the smart collection page.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "<p>The best selling ipod ever</p>",
           "name": "body_html"
         },
         {
           "description": "          A human-friendly unique string for the smart collection. Automatically generated from the <code>title</code>.\n          Used in shop themes by the Liquid templating language to refer to the smart collection. (maximum: 255 characters)\n",
-          "type": "x-string",
+          "type": "string",
           "example": "smart-ipods",
           "name": "handle"
         },
         {
           "description": "The ID of the smart collection.",
-          "type": "x-string",
+          "type": "string",
           "example": 482865238,
           "name": "id"
         },
         {
           "description": "          <p>The image associated with the smart collection. Valid values:</p>\n          <ul>\n            <li><code>attachment</code>: An image attached to a smart collection returned as Base64-encoded binary data.</li>\n            <li><code>src</code>: A URL that specifies the location of the image.</li>\n            <li><code>alt</code>: Alternative text that describes the collection image.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": {
             "src": "http://static.shopify.com/collections/ipod.jpg?0",
             "alt": "iPods"
@@ -1792,19 +1792,19 @@
         },
         {
           "description": "          The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601 format</a>)\n          that the smart collection was published. Returns <code>null</code> when the collection is hidden.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "2008-02-01T17:00:00-07:00",
           "name": "published_at"
         },
         {
           "description": "          Whether the smart collection is published to the Point of Sale channel. Valid values:\n          <ul>\n            <li><code>web</code>: The smart collection is published to the Online Store channel but not published to the Point of Sale channel.</li>\n            <li><code>global</code>: The smart collection is published to both the Online Store channel and the Point of Sale channel.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": "global",
           "name": "published_scope"
         },
         {
           "description": "          <p>The list of rules that define what products go into the smart collection. Each rule has the following properties:</p>\n          <ul>\n          <li><p><strong>column</strong>: The property of a product being used to populate the smart collection.</p>\n            <p>Valid values for text relations:\n            <ul>\n              <li><code>title</code>: The product title.</li>\n              <li><code>type</code>: The product type.</li>\n              <li><code>vendor</code>: The name of the product vendor.</li>\n              <li><code>variant_title</code>: The title of a product variant.</li>\n            </ul>\n            <p>Valid values for number relations:</p>\n            <ul>\n              <li><code>variant_compare_at_price</code>: The compare price.</li>\n              <li><code>variant_weight</code>: The weight of the product.</li>\n              <li><code>variant_inventory</code>: The inventory stock. Note: <code>not_equals</code> does not work with this property.</li>\n              <li><code>variant_price</code>: product price.</li>\n            </ul>\n            <p>Valid values for an <code>equals</code> relation:\n              <ul>\n                <li><code>tag</code>: A tag associated with the product.</li>\n              </ul>\n          </li>\n            <li><p><strong>relation</strong>: The relationship between the <strong>column</strong> choice, and the <strong>condition</strong>.</p>\n              <p>Valid values for number relations:</p>\n              <ul>\n                <li><code>greater_than</code> The column value is greater than the condition.</li>\n                <li><code>less_than</code> The column value is less than the condition.</li>\n                <li><code>equals</code> The column value is equal to the condition.</li>\n                <li><code>not_equals</code> The column value is not equal to the condition.</li>\n              </ul>\n              <p>Valid values for text relations:</p>\n              <ul>\n                <li><code>equals</code>: Checks if the <strong>column</strong> value is equal to the <strong>condition</strong> value.</li>\n                <li><code>not_equals</code>: Checks if the <strong>column</strong> value is not equal to the <strong>condition</strong> value.</li>\n                <li><code>starts_with</code>: Checks if the <strong>column</strong> value starts with the <strong>condition</strong> value.</li>\n                <li><code>ends_with</code>: Checks if the <strong>column</strong> value ends with the <strong>condition</strong> value.</li>\n                <li><code>contains</code>: Checks if the <strong>column</strong> value contains the <strong>condition</strong> value.</li>\n                <li><code>not_contains</code>: Checks if the <strong>column</strong> value does not contain the <strong>condition</strong> value.</li>\n              </ul>\n            </li>\n            <li><p><strong>condition</strong>: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the <strong>relation</strong> value.</p>\n            </li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": {
             "column": "variant_price",
             "relation": "less_than",
@@ -1814,31 +1814,31 @@
         },
         {
           "description": "          Whether the product must match all the rules to be included in the smart collection. Valid values:\n          <ul>\n            <li><code>true</code>: Products only need to match one or more of the rules to be included in the smart collection.</li>\n            <li><code>false</code>: Products must match all of the rules to be included in the smart collection.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": false,
           "name": "disjunctive"
         },
         {
           "description": "          <p>The order of the products in the smart collection. Valid values:</p>\n          <ul>\n           <li><code>alpha-asc</code>: The products are sorted alphabetically from A to Z.</li>\n           <li><code>alpha-des</code>: The products are sorted alphabetically from Z to A.</li>\n           <li><code>best-selling</code>: The products are sorted by number of sales.</li>\n           <li><code>created</code>: The products are sorted by the date they were created, from oldest to newest.</li>\n           <li><code>created-desc</code>: The products are sorted by the date they were created, from newest to oldest.</li>\n           <li><code>manual</code>: The products are manually sorted by the shop owner.</li>\n           <li><code>price-asc</code>: The products are sorted by price from lowest to highest.</li>\n           <li><code>price-desc</code>: The products are sorted by price from highest to lowest.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": "alpha-asc",
           "name": "sort_order"
         },
         {
           "description": "          The suffix of the Liquid template that the shop uses. By default, the original template\n          is called product.liquid, and additional templates are called product.<code>suffix</code>.liquid.\n",
-          "type": "x-string",
+          "type": "string",
           "example": null,
           "name": "template_suffix"
         },
         {
           "description": "The name of the smart collection. Maximum length: 255 characters.",
-          "type": "x-string",
+          "type": "string",
           "example": "Smart iPods",
           "name": "title"
         },
         {
           "description": "          The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601 format</a>) when the smart collection was last modified.\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "2008-02-01T17:00:00-07:00",
           "name": "updated_at"

@@ -26,7 +26,7 @@
           "description": "Show only certain fields, specified by a comma-separated list of field names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -34,7 +34,7 @@
           "description": "Filter by custom collection handle.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -42,7 +42,7 @@
           "description": "Show only collections specified by a comma-separated list of IDs.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -50,7 +50,7 @@
           "description": "The maximum number of results to retrieve.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": 50,
             "maximum": 250
           }
@@ -60,7 +60,7 @@
           "description": "Show custom collections that include a given product.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -68,7 +68,7 @@
           "description": "Show custom collections published before date (format: 2014-04-25T16:15:47-04:00).",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -76,7 +76,7 @@
           "description": "Show custom collections published after date (format: 2014-04-25T16:15:47-04:00).",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -84,7 +84,7 @@
           "description": "Show custom collectsion with a given published status.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": "any"
           },
           "examples": {
@@ -107,7 +107,7 @@
           "description": "Restrict results to after the specified ID.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -115,7 +115,7 @@
           "description": "Show custom collections with a given title.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -123,7 +123,7 @@
           "description": "Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -131,7 +131,7 @@
           "description": "Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -441,7 +441,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/custom_collections.json",
+      "url": "/admin/api/{api_version}/custom_collections.json",
       "action": "get"
     },
     {
@@ -786,7 +786,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/custom_collections.json",
+      "url": "/admin/api/{api_version}/custom_collections.json",
       "action": "post"
     },
     {
@@ -807,7 +807,7 @@
           "description": "Count custom collections that include a given product.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -815,7 +815,7 @@
           "description": "Count custom collections published before date (format: 2014-04-25T16:15:47-04:00).",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -823,7 +823,7 @@
           "description": "Count custom collections published after date (format: 2014-04-25T16:15:47-04:00).",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -831,7 +831,7 @@
           "description": "Count custom collections with a given published status.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": "any"
           },
           "examples": {
@@ -854,7 +854,7 @@
           "description": "Count custom collections with given title.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -862,7 +862,7 @@
           "description": "Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -870,7 +870,7 @@
           "description": "Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -967,7 +967,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/custom_collections/count.json",
+      "url": "/admin/api/{api_version}/custom_collections/count.json",
       "action": "get"
     },
     {
@@ -996,7 +996,7 @@
           "description": "Show only certain fields, specified by a comma-separated list of field names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -1072,7 +1072,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/custom_collections/{custom_collection_id}.json",
+      "url": "/admin/api/{api_version}/custom_collections/{custom_collection_id}.json",
       "action": "get"
     },
     {
@@ -1567,7 +1567,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/custom_collections/{custom_collection_id}.json",
+      "url": "/admin/api/{api_version}/custom_collections/{custom_collection_id}.json",
       "action": "put"
     },
     {
@@ -1643,7 +1643,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/custom_collections/{custom_collection_id}.json",
+      "url": "/admin/api/{api_version}/custom_collections/{custom_collection_id}.json",
       "action": "delete"
     }
   ],
@@ -1655,19 +1655,19 @@
       "properties": [
         {
           "description": "The description of the custom collection, complete with HTML markup. Many templates display this on their custom collection pages.",
-          "type": "x-string",
+          "type": "string",
           "example": "<p>The best selling iPods ever</p>",
           "name": "body_html"
         },
         {
           "description": "A human-friendly unique string for the custom collection automatically generated from its title. This is used in shop themes by the Liquid templating language to refer to the custom collection. (limit: 255 characters)",
-          "type": "x-string",
+          "type": "string",
           "example": "ipods",
           "name": "handle"
         },
         {
           "description": "          <p>Image associated with the custom collection. Valid values are:</p>\n            <ul>\n              <li><strong>attachment</strong>: An image attached to a custom collection returned as Base64-encoded binary data.</li>\n              <li><strong>src</strong>: The source URL that specifies the location of the image.</li>\n              <li><strong>alt</strong>: Alternative text that describes the collection image.</li>\n              <li><strong>created_at</strong>: The time and date (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\">ISO 8601</a> format) when the image was added to the collection.</li>\n              <li><strong>width</strong>: The width of the image in pixels.</li>\n              <li><strong>height</strong>: The height of the image in pixels.</li>\n            </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": {
             "src": "http://static.shopify.com/collections/ipod.jpg?0",
             "alt": "iPods",
@@ -1679,52 +1679,52 @@
         },
         {
           "description": "The ID for the custom collection.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": 841564295,
           "name": "id"
         },
         {
           "description": "Whether the custom collection is published to the Online Store channel.",
-          "type": "x-string",
+          "type": "string",
           "example": true,
           "name": "published"
         },
         {
           "description": "          <p>The time and date (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\">ISO 8601</a> format) when the collection was made visible. Returns <code>null</code> for a hidden custom collection.</p>\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "2008-02-01T17:00:00-07:00",
           "name": "published_at"
         },
         {
           "description": "          Whether the collection is published to the Point of Sale channel. Valid values:\n          <ul>\n            <li><code>web</code>: The custom collection is published to the Online Store channel but not published to\n              the Point of Sale channel.</li>\n            <li><code>global</code>: The custom collection is published to both the Online Store channel and the Point\n              of Sale channel.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "global",
           "name": "published_scope"
         },
         {
           "description": "          <p>The order in which products in the custom collection appear. Valid values:</p>\n          <ul>\n            <li><strong>alpha-asc</strong>: Alphabetically, in ascending order (A - Z).</li>\n            <li><strong>alpha-desc</strong>: Alphabetically, in descending order (Z - A).</li>\n            <li><strong>best-selling</strong>: By best-selling products.</li>\n            <li><strong>created</strong>: By date created, in ascending order (oldest - newest).</li>\n            <li><strong>created-desc</strong>: By date created, in descending order (newest - oldest).</li>\n            <li><strong>manual</strong>: Order created by the shop owner.</li>\n            <li><Strong>price-asc</strong>: By price, in ascending order (lowest - highest).</li>\n            <li><strong>price-desc</strong>: By price, in descending order (highest - lowest).</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": "manual",
           "name": "sort_order"
         },
         {
           "description": "The suffix of the liquid template being used. For example, if the value is <code>custom</code>, then the collection is using the <code>collection.custom.liquid</code> template. If the value is <code>null</code>, then the collection is using the default <code>collection.liquid</code>.",
-          "type": "x-string",
+          "type": "string",
           "example": "custom",
           "name": "template_suffix"
         },
         {
           "description": "The name of the custom collection. (limit: 255 characters)",
-          "type": "x-string",
+          "type": "string",
           "example": "IPods",
           "name": "title"
         },
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the custom collection was last modified.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "2008-02-01T17:00:00-07:00",
           "name": "updated_at"

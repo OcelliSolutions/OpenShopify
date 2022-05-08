@@ -26,7 +26,7 @@
           "description": "Show customers created before a specified date.<br>(format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -34,7 +34,7 @@
           "description": "Show customers created after a specified date.<br>(format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -42,7 +42,7 @@
           "description": "Show only certain fields, specified by a comma-separated list of field names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -50,7 +50,7 @@
           "description": "Restrict results to customers specified by a comma-separated list of IDs.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -58,7 +58,7 @@
           "description": "The maximum number of results to show.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": 50,
             "maximum": 250
           }
@@ -68,7 +68,7 @@
           "description": "Restrict results to those after the specified ID.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -76,7 +76,7 @@
           "description": "Show customers last updated before a specified date.<br>(format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -84,7 +84,7 @@
           "description": "Show customers last updated after a specified date.<br>(format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -590,7 +590,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/customers.json",
+      "url": "/admin/api/{api_version}/customers.json",
       "action": "get"
     },
     {
@@ -1113,7 +1113,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/customers.json",
+      "url": "/admin/api/{api_version}/customers.json",
       "action": "post"
     },
     {
@@ -1134,7 +1134,7 @@
           "description": "Show only certain fields, specified by a comma-separated list of field names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -1142,7 +1142,7 @@
           "description": "The maximum number of results to show.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": 50,
             "maximum": 250
           }
@@ -1152,7 +1152,7 @@
           "description": "Set the field and direction by which to order results.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": "last_order_date DESC"
           }
         },
@@ -1161,7 +1161,7 @@
           "description": "Text to search for in the shop's customer data.\n<strong>Note:</strong> Supported queries: <code>accepts_marketing</code>,\n<code>activation_date</code>, <code>address1</code>, <code>address2</code>, <code>city</code>,\n<code>company</code>, <code>country</code>, <code>customer_date</code>, <code>customer_first_name</code>,\n<code>customer_id</code>, <code>customer_last_name</code>, <code>customer_tag</code>, <code> email</code>,\n<code>email_marketing_state</code>, <code>first_name</code>, <code>first_order_date</code>, <code>id</code>,\n<code>last_abandoned_order_date</code>, <code>last_name</code>, <code>multipass_identifier</code>,\n<code>orders_count</code>, <code>order_date</code>, <code>phone</code>, <code>province</code>,\n<code>shop_id</code>, <code>state</code>, <code>tag</code>, <code>total_spent</code>,\n<code>updated_at</code>, <code>verified_email</code>, <code>product_subscriber_status</code>. All other queries\nreturns all customers.\n",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -1284,7 +1284,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/customers/search.json?query=Bob country:United States",
+      "url": "/admin/api/{api_version}/customers/search.json?query=Bob country:United States",
       "action": "get"
     },
     {
@@ -1313,7 +1313,7 @@
           "description": "Show only certain fields, specified by a comma-separated list of field names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -1441,7 +1441,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/customers/{customer_id}.json",
+      "url": "/admin/api/{api_version}/customers/{customer_id}.json",
       "action": "get"
     },
     {
@@ -1919,7 +1919,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/customers/{customer_id}.json",
+      "url": "/admin/api/{api_version}/customers/{customer_id}.json",
       "action": "put"
     },
     {
@@ -2048,7 +2048,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/customers/{customer_id}/account_activation_url.json",
+      "url": "/admin/api/{api_version}/customers/{customer_id}/account_activation_url.json",
       "action": "post"
     },
     {
@@ -2180,7 +2180,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/customers/{customer_id}/send_invite.json",
+      "url": "/admin/api/{api_version}/customers/{customer_id}/send_invite.json",
       "action": "post"
     },
     {
@@ -2250,7 +2250,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/customers/count.json",
+      "url": "/admin/api/{api_version}/customers/count.json",
       "action": "get"
     },
     {
@@ -2279,7 +2279,7 @@
           "description": "The status of the orders to return. The status defaults to open.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -4376,7 +4376,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/customers/{customer_id}/orders.json",
+      "url": "/admin/api/{api_version}/customers/{customer_id}/orders.json",
       "action": "get"
     }
   ],
@@ -4388,21 +4388,21 @@
       "properties": [
         {
           "description": "As of API version 2022-04, this field is deprecated. Use <code>email_marketing_consent</code> instead.\nWhether the customer has consented to receive marketing material by email.\n",
-          "type": "x-string",
+          "type": "string",
           "deprecated": true,
           "example": false,
           "name": "accepts_marketing"
         },
         {
           "description": "As of API version 2022-04, this field is deprecated. Use <code>email_marketing_consent</code> instead.\nThe date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format)\nwhen the customer consented or objected to receiving marketing material by email. Set this value whenever\nthe customer consents or objects to marketing materials.\n",
-          "type": "x-string",
+          "type": "string",
           "deprecated": true,
           "example": "2013-06-27T06:48:27-06:00",
           "name": "accepts_marketing_updated_at"
         },
         {
           "description": "          <p>A list of the ten most recently updated addresses for the customer. Each address has the following properties:\n          <ul>\n            <li><strong>address1</strong>: The customer's mailing address.</li>\n            <li><strong>address2</strong>: An additional field for the customer's mailing address.</li>\n            <li><strong>city</strong>: The customer's city, town, or village.</li>\n            <li><strong>company</strong>: The customer's company.</li>\n            <li><strong>country</strong>: The customer's country.</li>\n            <li><strong>country_code</strong>: The two-letter country code corresponding to the customer's country.</li>\n            <li><strong>country_name</strong>: The customer's normalized country name.</li>\n            <li><strong>customer_id</strong>: A unique identifier for the customer.</li>\n            <li><strong>default</strong>: Whether this address is the default address for the customer.</li>\n            <li><strong>first_name</strong>: The customer's first name.</li>\n            <li><strong>id</strong>: A unique identifier for the address.</li>\n            <li><strong>last_name</strong>: The customer's last name.</li>\n            <li><strong>name</strong>: The customer's first and last names.</li>\n            <li><strong>phone</strong>: The customer's phone number at this address.</li>\n            <li><strong>province</strong>: The customer's region name. Typically a province, a state, or a prefecture.</li>\n            <li><strong>province_code</strong>: The code for the region of the address, such as the province, state, or district. For example QC for Quebec, Canada.</li>\n            <li><strong>zip</strong>: The customer's postal code, also known as zip, postcode, Eircode, etc.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": [
             {
               "id": 207119551,
@@ -4427,21 +4427,21 @@
         },
         {
           "description": "<p>The three-letter code (<a href=\"https://en.wikipedia.org/wiki/ISO_4217\">ISO 4217</a> format) for the currency\n  that the customer used when they paid for their last order. Defaults to the shop currency. Returns the shop currency for test orders.\n</p>\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "JPY",
           "name": "currency"
         },
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the customer was created.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "2013-06-27T06:48:27-06:00",
           "name": "created_at"
         },
         {
           "description": "          <p>The default address for the customer. The default address has the following properties:\n          <ul>\n            <li><strong>address1</strong>: The first line of the customer's mailing address.</li>\n            <li><strong>address2</strong>: An additional field for the customer's mailing address.</li>\n            <li><strong>city</strong>: The customer's city, town, or village.</li>\n            <li><strong>company</strong>: The customer's company.</li>\n            <li><strong>country</strong>: The customer's country.</li>\n            <li><strong>country_code</strong>: The two-letter country code corresponding to the customer's country.</li>\n            <li><strong>country_name</strong>: The customer's normalized country name.</li>\n            <li><strong>customer_id</strong>: A unique identifier for the customer.</li>\n            <li><strong>default</strong>: Returns <code>true</code> for each default address.</li>\n            <li><strong>first_name</strong>: The customer's first name.</li>\n            <li><strong>id</strong>: A unique identifier for the address.</li>\n            <li><strong>last_name</strong>: The customer's last name.</li>\n            <li><strong>name</strong>: The customer's first and last names.</li>\n            <li><strong>phone</strong>: The customer's phone number at this address.</li>\n            <li><strong>province</strong>: The customer's region name. Typically a province, a state, or a prefecture.</li>\n            <li><strong>province_code</strong>: The two-letter code for the customer's region.</li>\n            <li><strong>zip</strong>: The customer's postal code, also known as zip, postcode, Eircode, etc.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": {
             "address1": "Chestnut Street 92",
@@ -4464,13 +4464,13 @@
         },
         {
           "description": "          The unique email address of the customer. Attempting to assign the same email address to\n          multiple customers returns an error.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "bob.norman@mail.example.com",
           "name": "email"
         },
         {
           "description": "          <p>The marketing consent information when the customer consented to receiving marketing\n          material by email. The <code>email</code> property is required to create a customer with email\n          consent information and to update a customer for email consent that doesn't have an email recorded.\n          The customer must have a unique email address associated to the record. The email marketing consent has the following properties: </p>\n          <ul>\n            <li><strong>state</strong>: The current email marketing state for the customer.</li>\n            <li><strong>opt_in_level</strong>: The marketing subscription opt-in level, as described in the\n            <a href=\"https://www.m3aawg.org/sites/default/files/document/M3AAWG_Senders_BCP_Ver3-2015-02.pdf\">M3AAWG Sender Best Common Practices</a>,\n            that the customer gave when they consented to receive marketing material by email.</li>\n            <li><strong>consent_updated_at</strong>: The date and time when the customer consented to receive marketing material by email.\n            If no date is provided, then the date and time when the consent information was sent is used.\n            </li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": {
             "state": "subscribed",
             "opt_in_level": "confirmed_opt_in",
@@ -4480,39 +4480,39 @@
         },
         {
           "description": "The customer's first name.",
-          "type": "x-string",
+          "type": "string",
           "example": "John",
           "name": "first_name"
         },
         {
           "description": "A unique identifier for the customer.",
-          "type": "x-string",
+          "type": "string",
           "example": 207119551,
           "name": "id"
         },
         {
           "description": "The customer's last name.",
-          "type": "x-string",
+          "type": "string",
           "example": "Norman",
           "name": "last_name"
         },
         {
           "description": "The ID of the customer's last order.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": 234132602919,
           "name": "last_order_id"
         },
         {
           "description": "The name of the customer's last order. This is directly related to the <code>name</code> field on the Order resource.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "#1169",
           "name": "last_order_name"
         },
         {
           "description": "          <p>Attaches additional metadata to a shop's resources:\n          <ul>\n            <li><strong>key</strong> (required): An identifier for the metafield (maximum of 30 characters).</li>\n            <li><strong>namespace</strong>(required): A container for a set of metadata (maximum of 20 characters). Namespaces help distinguish between metadata that you created and metadata created by another individual with a similar namespace.</li>\n            <li><strong>value</strong> (required): Information to be stored as metadata.</li>\n            <li><strong>type</strong> (required): The type. Refer to the <a href=\"/apps/metafields/types\">full list of types</a>.</li>\n            <li><strong>description</strong> (optional): Additional information about the metafield.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": {
             "key": "new",
             "namespace": "global",
@@ -4523,39 +4523,39 @@
         },
         {
           "description": "<p>As of API version 2022-04, this field is deprecated. Use <code>email_marketing_consent</code> instead.\nThe marketing subscription opt-in level, as described in the <a href=\"https://www.m3aawg.org/sites/default/files/document/M3AAWG_Senders_BCP_Ver3-2015-02.pdf\">\nM3AAWG Sender Best Common Practices</a>, that the customer gave when they consented to receive marketing material by email.\nIf the customer does not accept email marketing, then this property will be set to <code>null</code>.\nValid values:</p>\n<ul>\n  <li><code>single_opt_in</code></li>\n  <li><code>confirmed_opt_in</code></li>\n  <li><code>unknown</code></li>\n</ul>\n",
-          "type": "x-string",
+          "type": "string",
           "deprecated": true,
           "example": "confirmed_opt_in",
           "name": "marketing_opt_in_level"
         },
         {
           "description": "A unique identifier for the customer that's used with '         '<a href=\"/docs/admin-api/rest/reference/plus/multipass\">Multipass login</a>.",
-          "type": "x-string",
+          "type": "string",
           "example": null,
           "name": "multipass_identifier"
         },
         {
           "description": "A note about the customer.",
-          "type": "x-string",
+          "type": "string",
           "example": "Placed an order that had a fraud warning",
           "name": "note"
         },
         {
           "description": "          The number of orders associated with this customer. Test and archived orders aren't counted.\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": 3,
           "name": "orders_count"
         },
         {
           "description": "          <p>The unique phone number (<a\n          href=\"https://en.wikipedia.org/wiki/E.164\">E.164 format</a>) for this customer. Attempting to assign the same phone number to multiple customers\n          returns an error. The property can be set using different formats, but each format must represent a number that can be dialed\n          from anywhere in the world. The following formats are all valid:</p>\n          <ul>\n            <li>6135551212</li>\n            <li>+16135551212</li>\n            <li>(613)555-1212</li>\n            <li>+1 613-555-1212</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": "+16135551111",
           "name": "phone"
         },
         {
           "description": "          <p>The marketing consent information when the customer consented to receiving marketing\n          material by SMS. The <code>phone</code> property is required to create a customer with SMS\n          consent information and to perform an SMS update on a customer that doesn't have a phone number recorded.\n          The customer must have a unique phone number associated to the record. The SMS marketing consent has the following properties: </p>\n          <ul>\n            <li><strong>state</strong>: The current SMS marketing state for the customer.</li>\n            <li><strong>opt_in_level</strong>: The marketing subscription opt-in level, as described in the\n            <a href=\"https://www.m3aawg.org/sites/default/files/document/M3AAWG_Senders_BCP_Ver3-2015-02.pdf\"> M3AAWG Sender Best Common Practices</a>,\n            that the customer gave when they consented to receive marketing material by SMS.</li>\n            <li><strong>consent_updated_at</strong>: The date and time when the customer consented to receive marketing material by SMS.\n            If no date is provided, then the date and time when the consent information was sent is used.</li>\n            <li><strong>consent_collected_from</strong>: The source for whether the customer has consented to receive marketing material by SMS.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": {
             "state": "subscribed",
             "opt_in_level": "single_opt_in",
@@ -4566,26 +4566,26 @@
         },
         {
           "description": "          <p>The state of the customer's account with a shop. Default value: <code>disabled</code>. Valid values:\n          <ul>\n            <li><strong>disabled</strong>: The customer doesn't have an active account. Customer accounts can be disabled from the Shopify admin at any time.</li>\n            <li><strong>invited</strong>: The customer has received an email invite to create an account.</li>\n            <li><strong>enabled</strong>: The customer has created an account.</li>\n            <li><strong>declined</strong>: The customer declined the email invite to create an account.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "disabled",
           "name": "state"
         },
         {
           "description": "Tags that the shop owner has attached to the customer, formatted as a string of comma-separated values. A customer can have up to 250 tags. Each tag can have up to 255 characters.",
-          "type": "x-string",
+          "type": "string",
           "example": "loyal",
           "name": "tags"
         },
         {
           "description": "Whether the customer is exempt from paying taxes on their order. If <code>true</code>, then taxes won't be applied to an order at checkout. If <code>false</code>, then taxes will be applied at checkout.",
-          "type": "x-string",
+          "type": "string",
           "example": true,
           "name": "tax_exempt"
         },
         {
           "description": "          <p>Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only. Valid values:\n          <ul>\n            <li><strong>EXEMPT_ALL</strong>: This customer is exempt from all Canadian taxes.</li>\n            <li><strong>CA_STATUS_CARD_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid STATUS_CARD_EXEMPTION in Canada.</li>\n            <li><strong>CA_DIPLOMAT_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid DIPLOMAT_EXEMPTION in Canada.</li>\n            <li><strong>CA_BC_RESELLER_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in British Columbia.</li>\n            <li><strong>CA_MB_RESELLER_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Manitoba.</li>\n            <li><strong>CA_SK_RESELLER_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Saskatchewan.</li>\n            <li><strong>CA_BC_COMMERCIAL_FISHERY_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in British Columbia.</li>\n            <li><strong>CA_MB_COMMERCIAL_FISHERY_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Manitoba.</li>\n            <li><strong>CA_NS_COMMERCIAL_FISHERY_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Nova Scotia.</li>\n            <li><strong>CA_PE_COMMERCIAL_FISHERY_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Prince Edward Island.</li>\n            <li><strong>CA_SK_COMMERCIAL_FISHERY_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Saskatchewan.</li>\n            <li><strong>CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in British Columbia.</li>\n            <li><strong>CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in Saskatchewan.</li>\n            <li><strong>CA_BC_SUB_CONTRACTOR_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in British Columbia.</li>\n            <li><strong>CA_SK_SUB_CONTRACTOR_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in Saskatchewan.</li>\n            <li><strong>CA_BC_CONTRACTOR_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in British Columbia.</li>\n            <li><strong>CA_SK_CONTRACTOR_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in Saskatchewan.</li>\n            <li><strong>CA_ON_PURCHASE_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid PURCHASE_EXEMPTION in Ontario.</li>\n            <li><strong>CA_MB_FARMER_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Manitoba.</li>\n            <li><strong>CA_NS_FARMER_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Nova Scotia.</li>\n            <li><strong>CA_SK_FARMER_EXEMPTION</strong>: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Saskatchewan.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": [
             "CA_STATUS_CARD_EXEMPTION",
             "CA_BC_RESELLER_EXEMPTION"
@@ -4594,21 +4594,21 @@
         },
         {
           "description": "The total amount of money that the customer has spent across their order history.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "375.30",
           "name": "total_spent"
         },
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the customer information was last updated.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "2012-08-24T12:01:46-06:00",
           "name": "updated_at"
         },
         {
           "description": "Whether the customer has verified their email address.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": true,
           "name": "verified_email"

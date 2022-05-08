@@ -26,7 +26,7 @@
           "description": "The amount of results to return.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": 50,
             "maximum": 250
           }
@@ -36,7 +36,7 @@
           "description": "The number of marketing events to skip.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -118,7 +118,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/marketing_events.json",
+      "url": "/admin/api/{api_version}/marketing_events.json",
       "action": "get"
     },
     {
@@ -211,7 +211,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/marketing_events.json",
+      "url": "/admin/api/{api_version}/marketing_events.json",
       "action": "post"
     },
     {
@@ -281,7 +281,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/marketing_events/count.json",
+      "url": "/admin/api/{api_version}/marketing_events/count.json",
       "action": "get"
     },
     {
@@ -382,7 +382,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/marketing_events/{marketing_event_id}.json",
+      "url": "/admin/api/{api_version}/marketing_events/{marketing_event_id}.json",
       "action": "get"
     },
     {
@@ -483,7 +483,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/marketing_events/{marketing_event_id}.json",
+      "url": "/admin/api/{api_version}/marketing_events/{marketing_event_id}.json",
       "action": "put"
     },
     {
@@ -559,7 +559,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/marketing_events/{marketing_event_id}.json",
+      "url": "/admin/api/{api_version}/marketing_events/{marketing_event_id}.json",
       "action": "delete"
     },
     {
@@ -588,7 +588,7 @@
           "description": "The date that these engagements occurred on, in the format “YYYY-MM-DD”.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "required": true
         },
@@ -597,7 +597,7 @@
           "description": "          The total ad spend for the day, if the marketing event is a paid ad with a daily spend.\n",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -605,7 +605,7 @@
           "description": "The total number of clicks on the marketing event for the day.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -613,7 +613,7 @@
           "description": "The total number of comments for the day.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -621,7 +621,7 @@
           "description": "The total number of favorites for the day.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -629,7 +629,7 @@
           "description": "          The total number of impressions for the day. An impression occurs when the marketing event is served to a customer, either as a email or through a marketing channel.\n",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -637,7 +637,7 @@
           "description": "          Whether the engagements are reported as lifetime values rather than daily totals.\n",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -645,7 +645,7 @@
           "description": "The total number of shares for the day.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -653,7 +653,7 @@
           "description": "          The total number of views for the day. A view occurs when a customer reads the marketing event that was served to them, for example, if the customer opens the email or spends time looking at a Facebook post.\n",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -771,7 +771,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/marketing_events/{marketing_event_id}/engagements.json",
+      "url": "/admin/api/{api_version}/marketing_events/{marketing_event_id}/engagements.json",
       "action": "post"
     }
   ],
@@ -783,73 +783,73 @@
       "properties": [
         {
           "description": "          An optional remote identifier for a marketing event. The remote identifier lets Shopify validate engagement data.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "123abc",
           "name": "remote_id"
         },
         {
           "description": "          The type of marketing event. Valid values: <code>ad</code>, <code>post</code>, <code>message</code>, <code>retargeting</code>, <code>transactional</code>, <code>affiliate</code>, <code>loyalty</code>, <code>newsletter</code>, <code>abandoned_cart</code>.\n          <div class='note'>\n          <h4>Note</h4>\n          <p>If there are values that you’d like to use for event_type that are not in the list above, then please post your request <a href=\"https://ecommerce.shopify.com/c/partner-feedback/t/marketing-events-apis-feedback-thread-521758\">here</a>. Our approach is to be more structured than using freeform text, but to still allow for categorization of most types of marketing actions.</p>\n          </div>\n",
-          "type": "x-string",
+          "type": "string",
           "example": "ad",
           "name": "event_type"
         },
         {
           "description": "          The channel that your marketing event will use. Valid values: <code>search</code>, <code>display</code>, <code>social</code>, <code>email</code>, <code>referral</code>.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "social",
           "name": "marketing_channel"
         },
         {
           "description": "Whether the event is paid or organic.",
-          "type": "x-string",
+          "type": "string",
           "example": true,
           "name": "paid"
         },
         {
           "description": "          The destination domain of the marketing event. Required if the <code>marketing_channel</code> is set to <code>search</code> or <code>social</code>.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "facebook.com",
           "name": "referring_domain"
         },
         {
           "description": "The budget of the ad campaign.",
-          "type": "x-string",
+          "type": "string",
           "example": 10.75,
           "name": "budget"
         },
         {
           "description": "The currency for the budget. Required if <code>budget</code> is specified.",
-          "type": "x-string",
+          "type": "string",
           "example": "USD",
           "name": "currency"
         },
         {
           "description": "          The type of the budget. Required if <code>budget</code> is specified. Valid values: <code>daily</code>, <code>lifetime</code>.'\n",
-          "type": "x-string",
+          "type": "string",
           "example": "lifetime",
           "name": "budget_type"
         },
         {
           "description": "          The time when the marketing action was started.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "2022-01-15T08:56:18-07:00",
           "name": "started_at"
         },
         {
           "description": "For events with a duration, the time when the event was scheduled to end.",
-          "type": "x-string",
+          "type": "string",
           "example": "2022-01-22T08:56:18-07:00",
           "name": "scheduled_to_end_at"
         },
         {
           "description": "          For events with a duration, the time when the event actually ended.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "2022-01-20T08:56:18-07:00",
           "name": "ended_at"
         },
         {
           "description": "          <p>The <a href=\"https://en.wikipedia.org/wiki/UTM_parameters\" target=\"_blank\">UTM parameters</a> used in the links provided in the marketing event. Values must be unique and should not be url-encoded.</p>\n          <p>To do traffic or order attribution you must at least define <code>utm_campaign</code>, <code>utm_source</code>, and <code>utm_medium</code>.</p>\n",
-          "type": "x-string",
+          "type": "string",
           "example": {
             "marketing_event": {
               "utm_campaign": "CanadaDay2022",
@@ -861,25 +861,25 @@
         },
         {
           "description": "          A description of the marketing event.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "Facebook carousel ad #{Time.now.utc.year}",
           "name": "description"
         },
         {
           "description": "          A link to manage the marketing event. In most cases, this links to the app that created the event.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "https://mymarketingapp.com/ad/1234",
           "name": "manage_url"
         },
         {
           "description": "          A link to the live version of the event, or to a rendered preview in the app that created it.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "https://www.facebook.com/123456/",
           "name": "preview_url"
         },
         {
           "description": "          A list of the items that were marketed in the marketing event. Includes the <code>type</code> and <code>id</code> of each item. Valid values for <code>type</code> are:\n          <ul>\n            <li><code>product</code></li>\n            <li><code>collection</code></li>\n            <li><code>price_rule</code></li>\n            <li><code>discount</code> (Will be replaced by price_rule after April 20, 2017.)</li>\n            <li><code>page</code></li>\n            <li><code>article</code></li>\n            <li><code>homepage</code> (Doesn't have an <code>id</code>.)</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": [
             {
               "type": "product",

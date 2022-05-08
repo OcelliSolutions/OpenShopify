@@ -1,0 +1,582 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Payouts",
+    "description": "Payouts represent the movement of money between a Shopify Payments\naccount balance and a connected bank account.\n",
+    "x-owner": "https://vault.shopify.io/teams/663",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Retrieves a list of all payouts ordered by payout date, with the most recent being first.\n          <strong>Note:</strong> As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/tutorials/make-paginated-requests-to-rest-admin-api\"><em>Making requests to paginated REST Admin API endpoints</em></a>.",
+      "summary": "Return a list of all payouts",
+      "operationId": "Returnalistofallpayouts",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "date",
+          "description": "Filter the response to payouts made on the specified date.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "date_max",
+          "description": "Filter the response to payouts made inclusively before the specified date.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "date_min",
+          "description": "Filter the response to payouts made inclusively after the specified date.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "last_id",
+          "description": "Filter the response to payouts made before the specified ID.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "since_id",
+          "description": "Filter the response to payouts made after the specified ID.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "status",
+          "description": "Filter the response to payouts made with the specified status.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Return a list of all payouts",
+          "content": {
+            "application/json": {
+              "examples": {
+                "List all payouts ordered newest to oldest": {
+                  "value": {
+                    "payouts": [
+                      {
+                        "id": 854088011,
+                        "status": "scheduled",
+                        "date": "2013-11-01",
+                        "currency": "USD",
+                        "amount": "43.12",
+                        "summary": {
+                          "adjustments_fee_amount": "0.12",
+                          "adjustments_gross_amount": "2.13",
+                          "charges_fee_amount": "1.32",
+                          "charges_gross_amount": "45.52",
+                          "refunds_fee_amount": "-0.23",
+                          "refunds_gross_amount": "-3.54",
+                          "reserved_funds_fee_amount": "0.00",
+                          "reserved_funds_gross_amount": "0.00",
+                          "retried_payouts_fee_amount": "0.00",
+                          "retried_payouts_gross_amount": "0.00"
+                        }
+                      },
+                      {
+                        "id": 512467833,
+                        "status": "failed",
+                        "date": "2013-11-01",
+                        "currency": "USD",
+                        "amount": "43.12",
+                        "summary": {
+                          "adjustments_fee_amount": "0.12",
+                          "adjustments_gross_amount": "2.13",
+                          "charges_fee_amount": "1.32",
+                          "charges_gross_amount": "45.52",
+                          "refunds_fee_amount": "-0.23",
+                          "refunds_gross_amount": "-3.54",
+                          "reserved_funds_fee_amount": "0.00",
+                          "reserved_funds_gross_amount": "0.00",
+                          "retried_payouts_fee_amount": "0.00",
+                          "retried_payouts_gross_amount": "0.00"
+                        }
+                      },
+                      {
+                        "id": 39438702,
+                        "status": "in_transit",
+                        "date": "2013-11-01",
+                        "currency": "USD",
+                        "amount": "43.12",
+                        "summary": {
+                          "adjustments_fee_amount": "0.12",
+                          "adjustments_gross_amount": "2.13",
+                          "charges_fee_amount": "1.32",
+                          "charges_gross_amount": "45.52",
+                          "refunds_fee_amount": "-0.23",
+                          "refunds_gross_amount": "-3.54",
+                          "reserved_funds_fee_amount": "0.00",
+                          "reserved_funds_gross_amount": "0.00",
+                          "retried_payouts_fee_amount": "0.00",
+                          "retried_payouts_gross_amount": "0.00"
+                        }
+                      },
+                      {
+                        "id": 710174591,
+                        "status": "paid",
+                        "date": "2012-12-12",
+                        "currency": "USD",
+                        "amount": "41.90",
+                        "summary": {
+                          "adjustments_fee_amount": "0.12",
+                          "adjustments_gross_amount": "2.13",
+                          "charges_fee_amount": "1.32",
+                          "charges_gross_amount": "44.52",
+                          "refunds_fee_amount": "-0.23",
+                          "refunds_gross_amount": "-3.54",
+                          "reserved_funds_fee_amount": "0.00",
+                          "reserved_funds_gross_amount": "0.00",
+                          "retried_payouts_fee_amount": "0.00",
+                          "retried_payouts_gross_amount": "0.00"
+                        }
+                      },
+                      {
+                        "id": 974708905,
+                        "status": "paid",
+                        "date": "2012-11-13",
+                        "currency": "CAD",
+                        "amount": "51.69",
+                        "summary": {
+                          "adjustments_fee_amount": "0.12",
+                          "adjustments_gross_amount": "2.13",
+                          "charges_fee_amount": "6.46",
+                          "charges_gross_amount": "58.15",
+                          "refunds_fee_amount": "-0.23",
+                          "refunds_gross_amount": "-3.54",
+                          "reserved_funds_fee_amount": "0.00",
+                          "reserved_funds_gross_amount": "0.00",
+                          "retried_payouts_fee_amount": "0.00",
+                          "retried_payouts_gross_amount": "0.00"
+                        }
+                      },
+                      {
+                        "id": 725076685,
+                        "status": "paid",
+                        "date": "2012-11-12",
+                        "currency": "USD",
+                        "amount": "41.90",
+                        "summary": {
+                          "adjustments_fee_amount": "0.12",
+                          "adjustments_gross_amount": "2.13",
+                          "charges_fee_amount": "1.32",
+                          "charges_gross_amount": "44.52",
+                          "refunds_fee_amount": "-0.23",
+                          "refunds_gross_amount": "-3.54",
+                          "reserved_funds_fee_amount": "0.00",
+                          "reserved_funds_gross_amount": "0.00",
+                          "retried_payouts_fee_amount": "0.00",
+                          "retried_payouts_gross_amount": "0.00"
+                        }
+                      },
+                      {
+                        "id": 714327683,
+                        "status": "failed",
+                        "date": "2012-11-12",
+                        "currency": "USD",
+                        "amount": "41.90",
+                        "summary": {
+                          "adjustments_fee_amount": "0.12",
+                          "adjustments_gross_amount": "2.13",
+                          "charges_fee_amount": "1.32",
+                          "charges_gross_amount": "44.52",
+                          "refunds_fee_amount": "-0.23",
+                          "refunds_gross_amount": "-3.54",
+                          "reserved_funds_fee_amount": "0.00",
+                          "reserved_funds_gross_amount": "0.00",
+                          "retried_payouts_fee_amount": "0.00",
+                          "retried_payouts_gross_amount": "0.00"
+                        }
+                      },
+                      {
+                        "id": 631321250,
+                        "status": "scheduled",
+                        "date": "2012-11-12",
+                        "currency": "USD",
+                        "amount": "41.90",
+                        "summary": {
+                          "adjustments_fee_amount": "0.12",
+                          "adjustments_gross_amount": "2.13",
+                          "charges_fee_amount": "1.32",
+                          "charges_gross_amount": "44.52",
+                          "refunds_fee_amount": "-0.23",
+                          "refunds_gross_amount": "-3.54",
+                          "reserved_funds_fee_amount": "0.00",
+                          "reserved_funds_gross_amount": "0.00",
+                          "retried_payouts_fee_amount": "0.00",
+                          "retried_payouts_gross_amount": "0.00"
+                        }
+                      },
+                      {
+                        "id": 623721858,
+                        "status": "paid",
+                        "date": "2012-11-12",
+                        "currency": "USD",
+                        "amount": "41.90",
+                        "summary": {
+                          "adjustments_fee_amount": "0.12",
+                          "adjustments_gross_amount": "2.13",
+                          "charges_fee_amount": "1.32",
+                          "charges_gross_amount": "44.52",
+                          "refunds_fee_amount": "-0.23",
+                          "refunds_gross_amount": "-3.54",
+                          "reserved_funds_fee_amount": "0.00",
+                          "reserved_funds_gross_amount": "0.00",
+                          "retried_payouts_fee_amount": "0.00",
+                          "retried_payouts_gross_amount": "0.00"
+                        }
+                      }
+                    ]
+                  }
+                },
+                "List all payouts up to a specified date": {
+                  "value": {
+                    "payouts": [
+                      {
+                        "id": 725076685,
+                        "status": "paid",
+                        "date": "2012-11-12",
+                        "currency": "USD",
+                        "amount": "41.90",
+                        "summary": {
+                          "adjustments_fee_amount": "0.12",
+                          "adjustments_gross_amount": "2.13",
+                          "charges_fee_amount": "1.32",
+                          "charges_gross_amount": "44.52",
+                          "refunds_fee_amount": "-0.23",
+                          "refunds_gross_amount": "-3.54",
+                          "reserved_funds_fee_amount": "0.00",
+                          "reserved_funds_gross_amount": "0.00",
+                          "retried_payouts_fee_amount": "0.00",
+                          "retried_payouts_gross_amount": "0.00"
+                        }
+                      },
+                      {
+                        "id": 714327683,
+                        "status": "failed",
+                        "date": "2012-11-12",
+                        "currency": "USD",
+                        "amount": "41.90",
+                        "summary": {
+                          "adjustments_fee_amount": "0.12",
+                          "adjustments_gross_amount": "2.13",
+                          "charges_fee_amount": "1.32",
+                          "charges_gross_amount": "44.52",
+                          "refunds_fee_amount": "-0.23",
+                          "refunds_gross_amount": "-3.54",
+                          "reserved_funds_fee_amount": "0.00",
+                          "reserved_funds_gross_amount": "0.00",
+                          "retried_payouts_fee_amount": "0.00",
+                          "retried_payouts_gross_amount": "0.00"
+                        }
+                      },
+                      {
+                        "id": 631321250,
+                        "status": "scheduled",
+                        "date": "2012-11-12",
+                        "currency": "USD",
+                        "amount": "41.90",
+                        "summary": {
+                          "adjustments_fee_amount": "0.12",
+                          "adjustments_gross_amount": "2.13",
+                          "charges_fee_amount": "1.32",
+                          "charges_gross_amount": "44.52",
+                          "refunds_fee_amount": "-0.23",
+                          "refunds_gross_amount": "-3.54",
+                          "reserved_funds_fee_amount": "0.00",
+                          "reserved_funds_gross_amount": "0.00",
+                          "retried_payouts_fee_amount": "0.00",
+                          "retried_payouts_gross_amount": "0.00"
+                        }
+                      },
+                      {
+                        "id": 623721858,
+                        "status": "paid",
+                        "date": "2012-11-12",
+                        "currency": "USD",
+                        "amount": "41.90",
+                        "summary": {
+                          "adjustments_fee_amount": "0.12",
+                          "adjustments_gross_amount": "2.13",
+                          "charges_fee_amount": "1.32",
+                          "charges_gross_amount": "44.52",
+                          "refunds_fee_amount": "-0.23",
+                          "refunds_gross_amount": "-3.54",
+                          "reserved_funds_fee_amount": "0.00",
+                          "reserved_funds_gross_amount": "0.00",
+                          "retried_payouts_fee_amount": "0.00",
+                          "retried_payouts_gross_amount": "0.00"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/shopify_payments/payouts.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/shopify_payments/payouts.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"payouts\":[{\"id\":854088011,\"status\":\"scheduled\",\"date\":\"2013-11-01\",\"currency\":\"USD\",\"amount\":\"43.12\",\"summary\":{\"adjustments_fee_amount\":\"0.12\",\"adjustments_gross_amount\":\"2.13\",\"charges_fee_amount\":\"1.32\",\"charges_gross_amount\":\"45.52\",\"refunds_fee_amount\":\"-0.23\",\"refunds_gross_amount\":\"-3.54\",\"reserved_funds_fee_amount\":\"0.00\",\"reserved_funds_gross_amount\":\"0.00\",\"retried_payouts_fee_amount\":\"0.00\",\"retried_payouts_gross_amount\":\"0.00\"}},{\"id\":512467833,\"status\":\"failed\",\"date\":\"2013-11-01\",\"currency\":\"USD\",\"amount\":\"43.12\",\"summary\":{\"adjustments_fee_amount\":\"0.12\",\"adjustments_gross_amount\":\"2.13\",\"charges_fee_amount\":\"1.32\",\"charges_gross_amount\":\"45.52\",\"refunds_fee_amount\":\"-0.23\",\"refunds_gross_amount\":\"-3.54\",\"reserved_funds_fee_amount\":\"0.00\",\"reserved_funds_gross_amount\":\"0.00\",\"retried_payouts_fee_amount\":\"0.00\",\"retried_payouts_gross_amount\":\"0.00\"}},{\"id\":39438702,\"status\":\"in_transit\",\"date\":\"2013-11-01\",\"currency\":\"USD\",\"amount\":\"43.12\",\"summary\":{\"adjustments_fee_amount\":\"0.12\",\"adjustments_gross_amount\":\"2.13\",\"charges_fee_amount\":\"1.32\",\"charges_gross_amount\":\"45.52\",\"refunds_fee_amount\":\"-0.23\",\"refunds_gross_amount\":\"-3.54\",\"reserved_funds_fee_amount\":\"0.00\",\"reserved_funds_gross_amount\":\"0.00\",\"retried_payouts_fee_amount\":\"0.00\",\"retried_payouts_gross_amount\":\"0.00\"}},{\"id\":710174591,\"status\":\"paid\",\"date\":\"2012-12-12\",\"currency\":\"USD\",\"amount\":\"41.90\",\"summary\":{\"adjustments_fee_amount\":\"0.12\",\"adjustments_gross_amount\":\"2.13\",\"charges_fee_amount\":\"1.32\",\"charges_gross_amount\":\"44.52\",\"refunds_fee_amount\":\"-0.23\",\"refunds_gross_amount\":\"-3.54\",\"reserved_funds_fee_amount\":\"0.00\",\"reserved_funds_gross_amount\":\"0.00\",\"retried_payouts_fee_amount\":\"0.00\",\"retried_payouts_gross_amount\":\"0.00\"}},{\"id\":974708905,\"status\":\"paid\",\"date\":\"2012-11-13\",\"currency\":\"CAD\",\"amount\":\"51.69\",\"summary\":{\"adjustments_fee_amount\":\"0.12\",\"adjustments_gross_amount\":\"2.13\",\"charges_fee_amount\":\"6.46\",\"charges_gross_amount\":\"58.15\",\"refunds_fee_amount\":\"-0.23\",\"refunds_gross_amount\":\"-3.54\",\"reserved_funds_fee_amount\":\"0.00\",\"reserved_funds_gross_amount\":\"0.00\",\"retried_payouts_fee_amount\":\"0.00\",\"retried_payouts_gross_amount\":\"0.00\"}},{\"id\":725076685,\"status\":\"paid\",\"date\":\"2012-11-12\",\"currency\":\"USD\",\"amount\":\"41.90\",\"summary\":{\"adjustments_fee_amount\":\"0.12\",\"adjustments_gross_amount\":\"2.13\",\"charges_fee_amount\":\"1.32\",\"charges_gross_amount\":\"44.52\",\"refunds_fee_amount\":\"-0.23\",\"refunds_gross_amount\":\"-3.54\",\"reserved_funds_fee_amount\":\"0.00\",\"reserved_funds_gross_amount\":\"0.00\",\"retried_payouts_fee_amount\":\"0.00\",\"retried_payouts_gross_amount\":\"0.00\"}},{\"id\":714327683,\"status\":\"failed\",\"date\":\"2012-11-12\",\"currency\":\"USD\",\"amount\":\"41.90\",\"summary\":{\"adjustments_fee_amount\":\"0.12\",\"adjustments_gross_amount\":\"2.13\",\"charges_fee_amount\":\"1.32\",\"charges_gross_amount\":\"44.52\",\"refunds_fee_amount\":\"-0.23\",\"refunds_gross_amount\":\"-3.54\",\"reserved_funds_fee_amount\":\"0.00\",\"reserved_funds_gross_amount\":\"0.00\",\"retried_payouts_fee_amount\":\"0.00\",\"retried_payouts_gross_amount\":\"0.00\"}},{\"id\":631321250,\"status\":\"scheduled\",\"date\":\"2012-11-12\",\"currency\":\"USD\",\"amount\":\"41.90\",\"summary\":{\"adjustments_fee_amount\":\"0.12\",\"adjustments_gross_amount\":\"2.13\",\"charges_fee_amount\":\"1.32\",\"charges_gross_amount\":\"44.52\",\"refunds_fee_amount\":\"-0.23\",\"refunds_gross_amount\":\"-3.54\",\"reserved_funds_fee_amount\":\"0.00\",\"reserved_funds_gross_amount\":\"0.00\",\"retried_payouts_fee_amount\":\"0.00\",\"retried_payouts_gross_amount\":\"0.00\"}},{\"id\":623721858,\"status\":\"paid\",\"date\":\"2012-11-12\",\"currency\":\"USD\",\"amount\":\"41.90\",\"summary\":{\"adjustments_fee_amount\":\"0.12\",\"adjustments_gross_amount\":\"2.13\",\"charges_fee_amount\":\"1.32\",\"charges_gross_amount\":\"44.52\",\"refunds_fee_amount\":\"-0.23\",\"refunds_gross_amount\":\"-3.54\",\"reserved_funds_fee_amount\":\"0.00\",\"reserved_funds_gross_amount\":\"0.00\",\"retried_payouts_fee_amount\":\"0.00\",\"retried_payouts_gross_amount\":\"0.00\"}}]}"
+          },
+          "name": "List all payouts ordered newest to oldest",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/shopify_payments/payouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Payout.all(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Payout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payout.all({\n  session: test_session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayout::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "date_max=2012-11-12",
+          "request_path": "/admin/api/2022-04/shopify_payments/payouts.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/shopify_payments/payouts.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"payouts\":[{\"id\":725076685,\"status\":\"paid\",\"date\":\"2012-11-12\",\"currency\":\"USD\",\"amount\":\"41.90\",\"summary\":{\"adjustments_fee_amount\":\"0.12\",\"adjustments_gross_amount\":\"2.13\",\"charges_fee_amount\":\"1.32\",\"charges_gross_amount\":\"44.52\",\"refunds_fee_amount\":\"-0.23\",\"refunds_gross_amount\":\"-3.54\",\"reserved_funds_fee_amount\":\"0.00\",\"reserved_funds_gross_amount\":\"0.00\",\"retried_payouts_fee_amount\":\"0.00\",\"retried_payouts_gross_amount\":\"0.00\"}},{\"id\":714327683,\"status\":\"failed\",\"date\":\"2012-11-12\",\"currency\":\"USD\",\"amount\":\"41.90\",\"summary\":{\"adjustments_fee_amount\":\"0.12\",\"adjustments_gross_amount\":\"2.13\",\"charges_fee_amount\":\"1.32\",\"charges_gross_amount\":\"44.52\",\"refunds_fee_amount\":\"-0.23\",\"refunds_gross_amount\":\"-3.54\",\"reserved_funds_fee_amount\":\"0.00\",\"reserved_funds_gross_amount\":\"0.00\",\"retried_payouts_fee_amount\":\"0.00\",\"retried_payouts_gross_amount\":\"0.00\"}},{\"id\":631321250,\"status\":\"scheduled\",\"date\":\"2012-11-12\",\"currency\":\"USD\",\"amount\":\"41.90\",\"summary\":{\"adjustments_fee_amount\":\"0.12\",\"adjustments_gross_amount\":\"2.13\",\"charges_fee_amount\":\"1.32\",\"charges_gross_amount\":\"44.52\",\"refunds_fee_amount\":\"-0.23\",\"refunds_gross_amount\":\"-3.54\",\"reserved_funds_fee_amount\":\"0.00\",\"reserved_funds_gross_amount\":\"0.00\",\"retried_payouts_fee_amount\":\"0.00\",\"retried_payouts_gross_amount\":\"0.00\"}},{\"id\":623721858,\"status\":\"paid\",\"date\":\"2012-11-12\",\"currency\":\"USD\",\"amount\":\"41.90\",\"summary\":{\"adjustments_fee_amount\":\"0.12\",\"adjustments_gross_amount\":\"2.13\",\"charges_fee_amount\":\"1.32\",\"charges_gross_amount\":\"44.52\",\"refunds_fee_amount\":\"-0.23\",\"refunds_gross_amount\":\"-3.54\",\"reserved_funds_fee_amount\":\"0.00\",\"reserved_funds_gross_amount\":\"0.00\",\"retried_payouts_fee_amount\":\"0.00\",\"retried_payouts_gross_amount\":\"0.00\"}}]}"
+          },
+          "name": "List all payouts up to a specified date",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/shopify_payments/payouts.json?date_max=2012-11-12\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Payout.all(\n  session: test_session,\n  date_max: \"2012-11-12\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Payout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payout.all({\n  session: test_session,\n  date_max: \"2012-11-12\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayout::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"date_max\" => \"2012-11-12\"], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/shopify_payments/payouts.json",
+      "action": "get"
+    },
+    {
+      "description": "Retrieves a single payout by id.",
+      "summary": "Return a single payout",
+      "operationId": "Returnasinglepayout",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "payout_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Return a single payout",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieves a single payout by id": {
+                  "value": {
+                    "payout": {
+                      "id": 623721858,
+                      "status": "paid",
+                      "date": "2012-11-12",
+                      "currency": "USD",
+                      "amount": "41.90",
+                      "summary": {
+                        "adjustments_fee_amount": "0.12",
+                        "adjustments_gross_amount": "2.13",
+                        "charges_fee_amount": "1.32",
+                        "charges_gross_amount": "44.52",
+                        "refunds_fee_amount": "-0.23",
+                        "refunds_gross_amount": "-3.54",
+                        "reserved_funds_fee_amount": "0.00",
+                        "reserved_funds_gross_amount": "0.00",
+                        "retried_payouts_fee_amount": "0.00",
+                        "retried_payouts_gross_amount": "0.00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/shopify_payments/payouts/623721858.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/shopify_payments/payouts/623721858.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"payout\":{\"id\":623721858,\"status\":\"paid\",\"date\":\"2012-11-12\",\"currency\":\"USD\",\"amount\":\"41.90\",\"summary\":{\"adjustments_fee_amount\":\"0.12\",\"adjustments_gross_amount\":\"2.13\",\"charges_fee_amount\":\"1.32\",\"charges_gross_amount\":\"44.52\",\"refunds_fee_amount\":\"-0.23\",\"refunds_gross_amount\":\"-3.54\",\"reserved_funds_fee_amount\":\"0.00\",\"reserved_funds_gross_amount\":\"0.00\",\"retried_payouts_fee_amount\":\"0.00\",\"retried_payouts_gross_amount\":\"0.00\"}}}"
+          },
+          "name": "Retrieves a single payout by id",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/shopify_payments/payouts/623721858.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::Payout.find(\n  session: test_session,\n  id: 623721858,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {Payout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payout.find({\n  session: test_session,\n  id: 623721858,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayout::find(\n    $this->test_session, // Session\n    623721858, // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/shopify_payments/payouts/{payout_id}.json",
+      "action": "get"
+    }
+  ],
+  "components": [
+    {
+      "name": "Payouts",
+      "title": "Payouts",
+      "type": "object",
+      "properties": [
+        {
+          "description": "The unique identifier of the payout",
+          "type": "string",
+          "example": {
+            "id": 54534554564
+          },
+          "name": "id"
+        },
+        {
+          "description": "          The transfer status of the payout. The value will be one of the following:\n          <ul>\n            <li>\n              <strong>scheduled</strong>: The payout has been created and had transactions assigned to it, but\n              it has not yet been submitted to the bank.\n            </li>\n            <li><strong>in_transit</strong>: The payout has been submitted to the bank for processing.</li>\n            <li><strong>paid</strong>: The payout has been successfully deposited into the bank.</li>\n            <li><strong>failed</strong>: The payout has been declined by the bank.</li>\n            <li><strong>canceled</strong>: The payout has been canceled by Shopify.</li>\n          </ul>\n",
+          "type": "string",
+          "example": {
+            "status": "scheduled"
+          },
+          "name": "status"
+        },
+        {
+          "description": "          The date (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\">ISO 8601 format</a>) when the payout was issued.\n",
+          "type": "string",
+          "example": {
+            "date": "2018-03-22"
+          },
+          "name": "date"
+        },
+        {
+          "description": "The ISO 4217 currency code of the payout.",
+          "type": "string",
+          "example": {
+            "currency": "USD"
+          },
+          "name": "currency"
+        },
+        {
+          "description": "The total amount of the payout, in a decimal formatted string.",
+          "type": "string",
+          "example": {
+            "amount": "102.53"
+          },
+          "name": "amount"
+        }
+      ],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "shopify_payments/payout",
+    "gid": "94fce10c-6530-4873-a1c0-6d738e136d9b",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": null,
+    "meta_description": "Get information regarding Shopify Payments payouts.",
+    "postman_group": "Shopify Payments",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

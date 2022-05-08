@@ -26,7 +26,7 @@
           "description": "A comma-separated list of fields to include in the response.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -34,7 +34,7 @@
           "description": "A comma-separated list of report IDs.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -42,7 +42,7 @@
           "description": "The amount of results to return.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": 50,
             "maximum": 250
           }
@@ -52,7 +52,7 @@
           "description": "Restrict results to after the specified ID.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -60,7 +60,7 @@
           "description": "Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -68,7 +68,7 @@
           "description": "Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -347,7 +347,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/reports.json",
+      "url": "/admin/api/{api_version}/reports.json",
       "action": "get"
     },
     {
@@ -368,7 +368,7 @@
           "description": "The name of the report. Maximum length: 255 characters.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -376,7 +376,7 @@
           "description": "The ShopifyQL the report will query.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -439,7 +439,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/reports.json",
+      "url": "/admin/api/{api_version}/reports.json",
       "action": "post"
     },
     {
@@ -468,7 +468,7 @@
           "description": "A comma-separated list of fields to include in the response.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -574,7 +574,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/reports/{report_id}.json",
+      "url": "/admin/api/{api_version}/reports/{report_id}.json",
       "action": "get"
     },
     {
@@ -658,7 +658,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/reports/{report_id}.json",
+      "url": "/admin/api/{api_version}/reports/{report_id}.json",
       "action": "put"
     },
     {
@@ -734,7 +734,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/reports/{report_id}.json",
+      "url": "/admin/api/{api_version}/reports/{report_id}.json",
       "action": "delete"
     }
   ],
@@ -746,31 +746,31 @@
       "properties": [
         {
           "description": "          The category for the report. When you create a report, the API will return <code>custom_app_reports</code>.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "custom_app_reports",
           "name": "category"
         },
         {
           "description": "The unique numeric identifier for the report.",
-          "type": "x-string",
+          "type": "string",
           "example": 517154478,
           "name": "id"
         },
         {
           "description": "The name of the report. Maximum length: 255 characters.",
-          "type": "x-string",
+          "type": "string",
           "example": "My App Report",
           "name": "name"
         },
         {
           "description": "The ShopifyQL query that generates the report.\nSee <a href='/api/admin/rest/reference/analytics/shopify-ql'>Shopify Query Language</a>.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "SHOW total_sales BY order_id FROM sales SINCE -1m UNTIL today ORDER BY total_sales",
           "name": "shopify_ql"
         },
         {
           "description": "The date and time <a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">(ISO 8601)</a>\nwhen the report was last modified.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "2008-02-01T17:00:00-07:00",
           "name": "updated_at"
         }

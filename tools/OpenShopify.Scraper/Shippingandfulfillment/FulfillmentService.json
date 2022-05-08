@@ -1,0 +1,628 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "FulfillmentService",
+    "description": "        <p>A <strong>Fulfillment Service</strong> is a third party warehouse that prepares and ships orders\n        on behalf of the store owner. Fulfillment services charge a fee to package and ship items\n        and update product inventory levels. Some well known fulfillment services with Shopify integrations\n        include: Amazon, Shipwire, and Rakuten. When an app registers a new FulfillmentService on a store,\n         Shopify automatically creates a Location that's associated to that fulfillment service.</p>\n        <p>Using the Fulfillment Service API, you can register, edit and delete a new fulfillment service.\n        When you register a new fulfillment service, you will need to expose the two following\n        GET endpoints rooted in the <code><a href=\"#callback\">callback_url</a></code>:</p>\n        <ul>\n          <li><code>fetch_tracking_numbers</code>: Where Shopify can retrieve <strong>tracking numbers</strong> for orders.</li>\n          <li><code>fetch_stock</code>: Where Shopify can retrieve <strong>inventory levels</strong>.</li>\n        </ul>\n\n        <p><strong>Testing the GET endpoints</strong></p>\n\n        <p>To make sure you have everything set up correctly, you can test the GET endpoints in your development store by completing the following steps:</p>\n          <ol>\n            <li><a href=\"/concepts/app-store/getting-your-app-approved/testing-your-app-before-submitting#installing-an-app-on-a-development-store\">Install your app on a development store</a>.</li>\n            <li><a href=\"/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice#create-{{ current_version }}\">Create a fulfillment service</a> using an API request from the app.</li>\n            <li>Create at least one product that uses the fulfillment service to manage its inventory (either in the Shopify admin or using the API).</li>\n          </ol>\n\n        <p><strong>A sample Shopify request for tracking numbers:</strong></p>\n        <p>Once per hour Shopify will make a request to this endpoint if there are any completed fulfillments awaiting tracking numbers from the remote fulfillment service.</p>\n        <div id=\"fetch-tracking-numbers\" class=\"api-endpoint\">\n          <div class=\"api-endpoint-request\">\n            <pre class=\"api-endpoint-request-type\">GET</pre>\n            /fetch_tracking_numbers\n          </div>\n          <div class=\"api-endpoint-description\">\n            <p>Get tracking numbers for orders</p>\n          </div>\n          <div class=\"api-endpoint-content\">\n            <div class=\"api-endpoint-queryparameters\">\n              <table>\n                <tbody>\n                  <tr>\n                    <td>\n                      <pre>order_names</pre>\n                    </td>\n                    <td>\n                        <p>The <a href=\"/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#name-property-{{ current_version }}\">fulfillment names</a> we require tracking numbers for (i.e. #1001.1)</p>\n                    </td>\n                  </tr>\n                  <tr>\n                    <td>\n                      <pre>shop</pre>\n                    </td>\n                    <td>\n                        <p>The shop's myshopify url</p>\n                    </td>\n                  </tr>\n                </tbody>\n              </table>\n            </div>\n            <div class=\"api-endpoint-example\">\n              <h3 class=\"api-endpoint-example-title\">Get a list of tracking numbers for the following fulfillment names.</h3>\n              <div class=\"api-endpoint-example-request\">\n                <pre>http://myapp.com/fetch_tracking_numbers.json?order_names[]=#1001.1&amp;order_names[]=#1002.1&amp;order_names[]=#1003.2</pre>\n                <button type=\"button\" class=\"docs-button-small api-endpoint-example-response-button\">View response</button>\n              </div>\n              <div class=\"api-endpoint-example-response\">\n                <pre>\n                  { \"tracking_numbers\": {\n                      \"#1001.1\": \"qwerty\",\n                      \"#1002.1\": \"asdfg\",\n                      \"#1003.2\": \"zxcvb\"\n                    },\n                  \"message\": \"Successfully received the tracking numbers\",\n                  \"success\": true\n                  }\n                </pre>\n              </div>\n            </div>\n          </div>\n        </div>\n\n        <p><strong>A sample Shopify request for inventory levels:</strong></p>\n        <p>Shopify will make a request for the inventory of an individual SKU when the product is set up initially, its SKU is changed in the Shopify admin, or its inventory management is set to use the fulfillment service. A request for all inventory data will happen once every hour to keep our system up to date with the remote fulfillment service.</p>\n\n        <div id=\"fetch-stock\" class=\"api-endpoint\">\n          <div class=\"api-endpoint-request\">\n            <pre class=\"api-endpoint-request-type\">GET</pre>\n            /fetch_stock\n          </div>\n          <div class=\"api-endpoint-description\">\n            <p> Get inventory levels</p>\n          </div>\n          <div class=\"api-endpoint-content\">\n            <div class=\"api-endpoint-queryparameters\">\n              <table>\n                <tbody>\n                  <tr>\n                    <td>\n                      <pre>location_id</pre>\n                    </td>\n                    <td>\n                        <p>The ID of the fulfillment service location. This parameter is available only in the unstable API version.</p>\n                    </td>\n                  </tr>\n                  <tr>\n                    <td>\n                      <pre>max_retries</pre>\n                    </td>\n                    <td>\n                        <p>The maximum amount of times Shopify will send the request for inventory levels.</p>\n                    </td>\n                  </tr>\n                  <tr>\n                    <td>\n                      <pre>shop</pre>\n                    </td>\n                    <td>\n                        <p>The shop's myshopify url.</p>\n                    </td>\n                  </tr>\n                  <tr>\n                    <td>\n                      <pre>sku</pre>\n                    </td>\n                    <td>\n                        <p>The SKU for the Product Variant we need stock levels for.</p>\n                    </td>\n                  </tr>\n                  <tr>\n                    <td>\n                      <pre>timestamp</pre>\n                    </td>\n                    <td>\n                        <p><a href=\"http://unixtimestamp.50x.eu/about.php\">The Unix timestamp</a> from when the inventory request was made.</p>\n                    </td>\n                  </tr>\n\n\n                </tbody>\n              </table>\n            </div>\n            <div class=\"api-endpoint-example\">\n              <h3 class=\"api-endpoint-example-title\">Get inventory levels for a particular SKU.</h3>\n              <div class=\"api-endpoint-example-request\">\n                <pre>https://myapp.com/fetch_stock.json?sku=123&amp;shop=testshop.myshopify.com&amp;max_retries=3&amp;timestamp=1532548742</pre>\n                <button type=\"button\" class=\"docs-button-small api-endpoint-example-response-button\">View response</button>\n              </div>\n              <div class=\"api-endpoint-example-response\">\n                <pre>\n                  {\"123\": 1000}\n                </pre>\n              </div>\n            </div>\n            <div class=\"api-endpoint-example\">\n              <h3 class=\"api-endpoint-example-title\">Get inventory levels for all SKUs.</h3>\n              <div class=\"api-endpoint-example-request\">\n                <pre>https://myapp.com/fetch_stock.json?shop=testshop.myshopify.com</pre>\n                <button type=\"button\" class=\"docs-button-small api-endpoint-example-response-button\">View response</button>\n              </div>\n              <div class=\"api-endpoint-example-response\">\n                <pre>\n                  {\"123\": 1000,\n                   \"456\": 500}\n                </pre>\n              </div>\n            </div>\n          </div>\n        </div>\n\n        <p><strong>Fulfillment webhooks</strong></p>\n\n        <p>You can subscribe to the <code>fulfillments/create</code> webhook to receive notifications about new fulfillments. The webhook fires every time an order is marked <code>fulfilled</code>, and the data is sent to the registered URL.\n        After receiving and processing the webhook, your service should make a <a href=\"/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment#complete-{{ current_version }}\">request</a> to <code>complete</code> the fulfillment. Before filling the order, check the fulfillment\n        service <code>handle</code> on the fulfillment record to make sure that the fulfillment is in a <code>pending</code> state.</p>\n\n        <p>You can also integrate the Fulfillment Service API to subscribe to the <code>fulfillments/update</code>. The webhook fires every time a request comes in to get an update on a fulfillment.\n        For more information about webhooks, refer to our <a href=\"/tutorials/manage-webhooks\">webhooks tutorial</a>.</p>\n\n        <p>You can also update the fulfillment using the API with other information like <code>tracking_numbers</code> rather than waiting for Shopify to ask for them.</p>\n\n        <p class=\"note\">View an open sourced <a href=\"https://github.com/Shopify/shopify-fulfillment-integration\">Fulfillment Integration App</a> that demonstrates how to use the Fulfillment API.</p>\n\n        <h2>Setting fulfillments permissions</h2>\n        <p>Add the <code>write_fulfillments</code> permission to your <a href=\"/docs/admin-api/access-scopes\">requested scopes</a>.</p>\n",
+    "x-owner": "https://vault.shopify.io/teams/457",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": null,
+      "summary": "Receive a list of all FulfillmentServices",
+      "operationId": "ReceivealistofallFulfillmentServices",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "scope",
+          "description": null,
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "examples": {
+            "current_client": {
+              "summary": "Returns fulfillment providers that have been created by the app sending the request (default)",
+              "value": "current_client"
+            },
+            "all": {
+              "summary": "Returns all the fulfillment providers",
+              "value": "all"
+            }
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Receive a list of all FulfillmentServices",
+          "content": {
+            "application/json": {
+              "examples": {
+                "List your app's fulfillment services": {
+                  "value": {
+                    "fulfillment_services": [
+                      {
+                        "id": 755357713,
+                        "name": "Mars Fulfillment",
+                        "email": null,
+                        "service_name": "Mars Fulfillment",
+                        "handle": "mars-fulfillment",
+                        "fulfillment_orders_opt_in": true,
+                        "include_pending_stock": false,
+                        "provider_id": null,
+                        "location_id": 24826418,
+                        "callback_url": "http://google.com/",
+                        "tracking_support": true,
+                        "inventory_management": true,
+                        "admin_graphql_api_id": "gid://shopify/ApiFulfillmentService/755357713"
+                      }
+                    ]
+                  }
+                },
+                "List all of the shop's fulfillment services": {
+                  "value": {
+                    "fulfillment_services": [
+                      {
+                        "id": 611870435,
+                        "name": "Venus Fulfillment",
+                        "email": null,
+                        "service_name": "Venus Fulfillment",
+                        "handle": "venus-fulfillment",
+                        "fulfillment_orders_opt_in": false,
+                        "include_pending_stock": false,
+                        "provider_id": null,
+                        "location_id": 611870435,
+                        "callback_url": null,
+                        "tracking_support": true,
+                        "inventory_management": true,
+                        "admin_graphql_api_id": "gid://shopify/ApiFulfillmentService/611870435"
+                      },
+                      {
+                        "id": 755357713,
+                        "name": "Mars Fulfillment",
+                        "email": null,
+                        "service_name": "Mars Fulfillment",
+                        "handle": "mars-fulfillment",
+                        "fulfillment_orders_opt_in": true,
+                        "include_pending_stock": false,
+                        "provider_id": null,
+                        "location_id": 24826418,
+                        "callback_url": "http://google.com/",
+                        "tracking_support": true,
+                        "inventory_management": true,
+                        "admin_graphql_api_id": "gid://shopify/ApiFulfillmentService/755357713"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/fulfillment_services.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2020-01/fulfillment_services.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_services\":[{\"id\":755357713,\"name\":\"Mars Fulfillment\",\"email\":null,\"service_name\":\"Mars Fulfillment\",\"handle\":\"mars-fulfillment\",\"fulfillment_orders_opt_in\":true,\"include_pending_stock\":false,\"provider_id\":null,\"location_id\":24826418,\"callback_url\":\"http://google.com/\",\"tracking_support\":true,\"inventory_management\":true,\"admin_graphql_api_id\":\"gid://shopify/ApiFulfillmentService/755357713\"}]}"
+          },
+          "name": "List your app's fulfillment services",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_services.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::FulfillmentService.all(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentService} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait FulfillmentService.all({\n  session: test_session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillmentService::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "scope=all",
+          "request_path": "/admin/api/2022-04/fulfillment_services.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2020-01/fulfillment_services.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_services\":[{\"id\":611870435,\"name\":\"Venus Fulfillment\",\"email\":null,\"service_name\":\"Venus Fulfillment\",\"handle\":\"venus-fulfillment\",\"fulfillment_orders_opt_in\":false,\"include_pending_stock\":false,\"provider_id\":null,\"location_id\":611870435,\"callback_url\":null,\"tracking_support\":true,\"inventory_management\":true,\"admin_graphql_api_id\":\"gid://shopify/ApiFulfillmentService/611870435\"},{\"id\":755357713,\"name\":\"Mars Fulfillment\",\"email\":null,\"service_name\":\"Mars Fulfillment\",\"handle\":\"mars-fulfillment\",\"fulfillment_orders_opt_in\":true,\"include_pending_stock\":false,\"provider_id\":null,\"location_id\":24826418,\"callback_url\":\"http://google.com/\",\"tracking_support\":true,\"inventory_management\":true,\"admin_graphql_api_id\":\"gid://shopify/ApiFulfillmentService/755357713\"}]}"
+          },
+          "name": "List all of the shop's fulfillment services",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_services.json?scope=all\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::FulfillmentService.all(\n  session: test_session,\n  scope: \"all\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentService} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait FulfillmentService.all({\n  session: test_session,\n  scope: \"all\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillmentService::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"scope\" => \"all\"], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/fulfillment_services.json",
+      "action": "get"
+    },
+    {
+      "description": null,
+      "summary": "Create a new FulfillmentService",
+      "operationId": "CreateanewFulfillmentService",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "201": {
+          "description": "Create a new FulfillmentService",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a fulfillment service": {
+                  "value": {
+                    "fulfillment_service": {
+                      "id": 1061774488,
+                      "name": "Jupiter Fulfillment",
+                      "email": null,
+                      "service_name": "Jupiter Fulfillment",
+                      "handle": "jupiter-fulfillment",
+                      "fulfillment_orders_opt_in": false,
+                      "include_pending_stock": false,
+                      "provider_id": null,
+                      "location_id": 1072404543,
+                      "callback_url": "http://google.com/",
+                      "tracking_support": true,
+                      "inventory_management": true,
+                      "admin_graphql_api_id": "gid://shopify/ApiFulfillmentService/1061774488"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/fulfillment_services.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/2022-07/fulfillment_services.json",
+            "headers": {},
+            "body": "{\"fulfillment_service\":{\"name\":\"Jupiter Fulfillment\",\"callback_url\":\"http://google.com\",\"inventory_management\":true,\"tracking_support\":true,\"requires_shipping_method\":true,\"format\":\"json\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"fulfillment_service\":{\"id\":1061774488,\"name\":\"Jupiter Fulfillment\",\"email\":null,\"service_name\":\"Jupiter Fulfillment\",\"handle\":\"jupiter-fulfillment\",\"fulfillment_orders_opt_in\":false,\"include_pending_stock\":false,\"provider_id\":null,\"location_id\":1072404543,\"callback_url\":\"http://google.com/\",\"tracking_support\":true,\"inventory_management\":true,\"admin_graphql_api_id\":\"gid://shopify/ApiFulfillmentService/1061774488\"}}"
+          },
+          "name": "Create a fulfillment service",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"fulfillment_service\":{\"name\":\"Jupiter Fulfillment\",\"callback_url\":\"http://google.com\",\"inventory_management\":true,\"tracking_support\":true,\"requires_shipping_method\":true,\"format\":\"json\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_services.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nfulfillment_service = ShopifyAPI::FulfillmentService.new(session: test_session)\nfulfillment_service.name = \"Jupiter Fulfillment\"\nfulfillment_service.callback_url = \"http://google.com\"\nfulfillment_service.inventory_management = true\nfulfillment_service.tracking_support = true\nfulfillment_service.requires_shipping_method = true\nfulfillment_service.format = \"json\"\nfulfillment_service.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentService} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_service = new FulfillmentService({session: test_session});\nfulfillment_service.name = \"Jupiter Fulfillment\";\nfulfillment_service.callback_url = \"http://google.com\";\nfulfillment_service.inventory_management = true;\nfulfillment_service.tracking_support = true;\nfulfillment_service.requires_shipping_method = true;\nfulfillment_service.format = \"json\";\nawait fulfillment_service.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_service = new FulfillmentService($this->test_session);\n$fulfillment_service->name = \"Jupiter Fulfillment\";\n$fulfillment_service->callback_url = \"http://google.com\";\n$fulfillment_service->inventory_management = true;\n$fulfillment_service->tracking_support = true;\n$fulfillment_service->requires_shipping_method = true;\n$fulfillment_service->format = \"json\";\n$fulfillment_service->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/fulfillment_services.json",
+      "action": "post"
+    },
+    {
+      "description": null,
+      "summary": "Receive a single FulfillmentService",
+      "operationId": "ReceiveasingleFulfillmentService",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_service_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Receive a single FulfillmentService",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Get a single fulfillment service by its ID": {
+                  "value": {
+                    "fulfillment_service": {
+                      "id": 755357713,
+                      "name": "Mars Fulfillment",
+                      "email": null,
+                      "service_name": "Mars Fulfillment",
+                      "handle": "mars-fulfillment",
+                      "fulfillment_orders_opt_in": true,
+                      "include_pending_stock": false,
+                      "provider_id": null,
+                      "location_id": 24826418,
+                      "callback_url": "http://google.com/",
+                      "tracking_support": true,
+                      "inventory_management": true,
+                      "admin_graphql_api_id": "gid://shopify/ApiFulfillmentService/755357713"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/fulfillment_services/755357713.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2020-01/fulfillment_services/755357713.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_service\":{\"id\":755357713,\"name\":\"Mars Fulfillment\",\"email\":null,\"service_name\":\"Mars Fulfillment\",\"handle\":\"mars-fulfillment\",\"fulfillment_orders_opt_in\":true,\"include_pending_stock\":false,\"provider_id\":null,\"location_id\":24826418,\"callback_url\":\"http://google.com/\",\"tracking_support\":true,\"inventory_management\":true,\"admin_graphql_api_id\":\"gid://shopify/ApiFulfillmentService/755357713\"}}"
+          },
+          "name": "Get a single fulfillment service by its ID",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_services/755357713.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::FulfillmentService.find(\n  session: test_session,\n  id: 755357713,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentService} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait FulfillmentService.find({\n  session: test_session,\n  id: 755357713,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillmentService::find(\n    $this->test_session, // Session\n    755357713, // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/fulfillment_services/{fulfillment_service_id}.json",
+      "action": "get"
+    },
+    {
+      "description": null,
+      "summary": "Modify an existing FulfillmentService",
+      "operationId": "ModifyanexistingFulfillmentService",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_service_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Modify an existing FulfillmentService",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Update a fulfillment service": {
+                  "value": {
+                    "fulfillment_service": {
+                      "id": 755357713,
+                      "name": "New Fulfillment Service Name",
+                      "email": null,
+                      "service_name": "New Fulfillment Service Name",
+                      "handle": "new-fulfillment-service-name",
+                      "fulfillment_orders_opt_in": true,
+                      "include_pending_stock": false,
+                      "provider_id": null,
+                      "location_id": 24826418,
+                      "callback_url": "http://google.com/",
+                      "tracking_support": true,
+                      "inventory_management": true,
+                      "admin_graphql_api_id": "gid://shopify/ApiFulfillmentService/755357713"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/fulfillment_services/755357713.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/2020-01/fulfillment_services/755357713.json",
+            "headers": {},
+            "body": "{\"fulfillment_service\":{\"id\":755357713,\"name\":\"New Fulfillment Service Name\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"fulfillment_service\":{\"id\":755357713,\"name\":\"New Fulfillment Service Name\",\"email\":null,\"service_name\":\"New Fulfillment Service Name\",\"handle\":\"new-fulfillment-service-name\",\"fulfillment_orders_opt_in\":true,\"include_pending_stock\":false,\"provider_id\":null,\"location_id\":24826418,\"callback_url\":\"http://google.com/\",\"tracking_support\":true,\"inventory_management\":true,\"admin_graphql_api_id\":\"gid://shopify/ApiFulfillmentService/755357713\"}}"
+          },
+          "name": "Update a fulfillment service",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"fulfillment_service\":{\"id\":755357713,\"name\":\"New Fulfillment Service Name\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_services/755357713.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nfulfillment_service = ShopifyAPI::FulfillmentService.new(session: test_session)\nfulfillment_service.id = 755357713\nfulfillment_service.name = \"New Fulfillment Service Name\"\nfulfillment_service.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentService} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst fulfillment_service = new FulfillmentService({session: test_session});\nfulfillment_service.id = 755357713;\nfulfillment_service.name = \"New Fulfillment Service Name\";\nawait fulfillment_service.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$fulfillment_service = new FulfillmentService($this->test_session);\n$fulfillment_service->id = 755357713;\n$fulfillment_service->name = \"New Fulfillment Service Name\";\n$fulfillment_service->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/fulfillment_services/{fulfillment_service_id}.json",
+      "action": "put"
+    },
+    {
+      "description": null,
+      "summary": "Remove an existing FulfillmentService",
+      "operationId": "RemoveanexistingFulfillmentService",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fulfillment_service_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Remove an existing FulfillmentService",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Destroy a fulfillment service": {
+                  "value": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/fulfillment_services/755357713.json",
+          "request_method": "DELETE",
+          "request": {
+            "action": "DELETE /admin/api/unstable/fulfillment_services/755357713.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{}"
+          },
+          "name": "Destroy a fulfillment service",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_services/755357713.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::FulfillmentService.delete(\n  session: test_session,\n  id: 755357713,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {FulfillmentService} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait FulfillmentService.delete({\n  session: test_session,\n  id: 755357713,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\FulfillmentService;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nFulfillmentService::delete(\n    $this->test_session, // Session\n    755357713, // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/fulfillment_services/{fulfillment_service_id}.json",
+      "action": "delete"
+    }
+  ],
+  "components": [
+    {
+      "name": "FulfillmentService",
+      "title": "FulfillmentService",
+      "type": "object",
+      "properties": [
+        {
+          "description": "The GraphQL GID for this fulfillment service.",
+          "type": "string",
+          "example": "gid://shopify/FulfillmentService/1",
+          "name": "admin_graphql_api_id"
+        },
+        {
+          "description": "The callback URL the fulfillment service has registered for requests.<br>\n          If the Fulfillment Service has opted in to use fulfillment orders, then the <code>callback_url/fulfillment_order_notification</code> endpoint is also used to send <a href=\"/tutorials/manage-fulfillments-with-fulfillment-and-fulfillmentorder-resources#receiving-fulfillment_request-notifications\">fulfillment and cancellation requests</a>.<br>The <code>callback_url</code> field is required if <code>inventory_management</code>, <code>tracking_support</code>, or <code>fulfillment_orders_opt_in</code> is set to <code>true</code>.",
+          "type": "string",
+          "example": "http://myapp.com",
+          "name": "callback_url"
+        },
+        {
+          "description": "Specifies the format of the API output. Valid values are json and xml.",
+          "type": "string",
+          "example": "json",
+          "name": "format"
+        },
+        {
+          "description": "Whether the fulfillment service wants to register for APIs related to fulfillment orders. To manage fulfillments using fulfillment orders, see <a href=\"/tutorials/manage-fulfillments-with-fulfillment-and-fulfillmentorder-resources\"><em>Manage fulfillments with Fulfillment and FulfillmentOrder resources</em></a>.",
+          "type": "string",
+          "example": true,
+          "name": "fulfillment_orders_opt_in"
+        },
+        {
+          "description": "Human-readable unique identifier for this fulfillment service.",
+          "type": "string",
+          "example": "my-fulfillment-service",
+          "name": "handle"
+        },
+        {
+          "description": "States if the fulfillment service tracks product inventory and provides updates to Shopify. Valid values are \"true\" and \"false\".",
+          "type": "string",
+          "example": true,
+          "name": "inventory_management"
+        },
+        {
+          "description": "The unique identifier of the location associated with the fulfillment service",
+          "type": "string",
+          "example": 19,
+          "name": "location_id"
+        },
+        {
+          "description": "The name of the fulfillment service as seen by merchants.",
+          "type": "string",
+          "example": "My Fulfillment Service",
+          "name": "name"
+        },
+        {
+          "description": "A unique identifier for the fulfillment service provider.",
+          "type": "string",
+          "example": null,
+          "name": "provider_id"
+        },
+        {
+          "description": "States if the fulfillment service requires products to be physically shipped. Valid values are \"true\" and \"false\".",
+          "type": "string",
+          "example": true,
+          "name": "requires_shipping_method"
+        },
+        {
+          "description": "States if the fulfillment service provides tracking numbers for packages. Valid values are \"true\" and \"false\".",
+          "type": "string",
+          "example": true,
+          "name": "tracking_support"
+        }
+      ],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "shipping-and-fulfillment/fulfillmentservice",
+    "gid": "2b42ce79-84ca-4b2e-9ce4-6d98a423d553",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/fulfillmentservice",
+      "/api/reference/shipping_and_fulfillment/fulfillmentservice",
+      "/api/reference/shipping-and-fulfillment/unstable/fulfillmentserviceunstable"
+    ],
+    "meta_description": "Register a fulfillment service with a store. The merchant can then set it as the fulfillment service for their products, and your service can manage the fulfillment of those products using the Fulfillment and FulfillmentEvent APIs.",
+    "postman_group": "Shipping and fulfillment",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

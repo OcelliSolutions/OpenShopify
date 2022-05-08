@@ -90,7 +90,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}/discount_codes.json",
+      "url": "/admin/api/{api_version}/price_rules/{price_rule_id}/discount_codes.json",
       "action": "post"
     },
     {
@@ -177,7 +177,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}/discount_codes.json",
+      "url": "/admin/api/{api_version}/price_rules/{price_rule_id}/discount_codes.json",
       "action": "get"
     },
     {
@@ -270,7 +270,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json",
+      "url": "/admin/api/{api_version}/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json",
       "action": "put"
     },
     {
@@ -363,7 +363,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json",
+      "url": "/admin/api/{api_version}/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json",
       "action": "get"
     },
     {
@@ -447,7 +447,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json",
+      "url": "/admin/api/{api_version}/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json",
       "action": "delete"
     },
     {
@@ -468,7 +468,7 @@
           "description": "Retrieves the location of a discount code by code name.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "maximum": "100"
           },
           "required": true
@@ -525,7 +525,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/discount_codes/lookup.json?code=SUMMERSALE10OFF",
+      "url": "/admin/api/{api_version}/discount_codes/lookup.json?code=SUMMERSALE10OFF",
       "action": "get"
     },
     {
@@ -546,7 +546,7 @@
           "description": "Show discount codes with times used.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -554,7 +554,7 @@
           "description": "Show discount codes used greater than or equal to this value.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -562,7 +562,7 @@
           "description": "Show discount codes used less than or equal to this value.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -619,7 +619,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/discount_codes/count.json",
+      "url": "/admin/api/{api_version}/discount_codes/count.json",
       "action": "get"
     },
     {
@@ -709,7 +709,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}/batch.json",
+      "url": "/admin/api/{api_version}/price_rules/{price_rule_id}/batch.json",
       "action": "post"
     },
     {
@@ -807,7 +807,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}/batch/{batch_id}.json",
+      "url": "/admin/api/{api_version}/price_rules/{price_rule_id}/batch/{batch_id}.json",
       "action": "get"
     },
     {
@@ -909,7 +909,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/price_rules/{price_rule_id}/batch/{batch_id}/discount_codes.json",
+      "url": "/admin/api/{api_version}/price_rules/{price_rule_id}/batch/{batch_id}/discount_codes.json",
       "action": "get"
     }
   ],
@@ -921,41 +921,41 @@
       "properties": [
         {
           "description": "          <p>The case-insensitive discount code that customers use at checkout. (maximum: 255 characters)</p>\n          <div class=\"note note-caution\">\n            <p>Use the same value for <code>code</code> as the <code>title</code> property of the associated <a href=\"/docs/admin-api/rest/reference/discounts/pricerule/#title-property\">price rule</a>.</p>\n          </div>\n",
-          "type": "x-string",
+          "type": "string",
           "example": "SUMMERSALE10OFF",
           "name": "code"
         },
         {
           "description": "          <p>The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the discount code was created.</p>\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "2017-03-13T14:09:54-06:00",
           "name": "created_at"
         },
         {
           "description": "          <p>The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the discount code was updated.</p>\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "2017-03-13T14:09:54-06:00",
           "name": "updated_at"
         },
         {
           "description": "The ID for the discount code.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": 9808080986,
           "name": "id"
         },
         {
           "description": "The ID for the price rule that this discount code belongs to.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": 423748927342,
           "name": "price_rule_id"
         },
         {
           "description": "The number of times that the discount code has been redeemed.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": 3,
           "name": "usage_count"

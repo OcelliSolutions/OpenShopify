@@ -182,7 +182,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/storefront_access_tokens.json",
+      "url": "/admin/api/{api_version}/storefront_access_tokens.json",
       "action": "post"
     },
     {
@@ -261,7 +261,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/storefront_access_tokens.json",
+      "url": "/admin/api/{api_version}/storefront_access_tokens.json",
       "action": "get"
     },
     {
@@ -337,7 +337,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/storefront_access_tokens/{storefront_access_token_id}.json",
+      "url": "/admin/api/{api_version}/storefront_access_tokens/{storefront_access_token_id}.json",
       "action": "delete"
     }
   ],
@@ -349,7 +349,7 @@
       "properties": [
         {
           "description": "Unique <code>id</code> that identifies a token and is used to perform operations on it.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": {
             "id": 1053727709
@@ -358,7 +358,7 @@
         },
         {
           "description": "The issued public access token.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": {
             "access_token": "4f12cc6de73079c2c92ef4bef9e3c68a"
@@ -367,7 +367,7 @@
         },
         {
           "description": "An application-dependant, comma separated list of permissions associated with the token.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": {
             "access_scope": "unauthenticated_read_product_listings"
@@ -376,7 +376,7 @@
         },
         {
           "description": "The date and time when the public access token was created. The API returns this value in <a href='//en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601 format</a>.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": {
             "created_at": "2016-11-10T13:15:47-07:00"
@@ -385,7 +385,7 @@
         },
         {
           "description": "        An arbitrary title for each token determined by the developer/application, used for reference purposes.\n        <div class=\"note\">\n          <h4>Note</h4>\n          <p>No constraint on uniqueness.</p>\n        </div>\n",
-          "type": "x-string",
+          "type": "string",
           "example": {
             "title": "Test"
           },

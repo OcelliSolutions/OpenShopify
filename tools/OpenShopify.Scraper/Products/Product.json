@@ -26,7 +26,7 @@
           "description": "Return products by product collection ID.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -34,7 +34,7 @@
           "description": "Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -42,7 +42,7 @@
           "description": "Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -50,7 +50,7 @@
           "description": "Return only certain fields specified by a comma-separated list of field names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -58,7 +58,7 @@
           "description": "Return only products specified by a comma-separated list of product handles.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -66,7 +66,7 @@
           "description": "Return only products specified by a comma-separated list of product IDs.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -74,7 +74,7 @@
           "description": "Return up to this many results per page.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": 50,
             "maximum": 250
           }
@@ -84,7 +84,7 @@
           "description": "Return presentment prices in only certain currencies, specified by a comma-separated list of <a href=\"https://en.wikipedia.org/wiki/ISO_4217\">ISO 4217</a> currency codes.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -92,7 +92,7 @@
           "description": "Return products by product type.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -100,7 +100,7 @@
           "description": "Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -108,7 +108,7 @@
           "description": "Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -116,7 +116,7 @@
           "description": "Return products by their published status.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": "any"
           },
           "examples": {
@@ -139,7 +139,7 @@
           "description": "Return only products after the specified ID.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -147,7 +147,7 @@
           "description": "Return only products specified by a comma-separated list of statuses.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": "any"
           },
           "examples": {
@@ -170,7 +170,7 @@
           "description": "Return products by product title.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -178,7 +178,7 @@
           "description": "Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -186,7 +186,7 @@
           "description": "Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -194,7 +194,7 @@
           "description": "Return products by product vendor.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -439,7 +439,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/products.json",
+      "url": "/admin/api/{api_version}/products.json",
       "action": "get"
     },
     {
@@ -858,7 +858,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/products.json",
+      "url": "/admin/api/{api_version}/products.json",
       "action": "post"
     },
     {
@@ -879,7 +879,7 @@
           "description": "Return products by product collection ID.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -887,7 +887,7 @@
           "description": "Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -895,7 +895,7 @@
           "description": "Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -903,7 +903,7 @@
           "description": "Return products by product type.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -911,7 +911,7 @@
           "description": "Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -919,7 +919,7 @@
           "description": "Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -927,7 +927,7 @@
           "description": "Return products by their published status.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": "any"
           },
           "examples": {
@@ -950,7 +950,7 @@
           "description": "Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -958,7 +958,7 @@
           "description": "Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -966,7 +966,7 @@
           "description": "Return products by product vendor.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -1059,7 +1059,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/products/count.json",
+      "url": "/admin/api/{api_version}/products/count.json",
       "action": "get"
     },
     {
@@ -1088,7 +1088,7 @@
           "description": "A comma-separated list of fields to include in the response.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -1181,7 +1181,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/products/{product_id}.json",
+      "url": "/admin/api/{api_version}/products/{product_id}.json",
       "action": "get"
     },
     {
@@ -1675,7 +1675,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/products/{product_id}.json",
+      "url": "/admin/api/{api_version}/products/{product_id}.json",
       "action": "put"
     },
     {
@@ -1751,7 +1751,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/products/{product_id}.json",
+      "url": "/admin/api/{api_version}/products/{product_id}.json",
       "action": "delete"
     }
   ],

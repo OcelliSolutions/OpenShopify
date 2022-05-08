@@ -34,7 +34,7 @@
           "description": "Show only certain fields, specified by a comma-separated list of field names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -42,7 +42,7 @@
           "description": "Show amounts in the shop currency for the underlying transaction.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": "false"
           }
         },
@@ -51,7 +51,7 @@
           "description": "The maximum number of results to retrieve.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": 50,
             "maximum": 250
           }
@@ -369,7 +369,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/orders/{order_id}/refunds.json",
+      "url": "/admin/api/{api_version}/orders/{order_id}/refunds.json",
       "action": "get"
     },
     {
@@ -398,7 +398,7 @@
           "description": "        <p>The three-letter code (<a href=\"https://en.wikipedia.org/wiki/ISO_4217\" target=\"_blank\">ISO 4217</a> format) for the currency used for the refund.</p>\n",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -406,7 +406,7 @@
           "description": "An optional comment that explains a discrepancy between calculated and actual refund amounts. Used to populate the <code>reason</code> property of the resulting <code>order_adjustment</code> object attached to the refund. Valid values: <code>restock</code>, <code>damage</code>, <code>customer</code>, and <code>other</code>.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -414,7 +414,7 @@
           "description": "An optional note attached to a refund.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -422,7 +422,7 @@
           "description": "Whether to send a refund notification to the customer.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -430,7 +430,7 @@
           "description": "A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "examples": {
             "line_item_id": {
@@ -456,7 +456,7 @@
           "description": "Whether to add the line items back to the store inventory. Use <code>restock_type</code> for refund line items instead.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "deprecated": true
         },
@@ -465,7 +465,7 @@
           "description": "Specify how much shipping to refund. It has the following properties:",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "examples": {
             "full_refund": {
@@ -483,7 +483,7 @@
           "description": "          A list of <a href=\"/api/admin-rest/current/resources/transaction\">transactions</a>\n          to process as refunds. Use the <code>calculate</code> endpoint to obtain these transactions.\n",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -833,7 +833,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/orders/{order_id}/refunds.json",
+      "url": "/admin/api/{api_version}/orders/{order_id}/refunds.json",
       "action": "post"
     },
     {
@@ -870,7 +870,7 @@
           "description": "Show only certain fields, specified by a comma-separated list of field names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -878,7 +878,7 @@
           "description": "Show amounts in the shop currency for the underlying transaction.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": "false"
           }
         }
@@ -1219,7 +1219,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/orders/{order_id}/refunds/{refund_id}.json",
+      "url": "/admin/api/{api_version}/orders/{order_id}/refunds/{refund_id}.json",
       "action": "get"
     },
     {
@@ -1248,7 +1248,7 @@
           "description": "          <p>The three-letter code (<a href=\"https://en.wikipedia.org/wiki/ISO_4217\" target=\"_blank\">ISO 4217</a> format) for the\n          currency used for the refund. <strong>Note:</strong> Required whenever the shipping <code>amount</code> property is provided.</p>\n\n",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -1256,7 +1256,7 @@
           "description": "A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "examples": {
             "line_item_id": {
@@ -1286,7 +1286,7 @@
           "description": "Specify how much shipping to refund. It has the following properties:",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "examples": {
             "full_refund": {
@@ -1582,7 +1582,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/orders/{order_id}/refunds/calculate.json",
+      "url": "/admin/api/{api_version}/orders/{order_id}/refunds/calculate.json",
       "action": "post"
     }
   ],
@@ -1594,14 +1594,14 @@
       "properties": [
         {
           "description": "The date and time (<a href='https://en.wikipedia.org/wiki/ISO_8601'target=\"_blank\">ISO 8601</a>  format) when the refund was created.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "2008-01-10T09:00:00-07:00",
           "name": "created_at"
         },
         {
           "description": "A list of duties that have been reimbursed as part of the refund.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": {
             "duties": [
@@ -1624,20 +1624,20 @@
         },
         {
           "description": "The unique identifier for the refund.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": 92738740,
           "name": "id"
         },
         {
           "description": "An optional note attached to a refund.",
-          "type": "x-string",
+          "type": "string",
           "example": "Item was damaged during shipping",
           "name": "note"
         },
         {
           "description": "          <p>A list of order adjustments attached to the refund. Order adjustments are generated to account for refunded shipping costs and differences between calculated and actual refund amounts. Each entry has the following properties:</p>\n          <ul>\n            <li><strong>id</strong>: The unique identifier for the order adjustment.</li>\n            <li><strong>order_id</strong>: The unique identifier for the order that the order adjustment is associated with.</li>\n            <li><strong>refund_id</strong>: The unique identifier for the refund that the order adjustment is associated with.</li>\n            <li><strong>amount</strong>: The value of the discrepancy between the calculated refund and the actual refund. If the <code>kind</code> property's value is <code>shipping_refund</code>, then <code>amount</code> returns the value of shipping charges refunded to the customer.</li>\n            <li><strong>tax_amount</strong>: The taxes that are added to <code>amount</code>, such as applicable shipping taxes added to a shipping refund.</li>\n            <li><strong>kind</strong>: The order adjustment type. Valid values: <code>shipping_refund</code> and <code>refund_discrepancy</code>.</li>\n            <li><strong>reason</strong>: The reason for the order adjustment. To set this value, include <code>discrepancy_reason</code> when you create a refund.</li>\n            <li><strong>amount_set</strong>: The amount of the order adjustment in shop and presentment currencies.</li>\n            <li><strong>tax_amount_set</strong>: The tax amount of the order adjustment in shop and presentment currencies.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": [
             {
@@ -1674,13 +1674,13 @@
         },
         {
           "description": "The date and time (<a href='https://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a> format) when the refund was imported. This value can be set to a date in the past when importing from other systems. If no value is provided, then it will be auto-generated as the current time in Shopify. Public apps need to be granted permission by Shopify to import orders with the <code>processed_at</code> timestamp set to a value earlier the <code>created_at</code> timestamp. Private apps can't be granted permission by Shopify.",
-          "type": "x-string",
+          "type": "string",
           "example": "2007-01-10T09:00:00-07:00",
           "name": "processed_at"
         },
         {
           "description": "          <p>A list of refunded duties. Each entry has the following properties:</p>\n          <ul>\n            <li><strong>duty_id</strong>: The unique identifier of the duty.</li>\n            <li><strong>refund_type</strong>: Specifies how you want the duty refunded. Valid values:</li>\n              <ul>\n                <li><code>FULL</code>: Refunds all the duties associated with a duty ID. You do not need to include refund line items if you are using the full refund type.</li>\n                <li><code>PROPORTIONAL</code>: Refunds duties in proportion to the line item quantity that you want to refund. If you choose the proportional refund type, then you must also pass the refund line items to calculate the portion of duties to refund.</li>\n              </ul>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": [
             {
               "duty_id": 1,
@@ -1691,7 +1691,7 @@
         },
         {
           "description": "        A list of refunded line items. Each entry has the following properties:\n          <ul>\n            <li><strong>id</strong>: The unique identifier of the line item in the refund.</li>\n            <li><strong>line_item</strong>: A line item being refunded.</li>\n            <li><strong>line_item_id</strong>: The ID of the related line item in the order.</li>\n            <li><strong>quantity</strong>: The refunded quantity of the associated line item.</li>\n            <li><strong>restock_type</strong>: How this refund line item affects inventory levels. Valid values:\n              <ul>\n                <li><strong>no_restock</strong>: Refunding these items won't affect inventory. The number of fulfillable units for this line item will remain unchanged. For example, a refund payment can be issued but no items will be refunded or made available for sale again.</li>\n                <li><strong>cancel</strong>: The items have not yet been fulfilled. The canceled quantity will be added back to the available count. The number of fulfillable units for this line item will decrease.</li>\n                <li><strong>return</strong>: The items were already delivered, and will be returned to the merchant. The refunded quantity will be added back to the available count. The number of fulfillable units for this line item will remain unchanged.</li>\n                <li><strong>legacy_restock</strong>: The deprecated <code>restock</code> property was used for this refund. These items were made available for sale again. This value is not accepted when creating new refunds.</li>\n              </ul>\n            </li>\n            <li><strong>location_id</strong>: The unique identifier of the <a href=\"/api/admin-rest/current/resources/location\">location</a> where the items will be restocked. Required when <code>restock_type</code> has the value <code>return</code> or <code>cancel</code>.</li>\n            <li><strong>subtotal</strong>: The subtotal of the refund line item.</li>\n            <li><strong>total_tax</strong>: The total tax on the refund line item.</li>\n            <li><strong>subtotal_set</strong>: The subtotal of the refund line item in shop and presentment currencies.</li>\n            <li><strong>total_tax_set</strong>: The total tax of the line item in shop and presentment currencies.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": [
             {
               "id": 209341123,
@@ -1728,7 +1728,7 @@
         },
         {
           "description": "Whether to add the line items back to the store's inventory.",
-          "type": "x-string",
+          "type": "string",
           "deprecated": true,
           "example": true,
           "x-deprecation-recommendation": "Provide a <code>restock_type</code> to influence how this refund affects inventory instead",
@@ -1736,7 +1736,7 @@
         },
         {
           "description": "A list of transactions involved in the refund. A single order can have multiple transactions associated with it. For more information, see the   <a href=\"/api/admin-rest/current/resources/transaction\"> Transaction</a> resource.",
-          "type": "x-string",
+          "type": "string",
           "example": [
             {
               "id": 179259969,
@@ -1763,7 +1763,7 @@
         },
         {
           "description": "The unique identifier of the user who performed the refund.",
-          "type": "x-string",
+          "type": "string",
           "example": 238478920,
           "name": "user_id"
         }

@@ -26,7 +26,7 @@
           "description": "The maximum number of results to retrieve.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": 50,
             "maximum": 250
           }
@@ -36,7 +36,7 @@
           "description": "Show tender transactions ordered by processed_at in ascending or descending order.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -44,7 +44,7 @@
           "description": "Show tender transactions processed at the specified date.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -52,7 +52,7 @@
           "description": "Show tender transactions processed_at or before the specified date.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -60,7 +60,7 @@
           "description": "Show tender transactions processed_at or after the specified date.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -68,7 +68,7 @@
           "description": "Retrieve only transactions after the specified ID.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -427,7 +427,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/tender_transactions.json",
+      "url": "/admin/api/{api_version}/tender_transactions.json",
       "action": "get"
     }
   ],
@@ -439,63 +439,63 @@
       "properties": [
         {
           "description": "The ID of the transaction.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": 999225661,
           "name": "id"
         },
         {
           "description": "The ID of the order that the tender transaction belongs to.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": 450789469,
           "name": "order_id"
         },
         {
           "description": "The amount of the tender transaction in the shop's currency.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "10.00",
           "name": "amount"
         },
         {
           "description": "The three-letter code (<a href=\"https://en.wikipedia.org/wiki/ISO_4217\">ISO 4217</a> format) for the currency used for the tender transaction.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "USD",
           "name": "currency"
         },
         {
           "description": "The ID of the user logged into the Shopify POS device that processed the tender transaction, if applicable.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": 106045196,
           "name": "user_id"
         },
         {
           "description": "Whether the tender transaction is a test transaction.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": true,
           "name": "test"
         },
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the tender transaction was processed.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "2012-03-13T14:09:54-06:00",
           "name": "processed_at"
         },
         {
           "description": "The remote (gateway) reference associated with the tender.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "ch_1AtJu6CktlpKSclI4zjeQb2t",
           "name": "remote_reference"
         },
         {
           "description": "          Information about the payment instrument used for this transaction. It has the following properties:\n          <ul>\n            <li><strong>credit_card_company</strong>: The name of the company that issued the customer's credit card.</li>\n            <li><strong>credit_card_number</strong>: The customer's credit card number, with most of the leading digits redacted.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": {
             "credit_card_number": "•••• •••• •••• 4242",
@@ -505,7 +505,7 @@
         },
         {
           "description": "          Information about the payment method used for this transaction. Valid values:\n          <ul>\n            <li><strong>credit_card</strong></li>\n            <li><strong>cash</strong></li>\n            <li><strong>android_pay</strong></li>\n            <li><strong>apple_pay</strong></li>\n            <li><strong>google_pay</strong></li>\n            <li><strong>samsung_pay</strong></li>\n            <li><strong>shopify_pay</strong></li>\n            <li><strong>amazon</strong></li>\n            <li><strong>klarna</strong></li>\n            <li><strong>paypal</strong></li>\n            <li><strong>unknown</strong></li>\n            <li><strong>other</strong></li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "credit_card",
           "name": "payment_method"

@@ -1,0 +1,604 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "CollectionListing",
+    "description": "\n    <p>A CollectionListing resource represents a <a href=\"https://help.shopify.com/manual/products/collections\">product collection</a> that a\n    merchant has made available to your sales channel. Merchants can make collections available to your sales channel\n    directly from their Shopify admin.</p>\n\n    <p>You can use this resource to retrieve collections that a merchant has published and display them in your\n    marketplace. You can also retrieve a list of published product IDs that belong to a published collection.</p>\n\n    <div class=\"note\">\n      <h4>Note:</h4>\n      <p>When a merchant makes a collection available to your app, the products belonging to that collection are not\n      automatically made available. The merchant must make both the collection and each product available to your sales\n      channel. </p>\n    </div>\n\n",
+    "x-owner": "https://vault.shopify.io/teams/2121",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Retrieve collection listings that are published to your app. <strong>Note:</strong> As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/tutorials/make-paginated-requests-to-rest-admin-api\"><em>Making requests to paginated REST Admin API endpoints</em></a>.",
+      "summary": "Retrieve collection listings that are published to your app",
+      "operationId": "Retrievecollectionlistingsthatarepublishedtoyourapp",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "limit",
+          "description": "Amount of results",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "default": 50,
+            "maximum": 1000
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieve collection listings that are published to your app",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve collection listings that are published to your app": {
+                  "value": {
+                    "collection_listings": [
+                      {
+                        "collection_id": 482865238,
+                        "updated_at": "2022-04-05T10:51:55-06:00",
+                        "body_html": "<p>The best selling ipod ever</p>",
+                        "default_product_image": null,
+                        "handle": "smart-ipods",
+                        "image": {
+                          "created_at": "2022-04-05T10:51:55-06:00",
+                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1649177515"
+                        },
+                        "title": "Smart iPods",
+                        "sort_order": "manual",
+                        "published_at": "2017-08-31T18:00:00-06:00"
+                      },
+                      {
+                        "collection_id": 841564295,
+                        "updated_at": "2022-04-05T10:51:55-06:00",
+                        "body_html": "<p>The best selling ipod ever</p>",
+                        "default_product_image": null,
+                        "handle": "ipods",
+                        "image": {
+                          "created_at": "2022-04-05T10:51:55-06:00",
+                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1649177515"
+                        },
+                        "title": "IPods",
+                        "sort_order": "manual",
+                        "published_at": "2017-08-31T18:00:00-06:00"
+                      },
+                      {
+                        "collection_id": 395646240,
+                        "updated_at": "2022-04-05T10:51:55-06:00",
+                        "body_html": "<p>The best selling ipod ever. Again</p>",
+                        "default_product_image": {
+                          "id": 850703190,
+                          "created_at": "2022-04-05T10:51:55-06:00",
+                          "position": 1,
+                          "updated_at": "2022-04-05T10:51:55-06:00",
+                          "product_id": 632910392,
+                          "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1649177515",
+                          "variant_ids": [],
+                          "width": 123,
+                          "height": 456
+                        },
+                        "handle": "ipods_two",
+                        "image": null,
+                        "title": "IPods Two",
+                        "sort_order": "manual",
+                        "published_at": "2017-08-31T18:00:00-06:00"
+                      },
+                      {
+                        "collection_id": 691652237,
+                        "updated_at": "2022-04-05T10:51:55-06:00",
+                        "body_html": "<p>No ipods here</p>",
+                        "default_product_image": null,
+                        "handle": "non-ipods",
+                        "image": null,
+                        "title": "Non Ipods",
+                        "sort_order": "manual",
+                        "published_at": "2017-08-31T18:00:00-06:00"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/collection_listings.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-07/collection_listings.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"collection_listings\":[{\"collection_id\":482865238,\"updated_at\":\"2022-04-05T12:51:55-04:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"default_product_image\":null,\"handle\":\"smart-ipods\",\"image\":{\"created_at\":\"2022-04-05T12:51:55-04:00\",\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1649177515\"},\"title\":\"Smart iPods\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"},{\"collection_id\":841564295,\"updated_at\":\"2022-04-05T12:51:55-04:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"default_product_image\":null,\"handle\":\"ipods\",\"image\":{\"created_at\":\"2022-04-05T12:51:55-04:00\",\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1649177515\"},\"title\":\"IPods\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"},{\"collection_id\":395646240,\"updated_at\":\"2022-04-05T12:51:55-04:00\",\"body_html\":\"<p>The best selling ipod ever. Again</p>\",\"default_product_image\":{\"id\":850703190,\"created_at\":\"2022-04-05T12:51:55-04:00\",\"position\":1,\"updated_at\":\"2022-04-05T12:51:55-04:00\",\"product_id\":632910392,\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/products/ipod-nano.png?v=1649177515\",\"variant_ids\":[],\"width\":123,\"height\":456},\"handle\":\"ipods_two\",\"image\":null,\"title\":\"IPods Two\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"},{\"collection_id\":691652237,\"updated_at\":\"2022-04-05T12:51:55-04:00\",\"body_html\":\"<p>No ipods here</p>\",\"default_product_image\":null,\"handle\":\"non-ipods\",\"image\":null,\"title\":\"Non Ipods\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"}]}"
+          },
+          "name": "Retrieve collection listings that are published to your app",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/collection_listings.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::CollectionListing.all(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {CollectionListing} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CollectionListing.all({\n  session: test_session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\CollectionListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollectionListing::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/collection_listings.json",
+      "action": "get"
+    },
+    {
+      "description": "Retrieve <code>product_ids</code> that are published to a <code>collection_id</code>.       <strong>Note:</strong> As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/tutorials/make-paginated-requests-to-rest-admin-api\"><em>Making requests to paginated REST Admin API endpoints</em></a>.",
+      "summary": "Retrieve <code>product_ids</code> that are published to a <code>collection_id</code>",
+      "operationId": "Retrieve<code>product_ids</code>thatarepublishedtoa<code>collection_id</code>",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "collection_listing_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "limit",
+          "description": "Amount of results",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "default": 50,
+            "maximum": 1000
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieve <code>product_ids</code> that are published to a <code>collection_id</code>",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve <code>product_ids</code> that are published to a <code>collection_id</code>": {
+                  "value": {
+                    "product_ids": [
+                      632910392
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/collection_listings/841564295/product_ids.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-07/collection_listings/841564295/product_ids.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"product_ids\":[632910392]}"
+          },
+          "name": "Retrieve <code>product_ids</code> that are published to a <code>collection_id</code>",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/collection_listings/841564295/product_ids.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::CollectionListing.product_ids(\n  session: test_session,\n  collection_id: 841564295,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {CollectionListing} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CollectionListing.product_ids({\n  session: test_session,\n  collection_id: 841564295,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\CollectionListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollectionListing::product_ids(\n    $this->test_session, // Session\n    841564295, // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/collection_listings/{collection_listing_id}/product_ids.json",
+      "action": "get"
+    },
+    {
+      "description": "Retrieve a specific collection listing that is published to your app",
+      "summary": "Retrieve a specific collection listing that is published to your app",
+      "operationId": "Retrieveaspecificcollectionlistingthatispublishedtoyourapp",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "collection_listing_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieve a specific collection listing that is published to your app",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a specific collection listing that is published to your app": {
+                  "value": {
+                    "collection_listing": {
+                      "collection_id": 482865238,
+                      "updated_at": "2022-04-05T10:51:55-06:00",
+                      "body_html": "<p>The best selling ipod ever</p>",
+                      "default_product_image": null,
+                      "handle": "smart-ipods",
+                      "image": {
+                        "created_at": "2022-04-05T10:51:55-06:00",
+                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1649177515"
+                      },
+                      "title": "Smart iPods",
+                      "sort_order": "manual",
+                      "published_at": "2017-08-31T18:00:00-06:00"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/collection_listings/482865238.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/collection_listings/482865238.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"collection_listing\":{\"collection_id\":482865238,\"updated_at\":\"2022-04-05T12:51:55-04:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"default_product_image\":null,\"handle\":\"smart-ipods\",\"image\":{\"created_at\":\"2022-04-05T12:51:55-04:00\",\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1649177515\"},\"title\":\"Smart iPods\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"}}"
+          },
+          "name": "Retrieve a specific collection listing that is published to your app",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/collection_listings/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::CollectionListing.find(\n  session: test_session,\n  collection_id: 482865238,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {CollectionListing} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CollectionListing.find({\n  session: test_session,\n  collection_id: 482865238,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\CollectionListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollectionListing::find(\n    $this->test_session, // Session\n    482865238, // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/collection_listings/{collection_listing_id}.json",
+      "action": "get"
+    },
+    {
+      "description": "Create a collection listing to publish a collection to your app",
+      "summary": "Create a collection listing to publish a collection to your app",
+      "operationId": "Createacollectionlistingtopublishacollectiontoyourapp",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "collection_listing_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Create a collection listing to publish a collection to your app",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a collection listing to publish a collection to your app": {
+                  "value": {
+                    "collection_listing": {
+                      "collection_id": 482865238,
+                      "updated_at": "2022-04-05T10:51:55-06:00",
+                      "body_html": "<p>The best selling ipod ever</p>",
+                      "default_product_image": null,
+                      "handle": "smart-ipods",
+                      "image": {
+                        "created_at": "2022-04-05T10:51:55-06:00",
+                        "src": "https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1649177515"
+                      },
+                      "title": "Smart iPods",
+                      "sort_order": "manual",
+                      "published_at": "2017-08-31T18:00:00-06:00"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/collection_listings/482865238.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/collection_listings/482865238.json",
+            "headers": {},
+            "body": "{\"collection_listing\":{\"collection_id\":482865238}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"collection_listing\":{\"collection_id\":482865238,\"updated_at\":\"2022-04-05T12:51:55-04:00\",\"body_html\":\"<p>The best selling ipod ever</p>\",\"default_product_image\":null,\"handle\":\"smart-ipods\",\"image\":{\"created_at\":\"2022-04-05T12:51:55-04:00\",\"src\":\"https://cdn.shopify.com/s/files/1/0005/4838/0009/collections/ipod_nano_8gb.jpg?v=1649177515\"},\"title\":\"Smart iPods\",\"sort_order\":\"manual\",\"published_at\":\"2017-08-31T20:00:00-04:00\"}}"
+          },
+          "name": "Create a collection listing to publish a collection to your app",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"collection_listing\":{\"collection_id\":482865238}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/collection_listings/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncollection_listing = ShopifyAPI::CollectionListing.new(session: test_session)\ncollection_listing.collection_id = 482865238\ncollection_listing.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {CollectionListing} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst collection_listing = new CollectionListing({session: test_session});\ncollection_listing.collection_id = 482865238;\nawait collection_listing.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\CollectionListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$collection_listing = new CollectionListing($this->test_session);\n$collection_listing->collection_id = 482865238;\n$collection_listing->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/collection_listings/{collection_listing_id}.json",
+      "action": "put"
+    },
+    {
+      "description": "Delete a collection listing to unpublish a collection from your app",
+      "summary": "Delete a collection listing to unpublish a collection from your app",
+      "operationId": "Deleteacollectionlistingtounpublishacollectionfromyourapp",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "collection_listing_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Delete a collection listing to unpublish a collection from your app",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Delete a collection listing to unpublish a collection from your app": {
+                  "value": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/collection_listings/482865238.json",
+          "request_method": "DELETE",
+          "request": {
+            "action": "DELETE /admin/api/unstable/collection_listings/482865238.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": ""
+          },
+          "name": "Delete a collection listing to unpublish a collection from your app",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/collection_listings/482865238.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::CollectionListing.delete(\n  session: test_session,\n  collection_id: 482865238,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {CollectionListing} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait CollectionListing.delete({\n  session: test_session,\n  collection_id: 482865238,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\CollectionListing;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollectionListing::delete(\n    $this->test_session, // Session\n    482865238, // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/collection_listings/{collection_listing_id}.json",
+      "action": "delete"
+    }
+  ],
+  "components": [
+    {
+      "name": "CollectionListing",
+      "title": "CollectionListing",
+      "type": "object",
+      "properties": [
+        {
+          "description": "Identifies which collection this listing is for.",
+          "type": "string",
+          "readOnly": true,
+          "example": {
+            "collection_id": 1053727709
+          },
+          "name": "collection_id"
+        },
+        {
+          "description": "The description of the collection, complete with HTML formatting.",
+          "type": "string",
+          "readOnly": true,
+          "example": "It's a collection of curated products for the home page.",
+          "name": "body_html"
+        },
+        {
+          "description": "The default product image for a collection.",
+          "type": "string",
+          "readOnly": true,
+          "example": [
+            {
+              "src": "http://example.com/burton.jpg"
+            }
+          ],
+          "name": "default_product_image"
+        },
+        {
+          "description": "The image for a collection.",
+          "type": "string",
+          "readOnly": true,
+          "example": [
+            {
+              "src": "http://example.com/burton.jpg"
+            }
+          ],
+          "name": "image"
+        },
+        {
+          "description": "A human-friendly unique string for the Collection automatically generated from its title.",
+          "type": "string",
+          "readOnly": true,
+          "example": "ipod-nano",
+          "name": "handle"
+        },
+        {
+          "description": "The date and time when the collection was published. The API returns this in ISO_8601.",
+          "type": "string",
+          "readOnly": true,
+          "example": "2007-12-31T17:00:00-07:00",
+          "name": "published_at"
+        },
+        {
+          "description": "The name of the collection.",
+          "type": "string",
+          "readOnly": true,
+          "example": "Home page",
+          "name": "title"
+        },
+        {
+          "description": "      <p>The order in which products in the collection appear. Valid values are:</p>\n      <ul>\n        <li><strong>alpha-asc</strong>: Alphabetically, in ascending order (A - Z).</li>\n        <li><strong>alpha-desc</strong>: Alphabetically, in descending order (Z - A).</li>\n        <li><strong>best-selling</strong>: By best-selling products.</li>\n        <li><strong>created</strong>: By date created, in ascending order (oldest - newest).</li>\n        <li><strong>created-desc</strong>: By date created, in descending order (newest - oldest).</li>\n        <li><strong>manual</strong>: Order created by the shop owner.</li>\n        <li><Strong>price-asc</strong>: By price, in ascending order (lowest - highest).</li>\n        <li><strong>price-desc</strong>: By price, in descending order (highest - lowest).</li>\n      </ul>\n",
+          "type": "string",
+          "readOnly": true,
+          "example": "alpha-asc",
+          "name": "sort_order"
+        },
+        {
+          "description": "The date and time when the collection was last modified. The API returns this in ISO_8601.",
+          "type": "string",
+          "readOnly": true,
+          "example": "2012-08-24T12:01:47-06:00",
+          "name": "updated_at"
+        }
+      ],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": true,
+    "file_name": "sales-channels/collectionlisting",
+    "gid": "715ccd32-3e4e-49fc-ad57-104893fc9926",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/collectionlisting",
+      "/api/reference/sales_channels/collectionlisting"
+    ],
+    "meta_description": "Manage the collections that are published to your sales channel and retrieve their information.",
+    "postman_group": "Sales channels",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

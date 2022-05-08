@@ -26,7 +26,7 @@
           "description": "Show metafields created before date (format: 2022-02-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -34,7 +34,7 @@
           "description": "Show metafields created after date (format: 2022-02-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -42,7 +42,7 @@
           "description": "Retrieve only certain fields, specified by a comma-separated list of fields names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -50,7 +50,7 @@
           "description": "Show metafields with given key",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -58,7 +58,7 @@
           "description": "The maximum number of results to show on a page.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": 50,
             "maximum": 250
           }
@@ -68,7 +68,7 @@
           "description": "Show metafields with given namespace",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -76,7 +76,7 @@
           "description": "Show metafields created after the specified ID.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -84,7 +84,7 @@
           "description": "The type of data that the metafield stores in the `value` field.\nRefer to the list of <a href=\"/apps/metafields/types\">supported types</a>.\n",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -92,7 +92,7 @@
           "description": "Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -100,7 +100,7 @@
           "description": "Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -108,7 +108,7 @@
           "description": "The legacy type information for the stored value. Replaced by `type`",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           },
           "deprecated": true,
           "examples": {
@@ -1010,7 +1010,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/metafields.json",
+      "url": "/admin/api/{api_version}/metafields.json",
       "action": "get"
     },
     {
@@ -1684,7 +1684,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/metafields.json",
+      "url": "/admin/api/{api_version}/metafields.json",
       "action": "post"
     },
     {
@@ -1705,7 +1705,7 @@
           "description": "Filter by the resource ID on which the metafield is attached to.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "maximum": "100"
           }
         },
@@ -1714,7 +1714,7 @@
           "description": "Filter by the resource name on which the metafield is attached to.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "maximum": "100"
           }
         }
@@ -2334,7 +2334,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/metafields.json?metafield[owner_id]=674387490&metafield[owner_resource]=article",
+      "url": "/admin/api/{api_version}/metafields.json?metafield[owner_id]=674387490&metafield[owner_resource]=article",
       "action": "get"
     },
     {
@@ -2804,7 +2804,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/metafields/count.json",
+      "url": "/admin/api/{api_version}/metafields/count.json",
       "action": "get"
     },
     {
@@ -2833,7 +2833,7 @@
           "description": "Retrieve only certain fields, specified by a comma-separated list of fields names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -3433,7 +3433,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/metafields/{metafield_id}.json",
+      "url": "/admin/api/{api_version}/metafields/{metafield_id}.json",
       "action": "get"
     },
     {
@@ -4054,7 +4054,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/metafields/{metafield_id}.json",
+      "url": "/admin/api/{api_version}/metafields/{metafield_id}.json",
       "action": "put"
     },
     {
@@ -4510,7 +4510,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/metafields/{metafield_id}.json",
+      "url": "/admin/api/{api_version}/metafields/{metafield_id}.json",
       "action": "delete"
     }
   ],
@@ -4522,70 +4522,70 @@
       "properties": [
         {
           "description": "          The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\">ISO 8601 format</a>) when the metafield was created.\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "2012-03-13T14:09:54-06:00",
           "name": "created_at"
         },
         {
           "description": "A description of the information that the metafield contains.",
-          "type": "x-string",
+          "type": "string",
           "example": "The number of units at the warehouse.",
           "name": "description"
         },
         {
           "description": "The unique ID of the metafield.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": 915396206,
           "name": "id"
         },
         {
           "description": "          The key of the metafield. Keys can be up to 30 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "warehouse",
           "name": "key"
         },
         {
           "description": "          A container for a group of metafields.\n          Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name.\n          Must have between 3-20 characters.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "inventory",
           "name": "namespace"
         },
         {
           "description": "The unique ID of the resource that the metafield is attached to.",
-          "type": "x-string",
+          "type": "string",
           "example": 548380009,
           "name": "owner_id"
         },
         {
           "description": "The type of resource that the metafield is attached to.",
-          "type": "x-string",
+          "type": "string",
           "example": "product",
           "name": "owner_resource"
         },
         {
           "description": "          The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\">ISO 8601 format</a>) when the metafield was last updated.\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "2012-08-24T12:02:15-06:00",
           "name": "updated_at"
         },
         {
           "description": "          The data to store in the metafield. The value is always stored as a string, regardless of the metafield's type.\n",
-          "type": "x-string",
+          "type": "string",
           "example": 25,
           "name": "value"
         },
         {
           "description": "          The type of data that the metafield stores in the `value` field. Refer to the list of <a href=\"/apps/metafields/types\">supported types</a>.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "single_line_text_field",
           "name": "type"
         },
         {
           "description": "          <aside class=\"note caution\">\n            <h4>Caution</h4>\n            <p><code>value_type</code> is deprecated and replaced by <code>type</code> in API version 2021-07.</p>\n          </aside>\n\n          The legacy type information for the stored value.\n          Valid values: <code>string</code>, <code>integer</code>, <code>json_string</code>.\n",
-          "type": "x-string",
+          "type": "string",
           "deprecated": true,
           "example": "integer",
           "name": "value_type"

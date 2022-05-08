@@ -323,7 +323,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/recurring_application_charges.json",
+      "url": "/admin/api/{api_version}/recurring_application_charges.json",
       "action": "post"
     },
     {
@@ -344,7 +344,7 @@
           "description": "A comma-separated list of fields to include in the response.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -352,7 +352,7 @@
           "description": "Restrict results to after the specified ID.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -486,7 +486,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/recurring_application_charges.json",
+      "url": "/admin/api/{api_version}/recurring_application_charges.json",
       "action": "get"
     },
     {
@@ -515,7 +515,7 @@
           "description": "A comma-separated list of fields to include in the response.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -589,7 +589,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/recurring_application_charges/{recurring_application_charge_id}.json",
+      "url": "/admin/api/{api_version}/recurring_application_charges/{recurring_application_charge_id}.json",
       "action": "get"
     },
     {
@@ -665,7 +665,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/recurring_application_charges/{recurring_application_charge_id}.json",
+      "url": "/admin/api/{api_version}/recurring_application_charges/{recurring_application_charge_id}.json",
       "action": "delete"
     },
     {
@@ -764,7 +764,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/recurring_application_charges/{recurring_application_charge_id}/customize.json?recurring_application_charge[capped_amount]=200",
+      "url": "/admin/api/{api_version}/recurring_application_charges/{recurring_application_charge_id}/customize.json?recurring_application_charge[capped_amount]=200",
       "action": "put"
     }
   ],
@@ -776,97 +776,97 @@
       "properties": [
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the customer activated the recurring application charge.<br/><strong>Note:</strong> The recurring application charge must be activated or the returned value is <code>null</code>.",
-          "type": "x-string",
+          "type": "string",
           "example": null,
           "name": "activated_on"
         },
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the customer is billed.<br/><strong>Note:</strong> The recurring application charge must be accepted or the returned value is <code>null</code>.",
-          "type": "x-string",
+          "type": "string",
           "example": null,
           "name": "billing_on"
         },
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the merchant canceled their recurring application charge.<br/><strong>Note:</strong> Returns <code>null</code> when the recurring application charge is not canceled.",
-          "type": "x-string",
+          "type": "string",
           "example": null,
           "name": "cancelled_on"
         },
         {
           "description": "          The limit a customer can be charged for usage based billing. If this property is provided, then you must also provide the <code>terms</code> property. See <a href=\"/docs/admin-api/rest/reference/billing/usagecharge\">usage charges</a> for more information.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "100",
           "name": "capped_amount"
         },
         {
           "description": "The URL where the merchant accepts or declines the recurring application charge.",
-          "type": "x-string",
+          "type": "string",
           "example": "https://jsmith.myshopify.com/admin/charges/confirm_recurring_application_charge?id=654381177&amp;signature=BAhpBHkQASc%3D--374c02da2ea0371b23f40781b8a6d5f4a520e77b",
           "name": "confirmation_url"
         },
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the recurring application charge was created.",
-          "type": "x-string",
+          "type": "string",
           "example": "2013-06-27T06:48:27-06:00",
           "name": "created_at"
         },
         {
           "description": "The ID of the recurring application charge.",
-          "type": "x-string",
+          "type": "string",
           "example": 675931192,
           "name": "id"
         },
         {
           "description": "The name of the recurring application charge.",
-          "type": "x-string",
+          "type": "string",
           "example": "Super Duper Expensive action",
           "name": "name"
         },
         {
           "description": "The price of the recurring application charge. The maximum price is 10,000.",
-          "type": "x-string",
+          "type": "string",
           "example": "100.00",
           "name": "price"
         },
         {
           "description": "The URL where the merchant is redirected after accepting the charge.",
-          "type": "x-string",
+          "type": "string",
           "example": "http://super-duper.shopifyapps.com",
           "name": "return_url"
         },
         {
           "description": "        <p>The status of the recurring charge. Valid values:</p>\n        <ul>\n          <li><strong>pending</strong>: The recurring charge is pending.</li>\n          <li><strong>accepted</strong>: <strong>Removed in version 2021-01</strong>. The recurring charge has been accepted. As of API version 2021-01, when a merchant accepts a charge, the charge immediately transitions from <code>pending</code> to <code>active</code>.</li>\n          <li><strong>active</strong>: The recurring charge is activated. This is the only status that actually causes a merchant to be charged. As of API version 2021-01, when a merchant accepts a charge, the charge immediately transitions from <code>pending</code> to <code>active</code>.</li>\n          <li><strong>declined</strong>: The recurring charge has been declined.</li>\n          <li><strong>expired</strong>: The recurring charge was not accepted within 2 days of being created.</li>\n          <li><strong>frozen</strong>: The recurring charge is on hold due to a shop subscription non-payment. The charge will re-activate once subscription payments resume.</li>\n          <li><strong>cancelled</strong>: The developer cancelled the charge.</li>\n        </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": "accepted",
           "name": "status"
         },
         {
           "description": "          The terms and conditions of usage based billing charges. Must be present in order to create usage charges, for example when the <code>capped_amount</code> property is provided.\n          Presented to the merchant when they approve an app's usage charges.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "$1 for 1000 emails",
           "name": "terms"
         },
         {
           "description": "Whether the application charge is a test transaction. Valid values: <code>true</code>,<code>null</code>.",
-          "type": "x-string",
+          "type": "string",
           "example": null,
           "name": "test"
         },
         {
           "description": "The number of days that the customer is eligible for a free trial.",
-          "type": "x-string",
+          "type": "string",
           "example": 0,
           "name": "trial_days"
         },
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the free trial ends.",
-          "type": "x-string",
+          "type": "string",
           "example": null,
           "name": "trial_ends_on"
         },
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the recurring application charge was last updated.",
-          "type": "x-string",
+          "type": "string",
           "example": "2013-06-27T06:48:27-06:00",
           "name": "updated_at"
         }

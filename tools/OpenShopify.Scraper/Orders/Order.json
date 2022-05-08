@@ -4301,7 +4301,7 @@
       ],
       "x-response-description": "Returns an array of Order objects",
       "x-notes": "Sample notes for retrieving a list of orders.",
-      "url": "/admin/api/#{api_version}/orders.json?status=any",
+      "url": "/admin/api/{api_version}/orders.json?status=any",
       "action": "get"
     },
     {
@@ -5677,7 +5677,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/orders/{order_id}.json",
+      "url": "/admin/api/{api_version}/orders/{order_id}.json",
       "action": "get"
     },
     {
@@ -14838,7 +14838,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/orders/{order_id}.json",
+      "url": "/admin/api/{api_version}/orders/{order_id}.json",
       "action": "put"
     },
     {
@@ -14914,7 +14914,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/orders/{order_id}.json",
+      "url": "/admin/api/{api_version}/orders/{order_id}.json",
       "action": "delete"
     },
     {
@@ -15149,7 +15149,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/orders/count.json?status=any",
+      "url": "/admin/api/{api_version}/orders/count.json?status=any",
       "action": "get"
     },
     {
@@ -16225,7 +16225,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/orders/{order_id}/close.json",
+      "url": "/admin/api/{api_version}/orders/{order_id}/close.json",
       "action": "post"
     },
     {
@@ -17301,7 +17301,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/orders/{order_id}/open.json",
+      "url": "/admin/api/{api_version}/orders/{order_id}/open.json",
       "action": "post"
     },
     {
@@ -17338,7 +17338,7 @@
           "description": "The currency of the refund that's issued when the order is canceled. Required for multi-currency orders whenever the <code>amount</code> property is provided.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -22368,7 +22368,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/orders/{order_id}/cancel.json",
+      "url": "/admin/api/{api_version}/orders/{order_id}/cancel.json",
       "action": "post"
     },
     {
@@ -25509,7 +25509,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/orders.json",
+      "url": "/admin/api/{api_version}/orders.json",
       "action": "post"
     }
   ],

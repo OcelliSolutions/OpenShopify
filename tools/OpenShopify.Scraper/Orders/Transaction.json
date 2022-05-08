@@ -34,7 +34,7 @@
           "description": "Show only certain fields, specifed by a comma-separated list of fields names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -42,7 +42,7 @@
           "description": "Show amounts in the shop currency.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": "false"
           }
         },
@@ -51,7 +51,7 @@
           "description": "Retrieve only transactions after the specified ID.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -267,7 +267,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/orders/{order_id}/transactions.json",
+      "url": "/admin/api/{api_version}/orders/{order_id}/transactions.json",
       "action": "get"
     },
     {
@@ -296,7 +296,7 @@
           "description": "An optional origin of the transaction. Set to <code>external</code> to import a cash transaction for the associated order.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -605,7 +605,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/orders/{order_id}/transactions.json",
+      "url": "/admin/api/{api_version}/orders/{order_id}/transactions.json",
       "action": "post"
     },
     {
@@ -683,7 +683,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/orders/{order_id}/transactions/count.json",
+      "url": "/admin/api/{api_version}/orders/{order_id}/transactions/count.json",
       "action": "get"
     },
     {
@@ -720,7 +720,7 @@
           "description": "Show only certain fields, specified by a comma-separated list of field names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -728,7 +728,7 @@
           "description": "Show amounts in the shop currency.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": "false"
           }
         }
@@ -820,7 +820,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/orders/{order_id}/transactions/{transaction_id}.json",
+      "url": "/admin/api/{api_version}/orders/{order_id}/transactions/{transaction_id}.json",
       "action": "get"
     }
   ],
@@ -832,52 +832,52 @@
       "properties": [
         {
           "description": "The amount of money included in the transaction. If you don't provide a value for `amount`, then it defaults to the total cost of the order (even if a previous transaction has been made towards it).\n",
-          "type": "x-string",
+          "type": "string",
           "example": "10.00",
           "name": "amount"
         },
         {
           "description": "The authorization code associated with the transaction.",
-          "type": "x-string",
+          "type": "string",
           "example": "ch_1AtJu6CktlpKSclI4zjeQb2t",
           "name": "authorization"
         },
         {
           "description": "The date and time (<a href='https://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a> format) when the Shopify Payments authorization expires.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "2021-03-13T13:09:54-07:00",
           "name": "authorization_expires_at"
         },
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a> format) when the transaction was created.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "2012-03-13T14:09:54-06:00",
           "name": "created_at"
         },
         {
           "description": "<p>The three-letter code (<a href=\"https://en.wikipedia.org/wiki/ISO_4217\">ISO 4217</a> format) for the currency used for the payment.</p>\n",
-          "type": "x-string",
+          "type": "string",
           "example": "USD",
           "name": "currency"
         },
         {
           "description": "The ID for the device.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": 1,
           "name": "device_id"
         },
         {
           "description": "          A standardized error code, independent of the payment provider. Valid values:\n          <ul>\n            <li><strong>incorrect_number</strong></li>\n            <li><strong>invalid_number</strong></li>\n            <li><strong>invalid_expiry_date</strong></li>\n            <li><strong>invalid_cvc</strong></li>\n            <li><strong>expired_card</strong></li>\n            <li><strong>incorrect_cvc</strong></li>\n            <li><strong>incorrect_zip</strong></li>\n            <li><strong>incorrect_address</strong></li>\n            <li><strong>card_declined</strong></li>\n            <li><strong>processing_error</strong></li>\n            <li><strong>call_issuer</strong></li>\n            <li><strong>pick_up_card</strong></li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "invalid_cvc",
           "name": "error_code"
         },
         {
           "description": "          The attributes associated with a Shopify Payments extended authorization period. It has the following attributes:\n            <ul>\n              <li><strong>standard_authorization_expires_at</strong>: The date and time (<a href='https://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a> format) when the standard authorization period expires. After expiry, an extended authorization fee is applied upon capturing the payment.</li>\n              <li><strong>extended_authorization_expires_at</strong>: The date and time (<a href='https://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a> format) when the extended authorization period expires. After expiry, the merchant can't capture the payment.</li>\n            </ul>\n\n          <code>extended_authorization_attributes</code> are available on the <strong>Retrieve a specific transaction for an order</strong> endpoint only if the following criteria applies:\n            <ul>\n              <li>The store is on a <a href=\"https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9\">Shopify Plus</a> plan.</li>\n              <li>The store uses Shopify Payments.</li>\n              <li>The transaction being retrieved is an extended authorization, which is determined by the <code>capture_before</code> date in the charge.</li>\n            </ul>\n\n           If the criteria isn't met, then an empty JSON is returned for <code>extended_authorization_attributes</code>.\n\n           To learn more about extended authorization periods, refer to <a href=\"https://help.shopify.com/en/manual/payments/payment-authorization\">Payment authorization</a>.\n",
-          "type": "x-string",
+          "type": "string",
           "example": {
             "standard_authorization_expires_at": "2020-10-07T22:00:00-06:00",
             "extended_authorization_expires_at": "2020-10-29T22:00:00-06:00"
@@ -886,26 +886,26 @@
         },
         {
           "description": "          The name of the gateway the transaction was issued through. A list of gateways can be found on Shopify's <a href=\"//www.shopify.com/payment-gateways\" target=\"_blank\">payment gateways page</a>.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "shopify_payments",
           "name": "gateway"
         },
         {
           "description": "The ID for the transaction.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": 999225661,
           "name": "id"
         },
         {
           "description": "          The transaction's type. Valid values:\n          <ul>\n            <li><strong>authorization</strong>: Money that the customer has agreed to pay. The authorization period can be between 7 and 30 days (depending on your payment service) while a store waits for a payment to be captured.</li>\n            <li><strong>capture</strong>: A transfer of money that was reserved during the authorization of a shop.</li>\n            <li><strong>sale</strong>: The authorization and capture of a payment performed in one single step.</li>\n            <li><strong>void</strong>: The cancellation of a pending authorization or capture.</li>\n            <li><strong>refund</strong>: The partial or full return of captured money to the customer.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": "capture",
           "name": "kind"
         },
         {
           "description": "The ID of the physical location where the transaction was processed.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": {
             "id": 49202758
@@ -914,20 +914,20 @@
         },
         {
           "description": "          A string generated by the payment provider with additional information about why the transaction succeeded or failed.\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "Marked the Cash on Delivery (COD) payment as received",
           "name": "message"
         },
         {
           "description": "The ID for the order that the transaction is associated with.",
-          "type": "x-string",
+          "type": "string",
           "example": 450789469,
           "name": "order_id"
         },
         {
           "description": "          Information about the credit card used for this transaction. It has the following attributes:\n          <ul>\n            <li><strong>credit_card_bin</strong>: The <a href=\"https://en.wikipedia.org/wiki/ISO/IEC_7812\" target=\"_blank\">issuer identification number</a> (IIN), formerly known as bank identification number (BIN) of the customer's credit card. This is made up of the first few digits of the credit card number.</li>\n            <li><strong>avs_result_code</strong>: The response code from the <a href=\"https://en.wikipedia.org/wiki/Address_Verification_System\" target=\"_blank\">address verification system</a>. The code is always a single letter. Refer to <a href='http://www.emsecommerce.net/avs_cvv2_response_codes.htm' target=\"_blank\">this chart</a> for the codes and their definitions.</li>\n            <li><strong>cvv_result_code</strong>: The response code from the credit card company indicating whether the customer entered the <a href=\"https://en.wikipedia.org/wiki/Card_Security_Code\" target=\"_blank\">card security code</a>, or card verification value, correctly. The code is a single letter or empty string; see <a href=\"http://www.emsecommerce.net/avs_cvv2_response_codes.htm\" target=\"_blank\">this chart</a> for the codes and their definitions.</li>\n            <li><strong>credit_card_number</strong>: The customer's credit card number, with most of the leading digits redacted.</li>\n            <li><strong>credit_card_company</strong>: The name of the company that issued the customer's credit card.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": {
             "credit_card_bin": "123456",
@@ -940,13 +940,13 @@
         },
         {
           "description": "          The ID of an associated transaction.\n          <ul>\n            <li>For <code>capture</code> transactions, the parent needs to be an <code>authorization</code> transaction.</li>\n            <li>For <code>void</code> transactions, the parent needs to be an <code>authorization</code> transaction.</li>\n            <li>For <code>refund</code> transactions, the parent needs to be a <code>capture</code> or <code>sale</code> transaction.</li>\n          </ul>\n",
-          "type": "x-string",
+          "type": "string",
           "example": 584698724408,
           "name": "parent_id"
         },
         {
           "description": "          The attributes associated with a Shopify Payments refund. It has the following attributes:\n            <ul>\n              <li><strong>status</strong>: The current status of the refund. Valid values: <code>pending</code>, <code>failure</code>, <code>success</code>, and <code>error</code>.</li>\n              <li><strong>acquirer_reference_number</strong>: A unique number associated with the transaction that can be used to track the refund. This property has a value only for transactions completed with Visa or Mastercard.</li>\n            </ul>\n\n          <code>payments_refund_attributes</code> are available on any JSON serialization of the order transaction only if the following criteria apply:\n            <ul>\n              <li>The store is on a <a href=\"https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9\">Shopify Plus</a> plan.</li>\n              <li>The store uses Shopify Payments.</li>\n              <li>The order transaction <strong>kind</strong> is either <code>refund</code> or <code>void</code>.</li>\n            </ul>\n\n           If the criteria isn't met, then the <code>payments_refund_attributes</code> property is omitted.\n\n",
-          "type": "x-string",
+          "type": "string",
           "example": {
             "status": "success",
             "acquirer_reference_number": "123456789012345678901234"
@@ -955,45 +955,45 @@
         },
         {
           "description": "          The date and time (<a href='https://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a> format)\n          when a transaction was processed. This value is the date that's used in the analytic reports. By default,\n          it matches the <code>created_at</code> value. If you're importing transactions from an app or another\n          platform, then you can set <code>processed_at</code> to a date and time in the past to match when the\n          original transaction was processed.\n",
-          "type": "x-string",
+          "type": "string",
           "example": "2018-01-10T09:00:00-07:00",
           "name": "processed_at"
         },
         {
           "description": "          A transaction receipt attached to the transaction by the gateway. The value of this field depends on which gateway the shop is using.\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": {},
           "name": "receipt"
         },
         {
           "description": "          The origin of the transaction. This is set by Shopify and can't be overridden. Example values: <code>web</code>, <code>pos</code>, <code>iphone</code>, and <code>android</code>.\n",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "web",
           "name": "source_name"
         },
         {
           "description": "The status of the transaction. Valid values: <code>pending</code>, <code>failure</code>, <code>success</code>, and <code>error</code>.",
-          "type": "x-string",
+          "type": "string",
           "example": "success",
           "name": "status"
         },
         {
           "description": "Whether the transaction is a test transaction.",
-          "type": "x-string",
+          "type": "string",
           "example": true,
           "name": "test"
         },
         {
           "description": "The ID for the user who was logged into the Shopify POS device when the order was processed, if applicable.",
-          "type": "x-string",
+          "type": "string",
           "example": 106045196,
           "name": "user_id"
         },
         {
           "description": "          An adjustment on the transaction showing the amount lost or gained due to fluctuations in the currency exchange rate. It has the following attributes:\n          <ul>\n            <li><strong>ID</strong>: The ID of the adjustment.</li>\n            <li><strong>adjustment</strong>: The difference between the amounts on the associated transaction and the parent transaction.</li>\n            <li><strong>original_amount</strong>: The amount of the parent transaction in the shop currency.</li>\n            <li><strong>final_amount</strong>: The amount of the associated transaction in the shop currency.</li>\n            <li><strong>currency</strong>: The shop currency.</li>\n          </ul>\n          Requires the header <code>X-Shopify-Api-Features = include-currency-exchange-adjustments</code>.\n",
-          "type": "x-string",
+          "type": "string",
           "example": {
             "id": 1,
             "adjustment": "-0.01",

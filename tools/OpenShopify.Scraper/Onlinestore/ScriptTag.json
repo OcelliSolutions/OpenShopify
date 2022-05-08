@@ -1,0 +1,811 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "ScriptTag",
+    "description": "        <p>The ScriptTag resource represents remote JavaScript code that is loaded into the pages of a shop's storefront or the order status page of checkout. This lets you add functionality to those pages without using theme templates.</p>\n        <p>Script tags are scoped to the app that created them. When an app is uninstalled from a shop, all of the script tags that it created are automatically removed along with it.</p>\n",
+    "x-owner": "https://vault.shopify.io/teams/469",
+    "x-description-list": null,
+    "version": "2022-04"
+  },
+  "paths": [
+    {
+      "description": "Retrieves a list of all script tags. <strong>Note:</strong> As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/tutorials/make-paginated-requests-to-rest-admin-api\"><em>Making requests to paginated REST Admin API endpoints</em></a>.",
+      "summary": "Retrieves a list of all script tags",
+      "operationId": "Retrievesalistofallscripttags",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "created_at_max",
+          "description": "Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "created_at_min",
+          "description": "Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "fields",
+          "description": "A comma-separated list of fields to include in the response.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "limit",
+          "description": "The number of results to return.",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "default": 50,
+            "maximum": 250
+          }
+        },
+        {
+          "name": "since_id",
+          "description": "Restrict results to after the specified ID.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "src",
+          "description": "Show script tags with this URL.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "updated_at_max",
+          "description": "Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "updated_at_min",
+          "description": "Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a list of all script tags",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a list of all script tags": {
+                  "value": {
+                    "script_tags": [
+                      {
+                        "id": 421379493,
+                        "src": "https://js-aplenty.com/bar.js",
+                        "event": "onload",
+                        "created_at": "2022-04-05T10:51:55-06:00",
+                        "updated_at": "2022-04-05T10:51:55-06:00",
+                        "display_scope": "all"
+                      },
+                      {
+                        "id": 596726825,
+                        "src": "https://js-aplenty.com/foo.js",
+                        "event": "onload",
+                        "created_at": "2022-04-05T10:51:55-06:00",
+                        "updated_at": "2022-04-05T10:51:55-06:00",
+                        "display_scope": "all"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve a list of all script tags with a particular URL": {
+                  "value": {
+                    "script_tags": [
+                      {
+                        "id": 596726825,
+                        "src": "https://js-aplenty.com/foo.js",
+                        "event": "onload",
+                        "created_at": "2022-04-05T10:51:55-06:00",
+                        "updated_at": "2022-04-05T10:51:55-06:00",
+                        "display_scope": "all"
+                      }
+                    ]
+                  }
+                },
+                "Retrieve a list of all script tags after the specified ID": {
+                  "value": {
+                    "script_tags": [
+                      {
+                        "id": 596726825,
+                        "src": "https://js-aplenty.com/foo.js",
+                        "event": "onload",
+                        "created_at": "2022-04-05T10:51:55-06:00",
+                        "updated_at": "2022-04-05T10:51:55-06:00",
+                        "display_scope": "all"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/script_tags.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/script_tags.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"script_tags\":[{\"id\":421379493,\"src\":\"https://js-aplenty.com/bar.js\",\"event\":\"onload\",\"created_at\":\"2022-04-05T12:51:55-04:00\",\"updated_at\":\"2022-04-05T12:51:55-04:00\",\"display_scope\":\"all\"},{\"id\":596726825,\"src\":\"https://js-aplenty.com/foo.js\",\"event\":\"onload\",\"created_at\":\"2022-04-05T12:51:55-04:00\",\"updated_at\":\"2022-04-05T12:51:55-04:00\",\"display_scope\":\"all\"}]}"
+          },
+          "name": "Retrieve a list of all script tags",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/script_tags.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::ScriptTag.all(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {ScriptTag} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ScriptTag.all({\n  session: test_session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\ScriptTag;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nScriptTag::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "src=https%3A%2F%2Fjs-aplenty.com%2Ffoo.js",
+          "request_path": "/admin/api/2022-04/script_tags.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/script_tags.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"script_tags\":[{\"id\":596726825,\"src\":\"https://js-aplenty.com/foo.js\",\"event\":\"onload\",\"created_at\":\"2022-04-05T12:51:55-04:00\",\"updated_at\":\"2022-04-05T12:51:55-04:00\",\"display_scope\":\"all\"}]}"
+          },
+          "name": "Retrieve a list of all script tags with a particular URL",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/script_tags.json?src=https%3A%2F%2Fjs-aplenty.com%2Ffoo.js\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::ScriptTag.all(\n  session: test_session,\n  src: \"https://js-aplenty.com/foo.js\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {ScriptTag} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ScriptTag.all({\n  session: test_session,\n  src: \"https://js-aplenty.com/foo.js\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\ScriptTag;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nScriptTag::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"src\" => \"https://js-aplenty.com/foo.js\"], // Params\n);"
+            }
+          ]
+        },
+        {
+          "status": "200",
+          "request_query": "since_id=421379493",
+          "request_path": "/admin/api/2022-04/script_tags.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2019-10/script_tags.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"script_tags\":[{\"id\":596726825,\"src\":\"https://js-aplenty.com/foo.js\",\"event\":\"onload\",\"created_at\":\"2022-04-05T12:51:55-04:00\",\"updated_at\":\"2022-04-05T12:51:55-04:00\",\"display_scope\":\"all\"}]}"
+          },
+          "name": "Retrieve a list of all script tags after the specified ID",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/script_tags.json?since_id=421379493\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::ScriptTag.all(\n  session: test_session,\n  since_id: \"421379493\",\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {ScriptTag} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ScriptTag.all({\n  session: test_session,\n  since_id: \"421379493\",\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\ScriptTag;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nScriptTag::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"421379493\"], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/script_tags.json",
+      "action": "get"
+    },
+    {
+      "description": "Creates a new script tag",
+      "summary": "Creates a new script tag",
+      "operationId": "Createsanewscripttag",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "201": {
+          "description": "Creates a new script tag",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a new script tag": {
+                  "value": {
+                    "script_tag": {
+                      "id": 870402687,
+                      "src": "https://djavaskripped.org/fancy.js",
+                      "event": "onload",
+                      "created_at": "2022-04-05T10:53:25-06:00",
+                      "updated_at": "2022-04-05T10:53:25-06:00",
+                      "display_scope": "all",
+                      "cache": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "422": {
+          "description": "Creates a new script tag",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Creating a script tag without a src and event will return an error": {
+                  "value": {
+                    "errors": {
+                      "src": [
+                        "can't be blank",
+                        "must be secure (HTTPS)"
+                      ],
+                      "event": [
+                        "can't be blank",
+                        "is invalid"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "201",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/script_tags.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/script_tags.json",
+            "headers": {},
+            "body": "{\"script_tag\":{\"event\":\"onload\",\"src\":\"https://djavaskripped.org/fancy.js\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 201 Created",
+            "headers": {},
+            "body": "{\"script_tag\":{\"id\":870402687,\"src\":\"https://djavaskripped.org/fancy.js\",\"event\":\"onload\",\"created_at\":\"2022-04-05T12:53:25-04:00\",\"updated_at\":\"2022-04-05T12:53:25-04:00\",\"display_scope\":\"all\",\"cache\":false}}"
+          },
+          "name": "Create a new script tag",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"script_tag\":{\"event\":\"onload\",\"src\":\"https://djavaskripped.org/fancy.js\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/script_tags.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nscript_tag = ShopifyAPI::ScriptTag.new(session: test_session)\nscript_tag.event = \"onload\"\nscript_tag.src = \"https://djavaskripped.org/fancy.js\"\nscript_tag.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {ScriptTag} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst script_tag = new ScriptTag({session: test_session});\nscript_tag.event = \"onload\";\nscript_tag.src = \"https://djavaskripped.org/fancy.js\";\nawait script_tag.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\ScriptTag;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$script_tag = new ScriptTag($this->test_session);\n$script_tag->event = \"onload\";\n$script_tag->src = \"https://djavaskripped.org/fancy.js\";\n$script_tag->save();"
+            }
+          ]
+        },
+        {
+          "status": "422",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/script_tags.json",
+          "request_method": "POST",
+          "request": {
+            "action": "POST /admin/api/unstable/script_tags.json",
+            "headers": {},
+            "body": "{\"script_tag\":{\"body\":\"foobar\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 422 Unprocessable Entity",
+            "headers": {},
+            "body": "{\"errors\":{\"src\":[\"can't be blank\",\"must be secure (HTTPS)\"],\"event\":[\"can't be blank\",\"is invalid\"]}}"
+          },
+          "name": "Creating a script tag without a src and event will return an error",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"script_tag\":{\"body\":\"foobar\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/script_tags.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nscript_tag = ShopifyAPI::ScriptTag.new(session: test_session)\nscript_tag.body = \"foobar\"\nscript_tag.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {ScriptTag} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst script_tag = new ScriptTag({session: test_session});\nscript_tag.body = \"foobar\";\nawait script_tag.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\ScriptTag;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$script_tag = new ScriptTag($this->test_session);\n$script_tag->body = \"foobar\";\n$script_tag->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/script_tags.json",
+      "action": "post"
+    },
+    {
+      "description": "Retrieves a count of all script tags",
+      "summary": "Retrieves a count of all script tags",
+      "operationId": "Retrievesacountofallscripttags",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "src",
+          "description": "Count only script tags with a given URL.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a count of all script tags",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a count of all script tags for your shop": {
+                  "value": {
+                    "count": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/script_tags/count.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/unstable/script_tags/count.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"count\":2}"
+          },
+          "name": "Retrieve a count of all script tags for your shop",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/script_tags/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::ScriptTag.count(\n  session: test_session,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {ScriptTag} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ScriptTag.count({\n  session: test_session,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\ScriptTag;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nScriptTag::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/script_tags/count.json",
+      "action": "get"
+    },
+    {
+      "description": "Retrieves a single script tag",
+      "summary": "Retrieves a single script tag",
+      "operationId": "Retrievesasinglescripttag",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "script_tag_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "fields",
+          "description": "A comma-separated list of fields to include in the response.",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Retrieves a single script tag",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieve a single script tag by its ID": {
+                  "value": {
+                    "script_tag": {
+                      "id": 596726825,
+                      "src": "https://js-aplenty.com/foo.js",
+                      "event": "onload",
+                      "created_at": "2022-04-05T10:51:55-06:00",
+                      "updated_at": "2022-04-05T10:51:55-06:00",
+                      "display_scope": "all",
+                      "cache": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/script_tags/596726825.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2021-01/script_tags/596726825.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"script_tag\":{\"id\":596726825,\"src\":\"https://js-aplenty.com/foo.js\",\"event\":\"onload\",\"created_at\":\"2022-04-05T12:51:55-04:00\",\"updated_at\":\"2022-04-05T12:51:55-04:00\",\"display_scope\":\"all\",\"cache\":false}}"
+          },
+          "name": "Retrieve a single script tag by its ID",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/script_tags/596726825.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::ScriptTag.find(\n  session: test_session,\n  id: 596726825,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {ScriptTag} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ScriptTag.find({\n  session: test_session,\n  id: 596726825,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\ScriptTag;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nScriptTag::find(\n    $this->test_session, // Session\n    596726825, // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/script_tags/{script_tag_id}.json",
+      "action": "get"
+    },
+    {
+      "description": "Updates a script tag",
+      "summary": "Updates a script tag",
+      "operationId": "Updatesascripttag",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "script_tag_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Updates a script tag",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Update a script tag's URL": {
+                  "value": {
+                    "script_tag": {
+                      "src": "https://somewhere-else.com/another.js",
+                      "cache": false,
+                      "id": 596726825,
+                      "event": "onload",
+                      "created_at": "2022-04-05T10:51:55-06:00",
+                      "updated_at": "2022-04-05T10:53:27-06:00",
+                      "display_scope": "all"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/script_tags/596726825.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/unstable/script_tags/596726825.json",
+            "headers": {},
+            "body": "{\"script_tag\":{\"id\":596726825,\"src\":\"https://somewhere-else.com/another.js\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"script_tag\":{\"src\":\"https://somewhere-else.com/another.js\",\"cache\":false,\"id\":596726825,\"event\":\"onload\",\"created_at\":\"2022-04-05T12:51:55-04:00\",\"updated_at\":\"2022-04-05T12:53:27-04:00\",\"display_scope\":\"all\"}}"
+          },
+          "name": "Update a script tag's URL",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"script_tag\":{\"id\":596726825,\"src\":\"https://somewhere-else.com/another.js\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/script_tags/596726825.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nscript_tag = ShopifyAPI::ScriptTag.new(session: test_session)\nscript_tag.id = 596726825\nscript_tag.src = \"https://somewhere-else.com/another.js\"\nscript_tag.save()"
+            },
+            {
+              "language": "node",
+              "example_code": "import {ScriptTag} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst script_tag = new ScriptTag({session: test_session});\nscript_tag.id = 596726825;\nscript_tag.src = \"https://somewhere-else.com/another.js\";\nawait script_tag.save({});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\ScriptTag;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$script_tag = new ScriptTag($this->test_session);\n$script_tag->id = 596726825;\n$script_tag->src = \"https://somewhere-else.com/another.js\";\n$script_tag->save();"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/script_tags/{script_tag_id}.json",
+      "action": "put"
+    },
+    {
+      "description": "Deletes a script tag",
+      "summary": "Deletes a script tag",
+      "operationId": "Deletesascripttag",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "script_tag_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Deletes a script tag",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Delete an existing script tag": {
+                  "value": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-04/script_tags/596726825.json",
+          "request_method": "DELETE",
+          "request": {
+            "action": "DELETE /admin/api/unstable/script_tags/596726825.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{}"
+          },
+          "name": "Delete an existing script tag",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/script_tags/596726825.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::ScriptTag.delete(\n  session: test_session,\n  id: 596726825,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {ScriptTag} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ScriptTag.delete({\n  session: test_session,\n  id: 596726825,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_04\\ScriptTag;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nScriptTag::delete(\n    $this->test_session, // Session\n    596726825, // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/script_tags/{script_tag_id}.json",
+      "action": "delete"
+    }
+  ],
+  "components": [
+    {
+      "name": "ScriptTag",
+      "title": "ScriptTag",
+      "type": "object",
+      "properties": [
+        {
+          "description": "          The date and time (<a href='http://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a>) when the script tag was created.\n",
+          "type": "string",
+          "readOnly": true,
+          "example": "2012-08-24T12:01:47-06:00",
+          "name": "created_at"
+        },
+        {
+          "description": "          The DOM event that triggers the loading of the script. Valid values: <code>onload</code>.\n",
+          "type": "string",
+          "example": "onload",
+          "name": "event"
+        },
+        {
+          "description": "The ID for the script tag.",
+          "type": "string",
+          "readOnly": true,
+          "example": 596726825,
+          "name": "id"
+        },
+        {
+          "description": "The URL of the remote script.",
+          "type": "string",
+          "example": "https://js-aplenty.com/foo.js",
+          "name": "src"
+        },
+        {
+          "description": "          The page or pages on the online store where the script should be included. Valid values:\n          <ul>\n            <li><code>online_store</code>: Include the script only on the web storefront.</li>\n            <li><code>order_status</code>: Include the script only on the order status page.</li>\n            <li><code>all</code>: Include the script on both the web storefront and the order status page.</li>\n          </ul>\n",
+          "type": "string",
+          "example": "online_store",
+          "name": "display_scope"
+        },
+        {
+          "description": "          Whether the Shopify CDN can cache and serve the script tag. Valid values:\n          <ul>\n            <li><code>true</code>: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned.</li>\n            <li><code>false</code>: The script will be served as is.</li>\n          </ul>\n          Default value: <code>false</code>.\n",
+          "type": "string",
+          "example": true,
+          "name": "cache"
+        },
+        {
+          "description": "          The date and time (<a href='http://en.wikipedia.org/wiki/ISO_8601' target=\"_blank\">ISO 8601</a>) when the script tag was last updated.\n",
+          "type": "string",
+          "readOnly": true,
+          "example": "2012-08-24T12:01:47-06:00",
+          "name": "updated_at"
+        }
+      ],
+      "required": [
+        "event",
+        "src"
+      ]
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "online-store/scripttag",
+    "gid": "7a4270b5-c896-460f-8f75-c281e75bc013",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": [
+      "/api/reference/scripttag",
+      "/api/reference/online_store/scripttag"
+    ],
+    "meta_description": "Load remote JavaScript into the storefront and order status pages of an online store to add functionality without modifying the store's theme files.",
+    "postman_group": "Online store",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  }
+}

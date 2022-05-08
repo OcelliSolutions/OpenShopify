@@ -26,7 +26,7 @@
           "description": "Show only certain fields, specified by a comma-separated list of field names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -34,7 +34,7 @@
           "description": "The maximum number of results to show.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": 50,
             "maximum": 250
           }
@@ -44,7 +44,7 @@
           "description": "Restrict results to after the specified ID.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -137,7 +137,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/customer_saved_searches.json",
+      "url": "/admin/api/{api_version}/customer_saved_searches.json",
       "action": "get"
     },
     {
@@ -290,7 +290,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/customer_saved_searches.json",
+      "url": "/admin/api/{api_version}/customer_saved_searches.json",
       "action": "post"
     },
     {
@@ -311,7 +311,7 @@
           "description": "Restrict results to after the specified ID",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -404,7 +404,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/customer_saved_searches/count.json",
+      "url": "/admin/api/{api_version}/customer_saved_searches/count.json",
       "action": "get"
     },
     {
@@ -433,7 +433,7 @@
           "description": "Show only certain fields, specified by a comma-separated list of field names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         }
       ],
@@ -488,7 +488,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/customer_saved_searches/{customer_saved_search_id}.json",
+      "url": "/admin/api/{api_version}/customer_saved_searches/{customer_saved_search_id}.json",
       "action": "get"
     },
     {
@@ -564,7 +564,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/customer_saved_searches/{customer_saved_search_id}.json",
+      "url": "/admin/api/{api_version}/customer_saved_searches/{customer_saved_search_id}.json",
       "action": "put"
     },
     {
@@ -640,7 +640,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/customer_saved_searches/{customer_saved_search_id}.json",
+      "url": "/admin/api/{api_version}/customer_saved_searches/{customer_saved_search_id}.json",
       "action": "delete"
     },
     {
@@ -669,7 +669,7 @@
           "description": "Show only certain fields, specified by a comma-separated list of field names.",
           "in": "query",
           "schema": {
-            "type": "x-string"
+            "type": "string"
           }
         },
         {
@@ -677,7 +677,7 @@
           "description": "The maximum number of results to show.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": 50,
             "maximum": 250
           }
@@ -687,7 +687,7 @@
           "description": "Set the field and direction by which to order results.",
           "in": "query",
           "schema": {
-            "type": "x-string",
+            "type": "string",
             "default": "last_order_date DESC"
           }
         }
@@ -743,7 +743,7 @@
           ]
         }
       ],
-      "url": "/admin/api/#{api_version}/customer_saved_searches/{customer_saved_search_id}/customers.json",
+      "url": "/admin/api/{api_version}/customer_saved_searches/{customer_saved_search_id}/customers.json",
       "action": "get"
     }
   ],
@@ -755,33 +755,33 @@
       "properties": [
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a>  format) when the customer saved search was created.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "2012-08-17T08:01:46-06:00",
           "name": "created_at"
         },
         {
           "description": "A unique identifier for the customer saved search.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": 789629109,
           "name": "id"
         },
         {
           "description": "The name given by the shop owner to the customer saved search.",
-          "type": "x-string",
+          "type": "string",
           "example": "Accepts Marketing",
           "name": "name"
         },
         {
           "description": "The set of conditions that determines which customers are returned by the saved search. For more information, see <a href='#customer-saved-search-queries'><i>Customer saved search queries</i></a>.",
-          "type": "x-string",
+          "type": "string",
           "example": "accepts_marketing:1",
           "name": "query"
         },
         {
           "description": "The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\" target=\"_blank\">ISO 8601</a>  format) when the customer saved search was last modified.",
-          "type": "x-string",
+          "type": "string",
           "readOnly": true,
           "example": "2012-08-17T08:01:46-06:00",
           "name": "updated_at"
