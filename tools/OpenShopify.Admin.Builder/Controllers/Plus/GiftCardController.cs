@@ -33,28 +33,28 @@ namespace OpenShopify.Admin.Builder
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <param name="status">Retrieve gift cards with a given status. Valid values:</param>
         /// <returns>Retrieves a list of gift cards</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/gift_cards.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? status = null);
 
         /// <summary>
         /// Creates a gift card
         /// </summary>
         /// <returns>Creates a gift card</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/gift_cards.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("gift_cards.json")]
         public abstract System.Threading.Tasks.Task CreateGiftCard();
 
         /// <summary>
         /// Retrieves a single gift card
         /// </summary>
         /// <returns>Retrieves a single gift card</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/gift_cards/{gift_card_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleGiftCard(string gift_card_id);
 
         /// <summary>
         /// Updates an existing gift card
         /// </summary>
         /// <returns>Updates an existing gift card</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/gift_cards/{gift_card_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateExistingGiftCard(string gift_card_id);
 
         /// <summary>
@@ -62,14 +62,14 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="status">Count gift cards with a given status. Valid values:</param>
         /// <returns>Retrieves a count of gift cards</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/gift_cards/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? status = null);
 
         /// <summary>
         /// Disables a gift card
         /// </summary>
         /// <returns>Disables a gift card</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/gift_cards/{gift_card_id}/disable.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}/disable.json")]
         public abstract System.Threading.Tasks.Task DisableGiftCard(string gift_card_id);
 
         /// <summary>
@@ -80,145 +80,12 @@ namespace OpenShopify.Admin.Builder
         /// <param name="order">The field and direction to order results by.</param>
         /// <param name="query">The text to search for.</param>
         /// <returns>Searches for gift cards</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/gift_cards/search.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/search.json")]
         public abstract System.Threading.Tasks.Task SearchForGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? order = "disabled_at DESC", [Microsoft.AspNetCore.Mvc.FromQuery] string? query = null);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GiftCard
-    {
-        /// <summary>
-        /// The ID of the client that issued the gift card.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("api_client_id")]
-        public string? Api_client_id { get; set; } = default!;
-
-        /// <summary>
-        /// The balance of the gift card.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("balance")]
-        public string? Balance { get; set; } = default!;
-
-        /// <summary>
-        /// The gift card code, which is a string of alphanumeric characters. For security reasons, this is available only upon creation of the gift card. (minimum: 8 characters, maximum: 20 characters)
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("code")]
-        public string? Code { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the gift card was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The currency of the gift card.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        public string? Currency { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the customer associated with this gift card.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("customer_id")]
-        public string? Customer_id { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the gift card was disabled.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("disabled_at")]
-        public string? Disabled_at { get; set; } = default!;
-
-        /// <summary>
-        /// The date (YYYY-MM-DD format) when the gift card expires. Returns null if the gift card doesn't have an expiration date.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("expires_on")]
-        public string? Expires_on { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the gift card.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The initial value of the gift card when it was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("initial_value")]
-        public string? Initial_value { get; set; } = default!;
-
-        /// <summary>
-        /// The last four characters of the gift card code. Because gift cards are alternative payment methods, the full code cannot be retrieved.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("last_characters")]
-        public string? Last_characters { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the line item that initiated the creation of this gift card, if it was created by an order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("line_item_id")]
-        public string? Line_item_id { get; set; } = default!;
-
-        /// <summary>
-        /// An optional note that a merchant can attach to the gift card that isn't visible to customers.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        public string? Note { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the order that initiated the creation of this gift card, if it was created by an order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
-        public string? Order_id { get; set; } = default!;
-
-        /// <summary>
-        /// The suffix of the Liquid template that's used to render the gift card online. For example, if the value is birthday,
-        /// <br/> then the gift card is rendered using the template gift_card.birthday.liquid. When the value is null,
-        /// <br/> the default gift_card.liquid template is used.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
-        public string? Template_suffix { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the user that issued the gift card, if it was issued by a user.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("user_id")]
-        public string? User_id { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the gift card was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

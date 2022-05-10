@@ -32,7 +32,7 @@ public class PriceRuleController : PriceRuleControllerBase
         throw new NotImplementedException();
     }
 
-    public override Task RemoveExistingPricerule(string price_rule_id)
+    public override Task RemoveExistingPriceRule(string price_rule_id)
     {
         throw new NotImplementedException();
     }

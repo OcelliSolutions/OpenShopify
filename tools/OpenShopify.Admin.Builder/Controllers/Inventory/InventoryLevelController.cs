@@ -33,7 +33,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="location_ids">A comma-separated list of location IDs. To find the ID of a location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
         /// <param name="updated_at_min">Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).</param>
         /// <returns>Retrieves a list of inventory levels</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/inventory_levels.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_levels.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfInventoryLevels([Microsoft.AspNetCore.Mvc.FromQuery] string? inventory_item_ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? location_ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="inventory_item_id">The ID for the inventory item.</param>
         /// <param name="location_id">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
         /// <returns>Deletes an inventory level from a location</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/inventory_levels.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("inventory_levels.json")]
         public abstract System.Threading.Tasks.Task DeleteInventoryLevelFromLocation([Microsoft.AspNetCore.Mvc.FromQuery] string inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] string location_id);
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="inventory_item_id">The ID of the inventory item.</param>
         /// <param name="location_id">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
         /// <returns>Adjusts the inventory level of an inventory item at a location</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/inventory_levels/adjust.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("inventory_levels/adjust.json")]
         public abstract System.Threading.Tasks.Task AdjustTheInventoryLevelOfInventoryItemAtLocation([Microsoft.AspNetCore.Mvc.FromQuery] string available_adjustment, [Microsoft.AspNetCore.Mvc.FromQuery] string inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] string location_id);
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="location_id">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
         /// <param name="relocate_if_necessary">Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, refer to &lt;a href="#inventory-levels-and-fulfillment-service-locations"&gt;&lt;em&gt;Inventory levels and fulfillment service locations&lt;/em&gt;&lt;/a&gt;.</param>
         /// <returns>Connects an inventory item to a location</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/inventory_levels/connect.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("inventory_levels/connect.json")]
         public abstract System.Threading.Tasks.Task ConnectInventoryItemToLocation([Microsoft.AspNetCore.Mvc.FromQuery] string inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] string location_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? relocate_if_necessary = "false");
 
         /// <summary>
@@ -73,52 +73,12 @@ namespace OpenShopify.Admin.Builder
         /// <param name="location_id">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
         /// <param name="disconnect_if_necessary">Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, refer to &lt;a href="#inventory-levels-and-fulfillment-service-locations"&gt;&lt;em&gt;Inventory levels and fulfillment service locations&lt;/em&gt;&lt;/a&gt;.</param>
         /// <returns>Sets the inventory level for an inventory item at a location</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/inventory_levels/set.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("inventory_levels/set.json")]
         public abstract System.Threading.Tasks.Task SetTheInventoryLevelForInventoryItemAtLocation([Microsoft.AspNetCore.Mvc.FromQuery] string available, [Microsoft.AspNetCore.Mvc.FromQuery] string inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] string location_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? disconnect_if_necessary = "false");
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class InventoryLevel
-    {
-        /// <summary>
-        /// The available quantity of an inventory item at the inventory level's associated location. Returns null if the inventory item is not tracked.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("available")]
-        public string? Available { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the inventory item associated with the inventory level. To find the ID of an inventory item, use the Inventory Item resource
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("inventory_item_id")]
-        public string? Inventory_item_id { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
-        public string? Location_id { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the inventory level was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

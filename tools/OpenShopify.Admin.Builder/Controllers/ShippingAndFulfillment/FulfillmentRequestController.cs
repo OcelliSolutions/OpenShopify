@@ -31,7 +31,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fulfillment_order_line_items">The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.</param>
         /// <param name="message">An optional message for the fulfillment request.</param>
         /// <returns>Sends a fulfillment request</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json")]
         public abstract System.Threading.Tasks.Task SendFulfillmentRequest(string fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fulfillment_order_line_items = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? message = null);
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="message">An optional reason for accepting the fulfillment request.</param>
         /// <returns>Accepts a fulfillment request</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json")]
         public abstract System.Threading.Tasks.Task AcceptFulfillmentRequest(string fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message = null);
 
         /// <summary>
@@ -47,25 +47,12 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="message">An optional reason for rejecting the fulfillment request.</param>
         /// <returns>Rejects a fulfillment request</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json")]
         public abstract System.Threading.Tasks.Task RejectFulfillmentRequest(string fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message = null);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class FulfillmentRequest
-    {
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

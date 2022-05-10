@@ -35,110 +35,12 @@ namespace OpenShopify.Admin.Builder
         /// <param name="processed_at_min">Show tender transactions processed_at or after the specified date.</param>
         /// <param name="since_id">Retrieve only transactions after the specified ID.</param>
         /// <returns>Retrieves a list of tender transactions</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/tender_transactions.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("tender_transactions.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfTenderTransactions([Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? order = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? processed_at = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? processed_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? processed_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class TenderTransaction
-    {
-        /// <summary>
-        /// The ID of the transaction.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the order that the tender transaction belongs to.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
-        public string? Order_id { get; set; } = default!;
-
-        /// <summary>
-        /// The amount of the tender transaction in the shop's currency.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("amount")]
-        public string? Amount { get; set; } = default!;
-
-        /// <summary>
-        /// The three-letter code (ISO 4217 format) for the currency used for the tender transaction.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        public string? Currency { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the user logged into the Shopify POS device that processed the tender transaction, if applicable.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("user_id")]
-        public string? User_id { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the tender transaction is a test transaction.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("test")]
-        public string? Test { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the tender transaction was processed.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("processed_at")]
-        public string? Processed_at { get; set; } = default!;
-
-        /// <summary>
-        /// The remote (gateway) reference associated with the tender.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("remote_reference")]
-        public string? Remote_reference { get; set; } = default!;
-
-        /// <summary>
-        /// Information about the payment instrument used for this transaction. It has the following properties:
-        /// <br/> 
-        /// <br/> credit_card_company: The name of the company that issued the customer's credit card.
-        /// <br/> credit_card_number: The customer's credit card number, with most of the leading digits redacted.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("payment_details")]
-        public string? Payment_details { get; set; } = default!;
-
-        /// <summary>
-        /// Information about the payment method used for this transaction. Valid values:
-        /// <br/> 
-        /// <br/> credit_card
-        /// <br/> cash
-        /// <br/> android_pay
-        /// <br/> apple_pay
-        /// <br/> google_pay
-        /// <br/> samsung_pay
-        /// <br/> shopify_pay
-        /// <br/> amazon
-        /// <br/> klarna
-        /// <br/> paypal
-        /// <br/> unknown
-        /// <br/> other
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("payment_method")]
-        public string? Payment_method { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

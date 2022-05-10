@@ -33,7 +33,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="limit">The maximum number of results to retrieve.</param>
         /// <param name="since_id">Restrict results to after the specified ID</param>
         /// <returns>Retrieve a list of all blogs</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/blogs.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfAllBlogs([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
 
         /// <summary>
@@ -41,14 +41,14 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="title">The title of the blog. Maximum length: 255 characters.</param>
         /// <returns>Create a new Blog</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/blogs.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("blogs.json")]
         public abstract System.Threading.Tasks.Task CreateNewBlog([Microsoft.AspNetCore.Mvc.FromQuery] string title);
 
         /// <summary>
         /// Receive a count of all Blogs
         /// </summary>
         /// <returns>Receive a count of all Blogs</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/blogs/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/count.json")]
         public abstract System.Threading.Tasks.Task ReceiveCountOfAllBlogs();
 
         /// <summary>
@@ -56,134 +56,26 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <returns>Receive a single Blog</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/blogs/{blog_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}.json")]
         public abstract System.Threading.Tasks.Task ReceiveSingleBlog(string blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Modify an existing Blog
         /// </summary>
         /// <returns>Modify an existing Blog</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/blogs/{blog_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}.json")]
         public abstract System.Threading.Tasks.Task ModifyExistingBlog(string blog_id);
 
         /// <summary>
         /// Remove an existing Blog
         /// </summary>
         /// <returns>Remove an existing Blog</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/blogs/{blog_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}.json")]
         public abstract System.Threading.Tasks.Task RemoveExistingBlog(string blog_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Blog
-    {
-        /// <summary>
-        /// Indicates whether readers can post comments to the blog and if comments are moderated or not. Possible values are:
-        /// <br/> 
-        /// <br/> no (default): Readers cannot post comments to blog articles.
-        /// <br/> moderate: Readers can post comments to blog articles, but comments must be moderated before they appear.
-        /// <br/> yes: Readers can post comments to blog articles without moderation.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("commentable")]
-        public string? Commentable { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the blog was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// FeedBurner is a web feed management provider and can be enabled to provide custom RSS feeds for Shopify bloggers. Google has stopped supporting FeedBurner, and new or existing blogs that are not already integrated with FeedBurner can't use the service. This property will default to blank unless FeedBurner is enabled.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("feedburner")]
-        public string? Feedburner { get; set; } = default!;
-
-        /// <summary>
-        /// The URL that points to the FeedBurner location for blogs that have FeedBurner enabled. Google has stopped supporting FeedBurner, and new or existing blogs that are not already integrated with FeedBurner can't use the service. This property will default to blank unless FeedBurner is enabled
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("feedburner_location")]
-        public string? Feedburner_location { get; set; } = default!;
-
-        /// <summary>
-        /// A human-friendly unique string that is automatically generated from the title if no handle is sent during the creation of a blog. Duplicate handles are appended with an incremental number, for example, `blog-2`. The handle is customizable and is used by the Liquid templating language to refer to the blog. If you change the handle of a blog, then it can negatively affect the SEO of the shop. We recommend that you create a URL redirect to avoid any SEO issues.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("handle")]
-        public string? Handle { get; set; } = default!;
-
-        /// <summary>
-        /// A unique numeric identifier for the blog.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// Attaches additional metadata to a store's resources:
-        /// <br/> 
-        /// <br/> key (required): Identifier for the metafield (maximum of 30 characters).
-        /// <br/> namespace (required): Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
-        /// <br/> value (required): Information to be stored as metadata.
-        /// <br/> type (required): The metafield's information type. Refer to the full list of types.
-        /// <br/> description (optional): Additional information about the metafield.
-        /// <br/> 
-        /// <br/> For more information on attaching metadata to Shopify resources, see the Metafield resource.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
-        public System.Collections.Generic.List<object>? Metafields { get; set; } = default!;
-
-        /// <summary>
-        /// A list of tags associated with the 200 most recent blog articles. Tags are additional short descriptors formatted as a string of comma-separated values. For example, if an article has three tags: tag1, tag2, tag3. Tags are limited to 255 characters.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tags")]
-        public string? Tags { get; set; } = default!;
-
-        /// <summary>
-        /// States the name of the template a blog is using if it is using an alternate template. If a blog is using the default blog.liquid template, the value returned is "null".
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
-        public string? Template_suffix { get; set; } = default!;
-
-        /// <summary>
-        /// The title of the blog.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("title")]
-        public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when changes were last made to the blog's properties. Note that this is not updated when creating, modifying or deleting articles in the blog. The API returns this value in ISO 8601 format.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        /// <summary>
-        /// The GraphQL GID of the blog.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? Admin_graphql_api_id { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

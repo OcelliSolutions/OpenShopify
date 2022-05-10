@@ -37,14 +37,14 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_max">Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="updated_at_min">Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Retrieves a list of all script tags</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/script_tags.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfAllScriptTags([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? src = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
 
         /// <summary>
         /// Creates a new script tag
         /// </summary>
         /// <returns>Creates a new script tag</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/script_tags.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("script_tags.json")]
         public abstract System.Threading.Tasks.Task CreateNewScriptTag();
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="src">Count only script tags with a given URL.</param>
         /// <returns>Retrieves a count of all script tags</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/script_tags/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfAllScriptTags([Microsoft.AspNetCore.Mvc.FromQuery] string? src = null);
 
         /// <summary>
@@ -60,96 +60,26 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a single script tag</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/script_tags/{script_tag_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags/{script_tag_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleScriptTag(string script_tag_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates a script tag
         /// </summary>
         /// <returns>Updates a script tag</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/script_tags/{script_tag_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("script_tags/{script_tag_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateScriptTag(string script_tag_id);
 
         /// <summary>
         /// Deletes a script tag
         /// </summary>
         /// <returns>Deletes a script tag</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/script_tags/{script_tag_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("script_tags/{script_tag_id}.json")]
         public abstract System.Threading.Tasks.Task DeleteScriptTag(string script_tag_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class ScriptTag
-    {
-        /// <summary>
-        /// The date and time (ISO 8601) when the script tag was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The DOM event that triggers the loading of the script. Valid values: onload.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("event")]
-        public string? Event { get; set; } = default!;
-
-        /// <summary>
-        /// The ID for the script tag.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The URL of the remote script.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("src")]
-        public string? Src { get; set; } = default!;
-
-        /// <summary>
-        /// The page or pages on the online store where the script should be included. Valid values:
-        /// <br/> 
-        /// <br/> online_store: Include the script only on the web storefront.
-        /// <br/> order_status: Include the script only on the order status page.
-        /// <br/> all: Include the script on both the web storefront and the order status page.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("display_scope")]
-        public string? Display_scope { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the Shopify CDN can cache and serve the script tag. Valid values:
-        /// <br/> 
-        /// <br/> true: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned.
-        /// <br/> false: The script will be served as is.
-        /// <br/> 
-        /// <br/> Default value: false.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("cache")]
-        public string? Cache { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601) when the script tag was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

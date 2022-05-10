@@ -29,41 +29,12 @@ namespace OpenShopify.Admin.Builder
         /// Retrieves a list of currencies enabled on a shop
         /// </summary>
         /// <returns>Retrieves a list of currencies enabled on a shop</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/currencies.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("currencies.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfCurrenciesEnabledOnShop();
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Currency
-    {
-        /// <summary>
-        /// The three-letter code (ISO 4217 format) for the currency associated with this setting.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        public string? Currency1 { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when
-        /// <br/>the conversion rate associated with this currency was last updated. If manual FX rates are active on a shop, then the
-        /// <br/>updated date of these rates will replace the automatic conversion rates. Conversion rates are checked every 15
-        /// <br/>minutes, but typically updated only a few times a day. Manual FX rates are updated at the merchant's request.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("rate_updated_at")]
-        public string? Rate_updated_at { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

@@ -29,7 +29,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
         throw new NotImplementedException();
     }
 
-    public override Task RemoveAddressFromCustomerSAddressList(string address_id, string customer_id)
+    public override Task RemoveAddressFromCustomersAddressList(string address_id, string customer_id)
     {
         throw new NotImplementedException();
     }

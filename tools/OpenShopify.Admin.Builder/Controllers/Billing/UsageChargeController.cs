@@ -29,7 +29,7 @@ namespace OpenShopify.Admin.Builder
         /// Creates a usage charge
         /// </summary>
         /// <returns>Creates a usage charge</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/recurring_application_charges/{recurring_application_charge_id}/usage_charges.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/usage_charges.json")]
         public abstract System.Threading.Tasks.Task CreateUsageCharge(string recurring_application_charge_id);
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a list of usage charges</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/recurring_application_charges/{recurring_application_charge_id}/usage_charges.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/usage_charges.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfUsageCharges(string recurring_application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
@@ -45,66 +45,12 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a single charge</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/recurring_application_charges/{recurring_application_charge_id}/usage_charges/{usage_charge_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/usage_charges/{usage_charge_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleCharge(string recurring_application_charge_id, string usage_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UsageCharge
-    {
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the usage charge was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The description of the usage charge.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("description")]
-        public string? Description { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the usage charge.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The price of the usage charge.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("price")]
-        public string? Price { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the recurring application charge that the usage charge belongs to.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("recurring_application_charge_id")]
-        public string? Recurring_application_charge_id { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the usage charge was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

@@ -36,23 +36,22 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_max">Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves fulfillments associated with an order</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/fulfillments.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments.json")]
         public abstract System.Threading.Tasks.Task RetrieveFulfillmentsAssociatedWithOrder(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
 
         /// <summary>
         /// Create a new Fulfillment
         /// </summary>
         /// <returns>Create a new Fulfillment</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/fulfillments.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments.json")]
         public abstract System.Threading.Tasks.Task CreateNewFulfillment(string order_id);
 
         /// <summary>
         /// Retrieves fulfillments associated with a fulfillment order
         /// </summary>
-        /// <param name="fulfillment_order_idQuery">The ID of the fulfillment order that is associated with the fulfillments.</param>
         /// <returns>Retrieves fulfillments associated with a fulfillment order</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/fulfillments.json")]
-        public abstract System.Threading.Tasks.Task RetrieveFulfillmentsAssociatedWithFulfillmentOrder(string fulfillment_order_idPath, [Microsoft.AspNetCore.Mvc.FromQuery(Name = "fulfillment_order_id")] string? fulfillment_order_idQuery = null);
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillments.json")]
+        public abstract System.Threading.Tasks.Task RetrieveFulfillmentsAssociatedWithFulfillmentOrder(string fulfillment_order_id);
 
         /// <summary>
         /// Retrieves a count of fulfillments associated with a specific order
@@ -62,7 +61,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_max">Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a count of fulfillments associated with a specific order</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/fulfillments/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfFulfillmentsAssociatedWithSpecificOrder(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
 
         /// <summary>
@@ -70,311 +69,61 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">Comma-separated list of fields to include in the response.</param>
         /// <returns>Receive a single Fulfillment</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/fulfillments/{fulfillment_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}.json")]
         public abstract System.Threading.Tasks.Task ReceiveSingleFulfillment(string fulfillment_id, string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Modify an existing Fulfillment
         /// </summary>
         /// <returns>Modify an existing Fulfillment</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/fulfillments/{fulfillment_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}.json")]
         public abstract System.Threading.Tasks.Task ModifyExistingFulfillment(string fulfillment_id, string order_id);
 
         /// <summary>
         /// Creates a fulfillment for one or many fulfillment orders
         /// </summary>
         /// <returns>Creates a fulfillment for one or many fulfillment orders</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/fulfillments.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillments.json")]
         public abstract System.Threading.Tasks.Task CreateFulfillmentForOneOrManyFulfillmentOrders();
 
         /// <summary>
         /// Updates the tracking information for a fulfillment
         /// </summary>
         /// <returns>Updates the tracking information for a fulfillment</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/fulfillments/{fulfillment_id}/update_tracking.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillments/{fulfillment_id}/update_tracking.json")]
         public abstract System.Threading.Tasks.Task UpdateTheTrackingInformationForFulfillment(string fulfillment_id);
 
         /// <summary>
         /// Complete a fulfillment
         /// </summary>
         /// <returns>Complete a fulfillment</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/fulfillments/{fulfillment_id}/complete.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/complete.json")]
         public abstract System.Threading.Tasks.Task CompleteFulfillment(string fulfillment_id, string order_id);
 
         /// <summary>
         /// Transition a fulfillment from pending to open.
         /// </summary>
         /// <returns>Transition a fulfillment from pending to open.</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/fulfillments/{fulfillment_id}/open.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/open.json")]
         public abstract System.Threading.Tasks.Task TransitionFulfillmentFromPendingToOpen(string fulfillment_id, string order_id);
 
         /// <summary>
         /// Cancel a fulfillment for a specific order ID
         /// </summary>
         /// <returns>Cancel a fulfillment for a specific order ID</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/fulfillments/{fulfillment_id}/cancel.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/cancel.json")]
         public abstract System.Threading.Tasks.Task CancelFulfillmentForSpecificOrderID(string fulfillment_id, string order_id);
 
         /// <summary>
         /// Cancels a fulfillment
         /// </summary>
         /// <returns>Cancels a fulfillment</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/fulfillments/{fulfillment_id}/cancel.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillments/{fulfillment_id}/cancel.json")]
         public abstract System.Threading.Tasks.Task CancelFulfillment(string fulfillment_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Fulfillment
-    {
-        /// <summary>
-        /// The date and time when the fulfillment was created. The API returns this value in ISO 8601 format.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The ID for the fulfillment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// A list of the fulfillment's line items, which includes:
-        /// <br/>
-        /// <br/> id: The ID of the line item within the fulfillment.
-        /// <br/> variant_id: The ID of the product variant being fulfilled.
-        /// <br/> title: The title of the product.
-        /// <br/> quantity: The number of items in the fulfillment.
-        /// <br/> price: The price of the item.
-        /// <br/> grams: The weight of the item in grams.
-        /// <br/> sku: The unique identifier of the item in the fulfillment.
-        /// <br/> variant_title: The title of the product variant being fulfilled.
-        /// <br/> vendor: The name of the supplier of the item.
-        /// <br/> fulfillment_service: The service provider who is doing the fulfillment. This field will be deprecated. Use the assigned_location property on the FulfillmentOrder resource instead.
-        /// <br/> product_id: The unique numeric identifier for the product in the fulfillment.
-        /// <br/> requires_shipping: Whether a customer needs to provide a shipping address when placing an order for this product variant.
-        /// <br/> taxable: Whether the line item is taxable.
-        /// <br/> gift_card: Whether the line item is a gift card.
-        /// <br/> name: The name of the product variant.
-        /// <br/> variant_inventory_management: The name of the inventory management system.
-        /// <br/> properties: Any additional properties associated with the line item.
-        /// <br/> product_exists: Whether the product exists.
-        /// <br/> fulfillable_quantity: The amount available to fulfill. This is the quantity - max (refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity.
-        /// <br/> This field will be deprecated. Use the fulfillable_quantity property of the line_item property on the FulfillmentOrder resource instead.
-        /// <br/> total_discount: The total of any discounts applied to the line item.
-        /// <br/> fulfillment_status: The status of an order in terms of the line items being fulfilled. Valid values: fulfilled, null, or partial.
-        /// <br/> This field will be deprecated. Use the status property on the FulfillmentOrder resource instead.
-        /// <br/> fulfillment_line_item_id: A unique identifier for a quantity of items within a single fulfillment. An order can have multiple fulfillment line items.
-        /// <br/> tax_lines: The title, price, and rate of any taxes applied to the line item.
-        /// <br/> duties: A list of duty objects, each containing information about a duty on the line item.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("line_items")]
-        public string? Line_items { get; set; } = default!;
-
-        /// <summary>
-        /// The unique identifier of the location that the fulfillment was processed at.  To find the ID of the location, use the Location resource.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
-        public string? Location_id { get; set; } = default!;
-
-        /// <summary>
-        /// The uniquely identifying fulfillment name, consisting of two parts separated by a .. The first part represents the order name and the second part represents the fulfillment number. The fulfillment number automatically increments depending on how many fulfillments are in an order (e.g. #1001.1, #1001.2).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the customer should be notified. If set to true, then an email will be sent when the fulfillment is created or updated. For orders that were initially created using the API, the default value is false. For all other orders, the default value is true.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("notify_customer")]
-        public string? Notify_customer { get; set; } = default!;
-
-        /// <summary>
-        /// The unique numeric identifier for the order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
-        public string? Order_id { get; set; } = default!;
-
-        /// <summary>
-        /// The address from which the fulfillment occurred:
-        /// <br/>
-        /// <br/> address1: The street address of the fulfillment location.
-        /// <br/> address2: The second line of the address. Typically the number of the apartment, suite, or unit.
-        /// <br/> city: The city of the fulfillment location.
-        /// <br/> country_code: The country of the fulfillment location.
-        /// <br/> province_code: The province of the fulfillment location.
-        /// <br/> zip: The zip code of the fulfillment location.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("origin_address")]
-        public string? Origin_address { get; set; } = default!;
-
-        /// <summary>
-        /// A text field that provides information about the receipt:
-        /// <br/> 
-        /// <br/> testcase: Whether the fulfillment was a testcase.
-        /// <br/> authorization: The authorization code.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("receipt")]
-        public string? Receipt { get; set; } = default!;
-
-        /// <summary>
-        /// The fulfillment service associated with the fulfillment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("service")]
-        public string? Service { get; set; } = default!;
-
-        /// <summary>
-        /// The current shipment status of the fulfillment. Valid values:
-        /// <br/> 
-        /// <br/> label_printed: A label for the shipment was purchased and printed.
-        /// <br/> label_purchased: A label for the shipment was purchased, but not printed.
-        /// <br/> attempted_delivery: Delivery of the shipment was attempted, but unable to be completed.
-        /// <br/> ready_for_pickup: The shipment is ready for pickup at a shipping depot.
-        /// <br/> confirmed: The carrier is aware of the shipment, but hasn't received it yet.
-        /// <br/> in_transit: The shipment is being transported between shipping facilities on the way to its destination.
-        /// <br/> out_for_delivery: The shipment is being delivered to its final destination.
-        /// <br/> delivered: The shipment was succesfully delivered.
-        /// <br/> failure: Something went wrong when pulling tracking information for the shipment, such as the tracking number was invalid or the shipment was canceled.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("shipment_status")]
-        public string? Shipment_status { get; set; } = default!;
-
-        /// <summary>
-        /// The status of the fulfillment. Valid values:
-        /// <br/> 
-        /// <br/> pending: Shopify has created the fulfillment and is waiting for the third-party fulfillment service to transition it to 'open' or 'success'.
-        /// <br/> open: The fulfillment has been acknowledged by the service and is in processing.
-        /// <br/> success: The fulfillment was successful.
-        /// <br/> cancelled: The fulfillment was cancelled.
-        /// <br/> error: There was an error with the fulfillment request.
-        /// <br/> failure: The fulfillment request failed.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("status")]
-        public string? Status { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the tracking company. The following tracking companies display for shops located in any country:
-        /// <br/> 
-        /// <br/> 4PX
-        /// <br/> Amazon Logistics UK
-        /// <br/> Amazon Logistics US
-        /// <br/> Anjun Logistics
-        /// <br/> APC
-        /// <br/> Australia Post
-        /// <br/> Bluedart
-        /// <br/> Canada Post
-        /// <br/> Canpar
-        /// <br/> China Post
-        /// <br/> Chukou1
-        /// <br/> Correios
-        /// <br/> Couriers Please
-        /// <br/> Delhivery
-        /// <br/> DHL eCommerce
-        /// <br/> DHL eCommerce Asia
-        /// <br/> DHL Express
-        /// <br/> DPD
-        /// <br/> DPD Local
-        /// <br/> DPD UK
-        /// <br/> Eagle
-        /// <br/> FedEx
-        /// <br/> FSC
-        /// <br/> Asendia USA
-        /// <br/> GLS
-        /// <br/> GLS (US)
-        /// <br/> Japan Post
-        /// <br/> La Poste
-        /// <br/> New Zealand Post
-        /// <br/> Newgistics
-        /// <br/> PostNL
-        /// <br/> PostNord
-        /// <br/> Purolator
-        /// <br/> Royal Mail
-        /// <br/> Sagawa
-        /// <br/> Sendle
-        /// <br/> SF Express
-        /// <br/> SFC Fulfilllment
-        /// <br/> Singapore Post
-        /// <br/> StarTrack
-        /// <br/> TNT
-        /// <br/> Toll IPEC
-        /// <br/> UPS
-        /// <br/> USPS
-        /// <br/> Whistl
-        /// <br/> Yamato
-        /// <br/> YunExpress
-        /// <br/> 
-        /// <br/>
-        /// <br/> The following tracking companies are displayed for shops located in specific countries:
-        /// <br/> 
-        /// <br/> Germany: Deutsche Post (DE), Deutsche Post (EN), DHL
-        /// <br/> Ireland: An Post, Fastway
-        /// <br/> Australia: Aramex Australia, Australia Post, Sendle
-        /// <br/> Japan: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物
-        /// <br/> China: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress
-        /// <br/> 
-        /// <br/> 
-        /// <br/> Important
-        /// <br/> When creating a fulfillment for a supported carrier, send the tracking_company exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tracking_company")]
-        public string? Tracking_company { get; set; } = default!;
-
-        /// <summary>
-        /// A list of tracking numbers, provided by the shipping company.
-        /// <br/> 
-        /// <br/> Important
-        /// <br/> It is highly recommended that you send the tracking company and the tracking URL as well. If neither one of these is sent, then the tracking company will be determined automatically. This can result in an invalid tracking URL.
-        /// <br/> The tracking URL is displayed in the shipping confirmation email, which can optionally be sent to the customer. When accounts are enabled, it is also displayed in the customer's order history.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tracking_numbers")]
-        public string? Tracking_numbers { get; set; } = default!;
-
-        /// <summary>
-        /// The URLs of tracking pages for the fulfillment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tracking_urls")]
-        public string? Tracking_urls { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the fulfillment was last modified..
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the inventory management service.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("variant_inventory_management")]
-        public string? Variant_inventory_management { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

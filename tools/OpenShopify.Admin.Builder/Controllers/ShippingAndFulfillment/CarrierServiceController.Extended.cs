@@ -19,17 +19,17 @@ public class CarrierServiceController : CarrierServiceControllerBase
         throw new NotImplementedException();
     }
 
-    public override Task UpdateCarrierService(string carrier_service_id)
+    public override Task UpdateCarrierService([FromRoute] string carrier_service_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSingleCarrierService(string carrier_service_id)
+    public override Task RetrieveSingleCarrierService([FromRoute] string carrier_service_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task DeleteCarrierService(string carrier_service_id)
+    public override Task DeleteCarrierService([FromRoute] string carrier_service_id)
     {
         throw new NotImplementedException();
     }

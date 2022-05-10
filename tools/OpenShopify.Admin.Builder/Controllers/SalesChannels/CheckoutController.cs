@@ -29,366 +29,40 @@ namespace OpenShopify.Admin.Builder
         /// Creates a checkout
         /// </summary>
         /// <returns>Creates a checkout</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/checkouts.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("checkouts.json")]
         public abstract System.Threading.Tasks.Task CreateCheckout();
 
         /// <summary>
         /// Completes a checkout
         /// </summary>
         /// <returns>Completes a checkout</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/checkouts/{token}/complete.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}/complete.json")]
         public abstract System.Threading.Tasks.Task CompleteCheckout(string token);
 
         /// <summary>
         /// Retrieves a checkout
         /// </summary>
         /// <returns>Retrieves a checkout</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/checkouts/{token}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}.json")]
         public abstract System.Threading.Tasks.Task RetrieveCheckout(string token);
 
         /// <summary>
         /// Modifies an existing checkout
         /// </summary>
         /// <returns>Modifies an existing checkout</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/checkouts/{token}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}.json")]
         public abstract System.Threading.Tasks.Task ModifyExistingCheckout(string token);
 
         /// <summary>
         /// Retrieves a list of shipping rates
         /// </summary>
         /// <returns>Retrieves a list of shipping rates</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/checkouts/{token}/shipping_rates.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}/shipping_rates.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfShippingRates(string token);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Checkout
-    {
-        /// <summary>
-        /// A cart-level discount applied to the checkout. Apply a discount by
-        /// <br/> specifying values for amount, title, description, value,
-        /// <br/> and value_type.
-        /// <br/>
-        /// <br/> 
-        /// <br/> amount: The amount that is deducted from payment_due in presentment currency.
-        /// <br/> title: The title to categorize the applied discount.
-        /// <br/> description: The description of the applied discount. 
-        /// <br/> value: The value that was used to calculate the final applied discount amount.
-        /// <br/> value_type: The type of value that was used to calculate the final applied discount amount. Valid values: fixed_amount and percentage.
-        /// <br/> non_applicable_reason: The reason why the discount is not applicable, if the discount cannot be applied to the checkout.
-        /// <br/> applicable: Whether this discount code can be applied to the checkout.
-        /// <br/> application_type: Describes how the discount was applied to the checkout. Possible values:
-        /// <br/> 
-        /// <br/> automatic: The discount was applied automatically.
-        /// <br/> discount_code: The merchant or customer entered a discount code.
-        /// <br/> manual: The discount was applied manually by the merchant or an app.
-        /// <br/> script: The discount was applied by a Shopify Script.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("applied_discount")]
-        public string? Applied_discount { get; set; } = default!;
-
-        /// <summary>
-        /// The mailing address associated with the payment method. It has the following properties:
-        /// <br/> 
-        /// <br/> address1: The street address of the billing address.
-        /// <br/> address2: An optional additional field for the street address of the billing address.
-        /// <br/> city: The city, town, or village of the billing address.
-        /// <br/> company: The company of the person associated with the billing address.
-        /// <br/> country: The name of the country of the billing address.
-        /// <br/> country_code: The two-letter code (ISO 3166-1 alpha-2 format) for the country of the billing address.
-        /// <br/> first_name: The first name of the person associated with the payment method.
-        /// <br/> last_name: The last name of the person associated with the payment method.
-        /// <br/> phone: The phone number at the billing address.
-        /// <br/> province: The name of the region (province, state, prefecture, …) of the billing address.
-        /// <br/> province_code: The two-letter abbreviation of the region of the billing address.
-        /// <br/> zip: The postal code (zip, postcode, Eircode, …) of the billing address.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("billing_address")]
-        public string? Billing_address { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the customer has consented to receive marketing material via email.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("buyer_accepts_marketing")]
-        public string? Buyer_accepts_marketing { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the checkout was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The three-letter code (ISO 4217 format) of the shop's default currency at the time of checkout. For the currency that the customer used at checkout, see presentment_currency.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        public string? Currency { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the customer associated with this checkout.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("customer_id")]
-        public string? Customer_id { get; set; } = default!;
-
-        /// <summary>
-        /// The discount code that is applied to the checkout. This populates applied_discount with
-        /// <br/> the appropriate metadata for that discount code. To remove a discount code, send an empty string or
-        /// <br/> null.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("discount_code")]
-        public string? Discount_code { get; set; } = default!;
-
-        /// <summary>
-        /// The customer's email address. A checkout needs to have a value for email or phone before it can be completed.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        public string? Email { get; set; } = default!;
-
-        /// <summary>
-        /// A list of gift card objects, each containing information about a gift card applied to this checkout.
-        /// <br/> Gift cards can be applied to a checkout by passing { "checkout": { "gift_cards": [{ "code": "a gift card code" }, { "code": "another gift card code" }] } }.
-        /// <br/> Each gift card object has the following properties:
-        /// <br/> 
-        /// <br/> amount_used: The amount of the gift card used by this checkout in presentment currency.
-        /// <br/> code: The gift card code.
-        /// <br/> balance: The amount left on the gift card after being applied to this checkout in presentment currency.
-        /// <br/> id: The ID for the applied gift card.
-        /// <br/> last_characters: The last four characters of the applied gift card for display back to the user.
-        /// <br/> 
-        /// <br/> Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the gift_cards array without that gift card.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("gift_cards")]
-        public string? Gift_cards { get; set; } = default!;
-
-        /// <summary>
-        /// A list of line item objects, each containing information about an item in the checkout. Each line item object has the following properties:
-        /// <br/> 
-        /// <br/> applied_discounts: A list of the discounts applied to the line item.
-        /// <br/> compare_at_price: The original selling price of the product, if applicable.
-        /// <br/> discount_allocations: A list all discounts on the checkout that target this line item, including both "across" and "each" applications. A superset of applied_discounts.
-        /// <br/> fulfillment_service: If the variant is a gift card, allows to override the fulfillment service so the gift card can be activated with a custom code. Valid values: manual.
-        /// <br/> grams: The weight of the item in grams.
-        /// <br/> id: The checkout-specific ID of the line item.
-        /// <br/> line_price: The line price of the item, based on price multiplied by quantity.
-        /// <br/> price: The price of the item in presentment currency.
-        /// <br/> product_id: The product of the line item.
-        /// <br/> properties: The customization information for a line item (optional).
-        /// <br/> quantity: The number of products that were purchased.
-        /// <br/> requires_shipping: Whether the fulfillment requires shipping.
-        /// <br/> sku: The unique identifier of the item in the fulfillment.
-        /// <br/> taxable: Whether this product is taxable.
-        /// <br/> title: The title of the product.
-        /// <br/> variant_id: The variant ID of the line item.
-        /// <br/> variant_title: The title of the product variant.
-        /// <br/> vendor: The name of the item's supplier.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("line_items")]
-        public string? Line_items { get; set; } = default!;
-
-        /// <summary>
-        /// An object containing the ID, name, and status page URL of the associated order when the checkout is complete. Default value: null.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("order")]
-        public string? Order { get; set; } = default!;
-
-        /// <summary>
-        /// The amount left to be paid in presentment currency. This is equal to the sum of the checkout line prices, taxes, and shipping minus discounts and gift cards.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("payment_due")]
-        public string? Payment_due { get; set; } = default!;
-
-        /// <summary>
-        /// The URL that must be used to store credit cards in Shopify's card vault. These URLs are subject to change, so you should always use the one supplied here. The general pattern for the URLs is https://elb.deposit.shopifycs.com/sessions.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("payment_url")]
-        public string? Payment_url { get; set; } = default!;
-
-        /// <summary>
-        /// The customer's phone number for receiving SMS notifications. A checkout needs to have a value for email or phone before it can be completed.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("phone")]
-        public string? Phone { get; set; } = default!;
-
-        /// <summary>
-        /// The three-letter code (ISO 4217 format)  for the currency that the customer used for payment at checkout. For the shop's default currency, see currency.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("presentment_currency")]
-        public string? Presentment_currency { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the checkout requires shipping. If true, then shipping_line must be set before creating a payment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping")]
-        public string? Requires_shipping { get; set; } = default!;
-
-        /// <summary>
-        /// The reservation time in seconds for the line item products. Default value: null. This property is not writable.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("reservation_time")]
-        public string? Reservation_time { get; set; } = default!;
-
-        /// <summary>
-        /// The time in seconds that the line item products will be held. Default value: 0. This property is not writable.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("reservation_time_left")]
-        public string? Reservation_time_left { get; set; } = default!;
-
-        /// <summary>
-        /// The mailing address to where the checkout will be shipped. It has the following properties:
-        /// <br/> 
-        /// <br/> address1: The street address of the shipping address.
-        /// <br/> address2: An optional additional field for the street address of the shipping address.
-        /// <br/> city: The city, town, or village of the shipping address.
-        /// <br/> company: The company of the person associated with the shipping address.
-        /// <br/> country: The name of the country of the shipping address.
-        /// <br/> country_code: The two-letter code (ISO 3166-1 alpha-2 format) for the country of the shipping address.
-        /// <br/> first_name: The first name of the person associated with the shipping address.
-        /// <br/> last_name: The last name of the person associated with the shipping address.
-        /// <br/> phone: The phone number at the shipping address.
-        /// <br/> province: The name of the region (province, state, prefecture, …) of the shipping address.
-        /// <br/> province_code: The two-letter abbreviation of the region of the shipping address.
-        /// <br/> zip: The postal code (zip, postcode, Eircode, …) of the shipping address.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("shipping_address")]
-        public string? Shipping_address { get; set; } = default!;
-
-        /// <summary>
-        /// The selected shipping rate. A new shipping rate can be selected by updating the value for handle.
-        /// <br/> A shipping line is required when requires_shipping is true. Learn more about
-        /// <br/> selecting shipping rates.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("shipping_line")]
-        public string? Shipping_line { get; set; } = default!;
-
-        /// <summary>
-        /// The selected shipping rate. This property is not writable.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("shipping_rate")]
-        public string? Shipping_rate { get; set; } = default!;
-
-        /// <summary>
-        /// The source of the checkout. To use this field for sales attribution, you must register the channels that your app is managing. You can register the channels that your app is managing by completing this Google Form. After you've submited your request, you need to wait for your request to be processed by Shopify. You can find a list of your channels in the Partner Dashboard, in your app's Marketplace extension. You can specify a handle as the source_name value in your request.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("source_name")]
-        public string? Source_name { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the order placed on the originating platform.
-        /// <br/>This value doesn't correspond to the Shopify ID that's generated from a completed draft.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("source_identifier")]
-        public string? Source_identifier { get; set; } = default!;
-
-        /// <summary>
-        /// A valid URL to the original order on the originating surface.
-        /// <br/>This URL is displayed to merchants on the Order Details page.
-        /// <br/>If the URL is invalid, then it won't be displayed.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("source_url")]
-        public string? Source_url { get; set; } = default!;
-
-        /// <summary>
-        /// The price of the checkout in presentment currency before shipping, taxes, and tips.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("subtotal_price")]
-        public string? Subtotal_price { get; set; } = default!;
-
-        /// <summary>
-        /// An array of tax_line objects, each of which represents a tax rate applicable to the checkout. Each tax line object has the following properties:
-        /// <br/> 
-        /// <br/> price: The amount of tax to be charged in presentment currency.
-        /// <br/> rate: The rate of tax to be applied.
-        /// <br/> title: The name of the tax.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
-        public string? Tax_lines { get; set; } = default!;
-
-        /// <summary>
-        /// Whether taxes are included in the subtotal price.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("taxes_included")]
-        public string? Taxes_included { get; set; } = default!;
-
-        /// <summary>
-        /// A unique identifier for a particular checkout.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("token")]
-        public string? Token { get; set; } = default!;
-
-        /// <summary>
-        /// The sum of the the checkout line prices, taxes, shipping costs, tips, and discounts in presentment currency.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_price")]
-        public string? Total_price { get; set; } = default!;
-
-        /// <summary>
-        /// The sum of all the taxes applied to the checkout in presentment currency.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_tax")]
-        public string? Total_tax { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format format) when the checkout was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the user who created the checkout. This value is passed to the order. Default value: null.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("user_id")]
-        public string? User_id { get; set; } = default!;
-
-        /// <summary>
-        /// The URL pointing to the checkout accessible from the web.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("web_url")]
-        public string? Web_url { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

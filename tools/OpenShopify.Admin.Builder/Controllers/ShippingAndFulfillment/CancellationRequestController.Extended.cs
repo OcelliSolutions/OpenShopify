@@ -9,17 +9,17 @@ namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 [ApiController]
 public class CancellationRequestController : CancellationRequestControllerBase
 {
-    public override Task SendCancellationRequest(string fulfillment_order_id, string? message = null)
+    public override Task SendCancellationRequest([FromRoute] string fulfillment_order_id, string? message = null)
     {
         throw new NotImplementedException();
     }
 
-    public override Task AcceptCancellationRequest(string fulfillment_order_id, string? message = null)
+    public override Task AcceptCancellationRequest([FromRoute] string fulfillment_order_id, string? message = null)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RejectCancellationRequest(string fulfillment_order_id, string? message = null)
+    public override Task RejectCancellationRequest([FromRoute] string fulfillment_order_id, string? message = null)
     {
         throw new NotImplementedException();
     }

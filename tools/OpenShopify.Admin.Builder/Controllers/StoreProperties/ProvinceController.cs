@@ -31,14 +31,14 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of fields names.</param>
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <returns>Retrieves a list of provinces for a country</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/countries/{country_id}/provinces.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfProvincesForCountry(string country_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
 
         /// <summary>
         /// Retrieves a count of provinces for a country
         /// </summary>
         /// <returns>Retrieves a count of provinces for a country</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/countries/{country_id}/provinces/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfProvincesForCountry(string country_id);
 
         /// <summary>
@@ -46,99 +46,19 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single province for a country</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/countries/{country_id}/provinces/{province_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/{province_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleProvinceForCountry(string country_id, string province_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates an existing province for a country
         /// </summary>
         /// <returns>Updates an existing province for a country</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/countries/{country_id}/provinces/{province_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/{province_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateExistingProvinceForCountry(string country_id, string province_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Province
-    {
-        /// <summary>
-        /// The standard abbreviation for the province.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("code")]
-        public string? Code { get; set; } = default!;
-
-        /// <summary>
-        /// The ID for the country that the province belongs to.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("country_id")]
-        public string? Country_id { get; set; } = default!;
-
-        /// <summary>
-        /// The ID for the province.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The full name of the province.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The ID for the shipping zone that the province belongs to.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("shipping_zone_id")]
-        public string? Shipping_zone_id { get; set; } = default!;
-
-        /// <summary>
-        /// The sales tax rate to be applied to orders made by customers from this province.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax")]
-        public string? Tax { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the tax for this province.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_name")]
-        public string? Tax_name { get; set; } = default!;
-
-        /// <summary>
-        /// The tax type. Valid values: null, normal, harmonized, or compounded.
-        /// <br/>
-        /// <br/> A harmonized tax is a combination of provincial and federal sales taxes.
-        /// <br/>
-        /// <br/> Normal and harmonized tax rates are applied to the pre-tax value of an order, but a compounded tax rate is applied on top of other tax rates.
-        /// <br/> For example, if a $100 order receives a 5% normal tax rate and a 2% compound tax rate, then the post-tax total is $107.10 ((100 x 1.05) x 1.02 = 107.1).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_type")]
-        public string? Tax_type { get; set; } = default!;
-
-        /// <summary>
-        /// The province's tax in percent format.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_percentage")]
-        public string? Tax_percentage { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

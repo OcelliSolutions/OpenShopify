@@ -35,7 +35,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_max">Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="updated_at_min">Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Retrieves a list of reports</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/reports.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("reports.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfReports([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="name">The name of the report. Maximum length: 255 characters.</param>
         /// <param name="shopify_ql">The ShopifyQL the report will query.</param>
         /// <returns>Creates a new report</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/reports.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("reports.json")]
         public abstract System.Threading.Tasks.Task CreateNewReport([Microsoft.AspNetCore.Mvc.FromQuery] string? name = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? shopify_ql = null);
 
         /// <summary>
@@ -52,75 +52,26 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a single report</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/reports/{report_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("reports/{report_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleReport(string report_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates a report
         /// </summary>
         /// <returns>Updates a report</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/reports/{report_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("reports/{report_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateReport(string report_id);
 
         /// <summary>
         /// Deletes a report
         /// </summary>
         /// <returns>Deletes a report</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/reports/{report_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("reports/{report_id}.json")]
         public abstract System.Threading.Tasks.Task DeleteReport(string report_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Report
-    {
-        /// <summary>
-        /// The category for the report. When you create a report, the API will return custom_app_reports.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("category")]
-        public string? Category { get; set; } = default!;
-
-        /// <summary>
-        /// The unique numeric identifier for the report.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the report. Maximum length: 255 characters.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The ShopifyQL query that generates the report.
-        /// <br/>See Shopify Query Language.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("shopify_ql")]
-        public string? Shopify_ql { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601)
-        /// <br/>when the report was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

@@ -29,108 +29,40 @@ namespace OpenShopify.Admin.Builder
         /// Creates a carrier service
         /// </summary>
         /// <returns>Creates a carrier service</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/carrier_services.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("carrier_services.json")]
         public abstract System.Threading.Tasks.Task CreateCarrierService();
 
         /// <summary>
         /// Retrieves a list of carrier services
         /// </summary>
         /// <returns>Retrieves a list of carrier services</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/carrier_services.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("carrier_services.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfCarrierServices();
 
         /// <summary>
         /// Updates a carrier service
         /// </summary>
         /// <returns>Updates a carrier service</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/carrier_services/{carrier_service_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("carrier_services/{carrier_service_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateCarrierService(string carrier_service_id);
 
         /// <summary>
         /// Retrieves a single carrier service
         /// </summary>
         /// <returns>Retrieves a single carrier service</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/carrier_services/{carrier_service_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("carrier_services/{carrier_service_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleCarrierService(string carrier_service_id);
 
         /// <summary>
         /// Deletes a carrier service
         /// </summary>
         /// <returns>Deletes a carrier service</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/carrier_services/{carrier_service_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("carrier_services/{carrier_service_id}.json")]
         public abstract System.Threading.Tasks.Task DeleteCarrierService(string carrier_service_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CarrierService
-    {
-        /// <summary>
-        /// Whether this carrier service is active.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("active")]
-        public string? Active { get; set; } = default!;
-
-        /// <summary>
-        /// The URL endpoint that Shopify needs to retrieve shipping rates. This must be a public URL.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("callback_url")]
-        public string? Callback_url { get; set; } = default!;
-
-        /// <summary>
-        /// Distinguishes between API or legacy carrier services.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("carrier_service_type")]
-        public string? Carrier_service_type { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the carrier service.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The format of the data returned by the URL endpoint. Valid values: json and xml. Default value: json.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("format")]
-        public string? Format { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the shipping service as seen by merchants and their customers.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// Whether merchants are able to send dummy data to your service through the Shopify admin to see shipping rate examples.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("service_discovery")]
-        public string? Service_discovery { get; set; } = default!;
-
-        /// <summary>
-        /// The GraphQL unique identifier for the carrier service.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? Admin_graphql_api_id { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

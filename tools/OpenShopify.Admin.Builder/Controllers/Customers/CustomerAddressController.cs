@@ -29,36 +29,36 @@ namespace OpenShopify.Admin.Builder
         /// Retrieves a list of addresses for a customer
         /// </summary>
         /// <returns>Retrieves a list of addresses for a customer</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/customers/{customer_id}/addresses.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfAddressesForCustomer(string customer_id);
 
         /// <summary>
         /// Creates a new address for a customer
         /// </summary>
         /// <returns>Creates a new address for a customer</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/customers/{customer_id}/addresses.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses.json")]
         public abstract System.Threading.Tasks.Task CreateNewAddressForCustomer(string customer_id);
 
         /// <summary>
         /// Retrieves details for a single customer address
         /// </summary>
         /// <returns>Retrieves details for a single customer address</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/customers/{customer_id}/addresses/{address_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveDetailsForSingleCustomerAddress(string address_id, string customer_id);
 
         /// <summary>
         /// Updates an existing customer address
         /// </summary>
         /// <returns>Updates an existing customer address</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/customers/{customer_id}/addresses/{address_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateExistingCustomerAddress(string address_id, string customer_id);
 
         /// <summary>
         /// Removes an address from a customer’s address list
         /// </summary>
         /// <returns>Removes an address from a customer’s address list</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/customers/{customer_id}/addresses/{address_id}.json")]
-        public abstract System.Threading.Tasks.Task RemoveAddressFromCustomerSAddressList(string address_id, string customer_id);
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}.json")]
+        public abstract System.Threading.Tasks.Task RemoveAddressFromCustomersAddressList(string address_id, string customer_id);
 
         /// <summary>
         /// Performs bulk operations for multiple customer addresses
@@ -66,143 +66,19 @@ namespace OpenShopify.Admin.Builder
         /// <param name="address_ids">Performs bulk operations for customer addresses specified by a comma-separated list of IDs.</param>
         /// <param name="operation">Operation to perform by keyword (for example, destroy)</param>
         /// <returns>Performs bulk operations for multiple customer addresses</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/customers/{customer_id}/addresses/set.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/set.json")]
         public abstract System.Threading.Tasks.Task PerformBulkOperationsForMultipleCustomerAddresses([Microsoft.AspNetCore.Mvc.FromQuery(Name = "address_ids[]")] string address_ids, string customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string operation);
 
         /// <summary>
         /// Sets the default address for a customer
         /// </summary>
         /// <returns>Sets the default address for a customer</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/customers/{customer_id}/addresses/{address_id}/default.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}/default.json")]
         public abstract System.Threading.Tasks.Task SetTheDefaultAddressForCustomer(string address_id, string customer_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CustomerAddress
-    {
-        /// <summary>
-        /// The customer's mailing address
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("address1")]
-        public string? Address1 { get; set; } = default!;
-
-        /// <summary>
-        /// An additional field for the customer's mailing address.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("address2")]
-        public string? Address2 { get; set; } = default!;
-
-        /// <summary>
-        /// The customer's city, town, or village.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("city")]
-        public string? City { get; set; } = default!;
-
-        /// <summary>
-        /// The customer's country.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("country")]
-        public string? Country { get; set; } = default!;
-
-        /// <summary>
-        /// The two-letter country code corresponding to the customer's country.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("country_code")]
-        public string? Country_code { get; set; } = default!;
-
-        /// <summary>
-        /// The customer’s normalized country name.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("country_name")]
-        public string? Country_name { get; set; } = default!;
-
-        /// <summary>
-        /// The customer’s company.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("company")]
-        public string? Company { get; set; } = default!;
-
-        /// <summary>
-        /// The unique identifier for the customer.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("customer_id")]
-        public string? Customer_id { get; set; } = default!;
-
-        /// <summary>
-        /// The customer’s first name.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("first_name")]
-        public string? First_name { get; set; } = default!;
-
-        /// <summary>
-        /// The unique identifier for the address.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The customer’s last name.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("last_name")]
-        public string? Last_name { get; set; } = default!;
-
-        /// <summary>
-        /// The customer’s first and last names.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The customer’s phone number at this address.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("phone")]
-        public string? Phone { get; set; } = default!;
-
-        /// <summary>
-        /// The customer’s region name. Typically a province, a state, or a prefecture.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("province")]
-        public string? Province { get; set; } = default!;
-
-        /// <summary>
-        /// The two-letter code for the customer’s region.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("province_code")]
-        public string? Province_code { get; set; } = default!;
-
-        /// <summary>
-        /// The customer’s postal code, also known as zip, postcode, Eircode, etc.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("zip")]
-        public string? Zip { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

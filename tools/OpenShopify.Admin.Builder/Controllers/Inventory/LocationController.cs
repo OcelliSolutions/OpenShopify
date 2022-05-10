@@ -29,169 +29,33 @@ namespace OpenShopify.Admin.Builder
         /// Retrieve a list of locations
         /// </summary>
         /// <returns>Retrieve a list of locations</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/locations.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfLocations();
 
         /// <summary>
         /// Retrieve a single location by its ID
         /// </summary>
         /// <returns>Retrieve a single location by its ID</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/locations/{location_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations/{location_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleLocationByItsID(string location_id);
 
         /// <summary>
         /// Retrieve a count of locations
         /// </summary>
         /// <returns>Retrieve a count of locations</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/locations/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfLocations();
 
         /// <summary>
         /// Retrieve a list of inventory levels for a location
         /// </summary>
         /// <returns>Retrieve a list of inventory levels for a location</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/locations/{location_id}/inventory_levels.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations/{location_id}/inventory_levels.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfInventoryLevelsForLocation(string location_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Location
-    {
-        /// <summary>
-        /// Whether the location is active. If true, then the location can be used to sell products,
-        /// <br/>stock inventory, and fulfill orders. Merchants can deactivate locations from the Shopify admin.
-        /// <br/>Deactivated locations don't contribute to the shop's
-        /// <br/>location limit.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("active")]
-        public string? Active { get; set; } = default!;
-
-        /// <summary>
-        /// The location's street address.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("address1")]
-        public string? Address1 { get; set; } = default!;
-
-        /// <summary>
-        /// The optional second line of the location's street address.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("address2")]
-        public string? Address2 { get; set; } = default!;
-
-        /// <summary>
-        /// The city the location is in.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("city")]
-        public string? City { get; set; } = default!;
-
-        /// <summary>
-        /// The country the location is in.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("country")]
-        public string? Country { get; set; } = default!;
-
-        /// <summary>
-        /// The two-letter code (ISO 3166-1 alpha-2 format) corresponding to country the location is in.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("country_code")]
-        public string? Country_code { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the location was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the location.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// Whether this is a fulfillment service location. If true, then the location is a
-        /// <br/> fulfillment service location. If false, then the location was created by the
-        /// <br/> merchant and isn't tied to a fulfillment service.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("legacy")]
-        public string? Legacy { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the location.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The phone number of the location. This value can contain special characters, such as - or +.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("phone")]
-        public string? Phone { get; set; } = default!;
-
-        /// <summary>
-        /// The province, state, or district of the location.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("province")]
-        public string? Province { get; set; } = default!;
-
-        /// <summary>
-        /// The province, state, or district code (ISO 3166-2 alpha-2 format) of the location.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("province_code")]
-        public string? Province_code { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the location was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        /// <summary>
-        /// The zip or postal code.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("zip")]
-        public string? Zip { get; set; } = default!;
-
-        /// <summary>
-        /// The localized name of the location's country.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("localized_country_name")]
-        public string? Localized_country_name { get; set; } = default!;
-
-        /// <summary>
-        /// The localized name of the location's region. Typically a province, state, or district.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("localized_province_name")]
-        public string? Localized_province_name { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

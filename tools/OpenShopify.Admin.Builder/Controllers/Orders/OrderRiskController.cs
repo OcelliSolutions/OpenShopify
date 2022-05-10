@@ -29,131 +29,40 @@ namespace OpenShopify.Admin.Builder
         /// Creates an order risk for an order
         /// </summary>
         /// <returns>Creates an order risk for an order</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/risks.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks.json")]
         public abstract System.Threading.Tasks.Task CreateOrderRiskForOrder(string order_id);
 
         /// <summary>
         /// Retrieves a list of all order risks for an order
         /// </summary>
         /// <returns>Retrieves a list of all order risks for an order</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/risks.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfAllOrderRisksForOrder(string order_id);
 
         /// <summary>
         /// Retrieves a single order risk by its ID
         /// </summary>
         /// <returns>Retrieves a single order risk by its ID</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/risks/{risk_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks/{risk_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleOrderRiskByItsID(string order_id, string risk_id);
 
         /// <summary>
         /// Updates an order risk
         /// </summary>
         /// <returns>Updates an order risk</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/risks/{risk_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks/{risk_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateOrderRisk(string order_id, string risk_id);
 
         /// <summary>
         /// Deletes an order risk for an order
         /// </summary>
         /// <returns>Deletes an order risk for an order</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/risks/{risk_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks/{risk_id}.json")]
         public abstract System.Threading.Tasks.Task DeleteOrderRiskForOrder(string order_id, string risk_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class OrderRisk
-    {
-        /// <summary>
-        /// Whether this order risk is severe enough to force the cancellation of the order. If true, then this order risk is included in the Order canceled message that's shown on the details page of the canceled order.
-        /// <br/> Note: Setting this property to true does not cancel the order. Use this property only if your app automatically cancels the order using the Order resource. If your app doesn't automatically cancel orders based on order risks, then leave this property set to false.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("cause_cancel")]
-        public string? Cause_cancel { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the checkout that the order risk belongs to.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("checkout_id")]
-        public string? Checkout_id { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the order risk is displayed on the order details page in the Shopify admin. If false, then this order risk is ignored when Shopify determines your app's overall risk level for the order.It's not advised to create order risks with a display set to false. This property can't be changed after an order risk is created.This property might be removed in future API versions.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("display")]
-        public string? Display { get; set; } = default!;
-
-        /// <summary>
-        /// A unique numeric identifier for the order risk.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The message that's displayed to the merchant to indicate the results of the fraud check. The message is displayed only if display is set totrue.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("merchant_message")]
-        public string? Merchant_message { get; set; } = default!;
-
-        /// <summary>
-        /// The message that's displayed to the merchant to indicate the results of the fraud check. The message is displayed only if display is set totrue.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("message")]
-        public string? Message { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the order that the order risk belongs to.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
-        public string? Order_id { get; set; } = default!;
-
-        /// <summary>
-        /// The recommended action given to the merchant. Valid values:
-        /// <br/> 
-        /// <br/> cancel: There is a high level of risk that this order is fraudulent. The merchant should cancel the order.
-        /// <br/> investigate: There is a medium level of risk that this order is fraudulent. The merchant should investigate the order.
-        /// <br/> accept: There is a low level of risk that this order is fraudulent. The order risk found no indication of fraud.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("recommendation")]
-        public string? Recommendation { get; set; } = default!;
-
-        /// <summary>
-        /// For internal use only. A number between 0 and 1 that's assigned to the order.
-        /// <br/> The closer the score is to 1, the more likely it is that the order is fraudulent.
-        /// <br/> 
-        /// <br/> Note
-        /// <br/> There is no guarantee of stability in risk scores. Scores are not probabilities. The relationship between scores and the probability of fraud can vary over time and between risk providers.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("score")]
-        public string? Score { get; set; } = default!;
-
-        /// <summary>
-        /// The source of the order risk.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("source")]
-        public string? Source { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

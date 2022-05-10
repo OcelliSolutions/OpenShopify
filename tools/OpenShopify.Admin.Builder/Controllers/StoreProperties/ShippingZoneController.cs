@@ -30,118 +30,12 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <returns>Receive a list of all ShippingZones</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/shipping_zones.json")]
-        public abstract System.Threading.Tasks.Task ReceiveListOfAllShippingzones([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shipping_zones.json")]
+        public abstract System.Threading.Tasks.Task ReceiveListOfAllShippingZones([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class ShippingZone
-    {
-        /// <summary>
-        /// The unique numeric identifier for the shipping zone.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the shipping zone, specified by the user.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the shipping zone's delivery profile. Shipping profiles allow merchants  to create product-based or location-based shipping rates.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("profile_id")]
-        public string? Profile_id { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the shipping zone's location group. Location groups allow merchants  to create shipping rates that apply only to the specific locations in the group.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("location_group_id")]
-        public string? Location_group_id { get; set; } = default!;
-
-        /// <summary>
-        /// A list of countries that belong to the shipping zone.
-        /// <br/> 
-        /// <br/> id: The unique numeric identifier for the country.
-        /// <br/> code: The ISO 3166-1 alpha-2 two-letter country code for the country. The code for a given country will be the same as the code for the same country in another shop.
-        /// <br/> shipping_zone_id: The unique numeric identifier for the shipping zone.
-        /// <br/> name: The full name of the country, in English.
-        /// <br/> tax: The tax value in decimal format.
-        /// <br/> tax_name: The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("countries")]
-        public string? Countries { get; set; } = default!;
-
-        /// <summary>
-        /// The sub-regions of a country. The term provinces also encompasses states.
-        /// <br/> 
-        /// <br/> code: The two letter province or state code.
-        /// <br/> country_id: The unique numeric identifier for the country.
-        /// <br/> shipping_zone_id: The unique numeric identifier for the shipping zone.
-        /// <br/> id: The unique numeric identifier for the particular province or state.
-        /// <br/> name: The name of the province or state.
-        /// <br/> tax: The tax value in decimal format.
-        /// <br/> tax_name: The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.
-        /// <br/> tax_type: A tax_type is applied for a compounded sales tax. For example, the Canadian HST is a compounded sales tax of both PST and GST.
-        /// <br/> tax_percentage: The tax value in percent format.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("provinces")]
-        public string? Provinces { get; set; } = default!;
-
-        /// <summary>
-        /// Information about carrier shipping providers and the rates used.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("carrier_shipping_rate_providers")]
-        public string? Carrier_shipping_rate_providers { get; set; } = default!;
-
-        /// <summary>
-        /// Information about a price-based shipping rate.
-        /// <br/> 
-        /// <br/> id: The unique numeric identifier for the shipping rate.
-        /// <br/> name: The name of the shipping rate.
-        /// <br/> price: The price of the shipping rate.
-        /// <br/> shipping_zone_id: The unique numeric identifier for the associated shipping zone.
-        /// <br/> min_order_subtotal: The minimum price of an order for it to be eligible for the shipping rate.
-        /// <br/> max_order_subtotal: The maximum price of an order for it to be eligible for the shipping rate.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("price_based_shipping_rates")]
-        public string? Price_based_shipping_rates { get; set; } = default!;
-
-        /// <summary>
-        /// Information about a weight-based shipping rate.
-        /// <br/> 
-        /// <br/> id: The unique numeric identifier for the shipping rate.
-        /// <br/> name: The name of the shipping rate.
-        /// <br/> price: The price of the shipping rate.
-        /// <br/> shipping_zone_id: The unique numeric identifier for the associated shipping zone.
-        /// <br/> weight_low: The minimum weight of an order for it to be eligible for the shipping rate.
-        /// <br/> weight_high: The maximum weight of an order for it to be eligible for the shipping rate.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("weight_based_shipping_rates")]
-        public string? Weight_based_shipping_rates { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

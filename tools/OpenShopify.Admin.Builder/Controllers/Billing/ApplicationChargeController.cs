@@ -29,7 +29,7 @@ namespace OpenShopify.Admin.Builder
         /// Creates an application charge
         /// </summary>
         /// <returns>Creates an application charge</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/application_charges.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("application_charges.json")]
         public abstract System.Threading.Tasks.Task CreateApplicationCharge();
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <returns>Retrieves a list of application charges</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/application_charges.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_charges.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfApplicationCharges([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
 
         /// <summary>
@@ -46,93 +46,12 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves an application charge</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/application_charges/{application_charge_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_charges/{application_charge_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveApplicationCharge(string application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class ApplicationCharge
-    {
-        /// <summary>
-        /// The URL where the merchant accepts or declines the application charge.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("confirmation_url")]
-        public string? Confirmation_url { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the application charge was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the application charge.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The application charge name.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The price of the application charge. The minimum price is 0.50, and maximum price is 10,000.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("price")]
-        public string? Price { get; set; } = default!;
-
-        /// <summary>
-        /// The URL where the merchant is redirected after accepting a charge.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("return_url")]
-        public string? Return_url { get; set; } = default!;
-
-        /// <summary>
-        /// The status of the application charge. Valid values:
-        /// <br/> 
-        /// <br/> pending: The application charge is pending approval by the merchant.
-        /// <br/> accepted: Removed in version 2021-01. The application charge has been accepted by the merchant and is ready to be activated by the app. At this point it will appear on the merchant's invoice. As of API version 2021-01, when a merchant accepts a charge, the charge immediately transitions from pending to active.
-        /// <br/> active: The application charge has been activated by the app and will be paid out to the Partner.
-        /// <br/> declined: The application charge was declined by the merchant.
-        /// <br/> expired: The application charge was not accepted within 2 days of being created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("status")]
-        public string? Status { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the application charge is a test transaction. Valid values:true,null.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("test")]
-        public string? Test { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the charge was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

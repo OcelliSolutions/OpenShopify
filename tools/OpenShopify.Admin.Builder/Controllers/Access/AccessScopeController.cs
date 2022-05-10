@@ -34,26 +34,7 @@ namespace OpenShopify.Admin.Builder
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class AccessScope
-    {
-        /// <summary>
-        /// The list of access scopes associated with the access token.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("access_scopes")]
-        public string? Access_scopes { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

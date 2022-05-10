@@ -15,7 +15,7 @@ public class ProductListingController : ProductListingControllerBase
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCodeProductIdsCodeThatArePublishedToYourApp(string? limit = "50")
+    public override Task RetrieveProductIdsThatArePublishedToYourApp(string? limit = "50")
     {
         throw new NotImplementedException();
     }

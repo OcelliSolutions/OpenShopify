@@ -34,101 +34,19 @@ namespace OpenShopify.Admin.Builder
         /// <br/>&lt;em&gt;Formatting the resource feedback message field&lt;/em&gt;&lt;/a&gt; for formatting requirements.</param>
         /// <param name="state">Must be one of the following values:</param>
         /// <returns>Create a new ResourceFeedback</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/resource_feedback.json")]
-        public abstract System.Threading.Tasks.Task CreateNewResourcefeedback([Microsoft.AspNetCore.Mvc.FromQuery] string feedback_generated_at, [Microsoft.AspNetCore.Mvc.FromQuery] string messages, [Microsoft.AspNetCore.Mvc.FromQuery] string state);
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("resource_feedback.json")]
+        public abstract System.Threading.Tasks.Task CreateNewResourceFeedback([Microsoft.AspNetCore.Mvc.FromQuery] string feedback_generated_at, [Microsoft.AspNetCore.Mvc.FromQuery] string messages, [Microsoft.AspNetCore.Mvc.FromQuery] string state);
 
         /// <summary>
         /// Receive a list of all ResourceFeedbacks
         /// </summary>
         /// <returns>Receive a list of all ResourceFeedbacks</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/resource_feedback.json")]
-        public abstract System.Threading.Tasks.Task ReceiveListOfAllResourcefeedbacks();
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("resource_feedback.json")]
+        public abstract System.Threading.Tasks.Task ReceiveListOfAllResourceFeedbacks();
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class ResourceFeedback
-    {
-        /// <summary>
-        /// DateTime when the resource feedback record was stored by Shopify.
-        /// <br/> Type: ISO 8601 UTC DateTime as string with year, month (or week), day, hour, minute, second, time zone.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// DateTime when the resource feedback record was last updated by Shopify.
-        /// <br/> Type: ISO 8601 UTC DateTime as string with year, month (or week), day, hour, minute, second, time zone.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        /// <summary>
-        /// Unique id of the resource.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("resource_id")]
-        public string? Resource_id { get; set; } = default!;
-
-        /// <summary>
-        /// Type of resource for which feedback is returned. eg. Shop, Product.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("resource_type")]
-        public string? Resource_type { get; set; } = default!;
-
-        /// <summary>
-        /// Indicates the state that the Shop or resource is in, from the perspective of your app. Valid values are requires_action, or success.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("state")]
-        public string? State { get; set; } = default!;
-
-        /// <summary>
-        /// A concise set of copy strings to be displayed to merchants, to guide them in resolving problems your app
-        /// <br/> encounters when trying to make use of their Shop and its resources.
-        /// <br/> 
-        /// <br/>
-        /// <br/> 
-        /// <br/> Required only when state is requires_action. Disallowed when state is success.
-        /// <br/> 
-        /// <br/>
-        /// <br/> 
-        /// <br/> Content restrictions for Shop feedback:
-        /// <br/> one message up to 100 characters long.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("messages")]
-        public string? Messages { get; set; } = default!;
-
-        /// <summary>
-        /// The time at which the payload is constructed. Used to help determine whether incoming feedback is
-        /// <br/> outdated compared to feedback already received, and if it should be ignored upon arrival.
-        /// <br/> Type: ISO 8601 UTC datetime as string
-        /// <br/> with year, month [or week], day, hour, minute, second, millisecond, and time zone.
-        /// <br/> 
-        /// <br/>
-        /// <br/> 
-        /// <br/> Note
-        /// <br/> If you queue a Feedback API payload for delivery at a later time, do not update this value
-        /// <br/> when the API call is actually made; ensure that the current time is set when building the payload.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("feedback_generated_at")]
-        public string? Feedback_generated_at { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

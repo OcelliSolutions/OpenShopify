@@ -33,21 +33,21 @@ namespace OpenShopify.Admin.Builder
         /// <param name="presentment_currencies">Return presentment prices in only certain currencies, specified by a comma-separated list of &lt;a href="https://en.wikipedia.org/wiki/ISO_4217"&gt;ISO 4217&lt;/a&gt; currency codes.</param>
         /// <param name="since_id">Restrict results to after the specified ID</param>
         /// <returns>Retrieves a list of product variants</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products/{product_id}/variants.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfProductVariants(string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? presentment_currencies = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
 
         /// <summary>
         /// Create a new Product Variant
         /// </summary>
         /// <returns>Create a new Product Variant</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products/{product_id}/variants.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants.json")]
         public abstract System.Threading.Tasks.Task CreateNewProductVariant(string product_id);
 
         /// <summary>
         /// Receive a count of all Product Variants
         /// </summary>
         /// <returns>Receive a count of all Product Variants</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products/{product_id}/variants/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants/count.json")]
         public abstract System.Threading.Tasks.Task ReceiveCountOfAllProductVariants(string product_id);
 
         /// <summary>
@@ -55,249 +55,26 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response</param>
         /// <returns>Receive a single Product Variant</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/variants/{variant_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("variants/{variant_id}.json")]
         public abstract System.Threading.Tasks.Task ReceiveSingleProductVariant(string variant_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Modify an existing Product Variant
         /// </summary>
         /// <returns>Modify an existing Product Variant</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/variants/{variant_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("variants/{variant_id}.json")]
         public abstract System.Threading.Tasks.Task ModifyExistingProductVariant(string variant_id);
 
         /// <summary>
         /// Remove an existing Product Variant
         /// </summary>
         /// <returns>Remove an existing Product Variant</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products/{product_id}/variants/{variant_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants/{variant_id}.json")]
         public abstract System.Threading.Tasks.Task RemoveExistingProductVariant(string product_id, string variant_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class ProductVariant
-    {
-        /// <summary>
-        /// The barcode, UPC, or ISBN number for the product.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("barcode")]
-        public string? Barcode { get; set; } = default!;
-
-        /// <summary>
-        /// The original price of the item before an adjustment or a sale.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("compare_at_price")]
-        public string? Compare_at_price { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the product variant was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The fulfillment service associated with the product variant. Valid values: manual or the handle of a
-        /// <br/> fulfillment service.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]
-        public string? Fulfillment_service { get; set; } = default!;
-
-        /// <summary>
-        /// The weight of the product variant in grams.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("grams")]
-        public string? Grams { get; set; } = default!;
-
-        /// <summary>
-        /// The unique numeric identifier for the product variant.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The unique numeric identifier for a product's image.
-        /// <br/> The image must be associated to the same product as the variant.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("image_id")]
-        public string? Image_id { get; set; } = default!;
-
-        /// <summary>
-        /// The unique identifier for the inventory item, which is used in the Inventory API to query for inventory information.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("inventory_item_id")]
-        public string? Inventory_item_id { get; set; } = default!;
-
-        /// <summary>
-        /// The fulfillment service that tracks the number of items in stock for the product variant.
-        /// <br/> Valid values:
-        /// <br/> 
-        /// <br/> shopify: You are tracking inventory yourself using the admin.
-        /// <br/> null: You aren't tracking inventory on the variant.
-        /// <br/> the handle of a fulfillment service that has inventory management enabled: This must be the same fulfillment service referenced by the fulfillment_service property.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
-        public string? Inventory_management { get; set; } = default!;
-
-        /// <summary>
-        /// Whether customers are allowed to place an order for the product variant when it's out of stock. Valid values:
-        /// <br/> 
-        /// <br/> deny: Customers are not allowed to place orders for the product variant if it's out of stock.
-        /// <br/> continue: Customers are allowed to place orders for the product variant if it's out of stock.
-        /// <br/> 
-        /// <br/> Default value: deny.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("inventory_policy")]
-        public string? Inventory_policy { get; set; } = default!;
-
-        /// <summary>
-        /// An aggregate of inventory across all locations. To adjust inventory at a specific location, use the
-        /// <br/> InventoryLevel resource.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("inventory_quantity")]
-        public string? Inventory_quantity { get; set; } = default!;
-
-        /// <summary>
-        /// This property is deprecated. Use the
-        /// <br/> InventoryLevel resource instead.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("old_inventory_quantity")]
-        public string? Old_inventory_quantity { get; set; } = default!;
-
-        /// <summary>
-        /// This property is deprecated. Use the
-        /// <br/> InventoryLevel resource instead.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("inventory_quantity_adjustment")]
-        public string? Inventory_quantity_adjustment { get; set; } = default!;
-
-        /// <summary>
-        /// The custom properties that a shop owner uses to define product variants.
-        /// <br/> You can define three options for a product variant: option1, option2, option3.
-        /// <br/> Default value: Default Title.
-        /// <br/> The title field is a concatenation of the option1, option2, and
-        /// <br/> option3 fields. Updating the option fields updates the title field.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("option")]
-        public string? Option { get; set; } = default!;
-
-        /// <summary>
-        /// A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:
-        /// <br/>
-        /// <br/> currency_code: The three-letter code (ISO 4217 format) for one of the shop's enabled presentment currencies.
-        /// <br/> amount: The variant's price or compare-at price in the presentment currency.
-        /// <br/>
-        /// <br/>Requires the header 'X-Shopify-Api-Features': 'include-presentment-prices'.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("presentment_prices")]
-        public string? Presentment_prices { get; set; } = default!;
-
-        /// <summary>
-        /// The order of the product variant in the list of product variants.
-        /// <br/> The first position in the list is 1.
-        /// <br/> The position of variants is indicated by the order in which they are listed.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("position")]
-        public string? Position { get; set; } = default!;
-
-        /// <summary>
-        /// The price of the product variant.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("price")]
-        public string? Price { get; set; } = default!;
-
-        /// <summary>
-        /// The unique numeric identifier for the product.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("product_id")]
-        public string? Product_id { get; set; } = default!;
-
-        /// <summary>
-        /// This property is deprecated. Use the `requires_shipping` property on the InventoryItem resource instead.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping")]
-        public string? Requires_shipping { get; set; } = default!;
-
-        /// <summary>
-        /// A unique identifier for the product variant in the shop.  Required in order to connect to a FulfillmentService.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("sku")]
-        public string? Sku { get; set; } = default!;
-
-        /// <summary>
-        /// Whether a tax is charged when the product variant is sold.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("taxable")]
-        public string? Taxable { get; set; } = default!;
-
-        /// <summary>
-        /// This parameter applies only to the stores that have the Avalara AvaTax app installed. Specifies the Avalara tax code for the product variant.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_code")]
-        public string? Tax_code { get; set; } = default!;
-
-        /// <summary>
-        /// The title of the product variant. The title field is a concatenation of the option1, option2, and option3 fields. You can only update title indirectly using the option fields.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("title")]
-        public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the product variant was last modified.
-        /// <br/> Gets returned in ISO 8601 format.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        /// <summary>
-        /// The weight of the product variant in the unit system specified with weight_unit.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("weight")]
-        public string? Weight { get; set; } = default!;
-
-        /// <summary>
-        /// The unit of measurement that applies to the product variant's weight.
-        /// <br/> If you don't specify a value for weight_unit, then the shop's default unit of measurement is applied.
-        /// <br/> Valid values: g, kg, oz, and lb.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("weight_unit")]
-        public string? Weight_unit { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

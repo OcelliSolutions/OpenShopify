@@ -3,7 +3,7 @@
   "info": {
     "title": "Policy",
     "description": "      <p>You can use the Policy resource to access the policies that a merchant has configured for their shop, such as their refund and privacy policies.</p>\n      <p>Only the shop owner can edit this information from the Shopify admin. The Policy resource lets you only retrieve information about a shop's policies.</p>\n",
-    "x-owner": "https://vault.shopify.io/teams/1693",
+    "x-owner": null,
     "x-description-list": null,
     "version": "2022-04"
   },
@@ -33,11 +33,11 @@
                     "policies": [
                       {
                         "body": "You have 30 days to get a refund",
-                        "created_at": "2022-04-05T11:05:51-06:00",
-                        "updated_at": "2022-04-05T11:05:51-06:00",
+                        "created_at": "2022-05-04T06:18:52-06:00",
+                        "updated_at": "2022-05-04T06:18:52-06:00",
                         "handle": "refund-policy",
                         "title": "Refund policy",
-                        "url": "https://jsmith.myshopify.com/548380009/policies/878590288"
+                        "url": "https://jsmith.myshopify.com/548380009/policies/878590291"
                       }
                     ]
                   }
@@ -61,7 +61,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"policies\":[{\"body\":\"You have 30 days to get a refund\",\"created_at\":\"2022-04-05T13:05:51-04:00\",\"updated_at\":\"2022-04-05T13:05:51-04:00\",\"handle\":\"refund-policy\",\"title\":\"Refund policy\",\"url\":\"https://jsmith.myshopify.com/548380009/policies/878590288\"}]}"
+            "body": "{\"policies\":[{\"body\":\"You have 30 days to get a refund\",\"created_at\":\"2022-05-04T08:18:52-04:00\",\"updated_at\":\"2022-05-04T08:18:52-04:00\",\"handle\":\"refund-policy\",\"title\":\"Refund policy\",\"url\":\"https://jsmith.myshopify.com/548380009/policies/878590291\"}]}"
           },
           "name": "Retrieve a list of the shop's policies",
           "codeSamples": [

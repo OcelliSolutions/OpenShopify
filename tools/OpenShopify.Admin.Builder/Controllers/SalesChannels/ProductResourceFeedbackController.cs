@@ -23,119 +23,25 @@ namespace OpenShopify.Admin.Builder
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
 
-    public abstract class ProductResourcefeedbackControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public abstract class ProductResourceFeedbackControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
         /// <summary>
         /// Create a new Product ResourceFeedback
         /// </summary>
-        /// <param name="product_idQuery">Create feedback for a specific product, using its product id.</param>
         /// <returns>Create a new Product ResourceFeedback</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products/{product_id}/resource_feedback.json")]
-        public abstract System.Threading.Tasks.Task CreateNewProductResourcefeedback(string product_idPath, [Microsoft.AspNetCore.Mvc.FromQuery(Name = "product_id")] string? product_idQuery = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? state = null);
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/resource_feedback.json")]
+        public abstract System.Threading.Tasks.Task CreateNewProductResourceFeedback(string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? state = null);
 
         /// <summary>
         /// Receive a list of all Product ResourceFeedbacks
         /// </summary>
-        /// <param name="product_idQuery">Retrieve feedback for a specific product, by product id.</param>
         /// <returns>Receive a list of all Product ResourceFeedbacks</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products/{product_id}/resource_feedback.json")]
-        public abstract System.Threading.Tasks.Task ReceiveListOfAllProductResourcefeedbacks(string product_idPath, [Microsoft.AspNetCore.Mvc.FromQuery(Name = "product_id")] string? product_idQuery = null);
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/resource_feedback.json")]
+        public abstract System.Threading.Tasks.Task ReceiveListOfAllProductResourceFeedbacks(string product_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class ProductResourceFeedback
-    {
-        /// <summary>
-        /// DateTime when the resource feedback record was stored by Shopify.
-        /// <br/> Type: ISO 8601 UTC DateTime as string with year, month (or week), day, hour, minute, second, time zone.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// DateTime when the resource feedback record was last updated by Shopify.
-        /// <br/> Type: ISO 8601 UTC DateTime as string with year, month (or week), day, hour, minute, second, time zone.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        /// <summary>
-        /// Unique id of the resource.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("resource_id")]
-        public string? Resource_id { get; set; } = default!;
-
-        /// <summary>
-        /// Type of resource for which feedback is returned. eg. Shop, Product.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("resource_type")]
-        public string? Resource_type { get; set; } = default!;
-
-        /// <summary>
-        /// Indicates the state that the Shop or resource is in, from the perspective of your app.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("state")]
-        public string? State { get; set; } = default!;
-
-        /// <summary>
-        /// A concise set of copy strings to be displayed to merchants, to guide them in resolving problems your app
-        /// <br/> encounters when trying to make use of their Shop and its resources.
-        /// <br/> 
-        /// <br/>
-        /// <br/> 
-        /// <br/> Required only when state is requires_action. Disallowed when state is success.
-        /// <br/> 
-        /// <br/>
-        /// <br/> 
-        /// <br/> Content restrictions for product feedback:
-        /// <br/> four messages up to 100 characters long.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("messages")]
-        public string? Messages { get; set; } = default!;
-
-        /// <summary>
-        /// The time at which the payload is constructed. Used to help determine whether incoming feedback is
-        /// <br/> outdated compared to feedback already received, and if it should be ignored upon arrival.
-        /// <br/> Type: ISO 8601 UTC DateTime as string
-        /// <br/> with year, month [or week], day, hour, minute, second, millisecond, and time zone.
-        /// <br/> 
-        /// <br/>
-        /// <br/> 
-        /// <br/> Note
-        /// <br/> If you queue a Feedback API payload for delivery at a later time, do not update this value
-        /// <br/> when the API call is actually made; ensure that the current time is set when building the payload.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("feedback_generated_at")]
-        public string? Feedback_generated_at { get; set; } = default!;
-
-        /// <summary>
-        /// The forwarded updated_at timestamp of the product. Used only for versioned resources, where the updated_at timestamp changes
-        /// <br/> based on merchant actions.
-        /// <br/> When required, it is used along with feedback_generated_at to help determine whether incoming
-        /// <br/> feedback is outdated compared to feedback already received, and if it should be ignored upon arrival.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("resource_updated_at")]
-        public string? Resource_updated_at { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

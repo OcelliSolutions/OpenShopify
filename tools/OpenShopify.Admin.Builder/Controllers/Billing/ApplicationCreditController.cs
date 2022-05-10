@@ -29,7 +29,7 @@ namespace OpenShopify.Admin.Builder
         /// Creates an application credit
         /// </summary>
         /// <returns>Creates an application credit</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/application_credits.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("application_credits.json")]
         public abstract System.Threading.Tasks.Task CreateApplicationCredit();
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves all application credits</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/application_credits.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_credits.json")]
         public abstract System.Threading.Tasks.Task RetrieveAllApplicationCredits([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
@@ -45,52 +45,12 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a single application credit</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/application_credits/{application_credit_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_credits/{application_credit_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleApplicationCredit(string application_credit_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class ApplicationCredit
-    {
-        /// <summary>
-        /// The description of the application credit.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("description")]
-        public string? Description { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the application credit.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The amount refunded by the application credit.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("amount")]
-        public string? Amount { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the application credit is a test transaction. Valid values: true,null
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("test")]
-        public string? Test { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

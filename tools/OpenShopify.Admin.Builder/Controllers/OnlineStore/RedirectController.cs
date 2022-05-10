@@ -34,14 +34,14 @@ namespace OpenShopify.Admin.Builder
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <param name="target">Show redirects with a given target.</param>
         /// <returns>Retrieves a list of URL redirects</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/redirects.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("redirects.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfURLRedirects([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? path = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? target = null);
 
         /// <summary>
         /// Creates a redirect
         /// </summary>
         /// <returns>Creates a redirect</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/redirects.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("redirects.json")]
         public abstract System.Threading.Tasks.Task CreateRedirect();
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="path">Count redirects with given path.</param>
         /// <param name="target">Count redirects with given target.</param>
         /// <returns>Retrieves a count of URL redirects</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/redirects/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("redirects/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfURLRedirects([Microsoft.AspNetCore.Mvc.FromQuery] string? path = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? target = null);
 
         /// <summary>
@@ -58,59 +58,26 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single redirect</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/redirects/{redirect_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("redirects/{redirect_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleRedirect(string redirect_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates an existing redirect
         /// </summary>
         /// <returns>Updates an existing redirect</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/redirects/{redirect_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("redirects/{redirect_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateExistingRedirect(string redirect_id);
 
         /// <summary>
         /// Deletes a redirect
         /// </summary>
         /// <returns>Deletes a redirect</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/redirects/{redirect_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("redirects/{redirect_id}.json")]
         public abstract System.Threading.Tasks.Task DeleteRedirect(string redirect_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Redirect
-    {
-        /// <summary>
-        /// The ID for the redirect.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The old path to be redirected. When the user visits this path, they will be redirected to the target. (maximum: 1024 characters)
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("path")]
-        public string? Path { get; set; } = default!;
-
-        /// <summary>
-        /// The target location where the user will be redirected. When the user visits the old path specified by the path property, they will be redirected to this location. This property can be set to any path on the shop's site, or to an external URL. (maximum: 255 characters)
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("target")]
-        public string? Target { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

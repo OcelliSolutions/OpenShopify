@@ -31,178 +31,26 @@ namespace OpenShopify.Admin.Builder
         /// <param name="limit">The maximum number of results to show on a page.</param>
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         /// <returns>Retrieves a list of all users</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/users.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("users.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfAllUsers([Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? page_info = null);
 
         /// <summary>
         /// Retrieves a single user
         /// </summary>
         /// <returns>Retrieves a single user</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/users/{user_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("users/{user_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleUser(string user_id);
 
         /// <summary>
         /// Retrieves the currently logged-in user
         /// </summary>
         /// <returns>Retrieves the currently logged-in user</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/users/current.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("users/current.json")]
         public abstract System.Threading.Tasks.Task RetrieveTheCurrentlyLoggedInUser();
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class User
-    {
-        /// <summary>
-        /// Whether the user is the owner of the Shopify account.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("account_owner")]
-        public string? Account_owner { get; set; } = default!;
-
-        /// <summary>
-        /// The description the user has written for themselves.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("bio")]
-        public string? Bio { get; set; } = default!;
-
-        /// <summary>
-        /// The user's email address.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        public string? Email { get; set; } = default!;
-
-        /// <summary>
-        /// The user's first name.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("first_name")]
-        public string? First_name { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the user's staff.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The user's IM account address.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("im")]
-        public string? Im { get; set; } = default!;
-
-        /// <summary>
-        /// The user's last name.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("last_name")]
-        public string? Last_name { get; set; } = default!;
-
-        /// <summary>
-        /// The permissions granted to the user's staff account. Valid values:
-        /// <br/> 
-        /// <br/> applications: The user can authorize the installation of applications.
-        /// <br/> billing_application_charges: The user can approve application charges.
-        /// <br/> billing_charges: The user can view and export billing charges.
-        /// <br/> billing_invoices_view: The user can view billing invoices.
-        /// <br/> billing_payment_methods_view: The user can view billing payment methods.
-        /// <br/> customers: The user can view, create, edit, and delete customers, and respond to customer messages in Shopify Ping.
-        /// <br/> dashboard: The user can view the Home page, which includes sales information and other store data.
-        /// <br/> domains: The user can view, buy, and manage domains.
-        /// <br/> draft_orders: The user can create, update, and delete draft orders.
-        /// <br/> edit_orders: The user can edit orders.
-        /// <br/> edit_private_apps: The user can give permission to private apps to read, write, and make changes to the store.
-        /// <br/> export_customers: The user can export customers.
-        /// <br/> export_draft_orders: The user can export draft orders.
-        /// <br/> export_products: The user can export products and inventory.
-        /// <br/> export_orders: The user can export orders.
-        /// <br/> gift_cards: The user can view, create, issue, and export gift cards to a CSV file.
-        /// <br/> links: The user can view and modify links and navigation menus.
-        /// <br/> locations: The user can create, update, and delete locations where you stock or manage inventory.
-        /// <br/> marketing: The user can view and create discount codes and automatic discounts, and export discounts to a CSV file.
-        /// <br/> marketing_section: The user can view, create, and automate marketing campaigns.
-        /// <br/> orders: The user can view, create, update, delete, and cancel orders, and receive order notifications.
-        /// <br/> overviews: The user can view the Overview and Live view pages,
-        /// <br/> which include sales information, and other store and sales channels data.
-        /// <br/> pages: The user can view, create, update, publish, and delete blog posts and pages.
-        /// <br/> preferences: The user can view the preferences and configuration of a shop.
-        /// <br/> products: The user can view, create, import, and update products, collections, and inventory.
-        /// <br/> reports: The user can view and create all reports, which includes sales information and other store data.
-        /// <br/> shopify_payments_accounts: The user can view Shopify Payments account details.
-        /// <br/> shopify_payments_transfers: The user can view Shopify Payments payouts.
-        /// <br/> staff_audit_log_view: The user can view Shopify admin browser sessions.
-        /// <br/> staff_management_activation: The user can activate or deactivate staff in the store.
-        /// <br/> staff_management_create: The user can add staff to the store.
-        /// <br/> staff_management_delete: The user can delete staff from the store.
-        /// <br/> staff_management_update: The user can update staff in the store.
-        /// <br/> themes: The user can view, update, and publish themes.
-        /// <br/> view_private_apps: The user can view private apps installed on the store.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("permissions")]
-        public string? Permissions { get; set; } = default!;
-
-        /// <summary>
-        /// The user's phone number.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("phone")]
-        public string? Phone { get; set; } = default!;
-
-        /// <summary>
-        /// Whether this account will receive email announcements from Shopify. Valid values: 0, 1
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("receive_announcements")]
-        public string? Receive_announcements { get; set; } = default!;
-
-        /// <summary>
-        /// This property is deprecated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("screen_name")]
-        public string? Screen_name { get; set; } = default!;
-
-        /// <summary>
-        /// The user's homepage or other web address.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("url")]
-        public string? Url { get; set; } = default!;
-
-        /// <summary>
-        /// The user's preferred locale. Locale values use the format language or language-COUNTRY, where language is a two-letter language code, and COUNTRY is a two-letter country code. For example: en or en-US
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("locale")]
-        public string? Locale { get; set; } = default!;
-
-        /// <summary>
-        /// The type of account the user has. Valid values:
-        /// <br/> 
-        /// <br/> regular: The user's account can access the Shopify admin.
-        /// <br/> restricted: The user's account cannot access the Shopify admin.
-        /// <br/> invited: The user has not yet accepted the invitation to create staff.
-        /// <br/> collaborator: The user account of a partner who collaborates with the merchant.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("user_type")]
-        public string? User_type { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

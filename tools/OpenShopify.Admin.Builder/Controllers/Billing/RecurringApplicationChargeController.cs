@@ -29,7 +29,7 @@ namespace OpenShopify.Admin.Builder
         /// Creates a recurring application charge
         /// </summary>
         /// <returns>Creates a recurring application charge</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/recurring_application_charges.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges.json")]
         public abstract System.Threading.Tasks.Task CreateRecurringApplicationCharge();
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <returns>Retrieves a list of recurring application charges</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/recurring_application_charges.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfRecurringApplicationCharges([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
 
         /// <summary>
@@ -46,159 +46,26 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a single charge</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/recurring_application_charges/{recurring_application_charge_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleCharge(string recurring_application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Cancels a recurring application charge
         /// </summary>
         /// <returns>Cancels a recurring application charge</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/recurring_application_charges/{recurring_application_charge_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}.json")]
         public abstract System.Threading.Tasks.Task CancelRecurringApplicationCharge(string recurring_application_charge_id);
 
         /// <summary>
         /// Updates the capped amount of a recurring application charge
         /// </summary>
         /// <returns>Updates the capped amount of a recurring application charge</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/recurring_application_charges/{recurring_application_charge_id}/customize.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/customize.json")]
         public abstract System.Threading.Tasks.Task UpdateTheCappedAmountOfRecurringApplicationCharge(string recurring_application_charge_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class RecurringApplicationCharge
-    {
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the customer activated the recurring application charge.Note: The recurring application charge must be activated or the returned value is null.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("activated_on")]
-        public string? Activated_on { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the customer is billed.Note: The recurring application charge must be accepted or the returned value is null.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("billing_on")]
-        public string? Billing_on { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the merchant canceled their recurring application charge.Note: Returns null when the recurring application charge is not canceled.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("cancelled_on")]
-        public string? Cancelled_on { get; set; } = default!;
-
-        /// <summary>
-        /// The limit a customer can be charged for usage based billing. If this property is provided, then you must also provide the terms property. See usage charges for more information.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("capped_amount")]
-        public string? Capped_amount { get; set; } = default!;
-
-        /// <summary>
-        /// The URL where the merchant accepts or declines the recurring application charge.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("confirmation_url")]
-        public string? Confirmation_url { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the recurring application charge was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the recurring application charge.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the recurring application charge.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The price of the recurring application charge. The maximum price is 10,000.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("price")]
-        public string? Price { get; set; } = default!;
-
-        /// <summary>
-        /// The URL where the merchant is redirected after accepting the charge.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("return_url")]
-        public string? Return_url { get; set; } = default!;
-
-        /// <summary>
-        /// The status of the recurring charge. Valid values:
-        /// <br/> 
-        /// <br/> pending: The recurring charge is pending.
-        /// <br/> accepted: Removed in version 2021-01. The recurring charge has been accepted. As of API version 2021-01, when a merchant accepts a charge, the charge immediately transitions from pending to active.
-        /// <br/> active: The recurring charge is activated. This is the only status that actually causes a merchant to be charged. As of API version 2021-01, when a merchant accepts a charge, the charge immediately transitions from pending to active.
-        /// <br/> declined: The recurring charge has been declined.
-        /// <br/> expired: The recurring charge was not accepted within 2 days of being created.
-        /// <br/> frozen: The recurring charge is on hold due to a shop subscription non-payment. The charge will re-activate once subscription payments resume.
-        /// <br/> cancelled: The developer cancelled the charge.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("status")]
-        public string? Status { get; set; } = default!;
-
-        /// <summary>
-        /// The terms and conditions of usage based billing charges. Must be present in order to create usage charges, for example when the capped_amount property is provided.
-        /// <br/> Presented to the merchant when they approve an app's usage charges.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("terms")]
-        public string? Terms { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the application charge is a test transaction. Valid values: true,null.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("test")]
-        public string? Test { get; set; } = default!;
-
-        /// <summary>
-        /// The number of days that the customer is eligible for a free trial.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("trial_days")]
-        public string? Trial_days { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the free trial ends.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("trial_ends_on")]
-        public string? Trial_ends_on { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the recurring application charge was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

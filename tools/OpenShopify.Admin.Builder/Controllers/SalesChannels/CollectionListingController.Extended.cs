@@ -14,8 +14,7 @@ public class CollectionListingController : CollectionListingControllerBase
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCodeProductIdsCodeThatArePublishedToCodeCollectionIdCode(string collection_listing_id,
-        string? limit = "50")
+    public override Task RetrieveProductIdsThatArePublishedToCollectionId(string collection_listing_id, string? limit = "50")
     {
         throw new NotImplementedException();
     }

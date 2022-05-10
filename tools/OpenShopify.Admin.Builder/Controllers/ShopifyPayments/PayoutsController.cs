@@ -35,75 +35,19 @@ namespace OpenShopify.Admin.Builder
         /// <param name="since_id">Filter the response to payouts made after the specified ID.</param>
         /// <param name="status">Filter the response to payouts made with the specified status.</param>
         /// <returns>Return a list of all payouts</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/shopify_payments/payouts.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/payouts.json")]
         public abstract System.Threading.Tasks.Task ReturnListOfAllPayouts([Microsoft.AspNetCore.Mvc.FromQuery] string? date = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? date_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? date_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? last_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? status = null);
 
         /// <summary>
         /// Return a single payout
         /// </summary>
         /// <returns>Return a single payout</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/shopify_payments/payouts/{payout_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/payouts/{payout_id}.json")]
         public abstract System.Threading.Tasks.Task ReturnSinglePayout(string payout_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Payouts
-    {
-        /// <summary>
-        /// The unique identifier of the payout
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The transfer status of the payout. The value will be one of the following:
-        /// <br/> 
-        /// <br/> 
-        /// <br/> scheduled: The payout has been created and had transactions assigned to it, but
-        /// <br/> it has not yet been submitted to the bank.
-        /// <br/> 
-        /// <br/> in_transit: The payout has been submitted to the bank for processing.
-        /// <br/> paid: The payout has been successfully deposited into the bank.
-        /// <br/> failed: The payout has been declined by the bank.
-        /// <br/> canceled: The payout has been canceled by Shopify.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("status")]
-        public string? Status { get; set; } = default!;
-
-        /// <summary>
-        /// The date (ISO 8601 format) when the payout was issued.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("date")]
-        public string? Date { get; set; } = default!;
-
-        /// <summary>
-        /// The ISO 4217 currency code of the payout.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        public string? Currency { get; set; } = default!;
-
-        /// <summary>
-        /// The total amount of the payout, in a decimal formatted string.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("amount")]
-        public string? Amount { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

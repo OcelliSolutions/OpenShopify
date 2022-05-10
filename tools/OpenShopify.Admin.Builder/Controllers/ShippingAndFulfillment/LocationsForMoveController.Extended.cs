@@ -9,8 +9,7 @@ namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 [ApiController]
 public class LocationsForMoveController : LocationsForMoveControllerBase
 {
-    public override Task RetrieveListOfLocationsThatFulfillmentOrderCanPotentiallyMoveTo(string fulfillment_order_idPath,
-        string? fulfillment_order_idQuery = null)
+    public override Task RetrieveListOfLocationsThatFulfillmentOrderCanPotentiallyMoveTo(string fulfillment_order_id)
     {
         throw new NotImplementedException();
     }

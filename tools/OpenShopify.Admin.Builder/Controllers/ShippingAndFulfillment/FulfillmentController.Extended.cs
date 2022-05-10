@@ -9,36 +9,35 @@ namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 [ApiController]
 public class FulfillmentController : FulfillmentControllerBase
 {
-    public override Task RetrieveFulfillmentsAssociatedWithOrder(string order_id, string? created_at_max = null,
+    public override Task RetrieveFulfillmentsAssociatedWithOrder([FromRoute] string order_id, string? created_at_max = null,
         string? created_at_min = null, string? fields = null, string? limit = "50", string? since_id = null,
         string? updated_at_max = null, string? updated_at_min = null)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateNewFulfillment(string order_id)
+    public override Task CreateNewFulfillment([FromRoute] string order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveFulfillmentsAssociatedWithFulfillmentOrder(string fulfillment_order_idPath,
-        string? fulfillment_order_idQuery = null)
+    public override Task RetrieveFulfillmentsAssociatedWithFulfillmentOrder(string fulfillment_order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfFulfillmentsAssociatedWithSpecificOrder(string order_id, string? created_at_max = null,
+    public override Task RetrieveCountOfFulfillmentsAssociatedWithSpecificOrder([FromRoute] string order_id, string? created_at_max = null,
         string? created_at_min = null, string? updated_at_max = null, string? updated_at_min = null)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ReceiveSingleFulfillment(string fulfillment_id, string order_id, string? fields = null)
+    public override Task ReceiveSingleFulfillment([FromRoute] string fulfillment_id, [FromRoute] string order_id, string? fields = null)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ModifyExistingFulfillment(string fulfillment_id, string order_id)
+    public override Task ModifyExistingFulfillment([FromRoute] string fulfillment_id, [FromRoute] string order_id)
     {
         throw new NotImplementedException();
     }
@@ -48,27 +47,27 @@ public class FulfillmentController : FulfillmentControllerBase
         throw new NotImplementedException();
     }
 
-    public override Task UpdateTheTrackingInformationForFulfillment(string fulfillment_id)
+    public override Task UpdateTheTrackingInformationForFulfillment([FromRoute] string fulfillment_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CompleteFulfillment(string fulfillment_id, string order_id)
+    public override Task CompleteFulfillment([FromRoute] string fulfillment_id, [FromRoute] string order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task TransitionFulfillmentFromPendingToOpen(string fulfillment_id, string order_id)
+    public override Task TransitionFulfillmentFromPendingToOpen([FromRoute] string fulfillment_id, [FromRoute] string order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CancelFulfillmentForSpecificOrderID(string fulfillment_id, string order_id)
+    public override Task CancelFulfillmentForSpecificOrderID([FromRoute] string fulfillment_id, [FromRoute] string order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CancelFulfillment(string fulfillment_id)
+    public override Task CancelFulfillment([FromRoute] string fulfillment_id)
     {
         throw new NotImplementedException();
     }

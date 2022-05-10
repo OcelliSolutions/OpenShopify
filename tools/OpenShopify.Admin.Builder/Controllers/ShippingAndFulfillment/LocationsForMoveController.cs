@@ -28,38 +28,13 @@ namespace OpenShopify.Admin.Builder
         /// <summary>
         /// Retrieves a list of locations that a fulfillment order can potentially move to.
         /// </summary>
-        /// <param name="fulfillment_order_idQuery">The ID of the fulfillment order.</param>
         /// <returns>Retrieves a list of locations that a fulfillment order can potentially move to.</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/locations_for_move.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfLocationsThatFulfillmentOrderCanPotentiallyMoveTo(string fulfillment_order_idPath, [Microsoft.AspNetCore.Mvc.FromQuery(Name = "fulfillment_order_id")] string? fulfillment_order_idQuery = null);
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/locations_for_move.json")]
+        public abstract System.Threading.Tasks.Task RetrieveListOfLocationsThatFulfillmentOrderCanPotentiallyMoveTo(string fulfillment_order_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class LocationsForMove
-    {
-        /// <summary>
-        /// A list of locations that a fulfillment order can potentially move to.
-        /// <br/> 
-        /// <br/> location: The location being considered as the fulfillment order's new assigned location.
-        /// <br/> movable: Whether the fulfillment order can be moved to the location.
-        /// <br/> message: A human-readable string with the reason why the fulfillment order,
-        /// <br/> or some of its line items, can't be moved to the location.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("locations_for_move")]
-        public string? Locations_for_move { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

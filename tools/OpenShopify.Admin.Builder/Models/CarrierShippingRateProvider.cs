@@ -1,0 +1,32 @@
+using System.Text.Json.Serialization;
+
+namespace OpenShopify.Admin.Builder.Models
+{
+    public class CarrierShippingRateProvider : ShopifyObject
+    {
+        /// <summary>
+        /// A Carrier Service (also known as a Carrier Calculated Service or Shipping Service) provides real-time shipping rates to Shopify. Some common carrier services include: Canada Post, FedEx, UPS, and USPS. Note that the term "carrier" is often used interchangeably with the terms "shipping company" and "rate provider."
+        /// </summary>
+        [JsonPropertyName("carrier_service_id")]
+        public long? CarrierServiceId { get; set; }
+
+        /// <summary>
+        /// Rate adjustments - Flat fee
+        /// </summary>
+        [JsonPropertyName("flat_modifier")]
+        public decimal? FlatModifier { get; set; }
+
+        /// <summary>
+        /// Rate adjustments - percentage
+        /// </summary>
+        [JsonPropertyName("percent_modifier")]
+        public int? PercentModifier { get; set; }
+
+        /// <summary>
+        /// Shipping zone id
+        /// </summary>
+        [JsonPropertyName("shipping_zone_id")]
+        public long? ShippingZoneId { get; set; }
+    }
+
+}

@@ -41,14 +41,14 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_max">Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a list of custom collections</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/custom_collections.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("custom_collections.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfCustomCollections([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? product_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? title = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
 
         /// <summary>
         /// Creates a custom collection
         /// </summary>
         /// <returns>Creates a custom collection</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/custom_collections.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("custom_collections.json")]
         public abstract System.Threading.Tasks.Task CreateCustomCollection();
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_max">Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a count of custom collections</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/custom_collections/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("custom_collections/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfCustomCollections([Microsoft.AspNetCore.Mvc.FromQuery] string? product_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? title = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
 
         /// <summary>
@@ -70,136 +70,26 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single custom collection</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/custom_collections/{custom_collection_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("custom_collections/{custom_collection_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleCustomCollection(string custom_collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates an existing custom collection
         /// </summary>
         /// <returns>Updates an existing custom collection</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/custom_collections/{custom_collection_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("custom_collections/{custom_collection_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateExistingCustomCollection(string custom_collection_id);
 
         /// <summary>
         /// Deletes a custom collection
         /// </summary>
         /// <returns>Deletes a custom collection</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/custom_collections/{custom_collection_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("custom_collections/{custom_collection_id}.json")]
         public abstract System.Threading.Tasks.Task DeleteCustomCollection(string custom_collection_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CustomCollection
-    {
-        /// <summary>
-        /// The description of the custom collection, complete with HTML markup. Many templates display this on their custom collection pages.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("body_html")]
-        public string? Body_html { get; set; } = default!;
-
-        /// <summary>
-        /// A human-friendly unique string for the custom collection automatically generated from its title. This is used in shop themes by the Liquid templating language to refer to the custom collection. (limit: 255 characters)
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("handle")]
-        public string? Handle { get; set; } = default!;
-
-        /// <summary>
-        /// Image associated with the custom collection. Valid values are:
-        /// <br/> 
-        /// <br/> attachment: An image attached to a custom collection returned as Base64-encoded binary data.
-        /// <br/> src: The source URL that specifies the location of the image.
-        /// <br/> alt: Alternative text that describes the collection image.
-        /// <br/> created_at: The time and date (ISO 8601 format) when the image was added to the collection.
-        /// <br/> width: The width of the image in pixels.
-        /// <br/> height: The height of the image in pixels.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("image")]
-        public string? Image { get; set; } = default!;
-
-        /// <summary>
-        /// The ID for the custom collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the custom collection is published to the Online Store channel.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("published")]
-        public string? Published { get; set; } = default!;
-
-        /// <summary>
-        /// The time and date (ISO 8601 format) when the collection was made visible. Returns null for a hidden custom collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("published_at")]
-        public string? Published_at { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the collection is published to the Point of Sale channel. Valid values:
-        /// <br/> 
-        /// <br/> web: The custom collection is published to the Online Store channel but not published to
-        /// <br/> the Point of Sale channel.
-        /// <br/> global: The custom collection is published to both the Online Store channel and the Point
-        /// <br/> of Sale channel.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
-        public string? Published_scope { get; set; } = default!;
-
-        /// <summary>
-        /// The order in which products in the custom collection appear. Valid values:
-        /// <br/> 
-        /// <br/> alpha-asc: Alphabetically, in ascending order (A - Z).
-        /// <br/> alpha-desc: Alphabetically, in descending order (Z - A).
-        /// <br/> best-selling: By best-selling products.
-        /// <br/> created: By date created, in ascending order (oldest - newest).
-        /// <br/> created-desc: By date created, in descending order (newest - oldest).
-        /// <br/> manual: Order created by the shop owner.
-        /// <br/> price-asc: By price, in ascending order (lowest - highest).
-        /// <br/> price-desc: By price, in descending order (highest - lowest).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("sort_order")]
-        public string? Sort_order { get; set; } = default!;
-
-        /// <summary>
-        /// The suffix of the liquid template being used. For example, if the value is custom, then the collection is using the collection.custom.liquid template. If the value is null, then the collection is using the default collection.liquid.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
-        public string? Template_suffix { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the custom collection. (limit: 255 characters)
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("title")]
-        public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the custom collection was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

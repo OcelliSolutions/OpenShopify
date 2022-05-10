@@ -28,179 +28,34 @@ namespace OpenShopify.Admin.Builder
         /// <summary>
         /// Retrieves a list of fulfillment events for a specific fulfillment
         /// </summary>
-        /// <param name="fulfillment_idQuery">The ID of the fulfillment that's associated with the fulfillment event.</param>
-        /// <param name="order_idQuery">The ID of the order that's associated with the fulfillment event.</param>
         /// <returns>Retrieves a list of fulfillment events for a specific fulfillment</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/fulfillments/{fulfillment_id}/events.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfFulfillmentEventsForSpecificFulfillment(string fulfillment_idPath, string order_idPath, [Microsoft.AspNetCore.Mvc.FromQuery(Name = "fulfillment_id")] string? fulfillment_idQuery = null, [Microsoft.AspNetCore.Mvc.FromQuery(Name = "order_id")] string? order_idQuery = null);
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events.json")]
+        public abstract System.Threading.Tasks.Task RetrieveListOfFulfillmentEventsForSpecificFulfillment(string fulfillment_id, string order_id);
 
         /// <summary>
         /// Creates a fulfillment event
         /// </summary>
         /// <returns>Creates a fulfillment event</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/fulfillments/{fulfillment_id}/events.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events.json")]
         public abstract System.Threading.Tasks.Task CreateFulfillmentEvent(string fulfillment_id, string order_id);
 
         /// <summary>
         /// Retrieves a specific fulfillment event
         /// </summary>
-        /// <param name="event_idQuery">The ID of the fulfillment event.</param>
         /// <returns>Retrieves a specific fulfillment event</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSpecificFulfillmentEvent(string event_idPath, string fulfillment_id, string order_id, [Microsoft.AspNetCore.Mvc.FromQuery(Name = "event_id")] string? event_idQuery = null);
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json")]
+        public abstract System.Threading.Tasks.Task RetrieveSpecificFulfillmentEvent(string event_id, string fulfillment_id, string order_id);
 
         /// <summary>
         /// Deletes a fulfillment event
         /// </summary>
         /// <returns>Deletes a fulfillment event</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json")]
         public abstract System.Threading.Tasks.Task DeleteFulfillmentEvent(string event_id, string fulfillment_id, string order_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class FulfillmentEvent
-    {
-        /// <summary>
-        /// The street address where the fulfillment event occurred.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("address1")]
-        public string? Address1 { get; set; } = default!;
-
-        /// <summary>
-        /// The city where the fulfillment event occurred.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("city")]
-        public string? City { get; set; } = default!;
-
-        /// <summary>
-        /// The country where the fulfillment event occurred.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("country")]
-        public string? Country { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the fulfillment event was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The estimated delivery date based on the fulfillment's tracking number, as long as it's provided by one of the following carriers: USPS, FedEx, UPS, or Canada Post (Canada only). Value is null if no tracking number is available or if the tracking number is from an unsupported carrier. This property is available only when carrier calculated rates are in use.'
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("estimated_delivery_at")]
-        public string? Estimated_delivery_at { get; set; } = default!;
-
-        /// <summary>
-        /// An ID for the fulfillment that's associated with the fulfillment event.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_id")]
-        public string? Fulfillment_id { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format)  when the fulfillment event occurred.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("happened_at")]
-        public string? Happened_at { get; set; } = default!;
-
-        /// <summary>
-        /// An ID for the fulfillment event.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// A geographic coordinate specifying the latitude of the fulfillment event.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("latitude")]
-        public string? Latitude { get; set; } = default!;
-
-        /// <summary>
-        /// A geographic coordinate specifying the longitude of the fulfillment event.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("longitude")]
-        public string? Longitude { get; set; } = default!;
-
-        /// <summary>
-        /// An arbitrary message describing the status. Can be provided by a shipping carrier.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("message")]
-        public string? Message { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the order that's associated with the fulfillment event.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
-        public string? Order_id { get; set; } = default!;
-
-        /// <summary>
-        /// The province where the fulfillment event occurred.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("province")]
-        public string? Province { get; set; } = default!;
-
-        /// <summary>
-        /// An ID for the shop that's associated with the fulfillment event.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("shop_id")]
-        public string? Shop_id { get; set; } = default!;
-
-        /// <summary>
-        /// The status of the fulfillment event. Valid values:
-        /// <br/> 
-        /// <br/> label_printed: A label for the shipment was purchased and printed.
-        /// <br/> label_purchased: A label for the shipment was purchased, but not printed.
-        /// <br/> attempted_delivery: Delivery of the shipment was attempted, but unable to be completed.
-        /// <br/> ready_for_pickup: The shipment is ready for pickup at a shipping depot.
-        /// <br/> picked_up: The fulfillment was successfully picked up.
-        /// <br/> confirmed: The carrier is aware of the shipment, but hasn't received it yet.
-        /// <br/> in_transit: The shipment is being transported between shipping facilities on the way to its destination.
-        /// <br/> out_for_delivery: The shipment is being delivered to its final destination.
-        /// <br/> delivered: The shipment was successfully delivered.
-        /// <br/> failure: Something went wrong when pulling tracking information for the shipment, such as the tracking number was invalid or the shipment was canceled.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("status")]
-        public string? Status { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the fulfillment event was updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        /// <summary>
-        /// The zip code of the location where the fulfillment event occurred.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("zip")]
-        public string? Zip { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

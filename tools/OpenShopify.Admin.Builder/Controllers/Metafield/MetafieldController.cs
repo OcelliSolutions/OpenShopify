@@ -41,21 +41,21 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_min">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <param name="value_type">The legacy type information for the stored value. Replaced by `type`</param>
         /// <returns>Retrieve a list of metafields from the resource's endpoint</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/metafields.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfMetafieldsFromTheResourcesEndpoint([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? key = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery(Name = "namespace")] string? @namespace = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? type = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? value_type = null);
 
         /// <summary>
         /// Create a metafield
         /// </summary>
         /// <returns>Create a metafield</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/metafields.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("metafields.json")]
         public abstract System.Threading.Tasks.Task CreateMetafield();
 
         /// <summary>
         /// Retrieve a count of a resource's metafields.
         /// </summary>
         /// <returns>Retrieve a count of a resource's metafields.</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/metafields/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfResourcesMetafields();
 
         /// <summary>
@@ -63,122 +63,26 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Retrieve a specific metafield</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/metafields/{metafield_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSpecificMetafield(string metafield_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates a metafield
         /// </summary>
         /// <returns>Updates a metafield</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/metafields/{metafield_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateMetafield(string metafield_id);
 
         /// <summary>
         /// Deletes a metafield by its ID
         /// </summary>
         /// <returns>Deletes a metafield by its ID</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/metafields/{metafield_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
         public abstract System.Threading.Tasks.Task DeleteMetafieldByItsID(string metafield_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Metafield
-    {
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the metafield was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// A description of the information that the metafield contains.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("description")]
-        public string? Description { get; set; } = default!;
-
-        /// <summary>
-        /// The unique ID of the metafield.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The key of the metafield. Keys can be up to 30 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("key")]
-        public string? Key { get; set; } = default!;
-
-        /// <summary>
-        /// A container for a group of metafields.
-        /// <br/> Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name.
-        /// <br/> Must have between 3-20 characters.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("namespace")]
-        public string? Namespace { get; set; } = default!;
-
-        /// <summary>
-        /// The unique ID of the resource that the metafield is attached to.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("owner_id")]
-        public string? Owner_id { get; set; } = default!;
-
-        /// <summary>
-        /// The type of resource that the metafield is attached to.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("owner_resource")]
-        public string? Owner_resource { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the metafield was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        /// <summary>
-        /// The data to store in the metafield. The value is always stored as a string, regardless of the metafield's type.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value")]
-        public string? Value { get; set; } = default!;
-
-        /// <summary>
-        /// The type of data that the metafield stores in the `value` field. Refer to the list of supported types.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("type")]
-        public string? Type { get; set; } = default!;
-
-        /// <summary>
-        /// Caution
-        /// <br/> value_type is deprecated and replaced by type in API version 2021-07.
-        /// <br/> 
-        /// <br/>
-        /// <br/> The legacy type information for the stored value.
-        /// <br/> Valid values: string, integer, json_string.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
-        public string? Value_type { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

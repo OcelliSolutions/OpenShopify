@@ -1,0 +1,225 @@
+openapi: 3.0.1
+info:
+  title: Analytics
+  description: Reporting and Analytics
+  version: '2022-04'
+servers:
+  - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
+    variables:
+      store_name:
+        default: sample_store
+        description: The sub-domain of the storefront.
+      api_version:
+        default: '2022-04'
+        description: The api version.
+paths:
+  /reports.json:
+    get:
+      tags:
+        - Report
+      summary: Retrieves a list of reports
+      operationId: RetrieveListOfReports
+      parameters:
+        - name: fields
+          in: query
+          description: A comma-separated list of fields to include in the response.
+          schema:
+            type: string
+        - name: ids
+          in: query
+          description: A comma-separated list of report IDs.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The amount of results to return.
+          schema:
+            type: string
+            default: '50'
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportList'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Report
+      summary: Creates a new report
+      operationId: CreateNewReport
+      parameters:
+        - name: name
+          in: query
+          description: 'The name of the report. Maximum length: 255 characters.'
+          schema:
+            type: string
+        - name: shopify_ql
+          in: query
+          description: The ShopifyQL the report will query.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportItem'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/reports/{report_id}.json':
+    get:
+      tags:
+        - Report
+      summary: Retrieves a single report
+      operationId: RetrieveSingleReport
+      parameters:
+        - name: report_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: A comma-separated list of fields to include in the response.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportItem'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Report
+      summary: Updates a report
+      operationId: UpdateReport
+      parameters:
+        - name: report_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportItem'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - Report
+      summary: Deletes a report
+      operationId: DeleteReport
+      parameters:
+        - name: report_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Report:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        category:
+          type: string
+          nullable: true
+        name:
+          maxLength: 255
+          type: string
+          nullable: true
+        shopify_ql:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+      additionalProperties: { }
+    ReportItem:
+      type: object
+      properties:
+        report:
+          $ref: '#/components/schemas/Report'
+      additionalProperties: { }
+    ReportList:
+      type: object
+      properties:
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+          nullable: true
+      additionalProperties: { }
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+security:
+  - ApiKey: [ ]

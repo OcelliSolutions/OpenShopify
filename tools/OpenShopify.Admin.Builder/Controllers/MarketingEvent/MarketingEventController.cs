@@ -31,42 +31,42 @@ namespace OpenShopify.Admin.Builder
         /// <param name="limit">The amount of results to return.</param>
         /// <param name="offset">The number of marketing events to skip.</param>
         /// <returns>Retrieves a list of all marketing events</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/marketing_events.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("marketing_events.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfAllMarketingEvents([Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? offset = null);
 
         /// <summary>
         /// Creates a marketing event
         /// </summary>
         /// <returns>Creates a marketing event</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/marketing_events.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("marketing_events.json")]
         public abstract System.Threading.Tasks.Task CreateMarketingEvent();
 
         /// <summary>
         /// Retrieves a count of all marketing events
         /// </summary>
         /// <returns>Retrieves a count of all marketing events</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/marketing_events/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("marketing_events/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfAllMarketingEvents();
 
         /// <summary>
         /// Retrieves a single marketing event
         /// </summary>
         /// <returns>Retrieves a single marketing event</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/marketing_events/{marketing_event_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("marketing_events/{marketing_event_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleMarketingEvent(string marketing_event_id);
 
         /// <summary>
         /// Updates a marketing event
         /// </summary>
         /// <returns>Updates a marketing event</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/marketing_events/{marketing_event_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("marketing_events/{marketing_event_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateMarketingEvent(string marketing_event_id);
 
         /// <summary>
         /// Deletes a marketing event
         /// </summary>
         /// <returns>Deletes a marketing event</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/marketing_events/{marketing_event_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("marketing_events/{marketing_event_id}.json")]
         public abstract System.Threading.Tasks.Task DeleteMarketingEvent(string marketing_event_id);
 
         /// <summary>
@@ -82,148 +82,12 @@ namespace OpenShopify.Admin.Builder
         /// <param name="shares_count">The total number of shares for the day.</param>
         /// <param name="views_count">The total number of views for the day. A view occurs when a customer reads the marketing event that was served to them, for example, if the customer opens the email or spends time looking at a Facebook post.</param>
         /// <returns>Creates marketing engagements on a marketing event</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/marketing_events/{marketing_event_id}/engagements.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("marketing_events/{marketing_event_id}/engagements.json")]
         public abstract System.Threading.Tasks.Task CreateMarketingEngagementsOnMarketingEvent(string marketing_event_id, [Microsoft.AspNetCore.Mvc.FromQuery] string occurred_on, [Microsoft.AspNetCore.Mvc.FromQuery] string? ad_spend = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? clicks_count = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? comments_count = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? favorites_count = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? impressions_count = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? is_cumulative = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? shares_count = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? views_count = null);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class MarketingEvent
-    {
-        /// <summary>
-        /// An optional remote identifier for a marketing event. The remote identifier lets Shopify validate engagement data.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("remote_id")]
-        public string? Remote_id { get; set; } = default!;
-
-        /// <summary>
-        /// The type of marketing event. Valid values: ad, post, message, retargeting, transactional, affiliate, loyalty, newsletter, abandoned_cart.
-        /// <br/> 
-        /// <br/> Note
-        /// <br/> If there are values that you’d like to use for event_type that are not in the list above, then please post your request here. Our approach is to be more structured than using freeform text, but to still allow for categorization of most types of marketing actions.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("event_type")]
-        public string? Event_type { get; set; } = default!;
-
-        /// <summary>
-        /// The channel that your marketing event will use. Valid values: search, display, social, email, referral.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("marketing_channel")]
-        public string? Marketing_channel { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the event is paid or organic.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("paid")]
-        public string? Paid { get; set; } = default!;
-
-        /// <summary>
-        /// The destination domain of the marketing event. Required if the marketing_channel is set to search or social.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("referring_domain")]
-        public string? Referring_domain { get; set; } = default!;
-
-        /// <summary>
-        /// The budget of the ad campaign.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("budget")]
-        public string? Budget { get; set; } = default!;
-
-        /// <summary>
-        /// The currency for the budget. Required if budget is specified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        public string? Currency { get; set; } = default!;
-
-        /// <summary>
-        /// The type of the budget. Required if budget is specified. Valid values: daily, lifetime.'
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("budget_type")]
-        public string? Budget_type { get; set; } = default!;
-
-        /// <summary>
-        /// The time when the marketing action was started.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("started_at")]
-        public string? Started_at { get; set; } = default!;
-
-        /// <summary>
-        /// For events with a duration, the time when the event was scheduled to end.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("scheduled_to_end_at")]
-        public string? Scheduled_to_end_at { get; set; } = default!;
-
-        /// <summary>
-        /// For events with a duration, the time when the event actually ended.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("ended_at")]
-        public string? Ended_at { get; set; } = default!;
-
-        /// <summary>
-        /// The UTM parameters used in the links provided in the marketing event. Values must be unique and should not be url-encoded.
-        /// <br/> To do traffic or order attribution you must at least define utm_campaign, utm_source, and utm_medium.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("UTM parameters")]
-        public string? UTM_parameters { get; set; } = default!;
-
-        /// <summary>
-        /// A description of the marketing event.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("description")]
-        public string? Description { get; set; } = default!;
-
-        /// <summary>
-        /// A link to manage the marketing event. In most cases, this links to the app that created the event.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("manage_url")]
-        public string? Manage_url { get; set; } = default!;
-
-        /// <summary>
-        /// A link to the live version of the event, or to a rendered preview in the app that created it.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("preview_url")]
-        public string? Preview_url { get; set; } = default!;
-
-        /// <summary>
-        /// A list of the items that were marketed in the marketing event. Includes the type and id of each item. Valid values for type are:
-        /// <br/> 
-        /// <br/> product
-        /// <br/> collection
-        /// <br/> price_rule
-        /// <br/> discount (Will be replaced by price_rule after April 20, 2017.)
-        /// <br/> page
-        /// <br/> article
-        /// <br/> homepage (Doesn't have an id.)
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("marketed_resources")]
-        public string? Marketed_resources { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

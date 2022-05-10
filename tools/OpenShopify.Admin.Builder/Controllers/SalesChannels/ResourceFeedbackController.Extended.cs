@@ -9,12 +9,12 @@ namespace OpenShopify.Admin.Builder.Controllers.SalesChannels;
 [ApiController]
 public class ResourceFeedbackController : ResourceFeedbackControllerBase
 {
-    public override Task CreateNewResourcefeedback(string feedback_generated_at, string messages, string state)
+    public override Task CreateNewResourceFeedback(string feedback_generated_at, string messages, string state)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ReceiveListOfAllResourcefeedbacks()
+    public override Task ReceiveListOfAllResourceFeedbacks()
     {
         throw new NotImplementedException();
     }

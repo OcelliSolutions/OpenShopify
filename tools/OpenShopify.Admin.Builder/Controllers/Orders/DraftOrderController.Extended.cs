@@ -9,7 +9,7 @@ namespace OpenShopify.Admin.Builder.Controllers.Orders;
 [ApiController]
 public class DraftOrderController : DraftOrderControllerBase
 {
-    public override Task CreateNewDraftorder(string? customer_id = null, string? use_customer_default_address = null)
+    public override Task CreateNewDraftOrder(string? customer_id = null, string? use_customer_default_address = null)
     {
         throw new NotImplementedException();
     }
@@ -20,22 +20,22 @@ public class DraftOrderController : DraftOrderControllerBase
         throw new NotImplementedException();
     }
 
-    public override Task ModifyExistingDraftorder(string draft_order_id)
+    public override Task ModifyExistingDraftOrder(string draft_order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ReceiveSingleDraftorder(string draft_order_id, string? fields = null)
+    public override Task ReceiveSingleDraftOrder(string draft_order_id, string? fields = null)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RemoveExistingDraftorder(string draft_order_id)
+    public override Task RemoveExistingDraftOrder(string draft_order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ReceiveCountOfAllDraftorders(string? since_id = null, string? status = "open", string? updated_at_max = null,
+    public override Task ReceiveCountOfAllDraftOrders(string? since_id = null, string? status = "open", string? updated_at_max = null,
         string? updated_at_min = null)
     {
         throw new NotImplementedException();

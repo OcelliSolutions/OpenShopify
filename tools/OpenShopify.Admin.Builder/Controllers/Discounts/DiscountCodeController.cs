@@ -29,42 +29,42 @@ namespace OpenShopify.Admin.Builder
         /// Creates a discount code
         /// </summary>
         /// <returns>Creates a discount code</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/price_rules/{price_rule_id}/discount_codes.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes.json")]
         public abstract System.Threading.Tasks.Task CreateDiscountCode(string price_rule_id);
 
         /// <summary>
         /// Retrieves a list of discount codes
         /// </summary>
         /// <returns>Retrieves a list of discount codes</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/price_rules/{price_rule_id}/discount_codes.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfDiscountCodes(string price_rule_id);
 
         /// <summary>
         /// Updates an existing discount code
         /// </summary>
         /// <returns>Updates an existing discount code</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateExistingDiscountCode(string discount_code_id, string price_rule_id);
 
         /// <summary>
         /// Retrieves a single discount code
         /// </summary>
         /// <returns>Retrieves a single discount code</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleDiscountCode(string discount_code_id, string price_rule_id);
 
         /// <summary>
         /// Deletes a discount code
         /// </summary>
         /// <returns>Deletes a discount code</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json")]
         public abstract System.Threading.Tasks.Task DeleteDiscountCode(string discount_code_id, string price_rule_id);
 
         /// <summary>
         /// Retrieves the location of a discount code
         /// </summary>
         /// <param name="code">Retrieves the location of a discount code by code name.</param>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/discount_codes/lookup.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("discount_codes/lookup.json")]
         public abstract System.Threading.Tasks.Task RetrieveTheLocationOfDiscountCode([Microsoft.AspNetCore.Mvc.FromQuery] string code);
 
         /// <summary>
@@ -74,89 +74,33 @@ namespace OpenShopify.Admin.Builder
         /// <param name="times_used_max">Show discount codes used greater than or equal to this value.</param>
         /// <param name="times_used_min">Show discount codes used less than or equal to this value.</param>
         /// <returns>Retrieves a count of discount codes for a shop</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/discount_codes/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("discount_codes/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfDiscountCodesForShop([Microsoft.AspNetCore.Mvc.FromQuery] string? times_used = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? times_used_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? times_used_min = null);
 
         /// <summary>
         /// Creates a discount code creation job
         /// </summary>
         /// <returns>Creates a discount code creation job</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/price_rules/{price_rule_id}/batch.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/batch.json")]
         public abstract System.Threading.Tasks.Task CreateDiscountCodeCreationJob(string price_rule_id);
 
         /// <summary>
         /// Retrieves a discount code creation job
         /// </summary>
         /// <returns>Retrieves a discount code creation job</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/price_rules/{price_rule_id}/batch/{batch_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/batch/{batch_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveDiscountCodeCreationJob(string batch_id, string price_rule_id);
 
         /// <summary>
         /// Retrieves a list of discount codes for a discount code creation job
         /// </summary>
         /// <returns>Retrieves a list of discount codes for a discount code creation job</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/price_rules/{price_rule_id}/batch/{batch_id}/discount_codes.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/batch/{batch_id}/discount_codes.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfDiscountCodesForDiscountCodeCreationJob(string batch_id, string price_rule_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class DiscountCode
-    {
-        /// <summary>
-        /// The case-insensitive discount code that customers use at checkout. (maximum: 255 characters)
-        /// <br/> 
-        /// <br/> Use the same value for code as the title property of the associated price rule.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("code")]
-        public string? Code { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the discount code was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the discount code was updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        /// <summary>
-        /// The ID for the discount code.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The ID for the price rule that this discount code belongs to.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("price_rule_id")]
-        public string? Price_rule_id { get; set; } = default!;
-
-        /// <summary>
-        /// The number of times that the discount code has been redeemed.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("usage_count")]
-        public string? Usage_count { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

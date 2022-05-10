@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="message">An optional reason for the cancellation request.</param>
         /// <returns>Sends a cancellation request</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/cancellation_request.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancellation_request.json")]
         public abstract System.Threading.Tasks.Task SendCancellationRequest(string fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message = null);
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="message">An optional reason for accepting the cancellation request.</param>
         /// <returns>Accepts a cancellation request</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json")]
         public abstract System.Threading.Tasks.Task AcceptCancellationRequest(string fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message = null);
 
         /// <summary>
@@ -46,25 +46,12 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="message">An optional reason for rejecting the cancellation request.</param>
         /// <returns>Rejects a cancellation request</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json")]
         public abstract System.Threading.Tasks.Task RejectCancellationRequest(string fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message = null);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CancellationRequest
-    {
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

@@ -29,76 +29,26 @@ namespace OpenShopify.Admin.Builder
         /// Creates a new StorefrontAccessToken
         /// </summary>
         /// <returns>Creates a new StorefrontAccessToken</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/storefront_access_tokens.json")]
-        public abstract System.Threading.Tasks.Task CreateNewStorefrontaccesstoken();
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("storefront_access_tokens.json")]
+        public abstract System.Threading.Tasks.Task CreateNewStorefrontAccessToken();
 
         /// <summary>
         /// Retrieves a list of storefront access tokens that have been issued
         /// </summary>
         /// <returns>Retrieves a list of storefront access tokens that have been issued</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/storefront_access_tokens.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("storefront_access_tokens.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfStorefrontAccessTokensThatHaveBeenIssued();
 
         /// <summary>
         /// Deletes an existing storefront access token
         /// </summary>
         /// <returns>Deletes an existing storefront access token</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/storefront_access_tokens/{storefront_access_token_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("storefront_access_tokens/{storefront_access_token_id}.json")]
         public abstract System.Threading.Tasks.Task DeleteExistingStorefrontAccessToken(string storefront_access_token_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class StorefrontAccessToken
-    {
-        /// <summary>
-        /// Unique id that identifies a token and is used to perform operations on it.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The issued public access token.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("access_token")]
-        public string? Access_token { get; set; } = default!;
-
-        /// <summary>
-        /// An application-dependant, comma separated list of permissions associated with the token.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("access_scope")]
-        public string? Access_scope { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the public access token was created. The API returns this value in ISO 8601 format.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// An arbitrary title for each token determined by the developer/application, used for reference purposes.
-        /// <br/> 
-        /// <br/> Note
-        /// <br/> No constraint on uniqueness.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("title")]
-        public string? Title { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

@@ -29,130 +29,40 @@ namespace OpenShopify.Admin.Builder
         /// Receive a list of all FulfillmentServices
         /// </summary>
         /// <returns>Receive a list of all FulfillmentServices</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/fulfillment_services.json")]
-        public abstract System.Threading.Tasks.Task ReceiveListOfAllFulfillmentservices([Microsoft.AspNetCore.Mvc.FromQuery] string? scope = null);
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_services.json")]
+        public abstract System.Threading.Tasks.Task ReceiveListOfAllFulfillmentServices([Microsoft.AspNetCore.Mvc.FromQuery] string? scope = null);
 
         /// <summary>
         /// Create a new FulfillmentService
         /// </summary>
         /// <returns>Create a new FulfillmentService</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/fulfillment_services.json")]
-        public abstract System.Threading.Tasks.Task CreateNewFulfillmentservice();
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_services.json")]
+        public abstract System.Threading.Tasks.Task CreateNewFulfillmentService();
 
         /// <summary>
         /// Receive a single FulfillmentService
         /// </summary>
         /// <returns>Receive a single FulfillmentService</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/fulfillment_services/{fulfillment_service_id}.json")]
-        public abstract System.Threading.Tasks.Task ReceiveSingleFulfillmentservice(string fulfillment_service_id);
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_services/{fulfillment_service_id}.json")]
+        public abstract System.Threading.Tasks.Task ReceiveSingleFulfillmentService(string fulfillment_service_id);
 
         /// <summary>
         /// Modify an existing FulfillmentService
         /// </summary>
         /// <returns>Modify an existing FulfillmentService</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/fulfillment_services/{fulfillment_service_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingFulfillmentservice(string fulfillment_service_id);
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("fulfillment_services/{fulfillment_service_id}.json")]
+        public abstract System.Threading.Tasks.Task ModifyExistingFulfillmentService(string fulfillment_service_id);
 
         /// <summary>
         /// Remove an existing FulfillmentService
         /// </summary>
         /// <returns>Remove an existing FulfillmentService</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/fulfillment_services/{fulfillment_service_id}.json")]
-        public abstract System.Threading.Tasks.Task RemoveExistingFulfillmentservice(string fulfillment_service_id);
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("fulfillment_services/{fulfillment_service_id}.json")]
+        public abstract System.Threading.Tasks.Task RemoveExistingFulfillmentService(string fulfillment_service_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class FulfillmentService
-    {
-        /// <summary>
-        /// The GraphQL GID for this fulfillment service.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? Admin_graphql_api_id { get; set; } = default!;
-
-        /// <summary>
-        /// The callback URL the fulfillment service has registered for requests.
-        /// <br/> If the Fulfillment Service has opted in to use fulfillment orders, then the callback_url/fulfillment_order_notification endpoint is also used to send fulfillment and cancellation requests.The callback_url field is required if inventory_management, tracking_support, or fulfillment_orders_opt_in is set to true.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("callback_url")]
-        public string? Callback_url { get; set; } = default!;
-
-        /// <summary>
-        /// Specifies the format of the API output. Valid values are json and xml.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("format")]
-        public string? Format { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the fulfillment service wants to register for APIs related to fulfillment orders. To manage fulfillments using fulfillment orders, see Manage fulfillments with Fulfillment and FulfillmentOrder resources.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_orders_opt_in")]
-        public string? Fulfillment_orders_opt_in { get; set; } = default!;
-
-        /// <summary>
-        /// Human-readable unique identifier for this fulfillment service.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("handle")]
-        public string? Handle { get; set; } = default!;
-
-        /// <summary>
-        /// States if the fulfillment service tracks product inventory and provides updates to Shopify. Valid values are "true" and "false".
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
-        public string? Inventory_management { get; set; } = default!;
-
-        /// <summary>
-        /// The unique identifier of the location associated with the fulfillment service
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
-        public string? Location_id { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the fulfillment service as seen by merchants.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// A unique identifier for the fulfillment service provider.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("provider_id")]
-        public string? Provider_id { get; set; } = default!;
-
-        /// <summary>
-        /// States if the fulfillment service requires products to be physically shipped. Valid values are "true" and "false".
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping_method")]
-        public string? Requires_shipping_method { get; set; } = default!;
-
-        /// <summary>
-        /// States if the fulfillment service provides tracking numbers for packages. Valid values are "true" and "false".
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tracking_support")]
-        public string? Tracking_support { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

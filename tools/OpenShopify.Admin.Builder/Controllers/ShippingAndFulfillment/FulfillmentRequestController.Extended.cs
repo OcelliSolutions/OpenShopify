@@ -9,18 +9,18 @@ namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 [ApiController]
 public class FulfillmentRequestController : FulfillmentRequestControllerBase
 {
-    public override Task SendFulfillmentRequest(string fulfillment_order_id, string? fulfillment_order_line_items = null,
+    public override Task SendFulfillmentRequest([FromRoute] string fulfillment_order_id, string? fulfillment_order_line_items = null,
         string? message = null)
     {
         throw new NotImplementedException();
     }
 
-    public override Task AcceptFulfillmentRequest(string fulfillment_order_id, string? message = null)
+    public override Task AcceptFulfillmentRequest([FromRoute] string fulfillment_order_id, string? message = null)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RejectFulfillmentRequest(string fulfillment_order_id, string? message = null)
+    public override Task RejectFulfillmentRequest([FromRoute] string fulfillment_order_id, string? message = null)
     {
         throw new NotImplementedException();
     }

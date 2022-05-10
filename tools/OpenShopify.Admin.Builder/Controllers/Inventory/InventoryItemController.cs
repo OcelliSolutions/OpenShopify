@@ -31,115 +31,26 @@ namespace OpenShopify.Admin.Builder
         /// <param name="ids">Show only inventory items specified by a comma-separated list of IDs.</param>
         /// <param name="limit">The maximum number of results to show.</param>
         /// <returns>Retrieves a list of inventory items</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/inventory_items.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_items.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfInventoryItems([Microsoft.AspNetCore.Mvc.FromQuery] string ids, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50");
 
         /// <summary>
         /// Retrieves a single inventory item by ID
         /// </summary>
         /// <returns>Retrieves a single inventory item by ID</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/inventory_items/{inventory_item_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_items/{inventory_item_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleInventoryItemByID(string inventory_item_id);
 
         /// <summary>
         /// Updates an existing inventory item
         /// </summary>
         /// <returns>Updates an existing inventory item</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/inventory_items/{inventory_item_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("inventory_items/{inventory_item_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateExistingInventoryItem(string inventory_item_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class InventoryItem
-    {
-        /// <summary>
-        /// The unit cost of the inventory item. The shop's default currency is used.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("cost")]
-        public string? Cost { get; set; } = default!;
-
-        /// <summary>
-        /// The country code (ISO 3166-1 alpha-2) of where the item came from.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("country_code_of_origin")]
-        public string? Country_code_of_origin { get; set; } = default!;
-
-        /// <summary>
-        /// An array of country-specific Harmonized System (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("country_harmonized_system_codes")]
-        public string? Country_harmonized_system_codes { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the inventory item was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The general Harmonized System (HS) code for the inventory item. Used if a country-specific HS code (`countryHarmonizedSystemCode`) is not available.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("harmonized_system_code")]
-        public string? Harmonized_system_code { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the inventory item.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The province code (ISO 3166-2 alpha-2) of where the item came from. The province code is only used if the shipping provider for the inventory item is Canada Post.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("province_code_of_origin")]
-        public string? Province_code_of_origin { get; set; } = default!;
-
-        /// <summary>
-        /// The unique SKU (stock keeping unit) of the inventory item.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("sku")]
-        public string? Sku { get; set; } = default!;
-
-        /// <summary>
-        /// Whether inventory levels are tracked for the item. If true, then the inventory quantity changes are tracked by Shopify.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tracked")]
-        public string? Tracked { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the inventory item was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        /// <summary>
-        /// Whether a customer needs to provide a shipping address when placing an order containing the inventory item.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping")]
-        public string? Requires_shipping { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

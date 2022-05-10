@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="limit">Amount of results</param>
         /// <returns>Retrieve collection listings that are published to your app</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/collection_listings.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collection_listings.json")]
         public abstract System.Threading.Tasks.Task RetrieveCollectionListingsThatArePublishedToYourApp([Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50");
 
         /// <summary>
@@ -38,117 +38,33 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="limit">Amount of results</param>
         /// <returns>Retrieve &lt;code&gt;product_ids&lt;/code&gt; that are published to a &lt;code&gt;collection_id&lt;/code&gt;</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/collection_listings/{collection_listing_id}/product_ids.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCodeProductIdsCodeThatArePublishedToCodeCollectionIdCode(string collection_listing_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50");
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}/product_ids.json")]
+        public abstract System.Threading.Tasks.Task RetrieveProductIdsThatArePublishedToCollectionId(string collection_listing_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50");
 
         /// <summary>
         /// Retrieve a specific collection listing that is published to your app
         /// </summary>
         /// <returns>Retrieve a specific collection listing that is published to your app</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/collection_listings/{collection_listing_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSpecificCollectionListingThatIsPublishedToYourApp(string collection_listing_id);
 
         /// <summary>
         /// Create a collection listing to publish a collection to your app
         /// </summary>
         /// <returns>Create a collection listing to publish a collection to your app</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/collection_listings/{collection_listing_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}.json")]
         public abstract System.Threading.Tasks.Task CreateCollectionListingToPublishCollectionToYourApp(string collection_listing_id);
 
         /// <summary>
         /// Delete a collection listing to unpublish a collection from your app
         /// </summary>
         /// <returns>Delete a collection listing to unpublish a collection from your app</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/collection_listings/{collection_listing_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}.json")]
         public abstract System.Threading.Tasks.Task DeleteCollectionListingToUnpublishCollectionFromYourApp(string collection_listing_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CollectionListing
-    {
-        /// <summary>
-        /// Identifies which collection this listing is for.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("collection_id")]
-        public string? Collection_id { get; set; } = default!;
-
-        /// <summary>
-        /// The description of the collection, complete with HTML formatting.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("body_html")]
-        public string? Body_html { get; set; } = default!;
-
-        /// <summary>
-        /// The default product image for a collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("default_product_image")]
-        public string? Default_product_image { get; set; } = default!;
-
-        /// <summary>
-        /// The image for a collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("image")]
-        public string? Image { get; set; } = default!;
-
-        /// <summary>
-        /// A human-friendly unique string for the Collection automatically generated from its title.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("handle")]
-        public string? Handle { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the collection was published. The API returns this in ISO_8601.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("published_at")]
-        public string? Published_at { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("title")]
-        public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// The order in which products in the collection appear. Valid values are:
-        /// <br/> 
-        /// <br/> alpha-asc: Alphabetically, in ascending order (A - Z).
-        /// <br/> alpha-desc: Alphabetically, in descending order (Z - A).
-        /// <br/> best-selling: By best-selling products.
-        /// <br/> created: By date created, in ascending order (oldest - newest).
-        /// <br/> created-desc: By date created, in descending order (newest - oldest).
-        /// <br/> manual: Order created by the shop owner.
-        /// <br/> price-asc: By price, in ascending order (lowest - highest).
-        /// <br/> price-desc: By price, in descending order (highest - lowest).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("sort_order")]
-        public string? Sort_order { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the collection was last modified. The API returns this in ISO_8601.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

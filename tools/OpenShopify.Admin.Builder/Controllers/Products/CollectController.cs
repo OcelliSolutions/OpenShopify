@@ -29,7 +29,7 @@ namespace OpenShopify.Admin.Builder
         /// Adds a product to a custom collection
         /// </summary>
         /// <returns>Adds a product to a custom collection</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/collects.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("collects.json")]
         public abstract System.Threading.Tasks.Task AddProductToCustomCollection();
 
         /// <summary>
@@ -39,14 +39,14 @@ namespace OpenShopify.Admin.Builder
         /// <param name="limit">The maximum number of results to show.</param>
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <returns>Retrieves a list of collects</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/collects.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collects.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfCollects([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
 
         /// <summary>
         /// Removes a product from a collection
         /// </summary>
         /// <returns>Removes a product from a collection</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/collects/{collect_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("collects/{collect_id}.json")]
         public abstract System.Threading.Tasks.Task RemoveProductFromCollection(string collect_id);
 
         /// <summary>
@@ -54,80 +54,19 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a specific collect by its ID</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/collects/{collect_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collects/{collect_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSpecificCollectByItsID(string collect_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Retrieves a count of collects
         /// </summary>
         /// <returns>Retrieves a count of collects</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/collects/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collects/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfCollects();
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Collect
-    {
-        /// <summary>
-        /// The ID of the custom collection containing the product.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("collection_id")]
-        public string? Collection_id { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the collect was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// A unique numeric identifier for the collect.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The position of this product in a manually sorted custom collection. The first position is 1. This value is applied only when the custom collection is sorted manually.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("position")]
-        public string? Position { get; set; } = default!;
-
-        /// <summary>
-        /// The unique numeric identifier for the product in the custom collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("product_id")]
-        public string? Product_id { get; set; } = default!;
-
-        /// <summary>
-        /// This is the same value as position but padded with leading zeroes to make it alphanumeric-sortable. This value is applied only when the custom collection is sorted manually.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("sort_value")]
-        public string? Sort_value { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the collect was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

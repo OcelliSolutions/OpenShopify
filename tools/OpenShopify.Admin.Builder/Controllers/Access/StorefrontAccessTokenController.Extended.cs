@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Attributes;
 using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.Access;
 
@@ -10,8 +12,8 @@ namespace OpenShopify.Admin.Builder.Controllers.Access;
 public class StorefrontAccessTokenController : StorefrontAccessTokenControllerBase
 {
     /// <inheritdoc />
-    [ProducesResponseType(typeof(StorefrontAccessToken), StatusCodes.Status200OK)]
-    public override Task CreateNewStorefrontaccesstoken()
+    [ProducesResponseType(typeof(StorefrontAccessTokenItem), StatusCodes.Status200OK)]
+    public override Task CreateNewStorefrontAccessToken()
     {
         throw new NotImplementedException();
     }
@@ -25,8 +27,20 @@ public class StorefrontAccessTokenController : StorefrontAccessTokenControllerBa
 
     /// <inheritdoc />
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteExistingStorefrontAccessToken(string storefront_access_token_id)
+    public override Task DeleteExistingStorefrontAccessToken([FromRoute] string storefront_access_token_id)
     {
         throw new NotImplementedException();
     }
+}
+
+public class StorefrontAccessTokenItem
+{
+    [JsonPropertyName("storefront_access_token")]
+    public StorefrontAccessToken? StorefrontAccessToken { get; set; }
+}
+
+public class StorefrontAccessTokenList
+{
+    [JsonPropertyName("storefront_access_tokens")]
+    public IEnumerable<StorefrontAccessToken>? StorefrontAccessTokens { get; set; }
 }

@@ -29,47 +29,12 @@ namespace OpenShopify.Admin.Builder
         /// Retrieves a list of deprecated API calls
         /// </summary>
         /// <returns>Retrieves a list of deprecated API calls</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/deprecated_api_calls.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("deprecated_api_calls.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfDeprecatedAPICalls();
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class DeprecatedAPIcalls
-    {
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the data was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("data_updated_at")]
-        public string? Data_updated_at { get; set; } = default!;
-
-        /// <summary>
-        /// A list of deprecated API calls made by the authenticated app in the past 30 days. Each object has the following properties:
-        /// <br/>
-        /// <br/> api_type: The type of API that the call was made to. Valid values: REST, Webhook, GraphQL.
-        /// <br/> description: A description of the deprecation and any required migration steps.
-        /// <br/> documentation_url: The documentation URL to the deprecated change.
-        /// <br/> endpoint: A description of the REST endpoint, webhook topic, or GraphQL field called.
-        /// <br/> last_call_at: The timestamp (ISO 4217 format) when the last deprecated API call was made.
-        /// <br/> migration_deadline: The time (ISO 4217 format) when the deprecated API call will be removed.
-        /// <br/> graphql_schema_name: The name of the GraphQL schema. If the call wasn't made to a GraphQL API, then this value is null.
-        /// <br/> version: The earliest API version to migrate to in order to avoid making the deprecated API calls.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("deprecated_api_calls")]
-        public string? Deprecated_api_calls { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

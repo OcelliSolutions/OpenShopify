@@ -29,94 +29,40 @@ namespace OpenShopify.Admin.Builder
         /// List all of the mobile platform applications associated with the app
         /// </summary>
         /// <returns>List all of the mobile platform applications associated with the app</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/mobile_platform_applications.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications.json")]
         public abstract System.Threading.Tasks.Task ListAllOfTheMobilePlatformApplicationsAssociatedWithTheApp();
 
         /// <summary>
         /// Create a mobile platform application
         /// </summary>
         /// <returns>Create a mobile platform application</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/mobile_platform_applications.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications.json")]
         public abstract System.Threading.Tasks.Task CreateMobilePlatformApplication();
 
         /// <summary>
         /// Get a mobile platform application
         /// </summary>
         /// <returns>Get a mobile platform application</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/mobile_platform_applications/{mobile_platform_application_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications/{mobile_platform_application_id}.json")]
         public abstract System.Threading.Tasks.Task GetMobilePlatformApplication(string mobile_platform_application_id);
 
         /// <summary>
         /// Update a mobile platform application
         /// </summary>
         /// <returns>Update a mobile platform application</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/mobile_platform_applications/{mobile_platform_application_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications/{mobile_platform_application_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateMobilePlatformApplication(string mobile_platform_application_id);
 
         /// <summary>
         /// Delete a mobile platform application
         /// </summary>
         /// <returns>Delete a mobile platform application</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/mobile_platform_applications/{mobile_platform_application_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications/{mobile_platform_application_id}.json")]
         public abstract System.Threading.Tasks.Task DeleteMobilePlatformApplication(string mobile_platform_application_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class MobilePlatformApplication
-    {
-        /// <summary>
-        /// Unique numeric identifier for the mobile platform application.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// iOS App ID or Android application ID of the application.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("application_id")]
-        public string? Application_id { get; set; } = default!;
-
-        /// <summary>
-        /// The platform of the application.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("platform")]
-        public string? Platform { get; set; } = default!;
-
-        /// <summary>
-        /// The SHA256 fingerprints of the app’s signing certificate. (Android only)
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("sha256_cert_fingerprints")]
-        public string? Sha256_cert_fingerprints { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the application supports iOS universal links and Android App Links. If true, then URLs can be set up to link directly to the application. If false, then URLs can't link directly to the application.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("enabled_universal_or_app_links")]
-        public string? Enabled_universal_or_app_links { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the application supports iOS shared web credentials.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("enabled_shared_webcredentials")]
-        public string? Enabled_shared_webcredentials { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

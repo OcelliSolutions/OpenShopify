@@ -29,66 +29,12 @@ namespace OpenShopify.Admin.Builder
         /// Retrieves a list of the shop's policies
         /// </summary>
         /// <returns>Retrieves a list of the shop's policies</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/policies.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("policies.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfTheShopsPolicies();
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Policy
-    {
-        /// <summary>
-        /// The name of the policy.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("title")]
-        public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// A description of the policy.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("body")]
-        public string? Body { get; set; } = default!;
-
-        /// <summary>
-        /// The public URL of the policy.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("url")]
-        public string? Url { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the policy was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the policy was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        /// <summary>
-        /// A unique identifer for the policy used to build the policy's URL.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("handle")]
-        public string? Handle { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

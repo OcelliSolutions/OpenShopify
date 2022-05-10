@@ -47,14 +47,14 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_min">Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="vendor">Return products by product vendor.</param>
         /// <returns>Retrieve a list of products</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfProducts([Microsoft.AspNetCore.Mvc.FromQuery] string? collection_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? presentment_currencies = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_type = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? title = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? vendor = null);
 
         /// <summary>
         /// Create a new product
         /// </summary>
         /// <returns>Create a new product</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products.json")]
         public abstract System.Threading.Tasks.Task CreateNewProduct();
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_min">Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="vendor">Return products by product vendor.</param>
         /// <returns>Retrieve a count of products</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfProducts([Microsoft.AspNetCore.Mvc.FromQuery] string? collection_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_type = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? vendor = null);
 
         /// <summary>
@@ -79,164 +79,26 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieve a single product</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products/{product_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleProduct(string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates a product
         /// </summary>
         /// <returns>Updates a product</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products/{product_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("products/{product_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateProduct(string product_id);
 
         /// <summary>
         /// Delete a product
         /// </summary>
         /// <returns>Delete a product</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products/{product_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("products/{product_id}.json")]
         public abstract System.Threading.Tasks.Task DeleteProduct(string product_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Product
-    {
-        /// <summary>
-        /// A description of the product. Supports HTML formatting.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("body_html")]
-        public string? Body_html { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the product was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public object? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// A unique human-friendly string for the product. Automatically generated from the product's title. Used by the Liquid templating language to refer to objects.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("handle")]
-        public string? Handle { get; set; } = default!;
-
-        /// <summary>
-        /// An unsigned 64-bit integer that's used as a unique identifier for the product. Each id is unique across the Shopify system. No two products will have the same id, even if they're from different shops.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public int? Id { get; set; } = default!;
-
-        /// <summary>
-        /// A list of product image objects, each one representing an image associated with the product.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("images")]
-        public System.Collections.Generic.List<object>? Images { get; set; } = default!;
-
-        /// <summary>
-        /// The custom product properties. For example, Size, Color, and Material. Each product can have up to 3 options and each option value can be up to 255 characters. Product variants are made of up combinations of option values.
-        /// <br/> 
-        /// <br/> Options cannot be created without values. To create new options, a variant with an associated option value also needs to be created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("options")]
-        public System.Collections.Generic.List<object>? Options { get; set; } = default!;
-
-        /// <summary>
-        /// A categorization for the product used for filtering and searching products.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("product_type")]
-        public string? Product_type { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the product was
-        /// <br/> published. Can be set to null to unpublish the product from the Online Store channel.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("published_at")]
-        public object? Published_at { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the product is published to the Point of Sale channel. Valid values:
-        /// <br/> 
-        /// <br/> web: The product is published to the Online Store channel but not published to the Point of Sale channel.
-        /// <br/> global: The product is published to both the Online Store channel and the Point of Sale channel.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
-        public string? Published_scope { get; set; } = default!;
-
-        /// <summary>
-        /// The status of the product. Valid values:
-        /// <br/> 
-        /// <br/> active: The product is ready to sell and is available to customers on the online store, sales channels, and apps. By default, existing products are set to active.
-        /// <br/> archived: The product is no longer being sold and isn't available to customers on sales channels and apps.
-        /// <br/> draft: The product isn't ready to sell and is unavailable to customers on sales channels and apps. By default, duplicated and unarchived products are set to draft.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("status")]
-        public string? Status { get; set; } = default!;
-
-        /// <summary>
-        /// A string of comma-separated tags that are used for filtering and search.
-        /// <br/> A product can have up to 250 tags. Each tag can have up to 255 characters.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tags")]
-        public string? Tags { get; set; } = default!;
-
-        /// <summary>
-        /// The suffix of the Liquid template used for the product page. If this property is specified, then the product page uses a template called "product.suffix.liquid", where "suffix" is the value of this property. If this property is "" or null, then the product page uses the default template "product.liquid". (default: null)
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
-        public string? Template_suffix { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the product.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("title")]
-        public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the product was last modified.
-        /// <br/> A product's updated_at value can change for different reasons. For example, if an order is placed for a product that
-        /// <br/> has inventory tracking set up, then the inventory adjustment is counted as an update.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public object? Updated_at { get; set; } = default!;
-
-        /// <summary>
-        /// An array of product variants, each representing a different version of the product.
-        /// <br/> The position property is read-only. The position of variants is indicated by the order in which they are listed.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("variants")]
-        public System.Collections.Generic.List<object>? Variants { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the product's vendor.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("vendor")]
-        public string? Vendor { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

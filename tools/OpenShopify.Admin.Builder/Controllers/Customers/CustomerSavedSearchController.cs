@@ -32,14 +32,14 @@ namespace OpenShopify.Admin.Builder
         /// <param name="limit">The maximum number of results to show.</param>
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <returns>Retrieves a list of customer saved searches</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/customer_saved_searches.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfCustomerSavedSearches([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
 
         /// <summary>
         /// Creates a customer saved search
         /// </summary>
         /// <returns>Creates a customer saved search</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/customer_saved_searches.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches.json")]
         public abstract System.Threading.Tasks.Task CreateCustomerSavedSearch();
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="since_id">Restrict results to after the specified ID</param>
         /// <returns>Retrieves a count of all customer saved searches</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/customer_saved_searches/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfAllCustomerSavedSearches([Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
 
         /// <summary>
@@ -55,21 +55,21 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single customer saved search</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/customer_saved_searches/{customer_saved_search_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleCustomerSavedSearch(string customer_saved_search_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates a customer saved search
         /// </summary>
         /// <returns>Updates a customer saved search</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/customer_saved_searches/{customer_saved_search_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateCustomerSavedSearch(string customer_saved_search_id);
 
         /// <summary>
         /// Deletes a customer saved search
         /// </summary>
         /// <returns>Deletes a customer saved search</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/customer_saved_searches/{customer_saved_search_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
         public abstract System.Threading.Tasks.Task DeleteCustomerSavedSearch(string customer_saved_search_id);
 
         /// <summary>
@@ -79,59 +79,12 @@ namespace OpenShopify.Admin.Builder
         /// <param name="limit">The maximum number of results to show.</param>
         /// <param name="order">Set the field and direction by which to order results.</param>
         /// <returns>Retrieves all customers returned by a customer saved search</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/customer_saved_searches/{customer_saved_search_id}/customers.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}/customers.json")]
         public abstract System.Threading.Tasks.Task RetrieveAllCustomersReturnedByCustomerSavedSearch(string customer_saved_search_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? order = "last_order_date DESC");
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CustomerSavedSearch
-    {
-        /// <summary>
-        /// The date and time (ISO 8601  format) when the customer saved search was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// A unique identifier for the customer saved search.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The name given by the shop owner to the customer saved search.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The set of conditions that determines which customers are returned by the saved search. For more information, see Customer saved search queries.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("query")]
-        public string? Query { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601  format) when the customer saved search was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

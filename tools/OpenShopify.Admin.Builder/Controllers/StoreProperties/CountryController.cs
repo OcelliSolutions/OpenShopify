@@ -31,21 +31,21 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <returns>Receive a list of all Countries</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/countries.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries.json")]
         public abstract System.Threading.Tasks.Task ReceiveListOfAllCountries([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
 
         /// <summary>
         /// Creates a country
         /// </summary>
         /// <returns>Creates a country</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/countries.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("countries.json")]
         public abstract System.Threading.Tasks.Task CreateCountry();
 
         /// <summary>
         /// Retrieves a count of countries
         /// </summary>
         /// <returns>Retrieves a count of countries</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/countries/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfCountries();
 
         /// <summary>
@@ -53,82 +53,26 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a specific county</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/countries/{country_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSpecificCounty(string country_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates an existing country
         /// </summary>
         /// <returns>Updates an existing country</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/countries/{country_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateExistingCountry(string country_id);
 
         /// <summary>
         /// Remove an existing Country
         /// </summary>
         /// <returns>Remove an existing Country</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/countries/{country_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}.json")]
         public abstract System.Threading.Tasks.Task RemoveExistingCountry(string country_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Country
-    {
-        /// <summary>
-        /// The two-letter country code (ISO 3166-1 alpha-2 format).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("code")]
-        public string? Code { get; set; } = default!;
-
-        /// <summary>
-        /// The ID for the country. The ID for a country is unique across all Shopify stores. The ID for a country in one shop will be different from the same country in another shop.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The full name of the country in English.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The sub-regions of a country, such as its provinces or states. Each sub-region has the following properties:
-        /// <br/> 
-        /// <br/> code: The two letter province or state code.
-        /// <br/> country_id: The ID for the country to which this sub-region belongs.
-        /// <br/> id: The ID for the particular sub-region.
-        /// <br/> name: The name of the sub-region.
-        /// <br/> tax: The tax value in decimal format.
-        /// <br/> tax_name: The name of the tax as it is referred to in the applicable sub-region. For example, in Canada, the sales tax in the province Ontario is referred to as HST.
-        /// <br/> tax_type: The tax type. Valid values: null, normal, or harmonized. If the value is harmonized, then the tax is compounded of the provincial and federal sales taxes.
-        /// <br/> tax_percentage: The tax value in percent format.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("provinces")]
-        public string? Provinces { get; set; } = default!;
-
-        /// <summary>
-        /// The national sales tax rate applied to orders made by customers from that country.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax")]
-        public string? Tax { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

@@ -31,14 +31,14 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <param name="since_id">Restrict results to after the specified ID</param>
         /// <returns>Receive a list of all Product Images</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products/{product_id}/images.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images.json")]
         public abstract System.Threading.Tasks.Task ReceiveListOfAllProductImages(string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
 
         /// <summary>
         /// Create a new Product Image
         /// </summary>
         /// <returns>Create a new Product Image</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products/{product_id}/images.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images.json")]
         public abstract System.Threading.Tasks.Task CreateNewProductImage(string product_id);
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="since_id">Restrict results to after the specified ID</param>
         /// <returns>Receive a count of all Product Images</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products/{product_id}/images/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images/count.json")]
         public abstract System.Threading.Tasks.Task ReceiveCountOfAllProductImages(string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
 
         /// <summary>
@@ -54,101 +54,26 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <returns>Receive a single Product Image</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products/{product_id}/images/{image_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images/{image_id}.json")]
         public abstract System.Threading.Tasks.Task ReceiveSingleProductImage(string image_id, string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Modify an existing Product Image
         /// </summary>
         /// <returns>Modify an existing Product Image</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products/{product_id}/images/{image_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images/{image_id}.json")]
         public abstract System.Threading.Tasks.Task ModifyExistingProductImage(string image_id, string product_id);
 
         /// <summary>
         /// Remove an existing Product Image
         /// </summary>
         /// <returns>Remove an existing Product Image</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/products/{product_id}/images/{image_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images/{image_id}.json")]
         public abstract System.Threading.Tasks.Task RemoveExistingProductImage(string image_id, string product_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class ProductImage
-    {
-        /// <summary>
-        /// The date and time when the product image was created. The API returns this value in ISO 8601 format.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// A unique numeric identifier for the product image.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The order of the product image in the list. The first product image is at position 1 and is the "main" image for the product.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("position")]
-        public string? Position { get; set; } = default!;
-
-        /// <summary>
-        /// The id of the product associated with the image.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("product_id")]
-        public string? Product_id { get; set; } = default!;
-
-        /// <summary>
-        /// An array of variant ids associated with the image.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("variant_ids")]
-        public string? Variant_ids { get; set; } = default!;
-
-        /// <summary>
-        /// Specifies the location of the product image. This parameter supports URL filters that you can use to retrieve modified copies of the image. For example, add &amp;#95;small, to the filename to retrieve a scaled copy of the image at 100 x 100 px (for example, ipod-nano_small.png), or add &amp;#95;2048x2048 to retrieve a copy of the image constrained at 2048 x 2048 px resolution (for example, ipod-nano_2048x2048.png).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("src")]
-        public string? Src { get; set; } = default!;
-
-        /// <summary>
-        /// Width dimension of the image which is determined on upload.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("width")]
-        public string? Width { get; set; } = default!;
-
-        /// <summary>
-        /// Height dimension of the image which is determined on upload.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("height")]
-        public string? Height { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the product image was last modified. The API returns this value in ISO 8601 format.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

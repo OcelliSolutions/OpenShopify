@@ -9,7 +9,7 @@ namespace OpenShopify.Admin.Builder.Controllers.StoreProperties;
 [ApiController]
 public class ShippingZoneController : ShippingZoneControllerBase
 {
-    public override Task ReceiveListOfAllShippingzones(string? fields = null)
+    public override Task ReceiveListOfAllShippingZones(string? fields = null)
     {
         throw new NotImplementedException();
     }

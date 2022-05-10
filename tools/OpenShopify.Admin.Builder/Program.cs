@@ -1,10 +1,14 @@
 using System.Net.Mime;
 using System.Reflection;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
 using OpenShopify.Admin.Builder.Attributes;
 using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Admin.Builder.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,15 +21,19 @@ builder.Services.AddControllers(options =>
         options.Filters.Add(new ProducesAttribute(MediaTypeNames.Application.Json));
         options.Filters.Add(new ConsumesAttribute(MediaTypeNames.Application.Json));
     })
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-    })
     .ConfigureApiBehaviorOptions(options =>
     {
         //MapClientErrors is a .NET6 feature that automatically wraps error responses if a structure is not specified. Shopify does not do this so it needs to be disabled.
         options.SuppressMapClientErrors = true;
     });
+
+builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(opt =>
+{
+    opt.SerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+});
+
+builder.Services.TryAddEnumerable(ServiceDescriptor
+    .Transient<IApplicationModelProvider, ProduceResponseTypeModelProvider>());
 
 var openApiInfo = new OpenApiInfo
 {
@@ -36,15 +44,14 @@ var openApiInfo = new OpenApiInfo
 };
 builder.Services.AddSwaggerGen(c =>
 {
+    c.SupportNonNullableReferenceTypes();
     //Skip (1) is because the first fieldinfo of enum is a built-in int value
     typeof(ApiGroupNames).GetFields().Skip(1).ToList().ForEach(f =>
     {
         //Gets the attribute on the enumeration value
         var info = f.GetCustomAttributes(typeof(GroupInfoAttribute), false).OfType<GroupInfoAttribute>().FirstOrDefault();
-        openApiInfo.Title = info?.Title;
-        openApiInfo.Version = info?.Version;
-        openApiInfo.Description = info?.Description;
-        c.SwaggerDoc(f.Name, openApiInfo);
+        var serviceInfo = new OpenApiInfo() { Title = info?.Title, Version = info?.Version, Description = info?.Description};
+        c.SwaggerDoc(f.Name, serviceInfo);
     });
 
     //Determine which group the interface belongs to
@@ -74,13 +81,15 @@ builder.Services.AddSwaggerGen(c =>
     c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["action"]}");
     c.AddServer(new OpenApiServer
     {
-        Url = "https://{store_name}.myshopify.com",
+        Url = "https://{store_name}.myshopify.com/admin/api/{api_version}",
         Variables = new Dictionary<string, OpenApiServerVariable>(new List<KeyValuePair<string, OpenApiServerVariable>>()
         {
-            new("store_name", new OpenApiServerVariable(){Default = "sample_store", Description = "The sub-domain of the storefront."})
+            new("store_name", new OpenApiServerVariable(){Default = "sample_store", Description = "The sub-domain of the storefront."}),
+            new("api_version", new OpenApiServerVariable(){Default = "2022-04", Description = "The api version."})
         })
     });
 
+    c.DocumentFilter<AdditionalPropertiesDocumentFilter>();
     c.AddSecurityDefinition("ApiKey",
         new OpenApiSecurityScheme
         {

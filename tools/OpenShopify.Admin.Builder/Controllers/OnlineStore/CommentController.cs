@@ -40,14 +40,14 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_max">Show comments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Show comments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a list of comments</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/comments.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("comments.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfComments([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? status = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
 
         /// <summary>
         /// Creates a comment for an article
         /// </summary>
         /// <returns>Creates a comment for an article</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/comments.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments.json")]
         public abstract System.Threading.Tasks.Task CreateCommentForArticle();
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_max">Count comments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Count comments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a count of comments</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/comments/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("comments/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfComments([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? status = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
 
         /// <summary>
@@ -70,163 +70,54 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single comment by its ID</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/comments/{comment_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleCommentByItsID(string comment_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates a comment of an article
         /// </summary>
         /// <returns>Updates a comment of an article</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/comments/{comment_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateCommentOfArticle(string comment_id);
 
         /// <summary>
         /// Marks a comment as spam
         /// </summary>
         /// <returns>Marks a comment as spam</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/comments/{comment_id}/spam.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/spam.json")]
         public abstract System.Threading.Tasks.Task MarkCommentAsSpam(string comment_id);
 
         /// <summary>
         /// Marks a comment as not spam
         /// </summary>
         /// <returns>Marks a comment as not spam</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/comments/{comment_id}/not_spam.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/not_spam.json")]
         public abstract System.Threading.Tasks.Task MarkCommentAsNotSpam(string comment_id);
 
         /// <summary>
         /// Approves a comment
         /// </summary>
         /// <returns>Approves a comment</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/comments/{comment_id}/approve.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/approve.json")]
         public abstract System.Threading.Tasks.Task ApproveComment(string comment_id);
 
         /// <summary>
         /// Removes a comment
         /// </summary>
         /// <returns>Removes a comment</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/comments/{comment_id}/remove.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/remove.json")]
         public abstract System.Threading.Tasks.Task RemoveComment(string comment_id);
 
         /// <summary>
         /// Restores a previously removed comment
         /// </summary>
         /// <returns>Restores a previously removed comment</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/comments/{comment_id}/restore.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/restore.json")]
         public abstract System.Threading.Tasks.Task RestorePreviouslyRemovedComment(string comment_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Comment
-    {
-        /// <summary>
-        /// A unique numeric identifier for the article that the comment belongs to.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("article_id")]
-        public string? Article_id { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the author of the comment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("author")]
-        public string? Author { get; set; } = default!;
-
-        /// <summary>
-        /// A unique numeric identifier for the blog containing the article that the comment belongs to.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("blog_id")]
-        public string? Blog_id { get; set; } = default!;
-
-        /// <summary>
-        /// The basic Textile markup of a comment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("body")]
-        public string? Body { get; set; } = default!;
-
-        /// <summary>
-        /// The text of the comment, complete with HTML markup.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("body_html")]
-        public string? Body_html { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601  format) when the comment was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The email address of the author of the comment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        public string? Email { get; set; } = default!;
-
-        /// <summary>
-        /// A unique numeric identifier for the comment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The IP address from which the comment was posted.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("ip")]
-        public string? Ip { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the comment was published.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("published_at")]
-        public string? Published_at { get; set; } = default!;
-
-        /// <summary>
-        /// The status of the comment. Valid values:
-        /// <br/> 
-        /// <br/> pending: The comment has been created but is awaiting spam detection. Depending on the result of the spam detection and the shop owner's comment preferences, this property will be transitioned to either spam, unapproved, or approved.
-        /// <br/> unapproved (default): The comment is awaiting approval by the shop owner. It's not visible to the readers of the blog.
-        /// <br/> published: The comment has been approved (if the blog requires comments to be approved) and is visible to readers of the blog.
-        /// <br/> spam: The comment has been marked as spam and removed from the Shopify admin. It's not visible to readers of the blog.
-        /// <br/> removed: The comment has been removed by the shop owner. It's not visible to readers of the blog.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("status")]
-        public string? Status { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the comment was last modified. When the comment is created, this matches the value of created_at. If the blog requires comments to be approved, then this value is updated to the date and time when the comment is approved.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        /// <summary>
-        /// The user agent string provided by the software used to create the comment (usually a browser).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("user_agent")]
-        public string? User_agent { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

@@ -36,7 +36,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="since_id">Show only results after the specified ID.</param>
         /// <param name="verb">Show events of a certain type.</param>
         /// <returns>Retrieves a list of events</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/events.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("events.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfEvents([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? filter = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? verb = null);
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single event</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/events/{event_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("events/{event_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleEvent(string event_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
@@ -53,105 +53,12 @@ namespace OpenShopify.Admin.Builder
         /// <param name="created_at_max">Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="created_at_min">Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Retrieves a count of events</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/events/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("events/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfEvents([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Event
-    {
-        /// <summary>
-        /// Refers to a certain event and its resources.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("arguments")]
-        public string? Arguments { get; set; } = default!;
-
-        /// <summary>
-        /// A text field containing information about the event.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("body")]
-        public string? Body { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the event was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the event.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// A human readable description of the event.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("description")]
-        public string? Description { get; set; } = default!;
-
-        /// <summary>
-        /// A relative URL to the resource the event is for, if applicable.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("path")]
-        public string? Path { get; set; } = default!;
-
-        /// <summary>
-        /// A human readable description of the event. Can contain some HTML formatting.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("message")]
-        public string? Message { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the resource that generated the event.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("subject_id")]
-        public string? Subject_id { get; set; } = default!;
-
-        /// <summary>
-        /// The type of the resource that generated the event. Valid values:
-        /// <br/> 
-        /// <br/> Article
-        /// <br/> Blog
-        /// <br/> Collection
-        /// <br/> Comment
-        /// <br/> Order
-        /// <br/> Page
-        /// <br/> PriceRule
-        /// <br/> Product
-        /// <br/> ApiPermission
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("subject_type")]
-        public string? Subject_type { get; set; } = default!;
-
-        /// <summary>
-        /// The type of event that occurred. Different resources generate different types of event.
-        /// <br/> See the Resources section for a list of possible verbs.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("verb")]
-        public string? Verb { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Attributes;
 using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.Access;
 
@@ -15,4 +17,11 @@ public class AccessScopeController : AccessScopeControllerBase
     {
         throw new NotImplementedException();
     }
+}
+
+
+public class AccessScopeList
+{
+    [JsonPropertyName("access_scopes")]
+    public IEnumerable<AccessScope>? AccessScopes { get; set; }
 }

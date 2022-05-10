@@ -32,7 +32,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="in_shop_currency">Show amounts in the shop currency.</param>
         /// <param name="since_id">Retrieve only transactions after the specified ID.</param>
         /// <returns>Retrieves a list of transactions</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/transactions.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfTransactions(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? in_shop_currency = "false", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
 
         /// <summary>
@@ -40,14 +40,14 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="source">An optional origin of the transaction. Set to &lt;code&gt;external&lt;/code&gt; to import a cash transaction for the associated order.</param>
         /// <returns>Creates a transaction for an order</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/transactions.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions.json")]
         public abstract System.Threading.Tasks.Task CreateTransactionForOrder(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? source = null);
 
         /// <summary>
         /// Retrieves a count of an order's transactions
         /// </summary>
         /// <returns>Retrieves a count of an order's transactions</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/transactions/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfOrdersTransactions(string order_id);
 
         /// <summary>
@@ -56,261 +56,12 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <param name="in_shop_currency">Show amounts in the shop currency.</param>
         /// <returns>Retrieves a specific transaction</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/orders/{order_id}/transactions/{transaction_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions/{transaction_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSpecificTransaction(string order_id, string transaction_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? in_shop_currency = "false");
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Transaction
-    {
-        /// <summary>
-        /// The amount of money included in the transaction. If you don't provide a value for `amount`, then it defaults to the total cost of the order (even if a previous transaction has been made towards it).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("amount")]
-        public string? Amount { get; set; } = default!;
-
-        /// <summary>
-        /// The authorization code associated with the transaction.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("authorization")]
-        public string? Authorization { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the Shopify Payments authorization expires.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("authorization_expires_at")]
-        public string? Authorization_expires_at { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the transaction was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The three-letter code (ISO 4217 format) for the currency used for the payment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        public string? Currency { get; set; } = default!;
-
-        /// <summary>
-        /// The ID for the device.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("device_id")]
-        public string? Device_id { get; set; } = default!;
-
-        /// <summary>
-        /// A standardized error code, independent of the payment provider. Valid values:
-        /// <br/> 
-        /// <br/> incorrect_number
-        /// <br/> invalid_number
-        /// <br/> invalid_expiry_date
-        /// <br/> invalid_cvc
-        /// <br/> expired_card
-        /// <br/> incorrect_cvc
-        /// <br/> incorrect_zip
-        /// <br/> incorrect_address
-        /// <br/> card_declined
-        /// <br/> processing_error
-        /// <br/> call_issuer
-        /// <br/> pick_up_card
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("error_code")]
-        public string? Error_code { get; set; } = default!;
-
-        /// <summary>
-        /// The attributes associated with a Shopify Payments extended authorization period. It has the following attributes:
-        /// <br/> 
-        /// <br/> standard_authorization_expires_at: The date and time (ISO 8601 format) when the standard authorization period expires. After expiry, an extended authorization fee is applied upon capturing the payment.
-        /// <br/> extended_authorization_expires_at: The date and time (ISO 8601 format) when the extended authorization period expires. After expiry, the merchant can't capture the payment.
-        /// <br/> 
-        /// <br/>
-        /// <br/> extended_authorization_attributes are available on the Retrieve a specific transaction for an order endpoint only if the following criteria applies:
-        /// <br/> 
-        /// <br/> The store is on a Shopify Plus plan.
-        /// <br/> The store uses Shopify Payments.
-        /// <br/> The transaction being retrieved is an extended authorization, which is determined by the capture_before date in the charge.
-        /// <br/> 
-        /// <br/>
-        /// <br/> If the criteria isn't met, then an empty JSON is returned for extended_authorization_attributes.
-        /// <br/>
-        /// <br/> To learn more about extended authorization periods, refer to Payment authorization.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("extended_authorization_attributes")]
-        public string? Extended_authorization_attributes { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the gateway the transaction was issued through. A list of gateways can be found on Shopify's payment gateways page.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("gateway")]
-        public string? Gateway { get; set; } = default!;
-
-        /// <summary>
-        /// The ID for the transaction.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The transaction's type. Valid values:
-        /// <br/> 
-        /// <br/> authorization: Money that the customer has agreed to pay. The authorization period can be between 7 and 30 days (depending on your payment service) while a store waits for a payment to be captured.
-        /// <br/> capture: A transfer of money that was reserved during the authorization of a shop.
-        /// <br/> sale: The authorization and capture of a payment performed in one single step.
-        /// <br/> void: The cancellation of a pending authorization or capture.
-        /// <br/> refund: The partial or full return of captured money to the customer.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("kind")]
-        public string? Kind { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the physical location where the transaction was processed.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
-        public string? Location_id { get; set; } = default!;
-
-        /// <summary>
-        /// A string generated by the payment provider with additional information about why the transaction succeeded or failed.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("message")]
-        public string? Message { get; set; } = default!;
-
-        /// <summary>
-        /// The ID for the order that the transaction is associated with.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
-        public string? Order_id { get; set; } = default!;
-
-        /// <summary>
-        /// Information about the credit card used for this transaction. It has the following attributes:
-        /// <br/> 
-        /// <br/> credit_card_bin: The issuer identification number (IIN), formerly known as bank identification number (BIN) of the customer's credit card. This is made up of the first few digits of the credit card number.
-        /// <br/> avs_result_code: The response code from the address verification system. The code is always a single letter. Refer to this chart for the codes and their definitions.
-        /// <br/> cvv_result_code: The response code from the credit card company indicating whether the customer entered the card security code, or card verification value, correctly. The code is a single letter or empty string; see this chart for the codes and their definitions.
-        /// <br/> credit_card_number: The customer's credit card number, with most of the leading digits redacted.
-        /// <br/> credit_card_company: The name of the company that issued the customer's credit card.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("payment_details")]
-        public string? Payment_details { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of an associated transaction.
-        /// <br/> 
-        /// <br/> For capture transactions, the parent needs to be an authorization transaction.
-        /// <br/> For void transactions, the parent needs to be an authorization transaction.
-        /// <br/> For refund transactions, the parent needs to be a capture or sale transaction.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("parent_id")]
-        public string? Parent_id { get; set; } = default!;
-
-        /// <summary>
-        /// The attributes associated with a Shopify Payments refund. It has the following attributes:
-        /// <br/> 
-        /// <br/> status: The current status of the refund. Valid values: pending, failure, success, and error.
-        /// <br/> acquirer_reference_number: A unique number associated with the transaction that can be used to track the refund. This property has a value only for transactions completed with Visa or Mastercard.
-        /// <br/> 
-        /// <br/>
-        /// <br/> payments_refund_attributes are available on any JSON serialization of the order transaction only if the following criteria apply:
-        /// <br/> 
-        /// <br/> The store is on a Shopify Plus plan.
-        /// <br/> The store uses Shopify Payments.
-        /// <br/> The order transaction kind is either refund or void.
-        /// <br/> 
-        /// <br/>
-        /// <br/> If the criteria isn't met, then the payments_refund_attributes property is omitted.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("payments_refund_attributes")]
-        public string? Payments_refund_attributes { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format)
-        /// <br/> when a transaction was processed. This value is the date that's used in the analytic reports. By default,
-        /// <br/> it matches the created_at value. If you're importing transactions from an app or another
-        /// <br/> platform, then you can set processed_at to a date and time in the past to match when the
-        /// <br/> original transaction was processed.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("processed_at")]
-        public string? Processed_at { get; set; } = default!;
-
-        /// <summary>
-        /// A transaction receipt attached to the transaction by the gateway. The value of this field depends on which gateway the shop is using.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("receipt")]
-        public string? Receipt { get; set; } = default!;
-
-        /// <summary>
-        /// The origin of the transaction. This is set by Shopify and can't be overridden. Example values: web, pos, iphone, and android.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("source_name")]
-        public string? Source_name { get; set; } = default!;
-
-        /// <summary>
-        /// The status of the transaction. Valid values: pending, failure, success, and error.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("status")]
-        public string? Status { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the transaction is a test transaction.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("test")]
-        public string? Test { get; set; } = default!;
-
-        /// <summary>
-        /// The ID for the user who was logged into the Shopify POS device when the order was processed, if applicable.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("user_id")]
-        public string? User_id { get; set; } = default!;
-
-        /// <summary>
-        /// An adjustment on the transaction showing the amount lost or gained due to fluctuations in the currency exchange rate. It has the following attributes:
-        /// <br/> 
-        /// <br/> ID: The ID of the adjustment.
-        /// <br/> adjustment: The difference between the amounts on the associated transaction and the parent transaction.
-        /// <br/> original_amount: The amount of the parent transaction in the shop currency.
-        /// <br/> final_amount: The amount of the associated transaction in the shop currency.
-        /// <br/> currency: The shop currency.
-        /// <br/> 
-        /// <br/> Requires the header X-Shopify-Api-Features = include-currency-exchange-adjustments.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("currency_exchange_adjustment")]
-        public string? Currency_exchange_adjustment { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

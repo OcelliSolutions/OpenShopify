@@ -1,0 +1,1101 @@
+openapi: 3.0.1
+info:
+  title: Shipping & Fulfillment
+  description: Shipping & Fulfillment
+  version: '2022-04'
+servers:
+  - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
+    variables:
+      store_name:
+        default: sample_store
+        description: The sub-domain of the storefront.
+      api_version:
+        default: '2022-04'
+        description: The api version.
+paths:
+  /assigned_fulfillment_orders.json:
+    get:
+      tags:
+        - AssignedFulfillmentOrder
+      summary: Retrieves a list of fulfillment orders on a shop for a specific app
+      operationId: RetrieveListOfFulfillmentOrdersOnShopForSpecificApp
+      parameters:
+        - name: assignment_status
+          in: query
+          description: 'The assigment status of the fulfillment orders that should be returned:'
+          schema:
+            type: string
+        - name: location_ids
+          in: query
+          description: The IDs of the assigned locations of the fulfillment orders that should be returned.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_orders/{fulfillment_order_id}/cancellation_request.json':
+    post:
+      tags:
+        - CancellationRequest
+      summary: Sends a cancellation request
+      operationId: SendCancellationRequest
+      parameters:
+        - name: fulfillment_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: message
+          in: query
+          description: An optional reason for the cancellation request.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json':
+    post:
+      tags:
+        - CancellationRequest
+      summary: Accepts a cancellation request
+      operationId: AcceptCancellationRequest
+      parameters:
+        - name: fulfillment_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: message
+          in: query
+          description: An optional reason for accepting the cancellation request.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json':
+    post:
+      tags:
+        - CancellationRequest
+      summary: Rejects a cancellation request
+      operationId: RejectCancellationRequest
+      parameters:
+        - name: fulfillment_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: message
+          in: query
+          description: An optional reason for rejecting the cancellation request.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /carrier_services.json:
+    post:
+      tags:
+        - CarrierService
+      summary: Creates a carrier service
+      operationId: CreateCarrierService
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      tags:
+        - CarrierService
+      summary: Retrieves a list of carrier services
+      operationId: RetrieveListOfCarrierServices
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/carrier_services/{carrier_service_id}.json':
+    put:
+      tags:
+        - CarrierService
+      summary: Updates a carrier service
+      operationId: UpdateCarrierService
+      parameters:
+        - name: carrier_service_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      tags:
+        - CarrierService
+      summary: Retrieves a single carrier service
+      operationId: RetrieveSingleCarrierService
+      parameters:
+        - name: carrier_service_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - CarrierService
+      summary: Deletes a carrier service
+      operationId: DeleteCarrierService
+      parameters:
+        - name: carrier_service_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/fulfillments.json':
+    get:
+      tags:
+        - Fulfillment
+      summary: Retrieves fulfillments associated with an order
+      operationId: RetrieveFulfillmentsAssociatedWithOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: created_at_max
+          in: query
+          description: 'Show fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Show fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: A comma-separated list of fields to include in the response.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Limit the amount of results.
+          schema:
+            type: string
+            default: '50'
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Fulfillment
+      summary: Create a new Fulfillment
+      operationId: CreateNewFulfillment
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_orders/{fulfillment_order_id}/fulfillments.json':
+    get:
+      tags:
+        - Fulfillment
+      summary: Retrieves fulfillments associated with a fulfillment order
+      operationId: RetrieveFulfillmentsAssociatedWithFulfillmentOrder
+      parameters:
+        - name: fulfillment_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/fulfillments/count.json':
+    get:
+      tags:
+        - Fulfillment
+      summary: Retrieves a count of fulfillments associated with a specific order
+      operationId: RetrieveCountOfFulfillmentsAssociatedWithSpecificOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: created_at_max
+          in: query
+          description: 'Count fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Count fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/fulfillments/{fulfillment_id}.json':
+    get:
+      tags:
+        - Fulfillment
+      summary: Receive a single Fulfillment
+      operationId: ReceiveSingleFulfillment
+      parameters:
+        - name: fulfillment_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to include in the response.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Fulfillment
+      summary: Modify an existing Fulfillment
+      operationId: ModifyExistingFulfillment
+      parameters:
+        - name: fulfillment_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /fulfillments.json:
+    post:
+      tags:
+        - Fulfillment
+      summary: Creates a fulfillment for one or many fulfillment orders
+      operationId: CreateFulfillmentForOneOrManyFulfillmentOrders
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillments/{fulfillment_id}/update_tracking.json':
+    post:
+      tags:
+        - Fulfillment
+      summary: Updates the tracking information for a fulfillment
+      operationId: UpdateTheTrackingInformationForFulfillment
+      parameters:
+        - name: fulfillment_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/fulfillments/{fulfillment_id}/complete.json':
+    post:
+      tags:
+        - Fulfillment
+      summary: Complete a fulfillment
+      operationId: CompleteFulfillment
+      parameters:
+        - name: fulfillment_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/fulfillments/{fulfillment_id}/open.json':
+    post:
+      tags:
+        - Fulfillment
+      summary: Transition a fulfillment from pending to open.
+      operationId: TransitionFulfillmentFromPendingToOpen
+      parameters:
+        - name: fulfillment_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/fulfillments/{fulfillment_id}/cancel.json':
+    post:
+      tags:
+        - Fulfillment
+      summary: Cancel a fulfillment for a specific order ID
+      operationId: CancelFulfillmentForSpecificOrderID
+      parameters:
+        - name: fulfillment_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillments/{fulfillment_id}/cancel.json':
+    post:
+      tags:
+        - Fulfillment
+      summary: Cancels a fulfillment
+      operationId: CancelFulfillment
+      parameters:
+        - name: fulfillment_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/fulfillments/{fulfillment_id}/events.json':
+    get:
+      tags:
+        - FulfillmentEvent
+      summary: Retrieves a list of fulfillment events for a specific fulfillment
+      operationId: RetrieveListOfFulfillmentEventsForSpecificFulfillment
+      parameters:
+        - name: fulfillment_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - FulfillmentEvent
+      summary: Creates a fulfillment event
+      operationId: CreateFulfillmentEvent
+      parameters:
+        - name: fulfillment_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json':
+    get:
+      tags:
+        - FulfillmentEvent
+      summary: Retrieves a specific fulfillment event
+      operationId: RetrieveSpecificFulfillmentEvent
+      parameters:
+        - name: event_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fulfillment_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - FulfillmentEvent
+      summary: Deletes a fulfillment event
+      operationId: DeleteFulfillmentEvent
+      parameters:
+        - name: event_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fulfillment_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/fulfillment_orders.json':
+    get:
+      tags:
+        - FulfillmentOrder
+      summary: Retrieves a list of fulfillment orders for a specific order
+      operationId: RetrieveListOfFulfillmentOrdersForSpecificOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_orders/{fulfillment_order_id}.json':
+    get:
+      tags:
+        - FulfillmentOrder
+      summary: Retrieves a specific fulfillment order
+      operationId: RetrieveSpecificFulfillmentOrder
+      parameters:
+        - name: fulfillment_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_orders/{fulfillment_order_id}/cancel.json':
+    post:
+      tags:
+        - FulfillmentOrder
+      summary: Cancel a fulfillment order
+      operationId: CancelFulfillmentOrder
+      parameters:
+        - name: fulfillment_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_orders/{fulfillment_order_id}/close.json':
+    post:
+      tags:
+        - FulfillmentOrder
+      summary: Marks a fulfillment order as incomplete
+      operationId: MarkFulfillmentOrderAsIncomplete
+      parameters:
+        - name: fulfillment_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: message
+          in: query
+          description: An optional reason for marking the fulfillment order as incomplete.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_orders/{fulfillment_order_id}/move.json':
+    post:
+      tags:
+        - FulfillmentOrder
+      summary: Moves a fulfillment order to a new location
+      operationId: MoveFulfillmentOrderToNewLocation
+      parameters:
+        - name: fulfillment_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: new_location_id
+          in: query
+          description: The id of the location to which the fulfillment order will be moved.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_orders/{fulfillment_order_id}/open.json':
+    post:
+      tags:
+        - FulfillmentOrder
+      summary: Marks the fulfillment order as open
+      operationId: MarkTheFulfillmentOrderAsOpen
+      parameters:
+        - name: fulfillment_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_orders/{fulfillment_order_id}/reschedule.json':
+    post:
+      tags:
+        - FulfillmentOrder
+      summary: Reschedules the fulfill_at time of a scheduled fulfillment order
+      operationId: RescheduleTheFulfillAtTimeOfScheduledFulfillmentOrder
+      parameters:
+        - name: fulfillment_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_orders/{fulfillment_order_id}/hold.json':
+    post:
+      tags:
+        - FulfillmentOrder
+      summary: Applies a fulfillment hold on a fulfillment order with status <code>OPEN</code>
+      operationId: ApplyFulfillmentHoldOnFulfillmentOrderWithStatusOPEN
+      parameters:
+        - name: fulfillment_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: notify_merchant
+          in: query
+          description: 'Whether the merchant should receive a notification about the fulfillment hold. If set to true, then the merchant will be notified on the Shopify mobile app (if they use it to manage their store). The default value is false.'
+          schema:
+            type: string
+        - name: reason
+          in: query
+          description: A mandatory reason for the fulfillment hold.
+          schema:
+            type: string
+        - name: reason_notes
+          in: query
+          description: Optional additional information about the fulfillment hold reason.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_orders/{fulfillment_order_id}/release_hold.json':
+    post:
+      tags:
+        - FulfillmentOrder
+      summary: Releases the fulfillment hold on a fulfillment order
+      operationId: ReleaseTheFulfillmentHoldOnFulfillmentOrder
+      parameters:
+        - name: fulfillment_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json':
+    post:
+      tags:
+        - FulfillmentRequest
+      summary: Sends a fulfillment request
+      operationId: SendFulfillmentRequest
+      parameters:
+        - name: fulfillment_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fulfillment_order_line_items
+          in: query
+          description: 'The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.'
+          schema:
+            type: string
+        - name: message
+          in: query
+          description: An optional message for the fulfillment request.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json':
+    post:
+      tags:
+        - FulfillmentRequest
+      summary: Accepts a fulfillment request
+      operationId: AcceptFulfillmentRequest
+      parameters:
+        - name: fulfillment_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: message
+          in: query
+          description: An optional reason for accepting the fulfillment request.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json':
+    post:
+      tags:
+        - FulfillmentRequest
+      summary: Rejects a fulfillment request
+      operationId: RejectFulfillmentRequest
+      parameters:
+        - name: fulfillment_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: message
+          in: query
+          description: An optional reason for rejecting the fulfillment request.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /fulfillment_services.json:
+    get:
+      tags:
+        - FulfillmentService
+      summary: Receive a list of all FulfillmentServices
+      operationId: ReceiveListOfAllFulfillmentServices
+      parameters:
+        - name: scope
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentServiceList'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - FulfillmentService
+      summary: Create a new FulfillmentService
+      operationId: CreateNewFulfillmentService
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentServiceItem'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_services/{fulfillment_service_id}.json':
+    get:
+      tags:
+        - FulfillmentService
+      summary: Receive a single FulfillmentService
+      operationId: ReceiveSingleFulfillmentService
+      parameters:
+        - name: fulfillment_service_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentServiceItem'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - FulfillmentService
+      summary: Modify an existing FulfillmentService
+      operationId: ModifyExistingFulfillmentService
+      parameters:
+        - name: fulfillment_service_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentServiceItem'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - FulfillmentService
+      summary: Remove an existing FulfillmentService
+      operationId: RemoveExistingFulfillmentService
+      parameters:
+        - name: fulfillment_service_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/fulfillment_orders/{fulfillment_order_id}/locations_for_move.json':
+    get:
+      tags:
+        - LocationsForMove
+      summary: Retrieves a list of locations that a fulfillment order can potentially move to.
+      operationId: RetrieveListOfLocationsThatFulfillmentOrderCanPotentiallyMoveTo
+      parameters:
+        - name: fulfillment_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+    FulfillmentService:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          description: The name of the fulfillment service as seen by merchants and their customers.
+          nullable: true
+        callback_url:
+          type: string
+          description: "States the URL endpoint that Shopify needs to retrieve inventory and tracking updates.\r\nThis field is necessary if either inventory_management or tracking_support is set to \"true\"."
+          nullable: true
+        format:
+          type: string
+          description: Specifies the format of the API output. Valid values are "json" and "xml".
+          nullable: true
+        handle:
+          type: string
+          description: A human-friendly unique string for the fulfillment service generated from its title.
+          nullable: true
+        inventory_management:
+          type: boolean
+          description: States if the fulfillment service tracks product inventory and provides updates to Shopify.
+          nullable: true
+        location_id:
+          type: integer
+          description: The unique identifier of the location tied to the fulfillment service
+          format: int64
+          nullable: true
+        provider_id:
+          type: string
+          description: A unique identifier for the fulfillment service provider.
+          nullable: true
+        requires_shipping_method:
+          type: boolean
+          description: States if the fulfillment service requires products to be physically shipped.
+          nullable: true
+        tracking_support:
+          type: boolean
+          description: States if the fulfillment service provides tracking numbers for packages.
+          nullable: true
+        email:
+          type: string
+          description: This property is undocumented by Shopify.
+          nullable: true
+        include_pending_stock:
+          type: boolean
+          description: This property is undocumented by Shopify.
+          nullable: true
+        service_name:
+          type: string
+          description: This property is undocumented by Shopify.
+          nullable: true
+        fulfillment_orders_opt_in:
+          type: boolean
+          description: Whether the fulfillment service wants to register for APIs related to fulfillment orders.
+          nullable: true
+      additionalProperties: { }
+      description: An object representing a Shopify fulfillment service.
+    FulfillmentServiceItem:
+      type: object
+      properties:
+        fulfillment_service:
+          $ref: '#/components/schemas/FulfillmentService'
+      additionalProperties: { }
+    FulfillmentServiceList:
+      type: object
+      properties:
+        fulfillment_services:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentService'
+          nullable: true
+      additionalProperties: { }
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+security:
+  - ApiKey: [ ]

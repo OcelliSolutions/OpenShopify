@@ -1,5 +1,4 @@
 ﻿using System.Dynamic;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
@@ -7,7 +6,6 @@ using NJsonSchema;
 using NJsonSchema.CodeGeneration;
 using NJsonSchema.CodeGeneration.CSharp;
 using NSwag;
-using NSwag.CodeGeneration;
 using NSwag.CodeGeneration.CSharp;
 using NSwag.CodeGeneration.CSharp.Models;
 using NSwag.CodeGeneration.OperationNameGenerators;
@@ -102,6 +100,7 @@ dynamic CleanOpenApi(dynamic openApi)
         string pathKey = path.url;
         if (pathKey.IndexOf('?') > 0) 
             pathKey = pathKey.Substring(0, pathKey.IndexOf('?'));
+        pathKey = pathKey.Replace("/admin/api/{api_version}", string.Empty);
 
         if (!clean.paths.ContainsKey(pathKey)) 
             clean.paths.Add(pathKey, new Dictionary<string, dynamic>());
@@ -110,7 +109,26 @@ dynamic CleanOpenApi(dynamic openApi)
         endpoint.description = RemoveHtmlFromString((string)path.description) ?? string.Empty;
         endpoint.summary = path.summary;
         endpoint.operationId = CreateOperationId((string)path.summary);
-        endpoint.parameters = path.parameters;
+        var parameters = path.parameters;
+        var pathParameters = new List<string>();
+        foreach (var parameter in parameters)
+        {
+            if((string)parameter["in"] == "path")
+                pathParameters.Add((string)parameter["name"]);
+        }
+
+        for (int i = 0; i < parameters.Count; i++)
+        {
+            var parameter = parameters[i];
+            if ((string)parameter["in"] == "path" || !pathParameters.Contains((string)parameter["name"])) continue;
+
+            //Console.WriteLine(parameter);
+            parameters.RemoveAt(i);
+            i--;
+        }
+
+        endpoint.parameters = parameters;
+
         endpoint.responses = path.responses;
 
         if(endpoint.operationId == "StoreCreditCardInTheCardVault") continue; //this calls an external service and should not be mapped.
@@ -147,7 +165,9 @@ dynamic CleanOpenApi(dynamic openApi)
             cleanProperties.Add((string) property.name, cleanProperty);
         }
         cleanComponent.properties = cleanProperties;
-        clean.components["schemas"].Add((string)component.name, cleanComponent);
+
+        //None of the models are correct. Don't bother moving them over.
+        //clean.components["schemas"].Add((string)component.name, cleanComponent);
     }
     return clean;
 }
@@ -164,6 +184,7 @@ string? RemoveHtmlFromString(string? html)
 
 string CreateOperationId(string summary)
 {
+    summary = RemoveHtmlFromString(summary)!.Replace("-", " ").Replace("_", " ");
     summary = TitleCase(summary).Replace(" A ", " ")
         .Replace(" An ", " ")
         .Trim()
@@ -176,7 +197,19 @@ string CreateOperationId(string summary)
     return summary;
 }
 
-static string TitleCase(string input) => Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(input);
+static IEnumerable<char> CharsToTitleCase(string s)
+{
+    var newWord = true;
+    foreach (var c in s)
+    {
+        if (newWord) { yield return char.ToUpper(c); newWord = false; }
+        else yield return c;
+        if (c == ' ') newWord = true;
+    }
+}
+
+//static string TitleCase(string input) => Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(input);
+static string TitleCase(string input) => new (CharsToTitleCase(input).ToArray());
 
 async Task CreateController(string openApi, string version, string section, string controllerName)
 {

@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">Specify which fields to show using a comma-separated list of field names.</param>
         /// <returns>Retrieves a list of assets for a theme</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/themes/{theme_id}/assets.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}/assets.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfAssetsForTheme(string theme_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="source_key">The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.</param>
         /// <param name="src">The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.</param>
         /// <returns>Creates or updates an asset for a theme</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/themes/{theme_id}/assets.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}/assets.json")]
         public abstract System.Threading.Tasks.Task CreateOrUpdatesAssetForTheme(string theme_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? source_key = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? src = null);
 
         /// <summary>
@@ -47,94 +47,12 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="assetkey">Deletes a single asset from a theme by specifying the asset's key.</param>
         /// <returns>Deletes an asset from a theme</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/themes/{theme_id}/assets.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}/assets.json")]
         public abstract System.Threading.Tasks.Task DeleteAssetFromTheme([Microsoft.AspNetCore.Mvc.FromQuery(Name = "asset[key]")] string assetkey, string theme_id);
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Asset
-    {
-        /// <summary>
-        /// A base64-encoded image.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("attachment")]
-        public string? Attachment { get; set; } = default!;
-
-        /// <summary>
-        /// The MD5 representation of the content, consisting of a string of 32 hexadecimal digits. May be null if an asset has not been updated recently.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("checksum")]
-        public string? Checksum { get; set; } = default!;
-
-        /// <summary>
-        /// The MIME representation of the content, consisting of the type and subtype of the asset.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("content_type")]
-        public string? Content_type { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the asset was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public string? Created_at { get; set; } = default!;
-
-        /// <summary>
-        /// The path to the asset within a theme. It consists of the file's directory and filename. For example, the asset assets/bg-body-green.gif is in the assets directory, so its key is assets/bg-body-green.gif.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("key")]
-        public string? Key { get; set; } = default!;
-
-        /// <summary>
-        /// The public-facing URL of the asset.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("public_url")]
-        public string? Public_url { get; set; } = default!;
-
-        /// <summary>
-        /// The asset size in bytes.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("size")]
-        public string? Size { get; set; } = default!;
-
-        /// <summary>
-        /// The ID for the theme that an asset belongs to.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("theme_id")]
-        public string? Theme_id { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when an asset was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        /// <summary>
-        /// The text content of the asset, such as the HTML and Liquid markup of a template file.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value")]
-        public string? Value { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }

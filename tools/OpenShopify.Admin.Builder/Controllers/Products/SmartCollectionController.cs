@@ -41,14 +41,14 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_max">Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="updated_at_min">Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Retrieves a list of smart collections</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/smart_collections.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("smart_collections.json")]
         public abstract System.Threading.Tasks.Task RetrieveListOfSmartCollections([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? product_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? title = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
 
         /// <summary>
         /// Creates a smart collection
         /// </summary>
         /// <returns>Creates a smart collection</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/smart_collections.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("smart_collections.json")]
         public abstract System.Threading.Tasks.Task CreateSmartCollection();
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_max">Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="updated_at_min">Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Retrieves a count of smart collections</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/smart_collections/count.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("smart_collections/count.json")]
         public abstract System.Threading.Tasks.Task RetrieveCountOfSmartCollections([Microsoft.AspNetCore.Mvc.FromQuery] string? product_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? title = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
 
         /// <summary>
@@ -70,21 +70,21 @@ namespace OpenShopify.Admin.Builder
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single smart collection</returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/smart_collections/{smart_collection_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("smart_collections/{smart_collection_id}.json")]
         public abstract System.Threading.Tasks.Task RetrieveSingleSmartCollection(string smart_collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates an existing smart collection
         /// </summary>
         /// <returns>Updates an existing smart collection</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/smart_collections/{smart_collection_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("smart_collections/{smart_collection_id}.json")]
         public abstract System.Threading.Tasks.Task UpdateExistingSmartCollection(string smart_collection_id);
 
         /// <summary>
         /// Removes a smart collection
         /// </summary>
         /// <returns>Removes a smart collection</returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/smart_collections/{smart_collection_id}.json")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("smart_collections/{smart_collection_id}.json")]
         public abstract System.Threading.Tasks.Task RemoveSmartCollection(string smart_collection_id);
 
         /// <summary>
@@ -93,170 +93,12 @@ namespace OpenShopify.Admin.Builder
         /// <param name="products">An array of product IDs, in the order that you want them to appear at the top of the collection. When &lt;code&gt;products&lt;/code&gt; is specified but empty, any previously sorted products are cleared.</param>
         /// <param name="sort_order">The type of sorting to apply. Valid values are listed in the &lt;a href="#properties"&gt;Properties&lt;/a&gt; section above.</param>
         /// <returns>Updates the ordering type of products in a smart collection</returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("admin/api/{api_version}/smart_collections/{smart_collection_id}/order.json")]
+        [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("smart_collections/{smart_collection_id}/order.json")]
         public abstract System.Threading.Tasks.Task UpdateTheOrderingTypeOfProductsInSmartCollection(string smart_collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? products = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? sort_order = "(current value)");
 
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SmartCollection
-    {
-        /// <summary>
-        /// The description of the smart collection. Includes HTML markup. Many shop themes display this on the smart collection page.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("body_html")]
-        public string? Body_html { get; set; } = default!;
-
-        /// <summary>
-        /// A human-friendly unique string for the smart collection. Automatically generated from the title.
-        /// <br/> Used in shop themes by the Liquid templating language to refer to the smart collection. (maximum: 255 characters)
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("handle")]
-        public string? Handle { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the smart collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string? Id { get; set; } = default!;
-
-        /// <summary>
-        /// The image associated with the smart collection. Valid values:
-        /// <br/> 
-        /// <br/> attachment: An image attached to a smart collection returned as Base64-encoded binary data.
-        /// <br/> src: A URL that specifies the location of the image.
-        /// <br/> alt: Alternative text that describes the collection image.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("image")]
-        public string? Image { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format)
-        /// <br/> that the smart collection was published. Returns null when the collection is hidden.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("published_at")]
-        public string? Published_at { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the smart collection is published to the Point of Sale channel. Valid values:
-        /// <br/> 
-        /// <br/> web: The smart collection is published to the Online Store channel but not published to the Point of Sale channel.
-        /// <br/> global: The smart collection is published to both the Online Store channel and the Point of Sale channel.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
-        public string? Published_scope { get; set; } = default!;
-
-        /// <summary>
-        /// The list of rules that define what products go into the smart collection. Each rule has the following properties:
-        /// <br/> 
-        /// <br/> column: The property of a product being used to populate the smart collection.
-        /// <br/> Valid values for text relations:
-        /// <br/> 
-        /// <br/> title: The product title.
-        /// <br/> type: The product type.
-        /// <br/> vendor: The name of the product vendor.
-        /// <br/> variant_title: The title of a product variant.
-        /// <br/> 
-        /// <br/> Valid values for number relations:
-        /// <br/> 
-        /// <br/> variant_compare_at_price: The compare price.
-        /// <br/> variant_weight: The weight of the product.
-        /// <br/> variant_inventory: The inventory stock. Note: not_equals does not work with this property.
-        /// <br/> variant_price: product price.
-        /// <br/> 
-        /// <br/> Valid values for an equals relation:
-        /// <br/> 
-        /// <br/> tag: A tag associated with the product.
-        /// <br/> 
-        /// <br/> 
-        /// <br/> relation: The relationship between the column choice, and the condition.
-        /// <br/> Valid values for number relations:
-        /// <br/> 
-        /// <br/> greater_than The column value is greater than the condition.
-        /// <br/> less_than The column value is less than the condition.
-        /// <br/> equals The column value is equal to the condition.
-        /// <br/> not_equals The column value is not equal to the condition.
-        /// <br/> 
-        /// <br/> Valid values for text relations:
-        /// <br/> 
-        /// <br/> equals: Checks if the column value is equal to the condition value.
-        /// <br/> not_equals: Checks if the column value is not equal to the condition value.
-        /// <br/> starts_with: Checks if the column value starts with the condition value.
-        /// <br/> ends_with: Checks if the column value ends with the condition value.
-        /// <br/> contains: Checks if the column value contains the condition value.
-        /// <br/> not_contains: Checks if the column value does not contain the condition value.
-        /// <br/> 
-        /// <br/> 
-        /// <br/> condition: Select products for a smart collection using a condition. Values are either strings or numbers, depending on the relation value.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("rules")]
-        public string? Rules { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the product must match all the rules to be included in the smart collection. Valid values:
-        /// <br/> 
-        /// <br/> true: Products only need to match one or more of the rules to be included in the smart collection.
-        /// <br/> false: Products must match all of the rules to be included in the smart collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("disjunctive")]
-        public string? Disjunctive { get; set; } = default!;
-
-        /// <summary>
-        /// The order of the products in the smart collection. Valid values:
-        /// <br/> 
-        /// <br/> alpha-asc: The products are sorted alphabetically from A to Z.
-        /// <br/> alpha-des: The products are sorted alphabetically from Z to A.
-        /// <br/> best-selling: The products are sorted by number of sales.
-        /// <br/> created: The products are sorted by the date they were created, from oldest to newest.
-        /// <br/> created-desc: The products are sorted by the date they were created, from newest to oldest.
-        /// <br/> manual: The products are manually sorted by the shop owner.
-        /// <br/> price-asc: The products are sorted by price from lowest to highest.
-        /// <br/> price-desc: The products are sorted by price from highest to lowest.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("sort_order")]
-        public string? Sort_order { get; set; } = default!;
-
-        /// <summary>
-        /// The suffix of the Liquid template that the shop uses. By default, the original template
-        /// <br/> is called product.liquid, and additional templates are called product.suffix.liquid.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
-        public string? Template_suffix { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the smart collection. Maximum length: 255 characters.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("title")]
-        public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time (ISO 8601 format) when the smart collection was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public string? Updated_at { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
+    
 
 
 }
