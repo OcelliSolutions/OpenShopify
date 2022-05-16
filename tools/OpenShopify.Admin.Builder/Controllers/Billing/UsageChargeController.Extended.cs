@@ -9,25 +9,28 @@ namespace OpenShopify.Admin.Builder.Controllers.Billing;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Billing)]
 [ApiController]
-public class UsageChargeController : UsageChargeControllerBase
+public class UsageChargeController : IUsageChargeController
 {
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/usage_charges.json")]
     [ProducesResponseType(typeof(UsageChargeItem), StatusCodes.Status200OK)]
-    public override Task CreateUsageCharge(string recurring_application_charge_id)
+    public Task CreateUsageChargeAsync(string recurring_application_charge_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/usage_charges.json")]
     [ProducesResponseType(typeof(UsageChargeList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfUsageCharges(string recurring_application_charge_id, string? fields = null)
+    public Task RetrieveListOfUsageChargesAsync(string recurring_application_charge_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/usage_charges/{usage_charge_id}.json")]
     [ProducesResponseType(typeof(UsageChargeItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSingleCharge(string recurring_application_charge_id, string usage_charge_id, string? fields = null)
+    public Task RetrieveSingleChargeAsync(string recurring_application_charge_id, string usage_charge_id, string? fields)
     {
         throw new NotImplementedException();
     }

@@ -7,46 +7,61 @@ namespace OpenShopify.Admin.Builder.Controllers.Orders;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Orders)]
 [ApiController]
-public class DraftOrderController : DraftOrderControllerBase
+public class DraftOrderController : IDraftOrderController
 {
-    public override Task CreateNewDraftOrder(string? customer_id = null, string? use_customer_default_address = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("draft_orders.json")]
+    public Task CreateNewDraftOrderAsync(string? customer_id, string? use_customer_default_address)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveListOfDraftOrders(string? fieldsQuery = null, string? ids = null, string? limit = "50",
-        string? since_id = null, string? status = null, string? updated_at_max = null, string? updated_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("draft_orders.json")]
+    public Task RetrieveListOfDraftOrdersAsync(string? fieldsQuery, string? ids, string limit, string? since_id, string? status,
+        string? updated_at_max, string? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ModifyExistingDraftOrder(string draft_order_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("draft_orders/{draft_order_id}.json")]
+    public Task ModifyExistingDraftOrderAsync(string draft_order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ReceiveSingleDraftOrder(string draft_order_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("draft_orders/{draft_order_id}.json")]
+    public Task ReceiveSingleDraftOrderAsync(string draft_order_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RemoveExistingDraftOrder(string draft_order_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("draft_orders/{draft_order_id}.json")]
+    public Task RemoveExistingDraftOrderAsync(string draft_order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ReceiveCountOfAllDraftOrders(string? since_id = null, string? status = "open", string? updated_at_max = null,
-        string? updated_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("draft_orders/count.json")]
+    public Task ReceiveCountOfAllDraftOrdersAsync(string? since_id, string status, string? updated_at_max, string? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
-    public override Task SendInvoice(string draft_order_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("draft_orders/{draft_order_id}/send_invoice.json")]
+    public Task SendInvoiceAsync(string draft_order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CompleteDraftOrder(string draft_order_id, string? payment_pending = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("draft_orders/{draft_order_id}/complete.json")]
+    public Task CompleteDraftOrderAsync(string draft_order_id, string? payment_pending)
     {
         throw new NotImplementedException();
     }

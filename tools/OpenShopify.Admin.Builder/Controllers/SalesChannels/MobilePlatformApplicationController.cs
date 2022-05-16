@@ -17,48 +17,124 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class MobilePlatformApplicationControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IMobilePlatformApplicationController
     {
+
+        /// <summary>
+        /// List all of the mobile platform applications associated with the app
+        /// </summary>
+
+        /// <returns>List all of the mobile platform applications associated with the app</returns>
+
+        System.Threading.Tasks.Task ListAllOfTheMobilePlatformApplicationsAssociatedWithTheAppAsync();
+
+        /// <summary>
+        /// Create a mobile platform application
+        /// </summary>
+
+        /// <returns>Create a mobile platform application</returns>
+
+        System.Threading.Tasks.Task CreateMobilePlatformApplicationAsync();
+
+        /// <summary>
+        /// Get a mobile platform application
+        /// </summary>
+
+
+        /// <returns>Get a mobile platform application</returns>
+
+        System.Threading.Tasks.Task GetMobilePlatformApplicationAsync(string mobile_platform_application_id);
+
+        /// <summary>
+        /// Update a mobile platform application
+        /// </summary>
+
+
+        /// <returns>Update a mobile platform application</returns>
+
+        System.Threading.Tasks.Task UpdateMobilePlatformApplicationAsync(string mobile_platform_application_id);
+
+        /// <summary>
+        /// Delete a mobile platform application
+        /// </summary>
+
+
+        /// <returns>Delete a mobile platform application</returns>
+
+        System.Threading.Tasks.Task DeleteMobilePlatformApplicationAsync(string mobile_platform_application_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class MobilePlatformApplicationController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IMobilePlatformApplicationController _implementation;
+
+        public MobilePlatformApplicationController(IMobilePlatformApplicationController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// List all of the mobile platform applications associated with the app
         /// </summary>
         /// <returns>List all of the mobile platform applications associated with the app</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications.json")]
-        public abstract System.Threading.Tasks.Task ListAllOfTheMobilePlatformApplicationsAssociatedWithTheApp();
+        public System.Threading.Tasks.Task ListAllOfTheMobilePlatformApplicationsAssociatedWithTheApp()
+        {
+
+            return _implementation.ListAllOfTheMobilePlatformApplicationsAssociatedWithTheAppAsync();
+        }
 
         /// <summary>
         /// Create a mobile platform application
         /// </summary>
         /// <returns>Create a mobile platform application</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications.json")]
-        public abstract System.Threading.Tasks.Task CreateMobilePlatformApplication();
+        public System.Threading.Tasks.Task CreateMobilePlatformApplication()
+        {
+
+            return _implementation.CreateMobilePlatformApplicationAsync();
+        }
 
         /// <summary>
         /// Get a mobile platform application
         /// </summary>
         /// <returns>Get a mobile platform application</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications/{mobile_platform_application_id}.json")]
-        public abstract System.Threading.Tasks.Task GetMobilePlatformApplication(string mobile_platform_application_id);
+        public System.Threading.Tasks.Task GetMobilePlatformApplication(string mobile_platform_application_id)
+        {
+
+            return _implementation.GetMobilePlatformApplicationAsync(mobile_platform_application_id);
+        }
 
         /// <summary>
         /// Update a mobile platform application
         /// </summary>
         /// <returns>Update a mobile platform application</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications/{mobile_platform_application_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateMobilePlatformApplication(string mobile_platform_application_id);
+        public System.Threading.Tasks.Task UpdateMobilePlatformApplication(string mobile_platform_application_id)
+        {
+
+            return _implementation.UpdateMobilePlatformApplicationAsync(mobile_platform_application_id);
+        }
 
         /// <summary>
         /// Delete a mobile platform application
         /// </summary>
         /// <returns>Delete a mobile platform application</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications/{mobile_platform_application_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteMobilePlatformApplication(string mobile_platform_application_id);
+        public System.Threading.Tasks.Task DeleteMobilePlatformApplication(string mobile_platform_application_id)
+        {
+
+            return _implementation.DeleteMobilePlatformApplicationAsync(mobile_platform_application_id);
+        }
 
     }
 

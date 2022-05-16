@@ -17,48 +17,126 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class OrderRiskControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IOrderRiskController
     {
+
+        /// <summary>
+        /// Creates an order risk for an order
+        /// </summary>
+
+
+        /// <returns>Creates an order risk for an order</returns>
+
+        System.Threading.Tasks.Task CreateOrderRiskForOrderAsync(string order_id);
+
+        /// <summary>
+        /// Retrieves a list of all order risks for an order
+        /// </summary>
+
+
+        /// <returns>Retrieves a list of all order risks for an order</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfAllOrderRisksForOrderAsync(string order_id);
+
+        /// <summary>
+        /// Retrieves a single order risk by its ID
+        /// </summary>
+
+
+        /// <returns>Retrieves a single order risk by its ID</returns>
+
+        System.Threading.Tasks.Task RetrieveSingleOrderRiskByItsIDAsync(string order_id, string risk_id);
+
+        /// <summary>
+        /// Updates an order risk
+        /// </summary>
+
+
+        /// <returns>Updates an order risk</returns>
+
+        System.Threading.Tasks.Task UpdateOrderRiskAsync(string order_id, string risk_id);
+
+        /// <summary>
+        /// Deletes an order risk for an order
+        /// </summary>
+
+
+        /// <returns>Deletes an order risk for an order</returns>
+
+        System.Threading.Tasks.Task DeleteOrderRiskForOrderAsync(string order_id, string risk_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class OrderRiskController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IOrderRiskController _implementation;
+
+        public OrderRiskController(IOrderRiskController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Creates an order risk for an order
         /// </summary>
         /// <returns>Creates an order risk for an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks.json")]
-        public abstract System.Threading.Tasks.Task CreateOrderRiskForOrder(string order_id);
+        public System.Threading.Tasks.Task CreateOrderRiskForOrder(string order_id)
+        {
+
+            return _implementation.CreateOrderRiskForOrderAsync(order_id);
+        }
 
         /// <summary>
         /// Retrieves a list of all order risks for an order
         /// </summary>
         /// <returns>Retrieves a list of all order risks for an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfAllOrderRisksForOrder(string order_id);
+        public System.Threading.Tasks.Task RetrieveListOfAllOrderRisksForOrder(string order_id)
+        {
+
+            return _implementation.RetrieveListOfAllOrderRisksForOrderAsync(order_id);
+        }
 
         /// <summary>
         /// Retrieves a single order risk by its ID
         /// </summary>
         /// <returns>Retrieves a single order risk by its ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks/{risk_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleOrderRiskByItsID(string order_id, string risk_id);
+        public System.Threading.Tasks.Task RetrieveSingleOrderRiskByItsID(string order_id, string risk_id)
+        {
+
+            return _implementation.RetrieveSingleOrderRiskByItsIDAsync(order_id, risk_id);
+        }
 
         /// <summary>
         /// Updates an order risk
         /// </summary>
         /// <returns>Updates an order risk</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks/{risk_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateOrderRisk(string order_id, string risk_id);
+        public System.Threading.Tasks.Task UpdateOrderRisk(string order_id, string risk_id)
+        {
+
+            return _implementation.UpdateOrderRiskAsync(order_id, risk_id);
+        }
 
         /// <summary>
         /// Deletes an order risk for an order
         /// </summary>
         /// <returns>Deletes an order risk for an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks/{risk_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteOrderRiskForOrder(string order_id, string risk_id);
+        public System.Threading.Tasks.Task DeleteOrderRiskForOrder(string order_id, string risk_id)
+        {
+
+            return _implementation.DeleteOrderRiskForOrderAsync(order_id, risk_id);
+        }
 
     }
 

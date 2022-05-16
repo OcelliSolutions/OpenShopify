@@ -7,19 +7,25 @@ namespace OpenShopify.Admin.Builder.Controllers.OnlineStore;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.OnlineStore)]
 [ApiController]
-public class AssetController : AssetControllerBase
+public class AssetController : IAssetController
 {
-    public override Task RetrieveListOfAssetsForTheme(string theme_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}/assets.json")]
+    public Task RetrieveListOfAssetsForThemeAsync(string theme_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateOrUpdatesAssetForTheme(string theme_id, string? source_key = null, string? src = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}/assets.json")]
+    public Task CreateOrUpdatesAssetForThemeAsync(string theme_id, string? source_key, string? src)
     {
         throw new NotImplementedException();
     }
 
-    public override Task DeleteAssetFromTheme(string assetkey, string theme_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}/assets.json")]
+    public Task DeleteAssetFromThemeAsync(string assetkey, string theme_id)
     {
         throw new NotImplementedException();
     }

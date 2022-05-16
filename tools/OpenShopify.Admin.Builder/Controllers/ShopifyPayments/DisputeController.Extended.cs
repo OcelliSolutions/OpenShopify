@@ -7,15 +7,18 @@ namespace OpenShopify.Admin.Builder.Controllers.ShopifyPayments;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShopifyPayments)]
 [ApiController]
-public class DisputeController : DisputeControllerBase
+public class DisputeController : IDisputeController
 {
-    public override Task ReturnListOfAllDisputes(string? initiated_at = null, string? last_id = null, string? since_id = null,
-        string? status = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/disputes.json")]
+    public Task ReturnListOfAllDisputesAsync(string? initiated_at, string? last_id, string? since_id, string? status)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ReturnSingleDispute(string dispute_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/disputes/{dispute_id}.json")]
+    public Task ReturnSingleDisputeAsync(string dispute_id)
     {
         throw new NotImplementedException();
     }

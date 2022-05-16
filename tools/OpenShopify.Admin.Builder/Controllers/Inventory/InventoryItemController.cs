@@ -17,14 +17,57 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class InventoryItemControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IInventoryItemController
     {
+
+        /// <summary>
+        /// Retrieves a list of inventory items
+        /// </summary>
+
+        /// <param name="ids">Show only inventory items specified by a comma-separated list of IDs.</param>
+
+        /// <param name="limit">The maximum number of results to show.</param>
+
+        /// <returns>Retrieves a list of inventory items</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfInventoryItemsAsync(string ids, string limit);
+
+        /// <summary>
+        /// Retrieves a single inventory item by ID
+        /// </summary>
+
+
+        /// <returns>Retrieves a single inventory item by ID</returns>
+
+        System.Threading.Tasks.Task RetrieveSingleInventoryItemByIDAsync(string inventory_item_id);
+
+        /// <summary>
+        /// Updates an existing inventory item
+        /// </summary>
+
+
+        /// <returns>Updates an existing inventory item</returns>
+
+        System.Threading.Tasks.Task UpdateExistingInventoryItemAsync(string inventory_item_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class InventoryItemController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IInventoryItemController _implementation;
+
+        public InventoryItemController(IInventoryItemController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of inventory items
         /// </summary>
@@ -32,21 +75,33 @@ namespace OpenShopify.Admin.Builder
         /// <param name="limit">The maximum number of results to show.</param>
         /// <returns>Retrieves a list of inventory items</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_items.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfInventoryItems([Microsoft.AspNetCore.Mvc.FromQuery] string ids, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50");
+        public System.Threading.Tasks.Task RetrieveListOfInventoryItems([Microsoft.AspNetCore.Mvc.FromQuery] string ids, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit)
+        {
+
+            return _implementation.RetrieveListOfInventoryItemsAsync(ids, limit ?? "50");
+        }
 
         /// <summary>
         /// Retrieves a single inventory item by ID
         /// </summary>
         /// <returns>Retrieves a single inventory item by ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_items/{inventory_item_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleInventoryItemByID(string inventory_item_id);
+        public System.Threading.Tasks.Task RetrieveSingleInventoryItemByID(string inventory_item_id)
+        {
+
+            return _implementation.RetrieveSingleInventoryItemByIDAsync(inventory_item_id);
+        }
 
         /// <summary>
         /// Updates an existing inventory item
         /// </summary>
         /// <returns>Updates an existing inventory item</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("inventory_items/{inventory_item_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingInventoryItem(string inventory_item_id);
+        public System.Threading.Tasks.Task UpdateExistingInventoryItem(string inventory_item_id)
+        {
+
+            return _implementation.UpdateExistingInventoryItemAsync(inventory_item_id);
+        }
 
     }
 

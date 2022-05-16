@@ -17,14 +17,154 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class CommentControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface ICommentController
     {
+
+        /// <summary>
+        /// Retrieves a list of comments
+        /// </summary>
+
+        /// <param name="created_at_max">Show comments created before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="created_at_min">Show comments created after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
+
+        /// <param name="limit">The maximum number of results to retrieve.</param>
+
+        /// <param name="published_at_max">Show comments published before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="published_at_min">Show comments published after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="published_status">Filter results by their published status.</param>
+
+        /// <param name="since_id">Restrict results to after the specified ID.</param>
+
+        /// <param name="status">Filter results by their status.</param>
+
+        /// <param name="updated_at_max">Show comments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="updated_at_min">Show comments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <returns>Retrieves a list of comments</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfCommentsAsync(string? created_at_max, string? created_at_min, string? fields, string limit, string? published_at_max, string? published_at_min, string published_status, string? since_id, string? status, string? updated_at_max, string? updated_at_min);
+
+        /// <summary>
+        /// Creates a comment for an article
+        /// </summary>
+
+        /// <returns>Creates a comment for an article</returns>
+
+        System.Threading.Tasks.Task CreateCommentForArticleAsync();
+
+        /// <summary>
+        /// Retrieves a count of comments
+        /// </summary>
+
+        /// <param name="created_at_max">Count comments created before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="created_at_min">Count comments created after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="published_at_max">Count comments published before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="published_at_min">Count comments published after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="published_status">Retrieve a count of comments with a given published status.</param>
+
+        /// <param name="status">Retrieve a count of comments with a given status.</param>
+
+        /// <param name="updated_at_max">Count comments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="updated_at_min">Count comments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <returns>Retrieves a count of comments</returns>
+
+        System.Threading.Tasks.Task RetrieveCountOfCommentsAsync(string? created_at_max, string? created_at_min, string? published_at_max, string? published_at_min, string published_status, string? status, string? updated_at_max, string? updated_at_min);
+
+        /// <summary>
+        /// Retrieves a single comment by its ID
+        /// </summary>
+
+
+        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
+
+        /// <returns>Retrieves a single comment by its ID</returns>
+
+        System.Threading.Tasks.Task RetrieveSingleCommentByItsIDAsync(string comment_id, string? fields);
+
+        /// <summary>
+        /// Updates a comment of an article
+        /// </summary>
+
+
+        /// <returns>Updates a comment of an article</returns>
+
+        System.Threading.Tasks.Task UpdateCommentOfArticleAsync(string comment_id);
+
+        /// <summary>
+        /// Marks a comment as spam
+        /// </summary>
+
+
+        /// <returns>Marks a comment as spam</returns>
+
+        System.Threading.Tasks.Task MarkCommentAsSpamAsync(string comment_id);
+
+        /// <summary>
+        /// Marks a comment as not spam
+        /// </summary>
+
+
+        /// <returns>Marks a comment as not spam</returns>
+
+        System.Threading.Tasks.Task MarkCommentAsNotSpamAsync(string comment_id);
+
+        /// <summary>
+        /// Approves a comment
+        /// </summary>
+
+
+        /// <returns>Approves a comment</returns>
+
+        System.Threading.Tasks.Task ApproveCommentAsync(string comment_id);
+
+        /// <summary>
+        /// Removes a comment
+        /// </summary>
+
+
+        /// <returns>Removes a comment</returns>
+
+        System.Threading.Tasks.Task RemoveCommentAsync(string comment_id);
+
+        /// <summary>
+        /// Restores a previously removed comment
+        /// </summary>
+
+
+        /// <returns>Restores a previously removed comment</returns>
+
+        System.Threading.Tasks.Task RestorePreviouslyRemovedCommentAsync(string comment_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class CommentController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private ICommentController _implementation;
+
+        public CommentController(ICommentController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of comments
         /// </summary>
@@ -41,14 +181,22 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_min">Show comments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a list of comments</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("comments.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfComments([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? status = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
+        public System.Threading.Tasks.Task RetrieveListOfComments([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
+        {
+
+            return _implementation.RetrieveListOfCommentsAsync(created_at_max, created_at_min, fields, limit ?? "50", published_at_max, published_at_min, published_status ?? "any", since_id, status, updated_at_max, updated_at_min);
+        }
 
         /// <summary>
         /// Creates a comment for an article
         /// </summary>
         /// <returns>Creates a comment for an article</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments.json")]
-        public abstract System.Threading.Tasks.Task CreateCommentForArticle();
+        public System.Threading.Tasks.Task CreateCommentForArticle()
+        {
+
+            return _implementation.CreateCommentForArticleAsync();
+        }
 
         /// <summary>
         /// Retrieves a count of comments
@@ -63,7 +211,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_min">Count comments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a count of comments</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("comments/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfComments([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? status = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
+        public System.Threading.Tasks.Task RetrieveCountOfComments([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? status, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
+        {
+
+            return _implementation.RetrieveCountOfCommentsAsync(created_at_max, created_at_min, published_at_max, published_at_min, published_status ?? "any", status, updated_at_max, updated_at_min);
+        }
 
         /// <summary>
         /// Retrieves a single comment by its ID
@@ -71,49 +223,77 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single comment by its ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleCommentByItsID(string comment_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public System.Threading.Tasks.Task RetrieveSingleCommentByItsID(string comment_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
+        {
+
+            return _implementation.RetrieveSingleCommentByItsIDAsync(comment_id, fields);
+        }
 
         /// <summary>
         /// Updates a comment of an article
         /// </summary>
         /// <returns>Updates a comment of an article</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateCommentOfArticle(string comment_id);
+        public System.Threading.Tasks.Task UpdateCommentOfArticle(string comment_id)
+        {
+
+            return _implementation.UpdateCommentOfArticleAsync(comment_id);
+        }
 
         /// <summary>
         /// Marks a comment as spam
         /// </summary>
         /// <returns>Marks a comment as spam</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/spam.json")]
-        public abstract System.Threading.Tasks.Task MarkCommentAsSpam(string comment_id);
+        public System.Threading.Tasks.Task MarkCommentAsSpam(string comment_id)
+        {
+
+            return _implementation.MarkCommentAsSpamAsync(comment_id);
+        }
 
         /// <summary>
         /// Marks a comment as not spam
         /// </summary>
         /// <returns>Marks a comment as not spam</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/not_spam.json")]
-        public abstract System.Threading.Tasks.Task MarkCommentAsNotSpam(string comment_id);
+        public System.Threading.Tasks.Task MarkCommentAsNotSpam(string comment_id)
+        {
+
+            return _implementation.MarkCommentAsNotSpamAsync(comment_id);
+        }
 
         /// <summary>
         /// Approves a comment
         /// </summary>
         /// <returns>Approves a comment</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/approve.json")]
-        public abstract System.Threading.Tasks.Task ApproveComment(string comment_id);
+        public System.Threading.Tasks.Task ApproveComment(string comment_id)
+        {
+
+            return _implementation.ApproveCommentAsync(comment_id);
+        }
 
         /// <summary>
         /// Removes a comment
         /// </summary>
         /// <returns>Removes a comment</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/remove.json")]
-        public abstract System.Threading.Tasks.Task RemoveComment(string comment_id);
+        public System.Threading.Tasks.Task RemoveComment(string comment_id)
+        {
+
+            return _implementation.RemoveCommentAsync(comment_id);
+        }
 
         /// <summary>
         /// Restores a previously removed comment
         /// </summary>
         /// <returns>Restores a previously removed comment</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/restore.json")]
-        public abstract System.Threading.Tasks.Task RestorePreviouslyRemovedComment(string comment_id);
+        public System.Threading.Tasks.Task RestorePreviouslyRemovedComment(string comment_id)
+        {
+
+            return _implementation.RestorePreviouslyRemovedCommentAsync(comment_id);
+        }
 
     }
 

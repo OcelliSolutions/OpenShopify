@@ -7,24 +7,32 @@ namespace OpenShopify.Admin.Builder.Controllers.StoreProperties;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.StoreProperties)]
 [ApiController]
-public class ProvinceController : ProvinceControllerBase
+public class ProvinceController : IProvinceController
 {
-    public override Task RetrieveListOfProvincesForCountry(string country_id, string? fields = null, string? since_id = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces.json")]
+    public Task RetrieveListOfProvincesForCountryAsync(string country_id, string? fields, string? since_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfProvincesForCountry(string country_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/count.json")]
+    public Task RetrieveCountOfProvincesForCountryAsync(string country_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSingleProvinceForCountry(string country_id, string province_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/{province_id}.json")]
+    public Task RetrieveSingleProvinceForCountryAsync(string country_id, string province_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateExistingProvinceForCountry(string country_id, string province_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/{province_id}.json")]
+    public Task UpdateExistingProvinceForCountryAsync(string country_id, string province_id)
     {
         throw new NotImplementedException();
     }

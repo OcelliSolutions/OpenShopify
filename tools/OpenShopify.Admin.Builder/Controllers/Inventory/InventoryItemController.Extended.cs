@@ -7,19 +7,25 @@ namespace OpenShopify.Admin.Builder.Controllers.Inventory;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Inventory)]
 [ApiController]
-public class InventoryItemController : InventoryItemControllerBase
+public class InventoryItemController : IInventoryItemController
 {
-    public override Task RetrieveListOfInventoryItems(string ids, string? limit = "50")
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_items.json")]
+    public Task RetrieveListOfInventoryItemsAsync(string ids, string limit)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSingleInventoryItemByID(string inventory_item_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_items/{inventory_item_id}.json")]
+    public Task RetrieveSingleInventoryItemByIDAsync(string inventory_item_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateExistingInventoryItem(string inventory_item_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("inventory_items/{inventory_item_id}.json")]
+    public Task UpdateExistingInventoryItemAsync(string inventory_item_id)
     {
         throw new NotImplementedException();
     }

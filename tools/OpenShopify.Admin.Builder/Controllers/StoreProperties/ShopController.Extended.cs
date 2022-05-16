@@ -7,9 +7,11 @@ namespace OpenShopify.Admin.Builder.Controllers.StoreProperties;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.StoreProperties)]
 [ApiController]
-public class ShopController : ShopControllerBase
+public class ShopController : IShopController
 {
-    public override Task RetrieveTheShopsConfiguration(string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shop.json")]
+    public Task RetrieveTheShopsConfigurationAsync(string? fields)
     {
         throw new NotImplementedException();
     }

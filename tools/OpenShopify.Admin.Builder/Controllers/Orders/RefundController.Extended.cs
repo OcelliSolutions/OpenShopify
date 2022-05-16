@@ -7,29 +7,33 @@ namespace OpenShopify.Admin.Builder.Controllers.Orders;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Orders)]
 [ApiController]
-public class RefundController : RefundControllerBase
+public class RefundController : IRefundController
 {
-    public override Task RetrieveListOfRefundsForOrder(string order_id, string? fields = null, string? in_shop_currency = "false",
-        string? limit = "50")
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds.json")]
+    public Task RetrieveListOfRefundsForOrderAsync(string order_id, string? fields, string in_shop_currency, string limit)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateRefund(string order_id, string? currency = null, string? discrepancy_reason = null, string? note = null,
-        string? notify = null, string? refund_line_items = null, string? restock = null, string? shipping = null,
-        string? transactions = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds.json")]
+    public Task CreateRefundAsync(string order_id, string? currency, string? discrepancy_reason, string? note, string? notify,
+        string? refund_line_items, string? restock, string? shipping, string? transactions)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSpecificRefund(string order_id, string refund_id, string? fields = null,
-        string? in_shop_currency = "false")
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds/{refund_id}.json")]
+    public Task RetrieveSpecificRefundAsync(string order_id, string refund_id, string? fields, string in_shop_currency)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CalculateRefund(string order_id, string? currency = null, string? refund_line_items = null,
-        string? shipping = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds/calculate.json")]
+    public Task CalculateRefundAsync(string order_id, string? currency, string? refund_line_items, string? shipping)
     {
         throw new NotImplementedException();
     }

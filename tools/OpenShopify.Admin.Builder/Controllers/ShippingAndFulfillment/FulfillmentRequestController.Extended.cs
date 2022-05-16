@@ -7,20 +7,26 @@ namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShippingAndFulfillment)]
 [ApiController]
-public class FulfillmentRequestController : FulfillmentRequestControllerBase
+public class FulfillmentRequestController : IFulfillmentRequestController
 {
-    public override Task SendFulfillmentRequest([FromRoute] string fulfillment_order_id, string? fulfillment_order_line_items = null,
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json")]
+    public Task SendFulfillmentRequestAsync(string fulfillment_order_id, string? fulfillment_order_line_items = null,
         string? message = null)
     {
         throw new NotImplementedException();
     }
 
-    public override Task AcceptFulfillmentRequest([FromRoute] string fulfillment_order_id, string? message = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json")]
+    public Task AcceptFulfillmentRequestAsync(string fulfillment_order_id, string? message = null)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RejectFulfillmentRequest([FromRoute] string fulfillment_order_id, string? message = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json")]
+    public Task RejectFulfillmentRequestAsync(string fulfillment_order_id, string? message = null)
     {
         throw new NotImplementedException();
     }

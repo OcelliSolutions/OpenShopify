@@ -7,26 +7,32 @@ namespace OpenShopify.Admin.Builder.Controllers.Orders;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Orders)]
 [ApiController]
-public class TransactionController : TransactionControllerBase
+public class TransactionController : ITransactionController
 {
-    public override Task RetrieveListOfTransactions(string order_id, string? fields = null, string? in_shop_currency = "false",
-        string? since_id = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions.json")]
+    public Task RetrieveListOfTransactionsAsync(string order_id, string? fields, string in_shop_currency, string? since_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateTransactionForOrder(string order_id, string? source = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions.json")]
+    public Task CreateTransactionForOrderAsync(string order_id, string? source)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfOrdersTransactions(string order_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions/count.json")]
+    public Task RetrieveCountOfOrdersTransactionsAsync(string order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSpecificTransaction(string order_id, string transaction_id, string? fields = null,
-        string? in_shop_currency = "false")
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions/{transaction_id}.json")]
+    public Task RetrieveSpecificTransactionAsync(string order_id, string transaction_id, string? fields, string in_shop_currency)
     {
         throw new NotImplementedException();
     }

@@ -7,41 +7,54 @@ namespace OpenShopify.Admin.Builder.Controllers.Plus;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Plus)]
 [ApiController]
-public class GiftCardController : GiftCardControllerBase
+public class GiftCardController : IGiftCardController
 {
-    public override Task RetrieveListOfGiftCards(string? fields = null, string? limit = "50", string? since_id = null,
-        string? status = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards.json")]
+    public Task RetrieveListOfGiftCardsAsync(string? fields, string limit, string? since_id, string? status)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateGiftCard()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("gift_cards.json")]
+    public Task CreateGiftCardAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSingleGiftCard(string gift_card_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}.json")]
+    public Task RetrieveSingleGiftCardAsync(string gift_card_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateExistingGiftCard(string gift_card_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}.json")]
+
+    public Task UpdateExistingGiftCardAsync(string gift_card_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfGiftCards(string? status = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/count.json")]
+    public Task RetrieveCountOfGiftCardsAsync(string? status)
     {
         throw new NotImplementedException();
     }
 
-    public override Task DisableGiftCard(string gift_card_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}/disable.json")]
+    public Task DisableGiftCardAsync(string gift_card_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task SearchForGiftCards(string? fields = null, string? limit = "50", string? order = "disabled_at DESC",
-        string? query = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/search.json")]
+    public Task SearchForGiftCardsAsync(string? fields, string limit, string order, string? query)
     {
         throw new NotImplementedException();
     }

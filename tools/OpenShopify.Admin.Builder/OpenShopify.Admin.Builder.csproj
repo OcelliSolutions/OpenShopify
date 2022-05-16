@@ -29,7 +29,7 @@
 		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-events.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll Events " />
 		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-inventory.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll Inventory " />
 		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-marketing-event.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll MarketingEvent " />
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-meta-field.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll MetaField " />
+		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-metafield.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll Metafield " />
 		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-online-store.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll OnlineStore " />
 		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-orders.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll Orders " />
 		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-plus.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll Plus " />

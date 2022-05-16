@@ -7,41 +7,51 @@ namespace OpenShopify.Admin.Builder.Controllers.Products;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Products)]
 [ApiController]
-public class ProductController : ProductControllerBase
+public class ProductController : IProductController
 {
-    public override Task RetrieveListOfProducts(string? collection_id = null, string? created_at_max = null, string? created_at_min = null,
-        string? fields = null, string? handle = null, string? ids = null, string? limit = "50",
-        string? presentment_currencies = null, string? product_type = null, string? published_at_max = null,
-        string? published_at_min = null, string? published_status = "any", string? since_id = null, string? status = "any",
-        string? title = null, string? updated_at_max = null, string? updated_at_min = null, string? vendor = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products.json")]
+    public Task RetrieveListOfProductsAsync(string? collection_id, string? created_at_max, string? created_at_min, string? fields,
+        string? handle, string? ids, string limit, string? presentment_currencies, string? product_type,
+        string? published_at_max, string? published_at_min, string published_status, string? since_id, string status,
+        string? title, string? updated_at_max, string? updated_at_min, string? vendor)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateNewProduct()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products.json")]
+    public Task CreateNewProductAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfProducts(string? collection_id = null, string? created_at_max = null, string? created_at_min = null,
-        string? product_type = null, string? published_at_max = null, string? published_at_min = null,
-        string? published_status = "any", string? updated_at_max = null, string? updated_at_min = null,
-        string? vendor = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/count.json")]
+    public Task RetrieveCountOfProductsAsync(string? collection_id, string? created_at_max, string? created_at_min,
+        string? product_type, string? published_at_max, string? published_at_min, string published_status,
+        string? updated_at_max, string? updated_at_min, string? vendor)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSingleProduct(string product_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}.json")]
+    public Task RetrieveSingleProductAsync(string product_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateProduct(string product_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("products/{product_id}.json")]
+    public Task UpdateProductAsync(string product_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task DeleteProduct(string product_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("products/{product_id}.json")]
+    public Task DeleteProductAsync(string product_id)
     {
         throw new NotImplementedException();
     }

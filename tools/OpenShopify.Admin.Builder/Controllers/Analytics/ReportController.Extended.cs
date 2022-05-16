@@ -10,40 +10,45 @@ namespace OpenShopify.Admin.Builder.Controllers.Analytics;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Analytics)]
 [ApiController]
-public class ReportController : ReportControllerBase
+public class ReportController : IReportController
 {
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("reports.json")]
     [ProducesResponseType(typeof(ReportList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfReports(string? fields = null, string? ids = null, string? limit = "50", string? since_id = null,
-        string? updated_at_max = null, string? updated_at_min = null)
+    public Task RetrieveListOfReportsAsync(string? fields, string? ids, string limit, string? since_id,
+        string? updated_at_max, string? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("reports.json")]
     [ProducesResponseType(typeof(ReportItem), StatusCodes.Status200OK)]
-    public override Task CreateNewReport(string? name = null, string? shopify_ql = null)
+    public Task CreateNewReportAsync(string? name, string? shopify_ql)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("reports/{report_id}.json")]
     [ProducesResponseType(typeof(ReportItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSingleReport([FromRoute] string report_id, string? fields = null)
+    public Task RetrieveSingleReportAsync(string report_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("reports/{report_id}.json")]
     [ProducesResponseType(typeof(ReportItem), StatusCodes.Status200OK)]
-    public override Task UpdateReport([FromRoute] string report_id)
+    public Task UpdateReportAsync(string report_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("reports/{report_id}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteReport([FromRoute] string report_id)
+    public Task DeleteReportAsync(string report_id)
     {
         throw new NotImplementedException();
     }

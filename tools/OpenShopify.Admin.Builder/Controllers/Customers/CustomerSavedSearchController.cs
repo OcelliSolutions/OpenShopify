@@ -17,14 +17,103 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class CustomerSavedSearchControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface ICustomerSavedSearchController
     {
+
+        /// <summary>
+        /// Retrieves a list of customer saved searches
+        /// </summary>
+
+        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
+
+        /// <param name="limit">The maximum number of results to show.</param>
+
+        /// <param name="since_id">Restrict results to after the specified ID.</param>
+
+        /// <returns>Retrieves a list of customer saved searches</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfCustomerSavedSearchesAsync(string? fields, string limit, string? since_id);
+
+        /// <summary>
+        /// Creates a customer saved search
+        /// </summary>
+
+        /// <returns>Creates a customer saved search</returns>
+
+        System.Threading.Tasks.Task CreateCustomerSavedSearchAsync();
+
+        /// <summary>
+        /// Retrieves a count of all customer saved searches
+        /// </summary>
+
+        /// <param name="since_id">Restrict results to after the specified ID</param>
+
+        /// <returns>Retrieves a count of all customer saved searches</returns>
+
+        System.Threading.Tasks.Task RetrieveCountOfAllCustomerSavedSearchesAsync(string? since_id);
+
+        /// <summary>
+        /// Retrieves a single customer saved search
+        /// </summary>
+
+
+        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
+
+        /// <returns>Retrieves a single customer saved search</returns>
+
+        System.Threading.Tasks.Task RetrieveSingleCustomerSavedSearchAsync(string customer_saved_search_id, string? fields);
+
+        /// <summary>
+        /// Updates a customer saved search
+        /// </summary>
+
+
+        /// <returns>Updates a customer saved search</returns>
+
+        System.Threading.Tasks.Task UpdateCustomerSavedSearchAsync(string customer_saved_search_id);
+
+        /// <summary>
+        /// Deletes a customer saved search
+        /// </summary>
+
+
+        /// <returns>Deletes a customer saved search</returns>
+
+        System.Threading.Tasks.Task DeleteCustomerSavedSearchAsync(string customer_saved_search_id);
+
+        /// <summary>
+        /// Retrieves all customers returned by a customer saved search
+        /// </summary>
+
+
+        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
+
+        /// <param name="limit">The maximum number of results to show.</param>
+
+        /// <param name="order">Set the field and direction by which to order results.</param>
+
+        /// <returns>Retrieves all customers returned by a customer saved search</returns>
+
+        System.Threading.Tasks.Task RetrieveAllCustomersReturnedByCustomerSavedSearchAsync(string customer_saved_search_id, string? fields, string limit, string order);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class CustomerSavedSearchController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private ICustomerSavedSearchController _implementation;
+
+        public CustomerSavedSearchController(ICustomerSavedSearchController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of customer saved searches
         /// </summary>
@@ -33,14 +122,22 @@ namespace OpenShopify.Admin.Builder
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <returns>Retrieves a list of customer saved searches</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfCustomerSavedSearches([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
+        public System.Threading.Tasks.Task RetrieveListOfCustomerSavedSearches([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id)
+        {
+
+            return _implementation.RetrieveListOfCustomerSavedSearchesAsync(fields, limit ?? "50", since_id);
+        }
 
         /// <summary>
         /// Creates a customer saved search
         /// </summary>
         /// <returns>Creates a customer saved search</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches.json")]
-        public abstract System.Threading.Tasks.Task CreateCustomerSavedSearch();
+        public System.Threading.Tasks.Task CreateCustomerSavedSearch()
+        {
+
+            return _implementation.CreateCustomerSavedSearchAsync();
+        }
 
         /// <summary>
         /// Retrieves a count of all customer saved searches
@@ -48,7 +145,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="since_id">Restrict results to after the specified ID</param>
         /// <returns>Retrieves a count of all customer saved searches</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfAllCustomerSavedSearches([Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
+        public System.Threading.Tasks.Task RetrieveCountOfAllCustomerSavedSearches([Microsoft.AspNetCore.Mvc.FromQuery] string? since_id)
+        {
+
+            return _implementation.RetrieveCountOfAllCustomerSavedSearchesAsync(since_id);
+        }
 
         /// <summary>
         /// Retrieves a single customer saved search
@@ -56,21 +157,33 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single customer saved search</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleCustomerSavedSearch(string customer_saved_search_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public System.Threading.Tasks.Task RetrieveSingleCustomerSavedSearch(string customer_saved_search_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
+        {
+
+            return _implementation.RetrieveSingleCustomerSavedSearchAsync(customer_saved_search_id, fields);
+        }
 
         /// <summary>
         /// Updates a customer saved search
         /// </summary>
         /// <returns>Updates a customer saved search</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateCustomerSavedSearch(string customer_saved_search_id);
+        public System.Threading.Tasks.Task UpdateCustomerSavedSearch(string customer_saved_search_id)
+        {
+
+            return _implementation.UpdateCustomerSavedSearchAsync(customer_saved_search_id);
+        }
 
         /// <summary>
         /// Deletes a customer saved search
         /// </summary>
         /// <returns>Deletes a customer saved search</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteCustomerSavedSearch(string customer_saved_search_id);
+        public System.Threading.Tasks.Task DeleteCustomerSavedSearch(string customer_saved_search_id)
+        {
+
+            return _implementation.DeleteCustomerSavedSearchAsync(customer_saved_search_id);
+        }
 
         /// <summary>
         /// Retrieves all customers returned by a customer saved search
@@ -80,7 +193,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="order">Set the field and direction by which to order results.</param>
         /// <returns>Retrieves all customers returned by a customer saved search</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}/customers.json")]
-        public abstract System.Threading.Tasks.Task RetrieveAllCustomersReturnedByCustomerSavedSearch(string customer_saved_search_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? order = "last_order_date DESC");
+        public System.Threading.Tasks.Task RetrieveAllCustomersReturnedByCustomerSavedSearch(string customer_saved_search_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? order)
+        {
+
+            return _implementation.RetrieveAllCustomersReturnedByCustomerSavedSearchAsync(customer_saved_search_id, fields, limit ?? "50", order ?? "last_order_date DESC");
+        }
 
     }
 

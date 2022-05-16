@@ -25,6 +25,10 @@ builder.Services.AddControllers(options =>
     {
         //MapClientErrors is a .NET6 feature that automatically wraps error responses if a structure is not specified. Shopify does not do this so it needs to be disabled.
         options.SuppressMapClientErrors = true;
+    })
+    .AddJsonOptions(x =>
+    {
+        x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 
 builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(opt =>
@@ -90,6 +94,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 
     c.DocumentFilter<AdditionalPropertiesDocumentFilter>();
+    c.DocumentFilter<IgnoreApiDocumentFilter>();
     c.AddSecurityDefinition("ApiKey",
         new OpenApiSecurityScheme
         {

@@ -17,14 +17,49 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class AbandonedCheckoutsControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IAbandonedCheckoutsController
     {
+
+        /// <summary>
+        /// Retrieves a list of abandoned checkouts
+        /// </summary>
+
+        /// <param name="created_at_max">Show checkouts created before the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="created_at_min">Show checkouts created after the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="limit">The maximum number of results to show.</param>
+
+        /// <param name="since_id">Restrict results to after the specified ID.</param>
+
+        /// <param name="status">Show only checkouts with a given status.</param>
+
+        /// <param name="updated_at_max">Show checkouts last updated before the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="updated_at_min">Show checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <returns>Retrieves a list of abandoned checkouts</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfAbandonedCheckoutsAsync(string? created_at_max, string? created_at_min, string limit, string? since_id, string status, string? updated_at_max, string? updated_at_min);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class AbandonedCheckoutsController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IAbandonedCheckoutsController _implementation;
+
+        public AbandonedCheckoutsController(IAbandonedCheckoutsController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of abandoned checkouts
         /// </summary>
@@ -37,7 +72,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_min">Show checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Retrieves a list of abandoned checkouts</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("checkouts.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfAbandonedCheckouts([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? status = "open", [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
+        public System.Threading.Tasks.Task RetrieveListOfAbandonedCheckouts([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
+        {
+
+            return _implementation.RetrieveListOfAbandonedCheckoutsAsync(created_at_max, created_at_min, limit ?? "50", since_id, status ?? "open", updated_at_max, updated_at_min);
+        }
 
     }
 

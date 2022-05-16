@@ -7,35 +7,47 @@ namespace OpenShopify.Admin.Builder.Controllers.SalesChannels;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.SalesChannels)]
 [ApiController]
-public class ProductListingController : ProductListingControllerBase
+public class ProductListingController : IProductListingController
 {
-    public override Task RetrieveProductListingsThatArePublishedToYourApp(string? collection_id = null, string? handle = null,
-        string? limit = "50", string? product_ids = null, string? updated_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("product_listings.json")]
+    public Task RetrieveProductListingsThatArePublishedToYourAppAsync(string? collection_id, string? handle, string limit,
+        string? product_ids, string? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveProductIdsThatArePublishedToYourApp(string? limit = "50")
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("product_listings/product_ids.json")]
+    public Task RetrieveProductIdsThatArePublishedToYourAppAsync(string limit)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfProductsThatArePublishedToYourApp()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("product_listings/count.json")]
+    public Task RetrieveCountOfProductsThatArePublishedToYourAppAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSpecificProductListingThatIsPublishedToYourApp(string product_listing_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("product_listings/{product_listing_id}.json")]
+    public Task RetrieveSpecificProductListingThatIsPublishedToYourAppAsync(string product_listing_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateProductListingToPublishProductToYourApp(string product_listing_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("product_listings/{product_listing_id}.json")]
+    public Task CreateProductListingToPublishProductToYourAppAsync(string product_listing_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task DeleteProductListingToUnpublishProductFromYourApp(string product_listing_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("product_listings/{product_listing_id}.json")]
+    public Task DeleteProductListingToUnpublishProductFromYourAppAsync(string product_listing_id)
     {
         throw new NotImplementedException();
     }

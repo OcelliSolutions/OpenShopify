@@ -7,29 +7,39 @@ namespace OpenShopify.Admin.Builder.Controllers.SalesChannels;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.SalesChannels)]
 [ApiController]
-public class MobilePlatformApplicationController : MobilePlatformApplicationControllerBase
+public class MobilePlatformApplicationController : IMobilePlatformApplicationController
 {
-    public override Task ListAllOfTheMobilePlatformApplicationsAssociatedWithTheApp()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications.json")]
+    public Task ListAllOfTheMobilePlatformApplicationsAssociatedWithTheAppAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateMobilePlatformApplication()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications.json")]
+    public Task CreateMobilePlatformApplicationAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task GetMobilePlatformApplication(string mobile_platform_application_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications/{mobile_platform_application_id}.json")]
+    public Task GetMobilePlatformApplicationAsync(string mobile_platform_application_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateMobilePlatformApplication(string mobile_platform_application_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications/{mobile_platform_application_id}.json")]
+    public Task UpdateMobilePlatformApplicationAsync(string mobile_platform_application_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task DeleteMobilePlatformApplication(string mobile_platform_application_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications/{mobile_platform_application_id}.json")]
+    public Task DeleteMobilePlatformApplicationAsync(string mobile_platform_application_id)
     {
         throw new NotImplementedException();
     }

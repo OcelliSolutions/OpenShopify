@@ -17,14 +17,56 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class UserControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IUserController
     {
+
+        /// <summary>
+        /// Retrieves a list of all users
+        /// </summary>
+
+        /// <param name="limit">The maximum number of results to show on a page.</param>
+
+        /// <param name="page_info">A unique ID used to access a certain page of results.</param>
+
+        /// <returns>Retrieves a list of all users</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfAllUsersAsync(string limit, string? page_info);
+
+        /// <summary>
+        /// Retrieves a single user
+        /// </summary>
+
+
+        /// <returns>Retrieves a single user</returns>
+
+        System.Threading.Tasks.Task RetrieveSingleUserAsync(string user_id);
+
+        /// <summary>
+        /// Retrieves the currently logged-in user
+        /// </summary>
+
+        /// <returns>Retrieves the currently logged-in user</returns>
+
+        System.Threading.Tasks.Task RetrieveTheCurrentlyLoggedInUserAsync();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class UserController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IUserController _implementation;
+
+        public UserController(IUserController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of all users
         /// </summary>
@@ -32,21 +74,33 @@ namespace OpenShopify.Admin.Builder
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         /// <returns>Retrieves a list of all users</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("users.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfAllUsers([Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? page_info = null);
+        public System.Threading.Tasks.Task RetrieveListOfAllUsers([Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? page_info)
+        {
+
+            return _implementation.RetrieveListOfAllUsersAsync(limit ?? "50", page_info);
+        }
 
         /// <summary>
         /// Retrieves a single user
         /// </summary>
         /// <returns>Retrieves a single user</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("users/{user_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleUser(string user_id);
+        public System.Threading.Tasks.Task RetrieveSingleUser(string user_id)
+        {
+
+            return _implementation.RetrieveSingleUserAsync(user_id);
+        }
 
         /// <summary>
         /// Retrieves the currently logged-in user
         /// </summary>
         /// <returns>Retrieves the currently logged-in user</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("users/current.json")]
-        public abstract System.Threading.Tasks.Task RetrieveTheCurrentlyLoggedInUser();
+        public System.Threading.Tasks.Task RetrieveTheCurrentlyLoggedInUser()
+        {
+
+            return _implementation.RetrieveTheCurrentlyLoggedInUserAsync();
+        }
 
     }
 

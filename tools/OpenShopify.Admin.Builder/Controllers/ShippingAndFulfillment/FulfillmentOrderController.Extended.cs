@@ -7,50 +7,68 @@ namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShippingAndFulfillment)]
 [ApiController]
-public class FulfillmentOrderController : FulfillmentOrderControllerBase
+public class FulfillmentOrderController : IFulfillmentOrderController
 {
-    public override Task RetrieveListOfFulfillmentOrdersForSpecificOrder(string order_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillment_orders.json")]
+    public Task RetrieveListOfFulfillmentOrdersForSpecificOrderAsync(string order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSpecificFulfillmentOrder([FromRoute] string fulfillment_order_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}.json")]
+    public Task RetrieveSpecificFulfillmentOrderAsync(string fulfillment_order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CancelFulfillmentOrder([FromRoute] string fulfillment_order_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancel.json")]
+    public Task CancelFulfillmentOrderAsync(string fulfillment_order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task MarkFulfillmentOrderAsIncomplete([FromRoute] string fulfillment_order_id, string? message = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/close.json")]
+    public Task MarkFulfillmentOrderAsIncompleteAsync(string fulfillment_order_id, string? message)
     {
         throw new NotImplementedException();
     }
 
-    public override Task MoveFulfillmentOrderToNewLocation([FromRoute] string fulfillment_order_id, string? new_location_id = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/move.json")]
+    public Task MoveFulfillmentOrderToNewLocationAsync(string fulfillment_order_id, string? new_location_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task MarkTheFulfillmentOrderAsOpen([FromRoute] string fulfillment_order_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/open.json")]
+    public Task MarkTheFulfillmentOrderAsOpenAsync(string fulfillment_order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RescheduleTheFulfillAtTimeOfScheduledFulfillmentOrder([FromRoute] string fulfillment_order_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/reschedule.json")]
+    public Task RescheduleTheFulfillAtTimeOfScheduledFulfillmentOrderAsync(string fulfillment_order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ApplyFulfillmentHoldOnFulfillmentOrderWithStatusOPEN([FromRoute] string fulfillment_order_id, string? notify_merchant = null,
-        string? reason = null, string? reason_notes = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/hold.json")]
+    public Task ApplyFulfillmentHoldOnFulfillmentOrderWithStatusOPENAsync(string fulfillment_order_id, string? notify_merchant,
+        string? reason, string? reason_notes)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ReleaseTheFulfillmentHoldOnFulfillmentOrder([FromRoute] string fulfillment_order_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/release_hold.json")]
+    public Task ReleaseTheFulfillmentHoldOnFulfillmentOrderAsync(string fulfillment_order_id)
     {
         throw new NotImplementedException();
     }

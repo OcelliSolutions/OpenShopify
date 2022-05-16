@@ -17,41 +17,104 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class LocationControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface ILocationController
     {
+
+        /// <summary>
+        /// Retrieve a list of locations
+        /// </summary>
+
+        /// <returns>Retrieve a list of locations</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfLocationsAsync();
+
+        /// <summary>
+        /// Retrieve a single location by its ID
+        /// </summary>
+
+
+        /// <returns>Retrieve a single location by its ID</returns>
+
+        System.Threading.Tasks.Task RetrieveSingleLocationByItsIDAsync(string location_id);
+
+        /// <summary>
+        /// Retrieve a count of locations
+        /// </summary>
+
+        /// <returns>Retrieve a count of locations</returns>
+
+        System.Threading.Tasks.Task RetrieveCountOfLocationsAsync();
+
+        /// <summary>
+        /// Retrieve a list of inventory levels for a location
+        /// </summary>
+
+
+        /// <returns>Retrieve a list of inventory levels for a location</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfInventoryLevelsForLocationAsync(string location_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class LocationController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private ILocationController _implementation;
+
+        public LocationController(ILocationController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieve a list of locations
         /// </summary>
         /// <returns>Retrieve a list of locations</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfLocations();
+        public System.Threading.Tasks.Task RetrieveListOfLocations()
+        {
+
+            return _implementation.RetrieveListOfLocationsAsync();
+        }
 
         /// <summary>
         /// Retrieve a single location by its ID
         /// </summary>
         /// <returns>Retrieve a single location by its ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations/{location_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleLocationByItsID(string location_id);
+        public System.Threading.Tasks.Task RetrieveSingleLocationByItsID(string location_id)
+        {
+
+            return _implementation.RetrieveSingleLocationByItsIDAsync(location_id);
+        }
 
         /// <summary>
         /// Retrieve a count of locations
         /// </summary>
         /// <returns>Retrieve a count of locations</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfLocations();
+        public System.Threading.Tasks.Task RetrieveCountOfLocations()
+        {
+
+            return _implementation.RetrieveCountOfLocationsAsync();
+        }
 
         /// <summary>
         /// Retrieve a list of inventory levels for a location
         /// </summary>
         /// <returns>Retrieve a list of inventory levels for a location</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations/{location_id}/inventory_levels.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfInventoryLevelsForLocation(string location_id);
+        public System.Threading.Tasks.Task RetrieveListOfInventoryLevelsForLocation(string location_id)
+        {
+
+            return _implementation.RetrieveListOfInventoryLevelsForLocationAsync(location_id);
+        }
 
     }
 

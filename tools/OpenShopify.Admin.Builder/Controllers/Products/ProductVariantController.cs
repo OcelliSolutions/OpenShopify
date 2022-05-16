@@ -17,14 +17,91 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class ProductVariantControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IProductVariantController
     {
+
+        /// <summary>
+        /// Retrieves a list of product variants
+        /// </summary>
+
+
+        /// <param name="fields">A comma-separated list of fields to include in the response</param>
+
+        /// <param name="limit">Return up to this many results per page</param>
+
+        /// <param name="presentment_currencies">Return presentment prices in only certain currencies, specified by a comma-separated list of &lt;a href="https://en.wikipedia.org/wiki/ISO_4217"&gt;ISO 4217&lt;/a&gt; currency codes.</param>
+
+        /// <param name="since_id">Restrict results to after the specified ID</param>
+
+        /// <returns>Retrieves a list of product variants</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfProductVariantsAsync(string product_id, string? fields, string limit, string? presentment_currencies, string? since_id);
+
+        /// <summary>
+        /// Create a new Product Variant
+        /// </summary>
+
+
+        /// <returns>Create a new Product Variant</returns>
+
+        System.Threading.Tasks.Task CreateNewProductVariantAsync(string product_id);
+
+        /// <summary>
+        /// Receive a count of all Product Variants
+        /// </summary>
+
+
+        /// <returns>Receive a count of all Product Variants</returns>
+
+        System.Threading.Tasks.Task ReceiveCountOfAllProductVariantsAsync(string product_id);
+
+        /// <summary>
+        /// Receive a single Product Variant
+        /// </summary>
+
+
+        /// <param name="fields">A comma-separated list of fields to include in the response</param>
+
+        /// <returns>Receive a single Product Variant</returns>
+
+        System.Threading.Tasks.Task ReceiveSingleProductVariantAsync(string variant_id, string? fields);
+
+        /// <summary>
+        /// Modify an existing Product Variant
+        /// </summary>
+
+
+        /// <returns>Modify an existing Product Variant</returns>
+
+        System.Threading.Tasks.Task ModifyExistingProductVariantAsync(string variant_id);
+
+        /// <summary>
+        /// Remove an existing Product Variant
+        /// </summary>
+
+
+        /// <returns>Remove an existing Product Variant</returns>
+
+        System.Threading.Tasks.Task RemoveExistingProductVariantAsync(string product_id, string variant_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class ProductVariantController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IProductVariantController _implementation;
+
+        public ProductVariantController(IProductVariantController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of product variants
         /// </summary>
@@ -34,21 +111,33 @@ namespace OpenShopify.Admin.Builder
         /// <param name="since_id">Restrict results to after the specified ID</param>
         /// <returns>Retrieves a list of product variants</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfProductVariants(string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? presentment_currencies = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
+        public System.Threading.Tasks.Task RetrieveListOfProductVariants(string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? presentment_currencies, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id)
+        {
+
+            return _implementation.RetrieveListOfProductVariantsAsync(product_id, fields, limit ?? "50", presentment_currencies, since_id);
+        }
 
         /// <summary>
         /// Create a new Product Variant
         /// </summary>
         /// <returns>Create a new Product Variant</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants.json")]
-        public abstract System.Threading.Tasks.Task CreateNewProductVariant(string product_id);
+        public System.Threading.Tasks.Task CreateNewProductVariant(string product_id)
+        {
+
+            return _implementation.CreateNewProductVariantAsync(product_id);
+        }
 
         /// <summary>
         /// Receive a count of all Product Variants
         /// </summary>
         /// <returns>Receive a count of all Product Variants</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants/count.json")]
-        public abstract System.Threading.Tasks.Task ReceiveCountOfAllProductVariants(string product_id);
+        public System.Threading.Tasks.Task ReceiveCountOfAllProductVariants(string product_id)
+        {
+
+            return _implementation.ReceiveCountOfAllProductVariantsAsync(product_id);
+        }
 
         /// <summary>
         /// Receive a single Product Variant
@@ -56,21 +145,33 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">A comma-separated list of fields to include in the response</param>
         /// <returns>Receive a single Product Variant</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("variants/{variant_id}.json")]
-        public abstract System.Threading.Tasks.Task ReceiveSingleProductVariant(string variant_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public System.Threading.Tasks.Task ReceiveSingleProductVariant(string variant_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
+        {
+
+            return _implementation.ReceiveSingleProductVariantAsync(variant_id, fields);
+        }
 
         /// <summary>
         /// Modify an existing Product Variant
         /// </summary>
         /// <returns>Modify an existing Product Variant</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("variants/{variant_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingProductVariant(string variant_id);
+        public System.Threading.Tasks.Task ModifyExistingProductVariant(string variant_id)
+        {
+
+            return _implementation.ModifyExistingProductVariantAsync(variant_id);
+        }
 
         /// <summary>
         /// Remove an existing Product Variant
         /// </summary>
         /// <returns>Remove an existing Product Variant</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants/{variant_id}.json")]
-        public abstract System.Threading.Tasks.Task RemoveExistingProductVariant(string product_id, string variant_id);
+        public System.Threading.Tasks.Task RemoveExistingProductVariant(string product_id, string variant_id)
+        {
+
+            return _implementation.RemoveExistingProductVariantAsync(product_id, variant_id);
+        }
 
     }
 

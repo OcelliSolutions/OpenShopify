@@ -7,36 +7,47 @@ namespace OpenShopify.Admin.Builder.Controllers.Events;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Events)]
 [ApiController]
-public class WebhookController : WebhookControllerBase
+public class WebhookController : IWebhookController
 {
-    public override Task RetrieveListOfWebhooks(string? address = null, string? created_at_max = null, string? created_at_min = null,
-        string? fields = null, string? limit = "50", string? since_id = null, string? topic = null,
-        string? updated_at_max = null, string? updated_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("webhooks.json")]
+    public Task RetrieveListOfWebhooksAsync(string? address, string? created_at_max, string? created_at_min, string? fields,
+        string limit, string? since_id, string? topic, string? updated_at_max, string? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateNewWebhook()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("webhooks.json")]
+    public Task CreateNewWebhookAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task ReceiveCountOfAllWebhooks(string? address = null, string? topic = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("webhooks/count.json")]
+    public Task ReceiveCountOfAllWebhooksAsync(string? address, string? topic)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ReceiveSingleWebhook(string webhook_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("webhooks/{webhook_id}.json")]
+    public Task ReceiveSingleWebhookAsync(string webhook_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ModifyExistingWebhook(string webhook_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("webhooks/{webhook_id}.json")]
+    public Task ModifyExistingWebhookAsync(string webhook_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RemoveExistingWebhook(string webhook_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("webhooks/{webhook_id}.json")]
+    public Task RemoveExistingWebhookAsync(string webhook_id)
     {
         throw new NotImplementedException();
     }

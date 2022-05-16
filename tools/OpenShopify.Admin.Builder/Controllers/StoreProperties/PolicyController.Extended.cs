@@ -7,9 +7,11 @@ namespace OpenShopify.Admin.Builder.Controllers.StoreProperties;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.StoreProperties)]
 [ApiController]
-public class PolicyController : PolicyControllerBase
+public class PolicyController : IPolicyController
 {
-    public override Task RetrieveListOfTheShopsPolicies()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("policies.json")]
+    public Task RetrieveListOfTheShopsPoliciesAsync()
     {
         throw new NotImplementedException();
     }

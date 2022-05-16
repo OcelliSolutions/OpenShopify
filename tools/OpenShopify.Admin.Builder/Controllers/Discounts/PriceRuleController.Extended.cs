@@ -7,37 +7,48 @@ namespace OpenShopify.Admin.Builder.Controllers.Discounts;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Discounts)]
 [ApiController]
-public class PriceRuleController : PriceRuleControllerBase
+public class PriceRuleController : IPriceRuleController
 {
-    public override Task CreatePriceRule()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("price_rules.json")]
+    public Task CreatePriceRuleAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveListOfPriceRules(string? created_at_max = null, string? created_at_min = null, string? ends_at_max = null,
-        string? ends_at_min = null, string? limit = "50", string? since_id = null, string? starts_at_max = null,
-        string? starts_at_min = null, string? times_used = null, string? updated_at_max = null,
-        string? updated_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules.json")]
+    public Task RetrieveListOfPriceRulesAsync(string? created_at_max, string? created_at_min, string? ends_at_max,
+        string? ends_at_min, string limit, string? since_id, string? starts_at_max, string? starts_at_min,
+        string? times_used, string? updated_at_max, string? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateExistingPriceRule(string price_rule_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}.json")]
+    public Task UpdateExistingPriceRuleAsync(string price_rule_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSinglePriceRule(string price_rule_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}.json")]
+    public Task RetrieveSinglePriceRuleAsync(string price_rule_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RemoveExistingPriceRule(string price_rule_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}.json")]
+    public Task RemoveExistingPriceRuleAsync(string price_rule_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfAllPriceRules()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/count.json")]
+    public Task RetrieveCountOfAllPriceRulesAsync()
     {
         throw new NotImplementedException();
     }

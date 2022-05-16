@@ -7,35 +7,46 @@ namespace OpenShopify.Admin.Builder.Controllers.OnlineStore;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.OnlineStore)]
 [ApiController]
-public class RedirectController : RedirectControllerBase
+public class RedirectController : IRedirectController
 {
-    public override Task RetrieveListOfURLRedirects(string? fields = null, string? limit = "50", string? path = null,
-        string? since_id = null, string? target = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("redirects.json")]
+    public Task RetrieveListOfURLRedirectsAsync(string? fields, string limit, string? path, string? since_id, string? target)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateRedirect()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("redirects.json")]
+    public Task CreateRedirectAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfURLRedirects(string? path = null, string? target = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("redirects/count.json")]
+    public Task RetrieveCountOfURLRedirectsAsync(string? path, string? target)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSingleRedirect(string redirect_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("redirects/{redirect_id}.json")]
+    public Task RetrieveSingleRedirectAsync(string redirect_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateExistingRedirect(string redirect_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("redirects/{redirect_id}.json")]
+    public Task UpdateExistingRedirectAsync(string redirect_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task DeleteRedirect(string redirect_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("redirects/{redirect_id}.json")]
+    public Task DeleteRedirectAsync(string redirect_id)
     {
         throw new NotImplementedException();
     }

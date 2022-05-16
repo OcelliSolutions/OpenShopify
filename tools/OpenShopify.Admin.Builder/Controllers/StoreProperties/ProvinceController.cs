@@ -17,14 +17,69 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class ProvinceControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IProvinceController
     {
+
+        /// <summary>
+        /// Retrieves a list of provinces for a country
+        /// </summary>
+
+
+        /// <param name="fields">Show only certain fields, specified by a comma-separated list of fields names.</param>
+
+        /// <param name="since_id">Restrict results to after the specified ID.</param>
+
+        /// <returns>Retrieves a list of provinces for a country</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfProvincesForCountryAsync(string country_id, string? fields, string? since_id);
+
+        /// <summary>
+        /// Retrieves a count of provinces for a country
+        /// </summary>
+
+
+        /// <returns>Retrieves a count of provinces for a country</returns>
+
+        System.Threading.Tasks.Task RetrieveCountOfProvincesForCountryAsync(string country_id);
+
+        /// <summary>
+        /// Retrieves a single province for a country
+        /// </summary>
+
+
+        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
+
+        /// <returns>Retrieves a single province for a country</returns>
+
+        System.Threading.Tasks.Task RetrieveSingleProvinceForCountryAsync(string country_id, string province_id, string? fields);
+
+        /// <summary>
+        /// Updates an existing province for a country
+        /// </summary>
+
+
+        /// <returns>Updates an existing province for a country</returns>
+
+        System.Threading.Tasks.Task UpdateExistingProvinceForCountryAsync(string country_id, string province_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class ProvinceController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IProvinceController _implementation;
+
+        public ProvinceController(IProvinceController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of provinces for a country
         /// </summary>
@@ -32,14 +87,22 @@ namespace OpenShopify.Admin.Builder
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <returns>Retrieves a list of provinces for a country</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfProvincesForCountry(string country_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
+        public System.Threading.Tasks.Task RetrieveListOfProvincesForCountry(string country_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id)
+        {
+
+            return _implementation.RetrieveListOfProvincesForCountryAsync(country_id, fields, since_id);
+        }
 
         /// <summary>
         /// Retrieves a count of provinces for a country
         /// </summary>
         /// <returns>Retrieves a count of provinces for a country</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfProvincesForCountry(string country_id);
+        public System.Threading.Tasks.Task RetrieveCountOfProvincesForCountry(string country_id)
+        {
+
+            return _implementation.RetrieveCountOfProvincesForCountryAsync(country_id);
+        }
 
         /// <summary>
         /// Retrieves a single province for a country
@@ -47,14 +110,22 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single province for a country</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/{province_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleProvinceForCountry(string country_id, string province_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public System.Threading.Tasks.Task RetrieveSingleProvinceForCountry(string country_id, string province_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
+        {
+
+            return _implementation.RetrieveSingleProvinceForCountryAsync(country_id, province_id, fields);
+        }
 
         /// <summary>
         /// Updates an existing province for a country
         /// </summary>
         /// <returns>Updates an existing province for a country</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/{province_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingProvinceForCountry(string country_id, string province_id);
+        public System.Threading.Tasks.Task UpdateExistingProvinceForCountry(string country_id, string province_id)
+        {
+
+            return _implementation.UpdateExistingProvinceForCountryAsync(country_id, province_id);
+        }
 
     }
 

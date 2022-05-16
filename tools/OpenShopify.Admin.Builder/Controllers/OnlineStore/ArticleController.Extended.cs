@@ -7,54 +7,72 @@ namespace OpenShopify.Admin.Builder.Controllers.OnlineStore;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.OnlineStore)]
 [ApiController]
-public class ArticleController : ArticleControllerBase
+public class ArticleController : IArticleController
 {
-    public override Task RetrieveListOfAllArticlesFromBlog(string blog_id, string? author = null, string? created_at_max = null,
-        string? created_at_min = null, string? fields = null, string? handle = null, string? limit = "50",
-        string? published_at_max = null, string? published_at_min = null, string? published_status = "any",
-        string? since_id = null, string? tag = null, string? updated_at_max = null, string? updated_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles.json")]
+    public Task RetrieveListOfAllArticlesFromBlogAsync(string blog_id, string? author, string? created_at_max,
+        string? created_at_min, string? fields, string? handle, string limit, string? published_at_max,
+        string? published_at_min, string published_status, string? since_id, string? tag, string? updated_at_max,
+        string? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateArticleForBlog(string blog_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles.json")]
+    public Task CreateArticleForBlogAsync(string blog_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfAllArticlesFromBlog(string blog_id, string? created_at_max = null, string? created_at_min = null,
-        string? published_at_max = null, string? published_at_min = null, string? published_status = "any",
-        string? updated_at_max = null, string? updated_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/count.json")]
+    public Task RetrieveCountOfAllArticlesFromBlogAsync(string blog_id, string? created_at_max, string? created_at_min,
+        string? published_at_max, string? published_at_min, string published_status, string? updated_at_max,
+        string? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ReceiveSingleArticle(string article_id, string blog_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/{article_id}.json")]
+    public Task ReceiveSingleArticleAsync(string article_id, string blog_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateArticle(string article_id, string blog_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/{article_id}.json")]
+    public Task UpdateArticleAsync(string article_id, string blog_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task DeleteArticle(string article_id, string blog_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/{article_id}.json")]
+    public Task DeleteArticleAsync(string article_id, string blog_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveListOfAllArticleAuthors()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("articles/authors.json")]
+    public Task RetrieveListOfAllArticleAuthorsAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveListOfAllArticleTags(string? limit = null, string? popular = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("articles/tags.json")]
+    public Task RetrieveListOfAllArticleTagsAsync(string? limit, string? popular)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveListOfAllArticleTagsFromSpecificBlog(string blog_id, string? limit = null, string? popular = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/tags.json")]
+    public Task RetrieveListOfAllArticleTagsFromSpecificBlogAsync(string blog_id, string? limit, string? popular)
     {
         throw new NotImplementedException();
     }

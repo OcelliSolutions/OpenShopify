@@ -5,38 +5,50 @@ using OpenShopify.Admin.Builder.Data;
 namespace OpenShopify.Admin.Builder.Controllers.Metafield;
 
 /// <inheritdoc />
-[ApiGroup(ApiGroupNames.MetaField)]
+[ApiGroup(ApiGroupNames.Metafield)]
 [ApiController]
-public class MetafieldController : MetafieldControllerBase
+public class MetafieldController : IMetafieldController
 {
-    public override Task RetrieveListOfMetafieldsFromTheResourcesEndpoint(string? created_at_max = null, string? created_at_min = null,
-        string? fields = null, string? key = null, string? limit = "50", string? @namespace = null, string? since_id = null,
-        string? type = null, string? updated_at_max = null, string? updated_at_min = null, string? value_type = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields.json")]
+    public Task RetrieveListOfMetafieldsFromTheResourcesEndpointAsync(string? created_at_max, string? created_at_min,
+        string? fields, string? key, string limit, string? @namespace, string? since_id, string? type,
+        string? updated_at_max, string? updated_at_min, string? value_type)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateMetafield()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("metafields.json")]
+    public Task CreateMetafieldAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfResourcesMetafields()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields/count.json")]
+    public Task RetrieveCountOfResourcesMetafieldsAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSpecificMetafield(string metafield_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
+    public Task RetrieveSpecificMetafieldAsync(string metafield_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateMetafield(string metafield_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
+    public Task UpdateMetafieldAsync(string metafield_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task DeleteMetafieldByItsID(string metafield_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
+    public Task DeleteMetafieldByItsIDAsync(string metafield_id)
     {
         throw new NotImplementedException();
     }

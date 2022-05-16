@@ -7,29 +7,40 @@ namespace OpenShopify.Admin.Builder.Controllers.Products;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Products)]
 [ApiController]
-public class CollectController : CollectControllerBase
+public class CollectController : ICollectController
 {
-    public override Task AddProductToCustomCollection()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("collects.json")]
+    public Task AddProductToCustomCollectionAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveListOfCollects(string? fields = null, string? limit = "50", string? since_id = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collects.json")]
+    public Task RetrieveListOfCollectsAsync(string? fields, string limit, string? since_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RemoveProductFromCollection(string collect_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("collects/{collect_id}.json")]
+
+    public Task RemoveProductFromCollectionAsync(string collect_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSpecificCollectByItsID(string collect_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collects/{collect_id}.json")]
+    public Task RetrieveSpecificCollectByItsIDAsync(string collect_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfCollects()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collects/count.json")]
+    public Task RetrieveCountOfCollectsAsync()
     {
         throw new NotImplementedException();
     }

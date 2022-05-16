@@ -9,11 +9,12 @@ namespace OpenShopify.Admin.Builder.Controllers.Access;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Access)]
 [ApiController]
-public class AccessScopeController : AccessScopeControllerBase
+public class AccessScopeController : IAccessScopeController
 {
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/oauth/access_scopes.json")]
     [ProducesResponseType(typeof(AccessScopeList), StatusCodes.Status200OK)]
-    public override Task GetListOfAccessScopes()
+    public Task GetListOfAccessScopesAsync()
     {
         throw new NotImplementedException();
     }

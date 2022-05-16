@@ -22,7 +22,7 @@ var menuJson = menuScript.InnerText.Replace("//<![CDATA[", string.Empty).Replace
 dynamic mainMenu = JsonConvert.DeserializeObject(menuJson.ReplaceLineEndings(string.Empty)) ??
                    throw new InvalidOperationException("No CDATA found for the main menu.");
 
-SaveFile(@"../../../menu.json", mainMenu);
+SaveJsonFile(@"../../../menu.json", mainMenu);
 
 
 if (mainMenu.api.rest_sidenav is null)
@@ -59,10 +59,10 @@ else
             var openApi = childObject.api.rest_resource;
             var path = $@"../../../{section}";
             CreateIfMissing(path);
-            SaveFile($@"{path}/{subSection}.json", openApi);
+            SaveJsonFile($@"{path}/{subSection}.json", openApi);
 
             var clean = CleanOpenApi(openApi);
-            SaveFile($@"{path}/{subSection}.clean.json", clean);
+            SaveJsonFile($@"{path}/{subSection}.clean.json", clean);
             await CreateController(JsonConvert.SerializeObject(clean), currentVersion, section, subSection);
         }
     }
@@ -70,7 +70,7 @@ else
 
 Console.WriteLine("Core Structure Downloaded. Press any key to continue.");
 
-void SaveFile(string file, object? content) =>
+void SaveJsonFile(string file, object? content) =>
     File.WriteAllText(file, JsonConvert.SerializeObject(content, Formatting.Indented, new JsonSerializerSettings
     {
         NullValueHandling = NullValueHandling.Ignore
@@ -225,15 +225,22 @@ async Task CreateController(string openApi, string version, string section, stri
             GenerateOptionalParameters = true,
             AdditionalNamespaceUsages = new[] { "System.Text.Json" },
             ControllerTarget = CSharpControllerTarget.AspNetCore,
-            ControllerStyle = CSharpControllerStyle.Abstract,
-            ExcludedParameterNames = new[] { "api_version" },
+            ControllerStyle = CSharpControllerStyle.Partial,
+            //ControllerStyle = CSharpControllerStyle.Abstract,
+            ExcludedParameterNames = new[] { "api_version" }, 
+            CodeGeneratorSettings =
+            {
+                GenerateDefaultValues  = false, 
+                SchemaType = SchemaType.OpenApi3, 
+            },
             CSharpGeneratorSettings =
             {
-                Namespace = "OpenShopify.Admin.Builder",
+                Namespace = "OpenShopify.Admin.Builder.Controllers",
+                //Namespace = "OpenShopify.Admin.Builder.Delete",
                 JsonLibrary = CSharpJsonLibrary.SystemTextJson,
                 GenerateOptionalPropertiesAsNullable = true,
                 GenerateNullableReferenceTypes = true,
-                GenerateDefaultValues = true,
+                GenerateDefaultValues = false,
                 GenerateDataAnnotations = true,
                 PropertyNameGenerator = new CustomPropertyNameGenerator()
             }
@@ -241,13 +248,30 @@ async Task CreateController(string openApi, string version, string section, stri
 
         var generator = new CSharpControllerGenerator(document, settings);
         var code = generator.GenerateFile();
+        code = code?.Replace(" = \"any\"", string.Empty);
+        code = code?.Replace(" = \"50\"", string.Empty);
+        code = code?.Replace(" = null", string.Empty);
+        code = code?.Replace(" = \"open\"", string.Empty);
+        code = code?.Replace(" = \"closed\"", string.Empty);
+        code = code?.Replace("object? created_at_max", "DateTime? created_at_max");
+        code = code?.Replace("object? created_at_min", "DateTime? created_at_min");
+        code = code?.Replace("object? processed_at_max", "DateTime? processed_at_max");
+        code = code?.Replace("object? processed_at_min", "DateTime? processed_at_min");
+        code = code?.Replace("object? updated_at_max", "DateTime? updated_at_max");
+        code = code?.Replace("object? updated_at_min", "DateTime? updated_at_min");
+
+        code = code?.Replace("string fulfillment_service_id", "long fulfillment_service_id");
+        code = code?.Replace("string? fulfillment_service_id", "long? fulfillment_service_id");
+
+
         var path = $@"../../../../OpenShopify.Admin.Builder/Controllers";
+        //var path = $@"../../../../OpenShopify.Admin.Builder/Delete";
         if (!string.IsNullOrWhiteSpace(section))
             path = Path.Combine(path, section);
         CreateIfMissing(path);
         path = Path.Combine(path, $@"{controllerName}Controller.cs");
         await File.WriteAllTextAsync(path, code);
-        await CreateExtendedControllerIfMissing(section, controllerName);
+        //await CreateExtendedControllerIfMissing(section, controllerName);
     }
     catch (Exception ex)
     {
@@ -268,8 +292,8 @@ namespace OpenShopify.Admin.Builder.Controllers.{section};
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.{section})]
 [ApiController]
-public class {controllerName}Controller : {controllerName}ControllerBase {{}}";
-
+public class {controllerName}Controller : I{controllerName}Controller {{}}";
+    
     var path = $@"../../../../OpenShopify.Admin.Builder/Controllers";
     if (!string.IsNullOrWhiteSpace(section))
         path = Path.Combine(path, section);

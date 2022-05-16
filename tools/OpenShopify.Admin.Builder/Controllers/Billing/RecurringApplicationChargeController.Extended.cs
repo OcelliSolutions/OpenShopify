@@ -9,39 +9,44 @@ namespace OpenShopify.Admin.Builder.Controllers.Billing;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Billing)]
 [ApiController]
-public class RecurringApplicationChargeController : RecurringApplicationChargeControllerBase
+public class RecurringApplicationChargeController : IRecurringApplicationChargeController
 {
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges.json")]
     [ProducesResponseType(typeof(RecurringApplicationChargeItem), StatusCodes.Status200OK)]
-    public override Task CreateRecurringApplicationCharge()
+    public Task CreateRecurringApplicationChargeAsync()
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges.json")]
     [ProducesResponseType(typeof(RecurringApplicationChargeList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfRecurringApplicationCharges(string? fields = null, string? since_id = null)
+    public Task RetrieveListOfRecurringApplicationChargesAsync(string? fields, string? since_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}.json")]
     [ProducesResponseType(typeof(RecurringApplicationChargeItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSingleCharge(string recurring_application_charge_id, string? fields = null)
+    public Task RetrieveSingleChargeAsync(string recurring_application_charge_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task CancelRecurringApplicationCharge(string recurring_application_charge_id)
+    public Task CancelRecurringApplicationChargeAsync(string recurring_application_charge_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/customize.json")]
     [ProducesResponseType(typeof(RecurringApplicationChargeItem), StatusCodes.Status200OK)]
-    public override Task UpdateTheCappedAmountOfRecurringApplicationCharge(string recurring_application_charge_id)
+    public Task UpdateTheCappedAmountOfRecurringApplicationChargeAsync(string recurring_application_charge_id)
     {
         throw new NotImplementedException();
     }

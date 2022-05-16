@@ -7,39 +7,53 @@ namespace OpenShopify.Admin.Builder.Controllers.Customers;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Customers)]
 [ApiController]
-public class CustomerAddressController : CustomerAddressControllerBase
+public class CustomerAddressController : ICustomerAddressController
 {
-    public override Task RetrieveListOfAddressesForCustomer(string customer_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses.json")]
+    public Task RetrieveListOfAddressesForCustomerAsync(string customer_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateNewAddressForCustomer(string customer_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses.json")]
+    public Task CreateNewAddressForCustomerAsync(string customer_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveDetailsForSingleCustomerAddress(string address_id, string customer_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}.json")]
+    public Task RetrieveDetailsForSingleCustomerAddressAsync(string address_id, string customer_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateExistingCustomerAddress(string address_id, string customer_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}.json")]
+    public Task UpdateExistingCustomerAddressAsync(string address_id, string customer_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RemoveAddressFromCustomersAddressList(string address_id, string customer_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}.json")]
+    public Task RemoveAddressFromCustomersAddressListAsync(string address_id, string customer_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task PerformBulkOperationsForMultipleCustomerAddresses(string address_ids, string customer_id, string operation)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/set.json")]
+    public Task PerformBulkOperationsForMultipleCustomerAddressesAsync(string address_ids, string customer_id, string operation)
     {
         throw new NotImplementedException();
     }
 
-    public override Task SetTheDefaultAddressForCustomer(string address_id, string customer_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}/default.json")]
+    public Task SetTheDefaultAddressForCustomerAsync(string address_id, string customer_id)
     {
         throw new NotImplementedException();
     }

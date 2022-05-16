@@ -3,33 +3,35 @@ using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Attributes;
 using OpenShopify.Admin.Builder.Data;
 
-namespace OpenShopify.Admin.Builder.Controllers.Billing
+namespace OpenShopify.Admin.Builder.Controllers.Billing;
+
+/// <inheritdoc />
+[ApiGroup(ApiGroupNames.Billing)]
+[ApiController]
+public class ApplicationChargeController : IApplicationChargeController
 {
     /// <inheritdoc />
-    [ApiGroup(ApiGroupNames.Billing)]
-    [ApiController]
-    public class ApplicationChargeController : ApplicationChargeControllerBase
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("application_charges.json")]
+    [ProducesResponseType(typeof(ApplicationChargeItem), StatusCodes.Status200OK)]
+    public Task CreateApplicationChargeAsync()
     {
-        /// <inheritdoc />
-        [ProducesResponseType(typeof(ApplicationChargeItem), StatusCodes.Status200OK)]
-        public override Task CreateApplicationCharge()
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
+    }
 
-        /// <inheritdoc />
-        [ProducesResponseType(typeof(ApplicationChargeList), StatusCodes.Status200OK)]
-        public override Task RetrieveListOfApplicationCharges(string? fields = null, string? since_id = null)
-        {
-            throw new NotImplementedException();
-        }
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_charges.json")]
+    [ProducesResponseType(typeof(ApplicationChargeList), StatusCodes.Status200OK)]
+    public Task RetrieveListOfApplicationChargesAsync(string? fields, string? since_id)
+    {
+        throw new NotImplementedException();
+    }
 
-        /// <inheritdoc />
-        [ProducesResponseType(typeof(ApplicationChargeItem), StatusCodes.Status200OK)]
-        public override Task RetrieveApplicationCharge(string application_charge_id, string? fields = null)
-        {
-            throw new NotImplementedException();
-        }
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_charges/{application_charge_id}.json")]
+    [ProducesResponseType(typeof(ApplicationChargeItem), StatusCodes.Status200OK)]
+    public Task RetrieveApplicationChargeAsync(string application_charge_id, string? fields)
+    {
+        throw new NotImplementedException();
     }
 }
 

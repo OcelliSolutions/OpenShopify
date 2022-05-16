@@ -17,14 +17,156 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class ArticleControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IArticleController
     {
+
+        /// <summary>
+        /// Retrieves a list of all articles from a blog
+        /// </summary>
+
+
+        /// <param name="author">Filter articles by article author.</param>
+
+        /// <param name="created_at_max">Show articles created before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="created_at_min">Show articles created after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
+
+        /// <param name="handle">Retrieve an article with a specific handle.</param>
+
+        /// <param name="limit">The maximum number of results to retrieve.</param>
+
+        /// <param name="published_at_max">Show articles published before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="published_at_min">Show articles published after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="published_status">Retrieve results based on their published status.</param>
+
+        /// <param name="since_id">Restrict results to after the specified ID.</param>
+
+        /// <param name="tag">Filter articles with a specific tag.</param>
+
+        /// <param name="updated_at_max">Show articles last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="updated_at_min">Show articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <returns>Retrieves a list of all articles from a blog</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfAllArticlesFromBlogAsync(string blog_id, string? author, string? created_at_max, string? created_at_min, string? fields, string? handle, string limit, string? published_at_max, string? published_at_min, string published_status, string? since_id, string? tag, string? updated_at_max, string? updated_at_min);
+
+        /// <summary>
+        /// Creates an article for a blog
+        /// </summary>
+
+
+        /// <returns>Creates an article for a blog</returns>
+
+        System.Threading.Tasks.Task CreateArticleForBlogAsync(string blog_id);
+
+        /// <summary>
+        /// Retrieves a count of all articles from a blog
+        /// </summary>
+
+
+        /// <param name="created_at_max">Count articles created before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="created_at_min">Count articles created after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="published_at_max">Count articles published before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="published_at_min">Count articles published after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="published_status">Count articles with a given published status.</param>
+
+        /// <param name="updated_at_max">Count articles last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="updated_at_min">Count articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <returns>Retrieves a count of all articles from a blog</returns>
+
+        System.Threading.Tasks.Task RetrieveCountOfAllArticlesFromBlogAsync(string blog_id, string? created_at_max, string? created_at_min, string? published_at_max, string? published_at_min, string published_status, string? updated_at_max, string? updated_at_min);
+
+        /// <summary>
+        /// Receive a single Article
+        /// </summary>
+
+
+        /// <param name="fields">Show only certain fields, specifed by a comma-separated list of field names.</param>
+
+        /// <returns>Receive a single Article</returns>
+
+        System.Threading.Tasks.Task ReceiveSingleArticleAsync(string article_id, string blog_id, string? fields);
+
+        /// <summary>
+        /// Updates an article
+        /// </summary>
+
+
+        /// <returns>Updates an article</returns>
+
+        System.Threading.Tasks.Task UpdateArticleAsync(string article_id, string blog_id);
+
+        /// <summary>
+        /// Deletes an article
+        /// </summary>
+
+
+        /// <returns>Deletes an article</returns>
+
+        System.Threading.Tasks.Task DeleteArticleAsync(string article_id, string blog_id);
+
+        /// <summary>
+        /// Retrieves a list of all article authors
+        /// </summary>
+
+        /// <returns>Retrieves a list of all article authors</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfAllArticleAuthorsAsync();
+
+        /// <summary>
+        /// Retrieves a list of all article tags
+        /// </summary>
+
+        /// <param name="limit">The maximum number of tags to retrieve.</param>
+
+        /// <param name="popular">A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.</param>
+
+        /// <returns>Retrieves a list of all article tags</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfAllArticleTagsAsync(string? limit, string? popular);
+
+        /// <summary>
+        /// Retrieves a list of all article tags from a specific blog
+        /// </summary>
+
+
+        /// <param name="limit">The maximum number of tags to retrieve.</param>
+
+        /// <param name="popular">A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.</param>
+
+        /// <returns>Retrieves a list of all article tags from a specific blog</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfAllArticleTagsFromSpecificBlogAsync(string blog_id, string? limit, string? popular);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class ArticleController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IArticleController _implementation;
+
+        public ArticleController(IArticleController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of all articles from a blog
         /// </summary>
@@ -43,14 +185,22 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_min">Show articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a list of all articles from a blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfAllArticlesFromBlog(string blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? author = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? tag = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
+        public System.Threading.Tasks.Task RetrieveListOfAllArticlesFromBlog(string blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? author, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? tag, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
+        {
+
+            return _implementation.RetrieveListOfAllArticlesFromBlogAsync(blog_id, author, created_at_max, created_at_min, fields, handle, limit ?? "50", published_at_max, published_at_min, published_status ?? "any", since_id, tag, updated_at_max, updated_at_min);
+        }
 
         /// <summary>
         /// Creates an article for a blog
         /// </summary>
         /// <returns>Creates an article for a blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles.json")]
-        public abstract System.Threading.Tasks.Task CreateArticleForBlog(string blog_id);
+        public System.Threading.Tasks.Task CreateArticleForBlog(string blog_id)
+        {
+
+            return _implementation.CreateArticleForBlogAsync(blog_id);
+        }
 
         /// <summary>
         /// Retrieves a count of all articles from a blog
@@ -64,7 +214,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_min">Count articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a count of all articles from a blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfAllArticlesFromBlog(string blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
+        public System.Threading.Tasks.Task RetrieveCountOfAllArticlesFromBlog(string blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
+        {
+
+            return _implementation.RetrieveCountOfAllArticlesFromBlogAsync(blog_id, created_at_max, created_at_min, published_at_max, published_at_min, published_status ?? "any", updated_at_max, updated_at_min);
+        }
 
         /// <summary>
         /// Receive a single Article
@@ -72,28 +226,44 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">Show only certain fields, specifed by a comma-separated list of field names.</param>
         /// <returns>Receive a single Article</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/{article_id}.json")]
-        public abstract System.Threading.Tasks.Task ReceiveSingleArticle(string article_id, string blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public System.Threading.Tasks.Task ReceiveSingleArticle(string article_id, string blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
+        {
+
+            return _implementation.ReceiveSingleArticleAsync(article_id, blog_id, fields);
+        }
 
         /// <summary>
         /// Updates an article
         /// </summary>
         /// <returns>Updates an article</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/{article_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateArticle(string article_id, string blog_id);
+        public System.Threading.Tasks.Task UpdateArticle(string article_id, string blog_id)
+        {
+
+            return _implementation.UpdateArticleAsync(article_id, blog_id);
+        }
 
         /// <summary>
         /// Deletes an article
         /// </summary>
         /// <returns>Deletes an article</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/{article_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteArticle(string article_id, string blog_id);
+        public System.Threading.Tasks.Task DeleteArticle(string article_id, string blog_id)
+        {
+
+            return _implementation.DeleteArticleAsync(article_id, blog_id);
+        }
 
         /// <summary>
         /// Retrieves a list of all article authors
         /// </summary>
         /// <returns>Retrieves a list of all article authors</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("articles/authors.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfAllArticleAuthors();
+        public System.Threading.Tasks.Task RetrieveListOfAllArticleAuthors()
+        {
+
+            return _implementation.RetrieveListOfAllArticleAuthorsAsync();
+        }
 
         /// <summary>
         /// Retrieves a list of all article tags
@@ -102,7 +272,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="popular">A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.</param>
         /// <returns>Retrieves a list of all article tags</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("articles/tags.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfAllArticleTags([Microsoft.AspNetCore.Mvc.FromQuery] string? limit = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? popular = null);
+        public System.Threading.Tasks.Task RetrieveListOfAllArticleTags([Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? popular)
+        {
+
+            return _implementation.RetrieveListOfAllArticleTagsAsync(limit, popular);
+        }
 
         /// <summary>
         /// Retrieves a list of all article tags from a specific blog
@@ -111,7 +285,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="popular">A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.</param>
         /// <returns>Retrieves a list of all article tags from a specific blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/tags.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfAllArticleTagsFromSpecificBlog(string blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? popular = null);
+        public System.Threading.Tasks.Task RetrieveListOfAllArticleTagsFromSpecificBlog(string blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? popular)
+        {
+
+            return _implementation.RetrieveListOfAllArticleTagsFromSpecificBlogAsync(blog_id, limit, popular);
+        }
 
     }
 

@@ -7,52 +7,69 @@ namespace OpenShopify.Admin.Builder.Controllers.Customers;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Customers)]
 [ApiController]
-public class CustomerController : CustomerControllerBase
+public class CustomerController : ICustomerController
 {
-    public override Task RetrieveListOfCustomers(string? created_at_max = null, string? created_at_min = null, string? fields = null,
-        string? ids = null, string? limit = "50", string? since_id = null, string? updated_at_max = null,
-        string? updated_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers.json")]
+
+    public Task RetrieveListOfCustomersAsync(string? created_at_max, string? created_at_min, string? fields, string? ids,
+        string limit, string? since_id, string? updated_at_max, string? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateCustomer()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers.json")]
+    public Task CreateCustomerAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task SearchForCustomersThatMatchSuppliedQuery(string? fields = null, string? limit = "50",
-        string? order = "last_order_date DESC", string? query = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/search.json")]
+    public Task SearchForCustomersThatMatchSuppliedQueryAsync(string? fields, string limit, string order, string? query)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSingleCustomer(string customer_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}.json")]
+    public Task RetrieveSingleCustomerAsync(string customer_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateCustomer(string customer_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}.json")]
+    public Task UpdateCustomerAsync(string customer_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateAccountActivationURLForCustomer(string customer_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/account_activation_url.json")]
+    public Task CreateAccountActivationURLForCustomerAsync(string customer_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task SendAccountInviteToCustomer(string customer_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/send_invite.json")]
+    public Task SendAccountInviteToCustomerAsync(string customer_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfCustomers()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/count.json")]
+    public Task RetrieveCountOfCustomersAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveAllOrdersThatBelongToCustomer(string customer_id, string? status = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/orders.json")]
+    public Task RetrieveAllOrdersThatBelongToCustomerAsync(string customer_id, string? status)
     {
         throw new NotImplementedException();
     }

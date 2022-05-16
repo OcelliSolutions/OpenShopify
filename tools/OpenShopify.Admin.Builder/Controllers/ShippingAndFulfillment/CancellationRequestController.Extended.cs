@@ -7,19 +7,25 @@ namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShippingAndFulfillment)]
 [ApiController]
-public class CancellationRequestController : CancellationRequestControllerBase
+public class CancellationRequestController : ICancellationRequestController
 {
-    public override Task SendCancellationRequest([FromRoute] string fulfillment_order_id, string? message = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancellation_request.json")]
+    public Task SendCancellationRequestAsync(string fulfillment_order_id, string? message)
     {
         throw new NotImplementedException();
     }
 
-    public override Task AcceptCancellationRequest([FromRoute] string fulfillment_order_id, string? message = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json")]
+    public Task AcceptCancellationRequestAsync(string fulfillment_order_id, string? message)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RejectCancellationRequest([FromRoute] string fulfillment_order_id, string? message = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json")]
+    public Task RejectCancellationRequestAsync(string fulfillment_order_id, string? message)
     {
         throw new NotImplementedException();
     }

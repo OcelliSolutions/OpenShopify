@@ -1,6 +1,8 @@
 
 
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models
 {
@@ -12,8 +14,8 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// The name of the fulfillment service as seen by merchants and their customers.
         /// </summary>
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
+        [JsonPropertyName("name"), Required]
+        public string Name { get; set; } = null!;
 
         /// <summary>
         /// States the URL endpoint that Shopify needs to retrieve inventory and tracking updates.
@@ -25,8 +27,8 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Specifies the format of the API output. Valid values are "json" and "xml".
         /// </summary>
-        [JsonPropertyName("format")]
-        public string? Format { get; set; }
+        [JsonPropertyName("format"), Required]
+        public FulfillmentServiceFormat Format { get; set; }
 
         /// <summary>
         /// A human-friendly unique string for the fulfillment service generated from its title.
@@ -38,7 +40,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// States if the fulfillment service tracks product inventory and provides updates to Shopify.
         /// </summary>
         [JsonPropertyName("inventory_management")]
-        public bool? InventoryManagement { get; set; }
+        public bool InventoryManagement { get; set; }
 
         /// <summary>
         /// The unique identifier of the location tied to the fulfillment service
@@ -56,13 +58,13 @@ namespace OpenShopify.Admin.Builder.Models
         /// States if the fulfillment service requires products to be physically shipped.
         /// </summary>
         [JsonPropertyName("requires_shipping_method")]
-        public bool? RequiresShippingMethod { get; set; }
+        public bool RequiresShippingMethod { get; set; }
 
         /// <summary>
         /// States if the fulfillment service provides tracking numbers for packages.
         /// </summary>
         [JsonPropertyName("tracking_support")]
-        public bool? TrackingSupport { get; set; }
+        public bool TrackingSupport { get; set; }
 
 
         /// <summary>

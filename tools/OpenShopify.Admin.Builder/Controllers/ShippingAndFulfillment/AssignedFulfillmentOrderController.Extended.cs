@@ -7,9 +7,11 @@ namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShippingAndFulfillment)]
 [ApiController]
-public class AssignedFulfillmentOrderController : AssignedFulfillmentOrderControllerBase
+public class AssignedFulfillmentOrderController : IAssignedFulfillmentOrderController
 {
-    public override Task RetrieveListOfFulfillmentOrdersOnShopForSpecificApp(string? assignment_status = null, string? location_ids = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("assigned_fulfillment_orders.json")]
+    public Task RetrieveListOfFulfillmentOrdersOnShopForSpecificAppAsync(string? assignment_status, string? location_ids)
     {
         throw new NotImplementedException();
     }

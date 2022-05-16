@@ -17,14 +17,105 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class WebhookControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IWebhookController
     {
+
+        /// <summary>
+        /// Retrieves a list of webhooks
+        /// </summary>
+
+        /// <param name="address">Retrieve webhook subscriptions that send the POST request to this URI.</param>
+
+        /// <param name="created_at_max">Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="created_at_min">Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="fields">Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.</param>
+
+        /// <param name="limit">Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.</param>
+
+        /// <param name="since_id">Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id.</param>
+
+        /// <param name="topic">Show webhook subscriptions with a given topic.
+        /// <br/>
+        /// <br/>For a list of valid values, refer to the &lt;a href="#topic-property-{{ current_version }}"&gt;&lt;code&gt;topic&lt;/code&gt; property&lt;/a&gt;.&gt;</param>
+
+        /// <param name="updated_at_max">Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="updated_at_min">Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <returns>Retrieves a list of webhooks</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfWebhooksAsync(string? address, string? created_at_max, string? created_at_min, string? fields, string limit, string? since_id, string? topic, string? updated_at_max, string? updated_at_min);
+
+        /// <summary>
+        /// Create a new Webhook
+        /// </summary>
+
+        /// <returns>Create a new Webhook</returns>
+
+        System.Threading.Tasks.Task CreateNewWebhookAsync();
+
+        /// <summary>
+        /// Receive a count of all Webhooks
+        /// </summary>
+
+        /// <param name="address">Webhook subscriptions that send the POST request to this URI.</param>
+
+        /// <param name="topic">The topic of the webhook subscriptions.
+        /// <br/>For a list of valid values, refer to the &lt;a href="#topic-property-{{ current_version }}"&gt;&lt;code&gt;topic&lt;/code&gt; property&lt;/a&gt;.</param>
+
+        /// <returns>Receive a count of all Webhooks</returns>
+
+        System.Threading.Tasks.Task ReceiveCountOfAllWebhooksAsync(string? address, string? topic);
+
+        /// <summary>
+        /// Receive a single Webhook
+        /// </summary>
+
+
+        /// <param name="fields">Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.</param>
+
+        /// <returns>Receive a single Webhook</returns>
+
+        System.Threading.Tasks.Task ReceiveSingleWebhookAsync(string webhook_id, string? fields);
+
+        /// <summary>
+        /// Modify an existing Webhook
+        /// </summary>
+
+
+        /// <returns>Modify an existing Webhook</returns>
+
+        System.Threading.Tasks.Task ModifyExistingWebhookAsync(string webhook_id);
+
+        /// <summary>
+        /// Remove an existing Webhook
+        /// </summary>
+
+
+        /// <returns>Remove an existing Webhook</returns>
+
+        System.Threading.Tasks.Task RemoveExistingWebhookAsync(string webhook_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class WebhookController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IWebhookController _implementation;
+
+        public WebhookController(IWebhookController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of webhooks
         /// </summary>
@@ -41,14 +132,22 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_min">Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a list of webhooks</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("webhooks.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfWebhooks([Microsoft.AspNetCore.Mvc.FromQuery] string? address = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? topic = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
+        public System.Threading.Tasks.Task RetrieveListOfWebhooks([Microsoft.AspNetCore.Mvc.FromQuery] string? address, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? topic, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
+        {
+
+            return _implementation.RetrieveListOfWebhooksAsync(address, created_at_max, created_at_min, fields, limit ?? "50", since_id, topic, updated_at_max, updated_at_min);
+        }
 
         /// <summary>
         /// Create a new Webhook
         /// </summary>
         /// <returns>Create a new Webhook</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("webhooks.json")]
-        public abstract System.Threading.Tasks.Task CreateNewWebhook();
+        public System.Threading.Tasks.Task CreateNewWebhook()
+        {
+
+            return _implementation.CreateNewWebhookAsync();
+        }
 
         /// <summary>
         /// Receive a count of all Webhooks
@@ -58,7 +157,11 @@ namespace OpenShopify.Admin.Builder
         /// <br/>For a list of valid values, refer to the &lt;a href="#topic-property-{{ current_version }}"&gt;&lt;code&gt;topic&lt;/code&gt; property&lt;/a&gt;.</param>
         /// <returns>Receive a count of all Webhooks</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("webhooks/count.json")]
-        public abstract System.Threading.Tasks.Task ReceiveCountOfAllWebhooks([Microsoft.AspNetCore.Mvc.FromQuery] string? address = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? topic = null);
+        public System.Threading.Tasks.Task ReceiveCountOfAllWebhooks([Microsoft.AspNetCore.Mvc.FromQuery] string? address, [Microsoft.AspNetCore.Mvc.FromQuery] string? topic)
+        {
+
+            return _implementation.ReceiveCountOfAllWebhooksAsync(address, topic);
+        }
 
         /// <summary>
         /// Receive a single Webhook
@@ -66,21 +169,33 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.</param>
         /// <returns>Receive a single Webhook</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("webhooks/{webhook_id}.json")]
-        public abstract System.Threading.Tasks.Task ReceiveSingleWebhook(string webhook_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public System.Threading.Tasks.Task ReceiveSingleWebhook(string webhook_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
+        {
+
+            return _implementation.ReceiveSingleWebhookAsync(webhook_id, fields);
+        }
 
         /// <summary>
         /// Modify an existing Webhook
         /// </summary>
         /// <returns>Modify an existing Webhook</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("webhooks/{webhook_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingWebhook(string webhook_id);
+        public System.Threading.Tasks.Task ModifyExistingWebhook(string webhook_id)
+        {
+
+            return _implementation.ModifyExistingWebhookAsync(webhook_id);
+        }
 
         /// <summary>
         /// Remove an existing Webhook
         /// </summary>
         /// <returns>Remove an existing Webhook</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("webhooks/{webhook_id}.json")]
-        public abstract System.Threading.Tasks.Task RemoveExistingWebhook(string webhook_id);
+        public System.Threading.Tasks.Task RemoveExistingWebhook(string webhook_id)
+        {
+
+            return _implementation.RemoveExistingWebhookAsync(webhook_id);
+        }
 
     }
 

@@ -17,55 +17,186 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class DiscountCodeControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IDiscountCodeController
     {
+
+        /// <summary>
+        /// Creates a discount code
+        /// </summary>
+
+
+        /// <returns>Creates a discount code</returns>
+
+        System.Threading.Tasks.Task CreateDiscountCodeAsync(string price_rule_id);
+
+        /// <summary>
+        /// Retrieves a list of discount codes
+        /// </summary>
+
+
+        /// <returns>Retrieves a list of discount codes</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfDiscountCodesAsync(string price_rule_id);
+
+        /// <summary>
+        /// Updates an existing discount code
+        /// </summary>
+
+
+        /// <returns>Updates an existing discount code</returns>
+
+        System.Threading.Tasks.Task UpdateExistingDiscountCodeAsync(string discount_code_id, string price_rule_id);
+
+        /// <summary>
+        /// Retrieves a single discount code
+        /// </summary>
+
+
+        /// <returns>Retrieves a single discount code</returns>
+
+        System.Threading.Tasks.Task RetrieveSingleDiscountCodeAsync(string discount_code_id, string price_rule_id);
+
+        /// <summary>
+        /// Deletes a discount code
+        /// </summary>
+
+
+        /// <returns>Deletes a discount code</returns>
+
+        System.Threading.Tasks.Task DeleteDiscountCodeAsync(string discount_code_id, string price_rule_id);
+
+        /// <summary>
+        /// Retrieves the location of a discount code
+        /// </summary>
+
+        /// <param name="code">Retrieves the location of a discount code by code name.</param>
+
+        System.Threading.Tasks.Task RetrieveTheLocationOfDiscountCodeAsync(string code);
+
+        /// <summary>
+        /// Retrieves a count of discount codes for a shop
+        /// </summary>
+
+        /// <param name="times_used">Show discount codes with times used.</param>
+
+        /// <param name="times_used_max">Show discount codes used greater than or equal to this value.</param>
+
+        /// <param name="times_used_min">Show discount codes used less than or equal to this value.</param>
+
+        /// <returns>Retrieves a count of discount codes for a shop</returns>
+
+        System.Threading.Tasks.Task RetrieveCountOfDiscountCodesForShopAsync(string? times_used, string? times_used_max, string? times_used_min);
+
+        /// <summary>
+        /// Creates a discount code creation job
+        /// </summary>
+
+
+        /// <returns>Creates a discount code creation job</returns>
+
+        System.Threading.Tasks.Task CreateDiscountCodeCreationJobAsync(string price_rule_id);
+
+        /// <summary>
+        /// Retrieves a discount code creation job
+        /// </summary>
+
+
+        /// <returns>Retrieves a discount code creation job</returns>
+
+        System.Threading.Tasks.Task RetrieveDiscountCodeCreationJobAsync(string batch_id, string price_rule_id);
+
+        /// <summary>
+        /// Retrieves a list of discount codes for a discount code creation job
+        /// </summary>
+
+
+        /// <returns>Retrieves a list of discount codes for a discount code creation job</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfDiscountCodesForDiscountCodeCreationJobAsync(string batch_id, string price_rule_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class DiscountCodeController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IDiscountCodeController _implementation;
+
+        public DiscountCodeController(IDiscountCodeController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Creates a discount code
         /// </summary>
         /// <returns>Creates a discount code</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes.json")]
-        public abstract System.Threading.Tasks.Task CreateDiscountCode(string price_rule_id);
+        public System.Threading.Tasks.Task CreateDiscountCode(string price_rule_id)
+        {
+
+            return _implementation.CreateDiscountCodeAsync(price_rule_id);
+        }
 
         /// <summary>
         /// Retrieves a list of discount codes
         /// </summary>
         /// <returns>Retrieves a list of discount codes</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfDiscountCodes(string price_rule_id);
+        public System.Threading.Tasks.Task RetrieveListOfDiscountCodes(string price_rule_id)
+        {
+
+            return _implementation.RetrieveListOfDiscountCodesAsync(price_rule_id);
+        }
 
         /// <summary>
         /// Updates an existing discount code
         /// </summary>
         /// <returns>Updates an existing discount code</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingDiscountCode(string discount_code_id, string price_rule_id);
+        public System.Threading.Tasks.Task UpdateExistingDiscountCode(string discount_code_id, string price_rule_id)
+        {
+
+            return _implementation.UpdateExistingDiscountCodeAsync(discount_code_id, price_rule_id);
+        }
 
         /// <summary>
         /// Retrieves a single discount code
         /// </summary>
         /// <returns>Retrieves a single discount code</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleDiscountCode(string discount_code_id, string price_rule_id);
+        public System.Threading.Tasks.Task RetrieveSingleDiscountCode(string discount_code_id, string price_rule_id)
+        {
+
+            return _implementation.RetrieveSingleDiscountCodeAsync(discount_code_id, price_rule_id);
+        }
 
         /// <summary>
         /// Deletes a discount code
         /// </summary>
         /// <returns>Deletes a discount code</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteDiscountCode(string discount_code_id, string price_rule_id);
+        public System.Threading.Tasks.Task DeleteDiscountCode(string discount_code_id, string price_rule_id)
+        {
+
+            return _implementation.DeleteDiscountCodeAsync(discount_code_id, price_rule_id);
+        }
 
         /// <summary>
         /// Retrieves the location of a discount code
         /// </summary>
         /// <param name="code">Retrieves the location of a discount code by code name.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("discount_codes/lookup.json")]
-        public abstract System.Threading.Tasks.Task RetrieveTheLocationOfDiscountCode([Microsoft.AspNetCore.Mvc.FromQuery] string code);
+        public System.Threading.Tasks.Task RetrieveTheLocationOfDiscountCode([Microsoft.AspNetCore.Mvc.FromQuery] string code)
+        {
+
+            return _implementation.RetrieveTheLocationOfDiscountCodeAsync(code);
+        }
 
         /// <summary>
         /// Retrieves a count of discount codes for a shop
@@ -75,28 +206,44 @@ namespace OpenShopify.Admin.Builder
         /// <param name="times_used_min">Show discount codes used less than or equal to this value.</param>
         /// <returns>Retrieves a count of discount codes for a shop</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("discount_codes/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfDiscountCodesForShop([Microsoft.AspNetCore.Mvc.FromQuery] string? times_used = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? times_used_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? times_used_min = null);
+        public System.Threading.Tasks.Task RetrieveCountOfDiscountCodesForShop([Microsoft.AspNetCore.Mvc.FromQuery] string? times_used, [Microsoft.AspNetCore.Mvc.FromQuery] string? times_used_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? times_used_min)
+        {
+
+            return _implementation.RetrieveCountOfDiscountCodesForShopAsync(times_used, times_used_max, times_used_min);
+        }
 
         /// <summary>
         /// Creates a discount code creation job
         /// </summary>
         /// <returns>Creates a discount code creation job</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/batch.json")]
-        public abstract System.Threading.Tasks.Task CreateDiscountCodeCreationJob(string price_rule_id);
+        public System.Threading.Tasks.Task CreateDiscountCodeCreationJob(string price_rule_id)
+        {
+
+            return _implementation.CreateDiscountCodeCreationJobAsync(price_rule_id);
+        }
 
         /// <summary>
         /// Retrieves a discount code creation job
         /// </summary>
         /// <returns>Retrieves a discount code creation job</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/batch/{batch_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveDiscountCodeCreationJob(string batch_id, string price_rule_id);
+        public System.Threading.Tasks.Task RetrieveDiscountCodeCreationJob(string batch_id, string price_rule_id)
+        {
+
+            return _implementation.RetrieveDiscountCodeCreationJobAsync(batch_id, price_rule_id);
+        }
 
         /// <summary>
         /// Retrieves a list of discount codes for a discount code creation job
         /// </summary>
         /// <returns>Retrieves a list of discount codes for a discount code creation job</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/batch/{batch_id}/discount_codes.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfDiscountCodesForDiscountCodeCreationJob(string batch_id, string price_rule_id);
+        public System.Threading.Tasks.Task RetrieveListOfDiscountCodesForDiscountCodeCreationJob(string batch_id, string price_rule_id)
+        {
+
+            return _implementation.RetrieveListOfDiscountCodesForDiscountCodeCreationJobAsync(batch_id, price_rule_id);
+        }
 
     }
 

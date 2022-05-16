@@ -17,14 +17,136 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class ProductControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IProductController
     {
+
+        /// <summary>
+        /// Retrieve a list of products
+        /// </summary>
+
+        /// <param name="collection_id">Return products by product collection ID.</param>
+
+        /// <param name="created_at_max">Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="created_at_min">Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="fields">Return only certain fields specified by a comma-separated list of field names.</param>
+
+        /// <param name="handle">Return only products specified by a comma-separated list of product handles.</param>
+
+        /// <param name="ids">Return only products specified by a comma-separated list of product IDs.</param>
+
+        /// <param name="limit">Return up to this many results per page.</param>
+
+        /// <param name="presentment_currencies">Return presentment prices in only certain currencies, specified by a comma-separated list of &lt;a href="https://en.wikipedia.org/wiki/ISO_4217"&gt;ISO 4217&lt;/a&gt; currency codes.</param>
+
+        /// <param name="product_type">Return products by product type.</param>
+
+        /// <param name="published_at_max">Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="published_at_min">Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="published_status">Return products by their published status.</param>
+
+        /// <param name="since_id">Return only products after the specified ID.</param>
+
+        /// <param name="status">Return only products specified by a comma-separated list of statuses.</param>
+
+        /// <param name="title">Return products by product title.</param>
+
+        /// <param name="updated_at_max">Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="updated_at_min">Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="vendor">Return products by product vendor.</param>
+
+        /// <returns>Retrieve a list of products</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfProductsAsync(string? collection_id, string? created_at_max, string? created_at_min, string? fields, string? handle, string? ids, string limit, string? presentment_currencies, string? product_type, string? published_at_max, string? published_at_min, string published_status, string? since_id, string status, string? title, string? updated_at_max, string? updated_at_min, string? vendor);
+
+        /// <summary>
+        /// Create a new product
+        /// </summary>
+
+        /// <returns>Create a new product</returns>
+
+        System.Threading.Tasks.Task CreateNewProductAsync();
+
+        /// <summary>
+        /// Retrieve a count of products
+        /// </summary>
+
+        /// <param name="collection_id">Return products by product collection ID.</param>
+
+        /// <param name="created_at_max">Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="created_at_min">Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="product_type">Return products by product type.</param>
+
+        /// <param name="published_at_max">Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="published_at_min">Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="published_status">Return products by their published status.</param>
+
+        /// <param name="updated_at_max">Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="updated_at_min">Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="vendor">Return products by product vendor.</param>
+
+        /// <returns>Retrieve a count of products</returns>
+
+        System.Threading.Tasks.Task RetrieveCountOfProductsAsync(string? collection_id, string? created_at_max, string? created_at_min, string? product_type, string? published_at_max, string? published_at_min, string published_status, string? updated_at_max, string? updated_at_min, string? vendor);
+
+        /// <summary>
+        /// Retrieve a single product
+        /// </summary>
+
+
+        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
+
+        /// <returns>Retrieve a single product</returns>
+
+        System.Threading.Tasks.Task RetrieveSingleProductAsync(string product_id, string? fields);
+
+        /// <summary>
+        /// Updates a product
+        /// </summary>
+
+
+        /// <returns>Updates a product</returns>
+
+        System.Threading.Tasks.Task UpdateProductAsync(string product_id);
+
+        /// <summary>
+        /// Delete a product
+        /// </summary>
+
+
+        /// <returns>Delete a product</returns>
+
+        System.Threading.Tasks.Task DeleteProductAsync(string product_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class ProductController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IProductController _implementation;
+
+        public ProductController(IProductController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieve a list of products
         /// </summary>
@@ -48,14 +170,22 @@ namespace OpenShopify.Admin.Builder
         /// <param name="vendor">Return products by product vendor.</param>
         /// <returns>Retrieve a list of products</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfProducts([Microsoft.AspNetCore.Mvc.FromQuery] string? collection_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? presentment_currencies = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_type = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? title = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? vendor = null);
+        public System.Threading.Tasks.Task RetrieveListOfProducts([Microsoft.AspNetCore.Mvc.FromQuery] string? collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? presentment_currencies, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_type, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status, [Microsoft.AspNetCore.Mvc.FromQuery] string? title, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? vendor)
+        {
+
+            return _implementation.RetrieveListOfProductsAsync(collection_id, created_at_max, created_at_min, fields, handle, ids, limit ?? "50", presentment_currencies, product_type, published_at_max, published_at_min, published_status ?? "any", since_id, status ?? "any", title, updated_at_max, updated_at_min, vendor);
+        }
 
         /// <summary>
         /// Create a new product
         /// </summary>
         /// <returns>Create a new product</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products.json")]
-        public abstract System.Threading.Tasks.Task CreateNewProduct();
+        public System.Threading.Tasks.Task CreateNewProduct()
+        {
+
+            return _implementation.CreateNewProductAsync();
+        }
 
         /// <summary>
         /// Retrieve a count of products
@@ -72,7 +202,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="vendor">Return products by product vendor.</param>
         /// <returns>Retrieve a count of products</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfProducts([Microsoft.AspNetCore.Mvc.FromQuery] string? collection_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_type = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? vendor = null);
+        public System.Threading.Tasks.Task RetrieveCountOfProducts([Microsoft.AspNetCore.Mvc.FromQuery] string? collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_type, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? vendor)
+        {
+
+            return _implementation.RetrieveCountOfProductsAsync(collection_id, created_at_max, created_at_min, product_type, published_at_max, published_at_min, published_status ?? "any", updated_at_max, updated_at_min, vendor);
+        }
 
         /// <summary>
         /// Retrieve a single product
@@ -80,21 +214,33 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieve a single product</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleProduct(string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public System.Threading.Tasks.Task RetrieveSingleProduct(string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
+        {
+
+            return _implementation.RetrieveSingleProductAsync(product_id, fields);
+        }
 
         /// <summary>
         /// Updates a product
         /// </summary>
         /// <returns>Updates a product</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("products/{product_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateProduct(string product_id);
+        public System.Threading.Tasks.Task UpdateProduct(string product_id)
+        {
+
+            return _implementation.UpdateProductAsync(product_id);
+        }
 
         /// <summary>
         /// Delete a product
         /// </summary>
         /// <returns>Delete a product</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("products/{product_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteProduct(string product_id);
+        public System.Threading.Tasks.Task DeleteProduct(string product_id)
+        {
+
+            return _implementation.DeleteProductAsync(product_id);
+        }
 
     }
 

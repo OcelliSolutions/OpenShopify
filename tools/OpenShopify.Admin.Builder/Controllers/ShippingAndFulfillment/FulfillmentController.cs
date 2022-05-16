@@ -17,14 +17,158 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class FulfillmentControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IFulfillmentController
     {
+
+        /// <summary>
+        /// Retrieves fulfillments associated with an order
+        /// </summary>
+
+
+        /// <param name="created_at_max">Show fulfillments created before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="created_at_min">Show fulfillments created after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
+
+        /// <param name="limit">Limit the amount of results.</param>
+
+        /// <param name="since_id">Restrict results to after the specified ID.</param>
+
+        /// <param name="updated_at_max">Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="updated_at_min">Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <returns>Retrieves fulfillments associated with an order</returns>
+
+        System.Threading.Tasks.Task RetrieveFulfillmentsAssociatedWithOrderAsync(string order_id, string? created_at_max, string? created_at_min, string? fields, string limit, string? since_id, string? updated_at_max, string? updated_at_min);
+
+        /// <summary>
+        /// Create a new Fulfillment
+        /// </summary>
+
+
+        /// <returns>Create a new Fulfillment</returns>
+
+        System.Threading.Tasks.Task CreateNewFulfillmentAsync(string order_id);
+
+        /// <summary>
+        /// Retrieves fulfillments associated with a fulfillment order
+        /// </summary>
+
+
+        /// <returns>Retrieves fulfillments associated with a fulfillment order</returns>
+
+        System.Threading.Tasks.Task RetrieveFulfillmentsAssociatedWithFulfillmentOrderAsync(string fulfillment_order_id);
+
+        /// <summary>
+        /// Retrieves a count of fulfillments associated with a specific order
+        /// </summary>
+
+
+        /// <param name="created_at_max">Count fulfillments created before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="created_at_min">Count fulfillments created after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="updated_at_max">Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="updated_at_min">Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <returns>Retrieves a count of fulfillments associated with a specific order</returns>
+
+        System.Threading.Tasks.Task RetrieveCountOfFulfillmentsAssociatedWithSpecificOrderAsync(string order_id, string? created_at_max, string? created_at_min, string? updated_at_max, string? updated_at_min);
+
+        /// <summary>
+        /// Receive a single Fulfillment
+        /// </summary>
+
+
+        /// <param name="fields">Comma-separated list of fields to include in the response.</param>
+
+        /// <returns>Receive a single Fulfillment</returns>
+
+        System.Threading.Tasks.Task ReceiveSingleFulfillmentAsync(string fulfillment_id, string order_id, string? fields);
+
+        /// <summary>
+        /// Modify an existing Fulfillment
+        /// </summary>
+
+
+        /// <returns>Modify an existing Fulfillment</returns>
+
+        System.Threading.Tasks.Task ModifyExistingFulfillmentAsync(string fulfillment_id, string order_id);
+
+        /// <summary>
+        /// Creates a fulfillment for one or many fulfillment orders
+        /// </summary>
+
+        /// <returns>Creates a fulfillment for one or many fulfillment orders</returns>
+
+        System.Threading.Tasks.Task CreateFulfillmentForOneOrManyFulfillmentOrdersAsync();
+
+        /// <summary>
+        /// Updates the tracking information for a fulfillment
+        /// </summary>
+
+
+        /// <returns>Updates the tracking information for a fulfillment</returns>
+
+        System.Threading.Tasks.Task UpdateTheTrackingInformationForFulfillmentAsync(string fulfillment_id);
+
+        /// <summary>
+        /// Complete a fulfillment
+        /// </summary>
+
+
+        /// <returns>Complete a fulfillment</returns>
+
+        System.Threading.Tasks.Task CompleteFulfillmentAsync(string fulfillment_id, string order_id);
+
+        /// <summary>
+        /// Transition a fulfillment from pending to open.
+        /// </summary>
+
+
+        /// <returns>Transition a fulfillment from pending to open.</returns>
+
+        System.Threading.Tasks.Task TransitionFulfillmentFromPendingToOpenAsync(string fulfillment_id, string order_id);
+
+        /// <summary>
+        /// Cancel a fulfillment for a specific order ID
+        /// </summary>
+
+
+        /// <returns>Cancel a fulfillment for a specific order ID</returns>
+
+        System.Threading.Tasks.Task CancelFulfillmentForSpecificOrderIDAsync(string fulfillment_id, string order_id);
+
+        /// <summary>
+        /// Cancels a fulfillment
+        /// </summary>
+
+
+        /// <returns>Cancels a fulfillment</returns>
+
+        System.Threading.Tasks.Task CancelFulfillmentAsync(string fulfillment_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class FulfillmentController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IFulfillmentController _implementation;
+
+        public FulfillmentController(IFulfillmentController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves fulfillments associated with an order
         /// </summary>
@@ -37,21 +181,33 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_min">Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves fulfillments associated with an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments.json")]
-        public abstract System.Threading.Tasks.Task RetrieveFulfillmentsAssociatedWithOrder(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
+        public System.Threading.Tasks.Task RetrieveFulfillmentsAssociatedWithOrder(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
+        {
+
+            return _implementation.RetrieveFulfillmentsAssociatedWithOrderAsync(order_id, created_at_max, created_at_min, fields, limit ?? "50", since_id, updated_at_max, updated_at_min);
+        }
 
         /// <summary>
         /// Create a new Fulfillment
         /// </summary>
         /// <returns>Create a new Fulfillment</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments.json")]
-        public abstract System.Threading.Tasks.Task CreateNewFulfillment(string order_id);
+        public System.Threading.Tasks.Task CreateNewFulfillment(string order_id)
+        {
+
+            return _implementation.CreateNewFulfillmentAsync(order_id);
+        }
 
         /// <summary>
         /// Retrieves fulfillments associated with a fulfillment order
         /// </summary>
         /// <returns>Retrieves fulfillments associated with a fulfillment order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillments.json")]
-        public abstract System.Threading.Tasks.Task RetrieveFulfillmentsAssociatedWithFulfillmentOrder(string fulfillment_order_id);
+        public System.Threading.Tasks.Task RetrieveFulfillmentsAssociatedWithFulfillmentOrder(string fulfillment_order_id)
+        {
+
+            return _implementation.RetrieveFulfillmentsAssociatedWithFulfillmentOrderAsync(fulfillment_order_id);
+        }
 
         /// <summary>
         /// Retrieves a count of fulfillments associated with a specific order
@@ -62,7 +218,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_min">Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a count of fulfillments associated with a specific order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfFulfillmentsAssociatedWithSpecificOrder(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
+        public System.Threading.Tasks.Task RetrieveCountOfFulfillmentsAssociatedWithSpecificOrder(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
+        {
+
+            return _implementation.RetrieveCountOfFulfillmentsAssociatedWithSpecificOrderAsync(order_id, created_at_max, created_at_min, updated_at_max, updated_at_min);
+        }
 
         /// <summary>
         /// Receive a single Fulfillment
@@ -70,56 +230,88 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">Comma-separated list of fields to include in the response.</param>
         /// <returns>Receive a single Fulfillment</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}.json")]
-        public abstract System.Threading.Tasks.Task ReceiveSingleFulfillment(string fulfillment_id, string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public System.Threading.Tasks.Task ReceiveSingleFulfillment(string fulfillment_id, string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
+        {
+
+            return _implementation.ReceiveSingleFulfillmentAsync(fulfillment_id, order_id, fields);
+        }
 
         /// <summary>
         /// Modify an existing Fulfillment
         /// </summary>
         /// <returns>Modify an existing Fulfillment</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingFulfillment(string fulfillment_id, string order_id);
+        public System.Threading.Tasks.Task ModifyExistingFulfillment(string fulfillment_id, string order_id)
+        {
+
+            return _implementation.ModifyExistingFulfillmentAsync(fulfillment_id, order_id);
+        }
 
         /// <summary>
         /// Creates a fulfillment for one or many fulfillment orders
         /// </summary>
         /// <returns>Creates a fulfillment for one or many fulfillment orders</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillments.json")]
-        public abstract System.Threading.Tasks.Task CreateFulfillmentForOneOrManyFulfillmentOrders();
+        public System.Threading.Tasks.Task CreateFulfillmentForOneOrManyFulfillmentOrders()
+        {
+
+            return _implementation.CreateFulfillmentForOneOrManyFulfillmentOrdersAsync();
+        }
 
         /// <summary>
         /// Updates the tracking information for a fulfillment
         /// </summary>
         /// <returns>Updates the tracking information for a fulfillment</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillments/{fulfillment_id}/update_tracking.json")]
-        public abstract System.Threading.Tasks.Task UpdateTheTrackingInformationForFulfillment(string fulfillment_id);
+        public System.Threading.Tasks.Task UpdateTheTrackingInformationForFulfillment(string fulfillment_id)
+        {
+
+            return _implementation.UpdateTheTrackingInformationForFulfillmentAsync(fulfillment_id);
+        }
 
         /// <summary>
         /// Complete a fulfillment
         /// </summary>
         /// <returns>Complete a fulfillment</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/complete.json")]
-        public abstract System.Threading.Tasks.Task CompleteFulfillment(string fulfillment_id, string order_id);
+        public System.Threading.Tasks.Task CompleteFulfillment(string fulfillment_id, string order_id)
+        {
+
+            return _implementation.CompleteFulfillmentAsync(fulfillment_id, order_id);
+        }
 
         /// <summary>
         /// Transition a fulfillment from pending to open.
         /// </summary>
         /// <returns>Transition a fulfillment from pending to open.</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/open.json")]
-        public abstract System.Threading.Tasks.Task TransitionFulfillmentFromPendingToOpen(string fulfillment_id, string order_id);
+        public System.Threading.Tasks.Task TransitionFulfillmentFromPendingToOpen(string fulfillment_id, string order_id)
+        {
+
+            return _implementation.TransitionFulfillmentFromPendingToOpenAsync(fulfillment_id, order_id);
+        }
 
         /// <summary>
         /// Cancel a fulfillment for a specific order ID
         /// </summary>
         /// <returns>Cancel a fulfillment for a specific order ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/cancel.json")]
-        public abstract System.Threading.Tasks.Task CancelFulfillmentForSpecificOrderID(string fulfillment_id, string order_id);
+        public System.Threading.Tasks.Task CancelFulfillmentForSpecificOrderID(string fulfillment_id, string order_id)
+        {
+
+            return _implementation.CancelFulfillmentForSpecificOrderIDAsync(fulfillment_id, order_id);
+        }
 
         /// <summary>
         /// Cancels a fulfillment
         /// </summary>
         /// <returns>Cancels a fulfillment</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillments/{fulfillment_id}/cancel.json")]
-        public abstract System.Threading.Tasks.Task CancelFulfillment(string fulfillment_id);
+        public System.Threading.Tasks.Task CancelFulfillment(string fulfillment_id)
+        {
+
+            return _implementation.CancelFulfillmentAsync(fulfillment_id);
+        }
 
     }
 

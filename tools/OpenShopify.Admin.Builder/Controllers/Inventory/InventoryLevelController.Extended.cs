@@ -7,33 +7,42 @@ namespace OpenShopify.Admin.Builder.Controllers.Inventory;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Inventory)]
 [ApiController]
-public class InventoryLevelController : InventoryLevelControllerBase
+public class InventoryLevelController : IInventoryLevelController
 {
-    public override Task RetrieveListOfInventoryLevels(string? inventory_item_ids = null, string? limit = "50", string? location_ids = null,
-        string? updated_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_levels.json")]
+    public Task RetrieveListOfInventoryLevelsAsync(string? inventory_item_ids, string limit, string? location_ids,
+        string? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
-    public override Task AdjustTheInventoryLevelOfInventoryItemAtLocation(string available_adjustment, string inventory_item_id,
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("inventory_levels.json")]
+    public Task DeleteInventoryLevelFromLocationAsync(string inventory_item_id, string location_id)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("inventory_levels/adjust.json")]
+    public Task AdjustTheInventoryLevelOfInventoryItemAtLocationAsync(string available_adjustment, string inventory_item_id,
         string location_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task DeleteInventoryLevelFromLocation(string inventory_item_id, string location_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("inventory_levels/connect.json")]
+    public Task ConnectInventoryItemToLocationAsync(string inventory_item_id, string location_id, string relocate_if_necessary)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ConnectInventoryItemToLocation(string inventory_item_id, string location_id,
-        string? relocate_if_necessary = "false")
-    {
-        throw new NotImplementedException();
-    }
-
-    public override Task SetTheInventoryLevelForInventoryItemAtLocation(string available, string inventory_item_id, string location_id,
-        string? disconnect_if_necessary = "false")
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("inventory_levels/set.json")]
+    public Task SetTheInventoryLevelForInventoryItemAtLocationAsync(string available, string inventory_item_id, string location_id,
+        string disconnect_if_necessary)
     {
         throw new NotImplementedException();
     }

@@ -9,25 +9,28 @@ namespace OpenShopify.Admin.Builder.Controllers.Billing;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Billing)]
 [ApiController]
-public class ApplicationCreditController : ApplicationCreditControllerBase
+public class ApplicationCreditController : IApplicationCreditController
 {
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("application_credits.json")]
     [ProducesResponseType(typeof(ApplicationCreditItem), StatusCodes.Status200OK)]
-    public override Task CreateApplicationCredit()
+    public Task CreateApplicationCreditAsync()
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_credits.json")]
     [ProducesResponseType(typeof(ApplicationCreditList), StatusCodes.Status200OK)]
-    public override Task RetrieveAllApplicationCredits(string? fields = null)
+    public Task RetrieveAllApplicationCreditsAsync(string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_credits/{application_credit_id}.json")]
     [ProducesResponseType(typeof(ApplicationCreditItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSingleApplicationCredit(string application_credit_id, string? fields = null)
+    public Task RetrieveSingleApplicationCreditAsync(string application_credit_id, string? fields)
     {
         throw new NotImplementedException();
     }

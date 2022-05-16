@@ -17,14 +17,89 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class ProductImageControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IProductImageController
     {
+
+        /// <summary>
+        /// Receive a list of all Product Images
+        /// </summary>
+
+
+        /// <param name="fields">comma-separated list of fields to include in the response</param>
+
+        /// <param name="since_id">Restrict results to after the specified ID</param>
+
+        /// <returns>Receive a list of all Product Images</returns>
+
+        System.Threading.Tasks.Task ReceiveListOfAllProductImagesAsync(string product_id, string? fields, string? since_id);
+
+        /// <summary>
+        /// Create a new Product Image
+        /// </summary>
+
+
+        /// <returns>Create a new Product Image</returns>
+
+        System.Threading.Tasks.Task CreateNewProductImageAsync(string product_id);
+
+        /// <summary>
+        /// Receive a count of all Product Images
+        /// </summary>
+
+
+        /// <param name="since_id">Restrict results to after the specified ID</param>
+
+        /// <returns>Receive a count of all Product Images</returns>
+
+        System.Threading.Tasks.Task ReceiveCountOfAllProductImagesAsync(string product_id, string? since_id);
+
+        /// <summary>
+        /// Receive a single Product Image
+        /// </summary>
+
+
+        /// <param name="fields">comma-separated list of fields to include in the response</param>
+
+        /// <returns>Receive a single Product Image</returns>
+
+        System.Threading.Tasks.Task ReceiveSingleProductImageAsync(string image_id, string product_id, string? fields);
+
+        /// <summary>
+        /// Modify an existing Product Image
+        /// </summary>
+
+
+        /// <returns>Modify an existing Product Image</returns>
+
+        System.Threading.Tasks.Task ModifyExistingProductImageAsync(string image_id, string product_id);
+
+        /// <summary>
+        /// Remove an existing Product Image
+        /// </summary>
+
+
+        /// <returns>Remove an existing Product Image</returns>
+
+        System.Threading.Tasks.Task RemoveExistingProductImageAsync(string image_id, string product_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class ProductImageController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IProductImageController _implementation;
+
+        public ProductImageController(IProductImageController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Receive a list of all Product Images
         /// </summary>
@@ -32,14 +107,22 @@ namespace OpenShopify.Admin.Builder
         /// <param name="since_id">Restrict results to after the specified ID</param>
         /// <returns>Receive a list of all Product Images</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images.json")]
-        public abstract System.Threading.Tasks.Task ReceiveListOfAllProductImages(string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
+        public System.Threading.Tasks.Task ReceiveListOfAllProductImages(string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id)
+        {
+
+            return _implementation.ReceiveListOfAllProductImagesAsync(product_id, fields, since_id);
+        }
 
         /// <summary>
         /// Create a new Product Image
         /// </summary>
         /// <returns>Create a new Product Image</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images.json")]
-        public abstract System.Threading.Tasks.Task CreateNewProductImage(string product_id);
+        public System.Threading.Tasks.Task CreateNewProductImage(string product_id)
+        {
+
+            return _implementation.CreateNewProductImageAsync(product_id);
+        }
 
         /// <summary>
         /// Receive a count of all Product Images
@@ -47,7 +130,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="since_id">Restrict results to after the specified ID</param>
         /// <returns>Receive a count of all Product Images</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images/count.json")]
-        public abstract System.Threading.Tasks.Task ReceiveCountOfAllProductImages(string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
+        public System.Threading.Tasks.Task ReceiveCountOfAllProductImages(string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id)
+        {
+
+            return _implementation.ReceiveCountOfAllProductImagesAsync(product_id, since_id);
+        }
 
         /// <summary>
         /// Receive a single Product Image
@@ -55,21 +142,33 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <returns>Receive a single Product Image</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images/{image_id}.json")]
-        public abstract System.Threading.Tasks.Task ReceiveSingleProductImage(string image_id, string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public System.Threading.Tasks.Task ReceiveSingleProductImage(string image_id, string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
+        {
+
+            return _implementation.ReceiveSingleProductImageAsync(image_id, product_id, fields);
+        }
 
         /// <summary>
         /// Modify an existing Product Image
         /// </summary>
         /// <returns>Modify an existing Product Image</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images/{image_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingProductImage(string image_id, string product_id);
+        public System.Threading.Tasks.Task ModifyExistingProductImage(string image_id, string product_id)
+        {
+
+            return _implementation.ModifyExistingProductImageAsync(image_id, product_id);
+        }
 
         /// <summary>
         /// Remove an existing Product Image
         /// </summary>
         /// <returns>Remove an existing Product Image</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images/{image_id}.json")]
-        public abstract System.Threading.Tasks.Task RemoveExistingProductImage(string image_id, string product_id);
+        public System.Threading.Tasks.Task RemoveExistingProductImage(string image_id, string product_id)
+        {
+
+            return _implementation.RemoveExistingProductImageAsync(image_id, product_id);
+        }
 
     }
 

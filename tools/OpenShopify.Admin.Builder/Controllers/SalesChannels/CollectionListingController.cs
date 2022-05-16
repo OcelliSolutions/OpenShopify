@@ -17,21 +17,86 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class CollectionListingControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface ICollectionListingController
     {
+
+        /// <summary>
+        /// Retrieve collection listings that are published to your app
+        /// </summary>
+
+        /// <param name="limit">Amount of results</param>
+
+        /// <returns>Retrieve collection listings that are published to your app</returns>
+
+        System.Threading.Tasks.Task RetrieveCollectionListingsThatArePublishedToYourAppAsync(string limit);
+
+        /// <summary>
+        /// Retrieve &lt;code&gt;product_ids&lt;/code&gt; that are published to a &lt;code&gt;collection_id&lt;/code&gt;
+        /// </summary>
+
+
+        /// <param name="limit">Amount of results</param>
+
+        /// <returns>Retrieve &lt;code&gt;product_ids&lt;/code&gt; that are published to a &lt;code&gt;collection_id&lt;/code&gt;</returns>
+
+        System.Threading.Tasks.Task RetrieveProductIdsThatArePublishedToCollectionIdAsync(string collection_listing_id, string limit);
+
+        /// <summary>
+        /// Retrieve a specific collection listing that is published to your app
+        /// </summary>
+
+
+        /// <returns>Retrieve a specific collection listing that is published to your app</returns>
+
+        System.Threading.Tasks.Task RetrieveSpecificCollectionListingThatIsPublishedToYourAppAsync(string collection_listing_id);
+
+        /// <summary>
+        /// Create a collection listing to publish a collection to your app
+        /// </summary>
+
+
+        /// <returns>Create a collection listing to publish a collection to your app</returns>
+
+        System.Threading.Tasks.Task CreateCollectionListingToPublishCollectionToYourAppAsync(string collection_listing_id);
+
+        /// <summary>
+        /// Delete a collection listing to unpublish a collection from your app
+        /// </summary>
+
+
+        /// <returns>Delete a collection listing to unpublish a collection from your app</returns>
+
+        System.Threading.Tasks.Task DeleteCollectionListingToUnpublishCollectionFromYourAppAsync(string collection_listing_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class CollectionListingController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private ICollectionListingController _implementation;
+
+        public CollectionListingController(ICollectionListingController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieve collection listings that are published to your app
         /// </summary>
         /// <param name="limit">Amount of results</param>
         /// <returns>Retrieve collection listings that are published to your app</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collection_listings.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCollectionListingsThatArePublishedToYourApp([Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50");
+        public System.Threading.Tasks.Task RetrieveCollectionListingsThatArePublishedToYourApp([Microsoft.AspNetCore.Mvc.FromQuery] string? limit)
+        {
+
+            return _implementation.RetrieveCollectionListingsThatArePublishedToYourAppAsync(limit ?? "50");
+        }
 
         /// <summary>
         /// Retrieve &lt;code&gt;product_ids&lt;/code&gt; that are published to a &lt;code&gt;collection_id&lt;/code&gt;
@@ -39,28 +104,44 @@ namespace OpenShopify.Admin.Builder
         /// <param name="limit">Amount of results</param>
         /// <returns>Retrieve &lt;code&gt;product_ids&lt;/code&gt; that are published to a &lt;code&gt;collection_id&lt;/code&gt;</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}/product_ids.json")]
-        public abstract System.Threading.Tasks.Task RetrieveProductIdsThatArePublishedToCollectionId(string collection_listing_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50");
+        public System.Threading.Tasks.Task RetrieveProductIdsThatArePublishedToCollectionId(string collection_listing_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit)
+        {
+
+            return _implementation.RetrieveProductIdsThatArePublishedToCollectionIdAsync(collection_listing_id, limit ?? "50");
+        }
 
         /// <summary>
         /// Retrieve a specific collection listing that is published to your app
         /// </summary>
         /// <returns>Retrieve a specific collection listing that is published to your app</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSpecificCollectionListingThatIsPublishedToYourApp(string collection_listing_id);
+        public System.Threading.Tasks.Task RetrieveSpecificCollectionListingThatIsPublishedToYourApp(string collection_listing_id)
+        {
+
+            return _implementation.RetrieveSpecificCollectionListingThatIsPublishedToYourAppAsync(collection_listing_id);
+        }
 
         /// <summary>
         /// Create a collection listing to publish a collection to your app
         /// </summary>
         /// <returns>Create a collection listing to publish a collection to your app</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task CreateCollectionListingToPublishCollectionToYourApp(string collection_listing_id);
+        public System.Threading.Tasks.Task CreateCollectionListingToPublishCollectionToYourApp(string collection_listing_id)
+        {
+
+            return _implementation.CreateCollectionListingToPublishCollectionToYourAppAsync(collection_listing_id);
+        }
 
         /// <summary>
         /// Delete a collection listing to unpublish a collection from your app
         /// </summary>
         /// <returns>Delete a collection listing to unpublish a collection from your app</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteCollectionListingToUnpublishCollectionFromYourApp(string collection_listing_id);
+        public System.Threading.Tasks.Task DeleteCollectionListingToUnpublishCollectionFromYourApp(string collection_listing_id)
+        {
+
+            return _implementation.DeleteCollectionListingToUnpublishCollectionFromYourAppAsync(collection_listing_id);
+        }
 
     }
 

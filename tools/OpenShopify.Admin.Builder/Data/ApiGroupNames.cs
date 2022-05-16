@@ -23,8 +23,8 @@ public enum ApiGroupNames
     Inventory,
     [GroupInfo(Title = "Marketing Event", Description = "Marketing Event", Version = "2022-04")]
     MarketingEvent,
-    [GroupInfo(Title = "Meta-Field", Description = "Meta-Field", Version = "2022-04")]
-    MetaField,
+    [GroupInfo(Title = "Metafield", Description = "Metafield", Version = "2022-04")]
+    Metafield,
     [GroupInfo(Title = "Online Store", Description = "Online Store", Version = "2022-04")]
     OnlineStore,
     [GroupInfo(Title = "Orders", Description = "Orders", Version = "2022-04")]

@@ -17,20 +17,45 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class BalanceControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IBalanceController
     {
+
+        /// <summary>
+        /// Return the current balance
+        /// </summary>
+
+        /// <returns>Return the current balance</returns>
+
+        System.Threading.Tasks.Task ReturnTheCurrentBalanceAsync();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class BalanceController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IBalanceController _implementation;
+
+        public BalanceController(IBalanceController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Return the current balance
         /// </summary>
         /// <returns>Return the current balance</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/balance.json")]
-        public abstract System.Threading.Tasks.Task ReturnTheCurrentBalance();
+        public System.Threading.Tasks.Task ReturnTheCurrentBalance()
+        {
+
+            return _implementation.ReturnTheCurrentBalanceAsync();
+        }
 
     }
 

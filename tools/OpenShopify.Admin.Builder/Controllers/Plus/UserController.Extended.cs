@@ -7,19 +7,25 @@ namespace OpenShopify.Admin.Builder.Controllers.Plus;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Plus)]
 [ApiController]
-public class UserController : UserControllerBase
+public class UserController : IUserController
 {
-    public override Task RetrieveListOfAllUsers(string? limit = "50", string? page_info = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("users.json")]
+    public Task RetrieveListOfAllUsersAsync(string limit, string? page_info)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSingleUser(string user_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("users/{user_id}.json")]
+    public Task RetrieveSingleUserAsync(string user_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveTheCurrentlyLoggedInUser()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("users/current.json")]
+    public Task RetrieveTheCurrentlyLoggedInUserAsync()
     {
         throw new NotImplementedException();
     }

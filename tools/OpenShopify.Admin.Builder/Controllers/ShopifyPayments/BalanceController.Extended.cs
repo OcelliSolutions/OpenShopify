@@ -7,9 +7,11 @@ namespace OpenShopify.Admin.Builder.Controllers.ShopifyPayments;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShopifyPayments)]
 [ApiController]
-public class BalanceController : BalanceControllerBase
+public class BalanceController : IBalanceController
 {
-    public override Task ReturnTheCurrentBalance()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/balance.json")]
+    public Task ReturnTheCurrentBalanceAsync()
     {
         throw new NotImplementedException();
     }

@@ -7,29 +7,39 @@ namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShippingAndFulfillment)]
 [ApiController]
-public class CarrierServiceController : CarrierServiceControllerBase
+public class CarrierServiceController : ICarrierServiceController
 {
-    public override Task CreateCarrierService()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("carrier_services.json")]
+    public Task CreateCarrierServiceAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveListOfCarrierServices()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("carrier_services.json")]
+    public Task RetrieveListOfCarrierServicesAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateCarrierService([FromRoute] string carrier_service_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("carrier_services/{carrier_service_id}.json")]
+    public Task UpdateCarrierServiceAsync(string carrier_service_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSingleCarrierService([FromRoute] string carrier_service_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("carrier_services/{carrier_service_id}.json")]
+    public Task RetrieveSingleCarrierServiceAsync(string carrier_service_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task DeleteCarrierService([FromRoute] string carrier_service_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("carrier_services/{carrier_service_id}.json")]
+    public Task DeleteCarrierServiceAsync(string carrier_service_id)
     {
         throw new NotImplementedException();
     }

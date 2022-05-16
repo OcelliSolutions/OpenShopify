@@ -10,12 +10,12 @@ namespace OpenShopify.Admin.Builder.Filters;
 /// </summary>
 public class ApiAuthorizationFilter : ActionFilterAttribute
 {
-    private readonly List<ApiPermission>? _apiPermissions;
+    private readonly List<AuthorizationScope>? _apiPermissions;
     public ApiAuthorizationFilter() { }
 
-    public ApiAuthorizationFilter(ApiPermission[] permissions)
+    public ApiAuthorizationFilter(AuthorizationScope[] permissions)
     {
-        _apiPermissions = new List<ApiPermission>();
+        _apiPermissions = new List<AuthorizationScope>();
         _apiPermissions.AddRange(permissions);
     }
 

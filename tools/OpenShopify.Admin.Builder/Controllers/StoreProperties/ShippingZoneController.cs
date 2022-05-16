@@ -17,21 +17,48 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class ShippingZoneControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IShippingZoneController
     {
+
+        /// <summary>
+        /// Receive a list of all ShippingZones
+        /// </summary>
+
+        /// <param name="fields">comma-separated list of fields to include in the response</param>
+
+        /// <returns>Receive a list of all ShippingZones</returns>
+
+        System.Threading.Tasks.Task ReceiveListOfAllShippingZonesAsync(string? fields);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class ShippingZoneController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IShippingZoneController _implementation;
+
+        public ShippingZoneController(IShippingZoneController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Receive a list of all ShippingZones
         /// </summary>
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <returns>Receive a list of all ShippingZones</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shipping_zones.json")]
-        public abstract System.Threading.Tasks.Task ReceiveListOfAllShippingZones([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public System.Threading.Tasks.Task ReceiveListOfAllShippingZones([Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
+        {
+
+            return _implementation.ReceiveListOfAllShippingZonesAsync(fields);
+        }
 
     }
 

@@ -17,14 +17,75 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class TransactionControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface ITransactionController
     {
+
+        /// <summary>
+        /// Retrieves a list of transactions
+        /// </summary>
+
+
+        /// <param name="fields">Show only certain fields, specifed by a comma-separated list of fields names.</param>
+
+        /// <param name="in_shop_currency">Show amounts in the shop currency.</param>
+
+        /// <param name="since_id">Retrieve only transactions after the specified ID.</param>
+
+        /// <returns>Retrieves a list of transactions</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfTransactionsAsync(string order_id, string? fields, string in_shop_currency, string? since_id);
+
+        /// <summary>
+        /// Creates a transaction for an order
+        /// </summary>
+
+
+        /// <param name="source">An optional origin of the transaction. Set to &lt;code&gt;external&lt;/code&gt; to import a cash transaction for the associated order.</param>
+
+        /// <returns>Creates a transaction for an order</returns>
+
+        System.Threading.Tasks.Task CreateTransactionForOrderAsync(string order_id, string? source);
+
+        /// <summary>
+        /// Retrieves a count of an order's transactions
+        /// </summary>
+
+
+        /// <returns>Retrieves a count of an order's transactions</returns>
+
+        System.Threading.Tasks.Task RetrieveCountOfOrdersTransactionsAsync(string order_id);
+
+        /// <summary>
+        /// Retrieves a specific transaction
+        /// </summary>
+
+
+        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
+
+        /// <param name="in_shop_currency">Show amounts in the shop currency.</param>
+
+        /// <returns>Retrieves a specific transaction</returns>
+
+        System.Threading.Tasks.Task RetrieveSpecificTransactionAsync(string order_id, string transaction_id, string? fields, string in_shop_currency);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class TransactionController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private ITransactionController _implementation;
+
+        public TransactionController(ITransactionController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of transactions
         /// </summary>
@@ -33,7 +94,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="since_id">Retrieve only transactions after the specified ID.</param>
         /// <returns>Retrieves a list of transactions</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfTransactions(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? in_shop_currency = "false", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
+        public System.Threading.Tasks.Task RetrieveListOfTransactions(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? in_shop_currency, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id)
+        {
+
+            return _implementation.RetrieveListOfTransactionsAsync(order_id, fields, in_shop_currency ?? "false", since_id);
+        }
 
         /// <summary>
         /// Creates a transaction for an order
@@ -41,14 +106,22 @@ namespace OpenShopify.Admin.Builder
         /// <param name="source">An optional origin of the transaction. Set to &lt;code&gt;external&lt;/code&gt; to import a cash transaction for the associated order.</param>
         /// <returns>Creates a transaction for an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions.json")]
-        public abstract System.Threading.Tasks.Task CreateTransactionForOrder(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? source = null);
+        public System.Threading.Tasks.Task CreateTransactionForOrder(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? source)
+        {
+
+            return _implementation.CreateTransactionForOrderAsync(order_id, source);
+        }
 
         /// <summary>
         /// Retrieves a count of an order's transactions
         /// </summary>
         /// <returns>Retrieves a count of an order's transactions</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfOrdersTransactions(string order_id);
+        public System.Threading.Tasks.Task RetrieveCountOfOrdersTransactions(string order_id)
+        {
+
+            return _implementation.RetrieveCountOfOrdersTransactionsAsync(order_id);
+        }
 
         /// <summary>
         /// Retrieves a specific transaction
@@ -57,7 +130,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="in_shop_currency">Show amounts in the shop currency.</param>
         /// <returns>Retrieves a specific transaction</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions/{transaction_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSpecificTransaction(string order_id, string transaction_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? in_shop_currency = "false");
+        public System.Threading.Tasks.Task RetrieveSpecificTransaction(string order_id, string transaction_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? in_shop_currency)
+        {
+
+            return _implementation.RetrieveSpecificTransactionAsync(order_id, transaction_id, fields, in_shop_currency ?? "false");
+        }
 
     }
 

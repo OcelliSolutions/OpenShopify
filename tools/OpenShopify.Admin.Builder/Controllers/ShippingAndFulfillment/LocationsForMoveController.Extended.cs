@@ -7,9 +7,11 @@ namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShippingAndFulfillment)]
 [ApiController]
-public class LocationsForMoveController : LocationsForMoveControllerBase
+public class LocationsForMoveController : ILocationsForMoveController
 {
-    public override Task RetrieveListOfLocationsThatFulfillmentOrderCanPotentiallyMoveTo(string fulfillment_order_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/locations_for_move.json")]
+    public Task RetrieveListOfLocationsThatFulfillmentOrderCanPotentiallyMoveToAsync(string fulfillment_order_id)
     {
         throw new NotImplementedException();
     }

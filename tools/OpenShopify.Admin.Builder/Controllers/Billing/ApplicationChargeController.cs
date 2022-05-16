@@ -17,20 +17,68 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class ApplicationChargeControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IApplicationChargeController
     {
+
+        /// <summary>
+        /// Creates an application charge
+        /// </summary>
+
+        /// <returns>Creates an application charge</returns>
+
+        System.Threading.Tasks.Task CreateApplicationChargeAsync();
+
+        /// <summary>
+        /// Retrieves a list of application charges
+        /// </summary>
+
+        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
+
+        /// <param name="since_id">Restrict results to after the specified ID.</param>
+
+        /// <returns>Retrieves a list of application charges</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfApplicationChargesAsync(string? fields, string? since_id);
+
+        /// <summary>
+        /// Retrieves an application charge
+        /// </summary>
+
+
+        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
+
+        /// <returns>Retrieves an application charge</returns>
+
+        System.Threading.Tasks.Task RetrieveApplicationChargeAsync(string application_charge_id, string? fields);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class ApplicationChargeController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IApplicationChargeController _implementation;
+
+        public ApplicationChargeController(IApplicationChargeController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Creates an application charge
         /// </summary>
         /// <returns>Creates an application charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("application_charges.json")]
-        public abstract System.Threading.Tasks.Task CreateApplicationCharge();
+        public System.Threading.Tasks.Task CreateApplicationCharge()
+        {
+
+            return _implementation.CreateApplicationChargeAsync();
+        }
 
         /// <summary>
         /// Retrieves a list of application charges
@@ -39,7 +87,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <returns>Retrieves a list of application charges</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_charges.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfApplicationCharges([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
+        public System.Threading.Tasks.Task RetrieveListOfApplicationCharges([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id)
+        {
+
+            return _implementation.RetrieveListOfApplicationChargesAsync(fields, since_id);
+        }
 
         /// <summary>
         /// Retrieves an application charge
@@ -47,7 +99,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves an application charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_charges/{application_charge_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveApplicationCharge(string application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public System.Threading.Tasks.Task RetrieveApplicationCharge(string application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
+        {
+
+            return _implementation.RetrieveApplicationChargeAsync(application_charge_id, fields);
+        }
 
     }
 

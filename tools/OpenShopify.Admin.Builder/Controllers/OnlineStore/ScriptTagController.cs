@@ -17,14 +17,98 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class ScriptTagControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IScriptTagController
     {
+
+        /// <summary>
+        /// Retrieves a list of all script tags
+        /// </summary>
+
+        /// <param name="created_at_max">Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="created_at_min">Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
+
+        /// <param name="limit">The number of results to return.</param>
+
+        /// <param name="since_id">Restrict results to after the specified ID.</param>
+
+        /// <param name="src">Show script tags with this URL.</param>
+
+        /// <param name="updated_at_max">Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <param name="updated_at_min">Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
+
+        /// <returns>Retrieves a list of all script tags</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfAllScriptTagsAsync(string? created_at_max, string? created_at_min, string? fields, string limit, string? since_id, string? src, string? updated_at_max, string? updated_at_min);
+
+        /// <summary>
+        /// Creates a new script tag
+        /// </summary>
+
+        /// <returns>Creates a new script tag</returns>
+
+        System.Threading.Tasks.Task CreateNewScriptTagAsync();
+
+        /// <summary>
+        /// Retrieves a count of all script tags
+        /// </summary>
+
+        /// <param name="src">Count only script tags with a given URL.</param>
+
+        /// <returns>Retrieves a count of all script tags</returns>
+
+        System.Threading.Tasks.Task RetrieveCountOfAllScriptTagsAsync(string? src);
+
+        /// <summary>
+        /// Retrieves a single script tag
+        /// </summary>
+
+
+        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
+
+        /// <returns>Retrieves a single script tag</returns>
+
+        System.Threading.Tasks.Task RetrieveSingleScriptTagAsync(string script_tag_id, string? fields);
+
+        /// <summary>
+        /// Updates a script tag
+        /// </summary>
+
+
+        /// <returns>Updates a script tag</returns>
+
+        System.Threading.Tasks.Task UpdateScriptTagAsync(string script_tag_id);
+
+        /// <summary>
+        /// Deletes a script tag
+        /// </summary>
+
+
+        /// <returns>Deletes a script tag</returns>
+
+        System.Threading.Tasks.Task DeleteScriptTagAsync(string script_tag_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class ScriptTagController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IScriptTagController _implementation;
+
+        public ScriptTagController(IScriptTagController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of all script tags
         /// </summary>
@@ -38,14 +122,22 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_min">Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Retrieves a list of all script tags</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfAllScriptTags([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? src = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
+        public System.Threading.Tasks.Task RetrieveListOfAllScriptTags([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? src, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
+        {
+
+            return _implementation.RetrieveListOfAllScriptTagsAsync(created_at_max, created_at_min, fields, limit ?? "50", since_id, src, updated_at_max, updated_at_min);
+        }
 
         /// <summary>
         /// Creates a new script tag
         /// </summary>
         /// <returns>Creates a new script tag</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("script_tags.json")]
-        public abstract System.Threading.Tasks.Task CreateNewScriptTag();
+        public System.Threading.Tasks.Task CreateNewScriptTag()
+        {
+
+            return _implementation.CreateNewScriptTagAsync();
+        }
 
         /// <summary>
         /// Retrieves a count of all script tags
@@ -53,7 +145,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="src">Count only script tags with a given URL.</param>
         /// <returns>Retrieves a count of all script tags</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfAllScriptTags([Microsoft.AspNetCore.Mvc.FromQuery] string? src = null);
+        public System.Threading.Tasks.Task RetrieveCountOfAllScriptTags([Microsoft.AspNetCore.Mvc.FromQuery] string? src)
+        {
+
+            return _implementation.RetrieveCountOfAllScriptTagsAsync(src);
+        }
 
         /// <summary>
         /// Retrieves a single script tag
@@ -61,21 +157,33 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a single script tag</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags/{script_tag_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleScriptTag(string script_tag_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public System.Threading.Tasks.Task RetrieveSingleScriptTag(string script_tag_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
+        {
+
+            return _implementation.RetrieveSingleScriptTagAsync(script_tag_id, fields);
+        }
 
         /// <summary>
         /// Updates a script tag
         /// </summary>
         /// <returns>Updates a script tag</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("script_tags/{script_tag_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateScriptTag(string script_tag_id);
+        public System.Threading.Tasks.Task UpdateScriptTag(string script_tag_id)
+        {
+
+            return _implementation.UpdateScriptTagAsync(script_tag_id);
+        }
 
         /// <summary>
         /// Deletes a script tag
         /// </summary>
         /// <returns>Deletes a script tag</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("script_tags/{script_tag_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteScriptTag(string script_tag_id);
+        public System.Threading.Tasks.Task DeleteScriptTag(string script_tag_id)
+        {
+
+            return _implementation.DeleteScriptTagAsync(script_tag_id);
+        }
 
     }
 

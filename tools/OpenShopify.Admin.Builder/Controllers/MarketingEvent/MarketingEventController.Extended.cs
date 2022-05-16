@@ -7,42 +7,55 @@ namespace OpenShopify.Admin.Builder.Controllers.MarketingEvent;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.MarketingEvent)]
 [ApiController]
-public class MarketingEventController : MarketingEventControllerBase
+public class MarketingEventController : IMarketingEventController
 {
-    public override Task RetrieveListOfAllMarketingEvents(string? limit = "50", string? offset = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("marketing_events.json")]
+    public Task RetrieveListOfAllMarketingEventsAsync(string limit, string? offset)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateMarketingEvent()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("marketing_events.json")]
+    public Task CreateMarketingEventAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfAllMarketingEvents()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("marketing_events/count.json")]
+    public Task RetrieveCountOfAllMarketingEventsAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSingleMarketingEvent(string marketing_event_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("marketing_events/{marketing_event_id}.json")]
+    public Task RetrieveSingleMarketingEventAsync(string marketing_event_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateMarketingEvent(string marketing_event_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("marketing_events/{marketing_event_id}.json")]
+    public Task UpdateMarketingEventAsync(string marketing_event_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task DeleteMarketingEvent(string marketing_event_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("marketing_events/{marketing_event_id}.json")]
+    public Task DeleteMarketingEventAsync(string marketing_event_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateMarketingEngagementsOnMarketingEvent(string marketing_event_id, string occurred_on, string? ad_spend = null,
-        string? clicks_count = null, string? comments_count = null, string? favorites_count = null,
-        string? impressions_count = null, string? is_cumulative = null, string? shares_count = null,
-        string? views_count = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("marketing_events/{marketing_event_id}/engagements.json")]
+    public Task CreateMarketingEngagementsOnMarketingEventAsync(string marketing_event_id, string occurred_on, string? ad_spend,
+        string? clicks_count, string? comments_count, string? favorites_count, string? impressions_count,
+        string? is_cumulative, string? shares_count, string? views_count)
     {
         throw new NotImplementedException();
     }

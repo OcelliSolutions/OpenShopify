@@ -7,6 +7,5 @@ namespace OpenShopify.Admin.Builder.Controllers.ShopifyPayments;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShopifyPayments)]
 [ApiController]
-public class DisputeFileUploadController : DisputeFileUploadControllerBase {}
-
+public class DisputeFileUploadController : IDisputeFileUploadController {}
 */

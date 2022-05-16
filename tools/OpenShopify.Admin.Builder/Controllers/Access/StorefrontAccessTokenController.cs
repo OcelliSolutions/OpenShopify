@@ -17,34 +17,84 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class StorefrontAccessTokenControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IStorefrontAccessTokenController
     {
+
+        /// <summary>
+        /// Creates a new StorefrontAccessToken
+        /// </summary>
+
+        /// <returns>Creates a new StorefrontAccessToken</returns>
+
+        System.Threading.Tasks.Task CreateNewStorefrontAccessTokenAsync();
+
+        /// <summary>
+        /// Retrieves a list of storefront access tokens that have been issued
+        /// </summary>
+
+        /// <returns>Retrieves a list of storefront access tokens that have been issued</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfStorefrontAccessTokensThatHaveBeenIssuedAsync();
+
+        /// <summary>
+        /// Deletes an existing storefront access token
+        /// </summary>
+
+
+        /// <returns>Deletes an existing storefront access token</returns>
+
+        System.Threading.Tasks.Task DeleteExistingStorefrontAccessTokenAsync(string storefront_access_token_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class StorefrontAccessTokenController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IStorefrontAccessTokenController _implementation;
+
+        public StorefrontAccessTokenController(IStorefrontAccessTokenController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Creates a new StorefrontAccessToken
         /// </summary>
         /// <returns>Creates a new StorefrontAccessToken</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("storefront_access_tokens.json")]
-        public abstract System.Threading.Tasks.Task CreateNewStorefrontAccessToken();
+        public System.Threading.Tasks.Task CreateNewStorefrontAccessToken()
+        {
+
+            return _implementation.CreateNewStorefrontAccessTokenAsync();
+        }
 
         /// <summary>
         /// Retrieves a list of storefront access tokens that have been issued
         /// </summary>
         /// <returns>Retrieves a list of storefront access tokens that have been issued</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("storefront_access_tokens.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfStorefrontAccessTokensThatHaveBeenIssued();
+        public System.Threading.Tasks.Task RetrieveListOfStorefrontAccessTokensThatHaveBeenIssued()
+        {
+
+            return _implementation.RetrieveListOfStorefrontAccessTokensThatHaveBeenIssuedAsync();
+        }
 
         /// <summary>
         /// Deletes an existing storefront access token
         /// </summary>
         /// <returns>Deletes an existing storefront access token</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("storefront_access_tokens/{storefront_access_token_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteExistingStorefrontAccessToken(string storefront_access_token_id);
+        public System.Threading.Tasks.Task DeleteExistingStorefrontAccessToken(string storefront_access_token_id)
+        {
+
+            return _implementation.DeleteExistingStorefrontAccessTokenAsync(storefront_access_token_id);
+        }
 
     }
 

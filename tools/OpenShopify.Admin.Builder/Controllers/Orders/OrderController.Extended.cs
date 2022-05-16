@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Attributes;
 using OpenShopify.Admin.Builder.Data;
 
@@ -7,56 +7,72 @@ namespace OpenShopify.Admin.Builder.Controllers.Orders;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Orders)]
 [ApiController]
-public class OrderController : OrderControllerBase
+public class OrderController : IOrderController
 {
-    public override Task RetrieveListOfOrders(string? attribution_app_id = null, object? created_at_max = null,
-        object? created_at_min = null, string? fields = null, string? financial_status = "any",
-        string? fulfillment_status = "any", string? ids = null, int? limit = 100, object? processed_at_max = null,
-        object? processed_at_min = null, int? since_id = null, Status? status = null, object? updated_at_max = null,
-        object? updated_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders.json")]
+    public Task RetrieveListOfOrdersAsync(string? attribution_app_id, DateTime? created_at_max, DateTime? created_at_min,
+        string? fields, string financial_status, string fulfillment_status, string? ids, int limit,
+        DateTime? processed_at_max, DateTime? processed_at_min, int? since_id, Status? status, DateTime? updated_at_max,
+        DateTime? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSpecificOrder(string order_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders.json")]
+    public Task CreateOrderAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateOrder(string order_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}.json")]
+    public Task RetrieveSpecificOrderAsync(string order_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task DeleteOrder(string order_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}.json")]
+    public Task UpdateOrderAsync(string order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveOrderCount(object? created_at_max = null, object? created_at_min = null, string? financial_status = "any",
-        string? fulfillment_status = "any", string? status = "open", object? updated_at_max = null,
-        object? updated_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}.json")]
+    public Task DeleteOrderAsync(string order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CloseOrder(string order_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/count.json")]
+    public Task RetrieveOrderCountAsync(DateTime? created_at_max, DateTime? created_at_min, string financial_status,
+        string fulfillment_status, string status, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ReOpenClosedOrder(string order_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/close.json")]
+    public Task CloseOrderAsync(string order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CancelOrder(string order_id, string? amount = null, string? currency = null, bool? email = false, string? reason = "other",
-        object? refund = null, bool? restock = false)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/open.json")]
+    public Task ReOpenClosedOrderAsync(string order_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateOrder()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/cancel.json")]
+    public Task CancelOrderAsync(string order_id, string? amount, string? currency, bool email, string reason, object? refund,
+        bool restock)
     {
         throw new NotImplementedException();
     }

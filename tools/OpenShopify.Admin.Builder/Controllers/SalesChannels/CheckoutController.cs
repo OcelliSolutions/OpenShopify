@@ -17,48 +17,125 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class CheckoutControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface ICheckoutController
     {
+
+        /// <summary>
+        /// Creates a checkout
+        /// </summary>
+
+        /// <returns>Creates a checkout</returns>
+
+        System.Threading.Tasks.Task CreateCheckoutAsync();
+
+        /// <summary>
+        /// Completes a checkout
+        /// </summary>
+
+
+        /// <returns>Completes a checkout</returns>
+
+        System.Threading.Tasks.Task CompleteCheckoutAsync(string token);
+
+        /// <summary>
+        /// Retrieves a checkout
+        /// </summary>
+
+
+        /// <returns>Retrieves a checkout</returns>
+
+        System.Threading.Tasks.Task RetrieveCheckoutAsync(string token);
+
+        /// <summary>
+        /// Modifies an existing checkout
+        /// </summary>
+
+
+        /// <returns>Modifies an existing checkout</returns>
+
+        System.Threading.Tasks.Task ModifyExistingCheckoutAsync(string token);
+
+        /// <summary>
+        /// Retrieves a list of shipping rates
+        /// </summary>
+
+
+        /// <returns>Retrieves a list of shipping rates</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfShippingRatesAsync(string token);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class CheckoutController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private ICheckoutController _implementation;
+
+        public CheckoutController(ICheckoutController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Creates a checkout
         /// </summary>
         /// <returns>Creates a checkout</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("checkouts.json")]
-        public abstract System.Threading.Tasks.Task CreateCheckout();
+        public System.Threading.Tasks.Task CreateCheckout()
+        {
+
+            return _implementation.CreateCheckoutAsync();
+        }
 
         /// <summary>
         /// Completes a checkout
         /// </summary>
         /// <returns>Completes a checkout</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}/complete.json")]
-        public abstract System.Threading.Tasks.Task CompleteCheckout(string token);
+        public System.Threading.Tasks.Task CompleteCheckout(string token)
+        {
+
+            return _implementation.CompleteCheckoutAsync(token);
+        }
 
         /// <summary>
         /// Retrieves a checkout
         /// </summary>
         /// <returns>Retrieves a checkout</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCheckout(string token);
+        public System.Threading.Tasks.Task RetrieveCheckout(string token)
+        {
+
+            return _implementation.RetrieveCheckoutAsync(token);
+        }
 
         /// <summary>
         /// Modifies an existing checkout
         /// </summary>
         /// <returns>Modifies an existing checkout</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingCheckout(string token);
+        public System.Threading.Tasks.Task ModifyExistingCheckout(string token)
+        {
+
+            return _implementation.ModifyExistingCheckoutAsync(token);
+        }
 
         /// <summary>
         /// Retrieves a list of shipping rates
         /// </summary>
         /// <returns>Retrieves a list of shipping rates</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}/shipping_rates.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfShippingRates(string token);
+        public System.Threading.Tasks.Task RetrieveListOfShippingRates(string token)
+        {
+
+            return _implementation.RetrieveListOfShippingRatesAsync(token);
+        }
 
     }
 

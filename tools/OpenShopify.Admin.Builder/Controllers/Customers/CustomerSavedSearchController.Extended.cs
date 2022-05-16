@@ -7,40 +7,55 @@ namespace OpenShopify.Admin.Builder.Controllers.Customers;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Customers)]
 [ApiController]
-public class CustomerSavedSearchController : CustomerSavedSearchControllerBase
+public class CustomerSavedSearchController : ICustomerSavedSearchController
 {
-    public override Task RetrieveListOfCustomerSavedSearches(string? fields = null, string? limit = "50", string? since_id = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches.json")]
+    public Task RetrieveListOfCustomerSavedSearchesAsync(string? fields, string limit, string? since_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateCustomerSavedSearch()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches.json")]
+    public Task CreateCustomerSavedSearchAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfAllCustomerSavedSearches(string? since_id = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/count.json")]
+
+    public Task RetrieveCountOfAllCustomerSavedSearchesAsync(string? since_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSingleCustomerSavedSearch(string customer_saved_search_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
+    public Task RetrieveSingleCustomerSavedSearchAsync(string customer_saved_search_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateCustomerSavedSearch(string customer_saved_search_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
+    public Task UpdateCustomerSavedSearchAsync(string customer_saved_search_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task DeleteCustomerSavedSearch(string customer_saved_search_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
+    public Task DeleteCustomerSavedSearchAsync(string customer_saved_search_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveAllCustomersReturnedByCustomerSavedSearch(string customer_saved_search_id, string? fields = null,
-        string? limit = "50", string? order = "last_order_date DESC")
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}/customers.json")]
+    public Task RetrieveAllCustomersReturnedByCustomerSavedSearchAsync(string customer_saved_search_id, string? fields,
+        string limit, string order)
     {
         throw new NotImplementedException();
     }

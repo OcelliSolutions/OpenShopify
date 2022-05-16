@@ -17,48 +17,124 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class CarrierServiceControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface ICarrierServiceController
     {
+
+        /// <summary>
+        /// Creates a carrier service
+        /// </summary>
+
+        /// <returns>Creates a carrier service</returns>
+
+        System.Threading.Tasks.Task CreateCarrierServiceAsync();
+
+        /// <summary>
+        /// Retrieves a list of carrier services
+        /// </summary>
+
+        /// <returns>Retrieves a list of carrier services</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfCarrierServicesAsync();
+
+        /// <summary>
+        /// Updates a carrier service
+        /// </summary>
+
+
+        /// <returns>Updates a carrier service</returns>
+
+        System.Threading.Tasks.Task UpdateCarrierServiceAsync(string carrier_service_id);
+
+        /// <summary>
+        /// Retrieves a single carrier service
+        /// </summary>
+
+
+        /// <returns>Retrieves a single carrier service</returns>
+
+        System.Threading.Tasks.Task RetrieveSingleCarrierServiceAsync(string carrier_service_id);
+
+        /// <summary>
+        /// Deletes a carrier service
+        /// </summary>
+
+
+        /// <returns>Deletes a carrier service</returns>
+
+        System.Threading.Tasks.Task DeleteCarrierServiceAsync(string carrier_service_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class CarrierServiceController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private ICarrierServiceController _implementation;
+
+        public CarrierServiceController(ICarrierServiceController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Creates a carrier service
         /// </summary>
         /// <returns>Creates a carrier service</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("carrier_services.json")]
-        public abstract System.Threading.Tasks.Task CreateCarrierService();
+        public System.Threading.Tasks.Task CreateCarrierService()
+        {
+
+            return _implementation.CreateCarrierServiceAsync();
+        }
 
         /// <summary>
         /// Retrieves a list of carrier services
         /// </summary>
         /// <returns>Retrieves a list of carrier services</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("carrier_services.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfCarrierServices();
+        public System.Threading.Tasks.Task RetrieveListOfCarrierServices()
+        {
+
+            return _implementation.RetrieveListOfCarrierServicesAsync();
+        }
 
         /// <summary>
         /// Updates a carrier service
         /// </summary>
         /// <returns>Updates a carrier service</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("carrier_services/{carrier_service_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateCarrierService(string carrier_service_id);
+        public System.Threading.Tasks.Task UpdateCarrierService(string carrier_service_id)
+        {
+
+            return _implementation.UpdateCarrierServiceAsync(carrier_service_id);
+        }
 
         /// <summary>
         /// Retrieves a single carrier service
         /// </summary>
         /// <returns>Retrieves a single carrier service</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("carrier_services/{carrier_service_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleCarrierService(string carrier_service_id);
+        public System.Threading.Tasks.Task RetrieveSingleCarrierService(string carrier_service_id)
+        {
+
+            return _implementation.RetrieveSingleCarrierServiceAsync(carrier_service_id);
+        }
 
         /// <summary>
         /// Deletes a carrier service
         /// </summary>
         /// <returns>Deletes a carrier service</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("carrier_services/{carrier_service_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteCarrierService(string carrier_service_id);
+        public System.Threading.Tasks.Task DeleteCarrierService(string carrier_service_id)
+        {
+
+            return _implementation.DeleteCarrierServiceAsync(carrier_service_id);
+        }
 
     }
 

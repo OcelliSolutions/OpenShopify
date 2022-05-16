@@ -7,14 +7,18 @@ namespace OpenShopify.Admin.Builder.Controllers.Products;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Products)]
 [ApiController]
-public class CollectionController : CollectionControllerBase
+public class CollectionController : ICollectionController
 {
-    public override Task RetrieveSingleCollection(string collection_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collections/{collection_id}.json")]
+    public Task RetrieveSingleCollectionAsync(string collection_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveListOfProductsBelongingToCollection(string collection_id, string? limit = "50")
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collections/{collection_id}/products.json")]
+    public Task RetrieveListOfProductsBelongingToCollectionAsync(string collection_id, string limit)
     {
         throw new NotImplementedException();
     }

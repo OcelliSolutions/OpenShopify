@@ -7,35 +7,47 @@ namespace OpenShopify.Admin.Builder.Controllers.Products;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Products)]
 [ApiController]
-public class ProductVariantController : ProductVariantControllerBase
+public class ProductVariantController : IProductVariantController
 {
-    public override Task RetrieveListOfProductVariants(string product_id, string? fields = null, string? limit = "50",
-        string? presentment_currencies = null, string? since_id = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants.json")]
+    public Task RetrieveListOfProductVariantsAsync(string product_id, string? fields, string limit, string? presentment_currencies,
+        string? since_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateNewProductVariant(string product_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants.json")]
+    public Task CreateNewProductVariantAsync(string product_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ReceiveCountOfAllProductVariants(string product_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants/count.json")]
+    public Task ReceiveCountOfAllProductVariantsAsync(string product_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ReceiveSingleProductVariant(string variant_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("variants/{variant_id}.json")]
+    public Task ReceiveSingleProductVariantAsync(string variant_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ModifyExistingProductVariant(string variant_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("variants/{variant_id}.json")]
+    public Task ModifyExistingProductVariantAsync(string variant_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RemoveExistingProductVariant(string product_id, string variant_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants/{variant_id}.json")]
+    public Task RemoveExistingProductVariantAsync(string product_id, string variant_id)
     {
         throw new NotImplementedException();
     }

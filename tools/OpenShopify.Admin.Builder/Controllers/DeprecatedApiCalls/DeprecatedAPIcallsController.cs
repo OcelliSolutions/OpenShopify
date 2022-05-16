@@ -17,20 +17,45 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class DeprecatedAPICallsControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IDeprecatedAPICallsController
     {
+
+        /// <summary>
+        /// Retrieves a list of deprecated API calls
+        /// </summary>
+
+        /// <returns>Retrieves a list of deprecated API calls</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfDeprecatedAPICallsAsync();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class DeprecatedAPICallsController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IDeprecatedAPICallsController _implementation;
+
+        public DeprecatedAPICallsController(IDeprecatedAPICallsController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of deprecated API calls
         /// </summary>
         /// <returns>Retrieves a list of deprecated API calls</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("deprecated_api_calls.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfDeprecatedAPICalls();
+        public System.Threading.Tasks.Task RetrieveListOfDeprecatedAPICalls()
+        {
+
+            return _implementation.RetrieveListOfDeprecatedAPICallsAsync();
+        }
 
     }
 

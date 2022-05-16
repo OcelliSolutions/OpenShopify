@@ -7,39 +7,49 @@ namespace OpenShopify.Admin.Builder.Controllers.OnlineStore;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.OnlineStore)]
 [ApiController]
-public class PageController : PageControllerBase
+public class PageController : IPageController
 {
-    public override Task RetrieveListOfPages(string? created_at_max = null, string? created_at_min = null, string? fields = null,
-        string? handle = null, string? limit = "50", string? published_at_max = null, string? published_at_min = null,
-        string? published_status = "any", string? since_id = null, string? title = null, string? updated_at_max = null,
-        string? updated_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("pages.json")]
+    public Task RetrieveListOfPagesAsync(string? created_at_max, string? created_at_min, string? fields, string? handle,
+        string limit, string? published_at_max, string? published_at_min, string published_status, string? since_id,
+        string? title, string? updated_at_max, string? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreatePage()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("pages.json")]
+    public Task CreatePageAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrievePageCount(string? created_at_max = null, string? created_at_min = null, string? published_at_max = null,
-        string? published_at_min = null, string? published_status = "any", string? title = null,
-        string? updated_at_max = null, string? updated_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("pages/count.json")]
+    public Task RetrievePageCountAsync(string? created_at_max, string? created_at_min, string? published_at_max,
+        string? published_at_min, string published_status, string? title, string? updated_at_max, string? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSinglePageByItsID(string page_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("pages/{page_id}.json")]
+    public Task RetrieveSinglePageByItsIDAsync(string page_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdatePage(string page_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("pages/{page_id}.json")]
+    public Task UpdatePageAsync(string page_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task DeletePage(string page_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("pages/{page_id}.json")]
+    public Task DeletePageAsync(string page_id)
     {
         throw new NotImplementedException();
     }

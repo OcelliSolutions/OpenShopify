@@ -17,14 +17,94 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class RedirectControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IRedirectController
     {
+
+        /// <summary>
+        /// Retrieves a list of URL redirects
+        /// </summary>
+
+        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
+
+        /// <param name="limit">The maximum number of results to show.</param>
+
+        /// <param name="path">Show redirects with a given path.</param>
+
+        /// <param name="since_id">Restrict results to after the specified ID.</param>
+
+        /// <param name="target">Show redirects with a given target.</param>
+
+        /// <returns>Retrieves a list of URL redirects</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfURLRedirectsAsync(string? fields, string limit, string? path, string? since_id, string? target);
+
+        /// <summary>
+        /// Creates a redirect
+        /// </summary>
+
+        /// <returns>Creates a redirect</returns>
+
+        System.Threading.Tasks.Task CreateRedirectAsync();
+
+        /// <summary>
+        /// Retrieves a count of URL redirects
+        /// </summary>
+
+        /// <param name="path">Count redirects with given path.</param>
+
+        /// <param name="target">Count redirects with given target.</param>
+
+        /// <returns>Retrieves a count of URL redirects</returns>
+
+        System.Threading.Tasks.Task RetrieveCountOfURLRedirectsAsync(string? path, string? target);
+
+        /// <summary>
+        /// Retrieves a single redirect
+        /// </summary>
+
+
+        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
+
+        /// <returns>Retrieves a single redirect</returns>
+
+        System.Threading.Tasks.Task RetrieveSingleRedirectAsync(string redirect_id, string? fields);
+
+        /// <summary>
+        /// Updates an existing redirect
+        /// </summary>
+
+
+        /// <returns>Updates an existing redirect</returns>
+
+        System.Threading.Tasks.Task UpdateExistingRedirectAsync(string redirect_id);
+
+        /// <summary>
+        /// Deletes a redirect
+        /// </summary>
+
+
+        /// <returns>Deletes a redirect</returns>
+
+        System.Threading.Tasks.Task DeleteRedirectAsync(string redirect_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class RedirectController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IRedirectController _implementation;
+
+        public RedirectController(IRedirectController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of URL redirects
         /// </summary>
@@ -35,14 +115,22 @@ namespace OpenShopify.Admin.Builder
         /// <param name="target">Show redirects with a given target.</param>
         /// <returns>Retrieves a list of URL redirects</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("redirects.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfURLRedirects([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? path = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? target = null);
+        public System.Threading.Tasks.Task RetrieveListOfURLRedirects([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? path, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? target)
+        {
+
+            return _implementation.RetrieveListOfURLRedirectsAsync(fields, limit ?? "50", path, since_id, target);
+        }
 
         /// <summary>
         /// Creates a redirect
         /// </summary>
         /// <returns>Creates a redirect</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("redirects.json")]
-        public abstract System.Threading.Tasks.Task CreateRedirect();
+        public System.Threading.Tasks.Task CreateRedirect()
+        {
+
+            return _implementation.CreateRedirectAsync();
+        }
 
         /// <summary>
         /// Retrieves a count of URL redirects
@@ -51,7 +139,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="target">Count redirects with given target.</param>
         /// <returns>Retrieves a count of URL redirects</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("redirects/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfURLRedirects([Microsoft.AspNetCore.Mvc.FromQuery] string? path = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? target = null);
+        public System.Threading.Tasks.Task RetrieveCountOfURLRedirects([Microsoft.AspNetCore.Mvc.FromQuery] string? path, [Microsoft.AspNetCore.Mvc.FromQuery] string? target)
+        {
+
+            return _implementation.RetrieveCountOfURLRedirectsAsync(path, target);
+        }
 
         /// <summary>
         /// Retrieves a single redirect
@@ -59,21 +151,33 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single redirect</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("redirects/{redirect_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleRedirect(string redirect_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public System.Threading.Tasks.Task RetrieveSingleRedirect(string redirect_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
+        {
+
+            return _implementation.RetrieveSingleRedirectAsync(redirect_id, fields);
+        }
 
         /// <summary>
         /// Updates an existing redirect
         /// </summary>
         /// <returns>Updates an existing redirect</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("redirects/{redirect_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingRedirect(string redirect_id);
+        public System.Threading.Tasks.Task UpdateExistingRedirect(string redirect_id)
+        {
+
+            return _implementation.UpdateExistingRedirectAsync(redirect_id);
+        }
 
         /// <summary>
         /// Deletes a redirect
         /// </summary>
         /// <returns>Deletes a redirect</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("redirects/{redirect_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteRedirect(string redirect_id);
+        public System.Threading.Tasks.Task DeleteRedirect(string redirect_id)
+        {
+
+            return _implementation.DeleteRedirectAsync(redirect_id);
+        }
 
     }
 

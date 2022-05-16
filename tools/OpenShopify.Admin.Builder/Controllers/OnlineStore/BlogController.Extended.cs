@@ -7,35 +7,46 @@ namespace OpenShopify.Admin.Builder.Controllers.OnlineStore;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.OnlineStore)]
 [ApiController]
-public class BlogController : BlogControllerBase
+public class BlogController : IBlogController
 {
-    public override Task RetrieveListOfAllBlogs(string? fields = null, string? handle = null, string? limit = "50",
-        string? since_id = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs.json")]
+    public Task RetrieveListOfAllBlogsAsync(string? fields, string? handle, string limit, string? since_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateNewBlog(string title)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("blogs.json")]
+    public Task CreateNewBlogAsync(string title)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ReceiveCountOfAllBlogs()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/count.json")]
+    public Task ReceiveCountOfAllBlogsAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task ReceiveSingleBlog(string blog_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}.json")]
+    public Task ReceiveSingleBlogAsync(string blog_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ModifyExistingBlog(string blog_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}.json")]
+    public Task ModifyExistingBlogAsync(string blog_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RemoveExistingBlog(string blog_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}.json")]
+    public Task RemoveExistingBlogAsync(string blog_id)
     {
         throw new NotImplementedException();
     }

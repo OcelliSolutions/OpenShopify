@@ -17,20 +17,45 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class PolicyControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IPolicyController
     {
+
+        /// <summary>
+        /// Retrieves a list of the shop's policies
+        /// </summary>
+
+        /// <returns>Retrieves a list of the shop's policies</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfTheShopsPoliciesAsync();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class PolicyController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IPolicyController _implementation;
+
+        public PolicyController(IPolicyController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of the shop's policies
         /// </summary>
         /// <returns>Retrieves a list of the shop's policies</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("policies.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfTheShopsPolicies();
+        public System.Threading.Tasks.Task RetrieveListOfTheShopsPolicies()
+        {
+
+            return _implementation.RetrieveListOfTheShopsPoliciesAsync();
+        }
 
     }
 

@@ -12,6 +12,6 @@ namespace OpenShopify.Admin.Builder.Models
         /// The scope's handle, such as "read_orders", "write_products", etc...
         /// </summary>
         [JsonPropertyName("handle")]
-        public ApiPermission Handle { get; set; }
+        public AuthorizationScope Handle { get; set; }
     }
 }

@@ -17,48 +17,148 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class CustomerAddressControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface ICustomerAddressController
     {
+
+        /// <summary>
+        /// Retrieves a list of addresses for a customer
+        /// </summary>
+
+
+        /// <returns>Retrieves a list of addresses for a customer</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfAddressesForCustomerAsync(string customer_id);
+
+        /// <summary>
+        /// Creates a new address for a customer
+        /// </summary>
+
+
+        /// <returns>Creates a new address for a customer</returns>
+
+        System.Threading.Tasks.Task CreateNewAddressForCustomerAsync(string customer_id);
+
+        /// <summary>
+        /// Retrieves details for a single customer address
+        /// </summary>
+
+
+        /// <returns>Retrieves details for a single customer address</returns>
+
+        System.Threading.Tasks.Task RetrieveDetailsForSingleCustomerAddressAsync(string address_id, string customer_id);
+
+        /// <summary>
+        /// Updates an existing customer address
+        /// </summary>
+
+
+        /// <returns>Updates an existing customer address</returns>
+
+        System.Threading.Tasks.Task UpdateExistingCustomerAddressAsync(string address_id, string customer_id);
+
+        /// <summary>
+        /// Removes an address from a customer’s address list
+        /// </summary>
+
+
+        /// <returns>Removes an address from a customer’s address list</returns>
+
+        System.Threading.Tasks.Task RemoveAddressFromCustomersAddressListAsync(string address_id, string customer_id);
+
+        /// <summary>
+        /// Performs bulk operations for multiple customer addresses
+        /// </summary>
+
+        /// <param name="address_ids">Performs bulk operations for customer addresses specified by a comma-separated list of IDs.</param>
+
+
+        /// <param name="operation">Operation to perform by keyword (for example, destroy)</param>
+
+        /// <returns>Performs bulk operations for multiple customer addresses</returns>
+
+        System.Threading.Tasks.Task PerformBulkOperationsForMultipleCustomerAddressesAsync(string address_ids, string customer_id, string operation);
+
+        /// <summary>
+        /// Sets the default address for a customer
+        /// </summary>
+
+
+        /// <returns>Sets the default address for a customer</returns>
+
+        System.Threading.Tasks.Task SetTheDefaultAddressForCustomerAsync(string address_id, string customer_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class CustomerAddressController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private ICustomerAddressController _implementation;
+
+        public CustomerAddressController(ICustomerAddressController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of addresses for a customer
         /// </summary>
         /// <returns>Retrieves a list of addresses for a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfAddressesForCustomer(string customer_id);
+        public System.Threading.Tasks.Task RetrieveListOfAddressesForCustomer(string customer_id)
+        {
+
+            return _implementation.RetrieveListOfAddressesForCustomerAsync(customer_id);
+        }
 
         /// <summary>
         /// Creates a new address for a customer
         /// </summary>
         /// <returns>Creates a new address for a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses.json")]
-        public abstract System.Threading.Tasks.Task CreateNewAddressForCustomer(string customer_id);
+        public System.Threading.Tasks.Task CreateNewAddressForCustomer(string customer_id)
+        {
+
+            return _implementation.CreateNewAddressForCustomerAsync(customer_id);
+        }
 
         /// <summary>
         /// Retrieves details for a single customer address
         /// </summary>
         /// <returns>Retrieves details for a single customer address</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveDetailsForSingleCustomerAddress(string address_id, string customer_id);
+        public System.Threading.Tasks.Task RetrieveDetailsForSingleCustomerAddress(string address_id, string customer_id)
+        {
+
+            return _implementation.RetrieveDetailsForSingleCustomerAddressAsync(address_id, customer_id);
+        }
 
         /// <summary>
         /// Updates an existing customer address
         /// </summary>
         /// <returns>Updates an existing customer address</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingCustomerAddress(string address_id, string customer_id);
+        public System.Threading.Tasks.Task UpdateExistingCustomerAddress(string address_id, string customer_id)
+        {
+
+            return _implementation.UpdateExistingCustomerAddressAsync(address_id, customer_id);
+        }
 
         /// <summary>
         /// Removes an address from a customer’s address list
         /// </summary>
         /// <returns>Removes an address from a customer’s address list</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}.json")]
-        public abstract System.Threading.Tasks.Task RemoveAddressFromCustomersAddressList(string address_id, string customer_id);
+        public System.Threading.Tasks.Task RemoveAddressFromCustomersAddressList(string address_id, string customer_id)
+        {
+
+            return _implementation.RemoveAddressFromCustomersAddressListAsync(address_id, customer_id);
+        }
 
         /// <summary>
         /// Performs bulk operations for multiple customer addresses
@@ -67,14 +167,22 @@ namespace OpenShopify.Admin.Builder
         /// <param name="operation">Operation to perform by keyword (for example, destroy)</param>
         /// <returns>Performs bulk operations for multiple customer addresses</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/set.json")]
-        public abstract System.Threading.Tasks.Task PerformBulkOperationsForMultipleCustomerAddresses([Microsoft.AspNetCore.Mvc.FromQuery(Name = "address_ids[]")] string address_ids, string customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string operation);
+        public System.Threading.Tasks.Task PerformBulkOperationsForMultipleCustomerAddresses([Microsoft.AspNetCore.Mvc.FromQuery(Name = "address_ids[]")] string address_ids, string customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string operation)
+        {
+
+            return _implementation.PerformBulkOperationsForMultipleCustomerAddressesAsync(address_ids, customer_id, operation);
+        }
 
         /// <summary>
         /// Sets the default address for a customer
         /// </summary>
         /// <returns>Sets the default address for a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}/default.json")]
-        public abstract System.Threading.Tasks.Task SetTheDefaultAddressForCustomer(string address_id, string customer_id);
+        public System.Threading.Tasks.Task SetTheDefaultAddressForCustomer(string address_id, string customer_id)
+        {
+
+            return _implementation.SetTheDefaultAddressForCustomerAsync(address_id, customer_id);
+        }
 
     }
 

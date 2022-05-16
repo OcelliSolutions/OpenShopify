@@ -7,36 +7,47 @@ namespace OpenShopify.Admin.Builder.Controllers.OnlineStore;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.OnlineStore)]
 [ApiController]
-public class ScriptTagController : ScriptTagControllerBase
+public class ScriptTagController : IScriptTagController
 {
-    public override Task RetrieveListOfAllScriptTags(string? created_at_max = null, string? created_at_min = null, string? fields = null,
-        string? limit = "50", string? since_id = null, string? src = null, string? updated_at_max = null,
-        string? updated_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags.json")]
+    public Task RetrieveListOfAllScriptTagsAsync(string? created_at_max, string? created_at_min, string? fields, string limit,
+        string? since_id, string? src, string? updated_at_max, string? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateNewScriptTag()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("script_tags.json")]
+    public Task CreateNewScriptTagAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfAllScriptTags(string? src = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags/count.json")]
+    public Task RetrieveCountOfAllScriptTagsAsync(string? src)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSingleScriptTag(string script_tag_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags/{script_tag_id}.json")]
+    public Task RetrieveSingleScriptTagAsync(string script_tag_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateScriptTag(string script_tag_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("script_tags/{script_tag_id}.json")]
+    public Task UpdateScriptTagAsync(string script_tag_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task DeleteScriptTag(string script_tag_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("script_tags/{script_tag_id}.json")]
+    public Task DeleteScriptTagAsync(string script_tag_id)
     {
         throw new NotImplementedException();
     }

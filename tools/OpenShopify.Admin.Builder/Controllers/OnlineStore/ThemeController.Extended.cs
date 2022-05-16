@@ -7,29 +7,39 @@ namespace OpenShopify.Admin.Builder.Controllers.OnlineStore;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.OnlineStore)]
 [ApiController]
-public class ThemeController : ThemeControllerBase
+public class ThemeController : IThemeController
 {
-    public override Task RetrieveListOfThemes(string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("themes.json")]
+    public Task RetrieveListOfThemesAsync(string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateTheme()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("themes.json")]
+    public Task CreateThemeAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSingleThemeByItsID(string theme_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}.json")]
+    public Task RetrieveSingleThemeByItsIDAsync(string theme_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task ModifyExistingTheme(string theme_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}.json")]
+    public Task ModifyExistingThemeAsync(string theme_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RemoveExistingTheme(string theme_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}.json")]
+    public Task RemoveExistingThemeAsync(string theme_id)
     {
         throw new NotImplementedException();
     }

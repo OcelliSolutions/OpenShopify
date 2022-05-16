@@ -17,27 +17,66 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class ProductResourceFeedbackControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IProductResourceFeedbackController
     {
+
+        /// <summary>
+        /// Create a new Product ResourceFeedback
+        /// </summary>
+
+
+        /// <returns>Create a new Product ResourceFeedback</returns>
+
+        System.Threading.Tasks.Task CreateNewProductResourceFeedbackAsync(string product_id, string? state);
+
+        /// <summary>
+        /// Receive a list of all Product ResourceFeedbacks
+        /// </summary>
+
+
+        /// <returns>Receive a list of all Product ResourceFeedbacks</returns>
+
+        System.Threading.Tasks.Task ReceiveListOfAllProductResourceFeedbacksAsync(string product_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class ProductResourceFeedbackController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IProductResourceFeedbackController _implementation;
+
+        public ProductResourceFeedbackController(IProductResourceFeedbackController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Create a new Product ResourceFeedback
         /// </summary>
         /// <returns>Create a new Product ResourceFeedback</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/resource_feedback.json")]
-        public abstract System.Threading.Tasks.Task CreateNewProductResourceFeedback(string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? state = null);
+        public System.Threading.Tasks.Task CreateNewProductResourceFeedback(string product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? state)
+        {
+
+            return _implementation.CreateNewProductResourceFeedbackAsync(product_id, state);
+        }
 
         /// <summary>
         /// Receive a list of all Product ResourceFeedbacks
         /// </summary>
         /// <returns>Receive a list of all Product ResourceFeedbacks</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/resource_feedback.json")]
-        public abstract System.Threading.Tasks.Task ReceiveListOfAllProductResourceFeedbacks(string product_id);
+        public System.Threading.Tasks.Task ReceiveListOfAllProductResourceFeedbacks(string product_id)
+        {
+
+            return _implementation.ReceiveListOfAllProductResourceFeedbacksAsync(product_id);
+        }
 
     }
 

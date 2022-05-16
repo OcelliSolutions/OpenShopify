@@ -2,7 +2,7 @@
 
 namespace OpenShopify.Admin.Builder.Data;
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum ApiPermission
+public enum AuthorizationScope
 {
     read_content,
     write_content,
@@ -52,6 +52,8 @@ public enum ApiPermission
     unauthenticated_write_customers,
     unauthenticated_read_content,
     read_locations,
+    write_locations,
+    read_order_edits,
     write_order_edits,
     read_assigned_fulfillment_orders,
     write_assigned_fulfillment_orders,

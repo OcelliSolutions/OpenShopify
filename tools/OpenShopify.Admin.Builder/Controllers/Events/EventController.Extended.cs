@@ -7,20 +7,26 @@ namespace OpenShopify.Admin.Builder.Controllers.Events;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Events)]
 [ApiController]
-public class EventController : EventControllerBase
+public class EventController : IEventController
 {
-    public override Task RetrieveListOfEvents(string? created_at_max = null, string? created_at_min = null, string? fields = null,
-        string? filter = null, string? limit = "50", string? since_id = null, string? verb = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("events.json")]
+    public Task RetrieveListOfEventsAsync(string? created_at_max, string? created_at_min, string? fields, string? filter,
+        string limit, string? since_id, string? verb)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSingleEvent(string event_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("events/{event_id}.json")]
+    public Task RetrieveSingleEventAsync(string event_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfEvents(string? created_at_max = null, string? created_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("events/count.json")]
+    public Task RetrieveCountOfEventsAsync(string? created_at_max, string? created_at_min)
     {
         throw new NotImplementedException();
     }

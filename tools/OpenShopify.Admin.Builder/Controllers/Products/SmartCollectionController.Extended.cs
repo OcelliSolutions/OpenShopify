@@ -7,45 +7,57 @@ namespace OpenShopify.Admin.Builder.Controllers.Products;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Products)]
 [ApiController]
-public class SmartCollectionController : SmartCollectionControllerBase
+public class SmartCollectionController : ISmartCollectionController
 {
-    public override Task RetrieveListOfSmartCollections(string? fields = null, string? handle = null, string? ids = null,
-        string? limit = "50", string? product_id = null, string? published_at_max = null, string? published_at_min = null,
-        string? published_status = "any", string? since_id = null, string? title = null, string? updated_at_max = null,
-        string? updated_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("smart_collections.json")]
+    public Task RetrieveListOfSmartCollectionsAsync(string? fields, string? handle, string? ids, string limit, string? product_id,
+        string? published_at_max, string? published_at_min, string published_status, string? since_id, string? title,
+        string? updated_at_max, string? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
-    public override Task CreateSmartCollection()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("smart_collections.json")]
+    public Task CreateSmartCollectionAsync()
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveCountOfSmartCollections(string? product_id = null, string? published_at_max = null,
-        string? published_at_min = null, string? published_status = "any", string? title = null,
-        string? updated_at_max = null, string? updated_at_min = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("smart_collections/count.json")]
+    public Task RetrieveCountOfSmartCollectionsAsync(string? product_id, string? published_at_max, string? published_at_min,
+        string published_status, string? title, string? updated_at_max, string? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RetrieveSingleSmartCollection(string smart_collection_id, string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("smart_collections/{smart_collection_id}.json")]
+    public Task RetrieveSingleSmartCollectionAsync(string smart_collection_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateExistingSmartCollection(string smart_collection_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("smart_collections/{smart_collection_id}.json")]
+    public Task UpdateExistingSmartCollectionAsync(string smart_collection_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task RemoveSmartCollection(string smart_collection_id)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("smart_collections/{smart_collection_id}.json")]
+    public Task RemoveSmartCollectionAsync(string smart_collection_id)
     {
         throw new NotImplementedException();
     }
 
-    public override Task UpdateTheOrderingTypeOfProductsInSmartCollection(string smart_collection_id, string? products = null,
-        string? sort_order = "(current value)")
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("smart_collections/{smart_collection_id}/order.json")]
+    public Task UpdateTheOrderingTypeOfProductsInSmartCollectionAsync(string smart_collection_id, string? products,
+        string sort_order)
     {
         throw new NotImplementedException();
     }

@@ -17,14 +17,84 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class CountryControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface ICountryController
     {
+
+        /// <summary>
+        /// Receive a list of all Countries
+        /// </summary>
+
+        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
+
+        /// <param name="since_id">Restrict results to after the specified ID.</param>
+
+        /// <returns>Receive a list of all Countries</returns>
+
+        System.Threading.Tasks.Task ReceiveListOfAllCountriesAsync(string? fields, string? since_id);
+
+        /// <summary>
+        /// Creates a country
+        /// </summary>
+
+        /// <returns>Creates a country</returns>
+
+        System.Threading.Tasks.Task CreateCountryAsync();
+
+        /// <summary>
+        /// Retrieves a count of countries
+        /// </summary>
+
+        /// <returns>Retrieves a count of countries</returns>
+
+        System.Threading.Tasks.Task RetrieveCountOfCountriesAsync();
+
+        /// <summary>
+        /// Retrieves a specific county
+        /// </summary>
+
+
+        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
+
+        /// <returns>Retrieves a specific county</returns>
+
+        System.Threading.Tasks.Task RetrieveSpecificCountyAsync(string country_id, string? fields);
+
+        /// <summary>
+        /// Updates an existing country
+        /// </summary>
+
+
+        /// <returns>Updates an existing country</returns>
+
+        System.Threading.Tasks.Task UpdateExistingCountryAsync(string country_id);
+
+        /// <summary>
+        /// Remove an existing Country
+        /// </summary>
+
+
+        /// <returns>Remove an existing Country</returns>
+
+        System.Threading.Tasks.Task RemoveExistingCountryAsync(string country_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class CountryController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private ICountryController _implementation;
+
+        public CountryController(ICountryController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Receive a list of all Countries
         /// </summary>
@@ -32,21 +102,33 @@ namespace OpenShopify.Admin.Builder
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <returns>Receive a list of all Countries</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries.json")]
-        public abstract System.Threading.Tasks.Task ReceiveListOfAllCountries([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null);
+        public System.Threading.Tasks.Task ReceiveListOfAllCountries([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id)
+        {
+
+            return _implementation.ReceiveListOfAllCountriesAsync(fields, since_id);
+        }
 
         /// <summary>
         /// Creates a country
         /// </summary>
         /// <returns>Creates a country</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("countries.json")]
-        public abstract System.Threading.Tasks.Task CreateCountry();
+        public System.Threading.Tasks.Task CreateCountry()
+        {
+
+            return _implementation.CreateCountryAsync();
+        }
 
         /// <summary>
         /// Retrieves a count of countries
         /// </summary>
         /// <returns>Retrieves a count of countries</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfCountries();
+        public System.Threading.Tasks.Task RetrieveCountOfCountries()
+        {
+
+            return _implementation.RetrieveCountOfCountriesAsync();
+        }
 
         /// <summary>
         /// Retrieves a specific county
@@ -54,21 +136,33 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a specific county</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSpecificCounty(string country_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public System.Threading.Tasks.Task RetrieveSpecificCounty(string country_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
+        {
+
+            return _implementation.RetrieveSpecificCountyAsync(country_id, fields);
+        }
 
         /// <summary>
         /// Updates an existing country
         /// </summary>
         /// <returns>Updates an existing country</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingCountry(string country_id);
+        public System.Threading.Tasks.Task UpdateExistingCountry(string country_id)
+        {
+
+            return _implementation.UpdateExistingCountryAsync(country_id);
+        }
 
         /// <summary>
         /// Remove an existing Country
         /// </summary>
         /// <returns>Remove an existing Country</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}.json")]
-        public abstract System.Threading.Tasks.Task RemoveExistingCountry(string country_id);
+        public System.Threading.Tasks.Task RemoveExistingCountry(string country_id)
+        {
+
+            return _implementation.RemoveExistingCountryAsync(country_id);
+        }
 
     }
 

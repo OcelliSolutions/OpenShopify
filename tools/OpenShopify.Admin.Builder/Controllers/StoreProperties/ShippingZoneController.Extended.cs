@@ -7,9 +7,11 @@ namespace OpenShopify.Admin.Builder.Controllers.StoreProperties;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.StoreProperties)]
 [ApiController]
-public class ShippingZoneController : ShippingZoneControllerBase
+public class ShippingZoneController : IShippingZoneController
 {
-    public override Task ReceiveListOfAllShippingZones(string? fields = null)
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shipping_zones.json")]
+    public Task ReceiveListOfAllShippingZonesAsync(string? fields)
     {
         throw new NotImplementedException();
     }

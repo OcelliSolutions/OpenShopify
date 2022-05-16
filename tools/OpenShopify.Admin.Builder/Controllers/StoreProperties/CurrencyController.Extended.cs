@@ -7,9 +7,11 @@ namespace OpenShopify.Admin.Builder.Controllers.StoreProperties;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.StoreProperties)]
 [ApiController]
-public class CurrencyController : CurrencyControllerBase
+public class CurrencyController : ICurrencyController
 {
-    public override Task RetrieveListOfCurrenciesEnabledOnShop()
+    /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("currencies.json")]
+    public Task RetrieveListOfCurrenciesEnabledOnShopAsync()
     {
         throw new NotImplementedException();
     }

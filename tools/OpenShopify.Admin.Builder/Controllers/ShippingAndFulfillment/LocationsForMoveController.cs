@@ -17,20 +17,46 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class LocationsForMoveControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface ILocationsForMoveController
     {
+
+        /// <summary>
+        /// Retrieves a list of locations that a fulfillment order can potentially move to.
+        /// </summary>
+
+
+        /// <returns>Retrieves a list of locations that a fulfillment order can potentially move to.</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfLocationsThatFulfillmentOrderCanPotentiallyMoveToAsync(string fulfillment_order_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class LocationsForMoveController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private ILocationsForMoveController _implementation;
+
+        public LocationsForMoveController(ILocationsForMoveController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of locations that a fulfillment order can potentially move to.
         /// </summary>
         /// <returns>Retrieves a list of locations that a fulfillment order can potentially move to.</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/locations_for_move.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfLocationsThatFulfillmentOrderCanPotentiallyMoveTo(string fulfillment_order_id);
+        public System.Threading.Tasks.Task RetrieveListOfLocationsThatFulfillmentOrderCanPotentiallyMoveTo(string fulfillment_order_id)
+        {
+
+            return _implementation.RetrieveListOfLocationsThatFulfillmentOrderCanPotentiallyMoveToAsync(fulfillment_order_id);
+        }
 
     }
 

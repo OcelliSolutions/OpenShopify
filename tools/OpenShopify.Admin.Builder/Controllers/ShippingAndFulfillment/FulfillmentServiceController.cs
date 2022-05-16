@@ -17,48 +17,125 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class FulfillmentServiceControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IFulfillmentServiceController
     {
+
+        /// <summary>
+        /// Receive a list of all FulfillmentServices
+        /// </summary>
+
+
+        /// <returns>Receive a list of all FulfillmentServices</returns>
+
+        System.Threading.Tasks.Task ReceiveListOfAllFulfillmentServicesAsync(string? scope);
+
+        /// <summary>
+        /// Create a new FulfillmentService
+        /// </summary>
+
+        /// <returns>Create a new FulfillmentService</returns>
+
+        System.Threading.Tasks.Task CreateNewFulfillmentServiceAsync();
+
+        /// <summary>
+        /// Receive a single FulfillmentService
+        /// </summary>
+
+
+        /// <returns>Receive a single FulfillmentService</returns>
+
+        System.Threading.Tasks.Task ReceiveSingleFulfillmentServiceAsync(long fulfillment_service_id);
+
+        /// <summary>
+        /// Modify an existing FulfillmentService
+        /// </summary>
+
+
+        /// <returns>Modify an existing FulfillmentService</returns>
+
+        System.Threading.Tasks.Task ModifyExistingFulfillmentServiceAsync(long fulfillment_service_id);
+
+        /// <summary>
+        /// Remove an existing FulfillmentService
+        /// </summary>
+
+
+        /// <returns>Remove an existing FulfillmentService</returns>
+
+        System.Threading.Tasks.Task RemoveExistingFulfillmentServiceAsync(long fulfillment_service_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class FulfillmentServiceController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IFulfillmentServiceController _implementation;
+
+        public FulfillmentServiceController(IFulfillmentServiceController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Receive a list of all FulfillmentServices
         /// </summary>
         /// <returns>Receive a list of all FulfillmentServices</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_services.json")]
-        public abstract System.Threading.Tasks.Task ReceiveListOfAllFulfillmentServices([Microsoft.AspNetCore.Mvc.FromQuery] string? scope = null);
+        public System.Threading.Tasks.Task ReceiveListOfAllFulfillmentServices([Microsoft.AspNetCore.Mvc.FromQuery] string? scope)
+        {
+
+            return _implementation.ReceiveListOfAllFulfillmentServicesAsync(scope);
+        }
 
         /// <summary>
         /// Create a new FulfillmentService
         /// </summary>
         /// <returns>Create a new FulfillmentService</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_services.json")]
-        public abstract System.Threading.Tasks.Task CreateNewFulfillmentService();
+        public System.Threading.Tasks.Task CreateNewFulfillmentService()
+        {
+
+            return _implementation.CreateNewFulfillmentServiceAsync();
+        }
 
         /// <summary>
         /// Receive a single FulfillmentService
         /// </summary>
         /// <returns>Receive a single FulfillmentService</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_services/{fulfillment_service_id}.json")]
-        public abstract System.Threading.Tasks.Task ReceiveSingleFulfillmentService(string fulfillment_service_id);
+        public System.Threading.Tasks.Task ReceiveSingleFulfillmentService(long fulfillment_service_id)
+        {
+
+            return _implementation.ReceiveSingleFulfillmentServiceAsync(fulfillment_service_id);
+        }
 
         /// <summary>
         /// Modify an existing FulfillmentService
         /// </summary>
         /// <returns>Modify an existing FulfillmentService</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("fulfillment_services/{fulfillment_service_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingFulfillmentService(string fulfillment_service_id);
+        public System.Threading.Tasks.Task ModifyExistingFulfillmentService(long fulfillment_service_id)
+        {
+
+            return _implementation.ModifyExistingFulfillmentServiceAsync(fulfillment_service_id);
+        }
 
         /// <summary>
         /// Remove an existing FulfillmentService
         /// </summary>
         /// <returns>Remove an existing FulfillmentService</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("fulfillment_services/{fulfillment_service_id}.json")]
-        public abstract System.Threading.Tasks.Task RemoveExistingFulfillmentService(string fulfillment_service_id);
+        public System.Threading.Tasks.Task RemoveExistingFulfillmentService(long fulfillment_service_id)
+        {
+
+            return _implementation.RemoveExistingFulfillmentServiceAsync(fulfillment_service_id);
+        }
 
     }
 

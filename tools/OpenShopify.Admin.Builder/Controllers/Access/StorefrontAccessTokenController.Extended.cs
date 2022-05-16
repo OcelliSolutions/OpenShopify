@@ -9,25 +9,28 @@ namespace OpenShopify.Admin.Builder.Controllers.Access;
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Access)]
 [ApiController]
-public class StorefrontAccessTokenController : StorefrontAccessTokenControllerBase
+public class StorefrontAccessTokenController : IStorefrontAccessTokenController
 {
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("storefront_access_tokens.json")]
     [ProducesResponseType(typeof(StorefrontAccessTokenItem), StatusCodes.Status200OK)]
-    public override Task CreateNewStorefrontAccessToken()
+    public Task CreateNewStorefrontAccessTokenAsync()
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("storefront_access_tokens.json")]
     [ProducesResponseType(typeof(StorefrontAccessTokenList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfStorefrontAccessTokensThatHaveBeenIssued()
+    public Task RetrieveListOfStorefrontAccessTokensThatHaveBeenIssuedAsync()
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
+    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("storefront_access_tokens/{storefront_access_token_id}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteExistingStorefrontAccessToken([FromRoute] string storefront_access_token_id)
+    public Task DeleteExistingStorefrontAccessTokenAsync(string storefront_access_token_id)
     {
         throw new NotImplementedException();
     }

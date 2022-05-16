@@ -17,14 +17,90 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class ProductListingControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface IProductListingController
     {
+
+        /// <summary>
+        /// Retrieve product listings that are published to your app
+        /// </summary>
+
+        /// <param name="collection_id">Filter by products belonging to a particular collection</param>
+
+        /// <param name="handle">Filter by product handle</param>
+
+        /// <param name="limit">Amount of results</param>
+
+        /// <param name="product_ids">A comma-separated list of product ids</param>
+
+        /// <param name="updated_at_min">Filter by product listings last updated after a certain date and time (formatted in ISO 8601)</param>
+
+        /// <returns>Retrieve product listings that are published to your app</returns>
+
+        System.Threading.Tasks.Task RetrieveProductListingsThatArePublishedToYourAppAsync(string? collection_id, string? handle, string limit, string? product_ids, string? updated_at_min);
+
+        /// <summary>
+        /// Retrieve &lt;code&gt;product_ids&lt;/code&gt; that are published to your app
+        /// </summary>
+
+        /// <param name="limit">Amount of results</param>
+
+        /// <returns>Retrieve &lt;code&gt;product_ids&lt;/code&gt; that are published to your app</returns>
+
+        System.Threading.Tasks.Task RetrieveProductIdsThatArePublishedToYourAppAsync(string limit);
+
+        /// <summary>
+        /// Retrieve a count of products that are published to your app
+        /// </summary>
+
+        /// <returns>Retrieve a count of products that are published to your app</returns>
+
+        System.Threading.Tasks.Task RetrieveCountOfProductsThatArePublishedToYourAppAsync();
+
+        /// <summary>
+        /// Retrieve a specific product listing that is published to your app
+        /// </summary>
+
+
+        /// <returns>Retrieve a specific product listing that is published to your app</returns>
+
+        System.Threading.Tasks.Task RetrieveSpecificProductListingThatIsPublishedToYourAppAsync(string product_listing_id);
+
+        /// <summary>
+        /// Create a product listing to publish a product to your app
+        /// </summary>
+
+
+        /// <returns>Create a product listing to publish a product to your app</returns>
+
+        System.Threading.Tasks.Task CreateProductListingToPublishProductToYourAppAsync(string product_listing_id);
+
+        /// <summary>
+        /// Delete a product listing to unpublish a product from your app
+        /// </summary>
+
+
+        /// <returns>Delete a product listing to unpublish a product from your app</returns>
+
+        System.Threading.Tasks.Task DeleteProductListingToUnpublishProductFromYourAppAsync(string product_listing_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class ProductListingController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private IProductListingController _implementation;
+
+        public ProductListingController(IProductListingController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieve product listings that are published to your app
         /// </summary>
@@ -35,7 +111,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_min">Filter by product listings last updated after a certain date and time (formatted in ISO 8601)</param>
         /// <returns>Retrieve product listings that are published to your app</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("product_listings.json")]
-        public abstract System.Threading.Tasks.Task RetrieveProductListingsThatArePublishedToYourApp([Microsoft.AspNetCore.Mvc.FromQuery] string? collection_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? product_ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
+        public System.Threading.Tasks.Task RetrieveProductListingsThatArePublishedToYourApp([Microsoft.AspNetCore.Mvc.FromQuery] string? collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_ids, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
+        {
+
+            return _implementation.RetrieveProductListingsThatArePublishedToYourAppAsync(collection_id, handle, limit ?? "50", product_ids, updated_at_min);
+        }
 
         /// <summary>
         /// Retrieve &lt;code&gt;product_ids&lt;/code&gt; that are published to your app
@@ -43,35 +123,55 @@ namespace OpenShopify.Admin.Builder
         /// <param name="limit">Amount of results</param>
         /// <returns>Retrieve &lt;code&gt;product_ids&lt;/code&gt; that are published to your app</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("product_listings/product_ids.json")]
-        public abstract System.Threading.Tasks.Task RetrieveProductIdsThatArePublishedToYourApp([Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50");
+        public System.Threading.Tasks.Task RetrieveProductIdsThatArePublishedToYourApp([Microsoft.AspNetCore.Mvc.FromQuery] string? limit)
+        {
+
+            return _implementation.RetrieveProductIdsThatArePublishedToYourAppAsync(limit ?? "50");
+        }
 
         /// <summary>
         /// Retrieve a count of products that are published to your app
         /// </summary>
         /// <returns>Retrieve a count of products that are published to your app</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("product_listings/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfProductsThatArePublishedToYourApp();
+        public System.Threading.Tasks.Task RetrieveCountOfProductsThatArePublishedToYourApp()
+        {
+
+            return _implementation.RetrieveCountOfProductsThatArePublishedToYourAppAsync();
+        }
 
         /// <summary>
         /// Retrieve a specific product listing that is published to your app
         /// </summary>
         /// <returns>Retrieve a specific product listing that is published to your app</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("product_listings/{product_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSpecificProductListingThatIsPublishedToYourApp(string product_listing_id);
+        public System.Threading.Tasks.Task RetrieveSpecificProductListingThatIsPublishedToYourApp(string product_listing_id)
+        {
+
+            return _implementation.RetrieveSpecificProductListingThatIsPublishedToYourAppAsync(product_listing_id);
+        }
 
         /// <summary>
         /// Create a product listing to publish a product to your app
         /// </summary>
         /// <returns>Create a product listing to publish a product to your app</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("product_listings/{product_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task CreateProductListingToPublishProductToYourApp(string product_listing_id);
+        public System.Threading.Tasks.Task CreateProductListingToPublishProductToYourApp(string product_listing_id)
+        {
+
+            return _implementation.CreateProductListingToPublishProductToYourAppAsync(product_listing_id);
+        }
 
         /// <summary>
         /// Delete a product listing to unpublish a product from your app
         /// </summary>
         /// <returns>Delete a product listing to unpublish a product from your app</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("product_listings/{product_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteProductListingToUnpublishProductFromYourApp(string product_listing_id);
+        public System.Threading.Tasks.Task DeleteProductListingToUnpublishProductFromYourApp(string product_listing_id)
+        {
+
+            return _implementation.DeleteProductListingToUnpublishProductFromYourAppAsync(product_listing_id);
+        }
 
     }
 

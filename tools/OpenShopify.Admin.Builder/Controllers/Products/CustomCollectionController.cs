@@ -17,14 +17,118 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
-namespace OpenShopify.Admin.Builder
+namespace OpenShopify.Admin.Builder.Controllers
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public abstract class CustomCollectionControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
+    public interface ICustomCollectionController
     {
+
+        /// <summary>
+        /// Retrieves a list of custom collections
+        /// </summary>
+
+        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
+
+        /// <param name="handle">Filter by custom collection handle.</param>
+
+        /// <param name="ids">Show only collections specified by a comma-separated list of IDs.</param>
+
+        /// <param name="limit">The maximum number of results to retrieve.</param>
+
+        /// <param name="product_id">Show custom collections that include a given product.</param>
+
+        /// <param name="published_at_max">Show custom collections published before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="published_at_min">Show custom collections published after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="published_status">Show custom collectsion with a given published status.</param>
+
+        /// <param name="since_id">Restrict results to after the specified ID.</param>
+
+        /// <param name="title">Show custom collections with a given title.</param>
+
+        /// <param name="updated_at_max">Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="updated_at_min">Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <returns>Retrieves a list of custom collections</returns>
+
+        System.Threading.Tasks.Task RetrieveListOfCustomCollectionsAsync(string? fields, string? handle, string? ids, string limit, string? product_id, string? published_at_max, string? published_at_min, string published_status, string? since_id, string? title, string? updated_at_max, string? updated_at_min);
+
+        /// <summary>
+        /// Creates a custom collection
+        /// </summary>
+
+        /// <returns>Creates a custom collection</returns>
+
+        System.Threading.Tasks.Task CreateCustomCollectionAsync();
+
+        /// <summary>
+        /// Retrieves a count of custom collections
+        /// </summary>
+
+        /// <param name="product_id">Count custom collections that include a given product.</param>
+
+        /// <param name="published_at_max">Count custom collections published before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="published_at_min">Count custom collections published after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="published_status">Count custom collections with a given published status.</param>
+
+        /// <param name="title">Count custom collections with given title.</param>
+
+        /// <param name="updated_at_max">Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <param name="updated_at_min">Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
+
+        /// <returns>Retrieves a count of custom collections</returns>
+
+        System.Threading.Tasks.Task RetrieveCountOfCustomCollectionsAsync(string? product_id, string? published_at_max, string? published_at_min, string published_status, string? title, string? updated_at_max, string? updated_at_min);
+
+        /// <summary>
+        /// Retrieves a single custom collection
+        /// </summary>
+
+
+        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
+
+        /// <returns>Retrieves a single custom collection</returns>
+
+        System.Threading.Tasks.Task RetrieveSingleCustomCollectionAsync(string custom_collection_id, string? fields);
+
+        /// <summary>
+        /// Updates an existing custom collection
+        /// </summary>
+
+
+        /// <returns>Updates an existing custom collection</returns>
+
+        System.Threading.Tasks.Task UpdateExistingCustomCollectionAsync(string custom_collection_id);
+
+        /// <summary>
+        /// Deletes a custom collection
+        /// </summary>
+
+
+        /// <returns>Deletes a custom collection</returns>
+
+        System.Threading.Tasks.Task DeleteCustomCollectionAsync(string custom_collection_id);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
+
+    public partial class CustomCollectionController : Microsoft.AspNetCore.Mvc.ControllerBase
+    {
+        private ICustomCollectionController _implementation;
+
+        public CustomCollectionController(ICustomCollectionController implementation)
+        {
+            _implementation = implementation;
+        }
+
         /// <summary>
         /// Retrieves a list of custom collections
         /// </summary>
@@ -42,14 +146,22 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_min">Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a list of custom collections</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("custom_collections.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfCustomCollections([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit = "50", [Microsoft.AspNetCore.Mvc.FromQuery] string? product_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? title = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
+        public System.Threading.Tasks.Task RetrieveListOfCustomCollections([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? title, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
+        {
+
+            return _implementation.RetrieveListOfCustomCollectionsAsync(fields, handle, ids, limit ?? "50", product_id, published_at_max, published_at_min, published_status ?? "any", since_id, title, updated_at_max, updated_at_min);
+        }
 
         /// <summary>
         /// Creates a custom collection
         /// </summary>
         /// <returns>Creates a custom collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("custom_collections.json")]
-        public abstract System.Threading.Tasks.Task CreateCustomCollection();
+        public System.Threading.Tasks.Task CreateCustomCollection()
+        {
+
+            return _implementation.CreateCustomCollectionAsync();
+        }
 
         /// <summary>
         /// Retrieves a count of custom collections
@@ -63,7 +175,11 @@ namespace OpenShopify.Admin.Builder
         /// <param name="updated_at_min">Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a count of custom collections</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("custom_collections/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfCustomCollections([Microsoft.AspNetCore.Mvc.FromQuery] string? product_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = "any", [Microsoft.AspNetCore.Mvc.FromQuery] string? title = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min = null);
+        public System.Threading.Tasks.Task RetrieveCountOfCustomCollections([Microsoft.AspNetCore.Mvc.FromQuery] string? product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? title, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
+        {
+
+            return _implementation.RetrieveCountOfCustomCollectionsAsync(product_id, published_at_max, published_at_min, published_status ?? "any", title, updated_at_max, updated_at_min);
+        }
 
         /// <summary>
         /// Retrieves a single custom collection
@@ -71,21 +187,33 @@ namespace OpenShopify.Admin.Builder
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single custom collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("custom_collections/{custom_collection_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleCustomCollection(string custom_collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public System.Threading.Tasks.Task RetrieveSingleCustomCollection(string custom_collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
+        {
+
+            return _implementation.RetrieveSingleCustomCollectionAsync(custom_collection_id, fields);
+        }
 
         /// <summary>
         /// Updates an existing custom collection
         /// </summary>
         /// <returns>Updates an existing custom collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("custom_collections/{custom_collection_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingCustomCollection(string custom_collection_id);
+        public System.Threading.Tasks.Task UpdateExistingCustomCollection(string custom_collection_id)
+        {
+
+            return _implementation.UpdateExistingCustomCollectionAsync(custom_collection_id);
+        }
 
         /// <summary>
         /// Deletes a custom collection
         /// </summary>
         /// <returns>Deletes a custom collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("custom_collections/{custom_collection_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteCustomCollection(string custom_collection_id);
+        public System.Threading.Tasks.Task DeleteCustomCollection(string custom_collection_id)
+        {
+
+            return _implementation.DeleteCustomCollectionAsync(custom_collection_id);
+        }
 
     }
 
