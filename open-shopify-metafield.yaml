@@ -1,0 +1,184 @@
+openapi: 3.0.1
+info:
+  title: Metafield
+  description: Metafield
+  version: '2022-04'
+servers:
+  - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
+    variables:
+      store_name:
+        default: sample_store
+        description: The sub-domain of the storefront.
+      api_version:
+        default: '2022-04'
+        description: The api version.
+paths:
+  /metafields.json:
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a list of metafields from the resource's endpoint
+      operationId: RetrieveListOfMetafieldsFromTheResourcesEndpoint
+      parameters:
+        - name: created_at_max
+          in: query
+          description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+        - name: key
+          in: query
+          description: Show metafields with given key
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show on a page.
+          schema:
+            type: string
+        - name: namespace
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Show metafields created after the specified ID.
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: "The type of data that the metafield stores in the `value` field.\r\n            <br />Refer to the list of <a href=\"/apps/metafields/types\">supported types</a>."
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: value_type
+          in: query
+          description: The legacy type information for the stored value. Replaced by `type`
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Metafield
+      summary: Create a metafield
+      operationId: CreateMetafield
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /metafields/count.json:
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a count of a resource's metafields.
+      operationId: RetrieveCountOfResourcesMetafields
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/metafields/{metafield_id}.json':
+    get:
+      tags:
+        - Metafield
+      summary: Retrieve a specific metafield
+      operationId: RetrieveSpecificMetafield
+      parameters:
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Metafield
+      summary: Updates a metafield
+      operationId: UpdateMetafield
+      parameters:
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - Metafield
+      summary: Deletes a metafield by its ID
+      operationId: DeleteMetafieldByItsID
+      parameters:
+        - name: metafield_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+security:
+  - ApiKey: [ ]

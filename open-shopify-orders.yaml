@@ -1,0 +1,978 @@
+openapi: 3.0.1
+info:
+  title: Orders
+  description: Orders
+  version: '2022-04'
+servers:
+  - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
+    variables:
+      store_name:
+        default: sample_store
+        description: The sub-domain of the storefront.
+      api_version:
+        default: '2022-04'
+        description: The api version.
+paths:
+  /checkouts.json:
+    get:
+      tags:
+        - AbandonedCheckouts
+      summary: Retrieves a list of abandoned checkouts
+      operationId: RetrieveListOfAbandonedCheckouts
+      parameters:
+        - name: created_at_max
+          in: query
+          description: 'Show checkouts created before the specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Show checkouts created after the specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID.
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Show only checkouts with a given status.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Show checkouts last updated before the specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Show checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /draft_orders.json:
+    post:
+      tags:
+        - DraftOrder
+      summary: Create a new DraftOrder
+      operationId: CreateNewDraftOrder
+      parameters:
+        - name: customer_id
+          in: query
+          description: 'Used to load the customer. When a customer is loaded, the customer’s email address  is also associated.'
+          schema:
+            type: string
+        - name: use_customer_default_address
+          in: query
+          description: "An optional boolean that you can send as part of a draft order object\r\n            <br />        to load customer shipping information. Valid values: true or false."
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      tags:
+        - DraftOrder
+      summary: Retrieves a list of draft orders
+      operationId: RetrieveListOfDraftOrders
+      parameters:
+        - name: fieldsQuery
+          in: query
+          description: A comma-separated list of fields to include in the response
+          schema:
+            type: string
+        - name: ids
+          in: query
+          description: Filter by list of IDs
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Amount of results
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Show orders last updated before date (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Show orders last updated after date (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/draft_orders/{draft_order_id}.json':
+    put:
+      tags:
+        - DraftOrder
+      summary: Modify an existing DraftOrder
+      operationId: ModifyExistingDraftOrder
+      parameters:
+        - name: draft_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      tags:
+        - DraftOrder
+      summary: Receive a single DraftOrder
+      operationId: ReceiveSingleDraftOrder
+      parameters:
+        - name: draft_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: A comma-separated list of fields to include in the response
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - DraftOrder
+      summary: Remove an existing DraftOrder
+      operationId: RemoveExistingDraftOrder
+      parameters:
+        - name: draft_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /draft_orders/count.json:
+    get:
+      tags:
+        - DraftOrder
+      summary: Receive a count of all DraftOrders
+      operationId: ReceiveCountOfAllDraftOrders
+      parameters:
+        - name: since_id
+          in: query
+          description: Count draft orders after the specified ID.
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Count draft orders that have a given status.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Count draft orders last updated before the specified date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Count draft orders last updated after the specified date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/draft_orders/{draft_order_id}/send_invoice.json':
+    post:
+      tags:
+        - DraftOrder
+      summary: Send an invoice
+      operationId: SendInvoice
+      parameters:
+        - name: draft_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/draft_orders/{draft_order_id}/complete.json':
+    put:
+      tags:
+        - DraftOrder
+      summary: Complete a draft order
+      operationId: CompleteDraftOrder
+      parameters:
+        - name: draft_order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: payment_pending
+          in: query
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /orders.json:
+    get:
+      tags:
+        - Order
+      summary: Retrieve a list of orders
+      operationId: RetrieveListOfOrders
+      parameters:
+        - name: attribution_app_id
+          in: query
+          description: 'Show orders attributed to a certain app, specified by the app ID. Set as <code>current</code> to show orders for the app currently consuming the API.'
+          schema:
+            type: string
+        - name: created_at_max
+          in: query
+          description: Show orders created at or before date.
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_min
+          in: query
+          description: Show orders created at or after date.
+          schema:
+            type: string
+            format: date-time
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+        - name: financial_status
+          in: query
+          description: Filter orders by their financial status.
+          schema:
+            type: string
+        - name: fulfillment_status
+          in: query
+          description: Filter orders by their fulfillment status.
+          schema:
+            type: string
+        - name: ids
+          in: query
+          description: Retrieve only orders specified by a comma-separated list of order IDs.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show on a page.
+          schema:
+            type: integer
+            format: int32
+        - name: processed_at_max
+          in: query
+          description: Show orders imported at or before date.
+          schema:
+            type: string
+            format: date-time
+        - name: processed_at_min
+          in: query
+          description: Show orders imported at or after date.
+          schema:
+            type: string
+            format: date-time
+        - name: since_id
+          in: query
+          description: Show orders after the specified ID.
+          schema:
+            type: integer
+            format: int32
+        - name: status
+          in: query
+          description: Filter orders by their status.
+          schema:
+            $ref: '#/components/schemas/Status'
+        - name: updated_at_max
+          in: query
+          description: Show orders last updated at or before date.
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: Show orders last updated at or after date.
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Order
+      summary: Create an order
+      operationId: CreateOrder
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}.json':
+    get:
+      tags:
+        - Order
+      summary: Retrieve a specific order
+      operationId: RetrieveSpecificOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Order
+      summary: Update an order
+      operationId: UpdateOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - Order
+      summary: Delete an order
+      operationId: DeleteOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /orders/count.json:
+    get:
+      tags:
+        - Order
+      summary: Retrieve an order count
+      operationId: RetrieveOrderCount
+      parameters:
+        - name: created_at_max
+          in: query
+          description: Orders created before date specified.
+          schema:
+            type: string
+            format: date-time
+        - name: created_at_min
+          in: query
+          description: Orders created after date specified.
+          schema:
+            type: string
+            format: date-time
+        - name: financial_status
+          in: query
+          description: Orders of a given financial status.
+          schema:
+            type: string
+        - name: fulfillment_status
+          in: query
+          description: Orders of a given fulfillment status.
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Orders of a given status.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: Orders last updated before date specified.
+          schema:
+            type: string
+            format: date-time
+        - name: updated_at_min
+          in: query
+          description: Orders last updated after date specified.
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/close.json':
+    post:
+      tags:
+        - Order
+      summary: Close an order
+      operationId: CloseOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/open.json':
+    post:
+      tags:
+        - Order
+      summary: Re-open a closed order
+      operationId: ReOpenClosedOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/cancel.json':
+    post:
+      tags:
+        - Order
+      summary: Cancel an order
+      operationId: CancelOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: amount
+          in: query
+          description: 'The amount to refund. If set, Shopify attempts to refund the specified amount, depending on its status. Shopify refunds through a manual gateway in cases where the original transaction was not made in Shopify. Refunds through a manual gateway are recorded as a refund on Shopify, but the customer is not refunded.'
+          schema:
+            type: string
+        - name: currency
+          in: query
+          description: The currency of the refund that's issued when the order is canceled. Required for multi-currency orders whenever the <code>amount</code> property is provided.
+          schema:
+            type: string
+        - name: email
+          in: query
+          description: Whether to send an email to the customer notifying them of the cancellation.
+          schema:
+            type: boolean
+        - name: reason
+          in: query
+          description: 'The reason for the order cancellation. Valid values: <code>customer</code>, <code>inventory</code>, <code>fraud</code>, <code>declined</code>, and <code>other</code>.)'
+          schema:
+            type: string
+        - name: restock
+          in: query
+          description: Whether to restock refunded items back to your store's inventory.
+          schema:
+            type: boolean
+      requestBody:
+        description: 'The refund transactions to perform. Required for some more complex refund situations. For more information, see the <a href="/docs/admin-api/rest/reference/orders/refund#create-{{ current_version }}" >Refund API</a>.'
+        content:
+          application/json:
+            schema: { }
+          application/*+json:
+            schema: { }
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/risks.json':
+    post:
+      tags:
+        - OrderRisk
+      summary: Creates an order risk for an order
+      operationId: CreateOrderRiskForOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      tags:
+        - OrderRisk
+      summary: Retrieves a list of all order risks for an order
+      operationId: RetrieveListOfAllOrderRisksForOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/risks/{risk_id}.json':
+    get:
+      tags:
+        - OrderRisk
+      summary: Retrieves a single order risk by its ID
+      operationId: RetrieveSingleOrderRiskByItsID
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: risk_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - OrderRisk
+      summary: Updates an order risk
+      operationId: UpdateOrderRisk
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: risk_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - OrderRisk
+      summary: Deletes an order risk for an order
+      operationId: DeleteOrderRiskForOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: risk_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/refunds.json':
+    get:
+      tags:
+        - Refund
+      summary: Retrieves a list of refunds for an order
+      operationId: RetrieveListOfRefundsForOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: in_shop_currency
+          in: query
+          description: Show amounts in the shop currency for the underlying transaction.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to retrieve.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Refund
+      summary: Creates a refund
+      operationId: CreateRefund
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: currency
+          in: query
+          description: <p>The three-letter code (<a href="https://en.wikipedia.org/wiki/ISO_4217" target="_blank">ISO 4217</a> format) for the currency used for the refund.</p>
+          schema:
+            type: string
+        - name: discrepancy_reason
+          in: query
+          description: 'An optional comment that explains a discrepancy between calculated and actual refund amounts. Used to populate the <code>reason</code> property of the resulting <code>order_adjustment</code> object attached to the refund. Valid values: <code>restock</code>, <code>damage</code>, <code>customer</code>, and <code>other</code>.'
+          schema:
+            type: string
+        - name: note
+          in: query
+          description: An optional note attached to a refund.
+          schema:
+            type: string
+        - name: notify
+          in: query
+          description: Whether to send a refund notification to the customer.
+          schema:
+            type: string
+        - name: refund_line_items
+          in: query
+          description: 'A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:'
+          schema:
+            type: string
+        - name: restock
+          in: query
+          description: Whether to add the line items back to the store inventory. Use <code>restock_type</code> for refund line items instead.
+          schema:
+            type: string
+        - name: shipping
+          in: query
+          description: 'Specify how much shipping to refund. It has the following properties:'
+          schema:
+            type: string
+        - name: transactions
+          in: query
+          description: "A list of <a href=\"/api/admin-rest/current/resources/transaction\">transactions</a>\r\n            <br />          to process as refunds. Use the <code>calculate</code> endpoint to obtain these transactions."
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/refunds/{refund_id}.json':
+    get:
+      tags:
+        - Refund
+      summary: Retrieves a specific refund
+      operationId: RetrieveSpecificRefund
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: refund_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: in_shop_currency
+          in: query
+          description: Show amounts in the shop currency for the underlying transaction.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/refunds/calculate.json':
+    post:
+      tags:
+        - Refund
+      summary: Calculates a refund
+      operationId: CalculateRefund
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: currency
+          in: query
+          description: "<p>The three-letter code (<a href=\"https://en.wikipedia.org/wiki/ISO_4217\" target=\"_blank\">ISO 4217</a> format) for the\r\n            <br />          currency used for the refund. <strong>Note:</strong> Required whenever the shipping <code>amount</code> property is provided.</p>"
+          schema:
+            type: string
+        - name: refund_line_items
+          in: query
+          description: 'A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:'
+          schema:
+            type: string
+        - name: shipping
+          in: query
+          description: 'Specify how much shipping to refund. It has the following properties:'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/transactions.json':
+    get:
+      tags:
+        - Transaction
+      summary: Retrieves a list of transactions
+      operationId: RetrieveListOfTransactions
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specifed by a comma-separated list of fields names.'
+          schema:
+            type: string
+        - name: in_shop_currency
+          in: query
+          description: Show amounts in the shop currency.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Retrieve only transactions after the specified ID.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Transaction
+      summary: Creates a transaction for an order
+      operationId: CreateTransactionForOrder
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: source
+          in: query
+          description: An optional origin of the transaction. Set to <code>external</code> to import a cash transaction for the associated order.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/transactions/count.json':
+    get:
+      tags:
+        - Transaction
+      summary: Retrieves a count of an order's transactions
+      operationId: RetrieveCountOfOrdersTransactions
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orders/{order_id}/transactions/{transaction_id}.json':
+    get:
+      tags:
+        - Transaction
+      summary: Retrieves a specific transaction
+      operationId: RetrieveSpecificTransaction
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: transaction_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: in_shop_currency
+          in: query
+          description: Show amounts in the shop currency.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Status:
+      enum:
+        - Open
+        - Closed
+        - Cancelled
+        - Any
+      type: string
+      additionalProperties: { }
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+security:
+  - ApiKey: [ ]

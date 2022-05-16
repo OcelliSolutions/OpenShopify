@@ -1,0 +1,304 @@
+openapi: 3.0.1
+info:
+  title: Store Properties
+  description: Store Properties
+  version: '2022-04'
+servers:
+  - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
+    variables:
+      store_name:
+        default: sample_store
+        description: The sub-domain of the storefront.
+      api_version:
+        default: '2022-04'
+        description: The api version.
+paths:
+  /countries.json:
+    get:
+      tags:
+        - Country
+      summary: Receive a list of all Countries
+      operationId: ReceiveListOfAllCountries
+      parameters:
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Country
+      summary: Creates a country
+      operationId: CreateCountry
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /countries/count.json:
+    get:
+      tags:
+        - Country
+      summary: Retrieves a count of countries
+      operationId: RetrieveCountOfCountries
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/countries/{country_id}.json':
+    get:
+      tags:
+        - Country
+      summary: Retrieves a specific county
+      operationId: RetrieveSpecificCounty
+      parameters:
+        - name: country_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Country
+      summary: Updates an existing country
+      operationId: UpdateExistingCountry
+      parameters:
+        - name: country_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - Country
+      summary: Remove an existing Country
+      operationId: RemoveExistingCountry
+      parameters:
+        - name: country_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /currencies.json:
+    get:
+      tags:
+        - Currency
+      summary: Retrieves a list of currencies enabled on a shop
+      operationId: RetrieveListOfCurrenciesEnabledOnShop
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /policies.json:
+    get:
+      tags:
+        - Policy
+      summary: Retrieves a list of the shop's policies
+      operationId: RetrieveListOfTheShopsPolicies
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/countries/{country_id}/provinces.json':
+    get:
+      tags:
+        - Province
+      summary: Retrieves a list of provinces for a country
+      operationId: RetrieveListOfProvincesForCountry
+      parameters:
+        - name: country_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of fields names.'
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/countries/{country_id}/provinces/count.json':
+    get:
+      tags:
+        - Province
+      summary: Retrieves a count of provinces for a country
+      operationId: RetrieveCountOfProvincesForCountry
+      parameters:
+        - name: country_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/countries/{country_id}/provinces/{province_id}.json':
+    get:
+      tags:
+        - Province
+      summary: Retrieves a single province for a country
+      operationId: RetrieveSingleProvinceForCountry
+      parameters:
+        - name: country_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: province_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Province
+      summary: Updates an existing province for a country
+      operationId: UpdateExistingProvinceForCountry
+      parameters:
+        - name: country_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: province_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /shipping_zones.json:
+    get:
+      tags:
+        - ShippingZone
+      summary: Receive a list of all ShippingZones
+      operationId: ReceiveListOfAllShippingZones
+      parameters:
+        - name: fields
+          in: query
+          description: comma-separated list of fields to include in the response
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /shop.json:
+    get:
+      tags:
+        - Shop
+      summary: Retrieves the shop's configuration
+      operationId: RetrieveTheShopsConfiguration
+      parameters:
+        - name: fields
+          in: query
+          description: A comma-separated list of fields to include in the response.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+security:
+  - ApiKey: [ ]

@@ -1,0 +1,283 @@
+openapi: 3.0.1
+info:
+  title: Events
+  description: Events
+  version: '2022-04'
+servers:
+  - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
+    variables:
+      store_name:
+        default: sample_store
+        description: The sub-domain of the storefront.
+      api_version:
+        default: '2022-04'
+        description: The api version.
+paths:
+  /events.json:
+    get:
+      tags:
+        - Event
+      summary: Retrieves a list of events
+      operationId: RetrieveListOfEvents
+      parameters:
+        - name: created_at_max
+          in: query
+          description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: filter
+          in: query
+          description: Show events specified in this filter.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The number of results to show.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Show only results after the specified ID.
+          schema:
+            type: string
+        - name: verb
+          in: query
+          description: Show events of a certain type.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/events/{event_id}.json':
+    get:
+      tags:
+        - Event
+      summary: Retrieves a single event
+      operationId: RetrieveSingleEvent
+      parameters:
+        - name: event_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /events/count.json:
+    get:
+      tags:
+        - Event
+      summary: Retrieves a count of events
+      operationId: RetrieveCountOfEvents
+      parameters:
+        - name: created_at_max
+          in: query
+          description: 'Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /webhooks.json:
+    get:
+      tags:
+        - Webhook
+      summary: Retrieves a list of webhooks
+      operationId: RetrieveListOfWebhooks
+      parameters:
+        - name: address
+          in: query
+          description: Retrieve webhook subscriptions that send the POST request to this URI.
+          schema:
+            type: string
+        - name: created_at_max
+          in: query
+          description: 'Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id.
+          schema:
+            type: string
+        - name: topic
+          in: query
+          description: "Show webhook subscriptions with a given topic.\r\n            <br /><br />For a list of valid values, refer to the <a href=\"#topic-property-{{ current_version }}\"><code>topic</code> property</a>.>"
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Webhook
+      summary: Create a new Webhook
+      operationId: CreateNewWebhook
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /webhooks/count.json:
+    get:
+      tags:
+        - Webhook
+      summary: Receive a count of all Webhooks
+      operationId: ReceiveCountOfAllWebhooks
+      parameters:
+        - name: address
+          in: query
+          description: Webhook subscriptions that send the POST request to this URI.
+          schema:
+            type: string
+        - name: topic
+          in: query
+          description: "The topic of the webhook subscriptions.\r\n            <br />For a list of valid values, refer to the <a href=\"#topic-property-{{ current_version }}\"><code>topic</code> property</a>."
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/webhooks/{webhook_id}.json':
+    get:
+      tags:
+        - Webhook
+      summary: Receive a single Webhook
+      operationId: ReceiveSingleWebhook
+      parameters:
+        - name: webhook_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Webhook
+      summary: Modify an existing Webhook
+      operationId: ModifyExistingWebhook
+      parameters:
+        - name: webhook_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - Webhook
+      summary: Remove an existing Webhook
+      operationId: RemoveExistingWebhook
+      parameters:
+        - name: webhook_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+security:
+  - ApiKey: [ ]

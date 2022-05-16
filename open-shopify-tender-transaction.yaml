@@ -1,0 +1,75 @@
+openapi: 3.0.1
+info:
+  title: Tender Transaction
+  description: Tender Transaction
+  version: '2022-04'
+servers:
+  - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
+    variables:
+      store_name:
+        default: sample_store
+        description: The sub-domain of the storefront.
+      api_version:
+        default: '2022-04'
+        description: The api version.
+paths:
+  /tender_transactions.json:
+    get:
+      tags:
+        - TenderTransaction
+      summary: Retrieves a list of tender transactions
+      operationId: RetrieveListOfTenderTransactions
+      parameters:
+        - name: limit
+          in: query
+          description: The maximum number of results to retrieve.
+          schema:
+            type: string
+        - name: order
+          in: query
+          description: Show tender transactions ordered by processed_at in ascending or descending order.
+          schema:
+            type: string
+        - name: processed_at
+          in: query
+          description: Show tender transactions processed at the specified date.
+          schema:
+            type: string
+        - name: processed_at_max
+          in: query
+          description: Show tender transactions processed_at or before the specified date.
+          schema:
+            type: string
+        - name: processed_at_min
+          in: query
+          description: Show tender transactions processed_at or after the specified date.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Retrieve only transactions after the specified ID.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+security:
+  - ApiKey: [ ]

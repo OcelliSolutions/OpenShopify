@@ -1,0 +1,605 @@
+openapi: 3.0.1
+info:
+  title: Sales Channels
+  description: Sales Channels
+  version: '2022-04'
+servers:
+  - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
+    variables:
+      store_name:
+        default: sample_store
+        description: The sub-domain of the storefront.
+      api_version:
+        default: '2022-04'
+        description: The api version.
+paths:
+  /checkouts.json:
+    post:
+      tags:
+        - Checkout
+      summary: Creates a checkout
+      operationId: CreateCheckout
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/checkouts/{token}/complete.json':
+    post:
+      tags:
+        - Checkout
+      summary: Completes a checkout
+      operationId: CompleteCheckout
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/checkouts/{token}.json':
+    get:
+      tags:
+        - Checkout
+      summary: Retrieves a checkout
+      operationId: RetrieveCheckout
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Checkout
+      summary: Modifies an existing checkout
+      operationId: ModifyExistingCheckout
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/checkouts/{token}/shipping_rates.json':
+    get:
+      tags:
+        - Checkout
+      summary: Retrieves a list of shipping rates
+      operationId: RetrieveListOfShippingRates
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /collection_listings.json:
+    get:
+      tags:
+        - CollectionListing
+      summary: Retrieve collection listings that are published to your app
+      operationId: RetrieveCollectionListingsThatArePublishedToYourApp
+      parameters:
+        - name: limit
+          in: query
+          description: Amount of results
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/collection_listings/{collection_listing_id}/product_ids.json':
+    get:
+      tags:
+        - CollectionListing
+      summary: Retrieve <code>product_ids</code> that are published to a <code>collection_id</code>
+      operationId: RetrieveProductIdsThatArePublishedToCollectionId
+      parameters:
+        - name: collection_listing_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Amount of results
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/collection_listings/{collection_listing_id}.json':
+    get:
+      tags:
+        - CollectionListing
+      summary: Retrieve a specific collection listing that is published to your app
+      operationId: RetrieveSpecificCollectionListingThatIsPublishedToYourApp
+      parameters:
+        - name: collection_listing_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - CollectionListing
+      summary: Create a collection listing to publish a collection to your app
+      operationId: CreateCollectionListingToPublishCollectionToYourApp
+      parameters:
+        - name: collection_listing_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - CollectionListing
+      summary: Delete a collection listing to unpublish a collection from your app
+      operationId: DeleteCollectionListingToUnpublishCollectionFromYourApp
+      parameters:
+        - name: collection_listing_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /mobile_platform_applications.json:
+    get:
+      tags:
+        - MobilePlatformApplication
+      summary: List all of the mobile platform applications associated with the app
+      operationId: ListAllOfTheMobilePlatformApplicationsAssociatedWithTheApp
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - MobilePlatformApplication
+      summary: Create a mobile platform application
+      operationId: CreateMobilePlatformApplication
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/mobile_platform_applications/{mobile_platform_application_id}.json':
+    get:
+      tags:
+        - MobilePlatformApplication
+      summary: Get a mobile platform application
+      operationId: GetMobilePlatformApplication
+      parameters:
+        - name: mobile_platform_application_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - MobilePlatformApplication
+      summary: Update a mobile platform application
+      operationId: UpdateMobilePlatformApplication
+      parameters:
+        - name: mobile_platform_application_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - MobilePlatformApplication
+      summary: Delete a mobile platform application
+      operationId: DeleteMobilePlatformApplication
+      parameters:
+        - name: mobile_platform_application_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/checkouts/{token}/payments.json':
+    post:
+      tags:
+        - Payment
+      summary: Creates a new payment
+      operationId: CreateNewPayment
+      parameters:
+        - name: amount
+          in: query
+          description: The amount of the payment.
+          schema:
+            type: string
+        - name: request_details
+          in: query
+          description: 'The details of the request, including the following attributes:'
+          schema:
+            type: string
+        - name: session_id
+          in: query
+          description: A session ID provided by the card vault when creating a payment session.
+          schema:
+            type: string
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: unique_token
+          in: query
+          description: 'A unique idempotency token generated by your app. This can be any value, but must be unique across all payment requests.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      tags:
+        - Payment
+      summary: Retrieves a list of payments on a particular checkout
+      operationId: RetrieveListOfPaymentsOnParticularCheckout
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/checkouts/{token}/payments/{payment_id}.json':
+    get:
+      tags:
+        - Payment
+      summary: Retrieves a single payment
+      operationId: RetrieveSinglePayment
+      parameters:
+        - name: payment_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/checkouts/{token}/payments/count.json':
+    get:
+      tags:
+        - Payment
+      summary: Counts the number of payments attempted on a checkout
+      operationId: CountTheNumberOfPaymentsAttemptedOnCheckout
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /product_listings.json:
+    get:
+      tags:
+        - ProductListing
+      summary: Retrieve product listings that are published to your app
+      operationId: RetrieveProductListingsThatArePublishedToYourApp
+      parameters:
+        - name: collection_id
+          in: query
+          description: Filter by products belonging to a particular collection
+          schema:
+            type: string
+        - name: handle
+          in: query
+          description: Filter by product handle
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Amount of results
+          schema:
+            type: string
+        - name: product_ids
+          in: query
+          description: A comma-separated list of product ids
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: Filter by product listings last updated after a certain date and time (formatted in ISO 8601)
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /product_listings/product_ids.json:
+    get:
+      tags:
+        - ProductListing
+      summary: Retrieve <code>product_ids</code> that are published to your app
+      operationId: RetrieveProductIdsThatArePublishedToYourApp
+      parameters:
+        - name: limit
+          in: query
+          description: Amount of results
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /product_listings/count.json:
+    get:
+      tags:
+        - ProductListing
+      summary: Retrieve a count of products that are published to your app
+      operationId: RetrieveCountOfProductsThatArePublishedToYourApp
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/product_listings/{product_listing_id}.json':
+    get:
+      tags:
+        - ProductListing
+      summary: Retrieve a specific product listing that is published to your app
+      operationId: RetrieveSpecificProductListingThatIsPublishedToYourApp
+      parameters:
+        - name: product_listing_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - ProductListing
+      summary: Create a product listing to publish a product to your app
+      operationId: CreateProductListingToPublishProductToYourApp
+      parameters:
+        - name: product_listing_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - ProductListing
+      summary: Delete a product listing to unpublish a product from your app
+      operationId: DeleteProductListingToUnpublishProductFromYourApp
+      parameters:
+        - name: product_listing_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/products/{product_id}/resource_feedback.json':
+    post:
+      tags:
+        - ProductResourceFeedback
+      summary: Create a new Product ResourceFeedback
+      operationId: CreateNewProductResourceFeedback
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: state
+          in: query
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      tags:
+        - ProductResourceFeedback
+      summary: Receive a list of all Product ResourceFeedbacks
+      operationId: ReceiveListOfAllProductResourceFeedbacks
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /resource_feedback.json:
+    post:
+      tags:
+        - ResourceFeedback
+      summary: Create a new ResourceFeedback
+      operationId: CreateNewResourceFeedback
+      parameters:
+        - name: feedback_generated_at
+          in: query
+          description: An ISO 8601 date and time indicating when the feedback was generated by your app.
+          schema:
+            type: string
+        - name: messages
+          in: query
+          description: "An array containing a single message.\r\n            <br />See <a href=\"#formatting-the-resource-feedback-field-{{ current_version }}\">\r\n            <br /><em>Formatting the resource feedback message field</em></a> for formatting requirements."
+          schema:
+            type: string
+        - name: state
+          in: query
+          description: 'Must be one of the following values:'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      tags:
+        - ResourceFeedback
+      summary: Receive a list of all ResourceFeedbacks
+      operationId: ReceiveListOfAllResourceFeedbacks
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+security:
+  - ApiKey: [ ]

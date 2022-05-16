@@ -437,14 +437,13 @@ components:
       additionalProperties: { }
     ApplicationChargeStatus:
       enum:
-        - 0
-        - 1
-        - 2
-        - 3
-        - 4
-      type: integer
+        - pending
+        - accepted
+        - active
+        - declined
+        - expired
+      type: string
       additionalProperties: { }
-      format: int32
     ApplicationCredit:
       type: object
       properties:
@@ -564,16 +563,15 @@ components:
       additionalProperties: { }
     RecurringApplicationChargeStatus:
       enum:
-        - 0
-        - 1
-        - 2
-        - 3
-        - 4
-        - 5
-        - 6
-      type: integer
+        - pending
+        - accepted
+        - active
+        - declined
+        - expired
+        - frozen
+        - cancelled
+      type: string
       additionalProperties: { }
-      format: int32
     UsageCharge:
       type: object
       properties:

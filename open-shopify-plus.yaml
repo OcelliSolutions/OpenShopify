@@ -1,0 +1,242 @@
+openapi: 3.0.1
+info:
+  title: Plus
+  description: Plus
+  version: '2022-04'
+servers:
+  - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
+    variables:
+      store_name:
+        default: sample_store
+        description: The sub-domain of the storefront.
+      api_version:
+        default: '2022-04'
+        description: The api version.
+paths:
+  /gift_cards.json:
+    get:
+      tags:
+        - GiftCard
+      summary: Retrieves a list of gift cards
+      operationId: RetrieveListOfGiftCards
+      parameters:
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID.
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: 'Retrieve gift cards with a given status. Valid values:'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - GiftCard
+      summary: Creates a gift card
+      operationId: CreateGiftCard
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/gift_cards/{gift_card_id}.json':
+    get:
+      tags:
+        - GiftCard
+      summary: Retrieves a single gift card
+      operationId: RetrieveSingleGiftCard
+      parameters:
+        - name: gift_card_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - GiftCard
+      summary: Updates an existing gift card
+      operationId: UpdateExistingGiftCard
+      parameters:
+        - name: gift_card_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /gift_cards/count.json:
+    get:
+      tags:
+        - GiftCard
+      summary: Retrieves a count of gift cards
+      operationId: RetrieveCountOfGiftCards
+      parameters:
+        - name: status
+          in: query
+          description: 'Count gift cards with a given status. Valid values:'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/gift_cards/{gift_card_id}/disable.json':
+    post:
+      tags:
+        - GiftCard
+      summary: Disables a gift card
+      operationId: DisableGiftCard
+      parameters:
+        - name: gift_card_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /gift_cards/search.json:
+    get:
+      tags:
+        - GiftCard
+      summary: Searches for gift cards
+      operationId: SearchForGiftCards
+      parameters:
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to retrieve.
+          schema:
+            type: string
+        - name: order
+          in: query
+          description: The field and direction to order results by.
+          schema:
+            type: string
+        - name: query
+          in: query
+          description: The text to search for.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /users.json:
+    get:
+      tags:
+        - User
+      summary: Retrieves a list of all users
+      operationId: RetrieveListOfAllUsers
+      parameters:
+        - name: limit
+          in: query
+          description: The maximum number of results to show on a page.
+          schema:
+            type: string
+        - name: page_info
+          in: query
+          description: A unique ID used to access a certain page of results.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/users/{user_id}.json':
+    get:
+      tags:
+        - User
+      summary: Retrieves a single user
+      operationId: RetrieveSingleUser
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /users/current.json:
+    get:
+      tags:
+        - User
+      summary: Retrieves the currently logged-in user
+      operationId: RetrieveTheCurrentlyLoggedInUser
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+security:
+  - ApiKey: [ ]

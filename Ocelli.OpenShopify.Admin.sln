@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		open-shopify-events.yaml = open-shopify-events.yaml
 		open-shopify-inventory.yaml = open-shopify-inventory.yaml
 		open-shopify-marketing-event.yaml = open-shopify-marketing-event.yaml
-		open-shopify-meta-field.yaml = open-shopify-meta-field.yaml
+		open-shopify-metafield.yaml = open-shopify-metafield.yaml
 		open-shopify-online-store.yaml = open-shopify-online-store.yaml
 		open-shopify-orders.yaml = open-shopify-orders.yaml
 		open-shopify-plus.yaml = open-shopify-plus.yaml
@@ -43,6 +43,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ocelli.OpenShopify.Tests", "tests\Ocelli.OpenShopify.Tests\Ocelli.OpenShopify.Tests.csproj", "{D5697227-A039-4B45-B652-6183DF5FF327}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenShopify.ClientGenerator", "tools\OpenShopify.ClientGenerator\OpenShopify.ClientGenerator.csproj", "{597C6557-006A-4869-98C8-D693C21A118D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApp", "tests\SampleApp\SampleApp.csproj", "{7DF98584-205B-4447-93AC-DF1C21674B79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,6 +72,10 @@ Global
 		{597C6557-006A-4869-98C8-D693C21A118D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{597C6557-006A-4869-98C8-D693C21A118D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{597C6557-006A-4869-98C8-D693C21A118D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DF98584-205B-4447-93AC-DF1C21674B79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DF98584-205B-4447-93AC-DF1C21674B79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DF98584-205B-4447-93AC-DF1C21674B79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DF98584-205B-4447-93AC-DF1C21674B79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{57E76D35-EF17-40B7-8FEE-177818CD1B69} = {E0F1145C-02AB-4746-9552-376D32FC7EBE}
 		{D5697227-A039-4B45-B652-6183DF5FF327} = {D02AAED0-78BF-429F-80D5-4E17E6840A62}
 		{597C6557-006A-4869-98C8-D693C21A118D} = {318E901E-B607-4FC9-B5D1-650204023CAB}
+		{7DF98584-205B-4447-93AC-DF1C21674B79} = {D02AAED0-78BF-429F-80D5-4E17E6840A62}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49AD5AA9-F37B-4C95-A51B-41F0CFBAA942}

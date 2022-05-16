@@ -1,0 +1,562 @@
+openapi: 3.0.1
+info:
+  title: Customers
+  description: Customers
+  version: '2022-04'
+servers:
+  - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
+    variables:
+      store_name:
+        default: sample_store
+        description: The sub-domain of the storefront.
+      api_version:
+        default: '2022-04'
+        description: The api version.
+paths:
+  /customers.json:
+    get:
+      tags:
+        - Customer
+      summary: Retrieves a list of customers
+      operationId: RetrieveListOfCustomers
+      parameters:
+        - name: created_at_max
+          in: query
+          description: 'Show customers created before a specified date.<br>(format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Show customers created after a specified date.<br>(format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: ids
+          in: query
+          description: Restrict results to customers specified by a comma-separated list of IDs.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to those after the specified ID.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Show customers last updated before a specified date.<br>(format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Show customers last updated after a specified date.<br>(format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Customer
+      summary: Creates a customer
+      operationId: CreateCustomer
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /customers/search.json:
+    get:
+      tags:
+        - Customer
+      summary: Searches for customers that match a supplied query
+      operationId: SearchForCustomersThatMatchSuppliedQuery
+      parameters:
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show.
+          schema:
+            type: string
+        - name: order
+          in: query
+          description: Set the field and direction by which to order results.
+          schema:
+            type: string
+        - name: query
+          in: query
+          description: "Text to search for in the shop's customer data.\r\n            <br /><strong>Note:</strong> Supported queries: <code>accepts_marketing</code>,\r\n            <br /><code>activation_date</code>, <code>address1</code>, <code>address2</code>, <code>city</code>,\r\n            <br /><code>company</code>, <code>country</code>, <code>customer_date</code>, <code>customer_first_name</code>,\r\n            <br /><code>customer_id</code>, <code>customer_last_name</code>, <code>customer_tag</code>, <code> email</code>,\r\n            <br /><code>email_marketing_state</code>, <code>first_name</code>, <code>first_order_date</code>, <code>id</code>,\r\n            <br /><code>last_abandoned_order_date</code>, <code>last_name</code>, <code>multipass_identifier</code>,\r\n            <br /><code>orders_count</code>, <code>order_date</code>, <code>phone</code>, <code>province</code>,\r\n            <br /><code>shop_id</code>, <code>state</code>, <code>tag</code>, <code>total_spent</code>,\r\n            <br /><code>updated_at</code>, <code>verified_email</code>, <code>product_subscriber_status</code>. All other queries\r\n            <br />returns all customers."
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/customers/{customer_id}.json':
+    get:
+      tags:
+        - Customer
+      summary: Retrieves a single customer
+      operationId: RetrieveSingleCustomer
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Customer
+      summary: Updates a customer
+      operationId: UpdateCustomer
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/customers/{customer_id}/account_activation_url.json':
+    post:
+      tags:
+        - Customer
+      summary: Creates an account activation URL for a customer
+      operationId: CreateAccountActivationURLForCustomer
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/customers/{customer_id}/send_invite.json':
+    post:
+      tags:
+        - Customer
+      summary: Sends an account invite to a customer
+      operationId: SendAccountInviteToCustomer
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /customers/count.json:
+    get:
+      tags:
+        - Customer
+      summary: Retrieves a count of customers
+      operationId: RetrieveCountOfCustomers
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/customers/{customer_id}/orders.json':
+    get:
+      tags:
+        - Customer
+      summary: Retrieves all orders that belong to a customer
+      operationId: RetrieveAllOrdersThatBelongToCustomer
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: The status of the orders to return. The status defaults to open.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/customers/{customer_id}/addresses.json':
+    get:
+      tags:
+        - CustomerAddress
+      summary: Retrieves a list of addresses for a customer
+      operationId: RetrieveListOfAddressesForCustomer
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - CustomerAddress
+      summary: Creates a new address for a customer
+      operationId: CreateNewAddressForCustomer
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/customers/{customer_id}/addresses/{address_id}.json':
+    get:
+      tags:
+        - CustomerAddress
+      summary: Retrieves details for a single customer address
+      operationId: RetrieveDetailsForSingleCustomerAddress
+      parameters:
+        - name: address_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - CustomerAddress
+      summary: Updates an existing customer address
+      operationId: UpdateExistingCustomerAddress
+      parameters:
+        - name: address_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - CustomerAddress
+      summary: Removes an address from a customer’s address list
+      operationId: RemoveAddressFromCustomersAddressList
+      parameters:
+        - name: address_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/customers/{customer_id}/addresses/set.json':
+    put:
+      tags:
+        - CustomerAddress
+      summary: Performs bulk operations for multiple customer addresses
+      operationId: PerformBulkOperationsForMultipleCustomerAddresses
+      parameters:
+        - name: address_ids
+          in: query
+          description: Performs bulk operations for customer addresses specified by a comma-separated list of IDs.
+          schema:
+            type: string
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: operation
+          in: query
+          description: 'Operation to perform by keyword (for example, destroy)'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/customers/{customer_id}/addresses/{address_id}/default.json':
+    put:
+      tags:
+        - CustomerAddress
+      summary: Sets the default address for a customer
+      operationId: SetTheDefaultAddressForCustomer
+      parameters:
+        - name: address_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: customer_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /customer_saved_searches.json:
+    get:
+      tags:
+        - CustomerSavedSearch
+      summary: Retrieves a list of customer saved searches
+      operationId: RetrieveListOfCustomerSavedSearches
+      parameters:
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - CustomerSavedSearch
+      summary: Creates a customer saved search
+      operationId: CreateCustomerSavedSearch
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /customer_saved_searches/count.json:
+    get:
+      tags:
+        - CustomerSavedSearch
+      summary: Retrieves a count of all customer saved searches
+      operationId: RetrieveCountOfAllCustomerSavedSearches
+      parameters:
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/customer_saved_searches/{customer_saved_search_id}.json':
+    get:
+      tags:
+        - CustomerSavedSearch
+      summary: Retrieves a single customer saved search
+      operationId: RetrieveSingleCustomerSavedSearch
+      parameters:
+        - name: customer_saved_search_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - CustomerSavedSearch
+      summary: Updates a customer saved search
+      operationId: UpdateCustomerSavedSearch
+      parameters:
+        - name: customer_saved_search_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - CustomerSavedSearch
+      summary: Deletes a customer saved search
+      operationId: DeleteCustomerSavedSearch
+      parameters:
+        - name: customer_saved_search_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/customer_saved_searches/{customer_saved_search_id}/customers.json':
+    get:
+      tags:
+        - CustomerSavedSearch
+      summary: Retrieves all customers returned by a customer saved search
+      operationId: RetrieveAllCustomersReturnedByCustomerSavedSearch
+      parameters:
+        - name: customer_saved_search_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show.
+          schema:
+            type: string
+        - name: order
+          in: query
+          description: Set the field and direction by which to order results.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+security:
+  - ApiKey: [ ]

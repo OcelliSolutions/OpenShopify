@@ -1,0 +1,305 @@
+openapi: 3.0.1
+info:
+  title: Inventory
+  description: Inventory
+  version: '2022-04'
+servers:
+  - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
+    variables:
+      store_name:
+        default: sample_store
+        description: The sub-domain of the storefront.
+      api_version:
+        default: '2022-04'
+        description: The api version.
+paths:
+  /inventory_items.json:
+    get:
+      tags:
+        - InventoryItem
+      summary: Retrieves a list of inventory items
+      operationId: RetrieveListOfInventoryItems
+      parameters:
+        - name: ids
+          in: query
+          description: Show only inventory items specified by a comma-separated list of IDs.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/inventory_items/{inventory_item_id}.json':
+    get:
+      tags:
+        - InventoryItem
+      summary: Retrieves a single inventory item by ID
+      operationId: RetrieveSingleInventoryItemByID
+      parameters:
+        - name: inventory_item_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - InventoryItem
+      summary: Updates an existing inventory item
+      operationId: UpdateExistingInventoryItem
+      parameters:
+        - name: inventory_item_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /inventory_levels.json:
+    get:
+      tags:
+        - InventoryLevel
+      summary: Retrieves a list of inventory levels
+      operationId: RetrieveListOfInventoryLevels
+      parameters:
+        - name: inventory_item_ids
+          in: query
+          description: 'A comma-separated list of inventory item IDs. To find the ID of an inventory item, use the <a href=''/api/admin-rest/latest/resources/inventoryitem''>Inventory Item resource</a>'
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show.
+          schema:
+            type: string
+        - name: location_ids
+          in: query
+          description: 'A comma-separated list of location IDs. To find the ID of a location, use the <a href=''/api/admin-rest/latest/resources/location''>Location resource</a>'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - InventoryLevel
+      summary: Deletes an inventory level from a location
+      operationId: DeleteInventoryLevelFromLocation
+      parameters:
+        - name: inventory_item_id
+          in: query
+          description: The ID for the inventory item.
+          schema:
+            type: string
+        - name: location_id
+          in: query
+          description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href=''/api/admin-rest/latest/resources/location''>Location resource</a>'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /inventory_levels/adjust.json:
+    post:
+      tags:
+        - InventoryLevel
+      summary: Adjusts the inventory level of an inventory item at a location
+      operationId: AdjustTheInventoryLevelOfInventoryItemAtLocation
+      parameters:
+        - name: available_adjustment
+          in: query
+          description: 'The amount to adjust the available inventory quantity. Send negative values to subtract from the current available quantity. For example, <code>"available_adjustment": 2</code> increases the current available quantity by 2, and <code>"available_adjustment": -3</code>decreases the current available quantity by 3.'
+          schema:
+            type: string
+        - name: inventory_item_id
+          in: query
+          description: The ID of the inventory item.
+          schema:
+            type: string
+        - name: location_id
+          in: query
+          description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href=''/api/admin-rest/latest/resources/location''>Location resource</a>'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /inventory_levels/connect.json:
+    post:
+      tags:
+        - InventoryLevel
+      summary: Connects an inventory item to a location
+      operationId: ConnectInventoryItemToLocation
+      parameters:
+        - name: inventory_item_id
+          in: query
+          description: The ID of the inventory item.
+          schema:
+            type: string
+        - name: location_id
+          in: query
+          description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href=''/api/admin-rest/latest/resources/location''>Location resource</a>'
+          schema:
+            type: string
+        - name: relocate_if_necessary
+          in: query
+          description: 'Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, refer to <a href="#inventory-levels-and-fulfillment-service-locations"><em>Inventory levels and fulfillment service locations</em></a>.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /inventory_levels/set.json:
+    post:
+      tags:
+        - InventoryLevel
+      summary: Sets the inventory level for an inventory item at a location
+      operationId: SetTheInventoryLevelForInventoryItemAtLocation
+      parameters:
+        - name: available
+          in: query
+          description: Sets the available inventory quantity.
+          schema:
+            type: string
+        - name: inventory_item_id
+          in: query
+          description: 'The ID of the inventory item associated with the inventory level. To find the ID of the inventory item, use the <a href=''/api/admin-rest/latest/resources/inventoryitem''>Inventory Item resource</a>'
+          schema:
+            type: string
+        - name: location_id
+          in: query
+          description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href=''/api/admin-rest/latest/resources/location''>Location resource</a>'
+          schema:
+            type: string
+        - name: disconnect_if_necessary
+          in: query
+          description: 'Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, refer to <a href="#inventory-levels-and-fulfillment-service-locations"><em>Inventory levels and fulfillment service locations</em></a>.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /locations.json:
+    get:
+      tags:
+        - Location
+      summary: Retrieve a list of locations
+      operationId: RetrieveListOfLocations
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/locations/{location_id}.json':
+    get:
+      tags:
+        - Location
+      summary: Retrieve a single location by its ID
+      operationId: RetrieveSingleLocationByItsID
+      parameters:
+        - name: location_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /locations/count.json:
+    get:
+      tags:
+        - Location
+      summary: Retrieve a count of locations
+      operationId: RetrieveCountOfLocations
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/locations/{location_id}/inventory_levels.json':
+    get:
+      tags:
+        - Location
+      summary: Retrieve a list of inventory levels for a location
+      operationId: RetrieveListOfInventoryLevelsForLocation
+      parameters:
+        - name: location_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+security:
+  - ApiKey: [ ]

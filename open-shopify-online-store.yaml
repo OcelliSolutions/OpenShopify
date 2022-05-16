@@ -1,0 +1,1371 @@
+openapi: 3.0.1
+info:
+  title: Online Store
+  description: Online Store
+  version: '2022-04'
+servers:
+  - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
+    variables:
+      store_name:
+        default: sample_store
+        description: The sub-domain of the storefront.
+      api_version:
+        default: '2022-04'
+        description: The api version.
+paths:
+  '/blogs/{blog_id}/articles.json':
+    get:
+      tags:
+        - Article
+      summary: Retrieves a list of all articles from a blog
+      operationId: RetrieveListOfAllArticlesFromBlog
+      parameters:
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: author
+          in: query
+          description: Filter articles by article author.
+          schema:
+            type: string
+        - name: created_at_max
+          in: query
+          description: 'Show articles created before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Show articles created after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: handle
+          in: query
+          description: Retrieve an article with a specific handle.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to retrieve.
+          schema:
+            type: string
+        - name: published_at_max
+          in: query
+          description: 'Show articles published before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_at_min
+          in: query
+          description: 'Show articles published after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_status
+          in: query
+          description: Retrieve results based on their published status.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID.
+          schema:
+            type: string
+        - name: tag
+          in: query
+          description: Filter articles with a specific tag.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Show articles last updated before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Show articles last updated after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Article
+      summary: Creates an article for a blog
+      operationId: CreateArticleForBlog
+      parameters:
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/blogs/{blog_id}/articles/count.json':
+    get:
+      tags:
+        - Article
+      summary: Retrieves a count of all articles from a blog
+      operationId: RetrieveCountOfAllArticlesFromBlog
+      parameters:
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: created_at_max
+          in: query
+          description: 'Count articles created before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Count articles created after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_at_max
+          in: query
+          description: 'Count articles published before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_at_min
+          in: query
+          description: 'Count articles published after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_status
+          in: query
+          description: Count articles with a given published status.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Count articles last updated before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Count articles last updated after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/blogs/{blog_id}/articles/{article_id}.json':
+    get:
+      tags:
+        - Article
+      summary: Receive a single Article
+      operationId: ReceiveSingleArticle
+      parameters:
+        - name: article_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specifed by a comma-separated list of field names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Article
+      summary: Updates an article
+      operationId: UpdateArticle
+      parameters:
+        - name: article_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - Article
+      summary: Deletes an article
+      operationId: DeleteArticle
+      parameters:
+        - name: article_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /articles/authors.json:
+    get:
+      tags:
+        - Article
+      summary: Retrieves a list of all article authors
+      operationId: RetrieveListOfAllArticleAuthors
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /articles/tags.json:
+    get:
+      tags:
+        - Article
+      summary: Retrieves a list of all article tags
+      operationId: RetrieveListOfAllArticleTags
+      parameters:
+        - name: limit
+          in: query
+          description: The maximum number of tags to retrieve.
+          schema:
+            type: string
+        - name: popular
+          in: query
+          description: 'A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/blogs/{blog_id}/articles/tags.json':
+    get:
+      tags:
+        - Article
+      summary: Retrieves a list of all article tags from a specific blog
+      operationId: RetrieveListOfAllArticleTagsFromSpecificBlog
+      parameters:
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of tags to retrieve.
+          schema:
+            type: string
+        - name: popular
+          in: query
+          description: 'A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/themes/{theme_id}/assets.json':
+    get:
+      tags:
+        - Asset
+      summary: Retrieves a list of assets for a theme
+      operationId: RetrieveListOfAssetsForTheme
+      parameters:
+        - name: theme_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: Specify which fields to show using a comma-separated list of field names.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Asset
+      summary: Creates or updates an asset for a theme
+      operationId: CreateOrUpdatesAssetForTheme
+      parameters:
+        - name: theme_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: source_key
+          in: query
+          description: The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.
+          schema:
+            type: string
+        - name: src
+          in: query
+          description: The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - Asset
+      summary: Deletes an asset from a theme
+      operationId: DeleteAssetFromTheme
+      parameters:
+        - name: assetkey
+          in: query
+          description: Deletes a single asset from a theme by specifying the asset's key.
+          schema:
+            type: string
+        - name: theme_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /blogs.json:
+    get:
+      tags:
+        - Blog
+      summary: Retrieve a list of all blogs
+      operationId: RetrieveListOfAllBlogs
+      parameters:
+        - name: fields
+          in: query
+          description: comma-separated list of fields to include in the response
+          schema:
+            type: string
+        - name: handle
+          in: query
+          description: Filter by blog handle
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to retrieve.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Blog
+      summary: Create a new Blog
+      operationId: CreateNewBlog
+      parameters:
+        - name: title
+          in: query
+          description: 'The title of the blog. Maximum length: 255 characters.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /blogs/count.json:
+    get:
+      tags:
+        - Blog
+      summary: Receive a count of all Blogs
+      operationId: ReceiveCountOfAllBlogs
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/blogs/{blog_id}.json':
+    get:
+      tags:
+        - Blog
+      summary: Receive a single Blog
+      operationId: ReceiveSingleBlog
+      parameters:
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: comma-separated list of fields to include in the response
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Blog
+      summary: Modify an existing Blog
+      operationId: ModifyExistingBlog
+      parameters:
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - Blog
+      summary: Remove an existing Blog
+      operationId: RemoveExistingBlog
+      parameters:
+        - name: blog_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /comments.json:
+    get:
+      tags:
+        - Comment
+      summary: Retrieves a list of comments
+      operationId: RetrieveListOfComments
+      parameters:
+        - name: created_at_max
+          in: query
+          description: 'Show comments created before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Show comments created after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to retrieve.
+          schema:
+            type: string
+        - name: published_at_max
+          in: query
+          description: 'Show comments published before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_at_min
+          in: query
+          description: 'Show comments published after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_status
+          in: query
+          description: Filter results by their published status.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID.
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Filter results by their status.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Show comments last updated before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Show comments last updated after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Comment
+      summary: Creates a comment for an article
+      operationId: CreateCommentForArticle
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /comments/count.json:
+    get:
+      tags:
+        - Comment
+      summary: Retrieves a count of comments
+      operationId: RetrieveCountOfComments
+      parameters:
+        - name: created_at_max
+          in: query
+          description: 'Count comments created before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Count comments created after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_at_max
+          in: query
+          description: 'Count comments published before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_at_min
+          in: query
+          description: 'Count comments published after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_status
+          in: query
+          description: Retrieve a count of comments with a given published status.
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Retrieve a count of comments with a given status.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Count comments last updated before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Count comments last updated after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/comments/{comment_id}.json':
+    get:
+      tags:
+        - Comment
+      summary: Retrieves a single comment by its ID
+      operationId: RetrieveSingleCommentByItsID
+      parameters:
+        - name: comment_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Comment
+      summary: Updates a comment of an article
+      operationId: UpdateCommentOfArticle
+      parameters:
+        - name: comment_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/comments/{comment_id}/spam.json':
+    post:
+      tags:
+        - Comment
+      summary: Marks a comment as spam
+      operationId: MarkCommentAsSpam
+      parameters:
+        - name: comment_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/comments/{comment_id}/not_spam.json':
+    post:
+      tags:
+        - Comment
+      summary: Marks a comment as not spam
+      operationId: MarkCommentAsNotSpam
+      parameters:
+        - name: comment_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/comments/{comment_id}/approve.json':
+    post:
+      tags:
+        - Comment
+      summary: Approves a comment
+      operationId: ApproveComment
+      parameters:
+        - name: comment_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/comments/{comment_id}/remove.json':
+    post:
+      tags:
+        - Comment
+      summary: Removes a comment
+      operationId: RemoveComment
+      parameters:
+        - name: comment_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/comments/{comment_id}/restore.json':
+    post:
+      tags:
+        - Comment
+      summary: Restores a previously removed comment
+      operationId: RestorePreviouslyRemovedComment
+      parameters:
+        - name: comment_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /pages.json:
+    get:
+      tags:
+        - Page
+      summary: Retrieves a list of pages
+      operationId: RetrieveListOfPages
+      parameters:
+        - name: created_at_max
+          in: query
+          description: 'Show pages created before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Show pages created after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: handle
+          in: query
+          description: Retrieve a page with a given handle.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show.
+          schema:
+            type: string
+        - name: published_at_max
+          in: query
+          description: 'Show pages published before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_at_min
+          in: query
+          description: 'Show pages published after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_status
+          in: query
+          description: 'Restrict results to pages with a given published status:'
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID.
+          schema:
+            type: string
+        - name: title
+          in: query
+          description: Retrieve pages with a given title.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Show pages last updated before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Show pages last updated after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Page
+      summary: Creates a page
+      operationId: CreatePage
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /pages/count.json:
+    get:
+      tags:
+        - Page
+      summary: Retrieves a page count
+      operationId: RetrievePageCount
+      parameters:
+        - name: created_at_max
+          in: query
+          description: 'Count pages created before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Count pages created after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_at_max
+          in: query
+          description: 'Show pages published before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_at_min
+          in: query
+          description: 'Show pages published after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_status
+          in: query
+          description: 'Count pages with a given published status:'
+          schema:
+            type: string
+        - name: title
+          in: query
+          description: Count pages with a given title.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Count pages last updated before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Count pages last updated after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/pages/{page_id}.json':
+    get:
+      tags:
+        - Page
+      summary: Retrieves a single page by its ID
+      operationId: RetrieveSinglePageByItsID
+      parameters:
+        - name: page_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Page
+      summary: Updates a page
+      operationId: UpdatePage
+      parameters:
+        - name: page_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - Page
+      summary: Deletes a page
+      operationId: DeletePage
+      parameters:
+        - name: page_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /redirects.json:
+    get:
+      tags:
+        - Redirect
+      summary: Retrieves a list of URL redirects
+      operationId: RetrieveListOfURLRedirects
+      parameters:
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show.
+          schema:
+            type: string
+        - name: path
+          in: query
+          description: Show redirects with a given path.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID.
+          schema:
+            type: string
+        - name: target
+          in: query
+          description: Show redirects with a given target.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Redirect
+      summary: Creates a redirect
+      operationId: CreateRedirect
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /redirects/count.json:
+    get:
+      tags:
+        - Redirect
+      summary: Retrieves a count of URL redirects
+      operationId: RetrieveCountOfURLRedirects
+      parameters:
+        - name: path
+          in: query
+          description: Count redirects with given path.
+          schema:
+            type: string
+        - name: target
+          in: query
+          description: Count redirects with given target.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/redirects/{redirect_id}.json':
+    get:
+      tags:
+        - Redirect
+      summary: Retrieves a single redirect
+      operationId: RetrieveSingleRedirect
+      parameters:
+        - name: redirect_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Redirect
+      summary: Updates an existing redirect
+      operationId: UpdateExistingRedirect
+      parameters:
+        - name: redirect_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - Redirect
+      summary: Deletes a redirect
+      operationId: DeleteRedirect
+      parameters:
+        - name: redirect_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /script_tags.json:
+    get:
+      tags:
+        - ScriptTag
+      summary: Retrieves a list of all script tags
+      operationId: RetrieveListOfAllScriptTags
+      parameters:
+        - name: created_at_max
+          in: query
+          description: 'Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: A comma-separated list of fields to include in the response.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The number of results to return.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID.
+          schema:
+            type: string
+        - name: src
+          in: query
+          description: Show script tags with this URL.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - ScriptTag
+      summary: Creates a new script tag
+      operationId: CreateNewScriptTag
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /script_tags/count.json:
+    get:
+      tags:
+        - ScriptTag
+      summary: Retrieves a count of all script tags
+      operationId: RetrieveCountOfAllScriptTags
+      parameters:
+        - name: src
+          in: query
+          description: Count only script tags with a given URL.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/script_tags/{script_tag_id}.json':
+    get:
+      tags:
+        - ScriptTag
+      summary: Retrieves a single script tag
+      operationId: RetrieveSingleScriptTag
+      parameters:
+        - name: script_tag_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: A comma-separated list of fields to include in the response.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - ScriptTag
+      summary: Updates a script tag
+      operationId: UpdateScriptTag
+      parameters:
+        - name: script_tag_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - ScriptTag
+      summary: Deletes a script tag
+      operationId: DeleteScriptTag
+      parameters:
+        - name: script_tag_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /themes.json:
+    get:
+      tags:
+        - Theme
+      summary: Retrieves a list of themes
+      operationId: RetrieveListOfThemes
+      parameters:
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Theme
+      summary: Creates a theme
+      operationId: CreateTheme
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/themes/{theme_id}.json':
+    get:
+      tags:
+        - Theme
+      summary: Retrieves a single theme by its ID
+      operationId: RetrieveSingleThemeByItsID
+      parameters:
+        - name: theme_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Theme
+      summary: Modify an existing Theme
+      operationId: ModifyExistingTheme
+      parameters:
+        - name: theme_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - Theme
+      summary: Remove an existing Theme
+      operationId: RemoveExistingTheme
+      parameters:
+        - name: theme_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+security:
+  - ApiKey: [ ]

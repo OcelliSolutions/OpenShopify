@@ -1,0 +1,1122 @@
+openapi: 3.0.1
+info:
+  title: Products
+  description: Products
+  version: '2022-04'
+servers:
+  - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
+    variables:
+      store_name:
+        default: sample_store
+        description: The sub-domain of the storefront.
+      api_version:
+        default: '2022-04'
+        description: The api version.
+paths:
+  /collects.json:
+    post:
+      tags:
+        - Collect
+      summary: Adds a product to a custom collection
+      operationId: AddProductToCustomCollection
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      tags:
+        - Collect
+      summary: Retrieves a list of collects
+      operationId: RetrieveListOfCollects
+      parameters:
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to show.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/collects/{collect_id}.json':
+    delete:
+      tags:
+        - Collect
+      summary: Removes a product from a collection
+      operationId: RemoveProductFromCollection
+      parameters:
+        - name: collect_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      tags:
+        - Collect
+      summary: Retrieves a specific collect by its ID
+      operationId: RetrieveSpecificCollectByItsID
+      parameters:
+        - name: collect_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /collects/count.json:
+    get:
+      tags:
+        - Collect
+      summary: Retrieves a count of collects
+      operationId: RetrieveCountOfCollects
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/collections/{collection_id}.json':
+    get:
+      tags:
+        - Collection
+      summary: Retrieves a single collection
+      operationId: RetrieveSingleCollection
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/collections/{collection_id}/products.json':
+    get:
+      tags:
+        - Collection
+      summary: Retrieve a list of products belonging to a collection
+      operationId: RetrieveListOfProductsBelongingToCollection
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The number of products to retrieve.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /custom_collections.json:
+    get:
+      tags:
+        - CustomCollection
+      summary: Retrieves a list of custom collections
+      operationId: RetrieveListOfCustomCollections
+      parameters:
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: handle
+          in: query
+          description: Filter by custom collection handle.
+          schema:
+            type: string
+        - name: ids
+          in: query
+          description: Show only collections specified by a comma-separated list of IDs.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of results to retrieve.
+          schema:
+            type: string
+        - name: product_id
+          in: query
+          description: Show custom collections that include a given product.
+          schema:
+            type: string
+        - name: published_at_max
+          in: query
+          description: 'Show custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_at_min
+          in: query
+          description: 'Show custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_status
+          in: query
+          description: Show custom collectsion with a given published status.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID.
+          schema:
+            type: string
+        - name: title
+          in: query
+          description: Show custom collections with a given title.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - CustomCollection
+      summary: Creates a custom collection
+      operationId: CreateCustomCollection
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /custom_collections/count.json:
+    get:
+      tags:
+        - CustomCollection
+      summary: Retrieves a count of custom collections
+      operationId: RetrieveCountOfCustomCollections
+      parameters:
+        - name: product_id
+          in: query
+          description: Count custom collections that include a given product.
+          schema:
+            type: string
+        - name: published_at_max
+          in: query
+          description: 'Count custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_at_min
+          in: query
+          description: 'Count custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: published_status
+          in: query
+          description: Count custom collections with a given published status.
+          schema:
+            type: string
+        - name: title
+          in: query
+          description: Count custom collections with given title.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/custom_collections/{custom_collection_id}.json':
+    get:
+      tags:
+        - CustomCollection
+      summary: Retrieves a single custom collection
+      operationId: RetrieveSingleCustomCollection
+      parameters:
+        - name: custom_collection_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - CustomCollection
+      summary: Updates an existing custom collection
+      operationId: UpdateExistingCustomCollection
+      parameters:
+        - name: custom_collection_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - CustomCollection
+      summary: Deletes a custom collection
+      operationId: DeleteCustomCollection
+      parameters:
+        - name: custom_collection_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /products.json:
+    get:
+      tags:
+        - Product
+      summary: Retrieve a list of products
+      operationId: RetrieveListOfProducts
+      parameters:
+        - name: collection_id
+          in: query
+          description: Return products by product collection ID.
+          schema:
+            type: string
+        - name: created_at_max
+          in: query
+          description: 'Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: Return only certain fields specified by a comma-separated list of field names.
+          schema:
+            type: string
+        - name: handle
+          in: query
+          description: Return only products specified by a comma-separated list of product handles.
+          schema:
+            type: string
+        - name: ids
+          in: query
+          description: Return only products specified by a comma-separated list of product IDs.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Return up to this many results per page.
+          schema:
+            type: string
+        - name: presentment_currencies
+          in: query
+          description: 'Return presentment prices in only certain currencies, specified by a comma-separated list of <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency codes.'
+          schema:
+            type: string
+        - name: product_type
+          in: query
+          description: Return products by product type.
+          schema:
+            type: string
+        - name: published_at_max
+          in: query
+          description: 'Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: published_at_min
+          in: query
+          description: 'Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: published_status
+          in: query
+          description: Return products by their published status.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Return only products after the specified ID.
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Return only products specified by a comma-separated list of statuses.
+          schema:
+            type: string
+        - name: title
+          in: query
+          description: Return products by product title.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: vendor
+          in: query
+          description: Return products by product vendor.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Product
+      summary: Create a new product
+      operationId: CreateNewProduct
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /products/count.json:
+    get:
+      tags:
+        - Product
+      summary: Retrieve a count of products
+      operationId: RetrieveCountOfProducts
+      parameters:
+        - name: collection_id
+          in: query
+          description: Return products by product collection ID.
+          schema:
+            type: string
+        - name: created_at_max
+          in: query
+          description: 'Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: created_at_min
+          in: query
+          description: 'Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: product_type
+          in: query
+          description: Return products by product type.
+          schema:
+            type: string
+        - name: published_at_max
+          in: query
+          description: 'Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: published_at_min
+          in: query
+          description: 'Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: published_status
+          in: query
+          description: Return products by their published status.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: vendor
+          in: query
+          description: Return products by product vendor.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/products/{product_id}.json':
+    get:
+      tags:
+        - Product
+      summary: Retrieve a single product
+      operationId: RetrieveSingleProduct
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: A comma-separated list of fields to include in the response.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Product
+      summary: Updates a product
+      operationId: UpdateProduct
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - Product
+      summary: Delete a product
+      operationId: DeleteProduct
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/products/{product_id}/images.json':
+    get:
+      tags:
+        - ProductImage
+      summary: Receive a list of all Product Images
+      operationId: ReceiveListOfAllProductImages
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: comma-separated list of fields to include in the response
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - ProductImage
+      summary: Create a new Product Image
+      operationId: CreateNewProductImage
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/products/{product_id}/images/count.json':
+    get:
+      tags:
+        - ProductImage
+      summary: Receive a count of all Product Images
+      operationId: ReceiveCountOfAllProductImages
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/products/{product_id}/images/{image_id}.json':
+    get:
+      tags:
+        - ProductImage
+      summary: Receive a single Product Image
+      operationId: ReceiveSingleProductImage
+      parameters:
+        - name: image_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: comma-separated list of fields to include in the response
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - ProductImage
+      summary: Modify an existing Product Image
+      operationId: ModifyExistingProductImage
+      parameters:
+        - name: image_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - ProductImage
+      summary: Remove an existing Product Image
+      operationId: RemoveExistingProductImage
+      parameters:
+        - name: image_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/products/{product_id}/variants.json':
+    get:
+      tags:
+        - ProductVariant
+      summary: Retrieves a list of product variants
+      operationId: RetrieveListOfProductVariants
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: A comma-separated list of fields to include in the response
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Return up to this many results per page
+          schema:
+            type: string
+        - name: presentment_currencies
+          in: query
+          description: 'Return presentment prices in only certain currencies, specified by a comma-separated list of <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency codes.'
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - ProductVariant
+      summary: Create a new Product Variant
+      operationId: CreateNewProductVariant
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/products/{product_id}/variants/count.json':
+    get:
+      tags:
+        - ProductVariant
+      summary: Receive a count of all Product Variants
+      operationId: ReceiveCountOfAllProductVariants
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/variants/{variant_id}.json':
+    get:
+      tags:
+        - ProductVariant
+      summary: Receive a single Product Variant
+      operationId: ReceiveSingleProductVariant
+      parameters:
+        - name: variant_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: A comma-separated list of fields to include in the response
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - ProductVariant
+      summary: Modify an existing Product Variant
+      operationId: ModifyExistingProductVariant
+      parameters:
+        - name: variant_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/products/{product_id}/variants/{variant_id}.json':
+    delete:
+      tags:
+        - ProductVariant
+      summary: Remove an existing Product Variant
+      operationId: RemoveExistingProductVariant
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: variant_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /smart_collections.json:
+    get:
+      tags:
+        - SmartCollection
+      summary: Retrieves a list of smart collections
+      operationId: RetrieveListOfSmartCollections
+      parameters:
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+        - name: handle
+          in: query
+          description: Filter results by smart collection handle.
+          schema:
+            type: string
+        - name: ids
+          in: query
+          description: Show only the smart collections specified by a comma-separated list of IDs.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The number of results to show.
+          schema:
+            type: string
+        - name: product_id
+          in: query
+          description: Show smart collections that includes the specified product.
+          schema:
+            type: string
+        - name: published_at_max
+          in: query
+          description: 'Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: published_at_min
+          in: query
+          description: 'Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: published_status
+          in: query
+          description: Filter results based on the published status of smart collections.
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Restrict results to after the specified ID.
+          schema:
+            type: string
+        - name: title
+          in: query
+          description: Show smart collections with the specified title.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - SmartCollection
+      summary: Creates a smart collection
+      operationId: CreateSmartCollection
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /smart_collections/count.json:
+    get:
+      tags:
+        - SmartCollection
+      summary: Retrieves a count of smart collections
+      operationId: RetrieveCountOfSmartCollections
+      parameters:
+        - name: product_id
+          in: query
+          description: Show smart collections that include the specified product.
+          schema:
+            type: string
+        - name: published_at_max
+          in: query
+          description: 'Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: published_at_min
+          in: query
+          description: 'Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: published_status
+          in: query
+          description: Filter results based on the published status of smart collections.
+          schema:
+            type: string
+        - name: title
+          in: query
+          description: Show smart collections with the specified title.
+          schema:
+            type: string
+        - name: updated_at_max
+          in: query
+          description: 'Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+        - name: updated_at_min
+          in: query
+          description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/smart_collections/{smart_collection_id}.json':
+    get:
+      tags:
+        - SmartCollection
+      summary: Retrieves a single smart collection
+      operationId: RetrieveSingleSmartCollection
+      parameters:
+        - name: smart_collection_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Show only certain fields, specified by a comma-separated list of field names.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - SmartCollection
+      summary: Updates an existing smart collection
+      operationId: UpdateExistingSmartCollection
+      parameters:
+        - name: smart_collection_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - SmartCollection
+      summary: Removes a smart collection
+      operationId: RemoveSmartCollection
+      parameters:
+        - name: smart_collection_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/smart_collections/{smart_collection_id}/order.json':
+    put:
+      tags:
+        - SmartCollection
+      summary: Updates the ordering type of products in a smart collection
+      operationId: UpdateTheOrderingTypeOfProductsInSmartCollection
+      parameters:
+        - name: smart_collection_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: products
+          in: query
+          description: 'An array of product IDs, in the order that you want them to appear at the top of the collection. When <code>products</code> is specified but empty, any previously sorted products are cleared.'
+          schema:
+            type: string
+        - name: sort_order
+          in: query
+          description: The type of sorting to apply. Valid values are listed in the <a href="#properties">Properties</a> section above.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+security:
+  - ApiKey: [ ]

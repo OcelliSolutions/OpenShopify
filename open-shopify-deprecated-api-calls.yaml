@@ -1,0 +1,44 @@
+openapi: 3.0.1
+info:
+  title: Deprecated API Calls
+  description: Deprecated API Calls
+  version: '2022-04'
+servers:
+  - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
+    variables:
+      store_name:
+        default: sample_store
+        description: The sub-domain of the storefront.
+      api_version:
+        default: '2022-04'
+        description: The api version.
+paths:
+  /deprecated_api_calls.json:
+    get:
+      tags:
+        - DeprecatedApiCalls
+      summary: Retrieves a list of deprecated API calls
+      operationId: RetrieveListOfDeprecatedAPICalls
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+security:
+  - ApiKey: [ ]

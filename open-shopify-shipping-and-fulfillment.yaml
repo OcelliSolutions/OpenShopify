@@ -221,7 +221,6 @@ paths:
           description: Limit the amount of results.
           schema:
             type: string
-            default: '50'
         - name: since_id
           in: query
           description: Restrict results to after the specified ID.
@@ -882,7 +881,7 @@ paths:
         - name: scope
           in: query
           schema:
-            type: string
+            $ref: '#/components/schemas/FulfillmentServiceScope'
       responses:
         '200':
           description: Success
@@ -901,9 +900,18 @@ paths:
         - FulfillmentService
       summary: Create a new FulfillmentService
       operationId: CreateNewFulfillmentService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentServiceItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentServiceItem'
+        required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           content:
             application/json:
               schema:
@@ -925,7 +933,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '200':
           description: Success
@@ -949,7 +958,17 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentServiceItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentServiceItem'
+        required: true
       responses:
         '200':
           description: Success
@@ -973,7 +992,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '200':
           description: Success
@@ -1012,6 +1032,9 @@ components:
           nullable: true
       additionalProperties: false
     FulfillmentService:
+      required:
+        - format
+        - name
       type: object
       properties:
         id:
@@ -1025,15 +1048,12 @@ components:
         name:
           type: string
           description: The name of the fulfillment service as seen by merchants and their customers.
-          nullable: true
         callback_url:
           type: string
           description: "States the URL endpoint that Shopify needs to retrieve inventory and tracking updates.\r\nThis field is necessary if either inventory_management or tracking_support is set to \"true\"."
           nullable: true
         format:
-          type: string
-          description: Specifies the format of the API output. Valid values are "json" and "xml".
-          nullable: true
+          $ref: '#/components/schemas/FulfillmentServiceFormat'
         handle:
           type: string
           description: A human-friendly unique string for the fulfillment service generated from its title.
@@ -1041,7 +1061,6 @@ components:
         inventory_management:
           type: boolean
           description: States if the fulfillment service tracks product inventory and provides updates to Shopify.
-          nullable: true
         location_id:
           type: integer
           description: The unique identifier of the location tied to the fulfillment service
@@ -1054,11 +1073,9 @@ components:
         requires_shipping_method:
           type: boolean
           description: States if the fulfillment service requires products to be physically shipped.
-          nullable: true
         tracking_support:
           type: boolean
           description: States if the fulfillment service provides tracking numbers for packages.
-          nullable: true
         email:
           type: string
           description: This property is undocumented by Shopify.
@@ -1077,6 +1094,12 @@ components:
           nullable: true
       additionalProperties: { }
       description: An object representing a Shopify fulfillment service.
+    FulfillmentServiceFormat:
+      enum:
+        - json
+        - xml
+      type: string
+      additionalProperties: { }
     FulfillmentServiceItem:
       type: object
       properties:
@@ -1091,6 +1114,12 @@ components:
           items:
             $ref: '#/components/schemas/FulfillmentService'
           nullable: true
+      additionalProperties: { }
+    FulfillmentServiceScope:
+      enum:
+        - all
+        - current_client
+      type: string
       additionalProperties: { }
   securitySchemes:
     ApiKey:

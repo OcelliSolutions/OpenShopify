@@ -1,0 +1,199 @@
+openapi: 3.0.1
+info:
+  title: Marketing Event
+  description: Marketing Event
+  version: '2022-04'
+servers:
+  - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
+    variables:
+      store_name:
+        default: sample_store
+        description: The sub-domain of the storefront.
+      api_version:
+        default: '2022-04'
+        description: The api version.
+paths:
+  /marketing_events.json:
+    get:
+      tags:
+        - MarketingEvent
+      summary: Retrieves a list of all marketing events
+      operationId: RetrieveListOfAllMarketingEvents
+      parameters:
+        - name: limit
+          in: query
+          description: The amount of results to return.
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: The number of marketing events to skip.
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - MarketingEvent
+      summary: Creates a marketing event
+      operationId: CreateMarketingEvent
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /marketing_events/count.json:
+    get:
+      tags:
+        - MarketingEvent
+      summary: Retrieves a count of all marketing events
+      operationId: RetrieveCountOfAllMarketingEvents
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/marketing_events/{marketing_event_id}.json':
+    get:
+      tags:
+        - MarketingEvent
+      summary: Retrieves a single marketing event
+      operationId: RetrieveSingleMarketingEvent
+      parameters:
+        - name: marketing_event_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - MarketingEvent
+      summary: Updates a marketing event
+      operationId: UpdateMarketingEvent
+      parameters:
+        - name: marketing_event_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - MarketingEvent
+      summary: Deletes a marketing event
+      operationId: DeleteMarketingEvent
+      parameters:
+        - name: marketing_event_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/marketing_events/{marketing_event_id}/engagements.json':
+    post:
+      tags:
+        - MarketingEvent
+      summary: Creates marketing engagements on a marketing event
+      operationId: CreateMarketingEngagementsOnMarketingEvent
+      parameters:
+        - name: marketing_event_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: occurred_on
+          in: query
+          description: 'The date that these engagements occurred on, in the format “YYYY-MM-DD”.'
+          schema:
+            type: string
+        - name: ad_spend
+          in: query
+          description: 'The total ad spend for the day, if the marketing event is a paid ad with a daily spend.'
+          schema:
+            type: string
+        - name: clicks_count
+          in: query
+          description: The total number of clicks on the marketing event for the day.
+          schema:
+            type: string
+        - name: comments_count
+          in: query
+          description: The total number of comments for the day.
+          schema:
+            type: string
+        - name: favorites_count
+          in: query
+          description: The total number of favorites for the day.
+          schema:
+            type: string
+        - name: impressions_count
+          in: query
+          description: 'The total number of impressions for the day. An impression occurs when the marketing event is served to a customer, either as a email or through a marketing channel.'
+          schema:
+            type: string
+        - name: is_cumulative
+          in: query
+          description: Whether the engagements are reported as lifetime values rather than daily totals.
+          schema:
+            type: string
+        - name: shares_count
+          in: query
+          description: The total number of shares for the day.
+          schema:
+            type: string
+        - name: views_count
+          in: query
+          description: 'The total number of views for the day. A view occurs when a customer reads the marketing event that was served to them, for example, if the customer opens the email or spends time looking at a Facebook post.'
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      name: X-Shopify-Access-Token
+      in: header
+security:
+  - ApiKey: [ ]
