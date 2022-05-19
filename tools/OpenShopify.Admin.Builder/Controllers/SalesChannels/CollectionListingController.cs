@@ -53,7 +53,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Create a collection listing to publish a collection to your app</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task CreateCollectionListingToPublishCollectionToYourApp([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CollectionListingItem request, long collection_listing_id);
+        public abstract System.Threading.Tasks.Task CreateCollectionListingToPublishCollectionToYourApp([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCollectionListingRequest request, long collection_listing_id);
 
         /// <summary>
         /// Delete a collection listing to unpublish a collection from your app

@@ -41,7 +41,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> CreateMarketingEventAsync(MarketingEventItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> CreateMarketingEventAsync(CreateMarketingEventRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -49,7 +49,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<MarketingEventCount>> RetrieveCountOfAllMarketingEventsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfAllMarketingEventsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -65,7 +65,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> UpdateMarketingEventAsync(long marketingEventId, MarketingEventItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> UpdateMarketingEventAsync(long marketingEventId, UpdateMarketingEventRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -90,7 +90,7 @@ namespace Ocelli.OpenShopify
         /// <param name="viewsCount">The total number of views for the day. A view occurs when a customer reads the marketing event that was served to them, for example, if the customer opens the email or spends time looking at a Facebook post.</param>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<EngagementList>> CreateMarketingEngagementsOnMarketingEventAsync(long marketingEventId, string? occurredOn = null, string? adSpend = null, string? clicksCount = null, string? commentsCount = null, string? favoritesCount = null, string? impressionsCount = null, string? isCumulative = null, string? sharesCount = null, string? viewsCount = null, MarketingEventItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<EngagementList>> CreateMarketingEngagementsOnMarketingEventAsync(long marketingEventId, string? occurredOn = null, string? adSpend = null, string? clicksCount = null, string? commentsCount = null, string? favoritesCount = null, string? impressionsCount = null, string? isCumulative = null, string? sharesCount = null, string? viewsCount = null, CreateMarketingEventRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -227,7 +227,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> CreateMarketingEventAsync(MarketingEventItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> CreateMarketingEventAsync(CreateMarketingEventRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/marketing_events.json");
@@ -310,7 +310,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<MarketingEventCount>> RetrieveCountOfAllMarketingEventsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfAllMarketingEventsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/marketing_events/count.json");
@@ -347,12 +347,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<MarketingEventCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<MarketingEventCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -474,7 +474,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> UpdateMarketingEventAsync(long marketingEventId, MarketingEventItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> UpdateMarketingEventAsync(long marketingEventId, UpdateMarketingEventRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (marketingEventId == null)
                 throw new System.ArgumentNullException("marketingEventId");
@@ -648,7 +648,7 @@ namespace Ocelli.OpenShopify
         /// <param name="viewsCount">The total number of views for the day. A view occurs when a customer reads the marketing event that was served to them, for example, if the customer opens the email or spends time looking at a Facebook post.</param>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<EngagementList>> CreateMarketingEngagementsOnMarketingEventAsync(long marketingEventId, string? occurredOn = null, string? adSpend = null, string? clicksCount = null, string? commentsCount = null, string? favoritesCount = null, string? impressionsCount = null, string? isCumulative = null, string? sharesCount = null, string? viewsCount = null, MarketingEventItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<EngagementList>> CreateMarketingEngagementsOnMarketingEventAsync(long marketingEventId, string? occurredOn = null, string? adSpend = null, string? clicksCount = null, string? commentsCount = null, string? favoritesCount = null, string? impressionsCount = null, string? isCumulative = null, string? sharesCount = null, string? viewsCount = null, CreateMarketingEventRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (marketingEventId == null)
                 throw new System.ArgumentNullException("marketingEventId");
@@ -867,62 +867,38 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateMarketingEvent : System.Collections.Generic.Dictionary<string, object>
+    {
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateMarketingEventRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("marketing_event")]
+        public CreateMarketingEvent? MarketingEvent { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class Engagement
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("occurred_on")]
-        public System.DateTimeOffset? OccurredOn { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("fetched_at")]
-        public System.DateTimeOffset? FetchedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("views_count")]
-        public int? ViewsCount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("impressions_count")]
-        public int? ImpressionsCount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("clicks_count")]
-        public int? ClicksCount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("favorites_count")]
-        public int? FavoritesCount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("comments_count")]
-        public int? CommentsCount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("shares_count")]
-        public int? SharesCount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("ad_spend")]
-        public double? AdSpend { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("currency_code")]
-        public string? CurrencyCode { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("is_cumulative")]
-        public bool? IsCumulative { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("unsubscribes_count")]
-        public int? UnsubscribesCount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("complaints_count")]
-        public int? ComplaintsCount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("fails_count")]
-        public int? FailsCount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("sends_count")]
-        public int? SendsCount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("unique_views_count")]
-        public int? UniqueViewsCount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("unique_clicks_count")]
-        public int? UniqueClicksCount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("utc_offset")]
-        public string? UtcOffset { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -954,123 +930,14 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class MarketedResources
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("type")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter))]
-        public MarketedResourcesType? Type { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public enum MarketedResourcesType
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"product")]
-        product = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"collection")]
-        collection = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"price_rule")]
-        price_rule = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"discount")]
-        discount = 3,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"page")]
-        page = 4,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"article")]
-        article = 5,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"homepage")]
-        homepage = 6,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class MarketingEvent
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("remote_id")]
-        public string? RemoteId { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("event_type")]
-        public string? EventType { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("marketing_channel")]
-        public string? MarketingChannel { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("paid")]
-        public bool? Paid { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("referring_domain")]
-        public string? ReferringDomain { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("budget")]
-        public float? Budget { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        public string? Currency { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("budget_type")]
-        public string? BudgetType { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("started_at")]
-        public System.DateTimeOffset? StartedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("scheduled_to_end_at")]
-        public System.DateTimeOffset? ScheduledToEndAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("ended_at")]
-        public System.DateTimeOffset? EndedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("UTM parameters")]
-        public UtmParameters? UTM_parameters { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("description")]
-        public string? Description { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("manage_url")]
-        public string? ManageUrl { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("preview_url")]
-        public string? PreviewUrl { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("marketed_resources")]
-        public System.Collections.Generic.ICollection<MarketedResources>? MarketedResources { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class MarketingEventCount
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -1120,17 +987,14 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class UtmMarketingEvent
+    public partial class UpdateMarketingEvent
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("utm_campaign")]
-        public string? UtmCampaign { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("utm_source")]
-        public string? UtmSource { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("utm_medium")]
-        public string? UtmMedium { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -1144,11 +1008,17 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class UtmParameters
+    public partial class UpdateMarketingEventRequest
     {
 
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
         [System.Text.Json.Serialization.JsonPropertyName("marketing_event")]
-        public UtmMarketingEvent? MarketingEvent { get; set; } = default!;
+        public UpdateMarketingEvent? MarketingEvent { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

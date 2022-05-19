@@ -49,7 +49,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <br/>          to process as refunds. Use the &lt;code&gt;calculate&lt;/code&gt; endpoint to obtain these transactions.</param>
         /// <returns>Creates a refund</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds.json")]
-        public abstract System.Threading.Tasks.Task CreateRefund([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.RefundItem request, long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? currency, [Microsoft.AspNetCore.Mvc.FromQuery] string? discrepancy_reason, [Microsoft.AspNetCore.Mvc.FromQuery] string? note, [Microsoft.AspNetCore.Mvc.FromQuery] string? notify, [Microsoft.AspNetCore.Mvc.FromQuery] string? refund_line_items, [Microsoft.AspNetCore.Mvc.FromQuery] string? restock, [Microsoft.AspNetCore.Mvc.FromQuery] string? shipping, [Microsoft.AspNetCore.Mvc.FromQuery] string? transactions);
+        public abstract System.Threading.Tasks.Task CreateRefund([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateRefundRequest request, long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? currency, [Microsoft.AspNetCore.Mvc.FromQuery] string? discrepancy_reason, [Microsoft.AspNetCore.Mvc.FromQuery] string? note, [Microsoft.AspNetCore.Mvc.FromQuery] string? notify, [Microsoft.AspNetCore.Mvc.FromQuery] string? refund_line_items, [Microsoft.AspNetCore.Mvc.FromQuery] string? restock, [Microsoft.AspNetCore.Mvc.FromQuery] string? shipping, [Microsoft.AspNetCore.Mvc.FromQuery] string? transactions);
 
         /// <summary>
         /// Retrieves a specific refund

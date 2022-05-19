@@ -31,7 +31,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<ApplicationChargeItem>> CreateApplicationChargeAsync(ApplicationChargeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ApplicationChargeItem>> CreateApplicationChargeAsync(CreateApplicationChargeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -92,7 +92,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ApplicationChargeItem>> CreateApplicationChargeAsync(ApplicationChargeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ApplicationChargeItem>> CreateApplicationChargeAsync(CreateApplicationChargeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/application_charges.json");
@@ -460,7 +460,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<ApplicationCreditItem>> CreateApplicationCreditAsync(ApplicationCreditItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ApplicationCreditItem>> CreateApplicationCreditAsync(CreateApplicationCreditRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -520,7 +520,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ApplicationCreditItem>> CreateApplicationCreditAsync(ApplicationCreditItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ApplicationCreditItem>> CreateApplicationCreditAsync(CreateApplicationCreditRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/application_credits.json");
@@ -882,7 +882,7 @@ namespace Ocelli.OpenShopify
         /// Creates a recurring application charge
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateRecurringApplicationChargeAsync(RecurringApplicationChargeItem body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateRecurringApplicationChargeAsync(CreateRecurringApplicationChargeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -914,7 +914,7 @@ namespace Ocelli.OpenShopify
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<RecurringApplicationChargeItem>> UpdateTheCappedAmountOfRecurringApplicationChargeAsync(long recurringApplicationChargeId, double? cappedAmount = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<RecurringApplicationChargeItem>> UpdateTheCappedAmountOfRecurringApplicationChargeAsync(long recurringApplicationChargeId, decimal? cappedAmount = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -955,11 +955,8 @@ namespace Ocelli.OpenShopify
         /// Creates a recurring application charge
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateRecurringApplicationChargeAsync(RecurringApplicationChargeItem body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateRecurringApplicationChargeAsync(CreateRecurringApplicationChargeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            if (body == null)
-                throw new System.ArgumentNullException("body");
-
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/recurring_application_charges.json");
 
@@ -1292,7 +1289,7 @@ namespace Ocelli.OpenShopify
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RecurringApplicationChargeItem>> UpdateTheCappedAmountOfRecurringApplicationChargeAsync(long recurringApplicationChargeId, double? cappedAmount = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RecurringApplicationChargeItem>> UpdateTheCappedAmountOfRecurringApplicationChargeAsync(long recurringApplicationChargeId, decimal? cappedAmount = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (recurringApplicationChargeId == null)
                 throw new System.ArgumentNullException("recurringApplicationChargeId");
@@ -1486,7 +1483,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<UsageChargeItem>> CreateUsageChargeAsync(long recurringApplicationChargeId, UsageChargeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<UsageChargeItem>> CreateUsageChargeAsync(long recurringApplicationChargeId, CreateUsageChargeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1546,7 +1543,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<UsageChargeItem>> CreateUsageChargeAsync(long recurringApplicationChargeId, UsageChargeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<UsageChargeItem>> CreateUsageChargeAsync(long recurringApplicationChargeId, CreateUsageChargeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (recurringApplicationChargeId == null)
                 throw new System.ArgumentNullException("recurringApplicationChargeId");
@@ -1915,9 +1912,6 @@ namespace Ocelli.OpenShopify
     public partial class ApplicationCharge
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
         [System.Text.Json.Serialization.JsonPropertyName("name")]
         [System.ComponentModel.DataAnnotations.StringLength(255)]
         public string? Name { get; set; } = default!;
@@ -1927,7 +1921,7 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("price")]
         [System.ComponentModel.DataAnnotations.Range(0.5D, 10000D)]
-        public double? Price { get; set; } = default!;
+        public decimal? Price { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("status")]
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter))]
@@ -1950,6 +1944,12 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("decorated_return_url")]
         public string? DecoratedReturnUrl { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2019,22 +2019,9 @@ namespace Ocelli.OpenShopify
 
     }
 
-    /// <summary>
-    /// An object representing Shopify's ApplicationCredit object, which can be used to offer credits for payments made via the Application Charge, Recurring Application Charge, and Usage Charge APIs.
-    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class ApplicationCredit
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The description of the application credit.
         /// </summary>
@@ -2047,7 +2034,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("amount")]
-        public double? Amount { get; set; } = default!;
+        public decimal? Amount { get; set; } = default!;
 
         /// <summary>
         /// States whether or not the application credit is a test transaction. Valid values are true or null.
@@ -2055,6 +2042,12 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("test")]
         public bool? Test { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2104,11 +2097,127 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class RecurringApplicationCharge
+    public partial class CreateApplicationCharge
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public string? Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("api_client_id")]
+        public int? ApiClientId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+        [System.ComponentModel.DataAnnotations.Range(0.5D, 10000D)]
+        public decimal? Price { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter))]
+        public ApplicationChargeStatus? Status { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("return_url")]
+        public string? ReturnUrl { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("test")]
+        public bool? Test { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("charge_type")]
+        public string? ChargeType { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("decorated_return_url")]
+        public string? DecoratedReturnUrl { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateApplicationChargeRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("application_charge")]
+        public CreateApplicationCharge? ApplicationCharge { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateApplicationCredit
+    {
+        /// <summary>
+        /// The description of the application credit.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
+        public string? Description { get; set; } = default!;
+
+        /// <summary>
+        /// The amount refunded by the application credit.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("amount")]
+        public decimal? Amount { get; set; } = default!;
+
+        /// <summary>
+        /// States whether or not the application credit is a test transaction. Valid values are true or null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("test")]
+        public bool? Test { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateApplicationCreditRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("application_credit")]
+        public CreateApplicationCredit? ApplicationCredit { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateRecurringApplicationCharge
+    {
 
         [System.Text.Json.Serialization.JsonPropertyName("name")]
         public string? Name { get; set; } = default!;
@@ -2117,7 +2226,7 @@ namespace Ocelli.OpenShopify
         public long? ApiClientId { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("price")]
-        public double? Price { get; set; } = default!;
+        public decimal? Price { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("status")]
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter))]
@@ -2152,6 +2261,155 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("decorated_return_url")]
         public string? DecoratedReturnUrl { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateRecurringApplicationChargeRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("recurring_application_charge")]
+        public CreateRecurringApplicationCharge? RecurringApplicationCharge { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateUsageCharge
+    {
+        /// <summary>
+        /// The date and time when the usage charge was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the usage charge.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
+        public string? Description { get; set; } = default!;
+
+        /// <summary>
+        /// The price of the usage charge.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+        public decimal? Price { get; set; } = default!;
+
+        /// <summary>
+        /// The recurring application charge the usage charge belongs to.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("recurring_application_charge_id")]
+        public long? RecurringApplicationChargeId { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the usage charge was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateUsageChargeRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("usage_charge")]
+        public CreateUsageCharge? UsageCharge { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class RecurringApplicationCharge
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("api_client_id")]
+        public long? ApiClientId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+        public decimal? Price { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter))]
+        public RecurringApplicationChargeStatus? Status { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("return_url")]
+        public string? ReturnUrl { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("billing_on")]
+        public System.DateTimeOffset? BillingOn { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("test")]
+        public bool? Test { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("activated_on")]
+        public System.DateTimeOffset? ActivatedOn { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("cancelled_on")]
+        public System.DateTimeOffset? CancelledOn { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("trial_days")]
+        public int? TrialDays { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("trial_ends_on")]
+        public System.DateTimeOffset? TrialEndsOn { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("decorated_return_url")]
+        public string? DecoratedReturnUrl { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2227,22 +2485,140 @@ namespace Ocelli.OpenShopify
 
     }
 
-    /// <summary>
-    /// Represents a variable monthly fee for an app or a service.
-    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class UsageCharge
+    public partial class UpdateRecurringApplicationCharge
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("api_client_id")]
+        public long? ApiClientId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+        public decimal? Price { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter))]
+        public RecurringApplicationChargeStatus? Status { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("return_url")]
+        public string? ReturnUrl { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("billing_on")]
+        public System.DateTimeOffset? BillingOn { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("test")]
+        public bool? Test { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("activated_on")]
+        public System.DateTimeOffset? ActivatedOn { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("cancelled_on")]
+        public System.DateTimeOffset? CancelledOn { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("trial_days")]
+        public int? TrialDays { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("trial_ends_on")]
+        public System.DateTimeOffset? TrialEndsOn { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("decorated_return_url")]
+        public string? DecoratedReturnUrl { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
+        public long Id { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
         public string? AdminGraphqlApiId { get; set; } = default!;
 
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateRecurringApplicationChargeRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("api_client_id")]
+        public long? ApiClientId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+        public decimal? Price { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter))]
+        public RecurringApplicationChargeStatus? Status { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("return_url")]
+        public string? ReturnUrl { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("billing_on")]
+        public System.DateTimeOffset? BillingOn { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("test")]
+        public bool? Test { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("activated_on")]
+        public System.DateTimeOffset? ActivatedOn { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("cancelled_on")]
+        public System.DateTimeOffset? CancelledOn { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("trial_days")]
+        public int? TrialDays { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("trial_ends_on")]
+        public System.DateTimeOffset? TrialEndsOn { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("decorated_return_url")]
+        public string? DecoratedReturnUrl { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("recurring_application_charge")]
+        public UpdateRecurringApplicationCharge? RecurringApplicationCharge { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UsageCharge
+    {
         /// <summary>
         /// The date and time when the usage charge was created.
         /// </summary>
@@ -2262,7 +2638,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("price")]
-        public double? Price { get; set; } = default!;
+        public decimal? Price { get; set; } = default!;
 
         /// <summary>
         /// The recurring application charge the usage charge belongs to.
@@ -2277,6 +2653,12 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
         public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

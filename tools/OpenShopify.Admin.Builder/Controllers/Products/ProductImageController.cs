@@ -39,7 +39,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Create a new Product Image</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images.json")]
-        public abstract System.Threading.Tasks.Task CreateNewProductImage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ProductImageItem request, long product_id);
+        public abstract System.Threading.Tasks.Task CreateNewProductImage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateProductImageRequest request, long product_id);
 
         /// <summary>
         /// Receive a count of all Product Images
@@ -62,7 +62,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Modify an existing Product Image</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images/{image_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingProductImage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ProductImageItem request, long image_id, long product_id);
+        public abstract System.Threading.Tasks.Task ModifyExistingProductImage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateProductImageRequest request, long image_id, long product_id);
 
         /// <summary>
         /// Remove an existing Product Image

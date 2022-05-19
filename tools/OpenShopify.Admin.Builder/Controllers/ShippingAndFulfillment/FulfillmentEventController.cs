@@ -37,7 +37,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a fulfillment event</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events.json")]
-        public abstract System.Threading.Tasks.Task CreateFulfillmentEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.FulfillmentEventItem request, long fulfillment_id, long order_id);
+        public abstract System.Threading.Tasks.Task CreateFulfillmentEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateFulfillmentEventRequest request, long fulfillment_id, long order_id);
 
         /// <summary>
         /// Retrieves a specific fulfillment event

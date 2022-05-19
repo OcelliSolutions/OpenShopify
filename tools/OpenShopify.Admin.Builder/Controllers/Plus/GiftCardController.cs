@@ -41,7 +41,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a gift card</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("gift_cards.json")]
-        public abstract System.Threading.Tasks.Task CreateGiftCard([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.GiftCardItem request);
+        public abstract System.Threading.Tasks.Task CreateGiftCard([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateGiftCardRequest request);
 
         /// <summary>
         /// Retrieves a single gift card
@@ -55,7 +55,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates an existing gift card</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingGiftCard([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.GiftCardItem request, long gift_card_id);
+        public abstract System.Threading.Tasks.Task UpdateExistingGiftCard([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateGiftCardRequest request, long gift_card_id);
 
         /// <summary>
         /// Retrieves a count of gift cards

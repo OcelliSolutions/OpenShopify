@@ -2,7 +2,7 @@
 
 namespace OpenShopify.Admin.Builder.Models;
 
-public class DeprecatedApiCall
+public class DeprecatedApiCallBase
 {
     /// <summary>
     /// The type of API that the call was made to. Valid values: REST, Webhook, GraphQL

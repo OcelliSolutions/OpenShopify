@@ -2,7 +2,7 @@
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class GiftCard : ShopifyObject
+    public class GiftCardBase
     {
         /// <summary>
         /// Returns the amount of money remaining on the gift card.

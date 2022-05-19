@@ -49,7 +49,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a page</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("pages.json")]
-        public abstract System.Threading.Tasks.Task CreatePage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.PageItem request);
+        public abstract System.Threading.Tasks.Task CreatePage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreatePageRequest request);
 
         /// <summary>
         /// Retrieves a page count
@@ -79,7 +79,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates a page</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("pages/{page_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdatePage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.PageItem request, long page_id);
+        public abstract System.Threading.Tasks.Task UpdatePage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdatePageRequest request, long page_id);
 
         /// <summary>
         /// Deletes a page

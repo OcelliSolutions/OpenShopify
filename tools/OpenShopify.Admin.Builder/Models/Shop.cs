@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class Shop: ShopifyObject
+    public class ShopBase
     {
         /// <summary>
         /// The shop's street address.

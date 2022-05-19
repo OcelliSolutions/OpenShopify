@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
@@ -23,7 +21,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpPost, Route("customers/{customer_id:long}/addresses.json")]
     [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status201Created)]
-    public override Task CreateNewAddressForCustomer(CustomerAddressItem request, long customer_id)
+    public override Task CreateNewAddressForCustomer(CreateCustomerAddressRequest request, long customer_id)
     {
         throw new NotImplementedException();
     }
@@ -39,7 +37,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpPut, Route("customers/{customer_id:long}/addresses/{address_id:long}.json")]
     [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status200OK)]
-    public override Task UpdateExistingCustomerAddress(CustomerAddressItem request, long address_id, long customer_id)
+    public override Task UpdateExistingCustomerAddress(UpdateCustomerAddressRequest request, long address_id, long customer_id)
     {
         throw new NotImplementedException();
     }

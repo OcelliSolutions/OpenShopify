@@ -6,7 +6,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// Represents a variable monthly fee for an app or a service.
     /// </summary>
-    public class UsageCharge : ShopifyObject
+    public class UsageChargeBase
     {
         /// <summary>
         /// The date and time when the usage charge was created. 

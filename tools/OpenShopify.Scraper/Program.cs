@@ -12,6 +12,13 @@ using NSwag.CodeGeneration.OperationNameGenerators;
 using PluralizeService.Core;
 
 const string adminUrl = @"https://shopify.dev/api/admin-rest";
+
+var version = args[0];
+version = string.IsNullOrWhiteSpace(version) ? "current" : version;
+
+#region Main Menu
+//Hidden in the documentation site is the json data for the navigation menu. Extract that and save so new sections can be quickly identified
+
 var web = new HtmlWeb();
 var doc = web.Load(adminUrl);
 Console.WriteLine("Getting Main Menu");
@@ -24,6 +31,7 @@ dynamic mainMenu = JsonConvert.DeserializeObject(menuJson.ReplaceLineEndings(str
 
 SaveJsonFile(@"../../../menu.json", mainMenu);
 
+#endregion Main Menu
 
 if (mainMenu.api.rest_sidenav is null)
 {
@@ -33,7 +41,17 @@ if (mainMenu.api.rest_sidenav is null)
 }
 else
 {
+    #region Gather & Clean Specs
+    //get psudo-OpenApi specs from the source of each sub page only for the current version
     var currentVersion = (string)mainMenu.api.current_stable_version;
+    var rcVersion = (string)mainMenu.api.selectable_versions[1];
+    var getVersion = version switch
+    {
+        "current" => currentVersion,
+        "preview" => rcVersion,
+        "rc" => rcVersion,
+        _ => version
+    }; 
     foreach (var mainMenuItem in mainMenu.api.rest_sidenav)
     {
         var section = (string)mainMenuItem.label;
@@ -45,7 +63,7 @@ else
                 subSection = TitleCase(subSection);
             subSection = subSection.Replace(" ", string.Empty);
             Console.WriteLine($@"{section}/{subSection}.json");
-            var url = $@"https://shopify.dev/api/admin-rest/{currentVersion}/resources/{child.key}";
+            var url = $@"https://shopify.dev/api/admin-rest/{getVersion}/resources/{child.key}";
             var childDoc = web.Load(url);
             var childScript = childDoc.DocumentNode.SelectSingleNode("/html[1]/body[1]/script[2]");
             var childJson = childScript.InnerText.Replace("//<![CDATA[", string.Empty)
@@ -58,25 +76,28 @@ else
                                   throw new InvalidOperationException("No CDATA returned.");
             var openApi = childObject.api.rest_resource;
             var path = $@"../../../{section}";
-            CreateIfMissing(path);
+            CreateFoldersIfMissing(path);
             SaveJsonFile($@"{path}/{subSection}.json", openApi);
 
             var clean = CleanOpenApi(openApi);
             SaveJsonFile($@"{path}/{subSection}.clean.json", clean);
-            await CreateController(JsonConvert.SerializeObject(clean), currentVersion, section, subSection);
+            await CreateController(JsonConvert.SerializeObject(clean), section, subSection);
         }
     }
+    #endregion Gather & Clean Specs 
 }
 
 Console.WriteLine("Core Structure Downloaded. Press any key to continue.");
 
+// Save json content formatted. This makes detecting changes easier.
 void SaveJsonFile(string file, object? content) =>
     File.WriteAllText(file, JsonConvert.SerializeObject(content, Formatting.Indented, new JsonSerializerSettings
     {
         NullValueHandling = NullValueHandling.Ignore
     }));
 
-void CreateIfMissing(string path)
+// Create any missing folders in a path.
+void CreateFoldersIfMissing(string path)
 {
     var folderExists = Directory.Exists(path);
     if (!folderExists)
@@ -85,6 +106,7 @@ void CreateIfMissing(string path)
     }
 }
 
+// given a psudo-OpenApi spec from Shopify, make it valid version that can be used later
 dynamic CleanOpenApi(dynamic openApi)
 {
     dynamic clean = new ExpandoObject();
@@ -172,6 +194,7 @@ dynamic CleanOpenApi(dynamic openApi)
     return clean;
 }
 
+//There is a ton of HTML in the spec. Get rid of it.
 string? RemoveHtmlFromString(string? html)
 {
     if (html == null) return null;
@@ -182,12 +205,14 @@ string? RemoveHtmlFromString(string? html)
     return html.Trim();
 }
 
+//Remove key words from a string that can be used to create a proper OperationId/Parameter name.
 string CreateOperationId(string summary)
 {
     summary = RemoveHtmlFromString(summary)!.Replace("-", " ").Replace("_", " ");
     summary = TitleCase(summary).Replace(" A ", " ")
         .Replace(" An ", " ")
         .Replace(" The ", " ")
+        .Replace(" URL ", " Url ")
         .Trim()
         ;
     var split = summary.Split(' ');
@@ -198,6 +223,7 @@ string CreateOperationId(string summary)
     return summary;
 }
 
+// convert a string to title case.
 static IEnumerable<char> CharsToTitleCase(string s)
 {
     var newWord = true;
@@ -212,12 +238,13 @@ static IEnumerable<char> CharsToTitleCase(string s)
 //static string TitleCase(string input) => Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(input);
 static string TitleCase(string input) => new (CharsToTitleCase(input).ToArray());
 
-async Task CreateController(string openApi, string version, string section, string controllerName)
+async Task CreateController(string openApi, string section, string controllerName)
 {
     try
     {
+        //convert the clean json to an OpenApiDocument.
         var document = OpenApiDocument.FromJsonAsync(openApi).Result;
-        //controllerName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(controllerName);
+
         var controllerNamespace = controllerName == "AccessScope"
             ? "OpenShopify.OAuth.Builder.Controllers"
             : "OpenShopify.Admin.Builder.Controllers";
@@ -233,7 +260,7 @@ async Task CreateController(string openApi, string version, string section, stri
             ControllerTarget = CSharpControllerTarget.AspNetCore,
             //ControllerStyle = CSharpControllerStyle.Partial,
             ControllerStyle = CSharpControllerStyle.Abstract,
-            ExcludedParameterNames = new[] { "api_version" },
+            ExcludedParameterNames = new[] { "api_version" }, // `api_version` is going to be hard-coded in the spec to make things easier.
             CodeGeneratorSettings =
             {
                 GenerateDefaultValues  = false,
@@ -254,6 +281,8 @@ async Task CreateController(string openApi, string version, string section, stri
 
         var generator = new CSharpControllerGenerator(document, settings);
         var code = generator.GenerateFile();
+
+        //default values can still get generated, remove them.
         code = code.Replace(" = \"any\"", string.Empty);
         code = code.Replace(" = \"50\"", string.Empty);
         code = code.Replace(" = 50", string.Empty);
@@ -271,6 +300,7 @@ async Task CreateController(string openApi, string version, string section, stri
         code = code.Replace(" ?? \"true\"", " ?? true");
         code = code.Replace(" ?? \"50\"", " ?? 50");
 
+        //all these parameters should be DateTime instead of object and string.
         var dateTimeParameters = new List<string>()
         {
             "created_at_max", "created_at_min", "date", "date_max", "date_min", "ends_at_max", "ends_at_min", "processed_at_max", "processed_at_min", "published_at_max", "published_at_min", 
@@ -279,7 +309,7 @@ async Task CreateController(string openApi, string version, string section, stri
         code = ReplaceParameterTypes(code, dateTimeParameters,"object", "DateTime");
         code = ReplaceParameterTypes(code, dateTimeParameters, "string", "DateTime");
 
-
+        //all these parameters should be long (id) instead of string.
         code = ReplaceParameterTypes(code,
             new List<string>()
             {
@@ -306,6 +336,7 @@ async Task CreateController(string openApi, string version, string section, stri
             },
             "string", "bool");
 
+        //The `page_info` parameter is not documented and is required for pagination. If a method has a `limit` parameter, it should have `page_info` as well.
         code = code.Replace("int? limit", "int? limit, string? page_info");
         code = code.Replace("int limit", "int? limit, string? page_info");
         code = code.Replace("limit ?? 50", "limit ?? 50, page_info");
@@ -313,9 +344,10 @@ async Task CreateController(string openApi, string version, string section, stri
         code = code.Replace("page_info, page_info", "page_info");
         code = code.Replace("string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? page_info", "string? page_info");
         
-        code = Regex.Replace(code, @"(Task Create\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.{controllerName}Item request, ");
-        code = Regex.Replace(code, @"(Task Update\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.{controllerName}Item request, ");
-        code = Regex.Replace(code, @"(Task Modify\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.{controllerName}Item request, ");
+        //Declare a new input parameter for POST and PUT methods.
+        code = Regex.Replace(code, @"(Task Create\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.Create{controllerName}Request request, ");
+        code = Regex.Replace(code, @"(Task Update\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.Update{controllerName}Request request, ");
+        code = Regex.Replace(code, @"(Task Modify\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.Update{controllerName}Request request, ");
         code = code.Replace(", )", ")");
 
         var path = $@"../../../../OpenShopify.Admin.Builder/Controllers";
@@ -324,7 +356,7 @@ async Task CreateController(string openApi, string version, string section, stri
             path = $@"../../../../OpenShopify.OAuth.Builder/Controllers";
         if (!string.IsNullOrWhiteSpace(section))
             path = Path.Combine(path, section);
-        CreateIfMissing(path);
+        CreateFoldersIfMissing(path);
         path = Path.Combine(path, $@"{controllerName}Controller.cs");
         await File.WriteAllTextAsync(path, code);
         //await CreateExtendedControllerIfMissing(section, controllerName);
@@ -366,7 +398,7 @@ public class {controllerName}Controller : I{controllerName}Controller {{}}";
         path = $@"../../../../OpenShopify.OAuth.Builder/Controllers";
     if (!string.IsNullOrWhiteSpace(section))
         path = Path.Combine(path, section);
-    CreateIfMissing(path);
+    CreateFoldersIfMissing(path);
     path = Path.Combine(path, $@"{controllerName}Controller.Extended.cs");
     if(!File.Exists(path))
         await File.WriteAllTextAsync(path, template);

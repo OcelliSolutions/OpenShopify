@@ -45,7 +45,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="shopify_ql">The ShopifyQL the report will query.</param>
         /// <returns>Creates a new report</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("reports.json")]
-        public abstract System.Threading.Tasks.Task CreateNewReport([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ReportItem request, [Microsoft.AspNetCore.Mvc.FromQuery] string? name, [Microsoft.AspNetCore.Mvc.FromQuery] string? shopify_ql);
+        public abstract System.Threading.Tasks.Task CreateNewReport([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateReportRequest request, [Microsoft.AspNetCore.Mvc.FromQuery] string? name, [Microsoft.AspNetCore.Mvc.FromQuery] string? shopify_ql);
 
         /// <summary>
         /// Retrieves a single report
@@ -60,7 +60,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates a report</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("reports/{report_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateReport([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ReportItem request, long report_id);
+        public abstract System.Threading.Tasks.Task UpdateReport([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateReportRequest request, long report_id);
 
         /// <summary>
         /// Deletes a report

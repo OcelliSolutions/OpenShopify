@@ -109,10 +109,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ReportItem'
+              $ref: '#/components/schemas/CreateReportRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/ReportItem'
+              $ref: '#/components/schemas/CreateReportRequest'
       responses:
         '201':
           description: Created
@@ -209,10 +209,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ReportItem'
+              $ref: '#/components/schemas/UpdateReportRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/ReportItem'
+              $ref: '#/components/schemas/UpdateReportRequest'
       responses:
         '200':
           description: Success
@@ -285,24 +285,9 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
+    CreateReport:
       type: object
       properties:
-        errors:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Report:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         category:
           type: string
           nullable: true
@@ -317,6 +302,44 @@ components:
           type: string
           format: date-time
       additionalProperties: { }
+    CreateReportRequest:
+      type: object
+      properties:
+        report:
+          $ref: '#/components/schemas/CreateReport'
+      additionalProperties: { }
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Report:
+      required:
+        - id
+      type: object
+      properties:
+        category:
+          type: string
+          nullable: true
+        name:
+          maxLength: 255
+          type: string
+          nullable: true
+        shopify_ql:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
     ReportItem:
       type: object
       properties:
@@ -330,7 +353,58 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Report'
+      additionalProperties: { }
+    UpdateReport:
+      required:
+        - id
+      type: object
+      properties:
+        category:
+          type: string
           nullable: true
+        name:
+          maxLength: 255
+          type: string
+          nullable: true
+        shopify_ql:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    UpdateReportRequest:
+      required:
+        - id
+      type: object
+      properties:
+        category:
+          type: string
+          nullable: true
+        name:
+          maxLength: 255
+          type: string
+          nullable: true
+        shopify_ql:
+          type: string
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        report:
+          $ref: '#/components/schemas/UpdateReport'
       additionalProperties: { }
   securitySchemes:
     ApiKey:

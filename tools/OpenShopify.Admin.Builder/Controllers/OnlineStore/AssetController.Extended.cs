@@ -19,7 +19,7 @@ public class AssetController : AssetControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("themes/{theme_id:long}/assets.json")]
-    public override Task CreateOrUpdatesAssetForTheme(AssetItem request, long theme_id, string? source_key, string? src)
+    public override Task CreateOrUpdatesAssetForTheme(CreateAssetRequest request, long theme_id, string? source_key, string? src)
     {
         throw new NotImplementedException();
     }

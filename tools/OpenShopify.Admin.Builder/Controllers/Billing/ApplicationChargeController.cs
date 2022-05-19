@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates an application charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("application_charges.json")]
-        public abstract System.Threading.Tasks.Task CreateApplicationCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ApplicationChargeItem request);
+        public abstract System.Threading.Tasks.Task CreateApplicationCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateApplicationChargeRequest request);
 
         /// <summary>
         /// Retrieves a list of application charges

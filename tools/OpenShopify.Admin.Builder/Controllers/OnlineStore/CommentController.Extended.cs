@@ -21,14 +21,14 @@ public class CommentController : CommentControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("comments.json")]
-    public override Task CreateCommentForArticle(CommentItem request)
+    public override Task CreateCommentForArticle(CreateCommentRequest request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("comments/count.json")]
-    [ProducesResponseType(typeof(CommentCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveCountOfComments(DateTime? created_at_max, DateTime? created_at_min, DateTime? published_at_max,
         DateTime? published_at_min, string published_status, string? status, DateTime? updated_at_max, DateTime? updated_at_min)
     {
@@ -44,7 +44,7 @@ public class CommentController : CommentControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("comments/{comment_id:long}.json")]
-    public override Task UpdateCommentOfArticle(CommentItem request, long comment_id)
+    public override Task UpdateCommentOfArticle(UpdateCommentRequest request, long comment_id)
     {
         throw new NotImplementedException();
     }

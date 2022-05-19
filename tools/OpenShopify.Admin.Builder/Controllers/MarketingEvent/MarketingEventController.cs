@@ -39,7 +39,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a marketing event</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("marketing_events.json")]
-        public abstract System.Threading.Tasks.Task CreateMarketingEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.MarketingEventItem request);
+        public abstract System.Threading.Tasks.Task CreateMarketingEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateMarketingEventRequest request);
 
         /// <summary>
         /// Retrieves a count of all marketing events
@@ -60,7 +60,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates a marketing event</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("marketing_events/{marketing_event_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateMarketingEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.MarketingEventItem request, long marketing_event_id);
+        public abstract System.Threading.Tasks.Task UpdateMarketingEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMarketingEventRequest request, long marketing_event_id);
 
         /// <summary>
         /// Deletes a marketing event
@@ -83,7 +83,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="views_count">The total number of views for the day. A view occurs when a customer reads the marketing event that was served to them, for example, if the customer opens the email or spends time looking at a Facebook post.</param>
         /// <returns>Creates marketing engagements on a marketing event</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("marketing_events/{marketing_event_id}/engagements.json")]
-        public abstract System.Threading.Tasks.Task CreateMarketingEngagementsOnMarketingEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.MarketingEventItem request, long marketing_event_id, [Microsoft.AspNetCore.Mvc.FromQuery] string occurred_on, [Microsoft.AspNetCore.Mvc.FromQuery] string? ad_spend, [Microsoft.AspNetCore.Mvc.FromQuery] string? clicks_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? comments_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? favorites_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? impressions_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? is_cumulative, [Microsoft.AspNetCore.Mvc.FromQuery] string? shares_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? views_count);
+        public abstract System.Threading.Tasks.Task CreateMarketingEngagementsOnMarketingEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateMarketingEventRequest request, long marketing_event_id, [Microsoft.AspNetCore.Mvc.FromQuery] string occurred_on, [Microsoft.AspNetCore.Mvc.FromQuery] string? ad_spend, [Microsoft.AspNetCore.Mvc.FromQuery] string? clicks_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? comments_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? favorites_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? impressions_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? is_cumulative, [Microsoft.AspNetCore.Mvc.FromQuery] string? shares_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? views_count);
 
     }
 

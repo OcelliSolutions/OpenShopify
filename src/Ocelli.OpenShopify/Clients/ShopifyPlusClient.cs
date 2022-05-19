@@ -41,7 +41,7 @@ namespace Ocelli.OpenShopify
         /// Creates a gift card
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateGiftCardAsync(GiftCardItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateGiftCardAsync(CreateGiftCardRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -55,7 +55,7 @@ namespace Ocelli.OpenShopify
         /// Updates an existing gift card
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> UpdateExistingGiftCardAsync(long giftCardId, GiftCardItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdateExistingGiftCardAsync(long giftCardId, UpdateGiftCardRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -64,7 +64,7 @@ namespace Ocelli.OpenShopify
         /// <param name="status">Count gift cards with a given status. Valid values:</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<GiftCardCount>> RetrieveCountOfGiftCardsAsync(string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfGiftCardsAsync(string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -222,7 +222,7 @@ namespace Ocelli.OpenShopify
         /// Creates a gift card
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateGiftCardAsync(GiftCardItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateGiftCardAsync(CreateGiftCardRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/gift_cards.json");
@@ -377,7 +377,7 @@ namespace Ocelli.OpenShopify
         /// Updates an existing gift card
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateExistingGiftCardAsync(long giftCardId, GiftCardItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateExistingGiftCardAsync(long giftCardId, UpdateGiftCardRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (giftCardId == null)
                 throw new System.ArgumentNullException("giftCardId");
@@ -460,7 +460,7 @@ namespace Ocelli.OpenShopify
         /// <param name="status">Count gift cards with a given status. Valid values:</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<GiftCardCount>> RetrieveCountOfGiftCardsAsync(string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfGiftCardsAsync(string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/gift_cards/count.json?");
@@ -502,12 +502,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<GiftCardCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<GiftCardCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -1216,24 +1216,14 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class GiftCard
+    public partial class CreateGiftCard
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// Returns the amount of money remaining on the gift card.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("balance")]
-        public double? Balance { get; set; } = default!;
+        public decimal? Balance { get; set; } = default!;
 
         /// <summary>
         /// The date and time when the gift card was created.
@@ -1261,7 +1251,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("initial_value")]
-        public double? InitialValue { get; set; } = default!;
+        public decimal? InitialValue { get; set; } = default!;
 
         /// <summary>
         /// The date and time when the gift card was disabled.
@@ -1352,11 +1342,11 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class GiftCardCount
+    public partial class CreateGiftCardRequest
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("gift_card")]
+        public CreateGiftCard? GiftCard { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -1370,11 +1360,260 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class GiftCardItem
+    public partial class UpdateGiftCard
     {
+        /// <summary>
+        /// Returns the amount of money remaining on the gift card.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("balance")]
+        public decimal? Balance { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the gift card was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the gift card was updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The three letter code (ISO 4217) for the currency used for the gift card.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+        public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// Returns the initial amount of money on the gift card.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("initial_value")]
+        public decimal? InitialValue { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the gift card was disabled.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("disabled_at")]
+        public System.DateTimeOffset? DisabledAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the gift card will expire.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("expires_on")]
+        public System.DateTimeOffset? ExpiresOn { get; set; } = default!;
+
+        /// <summary>
+        /// A unique numeric identifier of the line_item that caused the creation of this gift card (if it was created by an order).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("line_item_id")]
+        public long? LineItemId { get; set; } = default!;
+
+        /// <summary>
+        /// A unique numeric identifier of the application that issued the gift card (if it was issued by an application).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("api_client_id")]
+        public long? ApiClientId { get; set; } = default!;
+
+        /// <summary>
+        /// A unique numeric identifier of the user that issued the gift card (if it was issued by a user).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("user_id")]
+        public long? UserId { get; set; } = default!;
+
+        /// <summary>
+        /// The id of a customer who is associated with this gift card.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_id")]
+        public long? CustomerId { get; set; } = default!;
+
+        /// <summary>
+        /// The text of an optional note that a shop owner can attach to the gift card. Not visible to merchants.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note")]
+        public string? Note { get; set; } = default!;
+
+        /// <summary>
+        /// When specified, the gift card will be rendered using gift_card.SUFFIX.liquid instead of gift_card.liquid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
+        public string? TemplateSuffix { get; set; } = default!;
+
+        /// <summary>
+        /// The last four characters of the gift card code. Because gift cards are alternate payment methods, the full code cannot be retrieved.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_characters")]
+        public string? LastCharacters { get; set; } = default!;
+
+        /// <summary>
+        /// A unique numeric identifier of the order that caused the creation of this gift card (if it was created by an order).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
+        public long? OrderId { get; set; } = default!;
+
+        /// <summary>
+        /// Thethe gift card code. Only for Creation
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
+        public string? Code { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateGiftCardRequest
+    {
+        /// <summary>
+        /// Returns the amount of money remaining on the gift card.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("balance")]
+        public decimal? Balance { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the gift card was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the gift card was updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The three letter code (ISO 4217) for the currency used for the gift card.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+        public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// Returns the initial amount of money on the gift card.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("initial_value")]
+        public decimal? InitialValue { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the gift card was disabled.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("disabled_at")]
+        public System.DateTimeOffset? DisabledAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the gift card will expire.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("expires_on")]
+        public System.DateTimeOffset? ExpiresOn { get; set; } = default!;
+
+        /// <summary>
+        /// A unique numeric identifier of the line_item that caused the creation of this gift card (if it was created by an order).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("line_item_id")]
+        public long? LineItemId { get; set; } = default!;
+
+        /// <summary>
+        /// A unique numeric identifier of the application that issued the gift card (if it was issued by an application).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("api_client_id")]
+        public long? ApiClientId { get; set; } = default!;
+
+        /// <summary>
+        /// A unique numeric identifier of the user that issued the gift card (if it was issued by a user).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("user_id")]
+        public long? UserId { get; set; } = default!;
+
+        /// <summary>
+        /// The id of a customer who is associated with this gift card.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_id")]
+        public long? CustomerId { get; set; } = default!;
+
+        /// <summary>
+        /// The text of an optional note that a shop owner can attach to the gift card. Not visible to merchants.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note")]
+        public string? Note { get; set; } = default!;
+
+        /// <summary>
+        /// When specified, the gift card will be rendered using gift_card.SUFFIX.liquid instead of gift_card.liquid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
+        public string? TemplateSuffix { get; set; } = default!;
+
+        /// <summary>
+        /// The last four characters of the gift card code. Because gift cards are alternate payment methods, the full code cannot be retrieved.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_characters")]
+        public string? LastCharacters { get; set; } = default!;
+
+        /// <summary>
+        /// A unique numeric identifier of the order that caused the creation of this gift card (if it was created by an order).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
+        public long? OrderId { get; set; } = default!;
+
+        /// <summary>
+        /// Thethe gift card code. Only for Creation
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
+        public string? Code { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("gift_card")]
-        public GiftCard? GiftCard { get; set; } = default!;
+        public UpdateGiftCard? GiftCard { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify fulfillment event.
     /// </summary>
-    public class FulfillmentEvent : ShopifyObject
+    public class FulfillmentEventBase
     {
         /// <summary>
         /// The date and time when the fulfillment event was created.

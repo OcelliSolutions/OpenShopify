@@ -55,7 +55,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Create a new product</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products.json")]
-        public abstract System.Threading.Tasks.Task CreateNewProduct([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ProductItem request);
+        public abstract System.Threading.Tasks.Task CreateNewProduct([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateProductRequest request);
 
         /// <summary>
         /// Retrieve a count of products
@@ -87,7 +87,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates a product</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("products/{product_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateProduct([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ProductItem request, long product_id);
+        public abstract System.Threading.Tasks.Task UpdateProduct([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateProductRequest request, long product_id);
 
         /// <summary>
         /// Delete a product

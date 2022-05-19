@@ -13,11 +13,11 @@ public class ApplicationCreditController : ApplicationCreditControllerBase
     /// <inheritdoc />
     [HttpPost, Route("application_credits.json")]
     [ProducesResponseType(typeof(ApplicationCreditItem), StatusCodes.Status201Created)]
-    public override Task CreateApplicationCredit(ApplicationCreditItem request)
+    public override Task CreateApplicationCredit(CreateApplicationCreditRequest request)
     {
         throw new NotImplementedException();
     }
-    
+
     /// <inheritdoc />
     [HttpGet, Route("application_credits.json")]
     [ProducesResponseType(typeof(ApplicationCreditList), StatusCodes.Status200OK)]

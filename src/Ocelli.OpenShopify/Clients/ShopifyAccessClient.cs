@@ -31,7 +31,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<StorefrontAccessTokenItem>> CreateNewStorefrontAccessTokenAsync(StorefrontAccessTokenItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<StorefrontAccessTokenItem>> CreateNewStorefrontAccessTokenAsync(CreateStorefrontAccessTokenRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -89,7 +89,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<StorefrontAccessTokenItem>> CreateNewStorefrontAccessTokenAsync(StorefrontAccessTokenItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<StorefrontAccessTokenItem>> CreateNewStorefrontAccessTokenAsync(CreateStorefrontAccessTokenRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/storefront_access_tokens.json");
@@ -425,18 +425,8 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class StorefrontAccessToken
+    public partial class CreateStorefrontAccessToken
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The issued public access token.
         /// </summary>
@@ -465,6 +455,73 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("title")]
         public string? Title { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateStorefrontAccessTokenRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("storefront_access_token")]
+        public CreateStorefrontAccessToken? StorefrontAccessToken { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class StorefrontAccessToken
+    {
+        /// <summary>
+        /// The issued public access token.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("access_token")]
+        public string? AccessToken { get; set; } = default!;
+
+        /// <summary>
+        /// An application-dependant, comma separated list of permissions associated with the token.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("access_scope")]
+        public string? AccessScope { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the public access token was created. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// An arbitrary title for each token determined by the developer/application, used for reference purposes.
+        /// <br/>No constraint on uniqueness.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

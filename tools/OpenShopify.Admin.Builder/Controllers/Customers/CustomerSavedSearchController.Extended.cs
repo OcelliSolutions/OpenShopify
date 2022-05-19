@@ -22,15 +22,14 @@ public class CustomerSavedSearchController : CustomerSavedSearchControllerBase
     /// <inheritdoc />
     [HttpPost, Route("customer_saved_searches.json")]
     [ProducesResponseType(typeof(CustomerSavedSearchItem), StatusCodes.Status201Created)]
-    public override Task CreateCustomerSavedSearch(CustomerSavedSearchItem request)
+    public override Task CreateCustomerSavedSearch(CreateCustomerSavedSearchRequest request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("customer_saved_searches/count.json")]
-    [ProducesResponseType(typeof(CustomerSavedSearchCount), StatusCodes.Status200OK)]
-
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveCountOfAllCustomerSavedSearches(int? since_id)
     {
         throw new NotImplementedException();
@@ -47,7 +46,7 @@ public class CustomerSavedSearchController : CustomerSavedSearchControllerBase
     /// <inheritdoc />
     [HttpPut, Route("customer_saved_searches/{customer_saved_search_id:long}.json")]
     [ProducesResponseType(typeof(CustomerSavedSearchItem), StatusCodes.Status200OK)]
-    public override Task UpdateCustomerSavedSearch(CustomerSavedSearchItem request, long customer_saved_search_id)
+    public override Task UpdateCustomerSavedSearch(UpdateCustomerSavedSearchRequest request, long customer_saved_search_id)
     {
         throw new NotImplementedException();
     }

@@ -4,10 +4,8 @@ using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Models;
 
-public class ApplicationCharge
+public class ApplicationChargeBase
 {
-    [JsonPropertyName("id")]
-    public long Id { get; set; }
     [JsonPropertyName("name"), MaxLength(255)]
     public string? Name { get; set; }
     [JsonPropertyName("api_client_id")]

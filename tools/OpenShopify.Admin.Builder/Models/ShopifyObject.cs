@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
@@ -14,8 +15,8 @@ namespace OpenShopify.Admin.Builder.Models
         /// Shopify will return a 404 Not Found. This is most obvious when creating a customer with a <see cref="Address"/> 
         /// and the <see cref="Address"/> Id set to 0.
         /// </remarks>
-        [JsonPropertyName("id")]
-        public long? Id { get; set; }
+        [JsonPropertyName("id"), Required]
+        public virtual long Id { get; set; }
 
         [JsonPropertyName("admin_graphql_api_id")]
         public string? AdminGraphQLAPIId { get; set; }

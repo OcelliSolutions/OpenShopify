@@ -19,14 +19,14 @@ public class BlogController : BlogControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("blogs.json")]
-    public override Task CreateNewBlog(BlogItem request, string title)
+    public override Task CreateNewBlog(CreateBlogRequest request, string title)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("blogs/count.json")]
-    [ProducesResponseType(typeof(BlogCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task ReceiveCountOfAllBlogs()
     {
         throw new NotImplementedException();
@@ -41,7 +41,7 @@ public class BlogController : BlogControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("blogs/{blog_id:long}.json")]
-    public override Task ModifyExistingBlog(BlogItem request, long blog_id)
+    public override Task ModifyExistingBlog(UpdateBlogRequest request, long blog_id)
     {
         throw new NotImplementedException();
     }

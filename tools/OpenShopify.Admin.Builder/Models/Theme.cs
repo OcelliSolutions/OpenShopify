@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An entity representing a Shopify theme.
     /// </summary>
-    public class Theme : ShopifyObject
+    public class ThemeBase
     {
         /// <summary>
         /// The date and time when the theme was created.

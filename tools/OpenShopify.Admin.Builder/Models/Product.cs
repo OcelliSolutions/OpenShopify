@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An entity representing a Shopify product.
     /// </summary>
-    public class Product : ShopifyObject
+    public class ProductBase
     {
         /// <summary>
         /// The name of the product. In a shop's catalog, clicking on a product's title takes you to that product's page.

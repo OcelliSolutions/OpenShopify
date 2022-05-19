@@ -22,7 +22,7 @@ public class OrderController : OrderControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("orders.json")]
-    public override Task CreateOrder(OrderItem request)
+    public override Task CreateOrder(CreateOrderRequest request)
     {
         throw new NotImplementedException();
     }
@@ -36,7 +36,7 @@ public class OrderController : OrderControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("orders/{order_id:long}.json")]
-    public override Task UpdateOrder(OrderItem request, long order_id)
+    public override Task UpdateOrder(UpdateOrderRequest request, long order_id)
     {
         throw new NotImplementedException();
     }
@@ -50,7 +50,7 @@ public class OrderController : OrderControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("orders/count.json")]
-    [ProducesResponseType(typeof(OrderCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveOrderCount(DateTime? created_at_max, DateTime? created_at_min, string financial_status,
         string fulfillment_status, string status, DateTime? updated_at_max, DateTime? updated_at_min)
     {

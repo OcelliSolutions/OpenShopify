@@ -51,7 +51,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Create an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders.json")]
-        public abstract System.Threading.Tasks.Task CreateOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.OrderItem request);
+        public abstract System.Threading.Tasks.Task CreateOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateOrderRequest request);
 
         /// <summary>
         /// Retrieve a specific order
@@ -66,7 +66,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Update an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.OrderItem request, long order_id);
+        public abstract System.Threading.Tasks.Task UpdateOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateOrderRequest request, long order_id);
 
         /// <summary>
         /// Delete an order

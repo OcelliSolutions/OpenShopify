@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class CustomerInvite : ShopifyObject
+    public class CustomerInviteBase
     {
         /// <summary>
         /// The email address of the customer to be invited

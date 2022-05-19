@@ -45,7 +45,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers.json")]
-        public abstract System.Threading.Tasks.Task CreateCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CustomerItem request);
+        public abstract System.Threading.Tasks.Task CreateCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCustomerRequest request);
 
         /// <summary>
         /// Searches for customers that match a supplied query
@@ -81,14 +81,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CustomerItem request, long customer_id);
+        public abstract System.Threading.Tasks.Task UpdateCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCustomerRequest request, long customer_id);
 
         /// <summary>
         /// Creates an account activation URL for a customer
         /// </summary>
         /// <returns>Creates an account activation URL for a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/account_activation_url.json")]
-        public abstract System.Threading.Tasks.Task CreateAccountActivationURLForCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CustomerItem request, long customer_id);
+        public abstract System.Threading.Tasks.Task CreateAccountActivationUrlForCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCustomerRequest request, long customer_id);
 
         /// <summary>
         /// Sends an account invite to a customer

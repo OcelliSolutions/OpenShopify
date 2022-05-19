@@ -20,14 +20,14 @@ public class ScriptTagController : ScriptTagControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("script_tags.json")]
-    public override Task CreateNewScriptTag(ScriptTagItem request)
+    public override Task CreateNewScriptTag(CreateScriptTagRequest request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("script_tags/count.json")]
-    [ProducesResponseType(typeof(ScriptTagCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveCountOfAllScriptTags(string? src)
     {
         throw new NotImplementedException();
@@ -42,7 +42,7 @@ public class ScriptTagController : ScriptTagControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("script_tags/{script_tag_id:long}.json")]
-    public override Task UpdateScriptTag(ScriptTagItem request, long script_tag_id)
+    public override Task UpdateScriptTag(UpdateScriptTagRequest request, long script_tag_id)
     {
         throw new NotImplementedException();
     }

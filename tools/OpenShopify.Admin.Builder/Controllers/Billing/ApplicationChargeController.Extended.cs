@@ -13,7 +13,7 @@ public class ApplicationChargeController : ApplicationChargeControllerBase
     /// <inheritdoc />
     [HttpPost, Route("application_charges.json")]
     [ProducesResponseType(typeof(ApplicationChargeItem), StatusCodes.Status201Created)]
-    public override Task CreateApplicationCharge(ApplicationChargeItem request)
+    public override Task CreateApplicationCharge(CreateApplicationChargeRequest request)
     {
         throw new NotImplementedException();
     }

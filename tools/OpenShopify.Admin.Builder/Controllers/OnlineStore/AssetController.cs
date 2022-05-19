@@ -40,7 +40,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="src">The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.</param>
         /// <returns>Creates or updates an asset for a theme</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}/assets.json")]
-        public abstract System.Threading.Tasks.Task CreateOrUpdatesAssetForTheme([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.AssetItem request, long theme_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? source_key, [Microsoft.AspNetCore.Mvc.FromQuery] string? src);
+        public abstract System.Threading.Tasks.Task CreateOrUpdatesAssetForTheme([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateAssetRequest request, long theme_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? source_key, [Microsoft.AspNetCore.Mvc.FromQuery] string? src);
 
         /// <summary>
         /// Deletes an asset from a theme

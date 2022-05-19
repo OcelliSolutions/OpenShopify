@@ -31,7 +31,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> CreateDiscountCodeAsync(long priceRuleId, DiscountCodeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> CreateDiscountCodeAsync(long priceRuleId, CreateDiscountCodeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -47,7 +47,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> UpdateExistingDiscountCodeAsync(long discountCodeId, long priceRuleId, DiscountCodeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> UpdateExistingDiscountCodeAsync(long discountCodeId, long priceRuleId, UpdateDiscountCodeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -82,7 +82,7 @@ namespace Ocelli.OpenShopify
         /// <param name="timesUsedMin">Show discount codes used less than or equal to this value.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCount>> RetrieveCountOfDiscountCodesForShopAsync(string? timesUsed = null, string? timesUsedMax = null, string? timesUsedMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfDiscountCodesForShopAsync(string? timesUsed = null, string? timesUsedMax = null, string? timesUsedMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -90,7 +90,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> CreateDiscountCodeCreationJobAsync(long priceRuleId, DiscountCodeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> CreateDiscountCodeCreationJobAsync(long priceRuleId, CreateDiscountCodeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -148,7 +148,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> CreateDiscountCodeAsync(long priceRuleId, DiscountCodeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> CreateDiscountCodeAsync(long priceRuleId, CreateDiscountCodeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (priceRuleId == null)
                 throw new System.ArgumentNullException("priceRuleId");
@@ -319,7 +319,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> UpdateExistingDiscountCodeAsync(long discountCodeId, long priceRuleId, DiscountCodeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> UpdateExistingDiscountCodeAsync(long discountCodeId, long priceRuleId, UpdateDiscountCodeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (discountCodeId == null)
                 throw new System.ArgumentNullException("discountCodeId");
@@ -669,7 +669,7 @@ namespace Ocelli.OpenShopify
         /// <param name="timesUsedMin">Show discount codes used less than or equal to this value.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCount>> RetrieveCountOfDiscountCodesForShopAsync(string? timesUsed = null, string? timesUsedMax = null, string? timesUsedMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfDiscountCodesForShopAsync(string? timesUsed = null, string? timesUsedMax = null, string? timesUsedMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/discount_codes/count.json?");
@@ -719,12 +719,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<DiscountCodeCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<DiscountCodeCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -762,7 +762,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> CreateDiscountCodeCreationJobAsync(long priceRuleId, DiscountCodeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> CreateDiscountCodeCreationJobAsync(long priceRuleId, CreateDiscountCodeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (priceRuleId == null)
                 throw new System.ArgumentNullException("priceRuleId");
@@ -1129,7 +1129,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> CreatePriceRuleAsync(PriceRuleItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> CreatePriceRuleAsync(CreatePriceRuleRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1156,7 +1156,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> UpdateExistingPriceRuleAsync(long priceRuleId, PriceRuleItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> UpdateExistingPriceRuleAsync(long priceRuleId, UpdatePriceRuleRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1180,7 +1180,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<PriceRuleCount>> RetrieveCountOfAllPriceRulesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfAllPriceRulesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -1222,7 +1222,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> CreatePriceRuleAsync(PriceRuleItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> CreatePriceRuleAsync(CreatePriceRuleRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/price_rules.json");
@@ -1445,7 +1445,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> UpdateExistingPriceRuleAsync(long priceRuleId, PriceRuleItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> UpdateExistingPriceRuleAsync(long priceRuleId, UpdatePriceRuleRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (priceRuleId == null)
                 throw new System.ArgumentNullException("priceRuleId");
@@ -1694,7 +1694,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleCount>> RetrieveCountOfAllPriceRulesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfAllPriceRulesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/price_rules/count.json");
@@ -1731,12 +1731,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<PriceRuleCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<PriceRuleCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -1869,18 +1869,8 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class DiscountCode
+    public partial class CreateDiscountCode
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The amount of the discount.
         /// </summary>
@@ -1914,11 +1904,148 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class DiscountCodeCount
+    public partial class CreateDiscountCodeRequest
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("discount_code")]
+        public CreateDiscountCode? DiscountCode { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreatePriceRule
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("target_type")]
+        public string? TargetType { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("target_selection")]
+        public string? TargetSelection { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("allocation_method")]
+        public string? AllocationMethod { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
+        public string? ValueType { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
+        public decimal? Value { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("once_per_customer")]
+        public bool? OncePerCustomer { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("usage_limit")]
+        public long? UsageLimit { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_selection")]
+        public string? CustomerSelection { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_subtotal_range")]
+        public PrerequisiteValueRange? PrerequisiteSubtotalRange { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_shipping_price_range")]
+        public PrerequisiteValueRange? PrerequisiteShippingPriceRange { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_saved_search_ids")]
+        public System.Collections.Generic.ICollection<long>? PrerequisiteSavedSearchIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_customer_ids")]
+        public System.Collections.Generic.ICollection<long>? PrerequisiteCustomerIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("entitled_product_ids")]
+        public System.Collections.Generic.ICollection<long>? EntitledProductIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("entitled_variant_ids")]
+        public System.Collections.Generic.ICollection<long>? EntitledVariantIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("entitled_collection_ids")]
+        public System.Collections.Generic.ICollection<long>? EntitledCollectionIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("entitled_country_ids")]
+        public System.Collections.Generic.ICollection<long>? EntitledCountryIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("starts_at")]
+        public System.DateTimeOffset? StartsAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("ends_at")]
+        public System.DateTimeOffset? EndsAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreatePriceRuleRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("price_rule")]
+        public CreatePriceRule? PriceRule { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class DiscountCode
+    {
+        /// <summary>
+        /// The amount of the discount.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("amount")]
+        public string? Amount { get; set; } = default!;
+
+        /// <summary>
+        /// The discount code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
+        public string? Code { get; set; } = default!;
+
+        /// <summary>
+        /// The type of discount. Known values are 'percentage', 'shipping', 'fixed_amount' and 'none'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("type")]
+        public string? Type { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -1936,37 +2063,10 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
+        public long Id { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("price_rule_id")]
-        public long? PriceRuleId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("started_at")]
-        public System.DateTimeOffset? StartedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("completed_at")]
-        public System.DateTimeOffset? CompletedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("status")]
-        public string? Status { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("codes_count")]
-        public int? CodesCount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("imported_count")]
-        public int? ImportedCount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("failed_count")]
-        public int? FailedCount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("logs")]
-        public System.Collections.Generic.ICollection<object>? Logs { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2038,10 +2138,10 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("less_than_or_equal_to")]
-        public double? LessThanOrEqualTo { get; set; } = default!;
+        public decimal? LessThanOrEqualTo { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("greater_than_or_equal_to")]
-        public double? GreaterThanOrEqualTo { get; set; } = default!;
+        public decimal? GreaterThanOrEqualTo { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2057,15 +2157,6 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class PriceRule
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("title")]
         public string? Title { get; set; } = default!;
@@ -2083,7 +2174,7 @@ namespace Ocelli.OpenShopify
         public string? ValueType { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("value")]
-        public double? Value { get; set; } = default!;
+        public decimal? Value { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("once_per_customer")]
         public bool? OncePerCustomer { get; set; } = default!;
@@ -2130,23 +2221,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
         public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class PriceRuleCount
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2183,6 +2262,262 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("price_rules")]
         public System.Collections.Generic.ICollection<PriceRule>? PriceRules { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateDiscountCode
+    {
+        /// <summary>
+        /// The amount of the discount.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("amount")]
+        public string? Amount { get; set; } = default!;
+
+        /// <summary>
+        /// The discount code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
+        public string? Code { get; set; } = default!;
+
+        /// <summary>
+        /// The type of discount. Known values are 'percentage', 'shipping', 'fixed_amount' and 'none'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("type")]
+        public string? Type { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateDiscountCodeRequest
+    {
+        /// <summary>
+        /// The amount of the discount.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("amount")]
+        public string? Amount { get; set; } = default!;
+
+        /// <summary>
+        /// The discount code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
+        public string? Code { get; set; } = default!;
+
+        /// <summary>
+        /// The type of discount. Known values are 'percentage', 'shipping', 'fixed_amount' and 'none'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("type")]
+        public string? Type { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_code")]
+        public UpdateDiscountCode? DiscountCode { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdatePriceRule
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("target_type")]
+        public string? TargetType { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("target_selection")]
+        public string? TargetSelection { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("allocation_method")]
+        public string? AllocationMethod { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
+        public string? ValueType { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
+        public decimal? Value { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("once_per_customer")]
+        public bool? OncePerCustomer { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("usage_limit")]
+        public long? UsageLimit { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_selection")]
+        public string? CustomerSelection { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_subtotal_range")]
+        public PrerequisiteValueRange? PrerequisiteSubtotalRange { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_shipping_price_range")]
+        public PrerequisiteValueRange? PrerequisiteShippingPriceRange { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_saved_search_ids")]
+        public System.Collections.Generic.ICollection<long>? PrerequisiteSavedSearchIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_customer_ids")]
+        public System.Collections.Generic.ICollection<long>? PrerequisiteCustomerIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("entitled_product_ids")]
+        public System.Collections.Generic.ICollection<long>? EntitledProductIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("entitled_variant_ids")]
+        public System.Collections.Generic.ICollection<long>? EntitledVariantIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("entitled_collection_ids")]
+        public System.Collections.Generic.ICollection<long>? EntitledCollectionIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("entitled_country_ids")]
+        public System.Collections.Generic.ICollection<long>? EntitledCountryIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("starts_at")]
+        public System.DateTimeOffset? StartsAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("ends_at")]
+        public System.DateTimeOffset? EndsAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdatePriceRuleRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("target_type")]
+        public string? TargetType { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("target_selection")]
+        public string? TargetSelection { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("allocation_method")]
+        public string? AllocationMethod { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
+        public string? ValueType { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
+        public decimal? Value { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("once_per_customer")]
+        public bool? OncePerCustomer { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("usage_limit")]
+        public long? UsageLimit { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_selection")]
+        public string? CustomerSelection { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_subtotal_range")]
+        public PrerequisiteValueRange? PrerequisiteSubtotalRange { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_shipping_price_range")]
+        public PrerequisiteValueRange? PrerequisiteShippingPriceRange { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_saved_search_ids")]
+        public System.Collections.Generic.ICollection<long>? PrerequisiteSavedSearchIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_customer_ids")]
+        public System.Collections.Generic.ICollection<long>? PrerequisiteCustomerIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("entitled_product_ids")]
+        public System.Collections.Generic.ICollection<long>? EntitledProductIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("entitled_variant_ids")]
+        public System.Collections.Generic.ICollection<long>? EntitledVariantIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("entitled_collection_ids")]
+        public System.Collections.Generic.ICollection<long>? EntitledCollectionIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("entitled_country_ids")]
+        public System.Collections.Generic.ICollection<long>? EntitledCountryIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("starts_at")]
+        public System.DateTimeOffset? StartsAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("ends_at")]
+        public System.DateTimeOffset? EndsAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("price_rule")]
+        public UpdatePriceRule? PriceRule { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

@@ -30,7 +30,7 @@ public class EventController : EventControllerBase
 
     /// <inheritdoc />
     [HttpGet, Microsoft.AspNetCore.Mvc.Route("events/count.json")]
-    [ProducesResponseType(typeof(EventCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveCountOfEvents(DateTime? created_at_max, DateTime? created_at_min)
     {
         throw new NotImplementedException();

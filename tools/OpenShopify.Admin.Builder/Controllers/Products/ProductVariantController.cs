@@ -41,7 +41,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Create a new Product Variant</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants.json")]
-        public abstract System.Threading.Tasks.Task CreateNewProductVariant([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ProductVariantItem request, long product_id);
+        public abstract System.Threading.Tasks.Task CreateNewProductVariant([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateProductVariantRequest request, long product_id);
 
         /// <summary>
         /// Receive a count of all Product Variants
@@ -63,7 +63,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Modify an existing Product Variant</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("variants/{variant_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingProductVariant([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ProductVariantItem request, long variant_id);
+        public abstract System.Threading.Tasks.Task ModifyExistingProductVariant([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateProductVariantRequest request, long variant_id);
 
         /// <summary>
         /// Remove an existing Product Variant

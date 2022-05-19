@@ -49,19 +49,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    AccessScope:
-      type: object
-      properties:
-        handle:
-          $ref: '#/components/schemas/AuthorizationScope'
-      additionalProperties: { }
     AccessScopeList:
       type: object
       properties:
         access_scopes:
           type: array
           items:
-            $ref: '#/components/schemas/AccessScope'
+            $ref: '#/components/schemas/AuthorizationScope'
           nullable: true
       additionalProperties: { }
     AuthorizationScope:

@@ -20,7 +20,7 @@ public class FulfillmentController : FulfillmentControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("orders/{order_id:long}/fulfillments.json")]
-    public override Task CreateNewFulfillment(FulfillmentItem request, long order_id)
+    public override Task CreateNewFulfillment(CreateFulfillmentRequest request, long order_id)
     {
         throw new NotImplementedException();
     }
@@ -34,7 +34,7 @@ public class FulfillmentController : FulfillmentControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/fulfillments/count.json")]
-    [ProducesResponseType(typeof(OrderFulfillmentCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveCountOfFulfillmentsAssociatedWithSpecificOrder(long order_id, DateTime? created_at_max,
         DateTime? created_at_min, DateTime? updated_at_max, DateTime? updated_at_min)
     {
@@ -50,14 +50,15 @@ public class FulfillmentController : FulfillmentControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}.json")]
-    public override Task ModifyExistingFulfillment(FulfillmentItem request, long fulfillment_id, long order_id)
+    public override Task ModifyExistingFulfillment(UpdateFulfillmentRequest request, long fulfillment_id, long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("fulfillments.json")]
-    public override Task CreateFulfillmentForOneOrManyFulfillmentOrders(FulfillmentItem request)
+    //TODO: wrong request type
+    public override Task CreateFulfillmentForOneOrManyFulfillmentOrders(CreateFulfillmentRequest request)
     {
         throw new NotImplementedException();
     }
@@ -65,7 +66,7 @@ public class FulfillmentController : FulfillmentControllerBase
     ///TODO: change the request type
     /// <inheritdoc />
     [HttpPost, Route("fulfillments/{fulfillment_id:long}/update_tracking.json")]
-    public override Task UpdateTrackingInformationForFulfillment(FulfillmentItem request, long fulfillment_id)
+    public override Task UpdateTrackingInformationForFulfillment(UpdateFulfillmentRequest request, long fulfillment_id)
     {
         throw new NotImplementedException();
     }

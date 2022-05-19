@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify order.
     /// </summary>
-    public class Order : ShopifyObject
+    public class OrderBase
     {
         /// <summary>
         /// Unique identifier of the app who created the order.

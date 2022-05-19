@@ -49,7 +49,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a custom collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("custom_collections.json")]
-        public abstract System.Threading.Tasks.Task CreateCustomCollection([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CustomCollectionItem request);
+        public abstract System.Threading.Tasks.Task CreateCustomCollection([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCustomCollectionRequest request);
 
         /// <summary>
         /// Retrieves a count of custom collections
@@ -78,7 +78,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates an existing custom collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("custom_collections/{custom_collection_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingCustomCollection([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CustomCollectionItem request, long custom_collection_id);
+        public abstract System.Threading.Tasks.Task UpdateExistingCustomCollection([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCustomCollectionRequest request, long custom_collection_id);
 
         /// <summary>
         /// Deletes a custom collection

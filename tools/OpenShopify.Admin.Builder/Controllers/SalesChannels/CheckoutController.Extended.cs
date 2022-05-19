@@ -12,7 +12,7 @@ public class CheckoutController : CheckoutControllerBase
 {
     /// <inheritdoc />
     [HttpPost, Route("checkouts.json")]
-    public override Task CreateCheckout(CheckoutItem request)
+    public override Task CreateCheckout(CreateCheckoutRequest request)
     {
         throw new NotImplementedException();
     }
@@ -33,7 +33,7 @@ public class CheckoutController : CheckoutControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("checkouts/{token:long}.json")]
-    public override Task ModifyExistingCheckout(CheckoutItem request, string token)
+    public override Task ModifyExistingCheckout(UpdateCheckoutRequest request, string token)
     {
         throw new NotImplementedException();
     }

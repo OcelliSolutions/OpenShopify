@@ -19,14 +19,14 @@ public class TransactionController : TransactionControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("orders/{order_id:long}/transactions.json")]
-    public override Task CreateTransactionForOrder(TransactionItem request, long order_id, string? source)
+    public override Task CreateTransactionForOrder(CreateTransactionRequest request, long order_id, string? source)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/transactions/count.json")]
-    [ProducesResponseType(typeof(TransactionCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveCountOfOrdersTransactions(long order_id)
     {
         throw new NotImplementedException();

@@ -66,7 +66,7 @@ public class CountryTests : IClassFixture<SharedFixture>
         var service = new StorePropertiesService(Fixture.MyShopifyUrl, Fixture.AccessToken);
 
         var single =
-            await service.Country.RetrieveSpecificCountyAsync(testCountry.Id ?? 0,
+            await service.Country.RetrieveSpecificCountyAsync(testCountry.Id,
                 cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(single, Fixture.MyShopifyUrl);
 
@@ -83,7 +83,7 @@ public class CountryTests : IClassFixture<SharedFixture>
             await service.Country.RetrieveCountOfCountriesAsync(CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(count, Fixture.MyShopifyUrl);
 
-        Assert.InRange(count.Count ?? 0, 1, 300);
+        Assert.InRange(count.Count, 1, 300);
     }
 
     [SkippableFact, TestPriority(20)]
@@ -125,7 +125,7 @@ public class CountryTests : IClassFixture<SharedFixture>
         updateRequest.Country!.Tax = .15;
         updateRequest.Country!.TaxName = "Sample Tax";
         var updated =
-            await service.Country.UpdateExistingCountryAsync(updateRequest.Country.Id ?? 0, updateRequest,
+            await service.Country.UpdateExistingCountryAsync(updateRequest.Country.Id, updateRequest,
                 CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(updated, Fixture.MyShopifyUrl);
 
@@ -143,7 +143,7 @@ public class CountryTests : IClassFixture<SharedFixture>
             Debug.Assert(testCountry.Provinces != null, "testCountry.Provinces != null");
             var testProvince = testCountry.Provinces.FirstOrDefault(p => p.Code == ProvinceCode);
             if (testProvince != null)
-                await service.Country.RemoveExistingCountryAsync(testCountry.Id ?? 0, CancellationToken.None);
+                await service.Country.RemoveExistingCountryAsync(testCountry.Id, CancellationToken.None);
         }
     }
     */

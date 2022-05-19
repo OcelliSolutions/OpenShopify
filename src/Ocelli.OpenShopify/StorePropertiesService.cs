@@ -1,4 +1,7 @@
-﻿namespace Ocelli.OpenShopify;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+
+namespace Ocelli.OpenShopify;
 
 public interface IStorePropertiesService
 {
@@ -13,6 +16,7 @@ public class StorePropertiesService : ShopifyService, IStorePropertiesService
 {
     private readonly string _myShopifyUrl;
     private readonly Uri _baseUri;
+    private JsonSerializerOptions _options;
 
     public StorePropertiesService(string myShopifyUrl, string shopAccessToken) : base(myShopifyUrl, shopAccessToken)
     {

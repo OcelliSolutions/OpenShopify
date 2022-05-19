@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class StorefrontAccessToken : ShopifyObject
+    public class StorefrontAccessTokenBase
     {
         /// <summary>
         /// The issued public access token.

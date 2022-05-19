@@ -30,7 +30,7 @@ public class InventoryItemController : InventoryItemControllerBase
     /// <inheritdoc />
     [HttpPut, Route("inventory_items/{inventory_item_id:long}.json")]
     [ProducesResponseType(typeof(InventoryItemItem), StatusCodes.Status200OK)]
-    public override Task UpdateExistingInventoryItem(InventoryItemItem request, long inventory_item_id)
+    public override Task UpdateExistingInventoryItem(UpdateInventoryItemRequest request, long inventory_item_id)
     {
         throw new NotImplementedException();
     }

@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An entity representing a Shopify redirect.
     /// </summary>
-    public class Redirect : ShopifyObject
+    public class RedirectBase
     {
         /// <summary>
         /// The "before" path to be redirected. When the user navigates to this path, they will be redirected to the path specified by target.

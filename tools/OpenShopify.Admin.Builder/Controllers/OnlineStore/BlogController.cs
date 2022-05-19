@@ -42,7 +42,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="title">The title of the blog. Maximum length: 255 characters.</param>
         /// <returns>Create a new Blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("blogs.json")]
-        public abstract System.Threading.Tasks.Task CreateNewBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.BlogItem request, [Microsoft.AspNetCore.Mvc.FromQuery] string title);
+        public abstract System.Threading.Tasks.Task CreateNewBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateBlogRequest request, [Microsoft.AspNetCore.Mvc.FromQuery] string title);
 
         /// <summary>
         /// Receive a count of all Blogs
@@ -64,7 +64,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Modify an existing Blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.BlogItem request, long blog_id);
+        public abstract System.Threading.Tasks.Task ModifyExistingBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateBlogRequest request, long blog_id);
 
         /// <summary>
         /// Remove an existing Blog

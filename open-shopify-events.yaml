@@ -177,7 +177,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EventCount'
+                $ref: '#/components/schemas/CountItem'
         '401':
           description: Unauthorized
           headers:
@@ -295,10 +295,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/WebhookItem'
+              $ref: '#/components/schemas/CreateWebhookRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/WebhookItem'
+              $ref: '#/components/schemas/CreateWebhookRequest'
       responses:
         '201':
           description: Created
@@ -362,7 +362,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/WebhookCount'
+                $ref: '#/components/schemas/CountItem'
         '401':
           description: Unauthorized
           headers:
@@ -443,10 +443,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/WebhookItem'
+              $ref: '#/components/schemas/UpdateWebhookRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/WebhookItem'
+              $ref: '#/components/schemas/UpdateWebhookRequest'
       responses:
         '200':
           description: Success
@@ -519,6 +519,55 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    CountItem:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    CreateWebhook:
+      type: object
+      properties:
+        address:
+          type: string
+          description: The URL where the webhook should send the POST request when the event occurs.
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the webhook was created.
+          format: date-time
+          nullable: true
+        fields:
+          type: array
+          items:
+            type: string
+          description: An optional array of fields which should be included in webhooks.
+        format:
+          type: string
+          description: The format in which the webhook should send the data. Valid values are json and xml.
+          nullable: true
+        metafield_namespaces:
+          type: array
+          items:
+            type: string
+          description: An optional array of namespaces for metafields that should be included in webhooks.
+        topic:
+          type: string
+          description: 'The event that will trigger the webhook, e.g. ''orders/create'' or ''app/uninstalled''. A full list of webhook topics can be found at https://help.shopify.com/api/reference/webhook.'
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the webhook was updated.
+          format: date-time
+          nullable: true
+      additionalProperties: { }
+    CreateWebhookRequest:
+      type: object
+      properties:
+        webhook:
+          $ref: '#/components/schemas/CreateWebhook'
+      additionalProperties: { }
     ErrorResponse:
       type: object
       properties:
@@ -527,16 +576,10 @@ components:
           nullable: true
       additionalProperties: false
     Event:
+      required:
+        - id
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         arguments:
           type: array
           items:
@@ -576,14 +619,12 @@ components:
           type: string
           description: Undocumented by Shopify
           nullable: true
-      additionalProperties: { }
-      description: An object representing a Shopify event.
-    EventCount:
-      type: object
-      properties:
-        count:
+        id:
           type: integer
-          format: int32
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
       additionalProperties: { }
     EventItem:
       type: object
@@ -598,19 +639,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Event'
-          nullable: true
       additionalProperties: { }
-    Webhook:
+    UpdateWebhook:
+      required:
+        - id
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         address:
           type: string
           description: The URL where the webhook should send the POST request when the event occurs.
@@ -643,14 +677,102 @@ components:
           description: The date and time when the webhook was updated.
           format: date-time
           nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
       additionalProperties: { }
-      description: An entity representing a Shopify webhook.
-    WebhookCount:
+    UpdateWebhookRequest:
+      required:
+        - id
       type: object
       properties:
-        count:
+        address:
+          type: string
+          description: The URL where the webhook should send the POST request when the event occurs.
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the webhook was created.
+          format: date-time
+          nullable: true
+        fields:
+          type: array
+          items:
+            type: string
+          description: An optional array of fields which should be included in webhooks.
+        format:
+          type: string
+          description: The format in which the webhook should send the data. Valid values are json and xml.
+          nullable: true
+        metafield_namespaces:
+          type: array
+          items:
+            type: string
+          description: An optional array of namespaces for metafields that should be included in webhooks.
+        topic:
+          type: string
+          description: 'The event that will trigger the webhook, e.g. ''orders/create'' or ''app/uninstalled''. A full list of webhook topics can be found at https://help.shopify.com/api/reference/webhook.'
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the webhook was updated.
+          format: date-time
+          nullable: true
+        id:
           type: integer
-          format: int32
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        webhook:
+          $ref: '#/components/schemas/UpdateWebhook'
+      additionalProperties: { }
+    Webhook:
+      required:
+        - id
+      type: object
+      properties:
+        address:
+          type: string
+          description: The URL where the webhook should send the POST request when the event occurs.
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the webhook was created.
+          format: date-time
+          nullable: true
+        fields:
+          type: array
+          items:
+            type: string
+          description: An optional array of fields which should be included in webhooks.
+        format:
+          type: string
+          description: The format in which the webhook should send the data. Valid values are json and xml.
+          nullable: true
+        metafield_namespaces:
+          type: array
+          items:
+            type: string
+          description: An optional array of namespaces for metafields that should be included in webhooks.
+        topic:
+          type: string
+          description: 'The event that will trigger the webhook, e.g. ''orders/create'' or ''app/uninstalled''. A full list of webhook topics can be found at https://help.shopify.com/api/reference/webhook.'
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the webhook was updated.
+          format: date-time
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
       additionalProperties: { }
     WebhookItem:
       type: object
@@ -665,7 +787,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Webhook'
-          nullable: true
       additionalProperties: { }
   securitySchemes:
     ApiKey:

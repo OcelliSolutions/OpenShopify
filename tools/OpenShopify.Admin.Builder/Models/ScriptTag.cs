@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing remote javascript tags that are loaded into the pages of a shop's storefront.
     /// </summary>
-    public class ScriptTag: ShopifyObject
+    public class ScriptTagBase
     {
         /// <summary>
         /// The date and time when the <see cref="ScriptTag"/> was created.

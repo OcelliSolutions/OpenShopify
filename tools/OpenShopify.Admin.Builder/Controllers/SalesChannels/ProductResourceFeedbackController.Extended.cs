@@ -12,7 +12,7 @@ public class ProductResourceFeedbackController : ProductResourceFeedbackControll
 {
     /// <inheritdoc />
     [HttpPost, Route("products/{product_id:long}/resource_feedback.json")]
-    public override Task CreateNewProductResourceFeedback(ProductResourceFeedbackItem request, long product_id, string? state)
+    public override Task CreateNewProductResourceFeedback(CreateProductResourceFeedbackRequest request, long product_id, string? state)
     {
         throw new NotImplementedException();
     }

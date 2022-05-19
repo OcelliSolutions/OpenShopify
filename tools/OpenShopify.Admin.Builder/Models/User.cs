@@ -2,7 +2,7 @@
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class User : ShopifyObject
+    public class UserBase
     {
         /// <summary>
         /// Identifies if the user is the owner of the Shopify account.

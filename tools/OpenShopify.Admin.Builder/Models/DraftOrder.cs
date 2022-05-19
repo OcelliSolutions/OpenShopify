@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class DraftOrder : ShopifyObject
+    public class DraftOrderBase
     {
         /// <summary>
         /// The unique numeric identifier for the order associated to the draft order, once created.

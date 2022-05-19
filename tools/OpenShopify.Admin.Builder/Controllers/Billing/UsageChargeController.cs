@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a usage charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/usage_charges.json")]
-        public abstract System.Threading.Tasks.Task CreateUsageCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UsageChargeItem request, long recurring_application_charge_id);
+        public abstract System.Threading.Tasks.Task CreateUsageCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateUsageChargeRequest request, long recurring_application_charge_id);
 
         /// <summary>
         /// Retrieves a list of usage charges

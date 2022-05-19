@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a recurring application charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges.json")]
-        public abstract System.Threading.Tasks.Task CreateRecurringApplicationCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.RecurringApplicationChargeItem request);
+        public abstract System.Threading.Tasks.Task CreateRecurringApplicationCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateRecurringApplicationChargeRequest request);
 
         /// <summary>
         /// Retrieves a list of recurring application charges
@@ -61,7 +61,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates the capped amount of a recurring application charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/customize.json")]
-        public abstract System.Threading.Tasks.Task UpdateCappedAmountOfRecurringApplicationCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.RecurringApplicationChargeItem request, long recurring_application_charge_id);
+        public abstract System.Threading.Tasks.Task UpdateCappedAmountOfRecurringApplicationCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateRecurringApplicationChargeRequest request, long recurring_application_charge_id);
 
     }
 

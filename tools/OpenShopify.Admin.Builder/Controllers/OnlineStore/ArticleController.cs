@@ -50,7 +50,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates an article for a blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles.json")]
-        public abstract System.Threading.Tasks.Task CreateArticleForBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ArticleItem request, long blog_id);
+        public abstract System.Threading.Tasks.Task CreateArticleForBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateArticleRequest request, long blog_id);
 
         /// <summary>
         /// Retrieves a count of all articles from a blog
@@ -79,7 +79,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates an article</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/{article_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateArticle([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ArticleItem request, long article_id, long blog_id);
+        public abstract System.Threading.Tasks.Task UpdateArticle([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateArticleRequest request, long article_id, long blog_id);
 
         /// <summary>
         /// Deletes an article

@@ -19,8 +19,8 @@ public class RefundController : RefundControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("orders/{order_id:long}/refunds.json")]
-    public override Task CreateRefund(RefundItem request, long order_id, string? currency, string? discrepancy_reason, string? note,
-        string? notify, string? refund_line_items, string? restock, string? shipping, string? transactions)
+    public override Task CreateRefund(CreateRefundRequest request, long order_id, string? currency, string? discrepancy_reason,
+        string? note, string? notify, string? refund_line_items, string? restock, string? shipping, string? transactions)
     {
         throw new NotImplementedException();
     }

@@ -6,7 +6,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// Represents a Blog � not a blog post � on a merchant's Shopify store.
     /// </summary>
-    public class Blog: ShopifyObject
+    public class BlogBase
     {
         /// <summary>
         /// Indicates whether readers can post comments to the blog and if comments are moderated or not. Possible values are:

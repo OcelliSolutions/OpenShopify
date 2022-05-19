@@ -12,7 +12,7 @@ public class DraftOrderController : DraftOrderControllerBase
 {
     /// <inheritdoc />
     [HttpPost, Route("draft_orders.json")]
-    public override Task CreateNewDraftOrder(DraftOrderItem request, long? customer_id, string? use_customer_default_address)
+    public override Task CreateNewDraftOrder(CreateDraftOrderRequest request, long? customer_id, string? use_customer_default_address)
     {
         throw new NotImplementedException();
     }
@@ -27,7 +27,7 @@ public class DraftOrderController : DraftOrderControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("draft_orders/{draft_order_id:long}.json")]
-    public override Task ModifyExistingDraftOrder(DraftOrderItem request, long draft_order_id)
+    public override Task ModifyExistingDraftOrder(UpdateDraftOrderRequest request, long draft_order_id)
     {
         throw new NotImplementedException();
     }
@@ -48,7 +48,7 @@ public class DraftOrderController : DraftOrderControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("draft_orders/count.json")]
-    [ProducesResponseType(typeof(DraftOrderCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task ReceiveCountOfAllDraftOrders(int? since_id, string status, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();

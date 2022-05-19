@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a product image.
     /// </summary>
-    public class ProductImage : ShopifyObject
+    public class ProductImageBase
     {
         /// <summary>
         /// The id of the product associated with the image.

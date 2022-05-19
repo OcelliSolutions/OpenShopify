@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify event.
     /// </summary>
-    public class Event : ShopifyObject
+    public class EventBase
     {
         /// <summary>
         /// Refers to a certain event and its resources.

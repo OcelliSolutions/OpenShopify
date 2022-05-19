@@ -27,7 +27,7 @@ public class ProductListingController : ProductListingControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("product_listings/count.json")]
-    [ProducesResponseType(typeof(PublishedProductCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveCountOfProductsThatArePublishedToYourApp()
     {
         throw new NotImplementedException();
@@ -42,7 +42,7 @@ public class ProductListingController : ProductListingControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("product_listings/{product_listing_id:long}.json")]
-    public override Task CreateProductListingToPublishProductToYourApp(ProductListingItem request, long product_listing_id)
+    public override Task CreateProductListingToPublishProductToYourApp(CreateProductListingRequest request, long product_listing_id)
     {
         throw new NotImplementedException();
     }

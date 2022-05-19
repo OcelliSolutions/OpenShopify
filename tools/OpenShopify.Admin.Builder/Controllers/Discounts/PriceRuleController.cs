@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a price rule</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("price_rules.json")]
-        public abstract System.Threading.Tasks.Task CreatePriceRule([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.PriceRuleItem request);
+        public abstract System.Threading.Tasks.Task CreatePriceRule([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreatePriceRuleRequest request);
 
         /// <summary>
         /// Retrieves a list of price rules
@@ -55,7 +55,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates an existing a price rule</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingPriceRule([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.PriceRuleItem request, long price_rule_id);
+        public abstract System.Threading.Tasks.Task UpdateExistingPriceRule([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdatePriceRuleRequest request, long price_rule_id);
 
         /// <summary>
         /// Retrieves a single price rule

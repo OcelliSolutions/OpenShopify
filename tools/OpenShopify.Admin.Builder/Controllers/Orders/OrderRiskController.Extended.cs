@@ -12,7 +12,7 @@ public class OrderRiskController : OrderRiskControllerBase
 {
     /// <inheritdoc />
     [HttpPost, Route("orders/{order_id:long}/risks.json")]
-    public override Task CreateOrderRiskForOrder(OrderRiskItem request, long order_id)
+    public override Task CreateOrderRiskForOrder(CreateOrderRiskRequest request, long order_id)
     {
         throw new NotImplementedException();
     }
@@ -33,7 +33,7 @@ public class OrderRiskController : OrderRiskControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("orders/{order_id:long}/risks/{risk_id:long}.json")]
-    public override Task UpdateOrderRisk(OrderRiskItem request, long order_id, long risk_id)
+    public override Task UpdateOrderRisk(UpdateOrderRiskRequest request, long order_id, long risk_id)
     {
         throw new NotImplementedException();
     }

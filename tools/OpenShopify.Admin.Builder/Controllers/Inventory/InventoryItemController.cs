@@ -46,7 +46,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates an existing inventory item</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("inventory_items/{inventory_item_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingInventoryItem([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.InventoryItemItem request, long inventory_item_id);
+        public abstract System.Threading.Tasks.Task UpdateExistingInventoryItem([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateInventoryItemRequest request, long inventory_item_id);
 
     }
 

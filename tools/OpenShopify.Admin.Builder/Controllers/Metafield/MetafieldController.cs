@@ -49,7 +49,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Create a metafield</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("metafields.json")]
-        public abstract System.Threading.Tasks.Task CreateMetafield([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.MetafieldItem request);
+        public abstract System.Threading.Tasks.Task CreateMetafield([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateMetafieldRequest request);
 
         /// <summary>
         /// Retrieve a count of a resource's metafields.
@@ -71,7 +71,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates a metafield</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateMetafield([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.MetafieldItem request, long metafield_id);
+        public abstract System.Threading.Tasks.Task UpdateMetafield([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMetafieldRequest request, long metafield_id);
 
         /// <summary>
         /// Deletes a metafield by its ID

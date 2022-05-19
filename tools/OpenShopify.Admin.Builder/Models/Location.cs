@@ -6,7 +6,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a physical store location.
     /// </summary>
-    public class Location : ShopifyObject
+    public class LocationBase
     {
         /// <summary>
         /// Whether the location is active.

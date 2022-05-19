@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// This is used to view shipping zones, their countries, provinces, and shipping rates.
     /// </summary>
-    public class ShippingZone : ShopifyObject
+    public class ShippingZoneBase
     {
         /// <summary>
         /// The name of the shipping zone, specified by the user.

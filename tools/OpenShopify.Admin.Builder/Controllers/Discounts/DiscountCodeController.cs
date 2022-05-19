@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a discount code</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes.json")]
-        public abstract System.Threading.Tasks.Task CreateDiscountCode([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.DiscountCodeItem request, long price_rule_id);
+        public abstract System.Threading.Tasks.Task CreateDiscountCode([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateDiscountCodeRequest request, long price_rule_id);
 
         /// <summary>
         /// Retrieves a list of discount codes
@@ -44,7 +44,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates an existing discount code</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingDiscountCode([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.DiscountCodeItem request, long discount_code_id, long price_rule_id);
+        public abstract System.Threading.Tasks.Task UpdateExistingDiscountCode([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateDiscountCodeRequest request, long discount_code_id, long price_rule_id);
 
         /// <summary>
         /// Retrieves a single discount code
@@ -82,7 +82,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a discount code creation job</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/batch.json")]
-        public abstract System.Threading.Tasks.Task CreateDiscountCodeCreationJob([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.DiscountCodeItem request, long price_rule_id);
+        public abstract System.Threading.Tasks.Task CreateDiscountCodeCreationJob([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateDiscountCodeRequest request, long price_rule_id);
 
         /// <summary>
         /// Retrieves a discount code creation job

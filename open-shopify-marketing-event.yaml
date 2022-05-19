@@ -75,10 +75,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MarketingEventItem'
+              $ref: '#/components/schemas/CreateMarketingEventRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/MarketingEventItem'
+              $ref: '#/components/schemas/CreateMarketingEventRequest'
       responses:
         '201':
           description: Created
@@ -131,7 +131,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MarketingEventCount'
+                $ref: '#/components/schemas/CountItem'
         '401':
           description: Unauthorized
           headers:
@@ -207,10 +207,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MarketingEventItem'
+              $ref: '#/components/schemas/UpdateMarketingEventRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/MarketingEventItem'
+              $ref: '#/components/schemas/UpdateMarketingEventRequest'
       responses:
         '200':
           description: Success
@@ -343,10 +343,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MarketingEventItem'
+              $ref: '#/components/schemas/CreateMarketingEventRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/MarketingEventItem'
+              $ref: '#/components/schemas/CreateMarketingEventRequest'
       responses:
         '201':
           description: Created
@@ -380,75 +380,31 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    Engagement:
+    CountItem:
       type: object
       properties:
-        occurred_on:
-          type: string
-          format: date-time
-          nullable: true
-        fetched_at:
-          type: string
-          format: date-time
-          nullable: true
-        views_count:
+        count:
           type: integer
           format: int32
-          nullable: true
-        impressions_count:
+      additionalProperties: { }
+    CreateMarketingEvent:
+      type: object
+      additionalProperties: { }
+    CreateMarketingEventRequest:
+      type: object
+      properties:
+        marketing_event:
+          $ref: '#/components/schemas/CreateMarketingEvent'
+      additionalProperties: { }
+    Engagement:
+      required:
+        - id
+      type: object
+      properties:
+        id:
           type: integer
-          format: int32
-          nullable: true
-        clicks_count:
-          type: integer
-          format: int32
-          nullable: true
-        favorites_count:
-          type: integer
-          format: int32
-          nullable: true
-        comments_count:
-          type: integer
-          format: int32
-          nullable: true
-        shares_count:
-          type: integer
-          format: int32
-          nullable: true
-        ad_spend:
-          type: number
-          format: double
-        currency_code:
-          type: string
-          nullable: true
-        is_cumulative:
-          type: boolean
-          nullable: true
-        unsubscribes_count:
-          type: integer
-          format: int32
-          nullable: true
-        complaints_count:
-          type: integer
-          format: int32
-          nullable: true
-        fails_count:
-          type: integer
-          format: int32
-          nullable: true
-        sends_count:
-          type: integer
-          format: int32
-          nullable: true
-        unique_views_count:
-          type: integer
-          format: int32
-          nullable: true
-        unique_clicks_count:
-          type: integer
-          format: int32
-          nullable: true
-        utc_offset:
+          format: int64
+        admin_graphql_api_id:
           type: string
           nullable: true
       additionalProperties: { }
@@ -459,7 +415,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Engagement'
-          nullable: true
       additionalProperties: { }
     ErrorResponse:
       type: object
@@ -468,89 +423,17 @@ components:
           type: string
           nullable: true
       additionalProperties: false
-    MarketedResources:
+    MarketingEvent:
+      required:
+        - id
       type: object
       properties:
-        type:
-          $ref: '#/components/schemas/MarketedResourcesType'
         id:
           type: integer
           format: int64
-      additionalProperties: { }
-    MarketedResourcesType:
-      enum:
-        - product
-        - collection
-        - price_rule
-        - discount
-        - page
-        - article
-        - homepage
-      type: string
-      additionalProperties: { }
-    MarketingEvent:
-      type: object
-      properties:
-        remote_id:
+        admin_graphql_api_id:
           type: string
           nullable: true
-        event_type:
-          type: string
-          nullable: true
-        marketing_channel:
-          type: string
-          nullable: true
-        paid:
-          type: boolean
-          nullable: true
-        referring_domain:
-          type: string
-          nullable: true
-        budget:
-          type: number
-          format: float
-          nullable: true
-        currency:
-          type: string
-          nullable: true
-        budget_type:
-          type: string
-          nullable: true
-        started_at:
-          type: string
-          format: date-time
-          nullable: true
-        scheduled_to_end_at:
-          type: string
-          format: date-time
-          nullable: true
-        ended_at:
-          type: string
-          format: date-time
-          nullable: true
-        UTM parameters:
-          $ref: '#/components/schemas/UtmParameters'
-        description:
-          type: string
-          nullable: true
-        manage_url:
-          type: string
-          nullable: true
-        preview_url:
-          type: string
-          nullable: true
-        marketed_resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/MarketedResources'
-          nullable: true
-      additionalProperties: { }
-    MarketingEventCount:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
       additionalProperties: { }
     MarketingEventItem:
       type: object
@@ -565,26 +448,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MarketingEvent'
-          nullable: true
       additionalProperties: { }
-    UtmMarketingEvent:
+    UpdateMarketingEvent:
+      required:
+        - id
       type: object
       properties:
-        utm_campaign:
-          type: string
-          nullable: true
-        utm_source:
-          type: string
-          nullable: true
-        utm_medium:
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
           type: string
           nullable: true
       additionalProperties: { }
-    UtmParameters:
+    UpdateMarketingEventRequest:
+      required:
+        - id
       type: object
       properties:
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
         marketing_event:
-          $ref: '#/components/schemas/UtmMarketingEvent'
+          $ref: '#/components/schemas/UpdateMarketingEvent'
       additionalProperties: { }
   securitySchemes:
     ApiKey:

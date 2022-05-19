@@ -64,7 +64,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Create a product listing to publish a product to your app</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("product_listings/{product_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task CreateProductListingToPublishProductToYourApp([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ProductListingItem request, long product_listing_id);
+        public abstract System.Threading.Tasks.Task CreateProductListingToPublishProductToYourApp([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateProductListingRequest request, long product_listing_id);
 
         /// <summary>
         /// Delete a product listing to unpublish a product from your app

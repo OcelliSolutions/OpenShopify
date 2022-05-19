@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class CustomerSavedSearch : ShopifyObject
+    public class CustomerSavedSearchBase
     {
         /// <summary>
         /// The name given by the shop owner to the customer saved search

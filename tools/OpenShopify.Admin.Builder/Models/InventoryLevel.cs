@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class InventoryLevel
+    public class InventoryLevelBase
     {
         /// <summary>
         /// The unique identifier of the inventory item that the inventory level belongs to.

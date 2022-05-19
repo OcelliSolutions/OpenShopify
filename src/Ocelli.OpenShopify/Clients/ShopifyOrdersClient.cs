@@ -299,7 +299,7 @@ namespace Ocelli.OpenShopify
         /// <param name="useCustomerDefaultAddress">An optional boolean that you can send as part of a draft order object
         /// <br/>            &lt;br /&gt;        to load customer shipping information. Valid values: true or false.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateNewDraftOrderAsync(long? customerId = null, string? useCustomerDefaultAddress = null, DraftOrderItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateNewDraftOrderAsync(long? customerId = null, string? useCustomerDefaultAddress = null, CreateDraftOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -319,7 +319,7 @@ namespace Ocelli.OpenShopify
         /// Modify an existing DraftOrder
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingDraftOrderAsync(long draftOrderId, DraftOrderItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingDraftOrderAsync(long draftOrderId, UpdateDraftOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -346,7 +346,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Count draft orders last updated after the specified date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DraftOrderCount>> ReceiveCountOfAllDraftOrdersAsync(int? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> ReceiveCountOfAllDraftOrdersAsync(int? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -404,7 +404,7 @@ namespace Ocelli.OpenShopify
         /// <param name="useCustomerDefaultAddress">An optional boolean that you can send as part of a draft order object
         /// <br/>            &lt;br /&gt;        to load customer shipping information. Valid values: true or false.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateNewDraftOrderAsync(long? customerId = null, string? useCustomerDefaultAddress = null, DraftOrderItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateNewDraftOrderAsync(long? customerId = null, string? useCustomerDefaultAddress = null, CreateDraftOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/draft_orders.json?");
@@ -603,7 +603,7 @@ namespace Ocelli.OpenShopify
         /// Modify an existing DraftOrder
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingDraftOrderAsync(long draftOrderId, DraftOrderItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingDraftOrderAsync(long draftOrderId, UpdateDraftOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (draftOrderId == null)
                 throw new System.ArgumentNullException("draftOrderId");
@@ -851,7 +851,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Count draft orders last updated after the specified date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DraftOrderCount>> ReceiveCountOfAllDraftOrdersAsync(int? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> ReceiveCountOfAllDraftOrdersAsync(int? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/draft_orders/count.json?");
@@ -905,12 +905,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<DraftOrderCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<DraftOrderCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -1235,7 +1235,7 @@ namespace Ocelli.OpenShopify
         /// Create an order
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateOrderAsync(OrderItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateOrderAsync(CreateOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1250,7 +1250,7 @@ namespace Ocelli.OpenShopify
         /// Update an order
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderAsync(long orderId, OrderItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderAsync(long orderId, UpdateOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1272,7 +1272,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Orders last updated after date specified.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<OrderCount>> RetrieveOrderCountAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? financialStatus = null, string? fulfillmentStatus = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveOrderCountAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? financialStatus = null, string? fulfillmentStatus = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1489,7 +1489,7 @@ namespace Ocelli.OpenShopify
         /// Create an order
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateOrderAsync(OrderItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateOrderAsync(CreateOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders.json");
@@ -1650,7 +1650,7 @@ namespace Ocelli.OpenShopify
         /// Update an order
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderAsync(long orderId, OrderItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderAsync(long orderId, UpdateOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -1817,7 +1817,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Orders last updated after date specified.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderCount>> RetrieveOrderCountAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? financialStatus = null, string? fulfillmentStatus = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveOrderCountAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? financialStatus = null, string? fulfillmentStatus = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/count.json?");
@@ -1883,12 +1883,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<OrderCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<OrderCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -2297,7 +2297,7 @@ namespace Ocelli.OpenShopify
         /// Creates an order risk for an order
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateOrderRiskForOrderAsync(long orderId, OrderRiskItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateOrderRiskForOrderAsync(long orderId, CreateOrderRiskRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2318,7 +2318,7 @@ namespace Ocelli.OpenShopify
         /// Updates an order risk
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderRiskAsync(long orderId, long riskId, OrderRiskItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderRiskAsync(long orderId, long riskId, UpdateOrderRiskRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2366,7 +2366,7 @@ namespace Ocelli.OpenShopify
         /// Creates an order risk for an order
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateOrderRiskForOrderAsync(long orderId, OrderRiskItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateOrderRiskForOrderAsync(long orderId, CreateOrderRiskRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -2607,7 +2607,7 @@ namespace Ocelli.OpenShopify
         /// Updates an order risk
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderRiskAsync(long orderId, long riskId, OrderRiskItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderRiskAsync(long orderId, long riskId, UpdateOrderRiskRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -2897,7 +2897,7 @@ namespace Ocelli.OpenShopify
         /// <param name="transactions">A list of &lt;a href="/api/admin-rest/current/resources/transaction"&gt;transactions&lt;/a&gt;
         /// <br/>            &lt;br /&gt;          to process as refunds. Use the &lt;code&gt;calculate&lt;/code&gt; endpoint to obtain these transactions.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateRefundAsync(long orderId, string? currency = null, string? discrepancyReason = null, string? note = null, string? notify = null, string? refundLineItems = null, string? restock = null, string? shipping = null, string? transactions = null, RefundItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateRefundAsync(long orderId, string? currency = null, string? discrepancyReason = null, string? note = null, string? notify = null, string? refundLineItems = null, string? restock = null, string? shipping = null, string? transactions = null, CreateRefundRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3065,7 +3065,7 @@ namespace Ocelli.OpenShopify
         /// <param name="transactions">A list of &lt;a href="/api/admin-rest/current/resources/transaction"&gt;transactions&lt;/a&gt;
         /// <br/>            &lt;br /&gt;          to process as refunds. Use the &lt;code&gt;calculate&lt;/code&gt; endpoint to obtain these transactions.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateRefundAsync(long orderId, string? currency = null, string? discrepancyReason = null, string? note = null, string? notify = null, string? refundLineItems = null, string? restock = null, string? shipping = null, string? transactions = null, RefundItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateRefundAsync(long orderId, string? currency = null, string? discrepancyReason = null, string? note = null, string? notify = null, string? refundLineItems = null, string? restock = null, string? shipping = null, string? transactions = null, CreateRefundRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -3483,7 +3483,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="source">An optional origin of the transaction. Set to &lt;code&gt;external&lt;/code&gt; to import a cash transaction for the associated order.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateTransactionForOrderAsync(long orderId, string? source = null, TransactionItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateTransactionForOrderAsync(long orderId, string? source = null, CreateTransactionRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3491,7 +3491,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<TransactionCount>> RetrieveCountOfOrdersTransactionsAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfOrdersTransactionsAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3636,7 +3636,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="source">An optional origin of the transaction. Set to &lt;code&gt;external&lt;/code&gt; to import a cash transaction for the associated order.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateTransactionForOrderAsync(long orderId, string? source = null, TransactionItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateTransactionForOrderAsync(long orderId, string? source = null, CreateTransactionRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -3723,7 +3723,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<TransactionCount>> RetrieveCountOfOrdersTransactionsAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfOrdersTransactionsAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -3764,12 +3764,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<TransactionCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<TransactionCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -4032,7 +4032,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("amount")]
-        public double? Amount { get; set; } = default!;
+        public decimal? Amount { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -4046,413 +4046,8 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CurrencyExchangeAdjustment
+    public partial class CreateDraftOrder
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
-        /// The difference between the amounts on the associated transaction and the parent transaction.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("adjustment")]
-        public double? Adjustment { get; set; } = default!;
-
-        /// <summary>
-        /// The amount of the parent transaction in the shop currency.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("original_amount")]
-        public double? OriginalAmount { get; set; } = default!;
-
-        /// <summary>
-        /// The amount of the associated transaction in the shop currency.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("final_amount")]
-        public double? FinalAmount { get; set; } = default!;
-
-        /// <summary>
-        /// The shop currency.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        public string? Currency { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class DiscountAllocation
-    {
-        /// <summary>
-        /// The discount amount allocated to the line (not sure why it is a string)
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("amount")]
-        public string? Amount { get; set; } = default!;
-
-        /// <summary>
-        /// The index of the associated discount application in the order's discount_applications list.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("discount_application_index")]
-        public long? DiscountApplicationIndex { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("amount_set")]
-        public PriceSet? AmountSet { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class DiscountApplication
-    {
-        /// <summary>
-        /// The discount application type. Valid values:
-        /// <br/>manual: The discount was manually applied by the merchant(for example, by using an app or creating a draft order).
-        /// <br/>script: The discount was applied by a Shopify Script.
-        /// <br/>discount_code: The discount was applied by a discount code.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("type")]
-        public string? Type { get; set; } = default!;
-
-        /// <summary>
-        /// The discount code that was used to apply the discount. Available only for discount code applications.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("code")]
-        public string? Code { get; set; } = default!;
-
-        /// <summary>
-        /// The title of the discount application, as defined by the merchant. Available only for manual discount applications.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("title")]
-        public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// The description of the discount application, as defined by the merchant or the Shopify Script. Available only for manual and script discount applications.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("description")]
-        public string? Description { get; set; } = default!;
-
-        /// <summary>
-        /// The value of the discount application as a decimal. This represents the intention of the discount application.
-        /// <br/>For example, if the intent was to apply a 20% discount, then the value will be 20.0.
-        /// <br/>If the intent was to apply a $15 discount, then the value will be 15.0.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value")]
-        public string? Value { get; set; } = default!;
-
-        /// <summary>
-        /// The type of the value. Valid values:
-        /// <br/>fixed_amount: A fixed amount discount value in the currency of the order.
-        /// <br/>percentage: A percentage discount value.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
-        public string? ValueType { get; set; } = default!;
-
-        /// <summary>
-        /// The method by which the discount application value has been allocated to entitled lines. Valid values:
-        /// <br/>across: The value is spread across all entitled lines.
-        /// <br/>each: The value is applied onto every entitled line.
-        /// <br/>one: The value is applied onto a single line.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("allocation_method")]
-        public string? AllocationMethod { get; set; } = default!;
-
-        /// <summary>
-        /// The lines on the order, of the type defined by target_type, that the discount is allocated over. Valid values:
-        /// <br/>all: The discount is allocated onto all lines,
-        /// <br/>entitled: The discount is allocated only onto lines it is entitled for.
-        /// <br/>explicit: The discount is allocated onto explicitly selected lines.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("target_selection")]
-        public string? TargetSelection { get; set; } = default!;
-
-        /// <summary>
-        /// The type of line on the order that the discount is applicable on. Valid values:
-        /// <br/>line_item: The discount applies to line items.
-        /// <br/>shipping_line: The discount applies to shipping lines.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("target_type")]
-        public string? TargetType { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class DraftLineItem
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
-        /// The amount available to fulfill. This is the quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillable_quantity")]
-        public int? FulfillableQuantity { get; set; } = default!;
-
-        /// <summary>
-        /// Service provider who is doing the fulfillment. Valid values are either "manual" or the name of the provider. eg: "amazon", "shipwire", etc.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]
-        public string? FulfillmentService { get; set; } = default!;
-
-        /// <summary>
-        /// The fulfillment status of this line item. Known values are 'fulfilled', 'null' and 'partial'.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_status")]
-        public string? FulfillmentStatus { get; set; } = default!;
-
-        /// <summary>
-        /// The weight of the item in grams.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("grams")]
-        public long? Grams { get; set; } = default!;
-
-        /// <summary>
-        /// The price of the item before discounts have been applied.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("price")]
-        public double? Price { get; set; } = default!;
-
-        /// <summary>
-        /// The unique numeric identifier for the product in the fulfillment. Can be null if the original product associated with the order is deleted at a later date
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("product_id")]
-        public long? ProductId { get; set; } = default!;
-
-        /// <summary>
-        /// The number of products that were purchased.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("quantity")]
-        public int? Quantity { get; set; } = default!;
-
-        /// <summary>
-        /// States whether or not the fulfillment requires shipping.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping")]
-        public bool? RequiresShipping { get; set; } = default!;
-
-        /// <summary>
-        /// A unique identifier of the item in the fulfillment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("sku")]
-        public string? Sku { get; set; } = default!;
-
-        /// <summary>
-        /// The title of the product.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("title")]
-        public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// The id of the product variant. Can be null if the product purchased is not a variant.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("variant_id")]
-        public long? VariantId { get; set; } = default!;
-
-        /// <summary>
-        /// The title of the product variant. Can be null if the product purchased is not a variant.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("variant_title")]
-        public string? VariantTitle { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the product variant.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the supplier of the item.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("vendor")]
-        public string? Vendor { get; set; } = default!;
-
-        /// <summary>
-        /// States whether the order used a gift card.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("gift_card")]
-        public bool? GiftCard { get; set; } = default!;
-
-        /// <summary>
-        /// States whether or not the product was taxable.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("taxable")]
-        public bool? Taxable { get; set; } = default!;
-
-        /// <summary>
-        /// An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
-        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
-
-        /// <summary>
-        /// The payment gateway used to tender the tip, such as shopify_payments. Present only on tips.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tip_payment_gateway")]
-        public string? TipPaymentGateway { get; set; } = default!;
-
-        /// <summary>
-        /// The payment method used to tender the tip, such as Visa. Present only on tips.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tip_payment_method")]
-        public string? TipPaymentMethod { get; set; } = default!;
-
-        /// <summary>
-        /// The total discount amount applied to this line item. This value is not subtracted in the line item price.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_discount")]
-        public double? TotalDiscount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_discount_set")]
-        public PriceSet? TotalDiscountSet { get; set; } = default!;
-
-        /// <summary>
-        /// An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("discount_allocations")]
-        public System.Collections.Generic.ICollection<DiscountAllocation>? DiscountAllocations { get; set; } = default!;
-
-        /// <summary>
-        /// An array of custom information for an item that has been added to the cart.
-        /// <br/>Often used to provide product customization options.
-        /// <br/>An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("properties")]
-        public System.Collections.Generic.ICollection<LineItemProperty>? Properties { get; set; } = default!;
-
-        /// <summary>
-        /// This property is undocumented by Shopify.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("variant_inventory_management")]
-        public string? VariantInventoryManagement { get; set; } = default!;
-
-        /// <summary>
-        /// This property is undocumented by Shopify.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("product_exists")]
-        public bool? ProductExists { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("price_set")]
-        public PriceSet? PriceSet { get; set; } = default!;
-
-        /// <summary>
-        /// A list of duty objects, each containing information about a duty on the line item
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("duties")]
-        public System.Collections.Generic.ICollection<LineItemDuty>? Duties { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("origin_location")]
-        public LineItemOriginLocation? OriginLocation { get; set; } = default!;
-
-        /// <summary>
-        /// Indicates if this is a product variant line item, or a custom line item. If set to true indicates a custom line item. If set to false indicates a product variant line item. This is a read only field.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("custom")]
-        public bool? Custom { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("applied_discount")]
-        public AppliedDiscount? AppliedDiscount { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class DraftOrder
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The unique numeric identifier for the order associated to the draft order, once created.
         /// </summary>
@@ -4571,21 +4166,21 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("total_tax")]
-        public double? TotalTax { get; set; } = default!;
+        public decimal? TotalTax { get; set; } = default!;
 
         /// <summary>
         /// Price of the order before shipping and taxes
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("subtotal_price")]
-        public double? SubtotalPrice { get; set; } = default!;
+        public decimal? SubtotalPrice { get; set; } = default!;
 
         /// <summary>
         /// The sum of all the prices of all the items in the order, taxes and discounts included (must be positive).
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("total_price")]
-        public double? TotalPrice { get; set; } = default!;
+        public decimal? TotalPrice { get; set; } = default!;
 
         /// <summary>
         /// Date at which order is created and the draft order changes to completed status. The API returns this value in ISO 8601 format.
@@ -4638,29 +4233,11 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class DraftOrderCount
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class DraftOrderItem
+    public partial class CreateDraftOrderRequest
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("draft_order")]
-        public DraftOrder? DraftOrder { get; set; } = default!;
+        public CreateDraftOrder? DraftOrder { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -4674,534 +4251,8 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class DraftOrderMetafield
+    public partial class CreateOrder
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the metafield was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the metafield was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// Identifier for the metafield (maximum of 30 characters).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("key")]
-        public string? Key { get; set; } = default!;
-
-        /// <summary>
-        /// Information to be stored as metadata. Must be either a string or an int.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value")]
-        public object? Value { get; set; } = default!;
-
-        /// <summary>
-        /// States whether the information in the value is stored as a 'string' or 'integer.'
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
-        public string? ValueType { get; set; } = default!;
-
-        /// <summary>
-        /// Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("namespace")]
-        public string? Namespace { get; set; } = default!;
-
-        /// <summary>
-        /// Additional information about the metafield.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("description")]
-        public string? Description { get; set; } = default!;
-
-        /// <summary>
-        /// The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("owner_id")]
-        public long? OwnerId { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("owner_resource")]
-        public string? OwnerResource { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class DraftShippingLine
-    {
-        /// <summary>
-        /// Whether this is a regular shipping line or custom shipping line.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("custom")]
-        public bool? Custom { get; set; } = default!;
-
-        /// <summary>
-        /// The handle of the shipping rate which was selected and applied. Required for regular shipping lines.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("handle")]
-        public string? Handle { get; set; } = default!;
-
-        /// <summary>
-        /// The title of the shipping method. Required for custom shipping lines. (maximum: 255 characters)
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("title")]
-        public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// The price of the shipping method. Required for custom shipping lines.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("price")]
-        public double? Price { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class LineItem
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
-        /// The amount available to fulfill. This is the quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillable_quantity")]
-        public int? FulfillableQuantity { get; set; } = default!;
-
-        /// <summary>
-        /// Service provider who is doing the fulfillment. Valid values are either "manual" or the name of the provider. eg: "amazon", "shipwire", etc.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]
-        public string? FulfillmentService { get; set; } = default!;
-
-        /// <summary>
-        /// The fulfillment status of this line item. Known values are 'fulfilled', 'null' and 'partial'.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_status")]
-        public string? FulfillmentStatus { get; set; } = default!;
-
-        /// <summary>
-        /// The weight of the item in grams.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("grams")]
-        public long? Grams { get; set; } = default!;
-
-        /// <summary>
-        /// The price of the item before discounts have been applied.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("price")]
-        public double? Price { get; set; } = default!;
-
-        /// <summary>
-        /// The unique numeric identifier for the product in the fulfillment. Can be null if the original product associated with the order is deleted at a later date
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("product_id")]
-        public long? ProductId { get; set; } = default!;
-
-        /// <summary>
-        /// The number of products that were purchased.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("quantity")]
-        public int? Quantity { get; set; } = default!;
-
-        /// <summary>
-        /// States whether or not the fulfillment requires shipping.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping")]
-        public bool? RequiresShipping { get; set; } = default!;
-
-        /// <summary>
-        /// A unique identifier of the item in the fulfillment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("sku")]
-        public string? Sku { get; set; } = default!;
-
-        /// <summary>
-        /// The title of the product.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("title")]
-        public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// The id of the product variant. Can be null if the product purchased is not a variant.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("variant_id")]
-        public long? VariantId { get; set; } = default!;
-
-        /// <summary>
-        /// The title of the product variant. Can be null if the product purchased is not a variant.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("variant_title")]
-        public string? VariantTitle { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the product variant.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the supplier of the item.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("vendor")]
-        public string? Vendor { get; set; } = default!;
-
-        /// <summary>
-        /// States whether the order used a gift card.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("gift_card")]
-        public bool? GiftCard { get; set; } = default!;
-
-        /// <summary>
-        /// States whether or not the product was taxable.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("taxable")]
-        public bool? Taxable { get; set; } = default!;
-
-        /// <summary>
-        /// An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
-        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
-
-        /// <summary>
-        /// The payment gateway used to tender the tip, such as shopify_payments. Present only on tips.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tip_payment_gateway")]
-        public string? TipPaymentGateway { get; set; } = default!;
-
-        /// <summary>
-        /// The payment method used to tender the tip, such as Visa. Present only on tips.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tip_payment_method")]
-        public string? TipPaymentMethod { get; set; } = default!;
-
-        /// <summary>
-        /// The total discount amount applied to this line item. This value is not subtracted in the line item price.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_discount")]
-        public double? TotalDiscount { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_discount_set")]
-        public PriceSet? TotalDiscountSet { get; set; } = default!;
-
-        /// <summary>
-        /// An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("discount_allocations")]
-        public System.Collections.Generic.ICollection<DiscountAllocation>? DiscountAllocations { get; set; } = default!;
-
-        /// <summary>
-        /// An array of custom information for an item that has been added to the cart.
-        /// <br/>Often used to provide product customization options.
-        /// <br/>An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("properties")]
-        public System.Collections.Generic.ICollection<LineItemProperty>? Properties { get; set; } = default!;
-
-        /// <summary>
-        /// This property is undocumented by Shopify.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("variant_inventory_management")]
-        public string? VariantInventoryManagement { get; set; } = default!;
-
-        /// <summary>
-        /// This property is undocumented by Shopify.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("product_exists")]
-        public bool? ProductExists { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("price_set")]
-        public PriceSet? PriceSet { get; set; } = default!;
-
-        /// <summary>
-        /// A list of duty objects, each containing information about a duty on the line item
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("duties")]
-        public System.Collections.Generic.ICollection<LineItemDuty>? Duties { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("origin_location")]
-        public LineItemOriginLocation? OriginLocation { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class LineItemDuty
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("harmonized_system_code")]
-        public string? HarmonizedSystemCode { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("country_code_of_origin")]
-        public string? CountryCodeOfOrigin { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("shop_money")]
-        public Price? ShopMoney { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("presentment_money")]
-        public Price? PresentmentMoney { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
-        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class LineItemOriginLocation
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
-        /// The two-letter code (ISO 3166-1 format) for the country of the item's supplier.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("country_code")]
-        public string? CountryCode { get; set; } = default!;
-
-        /// <summary>
-        /// The two-letter abbreviation for the region of the item's supplier.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("province_code")]
-        public string? ProvinceCode { get; set; } = default!;
-
-        /// <summary>
-        /// The two-letter abbreviation for the region of the item's supplier.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the item's supplier.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("address1")]
-        public string? Address1 { get; set; } = default!;
-
-        /// <summary>
-        /// The suite number of the item's supplier.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("address2")]
-        public string? Address2 { get; set; } = default!;
-
-        /// <summary>
-        /// The suite number of the item's supplier.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("city")]
-        public string? City { get; set; } = default!;
-
-        /// <summary>
-        /// The city of the item's supplier.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("zip")]
-        public string? Zip { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// An object representing a properties for OpenShopify.Admin.Builder.Models.LineItem.Properties
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class LineItemProperty
-    {
-        /// <summary>
-        /// The name of the note attribute.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public object? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The value of the note attribute.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value")]
-        public object? Value { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// An object representing a note attribute for OpenShopify.Admin.Builder.Models.Order.NoteAttributes
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class NoteAttribute
-    {
-        /// <summary>
-        /// The name of the note attribute.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The value of the note attribute.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value")]
-        public object? Value { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// An object representing a Shopify order.
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class Order
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// Unique identifier of the app who created the order.
         /// </summary>
@@ -5471,7 +4522,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("subtotal_price")]
-        public double? SubtotalPrice { get; set; } = default!;
+        public decimal? SubtotalPrice { get; set; } = default!;
 
         /// <summary>
         /// An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the total taxes applicable to the order.
@@ -5506,35 +4557,35 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("total_discounts")]
-        public double? TotalDiscounts { get; set; } = default!;
+        public decimal? TotalDiscounts { get; set; } = default!;
 
         /// <summary>
         /// The sum of all the prices of all the items in the order.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("total_line_items_price")]
-        public double? TotalLineItemsPrice { get; set; } = default!;
+        public decimal? TotalLineItemsPrice { get; set; } = default!;
 
         /// <summary>
         /// The sum of all the tips in the order.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("total_tip_received")]
-        public double? TotalTipReceived { get; set; } = default!;
+        public decimal? TotalTipReceived { get; set; } = default!;
 
         /// <summary>
         /// The sum of all the prices of all the items in the order, with taxes and discounts included (must be positive).
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("total_price")]
-        public double? TotalPrice { get; set; } = default!;
+        public decimal? TotalPrice { get; set; } = default!;
 
         /// <summary>
         /// The sum of all the taxes applied to the order (must be positive).
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("total_tax")]
-        public double? TotalTax { get; set; } = default!;
+        public decimal? TotalTax { get; set; } = default!;
 
         /// <summary>
         /// The sum of all the weights of the line items in the order, in grams.
@@ -5618,29 +4669,11 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class OrderCount
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class OrderItem
+    public partial class CreateOrderRequest
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("order")]
-        public Order? Order { get; set; } = default!;
+        public CreateOrder? Order { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -5654,108 +4687,8 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class OrderMetafield
+    public partial class CreateOrderRisk
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the metafield was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the metafield was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// Identifier for the metafield (maximum of 30 characters).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("key")]
-        public string? Key { get; set; } = default!;
-
-        /// <summary>
-        /// Information to be stored as metadata. Must be either a string or an int.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value")]
-        public object? Value { get; set; } = default!;
-
-        /// <summary>
-        /// States whether the information in the value is stored as a 'string' or 'integer.'
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
-        public string? ValueType { get; set; } = default!;
-
-        /// <summary>
-        /// Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("namespace")]
-        public string? Namespace { get; set; } = default!;
-
-        /// <summary>
-        /// Additional information about the metafield.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("description")]
-        public string? Description { get; set; } = default!;
-
-        /// <summary>
-        /// The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("owner_id")]
-        public long? OwnerId { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("owner_resource")]
-        public string? OwnerResource { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// An object representing a Shopify order risk.
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class OrderRisk
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// Use this flag when a fraud check is accompanied with a call to the Orders API to cancel the order. This will indicate to the merchant that this risk was severe enough to force cancellation of the order.
         /// <br/>Note: Setting this parameter does not cancel the order. This must be done by the Orders API.
@@ -5804,7 +4737,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("score")]
-        public double? Score { get; set; } = default!;
+        public decimal? Score { get; set; } = default!;
 
         /// <summary>
         /// This indicates the source of the risk assessment. Known values are 'External', 'Internal' and 'Gateway'.
@@ -5825,11 +4758,11 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class OrderRiskItem
+    public partial class CreateOrderRiskRequest
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("order_risk")]
-        public OrderRisk? OrderRisk { get; set; } = default!;
+        public CreateOrderRisk? OrderRisk { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -5843,69 +4776,8 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class PaymentDetails
+    public partial class CreateRefund
     {
-
-        [System.Text.Json.Serialization.JsonPropertyName("avs_result_code")]
-        public string? AvsResultCode { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("credit_card_bin")]
-        public string? CreditCardBin { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("cvv_result_code")]
-        public string? CvvResultCode { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("credit_card_number")]
-        public string? CreditCardNumber { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("credit_card_company")]
-        public string? CreditCardCompany { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class PriceSet
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("shop_money")]
-        public Price? ShopMoney { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("presentment_money")]
-        public Price? PresentmentMoney { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class Refund
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The unique identifier of the order.
         /// </summary>
@@ -6013,53 +4885,11 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class RefundDuty
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("duty_id")]
-        public long? DutyId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("amount_set")]
-        public PriceSet? AmountSet { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class RefundDutyType
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("duty_id")]
-        public long? DutyId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("refund_type")]
-        public string? RefundType { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class RefundItem
+    public partial class CreateRefundRequest
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("refund")]
-        public Refund? Refund { get; set; } = default!;
+        public CreateRefund? Refund { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -6073,349 +4903,14 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class RefundLineItem
+    public partial class CreateTransaction
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("line_item")]
-        public LineItem? LineItem { get; set; } = default!;
-
-        /// <summary>
-        /// The unique identifier of the refund line item.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("line_item_id")]
-        public long? LineItemId { get; set; } = default!;
-
-        /// <summary>
-        /// The quantity of the associated line item that was returned.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("quantity")]
-        public int? Quantity { get; set; } = default!;
-
-        /// <summary>
-        /// Tax amount refunded
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_tax")]
-        public double? TotalTax { get; set; } = default!;
-
-        /// <summary>
-        /// Item subtotal
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("subtotal")]
-        public double? Subtotal { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("subtotal_set")]
-        public PriceSet? SubtotalSet { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_tax_set")]
-        public PriceSet? TotalTaxSet { get; set; } = default!;
-
-        /// <summary>
-        /// How this refund line item affects inventory levels.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("restock_type")]
-        public string? RestockType { get; set; } = default!;
-
-        /// <summary>
-        /// The unique identifier of the location where the items will be restocked.
-        /// <br/>Required when restock_type has the value return or cancel.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
-        public long? LocationId { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class RefundOrderAdjustment
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
-        /// The unique identifier of the order
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
-        public long? OrderId { get; set; } = default!;
-
-        /// <summary>
-        /// The unique identifier of the refund
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("refund_id")]
-        public long? RefundId { get; set; } = default!;
-
-        /// <summary>
-        /// The amount refunded (it is negative and does not include tax).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("amount")]
-        public double? Amount { get; set; } = default!;
-
-        /// <summary>
-        /// The tax amount refunded (negative).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_amount")]
-        public double? TaxAmount { get; set; } = default!;
-
-        /// <summary>
-        /// The type of adjustment. Values include "refund_discrepancy", "shipping_refund"
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("kind")]
-        public string? Kind { get; set; } = default!;
-
-        /// <summary>
-        /// Reason for the refund
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("reason")]
-        public string? Reason { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("amount_set")]
-        public PriceSet? AmountSet { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_amount_set")]
-        public PriceSet? TaxAmountSet { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class Shipping
-    {
-        /// <summary>
-        /// Whether to refund all remaining shipping.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("full_refund")]
-        public bool? FullRefund { get; set; } = default!;
-
-        /// <summary>
-        /// Set a specific amount to refund for shipping. Takes precedence over full_refund.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("amount")]
-        public double? Amount { get; set; } = default!;
-
-        /// <summary>
-        /// The maximum amount that can be refunded
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("maximum_refundable")]
-        public double? MaximumRefundable { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ShippingLine
-    {
-        /// <summary>
-        /// The carrier provided identifier.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("carrier_identifier")]
-        public string? CarrierIdentifier { get; set; } = default!;
-
-        /// <summary>
-        /// A reference to the shipping method.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("code")]
-        public string? Code { get; set; } = default!;
-
-        /// <summary>
-        /// The phone number used for the shipment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("phone")]
-        public string? Phone { get; set; } = default!;
-
-        /// <summary>
-        /// The price of this shipping method.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("price")]
-        public double? Price { get; set; } = default!;
-
-        /// <summary>
-        /// The discounted price of this shipping method.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("discounted_price")]
-        public double? DiscountedPrice { get; set; } = default!;
-
-        /// <summary>
-        /// An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("discount_allocations")]
-        public System.Collections.Generic.ICollection<DiscountAllocation>? DiscountAllocations { get; set; } = default!;
-
-        /// <summary>
-        /// The source of the shipping method.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("source")]
-        public string? Source { get; set; } = default!;
-
-        /// <summary>
-        /// The title of the shipping method.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("title")]
-        public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// A list of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.ShippingLine.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
-        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("price_set")]
-        public PriceSet? PriceSet { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("discounted_price_set")]
-        public PriceSet? DiscountedPriceSet { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public enum Status
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"Open")]
-        Open = 0,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"Closed")]
-        Closed = 1,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"Cancelled")]
-        Cancelled = 2,
-
-        [System.Runtime.Serialization.EnumMember(Value = @"Any")]
-        Any = 3,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class TaxLine
-    {
-        /// <summary>
-        /// The amount of tax to be charged.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("price")]
-        public double? Price { get; set; } = default!;
-
-        /// <summary>
-        /// The rate of tax to be applied.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("rate")]
-        public double? Rate { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the tax.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("title")]
-        public string? Title { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("price_set")]
-        public PriceSet? PriceSet { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// An object representing a Shopify transaction.
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class Transaction
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The amount of money that the transaction was for.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("amount")]
-        public double? Amount { get; set; } = default!;
+        public decimal? Amount { get; set; } = default!;
 
         /// <summary>
         /// The authorization code associated with the transaction.
@@ -6544,7 +5039,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("maximum_refundable")]
-        public double? MaximumRefundable { get; set; } = default!;
+        public decimal? MaximumRefundable { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("currency_exchange_adjustment")]
         public CurrencyExchangeAdjustment? CurrencyExchangeAdjustment { get; set; } = default!;
@@ -6561,11 +5056,11 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class TransactionCount
+    public partial class CreateTransactionRequest
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("transaction")]
+        public CreateTransaction? Transaction { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -6579,11 +5074,3216 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class TransactionItem
+    public partial class CurrencyExchangeAdjustment
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The difference between the amounts on the associated transaction and the parent transaction.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("adjustment")]
+        public decimal? Adjustment { get; set; } = default!;
+
+        /// <summary>
+        /// The amount of the parent transaction in the shop currency.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("original_amount")]
+        public decimal? OriginalAmount { get; set; } = default!;
+
+        /// <summary>
+        /// The amount of the associated transaction in the shop currency.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("final_amount")]
+        public decimal? FinalAmount { get; set; } = default!;
+
+        /// <summary>
+        /// The shop currency.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+        public string? Currency { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class DiscountAllocation
+    {
+        /// <summary>
+        /// The discount amount allocated to the line (not sure why it is a string)
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("amount")]
+        public string? Amount { get; set; } = default!;
+
+        /// <summary>
+        /// The index of the associated discount application in the order's discount_applications list.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_application_index")]
+        public long? DiscountApplicationIndex { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("amount_set")]
+        public PriceSet? AmountSet { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class DiscountApplication
+    {
+        /// <summary>
+        /// The discount application type. Valid values:
+        /// <br/>manual: The discount was manually applied by the merchant(for example, by using an app or creating a draft order).
+        /// <br/>script: The discount was applied by a Shopify Script.
+        /// <br/>discount_code: The discount was applied by a discount code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("type")]
+        public string? Type { get; set; } = default!;
+
+        /// <summary>
+        /// The discount code that was used to apply the discount. Available only for discount code applications.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
+        public string? Code { get; set; } = default!;
+
+        /// <summary>
+        /// The title of the discount application, as defined by the merchant. Available only for manual discount applications.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// The description of the discount application, as defined by the merchant or the Shopify Script. Available only for manual and script discount applications.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
+        public string? Description { get; set; } = default!;
+
+        /// <summary>
+        /// The value of the discount application as a decimal. This represents the intention of the discount application.
+        /// <br/>For example, if the intent was to apply a 20% discount, then the value will be 20.0.
+        /// <br/>If the intent was to apply a $15 discount, then the value will be 15.0.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
+        public string? Value { get; set; } = default!;
+
+        /// <summary>
+        /// The type of the value. Valid values:
+        /// <br/>fixed_amount: A fixed amount discount value in the currency of the order.
+        /// <br/>percentage: A percentage discount value.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
+        public string? ValueType { get; set; } = default!;
+
+        /// <summary>
+        /// The method by which the discount application value has been allocated to entitled lines. Valid values:
+        /// <br/>across: The value is spread across all entitled lines.
+        /// <br/>each: The value is applied onto every entitled line.
+        /// <br/>one: The value is applied onto a single line.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("allocation_method")]
+        public string? AllocationMethod { get; set; } = default!;
+
+        /// <summary>
+        /// The lines on the order, of the type defined by target_type, that the discount is allocated over. Valid values:
+        /// <br/>all: The discount is allocated onto all lines,
+        /// <br/>entitled: The discount is allocated only onto lines it is entitled for.
+        /// <br/>explicit: The discount is allocated onto explicitly selected lines.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("target_selection")]
+        public string? TargetSelection { get; set; } = default!;
+
+        /// <summary>
+        /// The type of line on the order that the discount is applicable on. Valid values:
+        /// <br/>line_item: The discount applies to line items.
+        /// <br/>shipping_line: The discount applies to shipping lines.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("target_type")]
+        public string? TargetType { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class DraftLineItem
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The amount available to fulfill. This is the quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillable_quantity")]
+        public int? FulfillableQuantity { get; set; } = default!;
+
+        /// <summary>
+        /// Service provider who is doing the fulfillment. Valid values are either "manual" or the name of the provider. eg: "amazon", "shipwire", etc.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]
+        public string? FulfillmentService { get; set; } = default!;
+
+        /// <summary>
+        /// The fulfillment status of this line item. Known values are 'fulfilled', 'null' and 'partial'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_status")]
+        public string? FulfillmentStatus { get; set; } = default!;
+
+        /// <summary>
+        /// The weight of the item in grams.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("grams")]
+        public long? Grams { get; set; } = default!;
+
+        /// <summary>
+        /// The price of the item before discounts have been applied.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+        public decimal? Price { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier for the product in the fulfillment. Can be null if the original product associated with the order is deleted at a later date
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("product_id")]
+        public long? ProductId { get; set; } = default!;
+
+        /// <summary>
+        /// The number of products that were purchased.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("quantity")]
+        public int? Quantity { get; set; } = default!;
+
+        /// <summary>
+        /// States whether or not the fulfillment requires shipping.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping")]
+        public bool? RequiresShipping { get; set; } = default!;
+
+        /// <summary>
+        /// A unique identifier of the item in the fulfillment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("sku")]
+        public string? Sku { get; set; } = default!;
+
+        /// <summary>
+        /// The title of the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// The id of the product variant. Can be null if the product purchased is not a variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("variant_id")]
+        public long? VariantId { get; set; } = default!;
+
+        /// <summary>
+        /// The title of the product variant. Can be null if the product purchased is not a variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("variant_title")]
+        public string? VariantTitle { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the product variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the supplier of the item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("vendor")]
+        public string? Vendor { get; set; } = default!;
+
+        /// <summary>
+        /// States whether the order used a gift card.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("gift_card")]
+        public bool? GiftCard { get; set; } = default!;
+
+        /// <summary>
+        /// States whether or not the product was taxable.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("taxable")]
+        public bool? Taxable { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
+        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
+
+        /// <summary>
+        /// The payment gateway used to tender the tip, such as shopify_payments. Present only on tips.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tip_payment_gateway")]
+        public string? TipPaymentGateway { get; set; } = default!;
+
+        /// <summary>
+        /// The payment method used to tender the tip, such as Visa. Present only on tips.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tip_payment_method")]
+        public string? TipPaymentMethod { get; set; } = default!;
+
+        /// <summary>
+        /// The total discount amount applied to this line item. This value is not subtracted in the line item price.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_discount")]
+        public decimal? TotalDiscount { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_discount_set")]
+        public PriceSet? TotalDiscountSet { get; set; } = default!;
+
+        /// <summary>
+        /// An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_allocations")]
+        public System.Collections.Generic.ICollection<DiscountAllocation>? DiscountAllocations { get; set; } = default!;
+
+        /// <summary>
+        /// An array of custom information for an item that has been added to the cart.
+        /// <br/>Often used to provide product customization options.
+        /// <br/>An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("properties")]
+        public System.Collections.Generic.ICollection<LineItemProperty>? Properties { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("variant_inventory_management")]
+        public string? VariantInventoryManagement { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("product_exists")]
+        public bool? ProductExists { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("price_set")]
+        public PriceSet? PriceSet { get; set; } = default!;
+
+        /// <summary>
+        /// A list of duty objects, each containing information about a duty on the line item
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("duties")]
+        public System.Collections.Generic.ICollection<LineItemDuty>? Duties { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("origin_location")]
+        public LineItemOriginLocation? OriginLocation { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates if this is a product variant line item, or a custom line item. If set to true indicates a custom line item. If set to false indicates a product variant line item. This is a read only field.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("custom")]
+        public bool? Custom { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("applied_discount")]
+        public AppliedDiscount? AppliedDiscount { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class DraftOrderMetafield
+    {
+        /// <summary>
+        /// The date and time when the metafield was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the metafield was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Identifier for the metafield (maximum of 30 characters).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("key")]
+        public string? Key { get; set; } = default!;
+
+        /// <summary>
+        /// Information to be stored as metadata. Must be either a string or an int.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
+        public object? Value { get; set; } = default!;
+
+        /// <summary>
+        /// States whether the information in the value is stored as a 'string' or 'integer.'
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
+        public string? ValueType { get; set; } = default!;
+
+        /// <summary>
+        /// Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("namespace")]
+        public string? Namespace { get; set; } = default!;
+
+        /// <summary>
+        /// Additional information about the metafield.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
+        public string? Description { get; set; } = default!;
+
+        /// <summary>
+        /// The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("owner_id")]
+        public long? OwnerId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("owner_resource")]
+        public string? OwnerResource { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class DraftShippingLine
+    {
+        /// <summary>
+        /// Whether this is a regular shipping line or custom shipping line.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("custom")]
+        public bool? Custom { get; set; } = default!;
+
+        /// <summary>
+        /// The handle of the shipping rate which was selected and applied. Required for regular shipping lines.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        public string? Handle { get; set; } = default!;
+
+        /// <summary>
+        /// The title of the shipping method. Required for custom shipping lines. (maximum: 255 characters)
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// The price of the shipping method. Required for custom shipping lines.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+        public decimal? Price { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Fulfillment
+    {
+        /// <summary>
+        /// The date and time when the fulfillment was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// A historical record of each item in the fulfillment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("line_items")]
+        public System.Collections.Generic.ICollection<LineItem>? LineItems { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier for the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
+        public long? OrderId { get; set; } = default!;
+
+        /// <summary>
+        /// A textfield with information about the receipt.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("receipt")]
+        public object? Receipt { get; set; } = default!;
+
+        /// <summary>
+        /// The status of the fulfillment. Valid values are 'pending', 'open', 'success', 'cancelled',
+        /// <br/>'error' and 'failure'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+        public string? Status { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier of the location that the fulfillment should be processed for.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
+        public long? LocationId { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify. It appears to be the customer's email address
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// A flag indicating whether the customer should be notified. If set to true, an email will be
+        /// <br/>sent when the fulfillment is created or updated. The default value is false for fulfillments
+        /// <br/>on any orders created initially through the API. For all other orders, the default value is true.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("notify_customer")]
+        public bool? NotifyCustomer { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("destination")]
+        public Address? Destination { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the shipping company.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_company")]
+        public string? TrackingCompany { get; set; } = default!;
+
+        /// <summary>
+        /// The shipping number, provided by the shipping company. If multiple tracking numbers
+        /// <br/>exist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingNumbers), returns the first number.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_number")]
+        public string? TrackingNumber { get; set; } = default!;
+
+        /// <summary>
+        /// A list of shipping numbers, provided by the shipping company. May be null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_numbers")]
+        public System.Collections.Generic.ICollection<string>? TrackingNumbers { get; set; } = default!;
+
+        /// <summary>
+        /// The tracking url, provided by the shipping company. May be null. If multiple tracking URLs
+        /// <br/>exist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingUrls), returns the first URL.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_url")]
+        public string? TrackingUrl { get; set; } = default!;
+
+        /// <summary>
+        /// An array of one or more tracking urls, provided by the shipping company. May be null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_urls")]
+        public System.Collections.Generic.ICollection<string>? TrackingUrls { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the fulfillment was last modified.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// States the name of the inventory management service.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("variant_inventory_management")]
+        public string? VariantInventoryManagement { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("service")]
+        public string? Service { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipment_status")]
+        public string? ShipmentStatus { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class LineItem
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The amount available to fulfill. This is the quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillable_quantity")]
+        public int? FulfillableQuantity { get; set; } = default!;
+
+        /// <summary>
+        /// Service provider who is doing the fulfillment. Valid values are either "manual" or the name of the provider. eg: "amazon", "shipwire", etc.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]
+        public string? FulfillmentService { get; set; } = default!;
+
+        /// <summary>
+        /// The fulfillment status of this line item. Known values are 'fulfilled', 'null' and 'partial'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_status")]
+        public string? FulfillmentStatus { get; set; } = default!;
+
+        /// <summary>
+        /// The weight of the item in grams.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("grams")]
+        public long? Grams { get; set; } = default!;
+
+        /// <summary>
+        /// The price of the item before discounts have been applied.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+        public decimal? Price { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier for the product in the fulfillment. Can be null if the original product associated with the order is deleted at a later date
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("product_id")]
+        public long? ProductId { get; set; } = default!;
+
+        /// <summary>
+        /// The number of products that were purchased.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("quantity")]
+        public int? Quantity { get; set; } = default!;
+
+        /// <summary>
+        /// States whether or not the fulfillment requires shipping.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping")]
+        public bool? RequiresShipping { get; set; } = default!;
+
+        /// <summary>
+        /// A unique identifier of the item in the fulfillment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("sku")]
+        public string? Sku { get; set; } = default!;
+
+        /// <summary>
+        /// The title of the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// The id of the product variant. Can be null if the product purchased is not a variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("variant_id")]
+        public long? VariantId { get; set; } = default!;
+
+        /// <summary>
+        /// The title of the product variant. Can be null if the product purchased is not a variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("variant_title")]
+        public string? VariantTitle { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the product variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the supplier of the item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("vendor")]
+        public string? Vendor { get; set; } = default!;
+
+        /// <summary>
+        /// States whether the order used a gift card.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("gift_card")]
+        public bool? GiftCard { get; set; } = default!;
+
+        /// <summary>
+        /// States whether or not the product was taxable.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("taxable")]
+        public bool? Taxable { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
+        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
+
+        /// <summary>
+        /// The payment gateway used to tender the tip, such as shopify_payments. Present only on tips.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tip_payment_gateway")]
+        public string? TipPaymentGateway { get; set; } = default!;
+
+        /// <summary>
+        /// The payment method used to tender the tip, such as Visa. Present only on tips.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tip_payment_method")]
+        public string? TipPaymentMethod { get; set; } = default!;
+
+        /// <summary>
+        /// The total discount amount applied to this line item. This value is not subtracted in the line item price.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_discount")]
+        public decimal? TotalDiscount { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_discount_set")]
+        public PriceSet? TotalDiscountSet { get; set; } = default!;
+
+        /// <summary>
+        /// An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_allocations")]
+        public System.Collections.Generic.ICollection<DiscountAllocation>? DiscountAllocations { get; set; } = default!;
+
+        /// <summary>
+        /// An array of custom information for an item that has been added to the cart.
+        /// <br/>Often used to provide product customization options.
+        /// <br/>An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("properties")]
+        public System.Collections.Generic.ICollection<LineItemProperty>? Properties { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("variant_inventory_management")]
+        public string? VariantInventoryManagement { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("product_exists")]
+        public bool? ProductExists { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("price_set")]
+        public PriceSet? PriceSet { get; set; } = default!;
+
+        /// <summary>
+        /// A list of duty objects, each containing information about a duty on the line item
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("duties")]
+        public System.Collections.Generic.ICollection<LineItemDuty>? Duties { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("origin_location")]
+        public LineItemOriginLocation? OriginLocation { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class LineItemDuty
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("harmonized_system_code")]
+        public string? HarmonizedSystemCode { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_code_of_origin")]
+        public string? CountryCodeOfOrigin { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("shop_money")]
+        public Price? ShopMoney { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("presentment_money")]
+        public Price? PresentmentMoney { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
+        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class LineItemOriginLocation
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The two-letter code (ISO 3166-1 format) for the country of the item's supplier.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_code")]
+        public string? CountryCode { get; set; } = default!;
+
+        /// <summary>
+        /// The two-letter abbreviation for the region of the item's supplier.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province_code")]
+        public string? ProvinceCode { get; set; } = default!;
+
+        /// <summary>
+        /// The two-letter abbreviation for the region of the item's supplier.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the item's supplier.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("address1")]
+        public string? Address1 { get; set; } = default!;
+
+        /// <summary>
+        /// The suite number of the item's supplier.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("address2")]
+        public string? Address2 { get; set; } = default!;
+
+        /// <summary>
+        /// The suite number of the item's supplier.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("city")]
+        public string? City { get; set; } = default!;
+
+        /// <summary>
+        /// The city of the item's supplier.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("zip")]
+        public string? Zip { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// An object representing a properties for OpenShopify.Admin.Builder.Models.LineItem.Properties
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class LineItemProperty
+    {
+        /// <summary>
+        /// The name of the note attribute.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public object? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The value of the note attribute.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
+        public object? Value { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// An object representing a note attribute for !:Order.NoteAttributes
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class NoteAttribute
+    {
+        /// <summary>
+        /// The name of the note attribute.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The value of the note attribute.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
+        public object? Value { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class OrderMetafield
+    {
+        /// <summary>
+        /// The date and time when the metafield was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the metafield was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Identifier for the metafield (maximum of 30 characters).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("key")]
+        public string? Key { get; set; } = default!;
+
+        /// <summary>
+        /// Information to be stored as metadata. Must be either a string or an int.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
+        public object? Value { get; set; } = default!;
+
+        /// <summary>
+        /// States whether the information in the value is stored as a 'string' or 'integer.'
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
+        public string? ValueType { get; set; } = default!;
+
+        /// <summary>
+        /// Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("namespace")]
+        public string? Namespace { get; set; } = default!;
+
+        /// <summary>
+        /// Additional information about the metafield.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
+        public string? Description { get; set; } = default!;
+
+        /// <summary>
+        /// The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("owner_id")]
+        public long? OwnerId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("owner_resource")]
+        public string? OwnerResource { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class PaymentDetails
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("transaction")]
-        public Transaction? Transaction { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("avs_result_code")]
+        public string? AvsResultCode { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("credit_card_bin")]
+        public string? CreditCardBin { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("cvv_result_code")]
+        public string? CvvResultCode { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("credit_card_number")]
+        public string? CreditCardNumber { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("credit_card_company")]
+        public string? CreditCardCompany { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class PriceSet
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("shop_money")]
+        public Price? ShopMoney { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("presentment_money")]
+        public Price? PresentmentMoney { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Refund
+    {
+        /// <summary>
+        /// The unique identifier of the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
+        public long? OrderId { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the refund was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Whether to send a refund notification to the customer
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("notify")]
+        public bool? Notify { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping")]
+        public Shipping? Shipping { get; set; } = default!;
+
+        /// <summary>
+        /// The three-letter code (ISO 4217 format) for the currency used for the refund. Note: Required whenever the shipping amount property is provided.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+        public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// The list of OpenShopify.Admin.Builder.Models.RefundOrderAdjustment objects
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_adjustments")]
+        public System.Collections.Generic.ICollection<RefundOrderAdjustment>? OrderAdjustments { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the refund was imported.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("processed_at")]
+        public System.DateTimeOffset? ProcessedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The optional note attached to a refund.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note")]
+        public string? Note { get; set; } = default!;
+
+        /// <summary>
+        /// An optional comment that explains a discrepancy between calculated and actual refund amounts. 
+        /// <br/>Used to populate the reason property of the resulting order adjustment object attached to the refund.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discrepancy_reason")]
+        public string? DiscrepancyReason { get; set; } = default!;
+
+        /// <summary>
+        /// The list of OpenShopify.Admin.Builder.Models.RefundLineItem objects
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("refund_line_items")]
+        public System.Collections.Generic.ICollection<RefundLineItem>? RefundLineItems { get; set; } = default!;
+
+        /// <summary>
+        /// The list of OpenShopify.Admin.Builder.Models.Transaction objects
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("transactions")]
+        public System.Collections.Generic.ICollection<Transaction>? Transactions { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier of the user who performed the refund.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("user_id")]
+        public long? UserId { get; set; } = default!;
+
+        /// <summary>
+        /// A list of duties that have been returned as part of the refund.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("duties")]
+        public System.Collections.Generic.ICollection<RefundDuty>? Duties { get; set; } = default!;
+
+        /// <summary>
+        /// A list of refunded duties
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("refund_duties")]
+        public System.Collections.Generic.ICollection<RefundDutyType>? RefundDuties { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class RefundDuty
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("duty_id")]
+        public long? DutyId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("amount_set")]
+        public PriceSet? AmountSet { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class RefundDutyType
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("duty_id")]
+        public long? DutyId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("refund_type")]
+        public string? RefundType { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class RefundLineItem
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("line_item")]
+        public LineItem? LineItem { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier of the refund line item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("line_item_id")]
+        public long? LineItemId { get; set; } = default!;
+
+        /// <summary>
+        /// The quantity of the associated line item that was returned.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("quantity")]
+        public int? Quantity { get; set; } = default!;
+
+        /// <summary>
+        /// Tax amount refunded
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tax")]
+        public decimal? TotalTax { get; set; } = default!;
+
+        /// <summary>
+        /// Item subtotal
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("subtotal")]
+        public decimal? Subtotal { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("subtotal_set")]
+        public PriceSet? SubtotalSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tax_set")]
+        public PriceSet? TotalTaxSet { get; set; } = default!;
+
+        /// <summary>
+        /// How this refund line item affects inventory levels.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("restock_type")]
+        public string? RestockType { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier of the location where the items will be restocked.
+        /// <br/>Required when restock_type has the value return or cancel.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
+        public long? LocationId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class RefundOrderAdjustment
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier of the order
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
+        public long? OrderId { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier of the refund
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("refund_id")]
+        public long? RefundId { get; set; } = default!;
+
+        /// <summary>
+        /// The amount refunded (it is negative and does not include tax).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("amount")]
+        public decimal? Amount { get; set; } = default!;
+
+        /// <summary>
+        /// The tax amount refunded (negative).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_amount")]
+        public decimal? TaxAmount { get; set; } = default!;
+
+        /// <summary>
+        /// The type of adjustment. Values include "refund_discrepancy", "shipping_refund"
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
+        public string? Kind { get; set; } = default!;
+
+        /// <summary>
+        /// Reason for the refund
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("reason")]
+        public string? Reason { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("amount_set")]
+        public PriceSet? AmountSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_amount_set")]
+        public PriceSet? TaxAmountSet { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Shipping
+    {
+        /// <summary>
+        /// Whether to refund all remaining shipping.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("full_refund")]
+        public bool? FullRefund { get; set; } = default!;
+
+        /// <summary>
+        /// Set a specific amount to refund for shipping. Takes precedence over full_refund.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("amount")]
+        public decimal? Amount { get; set; } = default!;
+
+        /// <summary>
+        /// The maximum amount that can be refunded
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("maximum_refundable")]
+        public decimal? MaximumRefundable { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ShippingLine
+    {
+        /// <summary>
+        /// The carrier provided identifier.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("carrier_identifier")]
+        public string? CarrierIdentifier { get; set; } = default!;
+
+        /// <summary>
+        /// A reference to the shipping method.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
+        public string? Code { get; set; } = default!;
+
+        /// <summary>
+        /// The phone number used for the shipment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        /// <summary>
+        /// The price of this shipping method.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+        public decimal? Price { get; set; } = default!;
+
+        /// <summary>
+        /// The discounted price of this shipping method.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discounted_price")]
+        public decimal? DiscountedPrice { get; set; } = default!;
+
+        /// <summary>
+        /// An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_allocations")]
+        public System.Collections.Generic.ICollection<DiscountAllocation>? DiscountAllocations { get; set; } = default!;
+
+        /// <summary>
+        /// The source of the shipping method.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("source")]
+        public string? Source { get; set; } = default!;
+
+        /// <summary>
+        /// The title of the shipping method.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// A list of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.ShippingLine.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
+        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("price_set")]
+        public PriceSet? PriceSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("discounted_price_set")]
+        public PriceSet? DiscountedPriceSet { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum Status
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Open")]
+        Open = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Closed")]
+        Closed = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Cancelled")]
+        Cancelled = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Any")]
+        Any = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class TaxLine
+    {
+        /// <summary>
+        /// The amount of tax to be charged.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+        public decimal? Price { get; set; } = default!;
+
+        /// <summary>
+        /// The rate of tax to be applied.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("rate")]
+        public decimal? Rate { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the tax.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("price_set")]
+        public PriceSet? PriceSet { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Transaction
+    {
+        /// <summary>
+        /// The amount of money that the transaction was for.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("amount")]
+        public decimal? Amount { get; set; } = default!;
+
+        /// <summary>
+        /// The authorization code associated with the transaction.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("authorization")]
+        public string? Authorization { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the transaction was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier for the device.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("device_id")]
+        public string? DeviceId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the gateway the transaction was issued through.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("gateway")]
+        public string? Gateway { get; set; } = default!;
+
+        /// <summary>
+        /// The origin of the transaction. This is set by Shopify and cannot be overridden. Example values include: 'web', 'pos', 'iphone', 'android'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("source_name")]
+        public string? SourceName { get; set; } = default!;
+
+        /// <summary>
+        /// The origin of the transaction. Set to "external" to create a cash transaction for the associated order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("source")]
+        public string? Source { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("payment_details")]
+        public PaymentDetails? PaymentDetails { get; set; } = default!;
+
+        /// <summary>
+        /// The kind of transaction. Known values are 'authorization', 'capture', 'sale', 'void' and 'refund'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
+        public string? Kind { get; set; } = default!;
+
+        /// <summary>
+        /// A unique numeric identifier for the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
+        public long? OrderId { get; set; } = default!;
+
+        /// <summary>
+        /// Shopify does not currently offer documentation for this object.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("receipt")]
+        public object? Receipt { get; set; } = default!;
+
+        /// <summary>
+        /// A standardized error code, e.g. 'incorrect_number', independent of the payment provider. Value can be null. A full list of known values can be found at https://help.shopify.com/api/reference/transaction.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("error_code")]
+        public string? ErrorCode { get; set; } = default!;
+
+        /// <summary>
+        /// The status of the transaction. Valid values are: pending, failure, success or error.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+        public string? Status { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the transaction is for testing purposes.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("test")]
+        public bool? Test { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier for the user.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("user_id")]
+        public long? UserId { get; set; } = default!;
+
+        /// <summary>
+        /// The three letter code (ISO 4217) for the currency used for the payment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+        public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("message")]
+        public string? Message { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
+        public long? LocationId { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("parent_id")]
+        public long? ParentId { get; set; } = default!;
+
+        /// <summary>
+        /// The maximum amount that can be refunded
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("maximum_refundable")]
+        public decimal? MaximumRefundable { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency_exchange_adjustment")]
+        public CurrencyExchangeAdjustment? CurrencyExchangeAdjustment { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateDraftOrder
+    {
+        /// <summary>
+        /// The unique numeric identifier for the order associated to the draft order, once created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
+        public long? OrderId { get; set; } = default!;
+
+        /// <summary>
+        /// Name of the draft order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer")]
+        public Customer? Customer { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_address")]
+        public Address? ShippingAddress { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("billing_address")]
+        public Address? BillingAddress { get; set; } = default!;
+
+        /// <summary>
+        /// The text of an optional note that a shop owner can attach to the draft order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note")]
+        public string? Note { get; set; } = default!;
+
+        /// <summary>
+        /// Extra information that is added to the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
+        public System.Collections.Generic.ICollection<NoteAttribute>? NoteAttributes { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's email address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// The three letter code (ISO 4217) for the currency used for the payment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+        public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// This auto-generated property is the date and time when the invoice was emailed to the customer, in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("invoice_sent_at")]
+        public System.DateTimeOffset? InvoiceSentAt { get; set; } = default!;
+
+        /// <summary>
+        /// The URL for the invoice.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("invoice_url")]
+        public string? InvoiceUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Product variant line item or custom line item associated to the draft order. Each draft order must include at least one line_item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("line_items")]
+        public System.Collections.Generic.ICollection<DraftLineItem>? LineItems { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_line")]
+        public DraftShippingLine? ShippingLine { get; set; } = default!;
+
+        /// <summary>
+        /// Tags are additional short descriptors, commonly used for filtering and searching, formatted as a string of comma-separated values.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tags")]
+        public string? Tags { get; set; } = default!;
+
+        /// <summary>
+        /// Sets whether or not taxes are exempt for the draft order. If this field is set to false, then Shopify will refer to the taxable field for each line_item. If a customer is applied to the draft order, then Shopify will use the customer's tax_exempt field instead.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_exempt")]
+        public bool? TaxExempt { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the customer is exempt from paying specific taxes on their order
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_exemptions")]
+        public System.Collections.Generic.ICollection<string>? TaxExemptions { get; set; } = default!;
+
+        /// <summary>
+        /// An array of tax_line objects, each of which details the total taxes applicable to the order. When creating an order through the API, tax lines may be specified on the order or the line items but not both. Tax lines specified on the order are split on the taxable line items in the created order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
+        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("applied_discount")]
+        public AppliedDiscount? AppliedDiscount { get; set; } = default!;
+
+        /// <summary>
+        /// States whether or not taxes are included in the order subtotal.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("taxes_included")]
+        public bool? TaxesIncluded { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the taxes applied to the order (must be positive).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tax")]
+        public decimal? TotalTax { get; set; } = default!;
+
+        /// <summary>
+        /// Price of the order before shipping and taxes
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("subtotal_price")]
+        public decimal? SubtotalPrice { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the prices of all the items in the order, taxes and discounts included (must be positive).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_price")]
+        public decimal? TotalPrice { get; set; } = default!;
+
+        /// <summary>
+        /// Date at which order is created and the draft order changes to completed status. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("completed_at")]
+        public System.DateTimeOffset? CompletedAt { get; set; } = default!;
+
+        /// <summary>
+        /// This auto-generated property is the date and time when the draft order was created in Shopify, in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the order was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Once a draft order is set to status completed the only further draft order modifications that can be made are adding tags or metafields. No other draft order actions are permitted.
+        /// <br/>Known values are "open", "invoice_sent", and "completed".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+        public string? Status { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<DraftOrderMetafield>? Metafields { get; set; } = default!;
+
+        /// <summary>
+        /// An optional boolean that you can send as part of a draft order object to load customer shipping information.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("use_customer_default_address")]
+        public bool? UseCustomerDefaultAddress { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateDraftOrderRequest
+    {
+        /// <summary>
+        /// The unique numeric identifier for the order associated to the draft order, once created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
+        public long? OrderId { get; set; } = default!;
+
+        /// <summary>
+        /// Name of the draft order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer")]
+        public Customer? Customer { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_address")]
+        public Address? ShippingAddress { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("billing_address")]
+        public Address? BillingAddress { get; set; } = default!;
+
+        /// <summary>
+        /// The text of an optional note that a shop owner can attach to the draft order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note")]
+        public string? Note { get; set; } = default!;
+
+        /// <summary>
+        /// Extra information that is added to the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
+        public System.Collections.Generic.ICollection<NoteAttribute>? NoteAttributes { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's email address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// The three letter code (ISO 4217) for the currency used for the payment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+        public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// This auto-generated property is the date and time when the invoice was emailed to the customer, in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("invoice_sent_at")]
+        public System.DateTimeOffset? InvoiceSentAt { get; set; } = default!;
+
+        /// <summary>
+        /// The URL for the invoice.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("invoice_url")]
+        public string? InvoiceUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Product variant line item or custom line item associated to the draft order. Each draft order must include at least one line_item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("line_items")]
+        public System.Collections.Generic.ICollection<DraftLineItem>? LineItems { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_line")]
+        public DraftShippingLine? ShippingLine { get; set; } = default!;
+
+        /// <summary>
+        /// Tags are additional short descriptors, commonly used for filtering and searching, formatted as a string of comma-separated values.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tags")]
+        public string? Tags { get; set; } = default!;
+
+        /// <summary>
+        /// Sets whether or not taxes are exempt for the draft order. If this field is set to false, then Shopify will refer to the taxable field for each line_item. If a customer is applied to the draft order, then Shopify will use the customer's tax_exempt field instead.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_exempt")]
+        public bool? TaxExempt { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the customer is exempt from paying specific taxes on their order
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_exemptions")]
+        public System.Collections.Generic.ICollection<string>? TaxExemptions { get; set; } = default!;
+
+        /// <summary>
+        /// An array of tax_line objects, each of which details the total taxes applicable to the order. When creating an order through the API, tax lines may be specified on the order or the line items but not both. Tax lines specified on the order are split on the taxable line items in the created order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
+        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("applied_discount")]
+        public AppliedDiscount? AppliedDiscount { get; set; } = default!;
+
+        /// <summary>
+        /// States whether or not taxes are included in the order subtotal.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("taxes_included")]
+        public bool? TaxesIncluded { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the taxes applied to the order (must be positive).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tax")]
+        public decimal? TotalTax { get; set; } = default!;
+
+        /// <summary>
+        /// Price of the order before shipping and taxes
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("subtotal_price")]
+        public decimal? SubtotalPrice { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the prices of all the items in the order, taxes and discounts included (must be positive).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_price")]
+        public decimal? TotalPrice { get; set; } = default!;
+
+        /// <summary>
+        /// Date at which order is created and the draft order changes to completed status. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("completed_at")]
+        public System.DateTimeOffset? CompletedAt { get; set; } = default!;
+
+        /// <summary>
+        /// This auto-generated property is the date and time when the draft order was created in Shopify, in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the order was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Once a draft order is set to status completed the only further draft order modifications that can be made are adding tags or metafields. No other draft order actions are permitted.
+        /// <br/>Known values are "open", "invoice_sent", and "completed".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+        public string? Status { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<DraftOrderMetafield>? Metafields { get; set; } = default!;
+
+        /// <summary>
+        /// An optional boolean that you can send as part of a draft order object to load customer shipping information.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("use_customer_default_address")]
+        public bool? UseCustomerDefaultAddress { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("draft_order")]
+        public UpdateDraftOrder? DraftOrder { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateOrder
+    {
+        /// <summary>
+        /// Unique identifier of the app who created the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("app_id")]
+        public long? AppId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("billing_address")]
+        public Address? BillingAddress { get; set; } = default!;
+
+        /// <summary>
+        /// The IP address of the browser used by the customer when placing the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("browser_ip")]
+        public string? BrowserIp { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates whether or not the person who placed the order would like to receive email updates from the shop.
+        /// <br/>This is set when checking the "I want to receive occasional emails about new products, promotions and other news" checkbox during checkout.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("buyer_accepts_marketing")]
+        public bool? BuyerAcceptsMarketing { get; set; } = default!;
+
+        /// <summary>
+        /// The reason why the order was cancelled. If the order was not cancelled, this value is null. Known values are "customer", "fraud", "inventory" and "other".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("cancel_reason")]
+        public string? CancelReason { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the order was cancelled. If the order was not cancelled, this value is null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("cancelled_at")]
+        public System.DateTimeOffset? CancelledAt { get; set; } = default!;
+
+        /// <summary>
+        /// Unique identifier for a particular cart that is attached to a particular order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("cart_token")]
+        public string? CartToken { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("client_details")]
+        public ClientDetails? ClientDetails { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the order was closed. If the order was not clsoed, this value is null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("closed_at")]
+        public System.DateTimeOffset? ClosedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the order was created in Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The three letter code (ISO 4217) for the currency used for the payment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+        public string? Currency { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer")]
+        public Customer? Customer { get; set; } = default!;
+
+        /// <summary>
+        /// The two or three letter language code, optionally followed by a region modifier. Example values could be 'en', 'en-CA', 'en-PIRATE'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_locale")]
+        public string? CustomerLocale { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier of the POS device used.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("device_id")]
+        public long? DeviceId { get; set; } = default!;
+
+        /// <summary>
+        /// Applicable discount codes that can be applied to the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_codes")]
+        public System.Collections.Generic.ICollection<DiscountCode>? DiscountCodes { get; set; } = default!;
+
+        /// <summary>
+        /// An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_applications")]
+        public System.Collections.Generic.ICollection<DiscountApplication>? DiscountApplications { get; set; } = default!;
+
+        /// <summary>
+        /// The order's email address. Note: On and after 2015-11-03, you should be using !:ContactEmail to refer to the customer's email address.
+        /// <br/>Between 2015-11-03 and 2015-12-03, updates to an order's email will also update the customer's email. This is temporary so apps can be migrated over to
+        /// <br/>doing customer updates rather than order updates to change the contact email. After 2015-12-03, updating updating an order's email will no longer update
+        /// <br/>the customer's email and apps will have to use the customer update endpoint to do so.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// The financial status of an order. Known values are "authorized", "paid", "pending", "partially_paid", "partially_refunded", "refunded" and "voided".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("financial_status")]
+        public string? FinancialStatus { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.Fulfillment objects for this order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillments")]
+        public System.Collections.Generic.ICollection<Fulfillment>? Fulfillments { get; set; } = default!;
+
+        /// <summary>
+        /// The fulfillment status for this order. Known values are 'fulfilled', 'null' and 'partial'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_status")]
+        public string? FulfillmentStatus { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's phone number.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        /// <summary>
+        /// Tags are additional short descriptors, commonly used for filtering and searching, formatted as a string of comma-separated values.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tags")]
+        public string? Tags { get; set; } = default!;
+
+        /// <summary>
+        /// The URL for the page where the buyer landed when entering the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("landing_site")]
+        public string? LandingSite { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.LineItem objects, each one containing information about an item in the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("line_items")]
+        public System.Collections.Generic.ICollection<LineItem>? LineItems { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier for the physical location at which the order was processed. Only present on orders processed at point of sale.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
+        public long? LocationId { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's order name as represented by a number, e.g. '#1001'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The text of an optional note that a shop owner can attach to the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note")]
+        public string? Note { get; set; } = default!;
+
+        /// <summary>
+        /// Extra information that is added to the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
+        public System.Collections.Generic.ICollection<NoteAttribute>? NoteAttributes { get; set; } = default!;
+
+        /// <summary>
+        /// Numerical identifier unique to the shop. A number is sequential and starts at 1000.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("number")]
+        public int? Number { get; set; } = default!;
+
+        /// <summary>
+        /// A unique numeric identifier for the order. This one is used by the shop owner and customer.
+        /// <br/>This is different from the id property, which is also a unique numeric identifier for the order, but used for API purposes.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_number")]
+        public int? OrderNumber { get; set; } = default!;
+
+        /// <summary>
+        /// The URL pointing to the order status web page. The URL will be null unless the order was created from a checkout.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_status_url")]
+        public string? OrderStatusUrl { get; set; } = default!;
+
+        /// <summary>
+        /// The list of all payment gateways used for the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("payment_gateway_names")]
+        public System.Collections.Generic.ICollection<string>? PaymentGatewayNames { get; set; } = default!;
+
+        /// <summary>
+        /// The date that the order was processed at.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("processed_at")]
+        public System.DateTimeOffset? ProcessedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The type of payment processing method. Known values are 'checkout', 'direct', 'manual', 'offsite', 'express', 'free' and 'none'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("processing_method")]
+        public string? ProcessingMethod { get; set; } = default!;
+
+        /// <summary>
+        /// The website that the customer clicked on to come to the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("referring_site")]
+        public string? ReferringSite { get; set; } = default!;
+
+        /// <summary>
+        /// The list of OpenShopify.Admin.Builder.Models.Refund objects applied to the order
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("refunds")]
+        public System.Collections.Generic.ICollection<Refund>? Refunds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_address")]
+        public Address? ShippingAddress { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.ShippingLine objects, each of which details the shipping methods used.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_lines")]
+        public System.Collections.Generic.ICollection<ShippingLine>? ShippingLines { get; set; } = default!;
+
+        /// <summary>
+        /// Where the order originated. May only be set during creation, and is not writeable thereafter.
+        /// <br/>Orders created via the API may be assigned any string of your choice except for "web", "pos", "iphone", and "android".
+        /// <br/>Default is "api".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("source_name")]
+        public string? SourceName { get; set; } = default!;
+
+        /// <summary>
+        /// Price of the order before shipping and taxes
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("subtotal_price")]
+        public decimal? SubtotalPrice { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the total taxes applicable to the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
+        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
+
+        /// <summary>
+        /// States whether or not taxes are included in the order subtotal.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("taxes_included")]
+        public bool? TaxesIncluded { get; set; } = default!;
+
+        /// <summary>
+        /// States whether this is a test order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("test")]
+        public bool? Test { get; set; } = default!;
+
+        /// <summary>
+        /// Unique identifier for a particular order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("token")]
+        public string? Token { get; set; } = default!;
+
+        /// <summary>
+        /// The total amount of the discounts applied to the price of the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_discounts")]
+        public decimal? TotalDiscounts { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the prices of all the items in the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_line_items_price")]
+        public decimal? TotalLineItemsPrice { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the tips in the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tip_received")]
+        public decimal? TotalTipReceived { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the prices of all the items in the order, with taxes and discounts included (must be positive).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_price")]
+        public decimal? TotalPrice { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the taxes applied to the order (must be positive).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tax")]
+        public decimal? TotalTax { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the weights of the line items in the order, in grams.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_weight")]
+        public long? TotalWeight { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the order was last modified.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numerical identifier for the user logged into the terminal at the time the order was processed at. Only present on orders processed at point of sale.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("user_id")]
+        public long? UserId { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.Transaction objects that detail all of the transactions in
+        /// <br/>this order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("transactions")]
+        public System.Collections.Generic.ICollection<Transaction>? Transactions { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<OrderMetafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("current_total_duties_set")]
+        public PriceSet? CurrentTotalDutiesSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("original_total_duties_set")]
+        public PriceSet? OriginalTotalDutiesSet { get; set; } = default!;
+
+        /// <summary>
+        /// The three letter code (ISO 4217) for the currency used used to display prices to the customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("presentment_currency")]
+        public string? PresentmentCurrency { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_line_items_price_set")]
+        public PriceSet? TotalLineItemsPriceSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_discounts_set")]
+        public PriceSet? TotalDiscountsSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_shipping_price_set")]
+        public PriceSet? TotalShippingPriceSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("subtotal_price_set")]
+        public PriceSet? SubtotalPriceSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_price_set")]
+        public PriceSet? TotalPriceSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tax_set")]
+        public PriceSet? TotalTaxSet { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates whether taxes on an order are estimated. Will be set to false when taxes on an order are finalized and aren't subject to any change.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("estimated_taxes")]
+        public bool? EstimatedTaxes { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateOrderRequest
+    {
+        /// <summary>
+        /// Unique identifier of the app who created the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("app_id")]
+        public long? AppId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("billing_address")]
+        public Address? BillingAddress { get; set; } = default!;
+
+        /// <summary>
+        /// The IP address of the browser used by the customer when placing the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("browser_ip")]
+        public string? BrowserIp { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates whether or not the person who placed the order would like to receive email updates from the shop.
+        /// <br/>This is set when checking the "I want to receive occasional emails about new products, promotions and other news" checkbox during checkout.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("buyer_accepts_marketing")]
+        public bool? BuyerAcceptsMarketing { get; set; } = default!;
+
+        /// <summary>
+        /// The reason why the order was cancelled. If the order was not cancelled, this value is null. Known values are "customer", "fraud", "inventory" and "other".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("cancel_reason")]
+        public string? CancelReason { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the order was cancelled. If the order was not cancelled, this value is null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("cancelled_at")]
+        public System.DateTimeOffset? CancelledAt { get; set; } = default!;
+
+        /// <summary>
+        /// Unique identifier for a particular cart that is attached to a particular order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("cart_token")]
+        public string? CartToken { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("client_details")]
+        public ClientDetails? ClientDetails { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the order was closed. If the order was not clsoed, this value is null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("closed_at")]
+        public System.DateTimeOffset? ClosedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the order was created in Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The three letter code (ISO 4217) for the currency used for the payment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+        public string? Currency { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer")]
+        public Customer? Customer { get; set; } = default!;
+
+        /// <summary>
+        /// The two or three letter language code, optionally followed by a region modifier. Example values could be 'en', 'en-CA', 'en-PIRATE'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_locale")]
+        public string? CustomerLocale { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier of the POS device used.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("device_id")]
+        public long? DeviceId { get; set; } = default!;
+
+        /// <summary>
+        /// Applicable discount codes that can be applied to the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_codes")]
+        public System.Collections.Generic.ICollection<DiscountCode>? DiscountCodes { get; set; } = default!;
+
+        /// <summary>
+        /// An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_applications")]
+        public System.Collections.Generic.ICollection<DiscountApplication>? DiscountApplications { get; set; } = default!;
+
+        /// <summary>
+        /// The order's email address. Note: On and after 2015-11-03, you should be using !:ContactEmail to refer to the customer's email address.
+        /// <br/>Between 2015-11-03 and 2015-12-03, updates to an order's email will also update the customer's email. This is temporary so apps can be migrated over to
+        /// <br/>doing customer updates rather than order updates to change the contact email. After 2015-12-03, updating updating an order's email will no longer update
+        /// <br/>the customer's email and apps will have to use the customer update endpoint to do so.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// The financial status of an order. Known values are "authorized", "paid", "pending", "partially_paid", "partially_refunded", "refunded" and "voided".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("financial_status")]
+        public string? FinancialStatus { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.Fulfillment objects for this order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillments")]
+        public System.Collections.Generic.ICollection<Fulfillment>? Fulfillments { get; set; } = default!;
+
+        /// <summary>
+        /// The fulfillment status for this order. Known values are 'fulfilled', 'null' and 'partial'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_status")]
+        public string? FulfillmentStatus { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's phone number.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        /// <summary>
+        /// Tags are additional short descriptors, commonly used for filtering and searching, formatted as a string of comma-separated values.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tags")]
+        public string? Tags { get; set; } = default!;
+
+        /// <summary>
+        /// The URL for the page where the buyer landed when entering the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("landing_site")]
+        public string? LandingSite { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.LineItem objects, each one containing information about an item in the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("line_items")]
+        public System.Collections.Generic.ICollection<LineItem>? LineItems { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier for the physical location at which the order was processed. Only present on orders processed at point of sale.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
+        public long? LocationId { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's order name as represented by a number, e.g. '#1001'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The text of an optional note that a shop owner can attach to the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note")]
+        public string? Note { get; set; } = default!;
+
+        /// <summary>
+        /// Extra information that is added to the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
+        public System.Collections.Generic.ICollection<NoteAttribute>? NoteAttributes { get; set; } = default!;
+
+        /// <summary>
+        /// Numerical identifier unique to the shop. A number is sequential and starts at 1000.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("number")]
+        public int? Number { get; set; } = default!;
+
+        /// <summary>
+        /// A unique numeric identifier for the order. This one is used by the shop owner and customer.
+        /// <br/>This is different from the id property, which is also a unique numeric identifier for the order, but used for API purposes.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_number")]
+        public int? OrderNumber { get; set; } = default!;
+
+        /// <summary>
+        /// The URL pointing to the order status web page. The URL will be null unless the order was created from a checkout.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_status_url")]
+        public string? OrderStatusUrl { get; set; } = default!;
+
+        /// <summary>
+        /// The list of all payment gateways used for the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("payment_gateway_names")]
+        public System.Collections.Generic.ICollection<string>? PaymentGatewayNames { get; set; } = default!;
+
+        /// <summary>
+        /// The date that the order was processed at.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("processed_at")]
+        public System.DateTimeOffset? ProcessedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The type of payment processing method. Known values are 'checkout', 'direct', 'manual', 'offsite', 'express', 'free' and 'none'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("processing_method")]
+        public string? ProcessingMethod { get; set; } = default!;
+
+        /// <summary>
+        /// The website that the customer clicked on to come to the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("referring_site")]
+        public string? ReferringSite { get; set; } = default!;
+
+        /// <summary>
+        /// The list of OpenShopify.Admin.Builder.Models.Refund objects applied to the order
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("refunds")]
+        public System.Collections.Generic.ICollection<Refund>? Refunds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_address")]
+        public Address? ShippingAddress { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.ShippingLine objects, each of which details the shipping methods used.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_lines")]
+        public System.Collections.Generic.ICollection<ShippingLine>? ShippingLines { get; set; } = default!;
+
+        /// <summary>
+        /// Where the order originated. May only be set during creation, and is not writeable thereafter.
+        /// <br/>Orders created via the API may be assigned any string of your choice except for "web", "pos", "iphone", and "android".
+        /// <br/>Default is "api".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("source_name")]
+        public string? SourceName { get; set; } = default!;
+
+        /// <summary>
+        /// Price of the order before shipping and taxes
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("subtotal_price")]
+        public decimal? SubtotalPrice { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the total taxes applicable to the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
+        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
+
+        /// <summary>
+        /// States whether or not taxes are included in the order subtotal.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("taxes_included")]
+        public bool? TaxesIncluded { get; set; } = default!;
+
+        /// <summary>
+        /// States whether this is a test order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("test")]
+        public bool? Test { get; set; } = default!;
+
+        /// <summary>
+        /// Unique identifier for a particular order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("token")]
+        public string? Token { get; set; } = default!;
+
+        /// <summary>
+        /// The total amount of the discounts applied to the price of the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_discounts")]
+        public decimal? TotalDiscounts { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the prices of all the items in the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_line_items_price")]
+        public decimal? TotalLineItemsPrice { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the tips in the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tip_received")]
+        public decimal? TotalTipReceived { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the prices of all the items in the order, with taxes and discounts included (must be positive).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_price")]
+        public decimal? TotalPrice { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the taxes applied to the order (must be positive).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tax")]
+        public decimal? TotalTax { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the weights of the line items in the order, in grams.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_weight")]
+        public long? TotalWeight { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the order was last modified.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numerical identifier for the user logged into the terminal at the time the order was processed at. Only present on orders processed at point of sale.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("user_id")]
+        public long? UserId { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.Transaction objects that detail all of the transactions in
+        /// <br/>this order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("transactions")]
+        public System.Collections.Generic.ICollection<Transaction>? Transactions { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<OrderMetafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("current_total_duties_set")]
+        public PriceSet? CurrentTotalDutiesSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("original_total_duties_set")]
+        public PriceSet? OriginalTotalDutiesSet { get; set; } = default!;
+
+        /// <summary>
+        /// The three letter code (ISO 4217) for the currency used used to display prices to the customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("presentment_currency")]
+        public string? PresentmentCurrency { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_line_items_price_set")]
+        public PriceSet? TotalLineItemsPriceSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_discounts_set")]
+        public PriceSet? TotalDiscountsSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_shipping_price_set")]
+        public PriceSet? TotalShippingPriceSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("subtotal_price_set")]
+        public PriceSet? SubtotalPriceSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_price_set")]
+        public PriceSet? TotalPriceSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tax_set")]
+        public PriceSet? TotalTaxSet { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates whether taxes on an order are estimated. Will be set to false when taxes on an order are finalized and aren't subject to any change.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("estimated_taxes")]
+        public bool? EstimatedTaxes { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("order")]
+        public UpdateOrder? Order { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateOrderRisk
+    {
+        /// <summary>
+        /// Use this flag when a fraud check is accompanied with a call to the Orders API to cancel the order. This will indicate to the merchant that this risk was severe enough to force cancellation of the order.
+        /// <br/>Note: Setting this parameter does not cancel the order. This must be done by the Orders API.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("cause_cancel")]
+        public bool? CauseCancel { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the checkout that the order risk belongs to.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("checkout_id")]
+        public long? CheckoutId { get; set; } = default!;
+
+        /// <summary>
+        /// States whether or not the risk is displayed. Valid values are "true" or "false".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("display")]
+        public bool? Display { get; set; } = default!;
+
+        /// <summary>
+        /// The id of the order the order risk belongs to
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
+        public long? OrderId { get; set; } = default!;
+
+        /// <summary>
+        /// A message that should be displayed to the merchant to indicate the results of the fraud check.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("message")]
+        public string? Message { get; set; } = default!;
+
+        /// <summary>
+        /// The recommended action given to the merchant. Known values are 'cancel', 'investigate' and 'accept'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("recommendation")]
+        public string? Recommendation { get; set; } = default!;
+
+        /// <summary>
+        /// A number between 0 and 1 indicating percentage likelihood of being fraud.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("score")]
+        public decimal? Score { get; set; } = default!;
+
+        /// <summary>
+        /// This indicates the source of the risk assessment. Known values are 'External', 'Internal' and 'Gateway'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("source")]
+        public string? Source { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateOrderRiskRequest
+    {
+        /// <summary>
+        /// Use this flag when a fraud check is accompanied with a call to the Orders API to cancel the order. This will indicate to the merchant that this risk was severe enough to force cancellation of the order.
+        /// <br/>Note: Setting this parameter does not cancel the order. This must be done by the Orders API.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("cause_cancel")]
+        public bool? CauseCancel { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the checkout that the order risk belongs to.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("checkout_id")]
+        public long? CheckoutId { get; set; } = default!;
+
+        /// <summary>
+        /// States whether or not the risk is displayed. Valid values are "true" or "false".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("display")]
+        public bool? Display { get; set; } = default!;
+
+        /// <summary>
+        /// The id of the order the order risk belongs to
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
+        public long? OrderId { get; set; } = default!;
+
+        /// <summary>
+        /// A message that should be displayed to the merchant to indicate the results of the fraud check.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("message")]
+        public string? Message { get; set; } = default!;
+
+        /// <summary>
+        /// The recommended action given to the merchant. Known values are 'cancel', 'investigate' and 'accept'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("recommendation")]
+        public string? Recommendation { get; set; } = default!;
+
+        /// <summary>
+        /// A number between 0 and 1 indicating percentage likelihood of being fraud.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("score")]
+        public decimal? Score { get; set; } = default!;
+
+        /// <summary>
+        /// This indicates the source of the risk assessment. Known values are 'External', 'Internal' and 'Gateway'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("source")]
+        public string? Source { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_risk")]
+        public UpdateOrderRisk? OrderRisk { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

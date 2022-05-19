@@ -35,7 +35,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="state">Must be one of the following values:</param>
         /// <returns>Create a new ResourceFeedback</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("resource_feedback.json")]
-        public abstract System.Threading.Tasks.Task CreateNewResourceFeedback([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ResourceFeedbackItem request, [Microsoft.AspNetCore.Mvc.FromQuery] string feedback_generated_at, [Microsoft.AspNetCore.Mvc.FromQuery] string messages, [Microsoft.AspNetCore.Mvc.FromQuery] string state);
+        public abstract System.Threading.Tasks.Task CreateNewResourceFeedback([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateResourceFeedbackRequest request, [Microsoft.AspNetCore.Mvc.FromQuery] string feedback_generated_at, [Microsoft.AspNetCore.Mvc.FromQuery] string messages, [Microsoft.AspNetCore.Mvc.FromQuery] string state);
 
         /// <summary>
         /// Receive a list of all ResourceFeedbacks

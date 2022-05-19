@@ -41,7 +41,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> CreateCountryAsync(CountryItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> CreateCountryAsync(CreateCountryRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -49,7 +49,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CountryCount>> RetrieveCountOfCountriesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfCountriesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -66,7 +66,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> UpdateExistingCountryAsync(long countryId, CountryItem body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> UpdateExistingCountryAsync(long countryId, CountryItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -207,7 +207,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> CreateCountryAsync(CountryItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> CreateCountryAsync(CreateCountryRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/countries.json");
@@ -290,7 +290,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountryCount>> RetrieveCountOfCountriesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfCountriesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/countries/count.json");
@@ -327,12 +327,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<CountryCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<CountryCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -460,13 +460,10 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> UpdateExistingCountryAsync(long countryId, CountryItem body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> UpdateExistingCountryAsync(long countryId, CountryItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (countryId == null)
                 throw new System.ArgumentNullException("countryId");
-
-            if (body == null)
-                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/countries/{country_id}.json");
@@ -1186,7 +1183,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<ProvinceCount>> RetrieveCountOfProvincesForCountryAsync(long countryId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfProvincesForCountryAsync(long countryId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1201,7 +1198,7 @@ namespace Ocelli.OpenShopify
         /// Updates an existing province for a country
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> UpdateExistingProvinceForCountryAsync(long countryId, long provinceId, ProvinceItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdateExistingProvinceForCountryAsync(long countryId, long provinceId, UpdateProvinceRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -1332,7 +1329,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProvinceCount>> RetrieveCountOfProvincesForCountryAsync(long countryId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfProvincesForCountryAsync(long countryId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (countryId == null)
                 throw new System.ArgumentNullException("countryId");
@@ -1373,12 +1370,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<ProvinceCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<ProvinceCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -1503,7 +1500,7 @@ namespace Ocelli.OpenShopify
         /// Updates an existing province for a country
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateExistingProvinceForCountryAsync(long countryId, long provinceId, ProvinceItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateExistingProvinceForCountryAsync(long countryId, long provinceId, UpdateProvinceRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (countryId == null)
                 throw new System.ArgumentNullException("countryId");
@@ -2139,16 +2136,6 @@ namespace Ocelli.OpenShopify
     public partial class Country
     {
         /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
         /// The full name of the country, in English.
         /// </summary>
 
@@ -2160,7 +2147,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tax")]
-        public double? Tax { get; set; } = default!;
+        public decimal? Tax { get; set; } = default!;
 
         /// <summary>
         /// The ISO 3166-1 alpha-2 two-letter country code for the country. The code for a given country will be the same as the code for the same country in another shop.
@@ -2183,23 +2170,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("provinces")]
         public System.Collections.Generic.ICollection<Province>? Provinces { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CountryCount
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2236,6 +2211,73 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("countries")]
         public System.Collections.Generic.ICollection<Country>? Countries { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateCountry
+    {
+        /// <summary>
+        /// The full name of the country, in English.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The tax value in decimal format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax")]
+        public decimal? Tax { get; set; } = default!;
+
+        /// <summary>
+        /// The ISO 3166-1 alpha-2 two-letter country code for the country. The code for a given country will be the same as the code for the same country in another shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
+        public string? Code { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_name")]
+        public string? TaxName { get; set; } = default!;
+
+        /// <summary>
+        /// The sub-regions of a country. The term provinces also encompasses states.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("provinces")]
+        public System.Collections.Generic.ICollection<Province>? Provinces { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateCountryRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("country")]
+        public CreateCountry? Country { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2294,16 +2336,6 @@ namespace Ocelli.OpenShopify
     public partial class Province
     {
         /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
         /// The unique numeric identifier for the country.
         /// </summary>
 
@@ -2329,7 +2361,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tax")]
-        public double? Tax { get; set; } = default!;
+        public decimal? Tax { get; set; } = default!;
 
         /// <summary>
         /// The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.
@@ -2357,7 +2389,13 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tax_percentage")]
-        public double? TaxPercentage { get; set; } = default!;
+        public decimal? TaxPercentage { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2371,11 +2409,48 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ProvinceCount
+    public partial class UpdateCountry
     {
+        /// <summary>
+        /// The full name of the country, in English.
+        /// </summary>
 
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The tax value in decimal format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax")]
+        public decimal? Tax { get; set; } = default!;
+
+        /// <summary>
+        /// The ISO 3166-1 alpha-2 two-letter country code for the country. The code for a given country will be the same as the code for the same country in another shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
+        public string? Code { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_name")]
+        public string? TaxName { get; set; } = default!;
+
+        /// <summary>
+        /// The sub-regions of a country. The term provinces also encompasses states.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("provinces")]
+        public System.Collections.Generic.ICollection<Province>? Provinces { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2389,11 +2464,206 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ProvinceItem
+    public partial class UpdateCountryRequest
     {
+        /// <summary>
+        /// The full name of the country, in English.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The tax value in decimal format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax")]
+        public decimal? Tax { get; set; } = default!;
+
+        /// <summary>
+        /// The ISO 3166-1 alpha-2 two-letter country code for the country. The code for a given country will be the same as the code for the same country in another shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
+        public string? Code { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_name")]
+        public string? TaxName { get; set; } = default!;
+
+        /// <summary>
+        /// The sub-regions of a country. The term provinces also encompasses states.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("provinces")]
+        public System.Collections.Generic.ICollection<Province>? Provinces { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("country")]
+        public UpdateCountry? Country { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateProvince
+    {
+        /// <summary>
+        /// The unique numeric identifier for the country.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_id")]
+        public long? CountryId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the province or state.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The two letter province or state code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
+        public string? Code { get; set; } = default!;
+
+        /// <summary>
+        /// The tax value in decimal format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax")]
+        public decimal? Tax { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_name")]
+        public string? TaxName { get; set; } = default!;
+
+        /// <summary>
+        /// A tax_type is applied for a compounded sales tax. For example, the Canadian HST is a compounded sales tax of both PST and GST.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_type")]
+        public string? TaxType { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier for the shipping zone.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_zone_id")]
+        public long? ShippingZoneId { get; set; } = default!;
+
+        /// <summary>
+        /// The tax value in percent format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_percentage")]
+        public decimal? TaxPercentage { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateProvinceRequest
+    {
+        /// <summary>
+        /// The unique numeric identifier for the country.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_id")]
+        public long? CountryId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the province or state.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The two letter province or state code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
+        public string? Code { get; set; } = default!;
+
+        /// <summary>
+        /// The tax value in decimal format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax")]
+        public decimal? Tax { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_name")]
+        public string? TaxName { get; set; } = default!;
+
+        /// <summary>
+        /// A tax_type is applied for a compounded sales tax. For example, the Canadian HST is a compounded sales tax of both PST and GST.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_type")]
+        public string? TaxType { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier for the shipping zone.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_zone_id")]
+        public long? ShippingZoneId { get; set; } = default!;
+
+        /// <summary>
+        /// The tax value in percent format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_percentage")]
+        public decimal? TaxPercentage { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("province")]
-        public Province? Province { get; set; } = default!;
+        public UpdateProvince? Province { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

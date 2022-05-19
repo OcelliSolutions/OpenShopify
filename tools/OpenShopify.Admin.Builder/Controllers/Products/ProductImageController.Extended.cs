@@ -19,14 +19,14 @@ public class ProductImageController : ProductImageControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("products/{product_id:long}/images.json")]
-    public override Task CreateNewProductImage(ProductImageItem request, long product_id)
+    public override Task CreateNewProductImage(CreateProductImageRequest request, long product_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("products/{product_id:long}/images/count.json")]
-    [ProducesResponseType(typeof(ImageCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task ReceiveCountOfAllProductImages(long product_id, int? since_id)
     {
         throw new NotImplementedException();
@@ -41,7 +41,7 @@ public class ProductImageController : ProductImageControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("products/{product_id:long}/images/{image_id:long}.json")]
-    public override Task ModifyExistingProductImage(ProductImageItem request, long image_id, long product_id)
+    public override Task ModifyExistingProductImage(UpdateProductImageRequest request, long image_id, long product_id)
     {
         throw new NotImplementedException();
     }

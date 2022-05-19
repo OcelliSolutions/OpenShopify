@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify transaction.
     /// </summary>
-    public class Transaction : ShopifyObject
+    public class TransactionBase
     {
         /// <summary>
         /// The amount of money that the transaction was for.

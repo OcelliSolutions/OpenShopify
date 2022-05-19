@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a checkout</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("checkouts.json")]
-        public abstract System.Threading.Tasks.Task CreateCheckout([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CheckoutItem request);
+        public abstract System.Threading.Tasks.Task CreateCheckout([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCheckoutRequest request);
 
         /// <summary>
         /// Completes a checkout
@@ -51,7 +51,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Modifies an existing checkout</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingCheckout([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CheckoutItem request, string token);
+        public abstract System.Threading.Tasks.Task ModifyExistingCheckout([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCheckoutRequest request, string token);
 
         /// <summary>
         /// Retrieves a list of shipping rates

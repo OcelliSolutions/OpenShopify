@@ -33,7 +33,8 @@ public class CollectionListingController : CollectionListingControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("collection_listings/{collection_listing_id:long}.json")]
-    public override Task CreateCollectionListingToPublishCollectionToYourApp(CollectionListingItem request, long collection_listing_id)
+    public override Task CreateCollectionListingToPublishCollectionToYourApp(CreateCollectionListingRequest request,
+        long collection_listing_id)
     {
         throw new NotImplementedException();
     }

@@ -48,7 +48,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a comment for an article</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments.json")]
-        public abstract System.Threading.Tasks.Task CreateCommentForArticle([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CommentItem request);
+        public abstract System.Threading.Tasks.Task CreateCommentForArticle([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCommentRequest request);
 
         /// <summary>
         /// Retrieves a count of comments
@@ -78,7 +78,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates a comment of an article</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateCommentOfArticle([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CommentItem request, long comment_id);
+        public abstract System.Threading.Tasks.Task UpdateCommentOfArticle([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCommentRequest request, long comment_id);
 
         /// <summary>
         /// Marks a comment as spam

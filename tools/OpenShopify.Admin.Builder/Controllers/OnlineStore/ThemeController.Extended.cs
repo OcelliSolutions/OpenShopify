@@ -19,7 +19,7 @@ public class ThemeController : ThemeControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("themes.json")]
-    public override Task CreateTheme(ThemeItem request)
+    public override Task CreateTheme(CreateThemeRequest request)
     {
         throw new NotImplementedException();
     }
@@ -33,7 +33,7 @@ public class ThemeController : ThemeControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("themes/{theme_id:long}.json")]
-    public override Task ModifyExistingTheme(ThemeItem request, long theme_id)
+    public override Task ModifyExistingTheme(UpdateThemeRequest request, long theme_id)
     {
         throw new NotImplementedException();
     }

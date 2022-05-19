@@ -37,7 +37,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Create a mobile platform application</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications.json")]
-        public abstract System.Threading.Tasks.Task CreateMobilePlatformApplication([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.MobilePlatformApplicationItem request);
+        public abstract System.Threading.Tasks.Task CreateMobilePlatformApplication([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateMobilePlatformApplicationRequest request);
 
         /// <summary>
         /// Get a mobile platform application
@@ -51,7 +51,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Update a mobile platform application</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications/{mobile_platform_application_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateMobilePlatformApplication([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.MobilePlatformApplicationItem request, long mobile_platform_application_id);
+        public abstract System.Threading.Tasks.Task UpdateMobilePlatformApplication([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMobilePlatformApplicationRequest request, long mobile_platform_application_id);
 
         /// <summary>
         /// Delete a mobile platform application

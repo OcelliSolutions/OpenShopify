@@ -47,7 +47,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CustomerItem>> CreateCustomerAsync(CustomerItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CustomerItem>> CreateCustomerAsync(CreateCustomerRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -86,7 +86,15 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CustomerItem>> UpdateCustomerAsync(long customerId, CustomerItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CustomerItem>> UpdateCustomerAsync(long customerId, UpdateCustomerRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Delete a customer (UNDOCUMENTED)
+        /// </summary>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<ShopifyResponse> DeleteCustomerAsync(long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -94,7 +102,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<AccountActivation>> CreateAccountActivationURLForCustomerAsync(long customerId, CustomerItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<AccountActivation>> CreateAccountActivationUrlForCustomerAsync(long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -102,7 +110,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CustomerInvite>> SendAccountInviteToCustomerAsync(long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CustomerInviteItem>> SendAccountInviteToCustomerAsync(long customerId, CreateCustomerInviteRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -110,7 +118,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CustomerCount>> RetrieveCountOfCustomersAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfCustomersAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -286,7 +294,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerItem>> CreateCustomerAsync(CustomerItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerItem>> CreateCustomerAsync(CreateCustomerRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/customers.json");
@@ -574,7 +582,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerItem>> UpdateCustomerAsync(long customerId, CustomerItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerItem>> UpdateCustomerAsync(long customerId, UpdateCustomerRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (customerId == null)
                 throw new System.ArgumentNullException("customerId");
@@ -657,11 +665,89 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
+        /// Delete a customer (UNDOCUMENTED)
+        /// </summary>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteCustomerAsync(long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (customerId == null)
+                throw new System.ArgumentNullException("customerId");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/customers/{customer_id}.json");
+            urlBuilder_.Replace("{customer_id}", System.Uri.EscapeDataString(ConvertToString(customerId, System.Globalization.CultureInfo.InvariantCulture)));
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            return new ShopifyResponse(status_, headers_);
+                        }
+                        else
+                        if (status_ == 401)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
         /// Creates an account activation URL for a customer
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<AccountActivation>> CreateAccountActivationURLForCustomerAsync(long customerId, CustomerItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<AccountActivation>> CreateAccountActivationUrlForCustomerAsync(long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (customerId == null)
                 throw new System.ArgumentNullException("customerId");
@@ -676,9 +762,7 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
+                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
@@ -748,7 +832,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerInvite>> SendAccountInviteToCustomerAsync(long customerId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerInviteItem>> SendAccountInviteToCustomerAsync(long customerId, CreateCustomerInviteRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (customerId == null)
                 throw new System.ArgumentNullException("customerId");
@@ -763,7 +847,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
@@ -790,12 +876,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 201)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<CustomerInvite>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CustomerInviteItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<CustomerInvite>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CustomerInviteItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -833,7 +919,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerCount>> RetrieveCountOfCustomersAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfCustomersAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/customers/count.json");
@@ -870,12 +956,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<CustomerCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<CustomerCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -1115,7 +1201,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CustomerAddressItem>> CreateNewAddressForCustomerAsync(long customerId, CustomerAddressItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CustomerAddressItem>> CreateNewAddressForCustomerAsync(long customerId, CreateCustomerAddressRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1131,7 +1217,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CustomerAddressItem>> UpdateExistingCustomerAddressAsync(long addressId, long customerId, CustomerAddressItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CustomerAddressItem>> UpdateExistingCustomerAddressAsync(long addressId, long customerId, UpdateCustomerAddressRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1278,7 +1364,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerAddressItem>> CreateNewAddressForCustomerAsync(long customerId, CustomerAddressItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerAddressItem>> CreateNewAddressForCustomerAsync(long customerId, CreateCustomerAddressRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (customerId == null)
                 throw new System.ArgumentNullException("customerId");
@@ -1453,7 +1539,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerAddressItem>> UpdateExistingCustomerAddressAsync(long addressId, long customerId, CustomerAddressItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerAddressItem>> UpdateExistingCustomerAddressAsync(long addressId, long customerId, UpdateCustomerAddressRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (addressId == null)
                 throw new System.ArgumentNullException("addressId");
@@ -1915,7 +2001,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchItem>> CreateCustomerSavedSearchAsync(CustomerSavedSearchItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchItem>> CreateCustomerSavedSearchAsync(CreateCustomerSavedSearchRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1924,7 +2010,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchCount>> RetrieveCountOfAllCustomerSavedSearchesAsync(int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfAllCustomerSavedSearchesAsync(int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1941,7 +2027,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchItem>> UpdateCustomerSavedSearchAsync(long customerSavedSearchId, CustomerSavedSearchItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchItem>> UpdateCustomerSavedSearchAsync(long customerSavedSearchId, UpdateCustomerSavedSearchRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2102,7 +2188,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchItem>> CreateCustomerSavedSearchAsync(CustomerSavedSearchItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchItem>> CreateCustomerSavedSearchAsync(CreateCustomerSavedSearchRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/customer_saved_searches.json");
@@ -2186,7 +2272,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchCount>> RetrieveCountOfAllCustomerSavedSearchesAsync(int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfAllCustomerSavedSearchesAsync(int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/customer_saved_searches/count.json?");
@@ -2228,12 +2314,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<CustomerSavedSearchCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<CustomerSavedSearchCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -2361,7 +2447,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchItem>> UpdateCustomerSavedSearchAsync(long customerSavedSearchId, CustomerSavedSearchItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomerSavedSearchItem>> UpdateCustomerSavedSearchAsync(long customerSavedSearchId, UpdateCustomerSavedSearchRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (customerSavedSearchId == null)
                 throw new System.ArgumentNullException("customerSavedSearchId");
@@ -2745,15 +2831,9 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class Address
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
 
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("customer_id")]
+        public long? CustomerId { get; set; } = default!;
 
         /// <summary>
         /// The mailing address.
@@ -2830,14 +2910,14 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("latitude")]
-        public double? Latitude { get; set; } = default!;
+        public decimal? Latitude { get; set; } = default!;
 
         /// <summary>
         /// The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("longitude")]
-        public double? Longitude { get; set; } = default!;
+        public decimal? Longitude { get; set; } = default!;
 
         /// <summary>
         /// The name.
@@ -2873,6 +2953,12 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("zip")]
         public string? Zip { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2942,18 +3028,145 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class Customer
+    public partial class CreateAddress
     {
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_id")]
+        public long? CustomerId { get; set; } = default!;
+
         /// <summary>
-        /// The object's unique id.
+        /// The mailing address.
         /// </summary>
 
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("address1")]
+        public string? Address1 { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
+        /// <summary>
+        /// An additional field for the mailing address.
+        /// </summary>
 
+        [System.Text.Json.Serialization.JsonPropertyName("address2")]
+        public string? Address2 { get; set; } = default!;
+
+        /// <summary>
+        /// The city.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("city")]
+        public string? City { get; set; } = default!;
+
+        /// <summary>
+        /// The company.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("company")]
+        public string? Company { get; set; } = default!;
+
+        /// <summary>
+        /// The country.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country")]
+        public string? Country { get; set; } = default!;
+
+        /// <summary>
+        /// The two-letter country code corresponding to the country.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_code")]
+        public string? CountryCode { get; set; } = default!;
+
+        /// <summary>
+        /// The normalized country name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_name")]
+        public string? CountryName { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates whether this address is the default address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("default")]
+        public bool? Default { get; set; } = default!;
+
+        /// <summary>
+        /// The first name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("first_name")]
+        public string? FirstName { get; set; } = default!;
+
+        /// <summary>
+        /// The last name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_name")]
+        public string? LastName { get; set; } = default!;
+
+        /// <summary>
+        /// The latitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("latitude")]
+        public decimal? Latitude { get; set; } = default!;
+
+        /// <summary>
+        /// The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("longitude")]
+        public decimal? Longitude { get; set; } = default!;
+
+        /// <summary>
+        /// The name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The phone number.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        /// <summary>
+        /// The province or state name
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province")]
+        public string? Province { get; set; } = default!;
+
+        /// <summary>
+        /// The two-letter province or state code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province_code")]
+        public string? ProvinceCode { get; set; } = default!;
+
+        /// <summary>
+        /// The ZIP or postal code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("zip")]
+        public string? Zip { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateCustomer
+    {
         /// <summary>
         /// Indicates whether the customer has consented to be sent marketing material via email.
         /// </summary>
@@ -2966,7 +3179,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("addresses")]
-        public System.Collections.Generic.ICollection<Address>? Addresses { get; set; } = default!;
+        public System.Collections.Generic.ICollection<CreateAddress>? Addresses { get; set; } = default!;
 
         /// <summary>
         /// The date and time when the customer was created.
@@ -2983,7 +3196,7 @@ namespace Ocelli.OpenShopify
         public string? Currency { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("default_address")]
-        public Address? DefaultAddress { get; set; } = default!;
+        public CreateAddress? DefaultAddress { get; set; } = default!;
 
         /// <summary>
         /// The email address of the customer.
@@ -3080,11 +3293,18 @@ namespace Ocelli.OpenShopify
         public bool? TaxExempt { get; set; } = default!;
 
         /// <summary>
+        /// Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_exemptions")]
+        public System.Collections.Generic.ICollection<string>? TaxExemptions { get; set; } = default!;
+
+        /// <summary>
         /// The total amount of money that the customer has spent at the shop.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("total_spent")]
-        public double? TotalSpent { get; set; } = default!;
+        public decimal? TotalSpent { get; set; } = default!;
 
         /// <summary>
         /// The date and time when the customer information was updated.
@@ -3103,84 +3323,214 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("metafields")]
         public System.Collections.Generic.ICollection<CustomerMetafield>? Metafields { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CustomerAddressItem
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("customer_address")]
-        public Address? CustomerAddress { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CustomerAddressList
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("customer_address")]
-        public System.Collections.Generic.ICollection<Address>? CustomerAddress { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CustomerCount
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CustomerInvite
-    {
         /// <summary>
-        /// The object's unique id.
+        /// As of API version 2022-04, this field is deprecated. Use email_marketing_consent instead. The date and time (ISO 8601 format) when the customer consented or objected to receiving marketing material by email. Set this value whenever the customer consents or objects to marketing materials.
         /// </summary>
 
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("accepts_marketing_updated_at")]
+        [System.Obsolete]
+        public System.DateTimeOffset? AcceptsMarketingUpdatedAt { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("email_marketing_consent")]
+        public EmailMarketingConsent? EmailMarketingConsent { get; set; } = default!;
 
+        /// <summary>
+        /// An optional password for the user. Default is null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("password")]
+        public string? Password { get; set; } = default!;
+
+        /// <summary>
+        /// Should be set and match OpenShopify.Admin.Builder.Models.CreateCustomer.Password. Default is null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("password_confirmation")]
+        public string? PasswordConfirmation { get; set; } = default!;
+
+        /// <summary>
+        /// Whether an email invite should be sent to the new customer. Default is null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("send_email_invite")]
+        public bool? SendEmailInvite { get; set; } = default!;
+
+        /// <summary>
+        /// Whether a welcome email should be sent to the new customer. Default is null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("send_email_welcome")]
+        public bool? SendEmailWelcome { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateCustomerAddress
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_id")]
+        public long? CustomerId { get; set; } = default!;
+
+        /// <summary>
+        /// The mailing address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("address1")]
+        public string? Address1 { get; set; } = default!;
+
+        /// <summary>
+        /// An additional field for the mailing address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("address2")]
+        public string? Address2 { get; set; } = default!;
+
+        /// <summary>
+        /// The city.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("city")]
+        public string? City { get; set; } = default!;
+
+        /// <summary>
+        /// The company.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("company")]
+        public string? Company { get; set; } = default!;
+
+        /// <summary>
+        /// The country.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country")]
+        public string? Country { get; set; } = default!;
+
+        /// <summary>
+        /// The two-letter country code corresponding to the country.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_code")]
+        public string? CountryCode { get; set; } = default!;
+
+        /// <summary>
+        /// The normalized country name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_name")]
+        public string? CountryName { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates whether this address is the default address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("default")]
+        public bool? Default { get; set; } = default!;
+
+        /// <summary>
+        /// The first name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("first_name")]
+        public string? FirstName { get; set; } = default!;
+
+        /// <summary>
+        /// The last name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_name")]
+        public string? LastName { get; set; } = default!;
+
+        /// <summary>
+        /// The latitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("latitude")]
+        public decimal? Latitude { get; set; } = default!;
+
+        /// <summary>
+        /// The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("longitude")]
+        public decimal? Longitude { get; set; } = default!;
+
+        /// <summary>
+        /// The name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The phone number.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        /// <summary>
+        /// The province or state name
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province")]
+        public string? Province { get; set; } = default!;
+
+        /// <summary>
+        /// The two-letter province or state code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province_code")]
+        public string? ProvinceCode { get; set; } = default!;
+
+        /// <summary>
+        /// The ZIP or postal code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("zip")]
+        public string? Zip { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateCustomerAddressRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_address")]
+        public CreateCustomerAddress? CustomerAddress { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateCustomerInvite
+    {
         /// <summary>
         /// The email address of the customer to be invited
         /// </summary>
@@ -3215,6 +3565,541 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("bcc")]
         public System.Collections.Generic.ICollection<string>? Bcc { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateCustomerInviteRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_invite")]
+        public CreateCustomerInvite? CustomerInvite { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateCustomerRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer")]
+        public CreateCustomer? Customer { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateCustomerSavedSearch
+    {
+        /// <summary>
+        /// The name given by the shop owner to the customer saved search
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The set of conditions that determines which customers will be returned by the saved search
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("query")]
+        public string? Query { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the customer saved search was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the customer saved search was updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateCustomerSavedSearchRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_saved_search")]
+        public CreateCustomerSavedSearch? CustomerSavedSearch { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Customer
+    {
+        /// <summary>
+        /// Indicates whether the customer has consented to be sent marketing material via email.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("accepts_marketing")]
+        public bool? AcceptsMarketing { get; set; } = default!;
+
+        /// <summary>
+        /// A list of addresses for the customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("addresses")]
+        public System.Collections.Generic.ICollection<CustomerAddress>? Addresses { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the customer was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Currency used for customer's last order
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+        public string? Currency { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("default_address")]
+        public CustomerAddress? DefaultAddress { get; set; } = default!;
+
+        /// <summary>
+        /// The email address of the customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's first name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("first_name")]
+        public string? FirstName { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's identifier used with Multipass login
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("multipass_identifier")]
+        public string? MultipassIdentifier { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's last name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_name")]
+        public string? LastName { get; set; } = default!;
+
+        /// <summary>
+        /// The id of the customer's last order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_order_id")]
+        public long? LastOrderId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the customer's last order. This is directly related to the Order's name field.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_order_name")]
+        public string? LastOrderName { get; set; } = default!;
+
+        /// <summary>
+        /// A note about the customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note")]
+        public string? Note { get; set; } = default!;
+
+        /// <summary>
+        /// The number of orders associated with this customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("orders_count")]
+        public int? OrdersCount { get; set; } = default!;
+
+        /// <summary>
+        /// The phone number for the customer. Valid formats can be of different types, for example:
+        /// <br/>
+        /// <br/>6135551212
+        /// <br/>
+        /// <br/>+16135551212
+        /// <br/>
+        /// <br/>555-1212
+        /// <br/>
+        /// <br/>(613)555-1212
+        /// <br/>
+        /// <br/>+1 613-555-1212
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        /// <summary>
+        /// The state of the customer in a shop. Valid values are 'disabled', 'decline', 'invited' and 'enabled'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("state")]
+        public string? State { get; set; } = default!;
+
+        /// <summary>
+        /// Tags are additional short descriptors formatted as a string of comma-separated values.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tags")]
+        public string? Tags { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates whether the customer should be charged taxes when placing orders.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_exempt")]
+        public bool? TaxExempt { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_exemptions")]
+        public System.Collections.Generic.ICollection<string>? TaxExemptions { get; set; } = default!;
+
+        /// <summary>
+        /// The total amount of money that the customer has spent at the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_spent")]
+        public decimal? TotalSpent { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the customer information was updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// States whether or not the email address has been verified.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("verified_email")]
+        public bool? VerifiedEmail { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<CustomerMetafield>? Metafields { get; set; } = default!;
+
+        /// <summary>
+        /// As of API version 2022-04, this field is deprecated. Use email_marketing_consent instead. The date and time (ISO 8601 format) when the customer consented or objected to receiving marketing material by email. Set this value whenever the customer consents or objects to marketing materials.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("accepts_marketing_updated_at")]
+        [System.Obsolete]
+        public System.DateTimeOffset? AcceptsMarketingUpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("email_marketing_consent")]
+        public EmailMarketingConsent? EmailMarketingConsent { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CustomerAddress
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_id")]
+        public long? CustomerId { get; set; } = default!;
+
+        /// <summary>
+        /// The mailing address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("address1")]
+        public string? Address1 { get; set; } = default!;
+
+        /// <summary>
+        /// An additional field for the mailing address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("address2")]
+        public string? Address2 { get; set; } = default!;
+
+        /// <summary>
+        /// The city.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("city")]
+        public string? City { get; set; } = default!;
+
+        /// <summary>
+        /// The company.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("company")]
+        public string? Company { get; set; } = default!;
+
+        /// <summary>
+        /// The country.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country")]
+        public string? Country { get; set; } = default!;
+
+        /// <summary>
+        /// The two-letter country code corresponding to the country.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_code")]
+        public string? CountryCode { get; set; } = default!;
+
+        /// <summary>
+        /// The normalized country name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_name")]
+        public string? CountryName { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates whether this address is the default address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("default")]
+        public bool? Default { get; set; } = default!;
+
+        /// <summary>
+        /// The first name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("first_name")]
+        public string? FirstName { get; set; } = default!;
+
+        /// <summary>
+        /// The last name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_name")]
+        public string? LastName { get; set; } = default!;
+
+        /// <summary>
+        /// The latitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("latitude")]
+        public decimal? Latitude { get; set; } = default!;
+
+        /// <summary>
+        /// The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("longitude")]
+        public decimal? Longitude { get; set; } = default!;
+
+        /// <summary>
+        /// The name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The phone number.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        /// <summary>
+        /// The province or state name
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province")]
+        public string? Province { get; set; } = default!;
+
+        /// <summary>
+        /// The two-letter province or state code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province_code")]
+        public string? ProvinceCode { get; set; } = default!;
+
+        /// <summary>
+        /// The ZIP or postal code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("zip")]
+        public string? Zip { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CustomerAddressItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_address")]
+        public Address? CustomerAddress { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CustomerAddressList
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_addresses")]
+        public System.Collections.Generic.ICollection<Address>? CustomerAddresses { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CustomerInvite
+    {
+        /// <summary>
+        /// The email address of the customer to be invited
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("to")]
+        public string? To { get; set; } = default!;
+
+        /// <summary>
+        /// The sender of the email
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("from")]
+        public string? From { get; set; } = default!;
+
+        /// <summary>
+        /// the subject
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("subject")]
+        public string? Subject { get; set; } = default!;
+
+        /// <summary>
+        /// a custom message to include
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("custom_message")]
+        public string? CustomMessage { get; set; } = default!;
+
+        /// <summary>
+        /// blind copy addresses
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("bcc")]
+        public System.Collections.Generic.ICollection<string>? Bcc { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CustomerInviteItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_invite")]
+        public CustomerInvite? CustomerInvite { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -3266,16 +4151,6 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CustomerMetafield
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The date and time when the metafield was created.
         /// </summary>
@@ -3339,6 +4214,12 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("owner_resource")]
         public string? OwnerResource { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
         [System.Text.Json.Serialization.JsonExtensionData]
@@ -3353,16 +4234,6 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CustomerSavedSearch
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The name given by the shop owner to the customer saved search
         /// </summary>
@@ -3391,23 +4262,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
         public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CustomerSavedSearchCount
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -3442,8 +4301,467 @@ namespace Ocelli.OpenShopify
     public partial class CustomerSavedSearchList
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("customer_saved_search")]
-        public System.Collections.Generic.ICollection<CustomerSavedSearch>? CustomerSavedSearch { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("customer_saved_searchs")]
+        public System.Collections.Generic.ICollection<CustomerSavedSearch>? CustomerSavedSearchs { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class EmailMarketingConsent
+    {
+        /// <summary>
+        /// The current email marketing state for the customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("state")]
+        public string? State { get; set; } = default!;
+
+        /// <summary>
+        /// The marketing subscription opt-in level, as described in the M3AAWG Sender Best Common Practices, that the customer gave when they consented to receive marketing material by email.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("opt_in_level")]
+        public string? OptInLevel { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the customer consented to receive marketing material by email. If no date is provided, then the date and time when the consent information was sent is used.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("consent_updated_at")]
+        public System.DateTimeOffset? ConsentUpdatedAt { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Order
+    {
+        /// <summary>
+        /// Unique identifier of the app who created the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("app_id")]
+        public long? AppId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("billing_address")]
+        public Address? BillingAddress { get; set; } = default!;
+
+        /// <summary>
+        /// The IP address of the browser used by the customer when placing the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("browser_ip")]
+        public string? BrowserIp { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates whether or not the person who placed the order would like to receive email updates from the shop.
+        /// <br/>This is set when checking the "I want to receive occasional emails about new products, promotions and other news" checkbox during checkout.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("buyer_accepts_marketing")]
+        public bool? BuyerAcceptsMarketing { get; set; } = default!;
+
+        /// <summary>
+        /// The reason why the order was cancelled. If the order was not cancelled, this value is null. Known values are "customer", "fraud", "inventory" and "other".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("cancel_reason")]
+        public string? CancelReason { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the order was cancelled. If the order was not cancelled, this value is null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("cancelled_at")]
+        public System.DateTimeOffset? CancelledAt { get; set; } = default!;
+
+        /// <summary>
+        /// Unique identifier for a particular cart that is attached to a particular order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("cart_token")]
+        public string? CartToken { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("client_details")]
+        public ClientDetails? ClientDetails { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the order was closed. If the order was not clsoed, this value is null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("closed_at")]
+        public System.DateTimeOffset? ClosedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the order was created in Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The three letter code (ISO 4217) for the currency used for the payment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+        public string? Currency { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer")]
+        public Customer? Customer { get; set; } = default!;
+
+        /// <summary>
+        /// The two or three letter language code, optionally followed by a region modifier. Example values could be 'en', 'en-CA', 'en-PIRATE'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_locale")]
+        public string? CustomerLocale { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier of the POS device used.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("device_id")]
+        public long? DeviceId { get; set; } = default!;
+
+        /// <summary>
+        /// Applicable discount codes that can be applied to the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_codes")]
+        public System.Collections.Generic.ICollection<DiscountCode>? DiscountCodes { get; set; } = default!;
+
+        /// <summary>
+        /// An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_applications")]
+        public System.Collections.Generic.ICollection<DiscountApplication>? DiscountApplications { get; set; } = default!;
+
+        /// <summary>
+        /// The order's email address. Note: On and after 2015-11-03, you should be using !:ContactEmail to refer to the customer's email address.
+        /// <br/>Between 2015-11-03 and 2015-12-03, updates to an order's email will also update the customer's email. This is temporary so apps can be migrated over to
+        /// <br/>doing customer updates rather than order updates to change the contact email. After 2015-12-03, updating updating an order's email will no longer update
+        /// <br/>the customer's email and apps will have to use the customer update endpoint to do so.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// The financial status of an order. Known values are "authorized", "paid", "pending", "partially_paid", "partially_refunded", "refunded" and "voided".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("financial_status")]
+        public string? FinancialStatus { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.Fulfillment objects for this order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillments")]
+        public System.Collections.Generic.ICollection<Fulfillment>? Fulfillments { get; set; } = default!;
+
+        /// <summary>
+        /// The fulfillment status for this order. Known values are 'fulfilled', 'null' and 'partial'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_status")]
+        public string? FulfillmentStatus { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's phone number.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        /// <summary>
+        /// Tags are additional short descriptors, commonly used for filtering and searching, formatted as a string of comma-separated values.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tags")]
+        public string? Tags { get; set; } = default!;
+
+        /// <summary>
+        /// The URL for the page where the buyer landed when entering the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("landing_site")]
+        public string? LandingSite { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.LineItem objects, each one containing information about an item in the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("line_items")]
+        public System.Collections.Generic.ICollection<LineItem>? LineItems { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier for the physical location at which the order was processed. Only present on orders processed at point of sale.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
+        public long? LocationId { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's order name as represented by a number, e.g. '#1001'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The text of an optional note that a shop owner can attach to the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note")]
+        public string? Note { get; set; } = default!;
+
+        /// <summary>
+        /// Extra information that is added to the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
+        public System.Collections.Generic.ICollection<NoteAttribute>? NoteAttributes { get; set; } = default!;
+
+        /// <summary>
+        /// Numerical identifier unique to the shop. A number is sequential and starts at 1000.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("number")]
+        public int? Number { get; set; } = default!;
+
+        /// <summary>
+        /// A unique numeric identifier for the order. This one is used by the shop owner and customer.
+        /// <br/>This is different from the id property, which is also a unique numeric identifier for the order, but used for API purposes.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_number")]
+        public int? OrderNumber { get; set; } = default!;
+
+        /// <summary>
+        /// The URL pointing to the order status web page. The URL will be null unless the order was created from a checkout.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_status_url")]
+        public string? OrderStatusUrl { get; set; } = default!;
+
+        /// <summary>
+        /// The list of all payment gateways used for the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("payment_gateway_names")]
+        public System.Collections.Generic.ICollection<string>? PaymentGatewayNames { get; set; } = default!;
+
+        /// <summary>
+        /// The date that the order was processed at.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("processed_at")]
+        public System.DateTimeOffset? ProcessedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The type of payment processing method. Known values are 'checkout', 'direct', 'manual', 'offsite', 'express', 'free' and 'none'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("processing_method")]
+        public string? ProcessingMethod { get; set; } = default!;
+
+        /// <summary>
+        /// The website that the customer clicked on to come to the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("referring_site")]
+        public string? ReferringSite { get; set; } = default!;
+
+        /// <summary>
+        /// The list of OpenShopify.Admin.Builder.Models.Refund objects applied to the order
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("refunds")]
+        public System.Collections.Generic.ICollection<Refund>? Refunds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_address")]
+        public Address? ShippingAddress { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.ShippingLine objects, each of which details the shipping methods used.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_lines")]
+        public System.Collections.Generic.ICollection<ShippingLine>? ShippingLines { get; set; } = default!;
+
+        /// <summary>
+        /// Where the order originated. May only be set during creation, and is not writeable thereafter.
+        /// <br/>Orders created via the API may be assigned any string of your choice except for "web", "pos", "iphone", and "android".
+        /// <br/>Default is "api".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("source_name")]
+        public string? SourceName { get; set; } = default!;
+
+        /// <summary>
+        /// Price of the order before shipping and taxes
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("subtotal_price")]
+        public decimal? SubtotalPrice { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the total taxes applicable to the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
+        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
+
+        /// <summary>
+        /// States whether or not taxes are included in the order subtotal.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("taxes_included")]
+        public bool? TaxesIncluded { get; set; } = default!;
+
+        /// <summary>
+        /// States whether this is a test order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("test")]
+        public bool? Test { get; set; } = default!;
+
+        /// <summary>
+        /// Unique identifier for a particular order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("token")]
+        public string? Token { get; set; } = default!;
+
+        /// <summary>
+        /// The total amount of the discounts applied to the price of the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_discounts")]
+        public decimal? TotalDiscounts { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the prices of all the items in the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_line_items_price")]
+        public decimal? TotalLineItemsPrice { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the tips in the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tip_received")]
+        public decimal? TotalTipReceived { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the prices of all the items in the order, with taxes and discounts included (must be positive).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_price")]
+        public decimal? TotalPrice { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the taxes applied to the order (must be positive).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tax")]
+        public decimal? TotalTax { get; set; } = default!;
+
+        /// <summary>
+        /// The sum of all the weights of the line items in the order, in grams.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_weight")]
+        public long? TotalWeight { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the order was last modified.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numerical identifier for the user logged into the terminal at the time the order was processed at. Only present on orders processed at point of sale.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("user_id")]
+        public long? UserId { get; set; } = default!;
+
+        /// <summary>
+        /// An array of OpenShopify.Admin.Builder.Models.Transaction objects that detail all of the transactions in
+        /// <br/>this order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("transactions")]
+        public System.Collections.Generic.ICollection<Transaction>? Transactions { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<OrderMetafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("current_total_duties_set")]
+        public PriceSet? CurrentTotalDutiesSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("original_total_duties_set")]
+        public PriceSet? OriginalTotalDutiesSet { get; set; } = default!;
+
+        /// <summary>
+        /// The three letter code (ISO 4217) for the currency used used to display prices to the customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("presentment_currency")]
+        public string? PresentmentCurrency { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_line_items_price_set")]
+        public PriceSet? TotalLineItemsPriceSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_discounts_set")]
+        public PriceSet? TotalDiscountsSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_shipping_price_set")]
+        public PriceSet? TotalShippingPriceSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("subtotal_price_set")]
+        public PriceSet? SubtotalPriceSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_price_set")]
+        public PriceSet? TotalPriceSet { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tax_set")]
+        public PriceSet? TotalTaxSet { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates whether taxes on an order are estimated. Will be set to false when taxes on an order are finalized and aren't subject to any change.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("estimated_taxes")]
+        public bool? EstimatedTaxes { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -3462,6 +4780,785 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("orders")]
         public System.Collections.Generic.ICollection<Order>? Orders { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateCustomer
+    {
+        /// <summary>
+        /// Indicates whether the customer has consented to be sent marketing material via email.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("accepts_marketing")]
+        public bool? AcceptsMarketing { get; set; } = default!;
+
+        /// <summary>
+        /// A list of addresses for the customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("addresses")]
+        public System.Collections.Generic.ICollection<CustomerAddress>? Addresses { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the customer was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Currency used for customer's last order
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+        public string? Currency { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("default_address")]
+        public CustomerAddress? DefaultAddress { get; set; } = default!;
+
+        /// <summary>
+        /// The email address of the customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's first name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("first_name")]
+        public string? FirstName { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's identifier used with Multipass login
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("multipass_identifier")]
+        public string? MultipassIdentifier { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's last name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_name")]
+        public string? LastName { get; set; } = default!;
+
+        /// <summary>
+        /// The id of the customer's last order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_order_id")]
+        public long? LastOrderId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the customer's last order. This is directly related to the Order's name field.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_order_name")]
+        public string? LastOrderName { get; set; } = default!;
+
+        /// <summary>
+        /// A note about the customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note")]
+        public string? Note { get; set; } = default!;
+
+        /// <summary>
+        /// The number of orders associated with this customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("orders_count")]
+        public int? OrdersCount { get; set; } = default!;
+
+        /// <summary>
+        /// The phone number for the customer. Valid formats can be of different types, for example:
+        /// <br/>
+        /// <br/>6135551212
+        /// <br/>
+        /// <br/>+16135551212
+        /// <br/>
+        /// <br/>555-1212
+        /// <br/>
+        /// <br/>(613)555-1212
+        /// <br/>
+        /// <br/>+1 613-555-1212
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        /// <summary>
+        /// The state of the customer in a shop. Valid values are 'disabled', 'decline', 'invited' and 'enabled'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("state")]
+        public string? State { get; set; } = default!;
+
+        /// <summary>
+        /// Tags are additional short descriptors formatted as a string of comma-separated values.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tags")]
+        public string? Tags { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates whether the customer should be charged taxes when placing orders.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_exempt")]
+        public bool? TaxExempt { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_exemptions")]
+        public System.Collections.Generic.ICollection<string>? TaxExemptions { get; set; } = default!;
+
+        /// <summary>
+        /// The total amount of money that the customer has spent at the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_spent")]
+        public decimal? TotalSpent { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the customer information was updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// States whether or not the email address has been verified.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("verified_email")]
+        public bool? VerifiedEmail { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<CustomerMetafield>? Metafields { get; set; } = default!;
+
+        /// <summary>
+        /// As of API version 2022-04, this field is deprecated. Use email_marketing_consent instead. The date and time (ISO 8601 format) when the customer consented or objected to receiving marketing material by email. Set this value whenever the customer consents or objects to marketing materials.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("accepts_marketing_updated_at")]
+        [System.Obsolete]
+        public System.DateTimeOffset? AcceptsMarketingUpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("email_marketing_consent")]
+        public EmailMarketingConsent? EmailMarketingConsent { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// An optional password for the user. Default is null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("password")]
+        public string? Password { get; set; } = default!;
+
+        /// <summary>
+        /// Should be set and match OpenShopify.Admin.Builder.Models.UpdateCustomer.Password. Default is null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("password_confirmation")]
+        public string? PasswordConfirmation { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateCustomerAddress
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_id")]
+        public long? CustomerId { get; set; } = default!;
+
+        /// <summary>
+        /// The mailing address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("address1")]
+        public string? Address1 { get; set; } = default!;
+
+        /// <summary>
+        /// An additional field for the mailing address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("address2")]
+        public string? Address2 { get; set; } = default!;
+
+        /// <summary>
+        /// The city.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("city")]
+        public string? City { get; set; } = default!;
+
+        /// <summary>
+        /// The company.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("company")]
+        public string? Company { get; set; } = default!;
+
+        /// <summary>
+        /// The country.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country")]
+        public string? Country { get; set; } = default!;
+
+        /// <summary>
+        /// The two-letter country code corresponding to the country.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_code")]
+        public string? CountryCode { get; set; } = default!;
+
+        /// <summary>
+        /// The normalized country name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_name")]
+        public string? CountryName { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates whether this address is the default address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("default")]
+        public bool? Default { get; set; } = default!;
+
+        /// <summary>
+        /// The first name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("first_name")]
+        public string? FirstName { get; set; } = default!;
+
+        /// <summary>
+        /// The last name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_name")]
+        public string? LastName { get; set; } = default!;
+
+        /// <summary>
+        /// The latitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("latitude")]
+        public decimal? Latitude { get; set; } = default!;
+
+        /// <summary>
+        /// The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("longitude")]
+        public decimal? Longitude { get; set; } = default!;
+
+        /// <summary>
+        /// The name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The phone number.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        /// <summary>
+        /// The province or state name
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province")]
+        public string? Province { get; set; } = default!;
+
+        /// <summary>
+        /// The two-letter province or state code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province_code")]
+        public string? ProvinceCode { get; set; } = default!;
+
+        /// <summary>
+        /// The ZIP or postal code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("zip")]
+        public string? Zip { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateCustomerAddressRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_id")]
+        public long? CustomerId { get; set; } = default!;
+
+        /// <summary>
+        /// The mailing address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("address1")]
+        public string? Address1 { get; set; } = default!;
+
+        /// <summary>
+        /// An additional field for the mailing address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("address2")]
+        public string? Address2 { get; set; } = default!;
+
+        /// <summary>
+        /// The city.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("city")]
+        public string? City { get; set; } = default!;
+
+        /// <summary>
+        /// The company.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("company")]
+        public string? Company { get; set; } = default!;
+
+        /// <summary>
+        /// The country.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country")]
+        public string? Country { get; set; } = default!;
+
+        /// <summary>
+        /// The two-letter country code corresponding to the country.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_code")]
+        public string? CountryCode { get; set; } = default!;
+
+        /// <summary>
+        /// The normalized country name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_name")]
+        public string? CountryName { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates whether this address is the default address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("default")]
+        public bool? Default { get; set; } = default!;
+
+        /// <summary>
+        /// The first name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("first_name")]
+        public string? FirstName { get; set; } = default!;
+
+        /// <summary>
+        /// The last name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_name")]
+        public string? LastName { get; set; } = default!;
+
+        /// <summary>
+        /// The latitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("latitude")]
+        public decimal? Latitude { get; set; } = default!;
+
+        /// <summary>
+        /// The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("longitude")]
+        public decimal? Longitude { get; set; } = default!;
+
+        /// <summary>
+        /// The name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The phone number.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        /// <summary>
+        /// The province or state name
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province")]
+        public string? Province { get; set; } = default!;
+
+        /// <summary>
+        /// The two-letter province or state code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province_code")]
+        public string? ProvinceCode { get; set; } = default!;
+
+        /// <summary>
+        /// The ZIP or postal code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("zip")]
+        public string? Zip { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_address")]
+        public UpdateCustomerAddress? CustomerAddress { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateCustomerRequest
+    {
+        /// <summary>
+        /// Indicates whether the customer has consented to be sent marketing material via email.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("accepts_marketing")]
+        public bool? AcceptsMarketing { get; set; } = default!;
+
+        /// <summary>
+        /// A list of addresses for the customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("addresses")]
+        public System.Collections.Generic.ICollection<CustomerAddress>? Addresses { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the customer was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Currency used for customer's last order
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+        public string? Currency { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("default_address")]
+        public CustomerAddress? DefaultAddress { get; set; } = default!;
+
+        /// <summary>
+        /// The email address of the customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's first name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("first_name")]
+        public string? FirstName { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's identifier used with Multipass login
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("multipass_identifier")]
+        public string? MultipassIdentifier { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's last name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_name")]
+        public string? LastName { get; set; } = default!;
+
+        /// <summary>
+        /// The id of the customer's last order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_order_id")]
+        public long? LastOrderId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the customer's last order. This is directly related to the Order's name field.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_order_name")]
+        public string? LastOrderName { get; set; } = default!;
+
+        /// <summary>
+        /// A note about the customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note")]
+        public string? Note { get; set; } = default!;
+
+        /// <summary>
+        /// The number of orders associated with this customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("orders_count")]
+        public int? OrdersCount { get; set; } = default!;
+
+        /// <summary>
+        /// The phone number for the customer. Valid formats can be of different types, for example:
+        /// <br/>
+        /// <br/>6135551212
+        /// <br/>
+        /// <br/>+16135551212
+        /// <br/>
+        /// <br/>555-1212
+        /// <br/>
+        /// <br/>(613)555-1212
+        /// <br/>
+        /// <br/>+1 613-555-1212
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        /// <summary>
+        /// The state of the customer in a shop. Valid values are 'disabled', 'decline', 'invited' and 'enabled'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("state")]
+        public string? State { get; set; } = default!;
+
+        /// <summary>
+        /// Tags are additional short descriptors formatted as a string of comma-separated values.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tags")]
+        public string? Tags { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates whether the customer should be charged taxes when placing orders.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_exempt")]
+        public bool? TaxExempt { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_exemptions")]
+        public System.Collections.Generic.ICollection<string>? TaxExemptions { get; set; } = default!;
+
+        /// <summary>
+        /// The total amount of money that the customer has spent at the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_spent")]
+        public decimal? TotalSpent { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the customer information was updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// States whether or not the email address has been verified.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("verified_email")]
+        public bool? VerifiedEmail { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<CustomerMetafield>? Metafields { get; set; } = default!;
+
+        /// <summary>
+        /// As of API version 2022-04, this field is deprecated. Use email_marketing_consent instead. The date and time (ISO 8601 format) when the customer consented or objected to receiving marketing material by email. Set this value whenever the customer consents or objects to marketing materials.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("accepts_marketing_updated_at")]
+        [System.Obsolete]
+        public System.DateTimeOffset? AcceptsMarketingUpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("email_marketing_consent")]
+        public EmailMarketingConsent? EmailMarketingConsent { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer")]
+        public UpdateCustomer? Customer { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateCustomerSavedSearch
+    {
+        /// <summary>
+        /// The name given by the shop owner to the customer saved search
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The set of conditions that determines which customers will be returned by the saved search
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("query")]
+        public string? Query { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the customer saved search was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the customer saved search was updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateCustomerSavedSearchRequest
+    {
+        /// <summary>
+        /// The name given by the shop owner to the customer saved search
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The set of conditions that determines which customers will be returned by the saved search
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("query")]
+        public string? Query { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the customer saved search was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the customer saved search was updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_saved_search")]
+        public UpdateCustomerSavedSearch? CustomerSavedSearch { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

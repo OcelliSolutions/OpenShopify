@@ -126,10 +126,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/InventoryItemItem'
+              $ref: '#/components/schemas/UpdateInventoryItemRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/InventoryItemItem'
+              $ref: '#/components/schemas/UpdateInventoryItemRequest'
       responses:
         '200':
           description: Success
@@ -544,7 +544,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LocationCount'
+                $ref: '#/components/schemas/CountItem'
         '401':
           description: Unauthorized
           headers:
@@ -606,6 +606,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    CountItem:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
     ErrorResponse:
       type: object
       properties:
@@ -614,13 +621,14 @@ components:
           nullable: true
       additionalProperties: false
     HSCode:
+      required:
+        - id
       type: object
       properties:
         id:
           type: integer
           description: The object's unique id.
           format: int64
-          nullable: true
         admin_graphql_api_id:
           type: string
           nullable: true
@@ -634,16 +642,10 @@ components:
           nullable: true
       additionalProperties: { }
     InventoryItem:
+      required:
+        - id
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         sku:
           type: string
           description: The unique SKU (Stock Keeping Unit) of the inventory item.
@@ -655,7 +657,7 @@ components:
         cost:
           type: number
           description: The unit cost of the inventory item.
-          format: double
+          format: decimal
           nullable: true
         country_code_of_origin:
           type: string
@@ -688,6 +690,12 @@ components:
           description: The date and time when the product variant was last modified. The API returns this value in ISO 8601 format.
           format: date-time
           nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
       additionalProperties: { }
     InventoryItemItem:
       type: object
@@ -702,7 +710,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/InventoryItem'
-          nullable: true
       additionalProperties: { }
     InventoryLevel:
       type: object
@@ -741,19 +748,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/InventoryLevel'
-          nullable: true
       additionalProperties: { }
     Location:
+      required:
+        - id
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         active:
           type: boolean
           description: Whether the location is active.
@@ -824,14 +824,12 @@ components:
           type: string
           description: 'The localized name of the location''s region. Typically a province, state, or prefecture.'
           nullable: true
-      additionalProperties: { }
-      description: An object representing a physical store location.
-    LocationCount:
-      type: object
-      properties:
-        count:
+        id:
           type: integer
-          format: int32
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
       additionalProperties: { }
     LocationItem:
       type: object
@@ -846,7 +844,120 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Location'
+      additionalProperties: { }
+    UpdateInventoryItem:
+      required:
+        - id
+      type: object
+      properties:
+        sku:
+          type: string
+          description: The unique SKU (Stock Keeping Unit) of the inventory item.
           nullable: true
+        tracked:
+          type: boolean
+          description: 'Whether the inventory item is tracked. If true, then inventory quantity changes are tracked by Shopify.'
+          nullable: true
+        cost:
+          type: number
+          description: The unit cost of the inventory item.
+          format: decimal
+          nullable: true
+        country_code_of_origin:
+          type: string
+          description: The two-digit code for the country where the inventory item was made.
+          nullable: true
+        province_code_of_origin:
+          type: string
+          description: The two-digit code for the province where the inventory item was made. Used only if the shipping provider for the inventory item is Canada Post.
+          nullable: true
+        harmonized_system_code:
+          type: string
+          description: The general Harmonized System (HS) code for the inventory item. Used if a country-specific HS code is not available.
+          nullable: true
+        country_harmonized_system_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/HSCode'
+          description: An array of country-specific Harmonized System (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.
+        requires_shipping:
+          type: boolean
+          description: Whether a customer needs to provide a shipping address when placing an order containing the inventory item.
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the product variant was created. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the product variant was last modified. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    UpdateInventoryItemRequest:
+      required:
+        - id
+      type: object
+      properties:
+        sku:
+          type: string
+          description: The unique SKU (Stock Keeping Unit) of the inventory item.
+          nullable: true
+        tracked:
+          type: boolean
+          description: 'Whether the inventory item is tracked. If true, then inventory quantity changes are tracked by Shopify.'
+          nullable: true
+        cost:
+          type: number
+          description: The unit cost of the inventory item.
+          format: decimal
+          nullable: true
+        country_code_of_origin:
+          type: string
+          description: The two-digit code for the country where the inventory item was made.
+          nullable: true
+        province_code_of_origin:
+          type: string
+          description: The two-digit code for the province where the inventory item was made. Used only if the shipping provider for the inventory item is Canada Post.
+          nullable: true
+        harmonized_system_code:
+          type: string
+          description: The general Harmonized System (HS) code for the inventory item. Used if a country-specific HS code is not available.
+          nullable: true
+        country_harmonized_system_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/HSCode'
+          description: An array of country-specific Harmonized System (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.
+        requires_shipping:
+          type: boolean
+          description: Whether a customer needs to provide a shipping address when placing an order containing the inventory item.
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the product variant was created. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the product variant was last modified. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        inventory_item:
+          $ref: '#/components/schemas/UpdateInventoryItem'
       additionalProperties: { }
   securitySchemes:
     ApiKey:

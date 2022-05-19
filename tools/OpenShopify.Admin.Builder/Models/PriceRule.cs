@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class PriceRule : ShopifyObject
+    public class PriceRuleBase
     {
         /**
         * The title of the price rule.

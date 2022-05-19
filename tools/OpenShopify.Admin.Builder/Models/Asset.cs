@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify asset. Assets do not have ids, but rather keys, and are associated with specific themes.
     /// </summary>
-    public class Asset
+    public class AssetBase
     {
         /// <summary>
         /// An asset attached to a store's theme.

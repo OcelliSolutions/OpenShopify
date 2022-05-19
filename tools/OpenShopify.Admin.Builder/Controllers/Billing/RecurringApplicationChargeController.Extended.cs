@@ -12,7 +12,7 @@ namespace OpenShopify.Admin.Builder.Controllers.Billing;
 public class RecurringApplicationChargeController : RecurringApplicationChargeControllerBase
 {
     /// <inheritdoc />
-    public override Task CreateRecurringApplicationCharge([Required] RecurringApplicationChargeItem request)
+    public override Task CreateRecurringApplicationCharge(CreateRecurringApplicationChargeRequest request)
     {
         throw new NotImplementedException();
     }
@@ -44,7 +44,7 @@ public class RecurringApplicationChargeController : RecurringApplicationChargeCo
     /// <inheritdoc />
     [IgnoreApi, HttpPut, Route("recurring_application_charges/{recurring_application_charge_id:long}/customize.invalid")]
     [ProducesResponseType(typeof(RecurringApplicationChargeItem), StatusCodes.Status200OK)]
-    public override Task UpdateCappedAmountOfRecurringApplicationCharge(RecurringApplicationChargeItem request,
+    public override Task UpdateCappedAmountOfRecurringApplicationCharge(UpdateRecurringApplicationChargeRequest request,
         long recurring_application_charge_id)
     {
         throw new NotImplementedException();

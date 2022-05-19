@@ -21,14 +21,14 @@ public class PageController : PageControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("pages.json")]
-    public override Task CreatePage(PageItem request)
+    public override Task CreatePage(CreatePageRequest request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("pages/count.json")]
-    [ProducesResponseType(typeof(PageCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrievePageCount(DateTime? created_at_max, DateTime? created_at_min, DateTime? published_at_max,
         DateTime? published_at_min, string published_status, string? title, DateTime? updated_at_max, DateTime? updated_at_min)
     {
@@ -44,7 +44,7 @@ public class PageController : PageControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("pages/{page_id:long}.json")]
-    public override Task UpdatePage(PageItem request, long page_id)
+    public override Task UpdatePage(UpdatePageRequest request, long page_id)
     {
         throw new NotImplementedException();
     }

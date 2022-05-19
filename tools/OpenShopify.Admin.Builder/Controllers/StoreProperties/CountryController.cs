@@ -39,7 +39,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a country</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("countries.json")]
-        public abstract System.Threading.Tasks.Task CreateCountry([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CountryItem request);
+        public abstract System.Threading.Tasks.Task CreateCountry([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCountryRequest request);
 
         /// <summary>
         /// Retrieves a count of countries
@@ -61,7 +61,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates an existing country</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingCountry([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CountryItem request, long country_id);
+        public abstract System.Threading.Tasks.Task UpdateExistingCountry([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCountryRequest request, long country_id);
 
         /// <summary>
         /// Remove an existing Country

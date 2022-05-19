@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class InventoryItem : ShopifyObject
+    public class InventoryItemBase
     {
         /// <summary>
         /// The unique SKU (Stock Keeping Unit) of the inventory item.

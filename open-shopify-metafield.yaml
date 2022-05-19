@@ -124,10 +124,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MetafieldItem'
+              $ref: '#/components/schemas/CreateMetafieldRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/MetafieldItem'
+              $ref: '#/components/schemas/CreateMetafieldRequest'
       responses:
         '201':
           description: Created
@@ -180,7 +180,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MetafieldCount'
+                $ref: '#/components/schemas/CountItem'
         '401':
           description: Unauthorized
           headers:
@@ -261,10 +261,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MetafieldItem'
+              $ref: '#/components/schemas/UpdateMetafieldRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/MetafieldItem'
+              $ref: '#/components/schemas/UpdateMetafieldRequest'
       responses:
         '200':
           description: Success
@@ -337,24 +337,16 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
+    CountItem:
       type: object
       properties:
-        errors:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Metafield:
-      type: object
-      properties:
-        id:
+        count:
           type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
+          format: int32
+      additionalProperties: { }
+    CreateMetafield:
+      type: object
+      properties:
         created_at:
           type: string
           description: The date and time when the metafield was created.
@@ -393,12 +385,67 @@ components:
           description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
           nullable: true
       additionalProperties: { }
-    MetafieldCount:
+    CreateMetafieldRequest:
       type: object
       properties:
-        count:
+        metafield:
+          $ref: '#/components/schemas/CreateMetafield'
+      additionalProperties: { }
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Metafield:
+      required:
+        - id
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: The date and time when the metafield was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the metafield was last updated.
+          format: date-time
+          nullable: true
+        key:
+          type: string
+          description: Identifier for the metafield (maximum of 30 characters).
+          nullable: true
+        value:
+          description: Information to be stored as metadata. Must be either a string or an int.
+        value_type:
+          type: string
+          description: States whether the information in the value is stored as a 'string' or 'integer.'
+          nullable: true
+        namespace:
+          type: string
+          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+          nullable: true
+        description:
+          type: string
+          description: Additional information about the metafield.
+          nullable: true
+        owner_id:
           type: integer
-          format: int32
+          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
+          format: int64
+          nullable: true
+        owner_resource:
+          type: string
+          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
       additionalProperties: { }
     MetafieldItem:
       type: object
@@ -413,7 +460,106 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Metafield'
+      additionalProperties: { }
+    UpdateMetafield:
+      required:
+        - id
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: The date and time when the metafield was created.
+          format: date-time
           nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the metafield was last updated.
+          format: date-time
+          nullable: true
+        key:
+          type: string
+          description: Identifier for the metafield (maximum of 30 characters).
+          nullable: true
+        value:
+          description: Information to be stored as metadata. Must be either a string or an int.
+        value_type:
+          type: string
+          description: States whether the information in the value is stored as a 'string' or 'integer.'
+          nullable: true
+        namespace:
+          type: string
+          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+          nullable: true
+        description:
+          type: string
+          description: Additional information about the metafield.
+          nullable: true
+        owner_id:
+          type: integer
+          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
+          format: int64
+          nullable: true
+        owner_resource:
+          type: string
+          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    UpdateMetafieldRequest:
+      required:
+        - id
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: The date and time when the metafield was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the metafield was last updated.
+          format: date-time
+          nullable: true
+        key:
+          type: string
+          description: Identifier for the metafield (maximum of 30 characters).
+          nullable: true
+        value:
+          description: Information to be stored as metadata. Must be either a string or an int.
+        value_type:
+          type: string
+          description: States whether the information in the value is stored as a 'string' or 'integer.'
+          nullable: true
+        namespace:
+          type: string
+          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+          nullable: true
+        description:
+          type: string
+          description: Additional information about the metafield.
+          nullable: true
+        owner_id:
+          type: integer
+          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
+          format: int64
+          nullable: true
+        owner_resource:
+          type: string
+          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        metafield:
+          $ref: '#/components/schemas/UpdateMetafield'
       additionalProperties: { }
   securitySchemes:
     ApiKey:

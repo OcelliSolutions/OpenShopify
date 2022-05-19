@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class Metafield : ShopifyObject
+    public class MetafieldBase
     {
         /// <summary>
         /// The date and time when the metafield was created.

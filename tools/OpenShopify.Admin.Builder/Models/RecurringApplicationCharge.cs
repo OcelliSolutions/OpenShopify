@@ -3,10 +3,8 @@ using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Models;
 
-public class RecurringApplicationCharge
+public class RecurringApplicationChargeBase
 {
-    [JsonPropertyName("id")]
-    public long Id { get; set; }
     [JsonPropertyName("name")]
     public string? Name { get; set; }
     [JsonPropertyName("api_client_id")]

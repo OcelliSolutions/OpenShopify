@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class DiscountCode : ShopifyObject
+    public class DiscountCodeBase
     {
         /// <summary>
         /// The amount of the discount.

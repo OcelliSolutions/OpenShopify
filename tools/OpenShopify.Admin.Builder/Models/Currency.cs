@@ -2,7 +2,7 @@
 
 namespace OpenShopify.Admin.Builder.Models;
 
-public class Currency
+public class CurrencyBase
 {
     [JsonPropertyName("currency")] public string CurrencyCode { get; set; } = null!;
     [JsonPropertyName("rate_updated_at")] public DateTimeOffset RateUpdatedAt { get; set; }

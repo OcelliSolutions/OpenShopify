@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify fulfillment order.
     /// </summary>
-    public class FulfillmentOrder : ShopifyObject
+    public class FulfillmentOrderBase
     {
         /// <summary>
         /// The ID of the shop that's associated with the fulfillment order.

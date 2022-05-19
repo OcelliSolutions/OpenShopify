@@ -2,8 +2,10 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class Address: ShopifyObject
+    public class AddressBase
     {
+        [JsonPropertyName("customer_id")]
+        public long CustomerId { get; set; }
         /// <summary>
         /// The mailing address.
         /// </summary>

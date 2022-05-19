@@ -30,10 +30,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DiscountCodeItem'
+              $ref: '#/components/schemas/CreateDiscountCodeRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/DiscountCodeItem'
+              $ref: '#/components/schemas/CreateDiscountCodeRequest'
       responses:
         '201':
           description: Created
@@ -131,10 +131,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DiscountCodeItem'
+              $ref: '#/components/schemas/UpdateDiscountCodeRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/DiscountCodeItem'
+              $ref: '#/components/schemas/UpdateDiscountCodeRequest'
       responses:
         '200':
           description: Success
@@ -336,7 +336,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DiscountCodeCount'
+                $ref: '#/components/schemas/CountItem'
         '401':
           description: Unauthorized
           headers:
@@ -369,10 +369,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DiscountCodeItem'
+              $ref: '#/components/schemas/CreateDiscountCodeRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/DiscountCodeItem'
+              $ref: '#/components/schemas/CreateDiscountCodeRequest'
       responses:
         '201':
           description: Created
@@ -514,10 +514,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PriceRuleItem'
+              $ref: '#/components/schemas/CreatePriceRuleRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/PriceRuleItem'
+              $ref: '#/components/schemas/CreatePriceRuleRequest'
       responses:
         '201':
           description: Created
@@ -672,10 +672,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PriceRuleItem'
+              $ref: '#/components/schemas/UpdatePriceRuleRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/PriceRuleItem'
+              $ref: '#/components/schemas/UpdatePriceRuleRequest'
       responses:
         '200':
           description: Success
@@ -810,7 +810,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PriceRuleCount'
+                $ref: '#/components/schemas/CountItem'
         '401':
           description: Unauthorized
           headers:
@@ -828,17 +828,16 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    DiscountCode:
+    CountItem:
       type: object
       properties:
-        id:
+        count:
           type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
+          format: int32
+      additionalProperties: { }
+    CreateDiscountCode:
+      type: object
+      properties:
         amount:
           type: string
           description: The amount of the discount.
@@ -852,109 +851,15 @@ components:
           description: 'The type of discount. Known values are ''percentage'', ''shipping'', ''fixed_amount'' and ''none''.'
           nullable: true
       additionalProperties: { }
-    DiscountCodeCount:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-      additionalProperties: { }
-    DiscountCodeCreation:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        price_rule_id:
-          type: integer
-          format: int64
-        started_at:
-          type: string
-          format: date-time
-          nullable: true
-        completed_at:
-          type: string
-          format: date-time
-          nullable: true
-        created_at:
-          type: string
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          format: date-time
-          nullable: true
-        status:
-          type: string
-          nullable: true
-        codes_count:
-          type: integer
-          format: int32
-          nullable: true
-        imported_count:
-          type: integer
-          format: int32
-          nullable: true
-        failed_count:
-          type: integer
-          format: int32
-          nullable: true
-        logs:
-          type: array
-          items: { }
-          nullable: true
-      additionalProperties: { }
-    DiscountCodeCreationItem:
-      type: object
-      properties:
-        discount_code_creation:
-          $ref: '#/components/schemas/DiscountCodeCreation'
-      additionalProperties: { }
-    DiscountCodeItem:
+    CreateDiscountCodeRequest:
       type: object
       properties:
         discount_code:
-          $ref: '#/components/schemas/DiscountCode'
+          $ref: '#/components/schemas/CreateDiscountCode'
       additionalProperties: { }
-    DiscountCodeList:
+    CreatePriceRule:
       type: object
       properties:
-        discount_codes:
-          type: array
-          items:
-            $ref: '#/components/schemas/DiscountCode'
-          nullable: true
-      additionalProperties: { }
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: string
-          nullable: true
-      additionalProperties: false
-    PrerequisiteValueRange:
-      type: object
-      properties:
-        less_than_or_equal_to:
-          type: number
-          format: double
-          nullable: true
-        greater_than_or_equal_to:
-          type: number
-          format: double
-          nullable: true
-      additionalProperties: { }
-    PriceRule:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         title:
           type: string
           nullable: true
@@ -972,7 +877,7 @@ components:
           nullable: true
         value:
           type: number
-          format: double
+          format: decimal
         once_per_customer:
           type: boolean
           nullable: true
@@ -1035,12 +940,177 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    PriceRuleCount:
+    CreatePriceRuleRequest:
       type: object
       properties:
-        count:
+        price_rule:
+          $ref: '#/components/schemas/CreatePriceRule'
+      additionalProperties: { }
+    DiscountCode:
+      required:
+        - id
+      type: object
+      properties:
+        amount:
+          type: string
+          description: The amount of the discount.
+          nullable: true
+        code:
+          type: string
+          description: The discount code.
+          nullable: true
+        type:
+          type: string
+          description: 'The type of discount. Known values are ''percentage'', ''shipping'', ''fixed_amount'' and ''none''.'
+          nullable: true
+        id:
           type: integer
-          format: int32
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    DiscountCodeCreation:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    DiscountCodeCreationItem:
+      type: object
+      properties:
+        discount_code_creation:
+          $ref: '#/components/schemas/DiscountCodeCreation'
+      additionalProperties: { }
+    DiscountCodeItem:
+      type: object
+      properties:
+        discount_code:
+          $ref: '#/components/schemas/DiscountCode'
+      additionalProperties: { }
+    DiscountCodeList:
+      type: object
+      properties:
+        discount_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscountCode'
+      additionalProperties: { }
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PrerequisiteValueRange:
+      type: object
+      properties:
+        less_than_or_equal_to:
+          type: number
+          format: decimal
+          nullable: true
+        greater_than_or_equal_to:
+          type: number
+          format: decimal
+          nullable: true
+      additionalProperties: { }
+    PriceRule:
+      required:
+        - id
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+        target_type:
+          type: string
+          nullable: true
+        target_selection:
+          type: string
+          nullable: true
+        allocation_method:
+          type: string
+          nullable: true
+        value_type:
+          type: string
+          nullable: true
+        value:
+          type: number
+          format: decimal
+        once_per_customer:
+          type: boolean
+          nullable: true
+        usage_limit:
+          type: integer
+          format: int64
+          nullable: true
+        customer_selection:
+          type: string
+          nullable: true
+        prerequisite_subtotal_range:
+          $ref: '#/components/schemas/PrerequisiteValueRange'
+        prerequisite_shipping_price_range:
+          $ref: '#/components/schemas/PrerequisiteValueRange'
+        prerequisite_saved_search_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          nullable: true
+        prerequisite_customer_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        entitled_product_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        entitled_variant_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        entitled_collection_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        entitled_country_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        starts_at:
+          type: string
+          format: date-time
+          nullable: true
+        ends_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
       additionalProperties: { }
     PriceRuleItem:
       type: object
@@ -1055,7 +1125,240 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PriceRule'
+      additionalProperties: { }
+    UpdateDiscountCode:
+      required:
+        - id
+      type: object
+      properties:
+        amount:
+          type: string
+          description: The amount of the discount.
           nullable: true
+        code:
+          type: string
+          description: The discount code.
+          nullable: true
+        type:
+          type: string
+          description: 'The type of discount. Known values are ''percentage'', ''shipping'', ''fixed_amount'' and ''none''.'
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    UpdateDiscountCodeRequest:
+      required:
+        - id
+      type: object
+      properties:
+        amount:
+          type: string
+          description: The amount of the discount.
+          nullable: true
+        code:
+          type: string
+          description: The discount code.
+          nullable: true
+        type:
+          type: string
+          description: 'The type of discount. Known values are ''percentage'', ''shipping'', ''fixed_amount'' and ''none''.'
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        discount_code:
+          $ref: '#/components/schemas/UpdateDiscountCode'
+      additionalProperties: { }
+    UpdatePriceRule:
+      required:
+        - id
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+        target_type:
+          type: string
+          nullable: true
+        target_selection:
+          type: string
+          nullable: true
+        allocation_method:
+          type: string
+          nullable: true
+        value_type:
+          type: string
+          nullable: true
+        value:
+          type: number
+          format: decimal
+        once_per_customer:
+          type: boolean
+          nullable: true
+        usage_limit:
+          type: integer
+          format: int64
+          nullable: true
+        customer_selection:
+          type: string
+          nullable: true
+        prerequisite_subtotal_range:
+          $ref: '#/components/schemas/PrerequisiteValueRange'
+        prerequisite_shipping_price_range:
+          $ref: '#/components/schemas/PrerequisiteValueRange'
+        prerequisite_saved_search_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          nullable: true
+        prerequisite_customer_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        entitled_product_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        entitled_variant_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        entitled_collection_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        entitled_country_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        starts_at:
+          type: string
+          format: date-time
+          nullable: true
+        ends_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    UpdatePriceRuleRequest:
+      required:
+        - id
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+        target_type:
+          type: string
+          nullable: true
+        target_selection:
+          type: string
+          nullable: true
+        allocation_method:
+          type: string
+          nullable: true
+        value_type:
+          type: string
+          nullable: true
+        value:
+          type: number
+          format: decimal
+        once_per_customer:
+          type: boolean
+          nullable: true
+        usage_limit:
+          type: integer
+          format: int64
+          nullable: true
+        customer_selection:
+          type: string
+          nullable: true
+        prerequisite_subtotal_range:
+          $ref: '#/components/schemas/PrerequisiteValueRange'
+        prerequisite_shipping_price_range:
+          $ref: '#/components/schemas/PrerequisiteValueRange'
+        prerequisite_saved_search_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          nullable: true
+        prerequisite_customer_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        entitled_product_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        entitled_variant_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        entitled_collection_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        entitled_country_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        starts_at:
+          type: string
+          format: date-time
+          nullable: true
+        ends_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        price_rule:
+          $ref: '#/components/schemas/UpdatePriceRule'
       additionalProperties: { }
   securitySchemes:
     ApiKey:

@@ -679,7 +679,7 @@ namespace Ocelli.OpenShopify
         /// Creates a carrier service
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateCarrierServiceAsync(CarrierServiceItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateCarrierServiceAsync(CreateCarrierServiceRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -693,7 +693,7 @@ namespace Ocelli.OpenShopify
         /// Updates a carrier service
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> UpdateCarrierServiceAsync(long carrierServiceId, CarrierServiceItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdateCarrierServiceAsync(long carrierServiceId, UpdateCarrierServiceRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -748,7 +748,7 @@ namespace Ocelli.OpenShopify
         /// Creates a carrier service
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateCarrierServiceAsync(CarrierServiceItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateCarrierServiceAsync(CreateCarrierServiceRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/carrier_services.json");
@@ -899,7 +899,7 @@ namespace Ocelli.OpenShopify
         /// Updates a carrier service
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateCarrierServiceAsync(long carrierServiceId, CarrierServiceItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateCarrierServiceAsync(long carrierServiceId, UpdateCarrierServiceRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (carrierServiceId == null)
                 throw new System.ArgumentNullException("carrierServiceId");
@@ -1254,7 +1254,7 @@ namespace Ocelli.OpenShopify
         /// Create a new Fulfillment
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateNewFulfillmentAsync(long orderId, FulfillmentItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateNewFulfillmentAsync(long orderId, CreateFulfillmentRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1273,7 +1273,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<OrderFulfillmentCount>> RetrieveCountOfFulfillmentsAssociatedWithSpecificOrderAsync(long orderId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfFulfillmentsAssociatedWithSpecificOrderAsync(long orderId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1288,18 +1288,18 @@ namespace Ocelli.OpenShopify
         /// Modify an existing Fulfillment
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingFulfillmentAsync(long fulfillmentId, long orderId, FulfillmentItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingFulfillmentAsync(long fulfillmentId, long orderId, UpdateFulfillmentRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Creates a fulfillment for one or many fulfillment orders
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateFulfillmentForOneOrManyFulfillmentOrdersAsync(FulfillmentItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateFulfillmentForOneOrManyFulfillmentOrdersAsync(CreateFulfillmentRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> UpdateTrackingInformationForFulfillmentAsync(long fulfillmentId, FulfillmentItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdateTrackingInformationForFulfillmentAsync(long fulfillmentId, UpdateFulfillmentRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1486,7 +1486,7 @@ namespace Ocelli.OpenShopify
         /// Create a new Fulfillment
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateNewFulfillmentAsync(long orderId, FulfillmentItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateNewFulfillmentAsync(long orderId, CreateFulfillmentRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -1650,7 +1650,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderFulfillmentCount>> RetrieveCountOfFulfillmentsAssociatedWithSpecificOrderAsync(long orderId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfFulfillmentsAssociatedWithSpecificOrderAsync(long orderId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -1708,12 +1708,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<OrderFulfillmentCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<OrderFulfillmentCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -1838,7 +1838,7 @@ namespace Ocelli.OpenShopify
         /// Modify an existing Fulfillment
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingFulfillmentAsync(long fulfillmentId, long orderId, FulfillmentItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingFulfillmentAsync(long fulfillmentId, long orderId, UpdateFulfillmentRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (fulfillmentId == null)
                 throw new System.ArgumentNullException("fulfillmentId");
@@ -1923,7 +1923,7 @@ namespace Ocelli.OpenShopify
         /// Creates a fulfillment for one or many fulfillment orders
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateFulfillmentForOneOrManyFulfillmentOrdersAsync(FulfillmentItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateFulfillmentForOneOrManyFulfillmentOrdersAsync(CreateFulfillmentRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/fulfillments.json");
@@ -1997,7 +1997,7 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateTrackingInformationForFulfillmentAsync(long fulfillmentId, FulfillmentItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateTrackingInformationForFulfillmentAsync(long fulfillmentId, UpdateFulfillmentRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (fulfillmentId == null)
                 throw new System.ArgumentNullException("fulfillmentId");
@@ -2517,7 +2517,7 @@ namespace Ocelli.OpenShopify
         /// Creates a fulfillment event
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateFulfillmentEventAsync(long fulfillmentId, long orderId, FulfillmentEventItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateFulfillmentEventAsync(long fulfillmentId, long orderId, CreateFulfillmentEventRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2654,7 +2654,7 @@ namespace Ocelli.OpenShopify
         /// Creates a fulfillment event
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateFulfillmentEventAsync(long fulfillmentId, long orderId, FulfillmentEventItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateFulfillmentEventAsync(long fulfillmentId, long orderId, CreateFulfillmentEventRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (fulfillmentId == null)
                 throw new System.ArgumentNullException("fulfillmentId");
@@ -4390,7 +4390,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentServiceItem>> CreateNewFulfillmentServiceAsync(FulfillmentServiceItem body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentServiceItem>> CreateNewFulfillmentServiceAsync(CreateFulfillmentServiceRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4406,7 +4406,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentServiceItem>> ModifyExistingFulfillmentServiceAsync(long fulfillmentServiceId, FulfillmentServiceItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentServiceItem>> ModifyExistingFulfillmentServiceAsync(long fulfillmentServiceId, UpdateFulfillmentServiceRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4541,11 +4541,8 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentServiceItem>> CreateNewFulfillmentServiceAsync(FulfillmentServiceItem body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentServiceItem>> CreateNewFulfillmentServiceAsync(CreateFulfillmentServiceRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            if (body == null)
-                throw new System.ArgumentNullException("body");
-
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/fulfillment_services.json");
 
@@ -4711,7 +4708,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentServiceItem>> ModifyExistingFulfillmentServiceAsync(long fulfillmentServiceId, FulfillmentServiceItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentServiceItem>> ModifyExistingFulfillmentServiceAsync(long fulfillmentServiceId, UpdateFulfillmentServiceRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (fulfillmentServiceId == null)
                 throw new System.ArgumentNullException("fulfillmentServiceId");
@@ -5194,17 +5191,51 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CarrierService : System.Collections.Generic.Dictionary<string, object>
+    public partial class CreateCarrierService
     {
+        /// <summary>
+        /// States whether or not this carrier service is active. Valid values are "true" and "false".
+        /// </summary>
 
-    }
+        [System.Text.Json.Serialization.JsonPropertyName("active")]
+        public bool? Active { get; set; } = default!;
 
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CarrierServiceItem
-    {
+        /// <summary>
+        /// States the URL endpoint that shopify needs to retrieve shipping rates. This must be a public URL.
+        /// </summary>
 
-        [System.Text.Json.Serialization.JsonPropertyName("carrier_service")]
-        public CarrierService? CarrierService { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("callback_url")]
+        public string? CallbackUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Distinguishes between api or legacy carrier services.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("carrier_service_type")]
+        public string? CarrierServiceType { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the shipping service as seen by merchants and their customers.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// States if merchants are able to send dummy data to your service through the Shopify admin
+        /// <br/>to see shipping rate examples. Valid values are "true" and "false".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("service_discovery")]
+        public bool? ServiceDiscovery { get; set; } = default!;
+
+        /// <summary>
+        /// The format of the data returned by the URL endpoint. Valid values are "json" and "xml".
+        /// <br/>If a format is not specified, it will default to json.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("format")]
+        public string? Format { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -5217,22 +5248,27 @@ namespace Ocelli.OpenShopify
 
     }
 
-    /// <summary>
-    /// An object representing a Shopify fulfillment.
-    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class Fulfillment
+    public partial class CreateCarrierServiceRequest
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
 
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("carrier_service")]
+        public CreateCarrierService? CarrierService { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateFulfillment
+    {
         /// <summary>
         /// The date and time when the fulfillment was created.
         /// </summary>
@@ -5304,7 +5340,7 @@ namespace Ocelli.OpenShopify
 
         /// <summary>
         /// The shipping number, provided by the shipping company. If multiple tracking numbers
-        /// <br/>exist (OpenShopify.Admin.Builder.Models.Fulfillment.TrackingNumbers), returns the first number.
+        /// <br/>exist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingNumbers), returns the first number.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tracking_number")]
@@ -5319,7 +5355,7 @@ namespace Ocelli.OpenShopify
 
         /// <summary>
         /// The tracking url, provided by the shipping company. May be null. If multiple tracking URLs
-        /// <br/>exist (OpenShopify.Admin.Builder.Models.Fulfillment.TrackingUrls), returns the first URL.
+        /// <br/>exist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingUrls), returns the first URL.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("tracking_url")]
@@ -5374,22 +5410,9 @@ namespace Ocelli.OpenShopify
 
     }
 
-    /// <summary>
-    /// An object representing a Shopify fulfillment event.
-    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class FulfillmentEvent
+    public partial class CreateFulfillmentEvent
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The date and time when the fulfillment event was created.
         /// </summary>
@@ -5480,14 +5503,14 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("latitude")]
-        public double? Latitude { get; set; } = default!;
+        public decimal? Latitude { get; set; } = default!;
 
         /// <summary>
         /// Geographic coordinate specifying the east/west location of a fulfillment event.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("longitude")]
-        public double? Longitude { get; set; } = default!;
+        public decimal? Longitude { get; set; } = default!;
 
         /// <summary>
         /// The estimated date of delivery.
@@ -5515,11 +5538,11 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class FulfillmentEventItem
+    public partial class CreateFulfillmentEventRequest
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_event")]
-        public FulfillmentEvent? FulfillmentEvent { get; set; } = default!;
+        public CreateFulfillmentEvent? FulfillmentEvent { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -5533,11 +5556,11 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class FulfillmentItem
+    public partial class CreateFulfillmentRequest
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment")]
-        public Fulfillment? Fulfillment { get; set; } = default!;
+        public CreateFulfillment? Fulfillment { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -5550,22 +5573,9 @@ namespace Ocelli.OpenShopify
 
     }
 
-    /// <summary>
-    /// An object representing a Shopify fulfillment service.
-    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class FulfillmentService
+    public partial class CreateFulfillmentService
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The name of the fulfillment service as seen by merchants and their customers.
         /// </summary>
@@ -5669,6 +5679,135 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateFulfillmentServiceRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]
+        public CreateFulfillmentService? FulfillmentService { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class FulfillmentService
+    {
+        /// <summary>
+        /// The name of the fulfillment service as seen by merchants and their customers.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Name { get; set; } = default!;
+
+        /// <summary>
+        /// States the URL endpoint that Shopify needs to retrieve inventory and tracking updates.
+        /// <br/>This field is necessary if either inventory_management or tracking_support is set to "true".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("callback_url")]
+        public string? CallbackUrl { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("format")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter))]
+        public FulfillmentServiceFormat Format { get; set; } = default!;
+
+        /// <summary>
+        /// A human-friendly unique string for the fulfillment service generated from its title.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        public string? Handle { get; set; } = default!;
+
+        /// <summary>
+        /// States if the fulfillment service tracks product inventory and provides updates to Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
+        public bool? InventoryManagement { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier of the location tied to the fulfillment service
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
+        public long? LocationId { get; set; } = default!;
+
+        /// <summary>
+        /// A unique identifier for the fulfillment service provider.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("provider_id")]
+        public string? ProviderId { get; set; } = default!;
+
+        /// <summary>
+        /// States if the fulfillment service requires products to be physically shipped.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping_method")]
+        public bool? RequiresShippingMethod { get; set; } = default!;
+
+        /// <summary>
+        /// States if the fulfillment service provides tracking numbers for packages.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_support")]
+        public bool? TrackingSupport { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("include_pending_stock")]
+        public bool? IncludePendingStock { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("service_name")]
+        public string? ServiceName { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the fulfillment service wants to register for APIs related to fulfillment orders.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_orders_opt_in")]
+        public bool? FulfillmentOrdersOptIn { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public enum FulfillmentServiceFormat
     {
 
@@ -5729,11 +5868,652 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class OrderFulfillmentCount
+    public partial class UpdateCarrierService
     {
+        /// <summary>
+        /// States whether or not this carrier service is active. Valid values are "true" and "false".
+        /// </summary>
 
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("active")]
+        public bool? Active { get; set; } = default!;
+
+        /// <summary>
+        /// States the URL endpoint that shopify needs to retrieve shipping rates. This must be a public URL.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("callback_url")]
+        public string? CallbackUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Distinguishes between api or legacy carrier services.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("carrier_service_type")]
+        public string? CarrierServiceType { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the shipping service as seen by merchants and their customers.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// States if merchants are able to send dummy data to your service through the Shopify admin
+        /// <br/>to see shipping rate examples. Valid values are "true" and "false".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("service_discovery")]
+        public bool? ServiceDiscovery { get; set; } = default!;
+
+        /// <summary>
+        /// The format of the data returned by the URL endpoint. Valid values are "json" and "xml".
+        /// <br/>If a format is not specified, it will default to json.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("format")]
+        public string? Format { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateCarrierServiceRequest
+    {
+        /// <summary>
+        /// States whether or not this carrier service is active. Valid values are "true" and "false".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("active")]
+        public bool? Active { get; set; } = default!;
+
+        /// <summary>
+        /// States the URL endpoint that shopify needs to retrieve shipping rates. This must be a public URL.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("callback_url")]
+        public string? CallbackUrl { get; set; } = default!;
+
+        /// <summary>
+        /// Distinguishes between api or legacy carrier services.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("carrier_service_type")]
+        public string? CarrierServiceType { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the shipping service as seen by merchants and their customers.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// States if merchants are able to send dummy data to your service through the Shopify admin
+        /// <br/>to see shipping rate examples. Valid values are "true" and "false".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("service_discovery")]
+        public bool? ServiceDiscovery { get; set; } = default!;
+
+        /// <summary>
+        /// The format of the data returned by the URL endpoint. Valid values are "json" and "xml".
+        /// <br/>If a format is not specified, it will default to json.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("format")]
+        public string? Format { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("carrier_service")]
+        public UpdateCarrierService? CarrierService { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateFulfillment
+    {
+        /// <summary>
+        /// The date and time when the fulfillment was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// A historical record of each item in the fulfillment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("line_items")]
+        public System.Collections.Generic.ICollection<LineItem>? LineItems { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier for the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
+        public long? OrderId { get; set; } = default!;
+
+        /// <summary>
+        /// A textfield with information about the receipt.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("receipt")]
+        public object? Receipt { get; set; } = default!;
+
+        /// <summary>
+        /// The status of the fulfillment. Valid values are 'pending', 'open', 'success', 'cancelled',
+        /// <br/>'error' and 'failure'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+        public string? Status { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier of the location that the fulfillment should be processed for.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
+        public long? LocationId { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify. It appears to be the customer's email address
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// A flag indicating whether the customer should be notified. If set to true, an email will be
+        /// <br/>sent when the fulfillment is created or updated. The default value is false for fulfillments
+        /// <br/>on any orders created initially through the API. For all other orders, the default value is true.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("notify_customer")]
+        public bool? NotifyCustomer { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("destination")]
+        public Address? Destination { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the shipping company.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_company")]
+        public string? TrackingCompany { get; set; } = default!;
+
+        /// <summary>
+        /// The shipping number, provided by the shipping company. If multiple tracking numbers
+        /// <br/>exist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingNumbers), returns the first number.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_number")]
+        public string? TrackingNumber { get; set; } = default!;
+
+        /// <summary>
+        /// A list of shipping numbers, provided by the shipping company. May be null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_numbers")]
+        public System.Collections.Generic.ICollection<string>? TrackingNumbers { get; set; } = default!;
+
+        /// <summary>
+        /// The tracking url, provided by the shipping company. May be null. If multiple tracking URLs
+        /// <br/>exist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingUrls), returns the first URL.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_url")]
+        public string? TrackingUrl { get; set; } = default!;
+
+        /// <summary>
+        /// An array of one or more tracking urls, provided by the shipping company. May be null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_urls")]
+        public System.Collections.Generic.ICollection<string>? TrackingUrls { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the fulfillment was last modified.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// States the name of the inventory management service.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("variant_inventory_management")]
+        public string? VariantInventoryManagement { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("service")]
+        public string? Service { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipment_status")]
+        public string? ShipmentStatus { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateFulfillmentRequest
+    {
+        /// <summary>
+        /// The date and time when the fulfillment was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// A historical record of each item in the fulfillment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("line_items")]
+        public System.Collections.Generic.ICollection<LineItem>? LineItems { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier for the order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
+        public long? OrderId { get; set; } = default!;
+
+        /// <summary>
+        /// A textfield with information about the receipt.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("receipt")]
+        public object? Receipt { get; set; } = default!;
+
+        /// <summary>
+        /// The status of the fulfillment. Valid values are 'pending', 'open', 'success', 'cancelled',
+        /// <br/>'error' and 'failure'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+        public string? Status { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier of the location that the fulfillment should be processed for.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
+        public long? LocationId { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify. It appears to be the customer's email address
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// A flag indicating whether the customer should be notified. If set to true, an email will be
+        /// <br/>sent when the fulfillment is created or updated. The default value is false for fulfillments
+        /// <br/>on any orders created initially through the API. For all other orders, the default value is true.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("notify_customer")]
+        public bool? NotifyCustomer { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("destination")]
+        public Address? Destination { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the shipping company.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_company")]
+        public string? TrackingCompany { get; set; } = default!;
+
+        /// <summary>
+        /// The shipping number, provided by the shipping company. If multiple tracking numbers
+        /// <br/>exist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingNumbers), returns the first number.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_number")]
+        public string? TrackingNumber { get; set; } = default!;
+
+        /// <summary>
+        /// A list of shipping numbers, provided by the shipping company. May be null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_numbers")]
+        public System.Collections.Generic.ICollection<string>? TrackingNumbers { get; set; } = default!;
+
+        /// <summary>
+        /// The tracking url, provided by the shipping company. May be null. If multiple tracking URLs
+        /// <br/>exist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingUrls), returns the first URL.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_url")]
+        public string? TrackingUrl { get; set; } = default!;
+
+        /// <summary>
+        /// An array of one or more tracking urls, provided by the shipping company. May be null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_urls")]
+        public System.Collections.Generic.ICollection<string>? TrackingUrls { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the fulfillment was last modified.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// States the name of the inventory management service.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("variant_inventory_management")]
+        public string? VariantInventoryManagement { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("service")]
+        public string? Service { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipment_status")]
+        public string? ShipmentStatus { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment")]
+        public UpdateFulfillment? Fulfillment { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateFulfillmentService
+    {
+        /// <summary>
+        /// The name of the fulfillment service as seen by merchants and their customers.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Name { get; set; } = default!;
+
+        /// <summary>
+        /// States the URL endpoint that Shopify needs to retrieve inventory and tracking updates.
+        /// <br/>This field is necessary if either inventory_management or tracking_support is set to "true".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("callback_url")]
+        public string? CallbackUrl { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("format")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter))]
+        public FulfillmentServiceFormat Format { get; set; } = default!;
+
+        /// <summary>
+        /// A human-friendly unique string for the fulfillment service generated from its title.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        public string? Handle { get; set; } = default!;
+
+        /// <summary>
+        /// States if the fulfillment service tracks product inventory and provides updates to Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
+        public bool? InventoryManagement { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier of the location tied to the fulfillment service
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
+        public long? LocationId { get; set; } = default!;
+
+        /// <summary>
+        /// A unique identifier for the fulfillment service provider.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("provider_id")]
+        public string? ProviderId { get; set; } = default!;
+
+        /// <summary>
+        /// States if the fulfillment service requires products to be physically shipped.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping_method")]
+        public bool? RequiresShippingMethod { get; set; } = default!;
+
+        /// <summary>
+        /// States if the fulfillment service provides tracking numbers for packages.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_support")]
+        public bool? TrackingSupport { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("include_pending_stock")]
+        public bool? IncludePendingStock { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("service_name")]
+        public string? ServiceName { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the fulfillment service wants to register for APIs related to fulfillment orders.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_orders_opt_in")]
+        public bool? FulfillmentOrdersOptIn { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateFulfillmentServiceRequest
+    {
+        /// <summary>
+        /// The name of the fulfillment service as seen by merchants and their customers.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Name { get; set; } = default!;
+
+        /// <summary>
+        /// States the URL endpoint that Shopify needs to retrieve inventory and tracking updates.
+        /// <br/>This field is necessary if either inventory_management or tracking_support is set to "true".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("callback_url")]
+        public string? CallbackUrl { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("format")]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter))]
+        public FulfillmentServiceFormat Format { get; set; } = default!;
+
+        /// <summary>
+        /// A human-friendly unique string for the fulfillment service generated from its title.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        public string? Handle { get; set; } = default!;
+
+        /// <summary>
+        /// States if the fulfillment service tracks product inventory and provides updates to Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
+        public bool? InventoryManagement { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier of the location tied to the fulfillment service
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
+        public long? LocationId { get; set; } = default!;
+
+        /// <summary>
+        /// A unique identifier for the fulfillment service provider.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("provider_id")]
+        public string? ProviderId { get; set; } = default!;
+
+        /// <summary>
+        /// States if the fulfillment service requires products to be physically shipped.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping_method")]
+        public bool? RequiresShippingMethod { get; set; } = default!;
+
+        /// <summary>
+        /// States if the fulfillment service provides tracking numbers for packages.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_support")]
+        public bool? TrackingSupport { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("include_pending_stock")]
+        public bool? IncludePendingStock { get; set; } = default!;
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("service_name")]
+        public string? ServiceName { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the fulfillment service wants to register for APIs related to fulfillment orders.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_orders_opt_in")]
+        public bool? FulfillmentOrdersOptIn { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]
+        public UpdateFulfillmentService? FulfillmentService { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

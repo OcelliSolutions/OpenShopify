@@ -12,7 +12,7 @@ public class CarrierServiceController : CarrierServiceControllerBase
 {
     /// <inheritdoc />
     [HttpPost, Route("carrier_services.json")]
-    public override Task CreateCarrierService(CarrierServiceItem request)
+    public override Task CreateCarrierService(CreateCarrierServiceRequest request)
     {
         throw new NotImplementedException();
     }
@@ -26,7 +26,7 @@ public class CarrierServiceController : CarrierServiceControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("carrier_services/{carrier_service_id:long}.json")]
-    public override Task UpdateCarrierService(CarrierServiceItem request, long carrier_service_id)
+    public override Task UpdateCarrierService(UpdateCarrierServiceRequest request, long carrier_service_id)
     {
         throw new NotImplementedException();
     }

@@ -31,7 +31,8 @@ app.MapGet("/signup", (string hmac, string shop, long timestamp, HttpContext htt
         {
             AuthorizationScope.read_all_orders, 
             AuthorizationScope.write_users, 
-            AuthorizationScope.read_users
+            AuthorizationScope.read_users, 
+            AuthorizationScope.write_locations
         };
         var scopes = Enum.GetValues(typeof(AuthorizationScope))
             .Cast<AuthorizationScope>()

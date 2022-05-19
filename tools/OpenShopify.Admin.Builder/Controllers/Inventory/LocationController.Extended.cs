@@ -29,7 +29,7 @@ public class LocationController : LocationControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("locations/count.json")]
-    [ProducesResponseType(typeof(LocationCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveCountOfLocations()
     {
         throw new NotImplementedException();

@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An entity representing a Shopify Custom Collection Object.
     /// </summary>
-    public class CustomCollection : ShopifyObject
+    public class CustomCollectionBase
     {
         /// <summary>
         /// The description of the Custom collection, complete with HTML markup. Many templates display this on their Custom collection page.

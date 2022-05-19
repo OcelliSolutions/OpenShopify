@@ -49,7 +49,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a smart collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("smart_collections.json")]
-        public abstract System.Threading.Tasks.Task CreateSmartCollection([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.SmartCollectionItem request);
+        public abstract System.Threading.Tasks.Task CreateSmartCollection([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateSmartCollectionRequest request);
 
         /// <summary>
         /// Retrieves a count of smart collections
@@ -78,7 +78,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates an existing smart collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("smart_collections/{smart_collection_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingSmartCollection([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.SmartCollectionItem request, long smart_collection_id);
+        public abstract System.Threading.Tasks.Task UpdateExistingSmartCollection([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateSmartCollectionRequest request, long smart_collection_id);
 
         /// <summary>
         /// Removes a smart collection
@@ -94,7 +94,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="sort_order">The type of sorting to apply. Valid values are listed in the &lt;a href="#properties"&gt;Properties&lt;/a&gt; section above.</param>
         /// <returns>Updates the ordering type of products in a smart collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("smart_collections/{smart_collection_id}/order.json")]
-        public abstract System.Threading.Tasks.Task UpdateOrderingTypeOfProductsInSmartCollection([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.SmartCollectionItem request, long smart_collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? products, [Microsoft.AspNetCore.Mvc.FromQuery] string? sort_order = "(current value)");
+        public abstract System.Threading.Tasks.Task UpdateOrderingTypeOfProductsInSmartCollection([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateSmartCollectionRequest request, long smart_collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? products, [Microsoft.AspNetCore.Mvc.FromQuery] string? sort_order = "(current value)");
 
     }
 

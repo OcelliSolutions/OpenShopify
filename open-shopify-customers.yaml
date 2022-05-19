@@ -110,10 +110,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CustomerItem'
+              $ref: '#/components/schemas/CreateCustomerRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CustomerItem'
+              $ref: '#/components/schemas/CreateCustomerRequest'
       responses:
         '201':
           description: Created
@@ -273,10 +273,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CustomerItem'
+              $ref: '#/components/schemas/UpdateCustomerRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CustomerItem'
+              $ref: '#/components/schemas/UpdateCustomerRequest'
       responses:
         '200':
           description: Success
@@ -308,12 +308,52 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - Customer
+      summary: Delete a customer (UNDOCUMENTED)
+      operationId: DeleteCustomer
+      parameters:
+        - name: customer_id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   '/customers/{customer_id}/account_activation_url.json':
     post:
       tags:
         - Customer
       summary: Creates an account activation URL for a customer
-      operationId: CreateAccountActivationURLForCustomer
+      operationId: CreateAccountActivationUrlForCustomer
       parameters:
         - name: customer_id
           in: path
@@ -321,14 +361,6 @@ paths:
           schema:
             type: integer
             format: int64
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CustomerItem'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/CustomerItem'
       responses:
         '200':
           description: Success
@@ -373,6 +405,14 @@ paths:
           schema:
             type: integer
             format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerInviteRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerInviteRequest'
       responses:
         '201':
           description: Created
@@ -388,7 +428,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerInvite'
+                $ref: '#/components/schemas/CustomerInviteItem'
         '401':
           description: Unauthorized
           headers:
@@ -425,7 +465,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerCount'
+                $ref: '#/components/schemas/CountItem'
         '401':
           description: Unauthorized
           headers:
@@ -550,10 +590,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CustomerAddressItem'
+              $ref: '#/components/schemas/CreateCustomerAddressRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CustomerAddressItem'
+              $ref: '#/components/schemas/CreateCustomerAddressRequest'
       responses:
         '201':
           description: Created
@@ -657,10 +697,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CustomerAddressItem'
+              $ref: '#/components/schemas/UpdateCustomerAddressRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CustomerAddressItem'
+              $ref: '#/components/schemas/UpdateCustomerAddressRequest'
       responses:
         '200':
           description: Success
@@ -903,10 +943,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CustomerSavedSearchItem'
+              $ref: '#/components/schemas/CreateCustomerSavedSearchRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CustomerSavedSearchItem'
+              $ref: '#/components/schemas/CreateCustomerSavedSearchRequest'
       responses:
         '201':
           description: Created
@@ -966,7 +1006,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerSavedSearchCount'
+                $ref: '#/components/schemas/CountItem'
         '401':
           description: Unauthorized
           headers:
@@ -1047,10 +1087,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CustomerSavedSearchItem'
+              $ref: '#/components/schemas/UpdateCustomerSavedSearchRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CustomerSavedSearchItem'
+              $ref: '#/components/schemas/UpdateCustomerSavedSearchRequest'
       responses:
         '200':
           description: Success
@@ -1194,16 +1234,13 @@ components:
           type: string
       additionalProperties: { }
     Address:
+      required:
+        - id
       type: object
       properties:
-        id:
+        customer_id:
           type: integer
-          description: The object's unique id.
           format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         address1:
           type: string
           description: The mailing address.
@@ -1247,12 +1284,12 @@ components:
         latitude:
           type: number
           description: The latitude. Auto-populated by Shopify on the order's Billing/Shipping address.
-          format: double
+          format: decimal
           nullable: true
         longitude:
           type: number
           description: The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
-          format: double
+          format: decimal
           nullable: true
         name:
           type: string
@@ -1273,6 +1310,12 @@ components:
         zip:
           type: string
           description: The ZIP or postal code.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
           nullable: true
       additionalProperties: { }
     ClientDetails:
@@ -1303,48 +1346,93 @@ components:
           description: The browser's user agent string.
           nullable: true
       additionalProperties: { }
-    CurrencyExchangeAdjustment:
+    CountItem:
       type: object
       properties:
-        id:
+        count:
           type: integer
-          description: The object's unique id.
+          format: int32
+      additionalProperties: { }
+    CreateAddress:
+      type: object
+      properties:
+        customer_id:
+          type: integer
           format: int64
-          nullable: true
-        admin_graphql_api_id:
+        address1:
           type: string
+          description: The mailing address.
           nullable: true
-        adjustment:
-          type: number
-          description: The difference between the amounts on the associated transaction and the parent transaction.
-          format: double
-          nullable: true
-        original_amount:
-          type: number
-          description: The amount of the parent transaction in the shop currency.
-          format: double
-          nullable: true
-        final_amount:
-          type: number
-          description: The amount of the associated transaction in the shop currency.
-          format: double
-          nullable: true
-        currency:
+        address2:
           type: string
-          description: The shop currency.
+          description: An additional field for the mailing address.
+          nullable: true
+        city:
+          type: string
+          description: The city.
+          nullable: true
+        company:
+          type: string
+          description: The company.
+          nullable: true
+        country:
+          type: string
+          description: The country.
+          nullable: true
+        country_code:
+          type: string
+          description: The two-letter country code corresponding to the country.
+          nullable: true
+        country_name:
+          type: string
+          description: The normalized country name.
+          nullable: true
+        default:
+          type: boolean
+          description: Indicates whether this address is the default address.
+          nullable: true
+        first_name:
+          type: string
+          description: The first name.
+          nullable: true
+        last_name:
+          type: string
+          description: The last name.
+          nullable: true
+        latitude:
+          type: number
+          description: The latitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+          format: decimal
+          nullable: true
+        longitude:
+          type: number
+          description: The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+          format: decimal
+          nullable: true
+        name:
+          type: string
+          description: The name.
+          nullable: true
+        phone:
+          type: string
+          description: The phone number.
+          nullable: true
+        province:
+          type: string
+          description: The province or state name
+          nullable: true
+        province_code:
+          type: string
+          description: The two-letter province or state code.
+          nullable: true
+        zip:
+          type: string
+          description: The ZIP or postal code.
           nullable: true
       additionalProperties: { }
-    Customer:
+    CreateCustomer:
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         accepts_marketing:
           type: boolean
           description: Indicates whether the customer has consented to be sent marketing material via email.
@@ -1352,8 +1440,9 @@ components:
         addresses:
           type: array
           items:
-            $ref: '#/components/schemas/Address'
+            $ref: '#/components/schemas/CreateAddress'
           description: A list of addresses for the customer.
+          nullable: true
         created_at:
           type: string
           description: The date and time when the customer was created.
@@ -1364,7 +1453,7 @@ components:
           description: Currency used for customer's last order
           nullable: true
         default_address:
-          $ref: '#/components/schemas/Address'
+          $ref: '#/components/schemas/CreateAddress'
         email:
           type: string
           description: The email address of the customer.
@@ -1415,10 +1504,16 @@ components:
           type: boolean
           description: Indicates whether the customer should be charged taxes when placing orders.
           nullable: true
+        tax_exemptions:
+          type: array
+          items:
+            type: string
+          description: Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only.
+          nullable: true
         total_spent:
           type: number
           description: The total amount of money that the customer has spent at the shop.
-          format: double
+          format: decimal
           nullable: true
         updated_at:
           type: string
@@ -1433,40 +1528,118 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomerMetafield'
-      additionalProperties: { }
-    CustomerAddressItem:
-      type: object
-      properties:
-        customer_address:
-          $ref: '#/components/schemas/Address'
-      additionalProperties: { }
-    CustomerAddressList:
-      type: object
-      properties:
-        customer_address:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address'
           nullable: true
-      additionalProperties: { }
-    CustomerCount:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-      additionalProperties: { }
-    CustomerInvite:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
+        accepts_marketing_updated_at:
           type: string
+          description: 'As of API version 2022-04, this field is deprecated. Use email_marketing_consent instead. The date and time (ISO 8601 format) when the customer consented or objected to receiving marketing material by email. Set this value whenever the customer consents or objects to marketing materials.'
+          format: date-time
           nullable: true
+          deprecated: true
+        email_marketing_consent:
+          $ref: '#/components/schemas/EmailMarketingConsent'
+        password:
+          type: string
+          description: An optional password for the user. Default is null.
+          nullable: true
+        password_confirmation:
+          type: string
+          description: Should be set and match OpenShopify.Admin.Builder.Models.CreateCustomer.Password. Default is null.
+          nullable: true
+        send_email_invite:
+          type: boolean
+          description: Whether an email invite should be sent to the new customer. Default is null.
+          nullable: true
+        send_email_welcome:
+          type: boolean
+          description: Whether a welcome email should be sent to the new customer. Default is null.
+          nullable: true
+      additionalProperties: { }
+    CreateCustomerAddress:
+      type: object
+      properties:
+        customer_id:
+          type: integer
+          format: int64
+        address1:
+          type: string
+          description: The mailing address.
+          nullable: true
+        address2:
+          type: string
+          description: An additional field for the mailing address.
+          nullable: true
+        city:
+          type: string
+          description: The city.
+          nullable: true
+        company:
+          type: string
+          description: The company.
+          nullable: true
+        country:
+          type: string
+          description: The country.
+          nullable: true
+        country_code:
+          type: string
+          description: The two-letter country code corresponding to the country.
+          nullable: true
+        country_name:
+          type: string
+          description: The normalized country name.
+          nullable: true
+        default:
+          type: boolean
+          description: Indicates whether this address is the default address.
+          nullable: true
+        first_name:
+          type: string
+          description: The first name.
+          nullable: true
+        last_name:
+          type: string
+          description: The last name.
+          nullable: true
+        latitude:
+          type: number
+          description: The latitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+          format: decimal
+          nullable: true
+        longitude:
+          type: number
+          description: The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+          format: decimal
+          nullable: true
+        name:
+          type: string
+          description: The name.
+          nullable: true
+        phone:
+          type: string
+          description: The phone number.
+          nullable: true
+        province:
+          type: string
+          description: The province or state name
+          nullable: true
+        province_code:
+          type: string
+          description: The two-letter province or state code.
+          nullable: true
+        zip:
+          type: string
+          description: The ZIP or postal code.
+          nullable: true
+      additionalProperties: { }
+    CreateCustomerAddressRequest:
+      type: object
+      properties:
+        customer_address:
+          $ref: '#/components/schemas/CreateCustomerAddress'
+      additionalProperties: { }
+    CreateCustomerInvite:
+      type: object
+      properties:
         to:
           type: string
           description: The email address of the customer to be invited
@@ -1489,6 +1662,332 @@ components:
             type: string
           description: blind copy addresses
       additionalProperties: { }
+    CreateCustomerInviteRequest:
+      type: object
+      properties:
+        customer_invite:
+          $ref: '#/components/schemas/CreateCustomerInvite'
+      additionalProperties: { }
+    CreateCustomerRequest:
+      type: object
+      properties:
+        customer:
+          $ref: '#/components/schemas/CreateCustomer'
+      additionalProperties: { }
+    CreateCustomerSavedSearch:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name given by the shop owner to the customer saved search
+          nullable: true
+        query:
+          type: string
+          description: The set of conditions that determines which customers will be returned by the saved search
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the customer saved search was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the customer saved search was updated.
+          format: date-time
+          nullable: true
+      additionalProperties: { }
+    CreateCustomerSavedSearchRequest:
+      type: object
+      properties:
+        customer_saved_search:
+          $ref: '#/components/schemas/CreateCustomerSavedSearch'
+      additionalProperties: { }
+    CurrencyExchangeAdjustment:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        adjustment:
+          type: number
+          description: The difference between the amounts on the associated transaction and the parent transaction.
+          format: decimal
+          nullable: true
+        original_amount:
+          type: number
+          description: The amount of the parent transaction in the shop currency.
+          format: decimal
+          nullable: true
+        final_amount:
+          type: number
+          description: The amount of the associated transaction in the shop currency.
+          format: decimal
+          nullable: true
+        currency:
+          type: string
+          description: The shop currency.
+          nullable: true
+      additionalProperties: { }
+    Customer:
+      required:
+        - id
+      type: object
+      properties:
+        accepts_marketing:
+          type: boolean
+          description: Indicates whether the customer has consented to be sent marketing material via email.
+          nullable: true
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerAddress'
+          description: A list of addresses for the customer.
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the customer was created.
+          format: date-time
+          nullable: true
+        currency:
+          type: string
+          description: Currency used for customer's last order
+          nullable: true
+        default_address:
+          $ref: '#/components/schemas/CustomerAddress'
+        email:
+          type: string
+          description: The email address of the customer.
+          nullable: true
+        first_name:
+          type: string
+          description: The customer's first name.
+          nullable: true
+        multipass_identifier:
+          type: string
+          description: The customer's identifier used with Multipass login
+          nullable: true
+        last_name:
+          type: string
+          description: The customer's last name.
+          nullable: true
+        last_order_id:
+          type: integer
+          description: The id of the customer's last order.
+          format: int64
+          nullable: true
+        last_order_name:
+          type: string
+          description: The name of the customer's last order. This is directly related to the Order's name field.
+          nullable: true
+        note:
+          type: string
+          description: A note about the customer.
+          nullable: true
+        orders_count:
+          type: integer
+          description: The number of orders associated with this customer.
+          format: int32
+          nullable: true
+        phone:
+          type: string
+          description: "The phone number for the customer. Valid formats can be of different types, for example:\r\n\r\n6135551212\r\n\r\n+16135551212\r\n\r\n555-1212\r\n\r\n(613)555-1212\r\n\r\n+1 613-555-1212"
+          nullable: true
+        state:
+          type: string
+          description: 'The state of the customer in a shop. Valid values are ''disabled'', ''decline'', ''invited'' and ''enabled''.'
+          nullable: true
+        tags:
+          type: string
+          description: Tags are additional short descriptors formatted as a string of comma-separated values.
+          nullable: true
+        tax_exempt:
+          type: boolean
+          description: Indicates whether the customer should be charged taxes when placing orders.
+          nullable: true
+        tax_exemptions:
+          type: array
+          items:
+            type: string
+          description: Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only.
+          nullable: true
+        total_spent:
+          type: number
+          description: The total amount of money that the customer has spent at the shop.
+          format: decimal
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the customer information was updated.
+          format: date-time
+          nullable: true
+        verified_email:
+          type: boolean
+          description: States whether or not the email address has been verified.
+          nullable: true
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerMetafield'
+          nullable: true
+        accepts_marketing_updated_at:
+          type: string
+          description: 'As of API version 2022-04, this field is deprecated. Use email_marketing_consent instead. The date and time (ISO 8601 format) when the customer consented or objected to receiving marketing material by email. Set this value whenever the customer consents or objects to marketing materials.'
+          format: date-time
+          nullable: true
+          deprecated: true
+        email_marketing_consent:
+          $ref: '#/components/schemas/EmailMarketingConsent'
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    CustomerAddress:
+      required:
+        - id
+      type: object
+      properties:
+        customer_id:
+          type: integer
+          format: int64
+        address1:
+          type: string
+          description: The mailing address.
+          nullable: true
+        address2:
+          type: string
+          description: An additional field for the mailing address.
+          nullable: true
+        city:
+          type: string
+          description: The city.
+          nullable: true
+        company:
+          type: string
+          description: The company.
+          nullable: true
+        country:
+          type: string
+          description: The country.
+          nullable: true
+        country_code:
+          type: string
+          description: The two-letter country code corresponding to the country.
+          nullable: true
+        country_name:
+          type: string
+          description: The normalized country name.
+          nullable: true
+        default:
+          type: boolean
+          description: Indicates whether this address is the default address.
+          nullable: true
+        first_name:
+          type: string
+          description: The first name.
+          nullable: true
+        last_name:
+          type: string
+          description: The last name.
+          nullable: true
+        latitude:
+          type: number
+          description: The latitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+          format: decimal
+          nullable: true
+        longitude:
+          type: number
+          description: The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+          format: decimal
+          nullable: true
+        name:
+          type: string
+          description: The name.
+          nullable: true
+        phone:
+          type: string
+          description: The phone number.
+          nullable: true
+        province:
+          type: string
+          description: The province or state name
+          nullable: true
+        province_code:
+          type: string
+          description: The two-letter province or state code.
+          nullable: true
+        zip:
+          type: string
+          description: The ZIP or postal code.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    CustomerAddressItem:
+      type: object
+      properties:
+        customer_address:
+          $ref: '#/components/schemas/Address'
+      additionalProperties: { }
+    CustomerAddressList:
+      type: object
+      properties:
+        customer_addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+      additionalProperties: { }
+    CustomerInvite:
+      required:
+        - id
+      type: object
+      properties:
+        to:
+          type: string
+          description: The email address of the customer to be invited
+          nullable: true
+        from:
+          type: string
+          description: The sender of the email
+          nullable: true
+        subject:
+          type: string
+          description: the subject
+          nullable: true
+        custom_message:
+          type: string
+          description: a custom message to include
+          nullable: true
+        bcc:
+          type: array
+          items:
+            type: string
+          description: blind copy addresses
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    CustomerInviteItem:
+      type: object
+      properties:
+        customer_invite:
+          $ref: '#/components/schemas/CustomerInvite'
+      additionalProperties: { }
     CustomerItem:
       type: object
       properties:
@@ -1502,19 +2001,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Customer'
-          nullable: true
       additionalProperties: { }
     CustomerMetafield:
+      required:
+        - id
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         created_at:
           type: string
           description: The date and time when the metafield was created.
@@ -1552,18 +2044,18 @@ components:
           type: string
           description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
           nullable: true
-      additionalProperties: { }
-    CustomerSavedSearch:
-      type: object
-      properties:
         id:
           type: integer
-          description: The object's unique id.
           format: int64
-          nullable: true
         admin_graphql_api_id:
           type: string
           nullable: true
+      additionalProperties: { }
+    CustomerSavedSearch:
+      required:
+        - id
+      type: object
+      properties:
         name:
           type: string
           description: The name given by the shop owner to the customer saved search
@@ -1582,13 +2074,12 @@ components:
           description: The date and time when the customer saved search was updated.
           format: date-time
           nullable: true
-      additionalProperties: { }
-    CustomerSavedSearchCount:
-      type: object
-      properties:
-        count:
+        id:
           type: integer
-          format: int32
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
       additionalProperties: { }
     CustomerSavedSearchItem:
       type: object
@@ -1599,11 +2090,10 @@ components:
     CustomerSavedSearchList:
       type: object
       properties:
-        customer_saved_search:
+        customer_saved_searchs:
           type: array
           items:
             $ref: '#/components/schemas/CustomerSavedSearch'
-          nullable: true
       additionalProperties: { }
     DiscountAllocation:
       type: object
@@ -1660,16 +2150,10 @@ components:
           nullable: true
       additionalProperties: { }
     DiscountCode:
+      required:
+        - id
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         amount:
           type: string
           description: The amount of the discount.
@@ -1682,6 +2166,29 @@ components:
           type: string
           description: 'The type of discount. Known values are ''percentage'', ''shipping'', ''fixed_amount'' and ''none''.'
           nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    EmailMarketingConsent:
+      type: object
+      properties:
+        state:
+          type: string
+          description: The current email marketing state for the customer.
+          nullable: true
+        opt_in_level:
+          type: string
+          description: 'The marketing subscription opt-in level, as described in the M3AAWG Sender Best Common Practices, that the customer gave when they consented to receive marketing material by email.'
+          nullable: true
+        consent_updated_at:
+          type: string
+          description: 'The date and time when the customer consented to receive marketing material by email. If no date is provided, then the date and time when the consent information was sent is used.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     ErrorResponse:
       type: object
@@ -1691,16 +2198,10 @@ components:
           nullable: true
       additionalProperties: false
     Fulfillment:
+      required:
+        - id
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         created_at:
           type: string
           description: The date and time when the fulfillment was created.
@@ -1743,7 +2244,7 @@ components:
           nullable: true
         tracking_number:
           type: string
-          description: "The shipping number, provided by the shipping company. If multiple tracking numbers\r\nexist (OpenShopify.Admin.Builder.Models.Fulfillment.TrackingNumbers), returns the first number."
+          description: "The shipping number, provided by the shipping company. If multiple tracking numbers\r\nexist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingNumbers), returns the first number."
           nullable: true
         tracking_numbers:
           type: array
@@ -1752,7 +2253,7 @@ components:
           description: 'A list of shipping numbers, provided by the shipping company. May be null.'
         tracking_url:
           type: string
-          description: "The tracking url, provided by the shipping company. May be null. If multiple tracking URLs\r\nexist (OpenShopify.Admin.Builder.Models.Fulfillment.TrackingUrls), returns the first URL."
+          description: "The tracking url, provided by the shipping company. May be null. If multiple tracking URLs\r\nexist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingUrls), returns the first URL."
           nullable: true
         tracking_urls:
           type: array
@@ -1779,16 +2280,22 @@ components:
         name:
           type: string
           nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
       additionalProperties: { }
-      description: An object representing a Shopify fulfillment.
     LineItem:
+      required:
+        - id
       type: object
       properties:
         id:
           type: integer
           description: The object's unique id.
           format: int64
-          nullable: true
         admin_graphql_api_id:
           type: string
           nullable: true
@@ -1813,7 +2320,7 @@ components:
         price:
           type: number
           description: The price of the item before discounts have been applied.
-          format: double
+          format: decimal
           nullable: true
         product_id:
           type: integer
@@ -1878,7 +2385,7 @@ components:
         total_discount:
           type: number
           description: The total discount amount applied to this line item. This value is not subtracted in the line item price.
-          format: double
+          format: decimal
           nullable: true
         total_discount_set:
           $ref: '#/components/schemas/PriceSet'
@@ -1911,13 +2418,14 @@ components:
           $ref: '#/components/schemas/LineItemOriginLocation'
       additionalProperties: { }
     LineItemDuty:
+      required:
+        - id
       type: object
       properties:
         id:
           type: integer
           description: The object's unique id.
           format: int64
-          nullable: true
         admin_graphql_api_id:
           type: string
           nullable: true
@@ -1937,13 +2445,14 @@ components:
             $ref: '#/components/schemas/TaxLine'
       additionalProperties: { }
     LineItemOriginLocation:
+      required:
+        - id
       type: object
       properties:
         id:
           type: integer
           description: The object's unique id.
           format: int64
-          nullable: true
         admin_graphql_api_id:
           type: string
           nullable: true
@@ -1995,18 +2504,12 @@ components:
         value:
           description: The value of the note attribute.
       additionalProperties: { }
-      description: An object representing a note attribute for OpenShopify.Admin.Builder.Models.Order.NoteAttributes
+      description: An object representing a note attribute for !:Order.NoteAttributes
     Order:
+      required:
+        - id
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         app_id:
           type: integer
           description: Unique identifier of the app who created the order.
@@ -2175,7 +2678,7 @@ components:
         subtotal_price:
           type: number
           description: Price of the order before shipping and taxes
-          format: double
+          format: decimal
           nullable: true
         tax_lines:
           type: array
@@ -2197,27 +2700,27 @@ components:
         total_discounts:
           type: number
           description: The total amount of the discounts applied to the price of the order.
-          format: double
+          format: decimal
           nullable: true
         total_line_items_price:
           type: number
           description: The sum of all the prices of all the items in the order.
-          format: double
+          format: decimal
           nullable: true
         total_tip_received:
           type: number
           description: The sum of all the tips in the order.
-          format: double
+          format: decimal
           nullable: true
         total_price:
           type: number
           description: 'The sum of all the prices of all the items in the order, with taxes and discounts included (must be positive).'
-          format: double
+          format: decimal
           nullable: true
         total_tax:
           type: number
           description: The sum of all the taxes applied to the order (must be positive).
-          format: double
+          format: decimal
           nullable: true
         total_weight:
           type: integer
@@ -2267,8 +2770,13 @@ components:
           type: boolean
           description: Indicates whether taxes on an order are estimated. Will be set to false when taxes on an order are finalized and aren't subject to any change.
           nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
       additionalProperties: { }
-      description: An object representing a Shopify order.
     OrderList:
       type: object
       properties:
@@ -2276,19 +2784,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Order'
-          nullable: true
       additionalProperties: { }
     OrderMetafield:
+      required:
+        - id
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         created_at:
           type: string
           description: The date and time when the metafield was created.
@@ -2326,6 +2827,12 @@ components:
           type: string
           description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
           nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
       additionalProperties: { }
     PaymentDetails:
       type: object
@@ -2356,7 +2863,7 @@ components:
         amount:
           type: number
           description: The amount in the currency.
-          format: double
+          format: decimal
           nullable: true
       additionalProperties: { }
     PriceSet:
@@ -2368,16 +2875,10 @@ components:
           $ref: '#/components/schemas/Price'
       additionalProperties: { }
     Refund:
+      required:
+        - id
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         order_id:
           type: integer
           description: The unique identifier of the order.
@@ -2441,6 +2942,12 @@ components:
           items:
             $ref: '#/components/schemas/RefundDutyType'
           description: A list of refunded duties
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
       additionalProperties: { }
     RefundDuty:
       type: object
@@ -2464,13 +2971,14 @@ components:
           nullable: true
       additionalProperties: { }
     RefundLineItem:
+      required:
+        - id
       type: object
       properties:
         id:
           type: integer
           description: The object's unique id.
           format: int64
-          nullable: true
         admin_graphql_api_id:
           type: string
           nullable: true
@@ -2489,12 +2997,12 @@ components:
         total_tax:
           type: number
           description: Tax amount refunded
-          format: double
+          format: decimal
           nullable: true
         subtotal:
           type: number
           description: Item subtotal
-          format: double
+          format: decimal
           nullable: true
         subtotal_set:
           $ref: '#/components/schemas/PriceSet'
@@ -2511,13 +3019,14 @@ components:
           nullable: true
       additionalProperties: { }
     RefundOrderAdjustment:
+      required:
+        - id
       type: object
       properties:
         id:
           type: integer
           description: The object's unique id.
           format: int64
-          nullable: true
         admin_graphql_api_id:
           type: string
           nullable: true
@@ -2534,12 +3043,12 @@ components:
         amount:
           type: number
           description: The amount refunded (it is negative and does not include tax).
-          format: double
+          format: decimal
           nullable: true
         tax_amount:
           type: number
           description: The tax amount refunded (negative).
-          format: double
+          format: decimal
           nullable: true
         kind:
           type: string
@@ -2564,12 +3073,12 @@ components:
         amount:
           type: number
           description: Set a specific amount to refund for shipping. Takes precedence over full_refund.
-          format: double
+          format: decimal
           nullable: true
         maximum_refundable:
           type: number
           description: The maximum amount that can be refunded
-          format: double
+          format: decimal
           nullable: true
       additionalProperties: { }
     ShippingLine:
@@ -2590,12 +3099,12 @@ components:
         price:
           type: number
           description: The price of this shipping method.
-          format: double
+          format: decimal
           nullable: true
         discounted_price:
           type: number
           description: The discounted price of this shipping method.
-          format: double
+          format: decimal
           nullable: true
         discount_allocations:
           type: array
@@ -2626,12 +3135,12 @@ components:
         price:
           type: number
           description: The amount of tax to be charged.
-          format: double
+          format: decimal
           nullable: true
         rate:
           type: number
           description: The rate of tax to be applied.
-          format: double
+          format: decimal
           nullable: true
         title:
           type: string
@@ -2641,20 +3150,14 @@ components:
           $ref: '#/components/schemas/PriceSet'
       additionalProperties: { }
     Transaction:
+      required:
+        - id
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         amount:
           type: number
           description: The amount of money that the transaction was for.
-          format: double
+          format: decimal
           nullable: true
         authorization:
           type: string
@@ -2732,12 +3235,493 @@ components:
         maximum_refundable:
           type: number
           description: The maximum amount that can be refunded
-          format: double
+          format: decimal
           nullable: true
         currency_exchange_adjustment:
           $ref: '#/components/schemas/CurrencyExchangeAdjustment'
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
       additionalProperties: { }
-      description: An object representing a Shopify transaction.
+    UpdateCustomer:
+      required:
+        - id
+      type: object
+      properties:
+        accepts_marketing:
+          type: boolean
+          description: Indicates whether the customer has consented to be sent marketing material via email.
+          nullable: true
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerAddress'
+          description: A list of addresses for the customer.
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the customer was created.
+          format: date-time
+          nullable: true
+        currency:
+          type: string
+          description: Currency used for customer's last order
+          nullable: true
+        default_address:
+          $ref: '#/components/schemas/CustomerAddress'
+        email:
+          type: string
+          description: The email address of the customer.
+          nullable: true
+        first_name:
+          type: string
+          description: The customer's first name.
+          nullable: true
+        multipass_identifier:
+          type: string
+          description: The customer's identifier used with Multipass login
+          nullable: true
+        last_name:
+          type: string
+          description: The customer's last name.
+          nullable: true
+        last_order_id:
+          type: integer
+          description: The id of the customer's last order.
+          format: int64
+          nullable: true
+        last_order_name:
+          type: string
+          description: The name of the customer's last order. This is directly related to the Order's name field.
+          nullable: true
+        note:
+          type: string
+          description: A note about the customer.
+          nullable: true
+        orders_count:
+          type: integer
+          description: The number of orders associated with this customer.
+          format: int32
+          nullable: true
+        phone:
+          type: string
+          description: "The phone number for the customer. Valid formats can be of different types, for example:\r\n\r\n6135551212\r\n\r\n+16135551212\r\n\r\n555-1212\r\n\r\n(613)555-1212\r\n\r\n+1 613-555-1212"
+          nullable: true
+        state:
+          type: string
+          description: 'The state of the customer in a shop. Valid values are ''disabled'', ''decline'', ''invited'' and ''enabled''.'
+          nullable: true
+        tags:
+          type: string
+          description: Tags are additional short descriptors formatted as a string of comma-separated values.
+          nullable: true
+        tax_exempt:
+          type: boolean
+          description: Indicates whether the customer should be charged taxes when placing orders.
+          nullable: true
+        tax_exemptions:
+          type: array
+          items:
+            type: string
+          description: Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only.
+          nullable: true
+        total_spent:
+          type: number
+          description: The total amount of money that the customer has spent at the shop.
+          format: decimal
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the customer information was updated.
+          format: date-time
+          nullable: true
+        verified_email:
+          type: boolean
+          description: States whether or not the email address has been verified.
+          nullable: true
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerMetafield'
+          nullable: true
+        accepts_marketing_updated_at:
+          type: string
+          description: 'As of API version 2022-04, this field is deprecated. Use email_marketing_consent instead. The date and time (ISO 8601 format) when the customer consented or objected to receiving marketing material by email. Set this value whenever the customer consents or objects to marketing materials.'
+          format: date-time
+          nullable: true
+          deprecated: true
+        email_marketing_consent:
+          $ref: '#/components/schemas/EmailMarketingConsent'
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        password:
+          type: string
+          description: An optional password for the user. Default is null.
+          nullable: true
+        password_confirmation:
+          type: string
+          description: Should be set and match OpenShopify.Admin.Builder.Models.UpdateCustomer.Password. Default is null.
+          nullable: true
+      additionalProperties: { }
+    UpdateCustomerAddress:
+      required:
+        - id
+      type: object
+      properties:
+        customer_id:
+          type: integer
+          format: int64
+        address1:
+          type: string
+          description: The mailing address.
+          nullable: true
+        address2:
+          type: string
+          description: An additional field for the mailing address.
+          nullable: true
+        city:
+          type: string
+          description: The city.
+          nullable: true
+        company:
+          type: string
+          description: The company.
+          nullable: true
+        country:
+          type: string
+          description: The country.
+          nullable: true
+        country_code:
+          type: string
+          description: The two-letter country code corresponding to the country.
+          nullable: true
+        country_name:
+          type: string
+          description: The normalized country name.
+          nullable: true
+        default:
+          type: boolean
+          description: Indicates whether this address is the default address.
+          nullable: true
+        first_name:
+          type: string
+          description: The first name.
+          nullable: true
+        last_name:
+          type: string
+          description: The last name.
+          nullable: true
+        latitude:
+          type: number
+          description: The latitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+          format: decimal
+          nullable: true
+        longitude:
+          type: number
+          description: The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+          format: decimal
+          nullable: true
+        name:
+          type: string
+          description: The name.
+          nullable: true
+        phone:
+          type: string
+          description: The phone number.
+          nullable: true
+        province:
+          type: string
+          description: The province or state name
+          nullable: true
+        province_code:
+          type: string
+          description: The two-letter province or state code.
+          nullable: true
+        zip:
+          type: string
+          description: The ZIP or postal code.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    UpdateCustomerAddressRequest:
+      required:
+        - id
+      type: object
+      properties:
+        customer_id:
+          type: integer
+          format: int64
+        address1:
+          type: string
+          description: The mailing address.
+          nullable: true
+        address2:
+          type: string
+          description: An additional field for the mailing address.
+          nullable: true
+        city:
+          type: string
+          description: The city.
+          nullable: true
+        company:
+          type: string
+          description: The company.
+          nullable: true
+        country:
+          type: string
+          description: The country.
+          nullable: true
+        country_code:
+          type: string
+          description: The two-letter country code corresponding to the country.
+          nullable: true
+        country_name:
+          type: string
+          description: The normalized country name.
+          nullable: true
+        default:
+          type: boolean
+          description: Indicates whether this address is the default address.
+          nullable: true
+        first_name:
+          type: string
+          description: The first name.
+          nullable: true
+        last_name:
+          type: string
+          description: The last name.
+          nullable: true
+        latitude:
+          type: number
+          description: The latitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+          format: decimal
+          nullable: true
+        longitude:
+          type: number
+          description: The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+          format: decimal
+          nullable: true
+        name:
+          type: string
+          description: The name.
+          nullable: true
+        phone:
+          type: string
+          description: The phone number.
+          nullable: true
+        province:
+          type: string
+          description: The province or state name
+          nullable: true
+        province_code:
+          type: string
+          description: The two-letter province or state code.
+          nullable: true
+        zip:
+          type: string
+          description: The ZIP or postal code.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        customer_address:
+          $ref: '#/components/schemas/UpdateCustomerAddress'
+      additionalProperties: { }
+    UpdateCustomerRequest:
+      required:
+        - id
+      type: object
+      properties:
+        accepts_marketing:
+          type: boolean
+          description: Indicates whether the customer has consented to be sent marketing material via email.
+          nullable: true
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerAddress'
+          description: A list of addresses for the customer.
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the customer was created.
+          format: date-time
+          nullable: true
+        currency:
+          type: string
+          description: Currency used for customer's last order
+          nullable: true
+        default_address:
+          $ref: '#/components/schemas/CustomerAddress'
+        email:
+          type: string
+          description: The email address of the customer.
+          nullable: true
+        first_name:
+          type: string
+          description: The customer's first name.
+          nullable: true
+        multipass_identifier:
+          type: string
+          description: The customer's identifier used with Multipass login
+          nullable: true
+        last_name:
+          type: string
+          description: The customer's last name.
+          nullable: true
+        last_order_id:
+          type: integer
+          description: The id of the customer's last order.
+          format: int64
+          nullable: true
+        last_order_name:
+          type: string
+          description: The name of the customer's last order. This is directly related to the Order's name field.
+          nullable: true
+        note:
+          type: string
+          description: A note about the customer.
+          nullable: true
+        orders_count:
+          type: integer
+          description: The number of orders associated with this customer.
+          format: int32
+          nullable: true
+        phone:
+          type: string
+          description: "The phone number for the customer. Valid formats can be of different types, for example:\r\n\r\n6135551212\r\n\r\n+16135551212\r\n\r\n555-1212\r\n\r\n(613)555-1212\r\n\r\n+1 613-555-1212"
+          nullable: true
+        state:
+          type: string
+          description: 'The state of the customer in a shop. Valid values are ''disabled'', ''decline'', ''invited'' and ''enabled''.'
+          nullable: true
+        tags:
+          type: string
+          description: Tags are additional short descriptors formatted as a string of comma-separated values.
+          nullable: true
+        tax_exempt:
+          type: boolean
+          description: Indicates whether the customer should be charged taxes when placing orders.
+          nullable: true
+        tax_exemptions:
+          type: array
+          items:
+            type: string
+          description: Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only.
+          nullable: true
+        total_spent:
+          type: number
+          description: The total amount of money that the customer has spent at the shop.
+          format: decimal
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the customer information was updated.
+          format: date-time
+          nullable: true
+        verified_email:
+          type: boolean
+          description: States whether or not the email address has been verified.
+          nullable: true
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerMetafield'
+          nullable: true
+        accepts_marketing_updated_at:
+          type: string
+          description: 'As of API version 2022-04, this field is deprecated. Use email_marketing_consent instead. The date and time (ISO 8601 format) when the customer consented or objected to receiving marketing material by email. Set this value whenever the customer consents or objects to marketing materials.'
+          format: date-time
+          nullable: true
+          deprecated: true
+        email_marketing_consent:
+          $ref: '#/components/schemas/EmailMarketingConsent'
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        customer:
+          $ref: '#/components/schemas/UpdateCustomer'
+      additionalProperties: { }
+    UpdateCustomerSavedSearch:
+      required:
+        - id
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name given by the shop owner to the customer saved search
+          nullable: true
+        query:
+          type: string
+          description: The set of conditions that determines which customers will be returned by the saved search
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the customer saved search was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the customer saved search was updated.
+          format: date-time
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    UpdateCustomerSavedSearchRequest:
+      required:
+        - id
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name given by the shop owner to the customer saved search
+          nullable: true
+        query:
+          type: string
+          description: The set of conditions that determines which customers will be returned by the saved search
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the customer saved search was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the customer saved search was updated.
+          format: date-time
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        customer_saved_search:
+          $ref: '#/components/schemas/UpdateCustomerSavedSearch'
+      additionalProperties: { }
   securitySchemes:
     ApiKey:
       type: apiKey

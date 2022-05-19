@@ -19,7 +19,7 @@ public class GiftCardController : GiftCardControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("gift_cards.json")]
-    public override Task CreateGiftCard(GiftCardItem request)
+    public override Task CreateGiftCard(CreateGiftCardRequest request)
     {
         throw new NotImplementedException();
     }
@@ -33,14 +33,14 @@ public class GiftCardController : GiftCardControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("gift_cards/{gift_card_id:long}.json")]
-    public override Task UpdateExistingGiftCard(GiftCardItem request, long gift_card_id)
+    public override Task UpdateExistingGiftCard(UpdateGiftCardRequest request, long gift_card_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("gift_cards/count.json")]
-    [ProducesResponseType(typeof(GiftCardCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveCountOfGiftCards(string? status)
     {
         throw new NotImplementedException();

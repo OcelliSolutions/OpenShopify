@@ -1,8 +1,7 @@
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
-using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.Discounts;
 
@@ -14,7 +13,7 @@ public class PriceRuleController : PriceRuleControllerBase
     /// <inheritdoc />
     [HttpPost, Route("price_rules.json")]
     [ProducesResponseType(typeof(PriceRuleItem), StatusCodes.Status201Created)]
-    public override Task CreatePriceRule(PriceRuleItem request)
+    public override Task CreatePriceRule(CreatePriceRuleRequest request)
     {
         throw new NotImplementedException();
     }
@@ -32,7 +31,7 @@ public class PriceRuleController : PriceRuleControllerBase
     /// <inheritdoc />
     [HttpPut, Route("price_rules/{price_rule_id:long}.json")]
     [ProducesResponseType(typeof(PriceRuleItem), StatusCodes.Status200OK)]
-    public override Task UpdateExistingPriceRule(PriceRuleItem request, long price_rule_id)
+    public override Task UpdateExistingPriceRule(UpdatePriceRuleRequest request, long price_rule_id)
     {
         throw new NotImplementedException();
     }
@@ -55,7 +54,7 @@ public class PriceRuleController : PriceRuleControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("price_rules/count.json")]
-    [ProducesResponseType(typeof(PriceRuleCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveCountOfAllPriceRules()
     {
         throw new NotImplementedException();

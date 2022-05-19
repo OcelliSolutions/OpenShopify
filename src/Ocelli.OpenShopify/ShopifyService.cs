@@ -1,4 +1,6 @@
 ﻿using System.Collections.Concurrent;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Ocelli.OpenShopify;
 
@@ -6,7 +8,7 @@ public abstract class ShopifyService
 {
     protected const string Version = "2022-04";
     internal static ConcurrentDictionary<string, HttpClient> ShopifyHttpClients = new();
-
+    protected JsonSerializerOptions Options = new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull};
 
     /// <summary>
     /// Creates a new instance of <see cref="ShopifyService" />.

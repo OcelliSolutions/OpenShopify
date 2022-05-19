@@ -57,7 +57,7 @@ namespace Ocelli.OpenShopify
         /// <param name="createdAtMin">Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<EventCount>> RetrieveCountOfEventsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfEventsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -311,7 +311,7 @@ namespace Ocelli.OpenShopify
         /// <param name="createdAtMin">Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<EventCount>> RetrieveCountOfEventsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfEventsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/events/count.json?");
@@ -357,12 +357,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<EventCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<EventCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -522,7 +522,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<WebhookItem>> CreateNewWebhookAsync(WebhookItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<WebhookItem>> CreateNewWebhookAsync(CreateWebhookRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -533,7 +533,7 @@ namespace Ocelli.OpenShopify
         /// <br/>            &lt;br /&gt;For a list of valid values, refer to the &lt;a href="#topic-property-{{ current_version }}"&gt;&lt;code&gt;topic&lt;/code&gt; property&lt;/a&gt;.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<WebhookCount>> ReceiveCountOfAllWebhooksAsync(string? address = null, string? topic = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> ReceiveCountOfAllWebhooksAsync(string? address = null, string? topic = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -550,7 +550,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<WebhookItem>> ModifyExistingWebhookAsync(long webhookId, WebhookItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<WebhookItem>> ModifyExistingWebhookAsync(long webhookId, UpdateWebhookRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -731,7 +731,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<WebhookItem>> CreateNewWebhookAsync(WebhookItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<WebhookItem>> CreateNewWebhookAsync(CreateWebhookRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/webhooks.json");
@@ -817,7 +817,7 @@ namespace Ocelli.OpenShopify
         /// <br/>            &lt;br /&gt;For a list of valid values, refer to the &lt;a href="#topic-property-{{ current_version }}"&gt;&lt;code&gt;topic&lt;/code&gt; property&lt;/a&gt;.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<WebhookCount>> ReceiveCountOfAllWebhooksAsync(string? address = null, string? topic = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> ReceiveCountOfAllWebhooksAsync(string? address = null, string? topic = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/webhooks/count.json?");
@@ -863,12 +863,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<WebhookCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<WebhookCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -996,7 +996,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<WebhookItem>> ModifyExistingWebhookAsync(long webhookId, WebhookItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<WebhookItem>> ModifyExistingWebhookAsync(long webhookId, UpdateWebhookRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (webhookId == null)
                 throw new System.ArgumentNullException("webhookId");
@@ -1255,22 +1255,90 @@ namespace Ocelli.OpenShopify
         }
     }
 
-    /// <summary>
-    /// An object representing a Shopify event.
-    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateWebhook
+    {
+        /// <summary>
+        /// The URL where the webhook should send the POST request when the event occurs.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("address")]
+        public string? Address { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the webhook was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// An optional array of fields which should be included in webhooks.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fields")]
+        public System.Collections.Generic.ICollection<string>? Fields { get; set; } = default!;
+
+        /// <summary>
+        /// The format in which the webhook should send the data. Valid values are json and xml.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("format")]
+        public string? Format { get; set; } = default!;
+
+        /// <summary>
+        /// An optional array of namespaces for metafields that should be included in webhooks.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafield_namespaces")]
+        public System.Collections.Generic.ICollection<string>? MetafieldNamespaces { get; set; } = default!;
+
+        /// <summary>
+        /// The event that will trigger the webhook, e.g. 'orders/create' or 'app/uninstalled'. A full list of webhook topics can be found at https://help.shopify.com/api/reference/webhook.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("topic")]
+        public string? Topic { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the webhook was updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateWebhookRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("webhook")]
+        public CreateWebhook? Webhook { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class Event
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// Refers to a certain event and its resources.
         /// </summary>
@@ -1334,23 +1402,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("author")]
         public string? Author { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class EventCount
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -1399,22 +1455,9 @@ namespace Ocelli.OpenShopify
 
     }
 
-    /// <summary>
-    /// An entity representing a Shopify webhook.
-    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class Webhook
+    public partial class UpdateWebhook
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The URL where the webhook should send the POST request when the event occurs.
         /// </summary>
@@ -1464,6 +1507,12 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
         public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
         [System.Text.Json.Serialization.JsonExtensionData]
@@ -1476,11 +1525,134 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class WebhookCount
+    public partial class UpdateWebhookRequest
     {
+        /// <summary>
+        /// The URL where the webhook should send the POST request when the event occurs.
+        /// </summary>
 
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("address")]
+        public string? Address { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the webhook was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// An optional array of fields which should be included in webhooks.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fields")]
+        public System.Collections.Generic.ICollection<string>? Fields { get; set; } = default!;
+
+        /// <summary>
+        /// The format in which the webhook should send the data. Valid values are json and xml.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("format")]
+        public string? Format { get; set; } = default!;
+
+        /// <summary>
+        /// An optional array of namespaces for metafields that should be included in webhooks.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafield_namespaces")]
+        public System.Collections.Generic.ICollection<string>? MetafieldNamespaces { get; set; } = default!;
+
+        /// <summary>
+        /// The event that will trigger the webhook, e.g. 'orders/create' or 'app/uninstalled'. A full list of webhook topics can be found at https://help.shopify.com/api/reference/webhook.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("topic")]
+        public string? Topic { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the webhook was updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("webhook")]
+        public UpdateWebhook? Webhook { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Webhook
+    {
+        /// <summary>
+        /// The URL where the webhook should send the POST request when the event occurs.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("address")]
+        public string? Address { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the webhook was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// An optional array of fields which should be included in webhooks.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fields")]
+        public System.Collections.Generic.ICollection<string>? Fields { get; set; } = default!;
+
+        /// <summary>
+        /// The format in which the webhook should send the data. Valid values are json and xml.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("format")]
+        public string? Format { get; set; } = default!;
+
+        /// <summary>
+        /// An optional array of namespaces for metafields that should be included in webhooks.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafield_namespaces")]
+        public System.Collections.Generic.ICollection<string>? MetafieldNamespaces { get; set; } = default!;
+
+        /// <summary>
+        /// The event that will trigger the webhook, e.g. 'orders/create' or 'app/uninstalled'. A full list of webhook topics can be found at https://help.shopify.com/api/reference/webhook.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("topic")]
+        public string? Topic { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the webhook was updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

@@ -23,10 +23,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ApplicationChargeItem'
+              $ref: '#/components/schemas/CreateApplicationChargeRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/ApplicationChargeItem'
+              $ref: '#/components/schemas/CreateApplicationChargeRequest'
       responses:
         '201':
           description: Created
@@ -165,10 +165,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ApplicationCreditItem'
+              $ref: '#/components/schemas/CreateApplicationCreditRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/ApplicationCreditItem'
+              $ref: '#/components/schemas/CreateApplicationCreditRequest'
       responses:
         '201':
           description: Created
@@ -301,11 +301,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RecurringApplicationChargeItem'
+              $ref: '#/components/schemas/CreateRecurringApplicationChargeRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/RecurringApplicationChargeItem'
-        required: true
+              $ref: '#/components/schemas/CreateRecurringApplicationChargeRequest'
       responses:
         '401':
           description: Unauthorized
@@ -474,7 +473,7 @@ paths:
           in: query
           schema:
             type: number
-            format: double
+            format: decimal
       responses:
         '200':
           description: Success
@@ -523,10 +522,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UsageChargeItem'
+              $ref: '#/components/schemas/CreateUsageChargeRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/UsageChargeItem'
+              $ref: '#/components/schemas/CreateUsageChargeRequest'
       responses:
         '201':
           description: Created
@@ -664,11 +663,10 @@ paths:
 components:
   schemas:
     ApplicationCharge:
+      required:
+        - id
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         name:
           maxLength: 255
           type: string
@@ -680,7 +678,114 @@ components:
           maximum: 10000
           minimum: 0.5
           type: number
-          format: double
+          format: decimal
+          nullable: true
+        status:
+          $ref: '#/components/schemas/ApplicationChargeStatus'
+        return_url:
+          type: string
+          nullable: true
+        test:
+          type: boolean
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+          nullable: true
+        charge_type:
+          type: string
+          nullable: true
+        decorated_return_url:
+          type: string
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    ApplicationChargeItem:
+      type: object
+      properties:
+        application_charge:
+          $ref: '#/components/schemas/ApplicationCharge'
+      additionalProperties: { }
+    ApplicationChargeList:
+      type: object
+      properties:
+        application_charges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationCharge'
+      additionalProperties: { }
+    ApplicationChargeStatus:
+      enum:
+        - pending
+        - accepted
+        - active
+        - declined
+        - expired
+      type: string
+      additionalProperties: { }
+    ApplicationCredit:
+      required:
+        - id
+      type: object
+      properties:
+        description:
+          type: string
+          description: The description of the application credit.
+          nullable: true
+        amount:
+          type: number
+          description: The amount refunded by the application credit.
+          format: decimal
+          nullable: true
+        test:
+          type: boolean
+          description: States whether or not the application credit is a test transaction. Valid values are true or null.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    ApplicationCreditItem:
+      type: object
+      properties:
+        application_credit:
+          $ref: '#/components/schemas/ApplicationCredit'
+      additionalProperties: { }
+    ApplicationCreditList:
+      type: object
+      properties:
+        application_credits:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationCredit'
+      additionalProperties: { }
+    CreateApplicationCharge:
+      type: object
+      properties:
+        name:
+          maxLength: 255
+          type: string
+          nullable: true
+        api_client_id:
+          type: integer
+          format: int32
+        price:
+          maximum: 10000
+          minimum: 0.5
+          type: number
+          format: decimal
           nullable: true
         status:
           $ref: '#/components/schemas/ApplicationChargeStatus'
@@ -705,41 +810,15 @@ components:
           type: string
           nullable: true
       additionalProperties: { }
-    ApplicationChargeItem:
+    CreateApplicationChargeRequest:
       type: object
       properties:
         application_charge:
-          $ref: '#/components/schemas/ApplicationCharge'
+          $ref: '#/components/schemas/CreateApplicationCharge'
       additionalProperties: { }
-    ApplicationChargeList:
+    CreateApplicationCredit:
       type: object
       properties:
-        application_charges:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationCharge'
-          nullable: true
-      additionalProperties: { }
-    ApplicationChargeStatus:
-      enum:
-        - pending
-        - accepted
-        - active
-        - declined
-        - expired
-      type: string
-      additionalProperties: { }
-    ApplicationCredit:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         description:
           type: string
           description: The description of the application credit.
@@ -747,42 +826,22 @@ components:
         amount:
           type: number
           description: The amount refunded by the application credit.
-          format: double
+          format: decimal
           nullable: true
         test:
           type: boolean
           description: States whether or not the application credit is a test transaction. Valid values are true or null.
           nullable: true
       additionalProperties: { }
-      description: 'An object representing Shopify''s ApplicationCredit object, which can be used to offer credits for payments made via the Application Charge, Recurring Application Charge, and Usage Charge APIs.'
-    ApplicationCreditItem:
+    CreateApplicationCreditRequest:
       type: object
       properties:
         application_credit:
-          $ref: '#/components/schemas/ApplicationCredit'
+          $ref: '#/components/schemas/CreateApplicationCredit'
       additionalProperties: { }
-    ApplicationCreditList:
+    CreateRecurringApplicationCharge:
       type: object
       properties:
-        application_credits:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationCredit'
-          nullable: true
-      additionalProperties: { }
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: string
-          nullable: true
-      additionalProperties: false
-    RecurringApplicationCharge:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
         name:
           type: string
           nullable: true
@@ -791,7 +850,7 @@ components:
           format: int64
         price:
           type: number
-          format: double
+          format: decimal
           nullable: true
         status:
           $ref: '#/components/schemas/RecurringApplicationChargeStatus'
@@ -831,6 +890,112 @@ components:
           type: string
           nullable: true
       additionalProperties: { }
+    CreateRecurringApplicationChargeRequest:
+      type: object
+      properties:
+        recurring_application_charge:
+          $ref: '#/components/schemas/CreateRecurringApplicationCharge'
+      additionalProperties: { }
+    CreateUsageCharge:
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: The date and time when the usage charge was created.
+          format: date-time
+          nullable: true
+        description:
+          type: string
+          description: The name of the usage charge.
+          nullable: true
+        price:
+          type: number
+          description: The price of the usage charge.
+          format: decimal
+          nullable: true
+        recurring_application_charge_id:
+          type: integer
+          description: The recurring application charge the usage charge belongs to.
+          format: int64
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the usage charge was last updated.
+          format: date-time
+          nullable: true
+      additionalProperties: { }
+    CreateUsageChargeRequest:
+      type: object
+      properties:
+        usage_charge:
+          $ref: '#/components/schemas/CreateUsageCharge'
+      additionalProperties: { }
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RecurringApplicationCharge:
+      required:
+        - id
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        api_client_id:
+          type: integer
+          format: int64
+        price:
+          type: number
+          format: decimal
+          nullable: true
+        status:
+          $ref: '#/components/schemas/RecurringApplicationChargeStatus'
+        return_url:
+          type: string
+          nullable: true
+        billing_on:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        test:
+          type: boolean
+          nullable: true
+        activated_on:
+          type: string
+          format: date-time
+          nullable: true
+        cancelled_on:
+          type: string
+          format: date-time
+          nullable: true
+        trial_days:
+          type: integer
+          format: int32
+          nullable: true
+        trial_ends_on:
+          type: string
+          format: date-time
+          nullable: true
+        decorated_return_url:
+          type: string
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
     RecurringApplicationChargeItem:
       type: object
       properties:
@@ -844,7 +1009,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RecurringApplicationCharge'
-          nullable: true
       additionalProperties: { }
     RecurringApplicationChargeStatus:
       enum:
@@ -857,17 +1021,131 @@ components:
         - cancelled
       type: string
       additionalProperties: { }
-    UsageCharge:
+    UpdateRecurringApplicationCharge:
+      required:
+        - id
       type: object
       properties:
+        name:
+          type: string
+          nullable: true
+        api_client_id:
+          type: integer
+          format: int64
+        price:
+          type: number
+          format: decimal
+          nullable: true
+        status:
+          $ref: '#/components/schemas/RecurringApplicationChargeStatus'
+        return_url:
+          type: string
+          nullable: true
+        billing_on:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        test:
+          type: boolean
+          nullable: true
+        activated_on:
+          type: string
+          format: date-time
+          nullable: true
+        cancelled_on:
+          type: string
+          format: date-time
+          nullable: true
+        trial_days:
+          type: integer
+          format: int32
+          nullable: true
+        trial_ends_on:
+          type: string
+          format: date-time
+          nullable: true
+        decorated_return_url:
+          type: string
+          nullable: true
         id:
           type: integer
-          description: The object's unique id.
           format: int64
-          nullable: true
         admin_graphql_api_id:
           type: string
           nullable: true
+      additionalProperties: { }
+    UpdateRecurringApplicationChargeRequest:
+      required:
+        - id
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        api_client_id:
+          type: integer
+          format: int64
+        price:
+          type: number
+          format: decimal
+          nullable: true
+        status:
+          $ref: '#/components/schemas/RecurringApplicationChargeStatus'
+        return_url:
+          type: string
+          nullable: true
+        billing_on:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        test:
+          type: boolean
+          nullable: true
+        activated_on:
+          type: string
+          format: date-time
+          nullable: true
+        cancelled_on:
+          type: string
+          format: date-time
+          nullable: true
+        trial_days:
+          type: integer
+          format: int32
+          nullable: true
+        trial_ends_on:
+          type: string
+          format: date-time
+          nullable: true
+        decorated_return_url:
+          type: string
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        recurring_application_charge:
+          $ref: '#/components/schemas/UpdateRecurringApplicationCharge'
+      additionalProperties: { }
+    UsageCharge:
+      required:
+        - id
+      type: object
+      properties:
         created_at:
           type: string
           description: The date and time when the usage charge was created.
@@ -880,7 +1158,7 @@ components:
         price:
           type: number
           description: The price of the usage charge.
-          format: double
+          format: decimal
           nullable: true
         recurring_application_charge_id:
           type: integer
@@ -892,8 +1170,13 @@ components:
           description: The date and time when the usage charge was last updated.
           format: date-time
           nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
       additionalProperties: { }
-      description: Represents a variable monthly fee for an app or a service.
     UsageChargeItem:
       type: object
       properties:
@@ -907,7 +1190,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UsageCharge'
-          nullable: true
       additionalProperties: { }
   securitySchemes:
     ApiKey:

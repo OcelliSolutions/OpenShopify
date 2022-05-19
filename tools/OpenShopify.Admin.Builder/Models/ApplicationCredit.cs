@@ -7,7 +7,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing Shopify's ApplicationCredit object, which can be used to offer credits for payments made via the Application Charge, Recurring Application Charge, and Usage Charge APIs.
     /// </summary>
-    public class ApplicationCredit: ShopifyObject
+    public class ApplicationCreditBase
     {
         /// <summary>
         /// The description of the application credit.

@@ -19,7 +19,7 @@ public class FulfillmentEventController : FulfillmentEventControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events.json")]
-    public override Task CreateFulfillmentEvent(FulfillmentEventItem request, long fulfillment_id, long order_id)
+    public override Task CreateFulfillmentEvent(CreateFulfillmentEventRequest request, long fulfillment_id, long order_id)
     {
         throw new NotImplementedException();
     }

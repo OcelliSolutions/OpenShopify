@@ -1,9 +1,7 @@
-using System.ComponentModel;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
-using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.MarketingEvent;
 
@@ -23,14 +21,14 @@ public class MarketingEventController : MarketingEventControllerBase
     /// <inheritdoc />
     [HttpPost, Route("marketing_events.json")]
     [ProducesResponseType(typeof(MarketingEventItem), StatusCodes.Status201Created)]
-    public override Task CreateMarketingEvent(MarketingEventItem request)
+    public override Task CreateMarketingEvent(CreateMarketingEventRequest request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("marketing_events/count.json")]
-    [ProducesResponseType(typeof(MarketingEventCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveCountOfAllMarketingEvents()
     {
         throw new NotImplementedException();
@@ -47,7 +45,7 @@ public class MarketingEventController : MarketingEventControllerBase
     /// <inheritdoc />
     [HttpPut, Route("marketing_events/{marketing_event_id:long}.json")]
     [ProducesResponseType(typeof(MarketingEventItem), StatusCodes.Status200OK)]
-    public override Task UpdateMarketingEvent(MarketingEventItem request, long marketing_event_id)
+    public override Task UpdateMarketingEvent(UpdateMarketingEventRequest request, long marketing_event_id)
     {
         throw new NotImplementedException();
     }
@@ -63,7 +61,8 @@ public class MarketingEventController : MarketingEventControllerBase
     /// <inheritdoc />
     [HttpPost, Route("marketing_events/{marketing_event_id:long}/engagements.json")]
     [ProducesResponseType(typeof(EngagementList), StatusCodes.Status201Created)]
-    public override Task CreateMarketingEngagementsOnMarketingEvent(MarketingEventItem request, long marketing_event_id, string occurred_on,
+    //TODO: wrong request type
+    public override Task CreateMarketingEngagementsOnMarketingEvent(CreateMarketingEventRequest request, long marketing_event_id, string occurred_on,
         string? ad_spend, string? clicks_count, string? comments_count, string? favorites_count, string? impressions_count,
         string? is_cumulative, string? shares_count, string? views_count)
     {

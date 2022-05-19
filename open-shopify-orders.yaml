@@ -103,10 +103,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DraftOrderItem'
+              $ref: '#/components/schemas/CreateDraftOrderRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/DraftOrderItem'
+              $ref: '#/components/schemas/CreateDraftOrderRequest'
       responses:
         '401':
           description: Unauthorized
@@ -204,10 +204,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DraftOrderItem'
+              $ref: '#/components/schemas/UpdateDraftOrderRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/DraftOrderItem'
+              $ref: '#/components/schemas/UpdateDraftOrderRequest'
       responses:
         '401':
           description: Unauthorized
@@ -330,7 +330,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DraftOrderCount'
+                $ref: '#/components/schemas/CountItem'
         '401':
           description: Unauthorized
           headers:
@@ -523,10 +523,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OrderItem'
+              $ref: '#/components/schemas/CreateOrderRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/OrderItem'
+              $ref: '#/components/schemas/CreateOrderRequest'
       responses:
         '401':
           description: Unauthorized
@@ -593,10 +593,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OrderItem'
+              $ref: '#/components/schemas/UpdateOrderRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/OrderItem'
+              $ref: '#/components/schemas/UpdateOrderRequest'
       responses:
         '401':
           description: Unauthorized
@@ -702,7 +702,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderCount'
+                $ref: '#/components/schemas/CountItem'
         '401':
           description: Unauthorized
           headers:
@@ -851,10 +851,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OrderRiskItem'
+              $ref: '#/components/schemas/CreateOrderRiskRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/OrderRiskItem'
+              $ref: '#/components/schemas/CreateOrderRiskRequest'
       responses:
         '401':
           description: Unauthorized
@@ -956,10 +956,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OrderRiskItem'
+              $ref: '#/components/schemas/UpdateOrderRiskRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/OrderRiskItem'
+              $ref: '#/components/schemas/UpdateOrderRiskRequest'
       responses:
         '401':
           description: Unauthorized
@@ -1115,10 +1115,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RefundItem'
+              $ref: '#/components/schemas/CreateRefundRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/RefundItem'
+              $ref: '#/components/schemas/CreateRefundRequest'
       responses:
         '401':
           description: Unauthorized
@@ -1290,10 +1290,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TransactionItem'
+              $ref: '#/components/schemas/CreateTransactionRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/TransactionItem'
+              $ref: '#/components/schemas/CreateTransactionRequest'
       responses:
         '401':
           description: Unauthorized
@@ -1338,7 +1338,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionCount'
+                $ref: '#/components/schemas/CountItem'
         '401':
           description: Unauthorized
           headers:
@@ -1402,16 +1402,13 @@ paths:
 components:
   schemas:
     Address:
+      required:
+        - id
       type: object
       properties:
-        id:
+        customer_id:
           type: integer
-          description: The object's unique id.
           format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         address1:
           type: string
           description: The mailing address.
@@ -1455,12 +1452,12 @@ components:
         latitude:
           type: number
           description: The latitude. Auto-populated by Shopify on the order's Billing/Shipping address.
-          format: double
+          format: decimal
           nullable: true
         longitude:
           type: number
           description: The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
-          format: double
+          format: decimal
           nullable: true
         name:
           type: string
@@ -1481,6 +1478,12 @@ components:
         zip:
           type: string
           description: The ZIP or postal code.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
           nullable: true
       additionalProperties: { }
     AppliedDiscount:
@@ -1505,7 +1508,7 @@ components:
         amount:
           type: number
           description: "The applied amount of the discount, based on the setting of value_type. \r\nWhen ValueType is set to fixed_amount discount amount = quantity * value\r\nWhen ValueType is set to percentage discount amount = floor(price * quantity * value) / 100"
-          format: double
+          format: decimal
           nullable: true
       additionalProperties: { }
     ClientDetails:
@@ -1536,410 +1539,16 @@ components:
           description: The browser's user agent string.
           nullable: true
       additionalProperties: { }
-    CurrencyExchangeAdjustment:
+    CountItem:
       type: object
       properties:
-        id:
+        count:
           type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-        adjustment:
-          type: number
-          description: The difference between the amounts on the associated transaction and the parent transaction.
-          format: double
-          nullable: true
-        original_amount:
-          type: number
-          description: The amount of the parent transaction in the shop currency.
-          format: double
-          nullable: true
-        final_amount:
-          type: number
-          description: The amount of the associated transaction in the shop currency.
-          format: double
-          nullable: true
-        currency:
-          type: string
-          description: The shop currency.
-          nullable: true
-      additionalProperties: { }
-    Customer:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-        accepts_marketing:
-          type: boolean
-          description: Indicates whether the customer has consented to be sent marketing material via email.
-          nullable: true
-        addresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address'
-          description: A list of addresses for the customer.
-        created_at:
-          type: string
-          description: The date and time when the customer was created.
-          format: date-time
-          nullable: true
-        currency:
-          type: string
-          description: Currency used for customer's last order
-          nullable: true
-        default_address:
-          $ref: '#/components/schemas/Address'
-        email:
-          type: string
-          description: The email address of the customer.
-          nullable: true
-        first_name:
-          type: string
-          description: The customer's first name.
-          nullable: true
-        multipass_identifier:
-          type: string
-          description: The customer's identifier used with Multipass login
-          nullable: true
-        last_name:
-          type: string
-          description: The customer's last name.
-          nullable: true
-        last_order_id:
-          type: integer
-          description: The id of the customer's last order.
-          format: int64
-          nullable: true
-        last_order_name:
-          type: string
-          description: The name of the customer's last order. This is directly related to the Order's name field.
-          nullable: true
-        note:
-          type: string
-          description: A note about the customer.
-          nullable: true
-        orders_count:
-          type: integer
-          description: The number of orders associated with this customer.
           format: int32
-          nullable: true
-        phone:
-          type: string
-          description: "The phone number for the customer. Valid formats can be of different types, for example:\r\n\r\n6135551212\r\n\r\n+16135551212\r\n\r\n555-1212\r\n\r\n(613)555-1212\r\n\r\n+1 613-555-1212"
-          nullable: true
-        state:
-          type: string
-          description: 'The state of the customer in a shop. Valid values are ''disabled'', ''decline'', ''invited'' and ''enabled''.'
-          nullable: true
-        tags:
-          type: string
-          description: Tags are additional short descriptors formatted as a string of comma-separated values.
-          nullable: true
-        tax_exempt:
-          type: boolean
-          description: Indicates whether the customer should be charged taxes when placing orders.
-          nullable: true
-        total_spent:
-          type: number
-          description: The total amount of money that the customer has spent at the shop.
-          format: double
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the customer information was updated.
-          format: date-time
-          nullable: true
-        verified_email:
-          type: boolean
-          description: States whether or not the email address has been verified.
-          nullable: true
-        metafields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomerMetafield'
       additionalProperties: { }
-    CustomerMetafield:
+    CreateDraftOrder:
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-        created_at:
-          type: string
-          description: The date and time when the metafield was created.
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the metafield was last updated.
-          format: date-time
-          nullable: true
-        key:
-          type: string
-          description: Identifier for the metafield (maximum of 30 characters).
-          nullable: true
-        value:
-          description: Information to be stored as metadata. Must be either a string or an int.
-        value_type:
-          type: string
-          description: States whether the information in the value is stored as a 'string' or 'integer.'
-          nullable: true
-        namespace:
-          type: string
-          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
-          nullable: true
-        description:
-          type: string
-          description: Additional information about the metafield.
-          nullable: true
-        owner_id:
-          type: integer
-          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
-          format: int64
-          nullable: true
-        owner_resource:
-          type: string
-          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
-          nullable: true
-      additionalProperties: { }
-    DiscountAllocation:
-      type: object
-      properties:
-        amount:
-          type: string
-          description: The discount amount allocated to the line (not sure why it is a string)
-          nullable: true
-        discount_application_index:
-          type: integer
-          description: The index of the associated discount application in the order's discount_applications list.
-          format: int64
-        amount_set:
-          $ref: '#/components/schemas/PriceSet'
-      additionalProperties: { }
-    DiscountApplication:
-      type: object
-      properties:
-        type:
-          type: string
-          description: "The discount application type. Valid values:\r\nmanual: The discount was manually applied by the merchant(for example, by using an app or creating a draft order).\r\nscript: The discount was applied by a Shopify Script.\r\ndiscount_code: The discount was applied by a discount code."
-          nullable: true
-        code:
-          type: string
-          description: The discount code that was used to apply the discount. Available only for discount code applications.
-          nullable: true
-        title:
-          type: string
-          description: 'The title of the discount application, as defined by the merchant. Available only for manual discount applications.'
-          nullable: true
-        description:
-          type: string
-          description: 'The description of the discount application, as defined by the merchant or the Shopify Script. Available only for manual and script discount applications.'
-          nullable: true
-        value:
-          type: string
-          description: "The value of the discount application as a decimal. This represents the intention of the discount application.\r\nFor example, if the intent was to apply a 20% discount, then the value will be 20.0.\r\nIf the intent was to apply a $15 discount, then the value will be 15.0."
-          nullable: true
-        value_type:
-          type: string
-          description: "The type of the value. Valid values:\r\nfixed_amount: A fixed amount discount value in the currency of the order.\r\npercentage: A percentage discount value."
-          nullable: true
-        allocation_method:
-          type: string
-          description: "The method by which the discount application value has been allocated to entitled lines. Valid values:\r\nacross: The value is spread across all entitled lines.\r\neach: The value is applied onto every entitled line.\r\none: The value is applied onto a single line."
-          nullable: true
-        target_selection:
-          type: string
-          description: "The lines on the order, of the type defined by target_type, that the discount is allocated over. Valid values:\r\nall: The discount is allocated onto all lines,\r\nentitled: The discount is allocated only onto lines it is entitled for.\r\nexplicit: The discount is allocated onto explicitly selected lines."
-          nullable: true
-        target_type:
-          type: string
-          description: "The type of line on the order that the discount is applicable on. Valid values:\r\nline_item: The discount applies to line items.\r\nshipping_line: The discount applies to shipping lines."
-          nullable: true
-      additionalProperties: { }
-    DiscountCode:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-        amount:
-          type: string
-          description: The amount of the discount.
-          nullable: true
-        code:
-          type: string
-          description: The discount code.
-          nullable: true
-        type:
-          type: string
-          description: 'The type of discount. Known values are ''percentage'', ''shipping'', ''fixed_amount'' and ''none''.'
-          nullable: true
-      additionalProperties: { }
-    DraftLineItem:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-        fulfillable_quantity:
-          type: integer
-          description: 'The amount available to fulfill. This is the quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity.'
-          format: int32
-          nullable: true
-        fulfillment_service:
-          type: string
-          description: 'Service provider who is doing the fulfillment. Valid values are either "manual" or the name of the provider. eg: "amazon", "shipwire", etc.'
-          nullable: true
-        fulfillment_status:
-          type: string
-          description: 'The fulfillment status of this line item. Known values are ''fulfilled'', ''null'' and ''partial''.'
-          nullable: true
-        grams:
-          type: integer
-          description: The weight of the item in grams.
-          format: int64
-          nullable: true
-        price:
-          type: number
-          description: The price of the item before discounts have been applied.
-          format: double
-          nullable: true
-        product_id:
-          type: integer
-          description: The unique numeric identifier for the product in the fulfillment. Can be null if the original product associated with the order is deleted at a later date
-          format: int64
-          nullable: true
-        quantity:
-          type: integer
-          description: The number of products that were purchased.
-          format: int32
-          nullable: true
-        requires_shipping:
-          type: boolean
-          description: States whether or not the fulfillment requires shipping.
-          nullable: true
-        sku:
-          type: string
-          description: A unique identifier of the item in the fulfillment.
-          nullable: true
-        title:
-          type: string
-          description: The title of the product.
-          nullable: true
-        variant_id:
-          type: integer
-          description: The id of the product variant. Can be null if the product purchased is not a variant.
-          format: int64
-          nullable: true
-        variant_title:
-          type: string
-          description: The title of the product variant. Can be null if the product purchased is not a variant.
-          nullable: true
-        name:
-          type: string
-          description: The name of the product variant.
-          nullable: true
-        vendor:
-          type: string
-          description: The name of the supplier of the item.
-          nullable: true
-        gift_card:
-          type: boolean
-          description: States whether the order used a gift card.
-          nullable: true
-        taxable:
-          type: boolean
-          description: States whether or not the product was taxable.
-          nullable: true
-        tax_lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxLine'
-          description: 'An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem.'
-        tip_payment_gateway:
-          type: string
-          description: 'The payment gateway used to tender the tip, such as shopify_payments. Present only on tips.'
-          nullable: true
-        tip_payment_method:
-          type: string
-          description: 'The payment method used to tender the tip, such as Visa. Present only on tips.'
-          nullable: true
-        total_discount:
-          type: number
-          description: The total discount amount applied to this line item. This value is not subtracted in the line item price.
-          format: double
-          nullable: true
-        total_discount_set:
-          $ref: '#/components/schemas/PriceSet'
-        discount_allocations:
-          type: array
-          items:
-            $ref: '#/components/schemas/DiscountAllocation'
-          description: An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
-        properties:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItemProperty'
-          description: "An array of custom information for an item that has been added to the cart.\r\nOften used to provide product customization options.\r\nAn array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem."
-        variant_inventory_management:
-          type: string
-          description: This property is undocumented by Shopify.
-          nullable: true
-        product_exists:
-          type: boolean
-          description: This property is undocumented by Shopify.
-          nullable: true
-        price_set:
-          $ref: '#/components/schemas/PriceSet'
-        duties:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItemDuty'
-          description: 'A list of duty objects, each containing information about a duty on the line item'
-        origin_location:
-          $ref: '#/components/schemas/LineItemOriginLocation'
-        custom:
-          type: boolean
-          description: 'Indicates if this is a product variant line item, or a custom line item. If set to true indicates a custom line item. If set to false indicates a product variant line item. This is a read only field.'
-          nullable: true
-        applied_discount:
-          $ref: '#/components/schemas/AppliedDiscount'
-      additionalProperties: { }
-    DraftOrder:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         order_id:
           type: integer
           description: 'The unique numeric identifier for the order associated to the draft order, once created.'
@@ -2015,17 +1624,17 @@ components:
         total_tax:
           type: number
           description: The sum of all the taxes applied to the order (must be positive).
-          format: double
+          format: decimal
           nullable: true
         subtotal_price:
           type: number
           description: Price of the order before shipping and taxes
-          format: double
+          format: decimal
           nullable: true
         total_price:
           type: number
           description: 'The sum of all the prices of all the items in the order, taxes and discounts included (must be positive).'
-          format: double
+          format: decimal
           nullable: true
         completed_at:
           type: string
@@ -2055,413 +1664,15 @@ components:
           description: An optional boolean that you can send as part of a draft order object to load customer shipping information.
           nullable: true
       additionalProperties: { }
-    DraftOrderCount:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-      additionalProperties: { }
-    DraftOrderItem:
+    CreateDraftOrderRequest:
       type: object
       properties:
         draft_order:
-          $ref: '#/components/schemas/DraftOrder'
+          $ref: '#/components/schemas/CreateDraftOrder'
       additionalProperties: { }
-    DraftOrderMetafield:
+    CreateOrder:
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-        created_at:
-          type: string
-          description: The date and time when the metafield was created.
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the metafield was last updated.
-          format: date-time
-          nullable: true
-        key:
-          type: string
-          description: Identifier for the metafield (maximum of 30 characters).
-          nullable: true
-        value:
-          description: Information to be stored as metadata. Must be either a string or an int.
-        value_type:
-          type: string
-          description: States whether the information in the value is stored as a 'string' or 'integer.'
-          nullable: true
-        namespace:
-          type: string
-          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
-          nullable: true
-        description:
-          type: string
-          description: Additional information about the metafield.
-          nullable: true
-        owner_id:
-          type: integer
-          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
-          format: int64
-          nullable: true
-        owner_resource:
-          type: string
-          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
-          nullable: true
-      additionalProperties: { }
-    DraftShippingLine:
-      type: object
-      properties:
-        custom:
-          type: boolean
-          description: Whether this is a regular shipping line or custom shipping line.
-          nullable: true
-        handle:
-          type: string
-          description: The handle of the shipping rate which was selected and applied. Required for regular shipping lines.
-          nullable: true
-        title:
-          type: string
-          description: 'The title of the shipping method. Required for custom shipping lines. (maximum: 255 characters)'
-          nullable: true
-        price:
-          type: number
-          description: The price of the shipping method. Required for custom shipping lines.
-          format: double
-          nullable: true
-      additionalProperties: { }
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Fulfillment:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-        created_at:
-          type: string
-          description: The date and time when the fulfillment was created.
-          format: date-time
-          nullable: true
-        line_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItem'
-          description: A historical record of each item in the fulfillment.
-        order_id:
-          type: integer
-          description: The unique numeric identifier for the order.
-          format: int64
-          nullable: true
-        receipt:
-          description: A textfield with information about the receipt.
-        status:
-          type: string
-          description: "The status of the fulfillment. Valid values are 'pending', 'open', 'success', 'cancelled',\r\n'error' and 'failure'."
-          nullable: true
-        location_id:
-          type: integer
-          description: The unique identifier of the location that the fulfillment should be processed for.
-          format: int64
-          nullable: true
-        email:
-          type: string
-          description: This property is undocumented by Shopify. It appears to be the customer's email address
-          nullable: true
-        notify_customer:
-          type: boolean
-          description: "A flag indicating whether the customer should be notified. If set to true, an email will be\r\nsent when the fulfillment is created or updated. The default value is false for fulfillments\r\non any orders created initially through the API. For all other orders, the default value is true."
-          nullable: true
-        destination:
-          $ref: '#/components/schemas/Address'
-        tracking_company:
-          type: string
-          description: The name of the shipping company.
-          nullable: true
-        tracking_number:
-          type: string
-          description: "The shipping number, provided by the shipping company. If multiple tracking numbers\r\nexist (OpenShopify.Admin.Builder.Models.Fulfillment.TrackingNumbers), returns the first number."
-          nullable: true
-        tracking_numbers:
-          type: array
-          items:
-            type: string
-          description: 'A list of shipping numbers, provided by the shipping company. May be null.'
-        tracking_url:
-          type: string
-          description: "The tracking url, provided by the shipping company. May be null. If multiple tracking URLs\r\nexist (OpenShopify.Admin.Builder.Models.Fulfillment.TrackingUrls), returns the first URL."
-          nullable: true
-        tracking_urls:
-          type: array
-          items:
-            type: string
-          description: 'An array of one or more tracking urls, provided by the shipping company. May be null.'
-        updated_at:
-          type: string
-          description: The date and time when the fulfillment was last modified.
-          format: date-time
-          nullable: true
-        variant_inventory_management:
-          type: string
-          description: States the name of the inventory management service.
-          nullable: true
-        service:
-          type: string
-          description: This property is undocumented by Shopify.
-          nullable: true
-        shipment_status:
-          type: string
-          description: This property is undocumented by Shopify.
-          nullable: true
-        name:
-          type: string
-          nullable: true
-      additionalProperties: { }
-      description: An object representing a Shopify fulfillment.
-    LineItem:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-        fulfillable_quantity:
-          type: integer
-          description: 'The amount available to fulfill. This is the quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity.'
-          format: int32
-          nullable: true
-        fulfillment_service:
-          type: string
-          description: 'Service provider who is doing the fulfillment. Valid values are either "manual" or the name of the provider. eg: "amazon", "shipwire", etc.'
-          nullable: true
-        fulfillment_status:
-          type: string
-          description: 'The fulfillment status of this line item. Known values are ''fulfilled'', ''null'' and ''partial''.'
-          nullable: true
-        grams:
-          type: integer
-          description: The weight of the item in grams.
-          format: int64
-          nullable: true
-        price:
-          type: number
-          description: The price of the item before discounts have been applied.
-          format: double
-          nullable: true
-        product_id:
-          type: integer
-          description: The unique numeric identifier for the product in the fulfillment. Can be null if the original product associated with the order is deleted at a later date
-          format: int64
-          nullable: true
-        quantity:
-          type: integer
-          description: The number of products that were purchased.
-          format: int32
-          nullable: true
-        requires_shipping:
-          type: boolean
-          description: States whether or not the fulfillment requires shipping.
-          nullable: true
-        sku:
-          type: string
-          description: A unique identifier of the item in the fulfillment.
-          nullable: true
-        title:
-          type: string
-          description: The title of the product.
-          nullable: true
-        variant_id:
-          type: integer
-          description: The id of the product variant. Can be null if the product purchased is not a variant.
-          format: int64
-          nullable: true
-        variant_title:
-          type: string
-          description: The title of the product variant. Can be null if the product purchased is not a variant.
-          nullable: true
-        name:
-          type: string
-          description: The name of the product variant.
-          nullable: true
-        vendor:
-          type: string
-          description: The name of the supplier of the item.
-          nullable: true
-        gift_card:
-          type: boolean
-          description: States whether the order used a gift card.
-          nullable: true
-        taxable:
-          type: boolean
-          description: States whether or not the product was taxable.
-          nullable: true
-        tax_lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxLine'
-          description: 'An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem.'
-        tip_payment_gateway:
-          type: string
-          description: 'The payment gateway used to tender the tip, such as shopify_payments. Present only on tips.'
-          nullable: true
-        tip_payment_method:
-          type: string
-          description: 'The payment method used to tender the tip, such as Visa. Present only on tips.'
-          nullable: true
-        total_discount:
-          type: number
-          description: The total discount amount applied to this line item. This value is not subtracted in the line item price.
-          format: double
-          nullable: true
-        total_discount_set:
-          $ref: '#/components/schemas/PriceSet'
-        discount_allocations:
-          type: array
-          items:
-            $ref: '#/components/schemas/DiscountAllocation'
-          description: An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
-        properties:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItemProperty'
-          description: "An array of custom information for an item that has been added to the cart.\r\nOften used to provide product customization options.\r\nAn array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem."
-        variant_inventory_management:
-          type: string
-          description: This property is undocumented by Shopify.
-          nullable: true
-        product_exists:
-          type: boolean
-          description: This property is undocumented by Shopify.
-          nullable: true
-        price_set:
-          $ref: '#/components/schemas/PriceSet'
-        duties:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItemDuty'
-          description: 'A list of duty objects, each containing information about a duty on the line item'
-        origin_location:
-          $ref: '#/components/schemas/LineItemOriginLocation'
-      additionalProperties: { }
-    LineItemDuty:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-        harmonized_system_code:
-          type: string
-          nullable: true
-        country_code_of_origin:
-          type: string
-          nullable: true
-        shop_money:
-          $ref: '#/components/schemas/Price'
-        presentment_money:
-          $ref: '#/components/schemas/Price'
-        tax_lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxLine'
-      additionalProperties: { }
-    LineItemOriginLocation:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-        country_code:
-          type: string
-          description: The two-letter code (ISO 3166-1 format) for the country of the item's supplier.
-          nullable: true
-        province_code:
-          type: string
-          description: The two-letter abbreviation for the region of the item's supplier.
-          nullable: true
-        name:
-          type: string
-          description: The two-letter abbreviation for the region of the item's supplier.
-          nullable: true
-        address1:
-          type: string
-          description: The name of the item's supplier.
-          nullable: true
-        address2:
-          type: string
-          description: The suite number of the item's supplier.
-          nullable: true
-        city:
-          type: string
-          description: The suite number of the item's supplier.
-          nullable: true
-        zip:
-          type: string
-          description: The city of the item's supplier.
-          nullable: true
-      additionalProperties: { }
-    LineItemProperty:
-      type: object
-      properties:
-        name:
-          description: The name of the note attribute.
-        value:
-          description: The value of the note attribute.
-      additionalProperties: { }
-      description: An object representing a properties for OpenShopify.Admin.Builder.Models.LineItem.Properties
-    NoteAttribute:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the note attribute.
-          nullable: true
-        value:
-          description: The value of the note attribute.
-      additionalProperties: { }
-      description: An object representing a note attribute for OpenShopify.Admin.Builder.Models.Order.NoteAttributes
-    Order:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         app_id:
           type: integer
           description: Unique identifier of the app who created the order.
@@ -2630,7 +1841,7 @@ components:
         subtotal_price:
           type: number
           description: Price of the order before shipping and taxes
-          format: double
+          format: decimal
           nullable: true
         tax_lines:
           type: array
@@ -2652,27 +1863,27 @@ components:
         total_discounts:
           type: number
           description: The total amount of the discounts applied to the price of the order.
-          format: double
+          format: decimal
           nullable: true
         total_line_items_price:
           type: number
           description: The sum of all the prices of all the items in the order.
-          format: double
+          format: decimal
           nullable: true
         total_tip_received:
           type: number
           description: The sum of all the tips in the order.
-          format: double
+          format: decimal
           nullable: true
         total_price:
           type: number
           description: 'The sum of all the prices of all the items in the order, with taxes and discounts included (must be positive).'
-          format: double
+          format: decimal
           nullable: true
         total_tax:
           type: number
           description: The sum of all the taxes applied to the order (must be positive).
-          format: double
+          format: decimal
           nullable: true
         total_weight:
           type: integer
@@ -2723,80 +1934,15 @@ components:
           description: Indicates whether taxes on an order are estimated. Will be set to false when taxes on an order are finalized and aren't subject to any change.
           nullable: true
       additionalProperties: { }
-      description: An object representing a Shopify order.
-    OrderCount:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-      additionalProperties: { }
-    OrderItem:
+    CreateOrderRequest:
       type: object
       properties:
         order:
-          $ref: '#/components/schemas/Order'
+          $ref: '#/components/schemas/CreateOrder'
       additionalProperties: { }
-    OrderMetafield:
+    CreateOrderRisk:
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-        created_at:
-          type: string
-          description: The date and time when the metafield was created.
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the metafield was last updated.
-          format: date-time
-          nullable: true
-        key:
-          type: string
-          description: Identifier for the metafield (maximum of 30 characters).
-          nullable: true
-        value:
-          description: Information to be stored as metadata. Must be either a string or an int.
-        value_type:
-          type: string
-          description: States whether the information in the value is stored as a 'string' or 'integer.'
-          nullable: true
-        namespace:
-          type: string
-          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
-          nullable: true
-        description:
-          type: string
-          description: Additional information about the metafield.
-          nullable: true
-        owner_id:
-          type: integer
-          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
-          format: int64
-          nullable: true
-        owner_resource:
-          type: string
-          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
-          nullable: true
-      additionalProperties: { }
-    OrderRisk:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         cause_cancel:
           type: boolean
           description: "Use this flag when a fraud check is accompanied with a call to the Orders API to cancel the order. This will indicate to the merchant that this risk was severe enough to force cancellation of the order.\r\nNote: Setting this parameter does not cancel the order. This must be done by the Orders API."
@@ -2826,71 +1972,22 @@ components:
         score:
           type: number
           description: A number between 0 and 1 indicating percentage likelihood of being fraud.
-          format: double
+          format: decimal
           nullable: true
         source:
           type: string
           description: 'This indicates the source of the risk assessment. Known values are ''External'', ''Internal'' and ''Gateway''.'
           nullable: true
       additionalProperties: { }
-      description: An object representing a Shopify order risk.
-    OrderRiskItem:
+    CreateOrderRiskRequest:
       type: object
       properties:
         order_risk:
-          $ref: '#/components/schemas/OrderRisk'
+          $ref: '#/components/schemas/CreateOrderRisk'
       additionalProperties: { }
-    PaymentDetails:
+    CreateRefund:
       type: object
       properties:
-        avs_result_code:
-          type: string
-          nullable: true
-        credit_card_bin:
-          type: string
-          nullable: true
-        cvv_result_code:
-          type: string
-          nullable: true
-        credit_card_number:
-          type: string
-          nullable: true
-        credit_card_company:
-          type: string
-          nullable: true
-      additionalProperties: { }
-    Price:
-      type: object
-      properties:
-        currency_code:
-          type: string
-          description: The three-letter code (ISO 4217 format) for currency.
-          nullable: true
-        amount:
-          type: number
-          description: The amount in the currency.
-          format: double
-          nullable: true
-      additionalProperties: { }
-    PriceSet:
-      type: object
-      properties:
-        shop_money:
-          $ref: '#/components/schemas/Price'
-        presentment_money:
-          $ref: '#/components/schemas/Price'
-      additionalProperties: { }
-    Refund:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         order_id:
           type: integer
           description: The unique identifier of the order.
@@ -2955,233 +2052,19 @@ components:
             $ref: '#/components/schemas/RefundDutyType'
           description: A list of refunded duties
       additionalProperties: { }
-    RefundDuty:
-      type: object
-      properties:
-        duty_id:
-          type: integer
-          format: int64
-          nullable: true
-        amount_set:
-          $ref: '#/components/schemas/PriceSet'
-      additionalProperties: { }
-    RefundDutyType:
-      type: object
-      properties:
-        duty_id:
-          type: integer
-          format: int64
-          nullable: true
-        refund_type:
-          type: string
-          nullable: true
-      additionalProperties: { }
-    RefundItem:
+    CreateRefundRequest:
       type: object
       properties:
         refund:
-          $ref: '#/components/schemas/Refund'
+          $ref: '#/components/schemas/CreateRefund'
       additionalProperties: { }
-    RefundLineItem:
+    CreateTransaction:
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-        line_item:
-          $ref: '#/components/schemas/LineItem'
-        line_item_id:
-          type: integer
-          description: The unique identifier of the refund line item.
-          format: int64
-          nullable: true
-        quantity:
-          type: integer
-          description: The quantity of the associated line item that was returned.
-          format: int32
-          nullable: true
-        total_tax:
-          type: number
-          description: Tax amount refunded
-          format: double
-          nullable: true
-        subtotal:
-          type: number
-          description: Item subtotal
-          format: double
-          nullable: true
-        subtotal_set:
-          $ref: '#/components/schemas/PriceSet'
-        total_tax_set:
-          $ref: '#/components/schemas/PriceSet'
-        restock_type:
-          type: string
-          description: How this refund line item affects inventory levels.
-          nullable: true
-        location_id:
-          type: integer
-          description: "The unique identifier of the location where the items will be restocked.\r\nRequired when restock_type has the value return or cancel."
-          format: int64
-          nullable: true
-      additionalProperties: { }
-    RefundOrderAdjustment:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-        order_id:
-          type: integer
-          description: The unique identifier of the order
-          format: int64
-          nullable: true
-        refund_id:
-          type: integer
-          description: The unique identifier of the refund
-          format: int64
-          nullable: true
-        amount:
-          type: number
-          description: The amount refunded (it is negative and does not include tax).
-          format: double
-          nullable: true
-        tax_amount:
-          type: number
-          description: The tax amount refunded (negative).
-          format: double
-          nullable: true
-        kind:
-          type: string
-          description: 'The type of adjustment. Values include "refund_discrepancy", "shipping_refund"'
-          nullable: true
-        reason:
-          type: string
-          description: Reason for the refund
-          nullable: true
-        amount_set:
-          $ref: '#/components/schemas/PriceSet'
-        tax_amount_set:
-          $ref: '#/components/schemas/PriceSet'
-      additionalProperties: { }
-    Shipping:
-      type: object
-      properties:
-        full_refund:
-          type: boolean
-          description: Whether to refund all remaining shipping.
-          nullable: true
-        amount:
-          type: number
-          description: Set a specific amount to refund for shipping. Takes precedence over full_refund.
-          format: double
-          nullable: true
-        maximum_refundable:
-          type: number
-          description: The maximum amount that can be refunded
-          format: double
-          nullable: true
-      additionalProperties: { }
-    ShippingLine:
-      type: object
-      properties:
-        carrier_identifier:
-          type: string
-          description: The carrier provided identifier.
-          nullable: true
-        code:
-          type: string
-          description: A reference to the shipping method.
-          nullable: true
-        phone:
-          type: string
-          description: The phone number used for the shipment.
-          nullable: true
-        price:
-          type: number
-          description: The price of this shipping method.
-          format: double
-          nullable: true
-        discounted_price:
-          type: number
-          description: The discounted price of this shipping method.
-          format: double
-          nullable: true
-        discount_allocations:
-          type: array
-          items:
-            $ref: '#/components/schemas/DiscountAllocation'
-          description: An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
-        source:
-          type: string
-          description: The source of the shipping method.
-          nullable: true
-        title:
-          type: string
-          description: The title of the shipping method.
-          nullable: true
-        tax_lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxLine'
-          description: 'A list of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.ShippingLine.'
-        price_set:
-          $ref: '#/components/schemas/PriceSet'
-        discounted_price_set:
-          $ref: '#/components/schemas/PriceSet'
-      additionalProperties: { }
-    Status:
-      enum:
-        - Open
-        - Closed
-        - Cancelled
-        - Any
-      type: string
-      additionalProperties: { }
-    TaxLine:
-      type: object
-      properties:
-        price:
-          type: number
-          description: The amount of tax to be charged.
-          format: double
-          nullable: true
-        rate:
-          type: number
-          description: The rate of tax to be applied.
-          format: double
-          nullable: true
-        title:
-          type: string
-          description: The name of the tax.
-          nullable: true
-        price_set:
-          $ref: '#/components/schemas/PriceSet'
-      additionalProperties: { }
-    Transaction:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         amount:
           type: number
           description: The amount of money that the transaction was for.
-          format: double
+          format: decimal
           nullable: true
         authorization:
           type: string
@@ -3259,24 +2142,2279 @@ components:
         maximum_refundable:
           type: number
           description: The maximum amount that can be refunded
-          format: double
+          format: decimal
           nullable: true
         currency_exchange_adjustment:
           $ref: '#/components/schemas/CurrencyExchangeAdjustment'
       additionalProperties: { }
-      description: An object representing a Shopify transaction.
-    TransactionCount:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-      additionalProperties: { }
-    TransactionItem:
+    CreateTransactionRequest:
       type: object
       properties:
         transaction:
-          $ref: '#/components/schemas/Transaction'
+          $ref: '#/components/schemas/CreateTransaction'
+      additionalProperties: { }
+    CurrencyExchangeAdjustment:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        adjustment:
+          type: number
+          description: The difference between the amounts on the associated transaction and the parent transaction.
+          format: decimal
+          nullable: true
+        original_amount:
+          type: number
+          description: The amount of the parent transaction in the shop currency.
+          format: decimal
+          nullable: true
+        final_amount:
+          type: number
+          description: The amount of the associated transaction in the shop currency.
+          format: decimal
+          nullable: true
+        currency:
+          type: string
+          description: The shop currency.
+          nullable: true
+      additionalProperties: { }
+    Customer:
+      required:
+        - id
+      type: object
+      properties:
+        accepts_marketing:
+          type: boolean
+          description: Indicates whether the customer has consented to be sent marketing material via email.
+          nullable: true
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerAddress'
+          description: A list of addresses for the customer.
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the customer was created.
+          format: date-time
+          nullable: true
+        currency:
+          type: string
+          description: Currency used for customer's last order
+          nullable: true
+        default_address:
+          $ref: '#/components/schemas/CustomerAddress'
+        email:
+          type: string
+          description: The email address of the customer.
+          nullable: true
+        first_name:
+          type: string
+          description: The customer's first name.
+          nullable: true
+        multipass_identifier:
+          type: string
+          description: The customer's identifier used with Multipass login
+          nullable: true
+        last_name:
+          type: string
+          description: The customer's last name.
+          nullable: true
+        last_order_id:
+          type: integer
+          description: The id of the customer's last order.
+          format: int64
+          nullable: true
+        last_order_name:
+          type: string
+          description: The name of the customer's last order. This is directly related to the Order's name field.
+          nullable: true
+        note:
+          type: string
+          description: A note about the customer.
+          nullable: true
+        orders_count:
+          type: integer
+          description: The number of orders associated with this customer.
+          format: int32
+          nullable: true
+        phone:
+          type: string
+          description: "The phone number for the customer. Valid formats can be of different types, for example:\r\n\r\n6135551212\r\n\r\n+16135551212\r\n\r\n555-1212\r\n\r\n(613)555-1212\r\n\r\n+1 613-555-1212"
+          nullable: true
+        state:
+          type: string
+          description: 'The state of the customer in a shop. Valid values are ''disabled'', ''decline'', ''invited'' and ''enabled''.'
+          nullable: true
+        tags:
+          type: string
+          description: Tags are additional short descriptors formatted as a string of comma-separated values.
+          nullable: true
+        tax_exempt:
+          type: boolean
+          description: Indicates whether the customer should be charged taxes when placing orders.
+          nullable: true
+        tax_exemptions:
+          type: array
+          items:
+            type: string
+          description: Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only.
+          nullable: true
+        total_spent:
+          type: number
+          description: The total amount of money that the customer has spent at the shop.
+          format: decimal
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the customer information was updated.
+          format: date-time
+          nullable: true
+        verified_email:
+          type: boolean
+          description: States whether or not the email address has been verified.
+          nullable: true
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerMetafield'
+          nullable: true
+        accepts_marketing_updated_at:
+          type: string
+          description: 'As of API version 2022-04, this field is deprecated. Use email_marketing_consent instead. The date and time (ISO 8601 format) when the customer consented or objected to receiving marketing material by email. Set this value whenever the customer consents or objects to marketing materials.'
+          format: date-time
+          nullable: true
+          deprecated: true
+        email_marketing_consent:
+          $ref: '#/components/schemas/EmailMarketingConsent'
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    CustomerAddress:
+      required:
+        - id
+      type: object
+      properties:
+        customer_id:
+          type: integer
+          format: int64
+        address1:
+          type: string
+          description: The mailing address.
+          nullable: true
+        address2:
+          type: string
+          description: An additional field for the mailing address.
+          nullable: true
+        city:
+          type: string
+          description: The city.
+          nullable: true
+        company:
+          type: string
+          description: The company.
+          nullable: true
+        country:
+          type: string
+          description: The country.
+          nullable: true
+        country_code:
+          type: string
+          description: The two-letter country code corresponding to the country.
+          nullable: true
+        country_name:
+          type: string
+          description: The normalized country name.
+          nullable: true
+        default:
+          type: boolean
+          description: Indicates whether this address is the default address.
+          nullable: true
+        first_name:
+          type: string
+          description: The first name.
+          nullable: true
+        last_name:
+          type: string
+          description: The last name.
+          nullable: true
+        latitude:
+          type: number
+          description: The latitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+          format: decimal
+          nullable: true
+        longitude:
+          type: number
+          description: The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+          format: decimal
+          nullable: true
+        name:
+          type: string
+          description: The name.
+          nullable: true
+        phone:
+          type: string
+          description: The phone number.
+          nullable: true
+        province:
+          type: string
+          description: The province or state name
+          nullable: true
+        province_code:
+          type: string
+          description: The two-letter province or state code.
+          nullable: true
+        zip:
+          type: string
+          description: The ZIP or postal code.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    CustomerMetafield:
+      required:
+        - id
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: The date and time when the metafield was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the metafield was last updated.
+          format: date-time
+          nullable: true
+        key:
+          type: string
+          description: Identifier for the metafield (maximum of 30 characters).
+          nullable: true
+        value:
+          description: Information to be stored as metadata. Must be either a string or an int.
+        value_type:
+          type: string
+          description: States whether the information in the value is stored as a 'string' or 'integer.'
+          nullable: true
+        namespace:
+          type: string
+          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+          nullable: true
+        description:
+          type: string
+          description: Additional information about the metafield.
+          nullable: true
+        owner_id:
+          type: integer
+          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
+          format: int64
+          nullable: true
+        owner_resource:
+          type: string
+          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    DiscountAllocation:
+      type: object
+      properties:
+        amount:
+          type: string
+          description: The discount amount allocated to the line (not sure why it is a string)
+          nullable: true
+        discount_application_index:
+          type: integer
+          description: The index of the associated discount application in the order's discount_applications list.
+          format: int64
+        amount_set:
+          $ref: '#/components/schemas/PriceSet'
+      additionalProperties: { }
+    DiscountApplication:
+      type: object
+      properties:
+        type:
+          type: string
+          description: "The discount application type. Valid values:\r\nmanual: The discount was manually applied by the merchant(for example, by using an app or creating a draft order).\r\nscript: The discount was applied by a Shopify Script.\r\ndiscount_code: The discount was applied by a discount code."
+          nullable: true
+        code:
+          type: string
+          description: The discount code that was used to apply the discount. Available only for discount code applications.
+          nullable: true
+        title:
+          type: string
+          description: 'The title of the discount application, as defined by the merchant. Available only for manual discount applications.'
+          nullable: true
+        description:
+          type: string
+          description: 'The description of the discount application, as defined by the merchant or the Shopify Script. Available only for manual and script discount applications.'
+          nullable: true
+        value:
+          type: string
+          description: "The value of the discount application as a decimal. This represents the intention of the discount application.\r\nFor example, if the intent was to apply a 20% discount, then the value will be 20.0.\r\nIf the intent was to apply a $15 discount, then the value will be 15.0."
+          nullable: true
+        value_type:
+          type: string
+          description: "The type of the value. Valid values:\r\nfixed_amount: A fixed amount discount value in the currency of the order.\r\npercentage: A percentage discount value."
+          nullable: true
+        allocation_method:
+          type: string
+          description: "The method by which the discount application value has been allocated to entitled lines. Valid values:\r\nacross: The value is spread across all entitled lines.\r\neach: The value is applied onto every entitled line.\r\none: The value is applied onto a single line."
+          nullable: true
+        target_selection:
+          type: string
+          description: "The lines on the order, of the type defined by target_type, that the discount is allocated over. Valid values:\r\nall: The discount is allocated onto all lines,\r\nentitled: The discount is allocated only onto lines it is entitled for.\r\nexplicit: The discount is allocated onto explicitly selected lines."
+          nullable: true
+        target_type:
+          type: string
+          description: "The type of line on the order that the discount is applicable on. Valid values:\r\nline_item: The discount applies to line items.\r\nshipping_line: The discount applies to shipping lines."
+          nullable: true
+      additionalProperties: { }
+    DiscountCode:
+      required:
+        - id
+      type: object
+      properties:
+        amount:
+          type: string
+          description: The amount of the discount.
+          nullable: true
+        code:
+          type: string
+          description: The discount code.
+          nullable: true
+        type:
+          type: string
+          description: 'The type of discount. Known values are ''percentage'', ''shipping'', ''fixed_amount'' and ''none''.'
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    DraftLineItem:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        fulfillable_quantity:
+          type: integer
+          description: 'The amount available to fulfill. This is the quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity.'
+          format: int32
+          nullable: true
+        fulfillment_service:
+          type: string
+          description: 'Service provider who is doing the fulfillment. Valid values are either "manual" or the name of the provider. eg: "amazon", "shipwire", etc.'
+          nullable: true
+        fulfillment_status:
+          type: string
+          description: 'The fulfillment status of this line item. Known values are ''fulfilled'', ''null'' and ''partial''.'
+          nullable: true
+        grams:
+          type: integer
+          description: The weight of the item in grams.
+          format: int64
+          nullable: true
+        price:
+          type: number
+          description: The price of the item before discounts have been applied.
+          format: decimal
+          nullable: true
+        product_id:
+          type: integer
+          description: The unique numeric identifier for the product in the fulfillment. Can be null if the original product associated with the order is deleted at a later date
+          format: int64
+          nullable: true
+        quantity:
+          type: integer
+          description: The number of products that were purchased.
+          format: int32
+          nullable: true
+        requires_shipping:
+          type: boolean
+          description: States whether or not the fulfillment requires shipping.
+          nullable: true
+        sku:
+          type: string
+          description: A unique identifier of the item in the fulfillment.
+          nullable: true
+        title:
+          type: string
+          description: The title of the product.
+          nullable: true
+        variant_id:
+          type: integer
+          description: The id of the product variant. Can be null if the product purchased is not a variant.
+          format: int64
+          nullable: true
+        variant_title:
+          type: string
+          description: The title of the product variant. Can be null if the product purchased is not a variant.
+          nullable: true
+        name:
+          type: string
+          description: The name of the product variant.
+          nullable: true
+        vendor:
+          type: string
+          description: The name of the supplier of the item.
+          nullable: true
+        gift_card:
+          type: boolean
+          description: States whether the order used a gift card.
+          nullable: true
+        taxable:
+          type: boolean
+          description: States whether or not the product was taxable.
+          nullable: true
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+          description: 'An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem.'
+        tip_payment_gateway:
+          type: string
+          description: 'The payment gateway used to tender the tip, such as shopify_payments. Present only on tips.'
+          nullable: true
+        tip_payment_method:
+          type: string
+          description: 'The payment method used to tender the tip, such as Visa. Present only on tips.'
+          nullable: true
+        total_discount:
+          type: number
+          description: The total discount amount applied to this line item. This value is not subtracted in the line item price.
+          format: decimal
+          nullable: true
+        total_discount_set:
+          $ref: '#/components/schemas/PriceSet'
+        discount_allocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscountAllocation'
+          description: An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemProperty'
+          description: "An array of custom information for an item that has been added to the cart.\r\nOften used to provide product customization options.\r\nAn array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem."
+        variant_inventory_management:
+          type: string
+          description: This property is undocumented by Shopify.
+          nullable: true
+        product_exists:
+          type: boolean
+          description: This property is undocumented by Shopify.
+          nullable: true
+        price_set:
+          $ref: '#/components/schemas/PriceSet'
+        duties:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemDuty'
+          description: 'A list of duty objects, each containing information about a duty on the line item'
+        origin_location:
+          $ref: '#/components/schemas/LineItemOriginLocation'
+        custom:
+          type: boolean
+          description: 'Indicates if this is a product variant line item, or a custom line item. If set to true indicates a custom line item. If set to false indicates a product variant line item. This is a read only field.'
+          nullable: true
+        applied_discount:
+          $ref: '#/components/schemas/AppliedDiscount'
+      additionalProperties: { }
+    DraftOrderMetafield:
+      required:
+        - id
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: The date and time when the metafield was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the metafield was last updated.
+          format: date-time
+          nullable: true
+        key:
+          type: string
+          description: Identifier for the metafield (maximum of 30 characters).
+          nullable: true
+        value:
+          description: Information to be stored as metadata. Must be either a string or an int.
+        value_type:
+          type: string
+          description: States whether the information in the value is stored as a 'string' or 'integer.'
+          nullable: true
+        namespace:
+          type: string
+          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+          nullable: true
+        description:
+          type: string
+          description: Additional information about the metafield.
+          nullable: true
+        owner_id:
+          type: integer
+          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
+          format: int64
+          nullable: true
+        owner_resource:
+          type: string
+          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    DraftShippingLine:
+      type: object
+      properties:
+        custom:
+          type: boolean
+          description: Whether this is a regular shipping line or custom shipping line.
+          nullable: true
+        handle:
+          type: string
+          description: The handle of the shipping rate which was selected and applied. Required for regular shipping lines.
+          nullable: true
+        title:
+          type: string
+          description: 'The title of the shipping method. Required for custom shipping lines. (maximum: 255 characters)'
+          nullable: true
+        price:
+          type: number
+          description: The price of the shipping method. Required for custom shipping lines.
+          format: decimal
+          nullable: true
+      additionalProperties: { }
+    EmailMarketingConsent:
+      type: object
+      properties:
+        state:
+          type: string
+          description: The current email marketing state for the customer.
+          nullable: true
+        opt_in_level:
+          type: string
+          description: 'The marketing subscription opt-in level, as described in the M3AAWG Sender Best Common Practices, that the customer gave when they consented to receive marketing material by email.'
+          nullable: true
+        consent_updated_at:
+          type: string
+          description: 'The date and time when the customer consented to receive marketing material by email. If no date is provided, then the date and time when the consent information was sent is used.'
+          format: date-time
+          nullable: true
+      additionalProperties: { }
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Fulfillment:
+      required:
+        - id
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: The date and time when the fulfillment was created.
+          format: date-time
+          nullable: true
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+          description: A historical record of each item in the fulfillment.
+        order_id:
+          type: integer
+          description: The unique numeric identifier for the order.
+          format: int64
+          nullable: true
+        receipt:
+          description: A textfield with information about the receipt.
+        status:
+          type: string
+          description: "The status of the fulfillment. Valid values are 'pending', 'open', 'success', 'cancelled',\r\n'error' and 'failure'."
+          nullable: true
+        location_id:
+          type: integer
+          description: The unique identifier of the location that the fulfillment should be processed for.
+          format: int64
+          nullable: true
+        email:
+          type: string
+          description: This property is undocumented by Shopify. It appears to be the customer's email address
+          nullable: true
+        notify_customer:
+          type: boolean
+          description: "A flag indicating whether the customer should be notified. If set to true, an email will be\r\nsent when the fulfillment is created or updated. The default value is false for fulfillments\r\non any orders created initially through the API. For all other orders, the default value is true."
+          nullable: true
+        destination:
+          $ref: '#/components/schemas/Address'
+        tracking_company:
+          type: string
+          description: The name of the shipping company.
+          nullable: true
+        tracking_number:
+          type: string
+          description: "The shipping number, provided by the shipping company. If multiple tracking numbers\r\nexist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingNumbers), returns the first number."
+          nullable: true
+        tracking_numbers:
+          type: array
+          items:
+            type: string
+          description: 'A list of shipping numbers, provided by the shipping company. May be null.'
+        tracking_url:
+          type: string
+          description: "The tracking url, provided by the shipping company. May be null. If multiple tracking URLs\r\nexist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingUrls), returns the first URL."
+          nullable: true
+        tracking_urls:
+          type: array
+          items:
+            type: string
+          description: 'An array of one or more tracking urls, provided by the shipping company. May be null.'
+        updated_at:
+          type: string
+          description: The date and time when the fulfillment was last modified.
+          format: date-time
+          nullable: true
+        variant_inventory_management:
+          type: string
+          description: States the name of the inventory management service.
+          nullable: true
+        service:
+          type: string
+          description: This property is undocumented by Shopify.
+          nullable: true
+        shipment_status:
+          type: string
+          description: This property is undocumented by Shopify.
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    LineItem:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        fulfillable_quantity:
+          type: integer
+          description: 'The amount available to fulfill. This is the quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity.'
+          format: int32
+          nullable: true
+        fulfillment_service:
+          type: string
+          description: 'Service provider who is doing the fulfillment. Valid values are either "manual" or the name of the provider. eg: "amazon", "shipwire", etc.'
+          nullable: true
+        fulfillment_status:
+          type: string
+          description: 'The fulfillment status of this line item. Known values are ''fulfilled'', ''null'' and ''partial''.'
+          nullable: true
+        grams:
+          type: integer
+          description: The weight of the item in grams.
+          format: int64
+          nullable: true
+        price:
+          type: number
+          description: The price of the item before discounts have been applied.
+          format: decimal
+          nullable: true
+        product_id:
+          type: integer
+          description: The unique numeric identifier for the product in the fulfillment. Can be null if the original product associated with the order is deleted at a later date
+          format: int64
+          nullable: true
+        quantity:
+          type: integer
+          description: The number of products that were purchased.
+          format: int32
+          nullable: true
+        requires_shipping:
+          type: boolean
+          description: States whether or not the fulfillment requires shipping.
+          nullable: true
+        sku:
+          type: string
+          description: A unique identifier of the item in the fulfillment.
+          nullable: true
+        title:
+          type: string
+          description: The title of the product.
+          nullable: true
+        variant_id:
+          type: integer
+          description: The id of the product variant. Can be null if the product purchased is not a variant.
+          format: int64
+          nullable: true
+        variant_title:
+          type: string
+          description: The title of the product variant. Can be null if the product purchased is not a variant.
+          nullable: true
+        name:
+          type: string
+          description: The name of the product variant.
+          nullable: true
+        vendor:
+          type: string
+          description: The name of the supplier of the item.
+          nullable: true
+        gift_card:
+          type: boolean
+          description: States whether the order used a gift card.
+          nullable: true
+        taxable:
+          type: boolean
+          description: States whether or not the product was taxable.
+          nullable: true
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+          description: 'An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem.'
+        tip_payment_gateway:
+          type: string
+          description: 'The payment gateway used to tender the tip, such as shopify_payments. Present only on tips.'
+          nullable: true
+        tip_payment_method:
+          type: string
+          description: 'The payment method used to tender the tip, such as Visa. Present only on tips.'
+          nullable: true
+        total_discount:
+          type: number
+          description: The total discount amount applied to this line item. This value is not subtracted in the line item price.
+          format: decimal
+          nullable: true
+        total_discount_set:
+          $ref: '#/components/schemas/PriceSet'
+        discount_allocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscountAllocation'
+          description: An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemProperty'
+          description: "An array of custom information for an item that has been added to the cart.\r\nOften used to provide product customization options.\r\nAn array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem."
+        variant_inventory_management:
+          type: string
+          description: This property is undocumented by Shopify.
+          nullable: true
+        product_exists:
+          type: boolean
+          description: This property is undocumented by Shopify.
+          nullable: true
+        price_set:
+          $ref: '#/components/schemas/PriceSet'
+        duties:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemDuty'
+          description: 'A list of duty objects, each containing information about a duty on the line item'
+        origin_location:
+          $ref: '#/components/schemas/LineItemOriginLocation'
+      additionalProperties: { }
+    LineItemDuty:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        harmonized_system_code:
+          type: string
+          nullable: true
+        country_code_of_origin:
+          type: string
+          nullable: true
+        shop_money:
+          $ref: '#/components/schemas/Price'
+        presentment_money:
+          $ref: '#/components/schemas/Price'
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+      additionalProperties: { }
+    LineItemOriginLocation:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        country_code:
+          type: string
+          description: The two-letter code (ISO 3166-1 format) for the country of the item's supplier.
+          nullable: true
+        province_code:
+          type: string
+          description: The two-letter abbreviation for the region of the item's supplier.
+          nullable: true
+        name:
+          type: string
+          description: The two-letter abbreviation for the region of the item's supplier.
+          nullable: true
+        address1:
+          type: string
+          description: The name of the item's supplier.
+          nullable: true
+        address2:
+          type: string
+          description: The suite number of the item's supplier.
+          nullable: true
+        city:
+          type: string
+          description: The suite number of the item's supplier.
+          nullable: true
+        zip:
+          type: string
+          description: The city of the item's supplier.
+          nullable: true
+      additionalProperties: { }
+    LineItemProperty:
+      type: object
+      properties:
+        name:
+          description: The name of the note attribute.
+        value:
+          description: The value of the note attribute.
+      additionalProperties: { }
+      description: An object representing a properties for OpenShopify.Admin.Builder.Models.LineItem.Properties
+    NoteAttribute:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the note attribute.
+          nullable: true
+        value:
+          description: The value of the note attribute.
+      additionalProperties: { }
+      description: An object representing a note attribute for !:Order.NoteAttributes
+    OrderMetafield:
+      required:
+        - id
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: The date and time when the metafield was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the metafield was last updated.
+          format: date-time
+          nullable: true
+        key:
+          type: string
+          description: Identifier for the metafield (maximum of 30 characters).
+          nullable: true
+        value:
+          description: Information to be stored as metadata. Must be either a string or an int.
+        value_type:
+          type: string
+          description: States whether the information in the value is stored as a 'string' or 'integer.'
+          nullable: true
+        namespace:
+          type: string
+          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+          nullable: true
+        description:
+          type: string
+          description: Additional information about the metafield.
+          nullable: true
+        owner_id:
+          type: integer
+          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
+          format: int64
+          nullable: true
+        owner_resource:
+          type: string
+          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    PaymentDetails:
+      type: object
+      properties:
+        avs_result_code:
+          type: string
+          nullable: true
+        credit_card_bin:
+          type: string
+          nullable: true
+        cvv_result_code:
+          type: string
+          nullable: true
+        credit_card_number:
+          type: string
+          nullable: true
+        credit_card_company:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    Price:
+      type: object
+      properties:
+        currency_code:
+          type: string
+          description: The three-letter code (ISO 4217 format) for currency.
+          nullable: true
+        amount:
+          type: number
+          description: The amount in the currency.
+          format: decimal
+          nullable: true
+      additionalProperties: { }
+    PriceSet:
+      type: object
+      properties:
+        shop_money:
+          $ref: '#/components/schemas/Price'
+        presentment_money:
+          $ref: '#/components/schemas/Price'
+      additionalProperties: { }
+    Refund:
+      required:
+        - id
+      type: object
+      properties:
+        order_id:
+          type: integer
+          description: The unique identifier of the order.
+          format: int64
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the refund was created.
+          format: date-time
+          nullable: true
+        notify:
+          type: boolean
+          description: Whether to send a refund notification to the customer
+          nullable: true
+        shipping:
+          $ref: '#/components/schemas/Shipping'
+        currency:
+          type: string
+          description: 'The three-letter code (ISO 4217 format) for the currency used for the refund. Note: Required whenever the shipping amount property is provided.'
+          nullable: true
+        order_adjustments:
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundOrderAdjustment'
+          description: The list of OpenShopify.Admin.Builder.Models.RefundOrderAdjustment objects
+        processed_at:
+          type: string
+          description: The date and time when the refund was imported.
+          format: date-time
+          nullable: true
+        note:
+          type: string
+          description: The optional note attached to a refund.
+          nullable: true
+        discrepancy_reason:
+          type: string
+          description: "An optional comment that explains a discrepancy between calculated and actual refund amounts. \r\nUsed to populate the reason property of the resulting order adjustment object attached to the refund."
+          nullable: true
+        refund_line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundLineItem'
+          description: The list of OpenShopify.Admin.Builder.Models.RefundLineItem objects
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+          description: The list of OpenShopify.Admin.Builder.Models.Transaction objects
+        user_id:
+          type: integer
+          description: The unique identifier of the user who performed the refund.
+          format: int64
+          nullable: true
+        duties:
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundDuty'
+          description: A list of duties that have been returned as part of the refund.
+        refund_duties:
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundDutyType'
+          description: A list of refunded duties
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    RefundDuty:
+      type: object
+      properties:
+        duty_id:
+          type: integer
+          format: int64
+          nullable: true
+        amount_set:
+          $ref: '#/components/schemas/PriceSet'
+      additionalProperties: { }
+    RefundDutyType:
+      type: object
+      properties:
+        duty_id:
+          type: integer
+          format: int64
+          nullable: true
+        refund_type:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    RefundLineItem:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        line_item:
+          $ref: '#/components/schemas/LineItem'
+        line_item_id:
+          type: integer
+          description: The unique identifier of the refund line item.
+          format: int64
+          nullable: true
+        quantity:
+          type: integer
+          description: The quantity of the associated line item that was returned.
+          format: int32
+          nullable: true
+        total_tax:
+          type: number
+          description: Tax amount refunded
+          format: decimal
+          nullable: true
+        subtotal:
+          type: number
+          description: Item subtotal
+          format: decimal
+          nullable: true
+        subtotal_set:
+          $ref: '#/components/schemas/PriceSet'
+        total_tax_set:
+          $ref: '#/components/schemas/PriceSet'
+        restock_type:
+          type: string
+          description: How this refund line item affects inventory levels.
+          nullable: true
+        location_id:
+          type: integer
+          description: "The unique identifier of the location where the items will be restocked.\r\nRequired when restock_type has the value return or cancel."
+          format: int64
+          nullable: true
+      additionalProperties: { }
+    RefundOrderAdjustment:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        order_id:
+          type: integer
+          description: The unique identifier of the order
+          format: int64
+          nullable: true
+        refund_id:
+          type: integer
+          description: The unique identifier of the refund
+          format: int64
+          nullable: true
+        amount:
+          type: number
+          description: The amount refunded (it is negative and does not include tax).
+          format: decimal
+          nullable: true
+        tax_amount:
+          type: number
+          description: The tax amount refunded (negative).
+          format: decimal
+          nullable: true
+        kind:
+          type: string
+          description: 'The type of adjustment. Values include "refund_discrepancy", "shipping_refund"'
+          nullable: true
+        reason:
+          type: string
+          description: Reason for the refund
+          nullable: true
+        amount_set:
+          $ref: '#/components/schemas/PriceSet'
+        tax_amount_set:
+          $ref: '#/components/schemas/PriceSet'
+      additionalProperties: { }
+    Shipping:
+      type: object
+      properties:
+        full_refund:
+          type: boolean
+          description: Whether to refund all remaining shipping.
+          nullable: true
+        amount:
+          type: number
+          description: Set a specific amount to refund for shipping. Takes precedence over full_refund.
+          format: decimal
+          nullable: true
+        maximum_refundable:
+          type: number
+          description: The maximum amount that can be refunded
+          format: decimal
+          nullable: true
+      additionalProperties: { }
+    ShippingLine:
+      type: object
+      properties:
+        carrier_identifier:
+          type: string
+          description: The carrier provided identifier.
+          nullable: true
+        code:
+          type: string
+          description: A reference to the shipping method.
+          nullable: true
+        phone:
+          type: string
+          description: The phone number used for the shipment.
+          nullable: true
+        price:
+          type: number
+          description: The price of this shipping method.
+          format: decimal
+          nullable: true
+        discounted_price:
+          type: number
+          description: The discounted price of this shipping method.
+          format: decimal
+          nullable: true
+        discount_allocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscountAllocation'
+          description: An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
+        source:
+          type: string
+          description: The source of the shipping method.
+          nullable: true
+        title:
+          type: string
+          description: The title of the shipping method.
+          nullable: true
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+          description: 'A list of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.ShippingLine.'
+        price_set:
+          $ref: '#/components/schemas/PriceSet'
+        discounted_price_set:
+          $ref: '#/components/schemas/PriceSet'
+      additionalProperties: { }
+    Status:
+      enum:
+        - Open
+        - Closed
+        - Cancelled
+        - Any
+      type: string
+      additionalProperties: { }
+    TaxLine:
+      type: object
+      properties:
+        price:
+          type: number
+          description: The amount of tax to be charged.
+          format: decimal
+          nullable: true
+        rate:
+          type: number
+          description: The rate of tax to be applied.
+          format: decimal
+          nullable: true
+        title:
+          type: string
+          description: The name of the tax.
+          nullable: true
+        price_set:
+          $ref: '#/components/schemas/PriceSet'
+      additionalProperties: { }
+    Transaction:
+      required:
+        - id
+      type: object
+      properties:
+        amount:
+          type: number
+          description: The amount of money that the transaction was for.
+          format: decimal
+          nullable: true
+        authorization:
+          type: string
+          description: The authorization code associated with the transaction.
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the transaction was created.
+          format: date-time
+          nullable: true
+        device_id:
+          type: string
+          description: The unique identifier for the device.
+          nullable: true
+        gateway:
+          type: string
+          description: The name of the gateway the transaction was issued through.
+          nullable: true
+        source_name:
+          type: string
+          description: 'The origin of the transaction. This is set by Shopify and cannot be overridden. Example values include: ''web'', ''pos'', ''iphone'', ''android''.'
+          readOnly: true
+        source:
+          type: string
+          description: The origin of the transaction. Set to "external" to create a cash transaction for the associated order.
+          nullable: true
+        payment_details:
+          $ref: '#/components/schemas/PaymentDetails'
+        kind:
+          type: string
+          description: 'The kind of transaction. Known values are ''authorization'', ''capture'', ''sale'', ''void'' and ''refund''.'
+          nullable: true
+        order_id:
+          type: integer
+          description: A unique numeric identifier for the order.
+          format: int64
+          nullable: true
+        receipt:
+          description: Shopify does not currently offer documentation for this object.
+        error_code:
+          type: string
+          description: 'A standardized error code, e.g. ''incorrect_number'', independent of the payment provider. Value can be null. A full list of known values can be found at https://help.shopify.com/api/reference/transaction.'
+          nullable: true
+        status:
+          type: string
+          description: 'The status of the transaction. Valid values are: pending, failure, success or error.'
+          nullable: true
+        test:
+          type: boolean
+          description: Whether the transaction is for testing purposes.
+          nullable: true
+        user_id:
+          type: integer
+          description: The unique identifier for the user.
+          format: int64
+          nullable: true
+        currency:
+          type: string
+          description: The three letter code (ISO 4217) for the currency used for the payment.
+          nullable: true
+        message:
+          type: string
+          description: This property is undocumented by Shopify.
+          nullable: true
+        location_id:
+          type: integer
+          description: This property is undocumented by Shopify.
+          format: int64
+          nullable: true
+        parent_id:
+          type: integer
+          description: This property is undocumented by Shopify.
+          format: int64
+          nullable: true
+        maximum_refundable:
+          type: number
+          description: The maximum amount that can be refunded
+          format: decimal
+          nullable: true
+        currency_exchange_adjustment:
+          $ref: '#/components/schemas/CurrencyExchangeAdjustment'
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    UpdateDraftOrder:
+      required:
+        - id
+      type: object
+      properties:
+        order_id:
+          type: integer
+          description: 'The unique numeric identifier for the order associated to the draft order, once created.'
+          format: int64
+          nullable: true
+        name:
+          type: string
+          description: Name of the draft order.
+          nullable: true
+        customer:
+          $ref: '#/components/schemas/Customer'
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        note:
+          type: string
+          description: The text of an optional note that a shop owner can attach to the draft order.
+          nullable: true
+        note_attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteAttribute'
+          description: Extra information that is added to the order.
+        email:
+          type: string
+          description: The customer's email address.
+          nullable: true
+        currency:
+          type: string
+          description: The three letter code (ISO 4217) for the currency used for the payment.
+          nullable: true
+        invoice_sent_at:
+          type: string
+          description: 'This auto-generated property is the date and time when the invoice was emailed to the customer, in ISO 8601 format.'
+          format: date-time
+          nullable: true
+        invoice_url:
+          type: string
+          description: The URL for the invoice.
+          nullable: true
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DraftLineItem'
+          description: Product variant line item or custom line item associated to the draft order. Each draft order must include at least one line_item.
+        shipping_line:
+          $ref: '#/components/schemas/DraftShippingLine'
+        tags:
+          type: string
+          description: 'Tags are additional short descriptors, commonly used for filtering and searching, formatted as a string of comma-separated values.'
+          nullable: true
+        tax_exempt:
+          type: boolean
+          description: 'Sets whether or not taxes are exempt for the draft order. If this field is set to false, then Shopify will refer to the taxable field for each line_item. If a customer is applied to the draft order, then Shopify will use the customer''s tax_exempt field instead.'
+          nullable: true
+        tax_exemptions:
+          type: array
+          items:
+            type: string
+          description: Whether the customer is exempt from paying specific taxes on their order
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+          description: 'An array of tax_line objects, each of which details the total taxes applicable to the order. When creating an order through the API, tax lines may be specified on the order or the line items but not both. Tax lines specified on the order are split on the taxable line items in the created order.'
+        applied_discount:
+          $ref: '#/components/schemas/AppliedDiscount'
+        taxes_included:
+          type: boolean
+          description: States whether or not taxes are included in the order subtotal.
+          nullable: true
+        total_tax:
+          type: number
+          description: The sum of all the taxes applied to the order (must be positive).
+          format: decimal
+          nullable: true
+        subtotal_price:
+          type: number
+          description: Price of the order before shipping and taxes
+          format: decimal
+          nullable: true
+        total_price:
+          type: number
+          description: 'The sum of all the prices of all the items in the order, taxes and discounts included (must be positive).'
+          format: decimal
+          nullable: true
+        completed_at:
+          type: string
+          description: Date at which order is created and the draft order changes to completed status. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          description: 'This auto-generated property is the date and time when the draft order was created in Shopify, in ISO 8601 format.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the order was last modified. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        status:
+          type: string
+          description: "Once a draft order is set to status completed the only further draft order modifications that can be made are adding tags or metafields. No other draft order actions are permitted.\r\nKnown values are \"open\", \"invoice_sent\", and \"completed\"."
+          nullable: true
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/DraftOrderMetafield'
+        use_customer_default_address:
+          type: boolean
+          description: An optional boolean that you can send as part of a draft order object to load customer shipping information.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    UpdateDraftOrderRequest:
+      required:
+        - id
+      type: object
+      properties:
+        order_id:
+          type: integer
+          description: 'The unique numeric identifier for the order associated to the draft order, once created.'
+          format: int64
+          nullable: true
+        name:
+          type: string
+          description: Name of the draft order.
+          nullable: true
+        customer:
+          $ref: '#/components/schemas/Customer'
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        note:
+          type: string
+          description: The text of an optional note that a shop owner can attach to the draft order.
+          nullable: true
+        note_attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteAttribute'
+          description: Extra information that is added to the order.
+        email:
+          type: string
+          description: The customer's email address.
+          nullable: true
+        currency:
+          type: string
+          description: The three letter code (ISO 4217) for the currency used for the payment.
+          nullable: true
+        invoice_sent_at:
+          type: string
+          description: 'This auto-generated property is the date and time when the invoice was emailed to the customer, in ISO 8601 format.'
+          format: date-time
+          nullable: true
+        invoice_url:
+          type: string
+          description: The URL for the invoice.
+          nullable: true
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DraftLineItem'
+          description: Product variant line item or custom line item associated to the draft order. Each draft order must include at least one line_item.
+        shipping_line:
+          $ref: '#/components/schemas/DraftShippingLine'
+        tags:
+          type: string
+          description: 'Tags are additional short descriptors, commonly used for filtering and searching, formatted as a string of comma-separated values.'
+          nullable: true
+        tax_exempt:
+          type: boolean
+          description: 'Sets whether or not taxes are exempt for the draft order. If this field is set to false, then Shopify will refer to the taxable field for each line_item. If a customer is applied to the draft order, then Shopify will use the customer''s tax_exempt field instead.'
+          nullable: true
+        tax_exemptions:
+          type: array
+          items:
+            type: string
+          description: Whether the customer is exempt from paying specific taxes on their order
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+          description: 'An array of tax_line objects, each of which details the total taxes applicable to the order. When creating an order through the API, tax lines may be specified on the order or the line items but not both. Tax lines specified on the order are split on the taxable line items in the created order.'
+        applied_discount:
+          $ref: '#/components/schemas/AppliedDiscount'
+        taxes_included:
+          type: boolean
+          description: States whether or not taxes are included in the order subtotal.
+          nullable: true
+        total_tax:
+          type: number
+          description: The sum of all the taxes applied to the order (must be positive).
+          format: decimal
+          nullable: true
+        subtotal_price:
+          type: number
+          description: Price of the order before shipping and taxes
+          format: decimal
+          nullable: true
+        total_price:
+          type: number
+          description: 'The sum of all the prices of all the items in the order, taxes and discounts included (must be positive).'
+          format: decimal
+          nullable: true
+        completed_at:
+          type: string
+          description: Date at which order is created and the draft order changes to completed status. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          description: 'This auto-generated property is the date and time when the draft order was created in Shopify, in ISO 8601 format.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the order was last modified. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        status:
+          type: string
+          description: "Once a draft order is set to status completed the only further draft order modifications that can be made are adding tags or metafields. No other draft order actions are permitted.\r\nKnown values are \"open\", \"invoice_sent\", and \"completed\"."
+          nullable: true
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/DraftOrderMetafield'
+        use_customer_default_address:
+          type: boolean
+          description: An optional boolean that you can send as part of a draft order object to load customer shipping information.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        draft_order:
+          $ref: '#/components/schemas/UpdateDraftOrder'
+      additionalProperties: { }
+    UpdateOrder:
+      required:
+        - id
+      type: object
+      properties:
+        app_id:
+          type: integer
+          description: Unique identifier of the app who created the order.
+          format: int64
+          nullable: true
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        browser_ip:
+          type: string
+          description: The IP address of the browser used by the customer when placing the order.
+          nullable: true
+        buyer_accepts_marketing:
+          type: boolean
+          description: "Indicates whether or not the person who placed the order would like to receive email updates from the shop.\r\nThis is set when checking the \"I want to receive occasional emails about new products, promotions and other news\" checkbox during checkout."
+          nullable: true
+        cancel_reason:
+          type: string
+          description: 'The reason why the order was cancelled. If the order was not cancelled, this value is null. Known values are "customer", "fraud", "inventory" and "other".'
+          nullable: true
+        cancelled_at:
+          type: string
+          description: 'The date and time when the order was cancelled. If the order was not cancelled, this value is null.'
+          format: date-time
+          nullable: true
+        cart_token:
+          type: string
+          description: Unique identifier for a particular cart that is attached to a particular order.
+          nullable: true
+        client_details:
+          $ref: '#/components/schemas/ClientDetails'
+        closed_at:
+          type: string
+          description: 'The date and time when the order was closed. If the order was not clsoed, this value is null.'
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the order was created in Shopify.
+          format: date-time
+          nullable: true
+        currency:
+          type: string
+          description: The three letter code (ISO 4217) for the currency used for the payment.
+          nullable: true
+        customer:
+          $ref: '#/components/schemas/Customer'
+        customer_locale:
+          type: string
+          description: 'The two or three letter language code, optionally followed by a region modifier. Example values could be ''en'', ''en-CA'', ''en-PIRATE''.'
+          nullable: true
+        device_id:
+          type: integer
+          description: The unique numeric identifier of the POS device used.
+          format: int64
+          nullable: true
+        discount_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscountCode'
+          description: Applicable discount codes that can be applied to the order.
+        discount_applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscountApplication'
+          description: An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
+        email:
+          type: string
+          description: "The order's email address. Note: On and after 2015-11-03, you should be using !:ContactEmail to refer to the customer's email address.\r\nBetween 2015-11-03 and 2015-12-03, updates to an order's email will also update the customer's email. This is temporary so apps can be migrated over to\r\ndoing customer updates rather than order updates to change the contact email. After 2015-12-03, updating updating an order's email will no longer update\r\nthe customer's email and apps will have to use the customer update endpoint to do so."
+          nullable: true
+        financial_status:
+          type: string
+          description: 'The financial status of an order. Known values are "authorized", "paid", "pending", "partially_paid", "partially_refunded", "refunded" and "voided".'
+          nullable: true
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+          description: An array of OpenShopify.Admin.Builder.Models.Fulfillment objects for this order.
+        fulfillment_status:
+          type: string
+          description: 'The fulfillment status for this order. Known values are ''fulfilled'', ''null'' and ''partial''.'
+          nullable: true
+        phone:
+          type: string
+          description: The customer's phone number.
+          nullable: true
+        tags:
+          type: string
+          description: 'Tags are additional short descriptors, commonly used for filtering and searching, formatted as a string of comma-separated values.'
+          nullable: true
+        landing_site:
+          type: string
+          description: The URL for the page where the buyer landed when entering the shop.
+          nullable: true
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+          description: 'An array of OpenShopify.Admin.Builder.Models.LineItem objects, each one containing information about an item in the order.'
+        location_id:
+          type: integer
+          description: The unique numeric identifier for the physical location at which the order was processed. Only present on orders processed at point of sale.
+          format: int64
+          nullable: true
+        name:
+          type: string
+          description: 'The customer''s order name as represented by a number, e.g. ''#1001''.'
+          nullable: true
+        note:
+          type: string
+          description: The text of an optional note that a shop owner can attach to the order.
+          nullable: true
+        note_attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteAttribute'
+          description: Extra information that is added to the order.
+        number:
+          type: integer
+          description: Numerical identifier unique to the shop. A number is sequential and starts at 1000.
+          format: int32
+          nullable: true
+        order_number:
+          type: integer
+          description: "A unique numeric identifier for the order. This one is used by the shop owner and customer.\r\nThis is different from the id property, which is also a unique numeric identifier for the order, but used for API purposes."
+          format: int32
+          nullable: true
+        order_status_url:
+          type: string
+          description: The URL pointing to the order status web page. The URL will be null unless the order was created from a checkout.
+          nullable: true
+        payment_gateway_names:
+          type: array
+          items:
+            type: string
+          description: The list of all payment gateways used for the order.
+        processed_at:
+          type: string
+          description: The date that the order was processed at.
+          format: date-time
+          nullable: true
+        processing_method:
+          type: string
+          description: 'The type of payment processing method. Known values are ''checkout'', ''direct'', ''manual'', ''offsite'', ''express'', ''free'' and ''none''.'
+          nullable: true
+        referring_site:
+          type: string
+          description: The website that the customer clicked on to come to the shop.
+          nullable: true
+        refunds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refund'
+          description: The list of OpenShopify.Admin.Builder.Models.Refund objects applied to the order
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        shipping_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShippingLine'
+          description: 'An array of OpenShopify.Admin.Builder.Models.ShippingLine objects, each of which details the shipping methods used.'
+        source_name:
+          type: string
+          description: "Where the order originated. May only be set during creation, and is not writeable thereafter.\r\nOrders created via the API may be assigned any string of your choice except for \"web\", \"pos\", \"iphone\", and \"android\".\r\nDefault is \"api\"."
+          nullable: true
+        subtotal_price:
+          type: number
+          description: Price of the order before shipping and taxes
+          format: decimal
+          nullable: true
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+          description: 'An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the total taxes applicable to the order.'
+        taxes_included:
+          type: boolean
+          description: States whether or not taxes are included in the order subtotal.
+          nullable: true
+        test:
+          type: boolean
+          description: States whether this is a test order.
+          nullable: true
+        token:
+          type: string
+          description: Unique identifier for a particular order.
+          nullable: true
+        total_discounts:
+          type: number
+          description: The total amount of the discounts applied to the price of the order.
+          format: decimal
+          nullable: true
+        total_line_items_price:
+          type: number
+          description: The sum of all the prices of all the items in the order.
+          format: decimal
+          nullable: true
+        total_tip_received:
+          type: number
+          description: The sum of all the tips in the order.
+          format: decimal
+          nullable: true
+        total_price:
+          type: number
+          description: 'The sum of all the prices of all the items in the order, with taxes and discounts included (must be positive).'
+          format: decimal
+          nullable: true
+        total_tax:
+          type: number
+          description: The sum of all the taxes applied to the order (must be positive).
+          format: decimal
+          nullable: true
+        total_weight:
+          type: integer
+          description: 'The sum of all the weights of the line items in the order, in grams.'
+          format: int64
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the order was last modified.
+          format: date-time
+          nullable: true
+        user_id:
+          type: integer
+          description: The unique numerical identifier for the user logged into the terminal at the time the order was processed at. Only present on orders processed at point of sale.
+          format: int64
+          nullable: true
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+          description: "An array of OpenShopify.Admin.Builder.Models.Transaction objects that detail all of the transactions in\r\nthis order."
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderMetafield'
+        current_total_duties_set:
+          $ref: '#/components/schemas/PriceSet'
+        original_total_duties_set:
+          $ref: '#/components/schemas/PriceSet'
+        presentment_currency:
+          type: string
+          description: The three letter code (ISO 4217) for the currency used used to display prices to the customer.
+          nullable: true
+        total_line_items_price_set:
+          $ref: '#/components/schemas/PriceSet'
+        total_discounts_set:
+          $ref: '#/components/schemas/PriceSet'
+        total_shipping_price_set:
+          $ref: '#/components/schemas/PriceSet'
+        subtotal_price_set:
+          $ref: '#/components/schemas/PriceSet'
+        total_price_set:
+          $ref: '#/components/schemas/PriceSet'
+        total_tax_set:
+          $ref: '#/components/schemas/PriceSet'
+        estimated_taxes:
+          type: boolean
+          description: Indicates whether taxes on an order are estimated. Will be set to false when taxes on an order are finalized and aren't subject to any change.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    UpdateOrderRequest:
+      required:
+        - id
+      type: object
+      properties:
+        app_id:
+          type: integer
+          description: Unique identifier of the app who created the order.
+          format: int64
+          nullable: true
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        browser_ip:
+          type: string
+          description: The IP address of the browser used by the customer when placing the order.
+          nullable: true
+        buyer_accepts_marketing:
+          type: boolean
+          description: "Indicates whether or not the person who placed the order would like to receive email updates from the shop.\r\nThis is set when checking the \"I want to receive occasional emails about new products, promotions and other news\" checkbox during checkout."
+          nullable: true
+        cancel_reason:
+          type: string
+          description: 'The reason why the order was cancelled. If the order was not cancelled, this value is null. Known values are "customer", "fraud", "inventory" and "other".'
+          nullable: true
+        cancelled_at:
+          type: string
+          description: 'The date and time when the order was cancelled. If the order was not cancelled, this value is null.'
+          format: date-time
+          nullable: true
+        cart_token:
+          type: string
+          description: Unique identifier for a particular cart that is attached to a particular order.
+          nullable: true
+        client_details:
+          $ref: '#/components/schemas/ClientDetails'
+        closed_at:
+          type: string
+          description: 'The date and time when the order was closed. If the order was not clsoed, this value is null.'
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the order was created in Shopify.
+          format: date-time
+          nullable: true
+        currency:
+          type: string
+          description: The three letter code (ISO 4217) for the currency used for the payment.
+          nullable: true
+        customer:
+          $ref: '#/components/schemas/Customer'
+        customer_locale:
+          type: string
+          description: 'The two or three letter language code, optionally followed by a region modifier. Example values could be ''en'', ''en-CA'', ''en-PIRATE''.'
+          nullable: true
+        device_id:
+          type: integer
+          description: The unique numeric identifier of the POS device used.
+          format: int64
+          nullable: true
+        discount_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscountCode'
+          description: Applicable discount codes that can be applied to the order.
+        discount_applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscountApplication'
+          description: An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
+        email:
+          type: string
+          description: "The order's email address. Note: On and after 2015-11-03, you should be using !:ContactEmail to refer to the customer's email address.\r\nBetween 2015-11-03 and 2015-12-03, updates to an order's email will also update the customer's email. This is temporary so apps can be migrated over to\r\ndoing customer updates rather than order updates to change the contact email. After 2015-12-03, updating updating an order's email will no longer update\r\nthe customer's email and apps will have to use the customer update endpoint to do so."
+          nullable: true
+        financial_status:
+          type: string
+          description: 'The financial status of an order. Known values are "authorized", "paid", "pending", "partially_paid", "partially_refunded", "refunded" and "voided".'
+          nullable: true
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+          description: An array of OpenShopify.Admin.Builder.Models.Fulfillment objects for this order.
+        fulfillment_status:
+          type: string
+          description: 'The fulfillment status for this order. Known values are ''fulfilled'', ''null'' and ''partial''.'
+          nullable: true
+        phone:
+          type: string
+          description: The customer's phone number.
+          nullable: true
+        tags:
+          type: string
+          description: 'Tags are additional short descriptors, commonly used for filtering and searching, formatted as a string of comma-separated values.'
+          nullable: true
+        landing_site:
+          type: string
+          description: The URL for the page where the buyer landed when entering the shop.
+          nullable: true
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+          description: 'An array of OpenShopify.Admin.Builder.Models.LineItem objects, each one containing information about an item in the order.'
+        location_id:
+          type: integer
+          description: The unique numeric identifier for the physical location at which the order was processed. Only present on orders processed at point of sale.
+          format: int64
+          nullable: true
+        name:
+          type: string
+          description: 'The customer''s order name as represented by a number, e.g. ''#1001''.'
+          nullable: true
+        note:
+          type: string
+          description: The text of an optional note that a shop owner can attach to the order.
+          nullable: true
+        note_attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteAttribute'
+          description: Extra information that is added to the order.
+        number:
+          type: integer
+          description: Numerical identifier unique to the shop. A number is sequential and starts at 1000.
+          format: int32
+          nullable: true
+        order_number:
+          type: integer
+          description: "A unique numeric identifier for the order. This one is used by the shop owner and customer.\r\nThis is different from the id property, which is also a unique numeric identifier for the order, but used for API purposes."
+          format: int32
+          nullable: true
+        order_status_url:
+          type: string
+          description: The URL pointing to the order status web page. The URL will be null unless the order was created from a checkout.
+          nullable: true
+        payment_gateway_names:
+          type: array
+          items:
+            type: string
+          description: The list of all payment gateways used for the order.
+        processed_at:
+          type: string
+          description: The date that the order was processed at.
+          format: date-time
+          nullable: true
+        processing_method:
+          type: string
+          description: 'The type of payment processing method. Known values are ''checkout'', ''direct'', ''manual'', ''offsite'', ''express'', ''free'' and ''none''.'
+          nullable: true
+        referring_site:
+          type: string
+          description: The website that the customer clicked on to come to the shop.
+          nullable: true
+        refunds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refund'
+          description: The list of OpenShopify.Admin.Builder.Models.Refund objects applied to the order
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        shipping_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShippingLine'
+          description: 'An array of OpenShopify.Admin.Builder.Models.ShippingLine objects, each of which details the shipping methods used.'
+        source_name:
+          type: string
+          description: "Where the order originated. May only be set during creation, and is not writeable thereafter.\r\nOrders created via the API may be assigned any string of your choice except for \"web\", \"pos\", \"iphone\", and \"android\".\r\nDefault is \"api\"."
+          nullable: true
+        subtotal_price:
+          type: number
+          description: Price of the order before shipping and taxes
+          format: decimal
+          nullable: true
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+          description: 'An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the total taxes applicable to the order.'
+        taxes_included:
+          type: boolean
+          description: States whether or not taxes are included in the order subtotal.
+          nullable: true
+        test:
+          type: boolean
+          description: States whether this is a test order.
+          nullable: true
+        token:
+          type: string
+          description: Unique identifier for a particular order.
+          nullable: true
+        total_discounts:
+          type: number
+          description: The total amount of the discounts applied to the price of the order.
+          format: decimal
+          nullable: true
+        total_line_items_price:
+          type: number
+          description: The sum of all the prices of all the items in the order.
+          format: decimal
+          nullable: true
+        total_tip_received:
+          type: number
+          description: The sum of all the tips in the order.
+          format: decimal
+          nullable: true
+        total_price:
+          type: number
+          description: 'The sum of all the prices of all the items in the order, with taxes and discounts included (must be positive).'
+          format: decimal
+          nullable: true
+        total_tax:
+          type: number
+          description: The sum of all the taxes applied to the order (must be positive).
+          format: decimal
+          nullable: true
+        total_weight:
+          type: integer
+          description: 'The sum of all the weights of the line items in the order, in grams.'
+          format: int64
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the order was last modified.
+          format: date-time
+          nullable: true
+        user_id:
+          type: integer
+          description: The unique numerical identifier for the user logged into the terminal at the time the order was processed at. Only present on orders processed at point of sale.
+          format: int64
+          nullable: true
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+          description: "An array of OpenShopify.Admin.Builder.Models.Transaction objects that detail all of the transactions in\r\nthis order."
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderMetafield'
+        current_total_duties_set:
+          $ref: '#/components/schemas/PriceSet'
+        original_total_duties_set:
+          $ref: '#/components/schemas/PriceSet'
+        presentment_currency:
+          type: string
+          description: The three letter code (ISO 4217) for the currency used used to display prices to the customer.
+          nullable: true
+        total_line_items_price_set:
+          $ref: '#/components/schemas/PriceSet'
+        total_discounts_set:
+          $ref: '#/components/schemas/PriceSet'
+        total_shipping_price_set:
+          $ref: '#/components/schemas/PriceSet'
+        subtotal_price_set:
+          $ref: '#/components/schemas/PriceSet'
+        total_price_set:
+          $ref: '#/components/schemas/PriceSet'
+        total_tax_set:
+          $ref: '#/components/schemas/PriceSet'
+        estimated_taxes:
+          type: boolean
+          description: Indicates whether taxes on an order are estimated. Will be set to false when taxes on an order are finalized and aren't subject to any change.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        order:
+          $ref: '#/components/schemas/UpdateOrder'
+      additionalProperties: { }
+    UpdateOrderRisk:
+      required:
+        - id
+      type: object
+      properties:
+        cause_cancel:
+          type: boolean
+          description: "Use this flag when a fraud check is accompanied with a call to the Orders API to cancel the order. This will indicate to the merchant that this risk was severe enough to force cancellation of the order.\r\nNote: Setting this parameter does not cancel the order. This must be done by the Orders API."
+          nullable: true
+        checkout_id:
+          type: integer
+          description: The ID of the checkout that the order risk belongs to.
+          format: int64
+          nullable: true
+        display:
+          type: boolean
+          description: States whether or not the risk is displayed. Valid values are "true" or "false".
+          nullable: true
+        order_id:
+          type: integer
+          description: The id of the order the order risk belongs to
+          format: int64
+          nullable: true
+        message:
+          type: string
+          description: A message that should be displayed to the merchant to indicate the results of the fraud check.
+          nullable: true
+        recommendation:
+          type: string
+          description: 'The recommended action given to the merchant. Known values are ''cancel'', ''investigate'' and ''accept''.'
+          nullable: true
+        score:
+          type: number
+          description: A number between 0 and 1 indicating percentage likelihood of being fraud.
+          format: decimal
+          nullable: true
+        source:
+          type: string
+          description: 'This indicates the source of the risk assessment. Known values are ''External'', ''Internal'' and ''Gateway''.'
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    UpdateOrderRiskRequest:
+      required:
+        - id
+      type: object
+      properties:
+        cause_cancel:
+          type: boolean
+          description: "Use this flag when a fraud check is accompanied with a call to the Orders API to cancel the order. This will indicate to the merchant that this risk was severe enough to force cancellation of the order.\r\nNote: Setting this parameter does not cancel the order. This must be done by the Orders API."
+          nullable: true
+        checkout_id:
+          type: integer
+          description: The ID of the checkout that the order risk belongs to.
+          format: int64
+          nullable: true
+        display:
+          type: boolean
+          description: States whether or not the risk is displayed. Valid values are "true" or "false".
+          nullable: true
+        order_id:
+          type: integer
+          description: The id of the order the order risk belongs to
+          format: int64
+          nullable: true
+        message:
+          type: string
+          description: A message that should be displayed to the merchant to indicate the results of the fraud check.
+          nullable: true
+        recommendation:
+          type: string
+          description: 'The recommended action given to the merchant. Known values are ''cancel'', ''investigate'' and ''accept''.'
+          nullable: true
+        score:
+          type: number
+          description: A number between 0 and 1 indicating percentage likelihood of being fraud.
+          format: decimal
+          nullable: true
+        source:
+          type: string
+          description: 'This indicates the source of the risk assessment. Known values are ''External'', ''Internal'' and ''Gateway''.'
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        order_risk:
+          $ref: '#/components/schemas/UpdateOrderRisk'
       additionalProperties: { }
   securitySchemes:
     ApiKey:

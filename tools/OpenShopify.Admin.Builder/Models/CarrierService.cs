@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify CarrierService.
     /// </summary>
-    public class Carrier : ShopifyObject
+    public class CarrierServiceBase
     {
         /// <summary>
         /// States whether or not this carrier service is active. Valid values are "true" and "false".

@@ -22,7 +22,7 @@ public class CustomerController : CustomerControllerBase
     /// <inheritdoc />
     [HttpPost, Route("customers.json")]
     [ProducesResponseType(typeof(CustomerItem), StatusCodes.Status201Created)]
-    public override Task CreateCustomer(CustomerItem request)
+    public override Task CreateCustomer(CreateCustomerRequest request)
     {
         throw new NotImplementedException();
     }
@@ -46,30 +46,46 @@ public class CustomerController : CustomerControllerBase
     /// <inheritdoc />
     [HttpPut, Route("customers/{customer_id:long}.json")]
     [ProducesResponseType(typeof(CustomerItem), StatusCodes.Status200OK)]
-    public override Task UpdateCustomer(CustomerItem request, long customer_id)
+    public override Task UpdateCustomer(UpdateCustomerRequest request, long customer_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
+    [IgnoreApi, HttpPost, Route("customers/{customer_id:long}/account_activation_url.invalid")]
+    [ProducesResponseType(typeof(AccountActivation), StatusCodes.Status200OK)]
+    public override Task CreateAccountActivationUrlForCustomer(CreateCustomerRequest request, long customer_id)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc cref="CustomerControllerBase.CreateAccountActivationUrlForCustomer" />
     [HttpPost, Route("customers/{customer_id:long}/account_activation_url.json")]
     [ProducesResponseType(typeof(AccountActivation), StatusCodes.Status200OK)]
-    public override Task CreateAccountActivationURLForCustomer(CustomerItem request, long customer_id)
+    public Task CreateAccountActivationUrlForCustomer(long customer_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [HttpPost, Route("customers/{customer_id:long}/send_invite.json")]
-    [ProducesResponseType(typeof(CustomerInvite), StatusCodes.Status201Created)]
+    [IgnoreApi, HttpPost, Route("customers/{customer_id:long}/send_invite.invalid")]
+    [ProducesResponseType(typeof(CustomerInviteItem), StatusCodes.Status201Created)]
     public override Task SendAccountInviteToCustomer(long customer_id)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc cref="CustomerControllerBase.SendAccountInviteToCustomer" />
+    [HttpPost, Route("customers/{customer_id:long}/send_invite.json")]
+    [ProducesResponseType(typeof(CustomerInviteItem), StatusCodes.Status201Created)]
+    public Task SendAccountInviteToCustomer(CreateCustomerInviteRequest request, long customer_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("customers/count.json")]
-    [ProducesResponseType(typeof(CustomerCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveCountOfCustomers()
     {
         throw new NotImplementedException();
@@ -79,6 +95,18 @@ public class CustomerController : CustomerControllerBase
     [HttpGet, Route("customers/{customer_id:long}/orders.json")]
     [ProducesResponseType(typeof(OrderList), StatusCodes.Status200OK)]
     public override Task RetrieveAllOrdersThatBelongToCustomer(long customer_id, string? status)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Delete a customer (UNDOCUMENTED)
+    /// </summary>
+    /// <param name="customer_id"></param>
+    /// <returns></returns>
+    [HttpDelete, Route("customers/{customer_id:long}.json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public Task DeleteCustomer(long customer_id)
     {
         throw new NotImplementedException();
     }

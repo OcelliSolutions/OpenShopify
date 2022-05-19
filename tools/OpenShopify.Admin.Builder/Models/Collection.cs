@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class Collection : ShopifyObject
+    public class CollectionBase
     {
         /// <summary>
         /// A description of the collection, complete with HTML markup. Many templates display this on their collection pages. 

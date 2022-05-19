@@ -6,7 +6,7 @@ namespace OpenShopify.Common.Models
     /// <summary>
     /// An object representing an access scope
     /// </summary>
-    public class AccessScope
+    public class AccessScopeBase
     {
         /// <summary>
         /// The scope's handle, such as "read_orders", "write_products", etc...

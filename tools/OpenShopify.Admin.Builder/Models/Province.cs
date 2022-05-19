@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class Province : ShopifyObject
+    public class ProvinceBase
     {
         /// <summary>
         /// The unique numeric identifier for the country.

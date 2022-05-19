@@ -23,10 +23,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/StorefrontAccessTokenItem'
+              $ref: '#/components/schemas/CreateStorefrontAccessTokenRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/StorefrontAccessTokenItem'
+              $ref: '#/components/schemas/CreateStorefrontAccessTokenRequest'
       responses:
         '200':
           description: Success
@@ -136,24 +136,9 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
+    CreateStorefrontAccessToken:
       type: object
       properties:
-        errors:
-          type: string
-          nullable: true
-      additionalProperties: false
-    StorefrontAccessToken:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         access_token:
           type: string
           description: The issued public access token.
@@ -172,6 +157,48 @@ components:
           description: "An arbitrary title for each token determined by the developer/application, used for reference purposes.\r\nNo constraint on uniqueness."
           nullable: true
       additionalProperties: { }
+    CreateStorefrontAccessTokenRequest:
+      type: object
+      properties:
+        storefront_access_token:
+          $ref: '#/components/schemas/CreateStorefrontAccessToken'
+      additionalProperties: { }
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+    StorefrontAccessToken:
+      required:
+        - id
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: The issued public access token.
+          nullable: true
+        access_scope:
+          type: string
+          description: 'An application-dependant, comma separated list of permissions associated with the token.'
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the public access token was created. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        title:
+          type: string
+          description: "An arbitrary title for each token determined by the developer/application, used for reference purposes.\r\nNo constraint on uniqueness."
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
     StorefrontAccessTokenItem:
       type: object
       properties:
@@ -185,7 +212,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/StorefrontAccessToken'
-          nullable: true
       additionalProperties: { }
   securitySchemes:
     ApiKey:

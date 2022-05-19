@@ -6,7 +6,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify blog article.
     /// </summary>
-    public class Article : ShopifyObject
+    public class ArticleBase
     {
         /// <summary>
         /// The name of the author of this article

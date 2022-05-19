@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify collect.
     /// </summary>
-    public class Collect : ShopifyObject
+    public class CollectBase
     {
         /// <summary>
         /// The id of the custom collection containing the product.

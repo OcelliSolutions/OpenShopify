@@ -21,8 +21,8 @@ public class PaymentController : PaymentControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("checkouts/{token:long}/payments.json")]
-    public override Task CreateNewPayment(PaymentItem request, string amount, string request_details, string session_id, string token,
-        string unique_token)
+    public override Task CreateNewPayment(CreatePaymentRequest request, string amount, string request_details, string session_id,
+        string token, string unique_token)
     {
         throw new NotImplementedException();
     }
@@ -44,7 +44,7 @@ public class PaymentController : PaymentControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("checkouts/{token:long}/payments/count.json")]
-    [ProducesResponseType(typeof(PaymentCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task CountNumberOfPaymentsAttemptedOnCheckout(string token)
     {
         throw new NotImplementedException();

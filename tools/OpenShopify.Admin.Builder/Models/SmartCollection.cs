@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An entity representing a Shopify Smart Collection Object.
     /// </summary>
-    public class SmartCollection : ShopifyObject
+    public class SmartCollectionBase
     {
         /// <summary>
         /// The description of the smart collection, complete with HTML markup. Many templates display this on their smart collection page.

@@ -49,7 +49,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<InventoryItemItem>> UpdateExistingInventoryItemAsync(long inventoryItemId, InventoryItemItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<InventoryItemItem>> UpdateExistingInventoryItemAsync(long inventoryItemId, UpdateInventoryItemRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -270,7 +270,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryItemItem>> UpdateExistingInventoryItemAsync(long inventoryItemId, InventoryItemItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryItemItem>> UpdateExistingInventoryItemAsync(long inventoryItemId, UpdateInventoryItemRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (inventoryItemId == null)
                 throw new System.ArgumentNullException("inventoryItemId");
@@ -1157,7 +1157,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<LocationCount>> RetrieveCountOfLocationsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfLocationsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1371,7 +1371,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<LocationCount>> RetrieveCountOfLocationsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfLocationsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/locations/count.json");
@@ -1408,12 +1408,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<LocationCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<LocationCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -1637,7 +1637,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
+        public long Id { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
         public string? AdminGraphqlApiId { get; set; } = default!;
@@ -1671,16 +1671,6 @@ namespace Ocelli.OpenShopify
     public partial class InventoryItem
     {
         /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
         /// The unique SKU (Stock Keeping Unit) of the inventory item.
         /// </summary>
 
@@ -1699,7 +1689,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("cost")]
-        public double? Cost { get; set; } = default!;
+        public decimal? Cost { get; set; } = default!;
 
         /// <summary>
         /// The two-digit code for the country where the inventory item was made.
@@ -1749,6 +1739,12 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
         public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -1875,22 +1871,9 @@ namespace Ocelli.OpenShopify
 
     }
 
-    /// <summary>
-    /// An object representing a physical store location.
-    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class Location
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// Whether the location is active.
         /// </summary>
@@ -2010,23 +1993,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("localized_province_name")]
         public string? LocalizedProvinceName { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class LocationCount
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2063,6 +2034,189 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("locations")]
         public System.Collections.Generic.ICollection<Location>? Locations { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateInventoryItem
+    {
+        /// <summary>
+        /// The unique SKU (Stock Keeping Unit) of the inventory item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("sku")]
+        public string? Sku { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the inventory item is tracked. If true, then inventory quantity changes are tracked by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracked")]
+        public bool? Tracked { get; set; } = default!;
+
+        /// <summary>
+        /// The unit cost of the inventory item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("cost")]
+        public decimal? Cost { get; set; } = default!;
+
+        /// <summary>
+        /// The two-digit code for the country where the inventory item was made.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_code_of_origin")]
+        public string? CountryCodeOfOrigin { get; set; } = default!;
+
+        /// <summary>
+        /// The two-digit code for the province where the inventory item was made. Used only if the shipping provider for the inventory item is Canada Post.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province_code_of_origin")]
+        public string? ProvinceCodeOfOrigin { get; set; } = default!;
+
+        /// <summary>
+        /// The general Harmonized System (HS) code for the inventory item. Used if a country-specific HS code is not available.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("harmonized_system_code")]
+        public string? HarmonizedSystemCode { get; set; } = default!;
+
+        /// <summary>
+        /// An array of country-specific Harmonized System (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_harmonized_system_codes")]
+        public System.Collections.Generic.ICollection<HSCode>? CountryHarmonizedSystemCodes { get; set; } = default!;
+
+        /// <summary>
+        /// Whether a customer needs to provide a shipping address when placing an order containing the inventory item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping")]
+        public bool? RequiresShipping { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product variant was created. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product variant was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateInventoryItemRequest
+    {
+        /// <summary>
+        /// The unique SKU (Stock Keeping Unit) of the inventory item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("sku")]
+        public string? Sku { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the inventory item is tracked. If true, then inventory quantity changes are tracked by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracked")]
+        public bool? Tracked { get; set; } = default!;
+
+        /// <summary>
+        /// The unit cost of the inventory item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("cost")]
+        public decimal? Cost { get; set; } = default!;
+
+        /// <summary>
+        /// The two-digit code for the country where the inventory item was made.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_code_of_origin")]
+        public string? CountryCodeOfOrigin { get; set; } = default!;
+
+        /// <summary>
+        /// The two-digit code for the province where the inventory item was made. Used only if the shipping provider for the inventory item is Canada Post.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province_code_of_origin")]
+        public string? ProvinceCodeOfOrigin { get; set; } = default!;
+
+        /// <summary>
+        /// The general Harmonized System (HS) code for the inventory item. Used if a country-specific HS code is not available.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("harmonized_system_code")]
+        public string? HarmonizedSystemCode { get; set; } = default!;
+
+        /// <summary>
+        /// An array of country-specific Harmonized System (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_harmonized_system_codes")]
+        public System.Collections.Generic.ICollection<HSCode>? CountryHarmonizedSystemCodes { get; set; } = default!;
+
+        /// <summary>
+        /// Whether a customer needs to provide a shipping address when placing an order containing the inventory item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping")]
+        public bool? RequiresShipping { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product variant was created. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product variant was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_item")]
+        public UpdateInventoryItem? InventoryItem { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

@@ -1,0 +1,193 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Threading" #>
+<#
+	var sections = new List<SectionTemplate>()
+	{
+		new ("AccessScope", hasId:false, canCreate:false, canUpdate:false),
+		new ("StorefrontAccessToken"),
+		new ("Report"),
+		new ("ApplicationCharge"),
+		new ("ApplicationCredit"),
+		new ("RecurringApplicationCharge"),
+		new ("UsageCharge"),
+		new ("Customer"),
+		new ("Address", "Address", "Addresses"),
+		new ("Address", "CustomerAddress", "CustomerAddresses", baseClass: "AddressBase"),
+		new ("CustomerSavedSearch"),
+		new ("DeprecatedApiCall", hasId:false),
+		new ("DiscountCode"),
+		new ("PriceRule"),
+		new ("Event"),
+		new ("Webhook"),
+		new ("InventoryItem"),
+		new ("InventoryLevel", hasId:false),
+		new ("Location"),
+		new ("MarketingEvent"),
+		new ("Metafield"),
+		new ("Article"),
+		new ("Asset", hasId:false),
+		new ("Blog"),
+		new ("Comment"),
+		new ("Page"),
+		new ("Redirect"),
+		new ("ScriptTag"),
+		new ("Theme"),
+		new ("Checkout", "AbandonedCheckout","AbandonedCheckouts", baseClass:"CheckoutBase"),
+		new ("DraftOrder"),
+		new ("Order"),
+		new ("OrderRisk"),
+		new ("Refund"),
+		new ("Transaction"),
+		new ("GiftCard"),
+		new ("User"),
+		new ("Collect"),
+		new ("Collection"),
+		new ("CustomCollection"),
+		new ("Product"),
+		new ("ProductImage"),
+		new ("ProductVariant"),
+		new ("SmartCollection"),
+		new ("Checkout"),
+		new ("CollectionListing"),
+		new ("MobilePlatformApplication"),
+		new ("Payment"),
+		new ("ProductResourceFeedback"),
+		new ("ProductListing"),
+		new ("ResourceFeedback"),
+		new ("FulfillmentOrder", "AssignedFulfillmentOrder", "AssignedFulfillmentOrders",baseClass:"FulfillmentOrderBase"),
+		new ("FulfillmentOrder", "CancellationRequest", "CancellationRequest", baseClass:"FulfillmentOrderBase"),
+		new ("CarrierService"),
+		new ("Fulfillment"),
+		new ("FulfillmentEvent"),
+		new ("FulfillmentOrder"),
+		//new ("FulfillmentRequest"),
+		new ("FulfillmentService"),
+		new ("LocationsForMove"),
+		new ("Balance"),
+		new ("Dispute"),
+		new ("DisputeEvidence"),
+		new ("DisputeFileUpload"),
+		new ("Payout"),
+		new ("Country", "Country", "Countries"),
+		new ("Currency", "Currency", "Currencies", hasId:false),
+		new ("Policy", "Policy", "Policies", hasId:false),
+		new ("Province"),
+		new ("ShippingZone"),
+		new ("Shop"),
+		new ("TenderTransaction"),
+		new ("DiscountCodeCreation"),
+		new ("Engagement"), 
+		new ("CustomerInvite")
+	};
+#>
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Models;
+
+namespace OpenShopify.Admin.Builder.Models;
+<#
+	foreach (var section in sections)
+	{
+		#>
+
+public class <#= section.ClassName #>Item
+{
+    [JsonPropertyName("<#= section.PropertyName #>")]
+    public <#= section.ModelName #> <#= section.ClassName #> { get; set; } = null!;
+}
+
+public class <#= section.ClassName #>List
+{
+    [JsonPropertyName("<#= section.PropertyNamePlural #>")]
+    public IEnumerable<<#= section.ModelName #>> <#= section.ClassNamePlural #> { get; set; } = null!;
+}
+<#
+		if (section.CanCreate)
+		{
+#>
+public class Create<#= section.ClassName #>Request
+{
+    [JsonPropertyName("<#= section.PropertyName #>")]
+    public Create<#= section.ClassName #> <#= section.ClassName #> { get; set; } = null!;
+}
+
+public partial class Create<#= section.ClassName #> : <#= section.BaseClass #> {}
+<#
+		}
+
+		if (section.CanCreate)
+		{
+#>
+public class Update<#= section.ClassName #>Request : <#= section.ModelName #>
+{
+    [JsonPropertyName("<#= section.PropertyName #>")]
+    public Update<#= section.ClassName #> <#= section.ClassName #> { get; set; } = null!;
+}
+
+public partial class Update<#= section.ClassName #> : <#= section.ModelName #>{}
+
+<#
+		}
+#>		
+	
+public class <#= section.ClassName #> : <#= section.BaseClass #>
+{
+<#	if (section.HasId)
+		{
+#>
+    [JsonPropertyName("id"), Required]
+    public long Id { get; set; }
+	<#
+			if (section.HasAdminGraphQlapiId)
+			{
+#>
+    [JsonPropertyName("admin_graphql_api_id")]
+    public string? AdminGraphQLAPIId { get; set; }
+	<#
+			}
+		}
+	#>
+}
+	<#
+	}
+#><#+
+	public class SectionTemplate
+	{
+		public SectionTemplate(string modelName, string className = null, string classNamePlural = null, 
+			string propertyName = null, string propertyNamePlural = null, string baseClass = null,
+			bool hasId = true, bool hasAdminGraphQLAPIId = true, bool canCreate = true, bool canUpdate = true)
+		{
+			ModelName = modelName;
+			HasId = hasId;
+			HasAdminGraphQlapiId = hasAdminGraphQLAPIId;
+			CanCreate = canCreate;
+			CanUpdate = canUpdate;
+			ClassName = className ?? ModelName;
+			BaseClass = baseClass ?? $@"{ClassName}Base";
+			ClassNamePlural = classNamePlural ?? $@"{ModelName}s";
+			PropertyName = propertyName ?? ToSnakeCase(ClassName);
+			PropertyNamePlural = propertyNamePlural ?? ToSnakeCase(ClassNamePlural);
+		}
+
+		public string ModelName { get; }
+		public string BaseClass { get; }
+		public bool HasId { get; }
+		public bool HasAdminGraphQlapiId { get; }
+		public bool CanCreate { get; }
+		public bool CanUpdate { get; }
+		public string ClassName { get; } 
+		public string ClassNamePlural { get; }
+		public string PropertyName { get; }
+		public string PropertyNamePlural { get; }
+
+		private static string ToSnakeCase(string s)
+		{
+			return string.IsNullOrWhiteSpace(s) ? null : Regex.Replace(s,"[A-Z]","_$0").ToLower().TrimStart('_');
+		}
+	}
+#>

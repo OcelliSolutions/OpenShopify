@@ -31,7 +31,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CollectItem>> AddProductToCustomCollectionAsync(CollectItem body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CollectItem>> AddProductToCustomCollectionAsync(CollectItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -67,7 +67,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CollectCount>> RetrieveCountOfCollectsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfCollectsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -109,11 +109,8 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CollectItem>> AddProductToCustomCollectionAsync(CollectItem body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CollectItem>> AddProductToCustomCollectionAsync(CollectItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            if (body == null)
-                throw new System.ArgumentNullException("body");
-
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/collects.json");
 
@@ -463,7 +460,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CollectCount>> RetrieveCountOfCollectsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfCollectsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/collects/count.json");
@@ -500,12 +497,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<CollectCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<CollectCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -1007,7 +1004,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionItem>> CreateCustomCollectionAsync(CustomCollectionItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionItem>> CreateCustomCollectionAsync(CreateCustomCollectionRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1022,7 +1019,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionCount>> RetrieveCountOfCustomCollectionsAsync(long? productId = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfCustomCollectionsAsync(long? productId = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1039,7 +1036,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionItem>> UpdateExistingCustomCollectionAsync(long customCollectionId, CustomCollectionItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionItem>> UpdateExistingCustomCollectionAsync(long customCollectionId, UpdateCustomCollectionRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1234,7 +1231,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionItem>> CreateCustomCollectionAsync(CustomCollectionItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionItem>> CreateCustomCollectionAsync(CreateCustomCollectionRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/custom_collections.json");
@@ -1324,7 +1321,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionCount>> RetrieveCountOfCustomCollectionsAsync(long? productId = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfCustomCollectionsAsync(long? productId = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/custom_collections/count.json?");
@@ -1390,12 +1387,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<CustomCollectionCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<CustomCollectionCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -1523,7 +1520,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionItem>> UpdateExistingCustomCollectionAsync(long customCollectionId, CustomCollectionItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CustomCollectionItem>> UpdateExistingCustomCollectionAsync(long customCollectionId, UpdateCustomCollectionRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (customCollectionId == null)
                 throw new System.ArgumentNullException("customCollectionId");
@@ -1818,7 +1815,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<ProductItem>> CreateNewProductAsync(ProductItem body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ProductItem>> CreateNewProductAsync(CreateProductRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1836,7 +1833,7 @@ namespace Ocelli.OpenShopify
         /// <param name="vendor">Return products by product vendor.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<ProductCount>> RetrieveCountOfProductsAsync(long? collectionId = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? productType = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, string? vendor = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfProductsAsync(long? collectionId = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? productType = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, string? vendor = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1853,7 +1850,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<ProductItem>> UpdateProductAsync(long productId, ProductItem body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ProductItem>> UpdateProductAsync(long productId, ProductItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2078,11 +2075,8 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductItem>> CreateNewProductAsync(ProductItem body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductItem>> CreateNewProductAsync(CreateProductRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            if (body == null)
-                throw new System.ArgumentNullException("body");
-
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/products.json");
 
@@ -2174,7 +2168,7 @@ namespace Ocelli.OpenShopify
         /// <param name="vendor">Return products by product vendor.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductCount>> RetrieveCountOfProductsAsync(long? collectionId = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? productType = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, string? vendor = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfProductsAsync(long? collectionId = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? productType = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, string? vendor = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/products/count.json?");
@@ -2252,12 +2246,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<ProductCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<ProductCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -2385,13 +2379,10 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductItem>> UpdateProductAsync(long productId, ProductItem body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductItem>> UpdateProductAsync(long productId, ProductItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (productId == null)
                 throw new System.ArgumentNullException("productId");
-
-            if (body == null)
-                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/products/{product_id}.json");
@@ -2665,7 +2656,7 @@ namespace Ocelli.OpenShopify
         /// Create a new Product Image
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateNewProductImageAsync(long productId, ProductImageItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateNewProductImageAsync(long productId, CreateProductImageRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2674,7 +2665,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<ImageCount>> ReceiveCountOfAllProductImagesAsync(long productId, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> ReceiveCountOfAllProductImagesAsync(long productId, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2689,7 +2680,7 @@ namespace Ocelli.OpenShopify
         /// Modify an existing Product Image
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingProductImageAsync(long imageId, long productId, ProductImageItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingProductImageAsync(long imageId, long productId, UpdateProductImageRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2826,7 +2817,7 @@ namespace Ocelli.OpenShopify
         /// Create a new Product Image
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateNewProductImageAsync(long productId, ProductImageItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateNewProductImageAsync(long productId, CreateProductImageRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (productId == null)
                 throw new System.ArgumentNullException("productId");
@@ -2909,7 +2900,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ImageCount>> ReceiveCountOfAllProductImagesAsync(long productId, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> ReceiveCountOfAllProductImagesAsync(long productId, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (productId == null)
                 throw new System.ArgumentNullException("productId");
@@ -2955,12 +2946,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<ImageCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<ImageCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -3085,7 +3076,7 @@ namespace Ocelli.OpenShopify
         /// Modify an existing Product Image
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingProductImageAsync(long imageId, long productId, ProductImageItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingProductImageAsync(long imageId, long productId, UpdateProductImageRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (imageId == null)
                 throw new System.ArgumentNullException("imageId");
@@ -3367,7 +3358,7 @@ namespace Ocelli.OpenShopify
         /// Create a new Product Variant
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateNewProductVariantAsync(long productId, ProductVariantItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateNewProductVariantAsync(long productId, CreateProductVariantRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3375,7 +3366,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<VariantCount>> ReceiveCountOfAllProductVariantsAsync(long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> ReceiveCountOfAllProductVariantsAsync(long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3390,7 +3381,7 @@ namespace Ocelli.OpenShopify
         /// Modify an existing Product Variant
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingProductVariantAsync(long variantId, ProductVariantItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingProductVariantAsync(long variantId, UpdateProductVariantRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3541,7 +3532,7 @@ namespace Ocelli.OpenShopify
         /// Create a new Product Variant
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateNewProductVariantAsync(long productId, ProductVariantItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateNewProductVariantAsync(long productId, CreateProductVariantRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (productId == null)
                 throw new System.ArgumentNullException("productId");
@@ -3623,7 +3614,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<VariantCount>> ReceiveCountOfAllProductVariantsAsync(long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> ReceiveCountOfAllProductVariantsAsync(long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (productId == null)
                 throw new System.ArgumentNullException("productId");
@@ -3664,12 +3655,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<VariantCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<VariantCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -3790,7 +3781,7 @@ namespace Ocelli.OpenShopify
         /// Modify an existing Product Variant
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingProductVariantAsync(long variantId, ProductVariantItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingProductVariantAsync(long variantId, UpdateProductVariantRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (variantId == null)
                 throw new System.ArgumentNullException("variantId");
@@ -4078,7 +4069,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionItem>> CreateSmartCollectionAsync(SmartCollectionItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionItem>> CreateSmartCollectionAsync(CreateSmartCollectionRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4093,7 +4084,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionCount>> RetrieveCountOfSmartCollectionsAsync(long? productId = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfSmartCollectionsAsync(long? productId = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4110,7 +4101,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionItem>> UpdateExistingSmartCollectionAsync(long smartCollectionId, SmartCollectionItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionItem>> UpdateExistingSmartCollectionAsync(long smartCollectionId, UpdateSmartCollectionRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4128,7 +4119,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sortOrder">The type of sorting to apply. Valid values are listed in the &lt;a href="#properties"&gt;Properties&lt;/a&gt; section above.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderingTypeOfProductsInSmartCollectionAsync(long smartCollectionId, string? products = null, string? sortOrder = null, SmartCollectionItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderingTypeOfProductsInSmartCollectionAsync(long smartCollectionId, string? products = null, string? sortOrder = null, UpdateSmartCollectionRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -4315,7 +4306,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionItem>> CreateSmartCollectionAsync(SmartCollectionItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionItem>> CreateSmartCollectionAsync(CreateSmartCollectionRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/smart_collections.json");
@@ -4405,7 +4396,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionCount>> RetrieveCountOfSmartCollectionsAsync(long? productId = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfSmartCollectionsAsync(long? productId = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/smart_collections/count.json?");
@@ -4471,12 +4462,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<SmartCollectionCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<CountItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<SmartCollectionCount>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -4604,7 +4595,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionItem>> UpdateExistingSmartCollectionAsync(long smartCollectionId, SmartCollectionItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<SmartCollectionItem>> UpdateExistingSmartCollectionAsync(long smartCollectionId, UpdateSmartCollectionRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (smartCollectionId == null)
                 throw new System.ArgumentNullException("smartCollectionId");
@@ -4771,7 +4762,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sortOrder">The type of sorting to apply. Valid values are listed in the &lt;a href="#properties"&gt;Properties&lt;/a&gt; section above.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderingTypeOfProductsInSmartCollectionAsync(long smartCollectionId, string? products = null, string? sortOrder = null, SmartCollectionItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderingTypeOfProductsInSmartCollectionAsync(long smartCollectionId, string? products = null, string? sortOrder = null, UpdateSmartCollectionRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (smartCollectionId == null)
                 throw new System.ArgumentNullException("smartCollectionId");
@@ -4955,22 +4946,9 @@ namespace Ocelli.OpenShopify
         }
     }
 
-    /// <summary>
-    /// An object representing a Shopify collect.
-    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class Collect
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The id of the custom collection containing the product.
         /// </summary>
@@ -5021,23 +4999,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("sort_value")]
         public string? SortValue { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
 
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CollectCount
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -5089,16 +5055,6 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class Collection
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// A description of the collection, complete with HTML markup. Many templates display this on their collection pages.
         /// </summary>
@@ -5159,6 +5115,12 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
         public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -5245,22 +5207,9 @@ namespace Ocelli.OpenShopify
 
     }
 
-    /// <summary>
-    /// An entity representing a Shopify Custom Collection Object.
-    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CustomCollection
+    public partial class CreateCustomCollection
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The description of the Custom collection, complete with HTML markup. Many templates display this on their Custom collection page.
         /// </summary>
@@ -5351,88 +5300,11 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CustomCollectionCount
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// Represents the image for a OpenShopify.Admin.Builder.Models.CustomCollection
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CustomCollectionImage
-    {
-        /// <summary>
-        /// An image attached to a shop's theme returned as Base64-encoded binary data.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("attachment")]
-        public string? Attachment { get; set; } = default!;
-
-        /// <summary>
-        /// Source URL that specifies the location of the image.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("src")]
-        public string? Src { get; set; } = default!;
-
-        /// <summary>
-        /// Alternative text that describes the collection image.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("alt")]
-        public string? Alt { get; set; } = default!;
-
-        /// <summary>
-        /// The date the image was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// Width of the image in pixels.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("width")]
-        public int? Width { get; set; } = default!;
-
-        /// <summary>
-        /// Height of the image in pixels.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("height")]
-        public int? Height { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CustomCollectionItem
+    public partial class CreateCustomCollectionRequest
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("custom_collection")]
-        public CustomCollection? CustomCollection { get; set; } = default!;
+        public CreateCustomCollection? CustomCollection { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -5446,193 +5318,8 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CustomCollectionList
+    public partial class CreateProduct
     {
-
-        [System.Text.Json.Serialization.JsonPropertyName("custom_collections")]
-        public System.Collections.Generic.ICollection<CustomCollection>? CustomCollections { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CustomCollectionMetafield
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the metafield was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the metafield was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// Identifier for the metafield (maximum of 30 characters).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("key")]
-        public string? Key { get; set; } = default!;
-
-        /// <summary>
-        /// Information to be stored as metadata. Must be either a string or an int.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value")]
-        public object? Value { get; set; } = default!;
-
-        /// <summary>
-        /// States whether the information in the value is stored as a 'string' or 'integer.'
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
-        public string? ValueType { get; set; } = default!;
-
-        /// <summary>
-        /// Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("namespace")]
-        public string? Namespace { get; set; } = default!;
-
-        /// <summary>
-        /// Additional information about the metafield.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("description")]
-        public string? Description { get; set; } = default!;
-
-        /// <summary>
-        /// The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("owner_id")]
-        public long? OwnerId { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("owner_resource")]
-        public string? OwnerResource { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ImageCount
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class PresentmentPrice
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("price")]
-        public Price? Price { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("compare_at_price")]
-        public Price? CompareAtPrice { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class Price
-    {
-        /// <summary>
-        /// The three-letter code (ISO 4217 format) for currency.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("currency_code")]
-        public string? CurrencyCode { get; set; } = default!;
-
-        /// <summary>
-        /// The amount in the currency.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("amount")]
-        public double? Amount { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// An entity representing a Shopify product.
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class Product
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The name of the product. In a shop's catalog, clicking on a product's title takes you to that product's page.
         /// <br/>On a product's page, the product's title typically appears in a large font.
@@ -5763,39 +5450,8 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ProductCount
+    public partial class CreateProductImage
     {
-
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// An object representing a product image.
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ProductImage
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The id of the product associated with the image.
         /// </summary>
@@ -5832,14 +5488,14 @@ namespace Ocelli.OpenShopify
         public string? Src { get; set; } = default!;
 
         /// <summary>
-        /// Specifies the file name of the image when creating a OpenShopify.Admin.Builder.Models.ProductImage, where it's then converted into the OpenShopify.Admin.Builder.Models.ProductImage.Src path
+        /// Specifies the file name of the image when creating a OpenShopify.Admin.Builder.Models.ProductImage, where it's then converted into the OpenShopify.Admin.Builder.Models.ProductImageBase.Src path
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("filename")]
         public string? Filename { get; set; } = default!;
 
         /// <summary>
-        /// A base64 image attachment. Only used when creating a OpenShopify.Admin.Builder.Models.ProductImage, where it's then converted into the OpenShopify.Admin.Builder.Models.ProductImage.Src.
+        /// A base64 image attachment. Only used when creating a OpenShopify.Admin.Builder.Models.ProductImage, where it's then converted into the OpenShopify.Admin.Builder.Models.ProductImageBase.Src.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("attachment")]
@@ -5876,11 +5532,11 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ProductImageItem
+    public partial class CreateProductImageRequest
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("product_image")]
-        public ProductImage? ProductImage { get; set; } = default!;
+        public CreateProductImage? ProductImage { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -5894,98 +5550,11 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ProductImageMetafield
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the metafield was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the metafield was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// Identifier for the metafield (maximum of 30 characters).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("key")]
-        public string? Key { get; set; } = default!;
-
-        /// <summary>
-        /// Information to be stored as metadata. Must be either a string or an int.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value")]
-        public object? Value { get; set; } = default!;
-
-        /// <summary>
-        /// States whether the information in the value is stored as a 'string' or 'integer.'
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
-        public string? ValueType { get; set; } = default!;
-
-        /// <summary>
-        /// Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("namespace")]
-        public string? Namespace { get; set; } = default!;
-
-        /// <summary>
-        /// Additional information about the metafield.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("description")]
-        public string? Description { get; set; } = default!;
-
-        /// <summary>
-        /// The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("owner_id")]
-        public long? OwnerId { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("owner_resource")]
-        public string? OwnerResource { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ProductItem
+    public partial class CreateProductRequest
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("product")]
-        public Product? Product { get; set; } = default!;
+        public CreateProduct? Product { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -5999,175 +5568,8 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ProductList
+    public partial class CreateProductVariant
     {
-
-        [System.Text.Json.Serialization.JsonPropertyName("products")]
-        public System.Collections.Generic.ICollection<Product>? Products { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ProductMetafield
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the metafield was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the metafield was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// Identifier for the metafield (maximum of 30 characters).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("key")]
-        public string? Key { get; set; } = default!;
-
-        /// <summary>
-        /// Information to be stored as metadata. Must be either a string or an int.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value")]
-        public object? Value { get; set; } = default!;
-
-        /// <summary>
-        /// States whether the information in the value is stored as a 'string' or 'integer.'
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
-        public string? ValueType { get; set; } = default!;
-
-        /// <summary>
-        /// Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("namespace")]
-        public string? Namespace { get; set; } = default!;
-
-        /// <summary>
-        /// Additional information about the metafield.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("description")]
-        public string? Description { get; set; } = default!;
-
-        /// <summary>
-        /// The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("owner_id")]
-        public long? OwnerId { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("owner_resource")]
-        public string? OwnerResource { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ProductOption
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
-        /// The unique numeric identifier for the product.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("product_id")]
-        public long? ProductId { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the option.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The order of the product variant in the list of product variants. 1 is the first position.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("position")]
-        public int? Position { get; set; } = default!;
-
-        /// <summary>
-        /// The values for the options.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("values")]
-        public System.Collections.Generic.ICollection<string>? Values { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ProductVariant
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The unique numeric identifier for the product.
         /// </summary>
@@ -6236,14 +5638,14 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("price")]
-        public double? Price { get; set; } = default!;
+        public decimal? Price { get; set; } = default!;
 
         /// <summary>
         /// The competitors prices for the same item.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("compare_at_price")]
-        public double? CompareAtPrice { get; set; } = default!;
+        public decimal? CompareAtPrice { get; set; } = default!;
 
         /// <summary>
         /// Custom properties that a shop owner can use to define product variants.
@@ -6328,7 +5730,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("weight")]
-        public double? Weight { get; set; } = default!;
+        public decimal? Weight { get; set; } = default!;
 
         /// <summary>
         /// The unit system that the product variant's weight is measure in. The weight_unit can be either "g", "kg, "oz", or "lb".
@@ -6359,11 +5761,11 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ProductVariantItem
+    public partial class CreateProductVariantRequest
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("variant")]
-        public ProductVariant? Variant { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("product_variant")]
+        public CreateProductVariant? ProductVariant { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -6377,108 +5779,8 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ProductVariantMetafield
+    public partial class CreateSmartCollection
     {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the metafield was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the metafield was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// Identifier for the metafield (maximum of 30 characters).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("key")]
-        public string? Key { get; set; } = default!;
-
-        /// <summary>
-        /// Information to be stored as metadata. Must be either a string or an int.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value")]
-        public object? Value { get; set; } = default!;
-
-        /// <summary>
-        /// States whether the information in the value is stored as a 'string' or 'integer.'
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
-        public string? ValueType { get; set; } = default!;
-
-        /// <summary>
-        /// Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("namespace")]
-        public string? Namespace { get; set; } = default!;
-
-        /// <summary>
-        /// Additional information about the metafield.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("description")]
-        public string? Description { get; set; } = default!;
-
-        /// <summary>
-        /// The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("owner_id")]
-        public long? OwnerId { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("owner_resource")]
-        public string? OwnerResource { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// An entity representing a Shopify Smart Collection Object.
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class SmartCollection
-    {
-        /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         /// <summary>
         /// The description of the smart collection, complete with HTML markup. Many templates display this on their smart collection page.
         /// </summary>
@@ -6569,11 +5871,1196 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class SmartCollectionCount
+    public partial class CreateSmartCollectionRequest
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("smart_collection")]
+        public CreateSmartCollection? SmartCollection { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CustomCollection
+    {
+        /// <summary>
+        /// The description of the Custom collection, complete with HTML markup. Many templates display this on their Custom collection page.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("body_html")]
+        public string? BodyHtml { get; set; } = default!;
+
+        /// <summary>
+        /// A human-friendly unique string for the Custom collection automatically generated from its title. This is used in shop themes by the Liquid templating language to refer to the Custom collection. Limit of 255 characters.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        public string? Handle { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("image")]
+        public CustomCollectionImage? Image { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the collection is published or not.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published")]
+        public bool? Published { get; set; } = default!;
+
+        /// <summary>
+        /// This can have two different types of values, depending on whether the Custom collection has been published (i.e., made visible to customers):
+        /// <br/>If the Custom collection is published, this value is the date and time when it was published.The API returns this value in ISO 8601 format.
+        /// <br/>If the Custom collection is hidden (i.e., not published), this value is null. Changing a Custom collection's status from published to hidden changes its published_at property to null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_at")]
+        public System.DateTimeOffset? PublishedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The sales channels in which the Custom collection is visible.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
+        public string? PublishedScope { get; set; } = default!;
+
+        /// <summary>
+        /// The order in which products in the Custom collection appear
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("sort_order")]
+        public string? SortOrder { get; set; } = default!;
+
+        /// <summary>
+        /// The suffix of the template you are using. By default, the original template is called product.liquid, without any suffix. Any additional templates will be: product.suffix.liquid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
+        public string? TemplateSuffix { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the Custom collection. Limit of 255 characters.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the Custom collection was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The collection of collects associated to this custom collection
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("collects")]
+        public System.Collections.Generic.ICollection<Collect>? Collects { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<CustomCollectionMetafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// Represents the image for a OpenShopify.Admin.Builder.Models.CustomCollection
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CustomCollectionImage
+    {
+        /// <summary>
+        /// An image attached to a shop's theme returned as Base64-encoded binary data.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("attachment")]
+        public string? Attachment { get; set; } = default!;
+
+        /// <summary>
+        /// Source URL that specifies the location of the image.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("src")]
+        public string? Src { get; set; } = default!;
+
+        /// <summary>
+        /// Alternative text that describes the collection image.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("alt")]
+        public string? Alt { get; set; } = default!;
+
+        /// <summary>
+        /// The date the image was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Width of the image in pixels.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("width")]
+        public int? Width { get; set; } = default!;
+
+        /// <summary>
+        /// Height of the image in pixels.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("height")]
+        public int? Height { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CustomCollectionItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("custom_collection")]
+        public CustomCollection? CustomCollection { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CustomCollectionList
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("custom_collections")]
+        public System.Collections.Generic.ICollection<CustomCollection>? CustomCollections { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CustomCollectionMetafield
+    {
+        /// <summary>
+        /// The date and time when the metafield was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the metafield was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Identifier for the metafield (maximum of 30 characters).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("key")]
+        public string? Key { get; set; } = default!;
+
+        /// <summary>
+        /// Information to be stored as metadata. Must be either a string or an int.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
+        public object? Value { get; set; } = default!;
+
+        /// <summary>
+        /// States whether the information in the value is stored as a 'string' or 'integer.'
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
+        public string? ValueType { get; set; } = default!;
+
+        /// <summary>
+        /// Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("namespace")]
+        public string? Namespace { get; set; } = default!;
+
+        /// <summary>
+        /// Additional information about the metafield.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
+        public string? Description { get; set; } = default!;
+
+        /// <summary>
+        /// The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("owner_id")]
+        public long? OwnerId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("owner_resource")]
+        public string? OwnerResource { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class PresentmentPrice
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+        public Price? Price { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("compare_at_price")]
+        public Price? CompareAtPrice { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Price
+    {
+        /// <summary>
+        /// The three-letter code (ISO 4217 format) for currency.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency_code")]
+        public string? CurrencyCode { get; set; } = default!;
+
+        /// <summary>
+        /// The amount in the currency.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("amount")]
+        public decimal? Amount { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Product
+    {
+        /// <summary>
+        /// The name of the product. In a shop's catalog, clicking on a product's title takes you to that product's page.
+        /// <br/>On a product's page, the product's title typically appears in a large font.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// The description of the product, complete with HTML formatting.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("body_html")]
+        public string? BodyHtml { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product was created. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product was published. The API returns this value in ISO 8601 format. 
+        /// <br/>Set to NULL to unpublish a product
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_at")]
+        public System.DateTimeOffset? PublishedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the vendor of the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("vendor")]
+        public string? Vendor { get; set; } = default!;
+
+        /// <summary>
+        /// A categorization that a product can be tagged with, commonly used for filtering and searching.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("product_type")]
+        public string? ProductType { get; set; } = default!;
+
+        /// <summary>
+        /// A human-friendly unique string for the Product automatically generated from its title.
+        /// <br/>They are used by the Liquid templating language to refer to objects.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        public string? Handle { get; set; } = default!;
+
+        /// <summary>
+        /// The suffix of the liquid template being used.
+        /// <br/>By default, the original template is called product.liquid, without any suffix.
+        /// <br/>Any additional templates will be: product.suffix.liquid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
+        public string? TemplateSuffix { get; set; } = default!;
+
+        /// <summary>
+        /// The sales channels in which the product is visible.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
+        public string? PublishedScope { get; set; } = default!;
+
+        /// <summary>
+        /// A categorization that a product can be tagged with, commonly used for filtering and searching.
+        /// <br/>Each comma-separated tag has a character limit of 255.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tags")]
+        public string? Tags { get; set; } = default!;
+
+        /// <summary>
+        /// The status of the product
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+        public string? Status { get; set; } = default!;
+
+        /// <summary>
+        /// A list of variant objects, each one representing a slightly different version of the product.
+        /// <br/>For example, if a product comes in different sizes and colors, each size and color permutation (such as "small black", "medium black", "large blue"), would be a variant.
+        /// <br/>To reorder variants, update the product with the variants in the desired order.The position attribute on the variant will be ignored.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("variants")]
+        public System.Collections.Generic.ICollection<ProductVariant>? Variants { get; set; } = default!;
+
+        /// <summary>
+        /// Custom product property names like "Size", "Color", and "Material".
+        /// <br/>Products are based on permutations of these options. 
+        /// <br/>A product may have a maximum of 3 options. 255 characters limit each.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("options")]
+        public System.Collections.Generic.ICollection<ProductOption>? Options { get; set; } = default!;
+
+        /// <summary>
+        /// A list of image objects, each one representing an image associated with the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("images")]
+        public System.Collections.Generic.ICollection<ProductImage>? Images { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<ProductMetafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ProductImage
+    {
+        /// <summary>
+        /// The id of the product associated with the image.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("product_id")]
+        public long? ProductId { get; set; } = default!;
+
+        /// <summary>
+        /// The order of the product image in the list. The first product image is at position 1 and is the "main" image for the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("position")]
+        public int? Position { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product image was created. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product image was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies the location of the product image.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("src")]
+        public string? Src { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies the file name of the image when creating a OpenShopify.Admin.Builder.Models.ProductImage, where it's then converted into the OpenShopify.Admin.Builder.Models.ProductImageBase.Src path
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("filename")]
+        public string? Filename { get; set; } = default!;
+
+        /// <summary>
+        /// A base64 image attachment. Only used when creating a OpenShopify.Admin.Builder.Models.ProductImage, where it's then converted into the OpenShopify.Admin.Builder.Models.ProductImageBase.Src.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("attachment")]
+        public string? Attachment { get; set; } = default!;
+
+        /// <summary>
+        /// An array of variant ids associated with the image.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("variant_ids")]
+        public System.Collections.Generic.ICollection<long>? VariantIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("height")]
+        public int? Height { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("width")]
+        public int? Width { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("alt")]
+        public string? Alt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<ProductImageMetafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ProductImageMetafield
+    {
+        /// <summary>
+        /// The date and time when the metafield was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the metafield was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Identifier for the metafield (maximum of 30 characters).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("key")]
+        public string? Key { get; set; } = default!;
+
+        /// <summary>
+        /// Information to be stored as metadata. Must be either a string or an int.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
+        public object? Value { get; set; } = default!;
+
+        /// <summary>
+        /// States whether the information in the value is stored as a 'string' or 'integer.'
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
+        public string? ValueType { get; set; } = default!;
+
+        /// <summary>
+        /// Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("namespace")]
+        public string? Namespace { get; set; } = default!;
+
+        /// <summary>
+        /// Additional information about the metafield.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
+        public string? Description { get; set; } = default!;
+
+        /// <summary>
+        /// The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("owner_id")]
+        public long? OwnerId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("owner_resource")]
+        public string? OwnerResource { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ProductItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("product")]
+        public Product? Product { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ProductList
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("products")]
+        public System.Collections.Generic.ICollection<Product>? Products { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ProductMetafield
+    {
+        /// <summary>
+        /// The date and time when the metafield was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the metafield was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Identifier for the metafield (maximum of 30 characters).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("key")]
+        public string? Key { get; set; } = default!;
+
+        /// <summary>
+        /// Information to be stored as metadata. Must be either a string or an int.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
+        public object? Value { get; set; } = default!;
+
+        /// <summary>
+        /// States whether the information in the value is stored as a 'string' or 'integer.'
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
+        public string? ValueType { get; set; } = default!;
+
+        /// <summary>
+        /// Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("namespace")]
+        public string? Namespace { get; set; } = default!;
+
+        /// <summary>
+        /// Additional information about the metafield.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
+        public string? Description { get; set; } = default!;
+
+        /// <summary>
+        /// The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("owner_id")]
+        public long? OwnerId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("owner_resource")]
+        public string? OwnerResource { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ProductOption
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier for the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("product_id")]
+        public long? ProductId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the option.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The order of the product variant in the list of product variants. 1 is the first position.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("position")]
+        public int? Position { get; set; } = default!;
+
+        /// <summary>
+        /// The values for the options.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("values")]
+        public System.Collections.Generic.ICollection<string>? Values { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ProductVariant
+    {
+        /// <summary>
+        /// The unique numeric identifier for the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("product_id")]
+        public long? ProductId { get; set; } = default!;
+
+        /// <summary>
+        /// The title of the product variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// A unique identifier for the product in the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("sku")]
+        public string? Sku { get; set; } = default!;
+
+        /// <summary>
+        /// The order of the product variant in the list of product variants. 1 is the first position.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("position")]
+        public int? Position { get; set; } = default!;
+
+        /// <summary>
+        /// The weight of the product variant in grams.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("grams")]
+        public long? Grams { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies whether or not customers are allowed to place an order for a product variant when it's out of stock. Known values are 'deny' and 'continue'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_policy")]
+        public string? InventoryPolicy { get; set; } = default!;
+
+        /// <summary>
+        /// Service that is doing the fulfillment. Can be 'manual' or any custom string.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]
+        public string? FulfillmentService { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier for the inventory item, which is used in the Inventory API to query for inventory information.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_item_id")]
+        public long? InventoryItemId { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies whether or not Shopify tracks the number of items in stock for this product variant. Known values are 'blank' and 'shopify'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
+        public string? InventoryManagement { get; set; } = default!;
+
+        /// <summary>
+        /// The price of the product variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+        public decimal? Price { get; set; } = default!;
+
+        /// <summary>
+        /// The competitors prices for the same item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("compare_at_price")]
+        public decimal? CompareAtPrice { get; set; } = default!;
+
+        /// <summary>
+        /// Custom properties that a shop owner can use to define product variants.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("option1")]
+        public string? Option1 { get; set; } = default!;
+
+        /// <summary>
+        /// Custom properties that a shop owner can use to define product variants.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("option2")]
+        public string? Option2 { get; set; } = default!;
+
+        /// <summary>
+        /// Custom properties that a shop owner can use to define product variants.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("option3")]
+        public string? Option3 { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product variant was created. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product variant was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies whether or not a tax is charged when the product variant is sold.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("taxable")]
+        public bool? Taxable { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies a tax code which is used for Avalara tax integrations
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_code")]
+        public string? TaxCode { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies whether or not a customer needs to provide a shipping address when placing an order for this product variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping")]
+        public bool? RequiresShipping { get; set; } = default!;
+
+        /// <summary>
+        /// The barcode, UPC or ISBN number for the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("barcode")]
+        public string? Barcode { get; set; } = default!;
+
+        /// <summary>
+        /// The number of items in stock for this product variant.
+        /// <br/>NOTE: After 2018-07-01, this field will be read-only in the Shopify API. Use the `InventoryLevelService` instead.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_quantity")]
+        public long? InventoryQuantity { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier for one of the product's images.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("image_id")]
+        public long? ImageId { get; set; } = default!;
+
+        /// <summary>
+        /// The weight of the product variant in the unit system specified with weight_unit.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("weight")]
+        public decimal? Weight { get; set; } = default!;
+
+        /// <summary>
+        /// The unit system that the product variant's weight is measure in. The weight_unit can be either "g", "kg, "oz", or "lb".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("weight_unit")]
+        public string? WeightUnit { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<ProductVariantMetafield>? Metafields { get; set; } = default!;
+
+        /// <summary>
+        /// A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("presentment_prices")]
+        public System.Collections.Generic.ICollection<PresentmentPrice>? PresentmentPrices { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ProductVariantMetafield
+    {
+        /// <summary>
+        /// The date and time when the metafield was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the metafield was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Identifier for the metafield (maximum of 30 characters).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("key")]
+        public string? Key { get; set; } = default!;
+
+        /// <summary>
+        /// Information to be stored as metadata. Must be either a string or an int.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
+        public object? Value { get; set; } = default!;
+
+        /// <summary>
+        /// States whether the information in the value is stored as a 'string' or 'integer.'
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
+        public string? ValueType { get; set; } = default!;
+
+        /// <summary>
+        /// Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("namespace")]
+        public string? Namespace { get; set; } = default!;
+
+        /// <summary>
+        /// Additional information about the metafield.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
+        public string? Description { get; set; } = default!;
+
+        /// <summary>
+        /// The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("owner_id")]
+        public long? OwnerId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("owner_resource")]
+        public string? OwnerResource { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class SmartCollection
+    {
+        /// <summary>
+        /// The description of the smart collection, complete with HTML markup. Many templates display this on their smart collection page.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("body_html")]
+        public string? BodyHtml { get; set; } = default!;
+
+        /// <summary>
+        /// A human-friendly unique string for the smart collection automatically generated from its title. This is used in shop themes by the Liquid templating language to refer to the smart collection. Limit of 255 characters.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        public string? Handle { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("image")]
+        public SmartCollectionImage? Image { get; set; } = default!;
+
+        /// <summary>
+        /// This can have two different types of values, depending on whether the smart collection has been published (i.e., made visible to customers):
+        /// <br/>If the smart collection is published, this value is the date and time when it was published.The API returns this value in ISO 8601 format.
+        /// <br/>If the smart collection is hidden (i.e., not published), this value is null. Changing a smart collection's status from published to hidden changes its published_at property to null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_at")]
+        public System.DateTimeOffset? PublishedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The sales channels in which the smart collection is visible. The only currently known value is 'global'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
+        public string? PublishedScope { get; set; } = default!;
+
+        /// <summary>
+        /// The list of rules that define what products go into the smart collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("rules")]
+        public System.Collections.Generic.ICollection<SmartCollectionRules>? Rules { get; set; } = default!;
+
+        /// <summary>
+        /// If false, products must match all of the rules to be included in the collection. If true, products can only match one of the rules.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("disjunctive")]
+        public bool? Disjunctive { get; set; } = default!;
+
+        /// <summary>
+        /// The order in which products in the smart collection appear. Known values are 'alpha-asc', 'alpha-desc', 'best-selling', 'created', 'created-desc', 'manual', 'price-asc', 'price-desc'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("sort_order")]
+        public string? SortOrder { get; set; } = default!;
+
+        /// <summary>
+        /// The suffix of the template you are using. By default, the original template is called product.liquid, without any suffix. Any additional templates will be: product.suffix.liquid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
+        public string? TemplateSuffix { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the smart collection. Limit of 255 characters.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the smart collection was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<SmartCollectionMetafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -6685,16 +7172,6 @@ namespace Ocelli.OpenShopify
     public partial class SmartCollectionMetafield
     {
         /// <summary>
-        /// The object's unique id.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long? Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-        /// <summary>
         /// The date and time when the metafield was created.
         /// </summary>
 
@@ -6757,6 +7234,12 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("owner_resource")]
         public string? OwnerResource { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
         [System.Text.Json.Serialization.JsonExtensionData]
@@ -6807,11 +7290,1250 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class VariantCount
+    public partial class UpdateCustomCollection
     {
+        /// <summary>
+        /// The description of the Custom collection, complete with HTML markup. Many templates display this on their Custom collection page.
+        /// </summary>
 
-        [System.Text.Json.Serialization.JsonPropertyName("count")]
-        public int? Count { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("body_html")]
+        public string? BodyHtml { get; set; } = default!;
+
+        /// <summary>
+        /// A human-friendly unique string for the Custom collection automatically generated from its title. This is used in shop themes by the Liquid templating language to refer to the Custom collection. Limit of 255 characters.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        public string? Handle { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("image")]
+        public CustomCollectionImage? Image { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the collection is published or not.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published")]
+        public bool? Published { get; set; } = default!;
+
+        /// <summary>
+        /// This can have two different types of values, depending on whether the Custom collection has been published (i.e., made visible to customers):
+        /// <br/>If the Custom collection is published, this value is the date and time when it was published.The API returns this value in ISO 8601 format.
+        /// <br/>If the Custom collection is hidden (i.e., not published), this value is null. Changing a Custom collection's status from published to hidden changes its published_at property to null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_at")]
+        public System.DateTimeOffset? PublishedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The sales channels in which the Custom collection is visible.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
+        public string? PublishedScope { get; set; } = default!;
+
+        /// <summary>
+        /// The order in which products in the Custom collection appear
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("sort_order")]
+        public string? SortOrder { get; set; } = default!;
+
+        /// <summary>
+        /// The suffix of the template you are using. By default, the original template is called product.liquid, without any suffix. Any additional templates will be: product.suffix.liquid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
+        public string? TemplateSuffix { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the Custom collection. Limit of 255 characters.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the Custom collection was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The collection of collects associated to this custom collection
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("collects")]
+        public System.Collections.Generic.ICollection<Collect>? Collects { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<CustomCollectionMetafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateCustomCollectionRequest
+    {
+        /// <summary>
+        /// The description of the Custom collection, complete with HTML markup. Many templates display this on their Custom collection page.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("body_html")]
+        public string? BodyHtml { get; set; } = default!;
+
+        /// <summary>
+        /// A human-friendly unique string for the Custom collection automatically generated from its title. This is used in shop themes by the Liquid templating language to refer to the Custom collection. Limit of 255 characters.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        public string? Handle { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("image")]
+        public CustomCollectionImage? Image { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the collection is published or not.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published")]
+        public bool? Published { get; set; } = default!;
+
+        /// <summary>
+        /// This can have two different types of values, depending on whether the Custom collection has been published (i.e., made visible to customers):
+        /// <br/>If the Custom collection is published, this value is the date and time when it was published.The API returns this value in ISO 8601 format.
+        /// <br/>If the Custom collection is hidden (i.e., not published), this value is null. Changing a Custom collection's status from published to hidden changes its published_at property to null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_at")]
+        public System.DateTimeOffset? PublishedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The sales channels in which the Custom collection is visible.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
+        public string? PublishedScope { get; set; } = default!;
+
+        /// <summary>
+        /// The order in which products in the Custom collection appear
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("sort_order")]
+        public string? SortOrder { get; set; } = default!;
+
+        /// <summary>
+        /// The suffix of the template you are using. By default, the original template is called product.liquid, without any suffix. Any additional templates will be: product.suffix.liquid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
+        public string? TemplateSuffix { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the Custom collection. Limit of 255 characters.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the Custom collection was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The collection of collects associated to this custom collection
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("collects")]
+        public System.Collections.Generic.ICollection<Collect>? Collects { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<CustomCollectionMetafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("custom_collection")]
+        public UpdateCustomCollection? CustomCollection { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateProduct
+    {
+        /// <summary>
+        /// The name of the product. In a shop's catalog, clicking on a product's title takes you to that product's page.
+        /// <br/>On a product's page, the product's title typically appears in a large font.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// The description of the product, complete with HTML formatting.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("body_html")]
+        public string? BodyHtml { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product was created. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product was published. The API returns this value in ISO 8601 format. 
+        /// <br/>Set to NULL to unpublish a product
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_at")]
+        public System.DateTimeOffset? PublishedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the vendor of the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("vendor")]
+        public string? Vendor { get; set; } = default!;
+
+        /// <summary>
+        /// A categorization that a product can be tagged with, commonly used for filtering and searching.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("product_type")]
+        public string? ProductType { get; set; } = default!;
+
+        /// <summary>
+        /// A human-friendly unique string for the Product automatically generated from its title.
+        /// <br/>They are used by the Liquid templating language to refer to objects.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        public string? Handle { get; set; } = default!;
+
+        /// <summary>
+        /// The suffix of the liquid template being used.
+        /// <br/>By default, the original template is called product.liquid, without any suffix.
+        /// <br/>Any additional templates will be: product.suffix.liquid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
+        public string? TemplateSuffix { get; set; } = default!;
+
+        /// <summary>
+        /// The sales channels in which the product is visible.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
+        public string? PublishedScope { get; set; } = default!;
+
+        /// <summary>
+        /// A categorization that a product can be tagged with, commonly used for filtering and searching.
+        /// <br/>Each comma-separated tag has a character limit of 255.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tags")]
+        public string? Tags { get; set; } = default!;
+
+        /// <summary>
+        /// The status of the product
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+        public string? Status { get; set; } = default!;
+
+        /// <summary>
+        /// A list of variant objects, each one representing a slightly different version of the product.
+        /// <br/>For example, if a product comes in different sizes and colors, each size and color permutation (such as "small black", "medium black", "large blue"), would be a variant.
+        /// <br/>To reorder variants, update the product with the variants in the desired order.The position attribute on the variant will be ignored.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("variants")]
+        public System.Collections.Generic.ICollection<ProductVariant>? Variants { get; set; } = default!;
+
+        /// <summary>
+        /// Custom product property names like "Size", "Color", and "Material".
+        /// <br/>Products are based on permutations of these options. 
+        /// <br/>A product may have a maximum of 3 options. 255 characters limit each.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("options")]
+        public System.Collections.Generic.ICollection<ProductOption>? Options { get; set; } = default!;
+
+        /// <summary>
+        /// A list of image objects, each one representing an image associated with the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("images")]
+        public System.Collections.Generic.ICollection<ProductImage>? Images { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<ProductMetafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateProductImage
+    {
+        /// <summary>
+        /// The id of the product associated with the image.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("product_id")]
+        public long? ProductId { get; set; } = default!;
+
+        /// <summary>
+        /// The order of the product image in the list. The first product image is at position 1 and is the "main" image for the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("position")]
+        public int? Position { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product image was created. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product image was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies the location of the product image.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("src")]
+        public string? Src { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies the file name of the image when creating a OpenShopify.Admin.Builder.Models.ProductImage, where it's then converted into the OpenShopify.Admin.Builder.Models.ProductImageBase.Src path
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("filename")]
+        public string? Filename { get; set; } = default!;
+
+        /// <summary>
+        /// A base64 image attachment. Only used when creating a OpenShopify.Admin.Builder.Models.ProductImage, where it's then converted into the OpenShopify.Admin.Builder.Models.ProductImageBase.Src.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("attachment")]
+        public string? Attachment { get; set; } = default!;
+
+        /// <summary>
+        /// An array of variant ids associated with the image.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("variant_ids")]
+        public System.Collections.Generic.ICollection<long>? VariantIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("height")]
+        public int? Height { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("width")]
+        public int? Width { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("alt")]
+        public string? Alt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<ProductImageMetafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateProductImageRequest
+    {
+        /// <summary>
+        /// The id of the product associated with the image.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("product_id")]
+        public long? ProductId { get; set; } = default!;
+
+        /// <summary>
+        /// The order of the product image in the list. The first product image is at position 1 and is the "main" image for the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("position")]
+        public int? Position { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product image was created. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product image was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies the location of the product image.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("src")]
+        public string? Src { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies the file name of the image when creating a OpenShopify.Admin.Builder.Models.ProductImage, where it's then converted into the OpenShopify.Admin.Builder.Models.ProductImageBase.Src path
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("filename")]
+        public string? Filename { get; set; } = default!;
+
+        /// <summary>
+        /// A base64 image attachment. Only used when creating a OpenShopify.Admin.Builder.Models.ProductImage, where it's then converted into the OpenShopify.Admin.Builder.Models.ProductImageBase.Src.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("attachment")]
+        public string? Attachment { get; set; } = default!;
+
+        /// <summary>
+        /// An array of variant ids associated with the image.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("variant_ids")]
+        public System.Collections.Generic.ICollection<long>? VariantIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("height")]
+        public int? Height { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("width")]
+        public int? Width { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("alt")]
+        public string? Alt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<ProductImageMetafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("product_image")]
+        public UpdateProductImage? ProductImage { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateProductRequest
+    {
+        /// <summary>
+        /// The name of the product. In a shop's catalog, clicking on a product's title takes you to that product's page.
+        /// <br/>On a product's page, the product's title typically appears in a large font.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// The description of the product, complete with HTML formatting.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("body_html")]
+        public string? BodyHtml { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product was created. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product was published. The API returns this value in ISO 8601 format. 
+        /// <br/>Set to NULL to unpublish a product
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_at")]
+        public System.DateTimeOffset? PublishedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the vendor of the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("vendor")]
+        public string? Vendor { get; set; } = default!;
+
+        /// <summary>
+        /// A categorization that a product can be tagged with, commonly used for filtering and searching.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("product_type")]
+        public string? ProductType { get; set; } = default!;
+
+        /// <summary>
+        /// A human-friendly unique string for the Product automatically generated from its title.
+        /// <br/>They are used by the Liquid templating language to refer to objects.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        public string? Handle { get; set; } = default!;
+
+        /// <summary>
+        /// The suffix of the liquid template being used.
+        /// <br/>By default, the original template is called product.liquid, without any suffix.
+        /// <br/>Any additional templates will be: product.suffix.liquid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
+        public string? TemplateSuffix { get; set; } = default!;
+
+        /// <summary>
+        /// The sales channels in which the product is visible.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
+        public string? PublishedScope { get; set; } = default!;
+
+        /// <summary>
+        /// A categorization that a product can be tagged with, commonly used for filtering and searching.
+        /// <br/>Each comma-separated tag has a character limit of 255.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tags")]
+        public string? Tags { get; set; } = default!;
+
+        /// <summary>
+        /// The status of the product
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+        public string? Status { get; set; } = default!;
+
+        /// <summary>
+        /// A list of variant objects, each one representing a slightly different version of the product.
+        /// <br/>For example, if a product comes in different sizes and colors, each size and color permutation (such as "small black", "medium black", "large blue"), would be a variant.
+        /// <br/>To reorder variants, update the product with the variants in the desired order.The position attribute on the variant will be ignored.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("variants")]
+        public System.Collections.Generic.ICollection<ProductVariant>? Variants { get; set; } = default!;
+
+        /// <summary>
+        /// Custom product property names like "Size", "Color", and "Material".
+        /// <br/>Products are based on permutations of these options. 
+        /// <br/>A product may have a maximum of 3 options. 255 characters limit each.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("options")]
+        public System.Collections.Generic.ICollection<ProductOption>? Options { get; set; } = default!;
+
+        /// <summary>
+        /// A list of image objects, each one representing an image associated with the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("images")]
+        public System.Collections.Generic.ICollection<ProductImage>? Images { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<ProductMetafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("product")]
+        public UpdateProduct? Product { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateProductVariant
+    {
+        /// <summary>
+        /// The unique numeric identifier for the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("product_id")]
+        public long? ProductId { get; set; } = default!;
+
+        /// <summary>
+        /// The title of the product variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// A unique identifier for the product in the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("sku")]
+        public string? Sku { get; set; } = default!;
+
+        /// <summary>
+        /// The order of the product variant in the list of product variants. 1 is the first position.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("position")]
+        public int? Position { get; set; } = default!;
+
+        /// <summary>
+        /// The weight of the product variant in grams.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("grams")]
+        public long? Grams { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies whether or not customers are allowed to place an order for a product variant when it's out of stock. Known values are 'deny' and 'continue'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_policy")]
+        public string? InventoryPolicy { get; set; } = default!;
+
+        /// <summary>
+        /// Service that is doing the fulfillment. Can be 'manual' or any custom string.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]
+        public string? FulfillmentService { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier for the inventory item, which is used in the Inventory API to query for inventory information.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_item_id")]
+        public long? InventoryItemId { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies whether or not Shopify tracks the number of items in stock for this product variant. Known values are 'blank' and 'shopify'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
+        public string? InventoryManagement { get; set; } = default!;
+
+        /// <summary>
+        /// The price of the product variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+        public decimal? Price { get; set; } = default!;
+
+        /// <summary>
+        /// The competitors prices for the same item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("compare_at_price")]
+        public decimal? CompareAtPrice { get; set; } = default!;
+
+        /// <summary>
+        /// Custom properties that a shop owner can use to define product variants.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("option1")]
+        public string? Option1 { get; set; } = default!;
+
+        /// <summary>
+        /// Custom properties that a shop owner can use to define product variants.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("option2")]
+        public string? Option2 { get; set; } = default!;
+
+        /// <summary>
+        /// Custom properties that a shop owner can use to define product variants.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("option3")]
+        public string? Option3 { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product variant was created. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product variant was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies whether or not a tax is charged when the product variant is sold.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("taxable")]
+        public bool? Taxable { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies a tax code which is used for Avalara tax integrations
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_code")]
+        public string? TaxCode { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies whether or not a customer needs to provide a shipping address when placing an order for this product variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping")]
+        public bool? RequiresShipping { get; set; } = default!;
+
+        /// <summary>
+        /// The barcode, UPC or ISBN number for the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("barcode")]
+        public string? Barcode { get; set; } = default!;
+
+        /// <summary>
+        /// The number of items in stock for this product variant.
+        /// <br/>NOTE: After 2018-07-01, this field will be read-only in the Shopify API. Use the `InventoryLevelService` instead.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_quantity")]
+        public long? InventoryQuantity { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier for one of the product's images.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("image_id")]
+        public long? ImageId { get; set; } = default!;
+
+        /// <summary>
+        /// The weight of the product variant in the unit system specified with weight_unit.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("weight")]
+        public decimal? Weight { get; set; } = default!;
+
+        /// <summary>
+        /// The unit system that the product variant's weight is measure in. The weight_unit can be either "g", "kg, "oz", or "lb".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("weight_unit")]
+        public string? WeightUnit { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<ProductVariantMetafield>? Metafields { get; set; } = default!;
+
+        /// <summary>
+        /// A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("presentment_prices")]
+        public System.Collections.Generic.ICollection<PresentmentPrice>? PresentmentPrices { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateProductVariantRequest
+    {
+        /// <summary>
+        /// The unique numeric identifier for the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("product_id")]
+        public long? ProductId { get; set; } = default!;
+
+        /// <summary>
+        /// The title of the product variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// A unique identifier for the product in the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("sku")]
+        public string? Sku { get; set; } = default!;
+
+        /// <summary>
+        /// The order of the product variant in the list of product variants. 1 is the first position.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("position")]
+        public int? Position { get; set; } = default!;
+
+        /// <summary>
+        /// The weight of the product variant in grams.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("grams")]
+        public long? Grams { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies whether or not customers are allowed to place an order for a product variant when it's out of stock. Known values are 'deny' and 'continue'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_policy")]
+        public string? InventoryPolicy { get; set; } = default!;
+
+        /// <summary>
+        /// Service that is doing the fulfillment. Can be 'manual' or any custom string.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]
+        public string? FulfillmentService { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier for the inventory item, which is used in the Inventory API to query for inventory information.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_item_id")]
+        public long? InventoryItemId { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies whether or not Shopify tracks the number of items in stock for this product variant. Known values are 'blank' and 'shopify'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
+        public string? InventoryManagement { get; set; } = default!;
+
+        /// <summary>
+        /// The price of the product variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+        public decimal? Price { get; set; } = default!;
+
+        /// <summary>
+        /// The competitors prices for the same item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("compare_at_price")]
+        public decimal? CompareAtPrice { get; set; } = default!;
+
+        /// <summary>
+        /// Custom properties that a shop owner can use to define product variants.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("option1")]
+        public string? Option1 { get; set; } = default!;
+
+        /// <summary>
+        /// Custom properties that a shop owner can use to define product variants.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("option2")]
+        public string? Option2 { get; set; } = default!;
+
+        /// <summary>
+        /// Custom properties that a shop owner can use to define product variants.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("option3")]
+        public string? Option3 { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product variant was created. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product variant was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies whether or not a tax is charged when the product variant is sold.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("taxable")]
+        public bool? Taxable { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies a tax code which is used for Avalara tax integrations
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_code")]
+        public string? TaxCode { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies whether or not a customer needs to provide a shipping address when placing an order for this product variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping")]
+        public bool? RequiresShipping { get; set; } = default!;
+
+        /// <summary>
+        /// The barcode, UPC or ISBN number for the product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("barcode")]
+        public string? Barcode { get; set; } = default!;
+
+        /// <summary>
+        /// The number of items in stock for this product variant.
+        /// <br/>NOTE: After 2018-07-01, this field will be read-only in the Shopify API. Use the `InventoryLevelService` instead.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_quantity")]
+        public long? InventoryQuantity { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier for one of the product's images.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("image_id")]
+        public long? ImageId { get; set; } = default!;
+
+        /// <summary>
+        /// The weight of the product variant in the unit system specified with weight_unit.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("weight")]
+        public decimal? Weight { get; set; } = default!;
+
+        /// <summary>
+        /// The unit system that the product variant's weight is measure in. The weight_unit can be either "g", "kg, "oz", or "lb".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("weight_unit")]
+        public string? WeightUnit { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<ProductVariantMetafield>? Metafields { get; set; } = default!;
+
+        /// <summary>
+        /// A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("presentment_prices")]
+        public System.Collections.Generic.ICollection<PresentmentPrice>? PresentmentPrices { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("product_variant")]
+        public UpdateProductVariant? ProductVariant { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateSmartCollection
+    {
+        /// <summary>
+        /// The description of the smart collection, complete with HTML markup. Many templates display this on their smart collection page.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("body_html")]
+        public string? BodyHtml { get; set; } = default!;
+
+        /// <summary>
+        /// A human-friendly unique string for the smart collection automatically generated from its title. This is used in shop themes by the Liquid templating language to refer to the smart collection. Limit of 255 characters.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        public string? Handle { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("image")]
+        public SmartCollectionImage? Image { get; set; } = default!;
+
+        /// <summary>
+        /// This can have two different types of values, depending on whether the smart collection has been published (i.e., made visible to customers):
+        /// <br/>If the smart collection is published, this value is the date and time when it was published.The API returns this value in ISO 8601 format.
+        /// <br/>If the smart collection is hidden (i.e., not published), this value is null. Changing a smart collection's status from published to hidden changes its published_at property to null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_at")]
+        public System.DateTimeOffset? PublishedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The sales channels in which the smart collection is visible. The only currently known value is 'global'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
+        public string? PublishedScope { get; set; } = default!;
+
+        /// <summary>
+        /// The list of rules that define what products go into the smart collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("rules")]
+        public System.Collections.Generic.ICollection<SmartCollectionRules>? Rules { get; set; } = default!;
+
+        /// <summary>
+        /// If false, products must match all of the rules to be included in the collection. If true, products can only match one of the rules.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("disjunctive")]
+        public bool? Disjunctive { get; set; } = default!;
+
+        /// <summary>
+        /// The order in which products in the smart collection appear. Known values are 'alpha-asc', 'alpha-desc', 'best-selling', 'created', 'created-desc', 'manual', 'price-asc', 'price-desc'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("sort_order")]
+        public string? SortOrder { get; set; } = default!;
+
+        /// <summary>
+        /// The suffix of the template you are using. By default, the original template is called product.liquid, without any suffix. Any additional templates will be: product.suffix.liquid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
+        public string? TemplateSuffix { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the smart collection. Limit of 255 characters.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the smart collection was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<SmartCollectionMetafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateSmartCollectionRequest
+    {
+        /// <summary>
+        /// The description of the smart collection, complete with HTML markup. Many templates display this on their smart collection page.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("body_html")]
+        public string? BodyHtml { get; set; } = default!;
+
+        /// <summary>
+        /// A human-friendly unique string for the smart collection automatically generated from its title. This is used in shop themes by the Liquid templating language to refer to the smart collection. Limit of 255 characters.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        public string? Handle { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("image")]
+        public SmartCollectionImage? Image { get; set; } = default!;
+
+        /// <summary>
+        /// This can have two different types of values, depending on whether the smart collection has been published (i.e., made visible to customers):
+        /// <br/>If the smart collection is published, this value is the date and time when it was published.The API returns this value in ISO 8601 format.
+        /// <br/>If the smart collection is hidden (i.e., not published), this value is null. Changing a smart collection's status from published to hidden changes its published_at property to null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_at")]
+        public System.DateTimeOffset? PublishedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The sales channels in which the smart collection is visible. The only currently known value is 'global'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
+        public string? PublishedScope { get; set; } = default!;
+
+        /// <summary>
+        /// The list of rules that define what products go into the smart collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("rules")]
+        public System.Collections.Generic.ICollection<SmartCollectionRules>? Rules { get; set; } = default!;
+
+        /// <summary>
+        /// If false, products must match all of the rules to be included in the collection. If true, products can only match one of the rules.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("disjunctive")]
+        public bool? Disjunctive { get; set; } = default!;
+
+        /// <summary>
+        /// The order in which products in the smart collection appear. Known values are 'alpha-asc', 'alpha-desc', 'best-selling', 'created', 'created-desc', 'manual', 'price-asc', 'price-desc'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("sort_order")]
+        public string? SortOrder { get; set; } = default!;
+
+        /// <summary>
+        /// The suffix of the template you are using. By default, the original template is called product.liquid, without any suffix. Any additional templates will be: product.suffix.liquid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
+        public string? TemplateSuffix { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the smart collection. Limit of 255 characters.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the smart collection was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<SmartCollectionMetafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("smart_collection")]
+        public UpdateSmartCollection? SmartCollection { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

@@ -31,7 +31,7 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_services.json")]
     [ProducesResponseType(typeof(FulfillmentServiceItem), StatusCodes.Status201Created)]
-    public override Task CreateNewFulfillmentService([Required] FulfillmentServiceItem request)
+    public override Task CreateNewFulfillmentService(CreateFulfillmentServiceRequest request)
     {
         throw new NotImplementedException();
     }
@@ -39,15 +39,16 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     /// <inheritdoc />
     [HttpGet, Route("fulfillment_services/{fulfillment_service_id:long}.json")]
     [ProducesResponseType(typeof(FulfillmentServiceItem), StatusCodes.Status200OK)]
-    public override Task ReceiveSingleFulfillmentService([Required] long fulfillment_service_id)
+    public override Task ReceiveSingleFulfillmentService(long fulfillment_service_id)
     {
         throw new NotImplementedException();
     }
+
     /// <inheritdoc />
     /// <inheritdoc cref="FulfillmentServiceControllerBase.ModifyExistingFulfillmentService" />
     [HttpPut, Route("fulfillment_services/{fulfillment_service_id:long}.json")]
     [ProducesResponseType(typeof(FulfillmentServiceItem), StatusCodes.Status200OK)]
-    public override Task ModifyExistingFulfillmentService(FulfillmentServiceItem request, long fulfillment_service_id)
+    public override Task ModifyExistingFulfillmentService(UpdateFulfillmentServiceRequest request, long fulfillment_service_id)
     {
         throw new NotImplementedException();
     }
@@ -55,7 +56,7 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("fulfillment_services/{fulfillment_service_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task RemoveExistingFulfillmentService([Required] long fulfillment_service_id)
+    public override Task RemoveExistingFulfillmentService(long fulfillment_service_id)
     {
         throw new NotImplementedException();
     }

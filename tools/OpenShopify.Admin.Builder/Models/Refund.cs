@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class Refund : ShopifyObject
+    public class RefundBase
     {
         /// <summary>
         /// The unique identifier of the order.

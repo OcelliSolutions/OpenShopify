@@ -9,7 +9,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify fulfillment service.
     /// </summary>
-    public class FulfillmentService : ShopifyObject
+    public class FulfillmentServiceBase
     {
         /// <summary>
         /// The name of the fulfillment service as seen by merchants and their customers.

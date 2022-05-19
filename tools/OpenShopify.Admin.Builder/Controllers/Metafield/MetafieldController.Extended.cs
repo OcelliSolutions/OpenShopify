@@ -24,14 +24,14 @@ public class MetafieldController : MetafieldControllerBase
     /// <inheritdoc />
     [HttpPost, Route("metafields.json")]
     [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status201Created)]
-    public override Task CreateMetafield(MetafieldItem request)
+    public override Task CreateMetafield(CreateMetafieldRequest request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("metafields/count.json")]
-    [ProducesResponseType(typeof(MetafieldCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveCountOfResourcesMetafields()
     {
         throw new NotImplementedException();
@@ -48,7 +48,7 @@ public class MetafieldController : MetafieldControllerBase
     /// <inheritdoc />
     [HttpPut, Route("metafields/{metafield_id:long}.json")]
     [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status200OK)]
-    public override Task UpdateMetafield(MetafieldItem request, long metafield_id)
+    public override Task UpdateMetafield(UpdateMetafieldRequest request, long metafield_id)
     {
         throw new NotImplementedException();
     }

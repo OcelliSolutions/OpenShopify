@@ -71,10 +71,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CountryItem'
+              $ref: '#/components/schemas/CreateCountryRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CountryItem'
+              $ref: '#/components/schemas/CreateCountryRequest'
       responses:
         '201':
           description: Created
@@ -127,7 +127,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CountryCount'
+                $ref: '#/components/schemas/CountItem'
         '401':
           description: Unauthorized
           headers:
@@ -212,7 +212,6 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CountryItem'
-        required: true
       responses:
         '200':
           description: Success
@@ -410,7 +409,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProvinceCount'
+                $ref: '#/components/schemas/CountItem'
         '401':
           description: Unauthorized
           headers:
@@ -488,10 +487,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProvinceItem'
+              $ref: '#/components/schemas/UpdateProvinceRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/ProvinceItem'
+              $ref: '#/components/schemas/UpdateProvinceRequest'
       responses:
         '401':
           description: Unauthorized
@@ -566,17 +565,18 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    Country:
+    CountItem:
       type: object
       properties:
-        id:
+        count:
           type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
+          format: int32
+      additionalProperties: { }
+    Country:
+      required:
+        - id
+      type: object
+      properties:
         name:
           type: string
           description: 'The full name of the country, in English.'
@@ -584,7 +584,53 @@ components:
         tax:
           type: number
           description: The tax value in decimal format.
-          format: double
+          format: decimal
+          nullable: true
+        code:
+          type: string
+          description: The ISO 3166-1 alpha-2 two-letter country code for the country. The code for a given country will be the same as the code for the same country in another shop.
+          nullable: true
+        tax_name:
+          type: string
+          description: 'The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.'
+          nullable: true
+        provinces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Province'
+          description: The sub-regions of a country. The term provinces also encompasses states.
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    CountryItem:
+      type: object
+      properties:
+        country:
+          $ref: '#/components/schemas/Country'
+      additionalProperties: { }
+    CountryList:
+      type: object
+      properties:
+        countries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Country'
+      additionalProperties: { }
+    CreateCountry:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'The full name of the country, in English.'
+          nullable: true
+        tax:
+          type: number
+          description: The tax value in decimal format.
+          format: decimal
           nullable: true
         code:
           type: string
@@ -600,27 +646,11 @@ components:
             $ref: '#/components/schemas/Province'
           description: The sub-regions of a country. The term provinces also encompasses states.
       additionalProperties: { }
-    CountryCount:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-      additionalProperties: { }
-    CountryItem:
+    CreateCountryRequest:
       type: object
       properties:
         country:
-          $ref: '#/components/schemas/Country'
-      additionalProperties: { }
-    CountryList:
-      type: object
-      properties:
-        countries:
-          type: array
-          items:
-            $ref: '#/components/schemas/Country'
-          nullable: true
+          $ref: '#/components/schemas/CreateCountry'
       additionalProperties: { }
     Currency:
       type: object
@@ -640,7 +670,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Currency'
-          nullable: true
       additionalProperties: { }
     ErrorResponse:
       type: object
@@ -650,16 +679,10 @@ components:
           nullable: true
       additionalProperties: false
     Province:
+      required:
+        - id
       type: object
       properties:
-        id:
-          type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         country_id:
           type: integer
           description: The unique numeric identifier for the country.
@@ -676,7 +699,7 @@ components:
         tax:
           type: number
           description: The tax value in decimal format.
-          format: double
+          format: decimal
           nullable: true
         tax_name:
           type: string
@@ -694,21 +717,182 @@ components:
         tax_percentage:
           type: number
           description: The tax value in percent format.
-          format: double
+          format: decimal
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
           nullable: true
       additionalProperties: { }
-    ProvinceCount:
+    UpdateCountry:
+      required:
+        - id
       type: object
       properties:
-        count:
+        name:
+          type: string
+          description: 'The full name of the country, in English.'
+          nullable: true
+        tax:
+          type: number
+          description: The tax value in decimal format.
+          format: decimal
+          nullable: true
+        code:
+          type: string
+          description: The ISO 3166-1 alpha-2 two-letter country code for the country. The code for a given country will be the same as the code for the same country in another shop.
+          nullable: true
+        tax_name:
+          type: string
+          description: 'The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.'
+          nullable: true
+        provinces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Province'
+          description: The sub-regions of a country. The term provinces also encompasses states.
+        id:
           type: integer
-          format: int32
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
       additionalProperties: { }
-    ProvinceItem:
+    UpdateCountryRequest:
+      required:
+        - id
       type: object
       properties:
+        name:
+          type: string
+          description: 'The full name of the country, in English.'
+          nullable: true
+        tax:
+          type: number
+          description: The tax value in decimal format.
+          format: decimal
+          nullable: true
+        code:
+          type: string
+          description: The ISO 3166-1 alpha-2 two-letter country code for the country. The code for a given country will be the same as the code for the same country in another shop.
+          nullable: true
+        tax_name:
+          type: string
+          description: 'The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.'
+          nullable: true
+        provinces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Province'
+          description: The sub-regions of a country. The term provinces also encompasses states.
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        country:
+          $ref: '#/components/schemas/UpdateCountry'
+      additionalProperties: { }
+    UpdateProvince:
+      required:
+        - id
+      type: object
+      properties:
+        country_id:
+          type: integer
+          description: The unique numeric identifier for the country.
+          format: int64
+          nullable: true
+        name:
+          type: string
+          description: The name of the province or state.
+          nullable: true
+        code:
+          type: string
+          description: The two letter province or state code.
+          nullable: true
+        tax:
+          type: number
+          description: The tax value in decimal format.
+          format: decimal
+          nullable: true
+        tax_name:
+          type: string
+          description: 'The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.'
+          nullable: true
+        tax_type:
+          type: string
+          description: 'A tax_type is applied for a compounded sales tax. For example, the Canadian HST is a compounded sales tax of both PST and GST.'
+          nullable: true
+        shipping_zone_id:
+          type: integer
+          description: The unique numeric identifier for the shipping zone.
+          format: int64
+          nullable: true
+        tax_percentage:
+          type: number
+          description: The tax value in percent format.
+          format: decimal
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    UpdateProvinceRequest:
+      required:
+        - id
+      type: object
+      properties:
+        country_id:
+          type: integer
+          description: The unique numeric identifier for the country.
+          format: int64
+          nullable: true
+        name:
+          type: string
+          description: The name of the province or state.
+          nullable: true
+        code:
+          type: string
+          description: The two letter province or state code.
+          nullable: true
+        tax:
+          type: number
+          description: The tax value in decimal format.
+          format: decimal
+          nullable: true
+        tax_name:
+          type: string
+          description: 'The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.'
+          nullable: true
+        tax_type:
+          type: string
+          description: 'A tax_type is applied for a compounded sales tax. For example, the Canadian HST is a compounded sales tax of both PST and GST.'
+          nullable: true
+        shipping_zone_id:
+          type: integer
+          description: The unique numeric identifier for the shipping zone.
+          format: int64
+          nullable: true
+        tax_percentage:
+          type: number
+          description: The tax value in percent format.
+          format: decimal
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
         province:
-          $ref: '#/components/schemas/Province'
+          $ref: '#/components/schemas/UpdateProvince'
       additionalProperties: { }
   securitySchemes:
     ApiKey:

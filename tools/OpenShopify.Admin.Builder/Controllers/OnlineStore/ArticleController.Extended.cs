@@ -23,14 +23,14 @@ public class ArticleController : ArticleControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("blogs/{blog_id:long}/articles.json")]
-    public override Task CreateArticleForBlog(Models.ArticleItem articleItem, long blog_id)
+    public override Task CreateArticleForBlog(CreateArticleRequest request, long blog_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("blogs/{blog_id:long}/articles/count.json")]
-    [ProducesResponseType(typeof(ArticleCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveCountOfAllArticlesFromBlog(long blog_id, DateTime? created_at_max, DateTime? created_at_min,
         DateTime? published_at_max, DateTime? published_at_min, string published_status, DateTime? updated_at_max,
         DateTime? updated_at_min)
@@ -47,7 +47,7 @@ public class ArticleController : ArticleControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("blogs/{blog_id:long}/articles/{article_id:long}.json")]
-    public override Task UpdateArticle(Models.ArticleItem articleItem, long article_id, long blog_id)
+    public override Task UpdateArticle(UpdateArticleRequest request, long article_id, long blog_id)
     {
         throw new NotImplementedException();
     }

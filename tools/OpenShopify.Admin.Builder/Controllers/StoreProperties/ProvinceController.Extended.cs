@@ -19,7 +19,7 @@ public class ProvinceController : ProvinceControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("countries/{country_id:long}/provinces/count.json")]
-    [ProducesResponseType(typeof(ProvinceCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveCountOfProvincesForCountry(long country_id)
     {
         throw new NotImplementedException();
@@ -34,7 +34,7 @@ public class ProvinceController : ProvinceControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("countries/{country_id:long}/provinces/{province_id:long}.json")]
-    public override Task UpdateExistingProvinceForCountry(ProvinceItem request, long country_id, long province_id)
+    public override Task UpdateExistingProvinceForCountry(UpdateProvinceRequest request, long country_id, long province_id)
     {
         throw new NotImplementedException();
     }

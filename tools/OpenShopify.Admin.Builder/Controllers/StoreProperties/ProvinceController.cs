@@ -54,7 +54,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates an existing province for a country</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/{province_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingProvinceForCountry([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ProvinceItem request, long country_id, long province_id);
+        public abstract System.Threading.Tasks.Task UpdateExistingProvinceForCountry([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateProvinceRequest request, long country_id, long province_id);
 
     }
 

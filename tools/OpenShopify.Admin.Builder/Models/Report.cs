@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models;
 
-public class Report : ShopifyObject
+public class ReportBase
 {
     [JsonPropertyName("category")]
     public string? Category { get; set; } = null!;

@@ -6,7 +6,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify fulfillment request.
     /// </summary>
-    public class FulfillmentRequest
+    public class FulfillmentRequestBase
     {
         /// <summary>
         /// An optional message for the fulfillment request.

@@ -45,7 +45,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a new script tag</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("script_tags.json")]
-        public abstract System.Threading.Tasks.Task CreateNewScriptTag([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ScriptTagItem request);
+        public abstract System.Threading.Tasks.Task CreateNewScriptTag([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateScriptTagRequest request);
 
         /// <summary>
         /// Retrieves a count of all script tags
@@ -68,7 +68,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates a script tag</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("script_tags/{script_tag_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateScriptTag([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ScriptTagItem request, long script_tag_id);
+        public abstract System.Threading.Tasks.Task UpdateScriptTag([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateScriptTagRequest request, long script_tag_id);
 
         /// <summary>
         /// Deletes a script tag

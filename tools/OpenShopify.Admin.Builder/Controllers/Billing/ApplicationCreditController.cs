@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates an application credit</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("application_credits.json")]
-        public abstract System.Threading.Tasks.Task CreateApplicationCredit([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ApplicationCreditItem request);
+        public abstract System.Threading.Tasks.Task CreateApplicationCredit([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateApplicationCreditRequest request);
 
         /// <summary>
         /// Retrieves all application credits

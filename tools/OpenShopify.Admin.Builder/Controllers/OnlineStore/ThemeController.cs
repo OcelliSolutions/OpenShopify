@@ -38,7 +38,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a theme</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("themes.json")]
-        public abstract System.Threading.Tasks.Task CreateTheme([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ThemeItem request);
+        public abstract System.Threading.Tasks.Task CreateTheme([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateThemeRequest request);
 
         /// <summary>
         /// Retrieves a single theme by its ID
@@ -53,7 +53,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Modify an existing Theme</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingTheme([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ThemeItem request, long theme_id);
+        public abstract System.Threading.Tasks.Task ModifyExistingTheme([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateThemeRequest request, long theme_id);
 
         /// <summary>
         /// Remove an existing Theme

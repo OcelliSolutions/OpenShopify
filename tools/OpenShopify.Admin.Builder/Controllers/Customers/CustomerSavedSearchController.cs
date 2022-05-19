@@ -40,7 +40,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a customer saved search</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches.json")]
-        public abstract System.Threading.Tasks.Task CreateCustomerSavedSearch([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CustomerSavedSearchItem request);
+        public abstract System.Threading.Tasks.Task CreateCustomerSavedSearch([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCustomerSavedSearchRequest request);
 
         /// <summary>
         /// Retrieves a count of all customer saved searches
@@ -63,7 +63,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates a customer saved search</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateCustomerSavedSearch([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CustomerSavedSearchItem request, long customer_saved_search_id);
+        public abstract System.Threading.Tasks.Task UpdateCustomerSavedSearch([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCustomerSavedSearchRequest request, long customer_saved_search_id);
 
         /// <summary>
         /// Deletes a customer saved search

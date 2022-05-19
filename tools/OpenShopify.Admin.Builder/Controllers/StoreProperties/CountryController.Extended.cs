@@ -1,9 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
-using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.StoreProperties;
 
@@ -23,14 +21,14 @@ public class CountryController : CountryControllerBase
     /// <inheritdoc />
     [HttpPost, Route("countries.json")]
     [ProducesResponseType(typeof(CountryItem), StatusCodes.Status201Created)]
-    public override Task CreateCountry(CountryItem request)
+    public override Task CreateCountry(CreateCountryRequest request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("countries/count.json")]
-    [ProducesResponseType(typeof(CountryCount), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task RetrieveCountOfCountries()
     {
         throw new NotImplementedException();
@@ -39,14 +37,14 @@ public class CountryController : CountryControllerBase
     /// <inheritdoc />
     [HttpGet, Route("countries/{country_id:long}.json")]
     [ProducesResponseType(typeof(CountryItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSpecificCounty([Required] long country_id, string? fields)
+    public override Task RetrieveSpecificCounty(long country_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [IgnoreApi, HttpPut, Route("countries/{country_id}.invalid")]
-    public override Task UpdateExistingCountry(CountryItem request, long countryId)
+    public override Task UpdateExistingCountry(UpdateCountryRequest request, long country_id)
     {
         throw new NotImplementedException();
     }
@@ -54,7 +52,7 @@ public class CountryController : CountryControllerBase
     /// <inheritdoc cref="CountryControllerBase.UpdateExistingCountry" />
     [HttpPut, Route("countries/{country_id:long}.json")]
     [ProducesResponseType(typeof(CountryItem), StatusCodes.Status200OK)]
-    public Task UpdateExistingCountry([Required] long country_id, [Required] CountryItem request)
+    public Task UpdateExistingCountry(long country_id, CountryItem request)
     {
         throw new NotImplementedException();
     }
@@ -62,7 +60,7 @@ public class CountryController : CountryControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("countries/{country_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task RemoveExistingCountry([Required] long country_id)
+    public override Task RemoveExistingCountry(long country_id)
     {
         throw new NotImplementedException();
     }

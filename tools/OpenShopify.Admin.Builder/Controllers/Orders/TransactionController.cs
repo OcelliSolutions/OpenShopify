@@ -41,7 +41,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="source">An optional origin of the transaction. Set to &lt;code&gt;external&lt;/code&gt; to import a cash transaction for the associated order.</param>
         /// <returns>Creates a transaction for an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions.json")]
-        public abstract System.Threading.Tasks.Task CreateTransactionForOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.TransactionItem request, long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? source);
+        public abstract System.Threading.Tasks.Task CreateTransactionForOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateTransactionRequest request, long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? source);
 
         /// <summary>
         /// Retrieves a count of an order's transactions

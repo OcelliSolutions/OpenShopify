@@ -1,5 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
@@ -14,7 +13,7 @@ public class StorefrontAccessTokenController : StorefrontAccessTokenControllerBa
     /// <inheritdoc />
     [HttpPost, Route("storefront_access_tokens.json")]
     [ProducesResponseType(typeof(StorefrontAccessTokenItem), StatusCodes.Status200OK)]
-    public override Task CreateNewStorefrontAccessToken(StorefrontAccessTokenItem request)
+    public override Task CreateNewStorefrontAccessToken(CreateStorefrontAccessTokenRequest request)
     {
         throw new NotImplementedException();
     }

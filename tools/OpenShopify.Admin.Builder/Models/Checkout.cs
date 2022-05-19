@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An entity representing a Shopify product.
     /// </summary>
-    public class Checkout : ShopifyObject
+    public class CheckoutBase
     {
         /// <summary>
         /// The full recovery URL to be sent to a customer to recover their abandoned checkout.

@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class Country : ShopifyObject
+    public class CountryBase
     {
         /// <summary>
         /// The full name of the country, in English.

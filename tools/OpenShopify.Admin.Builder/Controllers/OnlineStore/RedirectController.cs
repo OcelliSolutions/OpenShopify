@@ -35,14 +35,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="target">Show redirects with a given target.</param>
         /// <returns>Retrieves a list of URL redirects</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("redirects.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfURLRedirects([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? path, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? target);
+        public abstract System.Threading.Tasks.Task RetrieveListOfUrlRedirects([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? path, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? target);
 
         /// <summary>
         /// Creates a redirect
         /// </summary>
         /// <returns>Creates a redirect</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("redirects.json")]
-        public abstract System.Threading.Tasks.Task CreateRedirect([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.RedirectItem request);
+        public abstract System.Threading.Tasks.Task CreateRedirect([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateRedirectRequest request);
 
         /// <summary>
         /// Retrieves a count of URL redirects
@@ -51,7 +51,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="target">Count redirects with given target.</param>
         /// <returns>Retrieves a count of URL redirects</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("redirects/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfURLRedirects([Microsoft.AspNetCore.Mvc.FromQuery] string? path, [Microsoft.AspNetCore.Mvc.FromQuery] string? target);
+        public abstract System.Threading.Tasks.Task RetrieveCountOfUrlRedirects([Microsoft.AspNetCore.Mvc.FromQuery] string? path, [Microsoft.AspNetCore.Mvc.FromQuery] string? target);
 
         /// <summary>
         /// Retrieves a single redirect
@@ -66,7 +66,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates an existing redirect</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("redirects/{redirect_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingRedirect([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.RedirectItem request, long redirect_id);
+        public abstract System.Threading.Tasks.Task UpdateExistingRedirect([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateRedirectRequest request, long redirect_id);
 
         /// <summary>
         /// Deletes a redirect

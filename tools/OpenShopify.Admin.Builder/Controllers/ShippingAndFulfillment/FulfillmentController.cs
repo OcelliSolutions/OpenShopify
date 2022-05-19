@@ -44,7 +44,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Create a new Fulfillment</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments.json")]
-        public abstract System.Threading.Tasks.Task CreateNewFulfillment([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.FulfillmentItem request, long order_id);
+        public abstract System.Threading.Tasks.Task CreateNewFulfillment([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateFulfillmentRequest request, long order_id);
 
         /// <summary>
         /// Retrieves fulfillments associated with a fulfillment order
@@ -77,21 +77,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Modify an existing Fulfillment</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingFulfillment([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.FulfillmentItem request, long fulfillment_id, long order_id);
+        public abstract System.Threading.Tasks.Task ModifyExistingFulfillment([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateFulfillmentRequest request, long fulfillment_id, long order_id);
 
         /// <summary>
         /// Creates a fulfillment for one or many fulfillment orders
         /// </summary>
         /// <returns>Creates a fulfillment for one or many fulfillment orders</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillments.json")]
-        public abstract System.Threading.Tasks.Task CreateFulfillmentForOneOrManyFulfillmentOrders([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.FulfillmentItem request);
+        public abstract System.Threading.Tasks.Task CreateFulfillmentForOneOrManyFulfillmentOrders([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateFulfillmentRequest request);
 
         /// <summary>
         /// Updates the tracking information for a fulfillment
         /// </summary>
         /// <returns>Updates the tracking information for a fulfillment</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillments/{fulfillment_id}/update_tracking.json")]
-        public abstract System.Threading.Tasks.Task UpdateTrackingInformationForFulfillment([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.FulfillmentItem request, long fulfillment_id);
+        public abstract System.Threading.Tasks.Task UpdateTrackingInformationForFulfillment([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateFulfillmentRequest request, long fulfillment_id);
 
         /// <summary>
         /// Complete a fulfillment

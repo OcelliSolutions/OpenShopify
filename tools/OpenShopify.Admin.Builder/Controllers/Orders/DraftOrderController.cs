@@ -33,7 +33,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <br/>        to load customer shipping information. Valid values: true or false.</param>
         /// <returns>Create a new DraftOrder</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("draft_orders.json")]
-        public abstract System.Threading.Tasks.Task CreateNewDraftOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.DraftOrderItem request, [Microsoft.AspNetCore.Mvc.FromQuery] long? customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? use_customer_default_address);
+        public abstract System.Threading.Tasks.Task CreateNewDraftOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateDraftOrderRequest request, [Microsoft.AspNetCore.Mvc.FromQuery] long? customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? use_customer_default_address);
 
         /// <summary>
         /// Retrieves a list of draft orders
@@ -53,7 +53,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Modify an existing DraftOrder</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("draft_orders/{draft_order_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingDraftOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.DraftOrderItem request, long draft_order_id);
+        public abstract System.Threading.Tasks.Task ModifyExistingDraftOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateDraftOrderRequest request, long draft_order_id);
 
         /// <summary>
         /// Receive a single DraftOrder

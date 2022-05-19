@@ -48,6 +48,7 @@ var openApiInfo = new OpenApiInfo
 };
 builder.Services.AddSwaggerGen(c =>
 {
+    c.MapType<decimal>(() => new OpenApiSchema { Type = "number", Format = "decimal" });
     c.SupportNonNullableReferenceTypes();
     //Skip (1) is because the first fieldinfo of enum is a built-in int value
     typeof(ApiGroupNames).GetFields().Skip(1).ToList().ForEach(f =>

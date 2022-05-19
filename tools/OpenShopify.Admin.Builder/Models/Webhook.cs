@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An entity representing a Shopify webhook.
     /// </summary>
-    public class Webhook : ShopifyObject
+    public class WebhookBase
     {
         /// <summary>
         /// The URL where the webhook should send the POST request when the event occurs.

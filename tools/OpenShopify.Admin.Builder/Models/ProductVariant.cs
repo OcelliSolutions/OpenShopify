@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class ProductVariant : ShopifyObject
+    public class ProductVariantBase
     {
         /// <summary>
         /// The unique numeric identifier for the product.

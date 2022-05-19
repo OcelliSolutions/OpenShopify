@@ -6,7 +6,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify order risk.
     /// </summary>
-    public class OrderRisk : ShopifyObject
+    public class OrderRiskBase
     {
         /// <summary>
         /// Use this flag when a fraud check is accompanied with a call to the Orders API to cancel the order. This will indicate to the merchant that this risk was severe enough to force cancellation of the order.

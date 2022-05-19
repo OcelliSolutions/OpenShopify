@@ -71,10 +71,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GiftCardItem'
+              $ref: '#/components/schemas/CreateGiftCardRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/GiftCardItem'
+              $ref: '#/components/schemas/CreateGiftCardRequest'
       responses:
         '401':
           description: Unauthorized
@@ -136,10 +136,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GiftCardItem'
+              $ref: '#/components/schemas/UpdateGiftCardRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/GiftCardItem'
+              $ref: '#/components/schemas/UpdateGiftCardRequest'
       responses:
         '401':
           description: Unauthorized
@@ -183,7 +183,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GiftCardCount'
+                $ref: '#/components/schemas/CountItem'
         '401':
           description: Unauthorized
           headers:
@@ -363,28 +363,20 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
+    CountItem:
       type: object
       properties:
-        errors:
-          type: string
-          nullable: true
-      additionalProperties: false
-    GiftCard:
-      type: object
-      properties:
-        id:
+        count:
           type: integer
-          description: The object's unique id.
-          format: int64
-          nullable: true
-        admin_graphql_api_id:
-          type: string
-          nullable: true
+          format: int32
+      additionalProperties: { }
+    CreateGiftCard:
+      type: object
+      properties:
         balance:
           type: number
           description: Returns the amount of money remaining on the gift card.
-          format: double
+          format: decimal
           nullable: true
         created_at:
           type: string
@@ -403,7 +395,7 @@ components:
         initial_value:
           type: number
           description: Returns the initial amount of money on the gift card.
-          format: double
+          format: decimal
           nullable: true
         disabled_at:
           type: string
@@ -457,18 +449,194 @@ components:
           description: Thethe gift card code. Only for Creation
           nullable: true
       additionalProperties: { }
-    GiftCardCount:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-      additionalProperties: { }
-    GiftCardItem:
+    CreateGiftCardRequest:
       type: object
       properties:
         gift_card:
-          $ref: '#/components/schemas/GiftCard'
+          $ref: '#/components/schemas/CreateGiftCard'
+      additionalProperties: { }
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UpdateGiftCard:
+      required:
+        - id
+      type: object
+      properties:
+        balance:
+          type: number
+          description: Returns the amount of money remaining on the gift card.
+          format: decimal
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the gift card was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the gift card was updated.
+          format: date-time
+          nullable: true
+        currency:
+          type: string
+          description: The three letter code (ISO 4217) for the currency used for the gift card.
+          nullable: true
+        initial_value:
+          type: number
+          description: Returns the initial amount of money on the gift card.
+          format: decimal
+          nullable: true
+        disabled_at:
+          type: string
+          description: The date and time when the gift card was disabled.
+          format: date-time
+          nullable: true
+        expires_on:
+          type: string
+          description: The date and time when the gift card will expire.
+          format: date-time
+          nullable: true
+        line_item_id:
+          type: integer
+          description: A unique numeric identifier of the line_item that caused the creation of this gift card (if it was created by an order).
+          format: int64
+          nullable: true
+        api_client_id:
+          type: integer
+          description: A unique numeric identifier of the application that issued the gift card (if it was issued by an application).
+          format: int64
+          nullable: true
+        user_id:
+          type: integer
+          description: A unique numeric identifier of the user that issued the gift card (if it was issued by a user).
+          format: int64
+          nullable: true
+        customer_id:
+          type: integer
+          description: The id of a customer who is associated with this gift card.
+          format: int64
+          nullable: true
+        note:
+          type: string
+          description: The text of an optional note that a shop owner can attach to the gift card. Not visible to merchants.
+          nullable: true
+        template_suffix:
+          type: string
+          description: 'When specified, the gift card will be rendered using gift_card.SUFFIX.liquid instead of gift_card.liquid.'
+          nullable: true
+        last_characters:
+          type: string
+          description: 'The last four characters of the gift card code. Because gift cards are alternate payment methods, the full code cannot be retrieved.'
+          nullable: true
+        order_id:
+          type: integer
+          description: A unique numeric identifier of the order that caused the creation of this gift card (if it was created by an order).
+          format: int64
+          nullable: true
+        code:
+          type: string
+          description: Thethe gift card code. Only for Creation
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    UpdateGiftCardRequest:
+      required:
+        - id
+      type: object
+      properties:
+        balance:
+          type: number
+          description: Returns the amount of money remaining on the gift card.
+          format: decimal
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the gift card was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the gift card was updated.
+          format: date-time
+          nullable: true
+        currency:
+          type: string
+          description: The three letter code (ISO 4217) for the currency used for the gift card.
+          nullable: true
+        initial_value:
+          type: number
+          description: Returns the initial amount of money on the gift card.
+          format: decimal
+          nullable: true
+        disabled_at:
+          type: string
+          description: The date and time when the gift card was disabled.
+          format: date-time
+          nullable: true
+        expires_on:
+          type: string
+          description: The date and time when the gift card will expire.
+          format: date-time
+          nullable: true
+        line_item_id:
+          type: integer
+          description: A unique numeric identifier of the line_item that caused the creation of this gift card (if it was created by an order).
+          format: int64
+          nullable: true
+        api_client_id:
+          type: integer
+          description: A unique numeric identifier of the application that issued the gift card (if it was issued by an application).
+          format: int64
+          nullable: true
+        user_id:
+          type: integer
+          description: A unique numeric identifier of the user that issued the gift card (if it was issued by a user).
+          format: int64
+          nullable: true
+        customer_id:
+          type: integer
+          description: The id of a customer who is associated with this gift card.
+          format: int64
+          nullable: true
+        note:
+          type: string
+          description: The text of an optional note that a shop owner can attach to the gift card. Not visible to merchants.
+          nullable: true
+        template_suffix:
+          type: string
+          description: 'When specified, the gift card will be rendered using gift_card.SUFFIX.liquid instead of gift_card.liquid.'
+          nullable: true
+        last_characters:
+          type: string
+          description: 'The last four characters of the gift card code. Because gift cards are alternate payment methods, the full code cannot be retrieved.'
+          nullable: true
+        order_id:
+          type: integer
+          description: A unique numeric identifier of the order that caused the creation of this gift card (if it was created by an order).
+          format: int64
+          nullable: true
+        code:
+          type: string
+          description: Thethe gift card code. Only for Creation
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        gift_card:
+          $ref: '#/components/schemas/UpdateGiftCard'
       additionalProperties: { }
   securitySchemes:
     ApiKey:

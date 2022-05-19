@@ -48,7 +48,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Create a new Webhook</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("webhooks.json")]
-        public abstract System.Threading.Tasks.Task CreateNewWebhook([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.WebhookItem request);
+        public abstract System.Threading.Tasks.Task CreateNewWebhook([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateWebhookRequest request);
 
         /// <summary>
         /// Receive a count of all Webhooks
@@ -73,7 +73,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Modify an existing Webhook</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("webhooks/{webhook_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingWebhook([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.WebhookItem request, long webhook_id);
+        public abstract System.Threading.Tasks.Task ModifyExistingWebhook([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateWebhookRequest request, long webhook_id);
 
         /// <summary>
         /// Remove an existing Webhook

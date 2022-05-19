@@ -25,15 +25,15 @@ public class ApplicationCreditTests : IClassFixture<SharedFixture>
 
     private SharedFixture Fixture { get; }
 
-    [Fact, TestPriority(10)]
+    [Fact(Skip = "Unknown required scope."), TestPriority(10)]
     public async Task CreateApplicationCreditAsync_CanCreate()
     {
         var name = $@"{ApplicationCreditPrefix} {Fixture.BatchId}";
-        var request = new ApplicationCreditItem()
+        var request = new CreateApplicationCreditRequest()
         {
-            ApplicationCredit = new ApplicationCredit()
+            ApplicationCredit = new CreateApplicationCredit()
             { 
-                Test = true, Description = name, Amount = 0.01
+                Test = true, Description = name, Amount = (decimal)0.01
             }
         };
         var created =
@@ -46,26 +46,26 @@ public class ApplicationCreditTests : IClassFixture<SharedFixture>
         Fixture.CreatedApplicationCredits.Add(created.Result.ApplicationCredit);
     }
 
-    [SkippableFact, TestPriority(20)]
+    [SkippableFact(Skip = "Unknown required scope."), TestPriority(20)]
     public async Task RetrieveSingleApplicationCreditAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
         Skip.If(Fixture.CreatedApplicationCredits.FirstOrDefault()?.Id == null);
         var applicationCredit = Fixture.CreatedApplicationCredits.First();
 
         var single =
-            await _service.ApplicationCredit.RetrieveSingleApplicationCreditAsync(applicationCredit.Id ?? 0,
+            await _service.ApplicationCredit.RetrieveSingleApplicationCreditAsync(applicationCredit.Id,
                 cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(single, Fixture.MyShopifyUrl);
 
         var credit = single.Result.ApplicationCredit;
         Assert.NotNull(credit);
-        Assert.True(credit?.Id.HasValue);
+        Assert.NotNull(credit?.Id);
         Assert.NotNull(credit?.Description);
         Assert.True(credit is { Test: { } } && credit.Test.Value);
         Assert.True(credit?.Amount > 0);
     }
 
-    [SkippableFact, TestPriority(20)]
+    [SkippableFact(Skip = "Unknown required scope."), TestPriority(20)]
     public async Task RetrieveAllApplicationCreditsAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
         var result =

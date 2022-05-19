@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An entity representing a Shopify product.
     /// </summary>
-    public class Page : ShopifyObject
+    public class PageBase
     {
         /// <summary>
         /// The name of the page. 
