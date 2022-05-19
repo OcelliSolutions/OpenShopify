@@ -348,3 +348,5 @@ Docker Apps/IdentityServer/identityserver4_log.txt
 
 internallog.*
 *.clean.json
+api_keys.json
+api_key.json

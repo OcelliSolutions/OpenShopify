@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
 using Xunit;
@@ -20,9 +21,10 @@ public class StorefrontAccessTokenTests : IClassFixture<SharedFixture>
     }
 
     private SharedFixture Fixture { get; }
-
+    /*
     [SkippableFact]
-    public async void RetrieveListOfStorefrontAccessTokensThatHaveBeenIssuedAsync_AdditionalPropertiesAreEmpty_ShouldPass()
+    public async Task
+        RetrieveListOfStorefrontAccessTokensThatHaveBeenIssuedAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
         var requiredPermissions = new List<AuthorizationScope>()
         {
@@ -37,26 +39,24 @@ public class StorefrontAccessTokenTests : IClassFixture<SharedFixture>
             AuthorizationScope.unauthenticated_write_customers,
             AuthorizationScope.unauthenticated_read_customers
         };
-        foreach (var apiKey in Fixture.ApiKeys)
-        {   
-            apiKey.ValidateScopes(requiredPermissions);
-            var service = new AccessService(apiKey.MyShopifyUrl, apiKey.AccessToken);
-            var result = await service.StorefrontAccess.RetrieveListOfStorefrontAccessTokensThatHaveBeenIssuedAsync();
-            _additionalPropertiesHelper.CheckAdditionalProperties(result, apiKey.MyShopifyUrl);
+        Fixture.ValidateScopes(requiredPermissions);
+        var service = new AccessService(Fixture.MyShopifyUrl, Fixture.AccessToken);
+        var result = await service.StorefrontAccess.RetrieveListOfStorefrontAccessTokensThatHaveBeenIssuedAsync();
+        _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
 
-            if (result.StorefrontAccessTokens == null)
-            {
-                Skip.If(result.StorefrontAccessTokens == null || !result.StorefrontAccessTokens.Any(),
-                    "WARN: No data returned. Could not test");
-                return;
-            }
-
-            foreach (var token in result.StorefrontAccessTokens)
-            {
-                _additionalPropertiesHelper.CheckAdditionalProperties(token, apiKey.MyShopifyUrl);
-            }
-
-            Assert.NotEmpty(result.StorefrontAccessTokens);
+        if (result.StorefrontAccessTokens == null)
+        {
+            Skip.If(result.StorefrontAccessTokens == null || !result.StorefrontAccessTokens.Any(),
+                "WARN: No data returned. Could not test");
+            return;
         }
+
+        foreach (var token in result.StorefrontAccessTokens)
+        {
+            _additionalPropertiesHelper.CheckAdditionalProperties(token, Fixture.MyShopifyUrl);
+        }
+
+        Assert.NotEmpty(result.StorefrontAccessTokens);
     }
+    */
 }

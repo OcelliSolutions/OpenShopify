@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
 using Xunit;
@@ -21,32 +22,30 @@ public class ReportTests : IClassFixture<SharedFixture>
     }
 
     private SharedFixture Fixture { get; }
-
+    /*
     [SkippableFact]
-    public async void RetrieveListOfReportsAsync_AdditionalPropertiesAreEmpty_ShouldPass()
+    public async Task RetrieveListOfReportsAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
         var requiredPermissions = new List<AuthorizationScope> { AuthorizationScope.read_reports };
-        foreach (var apiKey in Fixture.ApiKeys)
+        Fixture.ValidateScopes(requiredPermissions);
+        var service = new AnalyticsService(Fixture.MyShopifyUrl, Fixture.AccessToken);
+        var result = await service.Report.RetrieveListOfReportsAsync();
+        _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
+
+        if (result.Reports != null && !result.Reports.Any())
         {
-            apiKey.ValidateScopes(requiredPermissions);
-            var service = new AnalyticsService(apiKey.MyShopifyUrl, apiKey.AccessToken);
-            var result = await service.Report.RetrieveListOfReportsAsync();
-            _additionalPropertiesHelper.CheckAdditionalProperties(result, apiKey.MyShopifyUrl);
-
-            if (result.Reports != null && !result.Reports.Any())
-            {
-                Skip.If(result.Reports == null || !result.Reports.Any(),
-                    "WARN: No data returned. Could not test");
-                return;
-            }
-
-            Debug.Assert(result.Reports != null, "result.Reports != null");
-            foreach (var token in result.Reports)
-            {
-                _additionalPropertiesHelper.CheckAdditionalProperties(token, apiKey.MyShopifyUrl);
-            }
-
-            Assert.NotEmpty(result.Reports);
+            Skip.If(result.Reports == null || !result.Reports.Any(),
+                "WARN: No data returned. Could not test");
+            return;
         }
+
+        Debug.Assert(result.Reports != null, "result.Reports != null");
+        foreach (var token in result.Reports)
+        {
+            _additionalPropertiesHelper.CheckAdditionalProperties(token, Fixture.MyShopifyUrl);
+        }
+
+        Assert.NotEmpty(result.Reports);
     }
+    */
 }
