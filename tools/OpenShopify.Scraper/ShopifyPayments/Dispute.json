@@ -9,7 +9,7 @@
   },
   "paths": [
     {
-      "description": "Retrieve all disputes ordered by <code>initiated_at</code> date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\">ISO 8601</a> format), with the most recent being first.\n          <strong>Note:</strong> As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/tutorials/make-paginated-requests-to-rest-admin-api\"><em>Making requests to paginated REST Admin API endpoints</em></a>.",
+      "description": "Retrieve all disputes ordered by <code>initiated_at</code> date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\">ISO 8601</a> format), with the most recent being first.\n          <strong>Note:</strong> As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/api/usage/pagination-rest\"><em>Make paginated requests to the REST Admin API</em></a>.",
       "summary": "Return a list of all disputes",
       "operationId": "Returnalistofalldisputes",
       "parameters": [

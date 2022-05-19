@@ -9,7 +9,7 @@
   },
   "paths": [
     {
-      "description": "<p>Retrieves a list of inventory levels.</p>\n          <p>You must include <code>inventory_item_ids</code>, <code>location_ids</code>, or both as filter parameters.</p>\n          <p><strong>Note:</strong> This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to <a href='/api/usage/pagination-rest'>Making requests to paginated REST Admin API endpoints</a>.</p>",
+      "description": "<p>Retrieves a list of inventory levels.</p>\n          <p>You must include <code>inventory_item_ids</code>, <code>location_ids</code>, or both as filter parameters.</p>\n          <p><strong>Note:</strong> This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to <a href='/api/usage/pagination-rest'>Make paginated requests to the REST Admin API</a>.</p>",
       "summary": "Retrieves a list of inventory levels",
       "operationId": "Retrievesalistofinventorylevels",
       "parameters": [

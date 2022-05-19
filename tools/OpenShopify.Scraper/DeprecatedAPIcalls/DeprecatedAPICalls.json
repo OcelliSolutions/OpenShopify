@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Deprecated API calls",
-    "description": "        <div class=\"note\">\n          <h4>Private apps</h4>\n          <p>The Deprecated API calls resource is available only for <a href=\"/concepts/apps#private-apps\">private</a> apps.</p>\n        </div>\n\n        <p>\n          You can call this endpoint to get a list of all the deprecated calls your private apps have made in the past 30 days, information on migration steps, and the deadline to update these calls in your apps.\n        </p>\n\n        <p>\n          Follow the <a href=\"https://shopify.dev/changelog\">developer changelog</a> to make sure you're aware of any breaking changes that might affect your app.\n          You can learn more about how to update your apps in our <a href=\"https://shopify.dev/tutorials/update-your-app-to-a-new-api-version\">versioning guide</a>.\n        </p>\n",
+    "description": "        <div class=\"note\">\n          <h4>Private apps</h4>\n          <p>The Deprecated API calls resource is available only for <a href=\"/concepts/apps#private-apps\">private</a> apps.</p>\n        </div>\n\n        <p>\n          You can call this endpoint to get a list of all the deprecated calls your private apps have made in the past 30 days, information on migration steps, and the deadline to update these calls in your apps.\n        </p>\n\n        <p>\n          Follow the <a href=\"https://shopify.dev/changelog\">developer changelog</a> to make sure you're aware of any breaking changes that might affect your app.\n          You can learn more about how to update your apps in our <a href=\"https://shopify.dev/api/usage/versioning\">versioning guide</a>.\n        </p>\n",
     "x-owner": "https://vault.shopify.io/teams/47",
     "x-description-list": null,
     "version": "2022-04"
@@ -35,7 +35,7 @@
                       {
                         "api_type": "REST",
                         "description": "The page filter has been removed from multiple endpoints. Use cursor-based pagination instead.",
-                        "documentation_url": "https://shopify.dev/tutorials/make-paginated-requests-to-rest-admin-api",
+                        "documentation_url": "https://shopify.dev/api/usage/pagination-rest",
                         "endpoint": "Product",
                         "last_call_at": "2020-06-12T03:46:18Z",
                         "migration_deadline": "2020-07-02T13:00:00Z",
@@ -64,7 +64,7 @@
           "response": {
             "action": "HTTP/1.1 200 OK",
             "headers": {},
-            "body": "{\"data_updated_at\":\"2020-10-13T00:15:30Z\",\"deprecated_api_calls\":[{\"api_type\":\"REST\",\"description\":\"The page filter has been removed from multiple endpoints. Use cursor-based pagination instead.\",\"documentation_url\":\"https://shopify.dev/tutorials/make-paginated-requests-to-rest-admin-api\",\"endpoint\":\"Product\",\"last_call_at\":\"2020-06-12T03:46:18Z\",\"migration_deadline\":\"2020-07-02T13:00:00Z\",\"graphql_schema_name\":null,\"version\":\"2019-07\"}]}"
+            "body": "{\"data_updated_at\":\"2020-10-13T00:15:30Z\",\"deprecated_api_calls\":[{\"api_type\":\"REST\",\"description\":\"The page filter has been removed from multiple endpoints. Use cursor-based pagination instead.\",\"documentation_url\":\"https://shopify.dev/api/usage/pagination-rest\",\"endpoint\":\"Product\",\"last_call_at\":\"2020-06-12T03:46:18Z\",\"migration_deadline\":\"2020-07-02T13:00:00Z\",\"graphql_schema_name\":null,\"version\":\"2019-07\"}]}"
           },
           "name": "Retrieves all deprecated API calls",
           "codeSamples": [
@@ -111,7 +111,7 @@
               {
                 "api_type": "REST",
                 "description": "The page filter has been removed from multiple endpoints. Use cursor-based pagination instead.",
-                "documentation_url": "https://shopify.dev/tutorials/make-paginated-requests-to-rest-admin-api",
+                "documentation_url": "https://shopify.dev/api/usage/pagination-rest",
                 "endpoint": "Product",
                 "last_call_at": "2020-06-12T03:46:18Z",
                 "migration_deadline": "2020-07-02T13:00:00Z",

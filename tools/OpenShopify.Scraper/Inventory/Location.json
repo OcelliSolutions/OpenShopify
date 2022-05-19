@@ -351,7 +351,7 @@
       "action": "get"
     },
     {
-      "description": "Retrieve a list of inventory levels for a location. <strong>Note:</strong> This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to <a href='/api/usage/pagination-rest'>Making requests to paginated REST Admin API endpoints</a>.",
+      "description": "Retrieve a list of inventory levels for a location. <strong>Note:</strong> This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to <a href='/api/usage/pagination-rest'>Make paginated requests to the REST Admin API</a>.",
       "summary": "Retrieve a list of inventory levels for a location",
       "operationId": "Retrievealistofinventorylevelsforalocation",
       "parameters": [

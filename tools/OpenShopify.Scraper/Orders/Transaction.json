@@ -271,7 +271,7 @@
       "action": "get"
     },
     {
-      "description": "<aside class=\"note caution\">\n  <h4>Caution</h4>\n  <p>For multi-currency orders, the <code>currency</code> property is required when creating refund and capture transactions. The value should be the presentment currency from the order. For more information, see <a href=\"/tutorials/migrate-your-app-to-support-multi-currency\"><i>Migrating to support multiple currencies</i></a>.</p>\n</aside>\n  <p>Creates a transaction for an order.</p>",
+      "description": "<aside class=\"note caution\">\n  <h4>Caution</h4>\n  <p>For multi-currency orders, the <code>currency</code> property is required when creating refund and capture transactions. The value should be the presentment currency from the order. For more information, refer to the <a href=\"/api/admin-rest/latest/resources/transaction\"><i>Transaction resource</i></a>.</p>\n</aside>\n  <p>Creates a transaction for an order.</p>",
       "summary": "Creates a transaction for an order",
       "operationId": "Createsatransactionforanorder",
       "parameters": [

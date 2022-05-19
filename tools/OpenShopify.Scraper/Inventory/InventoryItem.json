@@ -9,7 +9,7 @@
   },
   "paths": [
     {
-      "description": "Retrieves a list of inventory items. <strong>Note:</strong> This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to <a href='/api/usage/pagination-rest'>Making requests to paginated REST Admin API endpoints</a>.",
+      "description": "Retrieves a list of inventory items. <strong>Note:</strong> This endpoint implements pagination by using links that are provided in the response header. To learn more, refer to <a href='/api/usage/pagination-rest'>Make paginated requests to the REST Admin API</a>.",
       "summary": "Retrieves a list of inventory items",
       "operationId": "Retrievesalistofinventoryitems",
       "parameters": [

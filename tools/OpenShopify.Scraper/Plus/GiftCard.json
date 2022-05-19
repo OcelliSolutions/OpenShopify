@@ -9,7 +9,7 @@
   },
   "paths": [
     {
-      "description": "Retrieves a list of gift cards. This endpoint implements pagination by using links that are provided in the response header. To learn more, see <a href=\"/tutorials/make-paginated-requests-to-rest-admin-api\"><em>Making requests to paginated REST Admin API endpoints</em></a>.",
+      "description": "Retrieves a list of gift cards. This endpoint implements pagination by using links that are provided in the response header. To learn more, see <a href=\"/api/usage/pagination-rest\"><em>Make paginated requests to the REST Admin API</em></a>.",
       "summary": "Retrieves a list of gift cards",
       "operationId": "Retrievesalistofgiftcards",
       "parameters": [
@@ -871,7 +871,7 @@
       "action": "post"
     },
     {
-      "description": "<p>Searches for gift cards that match a supplied query. The following fields are indexed by search:</p>\n          <ul>\n            <li><code>created_at</code></li>\n            <li><code>updated_at</code></li>\n            <li><code>disabled_at</code></li>\n            <li><code>balance</code></li>\n            <li><code>initial_value</code></li>\n            <li><code>amount_spent</code></li>\n            <li><code>email</code></li>\n            <li><code>last_characters</code></li>\n          </ul>\n          <p>This endpoint implements pagination by using links that are provided in the response header. To learn more, see <a href=\"/tutorials/make-paginated-requests-to-rest-admin-api\"><em>Making requests to paginated REST Admin API endpoints</em></a>.</p>",
+      "description": "<p>Searches for gift cards that match a supplied query. The following fields are indexed by search:</p>\n          <ul>\n            <li><code>created_at</code></li>\n            <li><code>updated_at</code></li>\n            <li><code>disabled_at</code></li>\n            <li><code>balance</code></li>\n            <li><code>initial_value</code></li>\n            <li><code>amount_spent</code></li>\n            <li><code>email</code></li>\n            <li><code>last_characters</code></li>\n          </ul>\n          <p>This endpoint implements pagination by using links that are provided in the response header. To learn more, see <a href=\"/api/usage/pagination-rest\"><em>Make paginated requests to the REST Admin API</em></a>.</p>",
       "summary": "Searches for gift cards",
       "operationId": "Searchesforgiftcards",
       "parameters": [

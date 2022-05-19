@@ -9,7 +9,7 @@
   },
   "paths": [
     {
-      "description": "Retrieve a list of all pages. <strong>Note:</strong> As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, refer to <a href='/tutorials/make-paginated-requests-to-rest-admin-api'>Making requests to paginated REST Admin API endpoints</a>.",
+      "description": "Retrieve a list of all pages. <strong>Note:</strong> As of version 2019-10, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, refer to <a href='/api/usage/pagination-rest'>Make paginated requests to the REST Admin API</a>.",
       "summary": "Retrieves a list of pages",
       "operationId": "Retrievesalistofpages",
       "parameters": [

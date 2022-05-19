@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Asset",
-    "description": "        <p>Theme assets are the individual files that make up a shop's theme.</p>\n        {{ '/api/reference/asset.png' | image }}\n        <p>A theme's assets include its templates, images, stylesheets, and extra snippets of code. They are arranged among the theme's directories, such as <strong>layout</strong>, <strong>templates</strong>, and <strong>assets</strong>. You can use the Asset resource to add, change, or remove asset files from a shop's theme. For a complete list of theme directories, see <a href=\"/tutorials/develop-theme-templates#theme-structure\"><em>Theme structure</em></a>.</p>\n        <p>To learn how to create your own theme, see <a href=\"/concepts/themes\"><em>Building themes</em></a>.</p>\n",
+    "description": "        <p>Theme assets are the individual files that make up a shop's theme.</p>\n        {{ '/api/reference/asset.png' | image }}\n        <p>A theme's assets include its templates, images, stylesheets, and extra snippets of code. They are arranged among the theme's directories, such as <strong>layout</strong>, <strong>templates</strong>, and <strong>assets</strong>. You can use the Asset resource to add, change, or remove asset files from a shop's theme. For a complete list of theme directories, see <a href=\"/themes/architecture\"><em>Theme architecture</em></a>.</p>\n        <p>To learn how to create your own theme, see <a href=\"/concepts/themes\"><em>Building themes</em></a>.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/469",
     "x-description-list": null,
     "version": "2022-04"

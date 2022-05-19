@@ -187,6 +187,7 @@ string CreateOperationId(string summary)
     summary = RemoveHtmlFromString(summary)!.Replace("-", " ").Replace("_", " ");
     summary = TitleCase(summary).Replace(" A ", " ")
         .Replace(" An ", " ")
+        .Replace(" The ", " ")
         .Trim()
         ;
     var split = summary.Split(' ');
@@ -217,25 +218,30 @@ async Task CreateController(string openApi, string version, string section, stri
     {
         var document = OpenApiDocument.FromJsonAsync(openApi).Result;
         //controllerName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(controllerName);
+        var controllerNamespace = controllerName == "AccessScope"
+            ? "OpenShopify.OAuth.Builder.Controllers"
+            : "OpenShopify.Admin.Builder.Controllers";
+        var modelNamespace = controllerName == "AccessScope"
+            ? "OpenShopify.OAuth.Builder.Models"
+            : "OpenShopify.Admin.Builder.Models";
         var settings = new CSharpControllerGeneratorSettings()
         {
-            ClassName = controllerName,
-            OperationNameGenerator = new MultipleClientsFromFirstTagAndOperationIdGenerator(),
+            ClassName = controllerName, OperationNameGenerator = new MultipleClientsFromFirstTagAndOperationIdGenerator(),
             GenerateClientInterfaces = true,
             GenerateOptionalParameters = true,
             AdditionalNamespaceUsages = new[] { "System.Text.Json" },
             ControllerTarget = CSharpControllerTarget.AspNetCore,
-            ControllerStyle = CSharpControllerStyle.Partial,
-            //ControllerStyle = CSharpControllerStyle.Abstract,
-            ExcludedParameterNames = new[] { "api_version" }, 
+            //ControllerStyle = CSharpControllerStyle.Partial,
+            ControllerStyle = CSharpControllerStyle.Abstract,
+            ExcludedParameterNames = new[] { "api_version" },
             CodeGeneratorSettings =
             {
-                GenerateDefaultValues  = false, 
-                SchemaType = SchemaType.OpenApi3, 
+                GenerateDefaultValues  = false,
+                SchemaType = SchemaType.OpenApi3,
             },
             CSharpGeneratorSettings =
             {
-                Namespace = "OpenShopify.Admin.Builder.Controllers",
+                Namespace = controllerNamespace,
                 //Namespace = "OpenShopify.Admin.Builder.Delete",
                 JsonLibrary = CSharpJsonLibrary.SystemTextJson,
                 GenerateOptionalPropertiesAsNullable = true,
@@ -248,24 +254,74 @@ async Task CreateController(string openApi, string version, string section, stri
 
         var generator = new CSharpControllerGenerator(document, settings);
         var code = generator.GenerateFile();
-        code = code?.Replace(" = \"any\"", string.Empty);
-        code = code?.Replace(" = \"50\"", string.Empty);
-        code = code?.Replace(" = null", string.Empty);
-        code = code?.Replace(" = \"open\"", string.Empty);
-        code = code?.Replace(" = \"closed\"", string.Empty);
-        code = code?.Replace("object? created_at_max", "DateTime? created_at_max");
-        code = code?.Replace("object? created_at_min", "DateTime? created_at_min");
-        code = code?.Replace("object? processed_at_max", "DateTime? processed_at_max");
-        code = code?.Replace("object? processed_at_min", "DateTime? processed_at_min");
-        code = code?.Replace("object? updated_at_max", "DateTime? updated_at_max");
-        code = code?.Replace("object? updated_at_min", "DateTime? updated_at_min");
+        code = code.Replace(" = \"any\"", string.Empty);
+        code = code.Replace(" = \"50\"", string.Empty);
+        code = code.Replace(" = 50", string.Empty);
+        code = code.Replace(" = \"disabled_at DESC\"", string.Empty);
+        code = code.Replace(" = \"last_order_date DESC\"", string.Empty);
+        code = code.Replace(" = null", string.Empty);
+        code = code.Replace(" = \"open\"", string.Empty);
+        code = code.Replace(" = \"closed\"", string.Empty);
+        code = code.Replace(" = \"other\"", string.Empty);
+        code = code.Replace(" = \"false\"", string.Empty);
+        code = code.Replace(" = \"true\"", string.Empty);
+        code = code.Replace(" = false", string.Empty);
+        code = code.Replace(" = true", string.Empty);
+        code = code.Replace(" ?? \"false\"", " ?? false");
+        code = code.Replace(" ?? \"true\"", " ?? true");
+        code = code.Replace(" ?? \"50\"", " ?? 50");
 
-        code = code?.Replace("string fulfillment_service_id", "long fulfillment_service_id");
-        code = code?.Replace("string? fulfillment_service_id", "long? fulfillment_service_id");
+        var dateTimeParameters = new List<string>()
+        {
+            "created_at_max", "created_at_min", "date", "date_max", "date_min", "ends_at_max", "ends_at_min", "processed_at_max", "processed_at_min", "published_at_max", "published_at_min", 
+            "starts_at_max", "starts_at_min", "updated_at_max", "updated_at_min"
+        };
+        code = ReplaceParameterTypes(code, dateTimeParameters,"object", "DateTime");
+        code = ReplaceParameterTypes(code, dateTimeParameters, "string", "DateTime");
 
+
+        code = ReplaceParameterTypes(code,
+            new List<string>()
+            {
+                "address_id", "application_charge_id", "application_credit_id", "article_id", "attribution_app_id", "batch_id", "blog_id", "carrier_service_id", "collect_id", 
+                "collection_id", "collection_listing_id", "comment_id", "country_id", "custom_collection_id", "customer_id", "customer_saved_search_id", 
+                "discount_code_id", "dispute_id", "draft_order_id", "event_id", "fulfillment_id", "fulfillment_order_id", "fulfillment_service_id", "gift_card_id", "image_id", 
+                "inventory_item_id", "last_id", "location_id", "marketing_event_id", "metafield_id", "mobile_platform_application_id", "new_location_id", "order_id", "page_id", 
+                "payment_id", "payout_id", "price_rule_id", "product_id", "product_listing_id", "province_id", "risk_id", "recurring_application_charge_id", "redirect_id", "refund_id",
+                "report_id", "script_tag_id", "smart_collection_id", "storefront_access_token_id", "theme_id", "transaction_id", "usage_charge_id", "user_id", "variant_id", "webhook_id"
+            },
+            "string", "long");
+
+        code = ReplaceParameterTypes(code,
+            new List<string>()
+            {
+                "since_id", "limit"
+            },
+            "string", "int");
+
+        code = ReplaceParameterTypes(code,
+            new List<string>()
+            {
+                "disconnect_if_necessary", "in_shop_currency", "relocate_if_necessary"
+            },
+            "string", "bool");
+
+        code = code.Replace("int? limit", "int? limit, string? page_info");
+        code = code.Replace("int limit", "int? limit, string? page_info");
+        code = code.Replace("limit ?? 50", "limit ?? 50, page_info");
+        code = code.Replace("string? page_info, string? page_info", "string? page_info");
+        code = code.Replace("page_info, page_info", "page_info");
+        code = code.Replace("string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? page_info", "string? page_info");
+        
+        code = Regex.Replace(code, @"(Task Create\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.{controllerName}Item request, ");
+        code = Regex.Replace(code, @"(Task Update\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.{controllerName}Item request, ");
+        code = Regex.Replace(code, @"(Task Modify\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.{controllerName}Item request, ");
+        code = code.Replace(", )", ")");
 
         var path = $@"../../../../OpenShopify.Admin.Builder/Controllers";
         //var path = $@"../../../../OpenShopify.Admin.Builder/Delete";
+        if(controllerName == "AccessScope")
+            path = $@"../../../../OpenShopify.OAuth.Builder/Controllers";
         if (!string.IsNullOrWhiteSpace(section))
             path = Path.Combine(path, section);
         CreateIfMissing(path);
@@ -279,6 +335,17 @@ async Task CreateController(string openApi, string version, string section, stri
         Console.WriteLine($@"{ex.Message} | {section}/{controllerName}");
         Console.ResetColor();
     }
+}
+
+string ReplaceParameterTypes(string code, List<string> parametersNames, string originalType, string newType)
+{
+    foreach (var parameter in parametersNames)
+    {
+        code = code.Replace($@"{originalType} {parameter}", $@"{newType} {parameter}");
+        code = code.Replace($@"{originalType}? {parameter}", $@"{newType}? {parameter}");
+    }
+
+    return code;
 }
 
 async Task CreateExtendedControllerIfMissing(string section, string controllerName)
@@ -295,6 +362,8 @@ namespace OpenShopify.Admin.Builder.Controllers.{section};
 public class {controllerName}Controller : I{controllerName}Controller {{}}";
     
     var path = $@"../../../../OpenShopify.Admin.Builder/Controllers";
+    if (controllerName == "AccessScope")
+        path = $@"../../../../OpenShopify.OAuth.Builder/Controllers";
     if (!string.IsNullOrWhiteSpace(section))
         path = Path.Combine(path, section);
     CreateIfMissing(path);

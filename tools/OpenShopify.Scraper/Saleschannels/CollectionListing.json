@@ -9,7 +9,7 @@
   },
   "paths": [
     {
-      "description": "Retrieve collection listings that are published to your app. <strong>Note:</strong> As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/tutorials/make-paginated-requests-to-rest-admin-api\"><em>Making requests to paginated REST Admin API endpoints</em></a>.",
+      "description": "Retrieve collection listings that are published to your app. <strong>Note:</strong> As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/api/usage/pagination-rest\"><em>Make paginated requests to the REST Admin API</em></a>.",
       "summary": "Retrieve collection listings that are published to your app",
       "operationId": "Retrievecollectionlistingsthatarepublishedtoyourapp",
       "parameters": [
@@ -150,7 +150,7 @@
       "action": "get"
     },
     {
-      "description": "Retrieve <code>product_ids</code> that are published to a <code>collection_id</code>.       <strong>Note:</strong> As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/tutorials/make-paginated-requests-to-rest-admin-api\"><em>Making requests to paginated REST Admin API endpoints</em></a>.",
+      "description": "Retrieve <code>product_ids</code> that are published to a <code>collection_id</code>.       <strong>Note:</strong> As of version 2019-07, this endpoint implements pagination by using links that are provided in the response header. Sending the <code>page</code> parameter will return an error. To learn more, see <a href=\"/api/usage/pagination-rest\"><em>Make paginated requests to the REST Admin API</em></a>.",
       "summary": "Retrieve <code>product_ids</code> that are published to a <code>collection_id</code>",
       "operationId": "Retrieve<code>product_ids</code>thatarepublishedtoa<code>collection_id</code>",
       "parameters": [
