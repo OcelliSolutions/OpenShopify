@@ -1,53 +1,56 @@
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
+using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.Products;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Products)]
 [ApiController]
-public class ProductVariantController : IProductVariantController
+public class ProductVariantController : ProductVariantControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants.json")]
-    public Task RetrieveListOfProductVariantsAsync(string product_id, string? fields, string limit, string? presentment_currencies,
-        string? since_id)
+    [HttpGet, Route("products/{product_id:long}/variants.json")]
+    public override Task RetrieveListOfProductVariants(long product_id, string? fields, int? limit, string? page_info, string? presentment_currencies,
+        int? since_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants.json")]
-    public Task CreateNewProductVariantAsync(string product_id)
+    [HttpPost, Route("products/{product_id:long}/variants.json")]
+    public override Task CreateNewProductVariant(ProductVariantItem request, long product_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants/count.json")]
-    public Task ReceiveCountOfAllProductVariantsAsync(string product_id)
+    [HttpGet, Route("products/{product_id:long}/variants/count.json")]
+    [ProducesResponseType(typeof(VariantCount), StatusCodes.Status200OK)]
+    public override Task ReceiveCountOfAllProductVariants(long product_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("variants/{variant_id}.json")]
-    public Task ReceiveSingleProductVariantAsync(string variant_id, string? fields)
+    [HttpGet, Route("variants/{variant_id:long}.json")]
+    public override Task ReceiveSingleProductVariant(long variant_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("variants/{variant_id}.json")]
-    public Task ModifyExistingProductVariantAsync(string variant_id)
+    [HttpPut, Route("variants/{variant_id:long}.json")]
+    public override Task ModifyExistingProductVariant(ProductVariantItem request, long variant_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants/{variant_id}.json")]
-    public Task RemoveExistingProductVariantAsync(string product_id, string variant_id)
+    [HttpDelete, Route("products/{product_id:long}/variants/{variant_id:long}.json")]
+    public override Task RemoveExistingProductVariant(long product_id, long variant_id)
     {
         throw new NotImplementedException();
     }

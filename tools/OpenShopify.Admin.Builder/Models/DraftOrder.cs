@@ -163,16 +163,20 @@ namespace OpenShopify.Admin.Builder.Models
 
         /// <summary>
         /// Additional metadata about the <see cref="DraftOrder"/>. Note: This is not naturally returned with a <see cref="DraftOrder"/> response, as
-        /// Shopify will not return <see cref="DraftOrder"/> metafields unless specified. Instead, you need to query metafields with <see cref="MetaFieldService"/>. 
+        /// Shopify will not return <see cref="DraftOrder"/> metafields unless specified. Instead, you need to query metafields with <see cref="MetafieldService"/>. 
         /// Uses include: Creating, updating, & deserializing webhook bodies that include them.
         /// </summary>
         [JsonPropertyName("metafields")]
-        public IEnumerable<MetaField> Metafields { get; set; }
+        public IEnumerable<DraftOrderMetafield> Metafields { get; set; }
 
         /// <summary>
         /// An optional boolean that you can send as part of a draft order object to load customer shipping information.
         /// </summary>
         [JsonPropertyName("use_customer_default_address")]
         public bool? UseCustomerDefaultAddress { get; set; }
+    }
+
+    public class DraftOrderMetafield : Metafield
+    {
     }
 }

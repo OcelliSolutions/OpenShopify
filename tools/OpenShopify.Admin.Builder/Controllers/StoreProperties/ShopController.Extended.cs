@@ -1,17 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.StoreProperties;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.StoreProperties)]
 [ApiController]
-public class ShopController : IShopController
+public class ShopController : ShopControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shop.json")]
-    public Task RetrieveTheShopsConfigurationAsync(string? fields)
+    [HttpGet, Route("shop.json")]
+    public override Task RetrieveShopsConfiguration(string? fields)
     {
         throw new NotImplementedException();
     }

@@ -19,9 +19,42 @@ paths:
         - Collect
       summary: Adds a product to a custom collection
       operationId: AddProductToCustomCollection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CollectItem'
+        required: true
       responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -41,15 +74,45 @@ paths:
           in: query
           description: The maximum number of results to show.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: since_id
           in: query
           description: Restrict results to after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectList'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -65,10 +128,31 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -83,15 +167,40 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -103,8 +212,32 @@ paths:
       summary: Retrieves a count of collects
       operationId: RetrieveCountOfCollects
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -120,15 +253,40 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -144,15 +302,45 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: limit
           in: query
           description: The number of products to retrieve.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductList'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -183,22 +371,30 @@ paths:
           in: query
           description: The maximum number of results to retrieve.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: product_id
           in: query
           description: Show custom collections that include a given product.
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: published_at_max
           in: query
           description: 'Show custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_at_min
           in: query
           description: 'Show custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_status
           in: query
           description: Show custom collectsion with a given published status.
@@ -208,7 +404,8 @@ paths:
           in: query
           description: Restrict results to after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: title
           in: query
           description: Show custom collections with a given title.
@@ -219,14 +416,40 @@ paths:
           description: 'Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomCollectionList'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -236,9 +459,41 @@ paths:
         - CustomCollection
       summary: Creates a custom collection
       operationId: CreateCustomCollection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomCollectionItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CustomCollectionItem'
       responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomCollectionItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -254,17 +509,20 @@ paths:
           in: query
           description: Count custom collections that include a given product.
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: published_at_max
           in: query
           description: 'Count custom collections published before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_at_min
           in: query
           description: 'Count custom collections published after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_status
           in: query
           description: Count custom collections with a given published status.
@@ -280,14 +538,40 @@ paths:
           description: 'Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomCollectionCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -303,15 +587,40 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomCollectionItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -326,10 +635,43 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomCollectionItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CustomCollectionItem'
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomCollectionItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -344,10 +686,31 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -363,17 +726,20 @@ paths:
           in: query
           description: Return products by product collection ID.
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: created_at_max
           in: query
           description: 'Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: created_at_min
           in: query
           description: 'Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: fields
           in: query
           description: Return only certain fields specified by a comma-separated list of field names.
@@ -393,6 +759,11 @@ paths:
           in: query
           description: Return up to this many results per page.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: presentment_currencies
           in: query
@@ -409,11 +780,13 @@ paths:
           description: 'Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: published_at_min
           in: query
           description: 'Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: published_status
           in: query
           description: Return products by their published status.
@@ -423,7 +796,8 @@ paths:
           in: query
           description: Return only products after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: status
           in: query
           description: Return only products specified by a comma-separated list of statuses.
@@ -439,19 +813,48 @@ paths:
           description: 'Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: vendor
           in: query
           description: Return products by product vendor.
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            Link:
+              schema:
+                type: String
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductList'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -461,9 +864,42 @@ paths:
         - Product
       summary: Create a new product
       operationId: CreateNewProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProductItem'
+        required: true
       responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -479,17 +915,20 @@ paths:
           in: query
           description: Return products by product collection ID.
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: created_at_max
           in: query
           description: 'Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: created_at_min
           in: query
           description: 'Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: product_type
           in: query
           description: Return products by product type.
@@ -500,11 +939,13 @@ paths:
           description: 'Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: published_at_min
           in: query
           description: 'Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: published_status
           in: query
           description: Return products by their published status.
@@ -515,19 +956,45 @@ paths:
           description: 'Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: vendor
           in: query
           description: Return products by product vendor.
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -543,15 +1010,40 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: A comma-separated list of fields to include in the response.
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -566,10 +1058,44 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProductItem'
+        required: true
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -584,10 +1110,31 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -603,7 +1150,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: comma-separated list of fields to include in the response
@@ -613,10 +1161,20 @@ paths:
           in: query
           description: Restrict results to after the specified ID
           schema:
-            type: string
+            type: integer
+            format: int32
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -631,10 +1189,28 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductImageItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProductImageItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -650,15 +1226,41 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: since_id
           in: query
           description: Restrict results to after the specified ID
           schema:
-            type: string
+            type: integer
+            format: int32
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -674,12 +1276,14 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: product_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: comma-separated list of fields to include in the response
@@ -688,6 +1292,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -702,15 +1315,34 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: product_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductImageItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProductImageItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -725,15 +1357,26 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: product_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -749,7 +1392,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: A comma-separated list of fields to include in the response
@@ -758,6 +1402,11 @@ paths:
         - name: limit
           in: query
           description: Return up to this many results per page
+          schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
           schema:
             type: string
         - name: presentment_currencies
@@ -769,10 +1418,20 @@ paths:
           in: query
           description: Restrict results to after the specified ID
           schema:
-            type: string
+            type: integer
+            format: int32
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -787,10 +1446,28 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductVariantItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProductVariantItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -806,10 +1483,35 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VariantCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -825,7 +1527,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: A comma-separated list of fields to include in the response
@@ -834,6 +1537,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -848,10 +1560,28 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductVariantItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProductVariantItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -867,15 +1597,26 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: variant_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -906,22 +1647,30 @@ paths:
           in: query
           description: The number of results to show.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: product_id
           in: query
           description: Show smart collections that includes the specified product.
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: published_at_max
           in: query
           description: 'Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: published_at_min
           in: query
           description: 'Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: published_status
           in: query
           description: Filter results based on the published status of smart collections.
@@ -931,7 +1680,8 @@ paths:
           in: query
           description: Restrict results to after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: title
           in: query
           description: Show smart collections with the specified title.
@@ -942,14 +1692,40 @@ paths:
           description: 'Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmartCollectionList'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -959,9 +1735,41 @@ paths:
         - SmartCollection
       summary: Creates a smart collection
       operationId: CreateSmartCollection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SmartCollectionItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SmartCollectionItem'
       responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmartCollectionItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -977,17 +1785,20 @@ paths:
           in: query
           description: Show smart collections that include the specified product.
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: published_at_max
           in: query
           description: 'Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: published_at_min
           in: query
           description: 'Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: published_status
           in: query
           description: Filter results based on the published status of smart collections.
@@ -1003,14 +1814,40 @@ paths:
           description: 'Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmartCollectionCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1026,15 +1863,40 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmartCollectionItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1049,10 +1911,43 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SmartCollectionItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SmartCollectionItem'
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmartCollectionItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1067,10 +1962,31 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1080,13 +1996,14 @@ paths:
       tags:
         - SmartCollection
       summary: Updates the ordering type of products in a smart collection
-      operationId: UpdateTheOrderingTypeOfProductsInSmartCollection
+      operationId: UpdateOrderingTypeOfProductsInSmartCollection
       parameters:
         - name: smart_collection_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: products
           in: query
           description: 'An array of product IDs, in the order that you want them to appear at the top of the collection. When <code>products</code> is specified but empty, any previously sorted products are cleared.'
@@ -1097,15 +2014,361 @@ paths:
           description: The type of sorting to apply. Valid values are listed in the <a href="#properties">Properties</a> section above.
           schema:
             type: string
+            default: (current value)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SmartCollectionItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SmartCollectionItem'
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    Collect:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        collection_id:
+          type: integer
+          description: The id of the custom collection containing the product.
+          format: int64
+          nullable: true
+        product_id:
+          type: integer
+          description: The unique numeric identifier for the product in the custom collection.
+          format: int64
+          nullable: true
+        featured:
+          type: boolean
+          description: States whether or not the collect is featured.
+          nullable: true
+          deprecated: true
+        created_at:
+          type: string
+          description: The date and time when the collect was created. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the collect was last updated. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        position:
+          type: integer
+          description: A number specifying the manually sorted position of this product in a custom collection. The first position is 1. This value only applies when the custom collection is viewed using the Manual sort order.
+          format: int32
+          nullable: true
+        sort_value:
+          type: string
+          description: This is the same value as position but padded with leading zeroes to make it alphanumeric-sortable.
+          nullable: true
+      additionalProperties: { }
+      description: An object representing a Shopify collect.
+    CollectCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    CollectItem:
+      type: object
+      properties:
+        collect:
+          $ref: '#/components/schemas/Collect'
+      additionalProperties: { }
+    CollectList:
+      type: object
+      properties:
+        collects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Collect'
+          nullable: true
+      additionalProperties: { }
+    Collection:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        body_html:
+          type: string
+          description: 'A description of the collection, complete with HTML markup. Many templates display this on their collection pages.'
+          nullable: true
+        handle:
+          type: string
+          description: 'A unique, human-readable string for the collection automatically generated from its title. This is used in themes by the Liquid templating language to refer to the collection. (limit: 255 characters)'
+          nullable: true
+        image:
+          $ref: '#/components/schemas/CollectionImage'
+        published_at:
+          type: string
+          description: The time and date (ISO 8601 format) when the collection was made visible. Returns null for a hidden collection.
+          format: date-time
+          nullable: true
+        published_scope:
+          type: string
+          description: 'Whether the collection is published to the Point of Sale channel. Valid values: `web`, `global`'
+          nullable: true
+        sort_order:
+          type: string
+          description: "The order in which products in the collection appear. Valid values: `alpha-asc`, `alpha-desc`, `best-selling`,\r\n`created`, `created-desc`, `manual`, `price-asc`, `price-desc`"
+          nullable: true
+        template_suffix:
+          type: string
+          description: "The suffix of the liquid template being used. For example, if the value is custom, then the collection is\r\nusing the collection.custom.liquid template. If the value is null, then the collection is using the default collection.liquid."
+          nullable: true
+        title:
+          type: string
+          description: 'The name of the collection. (limit: 255 characters)'
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time (ISO 8601 format) when the collection was last modified.
+          format: date-time
+          nullable: true
+      additionalProperties: { }
+    CollectionImage:
+      type: object
+      properties:
+        attachment:
+          type: string
+          description: An image attached to a collection returned as Base64-encoded binary data.
+          nullable: true
+        src:
+          type: string
+          description: The source URL that specifies the location of the image.
+          nullable: true
+        alt:
+          type: string
+          description: The alternative text that describes the collection image.
+          nullable: true
+        created_at:
+          type: string
+          description: The time and date (ISO 8601 format) when the image was added to the collection.
+          format: date-time
+          nullable: true
+        width:
+          type: integer
+          description: The width of the image in pixels.
+          format: int32
+        height:
+          type: integer
+          description: The height of the image in pixels.
+          format: int32
+      additionalProperties: { }
+    CollectionItem:
+      type: object
+      properties:
+        collection:
+          $ref: '#/components/schemas/Collection'
+      additionalProperties: { }
+    CustomCollection:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        body_html:
+          type: string
+          description: 'The description of the Custom collection, complete with HTML markup. Many templates display this on their Custom collection page.'
+          nullable: true
+        handle:
+          type: string
+          description: A human-friendly unique string for the Custom collection automatically generated from its title. This is used in shop themes by the Liquid templating language to refer to the Custom collection. Limit of 255 characters.
+          nullable: true
+        image:
+          $ref: '#/components/schemas/CustomCollectionImage'
+        published:
+          type: boolean
+          description: Whether the collection is published or not.
+          nullable: true
+        published_at:
+          type: string
+          description: "This can have two different types of values, depending on whether the Custom collection has been published (i.e., made visible to customers):\r\nIf the Custom collection is published, this value is the date and time when it was published.The API returns this value in ISO 8601 format.\r\nIf the Custom collection is hidden (i.e., not published), this value is null. Changing a Custom collection's status from published to hidden changes its published_at property to null."
+          format: date-time
+          nullable: true
+        published_scope:
+          type: string
+          description: The sales channels in which the Custom collection is visible.
+          nullable: true
+        sort_order:
+          type: string
+          description: The order in which products in the Custom collection appear
+          nullable: true
+        template_suffix:
+          type: string
+          description: 'The suffix of the template you are using. By default, the original template is called product.liquid, without any suffix. Any additional templates will be: product.suffix.liquid.'
+          nullable: true
+        title:
+          type: string
+          description: The name of the Custom collection. Limit of 255 characters.
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the Custom collection was last modified. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        collects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Collect'
+          description: The collection of collects associated to this custom collection
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomCollectionMetafield'
+      additionalProperties: { }
+      description: An entity representing a Shopify Custom Collection Object.
+    CustomCollectionCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    CustomCollectionImage:
+      type: object
+      properties:
+        attachment:
+          type: string
+          description: An image attached to a shop's theme returned as Base64-encoded binary data.
+          nullable: true
+        src:
+          type: string
+          description: Source URL that specifies the location of the image.
+          nullable: true
+        alt:
+          type: string
+          description: Alternative text that describes the collection image.
+          nullable: true
+        created_at:
+          type: string
+          description: The date the image was created.
+          format: date-time
+          nullable: true
+        width:
+          type: integer
+          description: Width of the image in pixels.
+          format: int32
+          nullable: true
+        height:
+          type: integer
+          description: Height of the image in pixels.
+          format: int32
+          nullable: true
+      additionalProperties: { }
+      description: Represents the image for a OpenShopify.Admin.Builder.Models.CustomCollection
+    CustomCollectionItem:
+      type: object
+      properties:
+        custom_collection:
+          $ref: '#/components/schemas/CustomCollection'
+      additionalProperties: { }
+    CustomCollectionList:
+      type: object
+      properties:
+        custom_collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomCollection'
+          nullable: true
+      additionalProperties: { }
+    CustomCollectionMetafield:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the metafield was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the metafield was last updated.
+          format: date-time
+          nullable: true
+        key:
+          type: string
+          description: Identifier for the metafield (maximum of 30 characters).
+          nullable: true
+        value:
+          description: Information to be stored as metadata. Must be either a string or an int.
+        value_type:
+          type: string
+          description: States whether the information in the value is stored as a 'string' or 'integer.'
+          nullable: true
+        namespace:
+          type: string
+          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+          nullable: true
+        description:
+          type: string
+          description: Additional information about the metafield.
+          nullable: true
+        owner_id:
+          type: integer
+          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
+          format: int64
+          nullable: true
+        owner_resource:
+          type: string
+          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
+          nullable: true
+      additionalProperties: { }
     ErrorResponse:
       type: object
       properties:
@@ -1113,6 +2376,712 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    ImageCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    PresentmentPrice:
+      type: object
+      properties:
+        price:
+          $ref: '#/components/schemas/Price'
+        compare_at_price:
+          $ref: '#/components/schemas/Price'
+      additionalProperties: { }
+    Price:
+      type: object
+      properties:
+        currency_code:
+          type: string
+          description: The three-letter code (ISO 4217 format) for currency.
+          nullable: true
+        amount:
+          type: number
+          description: The amount in the currency.
+          format: double
+          nullable: true
+      additionalProperties: { }
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        title:
+          type: string
+          description: "The name of the product. In a shop's catalog, clicking on a product's title takes you to that product's page.\r\nOn a product's page, the product's title typically appears in a large font."
+          nullable: true
+        body_html:
+          type: string
+          description: 'The description of the product, complete with HTML formatting.'
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the product was created. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the product was last modified. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        published_at:
+          type: string
+          description: "The date and time when the product was published. The API returns this value in ISO 8601 format. \r\nSet to NULL to unpublish a product"
+          format: date-time
+          nullable: true
+        vendor:
+          type: string
+          description: The name of the vendor of the product.
+          nullable: true
+        product_type:
+          type: string
+          description: 'A categorization that a product can be tagged with, commonly used for filtering and searching.'
+          nullable: true
+        handle:
+          type: string
+          description: "A human-friendly unique string for the Product automatically generated from its title.\r\nThey are used by the Liquid templating language to refer to objects."
+          nullable: true
+        template_suffix:
+          type: string
+          description: "The suffix of the liquid template being used.\r\nBy default, the original template is called product.liquid, without any suffix.\r\nAny additional templates will be: product.suffix.liquid."
+          nullable: true
+        published_scope:
+          type: string
+          description: The sales channels in which the product is visible.
+          nullable: true
+        tags:
+          type: string
+          description: "A categorization that a product can be tagged with, commonly used for filtering and searching.\r\nEach comma-separated tag has a character limit of 255."
+          nullable: true
+        status:
+          type: string
+          description: The status of the product
+          nullable: true
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductVariant'
+          description: "A list of variant objects, each one representing a slightly different version of the product.\r\nFor example, if a product comes in different sizes and colors, each size and color permutation (such as \"small black\", \"medium black\", \"large blue\"), would be a variant.\r\nTo reorder variants, update the product with the variants in the desired order.The position attribute on the variant will be ignored."
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductOption'
+          description: "Custom product property names like \"Size\", \"Color\", and \"Material\".\r\nProducts are based on permutations of these options. \r\nA product may have a maximum of 3 options. 255 characters limit each."
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductImage'
+          description: 'A list of image objects, each one representing an image associated with the product.'
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductMetafield'
+      additionalProperties: { }
+      description: An entity representing a Shopify product.
+    ProductCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    ProductImage:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        product_id:
+          type: integer
+          description: The id of the product associated with the image.
+          format: int64
+          nullable: true
+        position:
+          type: integer
+          description: The order of the product image in the list. The first product image is at position 1 and is the "main" image for the product.
+          format: int32
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the product image was created. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the product image was last modified. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        src:
+          type: string
+          description: Specifies the location of the product image.
+          nullable: true
+        filename:
+          type: string
+          description: 'Specifies the file name of the image when creating a OpenShopify.Admin.Builder.Models.ProductImage, where it''s then converted into the OpenShopify.Admin.Builder.Models.ProductImage.Src path'
+          nullable: true
+        attachment:
+          type: string
+          description: 'A base64 image attachment. Only used when creating a OpenShopify.Admin.Builder.Models.ProductImage, where it''s then converted into the OpenShopify.Admin.Builder.Models.ProductImage.Src.'
+          nullable: true
+        variant_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: An array of variant ids associated with the image.
+        height:
+          type: integer
+          format: int32
+          nullable: true
+        width:
+          type: integer
+          format: int32
+          nullable: true
+        alt:
+          type: string
+          nullable: true
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductImageMetafield'
+      additionalProperties: { }
+      description: An object representing a product image.
+    ProductImageItem:
+      type: object
+      properties:
+        product_image:
+          $ref: '#/components/schemas/ProductImage'
+      additionalProperties: { }
+    ProductImageMetafield:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the metafield was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the metafield was last updated.
+          format: date-time
+          nullable: true
+        key:
+          type: string
+          description: Identifier for the metafield (maximum of 30 characters).
+          nullable: true
+        value:
+          description: Information to be stored as metadata. Must be either a string or an int.
+        value_type:
+          type: string
+          description: States whether the information in the value is stored as a 'string' or 'integer.'
+          nullable: true
+        namespace:
+          type: string
+          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+          nullable: true
+        description:
+          type: string
+          description: Additional information about the metafield.
+          nullable: true
+        owner_id:
+          type: integer
+          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
+          format: int64
+          nullable: true
+        owner_resource:
+          type: string
+          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
+          nullable: true
+      additionalProperties: { }
+    ProductItem:
+      type: object
+      properties:
+        product:
+          $ref: '#/components/schemas/Product'
+      additionalProperties: { }
+    ProductList:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+          nullable: true
+      additionalProperties: { }
+    ProductMetafield:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the metafield was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the metafield was last updated.
+          format: date-time
+          nullable: true
+        key:
+          type: string
+          description: Identifier for the metafield (maximum of 30 characters).
+          nullable: true
+        value:
+          description: Information to be stored as metadata. Must be either a string or an int.
+        value_type:
+          type: string
+          description: States whether the information in the value is stored as a 'string' or 'integer.'
+          nullable: true
+        namespace:
+          type: string
+          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+          nullable: true
+        description:
+          type: string
+          description: Additional information about the metafield.
+          nullable: true
+        owner_id:
+          type: integer
+          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
+          format: int64
+          nullable: true
+        owner_resource:
+          type: string
+          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
+          nullable: true
+      additionalProperties: { }
+    ProductOption:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        product_id:
+          type: integer
+          description: The unique numeric identifier for the product.
+          format: int64
+          nullable: true
+        name:
+          type: string
+          description: The name of the option.
+          nullable: true
+        position:
+          type: integer
+          description: The order of the product variant in the list of product variants. 1 is the first position.
+          format: int32
+          nullable: true
+        values:
+          type: array
+          items:
+            type: string
+          description: The values for the options.
+      additionalProperties: { }
+    ProductVariant:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        product_id:
+          type: integer
+          description: The unique numeric identifier for the product.
+          format: int64
+          nullable: true
+        title:
+          type: string
+          description: The title of the product variant.
+          nullable: true
+        sku:
+          type: string
+          description: A unique identifier for the product in the shop.
+          nullable: true
+        position:
+          type: integer
+          description: The order of the product variant in the list of product variants. 1 is the first position.
+          format: int32
+          nullable: true
+        grams:
+          type: integer
+          description: The weight of the product variant in grams.
+          format: int64
+          nullable: true
+        inventory_policy:
+          type: string
+          description: Specifies whether or not customers are allowed to place an order for a product variant when it's out of stock. Known values are 'deny' and 'continue'.
+          nullable: true
+        fulfillment_service:
+          type: string
+          description: Service that is doing the fulfillment. Can be 'manual' or any custom string.
+          nullable: true
+        inventory_item_id:
+          type: integer
+          description: 'The unique identifier for the inventory item, which is used in the Inventory API to query for inventory information.'
+          format: int64
+          nullable: true
+        inventory_management:
+          type: string
+          description: Specifies whether or not Shopify tracks the number of items in stock for this product variant. Known values are 'blank' and 'shopify'.
+          nullable: true
+        price:
+          type: number
+          description: The price of the product variant.
+          format: double
+          nullable: true
+        compare_at_price:
+          type: number
+          description: The competitors prices for the same item.
+          format: double
+          nullable: true
+        option1:
+          type: string
+          description: Custom properties that a shop owner can use to define product variants.
+          nullable: true
+        option2:
+          type: string
+          description: Custom properties that a shop owner can use to define product variants.
+          nullable: true
+        option3:
+          type: string
+          description: Custom properties that a shop owner can use to define product variants.
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the product variant was created. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the product variant was last modified. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        taxable:
+          type: boolean
+          description: Specifies whether or not a tax is charged when the product variant is sold.
+          nullable: true
+        tax_code:
+          type: string
+          description: Specifies a tax code which is used for Avalara tax integrations
+          nullable: true
+        requires_shipping:
+          type: boolean
+          description: Specifies whether or not a customer needs to provide a shipping address when placing an order for this product variant.
+          nullable: true
+        barcode:
+          type: string
+          description: 'The barcode, UPC or ISBN number for the product.'
+          nullable: true
+        inventory_quantity:
+          type: integer
+          description: "The number of items in stock for this product variant.\r\nNOTE: After 2018-07-01, this field will be read-only in the Shopify API. Use the `InventoryLevelService` instead."
+          format: int64
+          nullable: true
+        image_id:
+          type: integer
+          description: The unique numeric identifier for one of the product's images.
+          format: int64
+          nullable: true
+        weight:
+          type: number
+          description: The weight of the product variant in the unit system specified with weight_unit.
+          format: double
+          nullable: true
+        weight_unit:
+          type: string
+          description: 'The unit system that the product variant''s weight is measure in. The weight_unit can be either "g", "kg, "oz", or "lb".'
+          nullable: true
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductVariantMetafield'
+        presentment_prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/PresentmentPrice'
+          description: A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies
+      additionalProperties: { }
+    ProductVariantItem:
+      type: object
+      properties:
+        variant:
+          $ref: '#/components/schemas/ProductVariant'
+      additionalProperties: { }
+    ProductVariantMetafield:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the metafield was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the metafield was last updated.
+          format: date-time
+          nullable: true
+        key:
+          type: string
+          description: Identifier for the metafield (maximum of 30 characters).
+          nullable: true
+        value:
+          description: Information to be stored as metadata. Must be either a string or an int.
+        value_type:
+          type: string
+          description: States whether the information in the value is stored as a 'string' or 'integer.'
+          nullable: true
+        namespace:
+          type: string
+          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+          nullable: true
+        description:
+          type: string
+          description: Additional information about the metafield.
+          nullable: true
+        owner_id:
+          type: integer
+          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
+          format: int64
+          nullable: true
+        owner_resource:
+          type: string
+          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
+          nullable: true
+      additionalProperties: { }
+    SmartCollection:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        body_html:
+          type: string
+          description: 'The description of the smart collection, complete with HTML markup. Many templates display this on their smart collection page.'
+          nullable: true
+        handle:
+          type: string
+          description: A human-friendly unique string for the smart collection automatically generated from its title. This is used in shop themes by the Liquid templating language to refer to the smart collection. Limit of 255 characters.
+          nullable: true
+        image:
+          $ref: '#/components/schemas/SmartCollectionImage'
+        published_at:
+          type: string
+          description: "This can have two different types of values, depending on whether the smart collection has been published (i.e., made visible to customers):\r\nIf the smart collection is published, this value is the date and time when it was published.The API returns this value in ISO 8601 format.\r\nIf the smart collection is hidden (i.e., not published), this value is null. Changing a smart collection's status from published to hidden changes its published_at property to null."
+          format: date-time
+          nullable: true
+        published_scope:
+          type: string
+          description: The sales channels in which the smart collection is visible. The only currently known value is 'global'.
+          nullable: true
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/SmartCollectionRules'
+          description: The list of rules that define what products go into the smart collection.
+        disjunctive:
+          type: boolean
+          description: 'If false, products must match all of the rules to be included in the collection. If true, products can only match one of the rules.'
+          nullable: true
+        sort_order:
+          type: string
+          description: 'The order in which products in the smart collection appear. Known values are ''alpha-asc'', ''alpha-desc'', ''best-selling'', ''created'', ''created-desc'', ''manual'', ''price-asc'', ''price-desc''.'
+          nullable: true
+        template_suffix:
+          type: string
+          description: 'The suffix of the template you are using. By default, the original template is called product.liquid, without any suffix. Any additional templates will be: product.suffix.liquid.'
+          nullable: true
+        title:
+          type: string
+          description: The name of the smart collection. Limit of 255 characters.
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the smart collection was last modified. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/SmartCollectionMetafield'
+      additionalProperties: { }
+      description: An entity representing a Shopify Smart Collection Object.
+    SmartCollectionCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    SmartCollectionImage:
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: The date the image was created.
+          format: date-time
+          nullable: true
+        src:
+          type: string
+          description: The image's source URL.
+          nullable: true
+        attachment:
+          type: string
+          description: 'The image''s base64 attachment, used when creating an image.'
+          nullable: true
+        width:
+          type: integer
+          description: Width of the image in pixels.
+          format: int32
+          nullable: true
+        height:
+          type: integer
+          description: Height of the image in pixels.
+          format: int32
+          nullable: true
+        alt:
+          type: string
+          description: Alternative text that describes the collection image.
+          nullable: true
+      additionalProperties: { }
+      description: An object representing the image for a OpenShopify.Admin.Builder.Models.SmartCollection.
+    SmartCollectionItem:
+      type: object
+      properties:
+        smart_collection:
+          $ref: '#/components/schemas/SmartCollection'
+      additionalProperties: { }
+    SmartCollectionList:
+      type: object
+      properties:
+        smart_collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/SmartCollection'
+          nullable: true
+      additionalProperties: { }
+    SmartCollectionMetafield:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the metafield was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the metafield was last updated.
+          format: date-time
+          nullable: true
+        key:
+          type: string
+          description: Identifier for the metafield (maximum of 30 characters).
+          nullable: true
+        value:
+          description: Information to be stored as metadata. Must be either a string or an int.
+        value_type:
+          type: string
+          description: States whether the information in the value is stored as a 'string' or 'integer.'
+          nullable: true
+        namespace:
+          type: string
+          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+          nullable: true
+        description:
+          type: string
+          description: Additional information about the metafield.
+          nullable: true
+        owner_id:
+          type: integer
+          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
+          format: int64
+          nullable: true
+        owner_resource:
+          type: string
+          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
+          nullable: true
+      additionalProperties: { }
+    SmartCollectionRules:
+      type: object
+      properties:
+        relation:
+          type: string
+          description: 'The relationship between the column choice, and the condition.'
+          nullable: true
+        condition:
+          type: string
+          description: 'Select products for a collection using a condition. Conditions are either strings or numbers, depending on the relation.'
+          nullable: true
+        column:
+          type: string
+          description: The properties of a product that can be used to to populate a collection.
+          nullable: true
+      additionalProperties: { }
+      description: An entity representing a Shopify Smart Collection Rule.
+    VariantCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
   securitySchemes:
     ApiKey:
       type: apiKey

@@ -1,45 +1,46 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Admin.Builder.Models;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.Orders;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Orders)]
 [ApiController]
-public class OrderRiskController : IOrderRiskController
+public class OrderRiskController : OrderRiskControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks.json")]
-    public Task CreateOrderRiskForOrderAsync(string order_id)
+    [HttpPost, Route("orders/{order_id:long}/risks.json")]
+    public override Task CreateOrderRiskForOrder(OrderRiskItem request, long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks.json")]
-    public Task RetrieveListOfAllOrderRisksForOrderAsync(string order_id)
+    [HttpGet, Route("orders/{order_id:long}/risks.json")]
+    public override Task RetrieveListOfAllOrderRisksForOrder(long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks/{risk_id}.json")]
-    public Task RetrieveSingleOrderRiskByItsIDAsync(string order_id, string risk_id)
+    [HttpGet, Route("orders/{order_id:long}/risks/{risk_id:long}.json")]
+    public override Task RetrieveSingleOrderRiskByItsID(long order_id, long risk_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks/{risk_id}.json")]
-    public Task UpdateOrderRiskAsync(string order_id, string risk_id)
+    [HttpPut, Route("orders/{order_id:long}/risks/{risk_id:long}.json")]
+    public override Task UpdateOrderRisk(OrderRiskItem request, long order_id, long risk_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks/{risk_id}.json")]
-    public Task DeleteOrderRiskForOrderAsync(string order_id, string risk_id)
+    [HttpDelete, Route("orders/{order_id:long}/risks/{risk_id:long}.json")]
+    public override Task DeleteOrderRiskForOrder(long order_id, long risk_id)
     {
         throw new NotImplementedException();
     }

@@ -22,82 +22,15 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface ICollectController
+
+    public abstract class CollectControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Adds a product to a custom collection
-        /// </summary>
-
-        /// <returns>Adds a product to a custom collection</returns>
-
-        System.Threading.Tasks.Task AddProductToCustomCollectionAsync();
-
-        /// <summary>
-        /// Retrieves a list of collects
-        /// </summary>
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <param name="limit">The maximum number of results to show.</param>
-
-        /// <param name="since_id">Restrict results to after the specified ID.</param>
-
-        /// <returns>Retrieves a list of collects</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfCollectsAsync(string? fields, string limit, string? since_id);
-
-        /// <summary>
-        /// Removes a product from a collection
-        /// </summary>
-
-
-        /// <returns>Removes a product from a collection</returns>
-
-        System.Threading.Tasks.Task RemoveProductFromCollectionAsync(string collect_id);
-
-        /// <summary>
-        /// Retrieves a specific collect by its ID
-        /// </summary>
-
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <returns>Retrieves a specific collect by its ID</returns>
-
-        System.Threading.Tasks.Task RetrieveSpecificCollectByItsIDAsync(string collect_id, string? fields);
-
-        /// <summary>
-        /// Retrieves a count of collects
-        /// </summary>
-
-        /// <returns>Retrieves a count of collects</returns>
-
-        System.Threading.Tasks.Task RetrieveCountOfCollectsAsync();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class CollectController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private ICollectController _implementation;
-
-        public CollectController(ICollectController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Adds a product to a custom collection
         /// </summary>
         /// <returns>Adds a product to a custom collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("collects.json")]
-        public System.Threading.Tasks.Task AddProductToCustomCollection()
-        {
-
-            return _implementation.AddProductToCustomCollectionAsync();
-        }
+        public abstract System.Threading.Tasks.Task AddProductToCustomCollection();
 
         /// <summary>
         /// Retrieves a list of collects
@@ -107,22 +40,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <returns>Retrieves a list of collects</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collects.json")]
-        public System.Threading.Tasks.Task RetrieveListOfCollects([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id)
-        {
-
-            return _implementation.RetrieveListOfCollectsAsync(fields, limit ?? "50", since_id);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfCollects([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
 
         /// <summary>
         /// Removes a product from a collection
         /// </summary>
         /// <returns>Removes a product from a collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("collects/{collect_id}.json")]
-        public System.Threading.Tasks.Task RemoveProductFromCollection(string collect_id)
-        {
-
-            return _implementation.RemoveProductFromCollectionAsync(collect_id);
-        }
+        public abstract System.Threading.Tasks.Task RemoveProductFromCollection(long collect_id);
 
         /// <summary>
         /// Retrieves a specific collect by its ID
@@ -130,22 +55,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a specific collect by its ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collects/{collect_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSpecificCollectByItsID(string collect_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveSpecificCollectByItsIDAsync(collect_id, fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSpecificCollectByItsID(long collect_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Retrieves a count of collects
         /// </summary>
         /// <returns>Retrieves a count of collects</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collects/count.json")]
-        public System.Threading.Tasks.Task RetrieveCountOfCollects()
-        {
-
-            return _implementation.RetrieveCountOfCollectsAsync();
-        }
+        public abstract System.Threading.Tasks.Task RetrieveCountOfCollects();
 
     }
 

@@ -1,45 +1,46 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Admin.Builder.Models;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.SalesChannels;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.SalesChannels)]
 [ApiController]
-public class MobilePlatformApplicationController : IMobilePlatformApplicationController
+public class MobilePlatformApplicationController : MobilePlatformApplicationControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications.json")]
-    public Task ListAllOfTheMobilePlatformApplicationsAssociatedWithTheAppAsync()
+    [HttpGet, Route("mobile_platform_applications.json")]
+    public override Task ListAllOfMobilePlatformApplicationsAssociatedWithApp()
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications.json")]
-    public Task CreateMobilePlatformApplicationAsync()
+    [HttpPost, Route("mobile_platform_applications.json")]
+    public override Task CreateMobilePlatformApplication(MobilePlatformApplicationItem request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications/{mobile_platform_application_id}.json")]
-    public Task GetMobilePlatformApplicationAsync(string mobile_platform_application_id)
+    [HttpGet, Route("mobile_platform_applications/{mobile_platform_application_id:long}.json")]
+    public override Task GetMobilePlatformApplication(long mobile_platform_application_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications/{mobile_platform_application_id}.json")]
-    public Task UpdateMobilePlatformApplicationAsync(string mobile_platform_application_id)
+    [HttpPut, Route("mobile_platform_applications/{mobile_platform_application_id:long}.json")]
+    public override Task UpdateMobilePlatformApplication(MobilePlatformApplicationItem request, long mobile_platform_application_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications/{mobile_platform_application_id}.json")]
-    public Task DeleteMobilePlatformApplicationAsync(string mobile_platform_application_id)
+    [HttpDelete, Route("mobile_platform_applications/{mobile_platform_application_id:long}.json")]
+    public override Task DeleteMobilePlatformApplication(long mobile_platform_application_id)
     {
         throw new NotImplementedException();
     }

@@ -1,38 +1,39 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Admin.Builder.Models;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShippingAndFulfillment)]
 [ApiController]
-public class FulfillmentEventController : IFulfillmentEventController
+public class FulfillmentEventController : FulfillmentEventControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events.json")]
-    public Task RetrieveListOfFulfillmentEventsForSpecificFulfillmentAsync(string fulfillment_id, string order_id)
+    [HttpGet, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events.json")]
+    public override Task RetrieveListOfFulfillmentEventsForSpecificFulfillment(long fulfillment_id, long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events.json")]
-    public Task CreateFulfillmentEventAsync(string fulfillment_id, string order_id)
+    [HttpPost, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events.json")]
+    public override Task CreateFulfillmentEvent(FulfillmentEventItem request, long fulfillment_id, long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json")]
-    public Task RetrieveSpecificFulfillmentEventAsync(string event_id, string fulfillment_id, string order_id)
+    [HttpGet, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events/{event_id:long}.json")]
+    public override Task RetrieveSpecificFulfillmentEvent(long event_id, long fulfillment_id, long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json")]
-    public Task DeleteFulfillmentEventAsync(string event_id, string fulfillment_id, string order_id)
+    [HttpDelete, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events/{event_id:long}.json")]
+    public override Task DeleteFulfillmentEvent(long event_id, long fulfillment_id, long order_id)
     {
         throw new NotImplementedException();
     }

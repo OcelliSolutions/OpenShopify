@@ -22,51 +22,9 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IPayoutsController
+
+    public abstract class PayoutsControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Return a list of all payouts
-        /// </summary>
-
-        /// <param name="date">Filter the response to payouts made on the specified date.</param>
-
-        /// <param name="date_max">Filter the response to payouts made inclusively before the specified date.</param>
-
-        /// <param name="date_min">Filter the response to payouts made inclusively after the specified date.</param>
-
-        /// <param name="last_id">Filter the response to payouts made before the specified ID.</param>
-
-        /// <param name="since_id">Filter the response to payouts made after the specified ID.</param>
-
-        /// <param name="status">Filter the response to payouts made with the specified status.</param>
-
-        /// <returns>Return a list of all payouts</returns>
-
-        System.Threading.Tasks.Task ReturnListOfAllPayoutsAsync(string? date, string? date_max, string? date_min, string? last_id, string? since_id, string? status);
-
-        /// <summary>
-        /// Return a single payout
-        /// </summary>
-
-
-        /// <returns>Return a single payout</returns>
-
-        System.Threading.Tasks.Task ReturnSinglePayoutAsync(string payout_id);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class PayoutsController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IPayoutsController _implementation;
-
-        public PayoutsController(IPayoutsController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Return a list of all payouts
         /// </summary>
@@ -78,22 +36,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="status">Filter the response to payouts made with the specified status.</param>
         /// <returns>Return a list of all payouts</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/payouts.json")]
-        public System.Threading.Tasks.Task ReturnListOfAllPayouts([Microsoft.AspNetCore.Mvc.FromQuery] string? date, [Microsoft.AspNetCore.Mvc.FromQuery] string? date_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? date_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? last_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status)
-        {
-
-            return _implementation.ReturnListOfAllPayoutsAsync(date, date_max, date_min, last_id, since_id, status);
-        }
+        public abstract System.Threading.Tasks.Task ReturnListOfAllPayouts([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? date, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? date_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? date_min, [Microsoft.AspNetCore.Mvc.FromQuery] long? last_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status);
 
         /// <summary>
         /// Return a single payout
         /// </summary>
         /// <returns>Return a single payout</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/payouts/{payout_id}.json")]
-        public System.Threading.Tasks.Task ReturnSinglePayout(string payout_id)
-        {
-
-            return _implementation.ReturnSinglePayoutAsync(payout_id);
-        }
+        public abstract System.Threading.Tasks.Task ReturnSinglePayout(long payout_id);
 
     }
 

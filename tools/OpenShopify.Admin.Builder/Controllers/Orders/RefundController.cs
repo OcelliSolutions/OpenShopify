@@ -22,92 +22,9 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IRefundController
+
+    public abstract class RefundControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieves a list of refunds for an order
-        /// </summary>
-
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <param name="in_shop_currency">Show amounts in the shop currency for the underlying transaction.</param>
-
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-
-        /// <returns>Retrieves a list of refunds for an order</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfRefundsForOrderAsync(string order_id, string? fields, string in_shop_currency, string limit);
-
-        /// <summary>
-        /// Creates a refund
-        /// </summary>
-
-
-        /// <param name="currency">&lt;p&gt;The three-letter code (&lt;a href="https://en.wikipedia.org/wiki/ISO_4217" target="_blank"&gt;ISO 4217&lt;/a&gt; format) for the currency used for the refund.&lt;/p&gt;</param>
-
-        /// <param name="discrepancy_reason">An optional comment that explains a discrepancy between calculated and actual refund amounts. Used to populate the &lt;code&gt;reason&lt;/code&gt; property of the resulting &lt;code&gt;order_adjustment&lt;/code&gt; object attached to the refund. Valid values: &lt;code&gt;restock&lt;/code&gt;, &lt;code&gt;damage&lt;/code&gt;, &lt;code&gt;customer&lt;/code&gt;, and &lt;code&gt;other&lt;/code&gt;.</param>
-
-        /// <param name="note">An optional note attached to a refund.</param>
-
-        /// <param name="notify">Whether to send a refund notification to the customer.</param>
-
-        /// <param name="refund_line_items">A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:</param>
-
-        /// <param name="restock">Whether to add the line items back to the store inventory. Use &lt;code&gt;restock_type&lt;/code&gt; for refund line items instead.</param>
-
-        /// <param name="shipping">Specify how much shipping to refund. It has the following properties:</param>
-
-        /// <param name="transactions">A list of &lt;a href="/api/admin-rest/current/resources/transaction"&gt;transactions&lt;/a&gt;
-        /// <br/>          to process as refunds. Use the &lt;code&gt;calculate&lt;/code&gt; endpoint to obtain these transactions.</param>
-
-        /// <returns>Creates a refund</returns>
-
-        System.Threading.Tasks.Task CreateRefundAsync(string order_id, string? currency, string? discrepancy_reason, string? note, string? notify, string? refund_line_items, string? restock, string? shipping, string? transactions);
-
-        /// <summary>
-        /// Retrieves a specific refund
-        /// </summary>
-
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <param name="in_shop_currency">Show amounts in the shop currency for the underlying transaction.</param>
-
-        /// <returns>Retrieves a specific refund</returns>
-
-        System.Threading.Tasks.Task RetrieveSpecificRefundAsync(string order_id, string refund_id, string? fields, string in_shop_currency);
-
-        /// <summary>
-        /// Calculates a refund
-        /// </summary>
-
-
-        /// <param name="currency">&lt;p&gt;The three-letter code (&lt;a href="https://en.wikipedia.org/wiki/ISO_4217" target="_blank"&gt;ISO 4217&lt;/a&gt; format) for the
-        /// <br/>          currency used for the refund. &lt;strong&gt;Note:&lt;/strong&gt; Required whenever the shipping &lt;code&gt;amount&lt;/code&gt; property is provided.&lt;/p&gt;</param>
-
-        /// <param name="refund_line_items">A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:</param>
-
-        /// <param name="shipping">Specify how much shipping to refund. It has the following properties:</param>
-
-        /// <returns>Calculates a refund</returns>
-
-        System.Threading.Tasks.Task CalculateRefundAsync(string order_id, string? currency, string? refund_line_items, string? shipping);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class RefundController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IRefundController _implementation;
-
-        public RefundController(IRefundController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieves a list of refunds for an order
         /// </summary>
@@ -116,11 +33,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="limit">The maximum number of results to retrieve.</param>
         /// <returns>Retrieves a list of refunds for an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds.json")]
-        public System.Threading.Tasks.Task RetrieveListOfRefundsForOrder(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? in_shop_currency, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit)
-        {
-
-            return _implementation.RetrieveListOfRefundsForOrderAsync(order_id, fields, in_shop_currency ?? "false", limit ?? "50");
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfRefundsForOrder(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info);
 
         /// <summary>
         /// Creates a refund
@@ -136,11 +49,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <br/>          to process as refunds. Use the &lt;code&gt;calculate&lt;/code&gt; endpoint to obtain these transactions.</param>
         /// <returns>Creates a refund</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds.json")]
-        public System.Threading.Tasks.Task CreateRefund(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? currency, [Microsoft.AspNetCore.Mvc.FromQuery] string? discrepancy_reason, [Microsoft.AspNetCore.Mvc.FromQuery] string? note, [Microsoft.AspNetCore.Mvc.FromQuery] string? notify, [Microsoft.AspNetCore.Mvc.FromQuery] string? refund_line_items, [Microsoft.AspNetCore.Mvc.FromQuery] string? restock, [Microsoft.AspNetCore.Mvc.FromQuery] string? shipping, [Microsoft.AspNetCore.Mvc.FromQuery] string? transactions)
-        {
-
-            return _implementation.CreateRefundAsync(order_id, currency, discrepancy_reason, note, notify, refund_line_items, restock, shipping, transactions);
-        }
+        public abstract System.Threading.Tasks.Task CreateRefund([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.RefundItem request, long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? currency, [Microsoft.AspNetCore.Mvc.FromQuery] string? discrepancy_reason, [Microsoft.AspNetCore.Mvc.FromQuery] string? note, [Microsoft.AspNetCore.Mvc.FromQuery] string? notify, [Microsoft.AspNetCore.Mvc.FromQuery] string? refund_line_items, [Microsoft.AspNetCore.Mvc.FromQuery] string? restock, [Microsoft.AspNetCore.Mvc.FromQuery] string? shipping, [Microsoft.AspNetCore.Mvc.FromQuery] string? transactions);
 
         /// <summary>
         /// Retrieves a specific refund
@@ -149,11 +58,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="in_shop_currency">Show amounts in the shop currency for the underlying transaction.</param>
         /// <returns>Retrieves a specific refund</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds/{refund_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSpecificRefund(string order_id, string refund_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? in_shop_currency)
-        {
-
-            return _implementation.RetrieveSpecificRefundAsync(order_id, refund_id, fields, in_shop_currency ?? "false");
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSpecificRefund(long order_id, long refund_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency);
 
         /// <summary>
         /// Calculates a refund
@@ -164,11 +69,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="shipping">Specify how much shipping to refund. It has the following properties:</param>
         /// <returns>Calculates a refund</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds/calculate.json")]
-        public System.Threading.Tasks.Task CalculateRefund(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? currency, [Microsoft.AspNetCore.Mvc.FromQuery] string? refund_line_items, [Microsoft.AspNetCore.Mvc.FromQuery] string? shipping)
-        {
-
-            return _implementation.CalculateRefundAsync(order_id, currency, refund_line_items, shipping);
-        }
+        public abstract System.Threading.Tasks.Task CalculateRefund(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? currency, [Microsoft.AspNetCore.Mvc.FromQuery] string? refund_line_items, [Microsoft.AspNetCore.Mvc.FromQuery] string? shipping);
 
     }
 

@@ -20,33 +20,36 @@
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 		<Exec Command="dotnet tool restore" />
 		<Exec Command="dotnet swagger tofile --output ../../open-shopify-access.yaml --yaml $(OutputPath)/$(AssemblyName).dll Access " />
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-analytics.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll Analytics " />
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-billing.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll Billing " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-analytics.yaml --yaml $(OutputPath)/$(AssemblyName).dll Analytics " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-billing.yaml --yaml $(OutputPath)/$(AssemblyName).dll Billing " />
 		
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-customers.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll Customers " />
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-deprecated-api-calls.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll DeprecatedApiCalls " />
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-discounts.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll Discounts " />
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-events.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll Events " />
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-inventory.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll Inventory " />
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-marketing-event.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll MarketingEvent " />
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-metafield.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll Metafield " />
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-online-store.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll OnlineStore " />
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-orders.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll Orders " />
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-plus.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll Plus " />
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-products.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll Products " />
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-sales-channels.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll SalesChannels " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-customers.yaml --yaml $(OutputPath)/$(AssemblyName).dll Customers " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-deprecated-api-calls.yaml --yaml $(OutputPath)/$(AssemblyName).dll DeprecatedApiCalls " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-discounts.yaml --yaml $(OutputPath)/$(AssemblyName).dll Discounts " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-events.yaml --yaml $(OutputPath)/$(AssemblyName).dll Events " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-inventory.yaml --yaml $(OutputPath)/$(AssemblyName).dll Inventory " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-marketing-event.yaml --yaml $(OutputPath)/$(AssemblyName).dll MarketingEvent " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-metafield.yaml --yaml $(OutputPath)/$(AssemblyName).dll Metafield " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-online-store.yaml --yaml $(OutputPath)/$(AssemblyName).dll OnlineStore " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-orders.yaml --yaml $(OutputPath)/$(AssemblyName).dll Orders " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-plus.yaml --yaml $(OutputPath)/$(AssemblyName).dll Plus " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-products.yaml --yaml $(OutputPath)/$(AssemblyName).dll Products " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-sales-channels.yaml --yaml $(OutputPath)/$(AssemblyName).dll SalesChannels " />
 		
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-shipping-and-fulfillment.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll ShippingAndFulfillment " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-shipping-and-fulfillment.yaml --yaml $(OutputPath)/$(AssemblyName).dll ShippingAndFulfillment " />
 		
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-shopify-payments.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll ShopifyPayments " />
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-store-properties.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll StoreProperties " />
-		<Exec Command="dotnet swagger tofile &#45;&#45;output ../../open-shopify-tender-transaction.yaml &#45;&#45;yaml $(OutputPath)/$(AssemblyName).dll TenderTransaction " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-shopify-payments.yaml --yaml $(OutputPath)/$(AssemblyName).dll ShopifyPayments " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-store-properties.yaml --yaml $(OutputPath)/$(AssemblyName).dll StoreProperties " />
+		<Exec Command="dotnet swagger tofile --output ../../open-shopify-tender-transaction.yaml --yaml $(OutputPath)/$(AssemblyName).dll TenderTransaction " />
 
 	</Target>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.3.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenShopify.Common\OpenShopify.Common.csproj" />
   </ItemGroup>
 
 </Project>

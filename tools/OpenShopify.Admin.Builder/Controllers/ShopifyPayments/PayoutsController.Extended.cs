@@ -1,25 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.ShopifyPayments;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShopifyPayments)]
 [ApiController]
-public class PayoutsController : IPayoutsController
+public class PayoutsController : PayoutsControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/payouts.json")]
-    public Task ReturnListOfAllPayoutsAsync(string? date, string? date_max, string? date_min, string? last_id, string? since_id,
+    [HttpGet, Route("shopify_payments/payouts.json")]
+    public override Task ReturnListOfAllPayouts(DateTime? date, DateTime? date_max, DateTime? date_min, long? last_id, int? since_id,
         string? status)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/payouts/{payout_id}.json")]
-    public Task ReturnSinglePayoutAsync(string payout_id)
+    [HttpGet, Route("shopify_payments/payouts/{payout_id:long}.json")]
+    public override Task ReturnSinglePayout(long payout_id)
     {
         throw new NotImplementedException();
     }

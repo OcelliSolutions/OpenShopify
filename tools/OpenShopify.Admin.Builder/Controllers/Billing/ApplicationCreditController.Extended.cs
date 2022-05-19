@@ -1,49 +1,36 @@
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
 using OpenShopify.Admin.Builder.Models;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.Billing;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Billing)]
 [ApiController]
-public class ApplicationCreditController : IApplicationCreditController
+public class ApplicationCreditController : ApplicationCreditControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("application_credits.json")]
-    [ProducesResponseType(typeof(ApplicationCreditItem), StatusCodes.Status200OK)]
-    public Task CreateApplicationCreditAsync()
+    [HttpPost, Route("application_credits.json")]
+    [ProducesResponseType(typeof(ApplicationCreditItem), StatusCodes.Status201Created)]
+    public override Task CreateApplicationCredit(ApplicationCreditItem request)
     {
         throw new NotImplementedException();
     }
-
+    
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_credits.json")]
+    [HttpGet, Route("application_credits.json")]
     [ProducesResponseType(typeof(ApplicationCreditList), StatusCodes.Status200OK)]
-    public Task RetrieveAllApplicationCreditsAsync(string? fields)
+    public override Task RetrieveAllApplicationCredits(string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_credits/{application_credit_id}.json")]
+    [HttpGet, Route("application_credits/{application_credit_id:long}.json")]
     [ProducesResponseType(typeof(ApplicationCreditItem), StatusCodes.Status200OK)]
-    public Task RetrieveSingleApplicationCreditAsync(string application_credit_id, string? fields)
+    public override Task RetrieveSingleApplicationCredit(long application_credit_id, string? fields)
     {
         throw new NotImplementedException();
     }
-}
-
-public class ApplicationCreditItem
-{
-    [JsonPropertyName("application_credit")]
-    public ApplicationCredit? ApplicationCredit { get; set; }
-}
-
-public class ApplicationCreditList
-{
-    [JsonPropertyName("application_credits")]
-    public IEnumerable<ApplicationCredit>? ApplicationCredits { get; set; }
 }

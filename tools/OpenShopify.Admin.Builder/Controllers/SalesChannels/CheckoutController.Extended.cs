@@ -1,45 +1,46 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Admin.Builder.Models;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.SalesChannels;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.SalesChannels)]
 [ApiController]
-public class CheckoutController : ICheckoutController
+public class CheckoutController : CheckoutControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("checkouts.json")]
-    public Task CreateCheckoutAsync()
+    [HttpPost, Route("checkouts.json")]
+    public override Task CreateCheckout(CheckoutItem request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}/complete.json")]
-    public Task CompleteCheckoutAsync(string token)
+    [HttpPost, Route("checkouts/{token:long}/complete.json")]
+    public override Task CompleteCheckout(string token)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}.json")]
-    public Task RetrieveCheckoutAsync(string token)
+    [HttpGet, Route("checkouts/{token:long}.json")]
+    public override Task RetrieveCheckout(string token)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}.json")]
-    public Task ModifyExistingCheckoutAsync(string token)
+    [HttpPut, Route("checkouts/{token:long}.json")]
+    public override Task ModifyExistingCheckout(CheckoutItem request, string token)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}/shipping_rates.json")]
-    public Task RetrieveListOfShippingRatesAsync(string token)
+    [HttpGet, Route("checkouts/{token:long}/shipping_rates.json")]
+    public override Task RetrieveListOfShippingRates(string token)
     {
         throw new NotImplementedException();
     }

@@ -22,40 +22,9 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface ITransactionsController
+
+    public abstract class TransactionsControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Return a list of all balance transactions
-        /// </summary>
-
-        /// <param name="last_id">Filter response to transactions exclusively before the specified ID</param>
-
-        /// <param name="payout_id">Filter response to transactions paid out in the specified payout.</param>
-
-        /// <param name="payout_status">Filter response to transactions with the specified payout status</param>
-
-        /// <param name="since_id">Filter response to transactions exclusively after the specified ID.</param>
-
-        /// <param name="test">Filter response to transactions placed in test mode.</param>
-
-        /// <returns>Return a list of all balance transactions</returns>
-
-        System.Threading.Tasks.Task ReturnListOfAllBalanceTransactionsAsync(string? last_id, string? payout_id, string? payout_status, string? since_id, string? test);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class TransactionsController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private ITransactionsController _implementation;
-
-        public TransactionsController(ITransactionsController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Return a list of all balance transactions
         /// </summary>
@@ -66,11 +35,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="test">Filter response to transactions placed in test mode.</param>
         /// <returns>Return a list of all balance transactions</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/balance/transactions.json")]
-        public System.Threading.Tasks.Task ReturnListOfAllBalanceTransactions([Microsoft.AspNetCore.Mvc.FromQuery] string? last_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? payout_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? payout_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? test)
-        {
-
-            return _implementation.ReturnListOfAllBalanceTransactionsAsync(last_id, payout_id, payout_status, since_id, test);
-        }
+        public abstract System.Threading.Tasks.Task ReturnListOfAllBalanceTransactions([Microsoft.AspNetCore.Mvc.FromQuery] long? last_id, [Microsoft.AspNetCore.Mvc.FromQuery] long? payout_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? payout_status, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? test);
 
     }
 

@@ -335,11 +335,11 @@ namespace OpenShopify.Admin.Builder.Models
 
         /// <summary>
         /// Additional metadata about the <see cref="Order"/>. Note: This is not naturally returned with a <see cref="Order"/> response, as
-        /// Shopify will not return <see cref="Order"/> metafields unless specified. Instead, you need to query metafields with <see cref="MetaFieldService"/>. 
+        /// Shopify will not return <see cref="Order"/> metafields unless specified. Instead, you need to query metafields with <see cref="MetafieldService"/>. 
         /// Uses include: Creating, updating, & deserializing webhook bodies that include them.
         /// </summary>
         [JsonPropertyName("metafields")]
-        public IEnumerable<MetaField> Metafields { get; set; }
+        public IEnumerable<OrderMetafield> Metafields { get; set; }
 
         /// <summary>
         /// The current total duties charged on the order in shop and presentment currencies.
@@ -401,5 +401,9 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         [JsonPropertyName("estimated_taxes")]
         public bool? EstimatedTaxes { get; set; }
+    }
+
+    public class OrderMetafield : Metafield
+    {
     }
 }

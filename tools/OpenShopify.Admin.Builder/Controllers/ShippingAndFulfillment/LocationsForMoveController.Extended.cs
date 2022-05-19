@@ -1,17 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShippingAndFulfillment)]
 [ApiController]
-public class LocationsForMoveController : ILocationsForMoveController
+public class LocationsForMoveController : LocationsForMoveControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/locations_for_move.json")]
-    public Task RetrieveListOfLocationsThatFulfillmentOrderCanPotentiallyMoveToAsync(string fulfillment_order_id)
+    [HttpGet, Route("fulfillment_orders/{fulfillment_order_id:long}/locations_for_move.json")]
+    public override Task RetrieveListOfLocationsThatFulfillmentOrderCanPotentiallyMoveTo(long fulfillment_order_id)
     {
         throw new NotImplementedException();
     }

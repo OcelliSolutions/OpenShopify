@@ -29,10 +29,35 @@ paths:
           in: query
           description: Restrict results to after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryList'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -42,9 +67,41 @@ paths:
         - Country
       summary: Creates a country
       operationId: CreateCountry
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CountryItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CountryItem'
       responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -56,8 +113,32 @@ paths:
       summary: Retrieves a count of countries
       operationId: RetrieveCountOfCountries
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -73,15 +154,40 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -96,10 +202,44 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CountryItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CountryItem'
+        required: true
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -114,10 +254,31 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -129,8 +290,32 @@ paths:
       summary: Retrieves a list of currencies enabled on a shop
       operationId: RetrieveListOfCurrenciesEnabledOnShop
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyList'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -140,10 +325,19 @@ paths:
       tags:
         - Policy
       summary: Retrieves a list of the shop's policies
-      operationId: RetrieveListOfTheShopsPolicies
+      operationId: RetrieveListOfShopsPolicies
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -159,7 +353,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: 'Show only certain fields, specified by a comma-separated list of fields names.'
@@ -169,10 +364,20 @@ paths:
           in: query
           description: Restrict results to after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -188,10 +393,35 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProvinceCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -207,12 +437,14 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: province_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: 'Show only certain fields, specified by a comma-separated list of field names.'
@@ -221,6 +453,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -235,15 +476,34 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: province_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProvinceItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProvinceItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -263,6 +523,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -272,7 +541,7 @@ paths:
       tags:
         - Shop
       summary: Retrieves the shop's configuration
-      operationId: RetrieveTheShopsConfiguration
+      operationId: RetrieveShopsConfiguration
       parameters:
         - name: fields
           in: query
@@ -282,12 +551,97 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    Country:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          description: 'The full name of the country, in English.'
+          nullable: true
+        tax:
+          type: number
+          description: The tax value in decimal format.
+          format: double
+          nullable: true
+        code:
+          type: string
+          description: The ISO 3166-1 alpha-2 two-letter country code for the country. The code for a given country will be the same as the code for the same country in another shop.
+          nullable: true
+        tax_name:
+          type: string
+          description: 'The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.'
+          nullable: true
+        provinces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Province'
+          description: The sub-regions of a country. The term provinces also encompasses states.
+      additionalProperties: { }
+    CountryCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    CountryItem:
+      type: object
+      properties:
+        country:
+          $ref: '#/components/schemas/Country'
+      additionalProperties: { }
+    CountryList:
+      type: object
+      properties:
+        countries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Country'
+          nullable: true
+      additionalProperties: { }
+    Currency:
+      type: object
+      properties:
+        currency:
+          type: string
+        rate_updated_at:
+          type: string
+          format: date-time
+        enabled:
+          type: boolean
+      additionalProperties: { }
+    CurrencyList:
+      type: object
+      properties:
+        currencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Currency'
+          nullable: true
+      additionalProperties: { }
     ErrorResponse:
       type: object
       properties:
@@ -295,6 +649,67 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    Province:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        country_id:
+          type: integer
+          description: The unique numeric identifier for the country.
+          format: int64
+          nullable: true
+        name:
+          type: string
+          description: The name of the province or state.
+          nullable: true
+        code:
+          type: string
+          description: The two letter province or state code.
+          nullable: true
+        tax:
+          type: number
+          description: The tax value in decimal format.
+          format: double
+          nullable: true
+        tax_name:
+          type: string
+          description: 'The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.'
+          nullable: true
+        tax_type:
+          type: string
+          description: 'A tax_type is applied for a compounded sales tax. For example, the Canadian HST is a compounded sales tax of both PST and GST.'
+          nullable: true
+        shipping_zone_id:
+          type: integer
+          description: The unique numeric identifier for the shipping zone.
+          format: int64
+          nullable: true
+        tax_percentage:
+          type: number
+          description: The tax value in percent format.
+          format: double
+          nullable: true
+      additionalProperties: { }
+    ProvinceCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    ProvinceItem:
+      type: object
+      properties:
+        province:
+          $ref: '#/components/schemas/Province'
+      additionalProperties: { }
   securitySchemes:
     ApiKey:
       type: apiKey

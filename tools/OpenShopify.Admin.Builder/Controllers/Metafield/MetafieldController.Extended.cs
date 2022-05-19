@@ -1,54 +1,62 @@
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
+using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.Metafield;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Metafield)]
 [ApiController]
-public class MetafieldController : IMetafieldController
+public class MetafieldController : MetafieldControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields.json")]
-    public Task RetrieveListOfMetafieldsFromTheResourcesEndpointAsync(string? created_at_max, string? created_at_min,
-        string? fields, string? key, string limit, string? @namespace, string? since_id, string? type,
-        string? updated_at_max, string? updated_at_min, string? value_type)
+    [HttpGet, Route("metafields.json")]
+    [ProducesResponseType(typeof(MetafieldList), StatusCodes.Status200OK)]
+    public override Task RetrieveListOfMetafieldsFromResourcesEndpoint(DateTime? created_at_max, DateTime? created_at_min,
+        string? fields, string? key, int? limit, string? page_info, string? @namespace, int? since_id, string? type,
+        DateTime? updated_at_max, DateTime? updated_at_min, string? value_type)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("metafields.json")]
-    public Task CreateMetafieldAsync()
+    [HttpPost, Route("metafields.json")]
+    [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status201Created)]
+    public override Task CreateMetafield(MetafieldItem request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields/count.json")]
-    public Task RetrieveCountOfResourcesMetafieldsAsync()
+    [HttpGet, Route("metafields/count.json")]
+    [ProducesResponseType(typeof(MetafieldCount), StatusCodes.Status200OK)]
+    public override Task RetrieveCountOfResourcesMetafields()
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
-    public Task RetrieveSpecificMetafieldAsync(string metafield_id, string? fields)
+    [HttpGet, Route("metafields/{metafield_id:long}.json")]
+    [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status200OK)]
+    public override Task RetrieveSpecificMetafield(long metafield_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
-    public Task UpdateMetafieldAsync(string metafield_id)
+    [HttpPut, Route("metafields/{metafield_id:long}.json")]
+    [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status200OK)]
+    public override Task UpdateMetafield(MetafieldItem request, long metafield_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
-    public Task DeleteMetafieldByItsIDAsync(string metafield_id)
+    [HttpDelete, Route("metafields/{metafield_id:long}.json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public override Task DeleteMetafieldByItsID(long metafield_id)
     {
         throw new NotImplementedException();
     }

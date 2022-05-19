@@ -1,46 +1,61 @@
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Admin.Builder.Models;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.Products;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Products)]
 [ApiController]
-public class CollectController : ICollectController
+public class CollectController : CollectControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("collects.json")]
-    public Task AddProductToCustomCollectionAsync()
+    [IgnoreApi, HttpPost, Route("collects.invalid")]
+    [ProducesResponseType(typeof(CollectItem), StatusCodes.Status201Created)]
+    public override Task AddProductToCustomCollection()
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc cref="CollectControllerBase.AddProductToCustomCollection" />
+    [HttpPost, Route("collects.json")]
+    [ProducesResponseType(typeof(CollectItem), StatusCodes.Status201Created)]
+    public Task AddProductToCustomCollection([Required] CollectItem request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collects.json")]
-    public Task RetrieveListOfCollectsAsync(string? fields, string limit, string? since_id)
+    [HttpGet, Route("collects.json")]
+    [ProducesResponseType(typeof(CollectList), StatusCodes.Status200OK)]
+    public override Task RetrieveListOfCollects(string? fields, int? limit, string? page_info, int? since_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("collects/{collect_id}.json")]
-
-    public Task RemoveProductFromCollectionAsync(string collect_id)
+    [HttpDelete, Route("collects/{collect_id:long}.json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public override Task RemoveProductFromCollection([Required] long collect_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collects/{collect_id}.json")]
-    public Task RetrieveSpecificCollectByItsIDAsync(string collect_id, string? fields)
+    [HttpGet, Route("collects/{collect_id:long}.json")]
+    [ProducesResponseType(typeof(CollectItem), StatusCodes.Status200OK)]
+    public override Task RetrieveSpecificCollectByItsID([Required] long collect_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collects/count.json")]
-    public Task RetrieveCountOfCollectsAsync()
+    [HttpGet, Route("collects/count.json")]
+    [ProducesResponseType(typeof(CollectCount), StatusCodes.Status200OK)]
+    public override Task RetrieveCountOfCollects()
     {
         throw new NotImplementedException();
     }

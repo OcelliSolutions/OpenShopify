@@ -1,96 +1,99 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
+using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShippingAndFulfillment)]
 [ApiController]
-public class FulfillmentController : IFulfillmentController
+public class FulfillmentController : FulfillmentControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments.json")]
-    public Task RetrieveFulfillmentsAssociatedWithOrderAsync(string order_id, string? created_at_max, string? created_at_min,
-        string? fields, string limit, string? since_id, string? updated_at_max, string? updated_at_min)
+    [HttpGet, Route("orders/{order_id:long}/fulfillments.json")]
+    public override Task RetrieveFulfillmentsAssociatedWithOrder(long order_id, DateTime? created_at_max, DateTime? created_at_min,
+        string? fields, int? limit, string? page_info, int? since_id, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments.json")]
-    public Task CreateNewFulfillmentAsync(string order_id)
+    [HttpPost, Route("orders/{order_id:long}/fulfillments.json")]
+    public override Task CreateNewFulfillment(FulfillmentItem request, long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillments.json")]
-    public Task RetrieveFulfillmentsAssociatedWithFulfillmentOrderAsync(string fulfillment_order_id)
+    [HttpGet, Route("fulfillment_orders/{fulfillment_order_id:long}/fulfillments.json")]
+    public override Task RetrieveFulfillmentsAssociatedWithFulfillmentOrder(long fulfillment_order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/count.json")]
-    public Task RetrieveCountOfFulfillmentsAssociatedWithSpecificOrderAsync(string order_id, string? created_at_max,
-        string? created_at_min, string? updated_at_max, string? updated_at_min)
+    [HttpGet, Route("orders/{order_id:long}/fulfillments/count.json")]
+    [ProducesResponseType(typeof(OrderFulfillmentCount), StatusCodes.Status200OK)]
+    public override Task RetrieveCountOfFulfillmentsAssociatedWithSpecificOrder(long order_id, DateTime? created_at_max,
+        DateTime? created_at_min, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}.json")]
-    public Task ReceiveSingleFulfillmentAsync(string fulfillment_id, string order_id, string? fields)
+    [HttpGet, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}.json")]
+    public override Task ReceiveSingleFulfillment(long fulfillment_id, long order_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}.json")]
-    public Task ModifyExistingFulfillmentAsync(string fulfillment_id, string order_id)
+    [HttpPut, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}.json")]
+    public override Task ModifyExistingFulfillment(FulfillmentItem request, long fulfillment_id, long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillments.json")]
-    public Task CreateFulfillmentForOneOrManyFulfillmentOrdersAsync()
+    [HttpPost, Route("fulfillments.json")]
+    public override Task CreateFulfillmentForOneOrManyFulfillmentOrders(FulfillmentItem request)
+    {
+        throw new NotImplementedException();
+    }
+
+    ///TODO: change the request type
+    /// <inheritdoc />
+    [HttpPost, Route("fulfillments/{fulfillment_id:long}/update_tracking.json")]
+    public override Task UpdateTrackingInformationForFulfillment(FulfillmentItem request, long fulfillment_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillments/{fulfillment_id}/update_tracking.json")]
-    public Task UpdateTheTrackingInformationForFulfillmentAsync(string fulfillment_id)
+    [HttpPost, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/complete.json")]
+    public override Task CompleteFulfillment(long fulfillment_id, long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/complete.json")]
-    public Task CompleteFulfillmentAsync(string fulfillment_id, string order_id)
+    [HttpPost, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/open.json")]
+    public override Task TransitionFulfillmentFromPendingToOpen(long fulfillment_id, long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/open.json")]
-    public Task TransitionFulfillmentFromPendingToOpenAsync(string fulfillment_id, string order_id)
+    [HttpPost, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/cancel.json")]
+    public override Task CancelFulfillmentForSpecificOrderID(long fulfillment_id, long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/cancel.json")]
-    public Task CancelFulfillmentForSpecificOrderIDAsync(string fulfillment_id, string order_id)
-    {
-        throw new NotImplementedException();
-    }
-
-    /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillments/{fulfillment_id}/cancel.json")]
-    public Task CancelFulfillmentAsync(string fulfillment_id)
+    [HttpPost, Route("fulfillments/{fulfillment_id:long}/cancel.json")]
+    public override Task CancelFulfillment(long fulfillment_id)
     {
         throw new NotImplementedException();
     }

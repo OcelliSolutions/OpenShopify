@@ -1,83 +1,85 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
+using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.OnlineStore;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.OnlineStore)]
 [ApiController]
-public class CommentController : ICommentController
+public class CommentController : CommentControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("comments.json")]
-    public Task RetrieveListOfCommentsAsync(string? created_at_max, string? created_at_min, string? fields, string limit,
-        string? published_at_max, string? published_at_min, string published_status, string? since_id, string? status,
-        string? updated_at_max, string? updated_at_min)
+    [HttpGet, Route("comments.json")]
+    public override Task RetrieveListOfComments(DateTime? created_at_max, DateTime? created_at_min, string? fields, int? limit, string? page_info,
+        DateTime? published_at_max, DateTime? published_at_min, string published_status, int? since_id, string? status,
+        DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments.json")]
-    public Task CreateCommentForArticleAsync()
+    [HttpPost, Route("comments.json")]
+    public override Task CreateCommentForArticle(CommentItem request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("comments/count.json")]
-    public Task RetrieveCountOfCommentsAsync(string? created_at_max, string? created_at_min, string? published_at_max,
-        string? published_at_min, string published_status, string? status, string? updated_at_max, string? updated_at_min)
+    [HttpGet, Route("comments/count.json")]
+    [ProducesResponseType(typeof(CommentCount), StatusCodes.Status200OK)]
+    public override Task RetrieveCountOfComments(DateTime? created_at_max, DateTime? created_at_min, DateTime? published_at_max,
+        DateTime? published_at_min, string published_status, string? status, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}.json")]
-    public Task RetrieveSingleCommentByItsIDAsync(string comment_id, string? fields)
+    [HttpGet, Route("comments/{comment_id:long}.json")]
+    public override Task RetrieveSingleCommentByItsID(long comment_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}.json")]
-    public Task UpdateCommentOfArticleAsync(string comment_id)
+    [HttpPut, Route("comments/{comment_id:long}.json")]
+    public override Task UpdateCommentOfArticle(CommentItem request, long comment_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/spam.json")]
-    public Task MarkCommentAsSpamAsync(string comment_id)
+    [HttpPost, Route("comments/{comment_id:long}/spam.json")]
+    public override Task MarkCommentAsSpam(long comment_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/not_spam.json")]
-    public Task MarkCommentAsNotSpamAsync(string comment_id)
+    [HttpPost, Route("comments/{comment_id:long}/not_spam.json")]
+    public override Task MarkCommentAsNotSpam(long comment_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/approve.json")]
-    public Task ApproveCommentAsync(string comment_id)
+    [HttpPost, Route("comments/{comment_id:long}/approve.json")]
+    public override Task ApproveComment(long comment_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/remove.json")]
-    public Task RemoveCommentAsync(string comment_id)
+    [HttpPost, Route("comments/{comment_id:long}/remove.json")]
+    public override Task RemoveComment(long comment_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/restore.json")]
-    public Task RestorePreviouslyRemovedCommentAsync(string comment_id)
+    [HttpPost, Route("comments/{comment_id:long}/restore.json")]
+    public override Task RestorePreviouslyRemovedComment(long comment_id)
     {
         throw new NotImplementedException();
     }

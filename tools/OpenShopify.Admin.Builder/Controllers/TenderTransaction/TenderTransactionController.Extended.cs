@@ -1,18 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.TenderTransaction;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.TenderTransaction)]
 [ApiController]
-public class TenderTransactionController : ITenderTransactionController
+public class TenderTransactionController : TenderTransactionControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("tender_transactions.json")]
-    public Task RetrieveListOfTenderTransactionsAsync(string limit, string? order, string? processed_at, string? processed_at_max,
-        string? processed_at_min, string? since_id)
+    [HttpGet, Route("tender_transactions.json")]
+    public override Task RetrieveListOfTenderTransactions(int? limit, string? page_info, string? order, string? processed_at, DateTime? processed_at_max,
+        DateTime? processed_at_min, int? since_id)
     {
         throw new NotImplementedException();
     }

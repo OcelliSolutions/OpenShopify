@@ -25,11 +25,13 @@ paths:
           description: 'Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: created_at_min
           in: query
           description: 'Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: fields
           in: query
           description: 'Show only certain fields, specified by a comma-separated list of field names.'
@@ -44,20 +46,50 @@ paths:
           in: query
           description: The number of results to show.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: since_id
           in: query
           description: Show only results after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: verb
           in: query
           description: Show events of a certain type.
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventList'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -73,15 +105,40 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: 'Show only certain fields, specified by a comma-separated list of field names.'
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -98,14 +155,40 @@ paths:
           description: 'Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: created_at_min
           in: query
           description: 'Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -127,11 +210,13 @@ paths:
           description: 'Retrieve webhook subscriptions that were created before a given date and time (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: created_at_min
           in: query
           description: 'Retrieve webhook subscriptions that were created after a given date and time (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: fields
           in: query
           description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
@@ -141,12 +226,18 @@ paths:
           in: query
           description: Maximum number of webhook subscriptions that should be returned. Setting this parameter outside the maximum range will return an error.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: since_id
           in: query
           description: Restrict the returned list to webhook subscriptions whose id is greater than the specified since_id.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: topic
           in: query
           description: "Show webhook subscriptions with a given topic.\r\n            <br /><br />For a list of valid values, refer to the <a href=\"#topic-property-{{ current_version }}\"><code>topic</code> property</a>.>"
@@ -157,14 +248,40 @@ paths:
           description: 'Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookList'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -174,9 +291,41 @@ paths:
         - Webhook
       summary: Create a new Webhook
       operationId: CreateNewWebhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/WebhookItem'
       responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -199,8 +348,32 @@ paths:
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -216,15 +389,40 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -239,10 +437,43 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/WebhookItem'
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -257,10 +488,31 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -274,6 +526,147 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        arguments:
+          type: array
+          items:
+            type: string
+          description: Refers to a certain event and its resources.
+        body:
+          type: string
+          description: A text field containing information about the event.
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the event was created.
+          format: date-time
+          nullable: true
+        path:
+          type: string
+          description: A relative URL to the resource the event is for (may be null)
+          nullable: true
+        message:
+          type: string
+          description: Human readable text that describes the event (may contain limited HTML formatting).
+          nullable: true
+        subject_id:
+          type: integer
+          description: The id of the resource that generated the event.
+          format: int64
+          nullable: true
+        subject_type:
+          type: string
+          description: The type of the resource that generated the event.
+          nullable: true
+        verb:
+          type: string
+          description: The type of event that took place.
+          nullable: true
+        author:
+          type: string
+          description: Undocumented by Shopify
+          nullable: true
+      additionalProperties: { }
+      description: An object representing a Shopify event.
+    EventCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    EventItem:
+      type: object
+      properties:
+        event:
+          $ref: '#/components/schemas/Event'
+      additionalProperties: { }
+    EventList:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+          nullable: true
+      additionalProperties: { }
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        address:
+          type: string
+          description: The URL where the webhook should send the POST request when the event occurs.
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the webhook was created.
+          format: date-time
+          nullable: true
+        fields:
+          type: array
+          items:
+            type: string
+          description: An optional array of fields which should be included in webhooks.
+        format:
+          type: string
+          description: The format in which the webhook should send the data. Valid values are json and xml.
+          nullable: true
+        metafield_namespaces:
+          type: array
+          items:
+            type: string
+          description: An optional array of namespaces for metafields that should be included in webhooks.
+        topic:
+          type: string
+          description: 'The event that will trigger the webhook, e.g. ''orders/create'' or ''app/uninstalled''. A full list of webhook topics can be found at https://help.shopify.com/api/reference/webhook.'
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the webhook was updated.
+          format: date-time
+          nullable: true
+      additionalProperties: { }
+      description: An entity representing a Shopify webhook.
+    WebhookCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    WebhookItem:
+      type: object
+      properties:
+        webhook:
+          $ref: '#/components/schemas/Webhook'
+      additionalProperties: { }
+    WebhookList:
+      type: object
+      properties:
+        webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
+          nullable: true
+      additionalProperties: { }
   securitySchemes:
     ApiKey:
       type: apiKey

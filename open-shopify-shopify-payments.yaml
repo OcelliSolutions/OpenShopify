@@ -18,10 +18,19 @@ paths:
       tags:
         - Balance
       summary: Return the current balance
-      operationId: ReturnTheCurrentBalance
+      operationId: ReturnCurrentBalance
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -42,12 +51,14 @@ paths:
           in: query
           description: Return only disputes before the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: since_id
           in: query
           description: Return only disputes after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: status
           in: query
           description: Return only disputes with the specified status.
@@ -56,6 +67,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -71,10 +91,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -91,26 +121,31 @@ paths:
           description: Filter the response to payouts made on the specified date.
           schema:
             type: string
+            format: date-time
         - name: date_max
           in: query
           description: Filter the response to payouts made inclusively before the specified date.
           schema:
             type: string
+            format: date-time
         - name: date_min
           in: query
           description: Filter the response to payouts made inclusively after the specified date.
           schema:
             type: string
+            format: date-time
         - name: last_id
           in: query
           description: Filter the response to payouts made before the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: since_id
           in: query
           description: Filter the response to payouts made after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: status
           in: query
           description: Filter the response to payouts made with the specified status.
@@ -119,6 +154,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -134,10 +178,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -153,12 +207,14 @@ paths:
           in: query
           description: Filter response to transactions exclusively before the specified ID
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: payout_id
           in: query
           description: Filter response to transactions paid out in the specified payout.
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: payout_status
           in: query
           description: Filter response to transactions with the specified payout status
@@ -168,7 +224,8 @@ paths:
           in: query
           description: Filter response to transactions exclusively after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: test
           in: query
           description: Filter response to transactions placed in test mode.
@@ -177,6 +234,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:

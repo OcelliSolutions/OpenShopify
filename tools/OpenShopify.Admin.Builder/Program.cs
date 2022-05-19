@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
-using OpenShopify.Admin.Builder.Filters;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
+using OpenShopify.Common.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -95,6 +95,7 @@ builder.Services.AddSwaggerGen(c =>
 
     c.DocumentFilter<AdditionalPropertiesDocumentFilter>();
     c.DocumentFilter<IgnoreApiDocumentFilter>();
+    c.OperationFilter<ResponseHeadersFilter>();
     c.AddSecurityDefinition("ApiKey",
         new OpenApiSecurityScheme
         {

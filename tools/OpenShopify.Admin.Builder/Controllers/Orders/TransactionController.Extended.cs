@@ -1,38 +1,40 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
+using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.Orders;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Orders)]
 [ApiController]
-public class TransactionController : ITransactionController
+public class TransactionController : TransactionControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions.json")]
-    public Task RetrieveListOfTransactionsAsync(string order_id, string? fields, string in_shop_currency, string? since_id)
+    [HttpGet, Route("orders/{order_id:long}/transactions.json")]
+    public override Task RetrieveListOfTransactions(long order_id, string? fields, bool? in_shop_currency, int? since_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions.json")]
-    public Task CreateTransactionForOrderAsync(string order_id, string? source)
+    [HttpPost, Route("orders/{order_id:long}/transactions.json")]
+    public override Task CreateTransactionForOrder(TransactionItem request, long order_id, string? source)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions/count.json")]
-    public Task RetrieveCountOfOrdersTransactionsAsync(string order_id)
+    [HttpGet, Route("orders/{order_id:long}/transactions/count.json")]
+    [ProducesResponseType(typeof(TransactionCount), StatusCodes.Status200OK)]
+    public override Task RetrieveCountOfOrdersTransactions(long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions/{transaction_id}.json")]
-    public Task RetrieveSpecificTransactionAsync(string order_id, string transaction_id, string? fields, string in_shop_currency)
+    [HttpGet, Route("orders/{order_id:long}/transactions/{transaction_id:long}.json")]
+    public override Task RetrieveSpecificTransaction(long order_id, long transaction_id, string? fields, bool? in_shop_currency)
     {
         throw new NotImplementedException();
     }

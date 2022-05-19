@@ -1,31 +1,36 @@
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Admin.Builder.Models;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.Inventory;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Inventory)]
 [ApiController]
-public class InventoryItemController : IInventoryItemController
+public class InventoryItemController : InventoryItemControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_items.json")]
-    public Task RetrieveListOfInventoryItemsAsync(string ids, string limit)
+    [HttpGet, Route("inventory_items.json")]
+    [ProducesResponseType(typeof(InventoryItemList), StatusCodes.Status200OK)]
+    public override Task RetrieveListOfInventoryItems(string ids, int? limit, string? page_info)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_items/{inventory_item_id}.json")]
-    public Task RetrieveSingleInventoryItemByIDAsync(string inventory_item_id)
+    [HttpGet, Route("inventory_items/{inventory_item_id:long}.json")]
+    [ProducesResponseType(typeof(InventoryItemItem), StatusCodes.Status200OK)]
+    public override Task RetrieveSingleInventoryItemByID(long inventory_item_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("inventory_items/{inventory_item_id}.json")]
-    public Task UpdateExistingInventoryItemAsync(string inventory_item_id)
+    [HttpPut, Route("inventory_items/{inventory_item_id:long}.json")]
+    [ProducesResponseType(typeof(InventoryItemItem), StatusCodes.Status200OK)]
+    public override Task UpdateExistingInventoryItem(InventoryItemItem request, long inventory_item_id)
     {
         throw new NotImplementedException();
     }

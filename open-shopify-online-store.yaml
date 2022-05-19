@@ -24,7 +24,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: author
           in: query
           description: Filter articles by article author.
@@ -35,11 +36,13 @@ paths:
           description: 'Show articles created before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: created_at_min
           in: query
           description: 'Show articles created after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: fields
           in: query
           description: 'Show only certain fields, specified by a comma-separated list of field names.'
@@ -54,17 +57,24 @@ paths:
           in: query
           description: The maximum number of results to retrieve.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: published_at_max
           in: query
           description: 'Show articles published before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_at_min
           in: query
           description: 'Show articles published after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_status
           in: query
           description: Retrieve results based on their published status.
@@ -74,7 +84,8 @@ paths:
           in: query
           description: Restrict results to after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: tag
           in: query
           description: Filter articles with a specific tag.
@@ -85,14 +96,25 @@ paths:
           description: 'Show articles last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Show articles last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -107,10 +129,28 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArticleItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ArticleItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -126,27 +166,32 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: created_at_max
           in: query
           description: 'Count articles created before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: created_at_min
           in: query
           description: 'Count articles created after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_at_max
           in: query
           description: 'Count articles published before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_at_min
           in: query
           description: 'Count articles published after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_status
           in: query
           description: Count articles with a given published status.
@@ -157,14 +202,40 @@ paths:
           description: 'Count articles last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Count articles last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -180,12 +251,14 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: blog_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: 'Show only certain fields, specifed by a comma-separated list of field names.'
@@ -194,6 +267,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -208,15 +290,34 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: blog_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArticleItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ArticleItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -231,15 +332,26 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: blog_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -253,6 +365,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -268,6 +389,11 @@ paths:
           in: query
           description: The maximum number of tags to retrieve.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: popular
           in: query
@@ -277,6 +403,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -292,10 +427,16 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: limit
           in: query
           description: The maximum number of tags to retrieve.
+          schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
           schema:
             type: string
         - name: popular
@@ -306,6 +447,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -321,7 +471,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: Specify which fields to show using a comma-separated list of field names.
@@ -330,6 +481,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -344,7 +504,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: source_key
           in: query
           description: The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.
@@ -355,9 +516,26 @@ paths:
           description: The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AssetItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -368,7 +546,7 @@ paths:
       summary: Deletes an asset from a theme
       operationId: DeleteAssetFromTheme
       parameters:
-        - name: assetkey
+        - name: 'asset[key]'
           in: query
           description: Deletes a single asset from a theme by specifying the asset's key.
           schema:
@@ -377,10 +555,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -406,15 +594,30 @@ paths:
           in: query
           description: The maximum number of results to retrieve.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: since_id
           in: query
           description: Restrict results to after the specified ID
           schema:
-            type: string
+            type: integer
+            format: int32
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -430,9 +633,26 @@ paths:
           description: 'The title of the blog. Maximum length: 255 characters.'
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlogItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BlogItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -444,8 +664,32 @@ paths:
       summary: Receive a count of all Blogs
       operationId: ReceiveCountOfAllBlogs
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -461,7 +705,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: comma-separated list of fields to include in the response
@@ -470,6 +715,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -484,10 +738,28 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlogItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BlogItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -502,10 +774,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -522,11 +804,13 @@ paths:
           description: 'Show comments created before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: created_at_min
           in: query
           description: 'Show comments created after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: fields
           in: query
           description: 'Show only certain fields, specified by a comma-separated list of field names.'
@@ -536,17 +820,24 @@ paths:
           in: query
           description: The maximum number of results to retrieve.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: published_at_max
           in: query
           description: 'Show comments published before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_at_min
           in: query
           description: 'Show comments published after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_status
           in: query
           description: Filter results by their published status.
@@ -556,7 +847,8 @@ paths:
           in: query
           description: Restrict results to after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: status
           in: query
           description: Filter results by their status.
@@ -567,14 +859,25 @@ paths:
           description: 'Show comments last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Show comments last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -584,9 +887,26 @@ paths:
         - Comment
       summary: Creates a comment for an article
       operationId: CreateCommentForArticle
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CommentItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -603,21 +923,25 @@ paths:
           description: 'Count comments created before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: created_at_min
           in: query
           description: 'Count comments created after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_at_max
           in: query
           description: 'Count comments published before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_at_min
           in: query
           description: 'Count comments published after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_status
           in: query
           description: Retrieve a count of comments with a given published status.
@@ -633,14 +957,40 @@ paths:
           description: 'Count comments last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Count comments last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -656,7 +1006,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: 'Show only certain fields, specified by a comma-separated list of field names.'
@@ -665,6 +1016,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -679,10 +1039,28 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CommentItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -698,10 +1076,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -717,10 +1105,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -736,10 +1134,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -755,10 +1163,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -774,10 +1192,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -794,11 +1222,13 @@ paths:
           description: 'Show pages created before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: created_at_min
           in: query
           description: 'Show pages created after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: fields
           in: query
           description: 'Show only certain fields, specified by a comma-separated list of field names.'
@@ -813,17 +1243,24 @@ paths:
           in: query
           description: The maximum number of results to show.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: published_at_max
           in: query
           description: 'Show pages published before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_at_min
           in: query
           description: 'Show pages published after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_status
           in: query
           description: 'Restrict results to pages with a given published status:'
@@ -833,7 +1270,8 @@ paths:
           in: query
           description: Restrict results to after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: title
           in: query
           description: Retrieve pages with a given title.
@@ -844,14 +1282,25 @@ paths:
           description: 'Show pages last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Show pages last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -861,9 +1310,26 @@ paths:
         - Page
       summary: Creates a page
       operationId: CreatePage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PageItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -880,21 +1346,25 @@ paths:
           description: 'Count pages created before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: created_at_min
           in: query
           description: 'Count pages created after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_at_max
           in: query
           description: 'Show pages published before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_at_min
           in: query
           description: 'Show pages published after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: published_status
           in: query
           description: 'Count pages with a given published status:'
@@ -910,14 +1380,40 @@ paths:
           description: 'Count pages last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Count pages last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -933,7 +1429,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: 'Show only certain fields, specified by a comma-separated list of field names.'
@@ -942,6 +1439,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -956,10 +1462,28 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PageItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -974,10 +1498,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -998,6 +1532,11 @@ paths:
           in: query
           description: The maximum number of results to show.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: path
           in: query
@@ -1008,7 +1547,8 @@ paths:
           in: query
           description: Restrict results to after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: target
           in: query
           description: Show redirects with a given target.
@@ -1017,6 +1557,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1026,9 +1575,26 @@ paths:
         - Redirect
       summary: Creates a redirect
       operationId: CreateRedirect
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RedirectItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RedirectItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1051,8 +1617,32 @@ paths:
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedirectCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1068,7 +1658,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: 'Show only certain fields, specified by a comma-separated list of field names.'
@@ -1077,6 +1668,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1091,10 +1691,28 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RedirectItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RedirectItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1109,10 +1727,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1129,11 +1757,13 @@ paths:
           description: 'Show script tags created before this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: created_at_min
           in: query
           description: 'Show script tags created after this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: fields
           in: query
           description: A comma-separated list of fields to include in the response.
@@ -1143,12 +1773,18 @@ paths:
           in: query
           description: The number of results to return.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: since_id
           in: query
           description: Restrict results to after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: src
           in: query
           description: Show script tags with this URL.
@@ -1159,14 +1795,25 @@ paths:
           description: 'Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1176,9 +1823,26 @@ paths:
         - ScriptTag
       summary: Creates a new script tag
       operationId: CreateNewScriptTag
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScriptTagItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ScriptTagItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1196,8 +1860,32 @@ paths:
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScriptTagCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1213,7 +1901,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: A comma-separated list of fields to include in the response.
@@ -1222,6 +1911,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1236,10 +1934,28 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScriptTagItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ScriptTagItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1254,10 +1970,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1277,6 +2003,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1286,9 +2021,26 @@ paths:
         - Theme
       summary: Creates a theme
       operationId: CreateTheme
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThemeItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ThemeItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1304,7 +2056,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: 'Show only certain fields, specified by a comma-separated list of field names.'
@@ -1313,6 +2066,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1327,10 +2089,28 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThemeItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ThemeItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1345,16 +2125,270 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    Article:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        author:
+          type: string
+          description: The name of the author of this article
+          nullable: true
+        blog_id:
+          type: integer
+          description: A unique numeric identifier for the blog containing the article.
+          format: int64
+          nullable: true
+        body_html:
+          type: string
+          description: 'The text of the body of the article, complete with HTML markup.'
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the article was created.
+          format: date-time
+          nullable: true
+        handle:
+          type: string
+          description: A human-friendly unique string for an article automatically generated from its title. It is used in the article's URL.
+          nullable: true
+        image:
+          $ref: '#/components/schemas/ArticleImage'
+        published:
+          type: boolean
+          description: States whether or not the article is visible.
+          nullable: true
+        published_at:
+          type: string
+          description: The date and time when the article was published.
+          format: date-time
+          nullable: true
+        summary_html:
+          type: string
+          description: 'The text of the summary of the article, complete with HTML markup.'
+          nullable: true
+        tags:
+          type: string
+          description: 'Tags are additional short descriptors formatted as a string of comma-separated values. For example, if an article has three tags: tag1, tag2, tag3.'
+          nullable: true
+        template_suffix:
+          type: string
+          description: 'States the name of the template an article is using if it is using an alternate template. If an article is using the default article.liquid template, the value returned is null.'
+          nullable: true
+        title:
+          type: string
+          description: The title of the article.
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the article was last updated.
+          format: date-time
+          nullable: true
+        user_id:
+          type: integer
+          description: A unique numeric identifier for the author of the article.
+          format: int64
+          nullable: true
+      additionalProperties: { }
+      description: An object representing a Shopify blog article.
+    ArticleCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    ArticleImage:
+      type: object
+      properties:
+        attachment:
+          type: string
+          description: A base64 image string only used when creating an image. It will be converted to the OpenShopify.Admin.Builder.Models.ArticleImage.Src property.
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time the image was created.
+          format: date-time
+          nullable: true
+        src:
+          type: string
+          description: The image's src URL.
+          nullable: true
+      additionalProperties: { }
+      description: Represents a Shopify article's image.
+    ArticleItem:
+      type: object
+      properties:
+        article:
+          $ref: '#/components/schemas/Article'
+      additionalProperties: { }
+    Asset:
+      type: object
+      properties:
+        attachment:
+          type: string
+          description: An asset attached to a store's theme.
+          nullable: true
+        checksum:
+          type: string
+          description: "The MD5 representation of the content, consisting of a string of 32 hexadecimal digits.\r\nMay be null if an asset has not been updated recently."
+          nullable: true
+        content_type:
+          type: string
+          description: "MIME representation of the content, consisting of the type and subtype of the asset, \r\ne.g. \"image/gif\""
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the asset was created.
+          format: date-time
+          nullable: true
+        key:
+          type: string
+          description: "The path to the asset within a shop, prefixed with the asset's 'bucket' type,\r\n e.g. 'templates/index.liquid' or 'assets/bg-body.gif'."
+          nullable: true
+        public_url:
+          type: string
+          description: The public facing URL of the asset.
+          nullable: true
+        size:
+          type: integer
+          description: The asset size in bytes.
+          format: int64
+          nullable: true
+        source_key:
+          type: string
+          description: "When set in an asset and used in !:AssetService.CreateOrUpdate(long, Asset), \r\na new asset will be created and copied from an asset with the key matching this source key."
+          nullable: true
+        src:
+          type: string
+          description: Specifies the location of an asset.
+          nullable: true
+        theme_id:
+          type: integer
+          description: A unique numeric identifier for the theme.
+          format: int64
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when an asset was last updated.
+          format: date-time
+          nullable: true
+        value:
+          type: string
+          description: The asset that you are adding.
+          nullable: true
+      additionalProperties: { }
+      description: 'An object representing a Shopify asset. Assets do not have ids, but rather keys, and are associated with specific themes.'
+    AssetItem:
+      type: object
+      properties:
+        asset:
+          $ref: '#/components/schemas/Asset'
+      additionalProperties: { }
+    Blog:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        commentable:
+          type: string
+          description: "Indicates whether readers can post comments to the blog and if comments are moderated or not. Possible values are:\r\n\"no\" (default): Readers cannot post comments to blog articles.\r\n\"moderate\": Readers can post comments to blog articles, but comments must be moderated before they appear.\r\n\"yes\": Readers can post comments to blog articles without moderation."
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the blog was created.
+          format: date-time
+          nullable: true
+        feedburner:
+          description: Feedburner is a web feed management provider and can be enabled to provide custom RSS feeds for Shopify bloggers. This property will default to blank or "null" unless feedburner is enabled through the shop admin.
+        feedburner_url:
+          type: string
+          description: URL to the feedburner location for blogs that have enabled feedburner through their store admin.
+          nullable: true
+        handle:
+          type: string
+          description: A human-friendly unique string for a blog automatically generated from its title. This handle is used by the Liquid templating language to refer to the blog.
+          nullable: true
+        tags:
+          type: string
+          description: 'Tags are additional short descriptors formatted as a string of comma-separated values. For example, if an article has three tags: tag1, tag2, tag3.'
+          nullable: true
+        template_suffix:
+          type: string
+          description: 'States the name of the template a blog is using if it is using an alternate template. If a blog is using the default blog.liquid template, the value returned is "null".'
+          nullable: true
+        title:
+          type: string
+          description: The title of the blog.
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time when changes were last made to the blog''s properties. Note that this is not updated when creating, modifying or deleting articles in the blog.'
+          format: date-time
+          nullable: true
+      additionalProperties: { }
+      description: Represents a Blog � not a blog post � on a merchant's Shopify store.
+    BlogCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    BlogItem:
+      type: object
+      properties:
+        blog:
+          $ref: '#/components/schemas/Blog'
+      additionalProperties: { }
+    Comment:
+      type: object
+      additionalProperties: { }
+    CommentCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    CommentItem:
+      type: object
+      properties:
+        comment:
+          $ref: '#/components/schemas/Comment'
+      additionalProperties: { }
     ErrorResponse:
       type: object
       properties:
@@ -1362,6 +2396,248 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    Page:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        title:
+          type: string
+          description: The name of the page.
+          nullable: true
+        body_html:
+          type: string
+          description: 'The content of the page, complete with HTML formatting.'
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the page was created. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the page was last modified. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        published_at:
+          type: string
+          description: The date and time when the page was published. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        handle:
+          type: string
+          description: "A human-friendly unique string for the page automatically generated from its title.\r\nThey are used by the Liquid templating language to refer to objects."
+          nullable: true
+        template_suffix:
+          type: string
+          description: "The suffix of the liquid template being used.\r\nBy default, the original template is called product.liquid, without any suffix.\r\nAny additional templates will be: product.suffix.liquid."
+          nullable: true
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/PageMetafield'
+      additionalProperties: { }
+      description: An entity representing a Shopify product.
+    PageCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    PageItem:
+      type: object
+      properties:
+        page:
+          $ref: '#/components/schemas/Page'
+      additionalProperties: { }
+    PageMetafield:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the metafield was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the metafield was last updated.
+          format: date-time
+          nullable: true
+        key:
+          type: string
+          description: Identifier for the metafield (maximum of 30 characters).
+          nullable: true
+        value:
+          description: Information to be stored as metadata. Must be either a string or an int.
+        value_type:
+          type: string
+          description: States whether the information in the value is stored as a 'string' or 'integer.'
+          nullable: true
+        namespace:
+          type: string
+          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+          nullable: true
+        description:
+          type: string
+          description: Additional information about the metafield.
+          nullable: true
+        owner_id:
+          type: integer
+          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
+          format: int64
+          nullable: true
+        owner_resource:
+          type: string
+          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
+          nullable: true
+      additionalProperties: { }
+    Redirect:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        path:
+          type: string
+          description: 'The "before" path to be redirected. When the user navigates to this path, they will be redirected to the path specified by target.'
+          nullable: true
+        target:
+          type: string
+          description: "The \"after\" path or URL to be redirected to. This property can be set to any path on the shop's site, or any URL, even one on a \r\ncompletely different domain."
+          nullable: true
+      additionalProperties: { }
+      description: An entity representing a Shopify redirect.
+    RedirectCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    RedirectItem:
+      type: object
+      properties:
+        redirect:
+          $ref: '#/components/schemas/Redirect'
+      additionalProperties: { }
+    ScriptTag:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the OpenShopify.Admin.Builder.Models.ScriptTag was created.
+          format: date-time
+          nullable: true
+        display_scope:
+          type: string
+          description: 'Where the script tag should be included on the store. Known values are ''online_store'', ''order_status'' or ''all''. Defaults to ''all''.'
+          nullable: true
+        event:
+          type: string
+          description: DOM event which triggers the loading of the script. The only known value is 'onload'.
+          nullable: true
+        src:
+          type: string
+          description: Specifies the location of the ScriptTag.
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the OpenShopify.Admin.Builder.Models.ScriptTag was updated.
+          format: date-time
+          nullable: true
+      additionalProperties: { }
+      description: An object representing remote javascript tags that are loaded into the pages of a shop's storefront.
+    ScriptTagCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    ScriptTagItem:
+      type: object
+      properties:
+        script_tag:
+          $ref: '#/components/schemas/ScriptTag'
+      additionalProperties: { }
+    Theme:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the theme was created.
+          format: date-time
+          nullable: true
+        name:
+          type: string
+          description: The name of the theme.
+          nullable: true
+        role:
+          type: string
+          description: 'Specifies how the theme is being used within the shop. Known values are ''main'', ''mobile'' and ''unpublished''.'
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the theme was last updated.
+          format: date-time
+          nullable: true
+        previewable:
+          type: boolean
+          description: Indicates if the theme can currently be previewed.
+          nullable: true
+        processing:
+          type: boolean
+          description: Indicates if files are still being copied into place for this theme.
+          nullable: true
+        theme_store_id:
+          type: integer
+          description: The theme's store id. Can be null if not published in the store.
+          format: int64
+          nullable: true
+      additionalProperties: { }
+      description: An entity representing a Shopify theme.
+    ThemeItem:
+      type: object
+      properties:
+        theme:
+          $ref: '#/components/schemas/Theme'
+      additionalProperties: { }
   securitySchemes:
     ApiKey:
       type: apiKey

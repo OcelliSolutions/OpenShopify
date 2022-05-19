@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.ShopifyPayments;
 /*
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShopifyPayments)]
 [ApiController]
-public class DisputeEvidenceController : IDisputeEvidenceController {}
+public class DisputeEvidenceController : DisputeEvidenceControllerBase {}
 */

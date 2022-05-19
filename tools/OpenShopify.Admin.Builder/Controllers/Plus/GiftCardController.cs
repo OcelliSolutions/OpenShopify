@@ -22,99 +22,9 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IGiftCardController
+
+    public abstract class GiftCardControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieves a list of gift cards
-        /// </summary>
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <param name="limit">The maximum number of results to show.</param>
-
-        /// <param name="since_id">Restrict results to after the specified ID.</param>
-
-        /// <param name="status">Retrieve gift cards with a given status. Valid values:</param>
-
-        /// <returns>Retrieves a list of gift cards</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfGiftCardsAsync(string? fields, string limit, string? since_id, string? status);
-
-        /// <summary>
-        /// Creates a gift card
-        /// </summary>
-
-        /// <returns>Creates a gift card</returns>
-
-        System.Threading.Tasks.Task CreateGiftCardAsync();
-
-        /// <summary>
-        /// Retrieves a single gift card
-        /// </summary>
-
-
-        /// <returns>Retrieves a single gift card</returns>
-
-        System.Threading.Tasks.Task RetrieveSingleGiftCardAsync(string gift_card_id);
-
-        /// <summary>
-        /// Updates an existing gift card
-        /// </summary>
-
-
-        /// <returns>Updates an existing gift card</returns>
-
-        System.Threading.Tasks.Task UpdateExistingGiftCardAsync(string gift_card_id);
-
-        /// <summary>
-        /// Retrieves a count of gift cards
-        /// </summary>
-
-        /// <param name="status">Count gift cards with a given status. Valid values:</param>
-
-        /// <returns>Retrieves a count of gift cards</returns>
-
-        System.Threading.Tasks.Task RetrieveCountOfGiftCardsAsync(string? status);
-
-        /// <summary>
-        /// Disables a gift card
-        /// </summary>
-
-
-        /// <returns>Disables a gift card</returns>
-
-        System.Threading.Tasks.Task DisableGiftCardAsync(string gift_card_id);
-
-        /// <summary>
-        /// Searches for gift cards
-        /// </summary>
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-
-        /// <param name="order">The field and direction to order results by.</param>
-
-        /// <param name="query">The text to search for.</param>
-
-        /// <returns>Searches for gift cards</returns>
-
-        System.Threading.Tasks.Task SearchForGiftCardsAsync(string? fields, string limit, string order, string? query);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class GiftCardController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IGiftCardController _implementation;
-
-        public GiftCardController(IGiftCardController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieves a list of gift cards
         /// </summary>
@@ -124,44 +34,28 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="status">Retrieve gift cards with a given status. Valid values:</param>
         /// <returns>Retrieves a list of gift cards</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards.json")]
-        public System.Threading.Tasks.Task RetrieveListOfGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status)
-        {
-
-            return _implementation.RetrieveListOfGiftCardsAsync(fields, limit ?? "50", since_id, status);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status);
 
         /// <summary>
         /// Creates a gift card
         /// </summary>
         /// <returns>Creates a gift card</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("gift_cards.json")]
-        public System.Threading.Tasks.Task CreateGiftCard()
-        {
-
-            return _implementation.CreateGiftCardAsync();
-        }
+        public abstract System.Threading.Tasks.Task CreateGiftCard([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.GiftCardItem request);
 
         /// <summary>
         /// Retrieves a single gift card
         /// </summary>
         /// <returns>Retrieves a single gift card</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSingleGiftCard(string gift_card_id)
-        {
-
-            return _implementation.RetrieveSingleGiftCardAsync(gift_card_id);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSingleGiftCard(long gift_card_id);
 
         /// <summary>
         /// Updates an existing gift card
         /// </summary>
         /// <returns>Updates an existing gift card</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}.json")]
-        public System.Threading.Tasks.Task UpdateExistingGiftCard(string gift_card_id)
-        {
-
-            return _implementation.UpdateExistingGiftCardAsync(gift_card_id);
-        }
+        public abstract System.Threading.Tasks.Task UpdateExistingGiftCard([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.GiftCardItem request, long gift_card_id);
 
         /// <summary>
         /// Retrieves a count of gift cards
@@ -169,22 +63,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="status">Count gift cards with a given status. Valid values:</param>
         /// <returns>Retrieves a count of gift cards</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/count.json")]
-        public System.Threading.Tasks.Task RetrieveCountOfGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? status)
-        {
-
-            return _implementation.RetrieveCountOfGiftCardsAsync(status);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveCountOfGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? status);
 
         /// <summary>
         /// Disables a gift card
         /// </summary>
         /// <returns>Disables a gift card</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}/disable.json")]
-        public System.Threading.Tasks.Task DisableGiftCard(string gift_card_id)
-        {
-
-            return _implementation.DisableGiftCardAsync(gift_card_id);
-        }
+        public abstract System.Threading.Tasks.Task DisableGiftCard(long gift_card_id);
 
         /// <summary>
         /// Searches for gift cards
@@ -195,11 +81,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="query">The text to search for.</param>
         /// <returns>Searches for gift cards</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/search.json")]
-        public System.Threading.Tasks.Task SearchForGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? order, [Microsoft.AspNetCore.Mvc.FromQuery] string? query)
-        {
-
-            return _implementation.SearchForGiftCardsAsync(fields, limit ?? "50", order ?? "disabled_at DESC", query);
-        }
+        public abstract System.Threading.Tasks.Task SearchForGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? order, [Microsoft.AspNetCore.Mvc.FromQuery] string? query);
 
     }
 

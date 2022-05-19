@@ -29,10 +29,20 @@ paths:
           in: query
           description: The IDs of the assigned locations of the fulfillment orders that should be returned.
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -48,7 +58,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: message
           in: query
           description: An optional reason for the cancellation request.
@@ -57,6 +68,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -72,7 +92,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: message
           in: query
           description: An optional reason for accepting the cancellation request.
@@ -81,6 +102,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -96,7 +126,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: message
           in: query
           description: An optional reason for rejecting the cancellation request.
@@ -105,6 +136,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -115,9 +155,26 @@ paths:
         - CarrierService
       summary: Creates a carrier service
       operationId: CreateCarrierService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierServiceItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CarrierServiceItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -130,6 +187,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -145,10 +211,28 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierServiceItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CarrierServiceItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -163,10 +247,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -181,10 +275,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -200,17 +304,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: created_at_max
           in: query
           description: 'Show fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: created_at_min
           in: query
           description: 'Show fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: fields
           in: query
           description: A comma-separated list of fields to include in the response.
@@ -220,25 +327,42 @@ paths:
           in: query
           description: Limit the amount of results.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: since_id
           in: query
           description: Restrict results to after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: updated_at_max
           in: query
           description: 'Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -253,10 +377,28 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -272,10 +414,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -291,30 +443,59 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: created_at_max
           in: query
           description: 'Count fulfillments created before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: created_at_min
           in: query
           description: 'Count fulfillments created after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: updated_at_max
           in: query
           description: 'Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).'
           schema:
             type: string
+            format: date-time
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderFulfillmentCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -330,12 +511,14 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: order_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: Comma-separated list of fields to include in the response.
@@ -344,6 +527,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -358,15 +550,34 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: order_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -377,9 +588,26 @@ paths:
         - Fulfillment
       summary: Creates a fulfillment for one or many fulfillment orders
       operationId: CreateFulfillmentForOneOrManyFulfillmentOrders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -388,17 +616,34 @@ paths:
     post:
       tags:
         - Fulfillment
-      summary: Updates the tracking information for a fulfillment
-      operationId: UpdateTheTrackingInformationForFulfillment
+      operationId: UpdateTrackingInformationForFulfillment
       parameters:
         - name: fulfillment_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -414,15 +659,26 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: order_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -438,15 +694,26 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: order_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -462,15 +729,26 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: order_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -486,10 +764,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -505,15 +793,26 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: order_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -528,15 +827,34 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: order_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentEventItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentEventItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -552,20 +870,32 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fulfillment_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: order_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -580,20 +910,32 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fulfillment_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: order_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -609,10 +951,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -628,10 +980,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -647,10 +1009,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -666,7 +1038,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: message
           in: query
           description: An optional reason for marking the fulfillment order as incomplete.
@@ -675,6 +1048,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -690,15 +1072,26 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: new_location_id
           in: query
           description: The id of the location to which the fulfillment order will be moved.
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -708,16 +1101,26 @@ paths:
       tags:
         - FulfillmentOrder
       summary: Marks the fulfillment order as open
-      operationId: MarkTheFulfillmentOrderAsOpen
+      operationId: MarkFulfillmentOrderAsOpen
       parameters:
         - name: fulfillment_order_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -727,16 +1130,26 @@ paths:
       tags:
         - FulfillmentOrder
       summary: Reschedules the fulfill_at time of a scheduled fulfillment order
-      operationId: RescheduleTheFulfillAtTimeOfScheduledFulfillmentOrder
+      operationId: RescheduleFulfillAtTimeOfScheduledFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -752,7 +1165,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: notify_merchant
           in: query
           description: 'Whether the merchant should receive a notification about the fulfillment hold. If set to true, then the merchant will be notified on the Shopify mobile app (if they use it to manage their store). The default value is false.'
@@ -771,6 +1185,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -780,16 +1203,26 @@ paths:
       tags:
         - FulfillmentOrder
       summary: Releases the fulfillment hold on a fulfillment order
-      operationId: ReleaseTheFulfillmentHoldOnFulfillmentOrder
+      operationId: ReleaseFulfillmentHoldOnFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -805,7 +1238,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fulfillment_order_line_items
           in: query
           description: 'The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.'
@@ -819,6 +1253,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -834,7 +1277,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: message
           in: query
           description: An optional reason for accepting the fulfillment request.
@@ -843,6 +1287,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -858,7 +1311,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: message
           in: query
           description: An optional reason for rejecting the fulfillment request.
@@ -867,6 +1321,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -885,12 +1348,30 @@ paths:
       responses:
         '200':
           description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentServiceList'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -912,12 +1393,30 @@ paths:
       responses:
         '201':
           description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentServiceItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -938,12 +1437,30 @@ paths:
       responses:
         '200':
           description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentServiceItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -968,16 +1485,33 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/FulfillmentServiceItem'
-        required: true
       responses:
         '200':
           description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentServiceItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -997,8 +1531,26 @@ paths:
       responses:
         '200':
           description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -1014,16 +1566,131 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    Address:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        address1:
+          type: string
+          description: The mailing address.
+          nullable: true
+        address2:
+          type: string
+          description: An additional field for the mailing address.
+          nullable: true
+        city:
+          type: string
+          description: The city.
+          nullable: true
+        company:
+          type: string
+          description: The company.
+          nullable: true
+        country:
+          type: string
+          description: The country.
+          nullable: true
+        country_code:
+          type: string
+          description: The two-letter country code corresponding to the country.
+          nullable: true
+        country_name:
+          type: string
+          description: The normalized country name.
+          nullable: true
+        default:
+          type: boolean
+          description: Indicates whether this address is the default address.
+          nullable: true
+        first_name:
+          type: string
+          description: The first name.
+          nullable: true
+        last_name:
+          type: string
+          description: The last name.
+          nullable: true
+        latitude:
+          type: number
+          description: The latitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+          format: double
+          nullable: true
+        longitude:
+          type: number
+          description: The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
+          format: double
+          nullable: true
+        name:
+          type: string
+          description: The name.
+          nullable: true
+        phone:
+          type: string
+          description: The phone number.
+          nullable: true
+        province:
+          type: string
+          description: The province or state name
+          nullable: true
+        province_code:
+          type: string
+          description: The two-letter province or state code.
+          nullable: true
+        zip:
+          type: string
+          description: The ZIP or postal code.
+          nullable: true
+      additionalProperties: { }
+    CarrierService:
+      type: object
+      additionalProperties: { }
+    CarrierServiceItem:
+      type: object
+      properties:
+        carrier_service:
+          $ref: '#/components/schemas/CarrierService'
+      additionalProperties: { }
+    DiscountAllocation:
+      type: object
+      properties:
+        amount:
+          type: string
+          description: The discount amount allocated to the line (not sure why it is a string)
+          nullable: true
+        discount_application_index:
+          type: integer
+          description: The index of the associated discount application in the order's discount_applications list.
+          format: int64
+        amount_set:
+          $ref: '#/components/schemas/PriceSet'
+      additionalProperties: { }
     ErrorResponse:
       type: object
       properties:
@@ -1031,6 +1698,195 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    Fulfillment:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the fulfillment was created.
+          format: date-time
+          nullable: true
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+          description: A historical record of each item in the fulfillment.
+        order_id:
+          type: integer
+          description: The unique numeric identifier for the order.
+          format: int64
+          nullable: true
+        receipt:
+          description: A textfield with information about the receipt.
+        status:
+          type: string
+          description: "The status of the fulfillment. Valid values are 'pending', 'open', 'success', 'cancelled',\r\n'error' and 'failure'."
+          nullable: true
+        location_id:
+          type: integer
+          description: The unique identifier of the location that the fulfillment should be processed for.
+          format: int64
+          nullable: true
+        email:
+          type: string
+          description: This property is undocumented by Shopify. It appears to be the customer's email address
+          nullable: true
+        notify_customer:
+          type: boolean
+          description: "A flag indicating whether the customer should be notified. If set to true, an email will be\r\nsent when the fulfillment is created or updated. The default value is false for fulfillments\r\non any orders created initially through the API. For all other orders, the default value is true."
+          nullable: true
+        destination:
+          $ref: '#/components/schemas/Address'
+        tracking_company:
+          type: string
+          description: The name of the shipping company.
+          nullable: true
+        tracking_number:
+          type: string
+          description: "The shipping number, provided by the shipping company. If multiple tracking numbers\r\nexist (OpenShopify.Admin.Builder.Models.Fulfillment.TrackingNumbers), returns the first number."
+          nullable: true
+        tracking_numbers:
+          type: array
+          items:
+            type: string
+          description: 'A list of shipping numbers, provided by the shipping company. May be null.'
+        tracking_url:
+          type: string
+          description: "The tracking url, provided by the shipping company. May be null. If multiple tracking URLs\r\nexist (OpenShopify.Admin.Builder.Models.Fulfillment.TrackingUrls), returns the first URL."
+          nullable: true
+        tracking_urls:
+          type: array
+          items:
+            type: string
+          description: 'An array of one or more tracking urls, provided by the shipping company. May be null.'
+        updated_at:
+          type: string
+          description: The date and time when the fulfillment was last modified.
+          format: date-time
+          nullable: true
+        variant_inventory_management:
+          type: string
+          description: States the name of the inventory management service.
+          nullable: true
+        service:
+          type: string
+          description: This property is undocumented by Shopify.
+          nullable: true
+        shipment_status:
+          type: string
+          description: This property is undocumented by Shopify.
+          nullable: true
+        name:
+          type: string
+          nullable: true
+      additionalProperties: { }
+      description: An object representing a Shopify fulfillment.
+    FulfillmentEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the fulfillment event was created.
+          format: date-time
+          nullable: true
+        order_id:
+          type: integer
+          description: The unique numeric identifier for the order.
+          format: int64
+          nullable: true
+        shop_id:
+          type: integer
+          description: The unique numeric identifier for the shop.
+          format: int64
+          nullable: true
+        fulfillment_id:
+          type: integer
+          description: The unique numeric identifier for the fulfillment.
+          format: int64
+          nullable: true
+        status:
+          type: string
+          description: "The status of the fulfillment event. Valid values are 'confirmed', 'in_transit', \r\n'out_for_delivery', 'delivered' and 'failure'"
+          nullable: true
+        happened_at:
+          type: string
+          description: The date and time when the fulfillment event occurred
+          format: date-time
+          nullable: true
+        message:
+          type: string
+          description: An arbitrary message describing the status.
+          nullable: true
+        city:
+          type: string
+          description: The city in which the fulfillment event occurred.
+          nullable: true
+        province:
+          type: string
+          description: The province in which the fulfillment event occurred.
+          nullable: true
+        zip:
+          type: string
+          description: The zip code in the location in which the fulfillment event occurred.
+          nullable: true
+        country:
+          type: string
+          description: The country in which the fulfillment event occurred.
+          nullable: true
+        address1:
+          type: string
+          description: The fulfillment event's street address.
+          nullable: true
+        latitude:
+          type: number
+          description: Geographic coordinate specifying the north/south location of a fulfillment event.
+          format: double
+          nullable: true
+        longitude:
+          type: number
+          description: Geographic coordinate specifying the east/west location of a fulfillment event.
+          format: double
+          nullable: true
+        estimated_delivery_at:
+          type: string
+          description: The estimated date of delivery.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the fulfillment event was last modified.
+          format: date-time
+          nullable: true
+      additionalProperties: { }
+      description: An object representing a Shopify fulfillment event.
+    FulfillmentEventItem:
+      type: object
+      properties:
+        fulfillment_event:
+          $ref: '#/components/schemas/FulfillmentEvent'
+      additionalProperties: { }
+    FulfillmentItem:
+      type: object
+      properties:
+        fulfillment:
+          $ref: '#/components/schemas/Fulfillment'
+      additionalProperties: { }
     FulfillmentService:
       required:
         - format
@@ -1120,6 +1976,258 @@ components:
         - all
         - current_client
       type: string
+      additionalProperties: { }
+    LineItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        fulfillable_quantity:
+          type: integer
+          description: 'The amount available to fulfill. This is the quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity.'
+          format: int32
+          nullable: true
+        fulfillment_service:
+          type: string
+          description: 'Service provider who is doing the fulfillment. Valid values are either "manual" or the name of the provider. eg: "amazon", "shipwire", etc.'
+          nullable: true
+        fulfillment_status:
+          type: string
+          description: 'The fulfillment status of this line item. Known values are ''fulfilled'', ''null'' and ''partial''.'
+          nullable: true
+        grams:
+          type: integer
+          description: The weight of the item in grams.
+          format: int64
+          nullable: true
+        price:
+          type: number
+          description: The price of the item before discounts have been applied.
+          format: double
+          nullable: true
+        product_id:
+          type: integer
+          description: The unique numeric identifier for the product in the fulfillment. Can be null if the original product associated with the order is deleted at a later date
+          format: int64
+          nullable: true
+        quantity:
+          type: integer
+          description: The number of products that were purchased.
+          format: int32
+          nullable: true
+        requires_shipping:
+          type: boolean
+          description: States whether or not the fulfillment requires shipping.
+          nullable: true
+        sku:
+          type: string
+          description: A unique identifier of the item in the fulfillment.
+          nullable: true
+        title:
+          type: string
+          description: The title of the product.
+          nullable: true
+        variant_id:
+          type: integer
+          description: The id of the product variant. Can be null if the product purchased is not a variant.
+          format: int64
+          nullable: true
+        variant_title:
+          type: string
+          description: The title of the product variant. Can be null if the product purchased is not a variant.
+          nullable: true
+        name:
+          type: string
+          description: The name of the product variant.
+          nullable: true
+        vendor:
+          type: string
+          description: The name of the supplier of the item.
+          nullable: true
+        gift_card:
+          type: boolean
+          description: States whether the order used a gift card.
+          nullable: true
+        taxable:
+          type: boolean
+          description: States whether or not the product was taxable.
+          nullable: true
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+          description: 'An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem.'
+        tip_payment_gateway:
+          type: string
+          description: 'The payment gateway used to tender the tip, such as shopify_payments. Present only on tips.'
+          nullable: true
+        tip_payment_method:
+          type: string
+          description: 'The payment method used to tender the tip, such as Visa. Present only on tips.'
+          nullable: true
+        total_discount:
+          type: number
+          description: The total discount amount applied to this line item. This value is not subtracted in the line item price.
+          format: double
+          nullable: true
+        total_discount_set:
+          $ref: '#/components/schemas/PriceSet'
+        discount_allocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscountAllocation'
+          description: An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemProperty'
+          description: "An array of custom information for an item that has been added to the cart.\r\nOften used to provide product customization options.\r\nAn array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem."
+        variant_inventory_management:
+          type: string
+          description: This property is undocumented by Shopify.
+          nullable: true
+        product_exists:
+          type: boolean
+          description: This property is undocumented by Shopify.
+          nullable: true
+        price_set:
+          $ref: '#/components/schemas/PriceSet'
+        duties:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemDuty'
+          description: 'A list of duty objects, each containing information about a duty on the line item'
+        origin_location:
+          $ref: '#/components/schemas/LineItemOriginLocation'
+      additionalProperties: { }
+    LineItemDuty:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        harmonized_system_code:
+          type: string
+          nullable: true
+        country_code_of_origin:
+          type: string
+          nullable: true
+        shop_money:
+          $ref: '#/components/schemas/Price'
+        presentment_money:
+          $ref: '#/components/schemas/Price'
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+      additionalProperties: { }
+    LineItemOriginLocation:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        country_code:
+          type: string
+          description: The two-letter code (ISO 3166-1 format) for the country of the item's supplier.
+          nullable: true
+        province_code:
+          type: string
+          description: The two-letter abbreviation for the region of the item's supplier.
+          nullable: true
+        name:
+          type: string
+          description: The two-letter abbreviation for the region of the item's supplier.
+          nullable: true
+        address1:
+          type: string
+          description: The name of the item's supplier.
+          nullable: true
+        address2:
+          type: string
+          description: The suite number of the item's supplier.
+          nullable: true
+        city:
+          type: string
+          description: The suite number of the item's supplier.
+          nullable: true
+        zip:
+          type: string
+          description: The city of the item's supplier.
+          nullable: true
+      additionalProperties: { }
+    LineItemProperty:
+      type: object
+      properties:
+        name:
+          description: The name of the note attribute.
+        value:
+          description: The value of the note attribute.
+      additionalProperties: { }
+      description: An object representing a properties for OpenShopify.Admin.Builder.Models.LineItem.Properties
+    OrderFulfillmentCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    Price:
+      type: object
+      properties:
+        currency_code:
+          type: string
+          description: The three-letter code (ISO 4217 format) for currency.
+          nullable: true
+        amount:
+          type: number
+          description: The amount in the currency.
+          format: double
+          nullable: true
+      additionalProperties: { }
+    PriceSet:
+      type: object
+      properties:
+        shop_money:
+          $ref: '#/components/schemas/Price'
+        presentment_money:
+          $ref: '#/components/schemas/Price'
+      additionalProperties: { }
+    TaxLine:
+      type: object
+      properties:
+        price:
+          type: number
+          description: The amount of tax to be charged.
+          format: double
+          nullable: true
+        rate:
+          type: number
+          description: The rate of tax to be applied.
+          format: double
+          nullable: true
+        title:
+          type: string
+          description: The name of the tax.
+          nullable: true
+        price_set:
+          $ref: '#/components/schemas/PriceSet'
       additionalProperties: { }
   securitySchemes:
     ApiKey:

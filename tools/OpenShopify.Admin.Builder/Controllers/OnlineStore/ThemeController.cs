@@ -22,91 +22,23 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IThemeController
+
+    public abstract class ThemeControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieves a list of themes
-        /// </summary>
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <returns>Retrieves a list of themes</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfThemesAsync(string? fields);
-
-        /// <summary>
-        /// Creates a theme
-        /// </summary>
-
-        /// <returns>Creates a theme</returns>
-
-        System.Threading.Tasks.Task CreateThemeAsync();
-
-        /// <summary>
-        /// Retrieves a single theme by its ID
-        /// </summary>
-
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <returns>Retrieves a single theme by its ID</returns>
-
-        System.Threading.Tasks.Task RetrieveSingleThemeByItsIDAsync(string theme_id, string? fields);
-
-        /// <summary>
-        /// Modify an existing Theme
-        /// </summary>
-
-
-        /// <returns>Modify an existing Theme</returns>
-
-        System.Threading.Tasks.Task ModifyExistingThemeAsync(string theme_id);
-
-        /// <summary>
-        /// Remove an existing Theme
-        /// </summary>
-
-
-        /// <returns>Remove an existing Theme</returns>
-
-        System.Threading.Tasks.Task RemoveExistingThemeAsync(string theme_id);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class ThemeController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IThemeController _implementation;
-
-        public ThemeController(IThemeController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieves a list of themes
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a list of themes</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("themes.json")]
-        public System.Threading.Tasks.Task RetrieveListOfThemes([Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveListOfThemesAsync(fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfThemes([Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Creates a theme
         /// </summary>
         /// <returns>Creates a theme</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("themes.json")]
-        public System.Threading.Tasks.Task CreateTheme()
-        {
-
-            return _implementation.CreateThemeAsync();
-        }
+        public abstract System.Threading.Tasks.Task CreateTheme([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ThemeItem request);
 
         /// <summary>
         /// Retrieves a single theme by its ID
@@ -114,33 +46,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single theme by its ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSingleThemeByItsID(string theme_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveSingleThemeByItsIDAsync(theme_id, fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSingleThemeByItsID(long theme_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Modify an existing Theme
         /// </summary>
         /// <returns>Modify an existing Theme</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}.json")]
-        public System.Threading.Tasks.Task ModifyExistingTheme(string theme_id)
-        {
-
-            return _implementation.ModifyExistingThemeAsync(theme_id);
-        }
+        public abstract System.Threading.Tasks.Task ModifyExistingTheme([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ThemeItem request, long theme_id);
 
         /// <summary>
         /// Remove an existing Theme
         /// </summary>
         /// <returns>Remove an existing Theme</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}.json")]
-        public System.Threading.Tasks.Task RemoveExistingTheme(string theme_id)
-        {
-
-            return _implementation.RemoveExistingThemeAsync(theme_id);
-        }
+        public abstract System.Threading.Tasks.Task RemoveExistingTheme(long theme_id);
 
     }
 

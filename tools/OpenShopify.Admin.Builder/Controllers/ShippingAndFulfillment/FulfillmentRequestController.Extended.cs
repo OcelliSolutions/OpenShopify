@@ -1,32 +1,32 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShippingAndFulfillment)]
 [ApiController]
-public class FulfillmentRequestController : IFulfillmentRequestController
+public class FulfillmentRequestController : FulfillmentRequestControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json")]
-    public Task SendFulfillmentRequestAsync(string fulfillment_order_id, string? fulfillment_order_line_items = null,
+    [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/fulfillment_request.json")]
+    public override Task SendFulfillmentRequest(long fulfillment_order_id, string? fulfillment_order_line_items = null,
         string? message = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json")]
-    public Task AcceptFulfillmentRequestAsync(string fulfillment_order_id, string? message = null)
+    [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/fulfillment_request/accept.json")]
+    public override Task AcceptFulfillmentRequest(long fulfillment_order_id, string? message = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json")]
-    public Task RejectFulfillmentRequestAsync(string fulfillment_order_id, string? message = null)
+    [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/fulfillment_request/reject.json")]
+    public override Task RejectFulfillmentRequest(long fulfillment_order_id, string? message = null)
     {
         throw new NotImplementedException();
     }

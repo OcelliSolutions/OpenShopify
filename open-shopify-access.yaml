@@ -13,40 +13,47 @@ servers:
         default: '2022-04'
         description: The api version.
 paths:
-  /admin/oauth/access_scopes.json:
-    get:
-      tags:
-        - AccessScope
-      summary: Get a list of access scopes
-      operationId: GetListOfAccessScopes
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccessScopeList'
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /storefront_access_tokens.json:
     post:
       tags:
         - StorefrontAccessToken
       summary: Creates a new StorefrontAccessToken
       operationId: CreateNewStorefrontAccessToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StorefrontAccessTokenItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/StorefrontAccessTokenItem'
       responses:
         '200':
           description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StorefrontAccessTokenItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -59,12 +66,30 @@ paths:
       responses:
         '200':
           description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StorefrontAccessTokenList'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -80,103 +105,37 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '200':
           description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    AccessScope:
-      type: object
-      properties:
-        handle:
-          $ref: '#/components/schemas/AuthorizationScope'
-      additionalProperties: { }
-      description: An object representing an access scope
-    AccessScopeList:
-      type: object
-      properties:
-        access_scopes:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccessScope'
-          nullable: true
-      additionalProperties: { }
-    AuthorizationScope:
-      enum:
-        - read_content
-        - write_content
-        - read_themes
-        - write_themes
-        - read_products
-        - write_products
-        - read_customers
-        - write_customers
-        - read_orders
-        - read_all_orders
-        - write_orders
-        - read_script_tags
-        - write_script_tags
-        - read_fulfillments
-        - write_fulfillments
-        - read_shipping
-        - write_shipping
-        - read_analytics
-        - read_users
-        - write_users
-        - read_checkouts
-        - write_checkouts
-        - read_reports
-        - write_reports
-        - read_price_rules
-        - write_price_rules
-        - read_inventory
-        - write_inventory
-        - read_product_listings
-        - read_collection_listings
-        - read_draft_orders
-        - write_draft_orders
-        - write_merchant_managed_fulfillment_orders
-        - read_merchant_managed_fulfillment_orders
-        - read_marketing_events
-        - write_marketing_events
-        - read_resource_feedbacks
-        - write_resource_feedbacks
-        - unauthenticated_read_checkouts
-        - unauthenticated_read_collection_listings
-        - unauthenticated_read_customer_tags
-        - unauthenticated_read_customers
-        - unauthenticated_read_product_listings
-        - unauthenticated_read_product_tags
-        - unauthenticated_write_checkouts
-        - unauthenticated_write_customers
-        - unauthenticated_read_content
-        - read_locations
-        - write_locations
-        - read_order_edits
-        - write_order_edits
-        - read_assigned_fulfillment_orders
-        - write_assigned_fulfillment_orders
-        - read_third_party_fulfillment_orders
-        - write_third_party_fulfillment_orders
-        - read_gift_cards
-        - write_gift_cards
-        - read_discounts
-        - write_discounts
-        - read_shopify_payments_payouts
-        - read_shopify_payments_disputes
-        - read_translations
-        - write_translations
-        - read_locales
-        - write_locales
-      type: string
-      additionalProperties: { }
     ErrorResponse:
       type: object
       properties:

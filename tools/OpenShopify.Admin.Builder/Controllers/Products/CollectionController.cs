@@ -22,55 +22,16 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface ICollectionController
+
+    public abstract class CollectionControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieves a single collection
-        /// </summary>
-
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <returns>Retrieves a single collection</returns>
-
-        System.Threading.Tasks.Task RetrieveSingleCollectionAsync(string collection_id, string? fields);
-
-        /// <summary>
-        /// Retrieve a list of products belonging to a collection
-        /// </summary>
-
-
-        /// <param name="limit">The number of products to retrieve.</param>
-
-        /// <returns>Retrieve a list of products belonging to a collection</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfProductsBelongingToCollectionAsync(string collection_id, string limit);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class CollectionController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private ICollectionController _implementation;
-
-        public CollectionController(ICollectionController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieves a single collection
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collections/{collection_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSingleCollection(string collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveSingleCollectionAsync(collection_id, fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSingleCollection(long collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Retrieve a list of products belonging to a collection
@@ -78,11 +39,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="limit">The number of products to retrieve.</param>
         /// <returns>Retrieve a list of products belonging to a collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collections/{collection_id}/products.json")]
-        public System.Threading.Tasks.Task RetrieveListOfProductsBelongingToCollection(string collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit)
-        {
-
-            return _implementation.RetrieveListOfProductsBelongingToCollectionAsync(collection_id, limit ?? "50");
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfProductsBelongingToCollection(long collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info);
 
     }
 

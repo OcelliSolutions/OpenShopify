@@ -22,115 +22,9 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IPageController
+
+    public abstract class PageControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieves a list of pages
-        /// </summary>
-
-        /// <param name="created_at_max">Show pages created before date (format: 2014-04-25T16:15:47-04:00).</param>
-
-        /// <param name="created_at_min">Show pages created after date (format: 2014-04-25T16:15:47-04:00).</param>
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <param name="handle">Retrieve a page with a given handle.</param>
-
-        /// <param name="limit">The maximum number of results to show.</param>
-
-        /// <param name="published_at_max">Show pages published before date (format: 2014-04-25T16:15:47-04:00).</param>
-
-        /// <param name="published_at_min">Show pages published after date (format: 2014-04-25T16:15:47-04:00).</param>
-
-        /// <param name="published_status">Restrict results to pages with a given published status:</param>
-
-        /// <param name="since_id">Restrict results to after the specified ID.</param>
-
-        /// <param name="title">Retrieve pages with a given title.</param>
-
-        /// <param name="updated_at_max">Show pages last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-
-        /// <param name="updated_at_min">Show pages last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
-
-        /// <returns>Retrieves a list of pages</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfPagesAsync(string? created_at_max, string? created_at_min, string? fields, string? handle, string limit, string? published_at_max, string? published_at_min, string published_status, string? since_id, string? title, string? updated_at_max, string? updated_at_min);
-
-        /// <summary>
-        /// Creates a page
-        /// </summary>
-
-        /// <returns>Creates a page</returns>
-
-        System.Threading.Tasks.Task CreatePageAsync();
-
-        /// <summary>
-        /// Retrieves a page count
-        /// </summary>
-
-        /// <param name="created_at_max">Count pages created before date (format: 2014-04-25T16:15:47-04:00).</param>
-
-        /// <param name="created_at_min">Count pages created after date (format: 2014-04-25T16:15:47-04:00).</param>
-
-        /// <param name="published_at_max">Show pages published before date (format: 2014-04-25T16:15:47-04:00).</param>
-
-        /// <param name="published_at_min">Show pages published after date (format: 2014-04-25T16:15:47-04:00).</param>
-
-        /// <param name="published_status">Count pages with a given published status:</param>
-
-        /// <param name="title">Count pages with a given title.</param>
-
-        /// <param name="updated_at_max">Count pages last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
-
-        /// <param name="updated_at_min">Count pages last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
-
-        /// <returns>Retrieves a page count</returns>
-
-        System.Threading.Tasks.Task RetrievePageCountAsync(string? created_at_max, string? created_at_min, string? published_at_max, string? published_at_min, string published_status, string? title, string? updated_at_max, string? updated_at_min);
-
-        /// <summary>
-        /// Retrieves a single page by its ID
-        /// </summary>
-
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <returns>Retrieves a single page by its ID</returns>
-
-        System.Threading.Tasks.Task RetrieveSinglePageByItsIDAsync(string page_id, string? fields);
-
-        /// <summary>
-        /// Updates a page
-        /// </summary>
-
-
-        /// <returns>Updates a page</returns>
-
-        System.Threading.Tasks.Task UpdatePageAsync(string page_id);
-
-        /// <summary>
-        /// Deletes a page
-        /// </summary>
-
-
-        /// <returns>Deletes a page</returns>
-
-        System.Threading.Tasks.Task DeletePageAsync(string page_id);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class PageController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IPageController _implementation;
-
-        public PageController(IPageController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieves a list of pages
         /// </summary>
@@ -148,22 +42,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Show pages last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a list of pages</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("pages.json")]
-        public System.Threading.Tasks.Task RetrieveListOfPages([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? title, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
-        {
-
-            return _implementation.RetrieveListOfPagesAsync(created_at_max, created_at_min, fields, handle, limit ?? "50", published_at_max, published_at_min, published_status ?? "any", since_id, title, updated_at_max, updated_at_min);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfPages([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? title, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Creates a page
         /// </summary>
         /// <returns>Creates a page</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("pages.json")]
-        public System.Threading.Tasks.Task CreatePage()
-        {
-
-            return _implementation.CreatePageAsync();
-        }
+        public abstract System.Threading.Tasks.Task CreatePage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.PageItem request);
 
         /// <summary>
         /// Retrieves a page count
@@ -178,11 +64,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Count pages last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a page count</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("pages/count.json")]
-        public System.Threading.Tasks.Task RetrievePageCount([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? title, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
-        {
-
-            return _implementation.RetrievePageCountAsync(created_at_max, created_at_min, published_at_max, published_at_min, published_status ?? "any", title, updated_at_max, updated_at_min);
-        }
+        public abstract System.Threading.Tasks.Task RetrievePageCount([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? title, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Retrieves a single page by its ID
@@ -190,33 +72,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single page by its ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("pages/{page_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSinglePageByItsID(string page_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveSinglePageByItsIDAsync(page_id, fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSinglePageByItsID(long page_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates a page
         /// </summary>
         /// <returns>Updates a page</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("pages/{page_id}.json")]
-        public System.Threading.Tasks.Task UpdatePage(string page_id)
-        {
-
-            return _implementation.UpdatePageAsync(page_id);
-        }
+        public abstract System.Threading.Tasks.Task UpdatePage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.PageItem request, long page_id);
 
         /// <summary>
         /// Deletes a page
         /// </summary>
         /// <returns>Deletes a page</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("pages/{page_id}.json")]
-        public System.Threading.Tasks.Task DeletePage(string page_id)
-        {
-
-            return _implementation.DeletePageAsync(page_id);
-        }
+        public abstract System.Threading.Tasks.Task DeletePage(long page_id);
 
     }
 

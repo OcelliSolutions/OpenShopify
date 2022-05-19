@@ -22,103 +22,36 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IFulfillmentEventController
+
+    public abstract class FulfillmentEventControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieves a list of fulfillment events for a specific fulfillment
-        /// </summary>
-
-
-        /// <returns>Retrieves a list of fulfillment events for a specific fulfillment</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfFulfillmentEventsForSpecificFulfillmentAsync(string fulfillment_id, string order_id);
-
-        /// <summary>
-        /// Creates a fulfillment event
-        /// </summary>
-
-
-        /// <returns>Creates a fulfillment event</returns>
-
-        System.Threading.Tasks.Task CreateFulfillmentEventAsync(string fulfillment_id, string order_id);
-
-        /// <summary>
-        /// Retrieves a specific fulfillment event
-        /// </summary>
-
-
-
-        /// <returns>Retrieves a specific fulfillment event</returns>
-
-        System.Threading.Tasks.Task RetrieveSpecificFulfillmentEventAsync(string event_id, string fulfillment_id, string order_id);
-
-        /// <summary>
-        /// Deletes a fulfillment event
-        /// </summary>
-
-
-
-        /// <returns>Deletes a fulfillment event</returns>
-
-        System.Threading.Tasks.Task DeleteFulfillmentEventAsync(string event_id, string fulfillment_id, string order_id);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class FulfillmentEventController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IFulfillmentEventController _implementation;
-
-        public FulfillmentEventController(IFulfillmentEventController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieves a list of fulfillment events for a specific fulfillment
         /// </summary>
         /// <returns>Retrieves a list of fulfillment events for a specific fulfillment</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events.json")]
-        public System.Threading.Tasks.Task RetrieveListOfFulfillmentEventsForSpecificFulfillment(string fulfillment_id, string order_id)
-        {
-
-            return _implementation.RetrieveListOfFulfillmentEventsForSpecificFulfillmentAsync(fulfillment_id, order_id);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfFulfillmentEventsForSpecificFulfillment(long fulfillment_id, long order_id);
 
         /// <summary>
         /// Creates a fulfillment event
         /// </summary>
         /// <returns>Creates a fulfillment event</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events.json")]
-        public System.Threading.Tasks.Task CreateFulfillmentEvent(string fulfillment_id, string order_id)
-        {
-
-            return _implementation.CreateFulfillmentEventAsync(fulfillment_id, order_id);
-        }
+        public abstract System.Threading.Tasks.Task CreateFulfillmentEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.FulfillmentEventItem request, long fulfillment_id, long order_id);
 
         /// <summary>
         /// Retrieves a specific fulfillment event
         /// </summary>
         /// <returns>Retrieves a specific fulfillment event</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSpecificFulfillmentEvent(string event_id, string fulfillment_id, string order_id)
-        {
-
-            return _implementation.RetrieveSpecificFulfillmentEventAsync(event_id, fulfillment_id, order_id);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSpecificFulfillmentEvent(long event_id, long fulfillment_id, long order_id);
 
         /// <summary>
         /// Deletes a fulfillment event
         /// </summary>
         /// <returns>Deletes a fulfillment event</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json")]
-        public System.Threading.Tasks.Task DeleteFulfillmentEvent(string event_id, string fulfillment_id, string order_id)
-        {
-
-            return _implementation.DeleteFulfillmentEventAsync(event_id, fulfillment_id, order_id);
-        }
+        public abstract System.Threading.Tasks.Task DeleteFulfillmentEvent(long event_id, long fulfillment_id, long order_id);
 
     }
 

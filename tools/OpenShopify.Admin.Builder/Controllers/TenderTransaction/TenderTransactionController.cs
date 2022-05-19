@@ -22,42 +22,9 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface ITenderTransactionController
+
+    public abstract class TenderTransactionControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieves a list of tender transactions
-        /// </summary>
-
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-
-        /// <param name="order">Show tender transactions ordered by processed_at in ascending or descending order.</param>
-
-        /// <param name="processed_at">Show tender transactions processed at the specified date.</param>
-
-        /// <param name="processed_at_max">Show tender transactions processed_at or before the specified date.</param>
-
-        /// <param name="processed_at_min">Show tender transactions processed_at or after the specified date.</param>
-
-        /// <param name="since_id">Retrieve only transactions after the specified ID.</param>
-
-        /// <returns>Retrieves a list of tender transactions</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfTenderTransactionsAsync(string limit, string? order, string? processed_at, string? processed_at_max, string? processed_at_min, string? since_id);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class TenderTransactionController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private ITenderTransactionController _implementation;
-
-        public TenderTransactionController(ITenderTransactionController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieves a list of tender transactions
         /// </summary>
@@ -69,11 +36,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="since_id">Retrieve only transactions after the specified ID.</param>
         /// <returns>Retrieves a list of tender transactions</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("tender_transactions.json")]
-        public System.Threading.Tasks.Task RetrieveListOfTenderTransactions([Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? order, [Microsoft.AspNetCore.Mvc.FromQuery] string? processed_at, [Microsoft.AspNetCore.Mvc.FromQuery] string? processed_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? processed_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id)
-        {
-
-            return _implementation.RetrieveListOfTenderTransactionsAsync(limit ?? "50", order, processed_at, processed_at_max, processed_at_min, since_id);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfTenderTransactions([Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? order, [Microsoft.AspNetCore.Mvc.FromQuery] string? processed_at, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? processed_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? processed_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
 
     }
 

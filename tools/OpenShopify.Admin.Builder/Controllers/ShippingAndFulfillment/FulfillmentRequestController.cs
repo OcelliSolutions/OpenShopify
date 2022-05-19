@@ -22,57 +22,9 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IFulfillmentRequestController
+
+    public abstract class FulfillmentRequestControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Sends a fulfillment request
-        /// </summary>
-
-
-        /// <param name="fulfillment_order_line_items">The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.</param>
-
-        /// <param name="message">An optional message for the fulfillment request.</param>
-
-        /// <returns>Sends a fulfillment request</returns>
-
-        System.Threading.Tasks.Task SendFulfillmentRequestAsync(string fulfillment_order_id, string? fulfillment_order_line_items, string? message);
-
-        /// <summary>
-        /// Accepts a fulfillment request
-        /// </summary>
-
-
-        /// <param name="message">An optional reason for accepting the fulfillment request.</param>
-
-        /// <returns>Accepts a fulfillment request</returns>
-
-        System.Threading.Tasks.Task AcceptFulfillmentRequestAsync(string fulfillment_order_id, string? message);
-
-        /// <summary>
-        /// Rejects a fulfillment request
-        /// </summary>
-
-
-        /// <param name="message">An optional reason for rejecting the fulfillment request.</param>
-
-        /// <returns>Rejects a fulfillment request</returns>
-
-        System.Threading.Tasks.Task RejectFulfillmentRequestAsync(string fulfillment_order_id, string? message);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class FulfillmentRequestController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IFulfillmentRequestController _implementation;
-
-        public FulfillmentRequestController(IFulfillmentRequestController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Sends a fulfillment request
         /// </summary>
@@ -80,11 +32,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="message">An optional message for the fulfillment request.</param>
         /// <returns>Sends a fulfillment request</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json")]
-        public System.Threading.Tasks.Task SendFulfillmentRequest(string fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fulfillment_order_line_items, [Microsoft.AspNetCore.Mvc.FromQuery] string? message)
-        {
-
-            return _implementation.SendFulfillmentRequestAsync(fulfillment_order_id, fulfillment_order_line_items, message);
-        }
+        public abstract System.Threading.Tasks.Task SendFulfillmentRequest(long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fulfillment_order_line_items, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
 
         /// <summary>
         /// Accepts a fulfillment request
@@ -92,11 +40,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="message">An optional reason for accepting the fulfillment request.</param>
         /// <returns>Accepts a fulfillment request</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json")]
-        public System.Threading.Tasks.Task AcceptFulfillmentRequest(string fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message)
-        {
-
-            return _implementation.AcceptFulfillmentRequestAsync(fulfillment_order_id, message);
-        }
+        public abstract System.Threading.Tasks.Task AcceptFulfillmentRequest(long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
 
         /// <summary>
         /// Rejects a fulfillment request
@@ -104,11 +48,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="message">An optional reason for rejecting the fulfillment request.</param>
         /// <returns>Rejects a fulfillment request</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json")]
-        public System.Threading.Tasks.Task RejectFulfillmentRequest(string fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message)
-        {
-
-            return _implementation.RejectFulfillmentRequestAsync(fulfillment_order_id, message);
-        }
+        public abstract System.Threading.Tasks.Task RejectFulfillmentRequest(long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
 
     }
 

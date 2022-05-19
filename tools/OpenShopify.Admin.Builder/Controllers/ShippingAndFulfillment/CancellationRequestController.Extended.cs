@@ -1,31 +1,31 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShippingAndFulfillment)]
 [ApiController]
-public class CancellationRequestController : ICancellationRequestController
+public class CancellationRequestController : CancellationRequestControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancellation_request.json")]
-    public Task SendCancellationRequestAsync(string fulfillment_order_id, string? message)
+    [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/cancellation_request.json")]
+    public override Task SendCancellationRequest(long fulfillment_order_id, string? message)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json")]
-    public Task AcceptCancellationRequestAsync(string fulfillment_order_id, string? message)
+    [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/cancellation_request/accept.json")]
+    public override Task AcceptCancellationRequest(long fulfillment_order_id, string? message)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json")]
-    public Task RejectCancellationRequestAsync(string fulfillment_order_id, string? message)
+    [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/cancellation_request/reject.json")]
+    public override Task RejectCancellationRequest(long fulfillment_order_id, string? message)
     {
         throw new NotImplementedException();
     }

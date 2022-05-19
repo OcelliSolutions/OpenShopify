@@ -151,16 +151,20 @@ namespace OpenShopify.Admin.Builder.Models
 
         /// <summary>
         /// Additional metadata about the <see cref="ProductVariant"/>. Note: This is not naturally returned with a <see cref="ProductVariant"/> response, as
-        /// Shopify will not return <see cref="ProductVariant"/> metafields unless specified. Instead, you need to query metafields with <see cref="MetaFieldService"/>.
+        /// Shopify will not return <see cref="ProductVariant"/> metafields unless specified. Instead, you need to query metafields with <see cref="MetafieldService"/>.
         /// Uses include: Creating, updating, & deserializing webhook bodies that include them.
         /// </summary>
         [JsonPropertyName("metafields")]
-        public IEnumerable<MetaField> Metafields { get; set; }
+        public IEnumerable<ProductVariantMetafield> Metafields { get; set; }
 
         /// <summary>
         /// A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies
         /// </summary>
         [JsonPropertyName("presentment_prices")]
         public IEnumerable<PresentmentPrice> PresentmentPrices { get; set; }
+    }
+
+    public class ProductVariantMetafield : Metafield
+    {
     }
 }

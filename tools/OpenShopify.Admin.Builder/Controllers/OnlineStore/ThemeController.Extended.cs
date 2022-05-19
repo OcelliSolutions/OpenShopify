@@ -1,45 +1,46 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Admin.Builder.Models;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.OnlineStore;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.OnlineStore)]
 [ApiController]
-public class ThemeController : IThemeController
+public class ThemeController : ThemeControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("themes.json")]
-    public Task RetrieveListOfThemesAsync(string? fields)
+    [HttpGet, Route("themes.json")]
+    public override Task RetrieveListOfThemes(string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("themes.json")]
-    public Task CreateThemeAsync()
+    [HttpPost, Route("themes.json")]
+    public override Task CreateTheme(ThemeItem request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}.json")]
-    public Task RetrieveSingleThemeByItsIDAsync(string theme_id, string? fields)
+    [HttpGet, Route("themes/{theme_id:long}.json")]
+    public override Task RetrieveSingleThemeByItsID(long theme_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}.json")]
-    public Task ModifyExistingThemeAsync(string theme_id)
+    [HttpPut, Route("themes/{theme_id:long}.json")]
+    public override Task ModifyExistingTheme(ThemeItem request, long theme_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}.json")]
-    public Task RemoveExistingThemeAsync(string theme_id)
+    [HttpDelete, Route("themes/{theme_id:long}.json")]
+    public override Task RemoveExistingTheme(long theme_id)
     {
         throw new NotImplementedException();
     }

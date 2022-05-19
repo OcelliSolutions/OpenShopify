@@ -22,126 +22,9 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface ISmartCollectionController
+
+    public abstract class SmartCollectionControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieves a list of smart collections
-        /// </summary>
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <param name="handle">Filter results by smart collection handle.</param>
-
-        /// <param name="ids">Show only the smart collections specified by a comma-separated list of IDs.</param>
-
-        /// <param name="limit">The number of results to show.</param>
-
-        /// <param name="product_id">Show smart collections that includes the specified product.</param>
-
-        /// <param name="published_at_max">Show smart collections published before this date. (format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <param name="published_at_min">Show smart collections published after this date. (format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <param name="published_status">Filter results based on the published status of smart collections.</param>
-
-        /// <param name="since_id">Restrict results to after the specified ID.</param>
-
-        /// <param name="title">Show smart collections with the specified title.</param>
-
-        /// <param name="updated_at_max">Show smart collections last updated before this date. (format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <param name="updated_at_min">Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <returns>Retrieves a list of smart collections</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfSmartCollectionsAsync(string? fields, string? handle, string? ids, string limit, string? product_id, string? published_at_max, string? published_at_min, string published_status, string? since_id, string? title, string? updated_at_max, string? updated_at_min);
-
-        /// <summary>
-        /// Creates a smart collection
-        /// </summary>
-
-        /// <returns>Creates a smart collection</returns>
-
-        System.Threading.Tasks.Task CreateSmartCollectionAsync();
-
-        /// <summary>
-        /// Retrieves a count of smart collections
-        /// </summary>
-
-        /// <param name="product_id">Show smart collections that include the specified product.</param>
-
-        /// <param name="published_at_max">Show smart collections published before this date.  (format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <param name="published_at_min">Show smart collections published after this date.  (format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <param name="published_status">Filter results based on the published status of smart collections.</param>
-
-        /// <param name="title">Show smart collections with the specified title.</param>
-
-        /// <param name="updated_at_max">Show smart collections last updated before this date.  (format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <param name="updated_at_min">Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <returns>Retrieves a count of smart collections</returns>
-
-        System.Threading.Tasks.Task RetrieveCountOfSmartCollectionsAsync(string? product_id, string? published_at_max, string? published_at_min, string published_status, string? title, string? updated_at_max, string? updated_at_min);
-
-        /// <summary>
-        /// Retrieves a single smart collection
-        /// </summary>
-
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <returns>Retrieves a single smart collection</returns>
-
-        System.Threading.Tasks.Task RetrieveSingleSmartCollectionAsync(string smart_collection_id, string? fields);
-
-        /// <summary>
-        /// Updates an existing smart collection
-        /// </summary>
-
-
-        /// <returns>Updates an existing smart collection</returns>
-
-        System.Threading.Tasks.Task UpdateExistingSmartCollectionAsync(string smart_collection_id);
-
-        /// <summary>
-        /// Removes a smart collection
-        /// </summary>
-
-
-        /// <returns>Removes a smart collection</returns>
-
-        System.Threading.Tasks.Task RemoveSmartCollectionAsync(string smart_collection_id);
-
-        /// <summary>
-        /// Updates the ordering type of products in a smart collection
-        /// </summary>
-
-
-        /// <param name="products">An array of product IDs, in the order that you want them to appear at the top of the collection. When &lt;code&gt;products&lt;/code&gt; is specified but empty, any previously sorted products are cleared.</param>
-
-        /// <param name="sort_order">The type of sorting to apply. Valid values are listed in the &lt;a href="#properties"&gt;Properties&lt;/a&gt; section above.</param>
-
-        /// <returns>Updates the ordering type of products in a smart collection</returns>
-
-        System.Threading.Tasks.Task UpdateTheOrderingTypeOfProductsInSmartCollectionAsync(string smart_collection_id, string? products, string sort_order);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class SmartCollectionController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private ISmartCollectionController _implementation;
-
-        public SmartCollectionController(ISmartCollectionController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieves a list of smart collections
         /// </summary>
@@ -159,22 +42,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Retrieves a list of smart collections</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("smart_collections.json")]
-        public System.Threading.Tasks.Task RetrieveListOfSmartCollections([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? title, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
-        {
-
-            return _implementation.RetrieveListOfSmartCollectionsAsync(fields, handle, ids, limit ?? "50", product_id, published_at_max, published_at_min, published_status ?? "any", since_id, title, updated_at_max, updated_at_min);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfSmartCollections([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] long? product_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? title, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Creates a smart collection
         /// </summary>
         /// <returns>Creates a smart collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("smart_collections.json")]
-        public System.Threading.Tasks.Task CreateSmartCollection()
-        {
-
-            return _implementation.CreateSmartCollectionAsync();
-        }
+        public abstract System.Threading.Tasks.Task CreateSmartCollection([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.SmartCollectionItem request);
 
         /// <summary>
         /// Retrieves a count of smart collections
@@ -188,11 +63,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Show smart collections last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Retrieves a count of smart collections</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("smart_collections/count.json")]
-        public System.Threading.Tasks.Task RetrieveCountOfSmartCollections([Microsoft.AspNetCore.Mvc.FromQuery] string? product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? title, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
-        {
-
-            return _implementation.RetrieveCountOfSmartCollectionsAsync(product_id, published_at_max, published_at_min, published_status ?? "any", title, updated_at_max, updated_at_min);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveCountOfSmartCollections([Microsoft.AspNetCore.Mvc.FromQuery] long? product_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? title, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Retrieves a single smart collection
@@ -200,33 +71,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single smart collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("smart_collections/{smart_collection_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSingleSmartCollection(string smart_collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveSingleSmartCollectionAsync(smart_collection_id, fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSingleSmartCollection(long smart_collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates an existing smart collection
         /// </summary>
         /// <returns>Updates an existing smart collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("smart_collections/{smart_collection_id}.json")]
-        public System.Threading.Tasks.Task UpdateExistingSmartCollection(string smart_collection_id)
-        {
-
-            return _implementation.UpdateExistingSmartCollectionAsync(smart_collection_id);
-        }
+        public abstract System.Threading.Tasks.Task UpdateExistingSmartCollection([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.SmartCollectionItem request, long smart_collection_id);
 
         /// <summary>
         /// Removes a smart collection
         /// </summary>
         /// <returns>Removes a smart collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("smart_collections/{smart_collection_id}.json")]
-        public System.Threading.Tasks.Task RemoveSmartCollection(string smart_collection_id)
-        {
-
-            return _implementation.RemoveSmartCollectionAsync(smart_collection_id);
-        }
+        public abstract System.Threading.Tasks.Task RemoveSmartCollection(long smart_collection_id);
 
         /// <summary>
         /// Updates the ordering type of products in a smart collection
@@ -235,11 +94,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="sort_order">The type of sorting to apply. Valid values are listed in the &lt;a href="#properties"&gt;Properties&lt;/a&gt; section above.</param>
         /// <returns>Updates the ordering type of products in a smart collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("smart_collections/{smart_collection_id}/order.json")]
-        public System.Threading.Tasks.Task UpdateTheOrderingTypeOfProductsInSmartCollection(string smart_collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? products, [Microsoft.AspNetCore.Mvc.FromQuery] string? sort_order)
-        {
-
-            return _implementation.UpdateTheOrderingTypeOfProductsInSmartCollectionAsync(smart_collection_id, products, sort_order ?? "(current value)");
-        }
+        public abstract System.Threading.Tasks.Task UpdateOrderingTypeOfProductsInSmartCollection([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.SmartCollectionItem request, long smart_collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? products, [Microsoft.AspNetCore.Mvc.FromQuery] string? sort_order = "(current value)");
 
     }
 

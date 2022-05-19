@@ -22,94 +22,9 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IInventoryLevelController
+
+    public abstract class InventoryLevelControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieves a list of inventory levels
-        /// </summary>
-
-        /// <param name="inventory_item_ids">A comma-separated list of inventory item IDs. To find the ID of an inventory item, use the &lt;a href='/api/admin-rest/latest/resources/inventoryitem'&gt;Inventory Item resource&lt;/a&gt;</param>
-
-        /// <param name="limit">The maximum number of results to show.</param>
-
-        /// <param name="location_ids">A comma-separated list of location IDs. To find the ID of a location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
-
-        /// <param name="updated_at_min">Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).</param>
-
-        /// <returns>Retrieves a list of inventory levels</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfInventoryLevelsAsync(string? inventory_item_ids, string limit, string? location_ids, string? updated_at_min);
-
-        /// <summary>
-        /// Deletes an inventory level from a location
-        /// </summary>
-
-        /// <param name="inventory_item_id">The ID for the inventory item.</param>
-
-        /// <param name="location_id">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
-
-        /// <returns>Deletes an inventory level from a location</returns>
-
-        System.Threading.Tasks.Task DeleteInventoryLevelFromLocationAsync(string inventory_item_id, string location_id);
-
-        /// <summary>
-        /// Adjusts the inventory level of an inventory item at a location
-        /// </summary>
-
-        /// <param name="available_adjustment">The amount to adjust the available inventory quantity. Send negative values to subtract from the current available quantity. For example, &lt;code&gt;"available_adjustment": 2&lt;/code&gt; increases the current available quantity by 2, and &lt;code&gt;"available_adjustment": -3&lt;/code&gt;decreases the current available quantity by 3.</param>
-
-        /// <param name="inventory_item_id">The ID of the inventory item.</param>
-
-        /// <param name="location_id">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
-
-        /// <returns>Adjusts the inventory level of an inventory item at a location</returns>
-
-        System.Threading.Tasks.Task AdjustTheInventoryLevelOfInventoryItemAtLocationAsync(string available_adjustment, string inventory_item_id, string location_id);
-
-        /// <summary>
-        /// Connects an inventory item to a location
-        /// </summary>
-
-        /// <param name="inventory_item_id">The ID of the inventory item.</param>
-
-        /// <param name="location_id">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
-
-        /// <param name="relocate_if_necessary">Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, refer to &lt;a href="#inventory-levels-and-fulfillment-service-locations"&gt;&lt;em&gt;Inventory levels and fulfillment service locations&lt;/em&gt;&lt;/a&gt;.</param>
-
-        /// <returns>Connects an inventory item to a location</returns>
-
-        System.Threading.Tasks.Task ConnectInventoryItemToLocationAsync(string inventory_item_id, string location_id, string relocate_if_necessary);
-
-        /// <summary>
-        /// Sets the inventory level for an inventory item at a location
-        /// </summary>
-
-        /// <param name="available">Sets the available inventory quantity.</param>
-
-        /// <param name="inventory_item_id">The ID of the inventory item associated with the inventory level. To find the ID of the inventory item, use the &lt;a href='/api/admin-rest/latest/resources/inventoryitem'&gt;Inventory Item resource&lt;/a&gt;</param>
-
-        /// <param name="location_id">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
-
-        /// <param name="disconnect_if_necessary">Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, refer to &lt;a href="#inventory-levels-and-fulfillment-service-locations"&gt;&lt;em&gt;Inventory levels and fulfillment service locations&lt;/em&gt;&lt;/a&gt;.</param>
-
-        /// <returns>Sets the inventory level for an inventory item at a location</returns>
-
-        System.Threading.Tasks.Task SetTheInventoryLevelForInventoryItemAtLocationAsync(string available, string inventory_item_id, string location_id, string disconnect_if_necessary);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class InventoryLevelController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IInventoryLevelController _implementation;
-
-        public InventoryLevelController(IInventoryLevelController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieves a list of inventory levels
         /// </summary>
@@ -119,11 +34,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).</param>
         /// <returns>Retrieves a list of inventory levels</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_levels.json")]
-        public System.Threading.Tasks.Task RetrieveListOfInventoryLevels([Microsoft.AspNetCore.Mvc.FromQuery] string? inventory_item_ids, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? location_ids, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
-        {
-
-            return _implementation.RetrieveListOfInventoryLevelsAsync(inventory_item_ids, limit ?? "50", location_ids, updated_at_min);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfInventoryLevels([Microsoft.AspNetCore.Mvc.FromQuery] long? inventory_item_ids, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] long? location_ids, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Deletes an inventory level from a location
@@ -132,11 +43,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="location_id">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
         /// <returns>Deletes an inventory level from a location</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("inventory_levels.json")]
-        public System.Threading.Tasks.Task DeleteInventoryLevelFromLocation([Microsoft.AspNetCore.Mvc.FromQuery] string inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] string location_id)
-        {
-
-            return _implementation.DeleteInventoryLevelFromLocationAsync(inventory_item_id, location_id);
-        }
+        public abstract System.Threading.Tasks.Task DeleteInventoryLevelFromLocation([Microsoft.AspNetCore.Mvc.FromQuery] long inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] long location_id);
 
         /// <summary>
         /// Adjusts the inventory level of an inventory item at a location
@@ -146,11 +53,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="location_id">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
         /// <returns>Adjusts the inventory level of an inventory item at a location</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("inventory_levels/adjust.json")]
-        public System.Threading.Tasks.Task AdjustTheInventoryLevelOfInventoryItemAtLocation([Microsoft.AspNetCore.Mvc.FromQuery] string available_adjustment, [Microsoft.AspNetCore.Mvc.FromQuery] string inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] string location_id)
-        {
-
-            return _implementation.AdjustTheInventoryLevelOfInventoryItemAtLocationAsync(available_adjustment, inventory_item_id, location_id);
-        }
+        public abstract System.Threading.Tasks.Task AdjustInventoryLevelOfInventoryItemAtLocation([Microsoft.AspNetCore.Mvc.FromQuery] string available_adjustment, [Microsoft.AspNetCore.Mvc.FromQuery] long inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] long location_id);
 
         /// <summary>
         /// Connects an inventory item to a location
@@ -160,11 +63,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="relocate_if_necessary">Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, refer to &lt;a href="#inventory-levels-and-fulfillment-service-locations"&gt;&lt;em&gt;Inventory levels and fulfillment service locations&lt;/em&gt;&lt;/a&gt;.</param>
         /// <returns>Connects an inventory item to a location</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("inventory_levels/connect.json")]
-        public System.Threading.Tasks.Task ConnectInventoryItemToLocation([Microsoft.AspNetCore.Mvc.FromQuery] string inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] string location_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? relocate_if_necessary)
-        {
-
-            return _implementation.ConnectInventoryItemToLocationAsync(inventory_item_id, location_id, relocate_if_necessary ?? "false");
-        }
+        public abstract System.Threading.Tasks.Task ConnectInventoryItemToLocation([Microsoft.AspNetCore.Mvc.FromQuery] long inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] long location_id, [Microsoft.AspNetCore.Mvc.FromQuery] bool? relocate_if_necessary);
 
         /// <summary>
         /// Sets the inventory level for an inventory item at a location
@@ -175,11 +74,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="disconnect_if_necessary">Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, refer to &lt;a href="#inventory-levels-and-fulfillment-service-locations"&gt;&lt;em&gt;Inventory levels and fulfillment service locations&lt;/em&gt;&lt;/a&gt;.</param>
         /// <returns>Sets the inventory level for an inventory item at a location</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("inventory_levels/set.json")]
-        public System.Threading.Tasks.Task SetTheInventoryLevelForInventoryItemAtLocation([Microsoft.AspNetCore.Mvc.FromQuery] string available, [Microsoft.AspNetCore.Mvc.FromQuery] string inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] string location_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? disconnect_if_necessary)
-        {
-
-            return _implementation.SetTheInventoryLevelForInventoryItemAtLocationAsync(available, inventory_item_id, location_id, disconnect_if_necessary ?? "false");
-        }
+        public abstract System.Threading.Tasks.Task SetInventoryLevelForInventoryItemAtLocation([Microsoft.AspNetCore.Mvc.FromQuery] string available, [Microsoft.AspNetCore.Mvc.FromQuery] long inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] long location_id, [Microsoft.AspNetCore.Mvc.FromQuery] bool? disconnect_if_necessary);
 
     }
 

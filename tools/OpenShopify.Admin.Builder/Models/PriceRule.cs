@@ -68,20 +68,20 @@ namespace OpenShopify.Admin.Builder.Models
         * Prerequisite cart subtotal range.
         */
         [JsonPropertyName("prerequisite_subtotal_range")]
-        public PrerequisiteValueRange PrerequisiteSubtotalRange { get; set; }
+        public PrerequisiteValueRange? PrerequisiteSubtotalRange { get; set; }
 
         /**
         * Prerequisite shipping cost range.Can only be used when target_type is shipping_line.
         */
         [JsonPropertyName("prerequisite_shipping_price_range")]
-        public PrerequisiteValueRange PrerequisiteShippingPriceRange { get; set; }
+        public PrerequisiteValueRange? PrerequisiteShippingPriceRange { get; set; }
 
         /**
         * A list of prerequisite customer saved search ids. For the price rule to be applicable,
         * the customer applying the price rule must be in the group of customers matching the customer saved searches.
         */
         [JsonPropertyName("prerequisite_saved_search_ids")]
-        public IEnumerable<long> PrerequisiteSavedSearchIds { get; set; }
+        public IEnumerable<long>? PrerequisiteSavedSearchIds { get; set; }
 
         /**
         * A list of prerequisite customer ids. For the price rule to be applicable,

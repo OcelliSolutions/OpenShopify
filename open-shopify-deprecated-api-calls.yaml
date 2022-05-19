@@ -20,14 +20,81 @@ paths:
       summary: Retrieves a list of deprecated API calls
       operationId: RetrieveListOfDeprecatedAPICalls
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeprecatedApiCallList'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    DeprecatedApiCall:
+      type: object
+      properties:
+        api_type:
+          type: string
+          description: 'The type of API that the call was made to. Valid values: REST, Webhook, GraphQL'
+        description:
+          type: string
+          description: A description of the deprecation and any required migration steps.
+        documentation_url:
+          type: string
+          description: The documentation URL to the deprecated change.
+        endpoint:
+          type: string
+          description: 'description of the REST endpoint, webhook topic, or GraphQL field called.'
+        last_call_at:
+          type: string
+          description: The timestamp (ISO 4217 format) when the last deprecated API call was made.
+          format: date-time
+        migration_deadline:
+          type: string
+          description: The time (ISO 4217 format) when the deprecated API call will be removed.
+          format: date-time
+        graphql_schema_name:
+          type: string
+          description: 'The name of the GraphQL schema. If the call wasn''t made to a GraphQL API, then this value is null.'
+          nullable: true
+        version:
+          type: string
+          description: The earliest API version to migrate to in order to avoid making the deprecated API calls.
+      additionalProperties: { }
+    DeprecatedApiCallList:
+      type: object
+      properties:
+        data_updated_at:
+          type: string
+          format: date-time
+        deprecated_api_calls:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeprecatedApiCall'
+          nullable: true
+      additionalProperties: { }
     ErrorResponse:
       type: object
       properties:

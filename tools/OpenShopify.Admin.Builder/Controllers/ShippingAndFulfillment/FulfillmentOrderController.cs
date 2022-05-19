@@ -22,145 +22,29 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IFulfillmentOrderController
+
+    public abstract class FulfillmentOrderControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieves a list of fulfillment orders for a specific order
-        /// </summary>
-
-
-        /// <returns>Retrieves a list of fulfillment orders for a specific order</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfFulfillmentOrdersForSpecificOrderAsync(string order_id);
-
-        /// <summary>
-        /// Retrieves a specific fulfillment order
-        /// </summary>
-
-
-        /// <returns>Retrieves a specific fulfillment order</returns>
-
-        System.Threading.Tasks.Task RetrieveSpecificFulfillmentOrderAsync(string fulfillment_order_id);
-
-        /// <summary>
-        /// Cancel a fulfillment order
-        /// </summary>
-
-
-        /// <returns>Cancel a fulfillment order</returns>
-
-        System.Threading.Tasks.Task CancelFulfillmentOrderAsync(string fulfillment_order_id);
-
-        /// <summary>
-        /// Marks a fulfillment order as incomplete
-        /// </summary>
-
-
-        /// <param name="message">An optional reason for marking the fulfillment order as incomplete.</param>
-
-        /// <returns>Marks a fulfillment order as incomplete</returns>
-
-        System.Threading.Tasks.Task MarkFulfillmentOrderAsIncompleteAsync(string fulfillment_order_id, string? message);
-
-        /// <summary>
-        /// Moves a fulfillment order to a new location
-        /// </summary>
-
-
-        /// <param name="new_location_id">The id of the location to which the fulfillment order will be moved.</param>
-
-        /// <returns>Moves a fulfillment order to a new location</returns>
-
-        System.Threading.Tasks.Task MoveFulfillmentOrderToNewLocationAsync(string fulfillment_order_id, string? new_location_id);
-
-        /// <summary>
-        /// Marks the fulfillment order as open
-        /// </summary>
-
-
-        /// <returns>Marks the fulfillment order as open</returns>
-
-        System.Threading.Tasks.Task MarkTheFulfillmentOrderAsOpenAsync(string fulfillment_order_id);
-
-        /// <summary>
-        /// Reschedules the fulfill_at time of a scheduled fulfillment order
-        /// </summary>
-
-
-        /// <returns>Reschedules the fulfill_at time of a scheduled fulfillment order</returns>
-
-        System.Threading.Tasks.Task RescheduleTheFulfillAtTimeOfScheduledFulfillmentOrderAsync(string fulfillment_order_id);
-
-        /// <summary>
-        /// Applies a fulfillment hold on a fulfillment order with status &lt;code&gt;OPEN&lt;/code&gt;
-        /// </summary>
-
-
-        /// <param name="notify_merchant">Whether the merchant should receive a notification about the fulfillment hold. If set to true, then the merchant will be notified on the Shopify mobile app (if they use it to manage their store). The default value is false.</param>
-
-        /// <param name="reason">A mandatory reason for the fulfillment hold.</param>
-
-        /// <param name="reason_notes">Optional additional information about the fulfillment hold reason.</param>
-
-        /// <returns>Applies a fulfillment hold on a fulfillment order with status &lt;code&gt;OPEN&lt;/code&gt;</returns>
-
-        System.Threading.Tasks.Task ApplyFulfillmentHoldOnFulfillmentOrderWithStatusOPENAsync(string fulfillment_order_id, string? notify_merchant, string? reason, string? reason_notes);
-
-        /// <summary>
-        /// Releases the fulfillment hold on a fulfillment order
-        /// </summary>
-
-
-        /// <returns>Releases the fulfillment hold on a fulfillment order</returns>
-
-        System.Threading.Tasks.Task ReleaseTheFulfillmentHoldOnFulfillmentOrderAsync(string fulfillment_order_id);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class FulfillmentOrderController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IFulfillmentOrderController _implementation;
-
-        public FulfillmentOrderController(IFulfillmentOrderController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieves a list of fulfillment orders for a specific order
         /// </summary>
         /// <returns>Retrieves a list of fulfillment orders for a specific order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillment_orders.json")]
-        public System.Threading.Tasks.Task RetrieveListOfFulfillmentOrdersForSpecificOrder(string order_id)
-        {
-
-            return _implementation.RetrieveListOfFulfillmentOrdersForSpecificOrderAsync(order_id);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfFulfillmentOrdersForSpecificOrder(long order_id);
 
         /// <summary>
         /// Retrieves a specific fulfillment order
         /// </summary>
         /// <returns>Retrieves a specific fulfillment order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSpecificFulfillmentOrder(string fulfillment_order_id)
-        {
-
-            return _implementation.RetrieveSpecificFulfillmentOrderAsync(fulfillment_order_id);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSpecificFulfillmentOrder(long fulfillment_order_id);
 
         /// <summary>
         /// Cancel a fulfillment order
         /// </summary>
         /// <returns>Cancel a fulfillment order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancel.json")]
-        public System.Threading.Tasks.Task CancelFulfillmentOrder(string fulfillment_order_id)
-        {
-
-            return _implementation.CancelFulfillmentOrderAsync(fulfillment_order_id);
-        }
+        public abstract System.Threading.Tasks.Task CancelFulfillmentOrder(long fulfillment_order_id);
 
         /// <summary>
         /// Marks a fulfillment order as incomplete
@@ -168,11 +52,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="message">An optional reason for marking the fulfillment order as incomplete.</param>
         /// <returns>Marks a fulfillment order as incomplete</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/close.json")]
-        public System.Threading.Tasks.Task MarkFulfillmentOrderAsIncomplete(string fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message)
-        {
-
-            return _implementation.MarkFulfillmentOrderAsIncompleteAsync(fulfillment_order_id, message);
-        }
+        public abstract System.Threading.Tasks.Task MarkFulfillmentOrderAsIncomplete(long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
 
         /// <summary>
         /// Moves a fulfillment order to a new location
@@ -180,33 +60,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="new_location_id">The id of the location to which the fulfillment order will be moved.</param>
         /// <returns>Moves a fulfillment order to a new location</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/move.json")]
-        public System.Threading.Tasks.Task MoveFulfillmentOrderToNewLocation(string fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? new_location_id)
-        {
-
-            return _implementation.MoveFulfillmentOrderToNewLocationAsync(fulfillment_order_id, new_location_id);
-        }
+        public abstract System.Threading.Tasks.Task MoveFulfillmentOrderToNewLocation(long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] long? new_location_id);
 
         /// <summary>
         /// Marks the fulfillment order as open
         /// </summary>
         /// <returns>Marks the fulfillment order as open</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/open.json")]
-        public System.Threading.Tasks.Task MarkTheFulfillmentOrderAsOpen(string fulfillment_order_id)
-        {
-
-            return _implementation.MarkTheFulfillmentOrderAsOpenAsync(fulfillment_order_id);
-        }
+        public abstract System.Threading.Tasks.Task MarkFulfillmentOrderAsOpen(long fulfillment_order_id);
 
         /// <summary>
         /// Reschedules the fulfill_at time of a scheduled fulfillment order
         /// </summary>
         /// <returns>Reschedules the fulfill_at time of a scheduled fulfillment order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/reschedule.json")]
-        public System.Threading.Tasks.Task RescheduleTheFulfillAtTimeOfScheduledFulfillmentOrder(string fulfillment_order_id)
-        {
-
-            return _implementation.RescheduleTheFulfillAtTimeOfScheduledFulfillmentOrderAsync(fulfillment_order_id);
-        }
+        public abstract System.Threading.Tasks.Task RescheduleFulfillAtTimeOfScheduledFulfillmentOrder(long fulfillment_order_id);
 
         /// <summary>
         /// Applies a fulfillment hold on a fulfillment order with status &lt;code&gt;OPEN&lt;/code&gt;
@@ -216,22 +84,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="reason_notes">Optional additional information about the fulfillment hold reason.</param>
         /// <returns>Applies a fulfillment hold on a fulfillment order with status &lt;code&gt;OPEN&lt;/code&gt;</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/hold.json")]
-        public System.Threading.Tasks.Task ApplyFulfillmentHoldOnFulfillmentOrderWithStatusOPEN(string fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? notify_merchant, [Microsoft.AspNetCore.Mvc.FromQuery] string? reason, [Microsoft.AspNetCore.Mvc.FromQuery] string? reason_notes)
-        {
-
-            return _implementation.ApplyFulfillmentHoldOnFulfillmentOrderWithStatusOPENAsync(fulfillment_order_id, notify_merchant, reason, reason_notes);
-        }
+        public abstract System.Threading.Tasks.Task ApplyFulfillmentHoldOnFulfillmentOrderWithStatusOPEN(long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? notify_merchant, [Microsoft.AspNetCore.Mvc.FromQuery] string? reason, [Microsoft.AspNetCore.Mvc.FromQuery] string? reason_notes);
 
         /// <summary>
         /// Releases the fulfillment hold on a fulfillment order
         /// </summary>
         /// <returns>Releases the fulfillment hold on a fulfillment order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/release_hold.json")]
-        public System.Threading.Tasks.Task ReleaseTheFulfillmentHoldOnFulfillmentOrder(string fulfillment_order_id)
-        {
-
-            return _implementation.ReleaseTheFulfillmentHoldOnFulfillmentOrderAsync(fulfillment_order_id);
-        }
+        public abstract System.Threading.Tasks.Task ReleaseFulfillmentHoldOnFulfillmentOrder(long fulfillment_order_id);
 
     }
 

@@ -22,105 +22,15 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IPriceRuleController
+
+    public abstract class PriceRuleControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Creates a price rule
-        /// </summary>
-
-        /// <returns>Creates a price rule</returns>
-
-        System.Threading.Tasks.Task CreatePriceRuleAsync();
-
-        /// <summary>
-        /// Retrieves a list of price rules
-        /// </summary>
-
-        /// <param name="created_at_max">Show price rules created before date (format 2017-03-25T16:15:47-04:00).</param>
-
-        /// <param name="created_at_min">Show price rules created after date (format 2017-03-25T16:15:47-04:00).</param>
-
-        /// <param name="ends_at_max">Show price rules ending before date (format 2017-03-25T16:15:47-04:00).</param>
-
-        /// <param name="ends_at_min">Show price rules ending after date (format 2017-03-25T16:15:47-04:00).</param>
-
-        /// <param name="limit">The maximum number of results to retrieve.</param>
-
-        /// <param name="since_id">Restrict results to after the specified ID.</param>
-
-        /// <param name="starts_at_max">Show price rules starting before date (format 2017-03-25T16:15:47-04:00).</param>
-
-        /// <param name="starts_at_min">Show price rules starting after date (format 2017-03-25T16:15:47-04:00).</param>
-
-        /// <param name="times_used">Show price rules with times used.</param>
-
-        /// <param name="updated_at_max">Show price rules last updated before date (format 2017-03-25T16:15:47-04:00).</param>
-
-        /// <param name="updated_at_min">Show price rules last updated after date (format 2017-03-25T16:15:47-04:00).</param>
-
-        /// <returns>Retrieves a list of price rules</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfPriceRulesAsync(string? created_at_max, string? created_at_min, string? ends_at_max, string? ends_at_min, string limit, string? since_id, string? starts_at_max, string? starts_at_min, string? times_used, string? updated_at_max, string? updated_at_min);
-
-        /// <summary>
-        /// Updates an existing a price rule
-        /// </summary>
-
-
-        /// <returns>Updates an existing a price rule</returns>
-
-        System.Threading.Tasks.Task UpdateExistingPriceRuleAsync(string price_rule_id);
-
-        /// <summary>
-        /// Retrieves a single price rule
-        /// </summary>
-
-
-        /// <returns>Retrieves a single price rule</returns>
-
-        System.Threading.Tasks.Task RetrieveSinglePriceRuleAsync(string price_rule_id);
-
-        /// <summary>
-        /// Remove an existing PriceRule
-        /// </summary>
-
-
-        /// <returns>Remove an existing PriceRule</returns>
-
-        System.Threading.Tasks.Task RemoveExistingPriceRuleAsync(string price_rule_id);
-
-        /// <summary>
-        /// Retrieves a count of all price rules
-        /// </summary>
-
-        /// <returns>Retrieves a count of all price rules</returns>
-
-        System.Threading.Tasks.Task RetrieveCountOfAllPriceRulesAsync();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class PriceRuleController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IPriceRuleController _implementation;
-
-        public PriceRuleController(IPriceRuleController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Creates a price rule
         /// </summary>
         /// <returns>Creates a price rule</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("price_rules.json")]
-        public System.Threading.Tasks.Task CreatePriceRule()
-        {
-
-            return _implementation.CreatePriceRuleAsync();
-        }
+        public abstract System.Threading.Tasks.Task CreatePriceRule([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.PriceRuleItem request);
 
         /// <summary>
         /// Retrieves a list of price rules
@@ -138,55 +48,35 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Show price rules last updated after date (format 2017-03-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a list of price rules</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules.json")]
-        public System.Threading.Tasks.Task RetrieveListOfPriceRules([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? ends_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? ends_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? starts_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? starts_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? times_used, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
-        {
-
-            return _implementation.RetrieveListOfPriceRulesAsync(created_at_max, created_at_min, ends_at_max, ends_at_min, limit ?? "50", since_id, starts_at_max, starts_at_min, times_used, updated_at_max, updated_at_min);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfPriceRules([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? ends_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? ends_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? starts_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? starts_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? times_used, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Updates an existing a price rule
         /// </summary>
         /// <returns>Updates an existing a price rule</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}.json")]
-        public System.Threading.Tasks.Task UpdateExistingPriceRule(string price_rule_id)
-        {
-
-            return _implementation.UpdateExistingPriceRuleAsync(price_rule_id);
-        }
+        public abstract System.Threading.Tasks.Task UpdateExistingPriceRule([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.PriceRuleItem request, long price_rule_id);
 
         /// <summary>
         /// Retrieves a single price rule
         /// </summary>
         /// <returns>Retrieves a single price rule</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSinglePriceRule(string price_rule_id)
-        {
-
-            return _implementation.RetrieveSinglePriceRuleAsync(price_rule_id);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSinglePriceRule(long price_rule_id);
 
         /// <summary>
         /// Remove an existing PriceRule
         /// </summary>
         /// <returns>Remove an existing PriceRule</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}.json")]
-        public System.Threading.Tasks.Task RemoveExistingPriceRule(string price_rule_id)
-        {
-
-            return _implementation.RemoveExistingPriceRuleAsync(price_rule_id);
-        }
+        public abstract System.Threading.Tasks.Task RemoveExistingPriceRule(long price_rule_id);
 
         /// <summary>
         /// Retrieves a count of all price rules
         /// </summary>
         /// <returns>Retrieves a count of all price rules</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/count.json")]
-        public System.Threading.Tasks.Task RetrieveCountOfAllPriceRules()
-        {
-
-            return _implementation.RetrieveCountOfAllPriceRulesAsync();
-        }
+        public abstract System.Threading.Tasks.Task RetrieveCountOfAllPriceRules();
 
     }
 

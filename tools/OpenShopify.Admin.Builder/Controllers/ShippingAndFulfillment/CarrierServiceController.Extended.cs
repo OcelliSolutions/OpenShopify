@@ -1,45 +1,46 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Admin.Builder.Models;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShippingAndFulfillment)]
 [ApiController]
-public class CarrierServiceController : ICarrierServiceController
+public class CarrierServiceController : CarrierServiceControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("carrier_services.json")]
-    public Task CreateCarrierServiceAsync()
+    [HttpPost, Route("carrier_services.json")]
+    public override Task CreateCarrierService(CarrierServiceItem request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("carrier_services.json")]
-    public Task RetrieveListOfCarrierServicesAsync()
+    [HttpGet, Route("carrier_services.json")]
+    public override Task RetrieveListOfCarrierServices()
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("carrier_services/{carrier_service_id}.json")]
-    public Task UpdateCarrierServiceAsync(string carrier_service_id)
+    [HttpPut, Route("carrier_services/{carrier_service_id:long}.json")]
+    public override Task UpdateCarrierService(CarrierServiceItem request, long carrier_service_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("carrier_services/{carrier_service_id}.json")]
-    public Task RetrieveSingleCarrierServiceAsync(string carrier_service_id)
+    [HttpGet, Route("carrier_services/{carrier_service_id:long}.json")]
+    public override Task RetrieveSingleCarrierService(long carrier_service_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("carrier_services/{carrier_service_id}.json")]
-    public Task DeleteCarrierServiceAsync(string carrier_service_id)
+    [HttpDelete, Route("carrier_services/{carrier_service_id:long}.json")]
+    public override Task DeleteCarrierService(long carrier_service_id)
     {
         throw new NotImplementedException();
     }

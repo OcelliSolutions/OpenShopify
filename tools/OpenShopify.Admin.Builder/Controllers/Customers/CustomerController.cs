@@ -22,137 +22,9 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface ICustomerController
+
+    public abstract class CustomerControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieves a list of customers
-        /// </summary>
-
-        /// <param name="created_at_max">Show customers created before a specified date.&lt;br&gt;(format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <param name="created_at_min">Show customers created after a specified date.&lt;br&gt;(format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <param name="ids">Restrict results to customers specified by a comma-separated list of IDs.</param>
-
-        /// <param name="limit">The maximum number of results to show.</param>
-
-        /// <param name="since_id">Restrict results to those after the specified ID.</param>
-
-        /// <param name="updated_at_max">Show customers last updated before a specified date.&lt;br&gt;(format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <param name="updated_at_min">Show customers last updated after a specified date.&lt;br&gt;(format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <returns>Retrieves a list of customers</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfCustomersAsync(string? created_at_max, string? created_at_min, string? fields, string? ids, string limit, string? since_id, string? updated_at_max, string? updated_at_min);
-
-        /// <summary>
-        /// Creates a customer
-        /// </summary>
-
-        /// <returns>Creates a customer</returns>
-
-        System.Threading.Tasks.Task CreateCustomerAsync();
-
-        /// <summary>
-        /// Searches for customers that match a supplied query
-        /// </summary>
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <param name="limit">The maximum number of results to show.</param>
-
-        /// <param name="order">Set the field and direction by which to order results.</param>
-
-        /// <param name="query">Text to search for in the shop's customer data.
-        /// <br/>&lt;strong&gt;Note:&lt;/strong&gt; Supported queries: &lt;code&gt;accepts_marketing&lt;/code&gt;,
-        /// <br/>&lt;code&gt;activation_date&lt;/code&gt;, &lt;code&gt;address1&lt;/code&gt;, &lt;code&gt;address2&lt;/code&gt;, &lt;code&gt;city&lt;/code&gt;,
-        /// <br/>&lt;code&gt;company&lt;/code&gt;, &lt;code&gt;country&lt;/code&gt;, &lt;code&gt;customer_date&lt;/code&gt;, &lt;code&gt;customer_first_name&lt;/code&gt;,
-        /// <br/>&lt;code&gt;customer_id&lt;/code&gt;, &lt;code&gt;customer_last_name&lt;/code&gt;, &lt;code&gt;customer_tag&lt;/code&gt;, &lt;code&gt; email&lt;/code&gt;,
-        /// <br/>&lt;code&gt;email_marketing_state&lt;/code&gt;, &lt;code&gt;first_name&lt;/code&gt;, &lt;code&gt;first_order_date&lt;/code&gt;, &lt;code&gt;id&lt;/code&gt;,
-        /// <br/>&lt;code&gt;last_abandoned_order_date&lt;/code&gt;, &lt;code&gt;last_name&lt;/code&gt;, &lt;code&gt;multipass_identifier&lt;/code&gt;,
-        /// <br/>&lt;code&gt;orders_count&lt;/code&gt;, &lt;code&gt;order_date&lt;/code&gt;, &lt;code&gt;phone&lt;/code&gt;, &lt;code&gt;province&lt;/code&gt;,
-        /// <br/>&lt;code&gt;shop_id&lt;/code&gt;, &lt;code&gt;state&lt;/code&gt;, &lt;code&gt;tag&lt;/code&gt;, &lt;code&gt;total_spent&lt;/code&gt;,
-        /// <br/>&lt;code&gt;updated_at&lt;/code&gt;, &lt;code&gt;verified_email&lt;/code&gt;, &lt;code&gt;product_subscriber_status&lt;/code&gt;. All other queries
-        /// <br/>returns all customers.</param>
-
-        /// <returns>Searches for customers that match a supplied query</returns>
-
-        System.Threading.Tasks.Task SearchForCustomersThatMatchSuppliedQueryAsync(string? fields, string limit, string order, string? query);
-
-        /// <summary>
-        /// Retrieves a single customer
-        /// </summary>
-
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <returns>Retrieves a single customer</returns>
-
-        System.Threading.Tasks.Task RetrieveSingleCustomerAsync(string customer_id, string? fields);
-
-        /// <summary>
-        /// Updates a customer
-        /// </summary>
-
-
-        /// <returns>Updates a customer</returns>
-
-        System.Threading.Tasks.Task UpdateCustomerAsync(string customer_id);
-
-        /// <summary>
-        /// Creates an account activation URL for a customer
-        /// </summary>
-
-
-        /// <returns>Creates an account activation URL for a customer</returns>
-
-        System.Threading.Tasks.Task CreateAccountActivationURLForCustomerAsync(string customer_id);
-
-        /// <summary>
-        /// Sends an account invite to a customer
-        /// </summary>
-
-
-        /// <returns>Sends an account invite to a customer</returns>
-
-        System.Threading.Tasks.Task SendAccountInviteToCustomerAsync(string customer_id);
-
-        /// <summary>
-        /// Retrieves a count of customers
-        /// </summary>
-
-        /// <returns>Retrieves a count of customers</returns>
-
-        System.Threading.Tasks.Task RetrieveCountOfCustomersAsync();
-
-        /// <summary>
-        /// Retrieves all orders that belong to a customer
-        /// </summary>
-
-
-        /// <param name="status">The status of the orders to return. The status defaults to open.</param>
-
-        /// <returns>Retrieves all orders that belong to a customer</returns>
-
-        System.Threading.Tasks.Task RetrieveAllOrdersThatBelongToCustomerAsync(string customer_id, string? status);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class CustomerController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private ICustomerController _implementation;
-
-        public CustomerController(ICustomerController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieves a list of customers
         /// </summary>
@@ -166,22 +38,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Show customers last updated after a specified date.&lt;br&gt;(format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Retrieves a list of customers</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers.json")]
-        public System.Threading.Tasks.Task RetrieveListOfCustomers([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
-        {
-
-            return _implementation.RetrieveListOfCustomersAsync(created_at_max, created_at_min, fields, ids, limit ?? "50", since_id, updated_at_max, updated_at_min);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfCustomers([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Creates a customer
         /// </summary>
         /// <returns>Creates a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers.json")]
-        public System.Threading.Tasks.Task CreateCustomer()
-        {
-
-            return _implementation.CreateCustomerAsync();
-        }
+        public abstract System.Threading.Tasks.Task CreateCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CustomerItem request);
 
         /// <summary>
         /// Searches for customers that match a supplied query
@@ -202,11 +66,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <br/>returns all customers.</param>
         /// <returns>Searches for customers that match a supplied query</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/search.json")]
-        public System.Threading.Tasks.Task SearchForCustomersThatMatchSuppliedQuery([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? order, [Microsoft.AspNetCore.Mvc.FromQuery] string? query)
-        {
-
-            return _implementation.SearchForCustomersThatMatchSuppliedQueryAsync(fields, limit ?? "50", order ?? "last_order_date DESC", query);
-        }
+        public abstract System.Threading.Tasks.Task SearchForCustomersThatMatchSuppliedQuery([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? order, [Microsoft.AspNetCore.Mvc.FromQuery] string? query);
 
         /// <summary>
         /// Retrieves a single customer
@@ -214,55 +74,35 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSingleCustomer(string customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveSingleCustomerAsync(customer_id, fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSingleCustomer(long customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates a customer
         /// </summary>
         /// <returns>Updates a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}.json")]
-        public System.Threading.Tasks.Task UpdateCustomer(string customer_id)
-        {
-
-            return _implementation.UpdateCustomerAsync(customer_id);
-        }
+        public abstract System.Threading.Tasks.Task UpdateCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CustomerItem request, long customer_id);
 
         /// <summary>
         /// Creates an account activation URL for a customer
         /// </summary>
         /// <returns>Creates an account activation URL for a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/account_activation_url.json")]
-        public System.Threading.Tasks.Task CreateAccountActivationURLForCustomer(string customer_id)
-        {
-
-            return _implementation.CreateAccountActivationURLForCustomerAsync(customer_id);
-        }
+        public abstract System.Threading.Tasks.Task CreateAccountActivationURLForCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CustomerItem request, long customer_id);
 
         /// <summary>
         /// Sends an account invite to a customer
         /// </summary>
         /// <returns>Sends an account invite to a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/send_invite.json")]
-        public System.Threading.Tasks.Task SendAccountInviteToCustomer(string customer_id)
-        {
-
-            return _implementation.SendAccountInviteToCustomerAsync(customer_id);
-        }
+        public abstract System.Threading.Tasks.Task SendAccountInviteToCustomer(long customer_id);
 
         /// <summary>
         /// Retrieves a count of customers
         /// </summary>
         /// <returns>Retrieves a count of customers</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/count.json")]
-        public System.Threading.Tasks.Task RetrieveCountOfCustomers()
-        {
-
-            return _implementation.RetrieveCountOfCustomersAsync();
-        }
+        public abstract System.Threading.Tasks.Task RetrieveCountOfCustomers();
 
         /// <summary>
         /// Retrieves all orders that belong to a customer
@@ -270,11 +110,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="status">The status of the orders to return. The status defaults to open.</param>
         /// <returns>Retrieves all orders that belong to a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/orders.json")]
-        public System.Threading.Tasks.Task RetrieveAllOrdersThatBelongToCustomer(string customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status)
-        {
-
-            return _implementation.RetrieveAllOrdersThatBelongToCustomerAsync(customer_id, status);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveAllOrdersThatBelongToCustomer(long customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status);
 
     }
 

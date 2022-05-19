@@ -22,43 +22,16 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IShopController
+
+    public abstract class ShopControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieves the shop's configuration
-        /// </summary>
-
-        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
-
-        /// <returns>Retrieves the shop's configuration</returns>
-
-        System.Threading.Tasks.Task RetrieveTheShopsConfigurationAsync(string? fields);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class ShopController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IShopController _implementation;
-
-        public ShopController(IShopController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieves the shop's configuration
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves the shop's configuration</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shop.json")]
-        public System.Threading.Tasks.Task RetrieveTheShopsConfiguration([Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveTheShopsConfigurationAsync(fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveShopsConfiguration([Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
     }
 

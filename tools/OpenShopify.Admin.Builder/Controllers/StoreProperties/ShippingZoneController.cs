@@ -22,43 +22,16 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IShippingZoneController
+
+    public abstract class ShippingZoneControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Receive a list of all ShippingZones
-        /// </summary>
-
-        /// <param name="fields">comma-separated list of fields to include in the response</param>
-
-        /// <returns>Receive a list of all ShippingZones</returns>
-
-        System.Threading.Tasks.Task ReceiveListOfAllShippingZonesAsync(string? fields);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class ShippingZoneController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IShippingZoneController _implementation;
-
-        public ShippingZoneController(IShippingZoneController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Receive a list of all ShippingZones
         /// </summary>
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <returns>Receive a list of all ShippingZones</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shipping_zones.json")]
-        public System.Threading.Tasks.Task ReceiveListOfAllShippingZones([Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.ReceiveListOfAllShippingZonesAsync(fields);
-        }
+        public abstract System.Threading.Tasks.Task ReceiveListOfAllShippingZones([Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
     }
 

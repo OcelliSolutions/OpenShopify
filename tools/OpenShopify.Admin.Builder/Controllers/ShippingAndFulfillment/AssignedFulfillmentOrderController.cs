@@ -22,34 +22,9 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IAssignedFulfillmentOrderController
+
+    public abstract class AssignedFulfillmentOrderControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieves a list of fulfillment orders on a shop for a specific app
-        /// </summary>
-
-        /// <param name="assignment_status">The assigment status of the fulfillment orders that should be returned:</param>
-
-        /// <param name="location_ids">The IDs of the assigned locations of the fulfillment orders that should be returned.</param>
-
-        /// <returns>Retrieves a list of fulfillment orders on a shop for a specific app</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfFulfillmentOrdersOnShopForSpecificAppAsync(string? assignment_status, string? location_ids);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class AssignedFulfillmentOrderController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IAssignedFulfillmentOrderController _implementation;
-
-        public AssignedFulfillmentOrderController(IAssignedFulfillmentOrderController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieves a list of fulfillment orders on a shop for a specific app
         /// </summary>
@@ -57,11 +32,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="location_ids">The IDs of the assigned locations of the fulfillment orders that should be returned.</param>
         /// <returns>Retrieves a list of fulfillment orders on a shop for a specific app</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("assigned_fulfillment_orders.json")]
-        public System.Threading.Tasks.Task RetrieveListOfFulfillmentOrdersOnShopForSpecificApp([Microsoft.AspNetCore.Mvc.FromQuery] string? assignment_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? location_ids)
-        {
-
-            return _implementation.RetrieveListOfFulfillmentOrdersOnShopForSpecificAppAsync(assignment_status, location_ids);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfFulfillmentOrdersOnShopForSpecificApp([Microsoft.AspNetCore.Mvc.FromQuery] string? assignment_status, [Microsoft.AspNetCore.Mvc.FromQuery] long? location_ids);
 
     }
 

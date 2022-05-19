@@ -1,52 +1,54 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
+using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.OnlineStore;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.OnlineStore)]
 [ApiController]
-public class BlogController : IBlogController
+public class BlogController : BlogControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs.json")]
-    public Task RetrieveListOfAllBlogsAsync(string? fields, string? handle, string limit, string? since_id)
+    [HttpGet, Route("blogs.json")]
+    public override Task RetrieveListOfAllBlogs(string? fields, string? handle, int? limit, string? page_info, int? since_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("blogs.json")]
-    public Task CreateNewBlogAsync(string title)
+    [HttpPost, Route("blogs.json")]
+    public override Task CreateNewBlog(BlogItem request, string title)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/count.json")]
-    public Task ReceiveCountOfAllBlogsAsync()
+    [HttpGet, Route("blogs/count.json")]
+    [ProducesResponseType(typeof(BlogCount), StatusCodes.Status200OK)]
+    public override Task ReceiveCountOfAllBlogs()
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}.json")]
-    public Task ReceiveSingleBlogAsync(string blog_id, string? fields)
+    [HttpGet, Route("blogs/{blog_id:long}.json")]
+    public override Task ReceiveSingleBlog(long blog_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}.json")]
-    public Task ModifyExistingBlogAsync(string blog_id)
+    [HttpPut, Route("blogs/{blog_id:long}.json")]
+    public override Task ModifyExistingBlog(BlogItem request, long blog_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}.json")]
-    public Task RemoveExistingBlogAsync(string blog_id)
+    [HttpDelete, Route("blogs/{blog_id:long}.json")]
+    public override Task RemoveExistingBlog(long blog_id)
     {
         throw new NotImplementedException();
     }

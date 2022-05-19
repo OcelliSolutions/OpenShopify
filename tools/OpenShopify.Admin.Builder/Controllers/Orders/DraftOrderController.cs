@@ -22,119 +22,9 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IDraftOrderController
+
+    public abstract class DraftOrderControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Create a new DraftOrder
-        /// </summary>
-
-        /// <param name="customer_id">Used to load the customer. When a customer is loaded, the customer’s email address  is also associated.</param>
-
-        /// <param name="use_customer_default_address">An optional boolean that you can send as part of a draft order object
-        /// <br/>        to load customer shipping information. Valid values: true or false.</param>
-
-        /// <returns>Create a new DraftOrder</returns>
-
-        System.Threading.Tasks.Task CreateNewDraftOrderAsync(string? customer_id, string? use_customer_default_address);
-
-        /// <summary>
-        /// Retrieves a list of draft orders
-        /// </summary>
-
-        /// <param name="fieldsQuery">A comma-separated list of fields to include in the response</param>
-
-        /// <param name="ids">Filter by list of IDs</param>
-
-        /// <param name="limit">Amount of results</param>
-
-        /// <param name="since_id">Restrict results to after the specified ID</param>
-
-
-        /// <param name="updated_at_max">Show orders last updated before date (format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <param name="updated_at_min">Show orders last updated after date (format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <returns>Retrieves a list of draft orders</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfDraftOrdersAsync(string? fieldsQuery, string? ids, string limit, string? since_id, string? status, string? updated_at_max, string? updated_at_min);
-
-        /// <summary>
-        /// Modify an existing DraftOrder
-        /// </summary>
-
-
-        /// <returns>Modify an existing DraftOrder</returns>
-
-        System.Threading.Tasks.Task ModifyExistingDraftOrderAsync(string draft_order_id);
-
-        /// <summary>
-        /// Receive a single DraftOrder
-        /// </summary>
-
-
-        /// <param name="fields">A comma-separated list of fields to include in the response</param>
-
-        /// <returns>Receive a single DraftOrder</returns>
-
-        System.Threading.Tasks.Task ReceiveSingleDraftOrderAsync(string draft_order_id, string? fields);
-
-        /// <summary>
-        /// Remove an existing DraftOrder
-        /// </summary>
-
-
-        /// <returns>Remove an existing DraftOrder</returns>
-
-        System.Threading.Tasks.Task RemoveExistingDraftOrderAsync(string draft_order_id);
-
-        /// <summary>
-        /// Receive a count of all DraftOrders
-        /// </summary>
-
-        /// <param name="since_id">Count draft orders after the specified ID.</param>
-
-        /// <param name="status">Count draft orders that have a given status.</param>
-
-        /// <param name="updated_at_max">Count draft orders last updated before the specified date (format: 2014-04-25T16:15:47-04:00).</param>
-
-        /// <param name="updated_at_min">Count draft orders last updated after the specified date (format: 2014-04-25T16:15:47-04:00).</param>
-
-        /// <returns>Receive a count of all DraftOrders</returns>
-
-        System.Threading.Tasks.Task ReceiveCountOfAllDraftOrdersAsync(string? since_id, string status, string? updated_at_max, string? updated_at_min);
-
-        /// <summary>
-        /// Send an invoice
-        /// </summary>
-
-
-        /// <returns>Send an invoice</returns>
-
-        System.Threading.Tasks.Task SendInvoiceAsync(string draft_order_id);
-
-        /// <summary>
-        /// Complete a draft order
-        /// </summary>
-
-
-        /// <returns>Complete a draft order</returns>
-
-        System.Threading.Tasks.Task CompleteDraftOrderAsync(string draft_order_id, string? payment_pending);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class DraftOrderController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IDraftOrderController _implementation;
-
-        public DraftOrderController(IDraftOrderController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Create a new DraftOrder
         /// </summary>
@@ -143,11 +33,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <br/>        to load customer shipping information. Valid values: true or false.</param>
         /// <returns>Create a new DraftOrder</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("draft_orders.json")]
-        public System.Threading.Tasks.Task CreateNewDraftOrder([Microsoft.AspNetCore.Mvc.FromQuery] string? customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? use_customer_default_address)
-        {
-
-            return _implementation.CreateNewDraftOrderAsync(customer_id, use_customer_default_address);
-        }
+        public abstract System.Threading.Tasks.Task CreateNewDraftOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.DraftOrderItem request, [Microsoft.AspNetCore.Mvc.FromQuery] long? customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? use_customer_default_address);
 
         /// <summary>
         /// Retrieves a list of draft orders
@@ -160,22 +46,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Show orders last updated after date (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Retrieves a list of draft orders</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("draft_orders.json")]
-        public System.Threading.Tasks.Task RetrieveListOfDraftOrders([Microsoft.AspNetCore.Mvc.FromQuery(Name = "fields")] string? fieldsQuery, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
-        {
-
-            return _implementation.RetrieveListOfDraftOrdersAsync(fieldsQuery, ids, limit ?? "50", since_id, status, updated_at_max, updated_at_min);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfDraftOrders([Microsoft.AspNetCore.Mvc.FromQuery(Name = "fields")] string? fieldsQuery, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Modify an existing DraftOrder
         /// </summary>
         /// <returns>Modify an existing DraftOrder</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("draft_orders/{draft_order_id}.json")]
-        public System.Threading.Tasks.Task ModifyExistingDraftOrder(string draft_order_id)
-        {
-
-            return _implementation.ModifyExistingDraftOrderAsync(draft_order_id);
-        }
+        public abstract System.Threading.Tasks.Task ModifyExistingDraftOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.DraftOrderItem request, long draft_order_id);
 
         /// <summary>
         /// Receive a single DraftOrder
@@ -183,22 +61,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response</param>
         /// <returns>Receive a single DraftOrder</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("draft_orders/{draft_order_id}.json")]
-        public System.Threading.Tasks.Task ReceiveSingleDraftOrder(string draft_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.ReceiveSingleDraftOrderAsync(draft_order_id, fields);
-        }
+        public abstract System.Threading.Tasks.Task ReceiveSingleDraftOrder(long draft_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Remove an existing DraftOrder
         /// </summary>
         /// <returns>Remove an existing DraftOrder</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("draft_orders/{draft_order_id}.json")]
-        public System.Threading.Tasks.Task RemoveExistingDraftOrder(string draft_order_id)
-        {
-
-            return _implementation.RemoveExistingDraftOrderAsync(draft_order_id);
-        }
+        public abstract System.Threading.Tasks.Task RemoveExistingDraftOrder(long draft_order_id);
 
         /// <summary>
         /// Receive a count of all DraftOrders
@@ -209,33 +79,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Count draft orders last updated after the specified date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Receive a count of all DraftOrders</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("draft_orders/count.json")]
-        public System.Threading.Tasks.Task ReceiveCountOfAllDraftOrders([Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min)
-        {
-
-            return _implementation.ReceiveCountOfAllDraftOrdersAsync(since_id, status ?? "open", updated_at_max, updated_at_min);
-        }
+        public abstract System.Threading.Tasks.Task ReceiveCountOfAllDraftOrders([Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Send an invoice
         /// </summary>
         /// <returns>Send an invoice</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("draft_orders/{draft_order_id}/send_invoice.json")]
-        public System.Threading.Tasks.Task SendInvoice(string draft_order_id)
-        {
-
-            return _implementation.SendInvoiceAsync(draft_order_id);
-        }
+        public abstract System.Threading.Tasks.Task SendInvoice(long draft_order_id);
 
         /// <summary>
         /// Complete a draft order
         /// </summary>
         /// <returns>Complete a draft order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("draft_orders/{draft_order_id}/complete.json")]
-        public System.Threading.Tasks.Task CompleteDraftOrder(string draft_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? payment_pending)
-        {
-
-            return _implementation.CompleteDraftOrderAsync(draft_order_id, payment_pending);
-        }
+        public abstract System.Threading.Tasks.Task CompleteDraftOrder(long draft_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? payment_pending);
 
     }
 

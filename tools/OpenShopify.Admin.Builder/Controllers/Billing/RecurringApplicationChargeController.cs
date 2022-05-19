@@ -22,81 +22,15 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IRecurringApplicationChargeController
+
+    public abstract class RecurringApplicationChargeControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Creates a recurring application charge
-        /// </summary>
-
-        /// <returns>Creates a recurring application charge</returns>
-
-        System.Threading.Tasks.Task CreateRecurringApplicationChargeAsync();
-
-        /// <summary>
-        /// Retrieves a list of recurring application charges
-        /// </summary>
-
-        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
-
-        /// <param name="since_id">Restrict results to after the specified ID.</param>
-
-        /// <returns>Retrieves a list of recurring application charges</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfRecurringApplicationChargesAsync(string? fields, string? since_id);
-
-        /// <summary>
-        /// Retrieves a single charge
-        /// </summary>
-
-
-        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
-
-        /// <returns>Retrieves a single charge</returns>
-
-        System.Threading.Tasks.Task RetrieveSingleChargeAsync(string recurring_application_charge_id, string? fields);
-
-        /// <summary>
-        /// Cancels a recurring application charge
-        /// </summary>
-
-
-        /// <returns>Cancels a recurring application charge</returns>
-
-        System.Threading.Tasks.Task CancelRecurringApplicationChargeAsync(string recurring_application_charge_id);
-
-        /// <summary>
-        /// Updates the capped amount of a recurring application charge
-        /// </summary>
-
-
-        /// <returns>Updates the capped amount of a recurring application charge</returns>
-
-        System.Threading.Tasks.Task UpdateTheCappedAmountOfRecurringApplicationChargeAsync(string recurring_application_charge_id);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class RecurringApplicationChargeController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IRecurringApplicationChargeController _implementation;
-
-        public RecurringApplicationChargeController(IRecurringApplicationChargeController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Creates a recurring application charge
         /// </summary>
         /// <returns>Creates a recurring application charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges.json")]
-        public System.Threading.Tasks.Task CreateRecurringApplicationCharge()
-        {
-
-            return _implementation.CreateRecurringApplicationChargeAsync();
-        }
+        public abstract System.Threading.Tasks.Task CreateRecurringApplicationCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.RecurringApplicationChargeItem request);
 
         /// <summary>
         /// Retrieves a list of recurring application charges
@@ -105,11 +39,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <returns>Retrieves a list of recurring application charges</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges.json")]
-        public System.Threading.Tasks.Task RetrieveListOfRecurringApplicationCharges([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id)
-        {
-
-            return _implementation.RetrieveListOfRecurringApplicationChargesAsync(fields, since_id);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfRecurringApplicationCharges([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
 
         /// <summary>
         /// Retrieves a single charge
@@ -117,33 +47,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a single charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSingleCharge(string recurring_application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveSingleChargeAsync(recurring_application_charge_id, fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSingleCharge(long recurring_application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Cancels a recurring application charge
         /// </summary>
         /// <returns>Cancels a recurring application charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}.json")]
-        public System.Threading.Tasks.Task CancelRecurringApplicationCharge(string recurring_application_charge_id)
-        {
-
-            return _implementation.CancelRecurringApplicationChargeAsync(recurring_application_charge_id);
-        }
+        public abstract System.Threading.Tasks.Task CancelRecurringApplicationCharge(long recurring_application_charge_id);
 
         /// <summary>
         /// Updates the capped amount of a recurring application charge
         /// </summary>
         /// <returns>Updates the capped amount of a recurring application charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/customize.json")]
-        public System.Threading.Tasks.Task UpdateTheCappedAmountOfRecurringApplicationCharge(string recurring_application_charge_id)
-        {
-
-            return _implementation.UpdateTheCappedAmountOfRecurringApplicationChargeAsync(recurring_application_charge_id);
-        }
+        public abstract System.Threading.Tasks.Task UpdateCappedAmountOfRecurringApplicationCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.RecurringApplicationChargeItem request, long recurring_application_charge_id);
 
     }
 

@@ -1,38 +1,40 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
+using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.StoreProperties;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.StoreProperties)]
 [ApiController]
-public class ProvinceController : IProvinceController
+public class ProvinceController : ProvinceControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces.json")]
-    public Task RetrieveListOfProvincesForCountryAsync(string country_id, string? fields, string? since_id)
+    [HttpGet, Route("countries/{country_id:long}/provinces.json")]
+    public override Task RetrieveListOfProvincesForCountry(long country_id, string? fields, int? since_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/count.json")]
-    public Task RetrieveCountOfProvincesForCountryAsync(string country_id)
+    [HttpGet, Route("countries/{country_id:long}/provinces/count.json")]
+    [ProducesResponseType(typeof(ProvinceCount), StatusCodes.Status200OK)]
+    public override Task RetrieveCountOfProvincesForCountry(long country_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/{province_id}.json")]
-    public Task RetrieveSingleProvinceForCountryAsync(string country_id, string province_id, string? fields)
+    [HttpGet, Route("countries/{country_id:long}/provinces/{province_id:long}.json")]
+    public override Task RetrieveSingleProvinceForCountry(long country_id, long province_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/{province_id}.json")]
-    public Task UpdateExistingProvinceForCountryAsync(string country_id, string province_id)
+    [HttpPut, Route("countries/{country_id:long}/provinces/{province_id:long}.json")]
+    public override Task UpdateExistingProvinceForCountry(ProvinceItem request, long country_id, long province_id)
     {
         throw new NotImplementedException();
     }

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Models;
 

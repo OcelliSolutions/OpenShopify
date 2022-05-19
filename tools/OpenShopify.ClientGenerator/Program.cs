@@ -15,6 +15,38 @@ foreach (var shopifyFile in shopifyFiles)
     className = className.Replace("open-shopify-", string.Empty).Replace(".yaml", string.Empty);
     className = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(className).Replace("-", string.Empty);
     var document = OpenApiYamlDocument.FromFileAsync(shopifyFile).Result;
+    
+    var excludeNamesForClient = new List<string> { "ErrorResponse", "ShopifyResponse" };
+    if (className == "DiscountCode")
+        excludeNamesForClient.AddRange(new List<string> { "Address", "ClientDetails" });
+    if (className == "Customers")
+        excludeNamesForClient.AddRange(new List<string>
+        {
+            "Order", "LineItemProperty", "OrderMetafield", "NoteAttribute", "LineItemOriginLocation", "LineItemDuty", 
+            "LineItem", "Fulfillment", "DiscountCode", "DiscountApplication", "DiscountAllocation", "PaymentDetails",
+            "Price", "PriceSet", "Refund", "RefundDuty", "RefundDutyType", "RefundLineItem", "RefundLineItem",
+            "RefundOrderAdjustment", "Shipping", "ShippingLine", "TaxLine", "Transaction", "CurrencyExchangeAdjustment", 
+        });
+    if (className == "Orders")
+        excludeNamesForClient.AddRange(new List<string>
+        {
+            "Address", "ClientDetails", "Customer", "CustomerMetafield", "DiscountCode", "Fulfillment", "Price"
+        });
+    if (className == "SalesChannels")
+        excludeNamesForClient.AddRange(new List<string>
+        {
+            "Address", "Customer", "CustomerMetafield", "DiscountAllocation", "DiscountCode", 
+            "LineItem", "LineItemDuty", "LineItemOriginLocation", "LineItemProperty", "Price", "PriceSet", 
+            "ShippingLine", "TaxLine"
+        });
+    if (className == "ShippingAndFulfillment")
+        excludeNamesForClient.AddRange(new List<string>
+        {
+            "Address", "LineItem", "LineItemDuty", "LineItemOriginLocation", "LineItemProperty", 
+            "DiscountAllocation", "Price", "PriceSet", "TaxLine"
+        });
+
+    var excludedNames = excludeNamesForClient.ToArray();
     var settings = new CSharpClientGeneratorSettings()
     {
         ClassName = "{controller}Client",
@@ -26,7 +58,8 @@ foreach (var shopifyFile in shopifyFiles)
         ClientClassAccessModifier = "internal",
         AdditionalNamespaceUsages = new[] { "System.Text.Json" },
         GenerateExceptionClasses = false,
-        ParameterNameGenerator = new CustomParameterNameGenerator(),
+        ParameterNameGenerator = new CustomParameterNameGenerator(), 
+        WrapResponses = true, ResponseClass = "ShopifyResponse",
         CSharpGeneratorSettings =
         {
             Namespace = $@"Ocelli.OpenShopify", 
@@ -36,7 +69,7 @@ foreach (var shopifyFile in shopifyFiles)
             GenerateNullableReferenceTypes = true,
             GenerateDefaultValues = true,
             GenerateDataAnnotations = true, 
-            ExcludedTypeNames = new []{ "ErrorResponse" },
+            ExcludedTypeNames = excludeNamesForClient.ToArray(),
             PropertyNameGenerator = new CustomPropertyNameGenerator()
         }
     };

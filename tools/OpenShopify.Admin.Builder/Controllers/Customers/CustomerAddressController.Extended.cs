@@ -1,59 +1,70 @@
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Admin.Builder.Models;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.Customers;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Customers)]
 [ApiController]
-public class CustomerAddressController : ICustomerAddressController
+public class CustomerAddressController : CustomerAddressControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses.json")]
-    public Task RetrieveListOfAddressesForCustomerAsync(string customer_id)
+    [HttpGet, Route("customers/{customer_id:long}/addresses.json")]
+    [ProducesResponseType(typeof(CustomerAddressList), StatusCodes.Status200OK)]
+    public override Task RetrieveListOfAddressesForCustomer(long customer_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses.json")]
-    public Task CreateNewAddressForCustomerAsync(string customer_id)
+    [HttpPost, Route("customers/{customer_id:long}/addresses.json")]
+    [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status201Created)]
+    public override Task CreateNewAddressForCustomer(CustomerAddressItem request, long customer_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}.json")]
-    public Task RetrieveDetailsForSingleCustomerAddressAsync(string address_id, string customer_id)
+    [HttpGet, Route("customers/{customer_id:long}/addresses/{address_id:long}.json")]
+    [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status200OK)]
+    public override Task RetrieveDetailsForSingleCustomerAddress(long address_id, long customer_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}.json")]
-    public Task UpdateExistingCustomerAddressAsync(string address_id, string customer_id)
+    [HttpPut, Route("customers/{customer_id:long}/addresses/{address_id:long}.json")]
+    [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status200OK)]
+    public override Task UpdateExistingCustomerAddress(CustomerAddressItem request, long address_id, long customer_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}.json")]
-    public Task RemoveAddressFromCustomersAddressListAsync(string address_id, string customer_id)
+    [HttpDelete, Route("customers/{customer_id:long}/addresses/{address_id:long}.json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public override Task RemoveAddressFromCustomersAddressList(long address_id, long customer_id)
+    {
+        throw new NotImplementedException();
+    }
+
+    ///TODO: Validate `address_ids[]` parameter
+    /// <inheritdoc />
+    [HttpPut, Route("customers/{customer_id:long}/addresses/set.json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public override Task PerformBulkOperationsForMultipleCustomerAddresses(long address_ids, long customer_id, string operation)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/set.json")]
-    public Task PerformBulkOperationsForMultipleCustomerAddressesAsync(string address_ids, string customer_id, string operation)
-    {
-        throw new NotImplementedException();
-    }
-
-    /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}/default.json")]
-    public Task SetTheDefaultAddressForCustomerAsync(string address_id, string customer_id)
+    [HttpPut, Route("customers/{customer_id:long}/addresses/{address_id:long}/default.json")]
+    [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status200OK)]
+    public override Task SetDefaultAddressForCustomer(long address_id, long customer_id)
     {
         throw new NotImplementedException();
     }

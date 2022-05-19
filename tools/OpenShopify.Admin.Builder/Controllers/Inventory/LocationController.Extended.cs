@@ -1,38 +1,44 @@
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
+using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.Inventory;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Inventory)]
 [ApiController]
-public class LocationController : ILocationController
+public class LocationController : LocationControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations.json")]
-    public Task RetrieveListOfLocationsAsync()
+    [HttpGet, Route("locations.json")]
+    [ProducesResponseType(typeof(LocationList), StatusCodes.Status200OK)]
+    public override Task RetrieveListOfLocations()
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations/{location_id}.json")]
-    public Task RetrieveSingleLocationByItsIDAsync(string location_id)
+    [HttpGet, Route("locations/{location_id:long}.json")]
+    [ProducesResponseType(typeof(LocationItem), StatusCodes.Status200OK)]
+    public override Task RetrieveSingleLocationByItsID(long location_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations/count.json")]
-    public Task RetrieveCountOfLocationsAsync()
+    [HttpGet, Route("locations/count.json")]
+    [ProducesResponseType(typeof(LocationCount), StatusCodes.Status200OK)]
+    public override Task RetrieveCountOfLocations()
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations/{location_id}/inventory_levels.json")]
-    public Task RetrieveListOfInventoryLevelsForLocationAsync(string location_id)
+    [HttpGet, Route("locations/{location_id:long}/inventory_levels.json")]
+    [ProducesResponseType(typeof(LocationList), StatusCodes.Status200OK)]
+    public override Task RetrieveListOfInventoryLevelsForLocation(long location_id)
     {
         throw new NotImplementedException();
     }

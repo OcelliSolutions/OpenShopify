@@ -1,18 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.ShopifyPayments;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShopifyPayments)]
 [ApiController]
-public class TransactionsController : ITransactionsController
+public class TransactionsController : TransactionsControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/balance/transactions.json")]
-    public Task ReturnListOfAllBalanceTransactionsAsync(string? last_id, string? payout_id, string? payout_status,
-        string? since_id, string? test)
+    [HttpGet, Route("shopify_payments/balance/transactions.json")]
+    public override Task ReturnListOfAllBalanceTransactions(long? last_id, long? payout_id, string? payout_status,
+        int? since_id, string? test)
     {
         throw new NotImplementedException();
     }

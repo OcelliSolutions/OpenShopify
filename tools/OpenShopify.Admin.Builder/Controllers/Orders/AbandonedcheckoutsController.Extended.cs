@@ -1,18 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.Orders;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Orders)]
 [ApiController]
-public class AbandonedCheckoutsController : IAbandonedCheckoutsController
+public class AbandonedCheckoutsController : AbandonedCheckoutsControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("checkouts.json")]
-    public Task RetrieveListOfAbandonedCheckoutsAsync(string? created_at_max, string? created_at_min, string limit,
-        string? since_id, string status, string? updated_at_max, string? updated_at_min)
+    [HttpGet, Route("checkouts.json")]
+    public override Task RetrieveListOfAbandonedCheckouts(DateTime? created_at_max, DateTime? created_at_min, int? limit, string? page_info,
+        int? since_id, string status, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
     }

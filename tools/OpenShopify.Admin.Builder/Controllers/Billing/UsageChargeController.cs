@@ -22,63 +22,15 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IUsageChargeController
+
+    public abstract class UsageChargeControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Creates a usage charge
-        /// </summary>
-
-
-        /// <returns>Creates a usage charge</returns>
-
-        System.Threading.Tasks.Task CreateUsageChargeAsync(string recurring_application_charge_id);
-
-        /// <summary>
-        /// Retrieves a list of usage charges
-        /// </summary>
-
-
-        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
-
-        /// <returns>Retrieves a list of usage charges</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfUsageChargesAsync(string recurring_application_charge_id, string? fields);
-
-        /// <summary>
-        /// Retrieves a single charge
-        /// </summary>
-
-
-        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
-
-        /// <returns>Retrieves a single charge</returns>
-
-        System.Threading.Tasks.Task RetrieveSingleChargeAsync(string recurring_application_charge_id, string usage_charge_id, string? fields);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class UsageChargeController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IUsageChargeController _implementation;
-
-        public UsageChargeController(IUsageChargeController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Creates a usage charge
         /// </summary>
         /// <returns>Creates a usage charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/usage_charges.json")]
-        public System.Threading.Tasks.Task CreateUsageCharge(string recurring_application_charge_id)
-        {
-
-            return _implementation.CreateUsageChargeAsync(recurring_application_charge_id);
-        }
+        public abstract System.Threading.Tasks.Task CreateUsageCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UsageChargeItem request, long recurring_application_charge_id);
 
         /// <summary>
         /// Retrieves a list of usage charges
@@ -86,11 +38,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a list of usage charges</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/usage_charges.json")]
-        public System.Threading.Tasks.Task RetrieveListOfUsageCharges(string recurring_application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveListOfUsageChargesAsync(recurring_application_charge_id, fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfUsageCharges(long recurring_application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Retrieves a single charge
@@ -98,11 +46,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a single charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/usage_charges/{usage_charge_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSingleCharge(string recurring_application_charge_id, string usage_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveSingleChargeAsync(recurring_application_charge_id, usage_charge_id, fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSingleCharge(long recurring_application_charge_id, long usage_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
     }
 

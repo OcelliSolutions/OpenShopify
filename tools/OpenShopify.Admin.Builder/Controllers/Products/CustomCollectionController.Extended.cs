@@ -1,55 +1,64 @@
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
+using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.Products;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Products)]
 [ApiController]
-public class CustomCollectionController : ICustomCollectionController
+public class CustomCollectionController : CustomCollectionControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("custom_collections.json")]
-    public Task RetrieveListOfCustomCollectionsAsync(string? fields, string? handle, string? ids, string limit, string? product_id,
-        string? published_at_max, string? published_at_min, string published_status, string? since_id, string? title,
-        string? updated_at_max, string? updated_at_min)
+    [HttpGet, Route("custom_collections.json")]
+    [ProducesResponseType(typeof(CustomCollectionList), StatusCodes.Status200OK)]
+    public override Task RetrieveListOfCustomCollections(string? fields, string? handle, string? ids, int? limit, string? page_info, long? product_id,
+        DateTime? published_at_max, DateTime? published_at_min, string published_status, int? since_id, string? title,
+        DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("custom_collections.json")]
-    public Task CreateCustomCollectionAsync()
+    [HttpPost, Route("custom_collections.json")]
+    [ProducesResponseType(typeof(CustomCollectionItem), StatusCodes.Status201Created)]
+    public override Task CreateCustomCollection(CustomCollectionItem request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("custom_collections/count.json")]
-    public Task RetrieveCountOfCustomCollectionsAsync(string? product_id, string? published_at_max, string? published_at_min,
-        string published_status, string? title, string? updated_at_max, string? updated_at_min)
+    [HttpGet, Route("custom_collections/count.json")]
+    [ProducesResponseType(typeof(CustomCollectionCount), StatusCodes.Status200OK)]
+    public override Task RetrieveCountOfCustomCollections(long? product_id, DateTime? published_at_max, DateTime? published_at_min,
+        string published_status, string? title, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("custom_collections/{custom_collection_id}.json")]
-    public Task RetrieveSingleCustomCollectionAsync(string custom_collection_id, string? fields)
+    [HttpGet, Route("custom_collections/{custom_collection_id:long}.json")]
+    [ProducesResponseType(typeof(CustomCollectionItem), StatusCodes.Status200OK)]
+    public override Task RetrieveSingleCustomCollection([Required] long custom_collection_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("custom_collections/{custom_collection_id}.json")]
-    public Task UpdateExistingCustomCollectionAsync(string custom_collection_id)
+    [HttpPut, Route("custom_collections/{custom_collection_id:long}.json")]
+    [ProducesResponseType(typeof(CustomCollectionItem), StatusCodes.Status200OK)]
+    public override Task UpdateExistingCustomCollection(CustomCollectionItem request, long custom_collection_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("custom_collections/{custom_collection_id}.json")]
-    public Task DeleteCustomCollectionAsync(string custom_collection_id)
+    [HttpDelete, Route("custom_collections/{custom_collection_id:long}.json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public override Task DeleteCustomCollection([Required] long custom_collection_id)
     {
         throw new NotImplementedException();
     }

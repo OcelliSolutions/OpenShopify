@@ -22,47 +22,9 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IDisputeController
+
+    public abstract class DisputeControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Return a list of all disputes
-        /// </summary>
-
-        /// <param name="initiated_at">Return only disputes with the specified &lt;code&gt;initiated_at&lt;/code&gt; date (&lt;a href="https://en.wikipedia.org/wiki/ISO_8601"&gt;ISO 8601&lt;/a&gt; format).</param>
-
-        /// <param name="last_id">Return only disputes before the specified ID.</param>
-
-        /// <param name="since_id">Return only disputes after the specified ID.</param>
-
-        /// <param name="status">Return only disputes with the specified status.</param>
-
-        /// <returns>Return a list of all disputes</returns>
-
-        System.Threading.Tasks.Task ReturnListOfAllDisputesAsync(string? initiated_at, string? last_id, string? since_id, string? status);
-
-        /// <summary>
-        /// Return a single dispute
-        /// </summary>
-
-
-        /// <returns>Return a single dispute</returns>
-
-        System.Threading.Tasks.Task ReturnSingleDisputeAsync(string dispute_id);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class DisputeController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IDisputeController _implementation;
-
-        public DisputeController(IDisputeController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Return a list of all disputes
         /// </summary>
@@ -72,22 +34,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="status">Return only disputes with the specified status.</param>
         /// <returns>Return a list of all disputes</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/disputes.json")]
-        public System.Threading.Tasks.Task ReturnListOfAllDisputes([Microsoft.AspNetCore.Mvc.FromQuery] string? initiated_at, [Microsoft.AspNetCore.Mvc.FromQuery] string? last_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status)
-        {
-
-            return _implementation.ReturnListOfAllDisputesAsync(initiated_at, last_id, since_id, status);
-        }
+        public abstract System.Threading.Tasks.Task ReturnListOfAllDisputes([Microsoft.AspNetCore.Mvc.FromQuery] string? initiated_at, [Microsoft.AspNetCore.Mvc.FromQuery] long? last_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status);
 
         /// <summary>
         /// Return a single dispute
         /// </summary>
         /// <returns>Return a single dispute</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/disputes/{dispute_id}.json")]
-        public System.Threading.Tasks.Task ReturnSingleDispute(string dispute_id)
-        {
-
-            return _implementation.ReturnSingleDisputeAsync(dispute_id);
-        }
+        public abstract System.Threading.Tasks.Task ReturnSingleDispute(long dispute_id);
 
     }
 

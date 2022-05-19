@@ -22,61 +22,15 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IApplicationCreditController
+
+    public abstract class ApplicationCreditControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Creates an application credit
-        /// </summary>
-
-        /// <returns>Creates an application credit</returns>
-
-        System.Threading.Tasks.Task CreateApplicationCreditAsync();
-
-        /// <summary>
-        /// Retrieves all application credits
-        /// </summary>
-
-        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
-
-        /// <returns>Retrieves all application credits</returns>
-
-        System.Threading.Tasks.Task RetrieveAllApplicationCreditsAsync(string? fields);
-
-        /// <summary>
-        /// Retrieves a single application credit
-        /// </summary>
-
-
-        /// <param name="fields">A comma-separated list of fields to include in the response.</param>
-
-        /// <returns>Retrieves a single application credit</returns>
-
-        System.Threading.Tasks.Task RetrieveSingleApplicationCreditAsync(string application_credit_id, string? fields);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class ApplicationCreditController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IApplicationCreditController _implementation;
-
-        public ApplicationCreditController(IApplicationCreditController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Creates an application credit
         /// </summary>
         /// <returns>Creates an application credit</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("application_credits.json")]
-        public System.Threading.Tasks.Task CreateApplicationCredit()
-        {
-
-            return _implementation.CreateApplicationCreditAsync();
-        }
+        public abstract System.Threading.Tasks.Task CreateApplicationCredit([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ApplicationCreditItem request);
 
         /// <summary>
         /// Retrieves all application credits
@@ -84,11 +38,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves all application credits</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_credits.json")]
-        public System.Threading.Tasks.Task RetrieveAllApplicationCredits([Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveAllApplicationCreditsAsync(fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveAllApplicationCredits([Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Retrieves a single application credit
@@ -96,11 +46,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a single application credit</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_credits/{application_credit_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSingleApplicationCredit(string application_credit_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveSingleApplicationCreditAsync(application_credit_id, fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSingleApplicationCredit(long application_credit_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
     }
 

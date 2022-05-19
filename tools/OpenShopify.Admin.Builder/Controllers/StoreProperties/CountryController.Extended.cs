@@ -1,52 +1,68 @@
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
+using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.StoreProperties;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.StoreProperties)]
 [ApiController]
-public class CountryController : ICountryController
+public class CountryController : CountryControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries.json")]
-    public Task ReceiveListOfAllCountriesAsync(string? fields, string? since_id)
+    [HttpGet, Route("countries.json")]
+    [ProducesResponseType(typeof(CountryList), StatusCodes.Status200OK)]
+    public override Task ReceiveListOfAllCountries(string? fields, int? since_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("countries.json")]
-    public Task CreateCountryAsync()
+    [HttpPost, Route("countries.json")]
+    [ProducesResponseType(typeof(CountryItem), StatusCodes.Status201Created)]
+    public override Task CreateCountry(CountryItem request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/count.json")]
-    public Task RetrieveCountOfCountriesAsync()
+    [HttpGet, Route("countries/count.json")]
+    [ProducesResponseType(typeof(CountryCount), StatusCodes.Status200OK)]
+    public override Task RetrieveCountOfCountries()
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}.json")]
-    public Task RetrieveSpecificCountyAsync(string country_id, string? fields)
+    [HttpGet, Route("countries/{country_id:long}.json")]
+    [ProducesResponseType(typeof(CountryItem), StatusCodes.Status200OK)]
+    public override Task RetrieveSpecificCounty([Required] long country_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}.json")]
-    public Task UpdateExistingCountryAsync(string country_id)
+    [IgnoreApi, HttpPut, Route("countries/{country_id}.invalid")]
+    public override Task UpdateExistingCountry(CountryItem request, long countryId)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc cref="CountryControllerBase.UpdateExistingCountry" />
+    [HttpPut, Route("countries/{country_id:long}.json")]
+    [ProducesResponseType(typeof(CountryItem), StatusCodes.Status200OK)]
+    public Task UpdateExistingCountry([Required] long country_id, [Required] CountryItem request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}.json")]
-    public Task RemoveExistingCountryAsync(string country_id)
+    [HttpDelete, Route("countries/{country_id:long}.json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public override Task RemoveExistingCountry([Required] long country_id)
     {
         throw new NotImplementedException();
     }

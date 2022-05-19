@@ -1,17 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.StoreProperties;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.StoreProperties)]
 [ApiController]
-public class PolicyController : IPolicyController
+public class PolicyController : PolicyControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("policies.json")]
-    public Task RetrieveListOfTheShopsPoliciesAsync()
+    [HttpGet, Route("policies.json")]
+    public override Task RetrieveListOfShopsPolicies()
     {
         throw new NotImplementedException();
     }

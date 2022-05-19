@@ -1,17 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.ShopifyPayments;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.ShopifyPayments)]
 [ApiController]
-public class BalanceController : IBalanceController
+public class BalanceController : BalanceControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/balance.json")]
-    public Task ReturnTheCurrentBalanceAsync()
+    [HttpGet, Route("shopify_payments/balance.json")]
+    public override Task ReturnCurrentBalance()
     {
         throw new NotImplementedException();
     }

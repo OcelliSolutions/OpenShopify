@@ -1,61 +1,70 @@
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Admin.Builder.Models;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.Customers;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Customers)]
 [ApiController]
-public class CustomerSavedSearchController : ICustomerSavedSearchController
+public class CustomerSavedSearchController : CustomerSavedSearchControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches.json")]
-    public Task RetrieveListOfCustomerSavedSearchesAsync(string? fields, string limit, string? since_id)
+    [HttpGet, Route("customer_saved_searches.json")]
+    [ProducesResponseType(typeof(CustomerSavedSearchList), StatusCodes.Status200OK)]
+    public override Task RetrieveListOfCustomerSavedSearches(string? fields, int? limit, string? page_info, int? since_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches.json")]
-    public Task CreateCustomerSavedSearchAsync()
+    [HttpPost, Route("customer_saved_searches.json")]
+    [ProducesResponseType(typeof(CustomerSavedSearchItem), StatusCodes.Status201Created)]
+    public override Task CreateCustomerSavedSearch(CustomerSavedSearchItem request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/count.json")]
+    [HttpGet, Route("customer_saved_searches/count.json")]
+    [ProducesResponseType(typeof(CustomerSavedSearchCount), StatusCodes.Status200OK)]
 
-    public Task RetrieveCountOfAllCustomerSavedSearchesAsync(string? since_id)
+    public override Task RetrieveCountOfAllCustomerSavedSearches(int? since_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
-    public Task RetrieveSingleCustomerSavedSearchAsync(string customer_saved_search_id, string? fields)
+    [HttpGet, Route("customer_saved_searches/{customer_saved_search_id:long}.json")]
+    [ProducesResponseType(typeof(CustomerSavedSearchItem), StatusCodes.Status200OK)]
+    public override Task RetrieveSingleCustomerSavedSearch(long customer_saved_search_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
-    public Task UpdateCustomerSavedSearchAsync(string customer_saved_search_id)
+    [HttpPut, Route("customer_saved_searches/{customer_saved_search_id:long}.json")]
+    [ProducesResponseType(typeof(CustomerSavedSearchItem), StatusCodes.Status200OK)]
+    public override Task UpdateCustomerSavedSearch(CustomerSavedSearchItem request, long customer_saved_search_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
-    public Task DeleteCustomerSavedSearchAsync(string customer_saved_search_id)
+    [HttpDelete, Route("customer_saved_searches/{customer_saved_search_id:long}.json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public override Task DeleteCustomerSavedSearch(long customer_saved_search_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}/customers.json")]
-    public Task RetrieveAllCustomersReturnedByCustomerSavedSearchAsync(string customer_saved_search_id, string? fields,
-        string limit, string order)
+    [HttpGet, Route("customer_saved_searches/{customer_saved_search_id:long}/customers.json")]
+    [ProducesResponseType(typeof(CustomerList), StatusCodes.Status200OK)]
+    public override Task RetrieveAllCustomersReturnedByCustomerSavedSearch(long customer_saved_search_id, string? fields,
+        int? limit, string? page_info, string? order)
     {
         throw new NotImplementedException();
     }

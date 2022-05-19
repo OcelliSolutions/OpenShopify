@@ -1,4 +1,4 @@
-﻿namespace OpenShopify.Admin.Builder.Data;
+﻿namespace OpenShopify.Common.Data;
 
 public enum FulfillmentServiceScope
 {

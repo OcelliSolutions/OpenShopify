@@ -22,67 +22,9 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IEventController
+
+    public abstract class EventControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieves a list of events
-        /// </summary>
-
-        /// <param name="created_at_max">Show events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <param name="created_at_min">Show events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <param name="filter">Show events specified in this filter.</param>
-
-        /// <param name="limit">The number of results to show.</param>
-
-        /// <param name="since_id">Show only results after the specified ID.</param>
-
-        /// <param name="verb">Show events of a certain type.</param>
-
-        /// <returns>Retrieves a list of events</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfEventsAsync(string? created_at_max, string? created_at_min, string? fields, string? filter, string limit, string? since_id, string? verb);
-
-        /// <summary>
-        /// Retrieves a single event
-        /// </summary>
-
-
-        /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
-
-        /// <returns>Retrieves a single event</returns>
-
-        System.Threading.Tasks.Task RetrieveSingleEventAsync(string event_id, string? fields);
-
-        /// <summary>
-        /// Retrieves a count of events
-        /// </summary>
-
-        /// <param name="created_at_max">Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <param name="created_at_min">Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
-
-        /// <returns>Retrieves a count of events</returns>
-
-        System.Threading.Tasks.Task RetrieveCountOfEventsAsync(string? created_at_max, string? created_at_min);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class EventController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IEventController _implementation;
-
-        public EventController(IEventController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieves a list of events
         /// </summary>
@@ -95,11 +37,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="verb">Show events of a certain type.</param>
         /// <returns>Retrieves a list of events</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("events.json")]
-        public System.Threading.Tasks.Task RetrieveListOfEvents([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? filter, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? verb)
-        {
-
-            return _implementation.RetrieveListOfEventsAsync(created_at_max, created_at_min, fields, filter, limit ?? "50", since_id, verb);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfEvents([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? filter, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? verb);
 
         /// <summary>
         /// Retrieves a single event
@@ -107,11 +45,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single event</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("events/{event_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSingleEvent(string event_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveSingleEventAsync(event_id, fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSingleEvent(long event_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Retrieves a count of events
@@ -120,11 +54,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="created_at_min">Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Retrieves a count of events</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("events/count.json")]
-        public System.Threading.Tasks.Task RetrieveCountOfEvents([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min)
-        {
-
-            return _implementation.RetrieveCountOfEventsAsync(created_at_max, created_at_min);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveCountOfEvents([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min);
 
     }
 

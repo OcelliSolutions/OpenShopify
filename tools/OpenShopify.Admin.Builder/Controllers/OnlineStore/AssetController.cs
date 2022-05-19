@@ -22,68 +22,16 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IAssetController
+
+    public abstract class AssetControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieves a list of assets for a theme
-        /// </summary>
-
-
-        /// <param name="fields">Specify which fields to show using a comma-separated list of field names.</param>
-
-        /// <returns>Retrieves a list of assets for a theme</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfAssetsForThemeAsync(string theme_id, string? fields);
-
-        /// <summary>
-        /// Creates or updates an asset for a theme
-        /// </summary>
-
-
-        /// <param name="source_key">The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.</param>
-
-        /// <param name="src">The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.</param>
-
-        /// <returns>Creates or updates an asset for a theme</returns>
-
-        System.Threading.Tasks.Task CreateOrUpdatesAssetForThemeAsync(string theme_id, string? source_key, string? src);
-
-        /// <summary>
-        /// Deletes an asset from a theme
-        /// </summary>
-
-        /// <param name="assetkey">Deletes a single asset from a theme by specifying the asset's key.</param>
-
-
-        /// <returns>Deletes an asset from a theme</returns>
-
-        System.Threading.Tasks.Task DeleteAssetFromThemeAsync(string assetkey, string theme_id);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class AssetController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IAssetController _implementation;
-
-        public AssetController(IAssetController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieves a list of assets for a theme
         /// </summary>
         /// <param name="fields">Specify which fields to show using a comma-separated list of field names.</param>
         /// <returns>Retrieves a list of assets for a theme</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}/assets.json")]
-        public System.Threading.Tasks.Task RetrieveListOfAssetsForTheme(string theme_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveListOfAssetsForThemeAsync(theme_id, fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfAssetsForTheme(long theme_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Creates or updates an asset for a theme
@@ -92,11 +40,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="src">The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.</param>
         /// <returns>Creates or updates an asset for a theme</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}/assets.json")]
-        public System.Threading.Tasks.Task CreateOrUpdatesAssetForTheme(string theme_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? source_key, [Microsoft.AspNetCore.Mvc.FromQuery] string? src)
-        {
-
-            return _implementation.CreateOrUpdatesAssetForThemeAsync(theme_id, source_key, src);
-        }
+        public abstract System.Threading.Tasks.Task CreateOrUpdatesAssetForTheme([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.AssetItem request, long theme_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? source_key, [Microsoft.AspNetCore.Mvc.FromQuery] string? src);
 
         /// <summary>
         /// Deletes an asset from a theme
@@ -104,11 +48,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="assetkey">Deletes a single asset from a theme by specifying the asset's key.</param>
         /// <returns>Deletes an asset from a theme</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}/assets.json")]
-        public System.Threading.Tasks.Task DeleteAssetFromTheme([Microsoft.AspNetCore.Mvc.FromQuery(Name = "asset[key]")] string assetkey, string theme_id)
-        {
-
-            return _implementation.DeleteAssetFromThemeAsync(assetkey, theme_id);
-        }
+        public abstract System.Threading.Tasks.Task DeleteAssetFromTheme([Microsoft.AspNetCore.Mvc.FromQuery(Name = "asset[key]")] string assetkey, long theme_id);
 
     }
 

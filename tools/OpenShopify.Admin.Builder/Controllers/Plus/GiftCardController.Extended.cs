@@ -1,60 +1,61 @@
 using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
+using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.Plus;
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.Plus)]
 [ApiController]
-public class GiftCardController : IGiftCardController
+public class GiftCardController : GiftCardControllerBase
 {
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards.json")]
-    public Task RetrieveListOfGiftCardsAsync(string? fields, string limit, string? since_id, string? status)
+    [HttpGet, Route("gift_cards.json")]
+    public override Task RetrieveListOfGiftCards(string? fields, int? limit, string? page_info, int? since_id, string? status)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("gift_cards.json")]
-    public Task CreateGiftCardAsync()
+    [HttpPost, Route("gift_cards.json")]
+    public override Task CreateGiftCard(GiftCardItem request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}.json")]
-    public Task RetrieveSingleGiftCardAsync(string gift_card_id)
+    [HttpGet, Route("gift_cards/{gift_card_id:long}.json")]
+    public override Task RetrieveSingleGiftCard(long gift_card_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}.json")]
-
-    public Task UpdateExistingGiftCardAsync(string gift_card_id)
+    [HttpPut, Route("gift_cards/{gift_card_id:long}.json")]
+    public override Task UpdateExistingGiftCard(GiftCardItem request, long gift_card_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/count.json")]
-    public Task RetrieveCountOfGiftCardsAsync(string? status)
+    [HttpGet, Route("gift_cards/count.json")]
+    [ProducesResponseType(typeof(GiftCardCount), StatusCodes.Status200OK)]
+    public override Task RetrieveCountOfGiftCards(string? status)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}/disable.json")]
-    public Task DisableGiftCardAsync(string gift_card_id)
+    [HttpPost, Route("gift_cards/{gift_card_id:long}/disable.json")]
+    public override Task DisableGiftCard(long gift_card_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/search.json")]
-    public Task SearchForGiftCardsAsync(string? fields, string limit, string order, string? query)
+    [HttpGet, Route("gift_cards/search.json")]
+    public override Task SearchForGiftCards(string? fields, int? limit, string? page_info, string order, string? query)
     {
         throw new NotImplementedException();
     }

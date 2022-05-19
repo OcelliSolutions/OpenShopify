@@ -22,98 +22,9 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IMetafieldController
+
+    public abstract class MetafieldControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieve a list of metafields from the resource's endpoint
-        /// </summary>
-
-        /// <param name="created_at_max">Show metafields created before date (format: 2022-02-25T16:15:47-04:00)</param>
-
-        /// <param name="created_at_min">Show metafields created after date (format: 2022-02-25T16:15:47-04:00)</param>
-
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-
-        /// <param name="key">Show metafields with given key</param>
-
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-
-        /// <param name="@namespace">Show metafields with given namespace</param>
-
-        /// <param name="since_id">Show metafields created after the specified ID.</param>
-
-        /// <param name="type">The type of data that the metafield stores in the `value` field.
-        /// <br/>Refer to the list of &lt;a href="/apps/metafields/types"&gt;supported types&lt;/a&gt;.</param>
-
-        /// <param name="updated_at_max">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
-
-        /// <param name="updated_at_min">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
-
-        /// <param name="value_type">The legacy type information for the stored value. Replaced by `type`</param>
-
-        /// <returns>Retrieve a list of metafields from the resource's endpoint</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfMetafieldsFromTheResourcesEndpointAsync(string? created_at_max, string? created_at_min, string? fields, string? key, string limit, string? @namespace, string? since_id, string? type, string? updated_at_max, string? updated_at_min, string? value_type);
-
-        /// <summary>
-        /// Create a metafield
-        /// </summary>
-
-        /// <returns>Create a metafield</returns>
-
-        System.Threading.Tasks.Task CreateMetafieldAsync();
-
-        /// <summary>
-        /// Retrieve a count of a resource's metafields.
-        /// </summary>
-
-        /// <returns>Retrieve a count of a resource's metafields.</returns>
-
-        System.Threading.Tasks.Task RetrieveCountOfResourcesMetafieldsAsync();
-
-        /// <summary>
-        /// Retrieve a specific metafield
-        /// </summary>
-
-
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-
-        /// <returns>Retrieve a specific metafield</returns>
-
-        System.Threading.Tasks.Task RetrieveSpecificMetafieldAsync(string metafield_id, string? fields);
-
-        /// <summary>
-        /// Updates a metafield
-        /// </summary>
-
-
-        /// <returns>Updates a metafield</returns>
-
-        System.Threading.Tasks.Task UpdateMetafieldAsync(string metafield_id);
-
-        /// <summary>
-        /// Deletes a metafield by its ID
-        /// </summary>
-
-
-        /// <returns>Deletes a metafield by its ID</returns>
-
-        System.Threading.Tasks.Task DeleteMetafieldByItsIDAsync(string metafield_id);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class MetafieldController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IMetafieldController _implementation;
-
-        public MetafieldController(IMetafieldController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieve a list of metafields from the resource's endpoint
         /// </summary>
@@ -131,33 +42,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="value_type">The legacy type information for the stored value. Replaced by `type`</param>
         /// <returns>Retrieve a list of metafields from the resource's endpoint</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields.json")]
-        public System.Threading.Tasks.Task RetrieveListOfMetafieldsFromTheResourcesEndpoint([Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? key, [Microsoft.AspNetCore.Mvc.FromQuery] string? limit, [Microsoft.AspNetCore.Mvc.FromQuery(Name = "namespace")] string? @namespace, [Microsoft.AspNetCore.Mvc.FromQuery] string? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? type, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? updated_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? value_type)
-        {
-
-            return _implementation.RetrieveListOfMetafieldsFromTheResourcesEndpointAsync(created_at_max, created_at_min, fields, key, limit ?? "50", @namespace, since_id, type, updated_at_max, updated_at_min, value_type);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfMetafieldsFromResourcesEndpoint([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? key, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery(Name = "namespace")] string? @namespace, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? type, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? value_type);
 
         /// <summary>
         /// Create a metafield
         /// </summary>
         /// <returns>Create a metafield</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("metafields.json")]
-        public System.Threading.Tasks.Task CreateMetafield()
-        {
-
-            return _implementation.CreateMetafieldAsync();
-        }
+        public abstract System.Threading.Tasks.Task CreateMetafield([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.MetafieldItem request);
 
         /// <summary>
         /// Retrieve a count of a resource's metafields.
         /// </summary>
         /// <returns>Retrieve a count of a resource's metafields.</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields/count.json")]
-        public System.Threading.Tasks.Task RetrieveCountOfResourcesMetafields()
-        {
-
-            return _implementation.RetrieveCountOfResourcesMetafieldsAsync();
-        }
+        public abstract System.Threading.Tasks.Task RetrieveCountOfResourcesMetafields();
 
         /// <summary>
         /// Retrieve a specific metafield
@@ -165,33 +64,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Retrieve a specific metafield</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSpecificMetafield(string metafield_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveSpecificMetafieldAsync(metafield_id, fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSpecificMetafield(long metafield_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates a metafield
         /// </summary>
         /// <returns>Updates a metafield</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
-        public System.Threading.Tasks.Task UpdateMetafield(string metafield_id)
-        {
-
-            return _implementation.UpdateMetafieldAsync(metafield_id);
-        }
+        public abstract System.Threading.Tasks.Task UpdateMetafield([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.MetafieldItem request, long metafield_id);
 
         /// <summary>
         /// Deletes a metafield by its ID
         /// </summary>
         /// <returns>Deletes a metafield by its ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
-        public System.Threading.Tasks.Task DeleteMetafieldByItsID(string metafield_id)
-        {
-
-            return _implementation.DeleteMetafieldByItsIDAsync(metafield_id);
-        }
+        public abstract System.Threading.Tasks.Task DeleteMetafieldByItsID(long metafield_id);
 
     }
 

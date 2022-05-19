@@ -29,12 +29,18 @@ paths:
           in: query
           description: The maximum number of results to show.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: since_id
           in: query
           description: Restrict results to after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: status
           in: query
           description: 'Retrieve gift cards with a given status. Valid values:'
@@ -43,6 +49,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -52,9 +67,26 @@ paths:
         - GiftCard
       summary: Creates a gift card
       operationId: CreateGiftCard
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GiftCardItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GiftCardItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -70,10 +102,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -88,10 +130,28 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GiftCardItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GiftCardItem'
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -109,8 +169,32 @@ paths:
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GiftCardCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -126,10 +210,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -150,6 +244,11 @@ paths:
           in: query
           description: The maximum number of results to retrieve.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: order
           in: query
@@ -164,6 +263,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -179,7 +287,8 @@ paths:
           in: query
           description: The maximum number of results to show on a page.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: page_info
           in: query
           description: A unique ID used to access a certain page of results.
@@ -188,6 +297,15 @@ paths:
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -203,10 +321,20 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -216,10 +344,19 @@ paths:
       tags:
         - User
       summary: Retrieves the currently logged-in user
-      operationId: RetrieveTheCurrentlyLoggedInUser
+      operationId: RetrieveCurrentlyLoggedInUser
       responses:
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -233,6 +370,106 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    GiftCard:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        balance:
+          type: number
+          description: Returns the amount of money remaining on the gift card.
+          format: double
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the gift card was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the gift card was updated.
+          format: date-time
+          nullable: true
+        currency:
+          type: string
+          description: The three letter code (ISO 4217) for the currency used for the gift card.
+          nullable: true
+        initial_value:
+          type: number
+          description: Returns the initial amount of money on the gift card.
+          format: double
+          nullable: true
+        disabled_at:
+          type: string
+          description: The date and time when the gift card was disabled.
+          format: date-time
+          nullable: true
+        expires_on:
+          type: string
+          description: The date and time when the gift card will expire.
+          format: date-time
+          nullable: true
+        line_item_id:
+          type: integer
+          description: A unique numeric identifier of the line_item that caused the creation of this gift card (if it was created by an order).
+          format: int64
+          nullable: true
+        api_client_id:
+          type: integer
+          description: A unique numeric identifier of the application that issued the gift card (if it was issued by an application).
+          format: int64
+          nullable: true
+        user_id:
+          type: integer
+          description: A unique numeric identifier of the user that issued the gift card (if it was issued by a user).
+          format: int64
+          nullable: true
+        customer_id:
+          type: integer
+          description: The id of a customer who is associated with this gift card.
+          format: int64
+          nullable: true
+        note:
+          type: string
+          description: The text of an optional note that a shop owner can attach to the gift card. Not visible to merchants.
+          nullable: true
+        template_suffix:
+          type: string
+          description: 'When specified, the gift card will be rendered using gift_card.SUFFIX.liquid instead of gift_card.liquid.'
+          nullable: true
+        last_characters:
+          type: string
+          description: 'The last four characters of the gift card code. Because gift cards are alternate payment methods, the full code cannot be retrieved.'
+          nullable: true
+        order_id:
+          type: integer
+          description: A unique numeric identifier of the order that caused the creation of this gift card (if it was created by an order).
+          format: int64
+          nullable: true
+        code:
+          type: string
+          description: Thethe gift card code. Only for Creation
+          nullable: true
+      additionalProperties: { }
+    GiftCardCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    GiftCardItem:
+      type: object
+      properties:
+        gift_card:
+          $ref: '#/components/schemas/GiftCard'
+      additionalProperties: { }
   securitySchemes:
     ApiKey:
       type: apiKey

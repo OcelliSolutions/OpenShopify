@@ -22,156 +22,9 @@ namespace OpenShopify.Admin.Builder.Controllers
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-    public interface IOrderController
+
+    public abstract class OrderControllerBase : Microsoft.AspNetCore.Mvc.ControllerBase
     {
-
-        /// <summary>
-        /// Retrieve a list of orders
-        /// </summary>
-
-        /// <param name="attribution_app_id">Show orders attributed to a certain app, specified by the app ID. Set as &lt;code&gt;current&lt;/code&gt; to show orders for the app currently consuming the API.</param>
-
-        /// <param name="created_at_max">Show orders created at or before date.</param>
-
-        /// <param name="created_at_min">Show orders created at or after date.</param>
-
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-
-        /// <param name="financial_status">Filter orders by their financial status.</param>
-
-        /// <param name="fulfillment_status">Filter orders by their fulfillment status.</param>
-
-        /// <param name="ids">Retrieve only orders specified by a comma-separated list of order IDs.</param>
-
-        /// <param name="limit">The maximum number of results to show on a page.</param>
-
-        /// <param name="processed_at_max">Show orders imported at or before date.</param>
-
-        /// <param name="processed_at_min">Show orders imported at or after date.</param>
-
-        /// <param name="since_id">Show orders after the specified ID.</param>
-
-        /// <param name="status">Filter orders by their status.</param>
-
-        /// <param name="updated_at_max">Show orders last updated at or before date.</param>
-
-        /// <param name="updated_at_min">Show orders last updated at or after date.</param>
-
-        /// <returns>Retrieve a list of orders</returns>
-
-        System.Threading.Tasks.Task RetrieveListOfOrdersAsync(string? attribution_app_id, DateTime? created_at_max, DateTime? created_at_min, string? fields, string financial_status, string fulfillment_status, string? ids, int limit, DateTime? processed_at_max, DateTime? processed_at_min, int? since_id, Status? status, DateTime? updated_at_max, DateTime? updated_at_min);
-
-        /// <summary>
-        /// Create an order
-        /// </summary>
-
-        /// <returns>Create an order</returns>
-
-        System.Threading.Tasks.Task CreateOrderAsync();
-
-        /// <summary>
-        /// Retrieve a specific order
-        /// </summary>
-
-
-        /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
-
-        /// <returns>Retrieve a specific order</returns>
-
-        System.Threading.Tasks.Task RetrieveSpecificOrderAsync(string order_id, string? fields);
-
-        /// <summary>
-        /// Update an order
-        /// </summary>
-
-
-        /// <returns>Update an order</returns>
-
-        System.Threading.Tasks.Task UpdateOrderAsync(string order_id);
-
-        /// <summary>
-        /// Delete an order
-        /// </summary>
-
-
-        /// <returns>Delete an order</returns>
-
-        System.Threading.Tasks.Task DeleteOrderAsync(string order_id);
-
-        /// <summary>
-        /// Retrieve an order count
-        /// </summary>
-
-        /// <param name="created_at_max">Orders created before date specified.</param>
-
-        /// <param name="created_at_min">Orders created after date specified.</param>
-
-        /// <param name="financial_status">Orders of a given financial status.</param>
-
-        /// <param name="fulfillment_status">Orders of a given fulfillment status.</param>
-
-        /// <param name="status">Orders of a given status.</param>
-
-        /// <param name="updated_at_max">Orders last updated before date specified.</param>
-
-        /// <param name="updated_at_min">Orders last updated after date specified.</param>
-
-        /// <returns>Retrieve an order count</returns>
-
-        System.Threading.Tasks.Task RetrieveOrderCountAsync(DateTime? created_at_max, DateTime? created_at_min, string financial_status, string fulfillment_status, string status, DateTime? updated_at_max, DateTime? updated_at_min);
-
-        /// <summary>
-        /// Close an order
-        /// </summary>
-
-
-        /// <returns>Close an order</returns>
-
-        System.Threading.Tasks.Task CloseOrderAsync(string order_id);
-
-        /// <summary>
-        /// Re-open a closed order
-        /// </summary>
-
-
-        /// <returns>Re-open a closed order</returns>
-
-        System.Threading.Tasks.Task ReOpenClosedOrderAsync(string order_id);
-
-        /// <summary>
-        /// Cancel an order
-        /// </summary>
-
-
-        /// <param name="amount">The amount to refund. If set, Shopify attempts to refund the specified amount, depending on its status. Shopify refunds through a manual gateway in cases where the original transaction was not made in Shopify. Refunds through a manual gateway are recorded as a refund on Shopify, but the customer is not refunded.</param>
-
-        /// <param name="currency">The currency of the refund that's issued when the order is canceled. Required for multi-currency orders whenever the &lt;code&gt;amount&lt;/code&gt; property is provided.</param>
-
-        /// <param name="email">Whether to send an email to the customer notifying them of the cancellation.</param>
-
-        /// <param name="reason">The reason for the order cancellation. Valid values: &lt;code&gt;customer&lt;/code&gt;, &lt;code&gt;inventory&lt;/code&gt;, &lt;code&gt;fraud&lt;/code&gt;, &lt;code&gt;declined&lt;/code&gt;, and &lt;code&gt;other&lt;/code&gt;.)</param>
-
-        /// <param name="refund">The refund transactions to perform. Required for some more complex refund situations. For more information, see the &lt;a href="/docs/admin-api/rest/reference/orders/refund#create-{{ current_version }}" &gt;Refund API&lt;/a&gt;.</param>
-
-        /// <param name="restock">Whether to restock refunded items back to your store's inventory.</param>
-
-        /// <returns>Cancel an order</returns>
-
-        System.Threading.Tasks.Task CancelOrderAsync(string order_id, string? amount, string? currency, bool email, string reason, object? refund, bool restock);
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v13.0.0.0))")]
-
-    public partial class OrderController : Microsoft.AspNetCore.Mvc.ControllerBase
-    {
-        private IOrderController _implementation;
-
-        public OrderController(IOrderController implementation)
-        {
-            _implementation = implementation;
-        }
-
         /// <summary>
         /// Retrieve a list of orders
         /// </summary>
@@ -191,22 +44,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Show orders last updated at or after date.</param>
         /// <returns>Retrieve a list of orders</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders.json")]
-        public System.Threading.Tasks.Task RetrieveListOfOrders([Microsoft.AspNetCore.Mvc.FromQuery] string? attribution_app_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? financial_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? fulfillment_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? processed_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? processed_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] Status? status, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min)
-        {
-
-            return _implementation.RetrieveListOfOrdersAsync(attribution_app_id, created_at_max, created_at_min, fields, financial_status ?? "any", fulfillment_status ?? "any", ids, limit ?? 50, processed_at_max, processed_at_min, since_id, status, updated_at_max, updated_at_min);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveListOfOrders([Microsoft.AspNetCore.Mvc.FromQuery] long? attribution_app_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? financial_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? fulfillment_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? processed_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? processed_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] Status? status, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Create an order
         /// </summary>
         /// <returns>Create an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders.json")]
-        public System.Threading.Tasks.Task CreateOrder()
-        {
-
-            return _implementation.CreateOrderAsync();
-        }
+        public abstract System.Threading.Tasks.Task CreateOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.OrderItem request);
 
         /// <summary>
         /// Retrieve a specific order
@@ -214,33 +59,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Retrieve a specific order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}.json")]
-        public System.Threading.Tasks.Task RetrieveSpecificOrder(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields)
-        {
-
-            return _implementation.RetrieveSpecificOrderAsync(order_id, fields);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveSpecificOrder(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Update an order
         /// </summary>
         /// <returns>Update an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}.json")]
-        public System.Threading.Tasks.Task UpdateOrder(string order_id)
-        {
-
-            return _implementation.UpdateOrderAsync(order_id);
-        }
+        public abstract System.Threading.Tasks.Task UpdateOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.OrderItem request, long order_id);
 
         /// <summary>
         /// Delete an order
         /// </summary>
         /// <returns>Delete an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}.json")]
-        public System.Threading.Tasks.Task DeleteOrder(string order_id)
-        {
-
-            return _implementation.DeleteOrderAsync(order_id);
-        }
+        public abstract System.Threading.Tasks.Task DeleteOrder(long order_id);
 
         /// <summary>
         /// Retrieve an order count
@@ -254,33 +87,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Orders last updated after date specified.</param>
         /// <returns>Retrieve an order count</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/count.json")]
-        public System.Threading.Tasks.Task RetrieveOrderCount([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? financial_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? fulfillment_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? status, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min)
-        {
-
-            return _implementation.RetrieveOrderCountAsync(created_at_max, created_at_min, financial_status ?? "any", fulfillment_status ?? "any", status ?? "open", updated_at_max, updated_at_min);
-        }
+        public abstract System.Threading.Tasks.Task RetrieveOrderCount([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? financial_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? fulfillment_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? status, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Close an order
         /// </summary>
         /// <returns>Close an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/close.json")]
-        public System.Threading.Tasks.Task CloseOrder(string order_id)
-        {
-
-            return _implementation.CloseOrderAsync(order_id);
-        }
+        public abstract System.Threading.Tasks.Task CloseOrder(long order_id);
 
         /// <summary>
         /// Re-open a closed order
         /// </summary>
         /// <returns>Re-open a closed order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/open.json")]
-        public System.Threading.Tasks.Task ReOpenClosedOrder(string order_id)
-        {
-
-            return _implementation.ReOpenClosedOrderAsync(order_id);
-        }
+        public abstract System.Threading.Tasks.Task ReOpenClosedOrder(long order_id);
 
         /// <summary>
         /// Cancel an order
@@ -293,11 +114,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="restock">Whether to restock refunded items back to your store's inventory.</param>
         /// <returns>Cancel an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/cancel.json")]
-        public System.Threading.Tasks.Task CancelOrder(string order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? amount, [Microsoft.AspNetCore.Mvc.FromQuery] string? currency, [Microsoft.AspNetCore.Mvc.FromQuery] bool? email, [Microsoft.AspNetCore.Mvc.FromQuery] string? reason, [Microsoft.AspNetCore.Mvc.FromQuery] object? refund, [Microsoft.AspNetCore.Mvc.FromQuery] bool? restock)
-        {
-
-            return _implementation.CancelOrderAsync(order_id, amount, currency, email ?? false, reason ?? "other", refund, restock ?? false);
-        }
+        public abstract System.Threading.Tasks.Task CancelOrder(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? amount, [Microsoft.AspNetCore.Mvc.FromQuery] string? currency, [Microsoft.AspNetCore.Mvc.FromQuery] bool? email, [Microsoft.AspNetCore.Mvc.FromQuery] string? reason, [Microsoft.AspNetCore.Mvc.FromQuery] object? refund, [Microsoft.AspNetCore.Mvc.FromQuery] bool? restock);
 
     }
 

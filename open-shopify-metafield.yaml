@@ -18,18 +18,20 @@ paths:
       tags:
         - Metafield
       summary: Retrieve a list of metafields from the resource's endpoint
-      operationId: RetrieveListOfMetafieldsFromTheResourcesEndpoint
+      operationId: RetrieveListOfMetafieldsFromResourcesEndpoint
       parameters:
         - name: created_at_max
           in: query
           description: 'Show metafields created before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: created_at_min
           in: query
           description: 'Show metafields created after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: fields
           in: query
           description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
@@ -44,6 +46,11 @@ paths:
           in: query
           description: The maximum number of results to show on a page.
           schema:
+            type: integer
+            format: int32
+        - name: page_info
+          in: query
+          schema:
             type: string
         - name: namespace
           in: query
@@ -53,7 +60,8 @@ paths:
           in: query
           description: Show metafields created after the specified ID.
           schema:
-            type: string
+            type: integer
+            format: int32
         - name: type
           in: query
           description: "The type of data that the metafield stores in the `value` field.\r\n            <br />Refer to the list of <a href=\"/apps/metafields/types\">supported types</a>."
@@ -64,19 +72,45 @@ paths:
           description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: updated_at_min
           in: query
           description: 'Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)'
           schema:
             type: string
+            format: date-time
         - name: value_type
           in: query
           description: The legacy type information for the stored value. Replaced by `type`
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldList'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -86,9 +120,41 @@ paths:
         - Metafield
       summary: Create a metafield
       operationId: CreateMetafield
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetafieldItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MetafieldItem'
       responses:
+        '201':
+          description: Created
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -100,8 +166,32 @@ paths:
       summary: Retrieve a count of a resource's metafields.
       operationId: RetrieveCountOfResourcesMetafields
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldCount'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -117,15 +207,40 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: fields
           in: query
           description: 'Retrieve only certain fields, specified by a comma-separated list of fields names.'
           schema:
             type: string
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -140,10 +255,43 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetafieldItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MetafieldItem'
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetafieldItem'
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -158,10 +306,31 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
         '401':
           description: Unauthorized
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
           content:
             application/json:
               schema:
@@ -175,6 +344,77 @@ components:
           type: string
           nullable: true
       additionalProperties: false
+    Metafield:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the metafield was created.
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the metafield was last updated.
+          format: date-time
+          nullable: true
+        key:
+          type: string
+          description: Identifier for the metafield (maximum of 30 characters).
+          nullable: true
+        value:
+          description: Information to be stored as metadata. Must be either a string or an int.
+        value_type:
+          type: string
+          description: States whether the information in the value is stored as a 'string' or 'integer.'
+          nullable: true
+        namespace:
+          type: string
+          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+          nullable: true
+        description:
+          type: string
+          description: Additional information about the metafield.
+          nullable: true
+        owner_id:
+          type: integer
+          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
+          format: int64
+          nullable: true
+        owner_resource:
+          type: string
+          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
+          nullable: true
+      additionalProperties: { }
+    MetafieldCount:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+      additionalProperties: { }
+    MetafieldItem:
+      type: object
+      properties:
+        metafield:
+          $ref: '#/components/schemas/Metafield'
+      additionalProperties: { }
+    MetafieldList:
+      type: object
+      properties:
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metafield'
+          nullable: true
+      additionalProperties: { }
   securitySchemes:
     ApiKey:
       type: apiKey

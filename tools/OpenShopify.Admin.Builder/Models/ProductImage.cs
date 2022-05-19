@@ -66,10 +66,14 @@ namespace OpenShopify.Admin.Builder.Models
 
         /// <summary>
         /// Additional metadata about the <see cref="ProductImage"/>. Note: This is not naturally returned with a <see cref="ProductImage"/> response, as
-        /// Shopify will not return <see cref="ProductImage"/> metafields unless specified. Instead, you need to query metafields with <see cref="MetaFieldService"/>. 
+        /// Shopify will not return <see cref="ProductImage"/> metafields unless specified. Instead, you need to query metafields with <see cref="MetafieldService"/>. 
         /// Uses include: Creating, updating, & deserializing webhook bodies that include them.
         /// </summary>
         [JsonPropertyName("metafields")]
-        public IEnumerable<MetaField> Metafields { get; set; }
+        public IEnumerable<ProductImageMetafield> Metafields { get; set; }
+    }
+
+    public class ProductImageMetafield : Metafield
+    {
     }
 }
