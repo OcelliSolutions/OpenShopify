@@ -14,7 +14,7 @@ public class AccessService : ShopifyService, IAccessService
 
     public AccessService(string myShopifyUrl, string shopAccessToken) : base(myShopifyUrl, shopAccessToken)
     {
-        _baseUriAccessScope = AuthorizationService.BuildShopUri(myShopifyUrl, false);
+        _baseUriAccessScope = AuthorizationService.BuildShopUri(myShopifyUrl, true);
         _baseUri = base.PrepareRequest(myShopifyUrl);
         _myShopifyUrl = myShopifyUrl;
     }

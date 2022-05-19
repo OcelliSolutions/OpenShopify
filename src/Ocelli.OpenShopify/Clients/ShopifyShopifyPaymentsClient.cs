@@ -30,7 +30,7 @@ namespace Ocelli.OpenShopify
         /// Return the current balance
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ReturnTheCurrentBalanceAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ReturnCurrentBalanceAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -71,7 +71,7 @@ namespace Ocelli.OpenShopify
         /// Return the current balance
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task ReturnTheCurrentBalanceAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ReturnCurrentBalanceAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/shopify_payments/balance.json");
@@ -118,8 +118,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -254,14 +253,14 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Return only disputes after the specified ID.</param>
         /// <param name="status">Return only disputes with the specified status.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ReturnListOfAllDisputesAsync(string? initiatedAt = null, string? lastId = null, string? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ReturnListOfAllDisputesAsync(string? initiatedAt = null, long? lastId = null, int? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Return a single dispute
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ReturnSingleDisputeAsync(string disputeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ReturnSingleDisputeAsync(long disputeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -306,7 +305,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Return only disputes after the specified ID.</param>
         /// <param name="status">Return only disputes with the specified status.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task ReturnListOfAllDisputesAsync(string? initiatedAt = null, string? lastId = null, string? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ReturnListOfAllDisputesAsync(string? initiatedAt = null, long? lastId = null, int? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/shopify_payments/disputes.json?");
@@ -370,8 +369,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -398,7 +396,7 @@ namespace Ocelli.OpenShopify
         /// Return a single dispute
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task ReturnSingleDisputeAsync(string disputeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ReturnSingleDisputeAsync(long disputeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (disputeId == null)
                 throw new System.ArgumentNullException("disputeId");
@@ -449,8 +447,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -587,14 +584,14 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Filter the response to payouts made after the specified ID.</param>
         /// <param name="status">Filter the response to payouts made with the specified status.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ReturnListOfAllPayoutsAsync(string? date = null, string? dateMax = null, string? dateMin = null, string? lastId = null, string? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ReturnListOfAllPayoutsAsync(System.DateTimeOffset? date = null, System.DateTimeOffset? dateMax = null, System.DateTimeOffset? dateMin = null, long? lastId = null, int? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Return a single payout
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ReturnSinglePayoutAsync(string payoutId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ReturnSinglePayoutAsync(long payoutId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -641,21 +638,21 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Filter the response to payouts made after the specified ID.</param>
         /// <param name="status">Filter the response to payouts made with the specified status.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task ReturnListOfAllPayoutsAsync(string? date = null, string? dateMax = null, string? dateMin = null, string? lastId = null, string? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ReturnListOfAllPayoutsAsync(System.DateTimeOffset? date = null, System.DateTimeOffset? dateMax = null, System.DateTimeOffset? dateMin = null, long? lastId = null, int? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/shopify_payments/payouts.json?");
             if (date != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("date") + "=").Append(System.Uri.EscapeDataString(ConvertToString(date, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("date") + "=").Append(System.Uri.EscapeDataString(date.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (dateMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("date_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(dateMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("date_max") + "=").Append(System.Uri.EscapeDataString(dateMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (dateMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("date_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(dateMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("date_min") + "=").Append(System.Uri.EscapeDataString(dateMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (lastId != null)
             {
@@ -713,8 +710,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -741,7 +737,7 @@ namespace Ocelli.OpenShopify
         /// Return a single payout
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task ReturnSinglePayoutAsync(string payoutId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ReturnSinglePayoutAsync(long payoutId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (payoutId == null)
                 throw new System.ArgumentNullException("payoutId");
@@ -792,8 +788,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -929,7 +924,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Filter response to transactions exclusively after the specified ID.</param>
         /// <param name="test">Filter response to transactions placed in test mode.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ReturnListOfAllBalanceTransactionsAsync(string? lastId = null, string? payoutId = null, string? payoutStatus = null, string? sinceId = null, string? test = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ReturnListOfAllBalanceTransactionsAsync(long? lastId = null, long? payoutId = null, string? payoutStatus = null, int? sinceId = null, string? test = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -975,7 +970,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Filter response to transactions exclusively after the specified ID.</param>
         /// <param name="test">Filter response to transactions placed in test mode.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task ReturnListOfAllBalanceTransactionsAsync(string? lastId = null, string? payoutId = null, string? payoutStatus = null, string? sinceId = null, string? test = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ReturnListOfAllBalanceTransactionsAsync(long? lastId = null, long? payoutId = null, string? payoutStatus = null, int? sinceId = null, string? test = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/shopify_payments/balance/transactions.json?");
@@ -1043,8 +1038,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -1167,6 +1161,7 @@ namespace Ocelli.OpenShopify
     }
 
     
+
 
 
 }

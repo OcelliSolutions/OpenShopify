@@ -31,22 +31,25 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="ids">Show only inventory items specified by a comma-separated list of IDs.</param>
         /// <param name="limit">The maximum number of results to show.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveListOfInventoryItemsAsync(string? ids = null, string? limit = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<InventoryItemList>> RetrieveListOfInventoryItemsAsync(string? ids = null, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Retrieves a single inventory item by ID
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveSingleInventoryItemByIDAsync(string inventoryItemId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<InventoryItemItem>> RetrieveSingleInventoryItemByIDAsync(long inventoryItemId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Updates an existing inventory item
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task UpdateExistingInventoryItemAsync(string inventoryItemId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<InventoryItemItem>> UpdateExistingInventoryItemAsync(long inventoryItemId, InventoryItemItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -88,8 +91,9 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="ids">Show only inventory items specified by a comma-separated list of IDs.</param>
         /// <param name="limit">The maximum number of results to show.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveListOfInventoryItemsAsync(string? ids = null, string? limit = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryItemList>> RetrieveListOfInventoryItemsAsync(string? ids = null, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/inventory_items.json?");
@@ -101,6 +105,10 @@ namespace Ocelli.OpenShopify
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("limit") + "=").Append(System.Uri.EscapeDataString(ConvertToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
+            if (pageInfo != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("page_info") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageInfo, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
             urlBuilder_.Length--;
 
             var client_ = _httpClient;
@@ -110,6 +118,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -132,6 +141,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<InventoryItemList>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<InventoryItemList>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -140,13 +159,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -172,8 +184,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Retrieves a single inventory item by ID
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveSingleInventoryItemByIDAsync(string inventoryItemId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryItemItem>> RetrieveSingleInventoryItemByIDAsync(long inventoryItemId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (inventoryItemId == null)
                 throw new System.ArgumentNullException("inventoryItemId");
@@ -189,6 +202,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -211,6 +225,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<InventoryItemItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<InventoryItemItem>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -219,13 +243,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -251,8 +268,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Updates an existing inventory item
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task UpdateExistingInventoryItemAsync(string inventoryItemId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryItemItem>> UpdateExistingInventoryItemAsync(long inventoryItemId, InventoryItemItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (inventoryItemId == null)
                 throw new System.ArgumentNullException("inventoryItemId");
@@ -267,8 +285,11 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -291,6 +312,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<InventoryItemItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<InventoryItemItem>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -299,13 +330,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -439,8 +463,9 @@ namespace Ocelli.OpenShopify
         /// <param name="limit">The maximum number of results to show.</param>
         /// <param name="locationIds">A comma-separated list of location IDs. To find the ID of a location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
         /// <param name="updatedAtMin">Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveListOfInventoryLevelsAsync(string? inventoryItemIds = null, string? limit = null, string? locationIds = null, string? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelList>> RetrieveListOfInventoryLevelsAsync(long? inventoryItemIds = null, int? limit = null, string? pageInfo = null, long? locationIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -448,8 +473,9 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="inventoryItemId">The ID for the inventory item.</param>
         /// <param name="locationId">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
+        /// <returns>No Content</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task DeleteInventoryLevelFromLocationAsync(string? inventoryItemId = null, string? locationId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> DeleteInventoryLevelFromLocationAsync(long? inventoryItemId = null, long? locationId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -458,8 +484,9 @@ namespace Ocelli.OpenShopify
         /// <param name="availableAdjustment">The amount to adjust the available inventory quantity. Send negative values to subtract from the current available quantity. For example, &lt;code&gt;"available_adjustment": 2&lt;/code&gt; increases the current available quantity by 2, and &lt;code&gt;"available_adjustment": -3&lt;/code&gt;decreases the current available quantity by 3.</param>
         /// <param name="inventoryItemId">The ID of the inventory item.</param>
         /// <param name="locationId">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task AdjustTheInventoryLevelOfInventoryItemAtLocationAsync(string? availableAdjustment = null, string? inventoryItemId = null, string? locationId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelItem>> AdjustInventoryLevelOfInventoryItemAtLocationAsync(string? availableAdjustment = null, long? inventoryItemId = null, long? locationId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -468,8 +495,9 @@ namespace Ocelli.OpenShopify
         /// <param name="inventoryItemId">The ID of the inventory item.</param>
         /// <param name="locationId">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
         /// <param name="relocateIfNecessary">Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, refer to &lt;a href="#inventory-levels-and-fulfillment-service-locations"&gt;&lt;em&gt;Inventory levels and fulfillment service locations&lt;/em&gt;&lt;/a&gt;.</param>
+        /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ConnectInventoryItemToLocationAsync(string? inventoryItemId = null, string? locationId = null, string? relocateIfNecessary = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelItem>> ConnectInventoryItemToLocationAsync(long? inventoryItemId = null, long? locationId = null, bool? relocateIfNecessary = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -479,8 +507,9 @@ namespace Ocelli.OpenShopify
         /// <param name="inventoryItemId">The ID of the inventory item associated with the inventory level. To find the ID of the inventory item, use the &lt;a href='/api/admin-rest/latest/resources/inventoryitem'&gt;Inventory Item resource&lt;/a&gt;</param>
         /// <param name="locationId">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
         /// <param name="disconnectIfNecessary">Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, refer to &lt;a href="#inventory-levels-and-fulfillment-service-locations"&gt;&lt;em&gt;Inventory levels and fulfillment service locations&lt;/em&gt;&lt;/a&gt;.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task SetTheInventoryLevelForInventoryItemAtLocationAsync(string? available = null, string? inventoryItemId = null, string? locationId = null, string? disconnectIfNecessary = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelItem>> SetInventoryLevelForInventoryItemAtLocationAsync(string? available = null, long? inventoryItemId = null, long? locationId = null, bool? disconnectIfNecessary = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -524,8 +553,9 @@ namespace Ocelli.OpenShopify
         /// <param name="limit">The maximum number of results to show.</param>
         /// <param name="locationIds">A comma-separated list of location IDs. To find the ID of a location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
         /// <param name="updatedAtMin">Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveListOfInventoryLevelsAsync(string? inventoryItemIds = null, string? limit = null, string? locationIds = null, string? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelList>> RetrieveListOfInventoryLevelsAsync(long? inventoryItemIds = null, int? limit = null, string? pageInfo = null, long? locationIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/inventory_levels.json?");
@@ -537,13 +567,17 @@ namespace Ocelli.OpenShopify
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("limit") + "=").Append(System.Uri.EscapeDataString(ConvertToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
+            if (pageInfo != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("page_info") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageInfo, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
             if (locationIds != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("location_ids") + "=").Append(System.Uri.EscapeDataString(ConvertToString(locationIds, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (updatedAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(updatedAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(updatedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -554,6 +588,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -576,6 +611,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<InventoryLevelList>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<InventoryLevelList>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -584,13 +629,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -618,8 +656,9 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="inventoryItemId">The ID for the inventory item.</param>
         /// <param name="locationId">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
+        /// <returns>No Content</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task DeleteInventoryLevelFromLocationAsync(string? inventoryItemId = null, string? locationId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteInventoryLevelFromLocationAsync(long? inventoryItemId = null, long? locationId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/inventory_levels.json?");
@@ -662,6 +701,11 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 204)
+                        {
+                            return new ShopifyResponse(status_, headers_);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -670,13 +714,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -705,8 +742,9 @@ namespace Ocelli.OpenShopify
         /// <param name="availableAdjustment">The amount to adjust the available inventory quantity. Send negative values to subtract from the current available quantity. For example, &lt;code&gt;"available_adjustment": 2&lt;/code&gt; increases the current available quantity by 2, and &lt;code&gt;"available_adjustment": -3&lt;/code&gt;decreases the current available quantity by 3.</param>
         /// <param name="inventoryItemId">The ID of the inventory item.</param>
         /// <param name="locationId">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task AdjustTheInventoryLevelOfInventoryItemAtLocationAsync(string? availableAdjustment = null, string? inventoryItemId = null, string? locationId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelItem>> AdjustInventoryLevelOfInventoryItemAtLocationAsync(string? availableAdjustment = null, long? inventoryItemId = null, long? locationId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/inventory_levels/adjust.json?");
@@ -732,6 +770,7 @@ namespace Ocelli.OpenShopify
                 {
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -754,6 +793,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<InventoryLevelItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<InventoryLevelItem>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -762,13 +811,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -797,8 +839,9 @@ namespace Ocelli.OpenShopify
         /// <param name="inventoryItemId">The ID of the inventory item.</param>
         /// <param name="locationId">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
         /// <param name="relocateIfNecessary">Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, refer to &lt;a href="#inventory-levels-and-fulfillment-service-locations"&gt;&lt;em&gt;Inventory levels and fulfillment service locations&lt;/em&gt;&lt;/a&gt;.</param>
+        /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task ConnectInventoryItemToLocationAsync(string? inventoryItemId = null, string? locationId = null, string? relocateIfNecessary = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelItem>> ConnectInventoryItemToLocationAsync(long? inventoryItemId = null, long? locationId = null, bool? relocateIfNecessary = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/inventory_levels/connect.json?");
@@ -824,6 +867,7 @@ namespace Ocelli.OpenShopify
                 {
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -846,6 +890,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 201)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<InventoryLevelItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<InventoryLevelItem>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -854,13 +908,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -890,8 +937,9 @@ namespace Ocelli.OpenShopify
         /// <param name="inventoryItemId">The ID of the inventory item associated with the inventory level. To find the ID of the inventory item, use the &lt;a href='/api/admin-rest/latest/resources/inventoryitem'&gt;Inventory Item resource&lt;/a&gt;</param>
         /// <param name="locationId">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
         /// <param name="disconnectIfNecessary">Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, refer to &lt;a href="#inventory-levels-and-fulfillment-service-locations"&gt;&lt;em&gt;Inventory levels and fulfillment service locations&lt;/em&gt;&lt;/a&gt;.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task SetTheInventoryLevelForInventoryItemAtLocationAsync(string? available = null, string? inventoryItemId = null, string? locationId = null, string? disconnectIfNecessary = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelItem>> SetInventoryLevelForInventoryItemAtLocationAsync(string? available = null, long? inventoryItemId = null, long? locationId = null, bool? disconnectIfNecessary = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/inventory_levels/set.json?");
@@ -921,6 +969,7 @@ namespace Ocelli.OpenShopify
                 {
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -943,6 +992,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<InventoryLevelItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<InventoryLevelItem>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -951,13 +1010,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -1087,29 +1139,33 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Retrieve a list of locations
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveListOfLocationsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<LocationList>> RetrieveListOfLocationsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Retrieve a single location by its ID
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveSingleLocationByItsIDAsync(string locationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<LocationItem>> RetrieveSingleLocationByItsIDAsync(long locationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Retrieve a count of locations
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveCountOfLocationsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<LocationCount>> RetrieveCountOfLocationsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Retrieve a list of inventory levels for a location
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveListOfInventoryLevelsForLocationAsync(string locationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<LocationList>> RetrieveListOfInventoryLevelsForLocationAsync(long locationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -1149,8 +1205,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Retrieve a list of locations
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveListOfLocationsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<LocationList>> RetrieveListOfLocationsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/locations.json");
@@ -1162,6 +1219,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -1184,6 +1242,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<LocationList>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<LocationList>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -1192,13 +1260,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -1224,8 +1285,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Retrieve a single location by its ID
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveSingleLocationByItsIDAsync(string locationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<LocationItem>> RetrieveSingleLocationByItsIDAsync(long locationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (locationId == null)
                 throw new System.ArgumentNullException("locationId");
@@ -1241,6 +1303,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -1263,6 +1326,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<LocationItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<LocationItem>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -1271,13 +1344,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -1303,8 +1369,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Retrieve a count of locations
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveCountOfLocationsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<LocationCount>> RetrieveCountOfLocationsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/locations/count.json");
@@ -1316,6 +1383,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -1338,6 +1406,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<LocationCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<LocationCount>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -1346,13 +1424,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -1378,8 +1449,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Retrieve a list of inventory levels for a location
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveListOfInventoryLevelsForLocationAsync(string locationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<LocationList>> RetrieveListOfInventoryLevelsForLocationAsync(long locationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (locationId == null)
                 throw new System.ArgumentNullException("locationId");
@@ -1395,6 +1467,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -1417,6 +1490,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<LocationList>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<LocationList>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -1425,13 +1508,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -1553,7 +1629,452 @@ namespace Ocelli.OpenShopify
         }
     }
 
-    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class HSCode
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long? Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The two-digit code for the country where the inventory item was made.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_code")]
+        public string? CountryCode { get; set; } = default!;
+
+        /// <summary>
+        /// The general Harmonized System (HS) code for the inventory item. Used if a country-specific HS code is not available.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("harmonized_system_code")]
+        public string? HarmonizedSystemCode { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class InventoryItem
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long? Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The unique SKU (Stock Keeping Unit) of the inventory item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("sku")]
+        public string? Sku { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the inventory item is tracked. If true, then inventory quantity changes are tracked by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracked")]
+        public bool? Tracked { get; set; } = default!;
+
+        /// <summary>
+        /// The unit cost of the inventory item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("cost")]
+        public double? Cost { get; set; } = default!;
+
+        /// <summary>
+        /// The two-digit code for the country where the inventory item was made.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_code_of_origin")]
+        public string? CountryCodeOfOrigin { get; set; } = default!;
+
+        /// <summary>
+        /// The two-digit code for the province where the inventory item was made. Used only if the shipping provider for the inventory item is Canada Post.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province_code_of_origin")]
+        public string? ProvinceCodeOfOrigin { get; set; } = default!;
+
+        /// <summary>
+        /// The general Harmonized System (HS) code for the inventory item. Used if a country-specific HS code is not available.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("harmonized_system_code")]
+        public string? HarmonizedSystemCode { get; set; } = default!;
+
+        /// <summary>
+        /// An array of country-specific Harmonized System (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_harmonized_system_codes")]
+        public System.Collections.Generic.ICollection<HSCode>? CountryHarmonizedSystemCodes { get; set; } = default!;
+
+        /// <summary>
+        /// Whether a customer needs to provide a shipping address when placing an order containing the inventory item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("requires_shipping")]
+        public bool? RequiresShipping { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product variant was created. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the product variant was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class InventoryItemItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_item")]
+        public InventoryItem? InventoryItem { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class InventoryItemList
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_items")]
+        public System.Collections.Generic.ICollection<InventoryItem>? InventoryItems { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class InventoryLevel
+    {
+        /// <summary>
+        /// The unique identifier of the inventory item that the inventory level belongs to.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_item_id")]
+        public long? InventoryItemId { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier of the location that the inventory level belongs to.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
+        public long? LocationId { get; set; } = default!;
+
+        /// <summary>
+        /// The quantity of inventory items available for sale. Returns null if the inventory item is not tracked.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("available")]
+        public long? Available { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the inventory level was last modified.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class InventoryLevelItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_level")]
+        public InventoryLevel? InventoryLevel { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class InventoryLevelList
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_levels")]
+        public System.Collections.Generic.ICollection<InventoryLevel>? InventoryLevels { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// An object representing a physical store location.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Location
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long? Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the location is active.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("active")]
+        public bool? Active { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the location.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The first line of the address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("address1")]
+        public string? Address1 { get; set; } = default!;
+
+        /// <summary>
+        /// The second line of the address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("address2")]
+        public string? Address2 { get; set; } = default!;
+
+        /// <summary>
+        /// The zip or postal code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("zip")]
+        public string? Zip { get; set; } = default!;
+
+        /// <summary>
+        /// The city the location is in.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("city")]
+        public string? City { get; set; } = default!;
+
+        /// <summary>
+        /// The province the location is in.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province")]
+        public string? Province { get; set; } = default!;
+
+        /// <summary>
+        /// The code of the province the location is in.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province_code")]
+        public string? ProvinceCode { get; set; } = default!;
+
+        /// <summary>
+        /// The country the location is in.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country")]
+        public string? Country { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the country the location is in.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_name")]
+        public string? CountryName { get; set; } = default!;
+
+        /// <summary>
+        /// The code of the country the location is in.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_code")]
+        public string? CountryCode { get; set; } = default!;
+
+        /// <summary>
+        /// The phone number of the location. Can contain special chars like - and +.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+        public string? Phone { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the location was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the location was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Whether this is a fulfillment service location. If true, then the location is a fulfillment service location. If false, then the location was created by the merchant and isn't tied to a fulfillment service.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("legacy")]
+        public bool? Legacy { get; set; } = default!;
+
+        /// <summary>
+        /// The localized name of the location's country.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("localized_country_name")]
+        public string? LocalizedCountryName { get; set; } = default!;
+
+        /// <summary>
+        /// The localized name of the location's region. Typically a province, state, or prefecture.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("localized_province_name")]
+        public string? LocalizedProvinceName { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class LocationCount
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("count")]
+        public int? Count { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class LocationItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("location")]
+        public Location? Location { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class LocationList
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("locations")]
+        public System.Collections.Generic.ICollection<Location>? Locations { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
 
 
 }

@@ -29,9 +29,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates an application charge
         /// </summary>
-        /// <returns>Success</returns>
+        /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ApplicationChargeItem> CreateApplicationChargeAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ApplicationChargeItem>> CreateApplicationChargeAsync(ApplicationChargeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -41,7 +41,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Restrict results to after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ApplicationChargeList> RetrieveListOfApplicationChargesAsync(string? fields = null, string? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ApplicationChargeList>> RetrieveListOfApplicationChargesAsync(string? fields = null, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -50,7 +50,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ApplicationChargeItem> RetrieveApplicationChargeAsync(string applicationChargeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ApplicationChargeItem>> RetrieveApplicationChargeAsync(long applicationChargeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -90,9 +90,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates an application charge
         /// </summary>
-        /// <returns>Success</returns>
+        /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ApplicationChargeItem> CreateApplicationChargeAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ApplicationChargeItem>> CreateApplicationChargeAsync(ApplicationChargeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/application_charges.json");
@@ -103,7 +103,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
@@ -128,14 +130,14 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
+                        if (status_ == 201)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ApplicationChargeItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return objectResponse_.Object;
+                            return new ShopifyResponse<ApplicationChargeItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -175,7 +177,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Restrict results to after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ApplicationChargeList> RetrieveListOfApplicationChargesAsync(string? fields = null, string? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ApplicationChargeList>> RetrieveListOfApplicationChargesAsync(string? fields = null, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/application_charges.json?");
@@ -226,7 +228,7 @@ namespace Ocelli.OpenShopify
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return objectResponse_.Object;
+                            return new ShopifyResponse<ApplicationChargeList>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -265,7 +267,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ApplicationChargeItem> RetrieveApplicationChargeAsync(string applicationChargeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ApplicationChargeItem>> RetrieveApplicationChargeAsync(long applicationChargeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (applicationChargeId == null)
                 throw new System.ArgumentNullException("applicationChargeId");
@@ -316,7 +318,7 @@ namespace Ocelli.OpenShopify
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return objectResponse_.Object;
+                            return new ShopifyResponse<ApplicationChargeItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -456,9 +458,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates an application credit
         /// </summary>
-        /// <returns>Success</returns>
+        /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ApplicationCreditItem> CreateApplicationCreditAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ApplicationCreditItem>> CreateApplicationCreditAsync(ApplicationCreditItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -467,7 +469,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ApplicationCreditList> RetrieveAllApplicationCreditsAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ApplicationCreditList>> RetrieveAllApplicationCreditsAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -476,7 +478,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ApplicationCreditItem> RetrieveSingleApplicationCreditAsync(string applicationCreditId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ApplicationCreditItem>> RetrieveSingleApplicationCreditAsync(long applicationCreditId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -516,9 +518,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates an application credit
         /// </summary>
-        /// <returns>Success</returns>
+        /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ApplicationCreditItem> CreateApplicationCreditAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ApplicationCreditItem>> CreateApplicationCreditAsync(ApplicationCreditItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/application_credits.json");
@@ -529,7 +531,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
@@ -554,14 +558,14 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
+                        if (status_ == 201)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ApplicationCreditItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return objectResponse_.Object;
+                            return new ShopifyResponse<ApplicationCreditItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -600,7 +604,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ApplicationCreditList> RetrieveAllApplicationCreditsAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ApplicationCreditList>> RetrieveAllApplicationCreditsAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/application_credits.json?");
@@ -647,7 +651,7 @@ namespace Ocelli.OpenShopify
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return objectResponse_.Object;
+                            return new ShopifyResponse<ApplicationCreditList>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -686,7 +690,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ApplicationCreditItem> RetrieveSingleApplicationCreditAsync(string applicationCreditId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ApplicationCreditItem>> RetrieveSingleApplicationCreditAsync(long applicationCreditId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (applicationCreditId == null)
                 throw new System.ArgumentNullException("applicationCreditId");
@@ -737,7 +741,7 @@ namespace Ocelli.OpenShopify
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return objectResponse_.Object;
+                            return new ShopifyResponse<ApplicationCreditItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -877,9 +881,8 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates a recurring application charge
         /// </summary>
-        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<RecurringApplicationChargeItem> CreateRecurringApplicationChargeAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateRecurringApplicationChargeAsync(RecurringApplicationChargeItem body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -889,7 +892,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Restrict results to after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<RecurringApplicationChargeList> RetrieveListOfRecurringApplicationChargesAsync(string? fields = null, string? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<RecurringApplicationChargeList>> RetrieveListOfRecurringApplicationChargesAsync(string? fields = null, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -898,7 +901,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<RecurringApplicationChargeItem> RetrieveSingleChargeAsync(string recurringApplicationChargeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<RecurringApplicationChargeItem>> RetrieveSingleChargeAsync(long recurringApplicationChargeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -906,15 +909,12 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task CancelRecurringApplicationChargeAsync(string recurringApplicationChargeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CancelRecurringApplicationChargeAsync(long recurringApplicationChargeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates the capped amount of a recurring application charge
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<RecurringApplicationChargeItem> UpdateTheCappedAmountOfRecurringApplicationChargeAsync(string recurringApplicationChargeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<RecurringApplicationChargeItem>> UpdateTheCappedAmountOfRecurringApplicationChargeAsync(long recurringApplicationChargeId, double? cappedAmount = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -954,10 +954,12 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates a recurring application charge
         /// </summary>
-        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<RecurringApplicationChargeItem> CreateRecurringApplicationChargeAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateRecurringApplicationChargeAsync(RecurringApplicationChargeItem body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            if (body == null)
+                throw new System.ArgumentNullException("body");
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/recurring_application_charges.json");
 
@@ -967,9 +969,10 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -992,16 +995,6 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<RecurringApplicationChargeItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -1010,6 +1003,12 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+
+                        if (status_ == 200 || status_ == 204)
+                        {
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -1039,7 +1038,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Restrict results to after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<RecurringApplicationChargeList> RetrieveListOfRecurringApplicationChargesAsync(string? fields = null, string? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RecurringApplicationChargeList>> RetrieveListOfRecurringApplicationChargesAsync(string? fields = null, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/recurring_application_charges.json?");
@@ -1090,7 +1089,7 @@ namespace Ocelli.OpenShopify
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return objectResponse_.Object;
+                            return new ShopifyResponse<RecurringApplicationChargeList>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -1129,7 +1128,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<RecurringApplicationChargeItem> RetrieveSingleChargeAsync(string recurringApplicationChargeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RecurringApplicationChargeItem>> RetrieveSingleChargeAsync(long recurringApplicationChargeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (recurringApplicationChargeId == null)
                 throw new System.ArgumentNullException("recurringApplicationChargeId");
@@ -1180,7 +1179,7 @@ namespace Ocelli.OpenShopify
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return objectResponse_.Object;
+                            return new ShopifyResponse<RecurringApplicationChargeItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -1218,7 +1217,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task CancelRecurringApplicationChargeAsync(string recurringApplicationChargeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CancelRecurringApplicationChargeAsync(long recurringApplicationChargeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (recurringApplicationChargeId == null)
                 throw new System.ArgumentNullException("recurringApplicationChargeId");
@@ -1258,7 +1257,7 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         if (status_ == 401)
@@ -1291,19 +1290,21 @@ namespace Ocelli.OpenShopify
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Updates the capped amount of a recurring application charge
-        /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<RecurringApplicationChargeItem> UpdateTheCappedAmountOfRecurringApplicationChargeAsync(string recurringApplicationChargeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RecurringApplicationChargeItem>> UpdateTheCappedAmountOfRecurringApplicationChargeAsync(long recurringApplicationChargeId, double? cappedAmount = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (recurringApplicationChargeId == null)
                 throw new System.ArgumentNullException("recurringApplicationChargeId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/recurring_application_charges/{recurring_application_charge_id}/customize.json");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/recurring_application_charges/{recurring_application_charge_id}/customize.json?");
             urlBuilder_.Replace("{recurring_application_charge_id}", System.Uri.EscapeDataString(ConvertToString(recurringApplicationChargeId, System.Globalization.CultureInfo.InvariantCulture)));
+            if (cappedAmount != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("capped_amount") + "=").Append(System.Uri.EscapeDataString(ConvertToString(cappedAmount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            urlBuilder_.Length--;
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1343,7 +1344,7 @@ namespace Ocelli.OpenShopify
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return objectResponse_.Object;
+                            return new ShopifyResponse<RecurringApplicationChargeItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -1483,9 +1484,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates a usage charge
         /// </summary>
-        /// <returns>Success</returns>
+        /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<UsageChargeItem> CreateUsageChargeAsync(string recurringApplicationChargeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<UsageChargeItem>> CreateUsageChargeAsync(long recurringApplicationChargeId, UsageChargeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1494,7 +1495,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<UsageChargeList> RetrieveListOfUsageChargesAsync(string recurringApplicationChargeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<UsageChargeList>> RetrieveListOfUsageChargesAsync(long recurringApplicationChargeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1503,7 +1504,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<UsageChargeItem> RetrieveSingleCharge2Async(string recurringApplicationChargeId, string usageChargeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<UsageChargeItem>> RetrieveSingleCharge2Async(long recurringApplicationChargeId, long usageChargeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -1543,9 +1544,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates a usage charge
         /// </summary>
-        /// <returns>Success</returns>
+        /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<UsageChargeItem> CreateUsageChargeAsync(string recurringApplicationChargeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<UsageChargeItem>> CreateUsageChargeAsync(long recurringApplicationChargeId, UsageChargeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (recurringApplicationChargeId == null)
                 throw new System.ArgumentNullException("recurringApplicationChargeId");
@@ -1560,7 +1561,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
@@ -1585,14 +1588,14 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
+                        if (status_ == 201)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<UsageChargeItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return objectResponse_.Object;
+                            return new ShopifyResponse<UsageChargeItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -1631,7 +1634,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<UsageChargeList> RetrieveListOfUsageChargesAsync(string recurringApplicationChargeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<UsageChargeList>> RetrieveListOfUsageChargesAsync(long recurringApplicationChargeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (recurringApplicationChargeId == null)
                 throw new System.ArgumentNullException("recurringApplicationChargeId");
@@ -1682,7 +1685,7 @@ namespace Ocelli.OpenShopify
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return objectResponse_.Object;
+                            return new ShopifyResponse<UsageChargeList>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -1721,7 +1724,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<UsageChargeItem> RetrieveSingleCharge2Async(string recurringApplicationChargeId, string usageChargeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<UsageChargeItem>> RetrieveSingleCharge2Async(long recurringApplicationChargeId, long usageChargeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (recurringApplicationChargeId == null)
                 throw new System.ArgumentNullException("recurringApplicationChargeId");
@@ -1776,7 +1779,7 @@ namespace Ocelli.OpenShopify
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return objectResponse_.Object;
+                            return new ShopifyResponse<UsageChargeItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -2321,6 +2324,7 @@ namespace Ocelli.OpenShopify
         }
 
     }
+
 
 
 }

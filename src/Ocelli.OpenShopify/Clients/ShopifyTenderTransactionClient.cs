@@ -36,7 +36,7 @@ namespace Ocelli.OpenShopify
         /// <param name="processedAtMin">Show tender transactions processed_at or after the specified date.</param>
         /// <param name="sinceId">Retrieve only transactions after the specified ID.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveListOfTenderTransactionsAsync(string? limit = null, string? order = null, string? processedAt = null, string? processedAtMax = null, string? processedAtMin = null, string? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfTenderTransactionsAsync(int? limit = null, string? pageInfo = null, string? order = null, string? processedAt = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -83,13 +83,17 @@ namespace Ocelli.OpenShopify
         /// <param name="processedAtMin">Show tender transactions processed_at or after the specified date.</param>
         /// <param name="sinceId">Retrieve only transactions after the specified ID.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveListOfTenderTransactionsAsync(string? limit = null, string? order = null, string? processedAt = null, string? processedAtMax = null, string? processedAtMin = null, string? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfTenderTransactionsAsync(int? limit = null, string? pageInfo = null, string? order = null, string? processedAt = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/tender_transactions.json?");
             if (limit != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("limit") + "=").Append(System.Uri.EscapeDataString(ConvertToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            if (pageInfo != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("page_info") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageInfo, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (order != null)
             {
@@ -101,11 +105,11 @@ namespace Ocelli.OpenShopify
             }
             if (processedAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("processed_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(processedAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("processed_at_max") + "=").Append(System.Uri.EscapeDataString(processedAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (processedAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("processed_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(processedAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("processed_at_min") + "=").Append(System.Uri.EscapeDataString(processedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (sinceId != null)
             {
@@ -155,8 +159,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -279,6 +282,7 @@ namespace Ocelli.OpenShopify
     }
 
     
+
 
 
 }

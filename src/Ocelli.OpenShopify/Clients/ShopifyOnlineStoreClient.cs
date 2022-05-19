@@ -43,14 +43,14 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMax">Show articles last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updatedAtMin">Show articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveListOfAllArticlesFromBlogAsync(string blogId, string? author = null, string? createdAtMax = null, string? createdAtMin = null, string? fields = null, string? handle = null, string? limit = null, string? publishedAtMax = null, string? publishedAtMin = null, string? publishedStatus = null, string? sinceId = null, string? tag = null, string? updatedAtMax = null, string? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfAllArticlesFromBlogAsync(long blogId, string? author = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? handle = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, int? sinceId = null, string? tag = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Creates an article for a blog
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task CreateArticleForBlogAsync(string blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateArticleForBlogAsync(long blogId, ArticleItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -63,8 +63,9 @@ namespace Ocelli.OpenShopify
         /// <param name="publishedStatus">Count articles with a given published status.</param>
         /// <param name="updatedAtMax">Count articles last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updatedAtMin">Count articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveCountOfAllArticlesFromBlogAsync(string blogId, string? createdAtMax = null, string? createdAtMin = null, string? publishedAtMax = null, string? publishedAtMin = null, string? publishedStatus = null, string? updatedAtMax = null, string? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ArticleCount>> RetrieveCountOfAllArticlesFromBlogAsync(long blogId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -72,28 +73,28 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Show only certain fields, specifed by a comma-separated list of field names.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ReceiveSingleArticleAsync(string articleId, string blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ReceiveSingleArticleAsync(long articleId, long blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Updates an article
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task UpdateArticleAsync(string articleId, string blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdateArticleAsync(long articleId, long blogId, ArticleItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Deletes an article
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task DeleteArticleAsync(string articleId, string blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> DeleteArticleAsync(long articleId, long blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Retrieves a list of all article authors
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveListOfAllArticleAuthorsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfAllArticleAuthorsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -102,7 +103,7 @@ namespace Ocelli.OpenShopify
         /// <param name="limit">The maximum number of tags to retrieve.</param>
         /// <param name="popular">A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveListOfAllArticleTagsAsync(string? limit = null, string? popular = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfAllArticleTagsAsync(int? limit = null, string? pageInfo = null, string? popular = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -111,7 +112,7 @@ namespace Ocelli.OpenShopify
         /// <param name="limit">The maximum number of tags to retrieve.</param>
         /// <param name="popular">A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveListOfAllArticleTagsFromSpecificBlogAsync(string blogId, string? limit = null, string? popular = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfAllArticleTagsFromSpecificBlogAsync(long blogId, int? limit = null, string? pageInfo = null, string? popular = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -165,7 +166,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMax">Show articles last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updatedAtMin">Show articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveListOfAllArticlesFromBlogAsync(string blogId, string? author = null, string? createdAtMax = null, string? createdAtMin = null, string? fields = null, string? handle = null, string? limit = null, string? publishedAtMax = null, string? publishedAtMin = null, string? publishedStatus = null, string? sinceId = null, string? tag = null, string? updatedAtMax = null, string? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfAllArticlesFromBlogAsync(long blogId, string? author = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? handle = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, int? sinceId = null, string? tag = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (blogId == null)
                 throw new System.ArgumentNullException("blogId");
@@ -179,11 +180,11 @@ namespace Ocelli.OpenShopify
             }
             if (createdAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(createdAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_max") + "=").Append(System.Uri.EscapeDataString(createdAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (createdAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(createdAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_min") + "=").Append(System.Uri.EscapeDataString(createdAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (fields != null)
             {
@@ -197,13 +198,17 @@ namespace Ocelli.OpenShopify
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("limit") + "=").Append(System.Uri.EscapeDataString(ConvertToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
+            if (pageInfo != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("page_info") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageInfo, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
             if (publishedAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(publishedAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_max") + "=").Append(System.Uri.EscapeDataString(publishedAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (publishedAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(publishedAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_min") + "=").Append(System.Uri.EscapeDataString(publishedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (publishedStatus != null)
             {
@@ -219,11 +224,11 @@ namespace Ocelli.OpenShopify
             }
             if (updatedAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(updatedAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_max") + "=").Append(System.Uri.EscapeDataString(updatedAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (updatedAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(updatedAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(updatedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -269,8 +274,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -297,7 +301,7 @@ namespace Ocelli.OpenShopify
         /// Creates an article for a blog
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task CreateArticleForBlogAsync(string blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateArticleForBlogAsync(long blogId, ArticleItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (blogId == null)
                 throw new System.ArgumentNullException("blogId");
@@ -312,7 +316,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -349,8 +355,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -383,8 +388,9 @@ namespace Ocelli.OpenShopify
         /// <param name="publishedStatus">Count articles with a given published status.</param>
         /// <param name="updatedAtMax">Count articles last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updatedAtMin">Count articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveCountOfAllArticlesFromBlogAsync(string blogId, string? createdAtMax = null, string? createdAtMin = null, string? publishedAtMax = null, string? publishedAtMin = null, string? publishedStatus = null, string? updatedAtMax = null, string? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ArticleCount>> RetrieveCountOfAllArticlesFromBlogAsync(long blogId, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (blogId == null)
                 throw new System.ArgumentNullException("blogId");
@@ -394,19 +400,19 @@ namespace Ocelli.OpenShopify
             urlBuilder_.Replace("{blog_id}", System.Uri.EscapeDataString(ConvertToString(blogId, System.Globalization.CultureInfo.InvariantCulture)));
             if (createdAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(createdAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_max") + "=").Append(System.Uri.EscapeDataString(createdAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (createdAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(createdAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_min") + "=").Append(System.Uri.EscapeDataString(createdAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (publishedAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(publishedAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_max") + "=").Append(System.Uri.EscapeDataString(publishedAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (publishedAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(publishedAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_min") + "=").Append(System.Uri.EscapeDataString(publishedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (publishedStatus != null)
             {
@@ -414,11 +420,11 @@ namespace Ocelli.OpenShopify
             }
             if (updatedAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(updatedAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_max") + "=").Append(System.Uri.EscapeDataString(updatedAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (updatedAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(updatedAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(updatedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -429,6 +435,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -451,6 +458,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<ArticleCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<ArticleCount>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -459,13 +476,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -493,7 +503,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Show only certain fields, specifed by a comma-separated list of field names.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task ReceiveSingleArticleAsync(string articleId, string blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ReceiveSingleArticleAsync(long articleId, long blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (articleId == null)
                 throw new System.ArgumentNullException("articleId");
@@ -553,8 +563,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -581,7 +590,7 @@ namespace Ocelli.OpenShopify
         /// Updates an article
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task UpdateArticleAsync(string articleId, string blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateArticleAsync(long articleId, long blogId, ArticleItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (articleId == null)
                 throw new System.ArgumentNullException("articleId");
@@ -600,7 +609,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -637,8 +648,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -665,7 +675,7 @@ namespace Ocelli.OpenShopify
         /// Deletes an article
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task DeleteArticleAsync(string articleId, string blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteArticleAsync(long articleId, long blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (articleId == null)
                 throw new System.ArgumentNullException("articleId");
@@ -720,8 +730,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -748,7 +757,7 @@ namespace Ocelli.OpenShopify
         /// Retrieves a list of all article authors
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveListOfAllArticleAuthorsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfAllArticleAuthorsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/articles/authors.json");
@@ -795,8 +804,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -825,13 +833,17 @@ namespace Ocelli.OpenShopify
         /// <param name="limit">The maximum number of tags to retrieve.</param>
         /// <param name="popular">A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveListOfAllArticleTagsAsync(string? limit = null, string? popular = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfAllArticleTagsAsync(int? limit = null, string? pageInfo = null, string? popular = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/articles/tags.json?");
             if (limit != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("limit") + "=").Append(System.Uri.EscapeDataString(ConvertToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            if (pageInfo != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("page_info") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageInfo, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (popular != null)
             {
@@ -881,8 +893,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -911,7 +922,7 @@ namespace Ocelli.OpenShopify
         /// <param name="limit">The maximum number of tags to retrieve.</param>
         /// <param name="popular">A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveListOfAllArticleTagsFromSpecificBlogAsync(string blogId, string? limit = null, string? popular = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfAllArticleTagsFromSpecificBlogAsync(long blogId, int? limit = null, string? pageInfo = null, string? popular = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (blogId == null)
                 throw new System.ArgumentNullException("blogId");
@@ -922,6 +933,10 @@ namespace Ocelli.OpenShopify
             if (limit != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("limit") + "=").Append(System.Uri.EscapeDataString(ConvertToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            if (pageInfo != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("page_info") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageInfo, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (popular != null)
             {
@@ -971,8 +986,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -1104,7 +1118,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Specify which fields to show using a comma-separated list of field names.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveListOfAssetsForThemeAsync(string themeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfAssetsForThemeAsync(long themeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1113,7 +1127,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sourceKey">The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.</param>
         /// <param name="src">The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task CreateOrUpdatesAssetForThemeAsync(string themeId, string? sourceKey = null, string? src = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateOrUpdatesAssetForThemeAsync(long themeId, string? sourceKey = null, string? src = null, AssetItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1121,7 +1135,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="assetkey">Deletes a single asset from a theme by specifying the asset's key.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task DeleteAssetFromThemeAsync(string themeId, string? assetkey = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> DeleteAssetFromThemeAsync(long themeId, string? assetkey = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -1163,7 +1177,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Specify which fields to show using a comma-separated list of field names.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveListOfAssetsForThemeAsync(string themeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfAssetsForThemeAsync(long themeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (themeId == null)
                 throw new System.ArgumentNullException("themeId");
@@ -1219,8 +1233,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -1249,7 +1262,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sourceKey">The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.</param>
         /// <param name="src">The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task CreateOrUpdatesAssetForThemeAsync(string themeId, string? sourceKey = null, string? src = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateOrUpdatesAssetForThemeAsync(long themeId, string? sourceKey = null, string? src = null, AssetItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (themeId == null)
                 throw new System.ArgumentNullException("themeId");
@@ -1273,7 +1286,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -1310,8 +1325,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -1339,7 +1353,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="assetkey">Deletes a single asset from a theme by specifying the asset's key.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task DeleteAssetFromThemeAsync(string themeId, string? assetkey = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteAssetFromThemeAsync(long themeId, string? assetkey = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (themeId == null)
                 throw new System.ArgumentNullException("themeId");
@@ -1349,7 +1363,7 @@ namespace Ocelli.OpenShopify
             urlBuilder_.Replace("{theme_id}", System.Uri.EscapeDataString(ConvertToString(themeId, System.Globalization.CultureInfo.InvariantCulture)));
             if (assetkey != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("assetkey") + "=").Append(System.Uri.EscapeDataString(ConvertToString(assetkey, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("asset[key]") + "=").Append(System.Uri.EscapeDataString(ConvertToString(assetkey, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -1395,8 +1409,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -1531,7 +1544,7 @@ namespace Ocelli.OpenShopify
         /// <param name="limit">The maximum number of results to retrieve.</param>
         /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveListOfAllBlogsAsync(string? fields = null, string? handle = null, string? limit = null, string? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfAllBlogsAsync(string? fields = null, string? handle = null, int? limit = null, string? pageInfo = null, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1539,14 +1552,15 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="title">The title of the blog. Maximum length: 255 characters.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task CreateNewBlogAsync(string? title = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateNewBlogAsync(string? title = null, BlogItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Receive a count of all Blogs
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ReceiveCountOfAllBlogsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<BlogCount>> ReceiveCountOfAllBlogsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1554,21 +1568,21 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ReceiveSingleBlogAsync(string blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ReceiveSingleBlogAsync(long blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Modify an existing Blog
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ModifyExistingBlogAsync(string blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingBlogAsync(long blogId, BlogItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Remove an existing Blog
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RemoveExistingBlogAsync(string blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RemoveExistingBlogAsync(long blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -1613,7 +1627,7 @@ namespace Ocelli.OpenShopify
         /// <param name="limit">The maximum number of results to retrieve.</param>
         /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveListOfAllBlogsAsync(string? fields = null, string? handle = null, string? limit = null, string? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfAllBlogsAsync(string? fields = null, string? handle = null, int? limit = null, string? pageInfo = null, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/blogs.json?");
@@ -1628,6 +1642,10 @@ namespace Ocelli.OpenShopify
             if (limit != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("limit") + "=").Append(System.Uri.EscapeDataString(ConvertToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            if (pageInfo != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("page_info") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageInfo, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (sinceId != null)
             {
@@ -1677,8 +1695,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -1706,7 +1723,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="title">The title of the blog. Maximum length: 255 characters.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task CreateNewBlogAsync(string? title = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateNewBlogAsync(string? title = null, BlogItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/blogs.json?");
@@ -1722,7 +1739,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -1759,8 +1778,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -1786,8 +1804,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Receive a count of all Blogs
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task ReceiveCountOfAllBlogsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<BlogCount>> ReceiveCountOfAllBlogsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/blogs/count.json");
@@ -1799,6 +1818,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -1821,6 +1841,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<BlogCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<BlogCount>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -1829,13 +1859,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -1863,7 +1886,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task ReceiveSingleBlogAsync(string blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ReceiveSingleBlogAsync(long blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (blogId == null)
                 throw new System.ArgumentNullException("blogId");
@@ -1919,8 +1942,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -1947,7 +1969,7 @@ namespace Ocelli.OpenShopify
         /// Modify an existing Blog
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task ModifyExistingBlogAsync(string blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingBlogAsync(long blogId, BlogItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (blogId == null)
                 throw new System.ArgumentNullException("blogId");
@@ -1962,7 +1984,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -1999,8 +2023,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -2027,7 +2050,7 @@ namespace Ocelli.OpenShopify
         /// Remove an existing Blog
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RemoveExistingBlogAsync(string blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RemoveExistingBlogAsync(long blogId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (blogId == null)
                 throw new System.ArgumentNullException("blogId");
@@ -2078,8 +2101,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -2221,14 +2243,14 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMax">Show comments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updatedAtMin">Show comments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveListOfCommentsAsync(string? createdAtMax = null, string? createdAtMin = null, string? fields = null, string? limit = null, string? publishedAtMax = null, string? publishedAtMin = null, string? publishedStatus = null, string? sinceId = null, string? status = null, string? updatedAtMax = null, string? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfCommentsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, int? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Creates a comment for an article
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task CreateCommentForArticleAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateCommentForArticleAsync(CommentItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2242,8 +2264,9 @@ namespace Ocelli.OpenShopify
         /// <param name="status">Retrieve a count of comments with a given status.</param>
         /// <param name="updatedAtMax">Count comments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updatedAtMin">Count comments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveCountOfCommentsAsync(string? createdAtMax = null, string? createdAtMin = null, string? publishedAtMax = null, string? publishedAtMin = null, string? publishedStatus = null, string? status = null, string? updatedAtMax = null, string? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CommentCount>> RetrieveCountOfCommentsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2251,49 +2274,49 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveSingleCommentByItsIDAsync(string commentId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveSingleCommentByItsIDAsync(long commentId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Updates a comment of an article
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task UpdateCommentOfArticleAsync(string commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdateCommentOfArticleAsync(long commentId, CommentItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Marks a comment as spam
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task MarkCommentAsSpamAsync(string commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> MarkCommentAsSpamAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Marks a comment as not spam
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task MarkCommentAsNotSpamAsync(string commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> MarkCommentAsNotSpamAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Approves a comment
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ApproveCommentAsync(string commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ApproveCommentAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Removes a comment
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RemoveCommentAsync(string commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RemoveCommentAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Restores a previously removed comment
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RestorePreviouslyRemovedCommentAsync(string commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RestorePreviouslyRemovedCommentAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -2345,17 +2368,17 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMax">Show comments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updatedAtMin">Show comments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveListOfCommentsAsync(string? createdAtMax = null, string? createdAtMin = null, string? fields = null, string? limit = null, string? publishedAtMax = null, string? publishedAtMin = null, string? publishedStatus = null, string? sinceId = null, string? status = null, string? updatedAtMax = null, string? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfCommentsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, int? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/comments.json?");
             if (createdAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(createdAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_max") + "=").Append(System.Uri.EscapeDataString(createdAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (createdAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(createdAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_min") + "=").Append(System.Uri.EscapeDataString(createdAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (fields != null)
             {
@@ -2365,13 +2388,17 @@ namespace Ocelli.OpenShopify
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("limit") + "=").Append(System.Uri.EscapeDataString(ConvertToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
+            if (pageInfo != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("page_info") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageInfo, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
             if (publishedAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(publishedAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_max") + "=").Append(System.Uri.EscapeDataString(publishedAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (publishedAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(publishedAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_min") + "=").Append(System.Uri.EscapeDataString(publishedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (publishedStatus != null)
             {
@@ -2387,11 +2414,11 @@ namespace Ocelli.OpenShopify
             }
             if (updatedAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(updatedAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_max") + "=").Append(System.Uri.EscapeDataString(updatedAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (updatedAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(updatedAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(updatedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -2437,8 +2464,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -2465,7 +2491,7 @@ namespace Ocelli.OpenShopify
         /// Creates a comment for an article
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task CreateCommentForArticleAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateCommentForArticleAsync(CommentItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/comments.json");
@@ -2476,7 +2502,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -2513,8 +2541,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -2548,26 +2575,27 @@ namespace Ocelli.OpenShopify
         /// <param name="status">Retrieve a count of comments with a given status.</param>
         /// <param name="updatedAtMax">Count comments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updatedAtMin">Count comments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveCountOfCommentsAsync(string? createdAtMax = null, string? createdAtMin = null, string? publishedAtMax = null, string? publishedAtMin = null, string? publishedStatus = null, string? status = null, string? updatedAtMax = null, string? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CommentCount>> RetrieveCountOfCommentsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/comments/count.json?");
             if (createdAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(createdAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_max") + "=").Append(System.Uri.EscapeDataString(createdAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (createdAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(createdAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_min") + "=").Append(System.Uri.EscapeDataString(createdAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (publishedAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(publishedAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_max") + "=").Append(System.Uri.EscapeDataString(publishedAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (publishedAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(publishedAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_min") + "=").Append(System.Uri.EscapeDataString(publishedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (publishedStatus != null)
             {
@@ -2579,11 +2607,11 @@ namespace Ocelli.OpenShopify
             }
             if (updatedAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(updatedAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_max") + "=").Append(System.Uri.EscapeDataString(updatedAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (updatedAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(updatedAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(updatedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -2594,6 +2622,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -2616,6 +2645,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<CommentCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<CommentCount>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -2624,13 +2663,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -2658,7 +2690,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveSingleCommentByItsIDAsync(string commentId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveSingleCommentByItsIDAsync(long commentId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (commentId == null)
                 throw new System.ArgumentNullException("commentId");
@@ -2714,8 +2746,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -2742,7 +2773,7 @@ namespace Ocelli.OpenShopify
         /// Updates a comment of an article
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task UpdateCommentOfArticleAsync(string commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateCommentOfArticleAsync(long commentId, CommentItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (commentId == null)
                 throw new System.ArgumentNullException("commentId");
@@ -2757,7 +2788,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -2794,8 +2827,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -2822,7 +2854,7 @@ namespace Ocelli.OpenShopify
         /// Marks a comment as spam
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task MarkCommentAsSpamAsync(string commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> MarkCommentAsSpamAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (commentId == null)
                 throw new System.ArgumentNullException("commentId");
@@ -2874,8 +2906,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -2902,7 +2933,7 @@ namespace Ocelli.OpenShopify
         /// Marks a comment as not spam
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task MarkCommentAsNotSpamAsync(string commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> MarkCommentAsNotSpamAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (commentId == null)
                 throw new System.ArgumentNullException("commentId");
@@ -2954,8 +2985,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -2982,7 +3012,7 @@ namespace Ocelli.OpenShopify
         /// Approves a comment
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task ApproveCommentAsync(string commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ApproveCommentAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (commentId == null)
                 throw new System.ArgumentNullException("commentId");
@@ -3034,8 +3064,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -3062,7 +3091,7 @@ namespace Ocelli.OpenShopify
         /// Removes a comment
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RemoveCommentAsync(string commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RemoveCommentAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (commentId == null)
                 throw new System.ArgumentNullException("commentId");
@@ -3114,8 +3143,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -3142,7 +3170,7 @@ namespace Ocelli.OpenShopify
         /// Restores a previously removed comment
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RestorePreviouslyRemovedCommentAsync(string commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RestorePreviouslyRemovedCommentAsync(long commentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (commentId == null)
                 throw new System.ArgumentNullException("commentId");
@@ -3194,8 +3222,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -3338,14 +3365,14 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMax">Show pages last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updatedAtMin">Show pages last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveListOfPagesAsync(string? createdAtMax = null, string? createdAtMin = null, string? fields = null, string? handle = null, string? limit = null, string? publishedAtMax = null, string? publishedAtMin = null, string? publishedStatus = null, string? sinceId = null, string? title = null, string? updatedAtMax = null, string? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfPagesAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? handle = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, int? sinceId = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Creates a page
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task CreatePageAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreatePageAsync(PageItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3359,8 +3386,9 @@ namespace Ocelli.OpenShopify
         /// <param name="title">Count pages with a given title.</param>
         /// <param name="updatedAtMax">Count pages last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updatedAtMin">Count pages last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrievePageCountAsync(string? createdAtMax = null, string? createdAtMin = null, string? publishedAtMax = null, string? publishedAtMin = null, string? publishedStatus = null, string? title = null, string? updatedAtMax = null, string? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<PageCount>> RetrievePageCountAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3368,21 +3396,21 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveSinglePageByItsIDAsync(string pageId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveSinglePageByItsIDAsync(long pageId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Updates a page
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task UpdatePageAsync(string pageId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdatePageAsync(long pageId, PageItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Deletes a page
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task DeletePageAsync(string pageId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> DeletePageAsync(long pageId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -3435,17 +3463,17 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMax">Show pages last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updatedAtMin">Show pages last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveListOfPagesAsync(string? createdAtMax = null, string? createdAtMin = null, string? fields = null, string? handle = null, string? limit = null, string? publishedAtMax = null, string? publishedAtMin = null, string? publishedStatus = null, string? sinceId = null, string? title = null, string? updatedAtMax = null, string? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfPagesAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? handle = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, int? sinceId = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/pages.json?");
             if (createdAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(createdAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_max") + "=").Append(System.Uri.EscapeDataString(createdAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (createdAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(createdAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_min") + "=").Append(System.Uri.EscapeDataString(createdAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (fields != null)
             {
@@ -3459,13 +3487,17 @@ namespace Ocelli.OpenShopify
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("limit") + "=").Append(System.Uri.EscapeDataString(ConvertToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
+            if (pageInfo != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("page_info") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageInfo, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
             if (publishedAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(publishedAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_max") + "=").Append(System.Uri.EscapeDataString(publishedAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (publishedAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(publishedAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_min") + "=").Append(System.Uri.EscapeDataString(publishedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (publishedStatus != null)
             {
@@ -3481,11 +3513,11 @@ namespace Ocelli.OpenShopify
             }
             if (updatedAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(updatedAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_max") + "=").Append(System.Uri.EscapeDataString(updatedAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (updatedAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(updatedAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(updatedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -3531,8 +3563,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -3559,7 +3590,7 @@ namespace Ocelli.OpenShopify
         /// Creates a page
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task CreatePageAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreatePageAsync(PageItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/pages.json");
@@ -3570,7 +3601,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -3607,8 +3640,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -3642,26 +3674,27 @@ namespace Ocelli.OpenShopify
         /// <param name="title">Count pages with a given title.</param>
         /// <param name="updatedAtMax">Count pages last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updatedAtMin">Count pages last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrievePageCountAsync(string? createdAtMax = null, string? createdAtMin = null, string? publishedAtMax = null, string? publishedAtMin = null, string? publishedStatus = null, string? title = null, string? updatedAtMax = null, string? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PageCount>> RetrievePageCountAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/pages/count.json?");
             if (createdAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(createdAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_max") + "=").Append(System.Uri.EscapeDataString(createdAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (createdAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(createdAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_min") + "=").Append(System.Uri.EscapeDataString(createdAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (publishedAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(publishedAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_max") + "=").Append(System.Uri.EscapeDataString(publishedAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (publishedAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(publishedAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("published_at_min") + "=").Append(System.Uri.EscapeDataString(publishedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (publishedStatus != null)
             {
@@ -3673,11 +3706,11 @@ namespace Ocelli.OpenShopify
             }
             if (updatedAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(updatedAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_max") + "=").Append(System.Uri.EscapeDataString(updatedAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (updatedAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(updatedAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(updatedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -3688,6 +3721,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -3710,6 +3744,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<PageCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<PageCount>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -3718,13 +3762,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -3752,7 +3789,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveSinglePageByItsIDAsync(string pageId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveSinglePageByItsIDAsync(long pageId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (pageId == null)
                 throw new System.ArgumentNullException("pageId");
@@ -3808,8 +3845,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -3836,7 +3872,7 @@ namespace Ocelli.OpenShopify
         /// Updates a page
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task UpdatePageAsync(string pageId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdatePageAsync(long pageId, PageItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (pageId == null)
                 throw new System.ArgumentNullException("pageId");
@@ -3851,7 +3887,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -3888,8 +3926,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -3916,7 +3953,7 @@ namespace Ocelli.OpenShopify
         /// Deletes a page
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task DeletePageAsync(string pageId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeletePageAsync(long pageId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (pageId == null)
                 throw new System.ArgumentNullException("pageId");
@@ -3967,8 +4004,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -4104,14 +4140,14 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Restrict results to after the specified ID.</param>
         /// <param name="target">Show redirects with a given target.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveListOfURLRedirectsAsync(string? fields = null, string? limit = null, string? path = null, string? sinceId = null, string? target = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfURLRedirectsAsync(string? fields = null, int? limit = null, string? pageInfo = null, string? path = null, int? sinceId = null, string? target = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Creates a redirect
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task CreateRedirectAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateRedirectAsync(RedirectItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4119,8 +4155,9 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="path">Count redirects with given path.</param>
         /// <param name="target">Count redirects with given target.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveCountOfURLRedirectsAsync(string? path = null, string? target = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<RedirectCount>> RetrieveCountOfURLRedirectsAsync(string? path = null, string? target = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4128,21 +4165,21 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveSingleRedirectAsync(string redirectId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveSingleRedirectAsync(long redirectId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Updates an existing redirect
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task UpdateExistingRedirectAsync(string redirectId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdateExistingRedirectAsync(long redirectId, RedirectItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Deletes a redirect
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task DeleteRedirectAsync(string redirectId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> DeleteRedirectAsync(long redirectId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -4188,7 +4225,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Restrict results to after the specified ID.</param>
         /// <param name="target">Show redirects with a given target.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveListOfURLRedirectsAsync(string? fields = null, string? limit = null, string? path = null, string? sinceId = null, string? target = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfURLRedirectsAsync(string? fields = null, int? limit = null, string? pageInfo = null, string? path = null, int? sinceId = null, string? target = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/redirects.json?");
@@ -4199,6 +4236,10 @@ namespace Ocelli.OpenShopify
             if (limit != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("limit") + "=").Append(System.Uri.EscapeDataString(ConvertToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            if (pageInfo != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("page_info") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageInfo, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (path != null)
             {
@@ -4256,8 +4297,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -4284,7 +4324,7 @@ namespace Ocelli.OpenShopify
         /// Creates a redirect
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task CreateRedirectAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateRedirectAsync(RedirectItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/redirects.json");
@@ -4295,7 +4335,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -4332,8 +4374,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -4361,8 +4402,9 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="path">Count redirects with given path.</param>
         /// <param name="target">Count redirects with given target.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveCountOfURLRedirectsAsync(string? path = null, string? target = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RedirectCount>> RetrieveCountOfURLRedirectsAsync(string? path = null, string? target = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/redirects/count.json?");
@@ -4383,6 +4425,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -4405,6 +4448,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<RedirectCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<RedirectCount>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -4413,13 +4466,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -4447,7 +4493,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveSingleRedirectAsync(string redirectId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveSingleRedirectAsync(long redirectId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (redirectId == null)
                 throw new System.ArgumentNullException("redirectId");
@@ -4503,8 +4549,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -4531,7 +4576,7 @@ namespace Ocelli.OpenShopify
         /// Updates an existing redirect
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task UpdateExistingRedirectAsync(string redirectId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateExistingRedirectAsync(long redirectId, RedirectItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (redirectId == null)
                 throw new System.ArgumentNullException("redirectId");
@@ -4546,7 +4591,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -4583,8 +4630,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -4611,7 +4657,7 @@ namespace Ocelli.OpenShopify
         /// Deletes a redirect
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task DeleteRedirectAsync(string redirectId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteRedirectAsync(long redirectId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (redirectId == null)
                 throw new System.ArgumentNullException("redirectId");
@@ -4662,8 +4708,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -4802,22 +4847,23 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMax">Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="updatedAtMin">Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveListOfAllScriptTagsAsync(string? createdAtMax = null, string? createdAtMin = null, string? fields = null, string? limit = null, string? sinceId = null, string? src = null, string? updatedAtMax = null, string? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfAllScriptTagsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, int? limit = null, string? pageInfo = null, int? sinceId = null, string? src = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Creates a new script tag
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task CreateNewScriptTagAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateNewScriptTagAsync(ScriptTagItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Retrieves a count of all script tags
         /// </summary>
         /// <param name="src">Count only script tags with a given URL.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveCountOfAllScriptTagsAsync(string? src = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ScriptTagCount>> RetrieveCountOfAllScriptTagsAsync(string? src = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4825,21 +4871,21 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveSingleScriptTagAsync(string scriptTagId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveSingleScriptTagAsync(long scriptTagId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Updates a script tag
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task UpdateScriptTagAsync(string scriptTagId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdateScriptTagAsync(long scriptTagId, ScriptTagItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Deletes a script tag
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task DeleteScriptTagAsync(string scriptTagId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> DeleteScriptTagAsync(long scriptTagId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -4888,17 +4934,17 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMax">Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="updatedAtMin">Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveListOfAllScriptTagsAsync(string? createdAtMax = null, string? createdAtMin = null, string? fields = null, string? limit = null, string? sinceId = null, string? src = null, string? updatedAtMax = null, string? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfAllScriptTagsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, int? limit = null, string? pageInfo = null, int? sinceId = null, string? src = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/script_tags.json?");
             if (createdAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(createdAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_max") + "=").Append(System.Uri.EscapeDataString(createdAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (createdAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(createdAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("created_at_min") + "=").Append(System.Uri.EscapeDataString(createdAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (fields != null)
             {
@@ -4907,6 +4953,10 @@ namespace Ocelli.OpenShopify
             if (limit != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("limit") + "=").Append(System.Uri.EscapeDataString(ConvertToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            if (pageInfo != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("page_info") + "=").Append(System.Uri.EscapeDataString(ConvertToString(pageInfo, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (sinceId != null)
             {
@@ -4918,11 +4968,11 @@ namespace Ocelli.OpenShopify
             }
             if (updatedAtMax != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_max") + "=").Append(System.Uri.EscapeDataString(ConvertToString(updatedAtMax, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_max") + "=").Append(System.Uri.EscapeDataString(updatedAtMax.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (updatedAtMin != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(ConvertToString(updatedAtMin, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(updatedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -4968,8 +5018,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -4996,7 +5045,7 @@ namespace Ocelli.OpenShopify
         /// Creates a new script tag
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task CreateNewScriptTagAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateNewScriptTagAsync(ScriptTagItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/script_tags.json");
@@ -5007,7 +5056,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -5044,8 +5095,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -5072,8 +5122,9 @@ namespace Ocelli.OpenShopify
         /// Retrieves a count of all script tags
         /// </summary>
         /// <param name="src">Count only script tags with a given URL.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveCountOfAllScriptTagsAsync(string? src = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ScriptTagCount>> RetrieveCountOfAllScriptTagsAsync(string? src = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/script_tags/count.json?");
@@ -5090,6 +5141,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -5112,6 +5164,16 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<ScriptTagCount>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<ScriptTagCount>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
                         if (status_ == 401)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
@@ -5120,13 +5182,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-
-                            return;
                         }
                         else
                         {
@@ -5154,7 +5209,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveSingleScriptTagAsync(string scriptTagId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveSingleScriptTagAsync(long scriptTagId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (scriptTagId == null)
                 throw new System.ArgumentNullException("scriptTagId");
@@ -5210,8 +5265,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -5238,7 +5292,7 @@ namespace Ocelli.OpenShopify
         /// Updates a script tag
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task UpdateScriptTagAsync(string scriptTagId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateScriptTagAsync(long scriptTagId, ScriptTagItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (scriptTagId == null)
                 throw new System.ArgumentNullException("scriptTagId");
@@ -5253,7 +5307,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -5290,8 +5346,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -5318,7 +5373,7 @@ namespace Ocelli.OpenShopify
         /// Deletes a script tag
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task DeleteScriptTagAsync(string scriptTagId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteScriptTagAsync(long scriptTagId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (scriptTagId == null)
                 throw new System.ArgumentNullException("scriptTagId");
@@ -5369,8 +5424,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -5502,14 +5556,14 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveListOfThemesAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfThemesAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Creates a theme
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task CreateThemeAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateThemeAsync(ThemeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -5517,21 +5571,21 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RetrieveSingleThemeByItsIDAsync(string themeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RetrieveSingleThemeByItsIDAsync(long themeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Modify an existing Theme
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ModifyExistingThemeAsync(string themeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingThemeAsync(long themeId, ThemeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Remove an existing Theme
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task RemoveExistingThemeAsync(string themeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> RemoveExistingThemeAsync(long themeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -5573,7 +5627,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveListOfThemesAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfThemesAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/themes.json?");
@@ -5625,8 +5679,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -5653,7 +5706,7 @@ namespace Ocelli.OpenShopify
         /// Creates a theme
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task CreateThemeAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateThemeAsync(ThemeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/themes.json");
@@ -5664,7 +5717,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -5701,8 +5756,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -5730,7 +5784,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RetrieveSingleThemeByItsIDAsync(string themeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveSingleThemeByItsIDAsync(long themeId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (themeId == null)
                 throw new System.ArgumentNullException("themeId");
@@ -5786,8 +5840,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -5814,7 +5867,7 @@ namespace Ocelli.OpenShopify
         /// Modify an existing Theme
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task ModifyExistingThemeAsync(string themeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingThemeAsync(long themeId, ThemeItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (themeId == null)
                 throw new System.ArgumentNullException("themeId");
@@ -5829,7 +5882,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -5866,8 +5921,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -5894,7 +5948,7 @@ namespace Ocelli.OpenShopify
         /// Remove an existing Theme
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task RemoveExistingThemeAsync(string themeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RemoveExistingThemeAsync(long themeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (themeId == null)
                 throw new System.ArgumentNullException("themeId");
@@ -5945,8 +5999,7 @@ namespace Ocelli.OpenShopify
 
                         if (status_ == 200 || status_ == 204)
                         {
-
-                            return;
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -6068,7 +6121,970 @@ namespace Ocelli.OpenShopify
         }
     }
 
-    
+    /// <summary>
+    /// An object representing a Shopify blog article.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Article
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long? Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the author of this article
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("author")]
+        public string? Author { get; set; } = default!;
+
+        /// <summary>
+        /// A unique numeric identifier for the blog containing the article.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("blog_id")]
+        public long? BlogId { get; set; } = default!;
+
+        /// <summary>
+        /// The text of the body of the article, complete with HTML markup.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("body_html")]
+        public string? BodyHtml { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the article was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// A human-friendly unique string for an article automatically generated from its title. It is used in the article's URL.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        public string? Handle { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("image")]
+        public ArticleImage? Image { get; set; } = default!;
+
+        /// <summary>
+        /// States whether or not the article is visible.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published")]
+        public bool? Published { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the article was published.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_at")]
+        public System.DateTimeOffset? PublishedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The text of the summary of the article, complete with HTML markup.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("summary_html")]
+        public string? SummaryHtml { get; set; } = default!;
+
+        /// <summary>
+        /// Tags are additional short descriptors formatted as a string of comma-separated values. For example, if an article has three tags: tag1, tag2, tag3.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tags")]
+        public string? Tags { get; set; } = default!;
+
+        /// <summary>
+        /// States the name of the template an article is using if it is using an alternate template. If an article is using the default article.liquid template, the value returned is null.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
+        public string? TemplateSuffix { get; set; } = default!;
+
+        /// <summary>
+        /// The title of the article.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the article was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// A unique numeric identifier for the author of the article.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("user_id")]
+        public long? UserId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ArticleCount
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("count")]
+        public int? Count { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// Represents a Shopify article's image.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ArticleImage
+    {
+        /// <summary>
+        /// A base64 image string only used when creating an image. It will be converted to the OpenShopify.Admin.Builder.Models.ArticleImage.Src property.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("attachment")]
+        public string? Attachment { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time the image was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The image's src URL.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("src")]
+        public string? Src { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ArticleItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("article")]
+        public Article? Article { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// An object representing a Shopify asset. Assets do not have ids, but rather keys, and are associated with specific themes.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Asset
+    {
+        /// <summary>
+        /// An asset attached to a store's theme.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("attachment")]
+        public string? Attachment { get; set; } = default!;
+
+        /// <summary>
+        /// The MD5 representation of the content, consisting of a string of 32 hexadecimal digits.
+        /// <br/>May be null if an asset has not been updated recently.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("checksum")]
+        public string? Checksum { get; set; } = default!;
+
+        /// <summary>
+        /// MIME representation of the content, consisting of the type and subtype of the asset, 
+        /// <br/>e.g. "image/gif"
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("content_type")]
+        public string? ContentType { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the asset was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The path to the asset within a shop, prefixed with the asset's 'bucket' type,
+        /// <br/> e.g. 'templates/index.liquid' or 'assets/bg-body.gif'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("key")]
+        public string? Key { get; set; } = default!;
+
+        /// <summary>
+        /// The public facing URL of the asset.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("public_url")]
+        public string? PublicUrl { get; set; } = default!;
+
+        /// <summary>
+        /// The asset size in bytes.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("size")]
+        public long? Size { get; set; } = default!;
+
+        /// <summary>
+        /// When set in an asset and used in !:AssetService.CreateOrUpdate(long, Asset), 
+        /// <br/>a new asset will be created and copied from an asset with the key matching this source key.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("source_key")]
+        public string? SourceKey { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies the location of an asset.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("src")]
+        public string? Src { get; set; } = default!;
+
+        /// <summary>
+        /// A unique numeric identifier for the theme.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("theme_id")]
+        public long? ThemeId { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when an asset was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The asset that you are adding.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
+        public string? Value { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class AssetItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("asset")]
+        public Asset? Asset { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// Represents a Blog � not a blog post � on a merchant's Shopify store.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Blog
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long? Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates whether readers can post comments to the blog and if comments are moderated or not. Possible values are:
+        /// <br/>"no" (default): Readers cannot post comments to blog articles.
+        /// <br/>"moderate": Readers can post comments to blog articles, but comments must be moderated before they appear.
+        /// <br/>"yes": Readers can post comments to blog articles without moderation.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("commentable")]
+        public string? Commentable { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the blog was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Feedburner is a web feed management provider and can be enabled to provide custom RSS feeds for Shopify bloggers. This property will default to blank or "null" unless feedburner is enabled through the shop admin.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("feedburner")]
+        public object? Feedburner { get; set; } = default!;
+
+        /// <summary>
+        /// URL to the feedburner location for blogs that have enabled feedburner through their store admin.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("feedburner_url")]
+        public string? FeedburnerUrl { get; set; } = default!;
+
+        /// <summary>
+        /// A human-friendly unique string for a blog automatically generated from its title. This handle is used by the Liquid templating language to refer to the blog.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        public string? Handle { get; set; } = default!;
+
+        /// <summary>
+        /// Tags are additional short descriptors formatted as a string of comma-separated values. For example, if an article has three tags: tag1, tag2, tag3.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tags")]
+        public string? Tags { get; set; } = default!;
+
+        /// <summary>
+        /// States the name of the template a blog is using if it is using an alternate template. If a blog is using the default blog.liquid template, the value returned is "null".
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
+        public string? TemplateSuffix { get; set; } = default!;
+
+        /// <summary>
+        /// The title of the blog.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when changes were last made to the blog's properties. Note that this is not updated when creating, modifying or deleting articles in the blog.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class BlogCount
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("count")]
+        public int? Count { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class BlogItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("blog")]
+        public Blog? Blog { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Comment : System.Collections.Generic.Dictionary<string, object>
+    {
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CommentCount
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("count")]
+        public int? Count { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CommentItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("comment")]
+        public Comment? Comment { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// An entity representing a Shopify product.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Page
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long? Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the page.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// The content of the page, complete with HTML formatting.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("body_html")]
+        public string? BodyHtml { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the page was created. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the page was last modified. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the page was published. The API returns this value in ISO 8601 format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("published_at")]
+        public System.DateTimeOffset? PublishedAt { get; set; } = default!;
+
+        /// <summary>
+        /// A human-friendly unique string for the page automatically generated from its title.
+        /// <br/>They are used by the Liquid templating language to refer to objects.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        public string? Handle { get; set; } = default!;
+
+        /// <summary>
+        /// The suffix of the liquid template being used.
+        /// <br/>By default, the original template is called product.liquid, without any suffix.
+        /// <br/>Any additional templates will be: product.suffix.liquid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
+        public string? TemplateSuffix { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+        public System.Collections.Generic.ICollection<PageMetafield>? Metafields { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class PageCount
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("count")]
+        public int? Count { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class PageItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("page")]
+        public Page? Page { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class PageMetafield
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long? Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the metafield was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the metafield was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Identifier for the metafield (maximum of 30 characters).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("key")]
+        public string? Key { get; set; } = default!;
+
+        /// <summary>
+        /// Information to be stored as metadata. Must be either a string or an int.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
+        public object? Value { get; set; } = default!;
+
+        /// <summary>
+        /// States whether the information in the value is stored as a 'string' or 'integer.'
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
+        public string? ValueType { get; set; } = default!;
+
+        /// <summary>
+        /// Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("namespace")]
+        public string? Namespace { get; set; } = default!;
+
+        /// <summary>
+        /// Additional information about the metafield.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
+        public string? Description { get; set; } = default!;
+
+        /// <summary>
+        /// The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("owner_id")]
+        public long? OwnerId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("owner_resource")]
+        public string? OwnerResource { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// An entity representing a Shopify redirect.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Redirect
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long? Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The "before" path to be redirected. When the user navigates to this path, they will be redirected to the path specified by target.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("path")]
+        public string? Path { get; set; } = default!;
+
+        /// <summary>
+        /// The "after" path or URL to be redirected to. This property can be set to any path on the shop's site, or any URL, even one on a 
+        /// <br/>completely different domain.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("target")]
+        public string? Target { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class RedirectCount
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("count")]
+        public int? Count { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class RedirectItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("redirect")]
+        public Redirect? Redirect { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// An object representing remote javascript tags that are loaded into the pages of a shop's storefront.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ScriptTag
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long? Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the OpenShopify.Admin.Builder.Models.ScriptTag was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Where the script tag should be included on the store. Known values are 'online_store', 'order_status' or 'all'. Defaults to 'all'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("display_scope")]
+        public string? DisplayScope { get; set; } = default!;
+
+        /// <summary>
+        /// DOM event which triggers the loading of the script. The only known value is 'onload'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("event")]
+        public string? Event { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies the location of the ScriptTag.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("src")]
+        public string? Src { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the OpenShopify.Admin.Builder.Models.ScriptTag was updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ScriptTagCount
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("count")]
+        public int? Count { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ScriptTagItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("script_tag")]
+        public ScriptTag? ScriptTag { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// An entity representing a Shopify theme.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Theme
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public long? Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the theme was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the theme.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// Specifies how the theme is being used within the shop. Known values are 'main', 'mobile' and 'unpublished'.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("role")]
+        public string? Role { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the theme was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates if the theme can currently be previewed.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("previewable")]
+        public bool? Previewable { get; set; } = default!;
+
+        /// <summary>
+        /// Indicates if files are still being copied into place for this theme.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("processing")]
+        public bool? Processing { get; set; } = default!;
+
+        /// <summary>
+        /// The theme's store id. Can be null if not published in the store.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("theme_store_id")]
+        public long? ThemeStoreId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ThemeItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("theme")]
+        public Theme? Theme { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
 
 
 }

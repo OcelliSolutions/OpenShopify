@@ -22,27 +22,27 @@ namespace Ocelli.OpenShopify
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial interface IDeprecatedApiCallsClient
+    public partial interface IAccessScopeClient
     {
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Retrieves a list of deprecated API calls
+        /// Get a list of access scopes
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DeprecatedApiCallList>> RetrieveListOfDeprecatedAPICallsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<AccessScopeList>> GetListOfAccessScopesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    internal partial class DeprecatedApiCallsClient : ShopifyClientBase, IDeprecatedApiCallsClient
+    internal partial class AccessScopeClient : ShopifyClientBase, IAccessScopeClient
     {
-        private string _baseUrl = "https://{store_name}.myshopify.com/admin/api/{api_version}";
+        private string _baseUrl = "https://{store_name}.myshopify.com/admin";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<System.Text.Json.JsonSerializerOptions> _settings;
 
-        public DeprecatedApiCallsClient(System.Net.Http.HttpClient httpClient)
+        public AccessScopeClient(System.Net.Http.HttpClient httpClient)
         {
             _httpClient = httpClient;
             _settings = new System.Lazy<System.Text.Json.JsonSerializerOptions>(CreateSerializerSettings);
@@ -69,14 +69,14 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Retrieves a list of deprecated API calls
+        /// Get a list of access scopes
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DeprecatedApiCallList>> RetrieveListOfDeprecatedAPICallsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<AccessScopeList>> GetListOfAccessScopesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/deprecated_api_calls.json");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/oauth/access_scopes.json");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -110,12 +110,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<DeprecatedApiCallList>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<AccessScopeList>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<DeprecatedApiCallList>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<AccessScopeList>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 401)
@@ -248,63 +248,12 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class DeprecatedApiCall
+    public partial class AccessScope
     {
-        /// <summary>
-        /// The type of API that the call was made to. Valid values: REST, Webhook, GraphQL
-        /// </summary>
 
-        [System.Text.Json.Serialization.JsonPropertyName("api_type")]
-        public string? ApiType { get; set; } = default!;
-
-        /// <summary>
-        /// A description of the deprecation and any required migration steps.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("description")]
-        public string? Description { get; set; } = default!;
-
-        /// <summary>
-        /// The documentation URL to the deprecated change.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("documentation_url")]
-        public string? DocumentationUrl { get; set; } = default!;
-
-        /// <summary>
-        /// description of the REST endpoint, webhook topic, or GraphQL field called.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("endpoint")]
-        public string? Endpoint { get; set; } = default!;
-
-        /// <summary>
-        /// The timestamp (ISO 4217 format) when the last deprecated API call was made.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("last_call_at")]
-        public System.DateTimeOffset? LastCallAt { get; set; } = default!;
-
-        /// <summary>
-        /// The time (ISO 4217 format) when the deprecated API call will be removed.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("migration_deadline")]
-        public System.DateTimeOffset? MigrationDeadline { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the GraphQL schema. If the call wasn't made to a GraphQL API, then this value is null.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("graphql_schema_name")]
-        public string? GraphqlSchemaName { get; set; } = default!;
-
-        /// <summary>
-        /// The earliest API version to migrate to in order to avoid making the deprecated API calls.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("version")]
-        public string? Version { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumConverter))]
+        public AuthorizationScope? Handle { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -318,14 +267,11 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class DeprecatedApiCallList
+    public partial class AccessScopeList
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("data_updated_at")]
-        public System.DateTimeOffset? DataUpdatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("deprecated_api_calls")]
-        public System.Collections.Generic.ICollection<DeprecatedApiCall>? DeprecatedApiCalls { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonPropertyName("access_scopes")]
+        public System.Collections.Generic.ICollection<AccessScope>? AccessScopes { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -335,6 +281,207 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum AuthorizationScope
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_content")]
+        read_content = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_content")]
+        write_content = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_themes")]
+        read_themes = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_themes")]
+        write_themes = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_products")]
+        read_products = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_products")]
+        write_products = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_customers")]
+        read_customers = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_customers")]
+        write_customers = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_orders")]
+        read_orders = 8,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_all_orders")]
+        read_all_orders = 9,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_orders")]
+        write_orders = 10,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_script_tags")]
+        read_script_tags = 11,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_script_tags")]
+        write_script_tags = 12,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_fulfillments")]
+        read_fulfillments = 13,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_fulfillments")]
+        write_fulfillments = 14,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_shipping")]
+        read_shipping = 15,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_shipping")]
+        write_shipping = 16,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_analytics")]
+        read_analytics = 17,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_users")]
+        read_users = 18,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_users")]
+        write_users = 19,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_checkouts")]
+        read_checkouts = 20,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_checkouts")]
+        write_checkouts = 21,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_reports")]
+        read_reports = 22,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_reports")]
+        write_reports = 23,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_price_rules")]
+        read_price_rules = 24,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_price_rules")]
+        write_price_rules = 25,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_inventory")]
+        read_inventory = 26,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_inventory")]
+        write_inventory = 27,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_product_listings")]
+        read_product_listings = 28,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_collection_listings")]
+        read_collection_listings = 29,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_draft_orders")]
+        read_draft_orders = 30,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_draft_orders")]
+        write_draft_orders = 31,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_merchant_managed_fulfillment_orders")]
+        write_merchant_managed_fulfillment_orders = 32,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_merchant_managed_fulfillment_orders")]
+        read_merchant_managed_fulfillment_orders = 33,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_marketing_events")]
+        read_marketing_events = 34,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_marketing_events")]
+        write_marketing_events = 35,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_resource_feedbacks")]
+        read_resource_feedbacks = 36,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_resource_feedbacks")]
+        write_resource_feedbacks = 37,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_read_checkouts")]
+        unauthenticated_read_checkouts = 38,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_read_collection_listings")]
+        unauthenticated_read_collection_listings = 39,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_read_customer_tags")]
+        unauthenticated_read_customer_tags = 40,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_read_customers")]
+        unauthenticated_read_customers = 41,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_read_product_listings")]
+        unauthenticated_read_product_listings = 42,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_read_product_tags")]
+        unauthenticated_read_product_tags = 43,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_write_checkouts")]
+        unauthenticated_write_checkouts = 44,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_write_customers")]
+        unauthenticated_write_customers = 45,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_read_content")]
+        unauthenticated_read_content = 46,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_locations")]
+        read_locations = 47,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_locations")]
+        write_locations = 48,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_order_edits")]
+        read_order_edits = 49,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_order_edits")]
+        write_order_edits = 50,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_assigned_fulfillment_orders")]
+        read_assigned_fulfillment_orders = 51,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_assigned_fulfillment_orders")]
+        write_assigned_fulfillment_orders = 52,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_third_party_fulfillment_orders")]
+        read_third_party_fulfillment_orders = 53,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_third_party_fulfillment_orders")]
+        write_third_party_fulfillment_orders = 54,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_gift_cards")]
+        read_gift_cards = 55,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_gift_cards")]
+        write_gift_cards = 56,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_discounts")]
+        read_discounts = 57,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_discounts")]
+        write_discounts = 58,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_shopify_payments_payouts")]
+        read_shopify_payments_payouts = 59,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_shopify_payments_disputes")]
+        read_shopify_payments_disputes = 60,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_translations")]
+        read_translations = 61,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_translations")]
+        write_translations = 62,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"read_locales")]
+        read_locales = 63,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"write_locales")]
+        write_locales = 64,
 
     }
 

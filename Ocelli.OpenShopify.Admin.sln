@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0B881DA4-FF51-4CC3-A801-7230B61BA8B9}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		open-shopify-access-oauth.yaml = open-shopify-access-oauth.yaml
 		open-shopify-access.yaml = open-shopify-access.yaml
 		open-shopify-analytics.yaml = open-shopify-analytics.yaml
 		open-shopify-billing.yaml = open-shopify-billing.yaml
@@ -46,6 +47,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenShopify.ClientGenerator
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApp", "tests\SampleApp\SampleApp.csproj", "{7DF98584-205B-4447-93AC-DF1C21674B79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenShopify.OAuth.Builder", "tools\OpenShopify.OAuth.Builder\OpenShopify.OAuth.Builder.csproj", "{ED9C2EE4-2403-46DF-B898-61D52DF3E239}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenShopify.Common", "tools\OpenShopify.Common\OpenShopify.Common.csproj", "{0D63A207-A11B-444B-8B65-79EE6F7F48F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +81,14 @@ Global
 		{7DF98584-205B-4447-93AC-DF1C21674B79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DF98584-205B-4447-93AC-DF1C21674B79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DF98584-205B-4447-93AC-DF1C21674B79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED9C2EE4-2403-46DF-B898-61D52DF3E239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED9C2EE4-2403-46DF-B898-61D52DF3E239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED9C2EE4-2403-46DF-B898-61D52DF3E239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED9C2EE4-2403-46DF-B898-61D52DF3E239}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D63A207-A11B-444B-8B65-79EE6F7F48F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D63A207-A11B-444B-8B65-79EE6F7F48F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D63A207-A11B-444B-8B65-79EE6F7F48F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D63A207-A11B-444B-8B65-79EE6F7F48F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +100,8 @@ Global
 		{D5697227-A039-4B45-B652-6183DF5FF327} = {D02AAED0-78BF-429F-80D5-4E17E6840A62}
 		{597C6557-006A-4869-98C8-D693C21A118D} = {318E901E-B607-4FC9-B5D1-650204023CAB}
 		{7DF98584-205B-4447-93AC-DF1C21674B79} = {D02AAED0-78BF-429F-80D5-4E17E6840A62}
+		{ED9C2EE4-2403-46DF-B898-61D52DF3E239} = {318E901E-B607-4FC9-B5D1-650204023CAB}
+		{0D63A207-A11B-444B-8B65-79EE6F7F48F4} = {318E901E-B607-4FC9-B5D1-650204023CAB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49AD5AA9-F37B-4C95-A51B-41F0CFBAA942}
