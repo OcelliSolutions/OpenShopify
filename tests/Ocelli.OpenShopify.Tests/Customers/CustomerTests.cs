@@ -16,10 +16,6 @@ public class CustomerTests : IClassFixture<SharedFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
     private readonly CustomersService _service; 
-    private static string FirstName => "John (OpenShopify)";
-    private static string LastName => "Doe";
-    private static string Company => "OpenShopify";
-    private static string Note => "Test note about this customer.";
 
     public CustomerTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
     {
@@ -39,8 +35,8 @@ public class CustomerTests : IClassFixture<SharedFixture>
         { 
             Customer = new CreateCustomer()
             {
-                FirstName = FirstName,
-                LastName = LastName,
+                FirstName = Fixture.FirstName,
+                LastName = Fixture.LastName,
                 Email = $@"{Fixture.BatchId}@example.com",
                 AcceptsMarketing = false,
                 Addresses = new List<CreateAddress>()
@@ -53,36 +49,33 @@ public class CustomerTests : IClassFixture<SharedFixture>
                         ProvinceCode = "MN",
                         Zip = "55401",
                         Phone = "555-555-5555",
-                        FirstName = FirstName,
-                        LastName = LastName,
-                        Company = Company,
+                        FirstName = Fixture.FirstName,
+                        LastName = Fixture.LastName,
+                        Company = Fixture.Company,
                         Country = "United States",
                         CountryCode = "US",
                         Default = true,
                     }
                 },
                 VerifiedEmail = true,
-                Note = Note,
+                Note = Fixture.Note,
                 State = "enabled"
             }
         };
         var created =
-            await _service.Customer.CreateCustomerAsync(request, CancellationToken.None);
+            await _service.Customer.CreateCustomerAsync(request);
         _additionalPropertiesHelper.CheckAdditionalProperties(created, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(created.Result.Customer, Fixture.MyShopifyUrl);
 
         var customer = created.Result.Customer;
 
         Assert.NotNull(customer);
-        Assert.Equal(FirstName, customer?.FirstName);
-        Assert.Equal(LastName, customer?.LastName);
-        Assert.Equal(Company, customer?.Addresses?.First().Company);
-        Assert.Equal(Note, customer?.Note);
-        Assert.NotNull(customer?.Addresses);
-        if (customer != null)
-        {
-            Fixture.CreatedCustomers.Add(customer);
-        }
+        Assert.Equal(Fixture.FirstName, customer.FirstName);
+        Assert.Equal(Fixture.LastName, customer.LastName);
+        Assert.Equal(Fixture.Company, customer.Addresses?.First().Company);
+        Assert.Equal(Fixture.Note, customer.Note);
+        Assert.NotNull(customer.Addresses);
+        Fixture.CreatedCustomers.Add(customer);
     }
     
     [SkippableFact, TestPriority(10)]
@@ -92,8 +85,8 @@ public class CustomerTests : IClassFixture<SharedFixture>
         {
             Customer = new CreateCustomer()
             {
-                FirstName = FirstName,
-                LastName = LastName,
+                FirstName = Fixture.FirstName,
+                LastName = Fixture.LastName,
                 Email = $@"{Fixture.BatchId}+options@example.com",
                 AcceptsMarketing = false,
                 Addresses = new List<CreateAddress>
@@ -106,16 +99,16 @@ public class CustomerTests : IClassFixture<SharedFixture>
                         ProvinceCode = "MN",
                         Zip = "55401",
                         Phone = "555-555-5555",
-                        FirstName = FirstName,
-                        LastName = LastName,
-                        Company = Company,
+                        FirstName = Fixture.FirstName,
+                        LastName = Fixture.LastName,
+                        Company = Fixture.Company,
                         Country = "United States",
                         CountryCode = "US",
                         Default = true,
                     }
                 },
                 VerifiedEmail = true,
-                Note = Note,
+                Note = Fixture.Note,
                 State = "enabled", 
                 Password = "sample", 
                 PasswordConfirmation = "sample", 
@@ -128,19 +121,17 @@ public class CustomerTests : IClassFixture<SharedFixture>
         _additionalPropertiesHelper.CheckAdditionalProperties(created.Result.Customer, Fixture.MyShopifyUrl);
         var customer = created.Result.Customer;
         Assert.NotNull(customer);
-        Assert.Equal(FirstName, customer?.FirstName);
-        Assert.Equal(LastName, customer?.LastName);
-        Assert.Equal(Note, customer?.Note);
-        Assert.NotNull(customer?.Addresses);
+        Assert.Equal(Fixture.FirstName, customer.FirstName);
+        Assert.Equal(Fixture.LastName, customer.LastName);
+        Assert.Equal(Fixture.Note, customer.Note);
+        Assert.NotNull(customer.Addresses);
         Fixture.CreatedCustomers.Add(customer ?? throw new InvalidOperationException());
     }
     
     [SkippableFact, TestPriority(20)]
     public async Task Counts_Customers()
     {
-
-        var response = await _service.Customer.GetCountOfCustomersAsync(CancellationToken.None);
-
+        var response = await _service.Customer.CountCustomersAsync(CancellationToken.None);
         Assert.True(response.Result.Count > 0);
     }
 
@@ -148,26 +139,36 @@ public class CustomerTests : IClassFixture<SharedFixture>
     public async Task Lists_Customers()
     {
         var response = await _service.Customer.ListCustomersAsync();
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        foreach (var customerSavedSearch in response.Result.Customers)
+        {
+            _additionalPropertiesHelper.CheckAdditionalProperties(customerSavedSearch, Fixture.MyShopifyUrl);
+        }
 
-        Assert.True(response.Result.Customers?.Any());
+        Assert.True(response.Result.Customers.Any());
+
+        //Add any created items from previously failed tests to the created list for later deletion.
+        Fixture.CreatedCustomers.AddRange(response.Result.Customers.Where(fs =>
+            !Fixture.CreatedCustomers.Exists(e => e.Id == fs.Id) &&
+            fs.FirstName!.StartsWith(Fixture.FirstName)));
     }
-
-
+    
     [SkippableFact, TestPriority(20)]
     public async Task Gets_Customer()
     {
         Skip.If(!Fixture.CreatedCustomers.Any(), "This should be run with the create test.");
-        var response = await _service.Customer.GetCustomerAsync(Fixture.CreatedCustomers.First().Id);
+        var createdCustomer = Fixture.CreatedCustomers.First();
+        var response = await _service.Customer.GetCustomerAsync(createdCustomer.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Customer, Fixture.MyShopifyUrl);
 
         var customer = response.Result.Customer;
         Assert.NotNull(customer);
-        Assert.Equal(FirstName, customer?.FirstName);
-        Assert.Equal(LastName, customer?.LastName);
-        Assert.Equal(Note, customer?.Note);
-        Assert.NotNull(customer?.Addresses);
-        Assert.NotNull(customer?.DefaultAddress);
+        Assert.Equal(Fixture.FirstName, customer.FirstName);
+        Assert.Equal(Fixture.LastName, customer.LastName);
+        Assert.Equal(Fixture.Note, customer.Note);
+        Assert.NotNull(customer.Addresses);
+        Assert.NotNull(customer.DefaultAddress);
     }
 
     [SkippableFact, TestPriority(20)]
@@ -182,11 +183,11 @@ public class CustomerTests : IClassFixture<SharedFixture>
 
         var customer = response.Result.Customer;
         Assert.NotNull(customer);
-        Assert.Equal(FirstName, customer?.FirstName);
-        Assert.Equal(LastName, customer?.LastName);
-        Assert.Null(customer?.Note);
-        Assert.Null(customer?.Addresses);
-        Assert.Null(customer?.DefaultAddress);
+        Assert.Equal(Fixture.FirstName, customer.FirstName);
+        Assert.Equal(Fixture.LastName, customer.LastName);
+        Assert.Null(customer.Note);
+        Assert.Null(customer.Addresses);
+        Assert.Null(customer.DefaultAddress);
 
     }
     [SkippableFact, TestPriority(20)]
@@ -199,14 +200,11 @@ public class CustomerTests : IClassFixture<SharedFixture>
 
         try
         {
-            var response = await _service.Customer.SearchForCustomersThatMatchSuppliedQueryAsync(query: FirstName);
+            var response = await _service.Customer.SearchForCustomersThatMatchSuppliedQueryAsync(query: Fixture.FirstName);
             _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-            if (response.Result.Customers != null)
-            {
-                Fixture.CreatedCustomers.AddRange(response.Result.Customers);
-                foreach (var customer in response.Result.Customers)
-                    _additionalPropertiesHelper.CheckAdditionalProperties(customer, Fixture.MyShopifyUrl);
-            }
+            Fixture.CreatedCustomers.AddRange(response.Result.Customers);
+            foreach (var customer in response.Result.Customers)
+                _additionalPropertiesHelper.CheckAdditionalProperties(customer, Fixture.MyShopifyUrl);
         }
         catch (Exception ex)
         {
@@ -243,8 +241,8 @@ public class CustomerTests : IClassFixture<SharedFixture>
 
         var invite = response.Result.CustomerInvite;
         Assert.NotNull(invite);
-        Assert.Equal(request.CustomerInvite.Subject, invite?.Subject);
-        Assert.Equal(request.CustomerInvite.CustomMessage, invite?.CustomMessage);
+        Assert.Equal(request.CustomerInvite.Subject, invite.Subject);
+        Assert.Equal(request.CustomerInvite.CustomMessage, invite.CustomMessage);
 
     }
 
@@ -266,63 +264,76 @@ public class CustomerTests : IClassFixture<SharedFixture>
     {
         Skip.If(!Fixture.CreatedCustomers.Any(), "This should be run with the create test.");
         const string lastName = "Sample";
-        var customer = Fixture.CreatedCustomers.First();
+        var createdCustomer = Fixture.CreatedCustomers.First();
         var request = new UpdateCustomerRequest()
         {
             Customer = new UpdateCustomer()
             {
-                Id = customer.Id,
+                Id = createdCustomer.Id,
                 LastName = lastName
             }
         };
 
-        var response = await _service.Customer.UpdateCustomerAsync(customer.Id!, request);
+        var response = await _service.Customer.UpdateCustomerAsync(createdCustomer.Id, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Customer, Fixture.MyShopifyUrl);
 
         var updated = response.Result.Customer;
-        Assert.Equal(lastName, updated?.LastName);
-        Assert.Equal(customer.Email, updated?.Email);
-        Assert.Equal(customer.Note, updated?.Note);
+        Assert.Equal(lastName, updated.LastName);
+        Assert.Equal(createdCustomer.Email, updated.Email);
+        Assert.Equal(createdCustomer.Note, updated.Note);
+
+        // Reset the id so the Fixture can properly delete this object.
+        Fixture.CreatedCustomers.Remove(createdCustomer);
+        Fixture.CreatedCustomers.Add(response.Result.Customer);
     }
     
-    [SkippableFact, TestPriority(30)]
+    [SkippableFact, TestPriority(31)]
     public async Task Updates_Customers_With_Options()
     {
         Skip.If(!Fixture.CreatedCustomers.Any(), "A customer must be created with the CustomerTests first. Run in parallel.");
-        var customer = Fixture.CreatedCustomers.First();
+        var createdCustomer = Fixture.CreatedCustomers.First();
         const string lastName = "Sample";
         var request = new UpdateCustomerRequest()
         {
             Customer = new()
             {
+                Id = createdCustomer.Id,
                 LastName = lastName,
                 Password = "9AVShqi85xC1",
                 PasswordConfirmation = "9AVShqi85xC1"
             }
         };
-        var response = await _service.Customer.UpdateCustomerAsync(customer.Id, request);
+        var response = await _service.Customer.UpdateCustomerAsync(createdCustomer.Id, request);
 
-        Assert.Equal(lastName, response.Result.Customer?.LastName);
+        Assert.Equal(lastName, response.Result.Customer.LastName);
+
+        // Reset the id so the Fixture can properly delete this object.
+        Fixture.CreatedCustomers.Remove(createdCustomer);
+        Fixture.CreatedCustomers.Add(response.Result.Customer);
     }
 
-    [SkippableFact, TestPriority(49)]
+    [SkippableFact, TestPriority(40)]
     public async Task Deletes_Customers()
     {
+        Skip.If(Fixture.CreatedCustomers.Count == 0, "WARN: No data returned. Could not test");
+        var errors = new List<Exception>();
         foreach (var customer in Fixture.CreatedCustomers)
         {
             try
             {
-                var response = await _service.Customer.DeleteCustomerAsync(customer.Id);
-            }
-            catch (ApiException<ErrorResponse> ex)
-            {
-                _testOutputHelper.WriteLine($"{nameof(Deletes_Customers)} failed. {ex.Message}");
+                await _service.Customer.DeleteCustomerAsync(customer.Id);
             }
             catch (Exception ex)
             {
-                _testOutputHelper.WriteLine($"{nameof(Deletes_Customers)} failed. {ex.Message}");
+                errors.Add(ex);
             }
         }
+
+        foreach (var error in errors)
+        {
+            _testOutputHelper.WriteLine(error.Message);
+        }
+        Assert.Empty(errors);
     }
 }

@@ -44,21 +44,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates a carrier service</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("carrier_services/{carrier_service_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateCarrierService([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCarrierServiceRequest request, long carrier_service_id);
+        public abstract System.Threading.Tasks.Task UpdateCarrierService([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCarrierServiceRequest request, [System.ComponentModel.DataAnnotations.Required] long carrier_service_id);
 
         /// <summary>
         /// Retrieves a single carrier service
         /// </summary>
         /// <returns>Retrieves a single carrier service</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("carrier_services/{carrier_service_id}.json")]
-        public abstract System.Threading.Tasks.Task GetCarrierService(long carrier_service_id);
+        public abstract System.Threading.Tasks.Task GetCarrierService([System.ComponentModel.DataAnnotations.Required] long carrier_service_id);
 
         /// <summary>
         /// Deletes a carrier service
         /// </summary>
         /// <returns>Deletes a carrier service</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("carrier_services/{carrier_service_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteCarrierService(long carrier_service_id);
+        public abstract System.Threading.Tasks.Task DeleteCarrierService([System.ComponentModel.DataAnnotations.Required] long carrier_service_id);
 
     }
 

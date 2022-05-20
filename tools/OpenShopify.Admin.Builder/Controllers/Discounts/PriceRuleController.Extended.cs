@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
@@ -13,7 +14,7 @@ public class PriceRuleController : PriceRuleControllerBase
     /// <inheritdoc />
     [HttpPost, Route("price_rules.json")]
     [ProducesResponseType(typeof(PriceRuleItem), StatusCodes.Status201Created)]
-    public override Task CreatePriceRule(CreatePriceRuleRequest request)
+    public override Task CreatePriceRule([Required] CreatePriceRuleRequest request)
     {
         throw new NotImplementedException();
     }
@@ -31,7 +32,7 @@ public class PriceRuleController : PriceRuleControllerBase
     /// <inheritdoc />
     [HttpPut, Route("price_rules/{price_rule_id:long}.json")]
     [ProducesResponseType(typeof(PriceRuleItem), StatusCodes.Status200OK)]
-    public override Task UpdatePriceRule(UpdatePriceRuleRequest request, long price_rule_id)
+    public override Task UpdatePriceRule([Required] UpdatePriceRuleRequest request, [Required] long price_rule_id)
     {
         throw new NotImplementedException();
     }
@@ -39,7 +40,7 @@ public class PriceRuleController : PriceRuleControllerBase
     /// <inheritdoc />
     [HttpGet, Route("price_rules/{price_rule_id:long}.json")]
     [ProducesResponseType(typeof(PriceRuleItem), StatusCodes.Status200OK)]
-    public override Task GetPriceRule(long price_rule_id)
+    public override Task GetPriceRule([Required] long price_rule_id)
     {
         throw new NotImplementedException();
     }
@@ -47,7 +48,7 @@ public class PriceRuleController : PriceRuleControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("price_rules/{price_rule_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public override Task DeleteExistingPriceRule(long price_rule_id)
+    public override Task DeletePriceRule([Required] long price_rule_id)
     {
         throw new NotImplementedException();
     }
@@ -55,7 +56,7 @@ public class PriceRuleController : PriceRuleControllerBase
     /// <inheritdoc />
     [HttpGet, Route("price_rules/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task GetCountOfAllPriceRules()
+    public override Task CountPriceRules()
     {
         throw new NotImplementedException();
     }

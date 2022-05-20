@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Common.Attributes;
@@ -24,7 +25,7 @@ public class MetafieldController : MetafieldControllerBase
     /// <inheritdoc />
     [HttpPost, Route("metafields.json")]
     [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status201Created)]
-    public override Task CreateMetafield(CreateMetafieldRequest request)
+    public override Task CreateMetafield([Required] CreateMetafieldRequest request)
     {
         throw new NotImplementedException();
     }
@@ -32,7 +33,7 @@ public class MetafieldController : MetafieldControllerBase
     /// <inheritdoc />
     [HttpGet, Route("metafields/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task GetCountOfResourcesMetafields()
+    public override Task CountResourcesMetafields()
     {
         throw new NotImplementedException();
     }
@@ -40,7 +41,7 @@ public class MetafieldController : MetafieldControllerBase
     /// <inheritdoc />
     [HttpGet, Route("metafields/{metafield_id:long}.json")]
     [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status200OK)]
-    public override Task GetSpecificMetafield(long metafield_id, string? fields)
+    public override Task GetSpecificMetafield([Required] long metafield_id, string? fields)
     {
         throw new NotImplementedException();
     }
@@ -48,7 +49,7 @@ public class MetafieldController : MetafieldControllerBase
     /// <inheritdoc />
     [HttpPut, Route("metafields/{metafield_id:long}.json")]
     [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status200OK)]
-    public override Task UpdateMetafield(UpdateMetafieldRequest request, long metafield_id)
+    public override Task UpdateMetafield([Required] UpdateMetafieldRequest request, [Required] long metafield_id)
     {
         throw new NotImplementedException();
     }
@@ -56,7 +57,7 @@ public class MetafieldController : MetafieldControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("metafields/{metafield_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteMetafieldByItsID(long metafield_id)
+    public override Task DeleteMetafieldByItsID([Required] long metafield_id)
     {
         throw new NotImplementedException();
     }

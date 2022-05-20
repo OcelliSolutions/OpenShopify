@@ -44,7 +44,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Deletes an existing storefront access token</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("storefront_access_tokens/{storefront_access_token_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteExistingStorefrontAccessToken(long storefront_access_token_id);
+        public abstract System.Threading.Tasks.Task DeleteStorefrontAccessToken([System.ComponentModel.DataAnnotations.Required] long storefront_access_token_id);
 
     }
 

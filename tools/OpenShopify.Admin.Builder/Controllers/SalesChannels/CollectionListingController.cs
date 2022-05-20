@@ -39,28 +39,28 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="limit">Amount of results</param>
         /// <returns>Retrieve &lt;code&gt;product_ids&lt;/code&gt; that are published to a &lt;code&gt;collection_id&lt;/code&gt;</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}/product_ids.json")]
-        public abstract System.Threading.Tasks.Task GetProductIdsThatArePublishedToCollectionId(long collection_listing_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info);
+        public abstract System.Threading.Tasks.Task GetProductIdsThatArePublishedToCollectionId([System.ComponentModel.DataAnnotations.Required] long collection_listing_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info);
 
         /// <summary>
         /// Retrieve a specific collection listing that is published to your app
         /// </summary>
         /// <returns>Retrieve a specific collection listing that is published to your app</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task GetSpecificCollectionListingThatIsPublishedToYourApp(long collection_listing_id);
+        public abstract System.Threading.Tasks.Task GetSpecificCollectionListingThatIsPublishedToYourApp([System.ComponentModel.DataAnnotations.Required] long collection_listing_id);
 
         /// <summary>
         /// Create a collection listing to publish a collection to your app
         /// </summary>
         /// <returns>Create a collection listing to publish a collection to your app</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task CreateCollectionListingToPublishCollectionToYourApp([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCollectionListingRequest request, long collection_listing_id);
+        public abstract System.Threading.Tasks.Task CreateCollectionListingToPublishCollectionToYourApp([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCollectionListingRequest request, [System.ComponentModel.DataAnnotations.Required] long collection_listing_id);
 
         /// <summary>
         /// Delete a collection listing to unpublish a collection from your app
         /// </summary>
         /// <returns>Delete a collection listing to unpublish a collection from your app</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteCollectionListingToUnpublishCollectionFromYourApp(long collection_listing_id);
+        public abstract System.Threading.Tasks.Task DeleteCollectionListingToUnpublishCollectionFromYourApp([System.ComponentModel.DataAnnotations.Required] long collection_listing_id);
 
     }
 

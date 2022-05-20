@@ -30,28 +30,28 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a list of fulfillment events for a specific fulfillment</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events.json")]
-        public abstract System.Threading.Tasks.Task ListFulfillmentEventsForSpecificFulfillment(long fulfillment_id, long order_id);
+        public abstract System.Threading.Tasks.Task ListFulfillmentEventsForSpecificFulfillment([System.ComponentModel.DataAnnotations.Required] long fulfillment_id, [System.ComponentModel.DataAnnotations.Required] long order_id);
 
         /// <summary>
         /// Creates a fulfillment event
         /// </summary>
         /// <returns>Creates a fulfillment event</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events.json")]
-        public abstract System.Threading.Tasks.Task CreateFulfillmentEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateFulfillmentEventRequest request, long fulfillment_id, long order_id);
+        public abstract System.Threading.Tasks.Task CreateFulfillmentEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateFulfillmentEventRequest request, [System.ComponentModel.DataAnnotations.Required] long fulfillment_id, [System.ComponentModel.DataAnnotations.Required] long order_id);
 
         /// <summary>
         /// Retrieves a specific fulfillment event
         /// </summary>
         /// <returns>Retrieves a specific fulfillment event</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json")]
-        public abstract System.Threading.Tasks.Task GetSpecificFulfillmentEvent(long event_id, long fulfillment_id, long order_id);
+        public abstract System.Threading.Tasks.Task GetSpecificFulfillmentEvent([System.ComponentModel.DataAnnotations.Required] long event_id, [System.ComponentModel.DataAnnotations.Required] long fulfillment_id, [System.ComponentModel.DataAnnotations.Required] long order_id);
 
         /// <summary>
         /// Deletes a fulfillment event
         /// </summary>
         /// <returns>Deletes a fulfillment event</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteFulfillmentEvent(long event_id, long fulfillment_id, long order_id);
+        public abstract System.Threading.Tasks.Task DeleteFulfillmentEvent([System.ComponentModel.DataAnnotations.Required] long event_id, [System.ComponentModel.DataAnnotations.Required] long fulfillment_id, [System.ComponentModel.DataAnnotations.Required] long order_id);
 
     }
 

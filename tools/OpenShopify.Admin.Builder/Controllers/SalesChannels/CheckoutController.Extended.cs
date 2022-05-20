@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
@@ -12,7 +13,7 @@ public class CheckoutController : CheckoutControllerBase
 {
     /// <inheritdoc />
     [HttpPost, Route("checkouts.json")]
-    public override Task CreateCheckout(CreateCheckoutRequest request)
+    public override Task CreateCheckout([Required] CreateCheckoutRequest request)
     {
         throw new NotImplementedException();
     }
@@ -33,7 +34,7 @@ public class CheckoutController : CheckoutControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("checkouts/{token:long}.json")]
-    public override Task UpdateCheckout(UpdateCheckoutRequest request, string token)
+    public override Task UpdateCheckout([Required] UpdateCheckoutRequest request, string token)
     {
         throw new NotImplementedException();
     }

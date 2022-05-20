@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
@@ -47,7 +48,7 @@ public class AccessScopeTests : IClassFixture<SharedFixture>
         Assert.Contains(AuthorizationScope.read_orders, handles);
     }
 
-    [Fact]
+    [SkippableFact]
     public async Task ListAccessScopesAsync_InvalidCredentials_ShouldFail()
     {
         var service = new AccessService("invalid", "invalid");

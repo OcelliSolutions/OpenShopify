@@ -56,7 +56,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieve a count of a resource's metafields.</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfResourcesMetafields();
+        public abstract System.Threading.Tasks.Task CountResourcesMetafields();
 
         /// <summary>
         /// Retrieve a specific metafield
@@ -64,21 +64,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Retrieve a specific metafield</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
-        public abstract System.Threading.Tasks.Task GetSpecificMetafield(long metafield_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetSpecificMetafield([System.ComponentModel.DataAnnotations.Required] long metafield_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates a metafield
         /// </summary>
         /// <returns>Updates a metafield</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateMetafield([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMetafieldRequest request, long metafield_id);
+        public abstract System.Threading.Tasks.Task UpdateMetafield([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMetafieldRequest request, [System.ComponentModel.DataAnnotations.Required] long metafield_id);
 
         /// <summary>
         /// Deletes a metafield by its ID
         /// </summary>
         /// <returns>Deletes a metafield by its ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteMetafieldByItsID(long metafield_id);
+        public abstract System.Threading.Tasks.Task DeleteMetafieldByItsID([System.ComponentModel.DataAnnotations.Required] long metafield_id);
 
     }
 

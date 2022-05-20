@@ -56,7 +56,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a single payment</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}/payments/{payment_id}.json")]
-        public abstract System.Threading.Tasks.Task GetPayment(long payment_id, string token);
+        public abstract System.Threading.Tasks.Task GetPayment([System.ComponentModel.DataAnnotations.Required] long payment_id, string token);
 
         /// <summary>
         /// Counts the number of payments attempted on a checkout

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
@@ -19,29 +20,29 @@ public class CollectionListingController : CollectionListingControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("collection_listings/{collection_listing_id:long}/product_ids.json")]
-    public override Task GetProductIdsThatArePublishedToCollectionId(long collection_listing_id, int? limit, string? page_info)
+    public override Task GetProductIdsThatArePublishedToCollectionId([Required] long collection_listing_id, int? limit, string? page_info)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("collection_listings/{collection_listing_id:long}.json")]
-    public override Task GetSpecificCollectionListingThatIsPublishedToYourApp(long collection_listing_id)
+    public override Task GetSpecificCollectionListingThatIsPublishedToYourApp([Required] long collection_listing_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPut, Route("collection_listings/{collection_listing_id:long}.json")]
-    public override Task CreateCollectionListingToPublishCollectionToYourApp(CreateCollectionListingRequest request,
-        long collection_listing_id)
+    public override Task CreateCollectionListingToPublishCollectionToYourApp([Required] CreateCollectionListingRequest request,
+        [Required] long collection_listing_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpDelete, Route("collection_listings/{collection_listing_id:long}.json")]
-    public override Task DeleteCollectionListingToUnpublishCollectionFromYourApp(long collection_listing_id)
+    public override Task DeleteCollectionListingToUnpublishCollectionFromYourApp([Required] long collection_listing_id)
     {
         throw new NotImplementedException();
     }

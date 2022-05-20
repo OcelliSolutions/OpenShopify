@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
@@ -12,7 +13,7 @@ public class ResourceFeedbackController : ResourceFeedbackControllerBase
 {
     /// <inheritdoc />
     [HttpPost, Route("resource_feedback.json")]
-    public override Task CreateResourceFeedback(CreateResourceFeedbackRequest request, string feedback_generated_at, string messages,
+    public override Task CreateResourceFeedback([Required] CreateResourceFeedbackRequest request, string feedback_generated_at, string messages,
         string state)
     {
         throw new NotImplementedException();

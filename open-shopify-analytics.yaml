@@ -7,11 +7,17 @@ servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
       store_name:
-        default: sample_store
+        default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
         default: '2022-04'
         description: The api version.
+  - url: 'https://{store_name}.myshopify.com/admin'
+    description: Some endpoints do not use the standard routing. This is an alternate.
+    variables:
+      store_name:
+        default: '{{store_name}}'
+        description: The sub-domain of the storefront.
 paths:
   /reports.json:
     get:
@@ -74,21 +80,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReportList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     post:
       tags:
         - Report
@@ -113,6 +104,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateReportRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -129,21 +121,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReportItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/reports/{report_id}.json':
     get:
       tags:
@@ -178,21 +155,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReportItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     put:
       tags:
         - Report
@@ -213,6 +175,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateReportRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -229,21 +192,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReportItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - Report
@@ -268,21 +216,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     CreateReport:
@@ -303,18 +236,13 @@ components:
           format: date-time
       additionalProperties: { }
     CreateReportRequest:
+      required:
+        - report
       type: object
       properties:
         report:
           $ref: '#/components/schemas/CreateReport'
       additionalProperties: { }
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: string
-          nullable: true
-      additionalProperties: false
     Report:
       required:
         - id
@@ -341,12 +269,16 @@ components:
           nullable: true
       additionalProperties: { }
     ReportItem:
+      required:
+        - report
       type: object
       properties:
         report:
           $ref: '#/components/schemas/Report'
       additionalProperties: { }
     ReportList:
+      required:
+        - reports
       type: object
       properties:
         reports:
@@ -381,28 +313,9 @@ components:
       additionalProperties: { }
     UpdateReportRequest:
       required:
-        - id
+        - report
       type: object
       properties:
-        category:
-          type: string
-          nullable: true
-        name:
-          maxLength: 255
-          type: string
-          nullable: true
-        shopify_ql:
-          type: string
-          nullable: true
-        updated_at:
-          type: string
-          format: date-time
-        id:
-          type: integer
-          format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         report:
           $ref: '#/components/schemas/UpdateReport'
       additionalProperties: { }

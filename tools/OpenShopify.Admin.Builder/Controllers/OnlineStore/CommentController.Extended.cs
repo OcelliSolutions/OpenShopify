@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
@@ -21,7 +22,7 @@ public class CommentController : CommentControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("comments.json")]
-    public override Task CreateCommentForArticle(CreateCommentRequest request)
+    public override Task CreateCommentForArticle([Required] CreateCommentRequest request)
     {
         throw new NotImplementedException();
     }
@@ -29,7 +30,7 @@ public class CommentController : CommentControllerBase
     /// <inheritdoc />
     [HttpGet, Route("comments/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task GetCountOfComments(DateTime? created_at_max, DateTime? created_at_min, DateTime? published_at_max,
+    public override Task CountComments(DateTime? created_at_max, DateTime? created_at_min, DateTime? published_at_max,
         DateTime? published_at_min, string published_status, string? status, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
@@ -37,49 +38,49 @@ public class CommentController : CommentControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("comments/{comment_id:long}.json")]
-    public override Task GetCommentByItsID(long comment_id, string? fields)
+    public override Task GetCommentByItsID([Required] long comment_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPut, Route("comments/{comment_id:long}.json")]
-    public override Task UpdateCommentOfArticle(UpdateCommentRequest request, long comment_id)
+    public override Task UpdateCommentOfArticle([Required] UpdateCommentRequest request, [Required] long comment_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("comments/{comment_id:long}/spam.json")]
-    public override Task MarkCommentAsSpam(long comment_id)
+    public override Task MarkCommentAsSpam([Required] long comment_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("comments/{comment_id:long}/not_spam.json")]
-    public override Task MarkCommentAsNotSpam(long comment_id)
+    public override Task MarkCommentAsNotSpam([Required] long comment_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("comments/{comment_id:long}/approve.json")]
-    public override Task ApproveComment(long comment_id)
+    public override Task ApproveComment([Required] long comment_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("comments/{comment_id:long}/remove.json")]
-    public override Task DeleteComment(long comment_id)
+    public override Task DeleteComment([Required] long comment_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("comments/{comment_id:long}/restore.json")]
-    public override Task RestorePreviouslyRemovedComment(long comment_id)
+    public override Task RestorePreviouslyRemovedComment([Required] long comment_id)
     {
         throw new NotImplementedException();
     }

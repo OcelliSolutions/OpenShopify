@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a list of locations that a fulfillment order can potentially move to.</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/locations_for_move.json")]
-        public abstract System.Threading.Tasks.Task ListLocationsThatFulfillmentOrderCanPotentiallyMoveTo(long fulfillment_order_id);
+        public abstract System.Threading.Tasks.Task ListLocationsThatFulfillmentOrderCanPotentiallyMoveTo([System.ComponentModel.DataAnnotations.Required] long fulfillment_order_id);
 
     }
 

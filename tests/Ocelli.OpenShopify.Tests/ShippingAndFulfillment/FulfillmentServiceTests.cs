@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,22 +15,21 @@ namespace Ocelli.OpenShopify.Tests.ShippingAndFulfillment;
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
 public class FulfillmentServiceTests : IClassFixture<SharedFixture>
 {
+    private readonly ITestOutputHelper _testOutputHelper;
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
     private readonly ShippingAndFulfillmentService _service;
     private const string FulfillmentServicePrefix = "OpenShopify Fulfillment Test";
 
     public FulfillmentServiceTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
     {
+        _testOutputHelper = testOutputHelper;
         Fixture = sharedFixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
         _service = new ShippingAndFulfillmentService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
     private SharedFixture Fixture { get; }
-
-    /// <summary>
-    /// Create an fulfillment service first
-    /// </summary>
+    
     [SkippableFact, TestPriority(10)]
     public async Task CreateFulfillmentServiceAsync_CanCreate()
     {
@@ -45,18 +46,15 @@ public class FulfillmentServiceTests : IClassFixture<SharedFixture>
             }
         };
         var created =
-            await _service.FulfillmentService.CreateFulfillmentServiceAsync(request, CancellationToken.None);
+            await _service.FulfillmentService.CreateFulfillmentServiceAsync(request);
         _additionalPropertiesHelper.CheckAdditionalProperties(created, Fixture.MyShopifyUrl);
 
-        Assert.Equal(name, created.Result.FulfillmentService?.Name);
-        Assert.NotNull(created.Result.FulfillmentService?.Id);
+        Assert.Equal(name, created.Result.FulfillmentService.Name);
+        Assert.True(created.Result.FulfillmentService.Id > 0);
         Debug.Assert(created.Result.FulfillmentService != null, "created.CreatedFulfillmentServices != null");
         Fixture.CreatedFulfillmentServices.Add(created.Result.FulfillmentService);
     }
-
-    /// <summary>
-    /// Ensure that the created fulfillment service can be returned
-    /// </summary>
+    
     [SkippableFact, TestPriority(20)]
     public async Task GetFulfillmentServiceAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
@@ -65,12 +63,11 @@ public class FulfillmentServiceTests : IClassFixture<SharedFixture>
         var testFulfillmentService = Fixture.CreatedFulfillmentServices.First();
 
         var single =
-            await _service.FulfillmentService.GetFulfillmentServiceAsync(testFulfillmentService.Id,
-                CancellationToken.None);
+            await _service.FulfillmentService.GetFulfillmentServiceAsync(testFulfillmentService.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(single, Fixture.MyShopifyUrl);
 
-        Assert.NotNull(single.Result.FulfillmentService?.Id);
-        Assert.Equal(testFulfillmentService.Handle, single.Result.FulfillmentService?.Handle);
+        Assert.True(single.Result.FulfillmentService.Id > 0);
+        Assert.Equal(testFulfillmentService.Handle, single.Result.FulfillmentService.Handle);
     }
 
     [SkippableFact, TestPriority(20)]
@@ -81,14 +78,13 @@ public class FulfillmentServiceTests : IClassFixture<SharedFixture>
                 .current_client);
         _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
 
-        if (result.Result.FulfillmentServices != null && !result.Result.FulfillmentServices.Any())
+        if (!result.Result.FulfillmentServices.Any())
         {
-            Skip.If(result.Result.FulfillmentServices == null || !result.Result.FulfillmentServices.Any(),
-                "WARN: No data returned. Could not test");
+            Skip.If(!result.Result.FulfillmentServices.Any(), "WARN: No data returned. Could not test");
             return;
         }
 
-        foreach (var token in result.Result.FulfillmentServices!)
+        foreach (var token in result.Result.FulfillmentServices)
         {
             _additionalPropertiesHelper.CheckAdditionalProperties(token, Fixture.MyShopifyUrl);
         }
@@ -98,42 +94,54 @@ public class FulfillmentServiceTests : IClassFixture<SharedFixture>
             !Fixture.CreatedFulfillmentServices.Exists(e => e.Id == fs.Id) &&
             fs.Name.StartsWith(FulfillmentServicePrefix)));
     }
-
-    /// <summary>
-    /// update the newly created fulfillment service
-    /// </summary>
+    
     [SkippableFact, TestPriority(30)]
     public async Task UpdateFulfillmentServiceAsync_CanUpdate()
     {
         Skip.If(!Fixture.CreatedFulfillmentServices.Any(), "WARN: No data returned. Could not test");
-        var testFulfillmentService = Fixture.CreatedFulfillmentServices.First();
+        var createdFulfillmentService = Fixture.CreatedFulfillmentServices.First();
         var updateRequest = new UpdateFulfillmentServiceRequest()
         {
             FulfillmentService = new UpdateFulfillmentService()
             {
-                Id = testFulfillmentService.Id, 
-                Name = testFulfillmentService.Name, 
+                Id = createdFulfillmentService.Id, 
+                Name = createdFulfillmentService.Name, 
                 Email = @"open@sample.com"
             }
         };
-        var updated =
+        var response =
             await _service.FulfillmentService.UpdateFulfillmentServiceAsync(
-                updateRequest.FulfillmentService.Id, updateRequest,
-                CancellationToken.None);
-        _additionalPropertiesHelper.CheckAdditionalProperties(updated, Fixture.MyShopifyUrl);
+                updateRequest.FulfillmentService.Id, updateRequest);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        
+        Assert.Equal(createdFulfillmentService.Id, response.Result.FulfillmentService.Id);
 
-        Assert.NotNull(updated.Result.FulfillmentService?.Id);
-        Assert.Equal(testFulfillmentService.Id, updated.Result.FulfillmentService?.Id);
+        // Reset the id so the Fixture can properly delete this object.
+        Fixture.CreatedFulfillmentServices.Remove(createdFulfillmentService);
+        Fixture.CreatedFulfillmentServices.Add(response.Result.FulfillmentService);
     }
 
     [SkippableFact, TestPriority(40)]
-    public async Task DeleteExistingFulfillmentServiceAsync_CanDelete()
+    public async Task DeleteFulfillmentServiceAsync_CanDelete()
     {
         Skip.If(Fixture.CreatedFulfillmentServices.Count == 0, "WARN: No data returned. Could not test");
-        foreach (var testFulfillmentService in Fixture.CreatedFulfillmentServices)
+        var errors = new List<Exception>();
+        foreach (var fulfillmentService in Fixture.CreatedFulfillmentServices)
         {
-            await _service.FulfillmentService.DeleteExistingFulfillmentServiceAsync(testFulfillmentService.Id,
-                CancellationToken.None);
+            try
+            {
+                var response = await _service.FulfillmentService.DeleteFulfillmentServiceAsync(fulfillmentService.Id);
+            }
+            catch (Exception ex)
+            {
+                errors.Add(ex);
+            }
         }
+
+        foreach (var error in errors)
+        {
+            _testOutputHelper.WriteLine(error.Message);
+        }
+        Assert.Empty(errors);
     }
 }

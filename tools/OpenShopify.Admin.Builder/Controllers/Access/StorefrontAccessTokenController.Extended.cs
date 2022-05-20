@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
@@ -13,7 +14,7 @@ public class StorefrontAccessTokenController : StorefrontAccessTokenControllerBa
     /// <inheritdoc />
     [HttpPost, Route("storefront_access_tokens.json")]
     [ProducesResponseType(typeof(StorefrontAccessTokenItem), StatusCodes.Status200OK)]
-    public override Task CreateStorefrontAccessToken(CreateStorefrontAccessTokenRequest request)
+    public override Task CreateStorefrontAccessToken([Required] CreateStorefrontAccessTokenRequest request)
     {
         throw new NotImplementedException();
     }
@@ -29,7 +30,7 @@ public class StorefrontAccessTokenController : StorefrontAccessTokenControllerBa
     /// <inheritdoc />
     [HttpDelete, Route("storefront_access_tokens/{storefront_access_token_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteExistingStorefrontAccessToken(long storefront_access_token_id)
+    public override Task DeleteStorefrontAccessToken([Required] long storefront_access_token_id)
     {
         throw new NotImplementedException();
     }

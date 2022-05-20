@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
@@ -21,7 +22,7 @@ public class PaymentController : PaymentControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("checkouts/{token:long}/payments.json")]
-    public override Task CreatePayment(CreatePaymentRequest request, string amount, string request_details, string session_id,
+    public override Task CreatePayment([Required] CreatePaymentRequest request, string amount, string request_details, string session_id,
         string token, string unique_token)
     {
         throw new NotImplementedException();
@@ -37,7 +38,7 @@ public class PaymentController : PaymentControllerBase
     /// <inheritdoc />
     [HttpGet, Route("checkouts/{token:long}/payments/{payment_id:long}.json")]
 
-    public override Task GetPayment(long payment_id, string token)
+    public override Task GetPayment([Required] long payment_id, string token)
     {
         throw new NotImplementedException();
     }

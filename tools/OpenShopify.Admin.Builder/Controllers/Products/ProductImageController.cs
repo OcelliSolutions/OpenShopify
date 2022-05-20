@@ -32,14 +32,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="since_id">Restrict results to after the specified ID</param>
         /// <returns>Receive a list of all Product Images</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images.json")]
-        public abstract System.Threading.Tasks.Task ListProductImages(long product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
+        public abstract System.Threading.Tasks.Task ListProductImages([System.ComponentModel.DataAnnotations.Required] long product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
 
         /// <summary>
         /// Create a new Product Image
         /// </summary>
         /// <returns>Create a new Product Image</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images.json")]
-        public abstract System.Threading.Tasks.Task CreateProductImage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateProductImageRequest request, long product_id);
+        public abstract System.Threading.Tasks.Task CreateProductImage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateProductImageRequest request, [System.ComponentModel.DataAnnotations.Required] long product_id);
 
         /// <summary>
         /// Receive a count of all Product Images
@@ -47,7 +47,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="since_id">Restrict results to after the specified ID</param>
         /// <returns>Receive a count of all Product Images</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfAllProductImages(long product_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
+        public abstract System.Threading.Tasks.Task CountProductImages([System.ComponentModel.DataAnnotations.Required] long product_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
 
         /// <summary>
         /// Receive a single Product Image
@@ -55,21 +55,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <returns>Receive a single Product Image</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images/{image_id}.json")]
-        public abstract System.Threading.Tasks.Task GetProductImage(long image_id, long product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetProductImage([System.ComponentModel.DataAnnotations.Required] long image_id, [System.ComponentModel.DataAnnotations.Required] long product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Modify an existing Product Image
         /// </summary>
         /// <returns>Modify an existing Product Image</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images/{image_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateProductImage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateProductImageRequest request, long image_id, long product_id);
+        public abstract System.Threading.Tasks.Task UpdateProductImage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateProductImageRequest request, [System.ComponentModel.DataAnnotations.Required] long image_id, [System.ComponentModel.DataAnnotations.Required] long product_id);
 
         /// <summary>
         /// Remove an existing Product Image
         /// </summary>
         /// <returns>Remove an existing Product Image</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images/{image_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteExistingProductImage(long image_id, long product_id);
+        public abstract System.Threading.Tasks.Task DeleteProductImage([System.ComponentModel.DataAnnotations.Required] long image_id, [System.ComponentModel.DataAnnotations.Required] long product_id);
 
     }
 

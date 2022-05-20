@@ -72,21 +72,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single page by its ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("pages/{page_id}.json")]
-        public abstract System.Threading.Tasks.Task GetPageByItsID(long page_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetPageByItsID([System.ComponentModel.DataAnnotations.Required] long page_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates a page
         /// </summary>
         /// <returns>Updates a page</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("pages/{page_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdatePage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdatePageRequest request, long page_id);
+        public abstract System.Threading.Tasks.Task UpdatePage([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdatePageRequest request, [System.ComponentModel.DataAnnotations.Required] long page_id);
 
         /// <summary>
         /// Deletes a page
         /// </summary>
         /// <returns>Deletes a page</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("pages/{page_id}.json")]
-        public abstract System.Threading.Tasks.Task DeletePage(long page_id);
+        public abstract System.Threading.Tasks.Task DeletePage([System.ComponentModel.DataAnnotations.Required] long page_id);
 
     }
 

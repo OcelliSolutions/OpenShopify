@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
@@ -37,11 +36,11 @@ public class ApplicationCreditTests : IClassFixture<SharedFixture>
             }
         };
         var created =
-            await _service.ApplicationCredit.CreateApplicationCreditAsync(request, CancellationToken.None);
+            await _service.ApplicationCredit.CreateApplicationCreditAsync(request);
         _additionalPropertiesHelper.CheckAdditionalProperties(created, Fixture.MyShopifyUrl);
 
-        Assert.Equal(name, created.Result.ApplicationCredit?.Description);
-        Assert.NotNull(created.Result.ApplicationCredit?.Id);
+        Assert.Equal(name, created.Result.ApplicationCredit.Description);
+        Assert.True(created.Result.ApplicationCredit.Id > 0);
         Debug.Assert(created.Result.ApplicationCredit != null, "created.ApplicationCredit != null");
         Fixture.CreatedApplicationCredits.Add(created.Result.ApplicationCredit);
     }
@@ -53,29 +52,27 @@ public class ApplicationCreditTests : IClassFixture<SharedFixture>
         var applicationCredit = Fixture.CreatedApplicationCredits.First();
 
         var single =
-            await _service.ApplicationCredit.GetApplicationCreditAsync(applicationCredit.Id,
-                cancellationToken: CancellationToken.None);
+            await _service.ApplicationCredit.GetApplicationCreditAsync(applicationCredit.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(single, Fixture.MyShopifyUrl);
 
         var credit = single.Result.ApplicationCredit;
         Assert.NotNull(credit);
-        Assert.NotNull(credit?.Id);
-        Assert.NotNull(credit?.Description);
+        Assert.True(credit.Id > 0);
+        Assert.NotNull(credit.Description);
         Assert.True(credit is { Test: { } } && credit.Test.Value);
-        Assert.True(credit?.Amount > 0);
+        Assert.True(credit.Amount > 0);
     }
 
     [SkippableFact(Skip = "Unknown required scope."), TestPriority(20)]
     public async Task GetAllApplicationCreditsAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
         var result =
-            await _service.ApplicationCredit.GetAllApplicationCreditsAsync(cancellationToken: CancellationToken.None);
+            await _service.ApplicationCredit.ListApplicationCreditsAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
         
-        Skip.If(result.Result.ApplicationCredits == null || !result.Result.ApplicationCredits.Any(),
-            "WARN: No data returned. Could not test");
+        Skip.If(!result.Result.ApplicationCredits.Any(), "WARN: No data returned. Could not test");
 
-        foreach (var token in result.Result.ApplicationCredits!)
+        foreach (var token in result.Result.ApplicationCredits)
         {
             _additionalPropertiesHelper.CheckAdditionalProperties(token, Fixture.MyShopifyUrl);
         }

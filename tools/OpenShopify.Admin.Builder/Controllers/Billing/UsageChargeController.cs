@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a usage charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/usage_charges.json")]
-        public abstract System.Threading.Tasks.Task CreateUsageCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateUsageChargeRequest request, long recurring_application_charge_id);
+        public abstract System.Threading.Tasks.Task CreateUsageCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateUsageChargeRequest request, [System.ComponentModel.DataAnnotations.Required] long recurring_application_charge_id);
 
         /// <summary>
         /// Retrieves a list of usage charges
@@ -38,7 +38,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a list of usage charges</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/usage_charges.json")]
-        public abstract System.Threading.Tasks.Task ListUsageCharges(long recurring_application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task ListUsageCharges([System.ComponentModel.DataAnnotations.Required] long recurring_application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Retrieves a single charge
@@ -46,7 +46,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a single charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/usage_charges/{usage_charge_id}.json")]
-        public abstract System.Threading.Tasks.Task GetCharge(long recurring_application_charge_id, long usage_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetCharge([System.ComponentModel.DataAnnotations.Required] long recurring_application_charge_id, [System.ComponentModel.DataAnnotations.Required] long usage_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
     }
 

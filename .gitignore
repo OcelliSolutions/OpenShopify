@@ -350,3 +350,4 @@ internallog.*
 *.clean.json
 api_keys.json
 api_key.json
+Coverage/

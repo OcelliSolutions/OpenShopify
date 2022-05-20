@@ -31,7 +31,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> CreateDiscountCodeAsync(long priceRuleId, CreateDiscountCodeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> CreateDiscountCodeAsync(long priceRuleId, CreateDiscountCodeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -47,7 +47,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> UpdateDiscountCodeAsync(long discountCodeId, long priceRuleId, UpdateDiscountCodeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> UpdateDiscountCodeAsync(long discountCodeId, long priceRuleId, UpdateDiscountCodeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -82,7 +82,7 @@ namespace Ocelli.OpenShopify
         /// <param name="timesUsedMin">Show discount codes used less than or equal to this value.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetCountOfDiscountCodesForShopAsync(string? timesUsed = null, string? timesUsedMax = null, string? timesUsedMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountDiscountCodesForShopAsync(string? timesUsed = null, string? timesUsedMax = null, string? timesUsedMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -90,7 +90,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> CreateDiscountCodeCreationJobAsync(long priceRuleId, CreateDiscountCodeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> CreateDiscountCodeCreationJobAsync(long priceRuleId, CreateDiscountCodeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -148,10 +148,13 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> CreateDiscountCodeAsync(long priceRuleId, CreateDiscountCodeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> CreateDiscountCodeAsync(long priceRuleId, CreateDiscountCodeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (priceRuleId == null)
                 throw new System.ArgumentNullException("priceRuleId");
+
+            if (body == null)
+                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/price_rules/{price_rule_id}/discount_codes.json");
@@ -198,16 +201,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return new ShopifyResponse<DiscountCodeItem>(status_, headers_, objectResponse_.Object);
-                        }
-                        else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -284,16 +277,6 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<DiscountCodeList>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -319,13 +302,16 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> UpdateDiscountCodeAsync(long discountCodeId, long priceRuleId, UpdateDiscountCodeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> UpdateDiscountCodeAsync(long discountCodeId, long priceRuleId, UpdateDiscountCodeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (discountCodeId == null)
                 throw new System.ArgumentNullException("discountCodeId");
 
             if (priceRuleId == null)
                 throw new System.ArgumentNullException("priceRuleId");
+
+            if (body == null)
+                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json");
@@ -373,16 +359,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return new ShopifyResponse<DiscountCodeItem>(status_, headers_, objectResponse_.Object);
-                        }
-                        else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -463,16 +439,6 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<DiscountCodeItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -545,16 +511,6 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse(status_, headers_);
                         }
                         else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -625,16 +581,6 @@ namespace Ocelli.OpenShopify
                             throw new ApiException("Redirect", status_, responseText_, headers_, null);
                         }
                         else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
 
                         if (status_ == 200 || status_ == 204)
                         {
@@ -669,7 +615,7 @@ namespace Ocelli.OpenShopify
         /// <param name="timesUsedMin">Show discount codes used less than or equal to this value.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetCountOfDiscountCodesForShopAsync(string? timesUsed = null, string? timesUsedMax = null, string? timesUsedMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountDiscountCodesForShopAsync(string? timesUsed = null, string? timesUsedMax = null, string? timesUsedMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/discount_codes/count.json?");
@@ -727,16 +673,6 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -762,10 +698,13 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> CreateDiscountCodeCreationJobAsync(long priceRuleId, CreateDiscountCodeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> CreateDiscountCodeCreationJobAsync(long priceRuleId, CreateDiscountCodeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (priceRuleId == null)
                 throw new System.ArgumentNullException("priceRuleId");
+
+            if (body == null)
+                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/price_rules/{price_rule_id}/batch.json");
@@ -812,16 +751,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return new ShopifyResponse<DiscountCodeCreationItem>(status_, headers_, objectResponse_.Object);
-                        }
-                        else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -902,16 +831,6 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<DiscountCodeCreationItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -988,16 +907,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return new ShopifyResponse<DiscountCodeList>(status_, headers_, objectResponse_.Object);
-                        }
-                        else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1129,7 +1038,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> CreatePriceRuleAsync(CreatePriceRuleRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> CreatePriceRuleAsync(CreatePriceRuleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1156,7 +1065,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> UpdatePriceRuleAsync(long priceRuleId, UpdatePriceRuleRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> UpdatePriceRuleAsync(long priceRuleId, UpdatePriceRuleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1172,7 +1081,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>No Content</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> DeleteExistingPriceRuleAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> DeletePriceRuleAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1180,7 +1089,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetCountOfAllPriceRulesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountPriceRulesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -1222,8 +1131,11 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> CreatePriceRuleAsync(CreatePriceRuleRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> CreatePriceRuleAsync(CreatePriceRuleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            if (body == null)
+                throw new System.ArgumentNullException("body");
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/price_rules.json");
 
@@ -1268,16 +1180,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return new ShopifyResponse<PriceRuleItem>(status_, headers_, objectResponse_.Object);
-                        }
-                        else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1410,16 +1312,6 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<PriceRuleList>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -1445,10 +1337,13 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> UpdatePriceRuleAsync(long priceRuleId, UpdatePriceRuleRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> UpdatePriceRuleAsync(long priceRuleId, UpdatePriceRuleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (priceRuleId == null)
                 throw new System.ArgumentNullException("priceRuleId");
+
+            if (body == null)
+                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/price_rules/{price_rule_id}.json");
@@ -1495,16 +1390,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return new ShopifyResponse<PriceRuleItem>(status_, headers_, objectResponse_.Object);
-                        }
-                        else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1581,16 +1466,6 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<PriceRuleItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -1616,7 +1491,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>No Content</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteExistingPriceRuleAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeletePriceRuleAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (priceRuleId == null)
                 throw new System.ArgumentNullException("priceRuleId");
@@ -1659,16 +1534,6 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse(status_, headers_);
                         }
                         else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -1694,7 +1559,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetCountOfAllPriceRulesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountPriceRulesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/price_rules/count.json");
@@ -1737,16 +1602,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
-                        }
-                        else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1908,7 +1763,8 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("discount_code")]
-        public CreateDiscountCode? DiscountCode { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public CreateDiscountCode DiscountCode { get; set; } = new CreateDiscountCode();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2004,7 +1860,8 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("price_rule")]
-        public CreatePriceRule? PriceRule { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public CreatePriceRule PriceRule { get; set; } = new CreatePriceRule();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2084,7 +1941,8 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("discount_code_creation")]
-        public DiscountCodeCreation? DiscountCodeCreation { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public DiscountCodeCreation DiscountCodeCreation { get; set; } = new DiscountCodeCreation();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2102,7 +1960,8 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("discount_code")]
-        public DiscountCode? DiscountCode { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public DiscountCode DiscountCode { get; set; } = new DiscountCode();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2120,7 +1979,8 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("discount_codes")]
-        public System.Collections.Generic.ICollection<DiscountCode>? DiscountCodes { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<DiscountCode> DiscountCodes { get; set; } = new System.Collections.ObjectModel.Collection<DiscountCode>();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2243,7 +2103,8 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("price_rule")]
-        public PriceRule? PriceRule { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public PriceRule PriceRule { get; set; } = new PriceRule();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2261,7 +2122,8 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("price_rules")]
-        public System.Collections.Generic.ICollection<PriceRule>? PriceRules { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<PriceRule> PriceRules { get; set; } = new System.Collections.ObjectModel.Collection<PriceRule>();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2318,35 +2180,10 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class UpdateDiscountCodeRequest
     {
-        /// <summary>
-        /// The amount of the discount.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("amount")]
-        public string? Amount { get; set; } = default!;
-
-        /// <summary>
-        /// The discount code.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("code")]
-        public string? Code { get; set; } = default!;
-
-        /// <summary>
-        /// The type of discount. Known values are 'percentage', 'shipping', 'fixed_amount' and 'none'.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("type")]
-        public string? Type { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("discount_code")]
-        public UpdateDiscountCode? DiscountCode { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public UpdateDiscountCode DiscountCode { get; set; } = new UpdateDiscountCode();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2447,77 +2284,9 @@ namespace Ocelli.OpenShopify
     public partial class UpdatePriceRuleRequest
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("title")]
-        public string? Title { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("target_type")]
-        public string? TargetType { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("target_selection")]
-        public string? TargetSelection { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("allocation_method")]
-        public string? AllocationMethod { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
-        public string? ValueType { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("value")]
-        public decimal? Value { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("once_per_customer")]
-        public bool? OncePerCustomer { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("usage_limit")]
-        public long? UsageLimit { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("customer_selection")]
-        public string? CustomerSelection { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_subtotal_range")]
-        public PrerequisiteValueRange? PrerequisiteSubtotalRange { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_shipping_price_range")]
-        public PrerequisiteValueRange? PrerequisiteShippingPriceRange { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_saved_search_ids")]
-        public System.Collections.Generic.ICollection<long>? PrerequisiteSavedSearchIds { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_customer_ids")]
-        public System.Collections.Generic.ICollection<long>? PrerequisiteCustomerIds { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("entitled_product_ids")]
-        public System.Collections.Generic.ICollection<long>? EntitledProductIds { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("entitled_variant_ids")]
-        public System.Collections.Generic.ICollection<long>? EntitledVariantIds { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("entitled_collection_ids")]
-        public System.Collections.Generic.ICollection<long>? EntitledCollectionIds { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("entitled_country_ids")]
-        public System.Collections.Generic.ICollection<long>? EntitledCountryIds { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("starts_at")]
-        public System.DateTimeOffset? StartsAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("ends_at")]
-        public System.DateTimeOffset? EndsAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         [System.Text.Json.Serialization.JsonPropertyName("price_rule")]
-        public UpdatePriceRule? PriceRule { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public UpdatePriceRule PriceRule { get; set; } = new UpdatePriceRule();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

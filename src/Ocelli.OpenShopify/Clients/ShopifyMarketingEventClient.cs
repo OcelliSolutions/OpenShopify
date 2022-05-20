@@ -41,7 +41,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> CreateMarketingEventAsync(CreateMarketingEventRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> CreateMarketingEventAsync(CreateMarketingEventRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -49,7 +49,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetCountOfAllMarketingEventsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMarketingEventsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -65,7 +65,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> UpdateMarketingEventAsync(long marketingEventId, UpdateMarketingEventRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> UpdateMarketingEventAsync(long marketingEventId, UpdateMarketingEventRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -90,7 +90,7 @@ namespace Ocelli.OpenShopify
         /// <param name="viewsCount">The total number of views for the day. A view occurs when a customer reads the marketing event that was served to them, for example, if the customer opens the email or spends time looking at a Facebook post.</param>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<EngagementList>> CreateMarketingEngagementsOnMarketingEventAsync(long marketingEventId, string? occurredOn = null, string? adSpend = null, string? clicksCount = null, string? commentsCount = null, string? favoritesCount = null, string? impressionsCount = null, string? isCumulative = null, string? sharesCount = null, string? viewsCount = null, CreateMarketingEventRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<EngagementList>> CreateMarketingEngagementsOnMarketingEventAsync(long marketingEventId, CreateMarketingEventRequest body, string? occurredOn = null, string? adSpend = null, string? clicksCount = null, string? commentsCount = null, string? favoritesCount = null, string? impressionsCount = null, string? isCumulative = null, string? sharesCount = null, string? viewsCount = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -192,16 +192,6 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<MarketingEventList>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -227,8 +217,11 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> CreateMarketingEventAsync(CreateMarketingEventRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> CreateMarketingEventAsync(CreateMarketingEventRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            if (body == null)
+                throw new System.ArgumentNullException("body");
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/marketing_events.json");
 
@@ -275,16 +268,6 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<MarketingEventItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -310,7 +293,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetCountOfAllMarketingEventsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountMarketingEventsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/marketing_events/count.json");
@@ -353,16 +336,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
-                        }
-                        else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -439,16 +412,6 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<MarketingEventItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -474,10 +437,13 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> UpdateMarketingEventAsync(long marketingEventId, UpdateMarketingEventRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<MarketingEventItem>> UpdateMarketingEventAsync(long marketingEventId, UpdateMarketingEventRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (marketingEventId == null)
                 throw new System.ArgumentNullException("marketingEventId");
+
+            if (body == null)
+                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/marketing_events/{marketing_event_id}.json");
@@ -524,16 +490,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return new ShopifyResponse<MarketingEventItem>(status_, headers_, objectResponse_.Object);
-                        }
-                        else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -604,16 +560,6 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse(status_, headers_);
                         }
                         else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -648,10 +594,13 @@ namespace Ocelli.OpenShopify
         /// <param name="viewsCount">The total number of views for the day. A view occurs when a customer reads the marketing event that was served to them, for example, if the customer opens the email or spends time looking at a Facebook post.</param>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<EngagementList>> CreateMarketingEngagementsOnMarketingEventAsync(long marketingEventId, string? occurredOn = null, string? adSpend = null, string? clicksCount = null, string? commentsCount = null, string? favoritesCount = null, string? impressionsCount = null, string? isCumulative = null, string? sharesCount = null, string? viewsCount = null, CreateMarketingEventRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<EngagementList>> CreateMarketingEngagementsOnMarketingEventAsync(long marketingEventId, CreateMarketingEventRequest body, string? occurredOn = null, string? adSpend = null, string? clicksCount = null, string? commentsCount = null, string? favoritesCount = null, string? impressionsCount = null, string? isCumulative = null, string? sharesCount = null, string? viewsCount = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (marketingEventId == null)
                 throw new System.ArgumentNullException("marketingEventId");
+
+            if (body == null)
+                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/marketing_events/{marketing_event_id}/engagements.json?");
@@ -735,16 +684,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return new ShopifyResponse<EngagementList>(status_, headers_, objectResponse_.Object);
-                        }
-                        else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -877,7 +816,8 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("marketing_event")]
-        public CreateMarketingEvent? MarketingEvent { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public CreateMarketingEvent MarketingEvent { get; set; } = new CreateMarketingEvent();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -916,7 +856,8 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("engagements")]
-        public System.Collections.Generic.ICollection<Engagement>? Engagements { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<Engagement> Engagements { get; set; } = new System.Collections.ObjectModel.Collection<Engagement>();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -955,7 +896,8 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("marketing_event")]
-        public MarketingEvent? MarketingEvent { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public MarketingEvent MarketingEvent { get; set; } = new MarketingEvent();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -973,7 +915,8 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("marketing_events")]
-        public System.Collections.Generic.ICollection<MarketingEvent>? MarketingEvents { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<MarketingEvent> MarketingEvents { get; set; } = new System.Collections.ObjectModel.Collection<MarketingEvent>();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -1011,14 +954,9 @@ namespace Ocelli.OpenShopify
     public partial class UpdateMarketingEventRequest
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
         [System.Text.Json.Serialization.JsonPropertyName("marketing_event")]
-        public UpdateMarketingEvent? MarketingEvent { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public UpdateMarketingEvent MarketingEvent { get; set; } = new UpdateMarketingEvent();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

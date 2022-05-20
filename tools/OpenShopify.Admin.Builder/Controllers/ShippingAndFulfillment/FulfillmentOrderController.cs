@@ -30,21 +30,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a list of fulfillment orders for a specific order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillment_orders.json")]
-        public abstract System.Threading.Tasks.Task ListFulfillmentOrdersForSpecificOrder(long order_id);
+        public abstract System.Threading.Tasks.Task ListFulfillmentOrdersForSpecificOrder([System.ComponentModel.DataAnnotations.Required] long order_id);
 
         /// <summary>
         /// Retrieves a specific fulfillment order
         /// </summary>
         /// <returns>Retrieves a specific fulfillment order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}.json")]
-        public abstract System.Threading.Tasks.Task GetSpecificFulfillmentOrder(long fulfillment_order_id);
+        public abstract System.Threading.Tasks.Task GetSpecificFulfillmentOrder([System.ComponentModel.DataAnnotations.Required] long fulfillment_order_id);
 
         /// <summary>
         /// Cancel a fulfillment order
         /// </summary>
         /// <returns>Cancel a fulfillment order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancel.json")]
-        public abstract System.Threading.Tasks.Task CancelFulfillmentOrder(long fulfillment_order_id);
+        public abstract System.Threading.Tasks.Task CancelFulfillmentOrder([System.ComponentModel.DataAnnotations.Required] long fulfillment_order_id);
 
         /// <summary>
         /// Marks a fulfillment order as incomplete
@@ -52,7 +52,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="message">An optional reason for marking the fulfillment order as incomplete.</param>
         /// <returns>Marks a fulfillment order as incomplete</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/close.json")]
-        public abstract System.Threading.Tasks.Task MarkFulfillmentOrderAsIncomplete(long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
+        public abstract System.Threading.Tasks.Task MarkFulfillmentOrderAsIncomplete([System.ComponentModel.DataAnnotations.Required] long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
 
         /// <summary>
         /// Moves a fulfillment order to a new location
@@ -60,21 +60,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="new_location_id">The id of the location to which the fulfillment order will be moved.</param>
         /// <returns>Moves a fulfillment order to a new location</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/move.json")]
-        public abstract System.Threading.Tasks.Task MoveFulfillmentOrderToNewLocation(long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] long? new_location_id);
+        public abstract System.Threading.Tasks.Task MoveFulfillmentOrderToNewLocation([System.ComponentModel.DataAnnotations.Required] long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] [System.ComponentModel.DataAnnotations.Required] long? new_location_id);
 
         /// <summary>
         /// Marks the fulfillment order as open
         /// </summary>
         /// <returns>Marks the fulfillment order as open</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/open.json")]
-        public abstract System.Threading.Tasks.Task MarkFulfillmentOrderAsOpen(long fulfillment_order_id);
+        public abstract System.Threading.Tasks.Task MarkFulfillmentOrderAsOpen([System.ComponentModel.DataAnnotations.Required] long fulfillment_order_id);
 
         /// <summary>
         /// Reschedules the fulfill_at time of a scheduled fulfillment order
         /// </summary>
         /// <returns>Reschedules the fulfill_at time of a scheduled fulfillment order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/reschedule.json")]
-        public abstract System.Threading.Tasks.Task RescheduleFulfillAtTimeOfScheduledFulfillmentOrder(long fulfillment_order_id);
+        public abstract System.Threading.Tasks.Task RescheduleFulfillAtTimeOfScheduledFulfillmentOrder([System.ComponentModel.DataAnnotations.Required] long fulfillment_order_id);
 
         /// <summary>
         /// Applies a fulfillment hold on a fulfillment order with status &lt;code&gt;OPEN&lt;/code&gt;
@@ -84,14 +84,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="reason_notes">Optional additional information about the fulfillment hold reason.</param>
         /// <returns>Applies a fulfillment hold on a fulfillment order with status &lt;code&gt;OPEN&lt;/code&gt;</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/hold.json")]
-        public abstract System.Threading.Tasks.Task ApplyFulfillmentHoldOnFulfillmentOrderWithStatusOPEN(long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? notify_merchant, [Microsoft.AspNetCore.Mvc.FromQuery] string? reason, [Microsoft.AspNetCore.Mvc.FromQuery] string? reason_notes);
+        public abstract System.Threading.Tasks.Task ApplyFulfillmentHoldOnFulfillmentOrderWithStatusOPEN([System.ComponentModel.DataAnnotations.Required] long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? notify_merchant, [Microsoft.AspNetCore.Mvc.FromQuery] string? reason, [Microsoft.AspNetCore.Mvc.FromQuery] string? reason_notes);
 
         /// <summary>
         /// Releases the fulfillment hold on a fulfillment order
         /// </summary>
         /// <returns>Releases the fulfillment hold on a fulfillment order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/release_hold.json")]
-        public abstract System.Threading.Tasks.Task ReleaseFulfillmentHoldOnFulfillmentOrder(long fulfillment_order_id);
+        public abstract System.Threading.Tasks.Task ReleaseFulfillmentHoldOnFulfillmentOrder([System.ComponentModel.DataAnnotations.Required] long fulfillment_order_id);
 
     }
 

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
@@ -12,14 +13,14 @@ public class ProductResourceFeedbackController : ProductResourceFeedbackControll
 {
     /// <inheritdoc />
     [HttpPost, Route("products/{product_id:long}/resource_feedback.json")]
-    public override Task CreateProductResourceFeedback(CreateProductResourceFeedbackRequest request, long product_id, string? state)
+    public override Task CreateProductResourceFeedback([Required] CreateProductResourceFeedbackRequest request, [Required] long product_id, string? state)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("products/{product_id:long}/resource_feedback.json")]
-    public override Task ListProductResourceFeedbacks(long product_id)
+    public override Task ListProductResourceFeedbacks([Required] long product_id)
     {
         throw new NotImplementedException();
     }

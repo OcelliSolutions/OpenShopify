@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
@@ -12,21 +13,21 @@ public class AssetController : AssetControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("themes/{theme_id:long}/assets.json")]
-    public override Task ListAssetsForTheme(long theme_id, string? fields)
+    public override Task ListAssetsForTheme([Required] long theme_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPut, Route("themes/{theme_id:long}/assets.json")]
-    public override Task CreateOrUpdatesAssetForTheme(CreateAssetRequest request, long theme_id, string? source_key, string? src)
+    public override Task CreateOrUpdatesAssetForTheme([Required] CreateAssetRequest request, [Required] long theme_id, string? source_key, string? src)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpDelete, Route("themes/{theme_id:long}/assets.json")]
-    public override Task DeleteAssetFromTheme(string assetkey, long theme_id)
+    public override Task DeleteAssetFromTheme(string assetkey, [Required] long theme_id)
     {
         throw new NotImplementedException();
     }

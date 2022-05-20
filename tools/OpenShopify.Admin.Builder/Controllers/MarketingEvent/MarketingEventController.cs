@@ -46,28 +46,28 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a count of all marketing events</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("marketing_events/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfAllMarketingEvents();
+        public abstract System.Threading.Tasks.Task CountMarketingEvents();
 
         /// <summary>
         /// Retrieves a single marketing event
         /// </summary>
         /// <returns>Retrieves a single marketing event</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("marketing_events/{marketing_event_id}.json")]
-        public abstract System.Threading.Tasks.Task GetMarketingEvent(long marketing_event_id);
+        public abstract System.Threading.Tasks.Task GetMarketingEvent([System.ComponentModel.DataAnnotations.Required] long marketing_event_id);
 
         /// <summary>
         /// Updates a marketing event
         /// </summary>
         /// <returns>Updates a marketing event</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("marketing_events/{marketing_event_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateMarketingEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMarketingEventRequest request, long marketing_event_id);
+        public abstract System.Threading.Tasks.Task UpdateMarketingEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMarketingEventRequest request, [System.ComponentModel.DataAnnotations.Required] long marketing_event_id);
 
         /// <summary>
         /// Deletes a marketing event
         /// </summary>
         /// <returns>Deletes a marketing event</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("marketing_events/{marketing_event_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteMarketingEvent(long marketing_event_id);
+        public abstract System.Threading.Tasks.Task DeleteMarketingEvent([System.ComponentModel.DataAnnotations.Required] long marketing_event_id);
 
         /// <summary>
         /// Creates marketing engagements on a marketing event
@@ -83,7 +83,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="views_count">The total number of views for the day. A view occurs when a customer reads the marketing event that was served to them, for example, if the customer opens the email or spends time looking at a Facebook post.</param>
         /// <returns>Creates marketing engagements on a marketing event</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("marketing_events/{marketing_event_id}/engagements.json")]
-        public abstract System.Threading.Tasks.Task CreateMarketingEngagementsOnMarketingEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateMarketingEventRequest request, long marketing_event_id, [Microsoft.AspNetCore.Mvc.FromQuery] string occurred_on, [Microsoft.AspNetCore.Mvc.FromQuery] string? ad_spend, [Microsoft.AspNetCore.Mvc.FromQuery] string? clicks_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? comments_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? favorites_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? impressions_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? is_cumulative, [Microsoft.AspNetCore.Mvc.FromQuery] string? shares_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? views_count);
+        public abstract System.Threading.Tasks.Task CreateMarketingEngagementsOnMarketingEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateMarketingEventRequest request, [System.ComponentModel.DataAnnotations.Required] long marketing_event_id, [Microsoft.AspNetCore.Mvc.FromQuery] string occurred_on, [Microsoft.AspNetCore.Mvc.FromQuery] string? ad_spend, [Microsoft.AspNetCore.Mvc.FromQuery] string? clicks_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? comments_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? favorites_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? impressions_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? is_cumulative, [Microsoft.AspNetCore.Mvc.FromQuery] string? shares_count, [Microsoft.AspNetCore.Mvc.FromQuery] string? views_count);
 
     }
 

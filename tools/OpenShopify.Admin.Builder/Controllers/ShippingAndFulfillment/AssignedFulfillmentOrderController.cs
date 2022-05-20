@@ -32,7 +32,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="location_ids">The IDs of the assigned locations of the fulfillment orders that should be returned.</param>
         /// <returns>Retrieves a list of fulfillment orders on a shop for a specific app</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("assigned_fulfillment_orders.json")]
-        public abstract System.Threading.Tasks.Task ListFulfillmentOrdersOnShopForSpecificApp([Microsoft.AspNetCore.Mvc.FromQuery] string? assignment_status, [Microsoft.AspNetCore.Mvc.FromQuery] long? location_ids);
+        public abstract System.Threading.Tasks.Task ListFulfillmentOrdersOnShopForSpecificApp([Microsoft.AspNetCore.Mvc.FromQuery] string? assignment_status, [Microsoft.AspNetCore.Mvc.FromQuery] [System.ComponentModel.DataAnnotations.Required] long? location_ids);
 
     }
 

@@ -43,14 +43,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Show articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a list of all articles from a blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles.json")]
-        public abstract System.Threading.Tasks.Task ListArticlesFromBlog(long blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? author, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? tag, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
+        public abstract System.Threading.Tasks.Task ListArticlesFromBlog([System.ComponentModel.DataAnnotations.Required] long blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? author, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? tag, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Creates an article for a blog
         /// </summary>
         /// <returns>Creates an article for a blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles.json")]
-        public abstract System.Threading.Tasks.Task CreateArticleForBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateArticleRequest request, long blog_id);
+        public abstract System.Threading.Tasks.Task CreateArticleForBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateArticleRequest request, [System.ComponentModel.DataAnnotations.Required] long blog_id);
 
         /// <summary>
         /// Retrieves a count of all articles from a blog
@@ -64,7 +64,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Count articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a count of all articles from a blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfAllArticlesFromBlog(long blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
+        public abstract System.Threading.Tasks.Task CountArticlesFromBlog([System.ComponentModel.DataAnnotations.Required] long blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Receive a single Article
@@ -72,21 +72,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specifed by a comma-separated list of field names.</param>
         /// <returns>Receive a single Article</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/{article_id}.json")]
-        public abstract System.Threading.Tasks.Task GetArticle(long article_id, long blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetArticle([System.ComponentModel.DataAnnotations.Required] long article_id, [System.ComponentModel.DataAnnotations.Required] long blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates an article
         /// </summary>
         /// <returns>Updates an article</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/{article_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateArticle([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateArticleRequest request, long article_id, long blog_id);
+        public abstract System.Threading.Tasks.Task UpdateArticle([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateArticleRequest request, [System.ComponentModel.DataAnnotations.Required] long article_id, [System.ComponentModel.DataAnnotations.Required] long blog_id);
 
         /// <summary>
         /// Deletes an article
         /// </summary>
         /// <returns>Deletes an article</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/{article_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteArticle(long article_id, long blog_id);
+        public abstract System.Threading.Tasks.Task DeleteArticle([System.ComponentModel.DataAnnotations.Required] long article_id, [System.ComponentModel.DataAnnotations.Required] long blog_id);
 
         /// <summary>
         /// Retrieves a list of all article authors
@@ -111,7 +111,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="popular">A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.</param>
         /// <returns>Retrieves a list of all article tags from a specific blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/tags.json")]
-        public abstract System.Threading.Tasks.Task ListArticleTagsFromSpecificBlog(long blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? popular);
+        public abstract System.Threading.Tasks.Task ListArticleTagsFromSpecificBlog([System.ComponentModel.DataAnnotations.Required] long blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? popular);
 
     }
 

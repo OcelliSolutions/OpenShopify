@@ -30,7 +30,7 @@ public class CurrencyTests : IClassFixture<SharedFixture>
         var service = new StorePropertiesService(Fixture.MyShopifyUrl, Fixture.AccessToken);
 
         var result =
-            await service.Currency.ListCurrenciesEnabledOnShopAsync(CancellationToken.None);
+            await service.Currency.ListCurrenciesEnabledOnShopAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
 
         Debug.Assert(result.Currencies != null, "result.Currencies != null");

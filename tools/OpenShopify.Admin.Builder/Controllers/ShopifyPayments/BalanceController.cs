@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Return the current balance</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/balance.json")]
-        public abstract System.Threading.Tasks.Task ReturnCurrentBalance();
+        public abstract System.Threading.Tasks.Task GetCurrentBalance();
 
     }
 

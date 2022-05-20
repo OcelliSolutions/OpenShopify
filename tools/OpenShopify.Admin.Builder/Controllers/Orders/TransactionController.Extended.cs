@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
@@ -12,14 +13,14 @@ public class TransactionController : TransactionControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/transactions.json")]
-    public override Task ListTransactions(long order_id, string? fields, bool? in_shop_currency, int? since_id)
+    public override Task ListTransactions([Required] long order_id, string? fields, bool? in_shop_currency, int? since_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("orders/{order_id:long}/transactions.json")]
-    public override Task CreateTransactionForOrder(CreateTransactionRequest request, long order_id, string? source)
+    public override Task CreateTransactionForOrder([Required] CreateTransactionRequest request, [Required] long order_id, string? source)
     {
         throw new NotImplementedException();
     }
@@ -27,14 +28,14 @@ public class TransactionController : TransactionControllerBase
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/transactions/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task GetCountOfOrdersTransactions(long order_id)
+    public override Task CountOrdersTransactions([Required] long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/transactions/{transaction_id:long}.json")]
-    public override Task GetSpecificTransaction(long order_id, long transaction_id, string? fields, bool? in_shop_currency)
+    public override Task GetSpecificTransaction([Required] long order_id, [Required] long transaction_id, string? fields, bool? in_shop_currency)
     {
         throw new NotImplementedException();
     }

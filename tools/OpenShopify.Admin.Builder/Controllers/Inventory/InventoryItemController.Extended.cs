@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
@@ -22,7 +23,7 @@ public class InventoryItemController : InventoryItemControllerBase
     /// <inheritdoc />
     [HttpGet, Route("inventory_items/{inventory_item_id:long}.json")]
     [ProducesResponseType(typeof(InventoryItemItem), StatusCodes.Status200OK)]
-    public override Task GetInventoryItemByID(long inventory_item_id)
+    public override Task GetInventoryItemByID([Required] long inventory_item_id)
     {
         throw new NotImplementedException();
     }
@@ -30,7 +31,7 @@ public class InventoryItemController : InventoryItemControllerBase
     /// <inheritdoc />
     [HttpPut, Route("inventory_items/{inventory_item_id:long}.json")]
     [ProducesResponseType(typeof(InventoryItemItem), StatusCodes.Status200OK)]
-    public override Task UpdateInventoryItem(UpdateInventoryItemRequest request, long inventory_item_id)
+    public override Task UpdateInventoryItem([Required] UpdateInventoryItemRequest request, [Required] long inventory_item_id)
     {
         throw new NotImplementedException();
     }

@@ -33,7 +33,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="limit">The maximum number of results to retrieve.</param>
         /// <returns>Retrieves a list of refunds for an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds.json")]
-        public abstract System.Threading.Tasks.Task ListRefundsForOrder(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info);
+        public abstract System.Threading.Tasks.Task ListRefundsForOrder([System.ComponentModel.DataAnnotations.Required] long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info);
 
         /// <summary>
         /// Creates a refund
@@ -49,7 +49,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <br/>          to process as refunds. Use the &lt;code&gt;calculate&lt;/code&gt; endpoint to obtain these transactions.</param>
         /// <returns>Creates a refund</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds.json")]
-        public abstract System.Threading.Tasks.Task CreateRefund([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateRefundRequest request, long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? currency, [Microsoft.AspNetCore.Mvc.FromQuery] string? discrepancy_reason, [Microsoft.AspNetCore.Mvc.FromQuery] string? note, [Microsoft.AspNetCore.Mvc.FromQuery] string? notify, [Microsoft.AspNetCore.Mvc.FromQuery] string? refund_line_items, [Microsoft.AspNetCore.Mvc.FromQuery] string? restock, [Microsoft.AspNetCore.Mvc.FromQuery] string? shipping, [Microsoft.AspNetCore.Mvc.FromQuery] string? transactions);
+        public abstract System.Threading.Tasks.Task CreateRefund([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateRefundRequest request, [System.ComponentModel.DataAnnotations.Required] long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? currency, [Microsoft.AspNetCore.Mvc.FromQuery] string? discrepancy_reason, [Microsoft.AspNetCore.Mvc.FromQuery] string? note, [Microsoft.AspNetCore.Mvc.FromQuery] string? notify, [Microsoft.AspNetCore.Mvc.FromQuery] string? refund_line_items, [Microsoft.AspNetCore.Mvc.FromQuery] string? restock, [Microsoft.AspNetCore.Mvc.FromQuery] string? shipping, [Microsoft.AspNetCore.Mvc.FromQuery] string? transactions);
 
         /// <summary>
         /// Retrieves a specific refund
@@ -58,7 +58,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="in_shop_currency">Show amounts in the shop currency for the underlying transaction.</param>
         /// <returns>Retrieves a specific refund</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds/{refund_id}.json")]
-        public abstract System.Threading.Tasks.Task GetSpecificRefund(long order_id, long refund_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency);
+        public abstract System.Threading.Tasks.Task GetSpecificRefund([System.ComponentModel.DataAnnotations.Required] long order_id, [System.ComponentModel.DataAnnotations.Required] long refund_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency);
 
         /// <summary>
         /// Calculates a refund
@@ -69,7 +69,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="shipping">Specify how much shipping to refund. It has the following properties:</param>
         /// <returns>Calculates a refund</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds/calculate.json")]
-        public abstract System.Threading.Tasks.Task CalculateRefund(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? currency, [Microsoft.AspNetCore.Mvc.FromQuery] string? refund_line_items, [Microsoft.AspNetCore.Mvc.FromQuery] string? shipping);
+        public abstract System.Threading.Tasks.Task CalculateRefund([System.ComponentModel.DataAnnotations.Required] long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? currency, [Microsoft.AspNetCore.Mvc.FromQuery] string? refund_line_items, [Microsoft.AspNetCore.Mvc.FromQuery] string? shipping);
 
     }
 

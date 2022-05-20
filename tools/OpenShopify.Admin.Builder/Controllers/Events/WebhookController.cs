@@ -58,7 +58,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <br/>For a list of valid values, refer to the &lt;a href="#topic-property-{{ current_version }}"&gt;&lt;code&gt;topic&lt;/code&gt; property&lt;/a&gt;.</param>
         /// <returns>Receive a count of all Webhooks</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("webhooks/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfAllWebhooks([Microsoft.AspNetCore.Mvc.FromQuery] string? address, [Microsoft.AspNetCore.Mvc.FromQuery] string? topic);
+        public abstract System.Threading.Tasks.Task CountWebhooks([Microsoft.AspNetCore.Mvc.FromQuery] string? address, [Microsoft.AspNetCore.Mvc.FromQuery] string? topic);
 
         /// <summary>
         /// Receive a single Webhook
@@ -66,21 +66,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.</param>
         /// <returns>Receive a single Webhook</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("webhooks/{webhook_id}.json")]
-        public abstract System.Threading.Tasks.Task GetWebhook(long webhook_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetWebhook([System.ComponentModel.DataAnnotations.Required] long webhook_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Modify an existing Webhook
         /// </summary>
         /// <returns>Modify an existing Webhook</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("webhooks/{webhook_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateWebhook([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateWebhookRequest request, long webhook_id);
+        public abstract System.Threading.Tasks.Task UpdateWebhook([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateWebhookRequest request, [System.ComponentModel.DataAnnotations.Required] long webhook_id);
 
         /// <summary>
         /// Remove an existing Webhook
         /// </summary>
         /// <returns>Remove an existing Webhook</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("webhooks/{webhook_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteExistingWebhook(long webhook_id);
+        public abstract System.Threading.Tasks.Task DeleteWebhook([System.ComponentModel.DataAnnotations.Required] long webhook_id);
 
     }
 

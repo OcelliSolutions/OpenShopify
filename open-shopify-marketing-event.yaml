@@ -7,11 +7,17 @@ servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
       store_name:
-        default: sample_store
+        default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
         default: '2022-04'
         description: The api version.
+  - url: 'https://{store_name}.myshopify.com/admin'
+    description: Some endpoints do not use the standard routing. This is an alternate.
+    variables:
+      store_name:
+        default: '{{store_name}}'
+        description: The sub-domain of the storefront.
 paths:
   /marketing_events.json:
     get:
@@ -51,21 +57,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MarketingEventList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     post:
       tags:
         - MarketingEvent
@@ -79,6 +70,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateMarketingEventRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -95,27 +87,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MarketingEventItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /marketing_events/count.json:
     get:
       tags:
         - MarketingEvent
       summary: Retrieves a count of all marketing events
-      operationId: GetCountOfAllMarketingEvents
+      operationId: CountMarketingEvents
       responses:
         '200':
           description: Success
@@ -132,21 +109,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CountItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/marketing_events/{marketing_event_id}.json':
     get:
       tags:
@@ -176,21 +138,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MarketingEventItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     put:
       tags:
         - MarketingEvent
@@ -211,6 +158,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateMarketingEventRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -227,21 +175,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MarketingEventItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - MarketingEvent
@@ -266,21 +199,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/marketing_events/{marketing_event_id}/engagements.json':
     post:
       tags:
@@ -347,6 +265,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateMarketingEventRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -363,21 +282,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EngagementList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     CountItem:
@@ -391,6 +295,8 @@ components:
       type: object
       additionalProperties: { }
     CreateMarketingEventRequest:
+      required:
+        - marketing_event
       type: object
       properties:
         marketing_event:
@@ -409,6 +315,8 @@ components:
           nullable: true
       additionalProperties: { }
     EngagementList:
+      required:
+        - engagements
       type: object
       properties:
         engagements:
@@ -416,13 +324,6 @@ components:
           items:
             $ref: '#/components/schemas/Engagement'
       additionalProperties: { }
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: string
-          nullable: true
-      additionalProperties: false
     MarketingEvent:
       required:
         - id
@@ -436,12 +337,16 @@ components:
           nullable: true
       additionalProperties: { }
     MarketingEventItem:
+      required:
+        - marketing_event
       type: object
       properties:
         marketing_event:
           $ref: '#/components/schemas/MarketingEvent'
       additionalProperties: { }
     MarketingEventList:
+      required:
+        - marketing_events
       type: object
       properties:
         marketing_events:
@@ -463,15 +368,9 @@ components:
       additionalProperties: { }
     UpdateMarketingEventRequest:
       required:
-        - id
+        - marketing_event
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         marketing_event:
           $ref: '#/components/schemas/UpdateMarketingEvent'
       additionalProperties: { }

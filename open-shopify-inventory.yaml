@@ -7,11 +7,17 @@ servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
       store_name:
-        default: sample_store
+        default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
         default: '2022-04'
         description: The api version.
+  - url: 'https://{store_name}.myshopify.com/admin'
+    description: Some endpoints do not use the standard routing. This is an alternate.
+    variables:
+      store_name:
+        default: '{{store_name}}'
+        description: The sub-domain of the storefront.
 paths:
   /inventory_items.json:
     get:
@@ -51,21 +57,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InventoryItemList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/inventory_items/{inventory_item_id}.json':
     get:
       tags:
@@ -95,21 +86,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InventoryItemItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     put:
       tags:
         - InventoryItem
@@ -130,6 +106,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateInventoryItemRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -146,21 +123,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InventoryItemItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /inventory_levels.json:
     get:
       tags:
@@ -212,21 +174,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InventoryLevelList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - InventoryLevel
@@ -236,12 +183,14 @@ paths:
         - name: inventory_item_id
           in: query
           description: The ID for the inventory item.
+          required: true
           schema:
             type: integer
             format: int64
         - name: location_id
           in: query
           description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href=''/api/admin-rest/latest/resources/location''>Location resource</a>'
+          required: true
           schema:
             type: integer
             format: int64
@@ -257,21 +206,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /inventory_levels/adjust.json:
     post:
       tags:
@@ -287,12 +221,14 @@ paths:
         - name: inventory_item_id
           in: query
           description: The ID of the inventory item.
+          required: true
           schema:
             type: integer
             format: int64
         - name: location_id
           in: query
           description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href=''/api/admin-rest/latest/resources/location''>Location resource</a>'
+          required: true
           schema:
             type: integer
             format: int64
@@ -312,21 +248,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InventoryLevelItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /inventory_levels/connect.json:
     post:
       tags:
@@ -337,12 +258,14 @@ paths:
         - name: inventory_item_id
           in: query
           description: The ID of the inventory item.
+          required: true
           schema:
             type: integer
             format: int64
         - name: location_id
           in: query
           description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href=''/api/admin-rest/latest/resources/location''>Location resource</a>'
+          required: true
           schema:
             type: integer
             format: int64
@@ -367,21 +290,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InventoryLevelItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /inventory_levels/set.json:
     post:
       tags:
@@ -397,12 +305,14 @@ paths:
         - name: inventory_item_id
           in: query
           description: 'The ID of the inventory item associated with the inventory level. To find the ID of the inventory item, use the <a href=''/api/admin-rest/latest/resources/inventoryitem''>Inventory Item resource</a>'
+          required: true
           schema:
             type: integer
             format: int64
         - name: location_id
           in: query
           description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href=''/api/admin-rest/latest/resources/location''>Location resource</a>'
+          required: true
           schema:
             type: integer
             format: int64
@@ -427,21 +337,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InventoryLevelItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /locations.json:
     get:
       tags:
@@ -464,21 +359,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LocationList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/locations/{location_id}.json':
     get:
       tags:
@@ -508,27 +388,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LocationItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /locations/count.json:
     get:
       tags:
         - Location
       summary: Retrieve a count of locations
-      operationId: GetCountOfLocations
+      operationId: CountLocations
       responses:
         '200':
           description: Success
@@ -545,21 +410,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CountItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/locations/{location_id}/inventory_levels.json':
     get:
       tags:
@@ -589,21 +439,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LocationList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     CountItem:
@@ -613,13 +448,6 @@ components:
           type: integer
           format: int32
       additionalProperties: { }
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: string
-          nullable: true
-      additionalProperties: false
     HSCode:
       required:
         - id
@@ -698,12 +526,16 @@ components:
           nullable: true
       additionalProperties: { }
     InventoryItemItem:
+      required:
+        - inventory_item
       type: object
       properties:
         inventory_item:
           $ref: '#/components/schemas/InventoryItem'
       additionalProperties: { }
     InventoryItemList:
+      required:
+        - inventory_items
       type: object
       properties:
         inventory_items:
@@ -736,12 +568,16 @@ components:
           nullable: true
       additionalProperties: { }
     InventoryLevelItem:
+      required:
+        - inventory_level
       type: object
       properties:
         inventory_level:
           $ref: '#/components/schemas/InventoryLevel'
       additionalProperties: { }
     InventoryLevelList:
+      required:
+        - inventory_levels
       type: object
       properties:
         inventory_levels:
@@ -832,12 +668,16 @@ components:
           nullable: true
       additionalProperties: { }
     LocationItem:
+      required:
+        - location
       type: object
       properties:
         location:
           $ref: '#/components/schemas/Location'
       additionalProperties: { }
     LocationList:
+      required:
+        - locations
       type: object
       properties:
         locations:
@@ -903,59 +743,9 @@ components:
       additionalProperties: { }
     UpdateInventoryItemRequest:
       required:
-        - id
+        - inventory_item
       type: object
       properties:
-        sku:
-          type: string
-          description: The unique SKU (Stock Keeping Unit) of the inventory item.
-          nullable: true
-        tracked:
-          type: boolean
-          description: 'Whether the inventory item is tracked. If true, then inventory quantity changes are tracked by Shopify.'
-          nullable: true
-        cost:
-          type: number
-          description: The unit cost of the inventory item.
-          format: decimal
-          nullable: true
-        country_code_of_origin:
-          type: string
-          description: The two-digit code for the country where the inventory item was made.
-          nullable: true
-        province_code_of_origin:
-          type: string
-          description: The two-digit code for the province where the inventory item was made. Used only if the shipping provider for the inventory item is Canada Post.
-          nullable: true
-        harmonized_system_code:
-          type: string
-          description: The general Harmonized System (HS) code for the inventory item. Used if a country-specific HS code is not available.
-          nullable: true
-        country_harmonized_system_codes:
-          type: array
-          items:
-            $ref: '#/components/schemas/HSCode'
-          description: An array of country-specific Harmonized System (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.
-        requires_shipping:
-          type: boolean
-          description: Whether a customer needs to provide a shipping address when placing an order containing the inventory item.
-          nullable: true
-        created_at:
-          type: string
-          description: The date and time when the product variant was created. The API returns this value in ISO 8601 format.
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the product variant was last modified. The API returns this value in ISO 8601 format.
-          format: date-time
-          nullable: true
-        id:
-          type: integer
-          format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         inventory_item:
           $ref: '#/components/schemas/UpdateInventoryItem'
       additionalProperties: { }

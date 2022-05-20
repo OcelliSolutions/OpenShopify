@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
@@ -19,7 +20,7 @@ public class RedirectController : RedirectControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("redirects.json")]
-    public override Task CreateRedirect(CreateRedirectRequest request)
+    public override Task CreateRedirect([Required] CreateRedirectRequest request)
     {
         throw new NotImplementedException();
     }
@@ -27,28 +28,28 @@ public class RedirectController : RedirectControllerBase
     /// <inheritdoc />
     [HttpGet, Route("redirects/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task GetCountOfUrlRedirects(string? path, string? target)
+    public override Task CountUrlRedirects(string? path, string? target)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("redirects/{redirect_id:long}.json")]
-    public override Task GetRedirect(long redirect_id, string? fields)
+    public override Task GetRedirect([Required] long redirect_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPut, Route("redirects/{redirect_id:long}.json")]
-    public override Task UpdateRedirect(UpdateRedirectRequest request, long redirect_id)
+    public override Task UpdateRedirect([Required] UpdateRedirectRequest request, [Required] long redirect_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpDelete, Route("redirects/{redirect_id:long}.json")]
-    public override Task DeleteRedirect(long redirect_id)
+    public override Task DeleteRedirect([Required] long redirect_id)
     {
         throw new NotImplementedException();
     }

@@ -30,35 +30,35 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates an order risk for an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks.json")]
-        public abstract System.Threading.Tasks.Task CreateOrderRiskForOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateOrderRiskRequest request, long order_id);
+        public abstract System.Threading.Tasks.Task CreateOrderRiskForOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateOrderRiskRequest request, [System.ComponentModel.DataAnnotations.Required] long order_id);
 
         /// <summary>
         /// Retrieves a list of all order risks for an order
         /// </summary>
         /// <returns>Retrieves a list of all order risks for an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks.json")]
-        public abstract System.Threading.Tasks.Task ListOrderRisksForOrder(long order_id);
+        public abstract System.Threading.Tasks.Task ListOrderRisksForOrder([System.ComponentModel.DataAnnotations.Required] long order_id);
 
         /// <summary>
         /// Retrieves a single order risk by its ID
         /// </summary>
         /// <returns>Retrieves a single order risk by its ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks/{risk_id}.json")]
-        public abstract System.Threading.Tasks.Task GetOrderRiskByItsID(long order_id, long risk_id);
+        public abstract System.Threading.Tasks.Task GetOrderRiskByItsID([System.ComponentModel.DataAnnotations.Required] long order_id, [System.ComponentModel.DataAnnotations.Required] long risk_id);
 
         /// <summary>
         /// Updates an order risk
         /// </summary>
         /// <returns>Updates an order risk</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks/{risk_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateOrderRisk([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateOrderRiskRequest request, long order_id, long risk_id);
+        public abstract System.Threading.Tasks.Task UpdateOrderRisk([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateOrderRiskRequest request, [System.ComponentModel.DataAnnotations.Required] long order_id, [System.ComponentModel.DataAnnotations.Required] long risk_id);
 
         /// <summary>
         /// Deletes an order risk for an order
         /// </summary>
         /// <returns>Deletes an order risk for an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks/{risk_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteOrderRiskForOrder(long order_id, long risk_id);
+        public abstract System.Threading.Tasks.Task DeleteOrderRiskForOrder([System.ComponentModel.DataAnnotations.Required] long order_id, [System.ComponentModel.DataAnnotations.Required] long risk_id);
 
     }
 

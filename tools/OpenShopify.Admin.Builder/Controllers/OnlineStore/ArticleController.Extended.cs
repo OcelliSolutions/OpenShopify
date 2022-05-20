@@ -13,7 +13,7 @@ public class ArticleController : ArticleControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("blogs/{blog_id:long}/articles.json")]
-    public override Task ListArticlesFromBlog(long blog_id, string? author, DateTime? created_at_max,
+    public override Task ListArticlesFromBlog([Required] long blog_id, string? author, DateTime? created_at_max,
         DateTime? created_at_min, string? fields, string? handle, int? limit, string? page_info, DateTime? published_at_max,
         DateTime? published_at_min, string published_status, int? since_id, string? tag, DateTime? updated_at_max,
         DateTime? updated_at_min)
@@ -23,7 +23,7 @@ public class ArticleController : ArticleControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("blogs/{blog_id:long}/articles.json")]
-    public override Task CreateArticleForBlog(CreateArticleRequest request, long blog_id)
+    public override Task CreateArticleForBlog([Required] CreateArticleRequest request, [Required] long blog_id)
     {
         throw new NotImplementedException();
     }
@@ -31,7 +31,7 @@ public class ArticleController : ArticleControllerBase
     /// <inheritdoc />
     [HttpGet, Route("blogs/{blog_id:long}/articles/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task GetCountOfAllArticlesFromBlog(long blog_id, DateTime? created_at_max, DateTime? created_at_min,
+    public override Task CountArticlesFromBlog([Required] long blog_id, DateTime? created_at_max, DateTime? created_at_min,
         DateTime? published_at_max, DateTime? published_at_min, string published_status, DateTime? updated_at_max,
         DateTime? updated_at_min)
     {
@@ -40,21 +40,21 @@ public class ArticleController : ArticleControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("blogs/{blog_id:long}/articles/{article_id:long}.json")]
-    public override Task GetArticle(long article_id, long blog_id, string? fields)
+    public override Task GetArticle([Required] long article_id, [Required] long blog_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPut, Route("blogs/{blog_id:long}/articles/{article_id:long}.json")]
-    public override Task UpdateArticle(UpdateArticleRequest request, long article_id, long blog_id)
+    public override Task UpdateArticle([Required] UpdateArticleRequest request, [Required] long article_id, [Required] long blog_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpDelete, Route("blogs/{blog_id:long}/articles/{article_id:long}.json")]
-    public override Task DeleteArticle(long article_id, long blog_id)
+    public override Task DeleteArticle([Required] long article_id, [Required] long blog_id)
     {
         throw new NotImplementedException();
     }
@@ -75,7 +75,7 @@ public class ArticleController : ArticleControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("blogs/{blog_id:long}/articles/tags.json")]
-    public override Task ListArticleTagsFromSpecificBlog(long blog_id, int? limit, string? page_info, string? popular)
+    public override Task ListArticleTagsFromSpecificBlog([Required] long blog_id, int? limit, string? page_info, string? popular)
     {
         throw new NotImplementedException();
     }

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Common.Attributes;
@@ -22,7 +23,7 @@ public class LocationController : LocationControllerBase
     /// <inheritdoc />
     [HttpGet, Route("locations/{location_id:long}.json")]
     [ProducesResponseType(typeof(LocationItem), StatusCodes.Status200OK)]
-    public override Task GetLocationByItsID(long location_id)
+    public override Task GetLocationByItsID([Required] long location_id)
     {
         throw new NotImplementedException();
     }
@@ -30,7 +31,7 @@ public class LocationController : LocationControllerBase
     /// <inheritdoc />
     [HttpGet, Route("locations/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task GetCountOfLocations()
+    public override Task CountLocations()
     {
         throw new NotImplementedException();
     }
@@ -38,7 +39,7 @@ public class LocationController : LocationControllerBase
     /// <inheritdoc />
     [HttpGet, Route("locations/{location_id:long}/inventory_levels.json")]
     [ProducesResponseType(typeof(LocationList), StatusCodes.Status200OK)]
-    public override Task ListInventoryLevelsForLocation(long location_id)
+    public override Task ListInventoryLevelsForLocation([Required] long location_id)
     {
         throw new NotImplementedException();
     }

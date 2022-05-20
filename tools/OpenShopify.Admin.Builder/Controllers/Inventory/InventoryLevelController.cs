@@ -34,7 +34,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).</param>
         /// <returns>Retrieves a list of inventory levels</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_levels.json")]
-        public abstract System.Threading.Tasks.Task ListInventoryLevels([Microsoft.AspNetCore.Mvc.FromQuery] long? inventory_item_ids, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] long? location_ids, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
+        public abstract System.Threading.Tasks.Task ListInventoryLevels([Microsoft.AspNetCore.Mvc.FromQuery] [System.ComponentModel.DataAnnotations.Required] long? inventory_item_ids, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] [System.ComponentModel.DataAnnotations.Required] long? location_ids, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Deletes an inventory level from a location
@@ -43,7 +43,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="location_id">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
         /// <returns>Deletes an inventory level from a location</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("inventory_levels.json")]
-        public abstract System.Threading.Tasks.Task DeleteInventoryLevelFromLocation([Microsoft.AspNetCore.Mvc.FromQuery] long inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] long location_id);
+        public abstract System.Threading.Tasks.Task DeleteInventoryLevelFromLocation([Microsoft.AspNetCore.Mvc.FromQuery] [System.ComponentModel.DataAnnotations.Required] long inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] [System.ComponentModel.DataAnnotations.Required] long location_id);
 
         /// <summary>
         /// Adjusts the inventory level of an inventory item at a location
@@ -53,7 +53,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="location_id">The ID of the location that the inventory level belongs to. To find the ID of the location, use the &lt;a href='/api/admin-rest/latest/resources/location'&gt;Location resource&lt;/a&gt;</param>
         /// <returns>Adjusts the inventory level of an inventory item at a location</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("inventory_levels/adjust.json")]
-        public abstract System.Threading.Tasks.Task AdjustInventoryLevelOfInventoryItemAtLocation([Microsoft.AspNetCore.Mvc.FromQuery] string available_adjustment, [Microsoft.AspNetCore.Mvc.FromQuery] long inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] long location_id);
+        public abstract System.Threading.Tasks.Task AdjustInventoryLevelOfInventoryItemAtLocation([Microsoft.AspNetCore.Mvc.FromQuery] string available_adjustment, [Microsoft.AspNetCore.Mvc.FromQuery] [System.ComponentModel.DataAnnotations.Required] long inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] [System.ComponentModel.DataAnnotations.Required] long location_id);
 
         /// <summary>
         /// Connects an inventory item to a location
@@ -63,7 +63,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="relocate_if_necessary">Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, refer to &lt;a href="#inventory-levels-and-fulfillment-service-locations"&gt;&lt;em&gt;Inventory levels and fulfillment service locations&lt;/em&gt;&lt;/a&gt;.</param>
         /// <returns>Connects an inventory item to a location</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("inventory_levels/connect.json")]
-        public abstract System.Threading.Tasks.Task ConnectInventoryItemToLocation([Microsoft.AspNetCore.Mvc.FromQuery] long inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] long location_id, [Microsoft.AspNetCore.Mvc.FromQuery] bool? relocate_if_necessary);
+        public abstract System.Threading.Tasks.Task ConnectInventoryItemToLocation([Microsoft.AspNetCore.Mvc.FromQuery] [System.ComponentModel.DataAnnotations.Required] long inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] [System.ComponentModel.DataAnnotations.Required] long location_id, [Microsoft.AspNetCore.Mvc.FromQuery] bool? relocate_if_necessary);
 
         /// <summary>
         /// Sets the inventory level for an inventory item at a location
@@ -74,7 +74,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="disconnect_if_necessary">Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, refer to &lt;a href="#inventory-levels-and-fulfillment-service-locations"&gt;&lt;em&gt;Inventory levels and fulfillment service locations&lt;/em&gt;&lt;/a&gt;.</param>
         /// <returns>Sets the inventory level for an inventory item at a location</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("inventory_levels/set.json")]
-        public abstract System.Threading.Tasks.Task SetInventoryLevelForInventoryItemAtLocation([Microsoft.AspNetCore.Mvc.FromQuery] string available, [Microsoft.AspNetCore.Mvc.FromQuery] long inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] long location_id, [Microsoft.AspNetCore.Mvc.FromQuery] bool? disconnect_if_necessary);
+        public abstract System.Threading.Tasks.Task SetInventoryLevelForInventoryItemAtLocation([Microsoft.AspNetCore.Mvc.FromQuery] string available, [Microsoft.AspNetCore.Mvc.FromQuery] [System.ComponentModel.DataAnnotations.Required] long inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] [System.ComponentModel.DataAnnotations.Required] long location_id, [Microsoft.AspNetCore.Mvc.FromQuery] bool? disconnect_if_necessary);
 
     }
 

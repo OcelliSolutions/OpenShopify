@@ -36,6 +36,7 @@ namespace Ocelli.OpenShopify
         /// <param name="status">Show only checkouts with a given status.</param>
         /// <param name="updatedAtMax">Show checkouts last updated before the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="updatedAtMin">Show checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> ListAbandonedCheckoutsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, int? limit = null, string? pageInfo = null, int? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -84,6 +85,7 @@ namespace Ocelli.OpenShopify
         /// <param name="status">Show only checkouts with a given status.</param>
         /// <param name="updatedAtMax">Show checkouts last updated before the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="updatedAtMin">Show checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListAbandonedCheckoutsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, int? limit = null, string? pageInfo = null, int? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -152,18 +154,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -298,8 +289,9 @@ namespace Ocelli.OpenShopify
         /// <param name="customerId">Used to load the customer. When a customer is loaded, the customer’s email address  is also associated.</param>
         /// <param name="useCustomerDefaultAddress">An optional boolean that you can send as part of a draft order object
         /// <br/>            &lt;br /&gt;        to load customer shipping information. Valid values: true or false.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateDraftOrderAsync(long? customerId = null, string? useCustomerDefaultAddress = null, CreateDraftOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateDraftOrderAsync(CreateDraftOrderRequest body, long? customerId = null, string? useCustomerDefaultAddress = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -311,6 +303,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <param name="updatedAtMax">Show orders last updated before date (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="updatedAtMin">Show orders last updated after date (format: 2014-04-25T16:15:47-04:00)</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> ListDraftOrdersAsync(string? fields = null, string? ids = null, int? limit = null, string? pageInfo = null, int? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -318,14 +311,16 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Modify an existing DraftOrder
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> UpdateDraftOrderAsync(long draftOrderId, UpdateDraftOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdateDraftOrderAsync(long draftOrderId, UpdateDraftOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Receive a single DraftOrder
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> GetDraftOrderAsync(long draftOrderId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -333,8 +328,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Remove an existing DraftOrder
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> DeleteExistingDraftOrderAsync(long draftOrderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> DeleteDraftOrderAsync(long draftOrderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -346,12 +342,13 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Count draft orders last updated after the specified date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetCountOfAllDraftOrdersAsync(int? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountDraftOrdersAsync(int? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Send an invoice
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> SendInvoiceAsync(long draftOrderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -359,6 +356,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Complete a draft order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> CompleteDraftOrderAsync(long draftOrderId, string? paymentPending = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -403,9 +401,13 @@ namespace Ocelli.OpenShopify
         /// <param name="customerId">Used to load the customer. When a customer is loaded, the customer’s email address  is also associated.</param>
         /// <param name="useCustomerDefaultAddress">An optional boolean that you can send as part of a draft order object
         /// <br/>            &lt;br /&gt;        to load customer shipping information. Valid values: true or false.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateDraftOrderAsync(long? customerId = null, string? useCustomerDefaultAddress = null, CreateDraftOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateDraftOrderAsync(CreateDraftOrderRequest body, long? customerId = null, string? useCustomerDefaultAddress = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            if (body == null)
+                throw new System.ArgumentNullException("body");
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/draft_orders.json?");
             if (customerId != null)
@@ -450,18 +452,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -495,6 +486,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Restrict results to after the specified ID</param>
         /// <param name="updatedAtMax">Show orders last updated before date (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="updatedAtMin">Show orders last updated after date (format: 2014-04-25T16:15:47-04:00)</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListDraftOrdersAsync(string? fields = null, string? ids = null, int? limit = null, string? pageInfo = null, int? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -563,18 +555,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -602,11 +583,15 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Modify an existing DraftOrder
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateDraftOrderAsync(long draftOrderId, UpdateDraftOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateDraftOrderAsync(long draftOrderId, UpdateDraftOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (draftOrderId == null)
                 throw new System.ArgumentNullException("draftOrderId");
+
+            if (body == null)
+                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/draft_orders/{draft_order_id}.json");
@@ -644,18 +629,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -684,6 +658,7 @@ namespace Ocelli.OpenShopify
         /// Receive a single DraftOrder
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetDraftOrderAsync(long draftOrderId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -728,18 +703,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -767,8 +731,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Remove an existing DraftOrder
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteExistingDraftOrderAsync(long draftOrderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteDraftOrderAsync(long draftOrderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (draftOrderId == null)
                 throw new System.ArgumentNullException("draftOrderId");
@@ -806,18 +771,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -851,7 +805,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Count draft orders last updated after the specified date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetCountOfAllDraftOrdersAsync(int? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountDraftOrdersAsync(int? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/draft_orders/count.json?");
@@ -913,16 +867,6 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -946,6 +890,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Send an invoice
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> SendInvoiceAsync(long draftOrderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -986,18 +931,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -1025,6 +959,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Complete a draft order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> CompleteDraftOrderAsync(long draftOrderId, string? paymentPending = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -1070,18 +1005,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -1227,6 +1151,7 @@ namespace Ocelli.OpenShopify
         /// <param name="status">Filter orders by their status.</param>
         /// <param name="updatedAtMax">Show orders last updated at or before date.</param>
         /// <param name="updatedAtMin">Show orders last updated at or after date.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> ListOrdersAsync(long? attributionAppId = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? financialStatus = null, string? fulfillmentStatus = null, string? ids = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, int? sinceId = null, Status? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -1234,14 +1159,16 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Create an order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateOrderAsync(CreateOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateOrderAsync(CreateOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Retrieve a specific order
         /// </summary>
         /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> GetSpecificOrderAsync(long orderId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -1249,13 +1176,15 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Update an order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderAsync(long orderId, UpdateOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderAsync(long orderId, UpdateOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Delete an order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -1278,6 +1207,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Close an order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> CloseOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -1285,6 +1215,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Re-open a closed order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> ReOpenClosedOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -1298,6 +1229,7 @@ namespace Ocelli.OpenShopify
         /// <param name="reason">The reason for the order cancellation. Valid values: &lt;code&gt;customer&lt;/code&gt;, &lt;code&gt;inventory&lt;/code&gt;, &lt;code&gt;fraud&lt;/code&gt;, &lt;code&gt;declined&lt;/code&gt;, and &lt;code&gt;other&lt;/code&gt;.)</param>
         /// <param name="refund">The refund transactions to perform. Required for some more complex refund situations. For more information, see the &lt;a href="/docs/admin-api/rest/reference/orders/refund#create-{{ current_version }}" &gt;Refund API&lt;/a&gt;.</param>
         /// <param name="restock">Whether to restock refunded items back to your store's inventory.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> CancelOrderAsync(long orderId, string? amount = null, string? currency = null, bool? email = null, string? reason = null, object? refund = null, bool? restock = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -1353,6 +1285,7 @@ namespace Ocelli.OpenShopify
         /// <param name="status">Filter orders by their status.</param>
         /// <param name="updatedAtMax">Show orders last updated at or before date.</param>
         /// <param name="updatedAtMin">Show orders last updated at or after date.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListOrdersAsync(long? attributionAppId = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? financialStatus = null, string? fulfillmentStatus = null, string? ids = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, int? sinceId = null, Status? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -1449,18 +1382,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -1488,9 +1410,13 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Create an order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateOrderAsync(CreateOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateOrderAsync(CreateOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            if (body == null)
+                throw new System.ArgumentNullException("body");
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders.json");
 
@@ -1526,18 +1452,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -1566,6 +1481,7 @@ namespace Ocelli.OpenShopify
         /// Retrieve a specific order
         /// </summary>
         /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetSpecificOrderAsync(long orderId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -1610,18 +1526,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -1649,11 +1554,15 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Update an order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderAsync(long orderId, UpdateOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderAsync(long orderId, UpdateOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
+
+            if (body == null)
+                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}.json");
@@ -1691,18 +1600,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -1730,6 +1628,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Delete an order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -1769,18 +1668,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -1891,16 +1779,6 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -1924,6 +1802,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Close an order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> CloseOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -1964,18 +1843,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -2003,6 +1871,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Re-open a closed order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> ReOpenClosedOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -2043,18 +1912,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -2088,6 +1946,7 @@ namespace Ocelli.OpenShopify
         /// <param name="reason">The reason for the order cancellation. Valid values: &lt;code&gt;customer&lt;/code&gt;, &lt;code&gt;inventory&lt;/code&gt;, &lt;code&gt;fraud&lt;/code&gt;, &lt;code&gt;declined&lt;/code&gt;, and &lt;code&gt;other&lt;/code&gt;.)</param>
         /// <param name="refund">The refund transactions to perform. Required for some more complex refund situations. For more information, see the &lt;a href="/docs/admin-api/rest/reference/orders/refund#create-{{ current_version }}" &gt;Refund API&lt;/a&gt;.</param>
         /// <param name="restock">Whether to restock refunded items back to your store's inventory.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> CancelOrderAsync(long orderId, string? amount = null, string? currency = null, bool? email = null, string? reason = null, object? refund = null, bool? restock = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -2153,18 +2012,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -2296,13 +2144,15 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates an order risk for an order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateOrderRiskForOrderAsync(long orderId, CreateOrderRiskRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateOrderRiskForOrderAsync(long orderId, CreateOrderRiskRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Retrieves a list of all order risks for an order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> ListOrderRisksForOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -2310,6 +2160,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Retrieves a single order risk by its ID
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> GetOrderRiskByItsIDAsync(long orderId, long riskId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -2317,13 +2168,15 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Updates an order risk
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderRiskAsync(long orderId, long riskId, UpdateOrderRiskRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderRiskAsync(long orderId, long riskId, UpdateOrderRiskRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Deletes an order risk for an order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteOrderRiskForOrderAsync(long orderId, long riskId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -2365,11 +2218,15 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates an order risk for an order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateOrderRiskForOrderAsync(long orderId, CreateOrderRiskRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateOrderRiskForOrderAsync(long orderId, CreateOrderRiskRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
+
+            if (body == null)
+                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/risks.json");
@@ -2407,18 +2264,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -2446,6 +2292,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Retrieves a list of all order risks for an order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListOrderRisksForOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -2485,18 +2332,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -2524,6 +2360,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Retrieves a single order risk by its ID
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetOrderRiskByItsIDAsync(long orderId, long riskId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -2567,18 +2404,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -2606,14 +2432,18 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Updates an order risk
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderRiskAsync(long orderId, long riskId, UpdateOrderRiskRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderRiskAsync(long orderId, long riskId, UpdateOrderRiskRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
 
             if (riskId == null)
                 throw new System.ArgumentNullException("riskId");
+
+            if (body == null)
+                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/risks/{risk_id}.json");
@@ -2652,18 +2482,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -2691,6 +2510,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Deletes an order risk for an order
         /// </summary>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteOrderRiskForOrderAsync(long orderId, long riskId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -2734,18 +2554,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -2880,6 +2689,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <param name="inShopCurrency">Show amounts in the shop currency for the underlying transaction.</param>
         /// <param name="limit">The maximum number of results to retrieve.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> ListRefundsForOrderAsync(long orderId, string? fields = null, bool? inShopCurrency = null, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -2896,8 +2706,9 @@ namespace Ocelli.OpenShopify
         /// <param name="shipping">Specify how much shipping to refund. It has the following properties:</param>
         /// <param name="transactions">A list of &lt;a href="/api/admin-rest/current/resources/transaction"&gt;transactions&lt;/a&gt;
         /// <br/>            &lt;br /&gt;          to process as refunds. Use the &lt;code&gt;calculate&lt;/code&gt; endpoint to obtain these transactions.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateRefundAsync(long orderId, string? currency = null, string? discrepancyReason = null, string? note = null, string? notify = null, string? refundLineItems = null, string? restock = null, string? shipping = null, string? transactions = null, CreateRefundRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateRefundAsync(long orderId, CreateRefundRequest body, string? currency = null, string? discrepancyReason = null, string? note = null, string? notify = null, string? refundLineItems = null, string? restock = null, string? shipping = null, string? transactions = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2905,6 +2716,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <param name="inShopCurrency">Show amounts in the shop currency for the underlying transaction.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> GetSpecificRefundAsync(long orderId, long refundId, string? fields = null, bool? inShopCurrency = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -2916,6 +2728,7 @@ namespace Ocelli.OpenShopify
         /// <br/>            &lt;br /&gt;          currency used for the refund. &lt;strong&gt;Note:&lt;/strong&gt; Required whenever the shipping &lt;code&gt;amount&lt;/code&gt; property is provided.&lt;/p&gt;</param>
         /// <param name="refundLineItems">A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:</param>
         /// <param name="shipping">Specify how much shipping to refund. It has the following properties:</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> CalculateRefundAsync(long orderId, string? currency = null, string? refundLineItems = null, string? shipping = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -2960,6 +2773,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <param name="inShopCurrency">Show amounts in the shop currency for the underlying transaction.</param>
         /// <param name="limit">The maximum number of results to retrieve.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListRefundsForOrderAsync(long orderId, string? fields = null, bool? inShopCurrency = null, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -3016,18 +2830,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -3064,11 +2867,15 @@ namespace Ocelli.OpenShopify
         /// <param name="shipping">Specify how much shipping to refund. It has the following properties:</param>
         /// <param name="transactions">A list of &lt;a href="/api/admin-rest/current/resources/transaction"&gt;transactions&lt;/a&gt;
         /// <br/>            &lt;br /&gt;          to process as refunds. Use the &lt;code&gt;calculate&lt;/code&gt; endpoint to obtain these transactions.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateRefundAsync(long orderId, string? currency = null, string? discrepancyReason = null, string? note = null, string? notify = null, string? refundLineItems = null, string? restock = null, string? shipping = null, string? transactions = null, CreateRefundRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateRefundAsync(long orderId, CreateRefundRequest body, string? currency = null, string? discrepancyReason = null, string? note = null, string? notify = null, string? refundLineItems = null, string? restock = null, string? shipping = null, string? transactions = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
+
+            if (body == null)
+                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/refunds.json?");
@@ -3139,18 +2946,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -3180,6 +2976,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <param name="inShopCurrency">Show amounts in the shop currency for the underlying transaction.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetSpecificRefundAsync(long orderId, long refundId, string? fields = null, bool? inShopCurrency = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -3232,18 +3029,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -3275,6 +3061,7 @@ namespace Ocelli.OpenShopify
         /// <br/>            &lt;br /&gt;          currency used for the refund. &lt;strong&gt;Note:&lt;/strong&gt; Required whenever the shipping &lt;code&gt;amount&lt;/code&gt; property is provided.&lt;/p&gt;</param>
         /// <param name="refundLineItems">A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:</param>
         /// <param name="shipping">Specify how much shipping to refund. It has the following properties:</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> CalculateRefundAsync(long orderId, string? currency = null, string? refundLineItems = null, string? shipping = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -3328,18 +3115,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -3474,6 +3250,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">Show only certain fields, specifed by a comma-separated list of fields names.</param>
         /// <param name="inShopCurrency">Show amounts in the shop currency.</param>
         /// <param name="sinceId">Retrieve only transactions after the specified ID.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> ListTransactionsAsync(long orderId, string? fields = null, bool? inShopCurrency = null, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -3482,8 +3259,9 @@ namespace Ocelli.OpenShopify
         /// Creates a transaction for an order
         /// </summary>
         /// <param name="source">An optional origin of the transaction. Set to &lt;code&gt;external&lt;/code&gt; to import a cash transaction for the associated order.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateTransactionForOrderAsync(long orderId, string? source = null, CreateTransactionRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateTransactionForOrderAsync(long orderId, CreateTransactionRequest body, string? source = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3491,7 +3269,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetCountOfOrdersTransactionsAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountOrdersTransactionsAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3499,6 +3277,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <param name="inShopCurrency">Show amounts in the shop currency.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> GetSpecificTransactionAsync(long orderId, long transactionId, string? fields = null, bool? inShopCurrency = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -3543,6 +3322,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">Show only certain fields, specifed by a comma-separated list of fields names.</param>
         /// <param name="inShopCurrency">Show amounts in the shop currency.</param>
         /// <param name="sinceId">Retrieve only transactions after the specified ID.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListTransactionsAsync(long orderId, string? fields = null, bool? inShopCurrency = null, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -3595,18 +3375,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -3635,11 +3404,15 @@ namespace Ocelli.OpenShopify
         /// Creates a transaction for an order
         /// </summary>
         /// <param name="source">An optional origin of the transaction. Set to &lt;code&gt;external&lt;/code&gt; to import a cash transaction for the associated order.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateTransactionForOrderAsync(long orderId, string? source = null, CreateTransactionRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateTransactionForOrderAsync(long orderId, CreateTransactionRequest body, string? source = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
+
+            if (body == null)
+                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/transactions.json?");
@@ -3682,18 +3455,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -3723,7 +3485,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetCountOfOrdersTransactionsAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountOrdersTransactionsAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -3772,16 +3534,6 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<CountItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -3807,6 +3559,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <param name="inShopCurrency">Show amounts in the shop currency.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetSpecificTransactionAsync(long orderId, long transactionId, string? fields = null, bool? inShopCurrency = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -3859,18 +3612,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }
@@ -4237,7 +3979,8 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("draft_order")]
-        public CreateDraftOrder? DraftOrder { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public CreateDraftOrder DraftOrder { get; set; } = new CreateDraftOrder();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -4673,7 +4416,8 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("order")]
-        public CreateOrder? Order { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public CreateOrder Order { get; set; } = new CreateOrder();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -4762,7 +4506,8 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("order_risk")]
-        public CreateOrderRisk? OrderRisk { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public CreateOrderRisk OrderRisk { get; set; } = new CreateOrderRisk();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -4889,7 +4634,8 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("refund")]
-        public CreateRefund? Refund { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public CreateRefund Refund { get; set; } = new CreateRefund();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -5060,7 +4806,8 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("transaction")]
-        public CreateTransaction? Transaction { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public CreateTransaction Transaction { get; set; } = new CreateTransaction();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -7095,187 +6842,10 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class UpdateDraftOrderRequest
     {
-        /// <summary>
-        /// The unique numeric identifier for the order associated to the draft order, once created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
-        public long? OrderId { get; set; } = default!;
-
-        /// <summary>
-        /// Name of the draft order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("customer")]
-        public Customer? Customer { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("shipping_address")]
-        public Address? ShippingAddress { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("billing_address")]
-        public Address? BillingAddress { get; set; } = default!;
-
-        /// <summary>
-        /// The text of an optional note that a shop owner can attach to the draft order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        public string? Note { get; set; } = default!;
-
-        /// <summary>
-        /// Extra information that is added to the order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
-        public System.Collections.Generic.ICollection<NoteAttribute>? NoteAttributes { get; set; } = default!;
-
-        /// <summary>
-        /// The customer's email address.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        public string? Email { get; set; } = default!;
-
-        /// <summary>
-        /// The three letter code (ISO 4217) for the currency used for the payment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        public string? Currency { get; set; } = default!;
-
-        /// <summary>
-        /// This auto-generated property is the date and time when the invoice was emailed to the customer, in ISO 8601 format.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("invoice_sent_at")]
-        public System.DateTimeOffset? InvoiceSentAt { get; set; } = default!;
-
-        /// <summary>
-        /// The URL for the invoice.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("invoice_url")]
-        public string? InvoiceUrl { get; set; } = default!;
-
-        /// <summary>
-        /// Product variant line item or custom line item associated to the draft order. Each draft order must include at least one line_item.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("line_items")]
-        public System.Collections.Generic.ICollection<DraftLineItem>? LineItems { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("shipping_line")]
-        public DraftShippingLine? ShippingLine { get; set; } = default!;
-
-        /// <summary>
-        /// Tags are additional short descriptors, commonly used for filtering and searching, formatted as a string of comma-separated values.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tags")]
-        public string? Tags { get; set; } = default!;
-
-        /// <summary>
-        /// Sets whether or not taxes are exempt for the draft order. If this field is set to false, then Shopify will refer to the taxable field for each line_item. If a customer is applied to the draft order, then Shopify will use the customer's tax_exempt field instead.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_exempt")]
-        public bool? TaxExempt { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the customer is exempt from paying specific taxes on their order
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_exemptions")]
-        public System.Collections.Generic.ICollection<string>? TaxExemptions { get; set; } = default!;
-
-        /// <summary>
-        /// An array of tax_line objects, each of which details the total taxes applicable to the order. When creating an order through the API, tax lines may be specified on the order or the line items but not both. Tax lines specified on the order are split on the taxable line items in the created order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
-        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("applied_discount")]
-        public AppliedDiscount? AppliedDiscount { get; set; } = default!;
-
-        /// <summary>
-        /// States whether or not taxes are included in the order subtotal.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("taxes_included")]
-        public bool? TaxesIncluded { get; set; } = default!;
-
-        /// <summary>
-        /// The sum of all the taxes applied to the order (must be positive).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_tax")]
-        public decimal? TotalTax { get; set; } = default!;
-
-        /// <summary>
-        /// Price of the order before shipping and taxes
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("subtotal_price")]
-        public decimal? SubtotalPrice { get; set; } = default!;
-
-        /// <summary>
-        /// The sum of all the prices of all the items in the order, taxes and discounts included (must be positive).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_price")]
-        public decimal? TotalPrice { get; set; } = default!;
-
-        /// <summary>
-        /// Date at which order is created and the draft order changes to completed status. The API returns this value in ISO 8601 format.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("completed_at")]
-        public System.DateTimeOffset? CompletedAt { get; set; } = default!;
-
-        /// <summary>
-        /// This auto-generated property is the date and time when the draft order was created in Shopify, in ISO 8601 format.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the order was last modified. The API returns this value in ISO 8601 format.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// Once a draft order is set to status completed the only further draft order modifications that can be made are adding tags or metafields. No other draft order actions are permitted.
-        /// <br/>Known values are "open", "invoice_sent", and "completed".
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("status")]
-        public string? Status { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
-        public System.Collections.Generic.ICollection<DraftOrderMetafield>? Metafields { get; set; } = default!;
-
-        /// <summary>
-        /// An optional boolean that you can send as part of a draft order object to load customer shipping information.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("use_customer_default_address")]
-        public bool? UseCustomerDefaultAddress { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("draft_order")]
-        public UpdateDraftOrder? DraftOrder { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public UpdateDraftOrder DraftOrder { get; set; } = new UpdateDraftOrder();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -7715,418 +7285,10 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class UpdateOrderRequest
     {
-        /// <summary>
-        /// Unique identifier of the app who created the order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("app_id")]
-        public long? AppId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("billing_address")]
-        public Address? BillingAddress { get; set; } = default!;
-
-        /// <summary>
-        /// The IP address of the browser used by the customer when placing the order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("browser_ip")]
-        public string? BrowserIp { get; set; } = default!;
-
-        /// <summary>
-        /// Indicates whether or not the person who placed the order would like to receive email updates from the shop.
-        /// <br/>This is set when checking the "I want to receive occasional emails about new products, promotions and other news" checkbox during checkout.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("buyer_accepts_marketing")]
-        public bool? BuyerAcceptsMarketing { get; set; } = default!;
-
-        /// <summary>
-        /// The reason why the order was cancelled. If the order was not cancelled, this value is null. Known values are "customer", "fraud", "inventory" and "other".
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("cancel_reason")]
-        public string? CancelReason { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the order was cancelled. If the order was not cancelled, this value is null.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("cancelled_at")]
-        public System.DateTimeOffset? CancelledAt { get; set; } = default!;
-
-        /// <summary>
-        /// Unique identifier for a particular cart that is attached to a particular order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("cart_token")]
-        public string? CartToken { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("client_details")]
-        public ClientDetails? ClientDetails { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the order was closed. If the order was not clsoed, this value is null.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("closed_at")]
-        public System.DateTimeOffset? ClosedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the order was created in Shopify.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The three letter code (ISO 4217) for the currency used for the payment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("currency")]
-        public string? Currency { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("customer")]
-        public Customer? Customer { get; set; } = default!;
-
-        /// <summary>
-        /// The two or three letter language code, optionally followed by a region modifier. Example values could be 'en', 'en-CA', 'en-PIRATE'.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("customer_locale")]
-        public string? CustomerLocale { get; set; } = default!;
-
-        /// <summary>
-        /// The unique numeric identifier of the POS device used.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("device_id")]
-        public long? DeviceId { get; set; } = default!;
-
-        /// <summary>
-        /// Applicable discount codes that can be applied to the order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("discount_codes")]
-        public System.Collections.Generic.ICollection<DiscountCode>? DiscountCodes { get; set; } = default!;
-
-        /// <summary>
-        /// An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("discount_applications")]
-        public System.Collections.Generic.ICollection<DiscountApplication>? DiscountApplications { get; set; } = default!;
-
-        /// <summary>
-        /// The order's email address. Note: On and after 2015-11-03, you should be using !:ContactEmail to refer to the customer's email address.
-        /// <br/>Between 2015-11-03 and 2015-12-03, updates to an order's email will also update the customer's email. This is temporary so apps can be migrated over to
-        /// <br/>doing customer updates rather than order updates to change the contact email. After 2015-12-03, updating updating an order's email will no longer update
-        /// <br/>the customer's email and apps will have to use the customer update endpoint to do so.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("email")]
-        public string? Email { get; set; } = default!;
-
-        /// <summary>
-        /// The financial status of an order. Known values are "authorized", "paid", "pending", "partially_paid", "partially_refunded", "refunded" and "voided".
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("financial_status")]
-        public string? FinancialStatus { get; set; } = default!;
-
-        /// <summary>
-        /// An array of OpenShopify.Admin.Builder.Models.Fulfillment objects for this order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillments")]
-        public System.Collections.Generic.ICollection<Fulfillment>? Fulfillments { get; set; } = default!;
-
-        /// <summary>
-        /// The fulfillment status for this order. Known values are 'fulfilled', 'null' and 'partial'.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_status")]
-        public string? FulfillmentStatus { get; set; } = default!;
-
-        /// <summary>
-        /// The customer's phone number.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("phone")]
-        public string? Phone { get; set; } = default!;
-
-        /// <summary>
-        /// Tags are additional short descriptors, commonly used for filtering and searching, formatted as a string of comma-separated values.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tags")]
-        public string? Tags { get; set; } = default!;
-
-        /// <summary>
-        /// The URL for the page where the buyer landed when entering the shop.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("landing_site")]
-        public string? LandingSite { get; set; } = default!;
-
-        /// <summary>
-        /// An array of OpenShopify.Admin.Builder.Models.LineItem objects, each one containing information about an item in the order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("line_items")]
-        public System.Collections.Generic.ICollection<LineItem>? LineItems { get; set; } = default!;
-
-        /// <summary>
-        /// The unique numeric identifier for the physical location at which the order was processed. Only present on orders processed at point of sale.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
-        public long? LocationId { get; set; } = default!;
-
-        /// <summary>
-        /// The customer's order name as represented by a number, e.g. '#1001'.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The text of an optional note that a shop owner can attach to the order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("note")]
-        public string? Note { get; set; } = default!;
-
-        /// <summary>
-        /// Extra information that is added to the order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
-        public System.Collections.Generic.ICollection<NoteAttribute>? NoteAttributes { get; set; } = default!;
-
-        /// <summary>
-        /// Numerical identifier unique to the shop. A number is sequential and starts at 1000.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("number")]
-        public int? Number { get; set; } = default!;
-
-        /// <summary>
-        /// A unique numeric identifier for the order. This one is used by the shop owner and customer.
-        /// <br/>This is different from the id property, which is also a unique numeric identifier for the order, but used for API purposes.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("order_number")]
-        public int? OrderNumber { get; set; } = default!;
-
-        /// <summary>
-        /// The URL pointing to the order status web page. The URL will be null unless the order was created from a checkout.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("order_status_url")]
-        public string? OrderStatusUrl { get; set; } = default!;
-
-        /// <summary>
-        /// The list of all payment gateways used for the order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("payment_gateway_names")]
-        public System.Collections.Generic.ICollection<string>? PaymentGatewayNames { get; set; } = default!;
-
-        /// <summary>
-        /// The date that the order was processed at.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("processed_at")]
-        public System.DateTimeOffset? ProcessedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The type of payment processing method. Known values are 'checkout', 'direct', 'manual', 'offsite', 'express', 'free' and 'none'.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("processing_method")]
-        public string? ProcessingMethod { get; set; } = default!;
-
-        /// <summary>
-        /// The website that the customer clicked on to come to the shop.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("referring_site")]
-        public string? ReferringSite { get; set; } = default!;
-
-        /// <summary>
-        /// The list of OpenShopify.Admin.Builder.Models.Refund objects applied to the order
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("refunds")]
-        public System.Collections.Generic.ICollection<Refund>? Refunds { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("shipping_address")]
-        public Address? ShippingAddress { get; set; } = default!;
-
-        /// <summary>
-        /// An array of OpenShopify.Admin.Builder.Models.ShippingLine objects, each of which details the shipping methods used.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("shipping_lines")]
-        public System.Collections.Generic.ICollection<ShippingLine>? ShippingLines { get; set; } = default!;
-
-        /// <summary>
-        /// Where the order originated. May only be set during creation, and is not writeable thereafter.
-        /// <br/>Orders created via the API may be assigned any string of your choice except for "web", "pos", "iphone", and "android".
-        /// <br/>Default is "api".
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("source_name")]
-        public string? SourceName { get; set; } = default!;
-
-        /// <summary>
-        /// Price of the order before shipping and taxes
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("subtotal_price")]
-        public decimal? SubtotalPrice { get; set; } = default!;
-
-        /// <summary>
-        /// An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the total taxes applicable to the order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
-        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
-
-        /// <summary>
-        /// States whether or not taxes are included in the order subtotal.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("taxes_included")]
-        public bool? TaxesIncluded { get; set; } = default!;
-
-        /// <summary>
-        /// States whether this is a test order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("test")]
-        public bool? Test { get; set; } = default!;
-
-        /// <summary>
-        /// Unique identifier for a particular order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("token")]
-        public string? Token { get; set; } = default!;
-
-        /// <summary>
-        /// The total amount of the discounts applied to the price of the order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_discounts")]
-        public decimal? TotalDiscounts { get; set; } = default!;
-
-        /// <summary>
-        /// The sum of all the prices of all the items in the order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_line_items_price")]
-        public decimal? TotalLineItemsPrice { get; set; } = default!;
-
-        /// <summary>
-        /// The sum of all the tips in the order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_tip_received")]
-        public decimal? TotalTipReceived { get; set; } = default!;
-
-        /// <summary>
-        /// The sum of all the prices of all the items in the order, with taxes and discounts included (must be positive).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_price")]
-        public decimal? TotalPrice { get; set; } = default!;
-
-        /// <summary>
-        /// The sum of all the taxes applied to the order (must be positive).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_tax")]
-        public decimal? TotalTax { get; set; } = default!;
-
-        /// <summary>
-        /// The sum of all the weights of the line items in the order, in grams.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_weight")]
-        public long? TotalWeight { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the order was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The unique numerical identifier for the user logged into the terminal at the time the order was processed at. Only present on orders processed at point of sale.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("user_id")]
-        public long? UserId { get; set; } = default!;
-
-        /// <summary>
-        /// An array of OpenShopify.Admin.Builder.Models.Transaction objects that detail all of the transactions in
-        /// <br/>this order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("transactions")]
-        public System.Collections.Generic.ICollection<Transaction>? Transactions { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
-        public System.Collections.Generic.ICollection<OrderMetafield>? Metafields { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("current_total_duties_set")]
-        public PriceSet? CurrentTotalDutiesSet { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("original_total_duties_set")]
-        public PriceSet? OriginalTotalDutiesSet { get; set; } = default!;
-
-        /// <summary>
-        /// The three letter code (ISO 4217) for the currency used used to display prices to the customer.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("presentment_currency")]
-        public string? PresentmentCurrency { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_line_items_price_set")]
-        public PriceSet? TotalLineItemsPriceSet { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_discounts_set")]
-        public PriceSet? TotalDiscountsSet { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_shipping_price_set")]
-        public PriceSet? TotalShippingPriceSet { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("subtotal_price_set")]
-        public PriceSet? SubtotalPriceSet { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_price_set")]
-        public PriceSet? TotalPriceSet { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("total_tax_set")]
-        public PriceSet? TotalTaxSet { get; set; } = default!;
-
-        /// <summary>
-        /// Indicates whether taxes on an order are estimated. Will be set to false when taxes on an order are finalized and aren't subject to any change.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("estimated_taxes")]
-        public bool? EstimatedTaxes { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("order")]
-        public UpdateOrder? Order { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public UpdateOrder Order { get; set; } = new UpdateOrder();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -8219,71 +7381,10 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class UpdateOrderRiskRequest
     {
-        /// <summary>
-        /// Use this flag when a fraud check is accompanied with a call to the Orders API to cancel the order. This will indicate to the merchant that this risk was severe enough to force cancellation of the order.
-        /// <br/>Note: Setting this parameter does not cancel the order. This must be done by the Orders API.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("cause_cancel")]
-        public bool? CauseCancel { get; set; } = default!;
-
-        /// <summary>
-        /// The ID of the checkout that the order risk belongs to.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("checkout_id")]
-        public long? CheckoutId { get; set; } = default!;
-
-        /// <summary>
-        /// States whether or not the risk is displayed. Valid values are "true" or "false".
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("display")]
-        public bool? Display { get; set; } = default!;
-
-        /// <summary>
-        /// The id of the order the order risk belongs to
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
-        public long? OrderId { get; set; } = default!;
-
-        /// <summary>
-        /// A message that should be displayed to the merchant to indicate the results of the fraud check.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("message")]
-        public string? Message { get; set; } = default!;
-
-        /// <summary>
-        /// The recommended action given to the merchant. Known values are 'cancel', 'investigate' and 'accept'.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("recommendation")]
-        public string? Recommendation { get; set; } = default!;
-
-        /// <summary>
-        /// A number between 0 and 1 indicating percentage likelihood of being fraud.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("score")]
-        public decimal? Score { get; set; } = default!;
-
-        /// <summary>
-        /// This indicates the source of the risk assessment. Known values are 'External', 'Internal' and 'Gateway'.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("source")]
-        public string? Source { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public long Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-        public string? AdminGraphqlApiId { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("order_risk")]
-        public UpdateOrderRisk? OrderRisk { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public UpdateOrderRisk OrderRisk { get; set; } = new UpdateOrderRisk();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

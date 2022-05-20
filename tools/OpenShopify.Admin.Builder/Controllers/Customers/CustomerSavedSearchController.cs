@@ -48,7 +48,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="since_id">Restrict results to after the specified ID</param>
         /// <returns>Retrieves a count of all customer saved searches</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfAllCustomerSavedSearches([Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
+        public abstract System.Threading.Tasks.Task CountCustomerSavedSearches([Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
 
         /// <summary>
         /// Retrieves a single customer saved search
@@ -56,21 +56,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single customer saved search</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
-        public abstract System.Threading.Tasks.Task GetCustomerSavedSearch(long customer_saved_search_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetCustomerSavedSearch([System.ComponentModel.DataAnnotations.Required] long customer_saved_search_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates a customer saved search
         /// </summary>
         /// <returns>Updates a customer saved search</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateCustomerSavedSearch([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCustomerSavedSearchRequest request, long customer_saved_search_id);
+        public abstract System.Threading.Tasks.Task UpdateCustomerSavedSearch([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCustomerSavedSearchRequest request, [System.ComponentModel.DataAnnotations.Required] long customer_saved_search_id);
 
         /// <summary>
         /// Deletes a customer saved search
         /// </summary>
         /// <returns>Deletes a customer saved search</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteCustomerSavedSearch(long customer_saved_search_id);
+        public abstract System.Threading.Tasks.Task DeleteCustomerSavedSearch([System.ComponentModel.DataAnnotations.Required] long customer_saved_search_id);
 
         /// <summary>
         /// Retrieves all customers returned by a customer saved search
@@ -80,7 +80,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="order">Set the field and direction by which to order results.</param>
         /// <returns>Retrieves all customers returned by a customer saved search</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}/customers.json")]
-        public abstract System.Threading.Tasks.Task GetAllCustomersReturnedByCustomerSavedSearch(long customer_saved_search_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? order);
+        public abstract System.Threading.Tasks.Task ListCustomersReturnedByCustomerSavedSearch([System.ComponentModel.DataAnnotations.Required] long customer_saved_search_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? order);
 
     }
 

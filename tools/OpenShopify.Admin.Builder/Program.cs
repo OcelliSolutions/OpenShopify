@@ -3,8 +3,6 @@ using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
@@ -36,9 +34,8 @@ builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(opt =>
     opt.SerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
 });
 
-builder.Services.TryAddEnumerable(ServiceDescriptor
-    .Transient<IApplicationModelProvider, ProduceResponseTypeModelProvider>());
-
+//builder.Services.TryAddEnumerable(ServiceDescriptor.Transient<IApplicationModelProvider, ProduceResponseTypeModelProvider>());
+/*
 var openApiInfo = new OpenApiInfo
 {
     Version = "2022-04",
@@ -46,11 +43,12 @@ var openApiInfo = new OpenApiInfo
     Description = "This document is created and maintained by the community and is designed to be a non-state specific specification. Please refer to your regions documentation for specific details and deviations." +
                   "Please keep in mind that there are rate limits and other terms of use enforced by Shopify. This document is only designed to give developers a standard used for code generation and testing."
 };
+*/
 builder.Services.AddSwaggerGen(c =>
 {
     c.MapType<decimal>(() => new OpenApiSchema { Type = "number", Format = "decimal" });
     c.SupportNonNullableReferenceTypes();
-    //Skip (1) is because the first fieldinfo of enum is a built-in int value
+    //Skip (1) is because the first field-info of enum is a built-in int value
     typeof(ApiGroupNames).GetFields().Skip(1).ToList().ForEach(f =>
     {
         //Gets the attribute on the enumeration value
@@ -62,18 +60,18 @@ builder.Services.AddSwaggerGen(c =>
     //Determine which group the interface belongs to
     c.DocInclusionPredicate((docName, apiDescription) =>
     {
-        if (!apiDescription.TryGetMethodInfo(out MethodInfo method)) return false;
+        if (!apiDescription.TryGetMethodInfo(out var method)) return false;
         //1. All interfaces
         if (docName == "All") return true;
         //The value of reflection under the grouping characteristic of the controller
-        var actionlist = apiDescription.ActionDescriptor.EndpointMetadata.FirstOrDefault(x => x is ApiGroupAttribute);
+        var actionList = apiDescription.ActionDescriptor.EndpointMetadata.FirstOrDefault(x => x is ApiGroupAttribute);
         //2. Get the interface that has not been grouped***************
-        if (docName == "NoGroup") return actionlist == null ? true : false;
+        if (docName == "NoGroup") return actionList == null;
         //3. Load the corresponding grouped interfaces
-        if (actionlist == null) return false;
+        if (actionList == null) return false;
 
         //Determine whether to include this group
-        var actionFilter = actionlist as ApiGroupAttribute;
+        var actionFilter = actionList as ApiGroupAttribute;
         return actionFilter.GroupName.Any(x => x.ToString().Trim() == docName);
     });
 
@@ -89,8 +87,17 @@ builder.Services.AddSwaggerGen(c =>
         Url = "https://{store_name}.myshopify.com/admin/api/{api_version}",
         Variables = new Dictionary<string, OpenApiServerVariable>(new List<KeyValuePair<string, OpenApiServerVariable>>()
         {
-            new("store_name", new OpenApiServerVariable(){Default = "sample_store", Description = "The sub-domain of the storefront."}),
+            new("store_name", new OpenApiServerVariable(){Default = "{{store_name}}", Description = "The sub-domain of the storefront."}),
             new("api_version", new OpenApiServerVariable(){Default = "2022-04", Description = "The api version."})
+        })
+    });
+    c.AddServer(new OpenApiServer
+    {
+        Url = "https://{store_name}.myshopify.com/admin", 
+        Description = "Some endpoints do not use the standard routing. This is an alternate.",
+        Variables = new Dictionary<string, OpenApiServerVariable>(new List<KeyValuePair<string, OpenApiServerVariable>>()
+        {
+            new("store_name", new OpenApiServerVariable(){Default = "{{store_name}}", Description = "The sub-domain of the storefront."})
         })
     });
 
@@ -136,7 +143,7 @@ if (app.Environment.IsDevelopment())
     {
         c.RoutePrefix = "swagger";
         
-        //Skip (1) is because the first fieldinfo of enum is a built-in int value
+        //Skip (1) is because the first field-info of enum is a built-in int value
         typeof(ApiGroupNames).GetFields().Skip(1).ToList().ForEach(f =>
         {
             //Gets the attribute on the enumeration value

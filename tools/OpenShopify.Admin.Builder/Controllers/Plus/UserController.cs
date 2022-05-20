@@ -39,7 +39,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a single user</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("users/{user_id}.json")]
-        public abstract System.Threading.Tasks.Task GetUser(long user_id);
+        public abstract System.Threading.Tasks.Task GetUser([System.ComponentModel.DataAnnotations.Required] long user_id);
 
         /// <summary>
         /// Retrieves the currently logged-in user

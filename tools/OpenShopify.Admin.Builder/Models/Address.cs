@@ -1,10 +1,11 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
     public class AddressBase
     {
-        [JsonPropertyName("customer_id")]
+        [JsonPropertyName("customer_id"), Required]
         public long CustomerId { get; set; }
         /// <summary>
         /// The mailing address.

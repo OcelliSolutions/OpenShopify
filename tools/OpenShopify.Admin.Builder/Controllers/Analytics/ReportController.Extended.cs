@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
@@ -22,7 +23,7 @@ public class ReportController : ReportControllerBase
     /// <inheritdoc />
     [HttpPost, Route("reports.json")]
     [ProducesResponseType(typeof(ReportItem), StatusCodes.Status201Created)]
-    public override Task CreateReport(CreateReportRequest request, string? name, string? shopify_ql)
+    public override Task CreateReport([Required] CreateReportRequest request, string? name, string? shopify_ql)
     {
         throw new NotImplementedException();
     }
@@ -30,7 +31,7 @@ public class ReportController : ReportControllerBase
     /// <inheritdoc />
     [HttpGet, Route("reports/{report_id:long}.json")]
     [ProducesResponseType(typeof(ReportItem), StatusCodes.Status200OK)]
-    public override Task GetReport(long report_id, string? fields)
+    public override Task GetReport([Required] long report_id, string? fields)
     {
         throw new NotImplementedException();
     }
@@ -38,7 +39,7 @@ public class ReportController : ReportControllerBase
     /// <inheritdoc />
     [HttpPut, Route("reports/{report_id:long}.json")]
     [ProducesResponseType(typeof(ReportItem), StatusCodes.Status200OK)]
-    public override Task UpdateReport(UpdateReportRequest request, long report_id)
+    public override Task UpdateReport([Required] UpdateReportRequest request, [Required] long report_id)
     {
         throw new NotImplementedException();
     }
@@ -46,7 +47,7 @@ public class ReportController : ReportControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("reports/{report_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteReport(long report_id)
+    public override Task DeleteReport([Required] long report_id)
     {
         throw new NotImplementedException();
     }

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
@@ -21,7 +22,7 @@ public class PageController : PageControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("pages.json")]
-    public override Task CreatePage(CreatePageRequest request)
+    public override Task CreatePage([Required] CreatePageRequest request)
     {
         throw new NotImplementedException();
     }
@@ -37,21 +38,21 @@ public class PageController : PageControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("pages/{page_id:long}.json")]
-    public override Task GetPageByItsID(long page_id, string? fields)
+    public override Task GetPageByItsID([Required] long page_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPut, Route("pages/{page_id:long}.json")]
-    public override Task UpdatePage(UpdatePageRequest request, long page_id)
+    public override Task UpdatePage([Required] UpdatePageRequest request, [Required] long page_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpDelete, Route("pages/{page_id:long}.json")]
-    public override Task DeletePage(long page_id)
+    public override Task DeletePage([Required] long page_id)
     {
         throw new NotImplementedException();
     }

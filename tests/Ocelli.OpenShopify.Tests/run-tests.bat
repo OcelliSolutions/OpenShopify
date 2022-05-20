@@ -14,8 +14,8 @@ FOR /F "delims=|" %%I IN ('DIR "%TestFolder%\*.*" /B /O:D') DO SET NewestPath=%%
 ::
 : Generate HTML report for latter coverage results
 ::
-reportgenerator -reports:%TestFolder%\%NewestPath%\coverage.cobertura.xml -targetdir:coverage
+reportgenerator -reports:%TestFolder%\%NewestPath%\coverage.cobertura.xml -targetdir:Coverage
 ::
 : Open the browser for coverage report index.htm
 ::
-coverage\index.htm
+Coverage\index.htm

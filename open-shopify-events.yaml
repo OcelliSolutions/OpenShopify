@@ -7,11 +7,17 @@ servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
       store_name:
-        default: sample_store
+        default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
         default: '2022-04'
         description: The api version.
+  - url: 'https://{store_name}.myshopify.com/admin'
+    description: Some endpoints do not use the standard routing. This is an alternate.
+    variables:
+      store_name:
+        default: '{{store_name}}'
+        description: The sub-domain of the storefront.
 paths:
   /events.json:
     get:
@@ -79,21 +85,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/events/{event_id}.json':
     get:
       tags:
@@ -128,27 +119,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /events/count.json:
     get:
       tags:
         - Event
       summary: Retrieves a count of events
-      operationId: GetCountOfEvents
+      operationId: CountEvents
       parameters:
         - name: created_at_max
           in: query
@@ -178,21 +154,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CountItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /webhooks.json:
     get:
       tags:
@@ -271,21 +232,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WebhookList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     post:
       tags:
         - Webhook
@@ -299,6 +245,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateWebhookRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -315,27 +262,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WebhookItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /webhooks/count.json:
     get:
       tags:
         - Webhook
       summary: Receive a count of all Webhooks
-      operationId: GetCountOfAllWebhooks
+      operationId: CountWebhooks
       parameters:
         - name: address
           in: query
@@ -363,21 +295,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CountItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/webhooks/{webhook_id}.json':
     get:
       tags:
@@ -412,21 +329,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WebhookItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     put:
       tags:
         - Webhook
@@ -447,6 +349,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateWebhookRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -463,26 +366,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WebhookItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - Webhook
       summary: Remove an existing Webhook
-      operationId: DeleteExistingWebhook
+      operationId: DeleteWebhook
       parameters:
         - name: webhook_id
           in: path
@@ -502,21 +390,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     CountItem:
@@ -563,18 +436,13 @@ components:
           nullable: true
       additionalProperties: { }
     CreateWebhookRequest:
+      required:
+        - webhook
       type: object
       properties:
         webhook:
           $ref: '#/components/schemas/CreateWebhook'
       additionalProperties: { }
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: string
-          nullable: true
-      additionalProperties: false
     Event:
       required:
         - id
@@ -627,12 +495,16 @@ components:
           nullable: true
       additionalProperties: { }
     EventItem:
+      required:
+        - event
       type: object
       properties:
         event:
           $ref: '#/components/schemas/Event'
       additionalProperties: { }
     EventList:
+      required:
+        - events
       type: object
       properties:
         events:
@@ -686,47 +558,9 @@ components:
       additionalProperties: { }
     UpdateWebhookRequest:
       required:
-        - id
+        - webhook
       type: object
       properties:
-        address:
-          type: string
-          description: The URL where the webhook should send the POST request when the event occurs.
-          nullable: true
-        created_at:
-          type: string
-          description: The date and time when the webhook was created.
-          format: date-time
-          nullable: true
-        fields:
-          type: array
-          items:
-            type: string
-          description: An optional array of fields which should be included in webhooks.
-        format:
-          type: string
-          description: The format in which the webhook should send the data. Valid values are json and xml.
-          nullable: true
-        metafield_namespaces:
-          type: array
-          items:
-            type: string
-          description: An optional array of namespaces for metafields that should be included in webhooks.
-        topic:
-          type: string
-          description: 'The event that will trigger the webhook, e.g. ''orders/create'' or ''app/uninstalled''. A full list of webhook topics can be found at https://help.shopify.com/api/reference/webhook.'
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the webhook was updated.
-          format: date-time
-          nullable: true
-        id:
-          type: integer
-          format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         webhook:
           $ref: '#/components/schemas/UpdateWebhook'
       additionalProperties: { }
@@ -775,12 +609,16 @@ components:
           nullable: true
       additionalProperties: { }
     WebhookItem:
+      required:
+        - webhook
       type: object
       properties:
         webhook:
           $ref: '#/components/schemas/Webhook'
       additionalProperties: { }
     WebhookList:
+      required:
+        - webhooks
       type: object
       properties:
         webhooks:

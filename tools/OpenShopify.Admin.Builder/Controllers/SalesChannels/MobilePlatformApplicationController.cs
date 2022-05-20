@@ -44,21 +44,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Get a mobile platform application</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications/{mobile_platform_application_id}.json")]
-        public abstract System.Threading.Tasks.Task GetMobilePlatformApplication(long mobile_platform_application_id);
+        public abstract System.Threading.Tasks.Task GetMobilePlatformApplication([System.ComponentModel.DataAnnotations.Required] long mobile_platform_application_id);
 
         /// <summary>
         /// Update a mobile platform application
         /// </summary>
         /// <returns>Update a mobile platform application</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications/{mobile_platform_application_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateMobilePlatformApplication([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMobilePlatformApplicationRequest request, long mobile_platform_application_id);
+        public abstract System.Threading.Tasks.Task UpdateMobilePlatformApplication([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateMobilePlatformApplicationRequest request, [System.ComponentModel.DataAnnotations.Required] long mobile_platform_application_id);
 
         /// <summary>
         /// Delete a mobile platform application
         /// </summary>
         /// <returns>Delete a mobile platform application</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications/{mobile_platform_application_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteMobilePlatformApplication(long mobile_platform_application_id);
+        public abstract System.Threading.Tasks.Task DeleteMobilePlatformApplication([System.ComponentModel.DataAnnotations.Required] long mobile_platform_application_id);
 
     }
 

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
@@ -11,56 +12,56 @@ public class FulfillmentOrderController : FulfillmentOrderControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/fulfillment_orders.json")]
-    public override Task ListFulfillmentOrdersForSpecificOrder(long order_id)
+    public override Task ListFulfillmentOrdersForSpecificOrder([Required] long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("fulfillment_orders/{fulfillment_order_id:long}.json")]
-    public override Task GetSpecificFulfillmentOrder(long fulfillment_order_id)
+    public override Task GetSpecificFulfillmentOrder([Required] long fulfillment_order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/cancel.json")]
-    public override Task CancelFulfillmentOrder(long fulfillment_order_id)
+    public override Task CancelFulfillmentOrder([Required] long fulfillment_order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/close.json")]
-    public override Task MarkFulfillmentOrderAsIncomplete(long fulfillment_order_id, string? message)
+    public override Task MarkFulfillmentOrderAsIncomplete([Required] long fulfillment_order_id, string? message)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/move.json")]
-    public override Task MoveFulfillmentOrderToNewLocation(long fulfillment_order_id, long? new_location_id)
+    public override Task MoveFulfillmentOrderToNewLocation([Required] long fulfillment_order_id, long? new_location_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/open.json")]
-    public override Task MarkFulfillmentOrderAsOpen(long fulfillment_order_id)
+    public override Task MarkFulfillmentOrderAsOpen([Required] long fulfillment_order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/reschedule.json")]
-    public override Task RescheduleFulfillAtTimeOfScheduledFulfillmentOrder(long fulfillment_order_id)
+    public override Task RescheduleFulfillAtTimeOfScheduledFulfillmentOrder([Required] long fulfillment_order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/hold.json")]
-    public override Task ApplyFulfillmentHoldOnFulfillmentOrderWithStatusOPEN(long fulfillment_order_id, string? notify_merchant,
+    public override Task ApplyFulfillmentHoldOnFulfillmentOrderWithStatusOPEN([Required] long fulfillment_order_id, string? notify_merchant,
         string? reason, string? reason_notes)
     {
         throw new NotImplementedException();
@@ -68,7 +69,7 @@ public class FulfillmentOrderController : FulfillmentOrderControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/release_hold.json")]
-    public override Task ReleaseFulfillmentHoldOnFulfillmentOrder(long fulfillment_order_id)
+    public override Task ReleaseFulfillmentHoldOnFulfillmentOrder([Required] long fulfillment_order_id)
     {
         throw new NotImplementedException();
     }

@@ -36,14 +36,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="status">Filter the response to payouts made with the specified status.</param>
         /// <returns>Return a list of all payouts</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/payouts.json")]
-        public abstract System.Threading.Tasks.Task ReturnListOfAllPayouts([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? date, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? date_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? date_min, [Microsoft.AspNetCore.Mvc.FromQuery] long? last_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status);
+        public abstract System.Threading.Tasks.Task ListPayouts([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? date, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? date_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? date_min, [Microsoft.AspNetCore.Mvc.FromQuery] [System.ComponentModel.DataAnnotations.Required] long? last_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status);
 
         /// <summary>
         /// Return a single payout
         /// </summary>
         /// <returns>Return a single payout</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/payouts/{payout_id}.json")]
-        public abstract System.Threading.Tasks.Task ReturnSinglePayout(long payout_id);
+        public abstract System.Threading.Tasks.Task GetPayout([System.ComponentModel.DataAnnotations.Required] long payout_id);
 
     }
 

@@ -35,6 +35,7 @@ namespace Ocelli.OpenShopify
         /// <param name="processedAtMax">Show tender transactions processed_at or before the specified date.</param>
         /// <param name="processedAtMin">Show tender transactions processed_at or after the specified date.</param>
         /// <param name="sinceId">Retrieve only transactions after the specified ID.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> ListTenderTransactionsAsync(int? limit = null, string? pageInfo = null, string? order = null, string? processedAt = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -82,6 +83,7 @@ namespace Ocelli.OpenShopify
         /// <param name="processedAtMax">Show tender transactions processed_at or before the specified date.</param>
         /// <param name="processedAtMin">Show tender transactions processed_at or after the specified date.</param>
         /// <param name="sinceId">Retrieve only transactions after the specified ID.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListTenderTransactionsAsync(int? limit = null, string? pageInfo = null, string? order = null, string? processedAt = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -146,18 +148,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 401)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<ErrorResponse>("Unauthorized", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
+                        if (status_ == 200)
                         {
                             return new ShopifyResponse(status_, headers_);
                         }

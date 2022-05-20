@@ -37,21 +37,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieve a single location by its ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations/{location_id}.json")]
-        public abstract System.Threading.Tasks.Task GetLocationByItsID(long location_id);
+        public abstract System.Threading.Tasks.Task GetLocationByItsID([System.ComponentModel.DataAnnotations.Required] long location_id);
 
         /// <summary>
         /// Retrieve a count of locations
         /// </summary>
         /// <returns>Retrieve a count of locations</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfLocations();
+        public abstract System.Threading.Tasks.Task CountLocations();
 
         /// <summary>
         /// Retrieve a list of inventory levels for a location
         /// </summary>
         /// <returns>Retrieve a list of inventory levels for a location</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations/{location_id}/inventory_levels.json")]
-        public abstract System.Threading.Tasks.Task ListInventoryLevelsForLocation(long location_id);
+        public abstract System.Threading.Tasks.Task ListInventoryLevelsForLocation([System.ComponentModel.DataAnnotations.Required] long location_id);
 
     }
 

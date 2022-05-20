@@ -63,7 +63,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Count comments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a count of comments</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("comments/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfComments([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? status, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
+        public abstract System.Threading.Tasks.Task CountComments([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] string? status, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Retrieves a single comment by its ID
@@ -71,49 +71,49 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single comment by its ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}.json")]
-        public abstract System.Threading.Tasks.Task GetCommentByItsID(long comment_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetCommentByItsID([System.ComponentModel.DataAnnotations.Required] long comment_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates a comment of an article
         /// </summary>
         /// <returns>Updates a comment of an article</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateCommentOfArticle([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCommentRequest request, long comment_id);
+        public abstract System.Threading.Tasks.Task UpdateCommentOfArticle([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCommentRequest request, [System.ComponentModel.DataAnnotations.Required] long comment_id);
 
         /// <summary>
         /// Marks a comment as spam
         /// </summary>
         /// <returns>Marks a comment as spam</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/spam.json")]
-        public abstract System.Threading.Tasks.Task MarkCommentAsSpam(long comment_id);
+        public abstract System.Threading.Tasks.Task MarkCommentAsSpam([System.ComponentModel.DataAnnotations.Required] long comment_id);
 
         /// <summary>
         /// Marks a comment as not spam
         /// </summary>
         /// <returns>Marks a comment as not spam</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/not_spam.json")]
-        public abstract System.Threading.Tasks.Task MarkCommentAsNotSpam(long comment_id);
+        public abstract System.Threading.Tasks.Task MarkCommentAsNotSpam([System.ComponentModel.DataAnnotations.Required] long comment_id);
 
         /// <summary>
         /// Approves a comment
         /// </summary>
         /// <returns>Approves a comment</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/approve.json")]
-        public abstract System.Threading.Tasks.Task ApproveComment(long comment_id);
+        public abstract System.Threading.Tasks.Task ApproveComment([System.ComponentModel.DataAnnotations.Required] long comment_id);
 
         /// <summary>
         /// Removes a comment
         /// </summary>
         /// <returns>Removes a comment</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/remove.json")]
-        public abstract System.Threading.Tasks.Task DeleteComment(long comment_id);
+        public abstract System.Threading.Tasks.Task DeleteComment([System.ComponentModel.DataAnnotations.Required] long comment_id);
 
         /// <summary>
         /// Restores a previously removed comment
         /// </summary>
         /// <returns>Restores a previously removed comment</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}/restore.json")]
-        public abstract System.Threading.Tasks.Task RestorePreviouslyRemovedComment(long comment_id);
+        public abstract System.Threading.Tasks.Task RestorePreviouslyRemovedComment([System.ComponentModel.DataAnnotations.Required] long comment_id);
 
     }
 

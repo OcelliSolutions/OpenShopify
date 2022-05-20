@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
@@ -23,7 +24,7 @@ public class EventController : EventControllerBase
     /// <inheritdoc />
     [HttpGet, Microsoft.AspNetCore.Mvc.Route("events/{event_id:long}.json")]
     [ProducesResponseType(typeof(EventItem), StatusCodes.Status200OK)]
-    public override Task GetEvent(long event_id, string? fields)
+    public override Task GetEvent([Required] long event_id, string? fields)
     {
         throw new NotImplementedException();
     }
@@ -31,7 +32,7 @@ public class EventController : EventControllerBase
     /// <inheritdoc />
     [HttpGet, Microsoft.AspNetCore.Mvc.Route("events/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task GetCountOfEvents(DateTime? created_at_max, DateTime? created_at_min)
+    public override Task CountEvents(DateTime? created_at_max, DateTime? created_at_min)
     {
         throw new NotImplementedException();
     }

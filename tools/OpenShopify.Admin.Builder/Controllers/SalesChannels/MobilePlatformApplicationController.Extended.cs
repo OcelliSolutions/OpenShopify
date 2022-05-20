@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
@@ -19,29 +20,29 @@ public class MobilePlatformApplicationController : MobilePlatformApplicationCont
 
     /// <inheritdoc />
     [HttpPost, Route("mobile_platform_applications.json")]
-    public override Task CreateMobilePlatformApplication(CreateMobilePlatformApplicationRequest request)
+    public override Task CreateMobilePlatformApplication([Required] CreateMobilePlatformApplicationRequest request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("mobile_platform_applications/{mobile_platform_application_id:long}.json")]
-    public override Task GetMobilePlatformApplication(long mobile_platform_application_id)
+    public override Task GetMobilePlatformApplication([Required] long mobile_platform_application_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPut, Route("mobile_platform_applications/{mobile_platform_application_id:long}.json")]
-    public override Task UpdateMobilePlatformApplication(UpdateMobilePlatformApplicationRequest request,
-        long mobile_platform_application_id)
+    public override Task UpdateMobilePlatformApplication([Required] UpdateMobilePlatformApplicationRequest request,
+        [Required] long mobile_platform_application_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpDelete, Route("mobile_platform_applications/{mobile_platform_application_id:long}.json")]
-    public override Task DeleteMobilePlatformApplication(long mobile_platform_application_id)
+    public override Task DeleteMobilePlatformApplication([Required] long mobile_platform_application_id)
     {
         throw new NotImplementedException();
     }

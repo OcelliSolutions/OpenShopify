@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
@@ -28,28 +29,28 @@ public class ProductListingController : ProductListingControllerBase
     /// <inheritdoc />
     [HttpGet, Route("product_listings/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task GetCountOfProductsThatArePublishedToYourApp()
+    public override Task CountProductsThatArePublishedToYourApp()
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("product_listings/{product_listing_id:long}.json")]
-    public override Task GetSpecificProductListingThatIsPublishedToYourApp(long product_listing_id)
+    public override Task GetSpecificProductListingThatIsPublishedToYourApp([Required] long product_listing_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPut, Route("product_listings/{product_listing_id:long}.json")]
-    public override Task CreateProductListingToPublishProductToYourApp(CreateProductListingRequest request, long product_listing_id)
+    public override Task CreateProductListingToPublishProductToYourApp([Required] CreateProductListingRequest request, [Required] long product_listing_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpDelete, Route("product_listings/{product_listing_id:long}.json")]
-    public override Task DeleteProductListingToUnpublishProductFromYourApp(long product_listing_id)
+    public override Task DeleteProductListingToUnpublishProductFromYourApp([Required] long product_listing_id)
     {
         throw new NotImplementedException();
     }

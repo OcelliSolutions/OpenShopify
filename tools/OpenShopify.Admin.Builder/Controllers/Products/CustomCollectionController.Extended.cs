@@ -25,7 +25,7 @@ public class CustomCollectionController : CustomCollectionControllerBase
     /// <inheritdoc />
     [HttpPost, Route("custom_collections.json")]
     [ProducesResponseType(typeof(CustomCollectionItem), StatusCodes.Status201Created)]
-    public override Task CreateCustomCollection(CreateCustomCollectionRequest request)
+    public override Task CreateCustomCollection([Required] CreateCustomCollectionRequest request)
     {
         throw new NotImplementedException();
     }
@@ -33,7 +33,7 @@ public class CustomCollectionController : CustomCollectionControllerBase
     /// <inheritdoc />
     [HttpGet, Route("custom_collections/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task GetCountOfCustomCollections(long? product_id, DateTime? published_at_max, DateTime? published_at_min,
+    public override Task CountCustomCollections(long? product_id, DateTime? published_at_max, DateTime? published_at_min,
         string published_status, string? title, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
@@ -42,7 +42,7 @@ public class CustomCollectionController : CustomCollectionControllerBase
     /// <inheritdoc />
     [HttpGet, Route("custom_collections/{custom_collection_id:long}.json")]
     [ProducesResponseType(typeof(CustomCollectionItem), StatusCodes.Status200OK)]
-    public override Task GetCustomCollection(long custom_collection_id, string? fields)
+    public override Task GetCustomCollection([Required] long custom_collection_id, string? fields)
     {
         throw new NotImplementedException();
     }
@@ -50,7 +50,7 @@ public class CustomCollectionController : CustomCollectionControllerBase
     /// <inheritdoc />
     [HttpPut, Route("custom_collections/{custom_collection_id:long}.json")]
     [ProducesResponseType(typeof(CustomCollectionItem), StatusCodes.Status200OK)]
-    public override Task UpdateCustomCollection(UpdateCustomCollectionRequest request, long custom_collection_id)
+    public override Task UpdateCustomCollection([Required] UpdateCustomCollectionRequest request, [Required] long custom_collection_id)
     {
         throw new NotImplementedException();
     }
@@ -58,7 +58,7 @@ public class CustomCollectionController : CustomCollectionControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("custom_collections/{custom_collection_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteCustomCollection(long custom_collection_id)
+    public override Task DeleteCustomCollection([Required] long custom_collection_id)
     {
         throw new NotImplementedException();
     }

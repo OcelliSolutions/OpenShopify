@@ -39,14 +39,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a single inventory item by ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_items/{inventory_item_id}.json")]
-        public abstract System.Threading.Tasks.Task GetInventoryItemByID(long inventory_item_id);
+        public abstract System.Threading.Tasks.Task GetInventoryItemByID([System.ComponentModel.DataAnnotations.Required] long inventory_item_id);
 
         /// <summary>
         /// Updates an existing inventory item
         /// </summary>
         /// <returns>Updates an existing inventory item</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("inventory_items/{inventory_item_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateInventoryItem([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateInventoryItemRequest request, long inventory_item_id);
+        public abstract System.Threading.Tasks.Task UpdateInventoryItem([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateInventoryItemRequest request, [System.ComponentModel.DataAnnotations.Required] long inventory_item_id);
 
     }
 

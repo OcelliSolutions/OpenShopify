@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
@@ -13,7 +14,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpGet, Route("customers/{customer_id:long}/addresses.json")]
     [ProducesResponseType(typeof(AddressList), StatusCodes.Status200OK)]
-    public override Task ListAddressesForCustomer(long customer_id)
+    public override Task ListAddressesForCustomer([Required] long customer_id)
     {
         throw new NotImplementedException();
     }
@@ -21,7 +22,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpPost, Route("customers/{customer_id:long}/addresses.json")]
     [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status201Created)]
-    public override Task CreateAddressForCustomer(CreateCustomerAddressRequest request, long customer_id)
+    public override Task CreateAddressForCustomer([Required] CreateCustomerAddressRequest request, [Required] long customer_id)
     {
         throw new NotImplementedException();
     }
@@ -29,7 +30,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpGet, Route("customers/{customer_id:long}/addresses/{address_id:long}.json")]
     [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status200OK)]
-    public override Task GetDetailsForSingleCustomerAddress(long address_id, long customer_id)
+    public override Task GetCustomerAddress([Required] long address_id, [Required] long customer_id)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +38,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpPut, Route("customers/{customer_id:long}/addresses/{address_id:long}.json")]
     [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status200OK)]
-    public override Task UpdateCustomerAddress(UpdateCustomerAddressRequest request, long address_id, long customer_id)
+    public override Task UpdateCustomerAddress([Required] UpdateCustomerAddressRequest request, [Required] long address_id, [Required] long customer_id)
     {
         throw new NotImplementedException();
     }
@@ -45,7 +46,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("customers/{customer_id:long}/addresses/{address_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteAddressFromCustomersAddressList(long address_id, long customer_id)
+    public override Task DeleteAddressFromCustomersAddressList([Required] long address_id, [Required] long customer_id)
     {
         throw new NotImplementedException();
     }
@@ -54,7 +55,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpPut, Route("customers/{customer_id:long}/addresses/set.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task PerformBulkOperationsForMultipleCustomerAddresses(long address_ids, long customer_id, string operation)
+    public override Task PerformBulkOperationsForMultipleCustomerAddresses([Required] long address_ids, [Required] long customer_id, string operation)
     {
         throw new NotImplementedException();
     }
@@ -62,7 +63,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpPut, Route("customers/{customer_id:long}/addresses/{address_id:long}/default.json")]
     [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status200OK)]
-    public override Task SetDefaultAddressForCustomer(long address_id, long customer_id)
+    public override Task SetDefaultAddressForCustomer([Required] long address_id, [Required] long customer_id)
     {
         throw new NotImplementedException();
     }

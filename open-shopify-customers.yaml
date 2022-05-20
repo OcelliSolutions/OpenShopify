@@ -7,11 +7,17 @@ servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
       store_name:
-        default: sample_store
+        default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
         default: '2022-04'
         description: The api version.
+  - url: 'https://{store_name}.myshopify.com/admin'
+    description: Some endpoints do not use the standard routing. This is an alternate.
+    variables:
+      store_name:
+        default: '{{store_name}}'
+        description: The sub-domain of the storefront.
 paths:
   /customers.json:
     get:
@@ -86,21 +92,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     post:
       tags:
         - Customer
@@ -114,6 +105,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateCustomerRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -130,21 +122,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /customers/search.json:
     get:
       tags:
@@ -193,21 +170,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/customers/{customer_id}.json':
     get:
       tags:
@@ -242,21 +204,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     put:
       tags:
         - Customer
@@ -277,6 +224,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateCustomerRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -293,21 +241,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - Customer
@@ -333,21 +266,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/customers/{customer_id}/account_activation_url.json':
     post:
       tags:
@@ -377,21 +295,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountActivation'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/customers/{customer_id}/send_invite.json':
     post:
       tags:
@@ -429,27 +332,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerInviteItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /customers/count.json:
     get:
       tags:
         - Customer
       summary: Retrieves a count of customers
-      operationId: GetCountOfCustomers
+      operationId: CountCustomers
       responses:
         '200':
           description: Success
@@ -466,27 +354,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CountItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/customers/{customer_id}/orders.json':
     get:
       tags:
         - Customer
       summary: Retrieves all orders that belong to a customer
-      operationId: GetAllOrdersThatBelongToCustomer
+      operationId: ListOrdersThatBelongToCustomer
       parameters:
         - name: customer_id
           in: path
@@ -515,21 +388,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/customers/{customer_id}/addresses.json':
     get:
       tags:
@@ -559,21 +417,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddressList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     post:
       tags:
         - CustomerAddress
@@ -594,6 +437,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateCustomerAddressRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -610,27 +454,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerAddressItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/customers/{customer_id}/addresses/{address_id}.json':
     get:
       tags:
         - CustomerAddress
       summary: Retrieves details for a single customer address
-      operationId: GetDetailsForSingleCustomerAddress
+      operationId: GetCustomerAddress
       parameters:
         - name: address_id
           in: path
@@ -660,21 +489,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerAddressItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     put:
       tags:
         - CustomerAddress
@@ -701,6 +515,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateCustomerAddressRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -717,21 +532,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerAddressItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - CustomerAddress
@@ -762,21 +562,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/customers/{customer_id}/addresses/set.json':
     put:
       tags:
@@ -785,6 +570,7 @@ paths:
       parameters:
         - name: 'address_ids[]'
           in: query
+          required: true
           schema:
             type: integer
             format: int64
@@ -810,21 +596,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/customers/{customer_id}/addresses/{address_id}/default.json':
     put:
       tags:
@@ -860,21 +631,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerAddressItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /customer_saved_searches.json:
     get:
       tags:
@@ -919,21 +675,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerSavedSearchList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     post:
       tags:
         - CustomerSavedSearch
@@ -947,6 +688,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateCustomerSavedSearchRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -963,27 +705,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerSavedSearchItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /customer_saved_searches/count.json:
     get:
       tags:
         - CustomerSavedSearch
       summary: Retrieves a count of all customer saved searches
-      operationId: GetCountOfAllCustomerSavedSearches
+      operationId: CountCustomerSavedSearches
       parameters:
         - name: since_id
           in: query
@@ -1007,21 +734,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CountItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/customer_saved_searches/{customer_saved_search_id}.json':
     get:
       tags:
@@ -1056,21 +768,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerSavedSearchItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     put:
       tags:
         - CustomerSavedSearch
@@ -1091,6 +788,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateCustomerSavedSearchRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -1107,21 +805,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerSavedSearchItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - CustomerSavedSearch
@@ -1146,27 +829,12 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/customer_saved_searches/{customer_saved_search_id}/customers.json':
     get:
       tags:
         - CustomerSavedSearch
       summary: Retrieves all customers returned by a customer saved search
-      operationId: GetAllCustomersReturnedByCustomerSavedSearch
+      operationId: ListCustomersReturnedByCustomerSavedSearch
       parameters:
         - name: customer_saved_search_id
           in: path
@@ -1210,21 +878,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     AccountActivation:
@@ -1235,6 +888,7 @@ components:
       additionalProperties: { }
     Address:
       required:
+        - customer_id
         - id
       type: object
       properties:
@@ -1319,6 +973,8 @@ components:
           nullable: true
       additionalProperties: { }
     AddressList:
+      required:
+        - addresses
       type: object
       properties:
         addresses:
@@ -1362,6 +1018,8 @@ components:
           format: int32
       additionalProperties: { }
     CreateAddress:
+      required:
+        - customer_id
       type: object
       properties:
         customer_id:
@@ -1545,6 +1203,8 @@ components:
           deprecated: true
         email_marketing_consent:
           $ref: '#/components/schemas/EmailMarketingConsent'
+        sms_marketing_consent:
+          $ref: '#/components/schemas/SmsMarketingConsent'
         password:
           type: string
           description: An optional password for the user. Default is null.
@@ -1563,6 +1223,8 @@ components:
           nullable: true
       additionalProperties: { }
     CreateCustomerAddress:
+      required:
+        - customer_id
       type: object
       properties:
         customer_id:
@@ -1640,6 +1302,8 @@ components:
           nullable: true
       additionalProperties: { }
     CreateCustomerAddressRequest:
+      required:
+        - customer_address
       type: object
       properties:
         customer_address:
@@ -1671,12 +1335,16 @@ components:
           description: blind copy addresses
       additionalProperties: { }
     CreateCustomerInviteRequest:
+      required:
+        - customer_invite
       type: object
       properties:
         customer_invite:
           $ref: '#/components/schemas/CreateCustomerInvite'
       additionalProperties: { }
     CreateCustomerRequest:
+      required:
+        - customer
       type: object
       properties:
         customer:
@@ -1705,6 +1373,8 @@ components:
           nullable: true
       additionalProperties: { }
     CreateCustomerSavedSearchRequest:
+      required:
+        - customer_saved_search
       type: object
       properties:
         customer_saved_search:
@@ -1851,6 +1521,8 @@ components:
           deprecated: true
         email_marketing_consent:
           $ref: '#/components/schemas/EmailMarketingConsent'
+        sms_marketing_consent:
+          $ref: '#/components/schemas/SmsMarketingConsent'
         id:
           type: integer
           format: int64
@@ -1860,6 +1532,7 @@ components:
       additionalProperties: { }
     CustomerAddress:
       required:
+        - customer_id
         - id
       type: object
       properties:
@@ -1944,6 +1617,8 @@ components:
           nullable: true
       additionalProperties: { }
     CustomerAddressItem:
+      required:
+        - customer_address
       type: object
       properties:
         customer_address:
@@ -1983,18 +1658,24 @@ components:
           nullable: true
       additionalProperties: { }
     CustomerInviteItem:
+      required:
+        - customer_invite
       type: object
       properties:
         customer_invite:
           $ref: '#/components/schemas/CustomerInvite'
       additionalProperties: { }
     CustomerItem:
+      required:
+        - customer
       type: object
       properties:
         customer:
           $ref: '#/components/schemas/Customer'
       additionalProperties: { }
     CustomerList:
+      required:
+        - customers
       type: object
       properties:
         customers:
@@ -2082,15 +1763,19 @@ components:
           nullable: true
       additionalProperties: { }
     CustomerSavedSearchItem:
+      required:
+        - customer_saved_search
       type: object
       properties:
         customer_saved_search:
           $ref: '#/components/schemas/CustomerSavedSearch'
       additionalProperties: { }
     CustomerSavedSearchList:
+      required:
+        - customer_saved_searches
       type: object
       properties:
-        customer_saved_searchs:
+        customer_saved_searches:
           type: array
           items:
             $ref: '#/components/schemas/CustomerSavedSearch'
@@ -2190,13 +1875,6 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: string
-          nullable: true
-      additionalProperties: false
     Fulfillment:
       required:
         - id
@@ -2778,6 +2456,8 @@ components:
           nullable: true
       additionalProperties: { }
     OrderList:
+      required:
+        - orders
       type: object
       properties:
         orders:
@@ -3129,6 +2809,27 @@ components:
         discounted_price_set:
           $ref: '#/components/schemas/PriceSet'
       additionalProperties: { }
+    SmsMarketingConsent:
+      type: object
+      properties:
+        state:
+          type: string
+          description: The current SMS marketing state for the customer.
+          nullable: true
+        opt_in_level:
+          type: string
+          description: 'The marketing subscription opt-in level, as described in the M3AAWG Sender Best Common Practices, that the customer gave when they consented to receive marketing material by SMS.'
+          nullable: true
+        consent_updated_at:
+          type: string
+          description: 'The date and time when the customer consented to receive marketing material by SMS. If no date is provided, then the date and time when the consent information was sent is used.'
+          format: date-time
+          nullable: true
+        consent_collected_from:
+          type: string
+          description: The source for whether the customer has consented to receive marketing material by SMS.
+          nullable: true
+      additionalProperties: { }
     TaxLine:
       type: object
       properties:
@@ -3355,6 +3056,8 @@ components:
           deprecated: true
         email_marketing_consent:
           $ref: '#/components/schemas/EmailMarketingConsent'
+        sms_marketing_consent:
+          $ref: '#/components/schemas/SmsMarketingConsent'
         id:
           type: integer
           format: int64
@@ -3372,6 +3075,7 @@ components:
       additionalProperties: { }
     UpdateCustomerAddress:
       required:
+        - customer_id
         - id
       type: object
       properties:
@@ -3457,206 +3161,17 @@ components:
       additionalProperties: { }
     UpdateCustomerAddressRequest:
       required:
-        - id
+        - customer_address
       type: object
       properties:
-        customer_id:
-          type: integer
-          format: int64
-        address1:
-          type: string
-          description: The mailing address.
-          nullable: true
-        address2:
-          type: string
-          description: An additional field for the mailing address.
-          nullable: true
-        city:
-          type: string
-          description: The city.
-          nullable: true
-        company:
-          type: string
-          description: The company.
-          nullable: true
-        country:
-          type: string
-          description: The country.
-          nullable: true
-        country_code:
-          type: string
-          description: The two-letter country code corresponding to the country.
-          nullable: true
-        country_name:
-          type: string
-          description: The normalized country name.
-          nullable: true
-        default:
-          type: boolean
-          description: Indicates whether this address is the default address.
-          nullable: true
-        first_name:
-          type: string
-          description: The first name.
-          nullable: true
-        last_name:
-          type: string
-          description: The last name.
-          nullable: true
-        latitude:
-          type: number
-          description: The latitude. Auto-populated by Shopify on the order's Billing/Shipping address.
-          format: decimal
-          nullable: true
-        longitude:
-          type: number
-          description: The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
-          format: decimal
-          nullable: true
-        name:
-          type: string
-          description: The name.
-          nullable: true
-        phone:
-          type: string
-          description: The phone number.
-          nullable: true
-        province:
-          type: string
-          description: The province or state name
-          nullable: true
-        province_code:
-          type: string
-          description: The two-letter province or state code.
-          nullable: true
-        zip:
-          type: string
-          description: The ZIP or postal code.
-          nullable: true
-        id:
-          type: integer
-          format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         customer_address:
           $ref: '#/components/schemas/UpdateCustomerAddress'
       additionalProperties: { }
     UpdateCustomerRequest:
       required:
-        - id
+        - customer
       type: object
       properties:
-        accepts_marketing:
-          type: boolean
-          description: Indicates whether the customer has consented to be sent marketing material via email.
-          nullable: true
-        addresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomerAddress'
-          description: A list of addresses for the customer.
-          nullable: true
-        created_at:
-          type: string
-          description: The date and time when the customer was created.
-          format: date-time
-          nullable: true
-        currency:
-          type: string
-          description: Currency used for customer's last order
-          nullable: true
-        default_address:
-          $ref: '#/components/schemas/CustomerAddress'
-        email:
-          type: string
-          description: The email address of the customer.
-          nullable: true
-        first_name:
-          type: string
-          description: The customer's first name.
-          nullable: true
-        multipass_identifier:
-          type: string
-          description: The customer's identifier used with Multipass login
-          nullable: true
-        last_name:
-          type: string
-          description: The customer's last name.
-          nullable: true
-        last_order_id:
-          type: integer
-          description: The id of the customer's last order.
-          format: int64
-          nullable: true
-        last_order_name:
-          type: string
-          description: The name of the customer's last order. This is directly related to the Order's name field.
-          nullable: true
-        note:
-          type: string
-          description: A note about the customer.
-          nullable: true
-        orders_count:
-          type: integer
-          description: The number of orders associated with this customer.
-          format: int32
-          nullable: true
-        phone:
-          type: string
-          description: "The phone number for the customer. Valid formats can be of different types, for example:\r\n\r\n6135551212\r\n\r\n+16135551212\r\n\r\n555-1212\r\n\r\n(613)555-1212\r\n\r\n+1 613-555-1212"
-          nullable: true
-        state:
-          type: string
-          description: 'The state of the customer in a shop. Valid values are ''disabled'', ''decline'', ''invited'' and ''enabled''.'
-          nullable: true
-        tags:
-          type: string
-          description: Tags are additional short descriptors formatted as a string of comma-separated values.
-          nullable: true
-        tax_exempt:
-          type: boolean
-          description: Indicates whether the customer should be charged taxes when placing orders.
-          nullable: true
-        tax_exemptions:
-          type: array
-          items:
-            type: string
-          description: Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only.
-          nullable: true
-        total_spent:
-          type: number
-          description: The total amount of money that the customer has spent at the shop.
-          format: decimal
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the customer information was updated.
-          format: date-time
-          nullable: true
-        verified_email:
-          type: boolean
-          description: States whether or not the email address has been verified.
-          nullable: true
-        metafields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomerMetafield'
-          nullable: true
-        accepts_marketing_updated_at:
-          type: string
-          description: 'As of API version 2022-04, this field is deprecated. Use email_marketing_consent instead. The date and time (ISO 8601 format) when the customer consented or objected to receiving marketing material by email. Set this value whenever the customer consents or objects to marketing materials.'
-          format: date-time
-          nullable: true
-          deprecated: true
-        email_marketing_consent:
-          $ref: '#/components/schemas/EmailMarketingConsent'
-        id:
-          type: integer
-          format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         customer:
           $ref: '#/components/schemas/UpdateCustomer'
       additionalProperties: { }
@@ -3692,33 +3207,9 @@ components:
       additionalProperties: { }
     UpdateCustomerSavedSearchRequest:
       required:
-        - id
+        - customer_saved_search
       type: object
       properties:
-        name:
-          type: string
-          description: The name given by the shop owner to the customer saved search
-          nullable: true
-        query:
-          type: string
-          description: The set of conditions that determines which customers will be returned by the saved search
-          nullable: true
-        created_at:
-          type: string
-          description: The date and time when the customer saved search was created.
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the customer saved search was updated.
-          format: date-time
-          nullable: true
-        id:
-          type: integer
-          format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         customer_saved_search:
           $ref: '#/components/schemas/UpdateCustomerSavedSearch'
       additionalProperties: { }

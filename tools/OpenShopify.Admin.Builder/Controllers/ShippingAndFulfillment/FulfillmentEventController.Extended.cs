@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
@@ -12,28 +13,28 @@ public class FulfillmentEventController : FulfillmentEventControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events.json")]
-    public override Task ListFulfillmentEventsForSpecificFulfillment(long fulfillment_id, long order_id)
+    public override Task ListFulfillmentEventsForSpecificFulfillment([Required] long fulfillment_id, [Required] long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events.json")]
-    public override Task CreateFulfillmentEvent(CreateFulfillmentEventRequest request, long fulfillment_id, long order_id)
+    public override Task CreateFulfillmentEvent([Required] CreateFulfillmentEventRequest request, [Required] long fulfillment_id, [Required] long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events/{event_id:long}.json")]
-    public override Task GetSpecificFulfillmentEvent(long event_id, long fulfillment_id, long order_id)
+    public override Task GetSpecificFulfillmentEvent([Required] long event_id, [Required] long fulfillment_id, [Required] long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpDelete, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events/{event_id:long}.json")]
-    public override Task DeleteFulfillmentEvent(long event_id, long fulfillment_id, long order_id)
+    public override Task DeleteFulfillmentEvent([Required] long event_id, [Required] long fulfillment_id, [Required] long order_id)
     {
         throw new NotImplementedException();
     }

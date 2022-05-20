@@ -49,7 +49,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Receive a count of all Blogs</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfAllBlogs();
+        public abstract System.Threading.Tasks.Task CountBlogs();
 
         /// <summary>
         /// Receive a single Blog
@@ -57,21 +57,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <returns>Receive a single Blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}.json")]
-        public abstract System.Threading.Tasks.Task GetBlog(long blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetBlog([System.ComponentModel.DataAnnotations.Required] long blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Modify an existing Blog
         /// </summary>
         /// <returns>Modify an existing Blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateBlogRequest request, long blog_id);
+        public abstract System.Threading.Tasks.Task UpdateBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateBlogRequest request, [System.ComponentModel.DataAnnotations.Required] long blog_id);
 
         /// <summary>
         /// Remove an existing Blog
         /// </summary>
         /// <returns>Remove an existing Blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteExistingBlog(long blog_id);
+        public abstract System.Threading.Tasks.Task DeleteBlog([System.ComponentModel.DataAnnotations.Required] long blog_id);
 
     }
 

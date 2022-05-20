@@ -11,7 +11,7 @@ public class TransactionsController : TransactionsControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("shopify_payments/balance/transactions.json")]
-    public override Task ReturnListOfAllBalanceTransactions(long? last_id, long? payout_id, string? payout_status,
+    public override Task ListBalanceTransactions(long? last_id, long? payout_id, string? payout_status,
         int? since_id, string? test)
     {
         throw new NotImplementedException();

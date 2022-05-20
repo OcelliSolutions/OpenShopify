@@ -22,7 +22,7 @@ public class SharedFixture : IDisposable
         Debug.Assert(!string.IsNullOrWhiteSpace(apiKeyJson), "Please create an `api_key.json` file");
 
         var config = JsonSerializer.Deserialize<ShopifyConfig>(apiKeyJson) ??
-                 throw new InvalidOperationException("Could not deserialize the api_key.json file");
+                     throw new InvalidOperationException("Could not deserialize the api_key.json file");
         BatchId = ShortId.Generate(new GenerationOptions(true, false, 8));
 
         DaysToTest = 1;
@@ -35,24 +35,30 @@ public class SharedFixture : IDisposable
 
         Task.Run(async () => await this.LoadScopes()).Wait();
     }
-    
+
     internal string BatchId { get; }
     public int DaysToTest { get; set; }
     public string AccessToken { get; set; }
     public string MyShopifyUrl { get; set; }
 
+    public string FirstName => "John (OpenShopify)";
+    public string LastName => "Doe";
+    public string Company => "OpenShopify";
+    public string Note => "Test note about this customer.";
+
     public List<AuthorizationScope?> Scopes { get; set; }
     public List<ApplicationCredit> CreatedApplicationCredits = new();
     public List<Customer> CreatedCustomers = new();
-    public List<CustomerAddress> CreatedCustomerAddresses = new();
+    public List<CustomerSavedSearch> CreatedCustomerSavedSearches  = new();
     public List<Address> CreatedAddresses = new();
     public List<FulfillmentService> CreatedFulfillmentServices = new();
-    
+
     public void ValidateScopes(List<AuthorizationScope> requiredPermissions)
     {
         foreach (var requiredPermission in requiredPermissions)
         {
-            Skip.If(!Scopes.Contains(requiredPermission), $@"`{MyShopifyUrl}` credentials do not have the `{requiredPermission}` scope(s). Endpoint cannot be tested.");
+            Skip.If(!Scopes.Contains(requiredPermission),
+                $@"`{MyShopifyUrl}` credentials do not have the `{requiredPermission}` scope(s). Endpoint cannot be tested.");
         }
     }
 
@@ -84,6 +90,47 @@ public class SharedFixture : IDisposable
         // This class has no code, and is never created. Its purpose is simply
         // to be the place to apply [CollectionDefinition] and all the
         // ICollectionFixture<> interfaces.
+    }
+
+    public async Task<Customer> CreateTestCustomer()
+    {
+        var customerRequest = new CreateCustomerRequest()
+        {
+            Customer = new CreateCustomer()
+            {
+                FirstName = FirstName,
+                LastName = LastName,
+                Email = $@"{BatchId}@example.com",
+                AcceptsMarketing = false,
+                Addresses = new List<CreateAddress>()
+                {
+                    new()
+                    {
+                        Address1 = "SAMPLE",
+                        City = "Minneapolis",
+                        Province = "Minnesota",
+                        ProvinceCode = "MN",
+                        Zip = "55401",
+                        Phone = "555-555-5555",
+                        FirstName = FirstName,
+                        LastName = LastName,
+                        Company = Company,
+                        Country = "United States",
+                        CountryCode = "US",
+                        Default = true,
+                    }
+                },
+                VerifiedEmail = true,
+                Note = Note,
+                State = "enabled"
+            }
+        };
+        var service = new CustomersService(MyShopifyUrl, AccessToken);
+        var customerResponse = await service.Customer.CreateCustomerAsync(customerRequest);
+
+        Debug.Assert(customerResponse.Result.Customer != null, "customerResponse.Result.Customer != null");
+        CreatedCustomers.Add(customerResponse.Result.Customer);
+        return customerResponse.Result.Customer;
     }
 }
 

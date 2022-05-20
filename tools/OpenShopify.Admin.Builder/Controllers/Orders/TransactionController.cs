@@ -33,7 +33,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="since_id">Retrieve only transactions after the specified ID.</param>
         /// <returns>Retrieves a list of transactions</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions.json")]
-        public abstract System.Threading.Tasks.Task ListTransactions(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
+        public abstract System.Threading.Tasks.Task ListTransactions([System.ComponentModel.DataAnnotations.Required] long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
 
         /// <summary>
         /// Creates a transaction for an order
@@ -41,14 +41,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="source">An optional origin of the transaction. Set to &lt;code&gt;external&lt;/code&gt; to import a cash transaction for the associated order.</param>
         /// <returns>Creates a transaction for an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions.json")]
-        public abstract System.Threading.Tasks.Task CreateTransactionForOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateTransactionRequest request, long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? source);
+        public abstract System.Threading.Tasks.Task CreateTransactionForOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateTransactionRequest request, [System.ComponentModel.DataAnnotations.Required] long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? source);
 
         /// <summary>
         /// Retrieves a count of an order's transactions
         /// </summary>
         /// <returns>Retrieves a count of an order's transactions</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfOrdersTransactions(long order_id);
+        public abstract System.Threading.Tasks.Task CountOrdersTransactions([System.ComponentModel.DataAnnotations.Required] long order_id);
 
         /// <summary>
         /// Retrieves a specific transaction
@@ -57,7 +57,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="in_shop_currency">Show amounts in the shop currency.</param>
         /// <returns>Retrieves a specific transaction</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions/{transaction_id}.json")]
-        public abstract System.Threading.Tasks.Task GetSpecificTransaction(long order_id, long transaction_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency);
+        public abstract System.Threading.Tasks.Task GetSpecificTransaction([System.ComponentModel.DataAnnotations.Required] long order_id, [System.ComponentModel.DataAnnotations.Required] long transaction_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency);
 
     }
 

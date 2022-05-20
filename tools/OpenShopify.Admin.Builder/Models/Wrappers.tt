@@ -17,7 +17,7 @@
 		new ("Customer"),
 		new ("Address", "Address", "Addresses"),
 		new ("Address", "CustomerAddress", "CustomerAddresses", baseClass: "AddressBase"),
-		new ("CustomerSavedSearch"),
+		new ("CustomerSavedSearch", "CustomerSavedSearch", "CustomerSavedSearches"),
 		new ("DeprecatedApiCall", hasId:false),
 		new ("DiscountCode"),
 		new ("PriceRule"),
@@ -86,7 +86,6 @@
 #>
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Models;
 
 namespace OpenShopify.Admin.Builder.Models;
@@ -97,13 +96,13 @@ namespace OpenShopify.Admin.Builder.Models;
 
 public class <#= section.ClassName #>Item
 {
-    [JsonPropertyName("<#= section.PropertyName #>")]
+    [JsonPropertyName("<#= section.PropertyName #>"), Required]
     public <#= section.ModelName #> <#= section.ClassName #> { get; set; } = null!;
 }
 
 public class <#= section.ClassName #>List
 {
-    [JsonPropertyName("<#= section.PropertyNamePlural #>")]
+    [JsonPropertyName("<#= section.PropertyNamePlural #>"), Required]
     public IEnumerable<<#= section.ModelName #>> <#= section.ClassNamePlural #> { get; set; } = null!;
 }
 <#
@@ -112,7 +111,7 @@ public class <#= section.ClassName #>List
 #>
 public class Create<#= section.ClassName #>Request
 {
-    [JsonPropertyName("<#= section.PropertyName #>")]
+    [JsonPropertyName("<#= section.PropertyName #>"), Required]
     public Create<#= section.ClassName #> <#= section.ClassName #> { get; set; } = null!;
 }
 
@@ -123,9 +122,9 @@ public partial class Create<#= section.ClassName #> : <#= section.BaseClass #> {
 		if (section.CanCreate)
 		{
 #>
-public class Update<#= section.ClassName #>Request : <#= section.ModelName #>
+public class Update<#= section.ClassName #>Request
 {
-    [JsonPropertyName("<#= section.PropertyName #>")]
+    [JsonPropertyName("<#= section.PropertyName #>"), Required]
     public Update<#= section.ClassName #> <#= section.ClassName #> { get; set; } = null!;
 }
 

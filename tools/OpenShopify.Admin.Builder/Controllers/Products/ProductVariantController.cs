@@ -34,21 +34,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="since_id">Restrict results to after the specified ID</param>
         /// <returns>Retrieves a list of product variants</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants.json")]
-        public abstract System.Threading.Tasks.Task ListProductVariants(long product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? presentment_currencies, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
+        public abstract System.Threading.Tasks.Task ListProductVariants([System.ComponentModel.DataAnnotations.Required] long product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? presentment_currencies, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
 
         /// <summary>
         /// Create a new Product Variant
         /// </summary>
         /// <returns>Create a new Product Variant</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants.json")]
-        public abstract System.Threading.Tasks.Task CreateProductVariant([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateProductVariantRequest request, long product_id);
+        public abstract System.Threading.Tasks.Task CreateProductVariant([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateProductVariantRequest request, [System.ComponentModel.DataAnnotations.Required] long product_id);
 
         /// <summary>
         /// Receive a count of all Product Variants
         /// </summary>
         /// <returns>Receive a count of all Product Variants</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfAllProductVariants(long product_id);
+        public abstract System.Threading.Tasks.Task CountProductVariants([System.ComponentModel.DataAnnotations.Required] long product_id);
 
         /// <summary>
         /// Receive a single Product Variant
@@ -56,21 +56,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response</param>
         /// <returns>Receive a single Product Variant</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("variants/{variant_id}.json")]
-        public abstract System.Threading.Tasks.Task GetProductVariant(long variant_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetProductVariant([System.ComponentModel.DataAnnotations.Required] long variant_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Modify an existing Product Variant
         /// </summary>
         /// <returns>Modify an existing Product Variant</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("variants/{variant_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateProductVariant([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateProductVariantRequest request, long variant_id);
+        public abstract System.Threading.Tasks.Task UpdateProductVariant([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateProductVariantRequest request, [System.ComponentModel.DataAnnotations.Required] long variant_id);
 
         /// <summary>
         /// Remove an existing Product Variant
         /// </summary>
         /// <returns>Remove an existing Product Variant</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants/{variant_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteExistingProductVariant(long product_id, long variant_id);
+        public abstract System.Threading.Tasks.Task DeleteProductVariant([System.ComponentModel.DataAnnotations.Required] long product_id, [System.ComponentModel.DataAnnotations.Required] long variant_id);
 
     }
 

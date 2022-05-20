@@ -46,7 +46,7 @@ public class ProductTests : IClassFixture<SharedFixture>
                 Vendor = Vendor
             }
         };
-        var created = await _service.Product.CreateProductAsync(request, CancellationToken.None);
+        var created = await _service.Product.CreateProductAsync(request);
         _additionalPropertiesHelper.CheckAdditionalProperties(created, Fixture.MyShopifyUrl);
 
         Assert.Equal(TestProductName, created.Product?.Title);

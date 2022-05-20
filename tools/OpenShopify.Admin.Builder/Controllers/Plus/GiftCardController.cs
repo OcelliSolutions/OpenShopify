@@ -48,14 +48,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a single gift card</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}.json")]
-        public abstract System.Threading.Tasks.Task GetGiftCard(long gift_card_id);
+        public abstract System.Threading.Tasks.Task GetGiftCard([System.ComponentModel.DataAnnotations.Required] long gift_card_id);
 
         /// <summary>
         /// Updates an existing gift card
         /// </summary>
         /// <returns>Updates an existing gift card</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateGiftCard([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateGiftCardRequest request, long gift_card_id);
+        public abstract System.Threading.Tasks.Task UpdateGiftCard([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateGiftCardRequest request, [System.ComponentModel.DataAnnotations.Required] long gift_card_id);
 
         /// <summary>
         /// Retrieves a count of gift cards
@@ -63,14 +63,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="status">Count gift cards with a given status. Valid values:</param>
         /// <returns>Retrieves a count of gift cards</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? status);
+        public abstract System.Threading.Tasks.Task CountGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? status);
 
         /// <summary>
         /// Disables a gift card
         /// </summary>
         /// <returns>Disables a gift card</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}/disable.json")]
-        public abstract System.Threading.Tasks.Task DisableGiftCard(long gift_card_id);
+        public abstract System.Threading.Tasks.Task DisableGiftCard([System.ComponentModel.DataAnnotations.Required] long gift_card_id);
 
         /// <summary>
         /// Searches for gift cards

@@ -38,7 +38,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves all application credits</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_credits.json")]
-        public abstract System.Threading.Tasks.Task GetAllApplicationCredits([Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task ListApplicationCredits([Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Retrieves a single application credit
@@ -46,7 +46,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a single application credit</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_credits/{application_credit_id}.json")]
-        public abstract System.Threading.Tasks.Task GetApplicationCredit(long application_credit_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetApplicationCredit([System.ComponentModel.DataAnnotations.Required] long application_credit_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
     }
 

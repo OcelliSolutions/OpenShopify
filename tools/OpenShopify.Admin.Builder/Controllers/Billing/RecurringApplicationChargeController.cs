@@ -47,21 +47,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a single charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}.json")]
-        public abstract System.Threading.Tasks.Task GetCharge(long recurring_application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetCharge([System.ComponentModel.DataAnnotations.Required] long recurring_application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Cancels a recurring application charge
         /// </summary>
         /// <returns>Cancels a recurring application charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}.json")]
-        public abstract System.Threading.Tasks.Task CancelRecurringApplicationCharge(long recurring_application_charge_id);
+        public abstract System.Threading.Tasks.Task CancelRecurringApplicationCharge([System.ComponentModel.DataAnnotations.Required] long recurring_application_charge_id);
 
         /// <summary>
         /// Updates the capped amount of a recurring application charge
         /// </summary>
         /// <returns>Updates the capped amount of a recurring application charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/customize.json")]
-        public abstract System.Threading.Tasks.Task UpdateCappedAmountOfRecurringApplicationCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateRecurringApplicationChargeRequest request, long recurring_application_charge_id);
+        public abstract System.Threading.Tasks.Task UpdateCappedAmountOfRecurringApplicationCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateRecurringApplicationChargeRequest request, [System.ComponentModel.DataAnnotations.Required] long recurring_application_charge_id);
 
     }
 

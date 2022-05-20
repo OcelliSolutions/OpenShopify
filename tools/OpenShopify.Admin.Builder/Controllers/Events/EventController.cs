@@ -45,7 +45,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single event</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("events/{event_id}.json")]
-        public abstract System.Threading.Tasks.Task GetEvent(long event_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetEvent([System.ComponentModel.DataAnnotations.Required] long event_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Retrieves a count of events
@@ -54,7 +54,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="created_at_min">Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Retrieves a count of events</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("events/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfEvents([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min);
+        public abstract System.Threading.Tasks.Task CountEvents([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min);
 
     }
 

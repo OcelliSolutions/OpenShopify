@@ -31,7 +31,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="message">An optional reason for the cancellation request.</param>
         /// <returns>Sends a cancellation request</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancellation_request.json")]
-        public abstract System.Threading.Tasks.Task SendCancellationRequest(long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
+        public abstract System.Threading.Tasks.Task SendCancellationRequest([System.ComponentModel.DataAnnotations.Required] long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
 
         /// <summary>
         /// Accepts a cancellation request
@@ -39,7 +39,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="message">An optional reason for accepting the cancellation request.</param>
         /// <returns>Accepts a cancellation request</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json")]
-        public abstract System.Threading.Tasks.Task AcceptCancellationRequest(long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
+        public abstract System.Threading.Tasks.Task AcceptCancellationRequest([System.ComponentModel.DataAnnotations.Required] long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
 
         /// <summary>
         /// Rejects a cancellation request
@@ -47,7 +47,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="message">An optional reason for rejecting the cancellation request.</param>
         /// <returns>Rejects a cancellation request</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json")]
-        public abstract System.Threading.Tasks.Task RejectCancellationRequest(long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
+        public abstract System.Threading.Tasks.Task RejectCancellationRequest([System.ComponentModel.DataAnnotations.Required] long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
 
     }
 

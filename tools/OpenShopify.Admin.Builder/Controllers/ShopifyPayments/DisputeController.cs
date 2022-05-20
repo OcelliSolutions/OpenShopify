@@ -34,14 +34,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="status">Return only disputes with the specified status.</param>
         /// <returns>Return a list of all disputes</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/disputes.json")]
-        public abstract System.Threading.Tasks.Task ReturnListOfAllDisputes([Microsoft.AspNetCore.Mvc.FromQuery] string? initiated_at, [Microsoft.AspNetCore.Mvc.FromQuery] long? last_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status);
+        public abstract System.Threading.Tasks.Task ListDisputes([Microsoft.AspNetCore.Mvc.FromQuery] string? initiated_at, [Microsoft.AspNetCore.Mvc.FromQuery] [System.ComponentModel.DataAnnotations.Required] long? last_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status);
 
         /// <summary>
         /// Return a single dispute
         /// </summary>
         /// <returns>Return a single dispute</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/disputes/{dispute_id}.json")]
-        public abstract System.Threading.Tasks.Task ReturnSingleDispute(long dispute_id);
+        public abstract System.Threading.Tasks.Task GetDispute([System.ComponentModel.DataAnnotations.Required] long dispute_id);
 
     }
 

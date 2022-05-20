@@ -32,7 +32,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="message">An optional message for the fulfillment request.</param>
         /// <returns>Sends a fulfillment request</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json")]
-        public abstract System.Threading.Tasks.Task SendFulfillmentRequest(long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fulfillment_order_line_items, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
+        public abstract System.Threading.Tasks.Task SendFulfillmentRequest([System.ComponentModel.DataAnnotations.Required] long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fulfillment_order_line_items, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
 
         /// <summary>
         /// Accepts a fulfillment request
@@ -40,7 +40,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="message">An optional reason for accepting the fulfillment request.</param>
         /// <returns>Accepts a fulfillment request</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json")]
-        public abstract System.Threading.Tasks.Task AcceptFulfillmentRequest(long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
+        public abstract System.Threading.Tasks.Task AcceptFulfillmentRequest([System.ComponentModel.DataAnnotations.Required] long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
 
         /// <summary>
         /// Rejects a fulfillment request
@@ -48,7 +48,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="message">An optional reason for rejecting the fulfillment request.</param>
         /// <returns>Rejects a fulfillment request</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json")]
-        public abstract System.Threading.Tasks.Task RejectFulfillmentRequest(long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
+        public abstract System.Threading.Tasks.Task RejectFulfillmentRequest([System.ComponentModel.DataAnnotations.Required] long fulfillment_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? message);
 
     }
 

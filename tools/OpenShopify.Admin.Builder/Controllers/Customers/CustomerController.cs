@@ -74,35 +74,35 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}.json")]
-        public abstract System.Threading.Tasks.Task GetCustomer(long customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetCustomer([System.ComponentModel.DataAnnotations.Required] long customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates a customer
         /// </summary>
         /// <returns>Updates a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCustomerRequest request, long customer_id);
+        public abstract System.Threading.Tasks.Task UpdateCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCustomerRequest request, [System.ComponentModel.DataAnnotations.Required] long customer_id);
 
         /// <summary>
         /// Creates an account activation URL for a customer
         /// </summary>
         /// <returns>Creates an account activation URL for a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/account_activation_url.json")]
-        public abstract System.Threading.Tasks.Task CreateAccountActivationUrlForCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCustomerRequest request, long customer_id);
+        public abstract System.Threading.Tasks.Task CreateAccountActivationUrlForCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCustomerRequest request, [System.ComponentModel.DataAnnotations.Required] long customer_id);
 
         /// <summary>
         /// Sends an account invite to a customer
         /// </summary>
         /// <returns>Sends an account invite to a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/send_invite.json")]
-        public abstract System.Threading.Tasks.Task SendAccountInviteToCustomer(long customer_id);
+        public abstract System.Threading.Tasks.Task SendAccountInviteToCustomer([System.ComponentModel.DataAnnotations.Required] long customer_id);
 
         /// <summary>
         /// Retrieves a count of customers
         /// </summary>
         /// <returns>Retrieves a count of customers</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfCustomers();
+        public abstract System.Threading.Tasks.Task CountCustomers();
 
         /// <summary>
         /// Retrieves all orders that belong to a customer
@@ -110,7 +110,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="status">The status of the orders to return. The status defaults to open.</param>
         /// <returns>Retrieves all orders that belong to a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/orders.json")]
-        public abstract System.Threading.Tasks.Task GetAllOrdersThatBelongToCustomer(long customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status);
+        public abstract System.Threading.Tasks.Task ListOrdersThatBelongToCustomer([System.ComponentModel.DataAnnotations.Required] long customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status);
 
     }
 

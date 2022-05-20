@@ -7,11 +7,17 @@ servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
       store_name:
-        default: sample_store
+        default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
         default: '2022-04'
         description: The api version.
+  - url: 'https://{store_name}.myshopify.com/admin'
+    description: Some endpoints do not use the standard routing. This is an alternate.
+    variables:
+      store_name:
+        default: '{{store_name}}'
+        description: The sub-domain of the storefront.
 paths:
   /checkouts.json:
     post:
@@ -27,9 +33,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateCheckoutRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -39,10 +46,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/checkouts/{token}/complete.json':
     post:
       tags:
@@ -56,8 +59,8 @@ paths:
           schema:
             type: integer
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -67,10 +70,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/checkouts/{token}.json':
     get:
       tags:
@@ -84,8 +83,8 @@ paths:
           schema:
             type: integer
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -95,10 +94,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     put:
       tags:
         - Checkout
@@ -118,9 +113,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateCheckoutRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -130,10 +126,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/checkouts/{token}/shipping_rates.json':
     get:
       tags:
@@ -147,8 +139,8 @@ paths:
           schema:
             type: integer
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -158,10 +150,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /collection_listings.json:
     get:
       tags:
@@ -180,8 +168,8 @@ paths:
           schema:
             type: string
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -191,10 +179,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/collection_listings/{collection_listing_id}/product_ids.json':
     get:
       tags:
@@ -219,8 +203,8 @@ paths:
           schema:
             type: string
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -230,10 +214,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/collection_listings/{collection_listing_id}.json':
     get:
       tags:
@@ -248,8 +228,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -259,10 +239,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     put:
       tags:
         - CollectionListing
@@ -283,9 +259,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateCollectionListingRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -295,10 +272,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - CollectionListing
@@ -312,8 +285,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -323,10 +296,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /mobile_platform_applications.json:
     get:
       tags:
@@ -334,8 +303,8 @@ paths:
       summary: List all of the mobile platform applications associated with the app
       operationId: ListAllOfMobilePlatformApplicationsAssociatedWithApp
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -345,10 +314,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     post:
       tags:
         - MobilePlatformApplication
@@ -362,9 +327,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateMobilePlatformApplicationRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -374,10 +340,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/mobile_platform_applications/{mobile_platform_application_id}.json':
     get:
       tags:
@@ -392,8 +354,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -403,10 +365,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     put:
       tags:
         - MobilePlatformApplication
@@ -427,9 +385,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateMobilePlatformApplicationRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -439,10 +398,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - MobilePlatformApplication
@@ -456,8 +411,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -467,10 +422,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/checkouts/{token}/payments.json':
     post:
       tags:
@@ -511,9 +462,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreatePaymentRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -523,10 +475,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     get:
       tags:
         - Payment
@@ -539,8 +487,8 @@ paths:
           schema:
             type: integer
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -550,10 +498,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/checkouts/{token}/payments/{payment_id}.json':
     get:
       tags:
@@ -573,8 +517,8 @@ paths:
           schema:
             type: integer
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -584,10 +528,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/checkouts/{token}/payments/count.json':
     get:
       tags:
@@ -616,21 +556,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CountItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /product_listings.json:
     get:
       tags:
@@ -672,8 +597,8 @@ paths:
             type: string
             format: date-time
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -683,10 +608,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /product_listings/product_ids.json:
     get:
       tags:
@@ -705,8 +626,8 @@ paths:
           schema:
             type: string
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -716,16 +637,12 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /product_listings/count.json:
     get:
       tags:
         - ProductListing
       summary: Retrieve a count of products that are published to your app
-      operationId: GetCountOfProductsThatArePublishedToYourApp
+      operationId: CountProductsThatArePublishedToYourApp
       responses:
         '200':
           description: Success
@@ -742,21 +659,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CountItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/product_listings/{product_listing_id}.json':
     get:
       tags:
@@ -771,8 +673,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -782,10 +684,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     put:
       tags:
         - ProductListing
@@ -806,9 +704,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateProductListingRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -818,10 +717,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - ProductListing
@@ -835,8 +730,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -846,10 +741,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/products/{product_id}/resource_feedback.json':
     post:
       tags:
@@ -875,9 +766,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateProductResourceFeedbackRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -887,10 +779,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     get:
       tags:
         - ProductResourceFeedback
@@ -904,8 +792,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -915,10 +803,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /resource_feedback.json:
     post:
       tags:
@@ -949,9 +833,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateResourceFeedbackRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -961,18 +846,14 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     get:
       tags:
         - ResourceFeedback
       summary: Receive a list of all ResourceFeedbacks
       operationId: ListResourceFeedbacks
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -982,14 +863,11 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     Address:
       required:
+        - customer_id
         - id
       type: object
       properties:
@@ -1380,6 +1258,8 @@ components:
           nullable: true
       additionalProperties: { }
     CreateCheckoutRequest:
+      required:
+        - checkout
       type: object
       properties:
         checkout:
@@ -1389,6 +1269,8 @@ components:
       type: object
       additionalProperties: { }
     CreateCollectionListingRequest:
+      required:
+        - collection_listing
       type: object
       properties:
         collection_listing:
@@ -1398,6 +1280,8 @@ components:
       type: object
       additionalProperties: { }
     CreateMobilePlatformApplicationRequest:
+      required:
+        - mobile_platform_application
       type: object
       properties:
         mobile_platform_application:
@@ -1407,6 +1291,8 @@ components:
       type: object
       additionalProperties: { }
     CreatePaymentRequest:
+      required:
+        - payment
       type: object
       properties:
         payment:
@@ -1416,6 +1302,8 @@ components:
       type: object
       additionalProperties: { }
     CreateProductListingRequest:
+      required:
+        - product_listing
       type: object
       properties:
         product_listing:
@@ -1425,6 +1313,8 @@ components:
       type: object
       additionalProperties: { }
     CreateProductResourceFeedbackRequest:
+      required:
+        - product_resource_feedback
       type: object
       properties:
         product_resource_feedback:
@@ -1434,6 +1324,8 @@ components:
       type: object
       additionalProperties: { }
     CreateResourceFeedbackRequest:
+      required:
+        - resource_feedback
       type: object
       properties:
         resource_feedback:
@@ -1548,6 +1440,8 @@ components:
           deprecated: true
         email_marketing_consent:
           $ref: '#/components/schemas/EmailMarketingConsent'
+        sms_marketing_consent:
+          $ref: '#/components/schemas/SmsMarketingConsent'
         id:
           type: integer
           format: int64
@@ -1557,6 +1451,7 @@ components:
       additionalProperties: { }
     CustomerAddress:
       required:
+        - customer_id
         - id
       type: object
       properties:
@@ -1744,13 +1639,6 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: string
-          nullable: true
-      additionalProperties: false
     LineItemDuty:
       required:
         - id
@@ -1896,6 +1784,27 @@ components:
           $ref: '#/components/schemas/PriceSet'
         discounted_price_set:
           $ref: '#/components/schemas/PriceSet'
+      additionalProperties: { }
+    SmsMarketingConsent:
+      type: object
+      properties:
+        state:
+          type: string
+          description: The current SMS marketing state for the customer.
+          nullable: true
+        opt_in_level:
+          type: string
+          description: 'The marketing subscription opt-in level, as described in the M3AAWG Sender Best Common Practices, that the customer gave when they consented to receive marketing material by SMS.'
+          nullable: true
+        consent_updated_at:
+          type: string
+          description: 'The date and time when the customer consented to receive marketing material by SMS. If no date is provided, then the date and time when the consent information was sent is used.'
+          format: date-time
+          nullable: true
+        consent_collected_from:
+          type: string
+          description: The source for whether the customer has consented to receive marketing material by SMS.
+          nullable: true
       additionalProperties: { }
     TaxLine:
       type: object
@@ -2087,171 +1996,9 @@ components:
       additionalProperties: { }
     UpdateCheckoutRequest:
       required:
-        - id
+        - checkout
       type: object
       properties:
-        abandoned_checkout_url:
-          type: string
-          description: The full recovery URL to be sent to a customer to recover their abandoned checkout.
-          nullable: true
-        billing_address:
-          $ref: '#/components/schemas/Address'
-        buyer_accepts_marketing:
-          type: boolean
-          description: "Indicates whether or not the person who placed the order would like to receive email \r\nupdates from the shop. This is set when checking the \"I want to receive occasional \r\nemails about new products, promotions and other news\" checkbox during checkout."
-          nullable: true
-        cart_token:
-          type: string
-          description: Unique identifier for a particular cart that is attached to a particular order.
-          nullable: true
-        closed_at:
-          type: string
-          description: The date and time when the abandoned cart was completed. The API returns this value in ISO 8601 format.
-          format: date-time
-          nullable: true
-        completed_at:
-          type: string
-          description: The date and time when the abandoned cart was last modified. The API returns this value in ISO 8601 format.
-          format: date-time
-          nullable: true
-        created_at:
-          type: string
-          description: The date and time when the abandoned cart was created. The API returns this value in ISO 8601 format.
-          format: date-time
-          nullable: true
-        currency:
-          type: string
-          description: The three letter code (ISO 4217) for the currency used for the payment.
-          nullable: true
-        customer:
-          $ref: '#/components/schemas/Customer'
-        customer_locale:
-          type: string
-          description: 'The two or three-letter language code, optionally followed by a region modifier. Example values: en, en-CA.'
-          nullable: true
-        device_id:
-          type: integer
-          description: The ID of the Shopify POS device that created the checkout.
-          format: int64
-          nullable: true
-        discount_codes:
-          type: array
-          items:
-            $ref: '#/components/schemas/DiscountCode'
-          description: Applicable discount codes that can be applied to the order. If no codes exist the value will default to blank.
-        email:
-          type: string
-          description: The customer's email address.
-          nullable: true
-        gateway:
-          type: string
-          description: The payment gateway used.
-          nullable: true
-        landing_site:
-          type: string
-          description: The URL for the page where the buyer landed when entering the shop.
-          nullable: true
-        line_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/CheckoutLineItem'
-          description: 'A list of line item objects, each one containing information about an item in the order.'
-        location_id:
-          type: integer
-          description: The ID of the physical location where the checkout was processed.
-          format: int64
-          nullable: true
-        note:
-          type: string
-          description: The text of an optional note that a shop owner can attach to the order.
-          nullable: true
-        phone:
-          type: string
-          description: The customer's phone number for receiving SMS notifications.
-          nullable: true
-        presentment_currency:
-          type: string
-          description: The three-letter code (ISO 4217 format) of the currency that the customer used at checkout.
-          nullable: true
-        referring_site:
-          type: string
-          description: The website that the customer clicked on to come to the shop.
-          nullable: true
-        shipping_address:
-          $ref: '#/components/schemas/Address'
-        shipping_lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/ShippingLine'
-          description: 'An array of shipping line objects, each of which details the shipping methods used.'
-        source_name:
-          type: string
-          description: 'Where the checkout originated. Known values are: "web", "pos", "iphone", and "android"'
-          nullable: true
-        subtotal_price:
-          type: number
-          description: Price of the order before shipping and taxes
-          format: decimal
-          nullable: true
-        tax_lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxLine'
-          description: 'An array of tax line objects, each of which details the taxes applicable to the order.'
-        taxes_included:
-          type: boolean
-          description: Whether taxes are included in the price.
-          nullable: true
-        token:
-          type: string
-          description: Unique identifier for a particular order.
-          nullable: true
-        total_discounts:
-          type: number
-          description: The total amount of the discounts to be applied to the price of the order.
-          format: decimal
-          nullable: true
-        total_duties:
-          type: number
-          description: The total duties of the checkout in presentment currency.
-          format: decimal
-          nullable: true
-        total_line_items_price:
-          type: number
-          description: The sum of all the prices of all the items in the order.
-          format: decimal
-          nullable: true
-        total_price:
-          type: number
-          description: 'The sum of all the prices of all the items in the order, taxes and discounts included.'
-          format: decimal
-          nullable: true
-        total_tax:
-          type: number
-          description: The sum of all the taxes applied to the line items in the order.
-          format: decimal
-          nullable: true
-        total_weight:
-          type: number
-          description: 'The sum of all the weights of the line items in the order, in grams.'
-          format: decimal
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the abandoned cart was last modified. The API returns this value in ISO 8601 format.
-          format: date-time
-          nullable: true
-        user_id:
-          type: integer
-          description: The ID of the user who created the checkout.
-          format: int64
-          nullable: true
-        id:
-          type: integer
-          format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         checkout:
           $ref: '#/components/schemas/UpdateCheckout'
       additionalProperties: { }
@@ -2269,15 +2016,9 @@ components:
       additionalProperties: { }
     UpdateMobilePlatformApplicationRequest:
       required:
-        - id
+        - mobile_platform_application
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         mobile_platform_application:
           $ref: '#/components/schemas/UpdateMobilePlatformApplication'
       additionalProperties: { }

@@ -11,7 +11,7 @@ using OpenShopify.ClientGenerator;
 var shopifyFiles = Directory.EnumerateFiles("../../../../../", "open-shopify-*.yaml", SearchOption.AllDirectories);
 foreach (var shopifyFile in shopifyFiles)
 {
-    var className = shopifyFile[shopifyFile.IndexOf("open-shopify-")..];
+    var className = shopifyFile[shopifyFile.IndexOf("open-shopify-", StringComparison.Ordinal)..];
     className = className.Replace("open-shopify-", string.Empty).Replace(".yaml", string.Empty);
     className = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(className).Replace("-", string.Empty);
     var document = OpenApiYamlDocument.FromFileAsync(shopifyFile).Result;
@@ -30,20 +30,21 @@ foreach (var shopifyFile in shopifyFiles)
     if (className == "Orders")
         excludeNamesForClient.AddRange(new List<string>
         {
-            "Address", "ClientDetails", "Customer", "CustomerAddress","EmailMarketingConsent", "CustomerMetafield", "DiscountCode", "Price"
+            "Address", "ClientDetails", "Customer", "CustomerAddress","EmailMarketingConsent", "SmsMarketingConsent", 
+            "CustomerMetafield", "DiscountCode", "Price"
         });
     if (className == "SalesChannels")
         excludeNamesForClient.AddRange(new List<string>
         {
-            "Address", "Customer", "CustomerAddress", "EmailMarketingConsent", "CustomerMetafield", "DiscountAllocation", "DiscountCode", 
-            "LineItem", "LineItemDuty", "LineItemOriginLocation", "LineItemProperty", "Price", "PriceSet", 
-            "ShippingLine", "TaxLine"
+            "Address", "Customer", "CustomerAddress", "EmailMarketingConsent", "SmsMarketingConsent", 
+            "CustomerMetafield", "DiscountAllocation", "DiscountCode", "LineItem", "LineItemDuty", 
+            "LineItemOriginLocation", "LineItemProperty", "Price", "PriceSet", "ShippingLine", "TaxLine"
         });
     if (className == "ShippingAndFulfillment")
         excludeNamesForClient.AddRange(new List<string>
         {
-            "Address", "CustomerAddress", "EmailMarketingConsent","LineItem", "LineItemDuty", "LineItemOriginLocation", "LineItemProperty", 
-            "DiscountAllocation", "Price", "PriceSet", "TaxLine"
+            "Address", "CustomerAddress", "EmailMarketingConsent", "SmsMarketingConsent", "LineItem", "LineItemDuty", 
+            "LineItemOriginLocation", "LineItemProperty", "DiscountAllocation", "Price", "PriceSet", "TaxLine"
         });
 
     var excludedNames = excludeNamesForClient.ToArray();
@@ -63,7 +64,7 @@ foreach (var shopifyFile in shopifyFiles)
         ResponseClass = "ShopifyResponse",
         CSharpGeneratorSettings =
         {
-            Namespace = $@"Ocelli.OpenShopify", 
+            Namespace = @"Ocelli.OpenShopify", 
             EnumNameGenerator = new CustomEnumNameGenerator(),
             JsonLibrary = CSharpJsonLibrary.SystemTextJson,
             GenerateOptionalPropertiesAsNullable = true,
@@ -145,8 +146,7 @@ namespace OpenShopify.ClientGenerator
 
 public class CustomEnumNameGenerator : IEnumNameGenerator
 {
-    private readonly static Regex _invalidNameCharactersPattern = new Regex(@"[^\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\p{Cf}]");
-    private const string _defaultReplacementCharacter = "_";
+    private readonly static Regex InvalidNameCharactersPattern = new(@"[^\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\p{Cf}]");
 
     /// <summary>Generates the enumeration name/key of the given enumeration entry.</summary>
     /// <param name="index">The index of the enumeration value (check <see cref="JsonSchema.Enumeration" /> and <see cref="JsonSchema.EnumerationNames" />).</param>
@@ -188,7 +188,7 @@ public class CustomEnumNameGenerator : IEnumNameGenerator
 
         if (name.StartsWith("-"))
         {
-            name = "Minus" + name.Substring(1);
+            name = $"Minus{name.Substring(1)}";
         }
 
         if (name.StartsWith("+"))
@@ -201,7 +201,7 @@ public class CustomEnumNameGenerator : IEnumNameGenerator
             name = "__" + name.Substring(2);
         }
         
-        return _invalidNameCharactersPattern.Replace(name
+        return InvalidNameCharactersPattern.Replace(name
             .Replace(":", "-").Replace(@"""", @""), "_");
     }
 }

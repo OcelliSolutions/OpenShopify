@@ -35,7 +35,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="test">Filter response to transactions placed in test mode.</param>
         /// <returns>Return a list of all balance transactions</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/balance/transactions.json")]
-        public abstract System.Threading.Tasks.Task ReturnListOfAllBalanceTransactions([Microsoft.AspNetCore.Mvc.FromQuery] long? last_id, [Microsoft.AspNetCore.Mvc.FromQuery] long? payout_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? payout_status, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? test);
+        public abstract System.Threading.Tasks.Task ListBalanceTransactions([Microsoft.AspNetCore.Mvc.FromQuery] [System.ComponentModel.DataAnnotations.Required] long? last_id, [Microsoft.AspNetCore.Mvc.FromQuery] [System.ComponentModel.DataAnnotations.Required] long? payout_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? payout_status, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? test);
 
     }
 

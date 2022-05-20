@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
@@ -13,7 +14,7 @@ public class ApplicationChargeController : ApplicationChargeControllerBase
     /// <inheritdoc />
     [HttpPost, Route("application_charges.json")]
     [ProducesResponseType(typeof(ApplicationChargeItem), StatusCodes.Status201Created)]
-    public override Task CreateApplicationCharge(CreateApplicationChargeRequest request)
+    public override Task CreateApplicationCharge([Required] CreateApplicationChargeRequest request)
     {
         throw new NotImplementedException();
     }
@@ -29,7 +30,7 @@ public class ApplicationChargeController : ApplicationChargeControllerBase
     /// <inheritdoc />
     [HttpGet, Route("application_charges/{application_charge_id:long}.json")]
     [ProducesResponseType(typeof(ApplicationChargeItem), StatusCodes.Status200OK)]
-    public override Task GetApplicationCharge(long application_charge_id, string? fields)
+    public override Task GetApplicationCharge([Required] long application_charge_id, string? fields)
     {
         throw new NotImplementedException();
     }

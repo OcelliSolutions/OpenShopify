@@ -51,7 +51,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="target">Count redirects with given target.</param>
         /// <returns>Retrieves a count of URL redirects</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("redirects/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfUrlRedirects([Microsoft.AspNetCore.Mvc.FromQuery] string? path, [Microsoft.AspNetCore.Mvc.FromQuery] string? target);
+        public abstract System.Threading.Tasks.Task CountUrlRedirects([Microsoft.AspNetCore.Mvc.FromQuery] string? path, [Microsoft.AspNetCore.Mvc.FromQuery] string? target);
 
         /// <summary>
         /// Retrieves a single redirect
@@ -59,21 +59,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single redirect</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("redirects/{redirect_id}.json")]
-        public abstract System.Threading.Tasks.Task GetRedirect(long redirect_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetRedirect([System.ComponentModel.DataAnnotations.Required] long redirect_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates an existing redirect
         /// </summary>
         /// <returns>Updates an existing redirect</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("redirects/{redirect_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateRedirect([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateRedirectRequest request, long redirect_id);
+        public abstract System.Threading.Tasks.Task UpdateRedirect([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateRedirectRequest request, [System.ComponentModel.DataAnnotations.Required] long redirect_id);
 
         /// <summary>
         /// Deletes a redirect
         /// </summary>
         /// <returns>Deletes a redirect</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("redirects/{redirect_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteRedirect(long redirect_id);
+        public abstract System.Threading.Tasks.Task DeleteRedirect([System.ComponentModel.DataAnnotations.Required] long redirect_id);
 
     }
 

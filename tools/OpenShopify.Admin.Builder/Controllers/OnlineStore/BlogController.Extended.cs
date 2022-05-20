@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
@@ -19,7 +20,7 @@ public class BlogController : BlogControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("blogs.json")]
-    public override Task CreateBlog(CreateBlogRequest request, string title)
+    public override Task CreateBlog([Required] CreateBlogRequest request, string title)
     {
         throw new NotImplementedException();
     }
@@ -27,28 +28,28 @@ public class BlogController : BlogControllerBase
     /// <inheritdoc />
     [HttpGet, Route("blogs/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task GetCountOfAllBlogs()
+    public override Task CountBlogs()
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("blogs/{blog_id:long}.json")]
-    public override Task GetBlog(long blog_id, string? fields)
+    public override Task GetBlog([Required] long blog_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPut, Route("blogs/{blog_id:long}.json")]
-    public override Task UpdateBlog(UpdateBlogRequest request, long blog_id)
+    public override Task UpdateBlog([Required] UpdateBlogRequest request, [Required] long blog_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpDelete, Route("blogs/{blog_id:long}.json")]
-    public override Task DeleteExistingBlog(long blog_id)
+    public override Task DeleteBlog([Required] long blog_id)
     {
         throw new NotImplementedException();
     }

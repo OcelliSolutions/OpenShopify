@@ -7,11 +7,17 @@ servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
       store_name:
-        default: sample_store
+        default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
         default: '2022-04'
         description: The api version.
+  - url: 'https://{store_name}.myshopify.com/admin'
+    description: Some endpoints do not use the standard routing. This is an alternate.
+    variables:
+      store_name:
+        default: '{{store_name}}'
+        description: The sub-domain of the storefront.
 paths:
   /application_charges.json:
     post:
@@ -27,6 +33,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateApplicationChargeRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -43,21 +50,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApplicationChargeItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     get:
       tags:
         - ApplicationCharge
@@ -91,21 +83,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApplicationChargeList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/application_charges/{application_charge_id}.json':
     get:
       tags:
@@ -140,21 +117,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApplicationChargeItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /application_credits.json:
     post:
       tags:
@@ -169,6 +131,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateApplicationCreditRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -185,26 +148,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApplicationCreditItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     get:
       tags:
         - ApplicationCredit
       summary: Retrieves all application credits
-      operationId: GetAllApplicationCredits
+      operationId: ListApplicationCredits
       parameters:
         - name: fields
           in: query
@@ -227,21 +175,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApplicationCreditList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/application_credits/{application_credit_id}.json':
     get:
       tags:
@@ -276,21 +209,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApplicationCreditItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /recurring_application_charges.json:
     post:
       tags:
@@ -305,9 +223,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateRecurringApplicationChargeRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -317,10 +236,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     get:
       tags:
         - RecurringApplicationCharge
@@ -354,21 +269,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RecurringApplicationChargeList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/recurring_application_charges/{recurring_application_charge_id}.json':
     get:
       tags:
@@ -403,21 +303,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RecurringApplicationChargeItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - RecurringApplicationCharge
@@ -442,21 +327,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/recurring_application_charges/{recurring_application_charge_id}/customize.json':
     put:
       tags:
@@ -490,21 +360,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RecurringApplicationChargeItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/recurring_application_charges/{recurring_application_charge_id}/usage_charges.json':
     post:
       tags:
@@ -526,6 +381,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateUsageChargeRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -542,21 +398,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UsageChargeItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     get:
       tags:
         - UsageCharge
@@ -590,21 +431,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UsageChargeList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/recurring_application_charges/{recurring_application_charge_id}/usage_charges/{usage_charge_id}.json':
     get:
       tags:
@@ -645,21 +471,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UsageChargeItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     ApplicationCharge:
@@ -710,12 +521,16 @@ components:
           nullable: true
       additionalProperties: { }
     ApplicationChargeItem:
+      required:
+        - application_charge
       type: object
       properties:
         application_charge:
           $ref: '#/components/schemas/ApplicationCharge'
       additionalProperties: { }
     ApplicationChargeList:
+      required:
+        - application_charges
       type: object
       properties:
         application_charges:
@@ -758,12 +573,16 @@ components:
           nullable: true
       additionalProperties: { }
     ApplicationCreditItem:
+      required:
+        - application_credit
       type: object
       properties:
         application_credit:
           $ref: '#/components/schemas/ApplicationCredit'
       additionalProperties: { }
     ApplicationCreditList:
+      required:
+        - application_credits
       type: object
       properties:
         application_credits:
@@ -811,6 +630,8 @@ components:
           nullable: true
       additionalProperties: { }
     CreateApplicationChargeRequest:
+      required:
+        - application_charge
       type: object
       properties:
         application_charge:
@@ -834,6 +655,8 @@ components:
           nullable: true
       additionalProperties: { }
     CreateApplicationCreditRequest:
+      required:
+        - application_credit
       type: object
       properties:
         application_credit:
@@ -891,6 +714,8 @@ components:
           nullable: true
       additionalProperties: { }
     CreateRecurringApplicationChargeRequest:
+      required:
+        - recurring_application_charge
       type: object
       properties:
         recurring_application_charge:
@@ -925,18 +750,13 @@ components:
           nullable: true
       additionalProperties: { }
     CreateUsageChargeRequest:
+      required:
+        - usage_charge
       type: object
       properties:
         usage_charge:
           $ref: '#/components/schemas/CreateUsageCharge'
       additionalProperties: { }
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: string
-          nullable: true
-      additionalProperties: false
     RecurringApplicationCharge:
       required:
         - id
@@ -997,12 +817,16 @@ components:
           nullable: true
       additionalProperties: { }
     RecurringApplicationChargeItem:
+      required:
+        - recurring_application_charge
       type: object
       properties:
         recurring_application_charge:
           $ref: '#/components/schemas/RecurringApplicationCharge'
       additionalProperties: { }
     RecurringApplicationChargeList:
+      required:
+        - recurring_application_charges
       type: object
       properties:
         recurring_application_charges:
@@ -1082,62 +906,9 @@ components:
       additionalProperties: { }
     UpdateRecurringApplicationChargeRequest:
       required:
-        - id
+        - recurring_application_charge
       type: object
       properties:
-        name:
-          type: string
-          nullable: true
-        api_client_id:
-          type: integer
-          format: int64
-        price:
-          type: number
-          format: decimal
-          nullable: true
-        status:
-          $ref: '#/components/schemas/RecurringApplicationChargeStatus'
-        return_url:
-          type: string
-          nullable: true
-        billing_on:
-          type: string
-          format: date-time
-          nullable: true
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        test:
-          type: boolean
-          nullable: true
-        activated_on:
-          type: string
-          format: date-time
-          nullable: true
-        cancelled_on:
-          type: string
-          format: date-time
-          nullable: true
-        trial_days:
-          type: integer
-          format: int32
-          nullable: true
-        trial_ends_on:
-          type: string
-          format: date-time
-          nullable: true
-        decorated_return_url:
-          type: string
-          nullable: true
-        id:
-          type: integer
-          format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         recurring_application_charge:
           $ref: '#/components/schemas/UpdateRecurringApplicationCharge'
       additionalProperties: { }
@@ -1178,12 +949,16 @@ components:
           nullable: true
       additionalProperties: { }
     UsageChargeItem:
+      required:
+        - usage_charge
       type: object
       properties:
         usage_charge:
           $ref: '#/components/schemas/UsageCharge'
       additionalProperties: { }
     UsageChargeList:
+      required:
+        - usage_charges
       type: object
       properties:
         usage_charges:

@@ -160,9 +160,41 @@ public class CustomerBase
     /// The marketing consent information when the customer consented to receiving marketing material by email. The email property is required to create a customer with email consent information and to update a customer for email consent that doesn't have an email recorded. The customer must have a unique email address associated to the record.
     /// </summary>
     [JsonPropertyName("email_marketing_consent")]
-    public EmailMarketingConsent? email_marketing_consent { get; set; }
+    public EmailMarketingConsent? EmailMarketingConsent { get; set; }
+
+    /// <summary>
+    /// The marketing consent information when the customer consented to receiving marketing material by SMS. The phone property is required to create a customer with SMS consent information and to perform an SMS update on a customer that doesn't have a phone number recorded. The customer must have a unique phone number associated to the record.
+    /// </summary>
+    [JsonPropertyName("sms_marketing_consent")]
+    public SmsMarketingConsent? SmsMarketingConsent { get; set; }
 }
 
+public class SmsMarketingConsent
+{
+    /// <summary>
+    /// The current SMS marketing state for the customer.
+    /// </summary>
+    [JsonPropertyName("state")]
+    public string? State { get; set; }
+
+    /// <summary>
+    /// The marketing subscription opt-in level, as described in the M3AAWG Sender Best Common Practices, that the customer gave when they consented to receive marketing material by SMS.
+    /// </summary>
+    [JsonPropertyName("opt_in_level")]
+    public string? OptInLevel { get; set; }
+
+    /// <summary>
+    /// The date and time when the customer consented to receive marketing material by SMS. If no date is provided, then the date and time when the consent information was sent is used.
+    /// </summary>
+    [JsonPropertyName("consent_updated_at")]
+    public DateTimeOffset? ConsentUpdatedAt { get; set; }
+
+    /// <summary>
+    /// The source for whether the customer has consented to receive marketing material by SMS.
+    /// </summary>
+    [JsonPropertyName("consent_collected_from")]
+    public string? ConsentCollectedFrom { get; set; }
+}
 public class EmailMarketingConsent
 {
     /// <summary>

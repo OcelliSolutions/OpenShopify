@@ -55,28 +55,28 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Updates an existing a price rule</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdatePriceRule([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdatePriceRuleRequest request, long price_rule_id);
+        public abstract System.Threading.Tasks.Task UpdatePriceRule([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdatePriceRuleRequest request, [System.ComponentModel.DataAnnotations.Required] long price_rule_id);
 
         /// <summary>
         /// Retrieves a single price rule
         /// </summary>
         /// <returns>Retrieves a single price rule</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}.json")]
-        public abstract System.Threading.Tasks.Task GetPriceRule(long price_rule_id);
+        public abstract System.Threading.Tasks.Task GetPriceRule([System.ComponentModel.DataAnnotations.Required] long price_rule_id);
 
         /// <summary>
         /// Remove an existing PriceRule
         /// </summary>
         /// <returns>Remove an existing PriceRule</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteExistingPriceRule(long price_rule_id);
+        public abstract System.Threading.Tasks.Task DeletePriceRule([System.ComponentModel.DataAnnotations.Required] long price_rule_id);
 
         /// <summary>
         /// Retrieves a count of all price rules
         /// </summary>
         /// <returns>Retrieves a count of all price rules</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfAllPriceRules();
+        public abstract System.Threading.Tasks.Task CountPriceRules();
 
     }
 

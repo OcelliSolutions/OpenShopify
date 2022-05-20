@@ -1,9 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
-using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 
@@ -15,7 +14,7 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     /// <inheritdoc />
     [IgnoreApi, HttpGet, Route("fulfillment_services.invalid")]
     [ProducesResponseType(typeof(FulfillmentServiceList), StatusCodes.Status200OK)]
-    public override Task ListFulfillmentServices(string? scope = null)
+    public override Task ListFulfillmentServices(string? scope)
     {
         throw new NotImplementedException();
     }
@@ -23,7 +22,7 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     /// <inheritdoc cref="FulfillmentServiceControllerBase.ListFulfillmentServices" />
     [HttpGet, Route("fulfillment_services.json")]
     [ProducesResponseType(typeof(FulfillmentServiceList), StatusCodes.Status200OK)]
-    public Task ListFulfillmentServices(FulfillmentServiceScope? scope = null)
+    public Task ListFulfillmentServices(FulfillmentServiceScope? scope)
     {
         throw new NotImplementedException();
     }
@@ -31,7 +30,7 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_services.json")]
     [ProducesResponseType(typeof(FulfillmentServiceItem), StatusCodes.Status201Created)]
-    public override Task CreateFulfillmentService(CreateFulfillmentServiceRequest request)
+    public override Task CreateFulfillmentService([Required] CreateFulfillmentServiceRequest request)
     {
         throw new NotImplementedException();
     }
@@ -39,7 +38,7 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     /// <inheritdoc />
     [HttpGet, Route("fulfillment_services/{fulfillment_service_id:long}.json")]
     [ProducesResponseType(typeof(FulfillmentServiceItem), StatusCodes.Status200OK)]
-    public override Task GetFulfillmentService(long fulfillment_service_id)
+    public override Task GetFulfillmentService([Required] long fulfillment_service_id)
     {
         throw new NotImplementedException();
     }
@@ -48,7 +47,7 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     /// <inheritdoc cref="FulfillmentServiceControllerBase.UpdateFulfillmentService" />
     [HttpPut, Route("fulfillment_services/{fulfillment_service_id:long}.json")]
     [ProducesResponseType(typeof(FulfillmentServiceItem), StatusCodes.Status200OK)]
-    public override Task UpdateFulfillmentService(UpdateFulfillmentServiceRequest request, long fulfillment_service_id)
+    public override Task UpdateFulfillmentService([Required] UpdateFulfillmentServiceRequest request, [Required] long fulfillment_service_id)
     {
         throw new NotImplementedException();
     }
@@ -56,7 +55,7 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("fulfillment_services/{fulfillment_service_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteExistingFulfillmentService(long fulfillment_service_id)
+    public override Task DeleteFulfillmentService([Required] long fulfillment_service_id)
     {
         throw new NotImplementedException();
     }

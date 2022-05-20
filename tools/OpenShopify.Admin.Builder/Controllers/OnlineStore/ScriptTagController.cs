@@ -53,7 +53,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="src">Count only script tags with a given URL.</param>
         /// <returns>Retrieves a count of all script tags</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfAllScriptTags([Microsoft.AspNetCore.Mvc.FromQuery] string? src);
+        public abstract System.Threading.Tasks.Task CountScriptTags([Microsoft.AspNetCore.Mvc.FromQuery] string? src);
 
         /// <summary>
         /// Retrieves a single script tag
@@ -61,21 +61,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a single script tag</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags/{script_tag_id}.json")]
-        public abstract System.Threading.Tasks.Task GetScriptTag(long script_tag_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetScriptTag([System.ComponentModel.DataAnnotations.Required] long script_tag_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates a script tag
         /// </summary>
         /// <returns>Updates a script tag</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("script_tags/{script_tag_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateScriptTag([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateScriptTagRequest request, long script_tag_id);
+        public abstract System.Threading.Tasks.Task UpdateScriptTag([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateScriptTagRequest request, [System.ComponentModel.DataAnnotations.Required] long script_tag_id);
 
         /// <summary>
         /// Deletes a script tag
         /// </summary>
         /// <returns>Deletes a script tag</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("script_tags/{script_tag_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteScriptTag(long script_tag_id);
+        public abstract System.Threading.Tasks.Task DeleteScriptTag([System.ComponentModel.DataAnnotations.Required] long script_tag_id);
 
     }
 

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
@@ -18,7 +19,7 @@ public class UserController : UserControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("users/{user_id:long}.json")]
-    public override Task GetUser(long user_id)
+    public override Task GetUser([Required] long user_id)
     {
         throw new NotImplementedException();
     }

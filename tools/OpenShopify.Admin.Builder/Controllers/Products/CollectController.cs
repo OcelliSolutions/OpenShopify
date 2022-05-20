@@ -47,7 +47,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Removes a product from a collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("collects/{collect_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteProductFromCollection(long collect_id);
+        public abstract System.Threading.Tasks.Task DeleteProductFromCollection([System.ComponentModel.DataAnnotations.Required] long collect_id);
 
         /// <summary>
         /// Retrieves a specific collect by its ID
@@ -55,14 +55,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a specific collect by its ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collects/{collect_id}.json")]
-        public abstract System.Threading.Tasks.Task GetSpecificCollectByItsID(long collect_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetSpecificCollectByItsID([System.ComponentModel.DataAnnotations.Required] long collect_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Retrieves a count of collects
         /// </summary>
         /// <returns>Retrieves a count of collects</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collects/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfCollects();
+        public abstract System.Threading.Tasks.Task CountCollects();
 
     }
 

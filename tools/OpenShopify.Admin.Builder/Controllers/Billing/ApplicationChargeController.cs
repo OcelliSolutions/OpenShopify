@@ -47,7 +47,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves an application charge</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_charges/{application_charge_id}.json")]
-        public abstract System.Threading.Tasks.Task GetApplicationCharge(long application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetApplicationCharge([System.ComponentModel.DataAnnotations.Required] long application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
     }
 

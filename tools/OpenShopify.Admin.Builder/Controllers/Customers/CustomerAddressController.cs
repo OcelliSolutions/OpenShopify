@@ -30,35 +30,35 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a list of addresses for a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses.json")]
-        public abstract System.Threading.Tasks.Task ListAddressesForCustomer(long customer_id);
+        public abstract System.Threading.Tasks.Task ListAddressesForCustomer([System.ComponentModel.DataAnnotations.Required] long customer_id);
 
         /// <summary>
         /// Creates a new address for a customer
         /// </summary>
         /// <returns>Creates a new address for a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses.json")]
-        public abstract System.Threading.Tasks.Task CreateAddressForCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCustomerAddressRequest request, long customer_id);
+        public abstract System.Threading.Tasks.Task CreateAddressForCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCustomerAddressRequest request, [System.ComponentModel.DataAnnotations.Required] long customer_id);
 
         /// <summary>
         /// Retrieves details for a single customer address
         /// </summary>
         /// <returns>Retrieves details for a single customer address</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}.json")]
-        public abstract System.Threading.Tasks.Task GetDetailsForSingleCustomerAddress(long address_id, long customer_id);
+        public abstract System.Threading.Tasks.Task GetCustomerAddress([System.ComponentModel.DataAnnotations.Required] long address_id, [System.ComponentModel.DataAnnotations.Required] long customer_id);
 
         /// <summary>
         /// Updates an existing customer address
         /// </summary>
         /// <returns>Updates an existing customer address</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateCustomerAddress([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCustomerAddressRequest request, long address_id, long customer_id);
+        public abstract System.Threading.Tasks.Task UpdateCustomerAddress([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCustomerAddressRequest request, [System.ComponentModel.DataAnnotations.Required] long address_id, [System.ComponentModel.DataAnnotations.Required] long customer_id);
 
         /// <summary>
         /// Removes an address from a customer’s address list
         /// </summary>
         /// <returns>Removes an address from a customer’s address list</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteAddressFromCustomersAddressList(long address_id, long customer_id);
+        public abstract System.Threading.Tasks.Task DeleteAddressFromCustomersAddressList([System.ComponentModel.DataAnnotations.Required] long address_id, [System.ComponentModel.DataAnnotations.Required] long customer_id);
 
         /// <summary>
         /// Performs bulk operations for multiple customer addresses
@@ -67,14 +67,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="operation">Operation to perform by keyword (for example, destroy)</param>
         /// <returns>Performs bulk operations for multiple customer addresses</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/set.json")]
-        public abstract System.Threading.Tasks.Task PerformBulkOperationsForMultipleCustomerAddresses([Microsoft.AspNetCore.Mvc.FromQuery(Name = "address_ids[]")] long address_ids, long customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string operation);
+        public abstract System.Threading.Tasks.Task PerformBulkOperationsForMultipleCustomerAddresses([Microsoft.AspNetCore.Mvc.FromQuery(Name = "address_ids[]")] [System.ComponentModel.DataAnnotations.Required] long address_ids, [System.ComponentModel.DataAnnotations.Required] long customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string operation);
 
         /// <summary>
         /// Sets the default address for a customer
         /// </summary>
         /// <returns>Sets the default address for a customer</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}/default.json")]
-        public abstract System.Threading.Tasks.Task SetDefaultAddressForCustomer(long address_id, long customer_id);
+        public abstract System.Threading.Tasks.Task SetDefaultAddressForCustomer([System.ComponentModel.DataAnnotations.Required] long address_id, [System.ComponentModel.DataAnnotations.Required] long customer_id);
 
     }
 

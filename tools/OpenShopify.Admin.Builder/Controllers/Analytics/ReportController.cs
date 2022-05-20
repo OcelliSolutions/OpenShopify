@@ -53,21 +53,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a single report</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("reports/{report_id}.json")]
-        public abstract System.Threading.Tasks.Task GetReport(long report_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetReport([System.ComponentModel.DataAnnotations.Required] long report_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates a report
         /// </summary>
         /// <returns>Updates a report</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("reports/{report_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateReport([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateReportRequest request, long report_id);
+        public abstract System.Threading.Tasks.Task UpdateReport([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateReportRequest request, [System.ComponentModel.DataAnnotations.Required] long report_id);
 
         /// <summary>
         /// Deletes a report
         /// </summary>
         /// <returns>Deletes a report</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("reports/{report_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteReport(long report_id);
+        public abstract System.Threading.Tasks.Task DeleteReport([System.ComponentModel.DataAnnotations.Required] long report_id);
 
     }
 

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
@@ -21,7 +22,7 @@ public class MarketingEventController : MarketingEventControllerBase
     /// <inheritdoc />
     [HttpPost, Route("marketing_events.json")]
     [ProducesResponseType(typeof(MarketingEventItem), StatusCodes.Status201Created)]
-    public override Task CreateMarketingEvent(CreateMarketingEventRequest request)
+    public override Task CreateMarketingEvent([Required] CreateMarketingEventRequest request)
     {
         throw new NotImplementedException();
     }
@@ -29,7 +30,7 @@ public class MarketingEventController : MarketingEventControllerBase
     /// <inheritdoc />
     [HttpGet, Route("marketing_events/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task GetCountOfAllMarketingEvents()
+    public override Task CountMarketingEvents()
     {
         throw new NotImplementedException();
     }
@@ -37,7 +38,7 @@ public class MarketingEventController : MarketingEventControllerBase
     /// <inheritdoc />
     [HttpGet, Route("marketing_events/{marketing_event_id:long}.json")]
     [ProducesResponseType(typeof(MarketingEventItem), StatusCodes.Status200OK)]
-    public override Task GetMarketingEvent(long marketing_event_id)
+    public override Task GetMarketingEvent([Required] long marketing_event_id)
     {
         throw new NotImplementedException();
     }
@@ -45,7 +46,7 @@ public class MarketingEventController : MarketingEventControllerBase
     /// <inheritdoc />
     [HttpPut, Route("marketing_events/{marketing_event_id:long}.json")]
     [ProducesResponseType(typeof(MarketingEventItem), StatusCodes.Status200OK)]
-    public override Task UpdateMarketingEvent(UpdateMarketingEventRequest request, long marketing_event_id)
+    public override Task UpdateMarketingEvent([Required] UpdateMarketingEventRequest request, [Required] long marketing_event_id)
     {
         throw new NotImplementedException();
     }
@@ -53,7 +54,7 @@ public class MarketingEventController : MarketingEventControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("marketing_events/{marketing_event_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteMarketingEvent(long marketing_event_id)
+    public override Task DeleteMarketingEvent([Required] long marketing_event_id)
     {
         throw new NotImplementedException();
     }
@@ -62,7 +63,7 @@ public class MarketingEventController : MarketingEventControllerBase
     [HttpPost, Route("marketing_events/{marketing_event_id:long}/engagements.json")]
     [ProducesResponseType(typeof(EngagementList), StatusCodes.Status201Created)]
     //TODO: wrong request type
-    public override Task CreateMarketingEngagementsOnMarketingEvent(CreateMarketingEventRequest request, long marketing_event_id, string occurred_on,
+    public override Task CreateMarketingEngagementsOnMarketingEvent([Required] CreateMarketingEventRequest request, [Required] long marketing_event_id, string occurred_on,
         string? ad_spend, string? clicks_count, string? comments_count, string? favorites_count, string? impressions_count,
         string? is_cumulative, string? shares_count, string? views_count)
     {

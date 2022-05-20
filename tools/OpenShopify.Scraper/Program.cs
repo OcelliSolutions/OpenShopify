@@ -42,7 +42,7 @@ if (mainMenu.api.rest_sidenav is null)
 else
 {
     #region Gather & Clean Specs
-    //get psudo-OpenApi specs from the source of each sub page only for the current version
+    //get pseudo-OpenApi specs from the source of each sub page only for the current version
     var currentVersion = (string)mainMenu.api.current_stable_version;
     var rcVersion = (string)mainMenu.api.selectable_versions[1];
     var getVersion = version switch
@@ -106,7 +106,7 @@ void CreateFoldersIfMissing(string path)
     }
 }
 
-// given a psudo-OpenApi spec from Shopify, make it valid version that can be used later
+// given a pseudo-OpenApi spec from Shopify, make it valid version that can be used later
 dynamic CleanOpenApi(dynamic openApi)
 {
     dynamic clean = new ExpandoObject();
@@ -139,7 +139,7 @@ dynamic CleanOpenApi(dynamic openApi)
                 pathParameters.Add((string)parameter["name"]);
         }
 
-        for (int i = 0; i < parameters.Count; i++)
+        for (var i = 0; i < parameters.Count; i++)
         {
             var parameter = parameters[i];
             if ((string)parameter["in"] == "path" || !pathParameters.Contains((string)parameter["name"])) continue;
@@ -200,7 +200,7 @@ string? RemoveHtmlFromString(string? html)
     if (html == null) return null;
     const string removeHtmlTagPattern = "<[^>]*(>|$)";
     html = Regex.Replace(html, removeHtmlTagPattern, string.Empty);
-    const string removeExtraSpacesPattern = $@"\n +";
+    const string removeExtraSpacesPattern = @"\n +";
     html = Regex.Replace(html, removeExtraSpacesPattern, "\n ");
     return html.Trim();
 }
@@ -320,7 +320,7 @@ async Task CreateController(string openApi, string section, string controllerNam
                 "payment_id", "payout_id", "price_rule_id", "product_id", "product_listing_id", "province_id", "risk_id", "recurring_application_charge_id", "redirect_id", "refund_id",
                 "report_id", "script_tag_id", "smart_collection_id", "storefront_access_token_id", "theme_id", "transaction_id", "usage_charge_id", "user_id", "variant_id", "webhook_id"
             },
-            "string", "long");
+            "string", "[System.ComponentModel.DataAnnotations.Required] long");
 
         code = ReplaceParameterTypes(code,
             new List<string>()
@@ -343,9 +343,11 @@ async Task CreateController(string openApi, string section, string controllerNam
         code = code.Replace("string? page_info, string? page_info", "string? page_info");
         code = code.Replace("page_info, page_info", "page_info");
         code = code.Replace("string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? page_info", "string? page_info");
-        
-        code = code.Replace("Task Retrieve", "Task Get");
+
+        //Standardize method name prefixes
         code = code.Replace("Task Receive", "Task Get");
+        code = code.Replace("Task Retrieve", "Task Get");
+        code = code.Replace("Task Return", "Task Get");
         code = code.Replace("Task Modify", "Task Update");
         code = code.Replace("Task Remove", "Task Delete");
 
@@ -353,23 +355,29 @@ async Task CreateController(string openApi, string section, string controllerNam
         code = code.Replace("Task UpdateExisting", "Task Update");
         code = code.Replace("Task GetListOfAll", "Task List");
         code = code.Replace("Task GetListOf", "Task List");
+        code = code.Replace("Task GetAllOf", "Task List");
+        code = code.Replace("Task GetAll", "Task List");
+        code = code.Replace("Task GetDetailsForSingle", "Task Get");
         code = code.Replace("Task GetSingle", "Task Get");
+        code = code.Replace("Task GetCountOfAll", "Task Count");
+        code = code.Replace("Task GetCountOf", "Task Count");
+        code = code.Replace("Task DeleteExisting", "Task Delete");
 
         //Declare a new input parameter for POST and PUT methods.
         code = Regex.Replace(code, @"(Task Create\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.Create{controllerName}Request request, ");
         code = Regex.Replace(code, @"(Task Update\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.Update{controllerName}Request request, ");
         code = code.Replace(", )", ")");
 
-        var path = $@"../../../../OpenShopify.Admin.Builder/Controllers";
+        var path = @"../../../../OpenShopify.Admin.Builder/Controllers";
         //var path = $@"../../../../OpenShopify.Admin.Builder/Delete";
         if(controllerName == "AccessScope")
-            path = $@"../../../../OpenShopify.OAuth.Builder/Controllers";
+            path = @"../../../../OpenShopify.OAuth.Builder/Controllers";
         if (!string.IsNullOrWhiteSpace(section))
             path = Path.Combine(path, section);
         CreateFoldersIfMissing(path);
         path = Path.Combine(path, $@"{controllerName}Controller.cs");
         await File.WriteAllTextAsync(path, code);
-        //await CreateExtendedControllerIfMissing(section, controllerName);
+        await CreateExtendedControllerIfMissing(section, controllerName);
     }
     catch (Exception ex)
     {
@@ -392,20 +400,22 @@ string ReplaceParameterTypes(string code, List<string> parametersNames, string o
 
 async Task CreateExtendedControllerIfMissing(string section, string controllerName)
 {
-    var template = $@"using Microsoft.AspNetCore.Mvc;
-using OpenShopify.Admin.Builder.Attributes;
-using OpenShopify.Admin.Builder.Data;
+    var template = $@"using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Models;
+using OpenShopify.Common.Attributes;
+using OpenShopify.Common.Data;
 
 namespace OpenShopify.Admin.Builder.Controllers.{section};
 
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.{section})]
 [ApiController]
-public class {controllerName}Controller : I{controllerName}Controller {{}}";
+public class {controllerName}Controller : {controllerName}ControllerBase {{}}";
     
-    var path = $@"../../../../OpenShopify.Admin.Builder/Controllers";
+    var path = @"../../../../OpenShopify.Admin.Builder/Controllers";
     if (controllerName == "AccessScope")
-        path = $@"../../../../OpenShopify.OAuth.Builder/Controllers";
+        path = @"../../../../OpenShopify.OAuth.Builder/Controllers";
     if (!string.IsNullOrWhiteSpace(section))
         path = Path.Combine(path, section);
     CreateFoldersIfMissing(path);

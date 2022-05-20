@@ -7,11 +7,17 @@ servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
       store_name:
-        default: sample_store
+        default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
         default: '2022-04'
         description: The api version.
+  - url: 'https://{store_name}.myshopify.com/admin'
+    description: Some endpoints do not use the standard routing. This is an alternate.
+    variables:
+      store_name:
+        default: '{{store_name}}'
+        description: The sub-domain of the storefront.
 paths:
   /assigned_fulfillment_orders.json:
     get:
@@ -32,8 +38,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -43,10 +49,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_orders/{fulfillment_order_id}/cancellation_request.json':
     post:
       tags:
@@ -66,8 +68,8 @@ paths:
           schema:
             type: string
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -77,10 +79,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json':
     post:
       tags:
@@ -100,8 +98,8 @@ paths:
           schema:
             type: string
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -111,10 +109,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json':
     post:
       tags:
@@ -134,8 +128,8 @@ paths:
           schema:
             type: string
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -145,10 +139,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /carrier_services.json:
     post:
       tags:
@@ -163,9 +153,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateCarrierServiceRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -175,18 +166,14 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     get:
       tags:
         - CarrierService
       summary: Retrieves a list of carrier services
       operationId: ListCarrierServices
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -196,10 +183,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/carrier_services/{carrier_service_id}.json':
     put:
       tags:
@@ -221,9 +204,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateCarrierServiceRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -233,10 +217,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     get:
       tags:
         - CarrierService
@@ -250,8 +230,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -261,10 +241,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - CarrierService
@@ -278,8 +254,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -289,10 +265,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/orders/{order_id}/fulfillments.json':
     get:
       tags:
@@ -352,8 +324,8 @@ paths:
             type: string
             format: date-time
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -363,10 +335,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     post:
       tags:
         - Fulfillment
@@ -387,9 +355,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateFulfillmentRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -399,10 +368,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_orders/{fulfillment_order_id}/fulfillments.json':
     get:
       tags:
@@ -417,8 +382,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -428,16 +393,12 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/orders/{order_id}/fulfillments/count.json':
     get:
       tags:
         - Fulfillment
       summary: Retrieves a count of fulfillments associated with a specific order
-      operationId: GetCountOfFulfillmentsAssociatedWithSpecificOrder
+      operationId: CountFulfillmentsAssociatedWithSpecificOrder
       parameters:
         - name: order_id
           in: path
@@ -485,21 +446,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CountItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/orders/{order_id}/fulfillments/{fulfillment_id}.json':
     get:
       tags:
@@ -525,8 +471,8 @@ paths:
           schema:
             type: string
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -536,10 +482,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     put:
       tags:
         - Fulfillment
@@ -566,9 +508,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateFulfillmentRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -578,10 +521,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /fulfillments.json:
     post:
       tags:
@@ -596,9 +535,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateFulfillmentRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -608,10 +548,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillments/{fulfillment_id}/update_tracking.json':
     post:
       tags:
@@ -632,9 +568,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateFulfillmentRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -644,10 +581,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/complete.json':
     post:
       tags:
@@ -668,8 +601,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -679,10 +612,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/open.json':
     post:
       tags:
@@ -703,8 +632,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -714,10 +643,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/cancel.json':
     post:
       tags:
@@ -738,8 +663,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -749,10 +674,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillments/{fulfillment_id}/cancel.json':
     post:
       tags:
@@ -767,8 +688,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -778,10 +699,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/events.json':
     get:
       tags:
@@ -802,8 +719,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -813,10 +730,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     post:
       tags:
         - FulfillmentEvent
@@ -843,9 +756,10 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateFulfillmentEventRequest'
+        required: true
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -855,10 +769,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json':
     get:
       tags:
@@ -885,8 +795,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -896,10 +806,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - FulfillmentEvent
@@ -925,8 +831,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -936,10 +842,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/orders/{order_id}/fulfillment_orders.json':
     get:
       tags:
@@ -954,8 +856,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -965,10 +867,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_orders/{fulfillment_order_id}.json':
     get:
       tags:
@@ -983,8 +881,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -994,10 +892,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_orders/{fulfillment_order_id}/cancel.json':
     post:
       tags:
@@ -1012,8 +906,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1023,10 +917,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_orders/{fulfillment_order_id}/close.json':
     post:
       tags:
@@ -1046,8 +936,8 @@ paths:
           schema:
             type: string
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1057,10 +947,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_orders/{fulfillment_order_id}/move.json':
     post:
       tags:
@@ -1081,8 +967,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1092,10 +978,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_orders/{fulfillment_order_id}/open.json':
     post:
       tags:
@@ -1110,8 +992,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1121,10 +1003,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_orders/{fulfillment_order_id}/reschedule.json':
     post:
       tags:
@@ -1139,8 +1017,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1150,10 +1028,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_orders/{fulfillment_order_id}/hold.json':
     post:
       tags:
@@ -1183,8 +1057,8 @@ paths:
           schema:
             type: string
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1194,10 +1068,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_orders/{fulfillment_order_id}/release_hold.json':
     post:
       tags:
@@ -1212,8 +1082,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1223,10 +1093,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json':
     post:
       tags:
@@ -1251,8 +1117,8 @@ paths:
           schema:
             type: string
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1262,10 +1128,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json':
     post:
       tags:
@@ -1285,8 +1147,8 @@ paths:
           schema:
             type: string
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1296,10 +1158,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json':
     post:
       tags:
@@ -1319,8 +1177,8 @@ paths:
           schema:
             type: string
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1330,10 +1188,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /fulfillment_services.json:
     get:
       tags:
@@ -1361,21 +1215,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentServiceList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     post:
       tags:
         - FulfillmentService
@@ -1389,6 +1228,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateFulfillmentServiceRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -1405,21 +1245,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentServiceItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_services/{fulfillment_service_id}.json':
     get:
       tags:
@@ -1449,21 +1274,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentServiceItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     put:
       tags:
         - FulfillmentService
@@ -1484,6 +1294,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateFulfillmentServiceRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -1500,26 +1311,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentServiceItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - FulfillmentService
       summary: Remove an existing FulfillmentService
-      operationId: DeleteExistingFulfillmentService
+      operationId: DeleteFulfillmentService
       parameters:
         - name: fulfillment_service_id
           in: path
@@ -1539,21 +1335,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/fulfillment_orders/{fulfillment_order_id}/locations_for_move.json':
     get:
       tags:
@@ -1568,8 +1349,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '401':
-          description: Unauthorized
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1579,14 +1360,11 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     Address:
       required:
+        - customer_id
         - id
       type: object
       properties:
@@ -1706,6 +1484,8 @@ components:
           nullable: true
       additionalProperties: { }
     CreateCarrierServiceRequest:
+      required:
+        - carrier_service
       type: object
       properties:
         carrier_service:
@@ -1871,12 +1651,16 @@ components:
           nullable: true
       additionalProperties: { }
     CreateFulfillmentEventRequest:
+      required:
+        - fulfillment_event
       type: object
       properties:
         fulfillment_event:
           $ref: '#/components/schemas/CreateFulfillmentEvent'
       additionalProperties: { }
     CreateFulfillmentRequest:
+      required:
+        - fulfillment
       type: object
       properties:
         fulfillment:
@@ -1937,6 +1721,8 @@ components:
           nullable: true
       additionalProperties: { }
     CreateFulfillmentServiceRequest:
+      required:
+        - fulfillment_service
       type: object
       properties:
         fulfillment_service:
@@ -1956,13 +1742,6 @@ components:
         amount_set:
           $ref: '#/components/schemas/PriceSet'
       additionalProperties: { }
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: string
-          nullable: true
-      additionalProperties: false
     FulfillmentService:
       required:
         - format
@@ -2031,12 +1810,16 @@ components:
       type: string
       additionalProperties: { }
     FulfillmentServiceItem:
+      required:
+        - fulfillment_service
       type: object
       properties:
         fulfillment_service:
           $ref: '#/components/schemas/FulfillmentService'
       additionalProperties: { }
     FulfillmentServiceList:
+      required:
+        - fulfillment_services
       type: object
       properties:
         fulfillment_services:
@@ -2336,39 +2119,9 @@ components:
       additionalProperties: { }
     UpdateCarrierServiceRequest:
       required:
-        - id
+        - carrier_service
       type: object
       properties:
-        active:
-          type: boolean
-          description: States whether or not this carrier service is active. Valid values are "true" and "false".
-          nullable: true
-        callback_url:
-          type: string
-          description: States the URL endpoint that shopify needs to retrieve shipping rates. This must be a public URL.
-          nullable: true
-        carrier_service_type:
-          type: string
-          description: Distinguishes between api or legacy carrier services.
-          nullable: true
-        name:
-          type: string
-          description: The name of the shipping service as seen by merchants and their customers.
-          nullable: true
-        service_discovery:
-          type: boolean
-          description: "States if merchants are able to send dummy data to your service through the Shopify admin\r\nto see shipping rate examples. Valid values are \"true\" and \"false\"."
-          nullable: true
-        format:
-          type: string
-          description: "The format of the data returned by the URL endpoint. Valid values are \"json\" and \"xml\".\r\nIf a format is not specified, it will default to json."
-          nullable: true
-        id:
-          type: integer
-          format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         carrier_service:
           $ref: '#/components/schemas/UpdateCarrierService'
       additionalProperties: { }
@@ -2464,93 +2217,9 @@ components:
       additionalProperties: { }
     UpdateFulfillmentRequest:
       required:
-        - id
+        - fulfillment
       type: object
       properties:
-        created_at:
-          type: string
-          description: The date and time when the fulfillment was created.
-          format: date-time
-          nullable: true
-        line_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItem'
-          description: A historical record of each item in the fulfillment.
-        order_id:
-          type: integer
-          description: The unique numeric identifier for the order.
-          format: int64
-          nullable: true
-        receipt:
-          description: A textfield with information about the receipt.
-        status:
-          type: string
-          description: "The status of the fulfillment. Valid values are 'pending', 'open', 'success', 'cancelled',\r\n'error' and 'failure'."
-          nullable: true
-        location_id:
-          type: integer
-          description: The unique identifier of the location that the fulfillment should be processed for.
-          format: int64
-          nullable: true
-        email:
-          type: string
-          description: This property is undocumented by Shopify. It appears to be the customer's email address
-          nullable: true
-        notify_customer:
-          type: boolean
-          description: "A flag indicating whether the customer should be notified. If set to true, an email will be\r\nsent when the fulfillment is created or updated. The default value is false for fulfillments\r\non any orders created initially through the API. For all other orders, the default value is true."
-          nullable: true
-        destination:
-          $ref: '#/components/schemas/Address'
-        tracking_company:
-          type: string
-          description: The name of the shipping company.
-          nullable: true
-        tracking_number:
-          type: string
-          description: "The shipping number, provided by the shipping company. If multiple tracking numbers\r\nexist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingNumbers), returns the first number."
-          nullable: true
-        tracking_numbers:
-          type: array
-          items:
-            type: string
-          description: 'A list of shipping numbers, provided by the shipping company. May be null.'
-        tracking_url:
-          type: string
-          description: "The tracking url, provided by the shipping company. May be null. If multiple tracking URLs\r\nexist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingUrls), returns the first URL."
-          nullable: true
-        tracking_urls:
-          type: array
-          items:
-            type: string
-          description: 'An array of one or more tracking urls, provided by the shipping company. May be null.'
-        updated_at:
-          type: string
-          description: The date and time when the fulfillment was last modified.
-          format: date-time
-          nullable: true
-        variant_inventory_management:
-          type: string
-          description: States the name of the inventory management service.
-          nullable: true
-        service:
-          type: string
-          description: This property is undocumented by Shopify.
-          nullable: true
-        shipment_status:
-          type: string
-          description: This property is undocumented by Shopify.
-          nullable: true
-        name:
-          type: string
-          nullable: true
-        id:
-          type: integer
-          format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         fulfillment:
           $ref: '#/components/schemas/UpdateFulfillment'
       additionalProperties: { }
@@ -2617,64 +2286,9 @@ components:
       additionalProperties: { }
     UpdateFulfillmentServiceRequest:
       required:
-        - format
-        - id
-        - name
+        - fulfillment_service
       type: object
       properties:
-        name:
-          type: string
-          description: The name of the fulfillment service as seen by merchants and their customers.
-        callback_url:
-          type: string
-          description: "States the URL endpoint that Shopify needs to retrieve inventory and tracking updates.\r\nThis field is necessary if either inventory_management or tracking_support is set to \"true\"."
-          nullable: true
-        format:
-          $ref: '#/components/schemas/FulfillmentServiceFormat'
-        handle:
-          type: string
-          description: A human-friendly unique string for the fulfillment service generated from its title.
-          nullable: true
-        inventory_management:
-          type: boolean
-          description: States if the fulfillment service tracks product inventory and provides updates to Shopify.
-        location_id:
-          type: integer
-          description: The unique identifier of the location tied to the fulfillment service
-          format: int64
-          nullable: true
-        provider_id:
-          type: string
-          description: A unique identifier for the fulfillment service provider.
-          nullable: true
-        requires_shipping_method:
-          type: boolean
-          description: States if the fulfillment service requires products to be physically shipped.
-        tracking_support:
-          type: boolean
-          description: States if the fulfillment service provides tracking numbers for packages.
-        email:
-          type: string
-          description: This property is undocumented by Shopify.
-          nullable: true
-        include_pending_stock:
-          type: boolean
-          description: This property is undocumented by Shopify.
-          nullable: true
-        service_name:
-          type: string
-          description: This property is undocumented by Shopify.
-          nullable: true
-        fulfillment_orders_opt_in:
-          type: boolean
-          description: Whether the fulfillment service wants to register for APIs related to fulfillment orders.
-          nullable: true
-        id:
-          type: integer
-          format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         fulfillment_service:
           $ref: '#/components/schemas/UpdateFulfillmentService'
       additionalProperties: { }

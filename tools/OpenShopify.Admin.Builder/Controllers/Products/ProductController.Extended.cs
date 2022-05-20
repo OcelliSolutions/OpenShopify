@@ -27,7 +27,7 @@ public class ProductController : ProductControllerBase
     /// <inheritdoc />
     [HttpPost, Route("products.json")]
     [ProducesResponseType(typeof(ProductItem), StatusCodes.Status201Created)]
-    public override Task CreateProduct(CreateProductRequest request)
+    public override Task CreateProduct([Required] CreateProductRequest request)
     {
         throw new NotImplementedException();
     }
@@ -35,7 +35,7 @@ public class ProductController : ProductControllerBase
     /// <inheritdoc />
     [HttpGet, Route("products/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task GetCountOfProducts(long? collection_id, DateTime? created_at_max, DateTime? created_at_min,
+    public override Task CountProducts(long? collection_id, DateTime? created_at_max, DateTime? created_at_min,
         string? product_type, DateTime? published_at_max, DateTime? published_at_min, string published_status,
         DateTime? updated_at_max, DateTime? updated_at_min, string? vendor)
     {
@@ -45,7 +45,7 @@ public class ProductController : ProductControllerBase
     /// <inheritdoc />
     [HttpGet, Route("products/{product_id:long}.json")]
     [ProducesResponseType(typeof(ProductItem), StatusCodes.Status200OK)]
-    public override Task GetProduct(long product_id, string? fields)
+    public override Task GetProduct([Required] long product_id, string? fields)
     {
         throw new NotImplementedException();
     }
@@ -53,7 +53,7 @@ public class ProductController : ProductControllerBase
     /// <inheritdoc />
     [IgnoreApi, HttpPut, Route("products/{product_id:long}.invalid")]
     [ProducesResponseType(typeof(ProductItem), StatusCodes.Status200OK)]
-    public override Task UpdateProduct(UpdateProductRequest request, long product_id)
+    public override Task UpdateProduct([Required] UpdateProductRequest request, [Required] long product_id)
     {
         throw new NotImplementedException();
     }
@@ -61,7 +61,7 @@ public class ProductController : ProductControllerBase
     /// <inheritdoc cref="ProductControllerBase.UpdateProduct" />
     [HttpPut, Route("products/{product_id:long}.json")]
     [ProducesResponseType(typeof(ProductItem), StatusCodes.Status200OK)]
-    public Task UpdateProduct(long product_id, ProductItem request)
+    public Task UpdateProduct([Required] long product_id, ProductItem request)
     {
         throw new NotImplementedException();
     }
@@ -69,7 +69,7 @@ public class ProductController : ProductControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("products/{product_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteProduct(long product_id)
+    public override Task DeleteProduct([Required] long product_id)
     {
         throw new NotImplementedException();
     }

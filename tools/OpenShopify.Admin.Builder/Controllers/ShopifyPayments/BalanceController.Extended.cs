@@ -11,7 +11,7 @@ public class BalanceController : BalanceControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("shopify_payments/balance.json")]
-    public override Task ReturnCurrentBalance()
+    public override Task GetCurrentBalance()
     {
         throw new NotImplementedException();
     }

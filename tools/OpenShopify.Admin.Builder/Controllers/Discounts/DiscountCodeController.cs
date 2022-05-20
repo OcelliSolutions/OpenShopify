@@ -30,35 +30,35 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a discount code</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes.json")]
-        public abstract System.Threading.Tasks.Task CreateDiscountCode([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateDiscountCodeRequest request, long price_rule_id);
+        public abstract System.Threading.Tasks.Task CreateDiscountCode([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateDiscountCodeRequest request, [System.ComponentModel.DataAnnotations.Required] long price_rule_id);
 
         /// <summary>
         /// Retrieves a list of discount codes
         /// </summary>
         /// <returns>Retrieves a list of discount codes</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes.json")]
-        public abstract System.Threading.Tasks.Task ListDiscountCodes(long price_rule_id);
+        public abstract System.Threading.Tasks.Task ListDiscountCodes([System.ComponentModel.DataAnnotations.Required] long price_rule_id);
 
         /// <summary>
         /// Updates an existing discount code
         /// </summary>
         /// <returns>Updates an existing discount code</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateDiscountCode([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateDiscountCodeRequest request, long discount_code_id, long price_rule_id);
+        public abstract System.Threading.Tasks.Task UpdateDiscountCode([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateDiscountCodeRequest request, [System.ComponentModel.DataAnnotations.Required] long discount_code_id, [System.ComponentModel.DataAnnotations.Required] long price_rule_id);
 
         /// <summary>
         /// Retrieves a single discount code
         /// </summary>
         /// <returns>Retrieves a single discount code</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json")]
-        public abstract System.Threading.Tasks.Task GetDiscountCode(long discount_code_id, long price_rule_id);
+        public abstract System.Threading.Tasks.Task GetDiscountCode([System.ComponentModel.DataAnnotations.Required] long discount_code_id, [System.ComponentModel.DataAnnotations.Required] long price_rule_id);
 
         /// <summary>
         /// Deletes a discount code
         /// </summary>
         /// <returns>Deletes a discount code</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteDiscountCode(long discount_code_id, long price_rule_id);
+        public abstract System.Threading.Tasks.Task DeleteDiscountCode([System.ComponentModel.DataAnnotations.Required] long discount_code_id, [System.ComponentModel.DataAnnotations.Required] long price_rule_id);
 
         /// <summary>
         /// Retrieves the location of a discount code
@@ -75,28 +75,28 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="times_used_min">Show discount codes used less than or equal to this value.</param>
         /// <returns>Retrieves a count of discount codes for a shop</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("discount_codes/count.json")]
-        public abstract System.Threading.Tasks.Task GetCountOfDiscountCodesForShop([Microsoft.AspNetCore.Mvc.FromQuery] string? times_used, [Microsoft.AspNetCore.Mvc.FromQuery] string? times_used_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? times_used_min);
+        public abstract System.Threading.Tasks.Task CountDiscountCodesForShop([Microsoft.AspNetCore.Mvc.FromQuery] string? times_used, [Microsoft.AspNetCore.Mvc.FromQuery] string? times_used_max, [Microsoft.AspNetCore.Mvc.FromQuery] string? times_used_min);
 
         /// <summary>
         /// Creates a discount code creation job
         /// </summary>
         /// <returns>Creates a discount code creation job</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/batch.json")]
-        public abstract System.Threading.Tasks.Task CreateDiscountCodeCreationJob([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateDiscountCodeRequest request, long price_rule_id);
+        public abstract System.Threading.Tasks.Task CreateDiscountCodeCreationJob([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateDiscountCodeRequest request, [System.ComponentModel.DataAnnotations.Required] long price_rule_id);
 
         /// <summary>
         /// Retrieves a discount code creation job
         /// </summary>
         /// <returns>Retrieves a discount code creation job</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/batch/{batch_id}.json")]
-        public abstract System.Threading.Tasks.Task GetDiscountCodeCreationJob(long batch_id, long price_rule_id);
+        public abstract System.Threading.Tasks.Task GetDiscountCodeCreationJob([System.ComponentModel.DataAnnotations.Required] long batch_id, [System.ComponentModel.DataAnnotations.Required] long price_rule_id);
 
         /// <summary>
         /// Retrieves a list of discount codes for a discount code creation job
         /// </summary>
         /// <returns>Retrieves a list of discount codes for a discount code creation job</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/batch/{batch_id}/discount_codes.json")]
-        public abstract System.Threading.Tasks.Task ListDiscountCodesForDiscountCodeCreationJob(long batch_id, long price_rule_id);
+        public abstract System.Threading.Tasks.Task ListDiscountCodesForDiscountCodeCreationJob([System.ComponentModel.DataAnnotations.Required] long batch_id, [System.ComponentModel.DataAnnotations.Required] long price_rule_id);
 
     }
 

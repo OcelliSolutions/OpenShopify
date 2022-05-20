@@ -7,11 +7,17 @@ servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
       store_name:
-        default: sample_store
+        default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
         default: '2022-04'
         description: The api version.
+  - url: 'https://{store_name}.myshopify.com/admin'
+    description: Some endpoints do not use the standard routing. This is an alternate.
+    variables:
+      store_name:
+        default: '{{store_name}}'
+        description: The sub-domain of the storefront.
 paths:
   '/price_rules/{price_rule_id}/discount_codes.json':
     post:
@@ -34,6 +40,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateDiscountCodeRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -50,21 +57,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DiscountCodeItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     get:
       tags:
         - DiscountCode
@@ -93,21 +85,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DiscountCodeList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/price_rules/{price_rule_id}/discount_codes/{discount_code_id}.json':
     put:
       tags:
@@ -135,6 +112,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdateDiscountCodeRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -151,21 +129,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DiscountCodeItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     get:
       tags:
         - DiscountCode
@@ -200,21 +163,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DiscountCodeItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - DiscountCode
@@ -245,21 +193,6 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /discount_codes/lookup.json:
     get:
       tags:
@@ -284,27 +217,12 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /discount_codes/count.json:
     get:
       tags:
         - DiscountCode
       summary: Retrieves a count of discount codes for a shop
-      operationId: GetCountOfDiscountCodesForShop
+      operationId: CountDiscountCodesForShop
       parameters:
         - name: times_used
           in: query
@@ -337,21 +255,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CountItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/price_rules/{price_rule_id}/batch.json':
     post:
       tags:
@@ -373,6 +276,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateDiscountCodeRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -389,21 +293,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DiscountCodeCreationItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/price_rules/{price_rule_id}/batch/{batch_id}.json':
     get:
       tags:
@@ -439,21 +328,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DiscountCodeCreationItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/price_rules/{price_rule_id}/batch/{batch_id}/discount_codes.json':
     get:
       tags:
@@ -489,21 +363,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DiscountCodeList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /price_rules.json:
     post:
       tags:
@@ -518,6 +377,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreatePriceRuleRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -534,21 +394,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PriceRuleItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     get:
       tags:
         - PriceRule
@@ -640,21 +485,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PriceRuleList'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   '/price_rules/{price_rule_id}.json':
     put:
       tags:
@@ -676,6 +506,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/UpdatePriceRuleRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -692,21 +523,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PriceRuleItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     get:
       tags:
         - PriceRule
@@ -735,26 +551,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PriceRuleItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
         - PriceRule
       summary: Remove an existing PriceRule
-      operationId: DeleteExistingPriceRule
+      operationId: DeletePriceRule
       parameters:
         - name: price_rule_id
           in: path
@@ -774,27 +575,12 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /price_rules/count.json:
     get:
       tags:
         - PriceRule
       summary: Retrieves a count of all price rules
-      operationId: GetCountOfAllPriceRules
+      operationId: CountPriceRules
       responses:
         '200':
           description: Success
@@ -811,21 +597,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CountItem'
-        '401':
-          description: Unauthorized
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
     CountItem:
@@ -852,6 +623,8 @@ components:
           nullable: true
       additionalProperties: { }
     CreateDiscountCodeRequest:
+      required:
+        - discount_code
       type: object
       properties:
         discount_code:
@@ -941,6 +714,8 @@ components:
           nullable: true
       additionalProperties: { }
     CreatePriceRuleRequest:
+      required:
+        - price_rule
       type: object
       properties:
         price_rule:
@@ -983,18 +758,24 @@ components:
           nullable: true
       additionalProperties: { }
     DiscountCodeCreationItem:
+      required:
+        - discount_code_creation
       type: object
       properties:
         discount_code_creation:
           $ref: '#/components/schemas/DiscountCodeCreation'
       additionalProperties: { }
     DiscountCodeItem:
+      required:
+        - discount_code
       type: object
       properties:
         discount_code:
           $ref: '#/components/schemas/DiscountCode'
       additionalProperties: { }
     DiscountCodeList:
+      required:
+        - discount_codes
       type: object
       properties:
         discount_codes:
@@ -1002,13 +783,6 @@ components:
           items:
             $ref: '#/components/schemas/DiscountCode'
       additionalProperties: { }
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: string
-          nullable: true
-      additionalProperties: false
     PrerequisiteValueRange:
       type: object
       properties:
@@ -1113,12 +887,16 @@ components:
           nullable: true
       additionalProperties: { }
     PriceRuleItem:
+      required:
+        - price_rule
       type: object
       properties:
         price_rule:
           $ref: '#/components/schemas/PriceRule'
       additionalProperties: { }
     PriceRuleList:
+      required:
+        - price_rules
       type: object
       properties:
         price_rules:
@@ -1152,27 +930,9 @@ components:
       additionalProperties: { }
     UpdateDiscountCodeRequest:
       required:
-        - id
+        - discount_code
       type: object
       properties:
-        amount:
-          type: string
-          description: The amount of the discount.
-          nullable: true
-        code:
-          type: string
-          description: The discount code.
-          nullable: true
-        type:
-          type: string
-          description: 'The type of discount. Known values are ''percentage'', ''shipping'', ''fixed_amount'' and ''none''.'
-          nullable: true
-        id:
-          type: integer
-          format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         discount_code:
           $ref: '#/components/schemas/UpdateDiscountCode'
       additionalProperties: { }
@@ -1269,94 +1029,9 @@ components:
       additionalProperties: { }
     UpdatePriceRuleRequest:
       required:
-        - id
+        - price_rule
       type: object
       properties:
-        title:
-          type: string
-          nullable: true
-        target_type:
-          type: string
-          nullable: true
-        target_selection:
-          type: string
-          nullable: true
-        allocation_method:
-          type: string
-          nullable: true
-        value_type:
-          type: string
-          nullable: true
-        value:
-          type: number
-          format: decimal
-        once_per_customer:
-          type: boolean
-          nullable: true
-        usage_limit:
-          type: integer
-          format: int64
-          nullable: true
-        customer_selection:
-          type: string
-          nullable: true
-        prerequisite_subtotal_range:
-          $ref: '#/components/schemas/PrerequisiteValueRange'
-        prerequisite_shipping_price_range:
-          $ref: '#/components/schemas/PrerequisiteValueRange'
-        prerequisite_saved_search_ids:
-          type: array
-          items:
-            type: integer
-            format: int64
-          nullable: true
-        prerequisite_customer_ids:
-          type: array
-          items:
-            type: integer
-            format: int64
-        entitled_product_ids:
-          type: array
-          items:
-            type: integer
-            format: int64
-        entitled_variant_ids:
-          type: array
-          items:
-            type: integer
-            format: int64
-        entitled_collection_ids:
-          type: array
-          items:
-            type: integer
-            format: int64
-        entitled_country_ids:
-          type: array
-          items:
-            type: integer
-            format: int64
-        starts_at:
-          type: string
-          format: date-time
-          nullable: true
-        ends_at:
-          type: string
-          format: date-time
-          nullable: true
-        created_at:
-          type: string
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          format: date-time
-          nullable: true
-        id:
-          type: integer
-          format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
         price_rule:
           $ref: '#/components/schemas/UpdatePriceRule'
       additionalProperties: { }
