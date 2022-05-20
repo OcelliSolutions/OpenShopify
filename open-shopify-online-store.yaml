@@ -1983,7 +1983,7 @@ components:
           description: A unique numeric identifier for the author of the article.
           format: int64
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateArticleRequest:
       required:
         - article
@@ -1991,7 +1991,7 @@ components:
       properties:
         article:
           $ref: '#/components/schemas/CreateArticle'
-      additionalProperties: { }
+      additionalProperties: false
     CreateAsset:
       type: object
       properties:
@@ -2047,7 +2047,7 @@ components:
           type: string
           description: The asset that you are adding.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateAssetRequest:
       required:
         - asset
@@ -2055,7 +2055,7 @@ components:
       properties:
         asset:
           $ref: '#/components/schemas/CreateAsset'
-      additionalProperties: { }
+      additionalProperties: false
     CreateBlog:
       type: object
       properties:
@@ -2095,7 +2095,7 @@ components:
           description: 'The date and time when changes were last made to the blog''s properties. Note that this is not updated when creating, modifying or deleting articles in the blog.'
           format: date-time
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateBlogRequest:
       required:
         - blog
@@ -2103,10 +2103,10 @@ components:
       properties:
         blog:
           $ref: '#/components/schemas/CreateBlog'
-      additionalProperties: { }
+      additionalProperties: false
     CreateComment:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     CreateCommentRequest:
       required:
         - comment
@@ -2114,7 +2114,7 @@ components:
       properties:
         comment:
           $ref: '#/components/schemas/CreateComment'
-      additionalProperties: { }
+      additionalProperties: false
     CreatePage:
       type: object
       properties:
@@ -2153,7 +2153,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PageMetafield'
-      additionalProperties: { }
+      additionalProperties: false
     CreatePageRequest:
       required:
         - page
@@ -2161,7 +2161,7 @@ components:
       properties:
         page:
           $ref: '#/components/schemas/CreatePage'
-      additionalProperties: { }
+      additionalProperties: false
     CreateRedirect:
       type: object
       properties:
@@ -2173,7 +2173,7 @@ components:
           type: string
           description: "The \"after\" path or URL to be redirected to. This property can be set to any path on the shop's site, or any URL, even one on a \r\ncompletely different domain."
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateRedirectRequest:
       required:
         - redirect
@@ -2181,7 +2181,7 @@ components:
       properties:
         redirect:
           $ref: '#/components/schemas/CreateRedirect'
-      additionalProperties: { }
+      additionalProperties: false
     CreateScriptTag:
       type: object
       properties:
@@ -2207,7 +2207,7 @@ components:
           description: The date and time when the OpenShopify.Admin.Builder.Models.ScriptTag was updated.
           format: date-time
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateScriptTagRequest:
       required:
         - script_tag
@@ -2215,7 +2215,7 @@ components:
       properties:
         script_tag:
           $ref: '#/components/schemas/CreateScriptTag'
-      additionalProperties: { }
+      additionalProperties: false
     CreateTheme:
       type: object
       properties:
@@ -2250,7 +2250,7 @@ components:
           description: The theme's store id. Can be null if not published in the store.
           format: int64
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateThemeRequest:
       required:
         - theme
@@ -2258,7 +2258,7 @@ components:
       properties:
         theme:
           $ref: '#/components/schemas/CreateTheme'
-      additionalProperties: { }
+      additionalProperties: false
     PageMetafield:
       required:
         - id
@@ -2378,7 +2378,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateArticleRequest:
       required:
         - article
@@ -2386,7 +2386,7 @@ components:
       properties:
         article:
           $ref: '#/components/schemas/UpdateArticle'
-      additionalProperties: { }
+      additionalProperties: false
     UpdateBlog:
       required:
         - id
@@ -2434,7 +2434,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateBlogRequest:
       required:
         - blog
@@ -2442,7 +2442,7 @@ components:
       properties:
         blog:
           $ref: '#/components/schemas/UpdateBlog'
-      additionalProperties: { }
+      additionalProperties: false
     UpdateComment:
       required:
         - id
@@ -2454,7 +2454,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateCommentRequest:
       required:
         - comment
@@ -2462,7 +2462,7 @@ components:
       properties:
         comment:
           $ref: '#/components/schemas/UpdateComment'
-      additionalProperties: { }
+      additionalProperties: false
     UpdatePage:
       required:
         - id
@@ -2509,7 +2509,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdatePageRequest:
       required:
         - page
@@ -2517,7 +2517,7 @@ components:
       properties:
         page:
           $ref: '#/components/schemas/UpdatePage'
-      additionalProperties: { }
+      additionalProperties: false
     UpdateRedirect:
       required:
         - id
@@ -2537,7 +2537,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateRedirectRequest:
       required:
         - redirect
@@ -2545,7 +2545,7 @@ components:
       properties:
         redirect:
           $ref: '#/components/schemas/UpdateRedirect'
-      additionalProperties: { }
+      additionalProperties: false
     UpdateScriptTag:
       required:
         - id
@@ -2579,7 +2579,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateScriptTagRequest:
       required:
         - script_tag
@@ -2587,7 +2587,7 @@ components:
       properties:
         script_tag:
           $ref: '#/components/schemas/UpdateScriptTag'
-      additionalProperties: { }
+      additionalProperties: false
     UpdateTheme:
       required:
         - id
@@ -2630,7 +2630,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateThemeRequest:
       required:
         - theme
@@ -2638,7 +2638,7 @@ components:
       properties:
         theme:
           $ref: '#/components/schemas/UpdateTheme'
-      additionalProperties: { }
+      additionalProperties: false
   securitySchemes:
     ApiKey:
       type: apiKey

@@ -740,7 +740,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateInventoryItemRequest:
       required:
         - inventory_item
@@ -748,7 +748,7 @@ components:
       properties:
         inventory_item:
           $ref: '#/components/schemas/UpdateInventoryItem'
-      additionalProperties: { }
+      additionalProperties: false
   securitySchemes:
     ApiKey:
       type: apiKey

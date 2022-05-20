@@ -234,7 +234,7 @@ components:
         updated_at:
           type: string
           format: date-time
-      additionalProperties: { }
+      additionalProperties: false
     CreateReportRequest:
       required:
         - report
@@ -242,7 +242,7 @@ components:
       properties:
         report:
           $ref: '#/components/schemas/CreateReport'
-      additionalProperties: { }
+      additionalProperties: false
     Report:
       required:
         - id
@@ -310,7 +310,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateReportRequest:
       required:
         - report
@@ -318,7 +318,7 @@ components:
       properties:
         report:
           $ref: '#/components/schemas/UpdateReport'
-      additionalProperties: { }
+      additionalProperties: false
   securitySchemes:
     ApiKey:
       type: apiKey

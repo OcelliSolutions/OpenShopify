@@ -513,7 +513,7 @@ components:
           items:
             $ref: '#/components/schemas/Province'
           description: The sub-regions of a country. The term provinces also encompasses states.
-      additionalProperties: { }
+      additionalProperties: false
     CreateCountryRequest:
       required:
         - country
@@ -521,7 +521,7 @@ components:
       properties:
         country:
           $ref: '#/components/schemas/CreateCountry'
-      additionalProperties: { }
+      additionalProperties: false
     Currency:
       type: object
       properties:
@@ -624,7 +624,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateCountryRequest:
       required:
         - country
@@ -632,7 +632,7 @@ components:
       properties:
         country:
           $ref: '#/components/schemas/UpdateCountry'
-      additionalProperties: { }
+      additionalProperties: false
     UpdateProvince:
       required:
         - id
@@ -680,7 +680,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateProvinceRequest:
       required:
         - province
@@ -688,7 +688,7 @@ components:
       properties:
         province:
           $ref: '#/components/schemas/UpdateProvince'
-      additionalProperties: { }
+      additionalProperties: false
   securitySchemes:
     ApiKey:
       type: apiKey

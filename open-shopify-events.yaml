@@ -434,7 +434,7 @@ components:
           description: The date and time when the webhook was updated.
           format: date-time
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateWebhookRequest:
       required:
         - webhook
@@ -442,7 +442,7 @@ components:
       properties:
         webhook:
           $ref: '#/components/schemas/CreateWebhook'
-      additionalProperties: { }
+      additionalProperties: false
     Event:
       required:
         - id
@@ -555,7 +555,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateWebhookRequest:
       required:
         - webhook
@@ -563,7 +563,7 @@ components:
       properties:
         webhook:
           $ref: '#/components/schemas/UpdateWebhook'
-      additionalProperties: { }
+      additionalProperties: false
     Webhook:
       required:
         - id

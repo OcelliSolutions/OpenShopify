@@ -1482,7 +1482,7 @@ components:
           type: string
           description: "The format of the data returned by the URL endpoint. Valid values are \"json\" and \"xml\".\r\nIf a format is not specified, it will default to json."
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateCarrierServiceRequest:
       required:
         - carrier_service
@@ -1490,7 +1490,7 @@ components:
       properties:
         carrier_service:
           $ref: '#/components/schemas/CreateCarrierService'
-      additionalProperties: { }
+      additionalProperties: false
     CreateFulfillment:
       type: object
       properties:
@@ -1572,7 +1572,7 @@ components:
         name:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateFulfillmentEvent:
       type: object
       properties:
@@ -1649,7 +1649,7 @@ components:
           description: The date and time when the fulfillment event was last modified.
           format: date-time
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateFulfillmentEventRequest:
       required:
         - fulfillment_event
@@ -1657,7 +1657,7 @@ components:
       properties:
         fulfillment_event:
           $ref: '#/components/schemas/CreateFulfillmentEvent'
-      additionalProperties: { }
+      additionalProperties: false
     CreateFulfillmentRequest:
       required:
         - fulfillment
@@ -1665,7 +1665,7 @@ components:
       properties:
         fulfillment:
           $ref: '#/components/schemas/CreateFulfillment'
-      additionalProperties: { }
+      additionalProperties: false
     CreateFulfillmentService:
       required:
         - format
@@ -1719,7 +1719,7 @@ components:
           type: boolean
           description: Whether the fulfillment service wants to register for APIs related to fulfillment orders.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateFulfillmentServiceRequest:
       required:
         - fulfillment_service
@@ -1727,7 +1727,7 @@ components:
       properties:
         fulfillment_service:
           $ref: '#/components/schemas/CreateFulfillmentService'
-      additionalProperties: { }
+      additionalProperties: false
     DiscountAllocation:
       type: object
       properties:
@@ -2116,7 +2116,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateCarrierServiceRequest:
       required:
         - carrier_service
@@ -2124,7 +2124,7 @@ components:
       properties:
         carrier_service:
           $ref: '#/components/schemas/UpdateCarrierService'
-      additionalProperties: { }
+      additionalProperties: false
     UpdateFulfillment:
       required:
         - id
@@ -2214,7 +2214,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateFulfillmentRequest:
       required:
         - fulfillment
@@ -2222,7 +2222,7 @@ components:
       properties:
         fulfillment:
           $ref: '#/components/schemas/UpdateFulfillment'
-      additionalProperties: { }
+      additionalProperties: false
     UpdateFulfillmentService:
       required:
         - format
@@ -2283,7 +2283,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateFulfillmentServiceRequest:
       required:
         - fulfillment_service
@@ -2291,7 +2291,7 @@ components:
       properties:
         fulfillment_service:
           $ref: '#/components/schemas/UpdateFulfillmentService'
-      additionalProperties: { }
+      additionalProperties: false
   securitySchemes:
     ApiKey:
       type: apiKey

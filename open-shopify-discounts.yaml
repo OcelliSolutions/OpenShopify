@@ -621,7 +621,7 @@ components:
           type: string
           description: 'The type of discount. Known values are ''percentage'', ''shipping'', ''fixed_amount'' and ''none''.'
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateDiscountCodeRequest:
       required:
         - discount_code
@@ -629,37 +629,46 @@ components:
       properties:
         discount_code:
           $ref: '#/components/schemas/CreateDiscountCode'
-      additionalProperties: { }
+      additionalProperties: false
     CreatePriceRule:
       type: object
       properties:
         title:
           type: string
+          description: The title of the price rule.
           nullable: true
         target_type:
           type: string
+          description: The target type the price rule applies to. Known values are "line_item" or "shipping_line".
           nullable: true
         target_selection:
           type: string
+          description: "The target selection method of the price rule. Use all to apply the discount to all line items\r\nin the checkout and use entitled to apply to selected entitlements. Known values are \"all\" or \"entitled\"."
           nullable: true
         allocation_method:
           type: string
+          description: "The allocation method of the price rule.\r\nWith an allocation method of each, the discount will be applied to each of the entitled items. For example, for a price rule that take $15 off, each entitled line item in a checkout will be discounted by $15.\r\nWith an allocation method of across, the calculated discount amount will be applied across the entitled items.For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items.\r\nCurrently, if TargetType is shipping_line, then only each is accepted. Known values are \"across\" or \"each\"."
           nullable: true
         value_type:
           type: string
+          description: The value type of the price rule. If target_type is shipping_line then only percentage is accepted. Known values are "fixed_amount" or "percentage".
           nullable: true
         value:
           type: number
+          description: "The value of the price rule. If target_type is shipping_line, then only -100 is accepted.\r\nIt's important to note that when discounting a resource, the value must be a negative number."
           format: decimal
         once_per_customer:
           type: boolean
+          description: The price rule can only be used once per customer (tracked by customer id).
           nullable: true
         usage_limit:
           type: integer
+          description: 'The maximum number of times the price rule can be used, per discount code.'
           format: int64
           nullable: true
         customer_selection:
           type: string
+          description: "The customer selection for the price rule.A customer selection of all means there are no restrictions\r\non who's eligible for the price rule. Known values are \"all\" or \"prerequisite\"."
           nullable: true
         prerequisite_subtotal_range:
           $ref: '#/components/schemas/PrerequisiteValueRange'
@@ -670,49 +679,96 @@ components:
           items:
             type: integer
             format: int64
+          description: "A list of prerequisite customer saved search ids. For the price rule to be applicable,\r\nthe customer applying the price rule must be in the group of customers matching the customer saved searches."
           nullable: true
         prerequisite_customer_ids:
           type: array
           items:
             type: integer
             format: int64
+          description: "A list of prerequisite customer ids. For the price rule to be applicable,\r\nthe customer applying the price rule must be in the group of customers specified."
+          nullable: true
         entitled_product_ids:
           type: array
           items:
             type: integer
             format: int64
+          description: "A list of entitled product ids.Can be used in combination with entitled_variant_ids. entitled_product_ids can\r\nonly be used in conjunction with target_type set to line_itemif and target_selection set to entitled"
+          nullable: true
         entitled_variant_ids:
           type: array
           items:
             type: integer
             format: int64
+          description: "A list of entitled product variant ids. Can be used in combination with entitled_product_ids.\r\nentitled_variant_ids can only be used in conjunction with target_type set to line_item if and target_selection set to\r\nentitled"
+          nullable: true
         entitled_collection_ids:
           type: array
           items:
             type: integer
             format: int64
+          description: "A list of entitled collection ids. Cannot be used in combination with entitled_product_ids nor\r\nentitled_variant_ids. entitled_collection_ids can only be used in conjunction with target_typeset to line_item and\r\ntarget_selection set to entitled"
+          nullable: true
         entitled_country_ids:
           type: array
           items:
             type: integer
             format: int64
+          description: "A list of shipping country ids. entitled_country_ids can only be used in conjunction with target_type set to\r\nshipping_line and target_selection set to entitled."
+          nullable: true
         starts_at:
           type: string
+          description: The date and time when the price rule starts.
           format: date-time
           nullable: true
         ends_at:
           type: string
+          description: The date and time when the price rule ends.Must be after starts_at.
           format: date-time
           nullable: true
         created_at:
           type: string
+          description: The date and time the object was created.
           format: date-time
           nullable: true
         updated_at:
           type: string
+          description: The date and time the object was last updated.
           format: date-time
           nullable: true
-      additionalProperties: { }
+        prerequisite_product_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: "List of product ids that will be a prerequisites for a Buy X Get Y type discount. The prerequisite_product_ids` can be used only with:\r\n  * `target_type` set to `line_item`\r\n  * `target_selection` set to `entitled`\r\n  * `allocation_method` set to `each`\r\n  * prerequisite_to_entitlement_quantity_ratio` defined\r\n**Caution**\r\nIf a product variant is included in `prerequisite_variant_ids`, then `prerequisite_product_ids` can't include the ID of the product associated with that variant."
+          nullable: true
+        prerequisite_variant_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: "List of variant ids that will be a prerequisites for a Buy X Get Y type discount. The `entitled_variant_ids` can be used only with:\r\n  * `target_type` set to `line_item`\r\n  * `target_selection` set to `entitled`\r\n  * `allocation_method` set to `each`\r\n  * `prerequisite_to_entitlement_quantity_ratio` defined\r\n**Caution**\r\nIf a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product."
+          nullable: true
+        prerequisite_collection_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: "List of collection ids that will be a prerequisites for a Buy X Get Y discount. The `entitled_collection_ids` can be used only with:\r\n  * `target_type` set to `line_item`\r\n  * `target_selection` set to `entitled`\r\n  * `allocation_method` set to `each`\r\n  * `prerequisite_to_entitlement_quantity_ratio` defined\r\n**Caution**\r\nIf a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product."
+          nullable: true
+        customer_segment_prerequisite_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: "A list of customer segment IDs. For the price rule to be applicable, the customer must be in the group of customers matching a customer segment.\r\nIf `customer_segment_prerequisite_ids` is populated, then `prerequisite_customer_ids` must be empty."
+          nullable: true
+        prerequisite_to_entitlement_purchase:
+          $ref: '#/components/schemas/PrerequisiteToEntitlementPurchase'
+        prerequisite_to_entitlement_quantity_ratio:
+          $ref: '#/components/schemas/PrerequisiteToEntitlementQuantityRatio'
+      additionalProperties: false
     CreatePriceRuleRequest:
       required:
         - price_rule
@@ -720,7 +776,7 @@ components:
       properties:
         price_rule:
           $ref: '#/components/schemas/CreatePriceRule'
-      additionalProperties: { }
+      additionalProperties: false
     DiscountCode:
       required:
         - id
@@ -783,6 +839,27 @@ components:
           items:
             $ref: '#/components/schemas/DiscountCode'
       additionalProperties: { }
+    PrerequisiteToEntitlementPurchase:
+      type: object
+      properties:
+        prerequisite_amount:
+          type: number
+          description: The minimum purchase amount required to be entitled to the discount.
+          format: decimal
+          nullable: true
+      additionalProperties: { }
+    PrerequisiteToEntitlementQuantityRatio:
+      type: object
+      properties:
+        prerequisite_quantity:
+          type: integer
+          description: The necessary 'buy' quantity.
+          format: int32
+        'entitled_quantity ':
+          type: integer
+          description: The offered 'get' quantity.
+          format: int32
+      additionalProperties: { }
     PrerequisiteValueRange:
       type: object
       properties:
@@ -802,31 +879,40 @@ components:
       properties:
         title:
           type: string
+          description: The title of the price rule.
           nullable: true
         target_type:
           type: string
+          description: The target type the price rule applies to. Known values are "line_item" or "shipping_line".
           nullable: true
         target_selection:
           type: string
+          description: "The target selection method of the price rule. Use all to apply the discount to all line items\r\nin the checkout and use entitled to apply to selected entitlements. Known values are \"all\" or \"entitled\"."
           nullable: true
         allocation_method:
           type: string
+          description: "The allocation method of the price rule.\r\nWith an allocation method of each, the discount will be applied to each of the entitled items. For example, for a price rule that take $15 off, each entitled line item in a checkout will be discounted by $15.\r\nWith an allocation method of across, the calculated discount amount will be applied across the entitled items.For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items.\r\nCurrently, if TargetType is shipping_line, then only each is accepted. Known values are \"across\" or \"each\"."
           nullable: true
         value_type:
           type: string
+          description: The value type of the price rule. If target_type is shipping_line then only percentage is accepted. Known values are "fixed_amount" or "percentage".
           nullable: true
         value:
           type: number
+          description: "The value of the price rule. If target_type is shipping_line, then only -100 is accepted.\r\nIt's important to note that when discounting a resource, the value must be a negative number."
           format: decimal
         once_per_customer:
           type: boolean
+          description: The price rule can only be used once per customer (tracked by customer id).
           nullable: true
         usage_limit:
           type: integer
+          description: 'The maximum number of times the price rule can be used, per discount code.'
           format: int64
           nullable: true
         customer_selection:
           type: string
+          description: "The customer selection for the price rule.A customer selection of all means there are no restrictions\r\non who's eligible for the price rule. Known values are \"all\" or \"prerequisite\"."
           nullable: true
         prerequisite_subtotal_range:
           $ref: '#/components/schemas/PrerequisiteValueRange'
@@ -837,48 +923,95 @@ components:
           items:
             type: integer
             format: int64
+          description: "A list of prerequisite customer saved search ids. For the price rule to be applicable,\r\nthe customer applying the price rule must be in the group of customers matching the customer saved searches."
           nullable: true
         prerequisite_customer_ids:
           type: array
           items:
             type: integer
             format: int64
+          description: "A list of prerequisite customer ids. For the price rule to be applicable,\r\nthe customer applying the price rule must be in the group of customers specified."
+          nullable: true
         entitled_product_ids:
           type: array
           items:
             type: integer
             format: int64
+          description: "A list of entitled product ids.Can be used in combination with entitled_variant_ids. entitled_product_ids can\r\nonly be used in conjunction with target_type set to line_itemif and target_selection set to entitled"
+          nullable: true
         entitled_variant_ids:
           type: array
           items:
             type: integer
             format: int64
+          description: "A list of entitled product variant ids. Can be used in combination with entitled_product_ids.\r\nentitled_variant_ids can only be used in conjunction with target_type set to line_item if and target_selection set to\r\nentitled"
+          nullable: true
         entitled_collection_ids:
           type: array
           items:
             type: integer
             format: int64
+          description: "A list of entitled collection ids. Cannot be used in combination with entitled_product_ids nor\r\nentitled_variant_ids. entitled_collection_ids can only be used in conjunction with target_typeset to line_item and\r\ntarget_selection set to entitled"
+          nullable: true
         entitled_country_ids:
           type: array
           items:
             type: integer
             format: int64
+          description: "A list of shipping country ids. entitled_country_ids can only be used in conjunction with target_type set to\r\nshipping_line and target_selection set to entitled."
+          nullable: true
         starts_at:
           type: string
+          description: The date and time when the price rule starts.
           format: date-time
           nullable: true
         ends_at:
           type: string
+          description: The date and time when the price rule ends.Must be after starts_at.
           format: date-time
           nullable: true
         created_at:
           type: string
+          description: The date and time the object was created.
           format: date-time
           nullable: true
         updated_at:
           type: string
+          description: The date and time the object was last updated.
           format: date-time
           nullable: true
+        prerequisite_product_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: "List of product ids that will be a prerequisites for a Buy X Get Y type discount. The prerequisite_product_ids` can be used only with:\r\n  * `target_type` set to `line_item`\r\n  * `target_selection` set to `entitled`\r\n  * `allocation_method` set to `each`\r\n  * prerequisite_to_entitlement_quantity_ratio` defined\r\n**Caution**\r\nIf a product variant is included in `prerequisite_variant_ids`, then `prerequisite_product_ids` can't include the ID of the product associated with that variant."
+          nullable: true
+        prerequisite_variant_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: "List of variant ids that will be a prerequisites for a Buy X Get Y type discount. The `entitled_variant_ids` can be used only with:\r\n  * `target_type` set to `line_item`\r\n  * `target_selection` set to `entitled`\r\n  * `allocation_method` set to `each`\r\n  * `prerequisite_to_entitlement_quantity_ratio` defined\r\n**Caution**\r\nIf a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product."
+          nullable: true
+        prerequisite_collection_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: "List of collection ids that will be a prerequisites for a Buy X Get Y discount. The `entitled_collection_ids` can be used only with:\r\n  * `target_type` set to `line_item`\r\n  * `target_selection` set to `entitled`\r\n  * `allocation_method` set to `each`\r\n  * `prerequisite_to_entitlement_quantity_ratio` defined\r\n**Caution**\r\nIf a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product."
+          nullable: true
+        customer_segment_prerequisite_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: "A list of customer segment IDs. For the price rule to be applicable, the customer must be in the group of customers matching a customer segment.\r\nIf `customer_segment_prerequisite_ids` is populated, then `prerequisite_customer_ids` must be empty."
+          nullable: true
+        prerequisite_to_entitlement_purchase:
+          $ref: '#/components/schemas/PrerequisiteToEntitlementPurchase'
+        prerequisite_to_entitlement_quantity_ratio:
+          $ref: '#/components/schemas/PrerequisiteToEntitlementQuantityRatio'
         id:
           type: integer
           format: int64
@@ -927,7 +1060,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateDiscountCodeRequest:
       required:
         - discount_code
@@ -935,7 +1068,7 @@ components:
       properties:
         discount_code:
           $ref: '#/components/schemas/UpdateDiscountCode'
-      additionalProperties: { }
+      additionalProperties: false
     UpdatePriceRule:
       required:
         - id
@@ -943,31 +1076,40 @@ components:
       properties:
         title:
           type: string
+          description: The title of the price rule.
           nullable: true
         target_type:
           type: string
+          description: The target type the price rule applies to. Known values are "line_item" or "shipping_line".
           nullable: true
         target_selection:
           type: string
+          description: "The target selection method of the price rule. Use all to apply the discount to all line items\r\nin the checkout and use entitled to apply to selected entitlements. Known values are \"all\" or \"entitled\"."
           nullable: true
         allocation_method:
           type: string
+          description: "The allocation method of the price rule.\r\nWith an allocation method of each, the discount will be applied to each of the entitled items. For example, for a price rule that take $15 off, each entitled line item in a checkout will be discounted by $15.\r\nWith an allocation method of across, the calculated discount amount will be applied across the entitled items.For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items.\r\nCurrently, if TargetType is shipping_line, then only each is accepted. Known values are \"across\" or \"each\"."
           nullable: true
         value_type:
           type: string
+          description: The value type of the price rule. If target_type is shipping_line then only percentage is accepted. Known values are "fixed_amount" or "percentage".
           nullable: true
         value:
           type: number
+          description: "The value of the price rule. If target_type is shipping_line, then only -100 is accepted.\r\nIt's important to note that when discounting a resource, the value must be a negative number."
           format: decimal
         once_per_customer:
           type: boolean
+          description: The price rule can only be used once per customer (tracked by customer id).
           nullable: true
         usage_limit:
           type: integer
+          description: 'The maximum number of times the price rule can be used, per discount code.'
           format: int64
           nullable: true
         customer_selection:
           type: string
+          description: "The customer selection for the price rule.A customer selection of all means there are no restrictions\r\non who's eligible for the price rule. Known values are \"all\" or \"prerequisite\"."
           nullable: true
         prerequisite_subtotal_range:
           $ref: '#/components/schemas/PrerequisiteValueRange'
@@ -978,55 +1120,102 @@ components:
           items:
             type: integer
             format: int64
+          description: "A list of prerequisite customer saved search ids. For the price rule to be applicable,\r\nthe customer applying the price rule must be in the group of customers matching the customer saved searches."
           nullable: true
         prerequisite_customer_ids:
           type: array
           items:
             type: integer
             format: int64
+          description: "A list of prerequisite customer ids. For the price rule to be applicable,\r\nthe customer applying the price rule must be in the group of customers specified."
+          nullable: true
         entitled_product_ids:
           type: array
           items:
             type: integer
             format: int64
+          description: "A list of entitled product ids.Can be used in combination with entitled_variant_ids. entitled_product_ids can\r\nonly be used in conjunction with target_type set to line_itemif and target_selection set to entitled"
+          nullable: true
         entitled_variant_ids:
           type: array
           items:
             type: integer
             format: int64
+          description: "A list of entitled product variant ids. Can be used in combination with entitled_product_ids.\r\nentitled_variant_ids can only be used in conjunction with target_type set to line_item if and target_selection set to\r\nentitled"
+          nullable: true
         entitled_collection_ids:
           type: array
           items:
             type: integer
             format: int64
+          description: "A list of entitled collection ids. Cannot be used in combination with entitled_product_ids nor\r\nentitled_variant_ids. entitled_collection_ids can only be used in conjunction with target_typeset to line_item and\r\ntarget_selection set to entitled"
+          nullable: true
         entitled_country_ids:
           type: array
           items:
             type: integer
             format: int64
+          description: "A list of shipping country ids. entitled_country_ids can only be used in conjunction with target_type set to\r\nshipping_line and target_selection set to entitled."
+          nullable: true
         starts_at:
           type: string
+          description: The date and time when the price rule starts.
           format: date-time
           nullable: true
         ends_at:
           type: string
+          description: The date and time when the price rule ends.Must be after starts_at.
           format: date-time
           nullable: true
         created_at:
           type: string
+          description: The date and time the object was created.
           format: date-time
           nullable: true
         updated_at:
           type: string
+          description: The date and time the object was last updated.
           format: date-time
           nullable: true
+        prerequisite_product_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: "List of product ids that will be a prerequisites for a Buy X Get Y type discount. The prerequisite_product_ids` can be used only with:\r\n  * `target_type` set to `line_item`\r\n  * `target_selection` set to `entitled`\r\n  * `allocation_method` set to `each`\r\n  * prerequisite_to_entitlement_quantity_ratio` defined\r\n**Caution**\r\nIf a product variant is included in `prerequisite_variant_ids`, then `prerequisite_product_ids` can't include the ID of the product associated with that variant."
+          nullable: true
+        prerequisite_variant_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: "List of variant ids that will be a prerequisites for a Buy X Get Y type discount. The `entitled_variant_ids` can be used only with:\r\n  * `target_type` set to `line_item`\r\n  * `target_selection` set to `entitled`\r\n  * `allocation_method` set to `each`\r\n  * `prerequisite_to_entitlement_quantity_ratio` defined\r\n**Caution**\r\nIf a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product."
+          nullable: true
+        prerequisite_collection_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: "List of collection ids that will be a prerequisites for a Buy X Get Y discount. The `entitled_collection_ids` can be used only with:\r\n  * `target_type` set to `line_item`\r\n  * `target_selection` set to `entitled`\r\n  * `allocation_method` set to `each`\r\n  * `prerequisite_to_entitlement_quantity_ratio` defined\r\n**Caution**\r\nIf a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product."
+          nullable: true
+        customer_segment_prerequisite_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: "A list of customer segment IDs. For the price rule to be applicable, the customer must be in the group of customers matching a customer segment.\r\nIf `customer_segment_prerequisite_ids` is populated, then `prerequisite_customer_ids` must be empty."
+          nullable: true
+        prerequisite_to_entitlement_purchase:
+          $ref: '#/components/schemas/PrerequisiteToEntitlementPurchase'
+        prerequisite_to_entitlement_quantity_ratio:
+          $ref: '#/components/schemas/PrerequisiteToEntitlementQuantityRatio'
         id:
           type: integer
           format: int64
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdatePriceRuleRequest:
       required:
         - price_rule
@@ -1034,7 +1223,7 @@ components:
       properties:
         price_rule:
           $ref: '#/components/schemas/UpdatePriceRule'
-      additionalProperties: { }
+      additionalProperties: false
   securitySchemes:
     ApiKey:
       type: apiKey

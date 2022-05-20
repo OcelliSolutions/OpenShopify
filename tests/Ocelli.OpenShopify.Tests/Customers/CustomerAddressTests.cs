@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
@@ -36,7 +35,9 @@ public class CustomerAddressTests : IClassFixture<SharedFixture>
     [SkippableFact, TestPriority(10)]
     public async Task Creates_Addresses()
     {
-        var customer = await Fixture.CreateTestCustomer();
+        var createCustomerRequest = Fixture.CreateCustomerRequest;
+        var customerResponse = await _service.Customer.CreateCustomerAsync(createCustomerRequest);
+        var customer = customerResponse.Result.Customer;
 
         var request = new CreateCustomerAddressRequest
         {

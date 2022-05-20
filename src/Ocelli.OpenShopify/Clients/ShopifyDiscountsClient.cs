@@ -1747,15 +1747,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("type")]
         public string? Type { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -1766,44 +1757,76 @@ namespace Ocelli.OpenShopify
         [System.ComponentModel.DataAnnotations.Required]
         public CreateDiscountCode DiscountCode { get; set; } = new CreateDiscountCode();
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CreatePriceRule
     {
+        /// <summary>
+        /// The title of the price rule.
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("title")]
         public string? Title { get; set; } = default!;
 
+        /// <summary>
+        /// The target type the price rule applies to. Known values are "line_item" or "shipping_line".
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("target_type")]
         public string? TargetType { get; set; } = default!;
+
+        /// <summary>
+        /// The target selection method of the price rule. Use all to apply the discount to all line items
+        /// <br/>in the checkout and use entitled to apply to selected entitlements. Known values are "all" or "entitled".
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("target_selection")]
         public string? TargetSelection { get; set; } = default!;
 
+        /// <summary>
+        /// The allocation method of the price rule.
+        /// <br/>With an allocation method of each, the discount will be applied to each of the entitled items. For example, for a price rule that take $15 off, each entitled line item in a checkout will be discounted by $15.
+        /// <br/>With an allocation method of across, the calculated discount amount will be applied across the entitled items.For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items.
+        /// <br/>Currently, if TargetType is shipping_line, then only each is accepted. Known values are "across" or "each".
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("allocation_method")]
         public string? AllocationMethod { get; set; } = default!;
+
+        /// <summary>
+        /// The value type of the price rule. If target_type is shipping_line then only percentage is accepted. Known values are "fixed_amount" or "percentage".
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("value_type")]
         public string? ValueType { get; set; } = default!;
 
+        /// <summary>
+        /// The value of the price rule. If target_type is shipping_line, then only -100 is accepted.
+        /// <br/>It's important to note that when discounting a resource, the value must be a negative number.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("value")]
         public decimal? Value { get; set; } = default!;
+
+        /// <summary>
+        /// The price rule can only be used once per customer (tracked by customer id).
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("once_per_customer")]
         public bool? OncePerCustomer { get; set; } = default!;
 
+        /// <summary>
+        /// The maximum number of times the price rule can be used, per discount code.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("usage_limit")]
         public long? UsageLimit { get; set; } = default!;
+
+        /// <summary>
+        /// The customer selection for the price rule.A customer selection of all means there are no restrictions
+        /// <br/>on who's eligible for the price rule. Known values are "all" or "prerequisite".
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("customer_selection")]
         public string? CustomerSelection { get; set; } = default!;
@@ -1814,44 +1837,136 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("prerequisite_shipping_price_range")]
         public PrerequisiteValueRange? PrerequisiteShippingPriceRange { get; set; } = default!;
 
+        /// <summary>
+        /// A list of prerequisite customer saved search ids. For the price rule to be applicable,
+        /// <br/>the customer applying the price rule must be in the group of customers matching the customer saved searches.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("prerequisite_saved_search_ids")]
         public System.Collections.Generic.ICollection<long>? PrerequisiteSavedSearchIds { get; set; } = default!;
+
+        /// <summary>
+        /// A list of prerequisite customer ids. For the price rule to be applicable,
+        /// <br/>the customer applying the price rule must be in the group of customers specified.
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("prerequisite_customer_ids")]
         public System.Collections.Generic.ICollection<long>? PrerequisiteCustomerIds { get; set; } = default!;
 
+        /// <summary>
+        /// A list of entitled product ids.Can be used in combination with entitled_variant_ids. entitled_product_ids can
+        /// <br/>only be used in conjunction with target_type set to line_itemif and target_selection set to entitled
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("entitled_product_ids")]
         public System.Collections.Generic.ICollection<long>? EntitledProductIds { get; set; } = default!;
+
+        /// <summary>
+        /// A list of entitled product variant ids. Can be used in combination with entitled_product_ids.
+        /// <br/>entitled_variant_ids can only be used in conjunction with target_type set to line_item if and target_selection set to
+        /// <br/>entitled
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("entitled_variant_ids")]
         public System.Collections.Generic.ICollection<long>? EntitledVariantIds { get; set; } = default!;
 
+        /// <summary>
+        /// A list of entitled collection ids. Cannot be used in combination with entitled_product_ids nor
+        /// <br/>entitled_variant_ids. entitled_collection_ids can only be used in conjunction with target_typeset to line_item and
+        /// <br/>target_selection set to entitled
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("entitled_collection_ids")]
         public System.Collections.Generic.ICollection<long>? EntitledCollectionIds { get; set; } = default!;
+
+        /// <summary>
+        /// A list of shipping country ids. entitled_country_ids can only be used in conjunction with target_type set to
+        /// <br/>shipping_line and target_selection set to entitled.
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("entitled_country_ids")]
         public System.Collections.Generic.ICollection<long>? EntitledCountryIds { get; set; } = default!;
 
+        /// <summary>
+        /// The date and time when the price rule starts.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("starts_at")]
         public System.DateTimeOffset? StartsAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the price rule ends.Must be after starts_at.
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("ends_at")]
         public System.DateTimeOffset? EndsAt { get; set; } = default!;
 
+        /// <summary>
+        /// The date and time the object was created.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("created_at")]
         public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time the object was last updated.
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
         public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+        /// <summary>
+        /// List of product ids that will be a prerequisites for a Buy X Get Y type discount. The prerequisite_product_ids` can be used only with:
+        /// <br/>  * `target_type` set to `line_item`
+        /// <br/>  * `target_selection` set to `entitled`
+        /// <br/>  * `allocation_method` set to `each`
+        /// <br/>  * prerequisite_to_entitlement_quantity_ratio` defined
+        /// <br/>**Caution**
+        /// <br/>If a product variant is included in `prerequisite_variant_ids`, then `prerequisite_product_ids` can't include the ID of the product associated with that variant.
+        /// </summary>
 
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_product_ids")]
+        public System.Collections.Generic.ICollection<long>? PrerequisiteProductIds { get; set; } = default!;
+
+        /// <summary>
+        /// List of variant ids that will be a prerequisites for a Buy X Get Y type discount. The `entitled_variant_ids` can be used only with:
+        /// <br/>  * `target_type` set to `line_item`
+        /// <br/>  * `target_selection` set to `entitled`
+        /// <br/>  * `allocation_method` set to `each`
+        /// <br/>  * `prerequisite_to_entitlement_quantity_ratio` defined
+        /// <br/>**Caution**
+        /// <br/>If a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_variant_ids")]
+        public System.Collections.Generic.ICollection<long>? PrerequisiteVariantIds { get; set; } = default!;
+
+        /// <summary>
+        /// List of collection ids that will be a prerequisites for a Buy X Get Y discount. The `entitled_collection_ids` can be used only with:
+        /// <br/>  * `target_type` set to `line_item`
+        /// <br/>  * `target_selection` set to `entitled`
+        /// <br/>  * `allocation_method` set to `each`
+        /// <br/>  * `prerequisite_to_entitlement_quantity_ratio` defined
+        /// <br/>**Caution**
+        /// <br/>If a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_collection_ids")]
+        public System.Collections.Generic.ICollection<long>? PrerequisiteCollectionIds { get; set; } = default!;
+
+        /// <summary>
+        /// A list of customer segment IDs. For the price rule to be applicable, the customer must be in the group of customers matching a customer segment.
+        /// <br/>If `customer_segment_prerequisite_ids` is populated, then `prerequisite_customer_ids` must be empty.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_segment_prerequisite_ids")]
+        public System.Collections.Generic.ICollection<long>? CustomerSegmentPrerequisiteIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_to_entitlement_purchase")]
+        public PrerequisiteToEntitlementPurchase? PrerequisiteToEntitlementPurchase { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_to_entitlement_quantity_ratio")]
+        public PrerequisiteToEntitlementQuantityRatio? PrerequisiteToEntitlementQuantityRatio { get; set; } = default!;
 
     }
 
@@ -1862,15 +1977,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("price_rule")]
         [System.ComponentModel.DataAnnotations.Required]
         public CreatePriceRule PriceRule { get; set; } = new CreatePriceRule();
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 
@@ -1994,6 +2100,55 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class PrerequisiteToEntitlementPurchase
+    {
+        /// <summary>
+        /// The minimum purchase amount required to be entitled to the discount.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_amount")]
+        public decimal? PrerequisiteAmount { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class PrerequisiteToEntitlementQuantityRatio
+    {
+        /// <summary>
+        /// The necessary 'buy' quantity.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_quantity")]
+        public int? PrerequisiteQuantity { get; set; } = default!;
+
+        /// <summary>
+        /// The offered 'get' quantity.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("entitled_quantity ")]
+        public int? EntitledQuantity_ { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class PrerequisiteValueRange
     {
 
@@ -2017,30 +2172,71 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class PriceRule
     {
+        /// <summary>
+        /// The title of the price rule.
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("title")]
         public string? Title { get; set; } = default!;
 
+        /// <summary>
+        /// The target type the price rule applies to. Known values are "line_item" or "shipping_line".
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("target_type")]
         public string? TargetType { get; set; } = default!;
+
+        /// <summary>
+        /// The target selection method of the price rule. Use all to apply the discount to all line items
+        /// <br/>in the checkout and use entitled to apply to selected entitlements. Known values are "all" or "entitled".
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("target_selection")]
         public string? TargetSelection { get; set; } = default!;
 
+        /// <summary>
+        /// The allocation method of the price rule.
+        /// <br/>With an allocation method of each, the discount will be applied to each of the entitled items. For example, for a price rule that take $15 off, each entitled line item in a checkout will be discounted by $15.
+        /// <br/>With an allocation method of across, the calculated discount amount will be applied across the entitled items.For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items.
+        /// <br/>Currently, if TargetType is shipping_line, then only each is accepted. Known values are "across" or "each".
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("allocation_method")]
         public string? AllocationMethod { get; set; } = default!;
+
+        /// <summary>
+        /// The value type of the price rule. If target_type is shipping_line then only percentage is accepted. Known values are "fixed_amount" or "percentage".
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("value_type")]
         public string? ValueType { get; set; } = default!;
 
+        /// <summary>
+        /// The value of the price rule. If target_type is shipping_line, then only -100 is accepted.
+        /// <br/>It's important to note that when discounting a resource, the value must be a negative number.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("value")]
         public decimal? Value { get; set; } = default!;
+
+        /// <summary>
+        /// The price rule can only be used once per customer (tracked by customer id).
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("once_per_customer")]
         public bool? OncePerCustomer { get; set; } = default!;
 
+        /// <summary>
+        /// The maximum number of times the price rule can be used, per discount code.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("usage_limit")]
         public long? UsageLimit { get; set; } = default!;
+
+        /// <summary>
+        /// The customer selection for the price rule.A customer selection of all means there are no restrictions
+        /// <br/>on who's eligible for the price rule. Known values are "all" or "prerequisite".
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("customer_selection")]
         public string? CustomerSelection { get; set; } = default!;
@@ -2051,35 +2247,136 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("prerequisite_shipping_price_range")]
         public PrerequisiteValueRange? PrerequisiteShippingPriceRange { get; set; } = default!;
 
+        /// <summary>
+        /// A list of prerequisite customer saved search ids. For the price rule to be applicable,
+        /// <br/>the customer applying the price rule must be in the group of customers matching the customer saved searches.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("prerequisite_saved_search_ids")]
         public System.Collections.Generic.ICollection<long>? PrerequisiteSavedSearchIds { get; set; } = default!;
+
+        /// <summary>
+        /// A list of prerequisite customer ids. For the price rule to be applicable,
+        /// <br/>the customer applying the price rule must be in the group of customers specified.
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("prerequisite_customer_ids")]
         public System.Collections.Generic.ICollection<long>? PrerequisiteCustomerIds { get; set; } = default!;
 
+        /// <summary>
+        /// A list of entitled product ids.Can be used in combination with entitled_variant_ids. entitled_product_ids can
+        /// <br/>only be used in conjunction with target_type set to line_itemif and target_selection set to entitled
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("entitled_product_ids")]
         public System.Collections.Generic.ICollection<long>? EntitledProductIds { get; set; } = default!;
+
+        /// <summary>
+        /// A list of entitled product variant ids. Can be used in combination with entitled_product_ids.
+        /// <br/>entitled_variant_ids can only be used in conjunction with target_type set to line_item if and target_selection set to
+        /// <br/>entitled
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("entitled_variant_ids")]
         public System.Collections.Generic.ICollection<long>? EntitledVariantIds { get; set; } = default!;
 
+        /// <summary>
+        /// A list of entitled collection ids. Cannot be used in combination with entitled_product_ids nor
+        /// <br/>entitled_variant_ids. entitled_collection_ids can only be used in conjunction with target_typeset to line_item and
+        /// <br/>target_selection set to entitled
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("entitled_collection_ids")]
         public System.Collections.Generic.ICollection<long>? EntitledCollectionIds { get; set; } = default!;
+
+        /// <summary>
+        /// A list of shipping country ids. entitled_country_ids can only be used in conjunction with target_type set to
+        /// <br/>shipping_line and target_selection set to entitled.
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("entitled_country_ids")]
         public System.Collections.Generic.ICollection<long>? EntitledCountryIds { get; set; } = default!;
 
+        /// <summary>
+        /// The date and time when the price rule starts.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("starts_at")]
         public System.DateTimeOffset? StartsAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the price rule ends.Must be after starts_at.
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("ends_at")]
         public System.DateTimeOffset? EndsAt { get; set; } = default!;
 
+        /// <summary>
+        /// The date and time the object was created.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("created_at")]
         public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// The date and time the object was last updated.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
         public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// List of product ids that will be a prerequisites for a Buy X Get Y type discount. The prerequisite_product_ids` can be used only with:
+        /// <br/>  * `target_type` set to `line_item`
+        /// <br/>  * `target_selection` set to `entitled`
+        /// <br/>  * `allocation_method` set to `each`
+        /// <br/>  * prerequisite_to_entitlement_quantity_ratio` defined
+        /// <br/>**Caution**
+        /// <br/>If a product variant is included in `prerequisite_variant_ids`, then `prerequisite_product_ids` can't include the ID of the product associated with that variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_product_ids")]
+        public System.Collections.Generic.ICollection<long>? PrerequisiteProductIds { get; set; } = default!;
+
+        /// <summary>
+        /// List of variant ids that will be a prerequisites for a Buy X Get Y type discount. The `entitled_variant_ids` can be used only with:
+        /// <br/>  * `target_type` set to `line_item`
+        /// <br/>  * `target_selection` set to `entitled`
+        /// <br/>  * `allocation_method` set to `each`
+        /// <br/>  * `prerequisite_to_entitlement_quantity_ratio` defined
+        /// <br/>**Caution**
+        /// <br/>If a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_variant_ids")]
+        public System.Collections.Generic.ICollection<long>? PrerequisiteVariantIds { get; set; } = default!;
+
+        /// <summary>
+        /// List of collection ids that will be a prerequisites for a Buy X Get Y discount. The `entitled_collection_ids` can be used only with:
+        /// <br/>  * `target_type` set to `line_item`
+        /// <br/>  * `target_selection` set to `entitled`
+        /// <br/>  * `allocation_method` set to `each`
+        /// <br/>  * `prerequisite_to_entitlement_quantity_ratio` defined
+        /// <br/>**Caution**
+        /// <br/>If a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_collection_ids")]
+        public System.Collections.Generic.ICollection<long>? PrerequisiteCollectionIds { get; set; } = default!;
+
+        /// <summary>
+        /// A list of customer segment IDs. For the price rule to be applicable, the customer must be in the group of customers matching a customer segment.
+        /// <br/>If `customer_segment_prerequisite_ids` is populated, then `prerequisite_customer_ids` must be empty.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_segment_prerequisite_ids")]
+        public System.Collections.Generic.ICollection<long>? CustomerSegmentPrerequisiteIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_to_entitlement_purchase")]
+        public PrerequisiteToEntitlementPurchase? PrerequisiteToEntitlementPurchase { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_to_entitlement_quantity_ratio")]
+        public PrerequisiteToEntitlementQuantityRatio? PrerequisiteToEntitlementQuantityRatio { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
         public long Id { get; set; } = default!;
@@ -2166,15 +2463,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
         public string? AdminGraphqlApiId { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -2185,44 +2473,76 @@ namespace Ocelli.OpenShopify
         [System.ComponentModel.DataAnnotations.Required]
         public UpdateDiscountCode DiscountCode { get; set; } = new UpdateDiscountCode();
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class UpdatePriceRule
     {
+        /// <summary>
+        /// The title of the price rule.
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("title")]
         public string? Title { get; set; } = default!;
 
+        /// <summary>
+        /// The target type the price rule applies to. Known values are "line_item" or "shipping_line".
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("target_type")]
         public string? TargetType { get; set; } = default!;
+
+        /// <summary>
+        /// The target selection method of the price rule. Use all to apply the discount to all line items
+        /// <br/>in the checkout and use entitled to apply to selected entitlements. Known values are "all" or "entitled".
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("target_selection")]
         public string? TargetSelection { get; set; } = default!;
 
+        /// <summary>
+        /// The allocation method of the price rule.
+        /// <br/>With an allocation method of each, the discount will be applied to each of the entitled items. For example, for a price rule that take $15 off, each entitled line item in a checkout will be discounted by $15.
+        /// <br/>With an allocation method of across, the calculated discount amount will be applied across the entitled items.For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items.
+        /// <br/>Currently, if TargetType is shipping_line, then only each is accepted. Known values are "across" or "each".
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("allocation_method")]
         public string? AllocationMethod { get; set; } = default!;
+
+        /// <summary>
+        /// The value type of the price rule. If target_type is shipping_line then only percentage is accepted. Known values are "fixed_amount" or "percentage".
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("value_type")]
         public string? ValueType { get; set; } = default!;
 
+        /// <summary>
+        /// The value of the price rule. If target_type is shipping_line, then only -100 is accepted.
+        /// <br/>It's important to note that when discounting a resource, the value must be a negative number.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("value")]
         public decimal? Value { get; set; } = default!;
+
+        /// <summary>
+        /// The price rule can only be used once per customer (tracked by customer id).
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("once_per_customer")]
         public bool? OncePerCustomer { get; set; } = default!;
 
+        /// <summary>
+        /// The maximum number of times the price rule can be used, per discount code.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("usage_limit")]
         public long? UsageLimit { get; set; } = default!;
+
+        /// <summary>
+        /// The customer selection for the price rule.A customer selection of all means there are no restrictions
+        /// <br/>on who's eligible for the price rule. Known values are "all" or "prerequisite".
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("customer_selection")]
         public string? CustomerSelection { get; set; } = default!;
@@ -2233,50 +2553,142 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("prerequisite_shipping_price_range")]
         public PrerequisiteValueRange? PrerequisiteShippingPriceRange { get; set; } = default!;
 
+        /// <summary>
+        /// A list of prerequisite customer saved search ids. For the price rule to be applicable,
+        /// <br/>the customer applying the price rule must be in the group of customers matching the customer saved searches.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("prerequisite_saved_search_ids")]
         public System.Collections.Generic.ICollection<long>? PrerequisiteSavedSearchIds { get; set; } = default!;
+
+        /// <summary>
+        /// A list of prerequisite customer ids. For the price rule to be applicable,
+        /// <br/>the customer applying the price rule must be in the group of customers specified.
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("prerequisite_customer_ids")]
         public System.Collections.Generic.ICollection<long>? PrerequisiteCustomerIds { get; set; } = default!;
 
+        /// <summary>
+        /// A list of entitled product ids.Can be used in combination with entitled_variant_ids. entitled_product_ids can
+        /// <br/>only be used in conjunction with target_type set to line_itemif and target_selection set to entitled
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("entitled_product_ids")]
         public System.Collections.Generic.ICollection<long>? EntitledProductIds { get; set; } = default!;
+
+        /// <summary>
+        /// A list of entitled product variant ids. Can be used in combination with entitled_product_ids.
+        /// <br/>entitled_variant_ids can only be used in conjunction with target_type set to line_item if and target_selection set to
+        /// <br/>entitled
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("entitled_variant_ids")]
         public System.Collections.Generic.ICollection<long>? EntitledVariantIds { get; set; } = default!;
 
+        /// <summary>
+        /// A list of entitled collection ids. Cannot be used in combination with entitled_product_ids nor
+        /// <br/>entitled_variant_ids. entitled_collection_ids can only be used in conjunction with target_typeset to line_item and
+        /// <br/>target_selection set to entitled
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("entitled_collection_ids")]
         public System.Collections.Generic.ICollection<long>? EntitledCollectionIds { get; set; } = default!;
+
+        /// <summary>
+        /// A list of shipping country ids. entitled_country_ids can only be used in conjunction with target_type set to
+        /// <br/>shipping_line and target_selection set to entitled.
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("entitled_country_ids")]
         public System.Collections.Generic.ICollection<long>? EntitledCountryIds { get; set; } = default!;
 
+        /// <summary>
+        /// The date and time when the price rule starts.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("starts_at")]
         public System.DateTimeOffset? StartsAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time when the price rule ends.Must be after starts_at.
+        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("ends_at")]
         public System.DateTimeOffset? EndsAt { get; set; } = default!;
 
+        /// <summary>
+        /// The date and time the object was created.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("created_at")]
         public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
+        /// <summary>
+        /// The date and time the object was last updated.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
         public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// List of product ids that will be a prerequisites for a Buy X Get Y type discount. The prerequisite_product_ids` can be used only with:
+        /// <br/>  * `target_type` set to `line_item`
+        /// <br/>  * `target_selection` set to `entitled`
+        /// <br/>  * `allocation_method` set to `each`
+        /// <br/>  * prerequisite_to_entitlement_quantity_ratio` defined
+        /// <br/>**Caution**
+        /// <br/>If a product variant is included in `prerequisite_variant_ids`, then `prerequisite_product_ids` can't include the ID of the product associated with that variant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_product_ids")]
+        public System.Collections.Generic.ICollection<long>? PrerequisiteProductIds { get; set; } = default!;
+
+        /// <summary>
+        /// List of variant ids that will be a prerequisites for a Buy X Get Y type discount. The `entitled_variant_ids` can be used only with:
+        /// <br/>  * `target_type` set to `line_item`
+        /// <br/>  * `target_selection` set to `entitled`
+        /// <br/>  * `allocation_method` set to `each`
+        /// <br/>  * `prerequisite_to_entitlement_quantity_ratio` defined
+        /// <br/>**Caution**
+        /// <br/>If a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_variant_ids")]
+        public System.Collections.Generic.ICollection<long>? PrerequisiteVariantIds { get; set; } = default!;
+
+        /// <summary>
+        /// List of collection ids that will be a prerequisites for a Buy X Get Y discount. The `entitled_collection_ids` can be used only with:
+        /// <br/>  * `target_type` set to `line_item`
+        /// <br/>  * `target_selection` set to `entitled`
+        /// <br/>  * `allocation_method` set to `each`
+        /// <br/>  * `prerequisite_to_entitlement_quantity_ratio` defined
+        /// <br/>**Caution**
+        /// <br/>If a product is included in `prerequisite_product_ids`, then `prerequisite_variant_ids` can't include the ID of any variants associated with that product.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_collection_ids")]
+        public System.Collections.Generic.ICollection<long>? PrerequisiteCollectionIds { get; set; } = default!;
+
+        /// <summary>
+        /// A list of customer segment IDs. For the price rule to be applicable, the customer must be in the group of customers matching a customer segment.
+        /// <br/>If `customer_segment_prerequisite_ids` is populated, then `prerequisite_customer_ids` must be empty.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_segment_prerequisite_ids")]
+        public System.Collections.Generic.ICollection<long>? CustomerSegmentPrerequisiteIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_to_entitlement_purchase")]
+        public PrerequisiteToEntitlementPurchase? PrerequisiteToEntitlementPurchase { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("prerequisite_to_entitlement_quantity_ratio")]
+        public PrerequisiteToEntitlementQuantityRatio? PrerequisiteToEntitlementQuantityRatio { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
         public long Id { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
         public string? AdminGraphqlApiId { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 
@@ -2287,15 +2699,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("price_rule")]
         [System.ComponentModel.DataAnnotations.Required]
         public UpdatePriceRule PriceRule { get; set; } = new UpdatePriceRule();
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 

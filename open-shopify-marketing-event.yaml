@@ -293,7 +293,7 @@ components:
       additionalProperties: { }
     CreateMarketingEvent:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     CreateMarketingEventRequest:
       required:
         - marketing_event
@@ -301,7 +301,7 @@ components:
       properties:
         marketing_event:
           $ref: '#/components/schemas/CreateMarketingEvent'
-      additionalProperties: { }
+      additionalProperties: false
     Engagement:
       required:
         - id
@@ -365,7 +365,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateMarketingEventRequest:
       required:
         - marketing_event
@@ -373,7 +373,7 @@ components:
       properties:
         marketing_event:
           $ref: '#/components/schemas/UpdateMarketingEvent'
-      additionalProperties: { }
+      additionalProperties: false
   securitySchemes:
     ApiKey:
       type: apiKey

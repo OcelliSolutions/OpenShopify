@@ -14,7 +14,10 @@ public class AdditionalPropertiesDocumentFilter : IDocumentFilter
     public void Apply(OpenApiDocument openApiDoc, DocumentFilterContext context)
     {
         foreach (var (_, value) in context.SchemaRepository.Schemas
-                     .Where(schema => schema.Value.AdditionalProperties == null && schema.Key != nameof(ErrorResponse)))
+                     .Where(schema => schema.Value.AdditionalProperties == null && 
+                                      schema.Key != nameof(ErrorResponse) &&
+                                      !schema.Key.StartsWith("Create") &&
+                                      !schema.Key.StartsWith("Update")))
         {
             value.AdditionalPropertiesAllowed = true;
             value.AdditionalProperties = new OpenApiSchema();

@@ -18,7 +18,7 @@
 		new ("Address", "Address", "Addresses"),
 		new ("Address", "CustomerAddress", "CustomerAddresses", baseClass: "AddressBase"),
 		new ("CustomerSavedSearch", "CustomerSavedSearch", "CustomerSavedSearches"),
-		new ("DeprecatedApiCall", hasId:false),
+		new ("DeprecatedApiCall", hasId:false, canCreate:false, canUpdate:false),
 		new ("DiscountCode"),
 		new ("PriceRule"),
 		new ("Event"),

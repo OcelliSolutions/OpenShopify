@@ -806,7 +806,7 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateMarketingEvent : System.Collections.Generic.Dictionary<string, object>
+    public partial class CreateMarketingEvent
     {
 
     }
@@ -818,15 +818,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("marketing_event")]
         [System.ComponentModel.DataAnnotations.Required]
         public CreateMarketingEvent MarketingEvent { get; set; } = new CreateMarketingEvent();
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 
@@ -939,15 +930,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
         public string? AdminGraphqlApiId { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -957,15 +939,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("marketing_event")]
         [System.ComponentModel.DataAnnotations.Required]
         public UpdateMarketingEvent MarketingEvent { get; set; } = new UpdateMarketingEvent();
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 

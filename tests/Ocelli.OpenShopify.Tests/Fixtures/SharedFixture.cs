@@ -52,6 +52,7 @@ public class SharedFixture : IDisposable
     public List<CustomerSavedSearch> CreatedCustomerSavedSearches  = new();
     public List<Address> CreatedAddresses = new();
     public List<FulfillmentService> CreatedFulfillmentServices = new();
+    public List<PriceRule> CreatedPriceRule = new();
 
     public void ValidateScopes(List<AuthorizationScope> requiredPermissions)
     {
@@ -92,11 +93,10 @@ public class SharedFixture : IDisposable
         // ICollectionFixture<> interfaces.
     }
 
-    public async Task<Customer> CreateTestCustomer()
-    {
-        var customerRequest = new CreateCustomerRequest()
+    public CreateCustomerRequest CreateCustomerRequest =>
+        new()
         {
-            Customer = new CreateCustomer()
+            Customer = new()
             {
                 FirstName = FirstName,
                 LastName = LastName,
@@ -125,13 +125,27 @@ public class SharedFixture : IDisposable
                 State = "enabled"
             }
         };
-        var service = new CustomersService(MyShopifyUrl, AccessToken);
-        var customerResponse = await service.Customer.CreateCustomerAsync(customerRequest);
 
-        Debug.Assert(customerResponse.Result.Customer != null, "customerResponse.Result.Customer != null");
-        CreatedCustomers.Add(customerResponse.Result.Customer);
-        return customerResponse.Result.Customer;
-    }
+    public CreatePriceRuleRequest CreatePriceRuleRequest =>
+        new ()
+        {
+            PriceRule = new()
+            {
+                Title = $@"{Company} PriceRule ({BatchId})",
+                ValueType = "percentage",
+                TargetType = "line_item",
+                TargetSelection = "all",
+                AllocationMethod = "across",
+                Value = (decimal)-10.0,
+                CustomerSelection = "all",
+                OncePerCustomer = false, PrerequisiteCollectionIds = new List<long>(),
+                PrerequisiteSubtotalRange = new PrerequisiteValueRange()
+                {
+                    GreaterThanOrEqualTo = 40
+                },
+                StartsAt = new DateTimeOffset(DateTime.Now)
+            }
+        };
 }
 
 [AttributeUsage(AttributeTargets.Method)]

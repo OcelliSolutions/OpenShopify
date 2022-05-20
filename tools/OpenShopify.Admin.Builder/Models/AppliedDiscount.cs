@@ -32,8 +32,8 @@ namespace OpenShopify.Admin.Builder.Models
 
         /// <summary>
         /// The applied amount of the discount, based on the setting of value_type. 
-        /// When ValueType is set to fixed_amount discount amount = quantity * value
-        /// When ValueType is set to percentage discount amount = floor(price * quantity * value) / 100
+        /// When ValueType is set to fixed_amount discount amount = quantity /// value
+        /// When ValueType is set to percentage discount amount = floor(price /// quantity /// value) / 100
         /// </summary>      
         [JsonPropertyName("amount")]
         public decimal? Amount { get; set; }

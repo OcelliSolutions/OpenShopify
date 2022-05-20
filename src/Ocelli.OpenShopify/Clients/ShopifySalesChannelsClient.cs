@@ -3816,15 +3816,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("user_id")]
         public long? UserId { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -3835,19 +3826,10 @@ namespace Ocelli.OpenShopify
         [System.ComponentModel.DataAnnotations.Required]
         public CreateCheckout Checkout { get; set; } = new CreateCheckout();
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateCollectionListing : System.Collections.Generic.Dictionary<string, object>
+    public partial class CreateCollectionListing
     {
 
     }
@@ -3860,19 +3842,10 @@ namespace Ocelli.OpenShopify
         [System.ComponentModel.DataAnnotations.Required]
         public CreateCollectionListing CollectionListing { get; set; } = new CreateCollectionListing();
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateMobilePlatformApplication : System.Collections.Generic.Dictionary<string, object>
+    public partial class CreateMobilePlatformApplication
     {
 
     }
@@ -3885,19 +3858,10 @@ namespace Ocelli.OpenShopify
         [System.ComponentModel.DataAnnotations.Required]
         public CreateMobilePlatformApplication MobilePlatformApplication { get; set; } = new CreateMobilePlatformApplication();
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreatePayment : System.Collections.Generic.Dictionary<string, object>
+    public partial class CreatePayment
     {
 
     }
@@ -3910,19 +3874,10 @@ namespace Ocelli.OpenShopify
         [System.ComponentModel.DataAnnotations.Required]
         public CreatePayment Payment { get; set; } = new CreatePayment();
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateProductListing : System.Collections.Generic.Dictionary<string, object>
+    public partial class CreateProductListing
     {
 
     }
@@ -3935,19 +3890,10 @@ namespace Ocelli.OpenShopify
         [System.ComponentModel.DataAnnotations.Required]
         public CreateProductListing ProductListing { get; set; } = new CreateProductListing();
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateProductResourceFeedback : System.Collections.Generic.Dictionary<string, object>
+    public partial class CreateProductResourceFeedback
     {
 
     }
@@ -3960,19 +3906,10 @@ namespace Ocelli.OpenShopify
         [System.ComponentModel.DataAnnotations.Required]
         public CreateProductResourceFeedback ProductResourceFeedback { get; set; } = new CreateProductResourceFeedback();
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateResourceFeedback : System.Collections.Generic.Dictionary<string, object>
+    public partial class CreateResourceFeedback
     {
 
     }
@@ -3984,15 +3921,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("resource_feedback")]
         [System.ComponentModel.DataAnnotations.Required]
         public CreateResourceFeedback ResourceFeedback { get; set; } = new CreateResourceFeedback();
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 
@@ -4247,15 +4175,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
         public string? AdminGraphqlApiId { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -4265,15 +4184,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("checkout")]
         [System.ComponentModel.DataAnnotations.Required]
         public UpdateCheckout Checkout { get; set; } = new UpdateCheckout();
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 
@@ -4287,15 +4197,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
         public string? AdminGraphqlApiId { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.15.10.0 (NJsonSchema v10.6.10.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -4305,15 +4206,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("mobile_platform_application")]
         [System.ComponentModel.DataAnnotations.Required]
         public UpdateMobilePlatformApplication MobilePlatformApplication { get; set; } = new UpdateMobilePlatformApplication();
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 

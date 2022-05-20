@@ -75,16 +75,14 @@ components:
           description: The earliest API version to migrate to in order to avoid making the deprecated API calls.
       additionalProperties: { }
     DeprecatedApiCallList:
+      required:
+        - deprecated_api_calls
       type: object
       properties:
-        data_updated_at:
-          type: string
-          format: date-time
         deprecated_api_calls:
           type: array
           items:
             $ref: '#/components/schemas/DeprecatedApiCall'
-          nullable: true
       additionalProperties: { }
   securitySchemes:
     ApiKey:

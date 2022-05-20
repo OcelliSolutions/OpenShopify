@@ -1256,7 +1256,7 @@ components:
           description: The ID of the user who created the checkout.
           format: int64
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateCheckoutRequest:
       required:
         - checkout
@@ -1264,10 +1264,10 @@ components:
       properties:
         checkout:
           $ref: '#/components/schemas/CreateCheckout'
-      additionalProperties: { }
+      additionalProperties: false
     CreateCollectionListing:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     CreateCollectionListingRequest:
       required:
         - collection_listing
@@ -1275,10 +1275,10 @@ components:
       properties:
         collection_listing:
           $ref: '#/components/schemas/CreateCollectionListing'
-      additionalProperties: { }
+      additionalProperties: false
     CreateMobilePlatformApplication:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     CreateMobilePlatformApplicationRequest:
       required:
         - mobile_platform_application
@@ -1286,10 +1286,10 @@ components:
       properties:
         mobile_platform_application:
           $ref: '#/components/schemas/CreateMobilePlatformApplication'
-      additionalProperties: { }
+      additionalProperties: false
     CreatePayment:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     CreatePaymentRequest:
       required:
         - payment
@@ -1297,10 +1297,10 @@ components:
       properties:
         payment:
           $ref: '#/components/schemas/CreatePayment'
-      additionalProperties: { }
+      additionalProperties: false
     CreateProductListing:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     CreateProductListingRequest:
       required:
         - product_listing
@@ -1308,10 +1308,10 @@ components:
       properties:
         product_listing:
           $ref: '#/components/schemas/CreateProductListing'
-      additionalProperties: { }
+      additionalProperties: false
     CreateProductResourceFeedback:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     CreateProductResourceFeedbackRequest:
       required:
         - product_resource_feedback
@@ -1319,10 +1319,10 @@ components:
       properties:
         product_resource_feedback:
           $ref: '#/components/schemas/CreateProductResourceFeedback'
-      additionalProperties: { }
+      additionalProperties: false
     CreateResourceFeedback:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     CreateResourceFeedbackRequest:
       required:
         - resource_feedback
@@ -1330,7 +1330,7 @@ components:
       properties:
         resource_feedback:
           $ref: '#/components/schemas/CreateResourceFeedback'
-      additionalProperties: { }
+      additionalProperties: false
     Customer:
       required:
         - id
@@ -1993,7 +1993,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateCheckoutRequest:
       required:
         - checkout
@@ -2001,7 +2001,7 @@ components:
       properties:
         checkout:
           $ref: '#/components/schemas/UpdateCheckout'
-      additionalProperties: { }
+      additionalProperties: false
     UpdateMobilePlatformApplication:
       required:
         - id
@@ -2013,7 +2013,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateMobilePlatformApplicationRequest:
       required:
         - mobile_platform_application
@@ -2021,7 +2021,7 @@ components:
       properties:
         mobile_platform_application:
           $ref: '#/components/schemas/UpdateMobilePlatformApplication'
-      additionalProperties: { }
+      additionalProperties: false
   securitySchemes:
     ApiKey:
       type: apiKey

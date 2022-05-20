@@ -1365,7 +1365,7 @@ components:
           nullable: true
         amount:
           type: number
-          description: "The applied amount of the discount, based on the setting of value_type. \r\nWhen ValueType is set to fixed_amount discount amount = quantity * value\r\nWhen ValueType is set to percentage discount amount = floor(price * quantity * value) / 100"
+          description: "The applied amount of the discount, based on the setting of value_type. \r\nWhen ValueType is set to fixed_amount discount amount = quantity /// value\r\nWhen ValueType is set to percentage discount amount = floor(price /// quantity /// value) / 100"
           format: decimal
           nullable: true
       additionalProperties: { }
@@ -1521,7 +1521,7 @@ components:
           type: boolean
           description: An optional boolean that you can send as part of a draft order object to load customer shipping information.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateDraftOrderRequest:
       required:
         - draft_order
@@ -1529,7 +1529,7 @@ components:
       properties:
         draft_order:
           $ref: '#/components/schemas/CreateDraftOrder'
-      additionalProperties: { }
+      additionalProperties: false
     CreateOrder:
       type: object
       properties:
@@ -1793,7 +1793,7 @@ components:
           type: boolean
           description: Indicates whether taxes on an order are estimated. Will be set to false when taxes on an order are finalized and aren't subject to any change.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateOrderRequest:
       required:
         - order
@@ -1801,7 +1801,7 @@ components:
       properties:
         order:
           $ref: '#/components/schemas/CreateOrder'
-      additionalProperties: { }
+      additionalProperties: false
     CreateOrderRisk:
       type: object
       properties:
@@ -1840,7 +1840,7 @@ components:
           type: string
           description: 'This indicates the source of the risk assessment. Known values are ''External'', ''Internal'' and ''Gateway''.'
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateOrderRiskRequest:
       required:
         - order_risk
@@ -1848,7 +1848,7 @@ components:
       properties:
         order_risk:
           $ref: '#/components/schemas/CreateOrderRisk'
-      additionalProperties: { }
+      additionalProperties: false
     CreateRefund:
       type: object
       properties:
@@ -1915,7 +1915,7 @@ components:
           items:
             $ref: '#/components/schemas/RefundDutyType'
           description: A list of refunded duties
-      additionalProperties: { }
+      additionalProperties: false
     CreateRefundRequest:
       required:
         - refund
@@ -1923,7 +1923,7 @@ components:
       properties:
         refund:
           $ref: '#/components/schemas/CreateRefund'
-      additionalProperties: { }
+      additionalProperties: false
     CreateTransaction:
       type: object
       properties:
@@ -2012,7 +2012,7 @@ components:
           nullable: true
         currency_exchange_adjustment:
           $ref: '#/components/schemas/CurrencyExchangeAdjustment'
-      additionalProperties: { }
+      additionalProperties: false
     CreateTransactionRequest:
       required:
         - transaction
@@ -2020,7 +2020,7 @@ components:
       properties:
         transaction:
           $ref: '#/components/schemas/CreateTransaction'
-      additionalProperties: { }
+      additionalProperties: false
     CurrencyExchangeAdjustment:
       required:
         - id
@@ -3530,7 +3530,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateDraftOrderRequest:
       required:
         - draft_order
@@ -3538,7 +3538,7 @@ components:
       properties:
         draft_order:
           $ref: '#/components/schemas/UpdateDraftOrder'
-      additionalProperties: { }
+      additionalProperties: false
     UpdateOrder:
       required:
         - id
@@ -3810,7 +3810,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateOrderRequest:
       required:
         - order
@@ -3818,7 +3818,7 @@ components:
       properties:
         order:
           $ref: '#/components/schemas/UpdateOrder'
-      additionalProperties: { }
+      additionalProperties: false
     UpdateOrderRisk:
       required:
         - id
@@ -3865,7 +3865,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateOrderRiskRequest:
       required:
         - order_risk
@@ -3873,7 +3873,7 @@ components:
       properties:
         order_risk:
           $ref: '#/components/schemas/UpdateOrderRisk'
-      additionalProperties: { }
+      additionalProperties: false
   securitySchemes:
     ApiKey:
       type: apiKey

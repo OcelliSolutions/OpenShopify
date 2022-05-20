@@ -405,7 +405,7 @@ components:
           type: string
           description: Thethe gift card code. Only for Creation
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateGiftCardRequest:
       required:
         - gift_card
@@ -413,7 +413,7 @@ components:
       properties:
         gift_card:
           $ref: '#/components/schemas/CreateGiftCard'
-      additionalProperties: { }
+      additionalProperties: false
     UpdateGiftCard:
       required:
         - id
@@ -500,7 +500,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateGiftCardRequest:
       required:
         - gift_card
@@ -508,7 +508,7 @@ components:
       properties:
         gift_card:
           $ref: '#/components/schemas/UpdateGiftCard'
-      additionalProperties: { }
+      additionalProperties: false
   securitySchemes:
     ApiKey:
       type: apiKey

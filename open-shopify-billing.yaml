@@ -628,7 +628,7 @@ components:
         decorated_return_url:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateApplicationChargeRequest:
       required:
         - application_charge
@@ -636,7 +636,7 @@ components:
       properties:
         application_charge:
           $ref: '#/components/schemas/CreateApplicationCharge'
-      additionalProperties: { }
+      additionalProperties: false
     CreateApplicationCredit:
       type: object
       properties:
@@ -653,7 +653,7 @@ components:
           type: boolean
           description: States whether or not the application credit is a test transaction. Valid values are true or null.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateApplicationCreditRequest:
       required:
         - application_credit
@@ -661,7 +661,7 @@ components:
       properties:
         application_credit:
           $ref: '#/components/schemas/CreateApplicationCredit'
-      additionalProperties: { }
+      additionalProperties: false
     CreateRecurringApplicationCharge:
       type: object
       properties:
@@ -712,7 +712,7 @@ components:
         decorated_return_url:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateRecurringApplicationChargeRequest:
       required:
         - recurring_application_charge
@@ -720,7 +720,7 @@ components:
       properties:
         recurring_application_charge:
           $ref: '#/components/schemas/CreateRecurringApplicationCharge'
-      additionalProperties: { }
+      additionalProperties: false
     CreateUsageCharge:
       type: object
       properties:
@@ -748,7 +748,7 @@ components:
           description: The date and time when the usage charge was last updated.
           format: date-time
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateUsageChargeRequest:
       required:
         - usage_charge
@@ -756,7 +756,7 @@ components:
       properties:
         usage_charge:
           $ref: '#/components/schemas/CreateUsageCharge'
-      additionalProperties: { }
+      additionalProperties: false
     RecurringApplicationCharge:
       required:
         - id
@@ -903,7 +903,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateRecurringApplicationChargeRequest:
       required:
         - recurring_application_charge
@@ -911,7 +911,7 @@ components:
       properties:
         recurring_application_charge:
           $ref: '#/components/schemas/UpdateRecurringApplicationCharge'
-      additionalProperties: { }
+      additionalProperties: false
     UsageCharge:
       required:
         - id

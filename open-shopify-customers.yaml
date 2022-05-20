@@ -1095,7 +1095,7 @@ components:
           type: string
           description: The ZIP or postal code.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateCustomer:
       type: object
       properties:
@@ -1221,7 +1221,7 @@ components:
           type: boolean
           description: Whether a welcome email should be sent to the new customer. Default is null.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateCustomerAddress:
       required:
         - customer_id
@@ -1300,7 +1300,7 @@ components:
           type: string
           description: The ZIP or postal code.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateCustomerAddressRequest:
       required:
         - customer_address
@@ -1308,7 +1308,7 @@ components:
       properties:
         customer_address:
           $ref: '#/components/schemas/CreateCustomerAddress'
-      additionalProperties: { }
+      additionalProperties: false
     CreateCustomerInvite:
       type: object
       properties:
@@ -1333,7 +1333,7 @@ components:
           items:
             type: string
           description: blind copy addresses
-      additionalProperties: { }
+      additionalProperties: false
     CreateCustomerInviteRequest:
       required:
         - customer_invite
@@ -1341,7 +1341,7 @@ components:
       properties:
         customer_invite:
           $ref: '#/components/schemas/CreateCustomerInvite'
-      additionalProperties: { }
+      additionalProperties: false
     CreateCustomerRequest:
       required:
         - customer
@@ -1349,7 +1349,7 @@ components:
       properties:
         customer:
           $ref: '#/components/schemas/CreateCustomer'
-      additionalProperties: { }
+      additionalProperties: false
     CreateCustomerSavedSearch:
       type: object
       properties:
@@ -1371,7 +1371,7 @@ components:
           description: The date and time when the customer saved search was updated.
           format: date-time
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateCustomerSavedSearchRequest:
       required:
         - customer_saved_search
@@ -1379,7 +1379,7 @@ components:
       properties:
         customer_saved_search:
           $ref: '#/components/schemas/CreateCustomerSavedSearch'
-      additionalProperties: { }
+      additionalProperties: false
     CurrencyExchangeAdjustment:
       required:
         - id
@@ -3072,7 +3072,7 @@ components:
           type: string
           description: Should be set and match OpenShopify.Admin.Builder.Models.UpdateCustomer.Password. Default is null.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateCustomerAddress:
       required:
         - customer_id
@@ -3158,7 +3158,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateCustomerAddressRequest:
       required:
         - customer_address
@@ -3166,7 +3166,7 @@ components:
       properties:
         customer_address:
           $ref: '#/components/schemas/UpdateCustomerAddress'
-      additionalProperties: { }
+      additionalProperties: false
     UpdateCustomerRequest:
       required:
         - customer
@@ -3174,7 +3174,7 @@ components:
       properties:
         customer:
           $ref: '#/components/schemas/UpdateCustomer'
-      additionalProperties: { }
+      additionalProperties: false
     UpdateCustomerSavedSearch:
       required:
         - id
@@ -3204,7 +3204,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateCustomerSavedSearchRequest:
       required:
         - customer_saved_search
@@ -3212,7 +3212,7 @@ components:
       properties:
         customer_saved_search:
           $ref: '#/components/schemas/UpdateCustomerSavedSearch'
-      additionalProperties: { }
+      additionalProperties: false
   securitySchemes:
     ApiKey:
       type: apiKey

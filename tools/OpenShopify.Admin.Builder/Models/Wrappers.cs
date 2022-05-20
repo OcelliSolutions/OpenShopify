@@ -394,21 +394,6 @@ public class DeprecatedApiCallList
     [JsonPropertyName("deprecated_api_calls"), Required]
     public IEnumerable<DeprecatedApiCall> DeprecatedApiCalls { get; set; } = null!;
 }
-public class CreateDeprecatedApiCallRequest
-{
-    [JsonPropertyName("deprecated_api_call"), Required]
-    public CreateDeprecatedApiCall DeprecatedApiCall { get; set; } = null!;
-}
-
-public partial class CreateDeprecatedApiCall : DeprecatedApiCallBase {}
-public class UpdateDeprecatedApiCallRequest
-{
-    [JsonPropertyName("deprecated_api_call"), Required]
-    public UpdateDeprecatedApiCall DeprecatedApiCall { get; set; } = null!;
-}
-
-public partial class UpdateDeprecatedApiCall : DeprecatedApiCall{}
-
 		
 	
 public class DeprecatedApiCall : DeprecatedApiCallBase

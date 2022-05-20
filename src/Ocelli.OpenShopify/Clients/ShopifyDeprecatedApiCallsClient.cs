@@ -311,11 +311,9 @@ namespace Ocelli.OpenShopify
     public partial class DeprecatedApiCallList
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("data_updated_at")]
-        public System.DateTimeOffset? DataUpdatedAt { get; set; } = default!;
-
         [System.Text.Json.Serialization.JsonPropertyName("deprecated_api_calls")]
-        public System.Collections.Generic.ICollection<DeprecatedApiCall>? DeprecatedApiCalls { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<DeprecatedApiCall> DeprecatedApiCalls { get; set; } = new System.Collections.ObjectModel.Collection<DeprecatedApiCall>();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

@@ -31,91 +31,30 @@ public class CustomerTests : IClassFixture<SharedFixture>
     [SkippableFact, TestPriority(10)]
     public async Task CreateCustomerAsync_CanCreate()
     {
-        var request = new CreateCustomerRequest()
-        { 
-            Customer = new CreateCustomer()
-            {
-                FirstName = Fixture.FirstName,
-                LastName = Fixture.LastName,
-                Email = $@"{Fixture.BatchId}@example.com",
-                AcceptsMarketing = false,
-                Addresses = new List<CreateAddress>()
-                {
-                    new()
-                    { 
-                        Address1 = "123 4th Street",
-                        City = "Minneapolis",
-                        Province = "Minnesota",
-                        ProvinceCode = "MN",
-                        Zip = "55401",
-                        Phone = "555-555-5555",
-                        FirstName = Fixture.FirstName,
-                        LastName = Fixture.LastName,
-                        Company = Fixture.Company,
-                        Country = "United States",
-                        CountryCode = "US",
-                        Default = true,
-                    }
-                },
-                VerifiedEmail = true,
-                Note = Fixture.Note,
-                State = "enabled"
-            }
-        };
-        var created =
-            await _service.Customer.CreateCustomerAsync(request);
-        _additionalPropertiesHelper.CheckAdditionalProperties(created, Fixture.MyShopifyUrl);
-        _additionalPropertiesHelper.CheckAdditionalProperties(created.Result.Customer, Fixture.MyShopifyUrl);
+        var request = Fixture.CreateCustomerRequest;
+        var response = await _service.Customer.CreateCustomerAsync(request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Customer, Fixture.MyShopifyUrl);
 
-        var customer = created.Result.Customer;
-
-        Assert.NotNull(customer);
-        Assert.Equal(Fixture.FirstName, customer.FirstName);
-        Assert.Equal(Fixture.LastName, customer.LastName);
-        Assert.Equal(Fixture.Company, customer.Addresses?.First().Company);
-        Assert.Equal(Fixture.Note, customer.Note);
-        Assert.NotNull(customer.Addresses);
-        Fixture.CreatedCustomers.Add(customer);
+        var created = response.Result.Customer;
+        Assert.NotNull(created);
+        Assert.Equal(Fixture.FirstName, created.FirstName);
+        Assert.Equal(Fixture.LastName, created.LastName);
+        Assert.Equal(Fixture.Company, created.Addresses?.First().Company);
+        Assert.Equal(Fixture.Note, created.Note);
+        Assert.NotNull(created.Addresses);
+        Fixture.CreatedCustomers.Add(created);
     }
     
     [SkippableFact, TestPriority(10)]
     public async Task Creates_Customers_With_Options()
     {
-        var request = new CreateCustomerRequest()
-        {
-            Customer = new CreateCustomer()
-            {
-                FirstName = Fixture.FirstName,
-                LastName = Fixture.LastName,
-                Email = $@"{Fixture.BatchId}+options@example.com",
-                AcceptsMarketing = false,
-                Addresses = new List<CreateAddress>
-                {
-                    new()
-                    {
-                        Address1 = "123 4th Street",
-                        City = "Minneapolis",
-                        Province = "Minnesota",
-                        ProvinceCode = "MN",
-                        Zip = "55401",
-                        Phone = "555-555-5555",
-                        FirstName = Fixture.FirstName,
-                        LastName = Fixture.LastName,
-                        Company = Fixture.Company,
-                        Country = "United States",
-                        CountryCode = "US",
-                        Default = true,
-                    }
-                },
-                VerifiedEmail = true,
-                Note = Fixture.Note,
-                State = "enabled", 
-                Password = "sample", 
-                PasswordConfirmation = "sample", 
-                SendEmailInvite = false, 
-                SendEmailWelcome = false
-            }
-        };
+        var request = Fixture.CreateCustomerRequest;
+        request.Customer.Email = $@"{Fixture.BatchId}+options@example.com";
+        request.Customer.Password = "sample";
+        request.Customer.PasswordConfirmation = "sample";
+        request.Customer.SendEmailInvite = false;
+        request.Customer.SendEmailWelcome = false;
         var created = await _service.Customer.CreateCustomerAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(created, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(created.Result.Customer, Fixture.MyShopifyUrl);

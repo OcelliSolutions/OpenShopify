@@ -302,7 +302,7 @@ components:
           type: string
           description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateMetafieldRequest:
       required:
         - metafield
@@ -310,7 +310,7 @@ components:
       properties:
         metafield:
           $ref: '#/components/schemas/CreateMetafield'
-      additionalProperties: { }
+      additionalProperties: false
     Metafield:
       required:
         - id
@@ -426,7 +426,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateMetafieldRequest:
       required:
         - metafield
@@ -434,7 +434,7 @@ components:
       properties:
         metafield:
           $ref: '#/components/schemas/UpdateMetafield'
-      additionalProperties: { }
+      additionalProperties: false
   securitySchemes:
     ApiKey:
       type: apiKey

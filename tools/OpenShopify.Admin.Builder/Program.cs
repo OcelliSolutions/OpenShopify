@@ -151,7 +151,6 @@ if (app.Environment.IsDevelopment())
             c.SwaggerEndpoint($"/swagger/{f.Name}/swagger.json", info != null ? info.Title : f.Name);
         });
     });
-
 }
 
 app.Run();

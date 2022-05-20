@@ -118,7 +118,7 @@ components:
           type: string
           description: "An arbitrary title for each token determined by the developer/application, used for reference purposes.\r\nNo constraint on uniqueness."
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateStorefrontAccessTokenRequest:
       required:
         - storefront_access_token
@@ -126,7 +126,7 @@ components:
       properties:
         storefront_access_token:
           $ref: '#/components/schemas/CreateStorefrontAccessToken'
-      additionalProperties: { }
+      additionalProperties: false
     StorefrontAccessToken:
       required:
         - id

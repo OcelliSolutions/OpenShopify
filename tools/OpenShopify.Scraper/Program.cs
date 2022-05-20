@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NJsonSchema;
 using NJsonSchema.CodeGeneration;
 using NJsonSchema.CodeGeneration.CSharp;
@@ -15,8 +16,11 @@ const string adminUrl = @"https://shopify.dev/api/admin-rest";
 
 var version = args[0];
 version = string.IsNullOrWhiteSpace(version) ? "current" : version;
+var download = false;
+if(args.Length > 1)
+    download = args[1] == "download";
 
-#region Main Menu
+#region Main Menu 
 //Hidden in the documentation site is the json data for the navigation menu. Extract that and save so new sections can be quickly identified
 
 var web = new HtmlWeb();
@@ -51,7 +55,7 @@ else
         "preview" => rcVersion,
         "rc" => rcVersion,
         _ => version
-    }; 
+    };
     foreach (var mainMenuItem in mainMenu.api.rest_sidenav)
     {
         var section = (string)mainMenuItem.label;
@@ -64,26 +68,37 @@ else
             subSection = subSection.Replace(" ", string.Empty);
             Console.WriteLine($@"{section}/{subSection}.json");
             var url = $@"https://shopify.dev/api/admin-rest/{getVersion}/resources/{child.key}";
-            var childDoc = web.Load(url);
-            var childScript = childDoc.DocumentNode.SelectSingleNode("/html[1]/body[1]/script[2]");
-            var childJson = childScript.InnerText.Replace("//<![CDATA[", string.Empty)
-                .Replace("window.RailsData = ", string.Empty).Replace("//]]>", string.Empty)
-                .Replace("#{api_version}", "{api_version}")
-                .Replace("x-string", "string")
-                ;
-            
-            dynamic childObject = JsonConvert.DeserializeObject(childJson) ??
-                                  throw new InvalidOperationException("No CDATA returned.");
-            var openApi = childObject.api.rest_resource;
             var path = $@"../../../{section}";
-            CreateFoldersIfMissing(path);
-            SaveJsonFile($@"{path}/{subSection}.json", openApi);
+            var savePath = $@"{path}/{subSection}.json";
+            dynamic? openApi;
+            if (download)
+            {
+                var childDoc = web.Load(url);
+                var childScript = childDoc.DocumentNode.SelectSingleNode("/html[1]/body[1]/script[2]");
+                var childJson = childScript.InnerText.Replace("//<![CDATA[", string.Empty)
+                        .Replace("window.RailsData = ", string.Empty).Replace("//]]>", string.Empty)
+                        .Replace("#{api_version}", "{api_version}")
+                        .Replace("x-string", "string")
+                    ;
+
+                dynamic childObject = JsonConvert.DeserializeObject(childJson) ??
+                                      throw new InvalidOperationException("No CDATA returned.");
+                openApi = childObject.api.rest_resource;
+                CreateFoldersIfMissing(path);
+                SaveJsonFile(savePath, openApi);
+            }
+            else
+            {
+                var content = File.ReadAllText(savePath);
+                openApi = JsonConvert.DeserializeObject(content);
+            }
 
             var clean = CleanOpenApi(openApi);
             SaveJsonFile($@"{path}/{subSection}.clean.json", clean);
             await CreateController(JsonConvert.SerializeObject(clean), section, subSection);
         }
     }
+
     #endregion Gather & Clean Specs 
 }
 
@@ -113,7 +128,7 @@ dynamic CleanOpenApi(dynamic openApi)
     clean.openapi = openApi.openapi;
     clean.info = new ExpandoObject();
     clean.info.title = openApi.info.title;
-    clean.info.description = RemoveHtmlFromString((string)openApi.info.description) ?? string.Empty;
+    clean.info.description = HtmlToMarkdown((string)openApi.info.description) ?? string.Empty;
     clean.info.version = openApi.info.version;
     if (openApi.unsupported_version == true) return clean;
     clean.paths = new Dictionary<string, Dictionary<string, dynamic>>();
@@ -128,7 +143,7 @@ dynamic CleanOpenApi(dynamic openApi)
             clean.paths.Add(pathKey, new Dictionary<string, dynamic>());
 
         dynamic endpoint = new ExpandoObject();
-        endpoint.description = RemoveHtmlFromString((string)path.description) ?? string.Empty;
+        endpoint.description = HtmlToMarkdown((string)path.description) ?? string.Empty;
         endpoint.summary = path.summary;
         endpoint.operationId = CreateOperationId((string)path.summary);
         var parameters = path.parameters;
@@ -173,7 +188,7 @@ dynamic CleanOpenApi(dynamic openApi)
     {
         dynamic cleanComponent = new ExpandoObject();
         cleanComponent.type = component.type;
-        if(component.description != null) cleanComponent.description = RemoveHtmlFromString((string)component.description) ?? string.Empty;
+        if(component.description != null) cleanComponent.description = HtmlToMarkdown((string)component.description) ?? string.Empty;
         var cleanProperties = new Dictionary<string, dynamic>();
             
         foreach (var property in component.properties)
@@ -181,15 +196,15 @@ dynamic CleanOpenApi(dynamic openApi)
             dynamic cleanProperty = new ExpandoObject();
             if(property.id != null) cleanProperty.id = property.id;
             cleanProperty.type = property.type;
-            if (property.description != null) cleanProperty.description = RemoveHtmlFromString((string)property.description) ?? string.Empty;
+            if (property.description != null) cleanProperty.description = HtmlToMarkdown((string)property.description) ?? string.Empty;
             if (property.example != null) cleanProperty.example = property.example;
 
-            cleanProperties.Add((string) property.name, cleanProperty);
+            cleanProperties.Add((string)property.name, cleanProperty);
         }
         cleanComponent.properties = cleanProperties;
 
         //None of the models are correct. Don't bother moving them over.
-        //clean.components["schemas"].Add((string)component.name, cleanComponent);
+        //clean.components["schemas"].Add($@"{component.name}Base", cleanComponent);
     }
     return clean;
 }
@@ -204,6 +219,8 @@ string? RemoveHtmlFromString(string? html)
     html = Regex.Replace(html, removeExtraSpacesPattern, "\n ");
     return html.Trim();
 }
+
+string? HtmlToMarkdown(string? html) => string.IsNullOrWhiteSpace(html) ? null : new Html2Markdown.Converter().Convert(html);
 
 //Remove key words from a string that can be used to create a proper OperationId/Parameter name.
 string CreateOperationId(string summary)
@@ -244,7 +261,24 @@ async Task CreateController(string openApi, string section, string controllerNam
     {
         //convert the clean json to an OpenApiDocument.
         var document = OpenApiDocument.FromJsonAsync(openApi).Result;
-
+        /*
+        foreach (var (schemaName, jsonSchema) in document.Components.Schemas)
+        {
+            document.Paths.Add(new KeyValuePair<string, OpenApiPathItem>($@"SAMPLE/{schemaName}",
+                new OpenApiPathItem()
+                {
+                    {
+                        "patch",
+                        new OpenApiOperation()
+                        {
+                            OperationId = $@"Sample{schemaName}",
+                            Responses = { { schemaName, new OpenApiResponse() { Schema = jsonSchema } } }
+                        }
+                    }
+                }));
+        }
+        */
+        
         var controllerNamespace = controllerName == "AccessScope"
             ? "OpenShopify.OAuth.Builder.Controllers"
             : "OpenShopify.Admin.Builder.Controllers";
@@ -259,13 +293,15 @@ async Task CreateController(string openApi, string section, string controllerNam
             AdditionalNamespaceUsages = new[] { "System.Text.Json" },
             ControllerTarget = CSharpControllerTarget.AspNetCore,
             //ControllerStyle = CSharpControllerStyle.Partial,
-            ControllerStyle = CSharpControllerStyle.Abstract,
+            ControllerStyle = CSharpControllerStyle.Abstract, 
+            //AdditionalContractNamespaceUsages = new []{modelNamespace},
             ExcludedParameterNames = new[] { "api_version" }, // `api_version` is going to be hard-coded in the spec to make things easier.
+            /*
             CodeGeneratorSettings =
             {
                 GenerateDefaultValues  = false,
                 SchemaType = SchemaType.OpenApi3,
-            },
+            },*/
             CSharpGeneratorSettings =
             {
                 Namespace = controllerNamespace,
@@ -274,7 +310,9 @@ async Task CreateController(string openApi, string section, string controllerNam
                 GenerateOptionalPropertiesAsNullable = true,
                 GenerateNullableReferenceTypes = true,
                 GenerateDefaultValues = false,
-                GenerateDataAnnotations = true,
+                GenerateDataAnnotations = true, 
+                GenerateNativeRecords = true,
+                //HandleReferences = true,
                 PropertyNameGenerator = new CustomPropertyNameGenerator()
             }
         };
