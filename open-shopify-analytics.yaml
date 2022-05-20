@@ -18,7 +18,7 @@ paths:
       tags:
         - Report
       summary: Retrieves a list of reports
-      operationId: RetrieveListOfReports
+      operationId: ListReports
       parameters:
         - name: fields
           in: query
@@ -93,7 +93,7 @@ paths:
       tags:
         - Report
       summary: Creates a new report
-      operationId: CreateNewReport
+      operationId: CreateReport
       parameters:
         - name: name
           in: query
@@ -149,7 +149,7 @@ paths:
       tags:
         - Report
       summary: Retrieves a single report
-      operationId: RetrieveSingleReport
+      operationId: GetReport
       parameters:
         - name: report_id
           in: path

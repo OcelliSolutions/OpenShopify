@@ -12,7 +12,7 @@ public class TransactionController : TransactionControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/transactions.json")]
-    public override Task RetrieveListOfTransactions(long order_id, string? fields, bool? in_shop_currency, int? since_id)
+    public override Task ListTransactions(long order_id, string? fields, bool? in_shop_currency, int? since_id)
     {
         throw new NotImplementedException();
     }
@@ -27,14 +27,14 @@ public class TransactionController : TransactionControllerBase
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/transactions/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task RetrieveCountOfOrdersTransactions(long order_id)
+    public override Task GetCountOfOrdersTransactions(long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/transactions/{transaction_id:long}.json")]
-    public override Task RetrieveSpecificTransaction(long order_id, long transaction_id, string? fields, bool? in_shop_currency)
+    public override Task GetSpecificTransaction(long order_id, long transaction_id, string? fields, bool? in_shop_currency)
     {
         throw new NotImplementedException();
     }

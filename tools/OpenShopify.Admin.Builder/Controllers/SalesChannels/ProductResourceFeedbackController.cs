@@ -30,14 +30,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Create a new Product ResourceFeedback</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/resource_feedback.json")]
-        public abstract System.Threading.Tasks.Task CreateNewProductResourceFeedback([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateProductResourceFeedbackRequest request, long product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? state);
+        public abstract System.Threading.Tasks.Task CreateProductResourceFeedback([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateProductResourceFeedbackRequest request, long product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? state);
 
         /// <summary>
         /// Receive a list of all Product ResourceFeedbacks
         /// </summary>
         /// <returns>Receive a list of all Product ResourceFeedbacks</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/resource_feedback.json")]
-        public abstract System.Threading.Tasks.Task ReceiveListOfAllProductResourceFeedbacks(long product_id);
+        public abstract System.Threading.Tasks.Task ListProductResourceFeedbacks(long product_id);
 
     }
 

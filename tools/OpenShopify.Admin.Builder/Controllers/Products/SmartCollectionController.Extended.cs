@@ -13,7 +13,7 @@ public class SmartCollectionController : SmartCollectionControllerBase
     /// <inheritdoc />
     [HttpGet, Route("smart_collections.json")]
     [ProducesResponseType(typeof(SmartCollectionList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfSmartCollections(string? fields, string? handle, string? ids, int? limit, string? page_info, long? product_id,
+    public override Task ListSmartCollections(string? fields, string? handle, string? ids, int? limit, string? page_info, long? product_id,
         DateTime? published_at_max, DateTime? published_at_min, string published_status, int? since_id, string? title,
         DateTime? updated_at_max, DateTime? updated_at_min)
     {
@@ -31,7 +31,7 @@ public class SmartCollectionController : SmartCollectionControllerBase
     /// <inheritdoc />
     [HttpGet, Route("smart_collections/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task RetrieveCountOfSmartCollections(long? product_id, DateTime? published_at_max, DateTime? published_at_min,
+    public override Task GetCountOfSmartCollections(long? product_id, DateTime? published_at_max, DateTime? published_at_min,
         string published_status, string? title, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
@@ -39,7 +39,7 @@ public class SmartCollectionController : SmartCollectionControllerBase
 
     /// <inheritdoc />
     [ProducesResponseType(typeof(SmartCollectionItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSingleSmartCollection(long smart_collection_id, string? fields)
+    public override Task GetSmartCollection(long smart_collection_id, string? fields)
     {
         throw new NotImplementedException();
     }
@@ -47,7 +47,7 @@ public class SmartCollectionController : SmartCollectionControllerBase
     /// <inheritdoc />
     [HttpPut, Route("smart_collections/{smart_collection_id:long}.json")]
     [ProducesResponseType(typeof(SmartCollectionItem), StatusCodes.Status200OK)]
-    public override Task UpdateExistingSmartCollection(UpdateSmartCollectionRequest request, long smart_collection_id)
+    public override Task UpdateSmartCollection(UpdateSmartCollectionRequest request, long smart_collection_id)
     {
         throw new NotImplementedException();
     }
@@ -55,7 +55,7 @@ public class SmartCollectionController : SmartCollectionControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("smart_collections/{smart_collection_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task RemoveSmartCollection(long smart_collection_id)
+    public override Task DeleteSmartCollection(long smart_collection_id)
     {
         throw new NotImplementedException();
     }

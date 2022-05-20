@@ -38,14 +38,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Retrieves a list of all script tags</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfAllScriptTags([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? src, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
+        public abstract System.Threading.Tasks.Task ListScriptTags([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? src, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Creates a new script tag
         /// </summary>
         /// <returns>Creates a new script tag</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("script_tags.json")]
-        public abstract System.Threading.Tasks.Task CreateNewScriptTag([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateScriptTagRequest request);
+        public abstract System.Threading.Tasks.Task CreateScriptTag([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateScriptTagRequest request);
 
         /// <summary>
         /// Retrieves a count of all script tags
@@ -53,7 +53,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="src">Count only script tags with a given URL.</param>
         /// <returns>Retrieves a count of all script tags</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfAllScriptTags([Microsoft.AspNetCore.Mvc.FromQuery] string? src);
+        public abstract System.Threading.Tasks.Task GetCountOfAllScriptTags([Microsoft.AspNetCore.Mvc.FromQuery] string? src);
 
         /// <summary>
         /// Retrieves a single script tag
@@ -61,7 +61,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a single script tag</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags/{script_tag_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleScriptTag(long script_tag_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetScriptTag(long script_tag_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates a script tag

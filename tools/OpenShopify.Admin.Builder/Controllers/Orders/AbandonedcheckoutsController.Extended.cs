@@ -11,7 +11,7 @@ public class AbandonedCheckoutsController : AbandonedCheckoutsControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("checkouts.json")]
-    public override Task RetrieveListOfAbandonedCheckouts(DateTime? created_at_max, DateTime? created_at_min, int? limit, string? page_info,
+    public override Task ListAbandonedCheckouts(DateTime? created_at_max, DateTime? created_at_min, int? limit, string? page_info,
         int? since_id, string status, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();

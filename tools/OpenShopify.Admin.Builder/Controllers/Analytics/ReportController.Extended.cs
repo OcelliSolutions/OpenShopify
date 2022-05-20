@@ -13,7 +13,7 @@ public class ReportController : ReportControllerBase
     /// <inheritdoc />
     [HttpGet, Route("reports.json")]
     [ProducesResponseType(typeof(ReportList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfReports(string? fields, string? ids, int? limit, string? page_info, int? since_id,
+    public override Task ListReports(string? fields, string? ids, int? limit, string? page_info, int? since_id,
         DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
@@ -22,7 +22,7 @@ public class ReportController : ReportControllerBase
     /// <inheritdoc />
     [HttpPost, Route("reports.json")]
     [ProducesResponseType(typeof(ReportItem), StatusCodes.Status201Created)]
-    public override Task CreateNewReport(CreateReportRequest request, string? name, string? shopify_ql)
+    public override Task CreateReport(CreateReportRequest request, string? name, string? shopify_ql)
     {
         throw new NotImplementedException();
     }
@@ -30,7 +30,7 @@ public class ReportController : ReportControllerBase
     /// <inheritdoc />
     [HttpGet, Route("reports/{report_id:long}.json")]
     [ProducesResponseType(typeof(ReportItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSingleReport(long report_id, string? fields)
+    public override Task GetReport(long report_id, string? fields)
     {
         throw new NotImplementedException();
     }

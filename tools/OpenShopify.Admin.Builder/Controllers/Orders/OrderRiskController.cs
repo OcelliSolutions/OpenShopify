@@ -37,14 +37,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a list of all order risks for an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfAllOrderRisksForOrder(long order_id);
+        public abstract System.Threading.Tasks.Task ListOrderRisksForOrder(long order_id);
 
         /// <summary>
         /// Retrieves a single order risk by its ID
         /// </summary>
         /// <returns>Retrieves a single order risk by its ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks/{risk_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleOrderRiskByItsID(long order_id, long risk_id);
+        public abstract System.Threading.Tasks.Task GetOrderRiskByItsID(long order_id, long risk_id);
 
         /// <summary>
         /// Updates an order risk

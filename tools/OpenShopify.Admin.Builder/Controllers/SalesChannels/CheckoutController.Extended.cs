@@ -26,21 +26,21 @@ public class CheckoutController : CheckoutControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("checkouts/{token:long}.json")]
-    public override Task RetrieveCheckout(string token)
+    public override Task GetCheckout(string token)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPut, Route("checkouts/{token:long}.json")]
-    public override Task ModifyExistingCheckout(UpdateCheckoutRequest request, string token)
+    public override Task UpdateCheckout(UpdateCheckoutRequest request, string token)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("checkouts/{token:long}/shipping_rates.json")]
-    public override Task RetrieveListOfShippingRates(string token)
+    public override Task ListShippingRates(string token)
     {
         throw new NotImplementedException();
     }

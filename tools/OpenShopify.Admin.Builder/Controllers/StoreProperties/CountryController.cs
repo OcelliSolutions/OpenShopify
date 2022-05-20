@@ -32,7 +32,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <returns>Receive a list of all Countries</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries.json")]
-        public abstract System.Threading.Tasks.Task ReceiveListOfAllCountries([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
+        public abstract System.Threading.Tasks.Task ListCountries([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
 
         /// <summary>
         /// Creates a country
@@ -46,7 +46,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a count of countries</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfCountries();
+        public abstract System.Threading.Tasks.Task GetCountOfCountries();
 
         /// <summary>
         /// Retrieves a specific county
@@ -54,21 +54,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a specific county</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSpecificCounty(long country_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetSpecificCounty(long country_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates an existing country
         /// </summary>
         /// <returns>Updates an existing country</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingCountry([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCountryRequest request, long country_id);
+        public abstract System.Threading.Tasks.Task UpdateCountry([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCountryRequest request, long country_id);
 
         /// <summary>
         /// Remove an existing Country
         /// </summary>
         /// <returns>Remove an existing Country</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}.json")]
-        public abstract System.Threading.Tasks.Task RemoveExistingCountry(long country_id);
+        public abstract System.Threading.Tasks.Task DeleteExistingCountry(long country_id);
 
     }
 

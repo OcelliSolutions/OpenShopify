@@ -12,7 +12,7 @@ public class ProductListingController : ProductListingControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("product_listings.json")]
-    public override Task RetrieveProductListingsThatArePublishedToYourApp(long? collection_id, string? handle, int? limit, string? page_info,
+    public override Task GetProductListingsThatArePublishedToYourApp(long? collection_id, string? handle, int? limit, string? page_info,
         long? product_ids, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
@@ -20,7 +20,7 @@ public class ProductListingController : ProductListingControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("product_listings/product_ids.json")]
-    public override Task RetrieveProductIdsThatArePublishedToYourApp(int? limit, string? page_info)
+    public override Task GetProductIdsThatArePublishedToYourApp(int? limit, string? page_info)
     {
         throw new NotImplementedException();
     }
@@ -28,14 +28,14 @@ public class ProductListingController : ProductListingControllerBase
     /// <inheritdoc />
     [HttpGet, Route("product_listings/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task RetrieveCountOfProductsThatArePublishedToYourApp()
+    public override Task GetCountOfProductsThatArePublishedToYourApp()
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("product_listings/{product_listing_id:long}.json")]
-    public override Task RetrieveSpecificProductListingThatIsPublishedToYourApp(long product_listing_id)
+    public override Task GetSpecificProductListingThatIsPublishedToYourApp(long product_listing_id)
     {
         throw new NotImplementedException();
     }

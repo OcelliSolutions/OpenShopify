@@ -34,7 +34,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="since_id">Restrict results to after the specified ID</param>
         /// <returns>Retrieve a list of all blogs</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfAllBlogs([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
+        public abstract System.Threading.Tasks.Task ListBlogs([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
 
         /// <summary>
         /// Create a new Blog
@@ -42,14 +42,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="title">The title of the blog. Maximum length: 255 characters.</param>
         /// <returns>Create a new Blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("blogs.json")]
-        public abstract System.Threading.Tasks.Task CreateNewBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateBlogRequest request, [Microsoft.AspNetCore.Mvc.FromQuery] string title);
+        public abstract System.Threading.Tasks.Task CreateBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateBlogRequest request, [Microsoft.AspNetCore.Mvc.FromQuery] string title);
 
         /// <summary>
         /// Receive a count of all Blogs
         /// </summary>
         /// <returns>Receive a count of all Blogs</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/count.json")]
-        public abstract System.Threading.Tasks.Task ReceiveCountOfAllBlogs();
+        public abstract System.Threading.Tasks.Task GetCountOfAllBlogs();
 
         /// <summary>
         /// Receive a single Blog
@@ -57,21 +57,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <returns>Receive a single Blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}.json")]
-        public abstract System.Threading.Tasks.Task ReceiveSingleBlog(long blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetBlog(long blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Modify an existing Blog
         /// </summary>
         /// <returns>Modify an existing Blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateBlogRequest request, long blog_id);
+        public abstract System.Threading.Tasks.Task UpdateBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateBlogRequest request, long blog_id);
 
         /// <summary>
         /// Remove an existing Blog
         /// </summary>
         /// <returns>Remove an existing Blog</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}.json")]
-        public abstract System.Threading.Tasks.Task RemoveExistingBlog(long blog_id);
+        public abstract System.Threading.Tasks.Task DeleteExistingBlog(long blog_id);
 
     }
 

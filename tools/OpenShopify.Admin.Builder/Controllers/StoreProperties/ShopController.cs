@@ -31,7 +31,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves the shop's configuration</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shop.json")]
-        public abstract System.Threading.Tasks.Task RetrieveShopsConfiguration([Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetShopsConfiguration([Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
     }
 

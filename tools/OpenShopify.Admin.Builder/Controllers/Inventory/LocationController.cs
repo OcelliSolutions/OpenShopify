@@ -30,28 +30,28 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieve a list of locations</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfLocations();
+        public abstract System.Threading.Tasks.Task ListLocations();
 
         /// <summary>
         /// Retrieve a single location by its ID
         /// </summary>
         /// <returns>Retrieve a single location by its ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations/{location_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleLocationByItsID(long location_id);
+        public abstract System.Threading.Tasks.Task GetLocationByItsID(long location_id);
 
         /// <summary>
         /// Retrieve a count of locations
         /// </summary>
         /// <returns>Retrieve a count of locations</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfLocations();
+        public abstract System.Threading.Tasks.Task GetCountOfLocations();
 
         /// <summary>
         /// Retrieve a list of inventory levels for a location
         /// </summary>
         /// <returns>Retrieve a list of inventory levels for a location</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations/{location_id}/inventory_levels.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfInventoryLevelsForLocation(long location_id);
+        public abstract System.Threading.Tasks.Task ListInventoryLevelsForLocation(long location_id);
 
     }
 

@@ -11,7 +11,7 @@ public class TenderTransactionController : TenderTransactionControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("tender_transactions.json")]
-    public override Task RetrieveListOfTenderTransactions(int? limit, string? page_info, string? order, string? processed_at, DateTime? processed_at_max,
+    public override Task ListTenderTransactions(int? limit, string? page_info, string? order, string? processed_at, DateTime? processed_at_max,
         DateTime? processed_at_min, int? since_id)
     {
         throw new NotImplementedException();

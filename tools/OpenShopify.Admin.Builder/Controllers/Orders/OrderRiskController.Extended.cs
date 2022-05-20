@@ -19,14 +19,14 @@ public class OrderRiskController : OrderRiskControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/risks.json")]
-    public override Task RetrieveListOfAllOrderRisksForOrder(long order_id)
+    public override Task ListOrderRisksForOrder(long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/risks/{risk_id:long}.json")]
-    public override Task RetrieveSingleOrderRiskByItsID(long order_id, long risk_id)
+    public override Task GetOrderRiskByItsID(long order_id, long risk_id)
     {
         throw new NotImplementedException();
     }

@@ -44,6 +44,7 @@ public class SharedFixture : IDisposable
     public List<AuthorizationScope?> Scopes { get; set; }
     public List<ApplicationCredit> CreatedApplicationCredits = new();
     public List<Customer> CreatedCustomers = new();
+    public List<CustomerAddress> CreatedCustomerAddresses = new();
     public List<Address> CreatedAddresses = new();
     public List<FulfillmentService> CreatedFulfillmentServices = new();
     
@@ -65,7 +66,7 @@ public class SharedFixture : IDisposable
         try
         {
             var service = new AccessService(MyShopifyUrl, AccessToken);
-            var scopes = await service.AccessScope.GetListOfAccessScopesAsync();
+            var scopes = await service.AccessScope.ListAccessScopesAsync();
             if (scopes.Result.AccessScopes != null)
             {
                 Scopes = scopes.Result.AccessScopes.Select(s => s.Handle).ToList();

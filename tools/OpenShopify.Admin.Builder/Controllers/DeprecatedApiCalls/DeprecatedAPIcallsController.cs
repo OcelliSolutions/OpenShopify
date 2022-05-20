@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a list of deprecated API calls</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("deprecated_api_calls.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfDeprecatedAPICalls();
+        public abstract System.Threading.Tasks.Task ListDeprecatedAPICalls();
 
     }
 

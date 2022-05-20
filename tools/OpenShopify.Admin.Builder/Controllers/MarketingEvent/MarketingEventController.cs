@@ -32,7 +32,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="offset">The number of marketing events to skip.</param>
         /// <returns>Retrieves a list of all marketing events</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("marketing_events.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfAllMarketingEvents([Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? offset);
+        public abstract System.Threading.Tasks.Task ListMarketingEvents([Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? offset);
 
         /// <summary>
         /// Creates a marketing event
@@ -46,14 +46,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a count of all marketing events</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("marketing_events/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfAllMarketingEvents();
+        public abstract System.Threading.Tasks.Task GetCountOfAllMarketingEvents();
 
         /// <summary>
         /// Retrieves a single marketing event
         /// </summary>
         /// <returns>Retrieves a single marketing event</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("marketing_events/{marketing_event_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleMarketingEvent(long marketing_event_id);
+        public abstract System.Threading.Tasks.Task GetMarketingEvent(long marketing_event_id);
 
         /// <summary>
         /// Updates a marketing event

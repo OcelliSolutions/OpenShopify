@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
+using OpenShopify.Common.Models;
 
 namespace OpenShopify.OAuth.Builder.Controllers.Access;
 
@@ -13,15 +14,18 @@ public class AccessScopeController : AccessScopeControllerBase
     /// <inheritdoc />
     [HttpGet, Route("oauth/access_scopes.json")]
     [ProducesResponseType(typeof(AccessScopeList), StatusCodes.Status200OK)]
-    public override Task GetListOfAccessScopes()
+    public override Task ListAccessScopes()
     {
         throw new NotImplementedException();
     }
 }
-
-
 public class AccessScopeList
 {
     [JsonPropertyName("access_scopes")]
-    public IEnumerable<AuthorizationScope>? AccessScopes { get; set; }
+    public IEnumerable<AccessScope> AccessScopes { get; set; } = null!;
+}
+
+
+public class AccessScope : AccessScopeBase
+{
 }

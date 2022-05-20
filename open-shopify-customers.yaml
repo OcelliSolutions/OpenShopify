@@ -18,7 +18,7 @@ paths:
       tags:
         - Customer
       summary: Retrieves a list of customers
-      operationId: RetrieveListOfCustomers
+      operationId: ListCustomers
       parameters:
         - name: created_at_max
           in: query
@@ -213,7 +213,7 @@ paths:
       tags:
         - Customer
       summary: Retrieves a single customer
-      operationId: RetrieveSingleCustomer
+      operationId: GetCustomer
       parameters:
         - name: customer_id
           in: path
@@ -449,7 +449,7 @@ paths:
       tags:
         - Customer
       summary: Retrieves a count of customers
-      operationId: RetrieveCountOfCustomers
+      operationId: GetCountOfCustomers
       responses:
         '200':
           description: Success
@@ -486,7 +486,7 @@ paths:
       tags:
         - Customer
       summary: Retrieves all orders that belong to a customer
-      operationId: RetrieveAllOrdersThatBelongToCustomer
+      operationId: GetAllOrdersThatBelongToCustomer
       parameters:
         - name: customer_id
           in: path
@@ -535,7 +535,7 @@ paths:
       tags:
         - CustomerAddress
       summary: Retrieves a list of addresses for a customer
-      operationId: RetrieveListOfAddressesForCustomer
+      operationId: ListAddressesForCustomer
       parameters:
         - name: customer_id
           in: path
@@ -558,7 +558,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerAddressList'
+                $ref: '#/components/schemas/AddressList'
         '401':
           description: Unauthorized
           headers:
@@ -578,7 +578,7 @@ paths:
       tags:
         - CustomerAddress
       summary: Creates a new address for a customer
-      operationId: CreateNewAddressForCustomer
+      operationId: CreateAddressForCustomer
       parameters:
         - name: customer_id
           in: path
@@ -630,7 +630,7 @@ paths:
       tags:
         - CustomerAddress
       summary: Retrieves details for a single customer address
-      operationId: RetrieveDetailsForSingleCustomerAddress
+      operationId: GetDetailsForSingleCustomerAddress
       parameters:
         - name: address_id
           in: path
@@ -679,7 +679,7 @@ paths:
       tags:
         - CustomerAddress
       summary: Updates an existing customer address
-      operationId: UpdateExistingCustomerAddress
+      operationId: UpdateCustomerAddress
       parameters:
         - name: address_id
           in: path
@@ -736,7 +736,7 @@ paths:
       tags:
         - CustomerAddress
       summary: Removes an address from a customer’s address list
-      operationId: RemoveAddressFromCustomersAddressList
+      operationId: DeleteAddressFromCustomersAddressList
       parameters:
         - name: address_id
           in: path
@@ -880,7 +880,7 @@ paths:
       tags:
         - CustomerSavedSearch
       summary: Retrieves a list of customer saved searches
-      operationId: RetrieveListOfCustomerSavedSearches
+      operationId: ListCustomerSavedSearches
       parameters:
         - name: fields
           in: query
@@ -983,7 +983,7 @@ paths:
       tags:
         - CustomerSavedSearch
       summary: Retrieves a count of all customer saved searches
-      operationId: RetrieveCountOfAllCustomerSavedSearches
+      operationId: GetCountOfAllCustomerSavedSearches
       parameters:
         - name: since_id
           in: query
@@ -1027,7 +1027,7 @@ paths:
       tags:
         - CustomerSavedSearch
       summary: Retrieves a single customer saved search
-      operationId: RetrieveSingleCustomerSavedSearch
+      operationId: GetCustomerSavedSearch
       parameters:
         - name: customer_saved_search_id
           in: path
@@ -1166,7 +1166,7 @@ paths:
       tags:
         - CustomerSavedSearch
       summary: Retrieves all customers returned by a customer saved search
-      operationId: RetrieveAllCustomersReturnedByCustomerSavedSearch
+      operationId: GetAllCustomersReturnedByCustomerSavedSearch
       parameters:
         - name: customer_saved_search_id
           in: path
@@ -1317,6 +1317,14 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+      additionalProperties: { }
+    AddressList:
+      type: object
+      properties:
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
       additionalProperties: { }
     ClientDetails:
       type: object
@@ -1940,14 +1948,6 @@ components:
       properties:
         customer_address:
           $ref: '#/components/schemas/Address'
-      additionalProperties: { }
-    CustomerAddressList:
-      type: object
-      properties:
-        customer_addresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address'
       additionalProperties: { }
     CustomerInvite:
       required:

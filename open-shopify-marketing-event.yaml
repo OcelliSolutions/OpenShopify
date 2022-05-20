@@ -18,7 +18,7 @@ paths:
       tags:
         - MarketingEvent
       summary: Retrieves a list of all marketing events
-      operationId: RetrieveListOfAllMarketingEvents
+      operationId: ListMarketingEvents
       parameters:
         - name: limit
           in: query
@@ -115,7 +115,7 @@ paths:
       tags:
         - MarketingEvent
       summary: Retrieves a count of all marketing events
-      operationId: RetrieveCountOfAllMarketingEvents
+      operationId: GetCountOfAllMarketingEvents
       responses:
         '200':
           description: Success
@@ -152,7 +152,7 @@ paths:
       tags:
         - MarketingEvent
       summary: Retrieves a single marketing event
-      operationId: RetrieveSingleMarketingEvent
+      operationId: GetMarketingEvent
       parameters:
         - name: marketing_event_id
           in: path

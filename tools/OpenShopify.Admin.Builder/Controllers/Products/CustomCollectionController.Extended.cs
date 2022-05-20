@@ -15,7 +15,7 @@ public class CustomCollectionController : CustomCollectionControllerBase
     /// <inheritdoc />
     [HttpGet, Route("custom_collections.json")]
     [ProducesResponseType(typeof(CustomCollectionList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfCustomCollections(string? fields, string? handle, string? ids, int? limit, string? page_info, long? product_id,
+    public override Task ListCustomCollections(string? fields, string? handle, string? ids, int? limit, string? page_info, long? product_id,
         DateTime? published_at_max, DateTime? published_at_min, string published_status, int? since_id, string? title,
         DateTime? updated_at_max, DateTime? updated_at_min)
     {
@@ -33,7 +33,7 @@ public class CustomCollectionController : CustomCollectionControllerBase
     /// <inheritdoc />
     [HttpGet, Route("custom_collections/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task RetrieveCountOfCustomCollections(long? product_id, DateTime? published_at_max, DateTime? published_at_min,
+    public override Task GetCountOfCustomCollections(long? product_id, DateTime? published_at_max, DateTime? published_at_min,
         string published_status, string? title, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
@@ -42,7 +42,7 @@ public class CustomCollectionController : CustomCollectionControllerBase
     /// <inheritdoc />
     [HttpGet, Route("custom_collections/{custom_collection_id:long}.json")]
     [ProducesResponseType(typeof(CustomCollectionItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSingleCustomCollection(long custom_collection_id, string? fields)
+    public override Task GetCustomCollection(long custom_collection_id, string? fields)
     {
         throw new NotImplementedException();
     }
@@ -50,7 +50,7 @@ public class CustomCollectionController : CustomCollectionControllerBase
     /// <inheritdoc />
     [HttpPut, Route("custom_collections/{custom_collection_id:long}.json")]
     [ProducesResponseType(typeof(CustomCollectionItem), StatusCodes.Status200OK)]
-    public override Task UpdateExistingCustomCollection(UpdateCustomCollectionRequest request, long custom_collection_id)
+    public override Task UpdateCustomCollection(UpdateCustomCollectionRequest request, long custom_collection_id)
     {
         throw new NotImplementedException();
     }

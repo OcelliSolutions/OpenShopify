@@ -31,7 +31,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collections/{collection_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleCollection(long collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetCollection(long collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Retrieve a list of products belonging to a collection
@@ -39,7 +39,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="limit">The number of products to retrieve.</param>
         /// <returns>Retrieve a list of products belonging to a collection</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collections/{collection_id}/products.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfProductsBelongingToCollection(long collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info);
+        public abstract System.Threading.Tasks.Task ListProductsBelongingToCollection(long collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info);
 
     }
 

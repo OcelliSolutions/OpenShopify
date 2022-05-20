@@ -15,7 +15,7 @@ paths:
       tags:
         - AccessScope
       summary: Get a list of access scopes
-      operationId: GetListOfAccessScopes
+      operationId: ListAccessScopes
       responses:
         '200':
           description: Success
@@ -49,14 +49,19 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    AccessScope:
+      type: object
+      properties:
+        handle:
+          $ref: '#/components/schemas/AuthorizationScope'
+      additionalProperties: { }
     AccessScopeList:
       type: object
       properties:
         access_scopes:
           type: array
           items:
-            $ref: '#/components/schemas/AuthorizationScope'
-          nullable: true
+            $ref: '#/components/schemas/AccessScope'
       additionalProperties: { }
     AuthorizationScope:
       enum:

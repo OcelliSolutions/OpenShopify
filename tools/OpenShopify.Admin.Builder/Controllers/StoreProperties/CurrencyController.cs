@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a list of currencies enabled on a shop</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("currencies.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfCurrenciesEnabledOnShop();
+        public abstract System.Threading.Tasks.Task ListCurrenciesEnabledOnShop();
 
     }
 

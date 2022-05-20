@@ -36,7 +36,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="since_id">Retrieve only transactions after the specified ID.</param>
         /// <returns>Retrieves a list of tender transactions</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("tender_transactions.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfTenderTransactions([Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? order, [Microsoft.AspNetCore.Mvc.FromQuery] string? processed_at, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? processed_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? processed_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
+        public abstract System.Threading.Tasks.Task ListTenderTransactions([Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? order, [Microsoft.AspNetCore.Mvc.FromQuery] string? processed_at, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? processed_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? processed_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
 
     }
 

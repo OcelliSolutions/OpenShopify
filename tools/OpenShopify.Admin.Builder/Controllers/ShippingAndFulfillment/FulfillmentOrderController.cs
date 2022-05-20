@@ -30,14 +30,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a list of fulfillment orders for a specific order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillment_orders.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfFulfillmentOrdersForSpecificOrder(long order_id);
+        public abstract System.Threading.Tasks.Task ListFulfillmentOrdersForSpecificOrder(long order_id);
 
         /// <summary>
         /// Retrieves a specific fulfillment order
         /// </summary>
         /// <returns>Retrieves a specific fulfillment order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSpecificFulfillmentOrder(long fulfillment_order_id);
+        public abstract System.Threading.Tasks.Task GetSpecificFulfillmentOrder(long fulfillment_order_id);
 
         /// <summary>
         /// Cancel a fulfillment order

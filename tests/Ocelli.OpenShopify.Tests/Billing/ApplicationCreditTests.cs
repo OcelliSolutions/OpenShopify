@@ -47,13 +47,13 @@ public class ApplicationCreditTests : IClassFixture<SharedFixture>
     }
 
     [SkippableFact(Skip = "Unknown required scope."), TestPriority(20)]
-    public async Task RetrieveSingleApplicationCreditAsync_AdditionalPropertiesAreEmpty_ShouldPass()
+    public async Task GetApplicationCreditAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
         Skip.If(Fixture.CreatedApplicationCredits.FirstOrDefault()?.Id == null);
         var applicationCredit = Fixture.CreatedApplicationCredits.First();
 
         var single =
-            await _service.ApplicationCredit.RetrieveSingleApplicationCreditAsync(applicationCredit.Id,
+            await _service.ApplicationCredit.GetApplicationCreditAsync(applicationCredit.Id,
                 cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(single, Fixture.MyShopifyUrl);
 
@@ -66,10 +66,10 @@ public class ApplicationCreditTests : IClassFixture<SharedFixture>
     }
 
     [SkippableFact(Skip = "Unknown required scope."), TestPriority(20)]
-    public async Task RetrieveAllApplicationCreditsAsync_AdditionalPropertiesAreEmpty_ShouldPass()
+    public async Task GetAllApplicationCreditsAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
         var result =
-            await _service.ApplicationCredit.RetrieveAllApplicationCreditsAsync(cancellationToken: CancellationToken.None);
+            await _service.ApplicationCredit.GetAllApplicationCreditsAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
         
         Skip.If(result.Result.ApplicationCredits == null || !result.Result.ApplicationCredits.Any(),

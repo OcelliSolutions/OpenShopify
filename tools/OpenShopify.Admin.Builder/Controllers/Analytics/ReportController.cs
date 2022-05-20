@@ -36,7 +36,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Show reports last updated after date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Retrieves a list of reports</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("reports.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfReports([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
+        public abstract System.Threading.Tasks.Task ListReports([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Creates a new report
@@ -45,7 +45,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="shopify_ql">The ShopifyQL the report will query.</param>
         /// <returns>Creates a new report</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("reports.json")]
-        public abstract System.Threading.Tasks.Task CreateNewReport([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateReportRequest request, [Microsoft.AspNetCore.Mvc.FromQuery] string? name, [Microsoft.AspNetCore.Mvc.FromQuery] string? shopify_ql);
+        public abstract System.Threading.Tasks.Task CreateReport([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateReportRequest request, [Microsoft.AspNetCore.Mvc.FromQuery] string? name, [Microsoft.AspNetCore.Mvc.FromQuery] string? shopify_ql);
 
         /// <summary>
         /// Retrieves a single report
@@ -53,7 +53,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieves a single report</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("reports/{report_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleReport(long report_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetReport(long report_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates a report

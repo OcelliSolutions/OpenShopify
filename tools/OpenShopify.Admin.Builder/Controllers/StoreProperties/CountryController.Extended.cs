@@ -13,7 +13,7 @@ public class CountryController : CountryControllerBase
     /// <inheritdoc />
     [HttpGet, Route("countries.json")]
     [ProducesResponseType(typeof(CountryList), StatusCodes.Status200OK)]
-    public override Task ReceiveListOfAllCountries(string? fields, int? since_id)
+    public override Task ListCountries(string? fields, int? since_id)
     {
         throw new NotImplementedException();
     }
@@ -29,7 +29,7 @@ public class CountryController : CountryControllerBase
     /// <inheritdoc />
     [HttpGet, Route("countries/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task RetrieveCountOfCountries()
+    public override Task GetCountOfCountries()
     {
         throw new NotImplementedException();
     }
@@ -37,22 +37,22 @@ public class CountryController : CountryControllerBase
     /// <inheritdoc />
     [HttpGet, Route("countries/{country_id:long}.json")]
     [ProducesResponseType(typeof(CountryItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSpecificCounty(long country_id, string? fields)
+    public override Task GetSpecificCounty(long country_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [IgnoreApi, HttpPut, Route("countries/{country_id}.invalid")]
-    public override Task UpdateExistingCountry(UpdateCountryRequest request, long country_id)
+    public override Task UpdateCountry(UpdateCountryRequest request, long country_id)
     {
         throw new NotImplementedException();
     }
 
-    /// <inheritdoc cref="CountryControllerBase.UpdateExistingCountry" />
+    /// <inheritdoc cref="CountryControllerBase.UpdateCountry" />
     [HttpPut, Route("countries/{country_id:long}.json")]
     [ProducesResponseType(typeof(CountryItem), StatusCodes.Status200OK)]
-    public Task UpdateExistingCountry(long country_id, CountryItem request)
+    public Task UpdateCountry(long country_id, CountryItem request)
     {
         throw new NotImplementedException();
     }
@@ -60,7 +60,7 @@ public class CountryController : CountryControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("countries/{country_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task RemoveExistingCountry(long country_id)
+    public override Task DeleteExistingCountry(long country_id)
     {
         throw new NotImplementedException();
     }

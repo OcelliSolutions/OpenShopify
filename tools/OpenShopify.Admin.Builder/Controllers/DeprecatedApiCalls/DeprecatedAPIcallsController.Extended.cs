@@ -14,7 +14,7 @@ public class DeprecatedApiCallsController : DeprecatedAPICallsControllerBase
     /// <inheritdoc />
     [HttpGet, Route("deprecated_api_calls.json")]
     [ProducesResponseType(typeof(DeprecatedApiCallList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfDeprecatedAPICalls()
+    public override Task ListDeprecatedAPICalls()
     {
         throw new NotImplementedException();
     }

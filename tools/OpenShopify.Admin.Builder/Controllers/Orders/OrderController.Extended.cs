@@ -12,7 +12,7 @@ public class OrderController : OrderControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("orders.json")]
-    public override Task RetrieveListOfOrders(long? attribution_app_id, DateTime? created_at_max, DateTime? created_at_min,
+    public override Task ListOrders(long? attribution_app_id, DateTime? created_at_max, DateTime? created_at_min,
         string? fields, string financial_status, string fulfillment_status, string? ids, int? limit, string? page_info,
         DateTime? processed_at_max, DateTime? processed_at_min, int? since_id, Status? status, DateTime? updated_at_max,
         DateTime? updated_at_min)
@@ -29,7 +29,7 @@ public class OrderController : OrderControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}.json")]
-    public override Task RetrieveSpecificOrder(long order_id, string? fields)
+    public override Task GetSpecificOrder(long order_id, string? fields)
     {
         throw new NotImplementedException();
     }
@@ -51,7 +51,7 @@ public class OrderController : OrderControllerBase
     /// <inheritdoc />
     [HttpGet, Route("orders/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task RetrieveOrderCount(DateTime? created_at_max, DateTime? created_at_min, string financial_status,
+    public override Task GetOrderCount(DateTime? created_at_max, DateTime? created_at_min, string financial_status,
         string fulfillment_status, string status, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();

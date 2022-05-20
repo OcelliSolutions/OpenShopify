@@ -62,7 +62,7 @@ paths:
       tags:
         - Collect
       summary: Retrieves a list of collects
-      operationId: RetrieveListOfCollects
+      operationId: ListCollects
       parameters:
         - name: fields
           in: query
@@ -121,7 +121,7 @@ paths:
       tags:
         - Collect
       summary: Removes a product from a collection
-      operationId: RemoveProductFromCollection
+      operationId: DeleteProductFromCollection
       parameters:
         - name: collect_id
           in: path
@@ -160,7 +160,7 @@ paths:
       tags:
         - Collect
       summary: Retrieves a specific collect by its ID
-      operationId: RetrieveSpecificCollectByItsID
+      operationId: GetSpecificCollectByItsID
       parameters:
         - name: collect_id
           in: path
@@ -209,7 +209,7 @@ paths:
       tags:
         - Collect
       summary: Retrieves a count of collects
-      operationId: RetrieveCountOfCollects
+      operationId: GetCountOfCollects
       responses:
         '200':
           description: Success
@@ -246,7 +246,7 @@ paths:
       tags:
         - Collection
       summary: Retrieves a single collection
-      operationId: RetrieveSingleCollection
+      operationId: GetCollection
       parameters:
         - name: collection_id
           in: path
@@ -295,7 +295,7 @@ paths:
       tags:
         - Collection
       summary: Retrieve a list of products belonging to a collection
-      operationId: RetrieveListOfProductsBelongingToCollection
+      operationId: ListProductsBelongingToCollection
       parameters:
         - name: collection_id
           in: path
@@ -349,7 +349,7 @@ paths:
       tags:
         - CustomCollection
       summary: Retrieves a list of custom collections
-      operationId: RetrieveListOfCustomCollections
+      operationId: ListCustomCollections
       parameters:
         - name: fields
           in: query
@@ -502,7 +502,7 @@ paths:
       tags:
         - CustomCollection
       summary: Retrieves a count of custom collections
-      operationId: RetrieveCountOfCustomCollections
+      operationId: GetCountOfCustomCollections
       parameters:
         - name: product_id
           in: query
@@ -580,7 +580,7 @@ paths:
       tags:
         - CustomCollection
       summary: Retrieves a single custom collection
-      operationId: RetrieveSingleCustomCollection
+      operationId: GetCustomCollection
       parameters:
         - name: custom_collection_id
           in: path
@@ -628,7 +628,7 @@ paths:
       tags:
         - CustomCollection
       summary: Updates an existing custom collection
-      operationId: UpdateExistingCustomCollection
+      operationId: UpdateCustomCollection
       parameters:
         - name: custom_collection_id
           in: path
@@ -719,7 +719,7 @@ paths:
       tags:
         - Product
       summary: Retrieve a list of products
-      operationId: RetrieveListOfProducts
+      operationId: ListProducts
       parameters:
         - name: collection_id
           in: query
@@ -862,7 +862,7 @@ paths:
       tags:
         - Product
       summary: Create a new product
-      operationId: CreateNewProduct
+      operationId: CreateProduct
       requestBody:
         content:
           application/json:
@@ -907,7 +907,7 @@ paths:
       tags:
         - Product
       summary: Retrieve a count of products
-      operationId: RetrieveCountOfProducts
+      operationId: GetCountOfProducts
       parameters:
         - name: collection_id
           in: query
@@ -1002,7 +1002,7 @@ paths:
       tags:
         - Product
       summary: Retrieve a single product
-      operationId: RetrieveSingleProduct
+      operationId: GetProduct
       parameters:
         - name: product_id
           in: path
@@ -1141,7 +1141,7 @@ paths:
       tags:
         - ProductImage
       summary: Receive a list of all Product Images
-      operationId: ReceiveListOfAllProductImages
+      operationId: ListProductImages
       parameters:
         - name: product_id
           in: path
@@ -1180,7 +1180,7 @@ paths:
       tags:
         - ProductImage
       summary: Create a new Product Image
-      operationId: CreateNewProductImage
+      operationId: CreateProductImage
       parameters:
         - name: product_id
           in: path
@@ -1217,7 +1217,7 @@ paths:
       tags:
         - ProductImage
       summary: Receive a count of all Product Images
-      operationId: ReceiveCountOfAllProductImages
+      operationId: GetCountOfAllProductImages
       parameters:
         - name: product_id
           in: path
@@ -1267,7 +1267,7 @@ paths:
       tags:
         - ProductImage
       summary: Receive a single Product Image
-      operationId: ReceiveSingleProductImage
+      operationId: GetProductImage
       parameters:
         - name: image_id
           in: path
@@ -1306,7 +1306,7 @@ paths:
       tags:
         - ProductImage
       summary: Modify an existing Product Image
-      operationId: ModifyExistingProductImage
+      operationId: UpdateProductImage
       parameters:
         - name: image_id
           in: path
@@ -1348,7 +1348,7 @@ paths:
       tags:
         - ProductImage
       summary: Remove an existing Product Image
-      operationId: RemoveExistingProductImage
+      operationId: DeleteExistingProductImage
       parameters:
         - name: image_id
           in: path
@@ -1383,7 +1383,7 @@ paths:
       tags:
         - ProductVariant
       summary: Retrieves a list of product variants
-      operationId: RetrieveListOfProductVariants
+      operationId: ListProductVariants
       parameters:
         - name: product_id
           in: path
@@ -1437,7 +1437,7 @@ paths:
       tags:
         - ProductVariant
       summary: Create a new Product Variant
-      operationId: CreateNewProductVariant
+      operationId: CreateProductVariant
       parameters:
         - name: product_id
           in: path
@@ -1474,7 +1474,7 @@ paths:
       tags:
         - ProductVariant
       summary: Receive a count of all Product Variants
-      operationId: ReceiveCountOfAllProductVariants
+      operationId: GetCountOfAllProductVariants
       parameters:
         - name: product_id
           in: path
@@ -1518,7 +1518,7 @@ paths:
       tags:
         - ProductVariant
       summary: Receive a single Product Variant
-      operationId: ReceiveSingleProductVariant
+      operationId: GetProductVariant
       parameters:
         - name: variant_id
           in: path
@@ -1551,7 +1551,7 @@ paths:
       tags:
         - ProductVariant
       summary: Modify an existing Product Variant
-      operationId: ModifyExistingProductVariant
+      operationId: UpdateProductVariant
       parameters:
         - name: variant_id
           in: path
@@ -1588,7 +1588,7 @@ paths:
       tags:
         - ProductVariant
       summary: Remove an existing Product Variant
-      operationId: RemoveExistingProductVariant
+      operationId: DeleteExistingProductVariant
       parameters:
         - name: product_id
           in: path
@@ -1623,7 +1623,7 @@ paths:
       tags:
         - SmartCollection
       summary: Retrieves a list of smart collections
-      operationId: RetrieveListOfSmartCollections
+      operationId: ListSmartCollections
       parameters:
         - name: fields
           in: query
@@ -1776,7 +1776,7 @@ paths:
       tags:
         - SmartCollection
       summary: Retrieves a count of smart collections
-      operationId: RetrieveCountOfSmartCollections
+      operationId: GetCountOfSmartCollections
       parameters:
         - name: product_id
           in: query
@@ -1854,7 +1854,7 @@ paths:
       tags:
         - SmartCollection
       summary: Retrieves a single smart collection
-      operationId: RetrieveSingleSmartCollection
+      operationId: GetSmartCollection
       parameters:
         - name: smart_collection_id
           in: path
@@ -1902,7 +1902,7 @@ paths:
       tags:
         - SmartCollection
       summary: Updates an existing smart collection
-      operationId: UpdateExistingSmartCollection
+      operationId: UpdateSmartCollection
       parameters:
         - name: smart_collection_id
           in: path
@@ -1953,7 +1953,7 @@ paths:
       tags:
         - SmartCollection
       summary: Removes a smart collection
-      operationId: RemoveSmartCollection
+      operationId: DeleteSmartCollection
       parameters:
         - name: smart_collection_id
           in: path

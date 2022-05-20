@@ -39,7 +39,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeList>> RetrieveListOfDiscountCodesAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeList>> ListDiscountCodesAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -47,7 +47,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> UpdateExistingDiscountCodeAsync(long discountCodeId, long priceRuleId, UpdateDiscountCodeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> UpdateDiscountCodeAsync(long discountCodeId, long priceRuleId, UpdateDiscountCodeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -55,7 +55,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> RetrieveSingleDiscountCodeAsync(long discountCodeId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> GetDiscountCodeAsync(long discountCodeId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -71,7 +71,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="code">Retrieves the location of a discount code by code name.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> RetrieveLocationOfDiscountCodeAsync(string? code = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> GetLocationOfDiscountCodeAsync(string? code = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -82,7 +82,7 @@ namespace Ocelli.OpenShopify
         /// <param name="timesUsedMin">Show discount codes used less than or equal to this value.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfDiscountCodesForShopAsync(string? timesUsed = null, string? timesUsedMax = null, string? timesUsedMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetCountOfDiscountCodesForShopAsync(string? timesUsed = null, string? timesUsedMax = null, string? timesUsedMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -98,7 +98,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> RetrieveDiscountCodeCreationJobAsync(long batchId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> GetDiscountCodeCreationJobAsync(long batchId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -106,7 +106,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeList>> RetrieveListOfDiscountCodesForDiscountCodeCreationJobAsync(long batchId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeList>> ListDiscountCodesForDiscountCodeCreationJobAsync(long batchId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -235,7 +235,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeList>> RetrieveListOfDiscountCodesAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeList>> ListDiscountCodesAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (priceRuleId == null)
                 throw new System.ArgumentNullException("priceRuleId");
@@ -319,7 +319,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> UpdateExistingDiscountCodeAsync(long discountCodeId, long priceRuleId, UpdateDiscountCodeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> UpdateDiscountCodeAsync(long discountCodeId, long priceRuleId, UpdateDiscountCodeRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (discountCodeId == null)
                 throw new System.ArgumentNullException("discountCodeId");
@@ -410,7 +410,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> RetrieveSingleDiscountCodeAsync(long discountCodeId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> GetDiscountCodeAsync(long discountCodeId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (discountCodeId == null)
                 throw new System.ArgumentNullException("discountCodeId");
@@ -580,7 +580,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="code">Retrieves the location of a discount code by code name.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveLocationOfDiscountCodeAsync(string? code = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetLocationOfDiscountCodeAsync(string? code = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/discount_codes/lookup.json?");
@@ -669,7 +669,7 @@ namespace Ocelli.OpenShopify
         /// <param name="timesUsedMin">Show discount codes used less than or equal to this value.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfDiscountCodesForShopAsync(string? timesUsed = null, string? timesUsedMax = null, string? timesUsedMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetCountOfDiscountCodesForShopAsync(string? timesUsed = null, string? timesUsedMax = null, string? timesUsedMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/discount_codes/count.json?");
@@ -849,7 +849,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> RetrieveDiscountCodeCreationJobAsync(long batchId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> GetDiscountCodeCreationJobAsync(long batchId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (batchId == null)
                 throw new System.ArgumentNullException("batchId");
@@ -937,7 +937,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeList>> RetrieveListOfDiscountCodesForDiscountCodeCreationJobAsync(long batchId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeList>> ListDiscountCodesForDiscountCodeCreationJobAsync(long batchId, long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (batchId == null)
                 throw new System.ArgumentNullException("batchId");
@@ -1148,7 +1148,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Show price rules last updated after date (format 2017-03-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<PriceRuleList>> RetrieveListOfPriceRulesAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? endsAtMax = null, System.DateTimeOffset? endsAtMin = null, int? limit = null, string? pageInfo = null, int? sinceId = null, System.DateTimeOffset? startsAtMax = null, System.DateTimeOffset? startsAtMin = null, string? timesUsed = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<PriceRuleList>> ListPriceRulesAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? endsAtMax = null, System.DateTimeOffset? endsAtMin = null, int? limit = null, string? pageInfo = null, int? sinceId = null, System.DateTimeOffset? startsAtMax = null, System.DateTimeOffset? startsAtMin = null, string? timesUsed = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1156,7 +1156,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> UpdateExistingPriceRuleAsync(long priceRuleId, UpdatePriceRuleRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> UpdatePriceRuleAsync(long priceRuleId, UpdatePriceRuleRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1164,7 +1164,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> RetrieveSinglePriceRuleAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> GetPriceRuleAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1172,7 +1172,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>No Content</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> RemoveExistingPriceRuleAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> DeleteExistingPriceRuleAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1180,7 +1180,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfAllPriceRulesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetCountOfAllPriceRulesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -1316,7 +1316,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Show price rules last updated after date (format 2017-03-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleList>> RetrieveListOfPriceRulesAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? endsAtMax = null, System.DateTimeOffset? endsAtMin = null, int? limit = null, string? pageInfo = null, int? sinceId = null, System.DateTimeOffset? startsAtMax = null, System.DateTimeOffset? startsAtMin = null, string? timesUsed = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleList>> ListPriceRulesAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? endsAtMax = null, System.DateTimeOffset? endsAtMin = null, int? limit = null, string? pageInfo = null, int? sinceId = null, System.DateTimeOffset? startsAtMax = null, System.DateTimeOffset? startsAtMin = null, string? timesUsed = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/price_rules.json?");
@@ -1445,7 +1445,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> UpdateExistingPriceRuleAsync(long priceRuleId, UpdatePriceRuleRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> UpdatePriceRuleAsync(long priceRuleId, UpdatePriceRuleRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (priceRuleId == null)
                 throw new System.ArgumentNullException("priceRuleId");
@@ -1532,7 +1532,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> RetrieveSinglePriceRuleAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PriceRuleItem>> GetPriceRuleAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (priceRuleId == null)
                 throw new System.ArgumentNullException("priceRuleId");
@@ -1616,7 +1616,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>No Content</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RemoveExistingPriceRuleAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteExistingPriceRuleAsync(long priceRuleId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (priceRuleId == null)
                 throw new System.ArgumentNullException("priceRuleId");
@@ -1694,7 +1694,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfAllPriceRulesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetCountOfAllPriceRulesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/price_rules/count.json");

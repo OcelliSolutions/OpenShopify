@@ -18,7 +18,7 @@ paths:
       tags:
         - Article
       summary: Retrieves a list of all articles from a blog
-      operationId: RetrieveListOfAllArticlesFromBlog
+      operationId: ListArticlesFromBlog
       parameters:
         - name: blog_id
           in: path
@@ -160,7 +160,7 @@ paths:
       tags:
         - Article
       summary: Retrieves a count of all articles from a blog
-      operationId: RetrieveCountOfAllArticlesFromBlog
+      operationId: GetCountOfAllArticlesFromBlog
       parameters:
         - name: blog_id
           in: path
@@ -245,7 +245,7 @@ paths:
       tags:
         - Article
       summary: Receive a single Article
-      operationId: ReceiveSingleArticle
+      operationId: GetArticle
       parameters:
         - name: article_id
           in: path
@@ -361,7 +361,7 @@ paths:
       tags:
         - Article
       summary: Retrieves a list of all article authors
-      operationId: RetrieveListOfAllArticleAuthors
+      operationId: ListArticleAuthors
       responses:
         '401':
           description: Unauthorized
@@ -383,7 +383,7 @@ paths:
       tags:
         - Article
       summary: Retrieves a list of all article tags
-      operationId: RetrieveListOfAllArticleTags
+      operationId: ListArticleTags
       parameters:
         - name: limit
           in: query
@@ -421,7 +421,7 @@ paths:
       tags:
         - Article
       summary: Retrieves a list of all article tags from a specific blog
-      operationId: RetrieveListOfAllArticleTagsFromSpecificBlog
+      operationId: ListArticleTagsFromSpecificBlog
       parameters:
         - name: blog_id
           in: path
@@ -465,7 +465,7 @@ paths:
       tags:
         - Asset
       summary: Retrieves a list of assets for a theme
-      operationId: RetrieveListOfAssetsForTheme
+      operationId: ListAssetsForTheme
       parameters:
         - name: theme_id
           in: path
@@ -578,7 +578,7 @@ paths:
       tags:
         - Blog
       summary: Retrieve a list of all blogs
-      operationId: RetrieveListOfAllBlogs
+      operationId: ListBlogs
       parameters:
         - name: fields
           in: query
@@ -626,7 +626,7 @@ paths:
       tags:
         - Blog
       summary: Create a new Blog
-      operationId: CreateNewBlog
+      operationId: CreateBlog
       parameters:
         - name: title
           in: query
@@ -662,7 +662,7 @@ paths:
       tags:
         - Blog
       summary: Receive a count of all Blogs
-      operationId: ReceiveCountOfAllBlogs
+      operationId: GetCountOfAllBlogs
       responses:
         '200':
           description: Success
@@ -699,7 +699,7 @@ paths:
       tags:
         - Blog
       summary: Receive a single Blog
-      operationId: ReceiveSingleBlog
+      operationId: GetBlog
       parameters:
         - name: blog_id
           in: path
@@ -732,7 +732,7 @@ paths:
       tags:
         - Blog
       summary: Modify an existing Blog
-      operationId: ModifyExistingBlog
+      operationId: UpdateBlog
       parameters:
         - name: blog_id
           in: path
@@ -768,7 +768,7 @@ paths:
       tags:
         - Blog
       summary: Remove an existing Blog
-      operationId: RemoveExistingBlog
+      operationId: DeleteExistingBlog
       parameters:
         - name: blog_id
           in: path
@@ -797,7 +797,7 @@ paths:
       tags:
         - Comment
       summary: Retrieves a list of comments
-      operationId: RetrieveListOfComments
+      operationId: ListComments
       parameters:
         - name: created_at_max
           in: query
@@ -916,7 +916,7 @@ paths:
       tags:
         - Comment
       summary: Retrieves a count of comments
-      operationId: RetrieveCountOfComments
+      operationId: GetCountOfComments
       parameters:
         - name: created_at_max
           in: query
@@ -1000,7 +1000,7 @@ paths:
       tags:
         - Comment
       summary: Retrieves a single comment by its ID
-      operationId: RetrieveSingleCommentByItsID
+      operationId: GetCommentByItsID
       parameters:
         - name: comment_id
           in: path
@@ -1157,7 +1157,7 @@ paths:
       tags:
         - Comment
       summary: Removes a comment
-      operationId: RemoveComment
+      operationId: DeleteComment
       parameters:
         - name: comment_id
           in: path
@@ -1215,7 +1215,7 @@ paths:
       tags:
         - Page
       summary: Retrieves a list of pages
-      operationId: RetrieveListOfPages
+      operationId: ListPages
       parameters:
         - name: created_at_max
           in: query
@@ -1339,7 +1339,7 @@ paths:
       tags:
         - Page
       summary: Retrieves a page count
-      operationId: RetrievePageCount
+      operationId: GetPageCount
       parameters:
         - name: created_at_max
           in: query
@@ -1423,7 +1423,7 @@ paths:
       tags:
         - Page
       summary: Retrieves a single page by its ID
-      operationId: RetrieveSinglePageByItsID
+      operationId: GetPageByItsID
       parameters:
         - name: page_id
           in: path
@@ -1521,7 +1521,7 @@ paths:
       tags:
         - Redirect
       summary: Retrieves a list of URL redirects
-      operationId: RetrieveListOfUrlRedirects
+      operationId: ListUrlRedirects
       parameters:
         - name: fields
           in: query
@@ -1604,7 +1604,7 @@ paths:
       tags:
         - Redirect
       summary: Retrieves a count of URL redirects
-      operationId: RetrieveCountOfUrlRedirects
+      operationId: GetCountOfUrlRedirects
       parameters:
         - name: path
           in: query
@@ -1652,7 +1652,7 @@ paths:
       tags:
         - Redirect
       summary: Retrieves a single redirect
-      operationId: RetrieveSingleRedirect
+      operationId: GetRedirect
       parameters:
         - name: redirect_id
           in: path
@@ -1685,7 +1685,7 @@ paths:
       tags:
         - Redirect
       summary: Updates an existing redirect
-      operationId: UpdateExistingRedirect
+      operationId: UpdateRedirect
       parameters:
         - name: redirect_id
           in: path
@@ -1750,7 +1750,7 @@ paths:
       tags:
         - ScriptTag
       summary: Retrieves a list of all script tags
-      operationId: RetrieveListOfAllScriptTags
+      operationId: ListScriptTags
       parameters:
         - name: created_at_max
           in: query
@@ -1822,7 +1822,7 @@ paths:
       tags:
         - ScriptTag
       summary: Creates a new script tag
-      operationId: CreateNewScriptTag
+      operationId: CreateScriptTag
       requestBody:
         content:
           application/json:
@@ -1852,7 +1852,7 @@ paths:
       tags:
         - ScriptTag
       summary: Retrieves a count of all script tags
-      operationId: RetrieveCountOfAllScriptTags
+      operationId: GetCountOfAllScriptTags
       parameters:
         - name: src
           in: query
@@ -1895,7 +1895,7 @@ paths:
       tags:
         - ScriptTag
       summary: Retrieves a single script tag
-      operationId: RetrieveSingleScriptTag
+      operationId: GetScriptTag
       parameters:
         - name: script_tag_id
           in: path
@@ -1993,7 +1993,7 @@ paths:
       tags:
         - Theme
       summary: Retrieves a list of themes
-      operationId: RetrieveListOfThemes
+      operationId: ListThemes
       parameters:
         - name: fields
           in: query
@@ -2050,7 +2050,7 @@ paths:
       tags:
         - Theme
       summary: Retrieves a single theme by its ID
-      operationId: RetrieveSingleThemeByItsID
+      operationId: GetThemeByItsID
       parameters:
         - name: theme_id
           in: path
@@ -2083,7 +2083,7 @@ paths:
       tags:
         - Theme
       summary: Modify an existing Theme
-      operationId: ModifyExistingTheme
+      operationId: UpdateTheme
       parameters:
         - name: theme_id
           in: path
@@ -2119,7 +2119,7 @@ paths:
       tags:
         - Theme
       summary: Remove an existing Theme
-      operationId: RemoveExistingTheme
+      operationId: DeleteExistingTheme
       parameters:
         - name: theme_id
           in: path

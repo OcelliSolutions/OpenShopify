@@ -31,7 +31,7 @@ public class CollectController : CollectControllerBase
     /// <inheritdoc />
     [HttpGet, Route("collects.json")]
     [ProducesResponseType(typeof(CollectList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfCollects(string? fields, int? limit, string? page_info, int? since_id)
+    public override Task ListCollects(string? fields, int? limit, string? page_info, int? since_id)
     {
         throw new NotImplementedException();
     }
@@ -39,7 +39,7 @@ public class CollectController : CollectControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("collects/{collect_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task RemoveProductFromCollection(long collect_id)
+    public override Task DeleteProductFromCollection(long collect_id)
     {
         throw new NotImplementedException();
     }
@@ -47,7 +47,7 @@ public class CollectController : CollectControllerBase
     /// <inheritdoc />
     [HttpGet, Route("collects/{collect_id:long}.json")]
     [ProducesResponseType(typeof(CollectItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSpecificCollectByItsID(long collect_id, string? fields)
+    public override Task GetSpecificCollectByItsID(long collect_id, string? fields)
     {
         throw new NotImplementedException();
     }
@@ -55,7 +55,7 @@ public class CollectController : CollectControllerBase
     /// <inheritdoc />
     [HttpGet, Route("collects/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task RetrieveCountOfCollects()
+    public override Task GetCountOfCollects()
     {
         throw new NotImplementedException();
     }

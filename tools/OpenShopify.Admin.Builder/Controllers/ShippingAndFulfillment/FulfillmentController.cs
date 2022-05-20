@@ -37,21 +37,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves fulfillments associated with an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments.json")]
-        public abstract System.Threading.Tasks.Task RetrieveFulfillmentsAssociatedWithOrder(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
+        public abstract System.Threading.Tasks.Task GetFulfillmentsAssociatedWithOrder(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Create a new Fulfillment
         /// </summary>
         /// <returns>Create a new Fulfillment</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments.json")]
-        public abstract System.Threading.Tasks.Task CreateNewFulfillment([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateFulfillmentRequest request, long order_id);
+        public abstract System.Threading.Tasks.Task CreateFulfillment([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateFulfillmentRequest request, long order_id);
 
         /// <summary>
         /// Retrieves fulfillments associated with a fulfillment order
         /// </summary>
         /// <returns>Retrieves fulfillments associated with a fulfillment order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillments.json")]
-        public abstract System.Threading.Tasks.Task RetrieveFulfillmentsAssociatedWithFulfillmentOrder(long fulfillment_order_id);
+        public abstract System.Threading.Tasks.Task GetFulfillmentsAssociatedWithFulfillmentOrder(long fulfillment_order_id);
 
         /// <summary>
         /// Retrieves a count of fulfillments associated with a specific order
@@ -62,7 +62,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="updated_at_min">Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Retrieves a count of fulfillments associated with a specific order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfFulfillmentsAssociatedWithSpecificOrder(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
+        public abstract System.Threading.Tasks.Task GetCountOfFulfillmentsAssociatedWithSpecificOrder(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min);
 
         /// <summary>
         /// Receive a single Fulfillment
@@ -70,14 +70,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Comma-separated list of fields to include in the response.</param>
         /// <returns>Receive a single Fulfillment</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}.json")]
-        public abstract System.Threading.Tasks.Task ReceiveSingleFulfillment(long fulfillment_id, long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetFulfillment(long fulfillment_id, long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Modify an existing Fulfillment
         /// </summary>
         /// <returns>Modify an existing Fulfillment</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingFulfillment([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateFulfillmentRequest request, long fulfillment_id, long order_id);
+        public abstract System.Threading.Tasks.Task UpdateFulfillment([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateFulfillmentRequest request, long fulfillment_id, long order_id);
 
         /// <summary>
         /// Creates a fulfillment for one or many fulfillment orders

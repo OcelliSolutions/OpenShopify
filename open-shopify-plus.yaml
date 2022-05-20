@@ -18,7 +18,7 @@ paths:
       tags:
         - GiftCard
       summary: Retrieves a list of gift cards
-      operationId: RetrieveListOfGiftCards
+      operationId: ListGiftCards
       parameters:
         - name: fields
           in: query
@@ -96,7 +96,7 @@ paths:
       tags:
         - GiftCard
       summary: Retrieves a single gift card
-      operationId: RetrieveSingleGiftCard
+      operationId: GetGiftCard
       parameters:
         - name: gift_card_id
           in: path
@@ -124,7 +124,7 @@ paths:
       tags:
         - GiftCard
       summary: Updates an existing gift card
-      operationId: UpdateExistingGiftCard
+      operationId: UpdateGiftCard
       parameters:
         - name: gift_card_id
           in: path
@@ -161,7 +161,7 @@ paths:
       tags:
         - GiftCard
       summary: Retrieves a count of gift cards
-      operationId: RetrieveCountOfGiftCards
+      operationId: GetCountOfGiftCards
       parameters:
         - name: status
           in: query
@@ -281,7 +281,7 @@ paths:
       tags:
         - User
       summary: Retrieves a list of all users
-      operationId: RetrieveListOfAllUsers
+      operationId: ListUsers
       parameters:
         - name: limit
           in: query
@@ -315,7 +315,7 @@ paths:
       tags:
         - User
       summary: Retrieves a single user
-      operationId: RetrieveSingleUser
+      operationId: GetUser
       parameters:
         - name: user_id
           in: path
@@ -344,7 +344,7 @@ paths:
       tags:
         - User
       summary: Retrieves the currently logged-in user
-      operationId: RetrieveCurrentlyLoggedInUser
+      operationId: GetCurrentlyLoggedInUser
       responses:
         '401':
           description: Unauthorized

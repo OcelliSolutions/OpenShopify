@@ -11,7 +11,7 @@ public class ShippingZoneController : ShippingZoneControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("shipping_zones.json")]
-    public override Task ReceiveListOfAllShippingZones(string? fields)
+    public override Task ListShippingZones(string? fields)
     {
         throw new NotImplementedException();
     }

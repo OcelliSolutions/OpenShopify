@@ -42,7 +42,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="value_type">The legacy type information for the stored value. Replaced by `type`</param>
         /// <returns>Retrieve a list of metafields from the resource's endpoint</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfMetafieldsFromResourcesEndpoint([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? key, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery(Name = "namespace")] string? @namespace, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? type, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? value_type);
+        public abstract System.Threading.Tasks.Task ListMetafieldsFromResourcesEndpoint([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? key, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery(Name = "namespace")] string? @namespace, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? type, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? value_type);
 
         /// <summary>
         /// Create a metafield
@@ -56,7 +56,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieve a count of a resource's metafields.</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfResourcesMetafields();
+        public abstract System.Threading.Tasks.Task GetCountOfResourcesMetafields();
 
         /// <summary>
         /// Retrieve a specific metafield
@@ -64,7 +64,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Retrieve a specific metafield</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSpecificMetafield(long metafield_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetSpecificMetafield(long metafield_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates a metafield

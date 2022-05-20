@@ -30,14 +30,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Creates a new StorefrontAccessToken</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("storefront_access_tokens.json")]
-        public abstract System.Threading.Tasks.Task CreateNewStorefrontAccessToken([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateStorefrontAccessTokenRequest request);
+        public abstract System.Threading.Tasks.Task CreateStorefrontAccessToken([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateStorefrontAccessTokenRequest request);
 
         /// <summary>
         /// Retrieves a list of storefront access tokens that have been issued
         /// </summary>
         /// <returns>Retrieves a list of storefront access tokens that have been issued</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("storefront_access_tokens.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfStorefrontAccessTokensThatHaveBeenIssued();
+        public abstract System.Threading.Tasks.Task ListStorefrontAccessTokensThatHaveBeenIssued();
 
         /// <summary>
         /// Deletes an existing storefront access token

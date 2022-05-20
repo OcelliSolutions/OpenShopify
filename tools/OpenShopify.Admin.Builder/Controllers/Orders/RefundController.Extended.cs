@@ -12,7 +12,7 @@ public class RefundController : RefundControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/refunds.json")]
-    public override Task RetrieveListOfRefundsForOrder(long order_id, string? fields, bool? in_shop_currency, int? limit, string? page_info)
+    public override Task ListRefundsForOrder(long order_id, string? fields, bool? in_shop_currency, int? limit, string? page_info)
     {
         throw new NotImplementedException();
     }
@@ -27,7 +27,7 @@ public class RefundController : RefundControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/refunds/{refund_id:long}.json")]
-    public override Task RetrieveSpecificRefund(long order_id, long refund_id, string? fields, bool? in_shop_currency)
+    public override Task GetSpecificRefund(long order_id, long refund_id, string? fields, bool? in_shop_currency)
     {
         throw new NotImplementedException();
     }

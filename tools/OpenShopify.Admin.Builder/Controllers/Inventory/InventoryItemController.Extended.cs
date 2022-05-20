@@ -14,7 +14,7 @@ public class InventoryItemController : InventoryItemControllerBase
     /// <inheritdoc />
     [HttpGet, Route("inventory_items.json")]
     [ProducesResponseType(typeof(InventoryItemList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfInventoryItems(string ids, int? limit, string? page_info)
+    public override Task ListInventoryItems(string ids, int? limit, string? page_info)
     {
         throw new NotImplementedException();
     }
@@ -22,7 +22,7 @@ public class InventoryItemController : InventoryItemControllerBase
     /// <inheritdoc />
     [HttpGet, Route("inventory_items/{inventory_item_id:long}.json")]
     [ProducesResponseType(typeof(InventoryItemItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSingleInventoryItemByID(long inventory_item_id)
+    public override Task GetInventoryItemByID(long inventory_item_id)
     {
         throw new NotImplementedException();
     }
@@ -30,7 +30,7 @@ public class InventoryItemController : InventoryItemControllerBase
     /// <inheritdoc />
     [HttpPut, Route("inventory_items/{inventory_item_id:long}.json")]
     [ProducesResponseType(typeof(InventoryItemItem), StatusCodes.Status200OK)]
-    public override Task UpdateExistingInventoryItem(UpdateInventoryItemRequest request, long inventory_item_id)
+    public override Task UpdateInventoryItem(UpdateInventoryItemRequest request, long inventory_item_id)
     {
         throw new NotImplementedException();
     }

@@ -24,12 +24,12 @@ public class ReportTests : IClassFixture<SharedFixture>
     private SharedFixture Fixture { get; }
     /*
     [SkippableFact]
-    public async Task RetrieveListOfReportsAsync_AdditionalPropertiesAreEmpty_ShouldPass()
+    public async Task ListReportsAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
         var requiredPermissions = new List<AuthorizationScope> { AuthorizationScope.read_reports };
         Fixture.ValidateScopes(requiredPermissions);
         var service = new AnalyticsService(Fixture.MyShopifyUrl, Fixture.AccessToken);
-        var result = await service.Report.RetrieveListOfReportsAsync();
+        var result = await service.Report.ListReportsAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
 
         if (result.Reports != null && !result.Reports.Any())

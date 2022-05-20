@@ -30,7 +30,7 @@ namespace OpenShopify.OAuth.Builder.Controllers
         /// </summary>
         /// <returns>Get a list of access scopes</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("admin/oauth/access_scopes.json")]
-        public abstract System.Threading.Tasks.Task GetListOfAccessScopes();
+        public abstract System.Threading.Tasks.Task ListAccessScopes();
 
     }
 

@@ -37,7 +37,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a list of carrier services</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("carrier_services.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfCarrierServices();
+        public abstract System.Threading.Tasks.Task ListCarrierServices();
 
         /// <summary>
         /// Updates a carrier service
@@ -51,7 +51,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a single carrier service</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("carrier_services/{carrier_service_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleCarrierService(long carrier_service_id);
+        public abstract System.Threading.Tasks.Task GetCarrierService(long carrier_service_id);
 
         /// <summary>
         /// Deletes a carrier service

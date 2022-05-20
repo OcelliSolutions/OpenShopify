@@ -12,7 +12,7 @@ public class AssetController : AssetControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("themes/{theme_id:long}/assets.json")]
-    public override Task RetrieveListOfAssetsForTheme(long theme_id, string? fields)
+    public override Task ListAssetsForTheme(long theme_id, string? fields)
     {
         throw new NotImplementedException();
     }

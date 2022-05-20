@@ -25,9 +25,9 @@ public class AccessScopeTests : IClassFixture<SharedFixture>
     private SharedFixture Fixture { get; }
 
     [SkippableFact]
-    public async Task GetListOfAccessScopesAsync_AdditionalPropertiesAreEmpty_ShouldPass()
+    public async Task ListAccessScopesAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
-        var result = await _service.AccessScope.GetListOfAccessScopesAsync();
+        var result = await _service.AccessScope.ListAccessScopesAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
 
         if (result.Result.AccessScopes == null)
@@ -48,10 +48,10 @@ public class AccessScopeTests : IClassFixture<SharedFixture>
     }
 
     [Fact]
-    public async Task GetListOfAccessScopesAsync_InvalidCredentials_ShouldFail()
+    public async Task ListAccessScopesAsync_InvalidCredentials_ShouldFail()
     {
         var service = new AccessService("invalid", "invalid");
         await Assert.ThrowsAsync<HttpRequestException>(async () =>
-            await service.AccessScope.GetListOfAccessScopesAsync());
+            await service.AccessScope.ListAccessScopesAsync());
     }
 }

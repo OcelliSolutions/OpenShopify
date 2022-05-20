@@ -344,10 +344,20 @@ async Task CreateController(string openApi, string section, string controllerNam
         code = code.Replace("page_info, page_info", "page_info");
         code = code.Replace("string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? page_info", "string? page_info");
         
+        code = code.Replace("Task Retrieve", "Task Get");
+        code = code.Replace("Task Receive", "Task Get");
+        code = code.Replace("Task Modify", "Task Update");
+        code = code.Replace("Task Remove", "Task Delete");
+
+        code = code.Replace("Task CreateNew", "Task Create");
+        code = code.Replace("Task UpdateExisting", "Task Update");
+        code = code.Replace("Task GetListOfAll", "Task List");
+        code = code.Replace("Task GetListOf", "Task List");
+        code = code.Replace("Task GetSingle", "Task Get");
+
         //Declare a new input parameter for POST and PUT methods.
         code = Regex.Replace(code, @"(Task Create\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.Create{controllerName}Request request, ");
         code = Regex.Replace(code, @"(Task Update\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.Update{controllerName}Request request, ");
-        code = Regex.Replace(code, @"(Task Modify\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.Update{controllerName}Request request, ");
         code = code.Replace(", )", ")");
 
         var path = $@"../../../../OpenShopify.Admin.Builder/Controllers";

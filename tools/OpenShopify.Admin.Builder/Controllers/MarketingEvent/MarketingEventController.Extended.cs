@@ -13,7 +13,7 @@ public class MarketingEventController : MarketingEventControllerBase
     /// <inheritdoc />
     [HttpGet, Route("marketing_events.json")]
     [ProducesResponseType(typeof(MarketingEventList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfAllMarketingEvents(int? limit, string? page_info, string? offset)
+    public override Task ListMarketingEvents(int? limit, string? page_info, string? offset)
     {
         throw new NotImplementedException();
     }
@@ -29,7 +29,7 @@ public class MarketingEventController : MarketingEventControllerBase
     /// <inheritdoc />
     [HttpGet, Route("marketing_events/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task RetrieveCountOfAllMarketingEvents()
+    public override Task GetCountOfAllMarketingEvents()
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class MarketingEventController : MarketingEventControllerBase
     /// <inheritdoc />
     [HttpGet, Route("marketing_events/{marketing_event_id:long}.json")]
     [ProducesResponseType(typeof(MarketingEventItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSingleMarketingEvent(long marketing_event_id)
+    public override Task GetMarketingEvent(long marketing_event_id)
     {
         throw new NotImplementedException();
     }

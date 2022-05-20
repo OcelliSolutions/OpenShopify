@@ -12,8 +12,8 @@ public class CustomerAddressController : CustomerAddressControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("customers/{customer_id:long}/addresses.json")]
-    [ProducesResponseType(typeof(CustomerAddressList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfAddressesForCustomer(long customer_id)
+    [ProducesResponseType(typeof(AddressList), StatusCodes.Status200OK)]
+    public override Task ListAddressesForCustomer(long customer_id)
     {
         throw new NotImplementedException();
     }
@@ -21,7 +21,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpPost, Route("customers/{customer_id:long}/addresses.json")]
     [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status201Created)]
-    public override Task CreateNewAddressForCustomer(CreateCustomerAddressRequest request, long customer_id)
+    public override Task CreateAddressForCustomer(CreateCustomerAddressRequest request, long customer_id)
     {
         throw new NotImplementedException();
     }
@@ -29,7 +29,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpGet, Route("customers/{customer_id:long}/addresses/{address_id:long}.json")]
     [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status200OK)]
-    public override Task RetrieveDetailsForSingleCustomerAddress(long address_id, long customer_id)
+    public override Task GetDetailsForSingleCustomerAddress(long address_id, long customer_id)
     {
         throw new NotImplementedException();
     }
@@ -37,7 +37,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpPut, Route("customers/{customer_id:long}/addresses/{address_id:long}.json")]
     [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status200OK)]
-    public override Task UpdateExistingCustomerAddress(UpdateCustomerAddressRequest request, long address_id, long customer_id)
+    public override Task UpdateCustomerAddress(UpdateCustomerAddressRequest request, long address_id, long customer_id)
     {
         throw new NotImplementedException();
     }
@@ -45,7 +45,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("customers/{customer_id:long}/addresses/{address_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task RemoveAddressFromCustomersAddressList(long address_id, long customer_id)
+    public override Task DeleteAddressFromCustomersAddressList(long address_id, long customer_id)
     {
         throw new NotImplementedException();
     }

@@ -33,7 +33,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="since_id">Retrieve only transactions after the specified ID.</param>
         /// <returns>Retrieves a list of transactions</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfTransactions(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
+        public abstract System.Threading.Tasks.Task ListTransactions(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
 
         /// <summary>
         /// Creates a transaction for an order
@@ -48,7 +48,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a count of an order's transactions</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfOrdersTransactions(long order_id);
+        public abstract System.Threading.Tasks.Task GetCountOfOrdersTransactions(long order_id);
 
         /// <summary>
         /// Retrieves a specific transaction
@@ -57,7 +57,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="in_shop_currency">Show amounts in the shop currency.</param>
         /// <returns>Retrieves a specific transaction</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions/{transaction_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSpecificTransaction(long order_id, long transaction_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency);
+        public abstract System.Threading.Tasks.Task GetSpecificTransaction(long order_id, long transaction_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency);
 
     }
 

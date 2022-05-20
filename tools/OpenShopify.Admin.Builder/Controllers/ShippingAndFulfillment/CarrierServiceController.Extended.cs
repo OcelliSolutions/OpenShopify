@@ -19,7 +19,7 @@ public class CarrierServiceController : CarrierServiceControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("carrier_services.json")]
-    public override Task RetrieveListOfCarrierServices()
+    public override Task ListCarrierServices()
     {
         throw new NotImplementedException();
     }
@@ -33,7 +33,7 @@ public class CarrierServiceController : CarrierServiceControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("carrier_services/{carrier_service_id:long}.json")]
-    public override Task RetrieveSingleCarrierService(long carrier_service_id)
+    public override Task GetCarrierService(long carrier_service_id)
     {
         throw new NotImplementedException();
     }

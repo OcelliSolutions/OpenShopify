@@ -11,21 +11,21 @@ public class UserController : UserControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("users.json")]
-    public override Task RetrieveListOfAllUsers(int? limit, string? page_info)
+    public override Task ListUsers(int? limit, string? page_info)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("users/{user_id:long}.json")]
-    public override Task RetrieveSingleUser(long user_id)
+    public override Task GetUser(long user_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("users/current.json")]
-    public override Task RetrieveCurrentlyLoggedInUser()
+    public override Task GetCurrentlyLoggedInUser()
     {
         throw new NotImplementedException();
     }

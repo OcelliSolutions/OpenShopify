@@ -12,7 +12,7 @@ public class FulfillmentEventController : FulfillmentEventControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events.json")]
-    public override Task RetrieveListOfFulfillmentEventsForSpecificFulfillment(long fulfillment_id, long order_id)
+    public override Task ListFulfillmentEventsForSpecificFulfillment(long fulfillment_id, long order_id)
     {
         throw new NotImplementedException();
     }
@@ -26,7 +26,7 @@ public class FulfillmentEventController : FulfillmentEventControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events/{event_id:long}.json")]
-    public override Task RetrieveSpecificFulfillmentEvent(long event_id, long fulfillment_id, long order_id)
+    public override Task GetSpecificFulfillmentEvent(long event_id, long fulfillment_id, long order_id)
     {
         throw new NotImplementedException();
     }

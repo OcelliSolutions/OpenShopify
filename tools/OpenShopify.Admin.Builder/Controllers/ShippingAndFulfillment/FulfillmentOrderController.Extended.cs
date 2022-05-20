@@ -11,14 +11,14 @@ public class FulfillmentOrderController : FulfillmentOrderControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/fulfillment_orders.json")]
-    public override Task RetrieveListOfFulfillmentOrdersForSpecificOrder(long order_id)
+    public override Task ListFulfillmentOrdersForSpecificOrder(long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("fulfillment_orders/{fulfillment_order_id:long}.json")]
-    public override Task RetrieveSpecificFulfillmentOrder(long fulfillment_order_id)
+    public override Task GetSpecificFulfillmentOrder(long fulfillment_order_id)
     {
         throw new NotImplementedException();
     }

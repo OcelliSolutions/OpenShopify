@@ -36,7 +36,7 @@ public class ProductTests : IClassFixture<SharedFixture>
     /// Create product first
     /// </summary>
     [SkippableFact, TestPriority(10)]
-    public async Task CreateNewFulfillmentServiceAsync_CanCreate()
+    public async Task CreateFulfillmentServiceAsync_CanCreate()
     {
         var request = new ProductItem()
         {
@@ -46,7 +46,7 @@ public class ProductTests : IClassFixture<SharedFixture>
                 Vendor = Vendor
             }
         };
-        var created = await _service.Product.CreateNewProductAsync(request, CancellationToken.None);
+        var created = await _service.Product.CreateProductAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(created, Fixture.MyShopifyUrl);
 
         Assert.Equal(TestProductName, created.Product?.Title);
@@ -59,14 +59,14 @@ public class ProductTests : IClassFixture<SharedFixture>
     [SkippableFact, TestPriority(20)]
     public async Task Counts_Products()
     {
-        var count = await _service.Product.RetrieveCountOfProductsAsync();
+        var count = await _service.Product.GetCountOfProductsAsync();
         Assert.True(count.Count > 0);
     }
 
     [Fact]
     public async Task Lists_Products_NoFilter()
     {
-        var list = await _service.Product.RetrieveListOfProductsAsync();
+        var list = await _service.Product.ListProductsAsync();
 
         Debug.Assert(list.Products != null, "list.Products != null");
         foreach (var product in list.Products)

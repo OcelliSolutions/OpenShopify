@@ -16,7 +16,7 @@ public class CustomerTests : IClassFixture<SharedFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
     private readonly CustomersService _service; 
-    private static string FirstName => "OpenShopify";
+    private static string FirstName => "John (OpenShopify)";
     private static string LastName => "Doe";
     private static string Company => "OpenShopify";
     private static string Note => "Test note about this customer.";
@@ -53,8 +53,8 @@ public class CustomerTests : IClassFixture<SharedFixture>
                         ProvinceCode = "MN",
                         Zip = "55401",
                         Phone = "555-555-5555",
-                        FirstName = "John",
-                        LastName = "Doe",
+                        FirstName = FirstName,
+                        LastName = LastName,
                         Company = Company,
                         Country = "United States",
                         CountryCode = "US",
@@ -106,8 +106,8 @@ public class CustomerTests : IClassFixture<SharedFixture>
                         ProvinceCode = "MN",
                         Zip = "55401",
                         Phone = "555-555-5555",
-                        FirstName = "John",
-                        LastName = "Doe",
+                        FirstName = FirstName,
+                        LastName = LastName,
                         Company = Company,
                         Country = "United States",
                         CountryCode = "US",
@@ -139,7 +139,7 @@ public class CustomerTests : IClassFixture<SharedFixture>
     public async Task Counts_Customers()
     {
 
-        var response = await _service.Customer.RetrieveCountOfCustomersAsync(CancellationToken.None);
+        var response = await _service.Customer.GetCountOfCustomersAsync(CancellationToken.None);
 
         Assert.True(response.Result.Count > 0);
     }
@@ -147,7 +147,7 @@ public class CustomerTests : IClassFixture<SharedFixture>
     [SkippableFact, TestPriority(20)]
     public async Task Lists_Customers()
     {
-        var response = await _service.Customer.RetrieveListOfCustomersAsync();
+        var response = await _service.Customer.ListCustomersAsync();
 
         Assert.True(response.Result.Customers?.Any());
     }
@@ -157,7 +157,7 @@ public class CustomerTests : IClassFixture<SharedFixture>
     public async Task Gets_Customer()
     {
         Skip.If(!Fixture.CreatedCustomers.Any(), "This should be run with the create test.");
-        var response = await _service.Customer.RetrieveSingleCustomerAsync(Fixture.CreatedCustomers.First().Id);
+        var response = await _service.Customer.GetCustomerAsync(Fixture.CreatedCustomers.First().Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Customer, Fixture.MyShopifyUrl);
 
@@ -175,7 +175,7 @@ public class CustomerTests : IClassFixture<SharedFixture>
     {
         Skip.If(!Fixture.CreatedCustomers.Any(), "This should be run with the create test.");
         var response =
-            await _service.Customer.RetrieveSingleCustomerAsync(Fixture.CreatedCustomers.First().Id,
+            await _service.Customer.GetCustomerAsync(Fixture.CreatedCustomers.First().Id,
                 "first_name,last_name");
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Customer, Fixture.MyShopifyUrl);
@@ -266,74 +266,51 @@ public class CustomerTests : IClassFixture<SharedFixture>
     {
         Skip.If(!Fixture.CreatedCustomers.Any(), "This should be run with the create test.");
         const string lastName = "Sample";
-        var created = Fixture.CreatedCustomers.First();
+        var customer = Fixture.CreatedCustomers.First();
         var request = new UpdateCustomerRequest()
         {
             Customer = new UpdateCustomer()
             {
-                Id = created.Id,
+                Id = customer.Id,
                 LastName = lastName
             }
         };
 
-        var response = await _service.Customer.UpdateCustomerAsync((long)created.Id!, request);
+        var response = await _service.Customer.UpdateCustomerAsync(customer.Id!, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Customer, Fixture.MyShopifyUrl);
 
         var updated = response.Result.Customer;
         Assert.Equal(lastName, updated?.LastName);
+        Assert.Equal(customer.Email, updated?.Email);
+        Assert.Equal(customer.Note, updated?.Note);
     }
-    /*
+    
     [SkippableFact, TestPriority(30)]
     public async Task Updates_Customers_With_Options()
     {
-        string firstName = "Jane";
-        var created = await Fixture.Create();
-        long id = created.Id.Value;
-
-        created.FirstName = firstName;
-        created.Id = null;
-
-        var updated = await Fixture.Service.UpdateAsync(id, created, new CustomerUpdateOptions()
+        Skip.If(!Fixture.CreatedCustomers.Any(), "A customer must be created with the CustomerTests first. Run in parallel.");
+        var customer = Fixture.CreatedCustomers.First();
+        const string lastName = "Sample";
+        var request = new UpdateCustomerRequest()
         {
-            Password = "loktarogar",
-            PasswordConfirmation = "loktarogar"
-        });
+            Customer = new()
+            {
+                LastName = lastName,
+                Password = "9AVShqi85xC1",
+                PasswordConfirmation = "9AVShqi85xC1"
+            }
+        };
+        var response = await _service.Customer.UpdateCustomerAsync(customer.Id, request);
 
-        // Reset the id so the Fixture can properly delete this object.
-        created.Id = id;
-
-        Assert.Equal(firstName, updated.FirstName);
+        Assert.Equal(lastName, response.Result.Customer?.LastName);
     }
 
-    [SkippableFact, TestPriority(31)]
-    public async Task Can_Be_Partially_Updated()
-    {
-        string newFirstName = "Sheev";
-        string newLastName = "Palpatine";
-        var created = await Fixture.Create();
-        var updated = await Fixture.Service.UpdateAsync(created.Id.Value, new Customer()
-        {
-            FirstName = newFirstName,
-            LastName = newLastName
-        });
-
-        Assert.Equal(created.Id, updated.Id);
-        Assert.Equal(newFirstName, updated.FirstName);
-        Assert.Equal(newLastName, updated.LastName);
-
-        // In previous versions of ShopifySharp, the updated JSON would have sent 'email=null' or 'note=null', clearing out the email address.
-        Assert.Equal(created.Email, updated.Email);
-        Assert.Equal(created.Note, updated.Note);
-    }
-
-    */
-    [SkippableFact, TestPriority(40)]
+    [SkippableFact, TestPriority(49)]
     public async Task Deletes_Customers()
     {
         foreach (var customer in Fixture.CreatedCustomers)
         {
-
             try
             {
                 var response = await _service.Customer.DeleteCustomerAsync(customer.Id);

@@ -48,14 +48,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="vendor">Return products by product vendor.</param>
         /// <returns>Retrieve a list of products</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfProducts([Microsoft.AspNetCore.Mvc.FromQuery] long? collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? presentment_currencies, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_type, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status, [Microsoft.AspNetCore.Mvc.FromQuery] string? title, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? vendor);
+        public abstract System.Threading.Tasks.Task ListProducts([Microsoft.AspNetCore.Mvc.FromQuery] long? collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle, [Microsoft.AspNetCore.Mvc.FromQuery] string? ids, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? presentment_currencies, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_type, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status, [Microsoft.AspNetCore.Mvc.FromQuery] string? title, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? vendor);
 
         /// <summary>
         /// Create a new product
         /// </summary>
         /// <returns>Create a new product</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products.json")]
-        public abstract System.Threading.Tasks.Task CreateNewProduct([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateProductRequest request);
+        public abstract System.Threading.Tasks.Task CreateProduct([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateProductRequest request);
 
         /// <summary>
         /// Retrieve a count of products
@@ -72,7 +72,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="vendor">Return products by product vendor.</param>
         /// <returns>Retrieve a count of products</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfProducts([Microsoft.AspNetCore.Mvc.FromQuery] long? collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_type, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? vendor);
+        public abstract System.Threading.Tasks.Task GetCountOfProducts([Microsoft.AspNetCore.Mvc.FromQuery] long? collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? created_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_type, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? published_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_max, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? updated_at_min, [Microsoft.AspNetCore.Mvc.FromQuery] string? vendor);
 
         /// <summary>
         /// Retrieve a single product
@@ -80,7 +80,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Retrieve a single product</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleProduct(long product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetProduct(long product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates a product

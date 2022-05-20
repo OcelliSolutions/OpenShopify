@@ -11,7 +11,7 @@ public class ShopController : ShopControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("shop.json")]
-    public override Task RetrieveShopsConfiguration(string? fields)
+    public override Task GetShopsConfiguration(string? fields)
     {
         throw new NotImplementedException();
     }

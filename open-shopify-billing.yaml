@@ -62,7 +62,7 @@ paths:
       tags:
         - ApplicationCharge
       summary: Retrieves a list of application charges
-      operationId: RetrieveListOfApplicationCharges
+      operationId: ListApplicationCharges
       parameters:
         - name: fields
           in: query
@@ -111,7 +111,7 @@ paths:
       tags:
         - ApplicationCharge
       summary: Retrieves an application charge
-      operationId: RetrieveApplicationCharge
+      operationId: GetApplicationCharge
       parameters:
         - name: application_charge_id
           in: path
@@ -204,7 +204,7 @@ paths:
       tags:
         - ApplicationCredit
       summary: Retrieves all application credits
-      operationId: RetrieveAllApplicationCredits
+      operationId: GetAllApplicationCredits
       parameters:
         - name: fields
           in: query
@@ -247,7 +247,7 @@ paths:
       tags:
         - ApplicationCredit
       summary: Retrieves a single application credit
-      operationId: RetrieveSingleApplicationCredit
+      operationId: GetApplicationCredit
       parameters:
         - name: application_credit_id
           in: path
@@ -325,7 +325,7 @@ paths:
       tags:
         - RecurringApplicationCharge
       summary: Retrieves a list of recurring application charges
-      operationId: RetrieveListOfRecurringApplicationCharges
+      operationId: ListRecurringApplicationCharges
       parameters:
         - name: fields
           in: query
@@ -374,7 +374,7 @@ paths:
       tags:
         - RecurringApplicationCharge
       summary: Retrieves a single charge
-      operationId: RetrieveSingleCharge
+      operationId: GetCharge
       parameters:
         - name: recurring_application_charge_id
           in: path
@@ -561,7 +561,7 @@ paths:
       tags:
         - UsageCharge
       summary: Retrieves a list of usage charges
-      operationId: RetrieveListOfUsageCharges
+      operationId: ListUsageCharges
       parameters:
         - name: recurring_application_charge_id
           in: path
@@ -610,7 +610,7 @@ paths:
       tags:
         - UsageCharge
       summary: Retrieves a single charge
-      operationId: RetrieveSingleCharge
+      operationId: GetCharge
       parameters:
         - name: recurring_application_charge_id
           in: path

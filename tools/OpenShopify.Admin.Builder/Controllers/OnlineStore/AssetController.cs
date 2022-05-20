@@ -31,7 +31,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Specify which fields to show using a comma-separated list of field names.</param>
         /// <returns>Retrieves a list of assets for a theme</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}/assets.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfAssetsForTheme(long theme_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task ListAssetsForTheme(long theme_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Creates or updates an asset for a theme

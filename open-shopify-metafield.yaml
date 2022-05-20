@@ -18,7 +18,7 @@ paths:
       tags:
         - Metafield
       summary: Retrieve a list of metafields from the resource's endpoint
-      operationId: RetrieveListOfMetafieldsFromResourcesEndpoint
+      operationId: ListMetafieldsFromResourcesEndpoint
       parameters:
         - name: created_at_max
           in: query
@@ -164,7 +164,7 @@ paths:
       tags:
         - Metafield
       summary: Retrieve a count of a resource's metafields.
-      operationId: RetrieveCountOfResourcesMetafields
+      operationId: GetCountOfResourcesMetafields
       responses:
         '200':
           description: Success
@@ -201,7 +201,7 @@ paths:
       tags:
         - Metafield
       summary: Retrieve a specific metafield
-      operationId: RetrieveSpecificMetafield
+      operationId: GetSpecificMetafield
       parameters:
         - name: metafield_id
           in: path

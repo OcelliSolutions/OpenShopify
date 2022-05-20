@@ -18,7 +18,7 @@ paths:
       tags:
         - AssignedFulfillmentOrder
       summary: Retrieves a list of fulfillment orders on a shop for a specific app
-      operationId: RetrieveListOfFulfillmentOrdersOnShopForSpecificApp
+      operationId: ListFulfillmentOrdersOnShopForSpecificApp
       parameters:
         - name: assignment_status
           in: query
@@ -183,7 +183,7 @@ paths:
       tags:
         - CarrierService
       summary: Retrieves a list of carrier services
-      operationId: RetrieveListOfCarrierServices
+      operationId: ListCarrierServices
       responses:
         '401':
           description: Unauthorized
@@ -241,7 +241,7 @@ paths:
       tags:
         - CarrierService
       summary: Retrieves a single carrier service
-      operationId: RetrieveSingleCarrierService
+      operationId: GetCarrierService
       parameters:
         - name: carrier_service_id
           in: path
@@ -298,7 +298,7 @@ paths:
       tags:
         - Fulfillment
       summary: Retrieves fulfillments associated with an order
-      operationId: RetrieveFulfillmentsAssociatedWithOrder
+      operationId: GetFulfillmentsAssociatedWithOrder
       parameters:
         - name: order_id
           in: path
@@ -371,7 +371,7 @@ paths:
       tags:
         - Fulfillment
       summary: Create a new Fulfillment
-      operationId: CreateNewFulfillment
+      operationId: CreateFulfillment
       parameters:
         - name: order_id
           in: path
@@ -408,7 +408,7 @@ paths:
       tags:
         - Fulfillment
       summary: Retrieves fulfillments associated with a fulfillment order
-      operationId: RetrieveFulfillmentsAssociatedWithFulfillmentOrder
+      operationId: GetFulfillmentsAssociatedWithFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
           in: path
@@ -437,7 +437,7 @@ paths:
       tags:
         - Fulfillment
       summary: Retrieves a count of fulfillments associated with a specific order
-      operationId: RetrieveCountOfFulfillmentsAssociatedWithSpecificOrder
+      operationId: GetCountOfFulfillmentsAssociatedWithSpecificOrder
       parameters:
         - name: order_id
           in: path
@@ -505,7 +505,7 @@ paths:
       tags:
         - Fulfillment
       summary: Receive a single Fulfillment
-      operationId: ReceiveSingleFulfillment
+      operationId: GetFulfillment
       parameters:
         - name: fulfillment_id
           in: path
@@ -544,7 +544,7 @@ paths:
       tags:
         - Fulfillment
       summary: Modify an existing Fulfillment
-      operationId: ModifyExistingFulfillment
+      operationId: UpdateFulfillment
       parameters:
         - name: fulfillment_id
           in: path
@@ -787,7 +787,7 @@ paths:
       tags:
         - FulfillmentEvent
       summary: Retrieves a list of fulfillment events for a specific fulfillment
-      operationId: RetrieveListOfFulfillmentEventsForSpecificFulfillment
+      operationId: ListFulfillmentEventsForSpecificFulfillment
       parameters:
         - name: fulfillment_id
           in: path
@@ -864,7 +864,7 @@ paths:
       tags:
         - FulfillmentEvent
       summary: Retrieves a specific fulfillment event
-      operationId: RetrieveSpecificFulfillmentEvent
+      operationId: GetSpecificFulfillmentEvent
       parameters:
         - name: event_id
           in: path
@@ -945,7 +945,7 @@ paths:
       tags:
         - FulfillmentOrder
       summary: Retrieves a list of fulfillment orders for a specific order
-      operationId: RetrieveListOfFulfillmentOrdersForSpecificOrder
+      operationId: ListFulfillmentOrdersForSpecificOrder
       parameters:
         - name: order_id
           in: path
@@ -974,7 +974,7 @@ paths:
       tags:
         - FulfillmentOrder
       summary: Retrieves a specific fulfillment order
-      operationId: RetrieveSpecificFulfillmentOrder
+      operationId: GetSpecificFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
           in: path
@@ -1339,7 +1339,7 @@ paths:
       tags:
         - FulfillmentService
       summary: Receive a list of all FulfillmentServices
-      operationId: ReceiveListOfAllFulfillmentServices
+      operationId: ListFulfillmentServices
       parameters:
         - name: scope
           in: query
@@ -1380,7 +1380,7 @@ paths:
       tags:
         - FulfillmentService
       summary: Create a new FulfillmentService
-      operationId: CreateNewFulfillmentService
+      operationId: CreateFulfillmentService
       requestBody:
         content:
           application/json:
@@ -1425,7 +1425,7 @@ paths:
       tags:
         - FulfillmentService
       summary: Receive a single FulfillmentService
-      operationId: ReceiveSingleFulfillmentService
+      operationId: GetFulfillmentService
       parameters:
         - name: fulfillment_service_id
           in: path
@@ -1468,7 +1468,7 @@ paths:
       tags:
         - FulfillmentService
       summary: Modify an existing FulfillmentService
-      operationId: ModifyExistingFulfillmentService
+      operationId: UpdateFulfillmentService
       parameters:
         - name: fulfillment_service_id
           in: path
@@ -1519,7 +1519,7 @@ paths:
       tags:
         - FulfillmentService
       summary: Remove an existing FulfillmentService
-      operationId: RemoveExistingFulfillmentService
+      operationId: DeleteExistingFulfillmentService
       parameters:
         - name: fulfillment_service_id
           in: path
@@ -1559,7 +1559,7 @@ paths:
       tags:
         - LocationsForMove
       summary: Retrieves a list of locations that a fulfillment order can potentially move to.
-      operationId: RetrieveListOfLocationsThatFulfillmentOrderCanPotentiallyMoveTo
+      operationId: ListLocationsThatFulfillmentOrderCanPotentiallyMoveTo
       parameters:
         - name: fulfillment_order_id
           in: path

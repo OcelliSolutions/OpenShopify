@@ -44,21 +44,21 @@ namespace Ocelli.OpenShopify
         /// Retrieves a checkout
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> RetrieveCheckoutAsync(int token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> GetCheckoutAsync(int token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Modifies an existing checkout
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingCheckoutAsync(int token, UpdateCheckoutRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdateCheckoutAsync(int token, UpdateCheckoutRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Retrieves a list of shipping rates
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfShippingRatesAsync(int token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ListShippingRatesAsync(int token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -255,7 +255,7 @@ namespace Ocelli.OpenShopify
         /// Retrieves a checkout
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveCheckoutAsync(int token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetCheckoutAsync(int token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (token == null)
                 throw new System.ArgumentNullException("token");
@@ -333,7 +333,7 @@ namespace Ocelli.OpenShopify
         /// Modifies an existing checkout
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ModifyExistingCheckoutAsync(int token, UpdateCheckoutRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateCheckoutAsync(int token, UpdateCheckoutRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (token == null)
                 throw new System.ArgumentNullException("token");
@@ -414,7 +414,7 @@ namespace Ocelli.OpenShopify
         /// Retrieves a list of shipping rates
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfShippingRatesAsync(int token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListShippingRatesAsync(int token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (token == null)
                 throw new System.ArgumentNullException("token");
@@ -597,7 +597,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="limit">Amount of results</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> RetrieveCollectionListingsThatArePublishedToYourAppAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> GetCollectionListingsThatArePublishedToYourAppAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -605,14 +605,14 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="limit">Amount of results</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> RetrieveProductIdsThatArePublishedToCollectionIdAsync(long collectionListingId, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> GetProductIdsThatArePublishedToCollectionIdAsync(long collectionListingId, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Retrieve a specific collection listing that is published to your app
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> RetrieveSpecificCollectionListingThatIsPublishedToYourAppAsync(long collectionListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> GetSpecificCollectionListingThatIsPublishedToYourAppAsync(long collectionListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -668,7 +668,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="limit">Amount of results</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveCollectionListingsThatArePublishedToYourAppAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetCollectionListingsThatArePublishedToYourAppAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/collection_listings.json?");
@@ -752,7 +752,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="limit">Amount of results</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveProductIdsThatArePublishedToCollectionIdAsync(long collectionListingId, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetProductIdsThatArePublishedToCollectionIdAsync(long collectionListingId, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (collectionListingId == null)
                 throw new System.ArgumentNullException("collectionListingId");
@@ -839,7 +839,7 @@ namespace Ocelli.OpenShopify
         /// Retrieve a specific collection listing that is published to your app
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveSpecificCollectionListingThatIsPublishedToYourAppAsync(long collectionListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetSpecificCollectionListingThatIsPublishedToYourAppAsync(long collectionListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (collectionListingId == null)
                 throw new System.ArgumentNullException("collectionListingId");
@@ -1745,21 +1745,21 @@ namespace Ocelli.OpenShopify
         /// <param name="sessionId">A session ID provided by the card vault when creating a payment session.</param>
         /// <param name="uniqueToken">A unique idempotency token generated by your app. This can be any value, but must be unique across all payment requests.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateNewPaymentAsync(int token, string? amount = null, string? requestDetails = null, string? sessionId = null, string? uniqueToken = null, CreatePaymentRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreatePaymentAsync(int token, string? amount = null, string? requestDetails = null, string? sessionId = null, string? uniqueToken = null, CreatePaymentRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Retrieves a list of payments on a particular checkout
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfPaymentsOnParticularCheckoutAsync(int token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ListPaymentsOnParticularCheckoutAsync(int token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Retrieves a single payment
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> RetrieveSinglePaymentAsync(long paymentId, int token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> GetPaymentAsync(long paymentId, int token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1812,7 +1812,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sessionId">A session ID provided by the card vault when creating a payment session.</param>
         /// <param name="uniqueToken">A unique idempotency token generated by your app. This can be any value, but must be unique across all payment requests.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateNewPaymentAsync(int token, string? amount = null, string? requestDetails = null, string? sessionId = null, string? uniqueToken = null, CreatePaymentRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreatePaymentAsync(int token, string? amount = null, string? requestDetails = null, string? sessionId = null, string? uniqueToken = null, CreatePaymentRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (token == null)
                 throw new System.ArgumentNullException("token");
@@ -1910,7 +1910,7 @@ namespace Ocelli.OpenShopify
         /// Retrieves a list of payments on a particular checkout
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfPaymentsOnParticularCheckoutAsync(int token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListPaymentsOnParticularCheckoutAsync(int token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (token == null)
                 throw new System.ArgumentNullException("token");
@@ -1988,7 +1988,7 @@ namespace Ocelli.OpenShopify
         /// Retrieves a single payment
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveSinglePaymentAsync(long paymentId, int token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetPaymentAsync(long paymentId, int token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (paymentId == null)
                 throw new System.ArgumentNullException("paymentId");
@@ -2263,7 +2263,7 @@ namespace Ocelli.OpenShopify
         /// <param name="productIds">A comma-separated list of product ids</param>
         /// <param name="updatedAtMin">Filter by product listings last updated after a certain date and time (formatted in ISO 8601)</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> RetrieveProductListingsThatArePublishedToYourAppAsync(long? collectionId = null, string? handle = null, int? limit = null, string? pageInfo = null, long? productIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> GetProductListingsThatArePublishedToYourAppAsync(long? collectionId = null, string? handle = null, int? limit = null, string? pageInfo = null, long? productIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2271,7 +2271,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="limit">Amount of results</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> RetrieveProductIdsThatArePublishedToYourAppAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> GetProductIdsThatArePublishedToYourAppAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2279,14 +2279,14 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfProductsThatArePublishedToYourAppAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetCountOfProductsThatArePublishedToYourAppAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Retrieve a specific product listing that is published to your app
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> RetrieveSpecificProductListingThatIsPublishedToYourAppAsync(long productListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> GetSpecificProductListingThatIsPublishedToYourAppAsync(long productListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2346,7 +2346,7 @@ namespace Ocelli.OpenShopify
         /// <param name="productIds">A comma-separated list of product ids</param>
         /// <param name="updatedAtMin">Filter by product listings last updated after a certain date and time (formatted in ISO 8601)</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveProductListingsThatArePublishedToYourAppAsync(long? collectionId = null, string? handle = null, int? limit = null, string? pageInfo = null, long? productIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetProductListingsThatArePublishedToYourAppAsync(long? collectionId = null, string? handle = null, int? limit = null, string? pageInfo = null, long? productIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/product_listings.json?");
@@ -2446,7 +2446,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="limit">Amount of results</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveProductIdsThatArePublishedToYourAppAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetProductIdsThatArePublishedToYourAppAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/product_listings/product_ids.json?");
@@ -2530,7 +2530,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> RetrieveCountOfProductsThatArePublishedToYourAppAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetCountOfProductsThatArePublishedToYourAppAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/product_listings/count.json");
@@ -2609,7 +2609,7 @@ namespace Ocelli.OpenShopify
         /// Retrieve a specific product listing that is published to your app
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveSpecificProductListingThatIsPublishedToYourAppAsync(long productListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetSpecificProductListingThatIsPublishedToYourAppAsync(long productListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (productListingId == null)
                 throw new System.ArgumentNullException("productListingId");
@@ -2950,14 +2950,14 @@ namespace Ocelli.OpenShopify
         /// Create a new Product ResourceFeedback
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateNewProductResourceFeedbackAsync(long productId, string? state = null, CreateProductResourceFeedbackRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateProductResourceFeedbackAsync(long productId, string? state = null, CreateProductResourceFeedbackRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Receive a list of all Product ResourceFeedbacks
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> ReceiveListOfAllProductResourceFeedbacksAsync(long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ListProductResourceFeedbacksAsync(long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -2998,7 +2998,7 @@ namespace Ocelli.OpenShopify
         /// Create a new Product ResourceFeedback
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateNewProductResourceFeedbackAsync(long productId, string? state = null, CreateProductResourceFeedbackRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateProductResourceFeedbackAsync(long productId, string? state = null, CreateProductResourceFeedbackRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (productId == null)
                 throw new System.ArgumentNullException("productId");
@@ -3084,7 +3084,7 @@ namespace Ocelli.OpenShopify
         /// Receive a list of all Product ResourceFeedbacks
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ReceiveListOfAllProductResourceFeedbacksAsync(long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListProductResourceFeedbacksAsync(long productId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (productId == null)
                 throw new System.ArgumentNullException("productId");
@@ -3271,14 +3271,14 @@ namespace Ocelli.OpenShopify
         /// <br/>            &lt;br /&gt;&lt;em&gt;Formatting the resource feedback message field&lt;/em&gt;&lt;/a&gt; for formatting requirements.</param>
         /// <param name="state">Must be one of the following values:</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateNewResourceFeedbackAsync(string? feedbackGeneratedAt = null, string? messages = null, string? state = null, CreateResourceFeedbackRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CreateResourceFeedbackAsync(string? feedbackGeneratedAt = null, string? messages = null, string? state = null, CreateResourceFeedbackRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Receive a list of all ResourceFeedbacks
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> ReceiveListOfAllResourceFeedbacksAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ListResourceFeedbacksAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -3324,7 +3324,7 @@ namespace Ocelli.OpenShopify
         /// <br/>            &lt;br /&gt;&lt;em&gt;Formatting the resource feedback message field&lt;/em&gt;&lt;/a&gt; for formatting requirements.</param>
         /// <param name="state">Must be one of the following values:</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateNewResourceFeedbackAsync(string? feedbackGeneratedAt = null, string? messages = null, string? state = null, CreateResourceFeedbackRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateResourceFeedbackAsync(string? feedbackGeneratedAt = null, string? messages = null, string? state = null, CreateResourceFeedbackRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/resource_feedback.json?");
@@ -3414,7 +3414,7 @@ namespace Ocelli.OpenShopify
         /// Receive a list of all ResourceFeedbacks
         /// </summary>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ReceiveListOfAllResourceFeedbacksAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListResourceFeedbacksAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/resource_feedback.json");

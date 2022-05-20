@@ -24,7 +24,7 @@ public class StorefrontAccessTokenTests : IClassFixture<SharedFixture>
     /*
     [SkippableFact]
     public async Task
-        RetrieveListOfStorefrontAccessTokensThatHaveBeenIssuedAsync_AdditionalPropertiesAreEmpty_ShouldPass()
+        ListStorefrontAccessTokensThatHaveBeenIssuedAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
         var requiredPermissions = new List<AuthorizationScope>()
         {
@@ -41,7 +41,7 @@ public class StorefrontAccessTokenTests : IClassFixture<SharedFixture>
         };
         Fixture.ValidateScopes(requiredPermissions);
         var service = new AccessService(Fixture.MyShopifyUrl, Fixture.AccessToken);
-        var result = await service.StorefrontAccess.RetrieveListOfStorefrontAccessTokensThatHaveBeenIssuedAsync();
+        var result = await service.StorefrontAccess.ListStorefrontAccessTokensThatHaveBeenIssuedAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
 
         if (result.StorefrontAccessTokens == null)

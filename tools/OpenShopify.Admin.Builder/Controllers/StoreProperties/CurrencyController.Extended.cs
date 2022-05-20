@@ -14,7 +14,7 @@ public class CurrencyController : CurrencyControllerBase
     /// <inheritdoc />
     [HttpGet, Route("currencies.json")]
     [ProducesResponseType(typeof(CurrencyList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfCurrenciesEnabledOnShop()
+    public override Task ListCurrenciesEnabledOnShop()
     {
         throw new NotImplementedException();
     }

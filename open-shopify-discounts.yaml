@@ -69,7 +69,7 @@ paths:
       tags:
         - DiscountCode
       summary: Retrieves a list of discount codes
-      operationId: RetrieveListOfDiscountCodes
+      operationId: ListDiscountCodes
       parameters:
         - name: price_rule_id
           in: path
@@ -113,7 +113,7 @@ paths:
       tags:
         - DiscountCode
       summary: Updates an existing discount code
-      operationId: UpdateExistingDiscountCode
+      operationId: UpdateDiscountCode
       parameters:
         - name: discount_code_id
           in: path
@@ -170,7 +170,7 @@ paths:
       tags:
         - DiscountCode
       summary: Retrieves a single discount code
-      operationId: RetrieveSingleDiscountCode
+      operationId: GetDiscountCode
       parameters:
         - name: discount_code_id
           in: path
@@ -265,7 +265,7 @@ paths:
       tags:
         - DiscountCode
       summary: Retrieves the location of a discount code
-      operationId: RetrieveLocationOfDiscountCode
+      operationId: GetLocationOfDiscountCode
       parameters:
         - name: code
           in: query
@@ -304,7 +304,7 @@ paths:
       tags:
         - DiscountCode
       summary: Retrieves a count of discount codes for a shop
-      operationId: RetrieveCountOfDiscountCodesForShop
+      operationId: GetCountOfDiscountCodesForShop
       parameters:
         - name: times_used
           in: query
@@ -409,7 +409,7 @@ paths:
       tags:
         - DiscountCode
       summary: Retrieves a discount code creation job
-      operationId: RetrieveDiscountCodeCreationJob
+      operationId: GetDiscountCodeCreationJob
       parameters:
         - name: batch_id
           in: path
@@ -459,7 +459,7 @@ paths:
       tags:
         - DiscountCode
       summary: Retrieves a list of discount codes for a discount code creation job
-      operationId: RetrieveListOfDiscountCodesForDiscountCodeCreationJob
+      operationId: ListDiscountCodesForDiscountCodeCreationJob
       parameters:
         - name: batch_id
           in: path
@@ -553,7 +553,7 @@ paths:
       tags:
         - PriceRule
       summary: Retrieves a list of price rules
-      operationId: RetrieveListOfPriceRules
+      operationId: ListPriceRules
       parameters:
         - name: created_at_max
           in: query
@@ -660,7 +660,7 @@ paths:
       tags:
         - PriceRule
       summary: Updates an existing a price rule
-      operationId: UpdateExistingPriceRule
+      operationId: UpdatePriceRule
       parameters:
         - name: price_rule_id
           in: path
@@ -711,7 +711,7 @@ paths:
       tags:
         - PriceRule
       summary: Retrieves a single price rule
-      operationId: RetrieveSinglePriceRule
+      operationId: GetPriceRule
       parameters:
         - name: price_rule_id
           in: path
@@ -754,7 +754,7 @@ paths:
       tags:
         - PriceRule
       summary: Remove an existing PriceRule
-      operationId: RemoveExistingPriceRule
+      operationId: DeleteExistingPriceRule
       parameters:
         - name: price_rule_id
           in: path
@@ -794,7 +794,7 @@ paths:
       tags:
         - PriceRule
       summary: Retrieves a count of all price rules
-      operationId: RetrieveCountOfAllPriceRules
+      operationId: GetCountOfAllPriceRules
       responses:
         '200':
           description: Success

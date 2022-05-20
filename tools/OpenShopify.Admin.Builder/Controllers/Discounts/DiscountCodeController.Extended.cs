@@ -22,7 +22,7 @@ public class DiscountCodeController : DiscountCodeControllerBase
     /// <inheritdoc />
     [HttpGet, Route("price_rules/{price_rule_id:long}/discount_codes.json")]
     [ProducesResponseType(typeof(DiscountCodeList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfDiscountCodes(long price_rule_id)
+    public override Task ListDiscountCodes(long price_rule_id)
     {
         throw new NotImplementedException();
     }
@@ -30,7 +30,7 @@ public class DiscountCodeController : DiscountCodeControllerBase
     /// <inheritdoc />
     [HttpPut, Route("price_rules/{price_rule_id:long}/discount_codes/{discount_code_id:long}.json")]
     [ProducesResponseType(typeof(DiscountCodeItem), StatusCodes.Status200OK)]
-    public override Task UpdateExistingDiscountCode(UpdateDiscountCodeRequest request, long discount_code_id, long price_rule_id)
+    public override Task UpdateDiscountCode(UpdateDiscountCodeRequest request, long discount_code_id, long price_rule_id)
     {
         throw new NotImplementedException();
     }
@@ -38,7 +38,7 @@ public class DiscountCodeController : DiscountCodeControllerBase
     /// <inheritdoc />
     [HttpGet, Route("price_rules/{price_rule_id:long}/discount_codes/{discount_code_id:long}.json")]
     [ProducesResponseType(typeof(DiscountCodeItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSingleDiscountCode(long discount_code_id, long price_rule_id)
+    public override Task GetDiscountCode(long discount_code_id, long price_rule_id)
     {
         throw new NotImplementedException();
     }
@@ -54,7 +54,7 @@ public class DiscountCodeController : DiscountCodeControllerBase
     /// <inheritdoc />
     [HttpGet, Route("discount_codes/lookup.json")]
     [ProducesResponseType(StatusCodes.Status303SeeOther)]
-    public override Task RetrieveLocationOfDiscountCode(string code)
+    public override Task GetLocationOfDiscountCode(string code)
     {
         throw new NotImplementedException();
     }
@@ -62,7 +62,7 @@ public class DiscountCodeController : DiscountCodeControllerBase
     /// <inheritdoc />
     [HttpGet, Route("discount_codes/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task RetrieveCountOfDiscountCodesForShop(string? times_used, string? times_used_max, string? times_used_min)
+    public override Task GetCountOfDiscountCodesForShop(string? times_used, string? times_used_max, string? times_used_min)
     {
         throw new NotImplementedException();
     }
@@ -78,7 +78,7 @@ public class DiscountCodeController : DiscountCodeControllerBase
     /// <inheritdoc />
     [HttpGet, Route("price_rules/{price_rule_id:long}/batch/{batch_id:long}.json")]
     [ProducesResponseType(typeof(DiscountCodeCreationItem), StatusCodes.Status200OK)]
-    public override Task RetrieveDiscountCodeCreationJob(long batch_id, long price_rule_id)
+    public override Task GetDiscountCodeCreationJob(long batch_id, long price_rule_id)
     {
         throw new NotImplementedException();
     }
@@ -86,7 +86,7 @@ public class DiscountCodeController : DiscountCodeControllerBase
     /// <inheritdoc />
     [HttpGet, Route("price_rules/{price_rule_id:long}/batch/{batch_id:long}/discount_codes.json")]
     [ProducesResponseType(typeof(DiscountCodeList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfDiscountCodesForDiscountCodeCreationJob(long batch_id, long price_rule_id)
+    public override Task ListDiscountCodesForDiscountCodeCreationJob(long batch_id, long price_rule_id)
     {
         throw new NotImplementedException();
     }

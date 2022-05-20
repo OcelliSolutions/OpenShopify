@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a list of fulfillment events for a specific fulfillment</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfFulfillmentEventsForSpecificFulfillment(long fulfillment_id, long order_id);
+        public abstract System.Threading.Tasks.Task ListFulfillmentEventsForSpecificFulfillment(long fulfillment_id, long order_id);
 
         /// <summary>
         /// Creates a fulfillment event
@@ -44,7 +44,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a specific fulfillment event</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSpecificFulfillmentEvent(long event_id, long fulfillment_id, long order_id);
+        public abstract System.Threading.Tasks.Task GetSpecificFulfillmentEvent(long event_id, long fulfillment_id, long order_id);
 
         /// <summary>
         /// Deletes a fulfillment event

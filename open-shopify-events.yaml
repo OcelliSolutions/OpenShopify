@@ -18,7 +18,7 @@ paths:
       tags:
         - Event
       summary: Retrieves a list of events
-      operationId: RetrieveListOfEvents
+      operationId: ListEvents
       parameters:
         - name: created_at_max
           in: query
@@ -99,7 +99,7 @@ paths:
       tags:
         - Event
       summary: Retrieves a single event
-      operationId: RetrieveSingleEvent
+      operationId: GetEvent
       parameters:
         - name: event_id
           in: path
@@ -148,7 +148,7 @@ paths:
       tags:
         - Event
       summary: Retrieves a count of events
-      operationId: RetrieveCountOfEvents
+      operationId: GetCountOfEvents
       parameters:
         - name: created_at_max
           in: query
@@ -198,7 +198,7 @@ paths:
       tags:
         - Webhook
       summary: Retrieves a list of webhooks
-      operationId: RetrieveListOfWebhooks
+      operationId: ListWebhooks
       parameters:
         - name: address
           in: query
@@ -290,7 +290,7 @@ paths:
       tags:
         - Webhook
       summary: Create a new Webhook
-      operationId: CreateNewWebhook
+      operationId: CreateWebhook
       requestBody:
         content:
           application/json:
@@ -335,7 +335,7 @@ paths:
       tags:
         - Webhook
       summary: Receive a count of all Webhooks
-      operationId: ReceiveCountOfAllWebhooks
+      operationId: GetCountOfAllWebhooks
       parameters:
         - name: address
           in: query
@@ -383,7 +383,7 @@ paths:
       tags:
         - Webhook
       summary: Receive a single Webhook
-      operationId: ReceiveSingleWebhook
+      operationId: GetWebhook
       parameters:
         - name: webhook_id
           in: path
@@ -431,7 +431,7 @@ paths:
       tags:
         - Webhook
       summary: Modify an existing Webhook
-      operationId: ModifyExistingWebhook
+      operationId: UpdateWebhook
       parameters:
         - name: webhook_id
           in: path
@@ -482,7 +482,7 @@ paths:
       tags:
         - Webhook
       summary: Remove an existing Webhook
-      operationId: RemoveExistingWebhook
+      operationId: DeleteExistingWebhook
       parameters:
         - name: webhook_id
           in: path

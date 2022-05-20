@@ -14,7 +14,7 @@ public class LocationController : LocationControllerBase
     /// <inheritdoc />
     [HttpGet, Route("locations.json")]
     [ProducesResponseType(typeof(LocationList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfLocations()
+    public override Task ListLocations()
     {
         throw new NotImplementedException();
     }
@@ -22,7 +22,7 @@ public class LocationController : LocationControllerBase
     /// <inheritdoc />
     [HttpGet, Route("locations/{location_id:long}.json")]
     [ProducesResponseType(typeof(LocationItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSingleLocationByItsID(long location_id)
+    public override Task GetLocationByItsID(long location_id)
     {
         throw new NotImplementedException();
     }
@@ -30,7 +30,7 @@ public class LocationController : LocationControllerBase
     /// <inheritdoc />
     [HttpGet, Route("locations/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task RetrieveCountOfLocations()
+    public override Task GetCountOfLocations()
     {
         throw new NotImplementedException();
     }
@@ -38,7 +38,7 @@ public class LocationController : LocationControllerBase
     /// <inheritdoc />
     [HttpGet, Route("locations/{location_id:long}/inventory_levels.json")]
     [ProducesResponseType(typeof(LocationList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfInventoryLevelsForLocation(long location_id)
+    public override Task ListInventoryLevelsForLocation(long location_id)
     {
         throw new NotImplementedException();
     }

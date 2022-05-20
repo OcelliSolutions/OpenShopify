@@ -36,7 +36,7 @@ namespace Ocelli.OpenShopify
         /// <param name="processedAtMin">Show tender transactions processed_at or after the specified date.</param>
         /// <param name="sinceId">Retrieve only transactions after the specified ID.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfTenderTransactionsAsync(int? limit = null, string? pageInfo = null, string? order = null, string? processedAt = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> ListTenderTransactionsAsync(int? limit = null, string? pageInfo = null, string? order = null, string? processedAt = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -83,7 +83,7 @@ namespace Ocelli.OpenShopify
         /// <param name="processedAtMin">Show tender transactions processed_at or after the specified date.</param>
         /// <param name="sinceId">Retrieve only transactions after the specified ID.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> RetrieveListOfTenderTransactionsAsync(int? limit = null, string? pageInfo = null, string? order = null, string? processedAt = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListTenderTransactionsAsync(int? limit = null, string? pageInfo = null, string? order = null, string? processedAt = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, int? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/tender_transactions.json?");

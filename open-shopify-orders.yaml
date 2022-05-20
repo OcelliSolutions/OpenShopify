@@ -18,7 +18,7 @@ paths:
       tags:
         - AbandonedCheckouts
       summary: Retrieves a list of abandoned checkouts
-      operationId: RetrieveListOfAbandonedCheckouts
+      operationId: ListAbandonedCheckouts
       parameters:
         - name: created_at_max
           in: query
@@ -86,7 +86,7 @@ paths:
       tags:
         - DraftOrder
       summary: Create a new DraftOrder
-      operationId: CreateNewDraftOrder
+      operationId: CreateDraftOrder
       parameters:
         - name: customer_id
           in: query
@@ -127,7 +127,7 @@ paths:
       tags:
         - DraftOrder
       summary: Retrieves a list of draft orders
-      operationId: RetrieveListOfDraftOrders
+      operationId: ListDraftOrders
       parameters:
         - name: fields
           in: query
@@ -192,7 +192,7 @@ paths:
       tags:
         - DraftOrder
       summary: Modify an existing DraftOrder
-      operationId: ModifyExistingDraftOrder
+      operationId: UpdateDraftOrder
       parameters:
         - name: draft_order_id
           in: path
@@ -228,7 +228,7 @@ paths:
       tags:
         - DraftOrder
       summary: Receive a single DraftOrder
-      operationId: ReceiveSingleDraftOrder
+      operationId: GetDraftOrder
       parameters:
         - name: draft_order_id
           in: path
@@ -261,7 +261,7 @@ paths:
       tags:
         - DraftOrder
       summary: Remove an existing DraftOrder
-      operationId: RemoveExistingDraftOrder
+      operationId: DeleteExistingDraftOrder
       parameters:
         - name: draft_order_id
           in: path
@@ -290,7 +290,7 @@ paths:
       tags:
         - DraftOrder
       summary: Receive a count of all DraftOrders
-      operationId: ReceiveCountOfAllDraftOrders
+      operationId: GetCountOfAllDraftOrders
       parameters:
         - name: since_id
           in: query
@@ -413,7 +413,7 @@ paths:
       tags:
         - Order
       summary: Retrieve a list of orders
-      operationId: RetrieveListOfOrders
+      operationId: ListOrders
       parameters:
         - name: attribution_app_id
           in: query
@@ -548,7 +548,7 @@ paths:
       tags:
         - Order
       summary: Retrieve a specific order
-      operationId: RetrieveSpecificOrder
+      operationId: GetSpecificOrder
       parameters:
         - name: order_id
           in: path
@@ -646,7 +646,7 @@ paths:
       tags:
         - Order
       summary: Retrieve an order count
-      operationId: RetrieveOrderCount
+      operationId: GetOrderCount
       parameters:
         - name: created_at_max
           in: query
@@ -875,7 +875,7 @@ paths:
       tags:
         - OrderRisk
       summary: Retrieves a list of all order risks for an order
-      operationId: RetrieveListOfAllOrderRisksForOrder
+      operationId: ListOrderRisksForOrder
       parameters:
         - name: order_id
           in: path
@@ -904,7 +904,7 @@ paths:
       tags:
         - OrderRisk
       summary: Retrieves a single order risk by its ID
-      operationId: RetrieveSingleOrderRiskByItsID
+      operationId: GetOrderRiskByItsID
       parameters:
         - name: order_id
           in: path
@@ -1015,7 +1015,7 @@ paths:
       tags:
         - Refund
       summary: Retrieves a list of refunds for an order
-      operationId: RetrieveListOfRefundsForOrder
+      operationId: ListRefundsForOrder
       parameters:
         - name: order_id
           in: path
@@ -1140,7 +1140,7 @@ paths:
       tags:
         - Refund
       summary: Retrieves a specific refund
-      operationId: RetrieveSpecificRefund
+      operationId: GetSpecificRefund
       parameters:
         - name: order_id
           in: path
@@ -1229,7 +1229,7 @@ paths:
       tags:
         - Transaction
       summary: Retrieves a list of transactions
-      operationId: RetrieveListOfTransactions
+      operationId: ListTransactions
       parameters:
         - name: order_id
           in: path
@@ -1315,7 +1315,7 @@ paths:
       tags:
         - Transaction
       summary: Retrieves a count of an order's transactions
-      operationId: RetrieveCountOfOrdersTransactions
+      operationId: GetCountOfOrdersTransactions
       parameters:
         - name: order_id
           in: path
@@ -1359,7 +1359,7 @@ paths:
       tags:
         - Transaction
       summary: Retrieves a specific transaction
-      operationId: RetrieveSpecificTransaction
+      operationId: GetSpecificTransaction
       parameters:
         - name: order_id
           in: path

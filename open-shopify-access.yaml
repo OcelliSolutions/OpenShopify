@@ -18,7 +18,7 @@ paths:
       tags:
         - StorefrontAccessToken
       summary: Creates a new StorefrontAccessToken
-      operationId: CreateNewStorefrontAccessToken
+      operationId: CreateStorefrontAccessToken
       requestBody:
         content:
           application/json:
@@ -62,7 +62,7 @@ paths:
       tags:
         - StorefrontAccessToken
       summary: Retrieves a list of storefront access tokens that have been issued
-      operationId: RetrieveListOfStorefrontAccessTokensThatHaveBeenIssued
+      operationId: ListStorefrontAccessTokensThatHaveBeenIssued
       responses:
         '200':
           description: Success

@@ -25,12 +25,12 @@ public class CurrencyTests : IClassFixture<SharedFixture>
 
     /*
     [SkippableFact, TestPriority(20)]
-    public async Task RetrieveListOfCurrenciesEnabledOnShopAsync_AdditionalPropertiesAreEmpty_ShouldPass()
+    public async Task ListCurrenciesEnabledOnShopAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
         var service = new StorePropertiesService(Fixture.MyShopifyUrl, Fixture.AccessToken);
 
         var result =
-            await service.Currency.RetrieveListOfCurrenciesEnabledOnShopAsync(CancellationToken.None);
+            await service.Currency.ListCurrenciesEnabledOnShopAsync(CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
 
         Debug.Assert(result.Currencies != null, "result.Currencies != null");

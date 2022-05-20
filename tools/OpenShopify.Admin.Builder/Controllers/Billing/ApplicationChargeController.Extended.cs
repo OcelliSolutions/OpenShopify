@@ -21,7 +21,7 @@ public class ApplicationChargeController : ApplicationChargeControllerBase
     /// <inheritdoc />
     [HttpGet, Route("application_charges.json")]
     [ProducesResponseType(typeof(ApplicationChargeList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfApplicationCharges(string? fields, int? since_id)
+    public override Task ListApplicationCharges(string? fields, int? since_id)
     {
         throw new NotImplementedException();
     }
@@ -29,7 +29,7 @@ public class ApplicationChargeController : ApplicationChargeControllerBase
     /// <inheritdoc />
     [HttpGet, Route("application_charges/{application_charge_id:long}.json")]
     [ProducesResponseType(typeof(ApplicationChargeItem), StatusCodes.Status200OK)]
-    public override Task RetrieveApplicationCharge(long application_charge_id, string? fields)
+    public override Task GetApplicationCharge(long application_charge_id, string? fields)
     {
         throw new NotImplementedException();
     }

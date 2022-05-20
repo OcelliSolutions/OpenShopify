@@ -33,7 +33,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="limit">The maximum number of results to retrieve.</param>
         /// <returns>Retrieves a list of refunds for an order</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfRefundsForOrder(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info);
+        public abstract System.Threading.Tasks.Task ListRefundsForOrder(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info);
 
         /// <summary>
         /// Creates a refund
@@ -58,7 +58,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="in_shop_currency">Show amounts in the shop currency for the underlying transaction.</param>
         /// <returns>Retrieves a specific refund</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds/{refund_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSpecificRefund(long order_id, long refund_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency);
+        public abstract System.Threading.Tasks.Task GetSpecificRefund(long order_id, long refund_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency);
 
         /// <summary>
         /// Calculates a refund

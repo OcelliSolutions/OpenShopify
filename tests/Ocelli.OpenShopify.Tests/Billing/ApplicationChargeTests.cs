@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
+﻿using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
 using Xunit;
 using Xunit.Abstractions;
@@ -23,10 +20,10 @@ public class ApplicationChargeTests : IClassFixture<SharedFixture>
     private SharedFixture Fixture { get; }
     /*
     [SkippableFact]
-    public async Task RetrieveListOfApplicationChargesAsync_AdditionalPropertiesAreEmpty_ShouldPass()
+    public async Task ListApplicationChargesAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
         var service = new BillingService(Fixture.MyShopifyUrl, Fixture.AccessToken);
-        var result = await service.ApplicationCharge.RetrieveListOfApplicationChargesAsync();
+        var result = await service.ApplicationCharge.ListApplicationChargesAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
 
         if (result.ApplicationCharges != null && !result.ApplicationCharges.Any())

@@ -30,35 +30,35 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Receive a list of all FulfillmentServices</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_services.json")]
-        public abstract System.Threading.Tasks.Task ReceiveListOfAllFulfillmentServices([Microsoft.AspNetCore.Mvc.FromQuery] string? scope);
+        public abstract System.Threading.Tasks.Task ListFulfillmentServices([Microsoft.AspNetCore.Mvc.FromQuery] string? scope);
 
         /// <summary>
         /// Create a new FulfillmentService
         /// </summary>
         /// <returns>Create a new FulfillmentService</returns>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_services.json")]
-        public abstract System.Threading.Tasks.Task CreateNewFulfillmentService([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateFulfillmentServiceRequest request);
+        public abstract System.Threading.Tasks.Task CreateFulfillmentService([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateFulfillmentServiceRequest request);
 
         /// <summary>
         /// Receive a single FulfillmentService
         /// </summary>
         /// <returns>Receive a single FulfillmentService</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_services/{fulfillment_service_id}.json")]
-        public abstract System.Threading.Tasks.Task ReceiveSingleFulfillmentService(long fulfillment_service_id);
+        public abstract System.Threading.Tasks.Task GetFulfillmentService(long fulfillment_service_id);
 
         /// <summary>
         /// Modify an existing FulfillmentService
         /// </summary>
         /// <returns>Modify an existing FulfillmentService</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("fulfillment_services/{fulfillment_service_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingFulfillmentService([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateFulfillmentServiceRequest request, long fulfillment_service_id);
+        public abstract System.Threading.Tasks.Task UpdateFulfillmentService([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateFulfillmentServiceRequest request, long fulfillment_service_id);
 
         /// <summary>
         /// Remove an existing FulfillmentService
         /// </summary>
         /// <returns>Remove an existing FulfillmentService</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("fulfillment_services/{fulfillment_service_id}.json")]
-        public abstract System.Threading.Tasks.Task RemoveExistingFulfillmentService(long fulfillment_service_id);
+        public abstract System.Threading.Tasks.Task DeleteExistingFulfillmentService(long fulfillment_service_id);
 
     }
 

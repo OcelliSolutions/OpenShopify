@@ -18,7 +18,7 @@ paths:
       tags:
         - DeprecatedApiCalls
       summary: Retrieves a list of deprecated API calls
-      operationId: RetrieveListOfDeprecatedAPICalls
+      operationId: ListDeprecatedAPICalls
       responses:
         '200':
           description: Success

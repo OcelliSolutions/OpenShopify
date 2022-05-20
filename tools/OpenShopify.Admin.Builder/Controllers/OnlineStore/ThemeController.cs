@@ -31,7 +31,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a list of themes</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("themes.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfThemes([Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task ListThemes([Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Creates a theme
@@ -46,21 +46,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single theme by its ID</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleThemeByItsID(long theme_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetThemeByItsID(long theme_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Modify an existing Theme
         /// </summary>
         /// <returns>Modify an existing Theme</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingTheme([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateThemeRequest request, long theme_id);
+        public abstract System.Threading.Tasks.Task UpdateTheme([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateThemeRequest request, long theme_id);
 
         /// <summary>
         /// Remove an existing Theme
         /// </summary>
         /// <returns>Remove an existing Theme</returns>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}.json")]
-        public abstract System.Threading.Tasks.Task RemoveExistingTheme(long theme_id);
+        public abstract System.Threading.Tasks.Task DeleteExistingTheme(long theme_id);
 
     }
 

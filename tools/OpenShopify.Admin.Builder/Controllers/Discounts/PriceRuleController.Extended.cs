@@ -21,7 +21,7 @@ public class PriceRuleController : PriceRuleControllerBase
     /// <inheritdoc />
     [HttpGet, Route("price_rules.json")]
     [ProducesResponseType(typeof(PriceRuleList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfPriceRules(DateTime? created_at_max, DateTime? created_at_min, DateTime? ends_at_max,
+    public override Task ListPriceRules(DateTime? created_at_max, DateTime? created_at_min, DateTime? ends_at_max,
         DateTime? ends_at_min, int? limit, string? page_info, int? since_id, DateTime? starts_at_max, DateTime? starts_at_min,
         string? times_used, DateTime? updated_at_max, DateTime? updated_at_min)
     {
@@ -31,7 +31,7 @@ public class PriceRuleController : PriceRuleControllerBase
     /// <inheritdoc />
     [HttpPut, Route("price_rules/{price_rule_id:long}.json")]
     [ProducesResponseType(typeof(PriceRuleItem), StatusCodes.Status200OK)]
-    public override Task UpdateExistingPriceRule(UpdatePriceRuleRequest request, long price_rule_id)
+    public override Task UpdatePriceRule(UpdatePriceRuleRequest request, long price_rule_id)
     {
         throw new NotImplementedException();
     }
@@ -39,7 +39,7 @@ public class PriceRuleController : PriceRuleControllerBase
     /// <inheritdoc />
     [HttpGet, Route("price_rules/{price_rule_id:long}.json")]
     [ProducesResponseType(typeof(PriceRuleItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSinglePriceRule(long price_rule_id)
+    public override Task GetPriceRule(long price_rule_id)
     {
         throw new NotImplementedException();
     }
@@ -47,7 +47,7 @@ public class PriceRuleController : PriceRuleControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("price_rules/{price_rule_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public override Task RemoveExistingPriceRule(long price_rule_id)
+    public override Task DeleteExistingPriceRule(long price_rule_id)
     {
         throw new NotImplementedException();
     }
@@ -55,7 +55,7 @@ public class PriceRuleController : PriceRuleControllerBase
     /// <inheritdoc />
     [HttpGet, Route("price_rules/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task RetrieveCountOfAllPriceRules()
+    public override Task GetCountOfAllPriceRules()
     {
         throw new NotImplementedException();
     }

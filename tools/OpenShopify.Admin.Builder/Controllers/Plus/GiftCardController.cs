@@ -34,7 +34,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="status">Retrieve gift cards with a given status. Valid values:</param>
         /// <returns>Retrieves a list of gift cards</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status);
+        public abstract System.Threading.Tasks.Task ListGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit, string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status);
 
         /// <summary>
         /// Creates a gift card
@@ -48,14 +48,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a single gift card</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleGiftCard(long gift_card_id);
+        public abstract System.Threading.Tasks.Task GetGiftCard(long gift_card_id);
 
         /// <summary>
         /// Updates an existing gift card
         /// </summary>
         /// <returns>Updates an existing gift card</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("gift_cards/{gift_card_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingGiftCard([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateGiftCardRequest request, long gift_card_id);
+        public abstract System.Threading.Tasks.Task UpdateGiftCard([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateGiftCardRequest request, long gift_card_id);
 
         /// <summary>
         /// Retrieves a count of gift cards
@@ -63,7 +63,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="status">Count gift cards with a given status. Valid values:</param>
         /// <returns>Retrieves a count of gift cards</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? status);
+        public abstract System.Threading.Tasks.Task GetCountOfGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? status);
 
         /// <summary>
         /// Disables a gift card

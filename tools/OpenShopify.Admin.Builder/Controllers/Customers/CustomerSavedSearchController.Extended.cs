@@ -14,7 +14,7 @@ public class CustomerSavedSearchController : CustomerSavedSearchControllerBase
     /// <inheritdoc />
     [HttpGet, Route("customer_saved_searches.json")]
     [ProducesResponseType(typeof(CustomerSavedSearchList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfCustomerSavedSearches(string? fields, int? limit, string? page_info, int? since_id)
+    public override Task ListCustomerSavedSearches(string? fields, int? limit, string? page_info, int? since_id)
     {
         throw new NotImplementedException();
     }
@@ -30,7 +30,7 @@ public class CustomerSavedSearchController : CustomerSavedSearchControllerBase
     /// <inheritdoc />
     [HttpGet, Route("customer_saved_searches/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task RetrieveCountOfAllCustomerSavedSearches(int? since_id)
+    public override Task GetCountOfAllCustomerSavedSearches(int? since_id)
     {
         throw new NotImplementedException();
     }
@@ -38,7 +38,7 @@ public class CustomerSavedSearchController : CustomerSavedSearchControllerBase
     /// <inheritdoc />
     [HttpGet, Route("customer_saved_searches/{customer_saved_search_id:long}.json")]
     [ProducesResponseType(typeof(CustomerSavedSearchItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSingleCustomerSavedSearch(long customer_saved_search_id, string? fields)
+    public override Task GetCustomerSavedSearch(long customer_saved_search_id, string? fields)
     {
         throw new NotImplementedException();
     }
@@ -62,7 +62,7 @@ public class CustomerSavedSearchController : CustomerSavedSearchControllerBase
     /// <inheritdoc />
     [HttpGet, Route("customer_saved_searches/{customer_saved_search_id:long}/customers.json")]
     [ProducesResponseType(typeof(CustomerList), StatusCodes.Status200OK)]
-    public override Task RetrieveAllCustomersReturnedByCustomerSavedSearch(long customer_saved_search_id, string? fields,
+    public override Task GetAllCustomersReturnedByCustomerSavedSearch(long customer_saved_search_id, string? fields,
         int? limit, string? page_info, string? order)
     {
         throw new NotImplementedException();

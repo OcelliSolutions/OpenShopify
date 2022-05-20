@@ -12,21 +12,21 @@ public class CollectionListingController : CollectionListingControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("collection_listings.json")]
-    public override Task RetrieveCollectionListingsThatArePublishedToYourApp(int? limit, string? page_info)
+    public override Task GetCollectionListingsThatArePublishedToYourApp(int? limit, string? page_info)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("collection_listings/{collection_listing_id:long}/product_ids.json")]
-    public override Task RetrieveProductIdsThatArePublishedToCollectionId(long collection_listing_id, int? limit, string? page_info)
+    public override Task GetProductIdsThatArePublishedToCollectionId(long collection_listing_id, int? limit, string? page_info)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("collection_listings/{collection_listing_id:long}.json")]
-    public override Task RetrieveSpecificCollectionListingThatIsPublishedToYourApp(long collection_listing_id)
+    public override Task GetSpecificCollectionListingThatIsPublishedToYourApp(long collection_listing_id)
     {
         throw new NotImplementedException();
     }

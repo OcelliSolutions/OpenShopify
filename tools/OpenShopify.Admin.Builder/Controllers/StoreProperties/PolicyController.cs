@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a list of the shop's policies</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("policies.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfShopsPolicies();
+        public abstract System.Threading.Tasks.Task ListShopsPolicies();
 
     }
 

@@ -12,7 +12,7 @@ public class ThemeController : ThemeControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("themes.json")]
-    public override Task RetrieveListOfThemes(string? fields)
+    public override Task ListThemes(string? fields)
     {
         throw new NotImplementedException();
     }
@@ -26,21 +26,21 @@ public class ThemeController : ThemeControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("themes/{theme_id:long}.json")]
-    public override Task RetrieveSingleThemeByItsID(long theme_id, string? fields)
+    public override Task GetThemeByItsID(long theme_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPut, Route("themes/{theme_id:long}.json")]
-    public override Task ModifyExistingTheme(UpdateThemeRequest request, long theme_id)
+    public override Task UpdateTheme(UpdateThemeRequest request, long theme_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpDelete, Route("themes/{theme_id:long}.json")]
-    public override Task RemoveExistingTheme(long theme_id)
+    public override Task DeleteExistingTheme(long theme_id)
     {
         throw new NotImplementedException();
     }

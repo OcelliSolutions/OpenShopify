@@ -12,7 +12,7 @@ public class ResourceFeedbackController : ResourceFeedbackControllerBase
 {
     /// <inheritdoc />
     [HttpPost, Route("resource_feedback.json")]
-    public override Task CreateNewResourceFeedback(CreateResourceFeedbackRequest request, string feedback_generated_at, string messages,
+    public override Task CreateResourceFeedback(CreateResourceFeedbackRequest request, string feedback_generated_at, string messages,
         string state)
     {
         throw new NotImplementedException();
@@ -20,7 +20,7 @@ public class ResourceFeedbackController : ResourceFeedbackControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("resource_feedback.json")]
-    public override Task ReceiveListOfAllResourceFeedbacks()
+    public override Task ListResourceFeedbacks()
     {
         throw new NotImplementedException();
     }

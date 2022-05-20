@@ -11,7 +11,7 @@ public class PolicyController : PolicyControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("policies.json")]
-    public override Task RetrieveListOfShopsPolicies()
+    public override Task ListShopsPolicies()
     {
         throw new NotImplementedException();
     }

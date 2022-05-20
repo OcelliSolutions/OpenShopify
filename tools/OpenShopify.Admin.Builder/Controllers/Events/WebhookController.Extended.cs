@@ -13,7 +13,7 @@ public class WebhookController : WebhookControllerBase
     /// <inheritdoc />
     [HttpGet, Route("webhooks.json")]
     [ProducesResponseType(typeof(WebhookList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfWebhooks(string? address, DateTime? created_at_max, DateTime? created_at_min, string? fields,
+    public override Task ListWebhooks(string? address, DateTime? created_at_max, DateTime? created_at_min, string? fields,
         int? limit, string? page_info, int? since_id, string? topic, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
@@ -22,7 +22,7 @@ public class WebhookController : WebhookControllerBase
     /// <inheritdoc />
     [HttpPost, Route("webhooks.json")]
     [ProducesResponseType(typeof(WebhookItem), StatusCodes.Status201Created)]
-    public override Task CreateNewWebhook(CreateWebhookRequest request)
+    public override Task CreateWebhook(CreateWebhookRequest request)
     {
         throw new NotImplementedException();
     }
@@ -30,7 +30,7 @@ public class WebhookController : WebhookControllerBase
     /// <inheritdoc />
     [HttpGet, Route("webhooks/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task ReceiveCountOfAllWebhooks(string? address, string? topic)
+    public override Task GetCountOfAllWebhooks(string? address, string? topic)
     {
         throw new NotImplementedException();
     }
@@ -38,7 +38,7 @@ public class WebhookController : WebhookControllerBase
     /// <inheritdoc />
     [HttpGet, Route("webhooks/{webhook_id:long}.json")]
     [ProducesResponseType(typeof(WebhookItem), StatusCodes.Status200OK)]
-    public override Task ReceiveSingleWebhook(long webhook_id, string? fields)
+    public override Task GetWebhook(long webhook_id, string? fields)
     {
         throw new NotImplementedException();
     }
@@ -46,7 +46,7 @@ public class WebhookController : WebhookControllerBase
     /// <inheritdoc />
     [HttpPut, Route("webhooks/{webhook_id:long}.json")]
     [ProducesResponseType(typeof(WebhookItem), StatusCodes.Status200OK)]
-    public override Task ModifyExistingWebhook(UpdateWebhookRequest request, long webhook_id)
+    public override Task UpdateWebhook(UpdateWebhookRequest request, long webhook_id)
     {
         throw new NotImplementedException();
     }
@@ -54,7 +54,7 @@ public class WebhookController : WebhookControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("webhooks/{webhook_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task RemoveExistingWebhook(long webhook_id)
+    public override Task DeleteExistingWebhook(long webhook_id)
     {
         throw new NotImplementedException();
     }

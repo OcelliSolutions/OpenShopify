@@ -32,14 +32,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <returns>Retrieves a list of provinces for a country</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfProvincesForCountry(long country_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
+        public abstract System.Threading.Tasks.Task ListProvincesForCountry(long country_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields, [Microsoft.AspNetCore.Mvc.FromQuery] int? since_id);
 
         /// <summary>
         /// Retrieves a count of provinces for a country
         /// </summary>
         /// <returns>Retrieves a count of provinces for a country</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/count.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCountOfProvincesForCountry(long country_id);
+        public abstract System.Threading.Tasks.Task GetCountOfProvincesForCountry(long country_id);
 
         /// <summary>
         /// Retrieves a single province for a country
@@ -47,14 +47,14 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Retrieves a single province for a country</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/{province_id}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveSingleProvinceForCountry(long country_id, long province_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
+        public abstract System.Threading.Tasks.Task GetProvinceForCountry(long country_id, long province_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields);
 
         /// <summary>
         /// Updates an existing province for a country
         /// </summary>
         /// <returns>Updates an existing province for a country</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/{province_id}.json")]
-        public abstract System.Threading.Tasks.Task UpdateExistingProvinceForCountry([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateProvinceRequest request, long country_id, long province_id);
+        public abstract System.Threading.Tasks.Task UpdateProvinceForCountry([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateProvinceRequest request, long country_id, long province_id);
 
     }
 

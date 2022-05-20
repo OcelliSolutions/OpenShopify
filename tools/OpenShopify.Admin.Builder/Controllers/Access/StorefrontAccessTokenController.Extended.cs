@@ -13,7 +13,7 @@ public class StorefrontAccessTokenController : StorefrontAccessTokenControllerBa
     /// <inheritdoc />
     [HttpPost, Route("storefront_access_tokens.json")]
     [ProducesResponseType(typeof(StorefrontAccessTokenItem), StatusCodes.Status200OK)]
-    public override Task CreateNewStorefrontAccessToken(CreateStorefrontAccessTokenRequest request)
+    public override Task CreateStorefrontAccessToken(CreateStorefrontAccessTokenRequest request)
     {
         throw new NotImplementedException();
     }
@@ -21,7 +21,7 @@ public class StorefrontAccessTokenController : StorefrontAccessTokenControllerBa
     /// <inheritdoc />
     [HttpGet, Route("storefront_access_tokens.json")]
     [ProducesResponseType(typeof(StorefrontAccessTokenList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfStorefrontAccessTokensThatHaveBeenIssued()
+    public override Task ListStorefrontAccessTokensThatHaveBeenIssued()
     {
         throw new NotImplementedException();
     }

@@ -18,7 +18,7 @@ paths:
       tags:
         - InventoryItem
       summary: Retrieves a list of inventory items
-      operationId: RetrieveListOfInventoryItems
+      operationId: ListInventoryItems
       parameters:
         - name: ids
           in: query
@@ -71,7 +71,7 @@ paths:
       tags:
         - InventoryItem
       summary: Retrieves a single inventory item by ID
-      operationId: RetrieveSingleInventoryItemByID
+      operationId: GetInventoryItemByID
       parameters:
         - name: inventory_item_id
           in: path
@@ -114,7 +114,7 @@ paths:
       tags:
         - InventoryItem
       summary: Updates an existing inventory item
-      operationId: UpdateExistingInventoryItem
+      operationId: UpdateInventoryItem
       parameters:
         - name: inventory_item_id
           in: path
@@ -166,7 +166,7 @@ paths:
       tags:
         - InventoryLevel
       summary: Retrieves a list of inventory levels
-      operationId: RetrieveListOfInventoryLevels
+      operationId: ListInventoryLevels
       parameters:
         - name: inventory_item_ids
           in: query
@@ -447,7 +447,7 @@ paths:
       tags:
         - Location
       summary: Retrieve a list of locations
-      operationId: RetrieveListOfLocations
+      operationId: ListLocations
       responses:
         '200':
           description: Success
@@ -484,7 +484,7 @@ paths:
       tags:
         - Location
       summary: Retrieve a single location by its ID
-      operationId: RetrieveSingleLocationByItsID
+      operationId: GetLocationByItsID
       parameters:
         - name: location_id
           in: path
@@ -528,7 +528,7 @@ paths:
       tags:
         - Location
       summary: Retrieve a count of locations
-      operationId: RetrieveCountOfLocations
+      operationId: GetCountOfLocations
       responses:
         '200':
           description: Success
@@ -565,7 +565,7 @@ paths:
       tags:
         - Location
       summary: Retrieve a list of inventory levels for a location
-      operationId: RetrieveListOfInventoryLevelsForLocation
+      operationId: ListInventoryLevelsForLocation
       parameters:
         - name: location_id
           in: path

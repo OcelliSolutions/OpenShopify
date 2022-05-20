@@ -16,7 +16,7 @@ public class ProductController : ProductControllerBase
     [HttpGet, Route("products.json")]
     [ProducesResponseHeader("Link", StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProductList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfProducts(long? collection_id, DateTime? created_at_max, DateTime? created_at_min, string? fields,
+    public override Task ListProducts(long? collection_id, DateTime? created_at_max, DateTime? created_at_min, string? fields,
         string? handle, string? ids, int? limit, string? page_info, string? presentment_currencies, string? product_type,
         DateTime? published_at_max, DateTime? published_at_min, string published_status, int? since_id, string status,
         string? title, DateTime? updated_at_max, DateTime? updated_at_min, string? vendor)
@@ -27,7 +27,7 @@ public class ProductController : ProductControllerBase
     /// <inheritdoc />
     [HttpPost, Route("products.json")]
     [ProducesResponseType(typeof(ProductItem), StatusCodes.Status201Created)]
-    public override Task CreateNewProduct(CreateProductRequest request)
+    public override Task CreateProduct(CreateProductRequest request)
     {
         throw new NotImplementedException();
     }
@@ -35,7 +35,7 @@ public class ProductController : ProductControllerBase
     /// <inheritdoc />
     [HttpGet, Route("products/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task RetrieveCountOfProducts(long? collection_id, DateTime? created_at_max, DateTime? created_at_min,
+    public override Task GetCountOfProducts(long? collection_id, DateTime? created_at_max, DateTime? created_at_min,
         string? product_type, DateTime? published_at_max, DateTime? published_at_min, string published_status,
         DateTime? updated_at_max, DateTime? updated_at_min, string? vendor)
     {
@@ -45,7 +45,7 @@ public class ProductController : ProductControllerBase
     /// <inheritdoc />
     [HttpGet, Route("products/{product_id:long}.json")]
     [ProducesResponseType(typeof(ProductItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSingleProduct(long product_id, string? fields)
+    public override Task GetProduct(long product_id, string? fields)
     {
         throw new NotImplementedException();
     }

@@ -44,21 +44,21 @@ namespace OpenShopify.Admin.Builder.Controllers
         /// </summary>
         /// <returns>Retrieves a checkout</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}.json")]
-        public abstract System.Threading.Tasks.Task RetrieveCheckout(string token);
+        public abstract System.Threading.Tasks.Task GetCheckout(string token);
 
         /// <summary>
         /// Modifies an existing checkout
         /// </summary>
         /// <returns>Modifies an existing checkout</returns>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}.json")]
-        public abstract System.Threading.Tasks.Task ModifyExistingCheckout([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCheckoutRequest request, string token);
+        public abstract System.Threading.Tasks.Task UpdateCheckout([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCheckoutRequest request, string token);
 
         /// <summary>
         /// Retrieves a list of shipping rates
         /// </summary>
         /// <returns>Retrieves a list of shipping rates</returns>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}/shipping_rates.json")]
-        public abstract System.Threading.Tasks.Task RetrieveListOfShippingRates(string token);
+        public abstract System.Threading.Tasks.Task ListShippingRates(string token);
 
     }
 

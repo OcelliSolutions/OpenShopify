@@ -20,7 +20,7 @@ public class RecurringApplicationChargeController : RecurringApplicationChargeCo
     /// <inheritdoc />
     [HttpGet, Route("recurring_application_charges.json")]
     [ProducesResponseType(typeof(RecurringApplicationChargeList), StatusCodes.Status200OK)]
-    public override Task RetrieveListOfRecurringApplicationCharges(string? fields, int? since_id)
+    public override Task ListRecurringApplicationCharges(string? fields, int? since_id)
     {
         throw new NotImplementedException();
     }
@@ -28,7 +28,7 @@ public class RecurringApplicationChargeController : RecurringApplicationChargeCo
     /// <inheritdoc />
     [HttpGet, Route("recurring_application_charges/{recurring_application_charge_id:long}.json")]
     [ProducesResponseType(typeof(RecurringApplicationChargeItem), StatusCodes.Status200OK)]
-    public override Task RetrieveSingleCharge(long recurring_application_charge_id, string? fields)
+    public override Task GetCharge(long recurring_application_charge_id, string? fields)
     {
         throw new NotImplementedException();
     }

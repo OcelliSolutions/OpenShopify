@@ -15,15 +15,15 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     /// <inheritdoc />
     [IgnoreApi, HttpGet, Route("fulfillment_services.invalid")]
     [ProducesResponseType(typeof(FulfillmentServiceList), StatusCodes.Status200OK)]
-    public override Task ReceiveListOfAllFulfillmentServices(string? scope = null)
+    public override Task ListFulfillmentServices(string? scope = null)
     {
         throw new NotImplementedException();
     }
 
-    /// <inheritdoc cref="FulfillmentServiceControllerBase.ReceiveListOfAllFulfillmentServices" />
+    /// <inheritdoc cref="FulfillmentServiceControllerBase.ListFulfillmentServices" />
     [HttpGet, Route("fulfillment_services.json")]
     [ProducesResponseType(typeof(FulfillmentServiceList), StatusCodes.Status200OK)]
-    public Task ReceiveListOfAllFulfillmentServices(FulfillmentServiceScope? scope = null)
+    public Task ListFulfillmentServices(FulfillmentServiceScope? scope = null)
     {
         throw new NotImplementedException();
     }
@@ -31,7 +31,7 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_services.json")]
     [ProducesResponseType(typeof(FulfillmentServiceItem), StatusCodes.Status201Created)]
-    public override Task CreateNewFulfillmentService(CreateFulfillmentServiceRequest request)
+    public override Task CreateFulfillmentService(CreateFulfillmentServiceRequest request)
     {
         throw new NotImplementedException();
     }
@@ -39,16 +39,16 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     /// <inheritdoc />
     [HttpGet, Route("fulfillment_services/{fulfillment_service_id:long}.json")]
     [ProducesResponseType(typeof(FulfillmentServiceItem), StatusCodes.Status200OK)]
-    public override Task ReceiveSingleFulfillmentService(long fulfillment_service_id)
+    public override Task GetFulfillmentService(long fulfillment_service_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    /// <inheritdoc cref="FulfillmentServiceControllerBase.ModifyExistingFulfillmentService" />
+    /// <inheritdoc cref="FulfillmentServiceControllerBase.UpdateFulfillmentService" />
     [HttpPut, Route("fulfillment_services/{fulfillment_service_id:long}.json")]
     [ProducesResponseType(typeof(FulfillmentServiceItem), StatusCodes.Status200OK)]
-    public override Task ModifyExistingFulfillmentService(UpdateFulfillmentServiceRequest request, long fulfillment_service_id)
+    public override Task UpdateFulfillmentService(UpdateFulfillmentServiceRequest request, long fulfillment_service_id)
     {
         throw new NotImplementedException();
     }
@@ -56,7 +56,7 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("fulfillment_services/{fulfillment_service_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task RemoveExistingFulfillmentService(long fulfillment_service_id)
+    public override Task DeleteExistingFulfillmentService(long fulfillment_service_id)
     {
         throw new NotImplementedException();
     }

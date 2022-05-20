@@ -76,7 +76,7 @@ paths:
       tags:
         - Checkout
       summary: Retrieves a checkout
-      operationId: RetrieveCheckout
+      operationId: GetCheckout
       parameters:
         - name: token
           in: path
@@ -103,7 +103,7 @@ paths:
       tags:
         - Checkout
       summary: Modifies an existing checkout
-      operationId: ModifyExistingCheckout
+      operationId: UpdateCheckout
       parameters:
         - name: token
           in: path
@@ -139,7 +139,7 @@ paths:
       tags:
         - Checkout
       summary: Retrieves a list of shipping rates
-      operationId: RetrieveListOfShippingRates
+      operationId: ListShippingRates
       parameters:
         - name: token
           in: path
@@ -167,7 +167,7 @@ paths:
       tags:
         - CollectionListing
       summary: Retrieve collection listings that are published to your app
-      operationId: RetrieveCollectionListingsThatArePublishedToYourApp
+      operationId: GetCollectionListingsThatArePublishedToYourApp
       parameters:
         - name: limit
           in: query
@@ -200,7 +200,7 @@ paths:
       tags:
         - CollectionListing
       summary: Retrieve <code>product_ids</code> that are published to a <code>collection_id</code>
-      operationId: RetrieveProductIdsThatArePublishedToCollectionId
+      operationId: GetProductIdsThatArePublishedToCollectionId
       parameters:
         - name: collection_listing_id
           in: path
@@ -239,7 +239,7 @@ paths:
       tags:
         - CollectionListing
       summary: Retrieve a specific collection listing that is published to your app
-      operationId: RetrieveSpecificCollectionListingThatIsPublishedToYourApp
+      operationId: GetSpecificCollectionListingThatIsPublishedToYourApp
       parameters:
         - name: collection_listing_id
           in: path
@@ -476,7 +476,7 @@ paths:
       tags:
         - Payment
       summary: Creates a new payment
-      operationId: CreateNewPayment
+      operationId: CreatePayment
       parameters:
         - name: amount
           in: query
@@ -531,7 +531,7 @@ paths:
       tags:
         - Payment
       summary: Retrieves a list of payments on a particular checkout
-      operationId: RetrieveListOfPaymentsOnParticularCheckout
+      operationId: ListPaymentsOnParticularCheckout
       parameters:
         - name: token
           in: path
@@ -559,7 +559,7 @@ paths:
       tags:
         - Payment
       summary: Retrieves a single payment
-      operationId: RetrieveSinglePayment
+      operationId: GetPayment
       parameters:
         - name: payment_id
           in: path
@@ -636,7 +636,7 @@ paths:
       tags:
         - ProductListing
       summary: Retrieve product listings that are published to your app
-      operationId: RetrieveProductListingsThatArePublishedToYourApp
+      operationId: GetProductListingsThatArePublishedToYourApp
       parameters:
         - name: collection_id
           in: query
@@ -692,7 +692,7 @@ paths:
       tags:
         - ProductListing
       summary: Retrieve <code>product_ids</code> that are published to your app
-      operationId: RetrieveProductIdsThatArePublishedToYourApp
+      operationId: GetProductIdsThatArePublishedToYourApp
       parameters:
         - name: limit
           in: query
@@ -725,7 +725,7 @@ paths:
       tags:
         - ProductListing
       summary: Retrieve a count of products that are published to your app
-      operationId: RetrieveCountOfProductsThatArePublishedToYourApp
+      operationId: GetCountOfProductsThatArePublishedToYourApp
       responses:
         '200':
           description: Success
@@ -762,7 +762,7 @@ paths:
       tags:
         - ProductListing
       summary: Retrieve a specific product listing that is published to your app
-      operationId: RetrieveSpecificProductListingThatIsPublishedToYourApp
+      operationId: GetSpecificProductListingThatIsPublishedToYourApp
       parameters:
         - name: product_listing_id
           in: path
@@ -855,7 +855,7 @@ paths:
       tags:
         - ProductResourceFeedback
       summary: Create a new Product ResourceFeedback
-      operationId: CreateNewProductResourceFeedback
+      operationId: CreateProductResourceFeedback
       parameters:
         - name: product_id
           in: path
@@ -895,7 +895,7 @@ paths:
       tags:
         - ProductResourceFeedback
       summary: Receive a list of all Product ResourceFeedbacks
-      operationId: ReceiveListOfAllProductResourceFeedbacks
+      operationId: ListProductResourceFeedbacks
       parameters:
         - name: product_id
           in: path
@@ -924,7 +924,7 @@ paths:
       tags:
         - ResourceFeedback
       summary: Create a new ResourceFeedback
-      operationId: CreateNewResourceFeedback
+      operationId: CreateResourceFeedback
       parameters:
         - name: feedback_generated_at
           in: query
@@ -969,7 +969,7 @@ paths:
       tags:
         - ResourceFeedback
       summary: Receive a list of all ResourceFeedbacks
-      operationId: ReceiveListOfAllResourceFeedbacks
+      operationId: ListResourceFeedbacks
       responses:
         '401':
           description: Unauthorized

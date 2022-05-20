@@ -12,7 +12,7 @@ public class FulfillmentController : FulfillmentControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/fulfillments.json")]
-    public override Task RetrieveFulfillmentsAssociatedWithOrder(long order_id, DateTime? created_at_max, DateTime? created_at_min,
+    public override Task GetFulfillmentsAssociatedWithOrder(long order_id, DateTime? created_at_max, DateTime? created_at_min,
         string? fields, int? limit, string? page_info, int? since_id, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
@@ -20,14 +20,14 @@ public class FulfillmentController : FulfillmentControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("orders/{order_id:long}/fulfillments.json")]
-    public override Task CreateNewFulfillment(CreateFulfillmentRequest request, long order_id)
+    public override Task CreateFulfillment(CreateFulfillmentRequest request, long order_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("fulfillment_orders/{fulfillment_order_id:long}/fulfillments.json")]
-    public override Task RetrieveFulfillmentsAssociatedWithFulfillmentOrder(long fulfillment_order_id)
+    public override Task GetFulfillmentsAssociatedWithFulfillmentOrder(long fulfillment_order_id)
     {
         throw new NotImplementedException();
     }
@@ -35,7 +35,7 @@ public class FulfillmentController : FulfillmentControllerBase
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/fulfillments/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task RetrieveCountOfFulfillmentsAssociatedWithSpecificOrder(long order_id, DateTime? created_at_max,
+    public override Task GetCountOfFulfillmentsAssociatedWithSpecificOrder(long order_id, DateTime? created_at_max,
         DateTime? created_at_min, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
@@ -43,14 +43,14 @@ public class FulfillmentController : FulfillmentControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}.json")]
-    public override Task ReceiveSingleFulfillment(long fulfillment_id, long order_id, string? fields)
+    public override Task GetFulfillment(long fulfillment_id, long order_id, string? fields)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPut, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}.json")]
-    public override Task ModifyExistingFulfillment(UpdateFulfillmentRequest request, long fulfillment_id, long order_id)
+    public override Task UpdateFulfillment(UpdateFulfillmentRequest request, long fulfillment_id, long order_id)
     {
         throw new NotImplementedException();
     }

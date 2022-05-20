@@ -12,7 +12,7 @@ public class PageController : PageControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("pages.json")]
-    public override Task RetrieveListOfPages(DateTime? created_at_max, DateTime? created_at_min, string? fields, string? handle,
+    public override Task ListPages(DateTime? created_at_max, DateTime? created_at_min, string? fields, string? handle,
         int? limit, string? page_info, DateTime? published_at_max, DateTime? published_at_min, string published_status, int? since_id,
         string? title, DateTime? updated_at_max, DateTime? updated_at_min)
     {
@@ -29,7 +29,7 @@ public class PageController : PageControllerBase
     /// <inheritdoc />
     [HttpGet, Route("pages/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task RetrievePageCount(DateTime? created_at_max, DateTime? created_at_min, DateTime? published_at_max,
+    public override Task GetPageCount(DateTime? created_at_max, DateTime? created_at_min, DateTime? published_at_max,
         DateTime? published_at_min, string published_status, string? title, DateTime? updated_at_max, DateTime? updated_at_min)
     {
         throw new NotImplementedException();
@@ -37,7 +37,7 @@ public class PageController : PageControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("pages/{page_id:long}.json")]
-    public override Task RetrieveSinglePageByItsID(long page_id, string? fields)
+    public override Task GetPageByItsID(long page_id, string? fields)
     {
         throw new NotImplementedException();
     }
