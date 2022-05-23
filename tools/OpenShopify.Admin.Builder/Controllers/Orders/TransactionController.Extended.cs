@@ -13,6 +13,7 @@ public class TransactionController : TransactionControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/transactions.json")]
+    [ProducesResponseType(typeof(TransactionList), StatusCodes.Status200OK)]
     public override Task ListTransactions([Required] long order_id, string? fields = null, bool? in_shop_currency = null, long? since_id = null)
     {
         throw new NotImplementedException();
@@ -20,6 +21,7 @@ public class TransactionController : TransactionControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("orders/{order_id:long}/transactions.json")]
+    [ProducesResponseType(typeof(TransactionItem), StatusCodes.Status201Created)]
     public override Task CreateTransactionForOrder([Required] CreateTransactionRequest request, [Required] long order_id, string? source = null)
     {
         throw new NotImplementedException();
@@ -35,6 +37,7 @@ public class TransactionController : TransactionControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/transactions/{transaction_id:long}.json")]
+    [ProducesResponseType(typeof(TransactionItem), StatusCodes.Status200OK)]
     public override Task GetSpecificTransaction([Required] long order_id, [Required] long transaction_id, string? fields = null, bool? in_shop_currency = null)
     {
         throw new NotImplementedException();

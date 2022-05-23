@@ -72,7 +72,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Deletes a metafield by its ID
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteMetafieldByItsID(long metafield_id);
+        public abstract System.Threading.Tasks.Task DeleteMetafield(long metafield_id);
 
     }
 

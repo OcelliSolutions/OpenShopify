@@ -122,7 +122,7 @@ paths:
       tags:
         - Collect
       summary: Retrieves a specific collect by its ID
-      operationId: GetSpecificCollectByItsID
+      operationId: GetSpecificCollect
       parameters:
         - name: collect_id
           in: path

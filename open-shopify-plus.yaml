@@ -65,6 +65,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GiftCardList'
     post:
       tags:
         - GiftCard
@@ -80,8 +84,8 @@ paths:
               $ref: '#/components/schemas/CreateGiftCardRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -91,6 +95,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GiftCardItem'
   '/gift_cards/{gift_card_id}.json':
     get:
       tags:
@@ -116,6 +124,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GiftCardItem'
     put:
       tags:
         - GiftCard
@@ -149,6 +161,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GiftCardItem'
   /gift_cards/count.json:
     get:
       tags:
@@ -202,6 +218,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GiftCardItem'
   /gift_cards/search.json:
     get:
       tags:
@@ -247,6 +267,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GiftCardList'
   /users.json:
     get:
       tags:
@@ -277,6 +301,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
   '/users/{user_id}.json':
     get:
       tags:
@@ -302,6 +330,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserItem'
   /users/current.json:
     get:
       tags:
@@ -320,6 +352,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserItem'
 components:
   schemas:
     CountItem:
@@ -416,6 +452,111 @@ components:
         gift_card:
           $ref: '#/components/schemas/CreateGiftCard'
       additionalProperties: false
+    GiftCard:
+      required:
+        - id
+      type: object
+      properties:
+        api_client_id:
+          type: integer
+          description: The ID of the client that issued the gift card.
+          format: int64
+          nullable: true
+        balance:
+          type: number
+          description: The balance of the gift card.
+          format: decimal
+          nullable: true
+        code:
+          type: string
+          description: 'The gift card code, which is a string of alphanumeric characters. For security reasons, this is available only upon creation of the gift card. (minimum: 8 characters, maximum: 20 characters)'
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was created.'
+          format: date-time
+          nullable: true
+        currency:
+          type: string
+          description: The currency of the gift card.
+          nullable: true
+        customer_id:
+          type: integer
+          description: The ID of the customer associated with this gift card.
+          format: int64
+          nullable: true
+        disabled_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was disabled.'
+          format: date-time
+          nullable: true
+        expires_on:
+          type: string
+          description: The date (`YYYY-MM-DD` format) when the gift card expires. Returns `null` if the gift card doesn't have an expiration date.
+          format: date-time
+          nullable: true
+        initial_value:
+          type: number
+          description: The initial value of the gift card when it was created.
+          format: decimal
+          nullable: true
+        last_characters:
+          type: string
+          description: 'The last four characters of the gift card code. Because gift cards are alternative payment methods, the full code cannot be retrieved.'
+          nullable: true
+        line_item_id:
+          type: integer
+          description: 'The ID of the line item that initiated the creation of this gift card, if it was created by an order.'
+          format: int64
+          nullable: true
+        note:
+          type: string
+          description: An optional note that a merchant can attach to the gift card that isn't visible to customers.
+          nullable: true
+        order_id:
+          type: integer
+          description: 'The ID of the order that initiated the creation of this gift card, if it was created by an order.'
+          format: int64
+          nullable: true
+        template_suffix:
+          type: string
+          description: 'The suffix of the Liquid template that''s used to render the gift card online. For example, if the value is `birthday`, then the gift card is rendered using the template `gift_card.birthday.liquid`. When the value is `null`, the default `gift_card.liquid` template is used.'
+          nullable: true
+        user_id:
+          type: integer
+          description: 'The ID of the user that issued the gift card, if it was issued by a user.'
+          format: int64
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was last modified.'
+          format: date-time
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    GiftCardItem:
+      required:
+        - gift_card
+      type: object
+      properties:
+        gift_card:
+          $ref: '#/components/schemas/GiftCard'
+      additionalProperties: { }
+    GiftCardList:
+      required:
+        - gift_cards
+      type: object
+      properties:
+        gift_cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/GiftCard'
+      additionalProperties: { }
     UpdateGiftCard:
       required:
         - id
@@ -511,6 +652,91 @@ components:
         gift_card:
           $ref: '#/components/schemas/UpdateGiftCard'
       additionalProperties: false
+    User:
+      required:
+        - id
+      type: object
+      properties:
+        account_owner:
+          type: boolean
+          description: Whether the user is the owner of the Shopify account.
+          nullable: true
+        bio:
+          type: string
+          description: The description the user has written for themselves.
+          nullable: true
+        email:
+          type: string
+          description: The user's email address.
+          nullable: true
+        first_name:
+          type: string
+          description: The user's first name.
+          nullable: true
+        im:
+          type: string
+          description: The user's IM account address.
+          nullable: true
+        last_name:
+          type: string
+          description: The user's last name.
+          nullable: true
+        permissions:
+          type: array
+          items:
+            type: string
+          description: "The permissions granted to the user's staff account. Valid values:\r\n\r\n*   **applications**: The user can authorize the installation of applications. \r\n*   **billing_application_charges**: The user can approve application charges. \r\n*   **billing_charges**: The user can view and export billing charges. \r\n*   **billing_invoices_view**: The user can view billing invoices. \r\n*   **billing_payment_methods_view**: The user can view billing payment methods. \r\n*   **customers**: The user can view, create, edit, and delete customers, and respond to customer messages in Shopify Ping. \r\n*   **dashboard**: The user can view the **Home** page, which includes sales information and other store data. \r\n*   **domains**: The user can view, buy, and manage domains. \r\n*   **draft_orders**: The user can create, update, and delete draft orders. \r\n*   **edit_orders**: The user can edit orders. \r\n*   **edit_private_apps**: The user can give permission to private apps to read, write, and make changes to the store. \r\n*   **export_customers**: The user can export customers. \r\n*   **export_draft_orders**: The user can export draft orders. \r\n*   **export_products**: The user can export products and inventory. \r\n*   **export_orders**: The user can export orders. \r\n*   **gift_cards**: The user can view, create, issue, and export gift cards to a CSV file. \r\n*   **links**: The user can view and modify links and navigation menus. \r\n*   **locations**: The user can create, update, and delete locations where you stock or manage inventory. \r\n*   **marketing**: The user can view and create discount codes and automatic discounts, and export discounts to a CSV file. \r\n*   **marketing_section**: The user can view, create, and automate marketing campaigns. \r\n*   **orders**: The user can view, create, update, delete, and cancel orders, and receive order notifications. \r\n*   **overviews**: The user can view the **Overview** and **Live view** pages, which include sales information, and other store and sales channels data. \r\n*   **pages**: The user can view, create, update, publish, and delete blog posts and pages. \r\n*   **preferences**: The user can view the preferences and configuration of a shop. \r\n*   **products**: The user can view, create, import, and update products, collections, and inventory. \r\n*   **reports**: The user can view and create all reports, which includes sales information and other store data. \r\n*   **shopify_payments_accounts**: The user can view Shopify Payments account details. \r\n*   **shopify_payments_transfers**: The user can view Shopify Payments payouts. \r\n*   **staff_audit_log_view**: The user can view Shopify admin browser sessions. \r\n*   **staff_management_activation**: The user can activate or deactivate staff in the store. \r\n*   **staff_management_create**: The user can add staff to the store. \r\n*   **staff_management_delete**: The user can delete staff from the store. \r\n*   **staff_management_update**: The user can update staff in the store. \r\n*   **themes**: The user can view, update, and publish themes. \r\n*   **view_private_apps**: The user can view private apps installed on the store."
+          nullable: true
+        phone:
+          type: string
+          description: The user's phone number.
+          nullable: true
+        receive_announcements:
+          type: boolean
+          description: 'Whether this account will receive email announcements from Shopify. Valid values: `0`, `1`'
+          nullable: true
+        screen_name:
+          type: string
+          description: This property is deprecated.
+          nullable: true
+          deprecated: true
+        url:
+          type: string
+          description: The user's homepage or other web address.
+          nullable: true
+        locale:
+          type: string
+          description: 'The user''s preferred locale. Locale values use the format `language` or `language-COUNTRY`, where `language` is a two-letter language code, and `COUNTRY` is a two-letter country code. For example: `en` or `en-US`'
+          nullable: true
+        user_type:
+          type: string
+          description: "The type of account the user has. Valid values:\r\n\r\n*   **regular**: The user's account can access the Shopify admin. \r\n*   **restricted**: The user's account cannot access the Shopify admin. \r\n*   **invited**: The user has not yet accepted the invitation to create staff. \r\n*   **collaborator**: The user account of a partner who collaborates with the merchant."
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    UserItem:
+      required:
+        - user
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+      additionalProperties: { }
+    UserList:
+      required:
+        - users
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+      additionalProperties: { }
   securitySchemes:
     ApiKey:
       type: apiKey

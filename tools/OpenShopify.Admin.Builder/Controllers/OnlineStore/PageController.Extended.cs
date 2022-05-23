@@ -13,6 +13,7 @@ public class PageController : PageControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("pages.json")]
+    [ProducesResponseType(typeof(PageList), StatusCodes.Status200OK)]
     public override Task ListPages(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null, string? fields = null, string? handle = null,
         int? limit = null, string? page_info = null, DateTimeOffset? published_at_max = null, DateTimeOffset? published_at_min = null, string? published_status = null, long? since_id = null,
         string? title = null, DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
@@ -22,6 +23,7 @@ public class PageController : PageControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("pages.json")]
+    [ProducesResponseType(typeof(PageItem), StatusCodes.Status201Created)]
     public override Task CreatePage([Required] CreatePageRequest request)
     {
         throw new NotImplementedException();
@@ -38,13 +40,15 @@ public class PageController : PageControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("pages/{page_id:long}.json")]
-    public override Task GetPageByItsID([Required] long page_id, string? fields = null)
+    [ProducesResponseType(typeof(PageItem), StatusCodes.Status200OK)]
+    public override Task GetPage([Required] long page_id, string? fields = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPut, Route("pages/{page_id:long}.json")]
+    [ProducesResponseType(typeof(PageItem), StatusCodes.Status200OK)]
     public override Task UpdatePage([Required] UpdatePageRequest request, [Required] long page_id)
     {
         throw new NotImplementedException();
@@ -52,6 +56,7 @@ public class PageController : PageControllerBase
 
     /// <inheritdoc />
     [HttpDelete, Route("pages/{page_id:long}.json")]
+    [ProducesResponseType(typeof(PageItem), StatusCodes.Status200OK)]
     public override Task DeletePage([Required] long page_id)
     {
         throw new NotImplementedException();

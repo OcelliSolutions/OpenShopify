@@ -13,13 +13,15 @@ public class MobilePlatformApplicationController : MobilePlatformApplicationCont
 {
     /// <inheritdoc />
     [HttpGet, Route("mobile_platform_applications.json")]
-    public override Task ListAllOfMobilePlatformApplicationsAssociatedWithApp()
+    [ProducesResponseType(typeof(MobilePlatformApplicationList), StatusCodes.Status200OK)]
+    public override Task ListMobilePlatformApplicationsAssociatedWithApp()
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("mobile_platform_applications.json")]
+    [ProducesResponseType(typeof(MobilePlatformApplicationItem), StatusCodes.Status201Created)]
     public override Task CreateMobilePlatformApplication([Required] CreateMobilePlatformApplicationRequest request)
     {
         throw new NotImplementedException();
@@ -27,6 +29,7 @@ public class MobilePlatformApplicationController : MobilePlatformApplicationCont
 
     /// <inheritdoc />
     [HttpGet, Route("mobile_platform_applications/{mobile_platform_application_id:long}.json")]
+    [ProducesResponseType(typeof(MobilePlatformApplicationItem), StatusCodes.Status200OK)]
     public override Task GetMobilePlatformApplication([Required] long mobile_platform_application_id)
     {
         throw new NotImplementedException();
@@ -34,6 +37,7 @@ public class MobilePlatformApplicationController : MobilePlatformApplicationCont
 
     /// <inheritdoc />
     [HttpPut, Route("mobile_platform_applications/{mobile_platform_application_id:long}.json")]
+    [ProducesResponseType(typeof(MobilePlatformApplicationItem), StatusCodes.Status200OK)]
     public override Task UpdateMobilePlatformApplication([Required] UpdateMobilePlatformApplicationRequest request,
         [Required] long mobile_platform_application_id)
     {
@@ -42,6 +46,7 @@ public class MobilePlatformApplicationController : MobilePlatformApplicationCont
 
     /// <inheritdoc />
     [HttpDelete, Route("mobile_platform_applications/{mobile_platform_application_id:long}.json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public override Task DeleteMobilePlatformApplication([Required] long mobile_platform_application_id)
     {
         throw new NotImplementedException();

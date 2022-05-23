@@ -12,6 +12,7 @@ public class TransactionsController : TransactionsControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("shopify_payments/balance/transactions.json")]
+    [ProducesResponseType(typeof(TransactionList), StatusCodes.Status200OK)]
     public override Task ListBalanceTransactions(long payout_id, long? last_id = null, string? payout_status = null, long? since_id = null,
         bool? test = null)
     {

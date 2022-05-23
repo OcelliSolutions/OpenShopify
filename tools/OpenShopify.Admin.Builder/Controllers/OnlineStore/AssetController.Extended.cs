@@ -13,6 +13,7 @@ public class AssetController : AssetControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("themes/{theme_id:long}/assets.json")]
+    [ProducesResponseType(typeof(AssetList), StatusCodes.Status200OK)]
     public override Task ListAssetsForTheme([Required] long theme_id, string? fields = null)
     {
         throw new NotImplementedException();
@@ -20,13 +21,15 @@ public class AssetController : AssetControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("themes/{theme_id:long}/assets.json")]
-    public override Task CreateOrUpdatesAssetForTheme([Required] CreateAssetRequest request, [Required] long theme_id, string? source_key, string? src)
+    [ProducesResponseType(typeof(AssetItem), StatusCodes.Status201Created)]
+    public override Task CreateOrUpdatesAssetForTheme([Required] CreateAssetRequest request, [Required] long theme_id, string? source_key = null, string? src = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [IgnoreApi, HttpDelete, Route("themes/{theme_id:long}/assets.invalid")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public override Task DeleteAssetFromTheme(string? assetkey = null, long? theme_id = null)
     {
         throw new NotImplementedException();
@@ -34,6 +37,7 @@ public class AssetController : AssetControllerBase
 
     /// <inheritdoc cref="AssetControllerBase.DeleteAssetFromTheme" />
     [HttpDelete, Route("themes/{theme_id:long}/assets.json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public Task DeleteAssetFromTheme(string assetkey, long theme_id)
     {
         throw new NotImplementedException();

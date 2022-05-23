@@ -23,7 +23,7 @@ public class LocationController : LocationControllerBase
     /// <inheritdoc />
     [HttpGet, Route("locations/{location_id:long}.json")]
     [ProducesResponseType(typeof(LocationItem), StatusCodes.Status200OK)]
-    public override Task GetLocationByItsID([Required] long location_id)
+    public override Task GetLocation([Required] long location_id)
     {
         throw new NotImplementedException();
     }

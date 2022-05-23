@@ -239,6 +239,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyList'
   '/countries/{country_id}/provinces.json':
     get:
       tags:
@@ -275,6 +279,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProvinceList'
   '/countries/{country_id}/provinces/count.json':
     get:
       tags:
@@ -340,6 +348,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProvinceItem'
     put:
       tags:
         - Province
@@ -379,6 +391,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProvinceItem'
   /shipping_zones.json:
     get:
       tags:
@@ -403,6 +419,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingZoneList'
   /shop.json:
     get:
       tags:
@@ -427,8 +447,45 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShopItem'
 components:
   schemas:
+    CarrierShippingRateProvider:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        carrier_service_id:
+          type: integer
+          description: 'A Carrier Service (also known as a Carrier Calculated Service or Shipping Service) provides real-time shipping rates to Shopify. Some common carrier services include: Canada Post, FedEx, UPS, and USPS. Note that the term "carrier" is often used interchangeably with the terms "shipping company" and "rate provider."'
+          format: int64
+          nullable: true
+        flat_modifier:
+          type: number
+          description: Rate adjustments - Flat fee
+          format: decimal
+          nullable: true
+        percent_modifier:
+          type: integer
+          description: Rate adjustments - percentage
+          format: int32
+          nullable: true
+        shipping_zone_id:
+          type: integer
+          description: Shipping zone id
+          format: int64
+          nullable: true
+      additionalProperties: { }
     CountItem:
       type: object
       properties:
@@ -540,6 +597,83 @@ components:
           items:
             $ref: '#/components/schemas/Currency'
       additionalProperties: { }
+    Policy:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The name of the policy.
+          nullable: true
+        body:
+          type: string
+          description: A description of the policy.
+          nullable: true
+        url:
+          type: string
+          description: The public URL of the policy.
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the policy was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the policy was last modified.'
+          format: date-time
+          nullable: true
+        handle:
+          type: string
+          description: A unique identifer for the policy used to build the policy's URL.
+          nullable: true
+      additionalProperties: { }
+    PolicyList:
+      required:
+        - policies
+      type: object
+      properties:
+        policies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Policy'
+      additionalProperties: { }
+    PriceBasedShippingRate:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        name:
+          type: string
+          description: 'The name of the price based shipping rate, specified by the user.'
+          nullable: true
+        min_order_subtotal:
+          type: number
+          description: Minimum order price
+          format: decimal
+          nullable: true
+        price:
+          type: number
+          description: Rate amount
+          format: decimal
+          nullable: true
+        max_order_subtotal:
+          type: number
+          description: Maximum order price
+          format: decimal
+          nullable: true
+        shipping_zone_id:
+          type: integer
+          description: Shipping zone id
+          format: int64
+          nullable: true
+      additionalProperties: { }
     Province:
       required:
         - id
@@ -587,6 +721,335 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+      additionalProperties: { }
+    ProvinceItem:
+      required:
+        - province
+      type: object
+      properties:
+        province:
+          $ref: '#/components/schemas/Province'
+      additionalProperties: { }
+    ProvinceList:
+      required:
+        - provinces
+      type: object
+      properties:
+        provinces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Province'
+      additionalProperties: { }
+    ShippingZone:
+      required:
+        - id
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'The name of the shipping zone, specified by the user.'
+          nullable: true
+        profile_id:
+          type: integer
+          description: The ID of the shipping zone's delivery profile. Shipping profiles allow merchants to create product-based or location-based shipping rates.
+          format: int64
+          nullable: true
+        location_group_id:
+          type: integer
+          description: The ID of the shipping zone's location group. Location groups allow merchants to create shipping rates that apply only to the specific locations in the group.
+          format: int64
+          nullable: true
+        countries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Country'
+          description: "A list of countries that belong to the shipping zone.\r\n\r\n*   **id**: The unique numeric identifier for the country. \r\n*   **code**: The ISO 3166-1 alpha-2 two-letter country code for the country. The code for a given country will be the same as the code for the same country in another shop. \r\n*   **shipping_zone_id**: The unique numeric identifier for the shipping zone. \r\n*   **name**: The full name of the country, in English. \r\n*   **tax**: The tax value in decimal format. \r\n*   **tax_name**: The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST."
+          nullable: true
+        provinces:
+          type: string
+          description: "The sub-regions of a country. The term provinces also encompasses states.\r\n\r\n*   **code**: The two letter province or state code. \r\n*   **country_id**: The unique numeric identifier for the country. \r\n*   **shipping_zone_id**: The unique numeric identifier for the shipping zone. \r\n*   **id**: The unique numeric identifier for the particular province or state. \r\n*   **name**: The name of the province or state. \r\n*   **tax**: The tax value in decimal format. \r\n*   **tax_name**: The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST. \r\n*   **tax_type**: A tax_type is applied for a compounded sales tax. For example, the Canadian HST is a compounded sales tax of both PST and GST. \r\n*   **tax_percentage**: The tax value in percent format."
+          nullable: true
+        carrier_shipping_rate_providers:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarrierShippingRateProvider'
+          description: Information about carrier shipping providers and the rates used.
+          nullable: true
+        price_based_shipping_rates:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceBasedShippingRate'
+          description: "Information about a price-based shipping rate.\r\n\r\n*   **id**: The unique numeric identifier for the shipping rate. \r\n*   **name**: The name of the shipping rate. \r\n*   **price**: The price of the shipping rate. \r\n*   **shipping_zone_id**: The unique numeric identifier for the associated shipping zone. \r\n*   **min_order_subtotal**: The minimum price of an order for it to be eligible for the shipping rate. \r\n*   **max_order_subtotal**: The maximum price of an order for it to be eligible for the shipping rate."
+          nullable: true
+        weight_based_shipping_rates:
+          type: array
+          items:
+            $ref: '#/components/schemas/WeightBasedShippingRate'
+          description: "Information about a weight-based shipping rate.\r\n\r\n*   **id**: The unique numeric identifier for the shipping rate. \r\n*   **name**: The name of the shipping rate. \r\n*   **price**: The price of the shipping rate. \r\n*   **shipping_zone_id**: The unique numeric identifier for the associated shipping zone. \r\n*   **weight_low**: The minimum weight of an order for it to be eligible for the shipping rate. \r\n*   **weight_high**: The maximum weight of an order for it to be eligible for the shipping rate."
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+      description: 'This is used to view shipping zones, their countries, provinces, and shipping rates.'
+    ShippingZoneList:
+      required:
+        - shipping_zones
+      type: object
+      properties:
+        shipping_zones:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShippingZone'
+      additionalProperties: { }
+    Shop:
+      required:
+        - id
+      type: object
+      properties:
+        address1:
+          type: string
+          description: The shop's street address.
+          nullable: true
+        address2:
+          type: string
+          description: The optional second line of the shop's street address.
+          nullable: true
+        checkout_api_supported:
+          type: string
+          description: 'Whether the shop is capable of accepting payments directly through the [Checkout API](/apps/channels/checkout-api).'
+          nullable: true
+        city:
+          type: string
+          description: The shop's city.
+          nullable: true
+        country:
+          type: string
+          description: 'The shop''s country. In most cases, this value matches the `country_code`.'
+          nullable: true
+        country_code:
+          type: string
+          description: The two-letter country code corresponding to the shop's country.
+          nullable: true
+        country_name:
+          type: string
+          description: The shop's normalized country name.
+          nullable: true
+        county_taxes:
+          type: boolean
+          description: 'Whether the shop is applying taxes on a per-county basis. Only applicable to shops based in the US. Valid values: `true` or `null`."'
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) when the shop was created.'
+          format: date-time
+          nullable: true
+        customer_email:
+          type: string
+          description: The contact email used for communication between the shop owner and the customer.
+          nullable: true
+        currency:
+          type: string
+          description: 'The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the shop''s default currency.'
+          nullable: true
+        domain:
+          type: string
+          description: The shop's domain.
+          nullable: true
+        enabled_presentment_currencies:
+          type: array
+          items:
+            type: string
+          description: 'A list of enabled currencies ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) that the shop accepts. Merchants can enable currencies from their Shopify Payments settings in the Shopify Admin.'
+          nullable: true
+        eligible_for_card_reader_giveaway:
+          type: string
+          description: Whether the shop is eligible to receive a free credit card reader from Shopify.
+          nullable: true
+        eligible_for_payments:
+          type: string
+          description: Whether the shop is eligible to use Shopify Payments.
+          nullable: true
+        email:
+          type: string
+          description: The contact email used for communication between Shopify and the shop owner.
+          nullable: true
+        finances:
+          type: string
+          description: 'This field has been deprecated, and is currently unused. Hardcoded to `true`.'
+          nullable: true
+          deprecated: true
+        force_ssl:
+          type: string
+          description: 'As of API version 2021-07, this field has been deprecated and is currently unused. Previously indicated whether the shop forced requests made to its resources to be made over SSL using the HTTPS protocol. All requests now use HTTPS, so `force_ssl` is always `true`.'
+          nullable: true
+          deprecated: true
+        google_apps_domain:
+          type: string
+          description: 'The GSuite URL for the store, if applicable.'
+          nullable: true
+        google_apps_login_enabled:
+          type: string
+          description: 'Whether the GSuite login is enabled. Shops with this feature will be able to log in through the GSuite login page. Valid values: `true`, `null`'
+          nullable: true
+        has_discounts:
+          type: string
+          description: Whether any active discounts exist for the shop.
+          nullable: true
+        has_gift_cards:
+          type: string
+          description: Whether any active gift cards exist for the shop.
+          nullable: true
+        has_storefront:
+          type: boolean
+          description: Whether the shop has an online store.
+          nullable: true
+        iana_timezone:
+          type: string
+          description: 'The name of the timezone assigned by the [IANA](http://www.iana.org/time-zones).'
+          nullable: true
+        latitude:
+          type: number
+          description: The latitude of the shop's location.
+          format: decimal
+          nullable: true
+        longitude:
+          type: number
+          description: The longitude of the shop's location.
+          format: decimal
+          nullable: true
+        money_format:
+          type: string
+          description: A string representing the way currency is formatted when the currency isn't specified.
+          nullable: true
+        money_in_emails_format:
+          type: string
+          description: A string representing the way currency is formatted in email notifications when the currency isn't specified.
+          nullable: true
+        money_with_currency_format:
+          type: string
+          description: A string representing the way currency is formatted when the currency is specified.
+          nullable: true
+        money_with_currency_in_emails_format:
+          type: string
+          description: A string representing the way currency is formatted in email notifications when the currency is specified.
+          nullable: true
+        multi_location_enabled:
+          type: boolean
+          description: Whether the shop has enabled multiple locations.
+          nullable: true
+        myshopify_domain:
+          type: string
+          description: The shop's .myshopify.com domain.
+          nullable: true
+        name:
+          type: string
+          description: The name of the shop.
+          nullable: true
+        password_enabled:
+          type: boolean
+          description: Whether the password protection page is enabled on the shop's online store.
+          nullable: true
+        phone:
+          type: string
+          description: The contact phone number for the shop.
+          nullable: true
+        plan_display_name:
+          type: string
+          description: The display name of the Shopify plan the shop is on.
+          nullable: true
+        pre_launch_enabled:
+          type: string
+          description: Whether the pre-launch page is enabled on the shop's online store.
+          nullable: true
+        cookie_consent_level:
+          type: string
+          description: The cookie consent level defined on the shop's online store.
+          nullable: true
+        plan_name:
+          type: string
+          description: The name of the Shopify plan the shop is on.
+          nullable: true
+        primary_locale:
+          type: string
+          description: 'The shop''s primary locale, as configured in the language settings of the shop''s theme.'
+          nullable: true
+        primary_location_id:
+          type: integer
+          description: Formerly used for the ID of the shipping origin location (read only).
+          format: int64
+          nullable: true
+          deprecated: true
+        province:
+          type: string
+          description: The shop's normalized province or state name.
+          nullable: true
+        province_code:
+          type: string
+          description: The two- or three-letter code for the shop's province or state.
+          nullable: true
+        requires_extra_payments_agreement:
+          type: string
+          description: Whether the shop requires an extra Shopify Payments agreement.
+          nullable: true
+        setup_required:
+          type: boolean
+          description: Whether the shop has any outstanding setup steps.
+          nullable: true
+        shop_owner:
+          type: string
+          description: The username of the shop owner.
+          nullable: true
+        source:
+          type: string
+          description: 'The handle of the partner account that referred the merchant to Shopify, if applicable.'
+          nullable: true
+        taxes_included:
+          type: boolean
+          description: 'Whether applicable taxes are included in product prices. Valid values: `true` or `null`.'
+          nullable: true
+        tax_shipping:
+          type: boolean
+          description: 'Whether taxes are charged for shipping. Valid values: `true` or `false`.'
+          nullable: true
+        timezone:
+          type: string
+          description: The name of the timezone the shop is in.
+          nullable: true
+        transactional_sms_disabled:
+          type: string
+          description: Whether transactional SMS sent by Shopify are disabled on the shop's online store.
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) when the shop was last updated.'
+          format: date-time
+          nullable: true
+        weight_unit:
+          type: string
+          description: The default unit of weight measurement for the shop.
+          nullable: true
+        zip:
+          type: string
+          description: The shop's zip or postal code.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    ShopItem:
+      required:
+        - shop
+      type: object
+      properties:
+        shop:
+          $ref: '#/components/schemas/Shop'
       additionalProperties: { }
     UpdateCountry:
       required:
@@ -687,6 +1150,43 @@ components:
         province:
           $ref: '#/components/schemas/UpdateProvince'
       additionalProperties: false
+    WeightBasedShippingRate:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        weight_low:
+          type: number
+          description: Minimum order weight
+          format: decimal
+          nullable: true
+        weight_high:
+          type: number
+          description: Maximum order weight
+          format: decimal
+          nullable: true
+        name:
+          type: string
+          description: Name of weight based rate
+          nullable: true
+        price:
+          type: number
+          description: Rate amount
+          format: decimal
+          nullable: true
+        shipping_zone_id:
+          type: integer
+          description: Shipping zone id
+          format: int64
+          nullable: true
+      additionalProperties: { }
   securitySchemes:
     ApiKey:
       type: apiKey

@@ -13,6 +13,7 @@ public class OrderController : OrderControllerBase
 {
     /// <inheritdoc />
     [IgnoreApi, HttpGet, Route("orders.invalid")]
+    [ProducesResponseType(typeof(OrderList), StatusCodes.Status200OK)]
     public override Task ListOrders(long attribution_app_id, DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null,
         string? fields = null, string? financial_status = null, string? fulfillment_status = null, string? ids = null, int? limit = null, string? page_info = null,
         DateTimeOffset? processed_at_max = null, DateTimeOffset? processed_at_min = null, long? since_id = null, string? status = null, DateTimeOffset? updated_at_max = null,
@@ -23,6 +24,7 @@ public class OrderController : OrderControllerBase
 
     /// <inheritdoc cref="OrderControllerBase.ListOrders" />
     [HttpGet, Route("orders.json")]
+    [ProducesResponseType(typeof(OrderList), StatusCodes.Status200OK)]
     public Task ListOrders(long? attribution_app_id, DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null,
         string? fields = null, string? financial_status = null, string? fulfillment_status = null, string? ids = null,
         int? limit = null, string? page_info = null, DateTimeOffset? processed_at_max = null,
@@ -34,6 +36,7 @@ public class OrderController : OrderControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("orders.json")]
+    [ProducesResponseType(typeof(OrderItem), StatusCodes.Status201Created)]
     public override Task CreateOrder([Required] CreateOrderRequest request)
     {
         throw new NotImplementedException();
@@ -41,6 +44,7 @@ public class OrderController : OrderControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}.json")]
+    [ProducesResponseType(typeof(OrderItem), StatusCodes.Status200OK)]
     public override Task GetSpecificOrder([Required] long order_id, string? fields = null)
     {
         throw new NotImplementedException();
@@ -48,6 +52,7 @@ public class OrderController : OrderControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("orders/{order_id:long}.json")]
+    [ProducesResponseType(typeof(OrderItem), StatusCodes.Status200OK)]
     public override Task UpdateOrder([Required] UpdateOrderRequest request, [Required] long order_id)
     {
         throw new NotImplementedException();
@@ -55,6 +60,7 @@ public class OrderController : OrderControllerBase
 
     /// <inheritdoc />
     [HttpDelete, Route("orders/{order_id:long}.json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public override Task DeleteOrder([Required] long order_id)
     {
         throw new NotImplementedException();
@@ -71,6 +77,7 @@ public class OrderController : OrderControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("orders/{order_id:long}/close.json")]
+    [ProducesResponseType(typeof(OrderItem), StatusCodes.Status200OK)]
     public override Task CloseOrder([Required] long order_id)
     {
         throw new NotImplementedException();
@@ -78,6 +85,7 @@ public class OrderController : OrderControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("orders/{order_id:long}/open.json")]
+    [ProducesResponseType(typeof(OrderItem), StatusCodes.Status200OK)]
     public override Task ReOpenClosedOrder([Required] long order_id)
     {
         throw new NotImplementedException();
@@ -85,6 +93,7 @@ public class OrderController : OrderControllerBase
 
     /// <inheritdoc />
     [IgnoreApi, HttpPost, Route("orders/{order_id:long}/cancel.invalid")]
+    [ProducesResponseType(typeof(OrderItem), StatusCodes.Status200OK)]
     public override Task CancelOrder(long order_id, decimal? amount = null, string? currency = null, bool? email = null,
         string? reason = null, string? refund = null, bool? restock = null)
     {
@@ -94,6 +103,7 @@ public class OrderController : OrderControllerBase
 
     /// <inheritdoc cref="OrderControllerBase.CancelOrder" />
     [HttpPost, Route("orders/{order_id:long}/cancel.json")]
+    [ProducesResponseType(typeof(OrderItem), StatusCodes.Status200OK)]
     public Task CancelOrder(long order_id, decimal? amount = null, string? currency = null, bool? email = null,
         string? reason = null, CreateRefund? refund = null, bool? restock = null)
     {

@@ -13,6 +13,7 @@ public class GiftCardController : GiftCardControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("gift_cards.json")]
+    [ProducesResponseType(typeof(GiftCardList), StatusCodes.Status200OK)]
     public override Task ListGiftCards(string? fields = null, int? limit = null, string? page_info = null, long? since_id = null, string? status = null)
     {
         throw new NotImplementedException();
@@ -20,6 +21,7 @@ public class GiftCardController : GiftCardControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("gift_cards.json")]
+    [ProducesResponseType(typeof(GiftCardItem), StatusCodes.Status201Created)]
     public override Task CreateGiftCard([Required] CreateGiftCardRequest request)
     {
         throw new NotImplementedException();
@@ -27,6 +29,7 @@ public class GiftCardController : GiftCardControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("gift_cards/{gift_card_id:long}.json")]
+    [ProducesResponseType(typeof(GiftCardItem), StatusCodes.Status200OK)]
     public override Task GetGiftCard([Required] long gift_card_id)
     {
         throw new NotImplementedException();
@@ -34,6 +37,7 @@ public class GiftCardController : GiftCardControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("gift_cards/{gift_card_id:long}.json")]
+    [ProducesResponseType(typeof(GiftCardItem), StatusCodes.Status200OK)]
     public override Task UpdateGiftCard([Required] UpdateGiftCardRequest request, [Required] long gift_card_id)
     {
         throw new NotImplementedException();
@@ -49,6 +53,7 @@ public class GiftCardController : GiftCardControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("gift_cards/{gift_card_id:long}/disable.json")]
+    [ProducesResponseType(typeof(GiftCardItem), StatusCodes.Status200OK)]
     public override Task DisableGiftCard([Required] long gift_card_id)
     {
         throw new NotImplementedException();
@@ -56,6 +61,7 @@ public class GiftCardController : GiftCardControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("gift_cards/search.json")]
+    [ProducesResponseType(typeof(GiftCardList), StatusCodes.Status200OK)]
     public override Task SearchForGiftCards(string? fields = null, int? limit = null, string? page_info = null, string? order = null, string? query = null)
     {
         throw new NotImplementedException();

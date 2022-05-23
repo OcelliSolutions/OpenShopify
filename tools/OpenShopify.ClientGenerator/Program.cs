@@ -30,14 +30,15 @@ foreach (var shopifyFile in shopifyFiles)
                 "LineItemProperty", "OrderMetafield", "NoteAttribute", "LineItemOriginLocation", "LineItemDuty", 
                 "LineItem", "Fulfillment", "DiscountCode", "DiscountApplication", "DiscountAllocation", "PaymentDetails",
                 "Price", "PriceSet", "Refund", "RefundDuty", "RefundDutyType", "RefundLineItem", "RefundLineItem",
-                "RefundOrderAdjustment", "Shipping", "ShippingLine", "TaxLine", "Transaction", "CurrencyExchangeAdjustment", 
+                "RefundOrderAdjustment", "Shipping", "ShippingLine", "TaxLine", "Transaction", "CurrencyExchangeAdjustment",
+                "Order", "OrderList"
             });
             break;
         case "Orders":
             excludeNamesForClient.AddRange(new List<string>
             {
                 "Address", "ClientDetails", "Customer", "CustomerAddress","EmailMarketingConsent", "SmsMarketingConsent", 
-                "CustomerMetafield", "DiscountCode", "Price"
+                "CustomerMetafield", "DiscountCode", "Price", "Fulfillment"
             });
             break;
         case "SalesChannels":
@@ -45,7 +46,15 @@ foreach (var shopifyFile in shopifyFiles)
             {
                 "Address", "Customer", "CustomerAddress", "EmailMarketingConsent", "SmsMarketingConsent", 
                 "CustomerMetafield", "DiscountAllocation", "DiscountCode", "LineItem", "LineItemDuty", 
-                "LineItemOriginLocation", "LineItemProperty", "Price", "PriceSet", "ShippingLine", "TaxLine"
+                "LineItemOriginLocation", "LineItemProperty", "Price", "PriceSet", "ShippingLine", "TaxLine",
+                "ProductImage", "Product", "PresentmentPrice", "ProductList", "ProductOption", "ProductVariant",
+                "Checkout", "CheckoutLineItem", "Transaction", "TransactionItem", "TransactionList"
+            });
+            break;
+        case "ShopifyPayments":
+            excludeNamesForClient.AddRange(new List<string>
+            {
+                "TransactionList", "TransactionItem", "Transaction", "CurrencyExchangeAdjustment", "PaymentDetails"
             });
             break;
         case "ShippingAndFulfillment":

@@ -38,7 +38,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Retrieve only transactions after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> ListTenderTransactionsAsync(int? limit = null, string? pageInfo = null, string? order = null, System.DateTimeOffset? processedAt = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<TenderTransactionList>> ListTenderTransactionsAsync(int? limit = null, string? pageInfo = null, string? order = null, System.DateTimeOffset? processedAt = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -87,7 +87,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Retrieve only transactions after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListTenderTransactionsAsync(int? limit = null, string? pageInfo = null, string? order = null, System.DateTimeOffset? processedAt = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<TenderTransactionList>> ListTenderTransactionsAsync(int? limit = null, string? pageInfo = null, string? order = null, System.DateTimeOffset? processedAt = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/tender_transactions.json?");
@@ -128,6 +128,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -152,7 +153,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<TenderTransactionList>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<TenderTransactionList>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -274,7 +280,147 @@ namespace Ocelli.OpenShopify
         }
     }
 
-    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class TenderTransaction
+    {
+        /// <summary>
+        /// The ID of the order that the tender transaction belongs to.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? OrderId { get; set; } = default!;
+
+        /// <summary>
+        /// The amount of the tender transaction in the shop's currency.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("amount")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? Amount { get; set; } = default!;
+
+        /// <summary>
+        /// The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency used for the tender transaction.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the user logged into the Shopify POS device that processed the tender transaction, if applicable.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("user_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? UserId { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the tender transaction is a test transaction.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("test")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? Test { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the tender transaction was processed.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("processed_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? ProcessedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The remote (gateway) reference associated with the tender.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("remote_reference")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? RemoteReference { get; set; } = default!;
+
+        /// <summary>
+        /// Information about the payment instrument used for this transaction. It has the following properties: 
+        /// <br/>
+        /// <br/>*   **credit_card_company**: The name of the company that issued the customer's credit card. 
+        /// <br/>*   **credit_card_number**: The customer's credit card number, with most of the leading digits redacted.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("payment_details")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? PaymentDetails { get; set; } = default!;
+
+        /// <summary>
+        /// Information about the payment method used for this transaction. Valid values: 
+        /// <br/>
+        /// <br/>*   **credit_card** 
+        /// <br/>*   **cash** 
+        /// <br/>*   **android_pay** 
+        /// <br/>*   **apple_pay** 
+        /// <br/>*   **google_pay** 
+        /// <br/>*   **samsung_pay** 
+        /// <br/>*   **shopify_pay** 
+        /// <br/>*   **amazon** 
+        /// <br/>*   **klarna** 
+        /// <br/>*   **paypal** 
+        /// <br/>*   **unknown** 
+        /// <br/>*   **other**
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("payment_method")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? PaymentMethod { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class TenderTransactionList
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("tender_transactions")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<TenderTransaction> TenderTransactions { get; set; } = new System.Collections.ObjectModel.Collection<TenderTransaction>();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
 
 
 

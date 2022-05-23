@@ -13,6 +13,7 @@ public class ThemeController : ThemeControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("themes.json")]
+    [ProducesResponseType(typeof(ThemeList), StatusCodes.Status200OK)]
     public override Task ListThemes(string? fields = null)
     {
         throw new NotImplementedException();
@@ -20,6 +21,7 @@ public class ThemeController : ThemeControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("themes.json")]
+    [ProducesResponseType(typeof(ThemeItem), StatusCodes.Status201Created)]
     public override Task CreateTheme([Required] CreateThemeRequest request)
     {
         throw new NotImplementedException();
@@ -27,13 +29,15 @@ public class ThemeController : ThemeControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("themes/{theme_id:long}.json")]
-    public override Task GetThemeByItsID([Required] long theme_id, string? fields = null)
+    [ProducesResponseType(typeof(ThemeItem), StatusCodes.Status200OK)]
+    public override Task GetTheme([Required] long theme_id, string? fields = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPut, Route("themes/{theme_id:long}.json")]
+    [ProducesResponseType(typeof(ThemeItem), StatusCodes.Status200OK)]
     public override Task UpdateTheme([Required] UpdateThemeRequest request, [Required] long theme_id)
     {
         throw new NotImplementedException();
@@ -41,6 +45,7 @@ public class ThemeController : ThemeControllerBase
 
     /// <inheritdoc />
     [HttpDelete, Route("themes/{theme_id:long}.json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public override Task DeleteTheme([Required] long theme_id)
     {
         throw new NotImplementedException();

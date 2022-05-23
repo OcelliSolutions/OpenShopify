@@ -36,15 +36,15 @@ namespace Ocelli.OpenShopify
         /// <param name="status">Retrieve gift cards with a given status. Valid values:</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> ListGiftCardsAsync(string? fields = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<GiftCardList>> ListGiftCardsAsync(string? fields = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Creates a gift card
         /// </summary>
-        /// <returns>Success</returns>
+        /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CreateGiftCardAsync(CreateGiftCardRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<GiftCardItem>> CreateGiftCardAsync(CreateGiftCardRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -52,7 +52,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> GetGiftCardAsync(long giftCardId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<GiftCardItem>> GetGiftCardAsync(long giftCardId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -60,7 +60,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> UpdateGiftCardAsync(long giftCardId, UpdateGiftCardRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<GiftCardItem>> UpdateGiftCardAsync(long giftCardId, UpdateGiftCardRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -77,7 +77,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> DisableGiftCardAsync(long giftCardId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<GiftCardItem>> DisableGiftCardAsync(long giftCardId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -90,7 +90,7 @@ namespace Ocelli.OpenShopify
         /// <param name="query">The text to search for.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> SearchForGiftCardsAsync(string? fields = null, int? limit = null, string? pageInfo = null, string? order = null, string? query = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<GiftCardList>> SearchForGiftCardsAsync(string? fields = null, int? limit = null, string? pageInfo = null, string? order = null, string? query = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -137,7 +137,7 @@ namespace Ocelli.OpenShopify
         /// <param name="status">Retrieve gift cards with a given status. Valid values:</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListGiftCardsAsync(string? fields = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<GiftCardList>> ListGiftCardsAsync(string? fields = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/gift_cards.json?");
@@ -170,6 +170,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -194,7 +195,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<GiftCardList>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<GiftCardList>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -220,9 +226,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates a gift card
         /// </summary>
-        /// <returns>Success</returns>
+        /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CreateGiftCardAsync(CreateGiftCardRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<GiftCardItem>> CreateGiftCardAsync(CreateGiftCardRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (body == null)
                 throw new System.ArgumentNullException("body");
@@ -240,6 +246,7 @@ namespace Ocelli.OpenShopify
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -262,9 +269,14 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
+                        if (status_ == 201)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<GiftCardItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<GiftCardItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -292,7 +304,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetGiftCardAsync(long giftCardId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<GiftCardItem>> GetGiftCardAsync(long giftCardId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (giftCardId == null)
                 throw new System.ArgumentNullException("giftCardId");
@@ -308,6 +320,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -332,7 +345,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<GiftCardItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<GiftCardItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -360,7 +378,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateGiftCardAsync(long giftCardId, UpdateGiftCardRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<GiftCardItem>> UpdateGiftCardAsync(long giftCardId, UpdateGiftCardRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (giftCardId == null)
                 throw new System.ArgumentNullException("giftCardId");
@@ -382,6 +400,7 @@ namespace Ocelli.OpenShopify
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -406,7 +425,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<GiftCardItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<GiftCardItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -510,7 +534,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> DisableGiftCardAsync(long giftCardId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<GiftCardItem>> DisableGiftCardAsync(long giftCardId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (giftCardId == null)
                 throw new System.ArgumentNullException("giftCardId");
@@ -527,6 +551,7 @@ namespace Ocelli.OpenShopify
                 {
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -551,7 +576,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<GiftCardItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<GiftCardItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -584,7 +614,7 @@ namespace Ocelli.OpenShopify
         /// <param name="query">The text to search for.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> SearchForGiftCardsAsync(string? fields = null, int? limit = null, string? pageInfo = null, string? order = null, string? query = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<GiftCardList>> SearchForGiftCardsAsync(string? fields = null, int? limit = null, string? pageInfo = null, string? order = null, string? query = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/gift_cards/search.json?");
@@ -617,6 +647,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -641,7 +672,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<GiftCardList>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<GiftCardList>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -775,7 +811,7 @@ namespace Ocelli.OpenShopify
         /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> ListUsersAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<UserList>> ListUsersAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -783,7 +819,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> GetUserAsync(long userId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<UserItem>> GetUserAsync(long userId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -791,7 +827,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> GetCurrentlyLoggedInUserAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<UserItem>> GetCurrentlyLoggedInUserAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -835,7 +871,7 @@ namespace Ocelli.OpenShopify
         /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListUsersAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<UserList>> ListUsersAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/users.json?");
@@ -856,6 +892,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -880,7 +917,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<UserList>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<UserList>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -908,7 +950,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetUserAsync(long userId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<UserItem>> GetUserAsync(long userId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (userId == null)
                 throw new System.ArgumentNullException("userId");
@@ -924,6 +966,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -948,7 +991,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<UserItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<UserItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -976,7 +1024,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetCurrentlyLoggedInUserAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<UserItem>> GetCurrentlyLoggedInUserAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/users/current.json");
@@ -988,6 +1036,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -1012,7 +1061,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<UserItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<UserItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -1305,6 +1359,216 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class GiftCard
+    {
+        /// <summary>
+        /// The ID of the client that issued the gift card.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("api_client_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? ApiClientId { get; set; } = default!;
+
+        /// <summary>
+        /// The balance of the gift card.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("balance")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? Balance { get; set; } = default!;
+
+        /// <summary>
+        /// The gift card code, which is a string of alphanumeric characters. For security reasons, this is available only upon creation of the gift card. (minimum: 8 characters, maximum: 20 characters)
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Code { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The currency of the gift card.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the customer associated with this gift card.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? CustomerId { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was disabled.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("disabled_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? DisabledAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date (`YYYY-MM-DD` format) when the gift card expires. Returns `null` if the gift card doesn't have an expiration date.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("expires_on")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? ExpiresOn { get; set; } = default!;
+
+        /// <summary>
+        /// The initial value of the gift card when it was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("initial_value")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? InitialValue { get; set; } = default!;
+
+        /// <summary>
+        /// The last four characters of the gift card code. Because gift cards are alternative payment methods, the full code cannot be retrieved.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_characters")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? LastCharacters { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the line item that initiated the creation of this gift card, if it was created by an order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("line_item_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? LineItemId { get; set; } = default!;
+
+        /// <summary>
+        /// An optional note that a merchant can attach to the gift card that isn't visible to customers.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Note { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the order that initiated the creation of this gift card, if it was created by an order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? OrderId { get; set; } = default!;
+
+        /// <summary>
+        /// The suffix of the Liquid template that's used to render the gift card online. For example, if the value is `birthday`, then the gift card is rendered using the template `gift_card.birthday.liquid`. When the value is `null`, the default `gift_card.liquid` template is used.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("template_suffix")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? TemplateSuffix { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the user that issued the gift card, if it was issued by a user.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("user_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? UserId { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was last modified.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class GiftCardItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("gift_card")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public GiftCard GiftCard { get; set; } = new GiftCard();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class GiftCardList
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("gift_cards")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<GiftCard> GiftCards { get; set; } = new System.Collections.ObjectModel.Collection<GiftCard>();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class UpdateGiftCard
     {
         /// <summary>
@@ -1481,6 +1745,231 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
         public UpdateGiftCard GiftCard { get; set; } = new UpdateGiftCard();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class User
+    {
+        /// <summary>
+        /// Whether the user is the owner of the Shopify account.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("account_owner")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? AccountOwner { get; set; } = default!;
+
+        /// <summary>
+        /// The description the user has written for themselves.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("bio")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Bio { get; set; } = default!;
+
+        /// <summary>
+        /// The user's email address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// The user's first name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("first_name")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? FirstName { get; set; } = default!;
+
+        /// <summary>
+        /// The user's IM account address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("im")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Im { get; set; } = default!;
+
+        /// <summary>
+        /// The user's last name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_name")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? LastName { get; set; } = default!;
+
+        /// <summary>
+        /// The permissions granted to the user's staff account. Valid values:
+        /// <br/>
+        /// <br/>*   **applications**: The user can authorize the installation of applications. 
+        /// <br/>*   **billing_application_charges**: The user can approve application charges. 
+        /// <br/>*   **billing_charges**: The user can view and export billing charges. 
+        /// <br/>*   **billing_invoices_view**: The user can view billing invoices. 
+        /// <br/>*   **billing_payment_methods_view**: The user can view billing payment methods. 
+        /// <br/>*   **customers**: The user can view, create, edit, and delete customers, and respond to customer messages in Shopify Ping. 
+        /// <br/>*   **dashboard**: The user can view the **Home** page, which includes sales information and other store data. 
+        /// <br/>*   **domains**: The user can view, buy, and manage domains. 
+        /// <br/>*   **draft_orders**: The user can create, update, and delete draft orders. 
+        /// <br/>*   **edit_orders**: The user can edit orders. 
+        /// <br/>*   **edit_private_apps**: The user can give permission to private apps to read, write, and make changes to the store. 
+        /// <br/>*   **export_customers**: The user can export customers. 
+        /// <br/>*   **export_draft_orders**: The user can export draft orders. 
+        /// <br/>*   **export_products**: The user can export products and inventory. 
+        /// <br/>*   **export_orders**: The user can export orders. 
+        /// <br/>*   **gift_cards**: The user can view, create, issue, and export gift cards to a CSV file. 
+        /// <br/>*   **links**: The user can view and modify links and navigation menus. 
+        /// <br/>*   **locations**: The user can create, update, and delete locations where you stock or manage inventory. 
+        /// <br/>*   **marketing**: The user can view and create discount codes and automatic discounts, and export discounts to a CSV file. 
+        /// <br/>*   **marketing_section**: The user can view, create, and automate marketing campaigns. 
+        /// <br/>*   **orders**: The user can view, create, update, delete, and cancel orders, and receive order notifications. 
+        /// <br/>*   **overviews**: The user can view the **Overview** and **Live view** pages, which include sales information, and other store and sales channels data. 
+        /// <br/>*   **pages**: The user can view, create, update, publish, and delete blog posts and pages. 
+        /// <br/>*   **preferences**: The user can view the preferences and configuration of a shop. 
+        /// <br/>*   **products**: The user can view, create, import, and update products, collections, and inventory. 
+        /// <br/>*   **reports**: The user can view and create all reports, which includes sales information and other store data. 
+        /// <br/>*   **shopify_payments_accounts**: The user can view Shopify Payments account details. 
+        /// <br/>*   **shopify_payments_transfers**: The user can view Shopify Payments payouts. 
+        /// <br/>*   **staff_audit_log_view**: The user can view Shopify admin browser sessions. 
+        /// <br/>*   **staff_management_activation**: The user can activate or deactivate staff in the store. 
+        /// <br/>*   **staff_management_create**: The user can add staff to the store. 
+        /// <br/>*   **staff_management_delete**: The user can delete staff from the store. 
+        /// <br/>*   **staff_management_update**: The user can update staff in the store. 
+        /// <br/>*   **themes**: The user can view, update, and publish themes. 
+        /// <br/>*   **view_private_apps**: The user can view private apps installed on the store.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("permissions")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<string>? Permissions { get; set; } = default!;
+
+        /// <summary>
+        /// The user's phone number.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Phone { get; set; } = default!;
+
+        /// <summary>
+        /// Whether this account will receive email announcements from Shopify. Valid values: `0`, `1`
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("receive_announcements")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? ReceiveAnnouncements { get; set; } = default!;
+
+        /// <summary>
+        /// This property is deprecated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("screen_name")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        [System.Obsolete]
+        public string? ScreenName { get; set; } = default!;
+
+        /// <summary>
+        /// The user's homepage or other web address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("url")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Url { get; set; } = default!;
+
+        /// <summary>
+        /// The user's preferred locale. Locale values use the format `language` or `language-COUNTRY`, where `language` is a two-letter language code, and `COUNTRY` is a two-letter country code. For example: `en` or `en-US`
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("locale")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Locale { get; set; } = default!;
+
+        /// <summary>
+        /// The type of account the user has. Valid values:
+        /// <br/>
+        /// <br/>*   **regular**: The user's account can access the Shopify admin. 
+        /// <br/>*   **restricted**: The user's account cannot access the Shopify admin. 
+        /// <br/>*   **invited**: The user has not yet accepted the invitation to create staff. 
+        /// <br/>*   **collaborator**: The user account of a partner who collaborates with the merchant.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("user_type")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? UserType { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UserItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("user")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public User User { get; set; } = new User();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UserList
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("users")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<User> Users { get; set; } = new System.Collections.ObjectModel.Collection<User>();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
 
     }
 

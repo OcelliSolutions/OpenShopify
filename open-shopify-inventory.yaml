@@ -360,7 +360,7 @@ paths:
       tags:
         - Location
       summary: Retrieve a single location by its ID
-      operationId: GetLocationByItsID
+      operationId: GetLocation
       parameters:
         - name: location_id
           in: path

@@ -13,6 +13,7 @@ public class LocationsForMoveController : LocationsForMoveControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("fulfillment_orders/{fulfillment_order_id:long}/locations_for_move.json")]
+    [ProducesResponseType(typeof(LocationsForMoveList), StatusCodes.Status200OK)]
     public override Task ListLocationsThatFulfillmentOrderCanPotentiallyMoveTo([Required] long fulfillment_order_id)
     {
         throw new NotImplementedException();

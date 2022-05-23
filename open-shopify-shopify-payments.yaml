@@ -37,6 +37,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BalanceItem'
   /shopify_payments/disputes.json:
     get:
       tags:
@@ -78,6 +82,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisputeList'
   '/shopify_payments/disputes/{dispute_id}.json':
     get:
       tags:
@@ -103,6 +111,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisputeItem'
   /shopify_payments/payouts.json:
     get:
       tags:
@@ -157,6 +169,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayoutList'
   '/shopify_payments/payouts/{payout_id}.json':
     get:
       tags:
@@ -182,6 +198,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayoutItem'
   /shopify_payments/balance/transactions.json:
     get:
       tags:
@@ -229,7 +249,318 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionList'
 components:
+  schemas:
+    Balance:
+      type: object
+      additionalProperties: { }
+    BalanceItem:
+      required:
+        - balance
+      type: object
+      properties:
+        balance:
+          $ref: '#/components/schemas/Balance'
+      additionalProperties: { }
+    CurrencyExchangeAdjustment:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        adjustment:
+          type: number
+          description: The difference between the amounts on the associated transaction and the parent transaction.
+          format: decimal
+          nullable: true
+        original_amount:
+          type: number
+          description: The amount of the parent transaction in the shop currency.
+          format: decimal
+          nullable: true
+        final_amount:
+          type: number
+          description: The amount of the associated transaction in the shop currency.
+          format: decimal
+          nullable: true
+        currency:
+          type: string
+          description: The shop currency.
+          nullable: true
+      additionalProperties: { }
+    Dispute:
+      required:
+        - id
+      type: object
+      properties:
+        order_id:
+          type: integer
+          description: The ID of the order that the dispute belongs to.
+          format: int64
+          nullable: true
+        type:
+          type: string
+          description: "Whether the dispute is still in the inquiry phase or has turned into a chargeback. Valid values: \r\n\r\n*   **inquiry**: The dispute is in the inquiry phase. \r\n*   **chargeback**: The dispute has turned into a chargeback."
+          nullable: true
+        currency:
+          type: string
+          description: 'The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of the dispute amount.'
+          nullable: true
+        amount:
+          type: number
+          description: The total amount disputed by the cardholder.
+          format: decimal
+          nullable: true
+        reason:
+          type: string
+          description: "The reason of the dispute provided by the cardholder's bank. Valid values: \r\n\r\n*   **bank_not_process**: The customer's bank cannot process the charge. \r\n*   **credit_not_processed**: The customer claims that the purchased product was returned or the transaction was otherwise canceled, but the merchant have not yet provided a refund or credit.  \r\n*   **customer_initiated**: The customer initiated the dispute, so the merchant should contact the customer for additional details to find out why the payment was disputed.  \r\n*   **debit_not_authorized**: The customer's bank cannot proceed with the debit since it has not been authorized.  \r\n*   **duplicate**: The customer claims they were charged multiple times for the same product or service.  \r\n*   **fraudulent**: The cardholder claims that they didn't authorize the payment. \r\n*   **general**: The dispute is uncategorized, so the merchant should contact the customer for additional details to find out why the payment was disputed.  \r\n*   **incorrect_account_details**: The customer account associated with the purchase is incorrect.  \r\n*   **insufficient_funds**: The customer's bank account has insufficient funds. \r\n*   **product_not_received**: The customer claims they did not receive the products or services purchased.  \r\n*   **product_unacceptable**: The product or service was received but was defective, damaged, or not as described.  \r\n*   **subscription_canceled**: The customer claims that the merchant continued to charge them after a subscription was canceled.  \r\n*   **unrecognized**: The customer doesn't recognize the payment appearing on their card statement."
+          nullable: true
+        network_reason_code:
+          type: string
+          description: The reason for the dispute provided by the cardholder's bank.
+          nullable: true
+        status:
+          type: string
+          description: "The current state of the dispute. Valid values: \r\n\r\n*   **needs_response**: The dispute has been open and needs an evidence submission. \r\n*   **under_review**: The evidence has been submitted and is being reviewed by the cardholder's bank.  \r\n*   **charge_refunded**: The merchant refunded the inquiry amount. \r\n*   **accepted**: The merchant has accepted the dispute as being valid. \r\n*   **won**: The cardholder's bank reached a final decision in the merchant's favor. \r\n*   **lost**: The cardholder's bank reached a final decision in the buyer's favor."
+          nullable: true
+        evidence_due_by:
+          type: string
+          description: The deadline for evidence submission.
+          nullable: true
+        evidence_sent_on:
+          type: string
+          description: '"The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when evidence was sent. Returns `null` if evidence has not yet been sent.'
+          nullable: true
+        finalized_on:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when this dispute was resolved. Returns `null` if the dispute is not yet resolved.'
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    DisputeItem:
+      required:
+        - dispute
+      type: object
+      properties:
+        dispute:
+          $ref: '#/components/schemas/Dispute'
+      additionalProperties: { }
+    DisputeList:
+      required:
+        - disputes
+      type: object
+      properties:
+        disputes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dispute'
+      additionalProperties: { }
+    PaymentDetails:
+      type: object
+      properties:
+        avs_result_code:
+          type: string
+          nullable: true
+        credit_card_bin:
+          type: string
+          nullable: true
+        cvv_result_code:
+          type: string
+          nullable: true
+        credit_card_number:
+          type: string
+          nullable: true
+        credit_card_company:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    Payout:
+      required:
+        - id
+      type: object
+      properties:
+        status:
+          type: string
+          description: "The transfer status of the payout. The value will be one of the following: \r\n\r\n*   **scheduled**: The payout has been created and had transactions assigned to it, but it has not yet been submitted to the bank.  \r\n*   **in_transit**: The payout has been submitted to the bank for processing. \r\n*   **paid**: The payout has been successfully deposited into the bank. \r\n*   **failed**: The payout has been declined by the bank. \r\n*   **canceled**: The payout has been canceled by Shopify."
+          nullable: true
+        date:
+          type: string
+          description: 'The date ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the payout was issued.'
+          format: date-time
+          nullable: true
+        currency:
+          type: string
+          description: The ISO 4217 currency code of the payout.
+          nullable: true
+        amount:
+          type: number
+          description: 'The total amount of the payout, in a decimal formatted string.'
+          format: decimal
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    PayoutItem:
+      required:
+        - payout
+      type: object
+      properties:
+        payout:
+          $ref: '#/components/schemas/Payout'
+      additionalProperties: { }
+    PayoutList:
+      required:
+        - payouts
+      type: object
+      properties:
+        payouts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payout'
+      additionalProperties: { }
+    Transaction:
+      required:
+        - id
+      type: object
+      properties:
+        amount:
+          type: number
+          description: 'The amount of money included in the transaction. If you don''t provide a value for `amount`, then it defaults to the total cost of the order (even if a previous transaction has been made towards it).'
+          format: decimal
+          nullable: true
+        authorization:
+          type: string
+          description: The authorization code associated with the transaction.
+          nullable: true
+        authorization_expires_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the Shopify Payments authorization expires.'
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the transaction was created.'
+          format: date-time
+          nullable: true
+        currency:
+          type: string
+          description: 'The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency used for the payment.'
+          nullable: true
+        device_id:
+          type: integer
+          description: The ID for the device.
+          format: int64
+          nullable: true
+        error_code:
+          type: string
+          description: "A standardized error code, independent of the payment provider. Valid values: \r\n\r\n*   **incorrect_number** \r\n*   **invalid_number** \r\n*   **invalid_expiry_date** \r\n*   **invalid_cvc** \r\n*   **expired_card** \r\n*   **incorrect_cvc** \r\n*   **incorrect_zip** \r\n*   **incorrect_address** \r\n*   **card_declined** \r\n*   **processing_error** \r\n*   **call_issuer** \r\n*   **pick_up_card**"
+          nullable: true
+        extended_authorization_attributes:
+          type: string
+          description: "The attributes associated with a Shopify Payments extended authorization period. It has the following attributes: \r\n\r\n*   **standard_authorization_expires_at**: The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the standard authorization period expires. After expiry, an extended authorization fee is applied upon capturing the payment. \r\n*   **extended_authorization_expires_at**: The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the extended authorization period expires. After expiry, the merchant can't capture the payment.  `extended_authorization_attributes` are available on the **Retrieve a specific transaction for an order** endpoint only if the following criteria applies: \r\n\r\n*   The store is on a [Shopify Plus](https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9) plan. \r\n*   The store uses Shopify Payments. \r\n*   The transaction being retrieved is an extended authorization, which is determined by the `capture_before` date in the charge.  If the criteria isn't met, then an empty JSON is returned for `extended_authorization_attributes`. To learn more about extended authorization periods, refer to [Payment authorization](https://help.shopify.com/en/manual/payments/payment-authorization)."
+          nullable: true
+        gateway:
+          type: string
+          description: 'The name of the gateway the transaction was issued through. A list of gateways can be found on Shopify''s [payment gateways page](//www.shopify.com/payment-gateways).'
+          nullable: true
+        kind:
+          type: string
+          description: "The transaction's type. Valid values: \r\n\r\n*   **authorization**: Money that the customer has agreed to pay. The authorization period can be between 7 and 30 days (depending on your payment service) while a store waits for a payment to be captured. \r\n*   **capture**: A transfer of money that was reserved during the authorization of a shop. \r\n*   **sale**: The authorization and capture of a payment performed in one single step. \r\n*   **void**: The cancellation of a pending authorization or capture. \r\n*   **refund**: The partial or full return of captured money to the customer."
+          nullable: true
+        location_id:
+          type: integer
+          description: The ID of the physical location where the transaction was processed.
+          format: int64
+          nullable: true
+        message:
+          type: string
+          description: A string generated by the payment provider with additional information about why the transaction succeeded or failed.
+          nullable: true
+        order_id:
+          type: integer
+          description: The ID for the order that the transaction is associated with.
+          format: int64
+          nullable: true
+        payment_details:
+          $ref: '#/components/schemas/PaymentDetails'
+        parent_id:
+          type: integer
+          description: "The ID of an associated transaction. \r\n\r\n*   For `capture` transactions, the parent needs to be an `authorization` transaction. \r\n*   For `void` transactions, the parent needs to be an `authorization` transaction. \r\n*   For `refund` transactions, the parent needs to be a `capture` or `sale` transaction."
+          format: int64
+          nullable: true
+        payments_refund_attributes:
+          type: string
+          description: "The attributes associated with a Shopify Payments refund. It has the following attributes: \r\n\r\n*   **status**: The current status of the refund. Valid values: `pending`, `failure`, `success`, and `error`. \r\n*   **acquirer_reference_number**: A unique number associated with the transaction that can be used to track the refund. This property has a value only for transactions completed with Visa or Mastercard.  `payments_refund_attributes` are available on any JSON serialization of the order transaction only if the following criteria apply: \r\n\r\n*   The store is on a [Shopify Plus](https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9) plan. \r\n*   The store uses Shopify Payments. \r\n*   The order transaction **kind** is either `refund` or `void`.  If the criteria isn't met, then the `payments_refund_attributes` property is omitted."
+          nullable: true
+        processed_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when a transaction was processed. This value is the date that''s used in the analytic reports. By default, it matches the `created_at` value. If you''re importing transactions from an app or another platform, then you can set `processed_at` to a date and time in the past to match when the original transaction was processed.'
+          format: date-time
+          nullable: true
+        receipt:
+          type: string
+          description: A transaction receipt attached to the transaction by the gateway. The value of this field depends on which gateway the shop is using.
+          nullable: true
+        source_name:
+          type: string
+          description: 'The origin of the transaction. This is set by Shopify and can''t be overridden. Example values: `web`, `pos`, `iphone`, and `android`.'
+          nullable: true
+        status:
+          type: string
+          description: 'The status of the transaction. Valid values: `pending`, `failure`, `success`, and `error`.'
+          nullable: true
+        test:
+          type: boolean
+          description: Whether the transaction is a test transaction.
+          nullable: true
+        user_id:
+          type: integer
+          description: 'The ID for the user who was logged into the Shopify POS device when the order was processed, if applicable.'
+          format: int64
+          nullable: true
+        currency_exchange_adjustment:
+          $ref: '#/components/schemas/CurrencyExchangeAdjustment'
+        maximum_refundable:
+          type: number
+          description: The maximum amount that can be refunded
+          format: decimal
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+      description: An object representing a Shopify transaction.
+    TransactionList:
+      required:
+        - transactions
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+      additionalProperties: { }
   securitySchemes:
     ApiKey:
       type: apiKey

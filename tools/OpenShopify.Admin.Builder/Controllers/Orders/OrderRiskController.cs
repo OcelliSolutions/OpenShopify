@@ -41,7 +41,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Retrieves a single order risk by its ID
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/risks/{risk_id}.json")]
-        public abstract System.Threading.Tasks.Task GetOrderRiskByItsID(long order_id, long risk_id);
+        public abstract System.Threading.Tasks.Task GetOrderRisk(long order_id, long risk_id);
 
         /// <summary>
         /// Updates an order risk

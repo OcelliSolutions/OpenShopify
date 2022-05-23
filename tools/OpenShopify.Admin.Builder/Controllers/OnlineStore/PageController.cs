@@ -69,7 +69,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("pages/{page_id}.json")]
-        public abstract System.Threading.Tasks.Task GetPageByItsID(long page_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetPage(long page_id, string? fields = null);
 
         /// <summary>
         /// Updates a page

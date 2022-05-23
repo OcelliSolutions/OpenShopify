@@ -13,14 +13,16 @@ public class ResourceFeedbackController : ResourceFeedbackControllerBase
 {
     /// <inheritdoc />
     [HttpPost, Route("resource_feedback.json")]
-    public override Task CreateResourceFeedback([Required] CreateResourceFeedbackRequest request, string feedback_generated_at, string messages,
-        string state)
+    [ProducesResponseType(typeof(ResourceFeedbackItem), StatusCodes.Status201Created)]
+    public override Task CreateResourceFeedback([Required] CreateResourceFeedbackRequest request, string? feedback_generated_at = null, string? messages = null,
+        string? state = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("resource_feedback.json")]
+    [ProducesResponseType(typeof(ResourceFeedbackList), StatusCodes.Status200OK)]
     public override Task ListResourceFeedbacks()
     {
         throw new NotImplementedException();

@@ -35,8 +35,8 @@ paths:
               $ref: '#/components/schemas/CreateCheckoutRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -46,6 +46,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutItem'
   '/checkouts/{token}/complete.json':
     post:
       tags:
@@ -57,7 +61,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: Success
@@ -70,6 +74,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutItem'
   '/checkouts/{token}.json':
     get:
       tags:
@@ -81,7 +89,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: Success
@@ -94,6 +102,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutItem'
     put:
       tags:
         - Checkout
@@ -104,7 +116,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       requestBody:
         content:
           application/json:
@@ -126,6 +138,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutItem'
   '/checkouts/{token}/shipping_rates.json':
     get:
       tags:
@@ -137,7 +153,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: Success
@@ -150,6 +166,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutList'
   /collection_listings.json:
     get:
       tags:
@@ -180,6 +200,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionListingList'
   '/collection_listings/{collection_listing_id}/product_ids.json':
     get:
       tags:
@@ -216,6 +240,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductList'
   '/collection_listings/{collection_listing_id}.json':
     get:
       tags:
@@ -241,6 +269,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionListingItem'
     put:
       tags:
         - CollectionListing
@@ -263,8 +295,8 @@ paths:
               $ref: '#/components/schemas/CreateCollectionListingRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -274,6 +306,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionListingItem'
     delete:
       tags:
         - CollectionListing
@@ -303,7 +339,7 @@ paths:
       tags:
         - MobilePlatformApplication
       summary: List all of the mobile platform applications associated with the app
-      operationId: ListAllOfMobilePlatformApplicationsAssociatedWithApp
+      operationId: ListMobilePlatformApplicationsAssociatedWithApp
       responses:
         '200':
           description: Success
@@ -316,6 +352,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobilePlatformApplicationList'
     post:
       tags:
         - MobilePlatformApplication
@@ -331,8 +371,8 @@ paths:
               $ref: '#/components/schemas/CreateMobilePlatformApplicationRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -342,6 +382,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobilePlatformApplicationItem'
   '/mobile_platform_applications/{mobile_platform_application_id}.json':
     get:
       tags:
@@ -367,6 +411,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobilePlatformApplicationItem'
     put:
       tags:
         - MobilePlatformApplication
@@ -400,6 +448,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobilePlatformApplicationItem'
     delete:
       tags:
         - MobilePlatformApplication
@@ -452,7 +504,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
         - name: unique_token
           in: query
           description: 'A unique idempotency token generated by your app. This can be any value, but must be unique across all payment requests.'
@@ -467,8 +519,8 @@ paths:
             schema:
               $ref: '#/components/schemas/CreatePaymentRequest'
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -478,6 +530,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentItem'
     get:
       tags:
         - Payment
@@ -488,7 +544,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: Success
@@ -501,6 +557,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentList'
   '/checkouts/{token}/payments/{payment_id}.json':
     get:
       tags:
@@ -518,7 +578,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: Success
@@ -531,6 +591,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentItem'
   '/checkouts/{token}/payments/count.json':
     get:
       tags:
@@ -542,7 +606,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: Success
@@ -611,6 +675,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductListingList'
   /product_listings/product_ids.json:
     get:
       tags:
@@ -641,6 +709,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductList'
   /product_listings/count.json:
     get:
       tags:
@@ -688,6 +760,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductListingItem'
     put:
       tags:
         - ProductListing
@@ -721,6 +797,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductListingItem'
     delete:
       tags:
         - ProductListing
@@ -772,8 +852,8 @@ paths:
               $ref: '#/components/schemas/CreateProductResourceFeedbackRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -783,6 +863,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResourceFeedbackItem'
     get:
       tags:
         - ProductResourceFeedback
@@ -807,6 +891,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResourceFeedbackList'
   /resource_feedback.json:
     post:
       tags:
@@ -839,8 +927,8 @@ paths:
               $ref: '#/components/schemas/CreateResourceFeedbackRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -850,6 +938,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceFeedbackItem'
     get:
       tags:
         - ResourceFeedback
@@ -867,6 +959,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceFeedbackList'
 components:
   schemas:
     Address:
@@ -942,6 +1038,245 @@ components:
         id:
           type: integer
           format: int64
+      additionalProperties: { }
+    Checkout:
+      required:
+        - id
+      type: object
+      properties:
+        applied_discount:
+          type: string
+          description: "A cart-level discount applied to the checkout. Apply a discount by specifying values for `amount`, `title`, `description`, `value`, and `value_type`. \r\n\r\n*   **amount**: The amount that is deducted from `payment_due` in presentment currency. \r\n*   **title**: The title to categorize the applied discount. \r\n*   **description**: The description of the applied discount.  \r\n*   **value**: The value that was used to calculate the final applied discount amount. \r\n*   **value_type**: The type of value that was used to calculate the final applied discount amount. Valid values: `fixed_amount` and `percentage`. \r\n*   **non_applicable_reason**: The reason why the discount is not applicable, if the discount cannot be applied to the checkout. \r\n*   **applicable**: Whether this discount code can be applied to the checkout. \r\n*   **application_type**: Describes how the discount was applied to the checkout. Possible values: \r\n\r\n    *   **automatic**: The discount [was applied automatically](/api/examples/discounts#creating-automatic-discounts). \r\n    *   **discount_code**: The merchant or customer entered a [discount code](/api/examples/discounts#creating-code-discounts). \r\n    *   **manual**: The discount was applied manually by the merchant or an app. \r\n    *   **script**: The discount was applied by a [Shopify Script](https://help.shopify.com/en/manual/checkout-settings/script-editor)."
+          nullable: true
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        buyer_accepts_marketing:
+          type: boolean
+          description: Whether the customer has consented to receive marketing material via email.
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601 format](//en.wikipedia.org/wiki/ISO_8601)) when the checkout was created.'
+          format: date-time
+          nullable: true
+        currency:
+          type: string
+          description: 'The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) of the shop''s default currency at the time of checkout. For the currency that the customer used at checkout, see `presentment_currency`.'
+          nullable: true
+        customer_id:
+          type: integer
+          description: The ID of the customer associated with this checkout.
+          format: int64
+          nullable: true
+        discount_code:
+          type: string
+          description: 'The discount code that is applied to the checkout. This populates `applied_discount` with the appropriate metadata for that discount code. To remove a discount code, send an empty string or `null`.'
+          nullable: true
+        email:
+          type: string
+          description: The customer's email address. A checkout needs to have a value for `email` or `phone` before it can be completed.
+          nullable: true
+        gift_cards:
+          type: string
+          description: "A list of gift card objects, each containing information about a gift card applied to this checkout. Gift cards can be applied to a checkout by passing `{ \"checkout\": { \"gift_cards\": [{ \"code\": \"a gift card code\" }, { \"code\": \"another gift card code\" }] } }`. Each gift card object has the following properties: \r\n\r\n*   **amount_used**: The amount of the gift card used by this checkout in presentment currency. \r\n*   **code**: The gift card code. \r\n*   **balance**: The amount left on the gift card after being applied to this checkout in presentment currency. \r\n*   **id**: The ID for the applied gift card. \r\n*   **last_characters**: The last four characters of the applied gift card for display back to the user.  Updating the gift card list overwrites any previous list already defined in the checkout. To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card."
+          nullable: true
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CheckoutLineItem'
+          description: "A list of line item objects, each containing information about an item in the checkout. Each line item object has the following properties: \r\n\r\n*   **applied_discounts**: A list of the discounts applied to the line item. \r\n*   **compare_at_price**: The original selling price of the product, if applicable. \r\n*   **discount_allocations**: A list all discounts on the checkout that target this line item, including both \"across\" and \"each\" applications. A superset of `applied_discounts`. \r\n*   **fulfillment_service**: If the variant is a gift card, allows to override the fulfillment service so the gift card can be activated with a custom code. Valid values: `manual`. \r\n*   **grams**: The weight of the item in grams. \r\n*   **id**: The checkout-specific ID of the line item. \r\n*   **line_price**: The line price of the item, based on `price` multiplied by `quantity`. \r\n*   **price**: The price of the item in presentment currency. \r\n*   **product_id**: The product of the line item. \r\n*   **properties**: The [customization information](/docs/liquid/reference/objects/line_item#line_item-properties) for a line item (optional). \r\n*   **quantity**: The number of products that were purchased. \r\n*   **requires_shipping**: Whether the fulfillment requires shipping. \r\n*   **sku**: The unique identifier of the item in the fulfillment. \r\n*   **taxable**: Whether this product is taxable. \r\n*   **title**: The title of the product. \r\n*   **variant_id**: The variant ID of the line item. \r\n*   **variant_title**: The title of the product variant. \r\n*   **vendor**: The name of the item's supplier."
+          nullable: true
+        order:
+          type: string
+          description: 'An object containing the ID, name, and status page URL of the associated order when the checkout is complete. Default value: `null`.'
+          nullable: true
+        payment_due:
+          type: string
+          description: 'The amount left to be paid in presentment currency. This is equal to the sum of the checkout line prices, taxes, and shipping minus discounts and gift cards.'
+          nullable: true
+        payment_url:
+          type: string
+          description: 'The URL that must be used to store credit cards in Shopify''s card vault. These URLs are subject to change, so you should always use the one supplied here. The general pattern for the URLs is `https://elb.deposit.shopifycs.com/sessions`.'
+          nullable: true
+        phone:
+          type: string
+          description: The customer's phone number for receiving SMS notifications. A checkout needs to have a value for `email` or `phone` before it can be completed.
+          nullable: true
+        presentment_currency:
+          type: string
+          description: 'The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency that the customer used for payment at checkout. For the shop''s default currency, see `currency`.'
+          nullable: true
+        requires_shipping:
+          type: boolean
+          description: 'Whether the checkout requires shipping. If `true`, then `shipping_line` must be set before creating a payment.'
+          nullable: true
+        reservation_time:
+          type: string
+          description: 'The reservation time in seconds for the line item products. Default value: `null`. This property is not writable.'
+          nullable: true
+          deprecated: true
+        reservation_time_left:
+          type: string
+          description: 'The time in seconds that the line item products will be held. Default value: `0`. This property is not writable.'
+          nullable: true
+          deprecated: true
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        shipping_line:
+          type: string
+          description: 'The selected shipping rate. A new shipping rate can be selected by updating the value for `handle`. A shipping line is required when `requires_shipping` is `true`. Learn more about [selecting shipping rates](#shipping_rates).'
+          nullable: true
+        shipping_rate:
+          type: string
+          description: The selected shipping rate. This property is not writable.
+          nullable: true
+        source_name:
+          type: string
+          description: 'The source of the checkout. To use this field for sales attribution, you must register the channels that your app is managing. You can register the channels that your app is managing by completing [this Google Form](https://docs.google.com/forms/d/e/1FAIpQLScmVTZRQNjOJ7RD738mL1lGeFjqKVe_FM2tO9xsm21QEo5Ozg/viewform?usp=sf_link). After you''ve submited your request, you need to wait for your request to be processed by Shopify. You can find a list of your channels in the Partner Dashboard, in your app''s Marketplace extension. You can specify a handle as the `source_name` value in your request.'
+          nullable: true
+        source_identifier:
+          type: string
+          description: The ID of the order placed on the originating platform.This value doesn't correspond to the Shopify ID that's generated from a completed draft.
+          nullable: true
+        source_url:
+          type: string
+          description: 'A valid URL to the original order on the originating surface.This URL is displayed to merchants on the Order Details page.If the URL is invalid, then it won''t be displayed.'
+          nullable: true
+        subtotal_price:
+          type: number
+          description: 'The price of the checkout in presentment currency before shipping, taxes, and tips.'
+          format: decimal
+          nullable: true
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
+          description: "An array of `tax_line` objects, each of which represents a tax rate applicable to the checkout. Each tax line object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged in presentment currency. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax."
+          nullable: true
+        taxes_included:
+          type: boolean
+          description: Whether taxes are included in the subtotal price.
+          nullable: true
+        token:
+          type: string
+          description: A unique identifier for a particular checkout.
+          nullable: true
+        total_price:
+          type: number
+          description: 'The sum of the the checkout line prices, taxes, shipping costs, tips, and discounts in presentment currency.'
+          format: decimal
+          nullable: true
+        total_tax:
+          type: number
+          description: The sum of all the taxes applied to the checkout in presentment currency.
+          format: decimal
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601 format](//en.wikipedia.org/wiki/ISO_8601) format) when the checkout was last modified.'
+          format: date-time
+          nullable: true
+        user_id:
+          type: integer
+          description: 'The ID of the user who created the checkout. This value is passed to the order. Default value: `null`.'
+          format: int64
+          nullable: true
+        web_url:
+          type: string
+          description: The URL pointing to the checkout accessible from the web.
+          nullable: true
+        abandoned_checkout_url:
+          type: string
+          description: The full recovery URL to be sent to a customer to recover their abandoned checkout.
+          nullable: true
+        cart_token:
+          type: string
+          description: Unique identifier for a particular cart that is attached to a particular order.
+          nullable: true
+        closed_at:
+          type: string
+          description: The date and time when the abandoned cart was completed. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        completed_at:
+          type: string
+          description: The date and time when the abandoned cart was last modified. The API returns this value in ISO 8601 format.
+          format: date-time
+          nullable: true
+        customer:
+          $ref: '#/components/schemas/Customer'
+        customer_locale:
+          type: string
+          description: 'The two or three-letter language code, optionally followed by a region modifier. Example values: en, en-CA.'
+          nullable: true
+        device_id:
+          type: integer
+          description: The ID of the Shopify POS device that created the checkout.
+          format: int64
+          nullable: true
+        discount_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscountCode'
+          description: Applicable discount codes that can be applied to the order. If no codes exist the value will default to blank.
+          nullable: true
+        gateway:
+          type: string
+          description: The payment gateway used.
+          nullable: true
+        landing_site:
+          type: string
+          description: The URL for the page where the buyer landed when entering the shop.
+          nullable: true
+        location_id:
+          type: integer
+          description: The ID of the physical location where the checkout was processed.
+          format: int64
+          nullable: true
+        note:
+          type: string
+          description: The text of an optional note that a shop owner can attach to the order.
+          nullable: true
+        shipping_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShippingLine'
+          description: 'An array of shipping line objects, each of which details the shipping methods used.'
+          nullable: true
+        total_discounts:
+          type: number
+          description: The total amount of the discounts to be applied to the price of the order.
+          format: decimal
+          nullable: true
+        total_duties:
+          type: number
+          description: The total duties of the checkout in presentment currency.
+          format: decimal
+          nullable: true
+        total_line_items_price:
+          type: number
+          description: The sum of all the prices of all the items in the order.
+          format: decimal
+          nullable: true
+        total_weight:
+          type: number
+          description: 'The sum of all the weights of the line items in the order, in grams.'
+          format: decimal
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    CheckoutItem:
+      required:
+        - checkout
+      type: object
+      properties:
+        checkout:
+          $ref: '#/components/schemas/Checkout'
       additionalProperties: { }
     CheckoutLineItem:
       required:
@@ -1085,6 +1420,77 @@ components:
           description: The unique numeric identifier for the product in the fulfillment. Can be null if the original product associated with the order is deleted at a later date
           format: int64
           nullable: true
+      additionalProperties: { }
+    CheckoutList:
+      required:
+        - checkouts
+      type: object
+      properties:
+        checkouts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Checkout'
+      additionalProperties: { }
+    CollectionListing:
+      type: object
+      properties:
+        collection_id:
+          type: integer
+          description: Identifies which collection this listing is for.
+          format: int64
+          nullable: true
+        body_html:
+          type: string
+          description: 'The description of the collection, complete with HTML formatting.'
+          nullable: true
+        default_product_image:
+          type: string
+          description: The default product image for a collection.
+          nullable: true
+        image:
+          type: string
+          description: The image for a collection.
+          nullable: true
+        handle:
+          type: string
+          description: A human-friendly unique string for the Collection automatically generated from its title.
+          nullable: true
+        published_at:
+          type: string
+          description: The date and time when the collection was published. The API returns this in ISO_8601.
+          format: date-time
+          nullable: true
+        title:
+          type: string
+          description: The name of the collection.
+          nullable: true
+        sort_order:
+          type: string
+          description: "The order in which products in the collection appear. Valid values are:\r\n\r\n*   **alpha-asc**: Alphabetically, in ascending order (A - Z). \r\n*   **alpha-desc**: Alphabetically, in descending order (Z - A). \r\n*   **best-selling**: By best-selling products. \r\n*   **created**: By date created, in ascending order (oldest - newest). \r\n*   **created-desc**: By date created, in descending order (newest - oldest). \r\n*   **manual**: Order created by the shop owner. \r\n*   <strong>price-asc**: By price, in ascending order (lowest - highest). \r\n*   **price-desc**: By price, in descending order (highest - lowest). </strong>"
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the collection was last modified. The API returns this in ISO_8601.
+          format: date-time
+          nullable: true
+      additionalProperties: { }
+    CollectionListingItem:
+      required:
+        - collection_listing
+      type: object
+      properties:
+        collection_listing:
+          $ref: '#/components/schemas/CollectionListing'
+      additionalProperties: { }
+    CollectionListingList:
+      required:
+        - collection_listings
+      type: object
+      properties:
+        collection_listings:
+          type: array
+          items:
+            $ref: '#/components/schemas/CollectionListing'
       additionalProperties: { }
     CountItem:
       type: object
@@ -2013,6 +2419,115 @@ components:
           type: string
           nullable: true
       additionalProperties: { }
+    MobilePlatformApplication:
+      required:
+        - id
+      type: object
+      properties:
+        application_id:
+          type: integer
+          description: iOS App ID or Android application ID of the application.
+          format: int64
+          nullable: true
+        platform:
+          type: string
+          description: The platform of the application.
+          nullable: true
+        sha256_cert_fingerprints:
+          type: string
+          description: The SHA256 fingerprints of the app’s signing certificate. (Android only)
+          nullable: true
+        enabled_universal_or_app_links:
+          type: string
+          description: 'Whether the application supports iOS universal links and Android App Links. If true, then URLs can be set up to link directly to the application. If false, then URLs can''t link directly to the application.'
+          nullable: true
+        enabled_shared_webcredentials:
+          type: string
+          description: Whether the application supports iOS shared web credentials.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    MobilePlatformApplicationItem:
+      required:
+        - mobile_platform_application
+      type: object
+      properties:
+        mobile_platform_application:
+          $ref: '#/components/schemas/MobilePlatformApplication'
+      additionalProperties: { }
+    MobilePlatformApplicationList:
+      required:
+        - mobile_platform_applications
+      type: object
+      properties:
+        mobile_platform_applications:
+          type: array
+          items:
+            $ref: '#/components/schemas/MobilePlatformApplication'
+      additionalProperties: { }
+    Payment:
+      required:
+        - id
+      type: object
+      properties:
+        credit_card:
+          type: string
+          description: "The details of the credit card used for payment. The following attributes are available: \r\n\r\n*   **first_name:** The first name of the cardholder. \r\n*   **last_name:** The last name of the cardholder. \r\n*   **first_digits:** The first six digits of the credit card. \r\n*   **last_digits:** The last four digits of the credit card. \r\n*   **brand:** The credit card brand. \r\n*   **expiry_month:** The expiry month of the credit card. \r\n*   **expiry_year:** The expiry year of the credit card."
+          nullable: true
+        payment_processing_error_message:
+          type: string
+          description: 'A message describing the error that occured when attempting to process payment, if any.'
+          nullable: true
+        next_action:
+          type: string
+          description: 'Specifies the URL that your app or sales channel needs to send the customer to so that they can authenticate their payment. To learn more about how to use this property, refer to the [*Payments Apps overview*](/apps/payments).'
+          nullable: true
+        transaction:
+          type: string
+          description: "The details of the transaction, including the following attributes: \r\n\r\n*   **amount:** The amount of the transaction. \r\n*   **amount_in:** The amount in before rounding is applied. Not applicable to credit card payments. \r\n*   **amount_out:** The amount out after rounding is applied. Not applicable to credit card payments.  \r\n*   **amount_rounding:** The amount of rounding applied. Not applicable to credit card payments.  \r\n*   **authorization:** The authorization code returned by the payment provider. \r\n*   **created_at:** The date and time when the transaction was created. \r\n*   **currency:** The currency of the transaction. \r\n*   **error_code:** The error code returned by the payment provider, if any. \r\n*   **gateway:** The name of the payment provider which processed the transaction. \r\n*   **id:** The unique identifier of the transaction. \r\n*   **kind:** The kind of transaction processed, either *authorization* or *sale*. \r\n*   **message:** The message returned by the payment provider, if any. \r\n*   **status:** The status of the transaction, either *success* or *failure*. \r\n*   **test:** Whether or not the transaction was a test."
+          nullable: true
+        unique_token:
+          type: string
+          description: 'A unique idempotency token generated by the app that created the payment request. For more information, refer to [Idempotent requests](/concepts/about-apis/idempotent-requests).'
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    PaymentItem:
+      required:
+        - payment
+      type: object
+      properties:
+        payment:
+          $ref: '#/components/schemas/Payment'
+      additionalProperties: { }
+    PaymentList:
+      required:
+        - payments
+      type: object
+      properties:
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+      additionalProperties: { }
+    PresentmentPrice:
+      type: object
+      properties:
+        price:
+          $ref: '#/components/schemas/Price'
+        compare_at_price:
+          $ref: '#/components/schemas/Price'
+      additionalProperties: { }
     Price:
       type: object
       properties:
@@ -2033,6 +2548,532 @@ components:
           $ref: '#/components/schemas/Price'
         presentment_money:
           $ref: '#/components/schemas/Price'
+      additionalProperties: { }
+    Product:
+      required:
+        - id
+      type: object
+      properties:
+        body_html:
+          type: string
+          description: A description of the product. Supports HTML formatting.
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was created.'
+          format: date-time
+          nullable: true
+        handle:
+          type: string
+          description: A unique human-friendly string for the product. Automatically generated from the product's `title`. Used by the Liquid templating language to refer to objects.
+          nullable: true
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductImage'
+          description: 'A list of [product image](/docs/admin-api/rest/reference/products/product-image) objects, each one representing an image associated with the product.'
+          nullable: true
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductOption'
+          description: 'The custom product properties. For example, **Size**, **Color**, and **Material**. Each product can have up to 3 options and each option value can be up to 255 characters. Product variants are made of up combinations of option values. Options cannot be created without values. To create new options, a variant with an associated option value also needs to be created.'
+          nullable: true
+        product_type:
+          type: string
+          description: A categorization for the product used for filtering and searching products.
+          nullable: true
+        published_at:
+          type: string
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was published. Can be set to `null` to unpublish the product from the Online Store channel.'
+          format: date-time
+          nullable: true
+        published_scope:
+          type: string
+          description: "Whether the product is published to the Point of Sale channel. Valid values: \r\n\r\n*   `web`: The product is published to the Online Store channel but not published to the Point of Sale channel. \r\n*   `global`: The product is published to both the Online Store channel and the Point of Sale channel."
+          nullable: true
+        status:
+          type: string
+          description: "The status of the product. Valid values: \r\n\r\n*   `active`: The product is ready to sell and is available to customers on the online store, sales channels, and apps. By default, existing products are set to active. \r\n*   `archived`: The product is no longer being sold and isn't available to customers on sales channels and apps. \r\n*   `draft`: The product isn't ready to sell and is unavailable to customers on sales channels and apps. By default, duplicated and unarchived products are set to draft."
+          nullable: true
+        tags:
+          type: string
+          description: A string of comma-separated tags that are used for filtering and search. A product can have up to 250 tags. Each tag can have up to 255 characters.
+          nullable: true
+        template_suffix:
+          type: string
+          description: 'The suffix of the Liquid template used for the product page. If this property is specified, then the product page uses a template called "product.suffix.liquid", where "suffix" is the value of this property. If this property is `""` or `null`, then the product page uses the default template "product.liquid". (default: `null`)'
+          nullable: true
+        title:
+          type: string
+          description: The name of the product.
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was last modified. A product''s `updated_at` value can change for different reasons. For example, if an order is placed for a product that has inventory tracking set up, then the inventory adjustment is counted as an update.'
+          format: date-time
+          nullable: true
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductVariant'
+          description: "An array of [product variants](/docs/admin-api/rest/reference/products/product-variant), each representing a different version of the product.\r\n\r\nThe `position` property is read-only. The position of variants is indicated by the order in which they are listed."
+          nullable: true
+        vendor:
+          type: string
+          description: The name of the product's vendor.
+          nullable: true
+        image:
+          $ref: '#/components/schemas/ProductImage'
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metafield'
+          description: "Additional metadata about the OpenShopify.Admin.Builder.Models.ProductBase. Note: This is not naturally returned with a OpenShopify.Admin.Builder.Models.ProductBase response, as\r\nShopify will not return OpenShopify.Admin.Builder.Models.ProductBase metafields unless specified. Instead, you need to query metafields with !:MetafieldService. \r\nUses include: Creating, updating, and deserializing webhook bodies that include them."
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    ProductImage:
+      required:
+        - id
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: 'The date and time when the product image was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
+          format: date-time
+          nullable: true
+        position:
+          type: integer
+          description: The order of the product image in the list. The first product image is at position 1 and is the "main" image for the product.
+          format: int32
+          nullable: true
+        product_id:
+          type: integer
+          description: The id of the product associated with the image.
+          format: int64
+          nullable: true
+        variant_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: An array of variant ids associated with the image.
+          nullable: true
+        src:
+          type: string
+          description: 'Specifies the location of the product image. This parameter supports [URL filters](/docs/liquid/reference/filters/url-filters#img_url) that you can use to retrieve modified copies of the image. For example, add `_small`, to the filename to retrieve a scaled copy of the image at 100 x 100 px (for example, `ipod-nano_small.png`), or add `_2048x2048` to retrieve a copy of the image constrained at 2048 x 2048 px resolution (for example, `ipod-nano_2048x2048.png`).'
+          nullable: true
+        width:
+          type: number
+          description: Width dimension of the image which is determined on upload.
+          format: decimal
+          nullable: true
+        height:
+          type: number
+          description: Height dimension of the image which is determined on upload.
+          format: decimal
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time when the product image was last modified. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
+          format: date-time
+          nullable: true
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metafield'
+          description: "Additional metadata about the OpenShopify.Admin.Builder.Models.ProductImageBase. Note: This is not naturally returned with a OpenShopify.Admin.Builder.Models.ProductImageBase response, as\r\nShopify will not return OpenShopify.Admin.Builder.Models.ProductImageBase metafields unless specified. Instead, you need to query metafields with !:MetafieldService. \r\nUses include: Creating, updating, and deserializing webhook bodies that include them."
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    ProductList:
+      required:
+        - products
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+      additionalProperties: { }
+    ProductListing:
+      type: object
+      properties:
+        product_id:
+          type: integer
+          description: The unique identifer of the product this listing is for. The primary key for this resource.
+          format: int64
+          nullable: true
+        body_html:
+          type: string
+          description: 'The description of the product, complete with HTML formatting.'
+          nullable: true
+        created_at:
+          type: string
+          description: The date and time when the product was created. The API returns this in ISO 8601.
+          format: date-time
+          nullable: true
+        handle:
+          type: string
+          description: A human-friendly unique string for the Product automatically generated from its title.
+          nullable: true
+        images:
+          type: string
+          description: 'A list of image objects, each one representing an image associated with the product.'
+          nullable: true
+        options:
+          type: string
+          description: 'Custom product property names like "Size", "Color", and "Material".'
+          nullable: true
+        product_type:
+          type: string
+          description: 'A categorization that a product can be tagged with, commonly used for filtering.'
+          nullable: true
+        published_at:
+          type: string
+          description: The date and time when the product was published. The API returns this in ISO 8601.
+          format: date-time
+          nullable: true
+        tags:
+          type: string
+          description: 'A categorization that a product can be tagged with, commonly used for filtering.'
+          nullable: true
+        title:
+          type: string
+          description: The name of the product.
+          nullable: true
+        updated_at:
+          type: string
+          description: The date and time when the product was last modified. The API returns this in ISO 8601.
+          format: date-time
+          nullable: true
+        variants:
+          type: string
+          description: "A list of variant objects, each one representing a slightly different version of the product. For example, if a product comes in different sizes and colors, each size and color permutation (such as \"small black\", \"medium black\", \"large blue\"), would be a variant. \r\n\r\nTo reorder variants, update the product with the variants in the desired order. The position attribute on the variant will be ignored.\r\n\r\n*   **barcode**: The barcode, UPC or ISBN number for the product. \r\n*   **compare_at_price**: The competitor's price for the same item. \r\n*   **created_at**: The date and time when the product variant was created. The API returns this in ISO 8601. \r\n*   <strong>fulfillment_service</strong>: Service which is handling fulfillment. Valid values are: `manual`, `gift_card`, or the handle of a [FulfillmentService](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). \r\n*   **grams**: The weight of the product variant in grams. \r\n*   **weight**: The weight of the product variant in the unit system specified with **weight_unit**. \r\n*   **weight_unit**: The unit system that the product variant's weight is measure in. The weight_unit can be either \"g\", \"kg, \"oz\", or \"lb\". \r\n*   **id**: The unique numeric identifier for the product variant. \r\n*   **inventory_management**: Specifies whether or not Shopify tracks the number of items in stock for this product variant. \r\n*   **inventory_policy**: Specifies whether or not customers are allowed to place an order for a product variant when it's out of stock. \r\n*   **inventory_quantity**: The number of items in stock for this product variant. \r\n*   **metafield**: Attaches additional information to a shop's resources. \r\n*   **option**: Custom properties that a shop owner can use to define product variants. Multiple options can exist. Options are represented as: `option1`, `option2`, `option3`, etc. \r\n*   **position**: The order of the product variant in the list of product variants. 1 is the first position. To reorder variants, update the product with the variants in the desired order. The position attribute on the variant will be ignored. \r\n*   **price**: The price of the product variant. \r\n*   **product_id**: The unique numeric identifier for the product. \r\n*   **requires_shipping**: Specifies whether or not a customer needs to provide a shipping address when placing an order for this product variant. \r\n*   **sku**: A unique identifier for the product in the shop. \r\n*   **taxable**: Specifies whether or not a tax is charged when the product variant is sold. \r\n*   **title**: The title of the product variant. \r\n*   **updated_at**: The date and time when the product variant was last modified. The API returns this in ISO 8601."
+          nullable: true
+        vendor:
+          type: string
+          description: The name of the vendor of the product.
+          nullable: true
+      additionalProperties: { }
+    ProductListingItem:
+      required:
+        - product_listing
+      type: object
+      properties:
+        product_listing:
+          $ref: '#/components/schemas/ProductListing'
+      additionalProperties: { }
+    ProductListingList:
+      required:
+        - product_listings
+      type: object
+      properties:
+        product_listings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductListing'
+      additionalProperties: { }
+    ProductOption:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The object's unique id.
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        product_id:
+          type: integer
+          description: The unique numeric identifier for the product.
+          format: int64
+          nullable: true
+        name:
+          type: string
+          description: The name of the option.
+          nullable: true
+        position:
+          type: integer
+          description: The order of the product variant in the list of product variants. 1 is the first position.
+          format: int32
+          nullable: true
+        values:
+          type: array
+          items:
+            type: string
+          description: The values for the options.
+          nullable: true
+      additionalProperties: { }
+    ProductResourceFeedback:
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: 'DateTime when the resource feedback record was stored by Shopify. **Type:** ISO 8601 UTC DateTime as string with year, month (or week), day, hour, minute, second, time zone.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'DateTime when the resource feedback record was last updated by Shopify. **Type:** ISO 8601 UTC DateTime as string with year, month (or week), day, hour, minute, second, time zone.'
+          format: date-time
+          nullable: true
+        resource_id:
+          type: integer
+          description: Unique id of the resource.
+          format: int64
+          nullable: true
+        resource_type:
+          type: string
+          description: 'Type of resource for which feedback is returned. eg. Shop, Product.'
+          nullable: true
+        state:
+          type: string
+          description: 'Indicates the state that the Shop or resource is in, from the perspective of your app.'
+          nullable: true
+        messages:
+          type: string
+          description: "A concise set of copy strings to be displayed to merchants, to guide them in resolving problems your app encounters when trying to make use of their Shop and its resources. \r\n            \r\nRequired only when state is `requires_action`. Disallowed when state is `success`. \r\n            \r\n**Content restrictions for product feedback:** four messages up to 100 characters long."
+          nullable: true
+        feedback_generated_at:
+          type: string
+          description: " The time at which the payload is constructed. Used to help determine whether incoming feedback is outdated compared to feedback already received, and if it should be ignored upon arrival. **Type:** ISO 8601 UTC DateTime as string with year, month [or week], day, hour, minute, second, millisecond, and time zone. \r\n <div class=\"note\"> \r\n\r\n#### Note\r\n\r\nIf you queue a Feedback API payload for delivery at a later time, do not update this value when the API call is actually made; ensure that the current time is set when building the payload.\r\n </div>"
+          nullable: true
+        resource_updated_at:
+          type: string
+          description: 'The forwarded `updated_at` timestamp of the product. Used only for versioned resources, where the `updated_at` timestamp changes based on merchant actions. When required, it is used along with `feedback_generated_at` to help determine whether incoming feedback is outdated compared to feedback already received, and if it should be ignored upon arrival.'
+          nullable: true
+      additionalProperties: { }
+    ProductResourceFeedbackItem:
+      required:
+        - product_resource_feedback
+      type: object
+      properties:
+        product_resource_feedback:
+          $ref: '#/components/schemas/ProductResourceFeedback'
+      additionalProperties: { }
+    ProductResourceFeedbackList:
+      required:
+        - product_resource_feedbacks
+      type: object
+      properties:
+        product_resource_feedbacks:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductResourceFeedback'
+      additionalProperties: { }
+    ProductVariant:
+      required:
+        - id
+      type: object
+      properties:
+        barcode:
+          type: string
+          description: 'The barcode, UPC, or ISBN number for the product.'
+          nullable: true
+        compare_at_price:
+          type: number
+          description: The original price of the item before an adjustment or a sale.
+          format: decimal
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product variant was created.'
+          format: date-time
+          nullable: true
+        fulfillment_service:
+          type: string
+          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice).'
+          nullable: true
+        grams:
+          type: number
+          description: The weight of the product variant in grams.
+          format: decimal
+          nullable: true
+        image_id:
+          type: integer
+          description: The unique numeric identifier for a product's image. The image must be associated to the same product as the variant.
+          format: int64
+          nullable: true
+        inventory_item_id:
+          type: integer
+          description: 'The unique identifier for the inventory item, which is used in the Inventory API to query for inventory information.'
+          format: int64
+          nullable: true
+        inventory_management:
+          type: boolean
+          description: "The fulfillment service that tracks the number of items in stock for the product variant. Valid values: \r\n\r\n*   `shopify`: You are tracking inventory yourself using the admin. \r\n*   `null`: You aren't tracking inventory on the variant. \r\n*   the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice) that has inventory management enabled: This must be the same fulfillment service referenced by the `fulfillment_service` property."
+          nullable: true
+        inventory_policy:
+          type: string
+          description: "Whether customers are allowed to place an order for the product variant when it's out of stock. Valid values: \r\n\r\n*   `deny`: Customers are not allowed to place orders for the product variant if it's out of stock. \r\n*   `continue`: Customers are allowed to place orders for the product variant if it's out of stock.  Default value: `deny`."
+          nullable: true
+        inventory_quantity:
+          type: number
+          description: 'An aggregate of inventory across all locations. To adjust inventory at a specific location, use the [InventoryLevel](/docs/admin-api/rest/reference/inventory/inventorylevel) resource.'
+          format: decimal
+          nullable: true
+        old_inventory_quantity:
+          type: number
+          description: 'This property is deprecated. Use the [InventoryLevel](/docs/admin-api/rest/reference/inventory/inventorylevel) resource instead.'
+          format: decimal
+          nullable: true
+          deprecated: true
+        inventory_quantity_adjustment:
+          type: string
+          description: 'This property is deprecated. Use the [InventoryLevel](/docs/admin-api/rest/reference/inventory/inventorylevel) resource instead.'
+          nullable: true
+          deprecated: true
+        option:
+          type: string
+          description: 'The custom properties that a shop owner uses to define product variants. You can define three options for a product variant: `option1`, `option2`, `option3`. Default value: `Default Title`. The `title` field is a concatenation of the `option1`, `option2`, and `option3` fields. Updating the `option` fields updates the `title` field.'
+          nullable: true
+        presentment_prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/PresentmentPrice'
+          description: "A list of the variant's presentment prices and compare-at prices in each of the shop's enabled presentment currencies. Each price object has the following properties:\r\n\r\n*   `currency_code`: The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for one of the shop's enabled presentment currencies. \r\n*   `amount`: The variant's price or compare-at price in the presentment currency.Requires the header `'X-Shopify-Api-Features': 'include-presentment-prices'`."
+          nullable: true
+        position:
+          type: integer
+          description: The order of the product variant in the list of product variants. The first position in the list is `1`. The position of variants is indicated by the order in which they are listed.
+          format: int32
+          nullable: true
+        price:
+          type: number
+          description: The price of the product variant.
+          format: decimal
+          nullable: true
+        product_id:
+          type: integer
+          description: The unique numeric identifier for the product.
+          format: int64
+          nullable: true
+        requires_shipping:
+          type: boolean
+          description: 'This property is deprecated. Use the `requires_shipping` property on the [InventoryItem](/docs/admin-api/rest/reference/inventory/inventoryitem) resource instead.'
+          nullable: true
+          deprecated: true
+        sku:
+          type: string
+          description: 'A unique identifier for the product variant in the shop. Required in order to connect to a [FulfillmentService.](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice)'
+          nullable: true
+        taxable:
+          type: boolean
+          description: Whether a tax is charged when the product variant is sold.
+          nullable: true
+        tax_code:
+          type: string
+          description: 'This parameter applies only to the stores that have the [Avalara AvaTax](https://help.shopify.com/manual/taxes/tax-services/taxation) app installed. Specifies the Avalara tax code for the product variant.'
+          nullable: true
+        title:
+          type: string
+          description: 'The title of the product variant. The `title` field is a concatenation of the `option1`, `option2`, and `option3` fields. You can only update `title` indirectly using the `option` fields.'
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time when the product variant was last modified. Gets returned in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
+          format: date-time
+          nullable: true
+        weight:
+          type: number
+          description: The weight of the product variant in the unit system specified with `weight_unit`.
+          format: decimal
+          nullable: true
+        weight_unit:
+          type: string
+          description: 'The unit of measurement that applies to the product variant''s weight. If you don''t specify a value for `weight_unit`, then the shop''s default unit of measurement is applied. Valid values: `g`, `kg`, `oz`, and `lb`.'
+          nullable: true
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metafield'
+          description: "Additional metadata about the OpenShopify.Admin.Builder.Models.ProductVariantBase. Note: This is not naturally returned with a OpenShopify.Admin.Builder.Models.ProductVariantBase response, as\r\nShopify will not return OpenShopify.Admin.Builder.Models.ProductVariantBase metafields unless specified. Instead, you need to query metafields with !:MetafieldService.\r\nUses include: Creating, updating, and deserializing webhook bodies that include them."
+          nullable: true
+        option1:
+          type: string
+          description: Custom properties that a shop owner can use to define product variants.
+          nullable: true
+        option2:
+          type: string
+          description: Custom properties that a shop owner can use to define product variants.
+          nullable: true
+        option3:
+          type: string
+          description: Custom properties that a shop owner can use to define product variants.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    ResourceFeedback:
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: 'DateTime when the resource feedback record was stored by Shopify. **Type:** ISO 8601 UTC DateTime as string with year, month (or week), day, hour, minute, second, time zone.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'DateTime when the resource feedback record was last updated by Shopify. **Type:** ISO 8601 UTC DateTime as string with year, month (or week), day, hour, minute, second, time zone.'
+          format: date-time
+          nullable: true
+        resource_id:
+          type: integer
+          description: Unique id of the resource.
+          format: int64
+          nullable: true
+        resource_type:
+          type: string
+          description: 'Type of resource for which feedback is returned. eg. Shop, Product.'
+          nullable: true
+        state:
+          type: string
+          description: 'Indicates the state that the Shop or resource is in, from the perspective of your app. Valid values are `requires_action`, or `success`.'
+          nullable: true
+        messages:
+          type: string
+          description: "A concise set of copy strings to be displayed to merchants, to guide them in resolving problems your app encounters when trying to make use of their Shop and its resources. \r\n            \r\nRequired only when state is `requires_action`. Disallowed when state is `success`. \r\n            \r\n**Content restrictions for Shop feedback:** one message up to 100 characters long."
+          nullable: true
+        feedback_generated_at:
+          type: string
+          description: " The time at which the payload is constructed. Used to help determine whether incoming feedback is outdated compared to feedback already received, and if it should be ignored upon arrival. **Type:** ISO 8601 UTC datetime as string with year, month [or week], day, hour, minute, second, millisecond, and time zone. \r\n <div class=\"note\"> \r\n\r\n#### Note\r\n\r\nIf you queue a Feedback API payload for delivery at a later time, do not update this value when the API call is actually made; ensure that the current time is set when building the payload.\r\n </div>"
+          nullable: true
+      additionalProperties: { }
+    ResourceFeedbackItem:
+      required:
+        - resource_feedback
+      type: object
+      properties:
+        resource_feedback:
+          $ref: '#/components/schemas/ResourceFeedback'
+      additionalProperties: { }
+    ResourceFeedbackList:
+      required:
+        - resource_feedbacks
+      type: object
+      properties:
+        resource_feedbacks:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceFeedback'
       additionalProperties: { }
     ShippingLine:
       type: object

@@ -47,7 +47,7 @@ public class CollectController : CollectControllerBase
     /// <inheritdoc />
     [HttpGet, Route("collects/{collect_id:long}.json")]
     [ProducesResponseType(typeof(CollectItem), StatusCodes.Status200OK)]
-    public override Task GetSpecificCollectByItsID([Required] long collect_id, string? fields = null)
+    public override Task GetSpecificCollect([Required] long collect_id, string? fields = null)
     {
         throw new NotImplementedException();
     }

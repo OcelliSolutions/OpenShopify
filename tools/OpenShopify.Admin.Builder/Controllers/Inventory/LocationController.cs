@@ -35,7 +35,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Retrieve a single location by its ID
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("locations/{location_id}.json")]
-        public abstract System.Threading.Tasks.Task GetLocationByItsID(long location_id);
+        public abstract System.Threading.Tasks.Task GetLocation(long location_id);
 
         /// <summary>
         /// Retrieve a count of locations

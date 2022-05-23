@@ -13,35 +13,40 @@ public class CheckoutController : CheckoutControllerBase
 {
     /// <inheritdoc />
     [HttpPost, Route("checkouts.json")]
+    [ProducesResponseType(typeof(CheckoutItem), StatusCodes.Status201Created)]
     public override Task CreateCheckout([Required] CreateCheckoutRequest request)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [HttpPost, Route("checkouts/{token:long}/complete.json")]
-    public override Task CompleteCheckout(string token)
+    [HttpPost, Route("checkouts/{token}/complete.json")]
+    [ProducesResponseType(typeof(CheckoutItem), StatusCodes.Status200OK)]
+    public override Task CompleteCheckout(string? token = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [HttpGet, Route("checkouts/{token:long}.json")]
-    public override Task GetCheckout(string token)
+    [HttpGet, Route("checkouts/{token}.json")]
+    [ProducesResponseType(typeof(CheckoutItem), StatusCodes.Status200OK)]
+    public override Task GetCheckout(string? token = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [HttpPut, Route("checkouts/{token:long}.json")]
-    public override Task UpdateCheckout([Required] UpdateCheckoutRequest request, string token)
+    [HttpPut, Route("checkouts/{token}.json")]
+    [ProducesResponseType(typeof(CheckoutItem), StatusCodes.Status200OK)]
+    public override Task UpdateCheckout([Required] UpdateCheckoutRequest request, string? token = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [HttpGet, Route("checkouts/{token:long}/shipping_rates.json")]
-    public override Task ListShippingRates(string token)
+    [HttpGet, Route("checkouts/{token}/shipping_rates.json")]
+    [ProducesResponseType(typeof(CheckoutList), StatusCodes.Status200OK)]
+    public override Task ListShippingRates(string? token = null)
     {
         throw new NotImplementedException();
     }

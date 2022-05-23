@@ -13,6 +13,7 @@ public class CarrierServiceController : CarrierServiceControllerBase
 {
     /// <inheritdoc />
     [HttpPost, Route("carrier_services.json")]
+    [ProducesResponseType(typeof(CarrierServiceItem), StatusCodes.Status201Created)]
     public override Task CreateCarrierService([Required] CreateCarrierServiceRequest request)
     {
         throw new NotImplementedException();
@@ -20,6 +21,7 @@ public class CarrierServiceController : CarrierServiceControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("carrier_services.json")]
+    [ProducesResponseType(typeof(CarrierServiceList), StatusCodes.Status200OK)]
     public override Task ListCarrierServices()
     {
         throw new NotImplementedException();
@@ -27,6 +29,7 @@ public class CarrierServiceController : CarrierServiceControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("carrier_services/{carrier_service_id:long}.json")]
+    [ProducesResponseType(typeof(CarrierServiceItem), StatusCodes.Status200OK)]
     public override Task UpdateCarrierService([Required] UpdateCarrierServiceRequest request, [Required] long carrier_service_id)
     {
         throw new NotImplementedException();
@@ -34,6 +37,7 @@ public class CarrierServiceController : CarrierServiceControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("carrier_services/{carrier_service_id:long}.json")]
+    [ProducesResponseType(typeof(CarrierServiceItem), StatusCodes.Status200OK)]
     public override Task GetCarrierService([Required] long carrier_service_id)
     {
         throw new NotImplementedException();
@@ -41,6 +45,7 @@ public class CarrierServiceController : CarrierServiceControllerBase
 
     /// <inheritdoc />
     [HttpDelete, Route("carrier_services/{carrier_service_id:long}.json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public override Task DeleteCarrierService([Required] long carrier_service_id)
     {
         throw new NotImplementedException();

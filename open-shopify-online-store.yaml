@@ -122,6 +122,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleList'
     post:
       tags:
         - Article
@@ -144,8 +148,8 @@ paths:
               $ref: '#/components/schemas/CreateArticleRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -155,6 +159,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleItem'
   '/blogs/{blog_id}/articles/count.json':
     get:
       tags:
@@ -261,6 +269,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleItem'
     put:
       tags:
         - Article
@@ -300,6 +312,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleItem'
     delete:
       tags:
         - Article
@@ -348,6 +364,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorList'
   /articles/tags.json:
     get:
       tags:
@@ -383,6 +403,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagList'
   '/blogs/{blog_id}/articles/tags.json':
     get:
       tags:
@@ -424,6 +448,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagList'
   '/themes/{theme_id}/assets.json':
     get:
       tags:
@@ -454,6 +482,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetList'
     put:
       tags:
         - Asset
@@ -486,8 +518,8 @@ paths:
               $ref: '#/components/schemas/CreateAssetRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -497,6 +529,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetItem'
     delete:
       tags:
         - Asset
@@ -572,6 +608,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogList'
     post:
       tags:
         - Blog
@@ -593,8 +633,8 @@ paths:
               $ref: '#/components/schemas/CreateBlogRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -604,6 +644,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogItem'
   /blogs/count.json:
     get:
       tags:
@@ -656,6 +700,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogItem'
     put:
       tags:
         - Blog
@@ -689,6 +737,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogItem'
     delete:
       tags:
         - Blog
@@ -800,6 +852,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentList'
     post:
       tags:
         - Comment
@@ -815,8 +871,8 @@ paths:
               $ref: '#/components/schemas/CreateCommentRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -826,6 +882,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentItem'
   /comments/count.json:
     get:
       tags:
@@ -900,7 +960,7 @@ paths:
       tags:
         - Comment
       summary: Retrieves a single comment by its ID
-      operationId: GetCommentByItsID
+      operationId: GetComment
       parameters:
         - name: comment_id
           in: path
@@ -925,6 +985,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentItem'
     put:
       tags:
         - Comment
@@ -958,6 +1022,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentItem'
   '/comments/{comment_id}/spam.json':
     post:
       tags:
@@ -983,6 +1051,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentItem'
   '/comments/{comment_id}/not_spam.json':
     post:
       tags:
@@ -1008,6 +1080,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentItem'
   '/comments/{comment_id}/approve.json':
     post:
       tags:
@@ -1033,6 +1109,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentItem'
   '/comments/{comment_id}/remove.json':
     post:
       tags:
@@ -1083,6 +1163,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentItem'
   /pages.json:
     get:
       tags:
@@ -1175,6 +1259,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageList'
     post:
       tags:
         - Page
@@ -1190,8 +1278,8 @@ paths:
               $ref: '#/components/schemas/CreatePageRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1201,6 +1289,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageItem'
   /pages/count.json:
     get:
       tags:
@@ -1275,7 +1367,7 @@ paths:
       tags:
         - Page
       summary: Retrieves a single page by its ID
-      operationId: GetPageByItsID
+      operationId: GetPage
       parameters:
         - name: page_id
           in: path
@@ -1300,6 +1392,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageItem'
     put:
       tags:
         - Page
@@ -1333,6 +1429,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageItem'
     delete:
       tags:
         - Page
@@ -1357,6 +1457,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageItem'
   /redirects.json:
     get:
       tags:
@@ -1408,6 +1512,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedirectList'
     post:
       tags:
         - Redirect
@@ -1423,8 +1531,8 @@ paths:
               $ref: '#/components/schemas/CreateRedirectRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1434,6 +1542,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedirectItem'
   /redirects/count.json:
     get:
       tags:
@@ -1497,6 +1609,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedirectItem'
     put:
       tags:
         - Redirect
@@ -1530,6 +1646,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedirectItem'
     delete:
       tags:
         - Redirect
@@ -1624,6 +1744,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScriptTagList'
     post:
       tags:
         - ScriptTag
@@ -1639,8 +1763,8 @@ paths:
               $ref: '#/components/schemas/CreateScriptTagRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1650,6 +1774,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScriptTagItem'
   /script_tags/count.json:
     get:
       tags:
@@ -1708,6 +1836,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScriptTagItem'
     put:
       tags:
         - ScriptTag
@@ -1741,6 +1873,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScriptTagItem'
     delete:
       tags:
         - ScriptTag
@@ -1765,6 +1901,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScriptTagItem'
   /themes.json:
     get:
       tags:
@@ -1789,6 +1929,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThemeList'
     post:
       tags:
         - Theme
@@ -1804,8 +1948,8 @@ paths:
               $ref: '#/components/schemas/CreateThemeRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1815,12 +1959,16 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThemeItem'
   '/themes/{theme_id}.json':
     get:
       tags:
         - Theme
       summary: Retrieves a single theme by its ID
-      operationId: GetThemeByItsID
+      operationId: GetTheme
       parameters:
         - name: theme_id
           in: path
@@ -1845,6 +1993,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThemeItem'
     put:
       tags:
         - Theme
@@ -1878,6 +2030,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThemeItem'
     delete:
       tags:
         - Theme
@@ -1904,6 +2060,81 @@ paths:
                 type: string
 components:
   schemas:
+    Article:
+      required:
+        - id
+      type: object
+      properties:
+        author:
+          type: string
+          description: The name of the author of the article.
+          nullable: true
+        blog_id:
+          type: integer
+          description: The ID of the blog containing the article.
+          format: int64
+          nullable: true
+        body_html:
+          type: string
+          description: 'The text of the body of the article, complete with HTML markup.'
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was created.'
+          format: date-time
+          nullable: true
+        handle:
+          type: string
+          description: A human-friendly unique string for the article that's automatically generated from the article's title.The handle is used in the article's URL.
+          nullable: true
+        image:
+          $ref: '#/components/schemas/ArticleImage'
+        metafields:
+          type: string
+          description: "The additional information attached to an Article object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
+          nullable: true
+        published:
+          type: boolean
+          description: Whether the article is visible.
+          nullable: true
+        published_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was published.'
+          format: date-time
+          nullable: true
+        summary_html:
+          type: string
+          description: 'A summary of the article, which can include HTML markup. The summary is used by the online store theme to display the article on other pages, such as the home page or the main blog page.'
+          nullable: true
+        tags:
+          type: string
+          description: A comma-separated list of tags. Tags are additional short descriptors formatted as a string of comma-separated values.
+          nullable: true
+        template_suffix:
+          type: string
+          description: 'The name of the template an article is using if it''s using an alternate template. If an article is using the default `article.liquid` template, then the value returned is `null`.'
+          nullable: true
+        title:
+          type: string
+          description: The title of the article.
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was last updated.'
+          format: date-time
+          nullable: true
+        user_id:
+          type: integer
+          description: A unique numeric identifier for the author of the article.
+          format: int64
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
     ArticleImage:
       type: object
       properties:
@@ -1922,6 +2153,248 @@ components:
           nullable: true
       additionalProperties: { }
       description: Represents a Shopify article's image.
+    ArticleItem:
+      type: object
+      additionalProperties: { }
+    ArticleList:
+      required:
+        - articles
+      type: object
+      properties:
+        articles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Article'
+      additionalProperties: { }
+    Asset:
+      type: object
+      properties:
+        attachment:
+          type: string
+          description: A base64-encoded image.
+          nullable: true
+        checksum:
+          type: string
+          description: 'The [MD5](https://en.wikipedia.org/wiki/MD5) representation of the content, consisting of a string of 32 hexadecimal digits. May be null if an asset has not been updated recently.'
+          nullable: true
+        content_type:
+          type: string
+          description: 'The [MIME](https://en.wikipedia.org/wiki/Media_type) representation of the content, consisting of the type and subtype of the asset.'
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        key:
+          type: string
+          description: 'The path to the asset within a theme. It consists of the file''s directory and filename. For example, the asset `assets/bg-body-green.gif` is in the **assets** directory, so its key is `assets/bg-body-green.gif`.'
+          nullable: true
+        public_url:
+          type: string
+          description: The public-facing URL of the asset.
+          nullable: true
+        size:
+          type: number
+          description: The asset size in bytes.
+          format: decimal
+          nullable: true
+        theme_id:
+          type: integer
+          description: The ID for the theme that an asset belongs to.
+          format: int64
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
+        value:
+          type: string
+          description: 'The text content of the asset, such as the HTML and Liquid markup of a template file.'
+          nullable: true
+      additionalProperties: { }
+    AssetItem:
+      required:
+        - asset
+      type: object
+      properties:
+        asset:
+          $ref: '#/components/schemas/Asset'
+      additionalProperties: { }
+    AssetList:
+      required:
+        - assets
+      type: object
+      properties:
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+      additionalProperties: { }
+    AuthorList:
+      type: object
+      properties:
+        authors:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: { }
+    Blog:
+      required:
+        - id
+      type: object
+      properties:
+        commentable:
+          type: string
+          description: "Indicates whether readers can post comments to the blog and if comments are moderated or not. Possible values are:\r\n\r\n*   **no (default)**: Readers cannot post comments to blog articles. \r\n*   **moderate**: Readers can post comments to blog articles, but comments must be moderated before they appear. \r\n*   **yes**: Readers can post comments to blog articles without moderation."
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time when the blog was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
+          format: date-time
+          nullable: true
+        feedburner:
+          description: 'FeedBurner is a web feed management provider and can be enabled to provide custom RSS feeds for Shopify bloggers. Google has stopped supporting FeedBurner, and new or existing blogs that are not already integrated with FeedBurner can''t use the service. This property will default to blank unless FeedBurner is enabled.'
+          nullable: true
+        feedburner_location:
+          type: string
+          description: 'The URL that points to the FeedBurner location for blogs that have FeedBurner enabled. Google has stopped supporting FeedBurner, and new or existing blogs that are not already integrated with FeedBurner can''t use the service. This property will default to blank unless FeedBurner is enabled'
+          nullable: true
+        handle:
+          type: string
+          description: 'A human-friendly unique string that is automatically generated from the title if no handle is sent during the creation of a blog. Duplicate handles are appended with an incremental number, for example, `blog-2`. The handle is customizable and is used by the Liquid templating language to refer to the blog. If you change the handle of a blog, then it can negatively affect the SEO of the shop. We recommend that you create a URL redirect to avoid any SEO issues.'
+          nullable: true
+        metafields:
+          type: string
+          description: "Attaches additional metadata to a store's resources:\r\n\r\n*   **key (required)**: Identifier for the metafield (maximum of 30 characters). \r\n*   **namespace (required)**: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters). \r\n*   **value (required)**: Information to be stored as metadata. \r\n*   **type (required)**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
+          nullable: true
+        tags:
+          type: string
+          description: 'A list of tags associated with the 200 most recent blog articles. Tags are additional short descriptors formatted as a string of comma-separated values. For example, if an article has three tags: tag1, tag2, tag3. Tags are limited to 255 characters.'
+          nullable: true
+        template_suffix:
+          type: string
+          description: 'States the name of the template a blog is using if it is using an alternate template. If a blog is using the default blog.liquid template, the value returned is "null".'
+          nullable: true
+        title:
+          type: string
+          description: The title of the blog.
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time when changes were last made to the blog''s properties. Note that this is not updated when creating, modifying or deleting articles in the blog. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
+          format: date-time
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        id:
+          type: integer
+          format: int64
+      additionalProperties: { }
+    BlogItem:
+      required:
+        - blog
+      type: object
+      properties:
+        blog:
+          $ref: '#/components/schemas/Blog'
+      additionalProperties: { }
+    BlogList:
+      required:
+        - blogs
+      type: object
+      properties:
+        blogs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Blog'
+      additionalProperties: { }
+    Comment:
+      required:
+        - id
+      type: object
+      properties:
+        article_id:
+          type: integer
+          description: A unique numeric identifier for the article that the comment belongs to.
+          format: int64
+          nullable: true
+        author:
+          type: string
+          description: The name of the author of the comment.
+          nullable: true
+        blog_id:
+          type: integer
+          description: A unique numeric identifier for the blog containing the article that the comment belongs to.
+          format: int64
+          nullable: true
+        body:
+          type: string
+          description: 'The basic [Textile markup](https://en.wikipedia.org/wiki/Textile_(markup_language)) of a comment.'
+          nullable: true
+        body_html:
+          type: string
+          description: 'The text of the comment, complete with HTML markup.'
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the comment was created.'
+          format: date-time
+          nullable: true
+        email:
+          type: string
+          description: The email address of the author of the comment.
+          nullable: true
+        ip:
+          type: string
+          description: The IP address from which the comment was posted.
+          nullable: true
+        published_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the comment was published.'
+          format: date-time
+          nullable: true
+        status:
+          type: string
+          description: "The status of the comment. Valid values:\r\n\r\n*   **pending**: The comment has been created but is awaiting spam detection. Depending on the result of the spam detection and the shop owner's comment preferences, this property will be transitioned to either `spam`, `unapproved`, or `approved`. \r\n*   **unapproved (default)**: The comment is awaiting approval by the shop owner. It's not visible to the readers of the blog. \r\n*   **published**: The comment has been approved (if the blog requires comments to be approved) and is visible to readers of the blog. \r\n*   **spam**: The comment has been marked as spam and removed from the Shopify admin. It's not visible to readers of the blog. \r\n*   **removed**: The comment has been removed by the shop owner. It's not visible to readers of the blog."
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the comment was last modified. When the comment is created, this matches the value of `created_at`. If the blog requires comments to be approved, then this value is updated to the date and time when the comment is approved.'
+          format: date-time
+          nullable: true
+        user_agent:
+          type: string
+          description: The user agent string provided by the software used to create the comment (usually a browser).
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    CommentItem:
+      required:
+        - comment
+      type: object
+      properties:
+        comment:
+          $ref: '#/components/schemas/Comment'
+      additionalProperties: { }
+    CommentList:
+      required:
+        - comments
+      type: object
+      properties:
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
+      additionalProperties: { }
     CountItem:
       type: object
       properties:
@@ -2405,6 +2878,250 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+      additionalProperties: { }
+    Page:
+      required:
+        - id
+      type: object
+      properties:
+        author:
+          type: string
+          description: The name of the person who created the page.
+          nullable: true
+        body_html:
+          type: string
+          description: 'The text content of the page, complete with HTML markup.'
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the page was created.'
+          format: date-time
+          nullable: true
+        handle:
+          type: string
+          description: 'A unique, human-friendly string for the page, generated automatically from its title. In themes, the Liquid templating language refers to a page by its handle.'
+          nullable: true
+        metafield:
+          type: string
+          description: "Additional information attached to the Page object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/docs/admin-api/rest/reference/metafield) resource."
+          nullable: true
+        published_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the page was published. Returns `null` when the page is hidden.'
+          format: date-time
+          nullable: true
+        shop_id:
+          type: integer
+          description: The ID of the shop to which the page belongs.
+          format: int64
+          nullable: true
+        template_suffix:
+          type: string
+          description: 'The suffix of the [template](/api/liquid/objects/template) that is used to render the page. If the value is an empty string or `null`, then the default page template is used.'
+          nullable: true
+        title:
+          type: string
+          description: The title of the page.
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the page was last updated.'
+          format: date-time
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metafield'
+          description: "Additional metadata about the OpenShopify.Admin.Builder.Models.PageBase. Note: This is not naturally returned with a OpenShopify.Admin.Builder.Models.PageBase response, as\r\nShopify will not return OpenShopify.Admin.Builder.Models.PageBase metafields unless specified. Instead, you need to query metafields with !:MetafieldService. \r\nUses include: Creating, updating, and deserializing webhook bodies that include them."
+          nullable: true
+        id:
+          type: integer
+          format: int64
+      additionalProperties: { }
+    PageItem:
+      required:
+        - page
+      type: object
+      properties:
+        page:
+          $ref: '#/components/schemas/Page'
+      additionalProperties: { }
+    PageList:
+      required:
+        - pages
+      type: object
+      properties:
+        pages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Page'
+      additionalProperties: { }
+    Redirect:
+      required:
+        - id
+      type: object
+      properties:
+        path:
+          type: string
+          description: 'The old path to be redirected. When the user visits this path, they will be redirected to the target. (maximum: 1024 characters)'
+          nullable: true
+        target:
+          type: string
+          description: 'The target location where the user will be redirected. When the user visits the old path specified by the `path` property, they will be redirected to this location. This property can be set to any path on the shop''s site, or to an external URL. (maximum: 255 characters)'
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    RedirectItem:
+      required:
+        - redirect
+      type: object
+      properties:
+        redirect:
+          $ref: '#/components/schemas/Redirect'
+      additionalProperties: { }
+    RedirectList:
+      required:
+        - redirects
+      type: object
+      properties:
+        redirects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Redirect'
+      additionalProperties: { }
+    ScriptTag:
+      required:
+        - id
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was created.'
+          format: date-time
+          nullable: true
+        event:
+          type: string
+          description: 'The DOM event that triggers the loading of the script. Valid values: `onload`.'
+          nullable: true
+        src:
+          type: string
+          description: The URL of the remote script.
+          nullable: true
+        display_scope:
+          type: string
+          description: "The page or pages on the online store where the script should be included. Valid values: \r\n\r\n*   `online_store`: Include the script only on the web storefront. \r\n*   `order_status`: Include the script only on the order status page. \r\n*   `all`: Include the script on both the web storefront and the order status page."
+          nullable: true
+        cache:
+          type: string
+          description: "Whether the Shopify CDN can cache and serve the script tag. Valid values: \r\n\r\n*   `true`: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned. \r\n*   `false`: The script will be served as is.  Default value: `false`."
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was last updated.'
+          format: date-time
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    ScriptTagItem:
+      required:
+        - script_tag
+      type: object
+      properties:
+        script_tag:
+          $ref: '#/components/schemas/ScriptTag'
+      additionalProperties: { }
+    ScriptTagList:
+      required:
+        - script_tags
+      type: object
+      properties:
+        script_tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScriptTag'
+      additionalProperties: { }
+    TagList:
+      type: object
+      properties:
+        Tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: { }
+    Theme:
+      required:
+        - id
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: 'The date and time when the theme was created. (format: 2014-04-25T16:15:47-04:00)'
+          format: date-time
+          nullable: true
+        name:
+          type: string
+          description: The name of the theme.
+          nullable: true
+        previewable:
+          type: boolean
+          description: Whether the theme can currently be previewed.
+          nullable: true
+        processing:
+          type: boolean
+          description: Whether files are still being copied into place for this theme.
+          nullable: true
+        role:
+          type: string
+          description: "Specifies how the theme is being used within the shop. Valid values: \r\n\r\n*   **main**: The theme is published. Customers see it when they visit the online store. \r\n*   **unpublished**: The theme is unpublished. Customers can't see it. \r\n*   **demo**: The theme is installed on the store as a demo. The theme can't be published until the merchant buys the full version. \r\n*   **development**: The theme is used for development. The theme can't be published, and is temporary."
+          nullable: true
+        theme_store_id:
+          type: integer
+          description: 'A unique identifier applied to Shopify-made themes that are installed from the [Shopify Theme Store](https://themes.shopify.com/) Theme Store. Not all themes available in the Theme Store are developed by Shopify. Returns `null` if the store''s theme isn''t made by Shopify, or if it wasn''t installed from the Theme Store.'
+          format: int64
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time of when the theme was last updated. (format: 2014-04-25T16:15:47-04:00)'
+          format: date-time
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    ThemeItem:
+      required:
+        - theme
+      type: object
+      properties:
+        theme:
+          $ref: '#/components/schemas/Theme'
+      additionalProperties: { }
+    ThemeList:
+      required:
+        - themes
+      type: object
+      properties:
+        themes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Theme'
       additionalProperties: { }
     UpdateArticle:
       required:

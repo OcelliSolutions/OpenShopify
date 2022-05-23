@@ -13,6 +13,7 @@ public class PayoutsController : PayoutsControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("shopify_payments/payouts.json")]
+    [ProducesResponseType(typeof(PayoutList), StatusCodes.Status200OK)]
     public override Task ListPayouts(DateTime? date = null, DateTime? date_max = null, DateTime? date_min = null, long? last_id = null, long? since_id = null,
         string? status = null)
     {
@@ -21,6 +22,7 @@ public class PayoutsController : PayoutsControllerBase
     
     /// <inheritdoc />
     [HttpGet, Route("shopify_payments/payouts/{payout_id:long}.json")]
+    [ProducesResponseType(typeof(PayoutItem), StatusCodes.Status200OK)]
     public override Task GetPayout([Required] long payout_id)
     {
         throw new NotImplementedException();

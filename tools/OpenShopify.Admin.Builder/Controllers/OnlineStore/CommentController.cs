@@ -68,7 +68,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("comments/{comment_id}.json")]
-        public abstract System.Threading.Tasks.Task GetCommentByItsID(long comment_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetComment(long comment_id, string? fields = null);
 
         /// <summary>
         /// Updates a comment of an article

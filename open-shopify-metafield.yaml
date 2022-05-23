@@ -234,7 +234,7 @@ paths:
       tags:
         - Metafield
       summary: Deletes a metafield by its ID
-      operationId: DeleteMetafieldByItsID
+      operationId: DeleteMetafield
       parameters:
         - name: metafield_id
           in: path

@@ -1,4 +1,6 @@
-﻿using Ocelli.OpenShopify.Tests.Fixtures;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
 using Xunit;
 using Xunit.Abstractions;
@@ -27,6 +29,28 @@ public class RecurringApplicationChargeTests : IClassFixture<SharedFixture>
     #endregion Create
 
     #region Read
+    
+    [SkippableFact(Skip = "Unknown required scope."), TestPriority(20)]
+    public async Task ListRecurringApplicationChargesAsync_AdditionalPropertiesIsEmpty()
+    {
+        var response = await _service.RecurringApplicationCharge.ListRecurringApplicationChargesAsync();
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        foreach (var recurringApplicationCharge in response.Result.RecurringApplicationCharges)
+        {
+            _additionalPropertiesHelper.CheckAdditionalProperties(recurringApplicationCharge, Fixture.MyShopifyUrl);
+        }
+        var list = response.Result.RecurringApplicationCharges;
+        Assert.True(list.Any());
+    }
+
+    [SkippableFact(Skip = "Unknown required scope."), TestPriority(20)]
+    public async Task GetRecurringApplicationChargeAsync_AdditionalPropertiesIsEmpty()
+    {
+        var recurringApplicationChargeListResponse = await _service.RecurringApplicationCharge.ListRecurringApplicationChargesAsync();
+        var response = await _service.RecurringApplicationCharge.GetChargeAsync(recurringApplicationChargeListResponse.Result.RecurringApplicationCharges.First().Id);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.RecurringApplicationCharge, Fixture.MyShopifyUrl);
+    }
 
     #endregion Read
 

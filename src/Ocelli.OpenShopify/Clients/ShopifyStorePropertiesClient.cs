@@ -888,7 +888,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> ListShopsPoliciesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<PolicyList>> ListShopsPoliciesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -930,7 +930,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListShopsPoliciesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PolicyList>> ListShopsPoliciesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/policies.json");
@@ -942,6 +942,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -966,7 +967,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<PolicyList>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<PolicyList>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -1100,7 +1106,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Restrict results to after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> ListProvincesForCountryAsync(long countryId, string? fields = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ProvinceList>> ListProvincesForCountryAsync(long countryId, string? fields = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1117,7 +1123,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> GetProvinceForCountryAsync(long countryId, long provinceId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ProvinceItem>> GetProvinceForCountryAsync(long countryId, long provinceId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1125,7 +1131,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> UpdateProvinceForCountryAsync(long countryId, long provinceId, UpdateProvinceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ProvinceItem>> UpdateProvinceForCountryAsync(long countryId, long provinceId, UpdateProvinceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -1169,7 +1175,7 @@ namespace Ocelli.OpenShopify
         /// <param name="sinceId">Restrict results to after the specified ID.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListProvincesForCountryAsync(long countryId, string? fields = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProvinceList>> ListProvincesForCountryAsync(long countryId, string? fields = null, long? sinceId = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (countryId == null)
                 throw new System.ArgumentNullException("countryId");
@@ -1194,6 +1200,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -1218,7 +1225,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<ProvinceList>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<ProvinceList>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -1321,7 +1333,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetProvinceForCountryAsync(long countryId, long provinceId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProvinceItem>> GetProvinceForCountryAsync(long countryId, long provinceId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (countryId == null)
                 throw new System.ArgumentNullException("countryId");
@@ -1346,6 +1358,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -1370,7 +1383,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<ProvinceItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<ProvinceItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -1398,7 +1416,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateProvinceForCountryAsync(long countryId, long provinceId, UpdateProvinceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProvinceItem>> UpdateProvinceForCountryAsync(long countryId, long provinceId, UpdateProvinceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (countryId == null)
                 throw new System.ArgumentNullException("countryId");
@@ -1424,6 +1442,7 @@ namespace Ocelli.OpenShopify
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -1448,7 +1467,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<ProvinceItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<ProvinceItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -1581,7 +1605,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> ListShippingZonesAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ShippingZoneList>> ListShippingZonesAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -1624,7 +1648,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListShippingZonesAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ShippingZoneList>> ListShippingZonesAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/shipping_zones.json?");
@@ -1641,6 +1665,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -1665,7 +1690,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<ShippingZoneList>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<ShippingZoneList>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -1798,7 +1828,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> GetShopsConfigurationAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ShopItem>> GetShopsConfigurationAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -1841,7 +1871,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetShopsConfigurationAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ShopItem>> GetShopsConfigurationAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/shop.json?");
@@ -1858,6 +1888,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -1882,7 +1913,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<ShopItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<ShopItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -2002,6 +2038,70 @@ namespace Ocelli.OpenShopify
             var result = System.Convert.ToString(value, cultureInfo);
             return result == null ? "" : result;
         }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CarrierShippingRateProvider
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// A Carrier Service (also known as a Carrier Calculated Service or Shipping Service) provides real-time shipping rates to Shopify. Some common carrier services include: Canada Post, FedEx, UPS, and USPS. Note that the term "carrier" is often used interchangeably with the terms "shipping company" and "rate provider."
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("carrier_service_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? CarrierServiceId { get; set; } = default!;
+
+        /// <summary>
+        /// Rate adjustments - Flat fee
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("flat_modifier")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? FlatModifier { get; set; } = default!;
+
+        /// <summary>
+        /// Rate adjustments - percentage
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("percent_modifier")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public int? PercentModifier { get; set; } = default!;
+
+        /// <summary>
+        /// Shipping zone id
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_zone_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? ShippingZoneId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -2249,6 +2349,168 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Policy
+    {
+        /// <summary>
+        /// The name of the policy.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Title { get; set; } = default!;
+
+        /// <summary>
+        /// A description of the policy.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("body")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Body { get; set; } = default!;
+
+        /// <summary>
+        /// The public URL of the policy.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("url")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Url { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the policy was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the policy was last modified.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// A unique identifer for the policy used to build the policy's URL.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Handle { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class PolicyList
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("policies")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<Policy> Policies { get; set; } = new System.Collections.ObjectModel.Collection<Policy>();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class PriceBasedShippingRate
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the price based shipping rate, specified by the user.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// Minimum order price
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("min_order_subtotal")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? MinOrderSubtotal { get; set; } = default!;
+
+        /// <summary>
+        /// Rate amount
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? Price { get; set; } = default!;
+
+        /// <summary>
+        /// Maximum order price
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("max_order_subtotal")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? MaxOrderSubtotal { get; set; } = default!;
+
+        /// <summary>
+        /// Shipping zone id
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_zone_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? ShippingZoneId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class Province
     {
         /// <summary>
@@ -2336,6 +2598,733 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ProvinceItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("province")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public Province Province { get; set; } = new Province();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ProvinceList
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("provinces")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<Province> Provinces { get; set; } = new System.Collections.ObjectModel.Collection<Province>();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    /// <summary>
+    /// This is used to view shipping zones, their countries, provinces, and shipping rates.
+    /// </summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ShippingZone
+    {
+        /// <summary>
+        /// The name of the shipping zone, specified by the user.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the shipping zone's delivery profile. Shipping profiles allow merchants to create product-based or location-based shipping rates.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("profile_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? ProfileId { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the shipping zone's location group. Location groups allow merchants to create shipping rates that apply only to the specific locations in the group.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_group_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? LocationGroupId { get; set; } = default!;
+
+        /// <summary>
+        /// A list of countries that belong to the shipping zone.
+        /// <br/>
+        /// <br/>*   **id**: The unique numeric identifier for the country. 
+        /// <br/>*   **code**: The ISO 3166-1 alpha-2 two-letter country code for the country. The code for a given country will be the same as the code for the same country in another shop. 
+        /// <br/>*   **shipping_zone_id**: The unique numeric identifier for the shipping zone. 
+        /// <br/>*   **name**: The full name of the country, in English. 
+        /// <br/>*   **tax**: The tax value in decimal format. 
+        /// <br/>*   **tax_name**: The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("countries")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<Country>? Countries { get; set; } = default!;
+
+        /// <summary>
+        /// The sub-regions of a country. The term provinces also encompasses states.
+        /// <br/>
+        /// <br/>*   **code**: The two letter province or state code. 
+        /// <br/>*   **country_id**: The unique numeric identifier for the country. 
+        /// <br/>*   **shipping_zone_id**: The unique numeric identifier for the shipping zone. 
+        /// <br/>*   **id**: The unique numeric identifier for the particular province or state. 
+        /// <br/>*   **name**: The name of the province or state. 
+        /// <br/>*   **tax**: The tax value in decimal format. 
+        /// <br/>*   **tax_name**: The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST. 
+        /// <br/>*   **tax_type**: A tax_type is applied for a compounded sales tax. For example, the Canadian HST is a compounded sales tax of both PST and GST. 
+        /// <br/>*   **tax_percentage**: The tax value in percent format.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("provinces")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Provinces { get; set; } = default!;
+
+        /// <summary>
+        /// Information about carrier shipping providers and the rates used.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("carrier_shipping_rate_providers")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<CarrierShippingRateProvider>? CarrierShippingRateProviders { get; set; } = default!;
+
+        /// <summary>
+        /// Information about a price-based shipping rate.
+        /// <br/>
+        /// <br/>*   **id**: The unique numeric identifier for the shipping rate. 
+        /// <br/>*   **name**: The name of the shipping rate. 
+        /// <br/>*   **price**: The price of the shipping rate. 
+        /// <br/>*   **shipping_zone_id**: The unique numeric identifier for the associated shipping zone. 
+        /// <br/>*   **min_order_subtotal**: The minimum price of an order for it to be eligible for the shipping rate. 
+        /// <br/>*   **max_order_subtotal**: The maximum price of an order for it to be eligible for the shipping rate.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("price_based_shipping_rates")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<PriceBasedShippingRate>? PriceBasedShippingRates { get; set; } = default!;
+
+        /// <summary>
+        /// Information about a weight-based shipping rate.
+        /// <br/>
+        /// <br/>*   **id**: The unique numeric identifier for the shipping rate. 
+        /// <br/>*   **name**: The name of the shipping rate. 
+        /// <br/>*   **price**: The price of the shipping rate. 
+        /// <br/>*   **shipping_zone_id**: The unique numeric identifier for the associated shipping zone. 
+        /// <br/>*   **weight_low**: The minimum weight of an order for it to be eligible for the shipping rate. 
+        /// <br/>*   **weight_high**: The maximum weight of an order for it to be eligible for the shipping rate.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("weight_based_shipping_rates")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<WeightBasedShippingRate>? WeightBasedShippingRates { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ShippingZoneList
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_zones")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<ShippingZone> ShippingZones { get; set; } = new System.Collections.ObjectModel.Collection<ShippingZone>();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Shop
+    {
+        /// <summary>
+        /// The shop's street address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("address1")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Address1 { get; set; } = default!;
+
+        /// <summary>
+        /// The optional second line of the shop's street address.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("address2")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Address2 { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the shop is capable of accepting payments directly through the [Checkout API](/apps/channels/checkout-api).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("checkout_api_supported")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? CheckoutApiSupported { get; set; } = default!;
+
+        /// <summary>
+        /// The shop's city.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("city")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? City { get; set; } = default!;
+
+        /// <summary>
+        /// The shop's country. In most cases, this value matches the `country_code`.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Country { get; set; } = default!;
+
+        /// <summary>
+        /// The two-letter country code corresponding to the shop's country.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_code")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? CountryCode { get; set; } = default!;
+
+        /// <summary>
+        /// The shop's normalized country name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("country_name")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? CountryName { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the shop is applying taxes on a per-county basis. Only applicable to shops based in the US. Valid values: `true` or `null`."
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("county_taxes")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? CountyTaxes { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) when the shop was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The contact email used for communication between the shop owner and the customer.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("customer_email")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? CustomerEmail { get; set; } = default!;
+
+        /// <summary>
+        /// The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the shop's default currency.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// The shop's domain.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("domain")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Domain { get; set; } = default!;
+
+        /// <summary>
+        /// A list of enabled currencies ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) that the shop accepts. Merchants can enable currencies from their Shopify Payments settings in the Shopify Admin.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("enabled_presentment_currencies")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<string>? EnabledPresentmentCurrencies { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the shop is eligible to receive a free credit card reader from Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("eligible_for_card_reader_giveaway")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? EligibleForCardReaderGiveaway { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the shop is eligible to use Shopify Payments.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("eligible_for_payments")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? EligibleForPayments { get; set; } = default!;
+
+        /// <summary>
+        /// The contact email used for communication between Shopify and the shop owner.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Email { get; set; } = default!;
+
+        /// <summary>
+        /// This field has been deprecated, and is currently unused. Hardcoded to `true`.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("finances")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        [System.Obsolete]
+        public string? Finances { get; set; } = default!;
+
+        /// <summary>
+        /// As of API version 2021-07, this field has been deprecated and is currently unused. Previously indicated whether the shop forced requests made to its resources to be made over SSL using the HTTPS protocol. All requests now use HTTPS, so `force_ssl` is always `true`.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("force_ssl")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        [System.Obsolete]
+        public string? ForceSsl { get; set; } = default!;
+
+        /// <summary>
+        /// The GSuite URL for the store, if applicable.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("google_apps_domain")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? GoogleAppsDomain { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the GSuite login is enabled. Shops with this feature will be able to log in through the GSuite login page. Valid values: `true`, `null`
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("google_apps_login_enabled")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? GoogleAppsLoginEnabled { get; set; } = default!;
+
+        /// <summary>
+        /// Whether any active discounts exist for the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("has_discounts")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? HasDiscounts { get; set; } = default!;
+
+        /// <summary>
+        /// Whether any active gift cards exist for the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("has_gift_cards")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? HasGiftCards { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the shop has an online store.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("has_storefront")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? HasStorefront { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the timezone assigned by the [IANA](http://www.iana.org/time-zones).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("iana_timezone")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? IanaTimezone { get; set; } = default!;
+
+        /// <summary>
+        /// The latitude of the shop's location.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("latitude")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? Latitude { get; set; } = default!;
+
+        /// <summary>
+        /// The longitude of the shop's location.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("longitude")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? Longitude { get; set; } = default!;
+
+        /// <summary>
+        /// A string representing the way currency is formatted when the currency isn't specified.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("money_format")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? MoneyFormat { get; set; } = default!;
+
+        /// <summary>
+        /// A string representing the way currency is formatted in email notifications when the currency isn't specified.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("money_in_emails_format")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? MoneyInEmailsFormat { get; set; } = default!;
+
+        /// <summary>
+        /// A string representing the way currency is formatted when the currency is specified.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("money_with_currency_format")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? MoneyWithCurrencyFormat { get; set; } = default!;
+
+        /// <summary>
+        /// A string representing the way currency is formatted in email notifications when the currency is specified.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("money_with_currency_in_emails_format")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? MoneyWithCurrencyInEmailsFormat { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the shop has enabled multiple locations.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("multi_location_enabled")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? MultiLocationEnabled { get; set; } = default!;
+
+        /// <summary>
+        /// The shop's .myshopify.com domain.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("myshopify_domain")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? MyshopifyDomain { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the password protection page is enabled on the shop's online store.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("password_enabled")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? PasswordEnabled { get; set; } = default!;
+
+        /// <summary>
+        /// The contact phone number for the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Phone { get; set; } = default!;
+
+        /// <summary>
+        /// The display name of the Shopify plan the shop is on.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("plan_display_name")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? PlanDisplayName { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the pre-launch page is enabled on the shop's online store.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("pre_launch_enabled")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? PreLaunchEnabled { get; set; } = default!;
+
+        /// <summary>
+        /// The cookie consent level defined on the shop's online store.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("cookie_consent_level")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? CookieConsentLevel { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the Shopify plan the shop is on.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("plan_name")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? PlanName { get; set; } = default!;
+
+        /// <summary>
+        /// The shop's primary locale, as configured in the language settings of the shop's theme.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("primary_locale")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? PrimaryLocale { get; set; } = default!;
+
+        /// <summary>
+        /// Formerly used for the ID of the shipping origin location (read only).
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("primary_location_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        [System.Obsolete]
+        public long? PrimaryLocationId { get; set; } = default!;
+
+        /// <summary>
+        /// The shop's normalized province or state name.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Province { get; set; } = default!;
+
+        /// <summary>
+        /// The two- or three-letter code for the shop's province or state.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("province_code")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? ProvinceCode { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the shop requires an extra Shopify Payments agreement.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("requires_extra_payments_agreement")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? RequiresExtraPaymentsAgreement { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the shop has any outstanding setup steps.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("setup_required")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? SetupRequired { get; set; } = default!;
+
+        /// <summary>
+        /// The username of the shop owner.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("shop_owner")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? ShopOwner { get; set; } = default!;
+
+        /// <summary>
+        /// The handle of the partner account that referred the merchant to Shopify, if applicable.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("source")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Source { get; set; } = default!;
+
+        /// <summary>
+        /// Whether applicable taxes are included in product prices. Valid values: `true` or `null`.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("taxes_included")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? TaxesIncluded { get; set; } = default!;
+
+        /// <summary>
+        /// Whether taxes are charged for shipping. Valid values: `true` or `false`.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_shipping")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? TaxShipping { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the timezone the shop is in.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("timezone")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Timezone { get; set; } = default!;
+
+        /// <summary>
+        /// Whether transactional SMS sent by Shopify are disabled on the shop's online store.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("transactional_sms_disabled")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? TransactionalSmsDisabled { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) when the shop was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The default unit of weight measurement for the shop.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("weight_unit")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? WeightUnit { get; set; } = default!;
+
+        /// <summary>
+        /// The shop's zip or postal code.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("zip")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Zip { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ShopItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("shop")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public Shop Shop { get; set; } = new Shop();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2547,6 +3536,79 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
         public UpdateProvince Province { get; set; } = new UpdateProvince();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class WeightBasedShippingRate
+    {
+        /// <summary>
+        /// The object's unique id.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// Minimum order weight
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("weight_low")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? WeightLow { get; set; } = default!;
+
+        /// <summary>
+        /// Maximum order weight
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("weight_high")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? WeightHigh { get; set; } = default!;
+
+        /// <summary>
+        /// Name of weight based rate
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// Rate amount
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? Price { get; set; } = default!;
+
+        /// <summary>
+        /// Shipping zone id
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_zone_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? ShippingZoneId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
 
     }
 

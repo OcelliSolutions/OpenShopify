@@ -13,15 +13,15 @@ public class PaymentController : PaymentControllerBase
 {
     ///TODO: different URLs https://shopify.dev/api/admin-rest/2022-04/resources/payment#post-https:-elb.deposit.shopifycs.com-sessions
     /// <inheritdoc />
-    [IgnoreApi]
-    [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("elb.deposit.shopifycs.com/sessions")]
-    public override Task StoreCreditCardInCardVault(string credit_card)
+    [IgnoreApi, HttpPost, Route("elb.deposit.shopifycs.com/sessions")]
+    public override Task StoreCreditCardInCardVault(string credit_card = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [HttpPost, Route("checkouts/{token:long}/payments.json")]
+    [HttpPost, Route("checkouts/{token}/payments.json")]
+    [ProducesResponseType(typeof(PaymentItem), StatusCodes.Status201Created)]
     public override Task CreatePayment(CreatePaymentRequest request, decimal? amount = null, string? request_details = null,
         long? session_id = null, string? token = null, string? unique_token = null)
     {
@@ -29,24 +29,25 @@ public class PaymentController : PaymentControllerBase
     }
 
     /// <inheritdoc />
-    [HttpGet, Route("checkouts/{token:long}/payments.json")]
-    public override Task ListPaymentsOnParticularCheckout(string token)
+    [HttpGet, Route("checkouts/{token}/payments.json")]
+    [ProducesResponseType(typeof(PaymentList), StatusCodes.Status200OK)]
+    public override Task ListPaymentsOnParticularCheckout(string? token = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [HttpGet, Route("checkouts/{token:long}/payments/{payment_id:long}.json")]
-
-    public override Task GetPayment([Required] long payment_id, string token)
+    [HttpGet, Route("checkouts/{token}/payments/{payment_id:long}.json")]
+    [ProducesResponseType(typeof(PaymentItem), StatusCodes.Status200OK)]
+    public override Task GetPayment([Required] long payment_id, string? token = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [HttpGet, Route("checkouts/{token:long}/payments/count.json")]
+    [HttpGet, Route("checkouts/{token}/payments/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountNumberOfPaymentsAttemptedOnCheckout(string token)
+    public override Task CountNumberOfPaymentsAttemptedOnCheckout(string? token = null)
     {
         throw new NotImplementedException();
     }

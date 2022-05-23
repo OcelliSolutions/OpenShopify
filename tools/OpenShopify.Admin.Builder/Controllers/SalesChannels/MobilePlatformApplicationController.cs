@@ -29,7 +29,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// List all of the mobile platform applications associated with the app
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("mobile_platform_applications.json")]
-        public abstract System.Threading.Tasks.Task ListAllOfMobilePlatformApplicationsAssociatedWithApp();
+        public abstract System.Threading.Tasks.Task ListMobilePlatformApplicationsAssociatedWithApp();
 
         /// <summary>
         /// Create a mobile platform application

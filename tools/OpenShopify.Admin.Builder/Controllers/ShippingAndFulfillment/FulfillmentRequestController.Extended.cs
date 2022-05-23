@@ -13,22 +13,25 @@ public class FulfillmentRequestController : FulfillmentRequestControllerBase
 {
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/fulfillment_request.json")]
-    public override Task SendFulfillmentRequest([Required] long fulfillment_order_id, string? fulfillment_order_line_items,
-        string? message)
+    [ProducesResponseType(typeof(FulfillmentRequestItem), StatusCodes.Status200OK)]
+    public override Task SendFulfillmentRequest([Required] long fulfillment_order_id, string? fulfillment_order_line_items = null,
+        string? message = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/fulfillment_request/accept.json")]
-    public override Task AcceptFulfillmentRequest([Required] long fulfillment_order_id, string? message)
+    [ProducesResponseType(typeof(FulfillmentRequestItem), StatusCodes.Status200OK)]
+    public override Task AcceptFulfillmentRequest([Required] long fulfillment_order_id, string? message = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/fulfillment_request/reject.json")]
-    public override Task RejectFulfillmentRequest([Required] long fulfillment_order_id, string? message)
+    [ProducesResponseType(typeof(FulfillmentRequestItem), StatusCodes.Status200OK)]
+    public override Task RejectFulfillmentRequest([Required] long fulfillment_order_id, string? message = null)
     {
         throw new NotImplementedException();
     }

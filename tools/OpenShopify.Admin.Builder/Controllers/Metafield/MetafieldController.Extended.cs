@@ -56,7 +56,7 @@ public class MetafieldController : MetafieldControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("metafields/{metafield_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteMetafieldByItsID([Required] long metafield_id)
+    public override Task DeleteMetafield([Required] long metafield_id)
     {
         throw new NotImplementedException();
     }

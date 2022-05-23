@@ -986,25 +986,25 @@ public partial record ThemeBase : ThemeOrig{}
 	
 public partial record AbandonedCheckoutItem
 {
-    [JsonPropertyName("abandoned_checkout"), Required]
+    [JsonPropertyName("checkout"), Required]
     public Checkout AbandonedCheckout { get; set; } = null!;
 }
 
 public partial record AbandonedCheckoutList
 {
-    [JsonPropertyName("abandoned_checkouts"), Required]
+    [JsonPropertyName("checkouts"), Required]
     public IEnumerable<Checkout> AbandonedCheckouts { get; set; } = null!;
 }
 public partial record CreateAbandonedCheckoutRequest
 {
-    [JsonPropertyName("abandoned_checkout"), Required]
+    [JsonPropertyName("checkout"), Required]
     public CreateAbandonedCheckout AbandonedCheckout { get; set; } = null!;
 }
 
 public partial record CreateAbandonedCheckout : CheckoutBase {}
 public partial record UpdateAbandonedCheckoutRequest
 {
-    [JsonPropertyName("abandoned_checkout"), Required]
+    [JsonPropertyName("checkout"), Required]
     public UpdateAbandonedCheckout AbandonedCheckout { get; set; } = null!;
 }
 
@@ -1055,6 +1055,25 @@ public partial record DraftOrder : DraftOrderBase
 }
 
 public partial record DraftOrderBase : DraftOrderOrig{}
+
+	
+public partial record DraftOrderInvoiceItem
+{
+    [JsonPropertyName("draft_order_invoice"), Required]
+    public DraftOrderInvoice DraftOrderInvoice { get; set; } = null!;
+}
+
+public partial record DraftOrderInvoiceList
+{
+    [JsonPropertyName("draft_order_invoices"), Required]
+    public IEnumerable<DraftOrderInvoice> DraftOrderInvoices { get; set; } = null!;
+}
+		
+public partial record DraftOrderInvoice : DraftOrderInvoiceBase
+{
+}
+
+public partial record DraftOrderInvoiceBase : DraftOrderInvoiceOrig{}
 
 	
 public partial record OrderItem

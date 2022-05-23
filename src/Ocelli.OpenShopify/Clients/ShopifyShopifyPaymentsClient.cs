@@ -31,7 +31,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> GetCurrentBalanceAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<BalanceItem>> GetCurrentBalanceAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -73,7 +73,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetCurrentBalanceAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<BalanceItem>> GetCurrentBalanceAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/shopify_payments/balance.json");
@@ -85,6 +85,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -109,7 +110,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<BalanceItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<BalanceItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -245,7 +251,7 @@ namespace Ocelli.OpenShopify
         /// <param name="status">Return only disputes with the specified status.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> ListDisputesAsync(string? initiatedAt = null, long? lastId = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DisputeList>> ListDisputesAsync(string? initiatedAt = null, long? lastId = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -253,7 +259,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> GetDisputeAsync(long disputeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DisputeItem>> GetDisputeAsync(long disputeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -299,7 +305,7 @@ namespace Ocelli.OpenShopify
         /// <param name="status">Return only disputes with the specified status.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListDisputesAsync(string? initiatedAt = null, long? lastId = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DisputeList>> ListDisputesAsync(string? initiatedAt = null, long? lastId = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/shopify_payments/disputes.json?");
@@ -328,6 +334,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -352,7 +359,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<DisputeList>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<DisputeList>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -380,7 +392,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetDisputeAsync(long disputeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DisputeItem>> GetDisputeAsync(long disputeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (disputeId == null)
                 throw new System.ArgumentNullException("disputeId");
@@ -396,6 +408,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -420,7 +433,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<DisputeItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<DisputeItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -558,7 +576,7 @@ namespace Ocelli.OpenShopify
         /// <param name="status">Filter the response to payouts made with the specified status.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> ListPayoutsAsync(System.DateTimeOffset? date = null, System.DateTimeOffset? dateMax = null, System.DateTimeOffset? dateMin = null, long? lastId = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<PayoutList>> ListPayoutsAsync(System.DateTimeOffset? date = null, System.DateTimeOffset? dateMax = null, System.DateTimeOffset? dateMin = null, long? lastId = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -566,7 +584,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> GetPayoutAsync(long payoutId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<PayoutItem>> GetPayoutAsync(long payoutId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -614,7 +632,7 @@ namespace Ocelli.OpenShopify
         /// <param name="status">Filter the response to payouts made with the specified status.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListPayoutsAsync(System.DateTimeOffset? date = null, System.DateTimeOffset? dateMax = null, System.DateTimeOffset? dateMin = null, long? lastId = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PayoutList>> ListPayoutsAsync(System.DateTimeOffset? date = null, System.DateTimeOffset? dateMax = null, System.DateTimeOffset? dateMin = null, long? lastId = null, long? sinceId = null, string? status = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/shopify_payments/payouts.json?");
@@ -651,6 +669,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -675,7 +694,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<PayoutList>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<PayoutList>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -703,7 +727,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetPayoutAsync(long payoutId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PayoutItem>> GetPayoutAsync(long payoutId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (payoutId == null)
                 throw new System.ArgumentNullException("payoutId");
@@ -719,6 +743,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -743,7 +768,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<PayoutItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<PayoutItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -880,7 +910,7 @@ namespace Ocelli.OpenShopify
         /// <param name="test">Filter response to transactions placed in test mode.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> ListBalanceTransactionsAsync(long? payoutId = null, long? lastId = null, string? payoutStatus = null, long? sinceId = null, bool? test = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<TransactionList>> ListBalanceTransactionsAsync(long? payoutId = null, long? lastId = null, string? payoutStatus = null, long? sinceId = null, bool? test = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -927,7 +957,7 @@ namespace Ocelli.OpenShopify
         /// <param name="test">Filter response to transactions placed in test mode.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> ListBalanceTransactionsAsync(long? payoutId = null, long? lastId = null, string? payoutStatus = null, long? sinceId = null, bool? test = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<TransactionList>> ListBalanceTransactionsAsync(long? payoutId = null, long? lastId = null, string? payoutStatus = null, long? sinceId = null, bool? test = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/shopify_payments/balance/transactions.json?");
@@ -960,6 +990,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -984,7 +1015,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<TransactionList>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<TransactionList>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -1106,7 +1142,320 @@ namespace Ocelli.OpenShopify
         }
     }
 
-    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Balance : System.Collections.Generic.Dictionary<string, object>
+    {
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class BalanceItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("balance")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public Balance Balance { get; set; } = new Balance();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Dispute
+    {
+        /// <summary>
+        /// The ID of the order that the dispute belongs to.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? OrderId { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the dispute is still in the inquiry phase or has turned into a chargeback. Valid values: 
+        /// <br/>
+        /// <br/>*   **inquiry**: The dispute is in the inquiry phase. 
+        /// <br/>*   **chargeback**: The dispute has turned into a chargeback.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("type")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Type { get; set; } = default!;
+
+        /// <summary>
+        /// The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of the dispute amount.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// The total amount disputed by the cardholder.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("amount")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? Amount { get; set; } = default!;
+
+        /// <summary>
+        /// The reason of the dispute provided by the cardholder's bank. Valid values: 
+        /// <br/>
+        /// <br/>*   **bank_not_process**: The customer's bank cannot process the charge. 
+        /// <br/>*   **credit_not_processed**: The customer claims that the purchased product was returned or the transaction was otherwise canceled, but the merchant have not yet provided a refund or credit.  
+        /// <br/>*   **customer_initiated**: The customer initiated the dispute, so the merchant should contact the customer for additional details to find out why the payment was disputed.  
+        /// <br/>*   **debit_not_authorized**: The customer's bank cannot proceed with the debit since it has not been authorized.  
+        /// <br/>*   **duplicate**: The customer claims they were charged multiple times for the same product or service.  
+        /// <br/>*   **fraudulent**: The cardholder claims that they didn't authorize the payment. 
+        /// <br/>*   **general**: The dispute is uncategorized, so the merchant should contact the customer for additional details to find out why the payment was disputed.  
+        /// <br/>*   **incorrect_account_details**: The customer account associated with the purchase is incorrect.  
+        /// <br/>*   **insufficient_funds**: The customer's bank account has insufficient funds. 
+        /// <br/>*   **product_not_received**: The customer claims they did not receive the products or services purchased.  
+        /// <br/>*   **product_unacceptable**: The product or service was received but was defective, damaged, or not as described.  
+        /// <br/>*   **subscription_canceled**: The customer claims that the merchant continued to charge them after a subscription was canceled.  
+        /// <br/>*   **unrecognized**: The customer doesn't recognize the payment appearing on their card statement.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("reason")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Reason { get; set; } = default!;
+
+        /// <summary>
+        /// The reason for the dispute provided by the cardholder's bank.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("network_reason_code")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? NetworkReasonCode { get; set; } = default!;
+
+        /// <summary>
+        /// The current state of the dispute. Valid values: 
+        /// <br/>
+        /// <br/>*   **needs_response**: The dispute has been open and needs an evidence submission. 
+        /// <br/>*   **under_review**: The evidence has been submitted and is being reviewed by the cardholder's bank.  
+        /// <br/>*   **charge_refunded**: The merchant refunded the inquiry amount. 
+        /// <br/>*   **accepted**: The merchant has accepted the dispute as being valid. 
+        /// <br/>*   **won**: The cardholder's bank reached a final decision in the merchant's favor. 
+        /// <br/>*   **lost**: The cardholder's bank reached a final decision in the buyer's favor.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Status { get; set; } = default!;
+
+        /// <summary>
+        /// The deadline for evidence submission.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("evidence_due_by")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? EvidenceDueBy { get; set; } = default!;
+
+        /// <summary>
+        /// "The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when evidence was sent. Returns `null` if evidence has not yet been sent.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("evidence_sent_on")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? EvidenceSentOn { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when this dispute was resolved. Returns `null` if the dispute is not yet resolved.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("finalized_on")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? FinalizedOn { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class DisputeItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("dispute")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public Dispute Dispute { get; set; } = new Dispute();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class DisputeList
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("disputes")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<Dispute> Disputes { get; set; } = new System.Collections.ObjectModel.Collection<Dispute>();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class Payout
+    {
+        /// <summary>
+        /// The transfer status of the payout. The value will be one of the following: 
+        /// <br/>
+        /// <br/>*   **scheduled**: The payout has been created and had transactions assigned to it, but it has not yet been submitted to the bank.  
+        /// <br/>*   **in_transit**: The payout has been submitted to the bank for processing. 
+        /// <br/>*   **paid**: The payout has been successfully deposited into the bank. 
+        /// <br/>*   **failed**: The payout has been declined by the bank. 
+        /// <br/>*   **canceled**: The payout has been canceled by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Status { get; set; } = default!;
+
+        /// <summary>
+        /// The date ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the payout was issued.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("date")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? Date { get; set; } = default!;
+
+        /// <summary>
+        /// The ISO 4217 currency code of the payout.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// The total amount of the payout, in a decimal formatted string.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("amount")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? Amount { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class PayoutItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("payout")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public Payout Payout { get; set; } = new Payout();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class PayoutList
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("payouts")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<Payout> Payouts { get; set; } = new System.Collections.ObjectModel.Collection<Payout>();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
 
 
 

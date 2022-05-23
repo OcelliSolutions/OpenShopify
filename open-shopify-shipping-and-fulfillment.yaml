@@ -48,6 +48,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssignedFulfillmentOrderList'
   '/fulfillment_orders/{fulfillment_order_id}/cancellation_request.json':
     post:
       tags:
@@ -78,6 +82,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancellationRequestItem'
   '/fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json':
     post:
       tags:
@@ -108,6 +116,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancellationRequestItem'
   '/fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json':
     post:
       tags:
@@ -138,6 +150,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancellationRequestItem'
   /carrier_services.json:
     post:
       tags:
@@ -154,8 +170,8 @@ paths:
               $ref: '#/components/schemas/CreateCarrierServiceRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -165,6 +181,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierServiceItem'
     get:
       tags:
         - CarrierService
@@ -182,6 +202,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierServiceList'
   '/carrier_services/{carrier_service_id}.json':
     put:
       tags:
@@ -216,6 +240,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierServiceItem'
     get:
       tags:
         - CarrierService
@@ -240,6 +268,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierServiceItem'
     delete:
       tags:
         - CarrierService
@@ -335,6 +367,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentList'
     post:
       tags:
         - Fulfillment
@@ -357,8 +393,8 @@ paths:
               $ref: '#/components/schemas/CreateFulfillmentRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -368,6 +404,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentItem'
   '/fulfillment_orders/{fulfillment_order_id}/fulfillments.json':
     get:
       tags:
@@ -393,6 +433,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentList'
   '/orders/{order_id}/fulfillments/count.json':
     get:
       tags:
@@ -482,6 +526,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentItem'
     put:
       tags:
         - Fulfillment
@@ -521,6 +569,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentItem'
   /fulfillments.json:
     post:
       tags:
@@ -537,8 +589,8 @@ paths:
               $ref: '#/components/schemas/CreateFulfillmentRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -548,6 +600,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentItem'
   '/fulfillments/{fulfillment_id}/update_tracking.json':
     post:
       tags:
@@ -581,6 +637,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentItem'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/complete.json':
     post:
       tags:
@@ -612,6 +672,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentItem'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/open.json':
     post:
       tags:
@@ -643,6 +707,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentItem'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/cancel.json':
     post:
       tags:
@@ -674,6 +742,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentItem'
   '/fulfillments/{fulfillment_id}/cancel.json':
     post:
       tags:
@@ -699,6 +771,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentItem'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/events.json':
     get:
       tags:
@@ -730,6 +806,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentEventList'
     post:
       tags:
         - FulfillmentEvent
@@ -758,8 +838,8 @@ paths:
               $ref: '#/components/schemas/CreateFulfillmentEventRequest'
         required: true
       responses:
-        '200':
-          description: Success
+        '201':
+          description: Created
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -769,6 +849,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentEventItem'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json':
     get:
       tags:
@@ -806,6 +890,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentEventItem'
     delete:
       tags:
         - FulfillmentEvent
@@ -867,6 +955,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentOrderList'
   '/fulfillment_orders/{fulfillment_order_id}.json':
     get:
       tags:
@@ -892,6 +984,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentOrderItem'
   '/fulfillment_orders/{fulfillment_order_id}/cancel.json':
     post:
       tags:
@@ -917,6 +1013,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentOrderItem'
   '/fulfillment_orders/{fulfillment_order_id}/close.json':
     post:
       tags:
@@ -947,6 +1047,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentOrderItem'
   '/fulfillment_orders/{fulfillment_order_id}/move.json':
     post:
       tags:
@@ -978,6 +1082,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentOrderItem'
   '/fulfillment_orders/{fulfillment_order_id}/open.json':
     post:
       tags:
@@ -1003,6 +1111,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentOrderItem'
   '/fulfillment_orders/{fulfillment_order_id}/reschedule.json':
     post:
       tags:
@@ -1028,6 +1140,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentOrderItem'
   '/fulfillment_orders/{fulfillment_order_id}/hold.json':
     post:
       tags:
@@ -1068,6 +1184,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentOrderItem'
   '/fulfillment_orders/{fulfillment_order_id}/release_hold.json':
     post:
       tags:
@@ -1093,6 +1213,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentOrderItem'
   '/fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json':
     post:
       tags:
@@ -1128,6 +1252,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentRequestItem'
   '/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json':
     post:
       tags:
@@ -1158,6 +1286,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentRequestItem'
   '/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json':
     post:
       tags:
@@ -1188,6 +1320,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentRequestItem'
   /fulfillment_services.json:
     get:
       tags:
@@ -1360,6 +1496,10 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationsForMoveList'
 components:
   schemas:
     Address:
@@ -1435,6 +1575,118 @@ components:
         id:
           type: integer
           format: int64
+      additionalProperties: { }
+    AssignedFulfillmentOrderList:
+      required:
+        - assigned_fulfillment_orders
+      type: object
+      properties:
+        assigned_fulfillment_orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentOrder'
+      additionalProperties: { }
+    AssignedLocation:
+      type: object
+      properties:
+        address1:
+          type: string
+          description: The street address of the assigned location.
+          nullable: true
+        address2:
+          type: string
+          description: An optional additional field for the street address of the assigned location.
+          nullable: true
+        city:
+          type: string
+          description: The city of the assigned location.
+          nullable: true
+        country_code:
+          type: string
+          description: The two-letter code for the country of the assigned location.
+          nullable: true
+        location_id:
+          type: string
+          description: The ID of the assigned location.
+          nullable: true
+        name:
+          type: string
+          description: The name of the assigned location.
+          nullable: true
+        phone:
+          type: string
+          description: The phone number of the assigned location.
+          nullable: true
+        province:
+          type: string
+          description: The province of the assigned location.
+          nullable: true
+        zip:
+          type: string
+          description: The ZIP code of the assigned location.
+          nullable: true
+      additionalProperties: { }
+    CancellationRequestItem:
+      required:
+        - cancellation_request
+      type: object
+      properties:
+        cancellation_request:
+          $ref: '#/components/schemas/FulfillmentOrder'
+      additionalProperties: { }
+    CarrierService:
+      required:
+        - id
+      type: object
+      properties:
+        active:
+          type: boolean
+          description: Whether this carrier service is active.
+          nullable: true
+        callback_url:
+          type: string
+          description: The URL endpoint that Shopify needs to retrieve shipping rates. This must be a public URL.
+          nullable: true
+        carrier_service_type:
+          type: string
+          description: Distinguishes between API or legacy carrier services.
+          nullable: true
+        format:
+          type: string
+          description: 'The format of the data returned by the URL endpoint. Valid values: `json` and `xml`. Default value: `json`.'
+          nullable: true
+        name:
+          type: string
+          description: The name of the shipping service as seen by merchants and their customers.
+          nullable: true
+        service_discovery:
+          type: boolean
+          description: Whether merchants are able to send dummy data to your service through the Shopify admin to see shipping rate examples.
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        id:
+          type: integer
+          format: int64
+      additionalProperties: { }
+    CarrierServiceItem:
+      required:
+        - carrier_service
+      type: object
+      properties:
+        carrier_service:
+          $ref: '#/components/schemas/CarrierService'
+      additionalProperties: { }
+    CarrierServiceList:
+      required:
+        - carrier_services
+      type: object
+      properties:
+        carrier_services:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarrierService'
       additionalProperties: { }
     CountItem:
       type: object
@@ -1724,6 +1976,19 @@ components:
         fulfillment_service:
           $ref: '#/components/schemas/CreateFulfillmentService'
       additionalProperties: false
+    DeliveryMethod:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The ID of the delivery method.
+          format: int64
+          nullable: true
+        method_type:
+          type: string
+          description: "The type of delivery method. Valid values.\r\n<br>local: A delivery to a customer's doorstep</br><br>none: No delivery method</br><br>pick_up: A delivery that a customer picks up at your retail store, curbside, or any location that you choose</br><br>retail: A delivery to a retail store</br><br>shipping: A delivery to a customer using a shipping carrier</br>"
+          nullable: true
+      additionalProperties: { }
     DiscountAllocation:
       type: object
       properties:
@@ -1737,6 +2002,435 @@ components:
           format: int64
         amount_set:
           $ref: '#/components/schemas/PriceSet'
+      additionalProperties: { }
+    Fulfillment:
+      required:
+        - id
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: 'The date and time when the fulfillment was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
+          format: date-time
+          nullable: true
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+          description: "A list of the fulfillment's line items, which includes:\r\n\r\n*   **id**: The ID of the line item within the fulfillment. \r\n*   **variant_id**: The ID of the product variant being fulfilled. \r\n*   **title**: The title of the product. \r\n*   **quantity**: The number of items in the fulfillment. \r\n*   **price**: The price of the item. \r\n*   **grams**: The weight of the item in grams. \r\n*   **sku**: The unique identifier of the item in the fulfillment. \r\n*   **variant_title**: The title of the product variant being fulfilled. \r\n*   **vendor**: The name of the supplier of the item. \r\n*   **fulfillment_service**: The service provider who is doing the fulfillment. This field will be deprecated. Use the `assigned_location` property on the `FulfillmentOrder` resource instead. \r\n*   **product_id**: The unique numeric identifier for the product in the fulfillment. \r\n*   **requires_shipping**: Whether a customer needs to provide a shipping address when placing an order for this product variant. \r\n*   **taxable**: Whether the line item is taxable. \r\n*   **gift_card**: Whether the line item is a [gift card](https://help.shopify.com/manual/products/gift-card-products). \r\n*   **name**: The name of the product variant. \r\n*   **variant_inventory_management**: The name of the inventory management system. \r\n*   **properties**: Any additional properties associated with the line item. \r\n*   **product_exists**: Whether the product exists. \r\n*   **fulfillable_quantity**: The amount available to fulfill. This is the quantity - max (refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity. This field will be deprecated. Use the `fulfillable_quantity` property of the `line_item` property on the `FulfillmentOrder` resource instead. \r\n*   **total_discount**: The total of any discounts applied to the line item. \r\n*   **fulfillment_status**: The status of an order in terms of the line items being fulfilled. Valid values: `fulfilled`, `null`, or `partial`. This field will be deprecated. Use the `status` property on the `FulfillmentOrder` resource instead. \r\n*   **fulfillment_line_item_id**: A unique identifier for a quantity of items within a single fulfillment. An order can have multiple fulfillment line items. \r\n*   **tax_lines**: The `title`, `price`, and `rate` of any taxes applied to the line item. \r\n*   **duties**: A list of duty objects, each containing information about a duty on the line item."
+          nullable: true
+        location_id:
+          type: integer
+          description: 'The unique identifier of the location that the fulfillment was processed at. To find the ID of the location, use the [Location resource](/docs/admin-api/rest/reference/inventory/location).'
+          format: int64
+          nullable: true
+        name:
+          type: string
+          description: 'The uniquely identifying fulfillment name, consisting of two parts separated by a `.`. The first part represents the order name and the second part represents the fulfillment number. The fulfillment number automatically increments depending on how many fulfillments are in an order (e.g. `#1001.1`, `#1001.2`).'
+          nullable: true
+        notify_customer:
+          type: boolean
+          description: 'Whether the customer should be notified. If set to `true`, then an email will be sent when the fulfillment is created or updated. For orders that were initially created using the API, the default value is `false`. For all other orders, the default value is `true`.'
+          nullable: true
+        order_id:
+          type: integer
+          description: The unique numeric identifier for the order.
+          format: int64
+          nullable: true
+        origin_address:
+          type: string
+          description: "The address from which the fulfillment occurred:\r\n\r\n*   **address1**: The street address of the fulfillment location. \r\n*   **address2**: The second line of the address. Typically the number of the apartment, suite, or unit. \r\n*   **city**: The city of the fulfillment location. \r\n*   **country_code**: The country of the fulfillment location. \r\n*   **province_code**: The province of the fulfillment location. \r\n*   **zip**: The zip code of the fulfillment location."
+          nullable: true
+        receipt:
+          type: string
+          description: "A text field that provides information about the receipt:\r\n\r\n*   **testcase**: Whether the fulfillment was a testcase. \r\n*   **authorization**: The authorization code."
+          nullable: true
+        service:
+          type: string
+          description: The fulfillment service associated with the fulfillment.
+          nullable: true
+        shipment_status:
+          type: string
+          description: "The current shipment status of the fulfillment. Valid values:\r\n\r\n*   **label_printed**: A label for the shipment was purchased and printed. \r\n*   **label_purchased**: A label for the shipment was purchased, but not printed. \r\n*   **attempted_delivery**: Delivery of the shipment was attempted, but unable to be completed. \r\n*   **ready_for_pickup**: The shipment is ready for pickup at a shipping depot. \r\n*   **confirmed**: The carrier is aware of the shipment, but hasn't received it yet. \r\n*   **in_transit**: The shipment is being transported between shipping facilities on the way to its destination. \r\n*   **out_for_delivery**: The shipment is being delivered to its final destination. \r\n*   **delivered**: The shipment was succesfully delivered. \r\n*   **failure**: Something went wrong when pulling tracking information for the shipment, such as the tracking number was invalid or the shipment was canceled."
+          nullable: true
+        status:
+          type: string
+          description: "The status of the fulfillment. Valid values:\r\n\r\n*   **pending**: Shopify has created the fulfillment and is waiting for the third-party fulfillment service to transition it to 'open' or 'success'. \r\n*   **open**: The fulfillment has been acknowledged by the service and is in processing. \r\n*   **success**: The fulfillment was successful. \r\n*   **cancelled**: The fulfillment was cancelled. \r\n*   **error**: There was an error with the fulfillment request. \r\n*   **failure**: The fulfillment request failed."
+          nullable: true
+        tracking_company:
+          type: string
+          description: "The name of the tracking company. The following tracking companies display for shops located in any country: \r\n\r\n*   **4PX** \r\n*   **Amazon Logistics UK** \r\n*   **Amazon Logistics US** \r\n*   **Anjun Logistics** \r\n*   **APC** \r\n*   **Australia Post** \r\n*   **Bluedart** \r\n*   **Canada Post** \r\n*   **Canpar** \r\n*   **China Post** \r\n*   **Chukou1** \r\n*   **Correios** \r\n*   **Couriers Please** \r\n*   **Delhivery** \r\n*   **DHL eCommerce** \r\n*   **DHL eCommerce Asia** \r\n*   **DHL Express** \r\n*   **DPD** \r\n*   **DPD Local** \r\n*   **DPD UK** \r\n*   **Eagle** \r\n*   **FedEx** \r\n*   **FSC** \r\n*   **Asendia USA** \r\n*   **GLS** \r\n*   **GLS (US)** \r\n*   **Japan Post** \r\n*   **La Poste** \r\n*   **New Zealand Post** \r\n*   **Newgistics** \r\n*   **PostNL** \r\n*   **PostNord** \r\n*   **Purolator** \r\n*   **Royal Mail** \r\n*   **Sagawa** \r\n*   **Sendle** \r\n*   **SF Express** \r\n*   **SFC Fulfilllment** \r\n*   **Singapore Post** \r\n*   **StarTrack** \r\n*   **TNT** \r\n*   **Toll IPEC** \r\n*   **UPS** \r\n*   **USPS** \r\n*   **Whistl** \r\n*   **Yamato** \r\n*   **YunExpress**  \r\n\r\nThe following tracking companies are displayed for shops located in specific countries:\r\n\r\n*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL \r\n*   **Ireland**: An Post, Fastway \r\n*   **Australia**: Aramex Australia, Australia Post, Sendle \r\n*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 \r\n*   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress  <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nWhen creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.\r\n </div>"
+          nullable: true
+        tracking_numbers:
+          type: array
+          items:
+            type: string
+          description: "A list of tracking numbers, provided by the shipping company. <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nIt is highly recommended that you send the tracking company and the tracking URL as well. If neither one of these is sent, then the tracking company will be determined automatically. This can result in an invalid tracking URL.\r\n\r\nThe tracking URL is displayed in the shipping confirmation email, which can optionally be sent to the customer. When accounts are enabled, it is also displayed in the customer's order history.\r\n </div>"
+          nullable: true
+        tracking_urls:
+          type: array
+          items:
+            type: string
+          description: The URLs of tracking pages for the fulfillment.
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the fulfillment was last modified..'
+          format: date-time
+          nullable: true
+        variant_inventory_management:
+          type: string
+          description: The name of the inventory management service.
+          nullable: true
+        destination:
+          $ref: '#/components/schemas/Address'
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    FulfillmentEvent:
+      required:
+        - id
+      type: object
+      properties:
+        address1:
+          type: string
+          description: The street address where the fulfillment event occurred.
+          nullable: true
+        city:
+          type: string
+          description: The city where the fulfillment event occurred.
+          nullable: true
+        country:
+          type: string
+          description: The country where the fulfillment event occurred.
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was created.'
+          format: date-time
+          nullable: true
+        estimated_delivery_at:
+          type: string
+          description: 'The estimated delivery date based on the fulfillment''s tracking number, as long as it''s provided by one of the following carriers: USPS, FedEx, UPS, or Canada Post (Canada only). Value is `null` if no tracking number is available or if the tracking number is from an unsupported carrier. This property is available only when [carrier calculated rates](https://help.shopify.com/manual/shipping/rates-and-methods/custom-calculated-rates) are in use.'''
+          format: date-time
+          nullable: true
+        fulfillment_id:
+          type: integer
+          description: An ID for the fulfillment that's associated with the fulfillment event.
+          format: int64
+          nullable: true
+        happened_at:
+          type: string
+          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event occurred.'
+          format: date-time
+          nullable: true
+        latitude:
+          type: number
+          description: A geographic coordinate specifying the latitude of the fulfillment event.
+          format: decimal
+          nullable: true
+        longitude:
+          type: number
+          description: A geographic coordinate specifying the longitude of the fulfillment event.
+          format: decimal
+          nullable: true
+        message:
+          type: string
+          description: An arbitrary message describing the status. Can be provided by a shipping carrier.
+          nullable: true
+        order_id:
+          type: integer
+          description: The ID of the order that's associated with the fulfillment event.
+          format: int64
+          nullable: true
+        province:
+          type: string
+          description: The province where the fulfillment event occurred.
+          nullable: true
+        shop_id:
+          type: integer
+          description: An ID for the shop that's associated with the fulfillment event.
+          format: int64
+          nullable: true
+        status:
+          type: string
+          description: "The status of the fulfillment event. Valid values:\r\n\r\n*   **label_printed**: A label for the shipment was purchased and printed. \r\n*   **label_purchased**: A label for the shipment was purchased, but not printed. \r\n*   **attempted_delivery**: Delivery of the shipment was attempted, but unable to be completed. \r\n*   **ready_for_pickup**: The shipment is ready for pickup at a shipping depot. \r\n*   **picked_up**: The fulfillment was successfully picked up. \r\n*   **confirmed**: The carrier is aware of the shipment, but hasn't received it yet. \r\n*   **in_transit**: The shipment is being transported between shipping facilities on the way to its destination. \r\n*   **out_for_delivery**: The shipment is being delivered to its final destination. \r\n*   **delivered**: The shipment was successfully delivered. \r\n*   **failure**: Something went wrong when pulling tracking information for the shipment, such as the tracking number was invalid or the shipment was canceled."
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was updated.'
+          format: date-time
+          nullable: true
+        zip:
+          type: string
+          description: The zip code of the location where the fulfillment event occurred.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    FulfillmentEventItem:
+      required:
+        - fulfillment_event
+      type: object
+      properties:
+        fulfillment_event:
+          $ref: '#/components/schemas/FulfillmentEvent'
+      additionalProperties: { }
+    FulfillmentEventList:
+      required:
+        - fulfillment_events
+      type: object
+      properties:
+        fulfillment_events:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentEvent'
+      additionalProperties: { }
+    FulfillmentItem:
+      required:
+        - fulfillment
+      type: object
+      properties:
+        fulfillment:
+          $ref: '#/components/schemas/Fulfillment'
+      additionalProperties: { }
+    FulfillmentList:
+      required:
+        - fulfillments
+      type: object
+      properties:
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+      additionalProperties: { }
+    FulfillmentOrder:
+      required:
+        - id
+      type: object
+      properties:
+        assigned_location_id:
+          type: integer
+          description: The ID of the location that has been assigned to do the work.
+          format: int64
+          nullable: true
+        destination:
+          $ref: '#/components/schemas/FulfillmentOrderDestination'
+        delivery_method:
+          $ref: '#/components/schemas/DeliveryMethod'
+        fulfill_at:
+          type: string
+          description: 'The date and time at which the fulfillment order will be fulfillable. When this date and time is reached, a `scheduled` fulfillment order is automatically transitioned to `open`. For more information about fulfillment statuses, refer to the **status** property.'
+          format: date-time
+          nullable: true
+        fulfill_by:
+          type: string
+          description: The latest date and time by which all items in the fulfillment order need to be fulfilled.
+          nullable: true
+        fulfillment_holds:
+          type: string
+          description: "Represents the fulfillment holds applied on the fulfillment order.\r\n\r\n*   **reason**: The reason for the fulfillment hold. \r\n*   **reason_notes**: Additional information about the fulfillment hold reason."
+          nullable: true
+        international_duties:
+          type: string
+          description: "The international duties relevant to the fulfillment order.\r\n\r\n*   **incoterm**: The method of duties payment. Valid values: \r\n\r\n    *   **DAP**: Delivered at place. \r\n    *   **DDP**: Delivered duty paid."
+          nullable: true
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentOrderLineItem'
+          description: 'Represents line items belonging to a fulfillment order:'
+          nullable: true
+        order_id:
+          type: integer
+          description: The ID of the order that's associated with the fulfillment order.
+          format: int64
+          nullable: true
+        request_status:
+          type: string
+          description: "The request status of the fulfillment order. Valid values:\r\n\r\n*   **unsubmitted**: The initial request status for newly-created fulfillment orders. This is the only valid request status for fulfillment orders that aren't assigned to a fulfillment service.  \r\n*   **submitted**: The merchant requested fulfillment for this fulfillment order.  \r\n*   **accepted**: The fulfillment service accepted the merchant's fulfillment request.  \r\n*   **rejected**: The fulfillment service rejected the merchant's fulfillment request.  \r\n*   **cancellation_requested**: The merchant requested a cancellation of the fulfillment request for this fulfillment order.  \r\n*   **cancellation_accepted**: The fulfillment service accepted the merchant's fulfillment cancellation request.  \r\n*   **cancellation_rejected**: The fulfillment service rejected the merchant's fulfillment cancellation request.  \r\n*   **closed**: The fulfillment service closed the fulfillment order without completing it."
+          nullable: true
+        shop_id:
+          type: integer
+          description: The ID of the shop that's associated with the fulfillment order.
+          format: int64
+          nullable: true
+        status:
+          type: string
+          description: "The status of the fulfillment order. Valid values:\r\n\r\n*   **open**: The fulfillment order is ready for fulfillment.  \r\n*   **in_progress**: The fulfillment order is being processed.  \r\n*   **scheduled**: The fulfillment order is deferred and will be ready for fulfillment after the datetime specified in `fulfill_at`.  \r\n*   **cancelled**: The fulfillment order has been cancelled by the merchant.  \r\n*   **on_hold**: The fulfillment order is on hold. The fulfillment process can't be initiated until the hold on the fulfillment order is released.  \r\n*   **incomplete**: The fulfillment order cannot be completed as requested.  \r\n*   **closed**: The fulfillment order has been completed and closed."
+          nullable: true
+        supported_actions:
+          type: array
+          items:
+            type: string
+          description: The actions that can be performed on this fulfillment order.
+          nullable: true
+        merchant_requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantRequest'
+          description: "A list of requests sent by the merchant to the fulfillment service for this fulfillment order.\r\n\r\n*   **message**: The message returned by the merchant, if any. \r\n*   **request_options**: The request options returned by the merchant, if any. \r\n*   **kind**: The kind of request. Valid values: *fulfillment_request*, *cancellation_request*, or *legacy_fulfill_request*."
+          nullable: true
+        assigned_location:
+          $ref: '#/components/schemas/AssignedLocation'
+        outgoing_requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutgoingRequest'
+          description: Followings actions can be performed on this fulfillment order.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    FulfillmentOrderDestination:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The ID of the fulfillment order destination.
+          format: int64
+          nullable: true
+        address1:
+          type: string
+          description: The street address of the assigned location.
+          nullable: true
+        address2:
+          type: string
+          description: An optional additional field for the street address of the assigned location.
+          nullable: true
+        city:
+          type: string
+          description: The city of the destination.
+          nullable: true
+        company:
+          type: string
+          description: The company of the destination.
+          nullable: true
+        country:
+          type: string
+          description: The country of the destination.
+          nullable: true
+        email:
+          type: string
+          description: The email of the customer at the destination.
+          nullable: true
+        first_name:
+          type: string
+          description: The first name of the customer at the destination.
+          nullable: true
+        last_name:
+          type: string
+          description: The last name of the customer at the destination.
+          nullable: true
+        phone:
+          type: string
+          description: The phone number of the customer at the destination.
+          nullable: true
+        province:
+          type: string
+          description: The province of the destination.
+          nullable: true
+        zip:
+          type: string
+          description: The ZIP code of the destination.
+          nullable: true
+      additionalProperties: { }
+    FulfillmentOrderItem:
+      required:
+        - fulfillment_order
+      type: object
+      properties:
+        fulfillment_order:
+          $ref: '#/components/schemas/FulfillmentOrder'
+      additionalProperties: { }
+    FulfillmentOrderLineItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The ID of the fulfillment order line item.
+          format: int64
+          nullable: true
+        shop_id:
+          type: integer
+          description: The ID of the shop associated with the fulfillment order line item.
+          format: int64
+          nullable: true
+        fulfillment_order_id:
+          type: integer
+          description: The ID of the fulfillment order associated with this line item.
+          format: int64
+          nullable: true
+        line_item_id:
+          type: integer
+          description: The ID of the line item associated with this fulfillment order line item.
+          format: int64
+          nullable: true
+        inventory_item_id:
+          type: integer
+          description: The ID of the inventory item associated with this fulfillment order line item.
+          format: int64
+          nullable: true
+        quantity:
+          type: integer
+          description: The total number of units to be fulfilled.
+          format: int64
+          nullable: true
+        fulfillable_quantity:
+          type: integer
+          description: The number of units remaining to be fulfilled.
+          format: int64
+          nullable: true
+        variant_id:
+          type: integer
+          description: The ID of the variant associated with this fulfillment order line item.
+          format: int64
+          nullable: true
+      additionalProperties: { }
+    FulfillmentOrderList:
+      required:
+        - fulfillment_orders
+      type: object
+      properties:
+        fulfillment_orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentOrder'
+      additionalProperties: { }
+    FulfillmentRequest:
+      type: object
+      properties:
+        message:
+          type: string
+          description: An optional message for the fulfillment request.
+          nullable: true
+        fulfillment_order_line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentRequestOrderLineItems'
+          description: 'The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.'
+          nullable: true
+      additionalProperties: { }
+      description: An object representing a Shopify fulfillment request.
+    FulfillmentRequestItem:
+      required:
+        - fulfillment_request
+      type: object
+      properties:
+        fulfillment_request:
+          $ref: '#/components/schemas/FulfillmentRequest'
       additionalProperties: { }
     FulfillmentRequestOrderLineItems:
       type: object
@@ -2063,6 +2757,77 @@ components:
           nullable: true
       additionalProperties: { }
       description: An object representing a properties for OpenShopify.Admin.Builder.Models.LineItem.Properties
+    LocationsForMove:
+      type: object
+      properties:
+        locations_for_move:
+          type: string
+          description: "A list of locations that a fulfillment order can potentially move to.\r\n\r\n*   **location**: The location being considered as the fulfillment order's new assigned location. \r\n*   **movable**: Whether the fulfillment order can be moved to the location. \r\n*   **message**: A human-readable string with the reason why the fulfillment order, or some of its line items, can't be moved to the location."
+          nullable: true
+      additionalProperties: { }
+    LocationsForMoveList:
+      required:
+        - locations_for_moves
+      type: object
+      properties:
+        locations_for_moves:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationsForMove'
+      additionalProperties: { }
+    MerchantRequest:
+      type: object
+      properties:
+        message:
+          type: string
+          description: 'The message returned by the merchant, if any.'
+          nullable: true
+        request_options:
+          $ref: '#/components/schemas/MerchantRequestOptions'
+        kind:
+          type: string
+          description: 'The kind of request. Known valid values: "fulfillment_request", "cancellation_request", or "legacy_fulfill_request".'
+          nullable: true
+      additionalProperties: { }
+    MerchantRequestOptions:
+      type: object
+      properties:
+        shipping_method:
+          type: string
+          nullable: true
+        note:
+          type: string
+          nullable: true
+        date:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: { }
+    OutgoingRequest:
+      type: object
+      properties:
+        message:
+          type: string
+          description: 'The message returned by the merchant, if any.'
+          nullable: true
+        request_options:
+          $ref: '#/components/schemas/OutgoingRequestOptions'
+        sent_at:
+          type: string
+          format: date-time
+          nullable: true
+        kind:
+          type: string
+          description: 'The kind of request. Known valid values: "fulfillment_request", "cancellation_request", or "legacy_fulfill_request".'
+          nullable: true
+      additionalProperties: { }
+    OutgoingRequestOptions:
+      type: object
+      properties:
+        notify_customer:
+          type: boolean
+          nullable: true
+      additionalProperties: { }
     Price:
       type: object
       properties:

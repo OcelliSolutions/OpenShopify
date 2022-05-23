@@ -13,6 +13,7 @@ public class ProductResourceFeedbackController : ProductResourceFeedbackControll
 {
     /// <inheritdoc />
     [HttpPost, Route("products/{product_id:long}/resource_feedback.json")]
+    [ProducesResponseType(typeof(ProductResourceFeedbackItem), StatusCodes.Status201Created)]
     public override Task CreateProductResourceFeedback([Required] CreateProductResourceFeedbackRequest request, [Required] long product_id, string? state)
     {
         throw new NotImplementedException();
@@ -20,6 +21,7 @@ public class ProductResourceFeedbackController : ProductResourceFeedbackControll
 
     /// <inheritdoc />
     [HttpGet, Route("products/{product_id:long}/resource_feedback.json")]
+    [ProducesResponseType(typeof(ProductResourceFeedbackList), StatusCodes.Status200OK)]
     public override Task ListProductResourceFeedbacks([Required] long product_id)
     {
         throw new NotImplementedException();

@@ -83,7 +83,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldByItsIDAsync(long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldAsync(long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -561,7 +561,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldByItsIDAsync(long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteMetafieldAsync(long metafieldId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (metafieldId == null)
                 throw new System.ArgumentNullException("metafieldId");

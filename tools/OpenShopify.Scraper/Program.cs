@@ -539,11 +539,13 @@ string CreateOperationId(string summary)
         .Replace("GetListOf", "List")
         .Replace("GetAllOf", "List")
         .Replace("GetAll", "List")
+        .Replace("ListAllOf", "List")
         .Replace("GetDetailsForSingle", "Get")
         .Replace("GetSingle", "Get")
         .Replace("GetCountOfAll", "Count")
         .Replace("GetCountOf", "Count")
-        .Replace("DeleteExisting", "Delete");
+        .Replace("DeleteExisting", "Delete")
+        .Replace("ByItsID", "");
 
     return summary;
 }
