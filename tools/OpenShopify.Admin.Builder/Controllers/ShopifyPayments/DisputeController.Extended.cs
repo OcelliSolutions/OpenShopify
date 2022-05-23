@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
 
@@ -12,7 +13,7 @@ public class DisputeController : DisputeControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("shopify_payments/disputes.json")]
-    public override Task ListDisputes(string? initiated_at, long? last_id, int? since_id, string? status)
+    public override Task ListDisputes(string? initiated_at = null, long? last_id = null, long? since_id = null, string? status = null)
     {
         throw new NotImplementedException();
     }

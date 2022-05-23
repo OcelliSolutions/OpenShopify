@@ -46,7 +46,7 @@ paths:
       parameters:
         - name: initiated_at
           in: query
-          description: Return only disputes with the specified <code>initiated_at</code> date (<a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> format).
+          description: 'Return only disputes with the specified `initiated_at` date ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format).'
           schema:
             type: string
         - name: last_id
@@ -60,7 +60,7 @@ paths:
           description: Return only disputes after the specified ID.
           schema:
             type: integer
-            format: int32
+            format: int64
         - name: status
           in: query
           description: Return only disputes with the specified status.
@@ -139,7 +139,7 @@ paths:
           description: Filter the response to payouts made after the specified ID.
           schema:
             type: integer
-            format: int32
+            format: int64
         - name: status
           in: query
           description: Filter the response to payouts made with the specified status.
@@ -189,15 +189,15 @@ paths:
       summary: Return a list of all balance transactions
       operationId: ListBalanceTransactions
       parameters:
-        - name: last_id
-          in: query
-          description: Filter response to transactions exclusively before the specified ID
-          schema:
-            type: integer
-            format: int64
         - name: payout_id
           in: query
           description: Filter response to transactions paid out in the specified payout.
+          schema:
+            type: integer
+            format: int64
+        - name: last_id
+          in: query
+          description: Filter response to transactions exclusively before the specified ID
           schema:
             type: integer
             format: int64
@@ -211,12 +211,12 @@ paths:
           description: Filter response to transactions exclusively after the specified ID.
           schema:
             type: integer
-            format: int32
+            format: int64
         - name: test
           in: query
           description: Filter response to transactions placed in test mode.
           schema:
-            type: string
+            type: boolean
       responses:
         '200':
           description: Success

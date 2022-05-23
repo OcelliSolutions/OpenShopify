@@ -22,8 +22,8 @@ public class ShopifyPaymentsService : ShopifyService, IShopifyPaymentsService
         _myShopifyUrl = myShopifyUrl;
     }
     
-    public IBalanceClient Balance => new BalanceClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IDisputeClient Dispute => new DisputeClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IPayoutsClient Payouts => new PayoutsClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public ITransactionsClient Transactions => new TransactionsClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
+    public IBalanceClient Balance => new BalanceClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IDisputeClient Dispute => new DisputeClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IPayoutsClient Payouts => new PayoutsClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public ITransactionsClient Transactions => new TransactionsClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
 }

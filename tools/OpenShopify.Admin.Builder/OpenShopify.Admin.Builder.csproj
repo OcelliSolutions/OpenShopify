@@ -43,13 +43,6 @@
 		<Exec Command="dotnet swagger tofile --output ../../open-shopify-tender-transaction.yaml --yaml $(OutputPath)/$(AssemblyName).dll TenderTransaction " />
 
 	</Target>
-	<ItemGroup>
-	  <None Include="Models\Wrappers.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>Wrappers.tt</DependentUpon>
-	  </None>
-	</ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />

@@ -22,10 +22,10 @@ public class SalesChannelsService : ShopifyService, ISalesChannelsService
         _myShopifyUrl = myShopifyUrl;
     }
     
-    public ICheckoutClient Checkout => new CheckoutClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public ICollectionListingClient CollectionListing => new CollectionListingClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IMobilePlatformApplicationClient MobilePlatformApplication => new MobilePlatformApplicationClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IPaymentClient Payment => new PaymentClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IProductListingClient ProductListing => new ProductListingClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IResourceFeedbackClient ResourceFeedback => new ResourceFeedbackClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
+    public ICheckoutClient Checkout => new CheckoutClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public ICollectionListingClient CollectionListing => new CollectionListingClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IMobilePlatformApplicationClient MobilePlatformApplication => new MobilePlatformApplicationClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IPaymentClient Payment => new PaymentClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IProductListingClient ProductListing => new ProductListingClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IResourceFeedbackClient ResourceFeedback => new ResourceFeedbackClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
 }

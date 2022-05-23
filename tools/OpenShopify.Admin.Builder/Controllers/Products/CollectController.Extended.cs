@@ -31,7 +31,7 @@ public class CollectController : CollectControllerBase
     /// <inheritdoc />
     [HttpGet, Route("collects.json")]
     [ProducesResponseType(typeof(CollectList), StatusCodes.Status200OK)]
-    public override Task ListCollects(string? fields, int? limit, string? page_info, int? since_id)
+    public override Task ListCollects(string? fields = null, int? limit = null, string? page_info = null, long? since_id = null)
     {
         throw new NotImplementedException();
     }
@@ -47,7 +47,7 @@ public class CollectController : CollectControllerBase
     /// <inheritdoc />
     [HttpGet, Route("collects/{collect_id:long}.json")]
     [ProducesResponseType(typeof(CollectItem), StatusCodes.Status200OK)]
-    public override Task GetSpecificCollectByItsID([Required] long collect_id, string? fields)
+    public override Task GetSpecificCollectByItsID([Required] long collect_id, string? fields = null)
     {
         throw new NotImplementedException();
     }

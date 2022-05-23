@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
@@ -15,7 +14,7 @@ public class InventoryItemController : InventoryItemControllerBase
     /// <inheritdoc />
     [HttpGet, Route("inventory_items.json")]
     [ProducesResponseType(typeof(InventoryItemList), StatusCodes.Status200OK)]
-    public override Task ListInventoryItems(string ids, int? limit, string? page_info)
+    public override Task ListInventoryItems(string? ids = null, int? limit = null, string? page_info = null)
     {
         throw new NotImplementedException();
     }

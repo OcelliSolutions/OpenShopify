@@ -6,7 +6,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify payments transaction.
     /// </summary>
-    public class ShopifyPaymentsTransaction : ShopifyObject
+    public partial record ShopifyPaymentsTransaction : ShopifyObject
     {
         [JsonPropertyName("type")]
         public string? Type { get; set; }

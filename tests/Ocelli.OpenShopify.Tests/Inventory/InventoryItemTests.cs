@@ -9,12 +9,32 @@ namespace Ocelli.OpenShopify.Tests.Inventory;
 public class InventoryItemTests : IClassFixture<SharedFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly ITestOutputHelper _testOutputHelper;
+    private readonly InventoryService _service;
 
     public InventoryItemTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
     {
+        _testOutputHelper = testOutputHelper;
         Fixture = sharedFixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _service = new InventoryService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
     private SharedFixture Fixture { get; }
+
+    #region Create
+
+    #endregion Create
+
+    #region Read
+
+    #endregion Read
+
+    #region Update
+
+    #endregion Update
+
+    #region Delete
+
+    #endregion Delete
 }

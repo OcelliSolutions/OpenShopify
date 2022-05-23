@@ -13,15 +13,15 @@ public class DraftOrderController : DraftOrderControllerBase
 {
     /// <inheritdoc />
     [HttpPost, Route("draft_orders.json")]
-    public override Task CreateDraftOrder([Required] CreateDraftOrderRequest request, long? customer_id, string? use_customer_default_address)
+    public override Task CreateDraftOrder(CreateDraftOrderRequest request, long customer_id, bool? use_customer_default_address = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("draft_orders.json")]
-    public override Task ListDraftOrders(string? fieldsQuery, string? ids, int? limit, string? page_info, int? since_id, string? status,
-        DateTime? updated_at_max, DateTime? updated_at_min)
+    public override Task ListDraftOrders(string? fieldsQuery, string? ids = null, int? limit = null, string? page_info = null, long? since_id = null, string? status = null,
+        DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();
     }
@@ -35,7 +35,7 @@ public class DraftOrderController : DraftOrderControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("draft_orders/{draft_order_id:long}.json")]
-    public override Task GetDraftOrder([Required] long draft_order_id, string? fields)
+    public override Task GetDraftOrder([Required] long draft_order_id, string? fields = null)
     {
         throw new NotImplementedException();
     }
@@ -50,7 +50,7 @@ public class DraftOrderController : DraftOrderControllerBase
     /// <inheritdoc />
     [HttpGet, Route("draft_orders/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountDraftOrders(int? since_id, string status, DateTime? updated_at_max, DateTime? updated_at_min)
+    public override Task CountDraftOrders(long? since_id = null, string? status = null, DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();
     }

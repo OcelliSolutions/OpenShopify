@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class ClientDetails
+    public partial record ClientDetails
     {
         /// <summary>
         /// Shopify does not offer documentation for this field.

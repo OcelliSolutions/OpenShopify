@@ -6,7 +6,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify payments payout.
     /// </summary>
-    public class ShopifyPaymentsPayout : ShopifyObject
+    public partial record ShopifyPaymentsPayout : ShopifyObject
     {
         [JsonPropertyName("status")]
         public string? Status { get; set; }
@@ -21,6 +21,6 @@ namespace OpenShopify.Admin.Builder.Models
         public decimal? Amount { get; set; }
 
         [JsonPropertyName("summary")]
-        public ShopifyPaymentsPayoutSummary Summary { get; set; }
+        public ShopifyPaymentsPayoutSummary? Summary { get; set; }
     }
 }

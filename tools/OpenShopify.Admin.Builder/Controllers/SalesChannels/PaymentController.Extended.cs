@@ -22,8 +22,8 @@ public class PaymentController : PaymentControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("checkouts/{token:long}/payments.json")]
-    public override Task CreatePayment([Required] CreatePaymentRequest request, string amount, string request_details, string session_id,
-        string token, string unique_token)
+    public override Task CreatePayment(CreatePaymentRequest request, decimal? amount = null, string? request_details = null,
+        long? session_id = null, string? token = null, string? unique_token = null)
     {
         throw new NotImplementedException();
     }

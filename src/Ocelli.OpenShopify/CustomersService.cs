@@ -19,7 +19,7 @@ public class CustomersService : ShopifyService, ICustomersService
         _baseUri = base.PrepareRequest(myShopifyUrl);
         _myShopifyUrl = myShopifyUrl;
     }
-    public ICustomerClient Customer => new CustomerClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public ICustomerAddressClient CustomerAddress => new CustomerAddressClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public ICustomerSavedSearchClient CustomerSavedSearch => new CustomerSavedSearchClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _adminUri.ToString(), ReadResponseAsString = false };
+    public ICustomerClient Customer => new CustomerClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public ICustomerAddressClient CustomerAddress => new CustomerAddressClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public ICustomerSavedSearchClient CustomerSavedSearch => new CustomerSavedSearchClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _adminUri.ToString(), ReadResponseAsString = true };
 }

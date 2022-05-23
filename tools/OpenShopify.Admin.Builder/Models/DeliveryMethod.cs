@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class DeliveryMethod
+    public partial record DeliveryMethod
     {
         /// <summary>
         /// The ID of the delivery method.

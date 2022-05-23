@@ -2,7 +2,7 @@
 
 namespace OpenShopify.Common.Models;
 
-public class ErrorResponse
+public partial record ErrorResponse
 {
     [JsonPropertyName("errors")]
     public string? Message { get; set; }

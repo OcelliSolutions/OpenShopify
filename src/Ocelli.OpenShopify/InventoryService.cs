@@ -17,7 +17,7 @@ public class InventoryService : ShopifyService, IInventoryService
         _myShopifyUrl = myShopifyUrl;
     }
     
-    public IInventoryItemClient InventoryItem => new InventoryItemClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IInventoryLevelClient InventoryLevel => new InventoryLevelClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public ILocationClient Location => new LocationClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
+    public IInventoryItemClient InventoryItem => new InventoryItemClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IInventoryLevelClient InventoryLevel => new InventoryLevelClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public ILocationClient Location => new LocationClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
 }

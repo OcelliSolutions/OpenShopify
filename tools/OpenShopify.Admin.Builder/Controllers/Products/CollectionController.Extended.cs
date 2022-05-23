@@ -15,7 +15,7 @@ public class CollectionController : CollectionControllerBase
     /// <inheritdoc />
     [HttpGet, Route("collections/{collection_id:long}.json")]
     [ProducesResponseType(typeof(CollectionItem), StatusCodes.Status200OK)]
-    public override Task GetCollection([Required] long collection_id, string? fields)
+    public override Task GetCollection([Required] long collection_id, string? fields = null)
     {
         throw new NotImplementedException();
     }
@@ -23,7 +23,7 @@ public class CollectionController : CollectionControllerBase
     /// <inheritdoc />
     [HttpGet, Route("collections/{collection_id:long}/products.json")]
     [ProducesResponseType(typeof(ProductList), StatusCodes.Status200OK)]
-    public override Task ListProductsBelongingToCollection([Required] long collection_id, int? limit, string? page_info)
+    public override Task ListProductsBelongingToCollection([Required] long collection_id, int? limit = null, string? page_info = null)
     {
         throw new NotImplementedException();
     }

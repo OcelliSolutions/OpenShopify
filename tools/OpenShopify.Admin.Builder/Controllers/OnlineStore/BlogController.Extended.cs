@@ -13,14 +13,14 @@ public class BlogController : BlogControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("blogs.json")]
-    public override Task ListBlogs(string? fields, string? handle, int? limit, string? page_info, int? since_id)
+    public override Task ListBlogs(string? fields = null, string? handle = null, int? limit = null, string? page_info = null, long? since_id = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("blogs.json")]
-    public override Task CreateBlog([Required] CreateBlogRequest request, string title)
+    public override Task CreateBlog([Required] CreateBlogRequest request, string? title = null)
     {
         throw new NotImplementedException();
     }
@@ -35,7 +35,7 @@ public class BlogController : BlogControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("blogs/{blog_id:long}.json")]
-    public override Task GetBlog([Required] long blog_id, string? fields)
+    public override Task GetBlog([Required] long blog_id, string? fields = null)
     {
         throw new NotImplementedException();
     }

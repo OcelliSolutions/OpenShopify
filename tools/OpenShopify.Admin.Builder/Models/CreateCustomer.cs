@@ -2,7 +2,7 @@
 
 namespace OpenShopify.Admin.Builder.Models;
 
-public partial class CreateCustomer
+public partial record CreateCustomer
 {
     /// <summary>
     /// An optional password for the user. Default is null.
@@ -32,11 +32,11 @@ public partial class CreateCustomer
     /// A list of addresses for the customer.
     /// </summary>
     [JsonPropertyName("addresses")]
-    public new IEnumerable<CreateAddress>? Addresses { get; set; }
+    public new IEnumerable<CreateCustomerAddress>? Addresses { get; set; }
 
     /// <summary>
     /// The default address for the customer.
     /// </summary>
     [JsonPropertyName("default_address")]
-    public new CreateAddress? DefaultAddress { get; set; }
+    public new CreateCustomerAddress? DefaultAddress { get; set; }
 }

@@ -13,15 +13,15 @@ public class ProductListingController : ProductListingControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("product_listings.json")]
-    public override Task GetProductListingsThatArePublishedToYourApp(long? collection_id, string? handle, int? limit, string? page_info,
-        long? product_ids, DateTime? updated_at_min)
+    public override Task GetProductListingsThatArePublishedToYourApp(long collection_id, string? handle = null, int? limit = null,
+        string? page_info = null, string? product_ids = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("product_listings/product_ids.json")]
-    public override Task GetProductIdsThatArePublishedToYourApp(int? limit, string? page_info)
+    public override Task GetProductIdsThatArePublishedToYourApp(int? limit = null, string? page_info = null)
     {
         throw new NotImplementedException();
     }

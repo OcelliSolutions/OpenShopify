@@ -16,6 +16,6 @@ public class DiscountsService : ShopifyService, IDiscountsService
         _myShopifyUrl = myShopifyUrl;
     }
     
-    public IDiscountCodeClient DiscountCode => new DiscountCodeClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IPriceRuleClient PriceRule => new PriceRuleClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
+    public IDiscountCodeClient DiscountCode => new DiscountCodeClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IPriceRuleClient PriceRule => new PriceRuleClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
 }

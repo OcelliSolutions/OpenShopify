@@ -63,7 +63,7 @@ public class DiscountCodeController : DiscountCodeControllerBase
     /// <inheritdoc />
     [HttpGet, Route("discount_codes/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountDiscountCodesForShop(string? times_used, string? times_used_max, string? times_used_min)
+    public override Task CountDiscountCodesForShop(int? times_used = null, int? times_used_max = null, int? times_used_min = null)
     {
         throw new NotImplementedException();
     }

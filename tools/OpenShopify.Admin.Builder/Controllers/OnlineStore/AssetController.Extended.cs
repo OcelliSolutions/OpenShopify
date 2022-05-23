@@ -13,7 +13,7 @@ public class AssetController : AssetControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("themes/{theme_id:long}/assets.json")]
-    public override Task ListAssetsForTheme([Required] long theme_id, string? fields)
+    public override Task ListAssetsForTheme([Required] long theme_id, string? fields = null)
     {
         throw new NotImplementedException();
     }
@@ -26,8 +26,15 @@ public class AssetController : AssetControllerBase
     }
 
     /// <inheritdoc />
+    [IgnoreApi, HttpDelete, Route("themes/{theme_id:long}/assets.invalid")]
+    public override Task DeleteAssetFromTheme(string? assetkey = null, long? theme_id = null)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc cref="AssetControllerBase.DeleteAssetFromTheme" />
     [HttpDelete, Route("themes/{theme_id:long}/assets.json")]
-    public override Task DeleteAssetFromTheme(string assetkey, [Required] long theme_id)
+    public Task DeleteAssetFromTheme(string assetkey, long theme_id)
     {
         throw new NotImplementedException();
     }

@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class LineItemOriginLocation : ShopifyObject
+    public partial record LineItemOriginLocation : ShopifyObject
     {
         /// <summary>
         /// The two-letter code (ISO 3166-1 format) for the country of the item's supplier.

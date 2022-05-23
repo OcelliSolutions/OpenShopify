@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class PaymentDetails
+    public partial record PaymentDetails
     {
         [JsonPropertyName("avs_result_code")]
         public string? AvsResultCode { get; set; }

@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class ProductOption : ShopifyObject
+    public partial record ProductOption : ShopifyObject
     {
         /// <summary>
         /// The unique numeric identifier for the product.
@@ -26,6 +26,6 @@ namespace OpenShopify.Admin.Builder.Models
         /// The values for the options.
         /// </summary>
         [JsonPropertyName("values")]
-        public IEnumerable<string> Values { get; set; }
+        public IEnumerable<string>? Values { get; set; }
     }
 }

@@ -35,8 +35,7 @@ paths:
           in: query
           description: The IDs of the assigned locations of the fulfillment orders that should be returned.
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: Success
@@ -303,6 +302,7 @@ paths:
             format: int32
         - name: page_info
           in: query
+          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
@@ -310,7 +310,7 @@ paths:
           description: Restrict results to after the specified ID.
           schema:
             type: integer
-            format: int32
+            format: int64
         - name: updated_at_max
           in: query
           description: 'Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).'
@@ -1364,89 +1364,77 @@ components:
   schemas:
     Address:
       required:
-        - customer_id
         - id
       type: object
       properties:
-        customer_id:
-          type: integer
-          format: int64
         address1:
           type: string
-          description: The mailing address.
+          description: The customer's mailing address
           nullable: true
         address2:
           type: string
-          description: An additional field for the mailing address.
+          description: An additional field for the customer's mailing address.
           nullable: true
         city:
           type: string
-          description: The city.
-          nullable: true
-        company:
-          type: string
-          description: The company.
+          description: 'The customer''s city, town, or village.'
           nullable: true
         country:
           type: string
-          description: The country.
+          description: The customer's country.
           nullable: true
         country_code:
           type: string
-          description: The two-letter country code corresponding to the country.
+          description: The two-letter country code corresponding to the customer's country.
           nullable: true
         country_name:
           type: string
-          description: The normalized country name.
+          description: The customer’s normalized country name.
+          nullable: true
+        company:
+          type: string
+          description: The customer’s company.
+          nullable: true
+        customer_id:
+          type: integer
+          description: The unique identifier for the customer.
+          format: int64
+          nullable: true
+        first_name:
+          type: string
+          description: The customer’s first name.
+          nullable: true
+        last_name:
+          type: string
+          description: The customer’s last name.
+          nullable: true
+        name:
+          type: string
+          description: The customer’s first and last names.
+          nullable: true
+        phone:
+          type: string
+          description: The customer’s phone number at this address.
+          nullable: true
+        province:
+          type: string
+          description: 'The customer’s region name. Typically a province, a state, or a prefecture.'
+          nullable: true
+        province_code:
+          type: string
+          description: The two-letter code for the customer’s region.
+          nullable: true
+        zip:
+          type: string
+          description: 'The customer’s postal code, also known as zip, postcode, Eircode, etc.'
           nullable: true
         default:
           type: boolean
           description: Indicates whether this address is the default address.
           nullable: true
-        first_name:
-          type: string
-          description: The first name.
-          nullable: true
-        last_name:
-          type: string
-          description: The last name.
-          nullable: true
-        latitude:
-          type: number
-          description: The latitude. Auto-populated by Shopify on the order's Billing/Shipping address.
-          format: decimal
-          nullable: true
-        longitude:
-          type: number
-          description: The longitude. Auto-populated by Shopify on the order's Billing/Shipping address.
-          format: decimal
-          nullable: true
-        name:
-          type: string
-          description: The name.
-          nullable: true
-        phone:
-          type: string
-          description: The phone number.
-          nullable: true
-        province:
-          type: string
-          description: The province or state name
-          nullable: true
-        province_code:
-          type: string
-          description: The two-letter province or state code.
-          nullable: true
-        zip:
-          type: string
-          description: The ZIP or postal code.
-          nullable: true
         id:
           type: integer
           format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
       additionalProperties: { }
     CountItem:
       type: object
@@ -1460,15 +1448,19 @@ components:
       properties:
         active:
           type: boolean
-          description: States whether or not this carrier service is active. Valid values are "true" and "false".
+          description: Whether this carrier service is active.
           nullable: true
         callback_url:
           type: string
-          description: States the URL endpoint that shopify needs to retrieve shipping rates. This must be a public URL.
+          description: The URL endpoint that Shopify needs to retrieve shipping rates. This must be a public URL.
           nullable: true
         carrier_service_type:
           type: string
-          description: Distinguishes between api or legacy carrier services.
+          description: Distinguishes between API or legacy carrier services.
+          nullable: true
+        format:
+          type: string
+          description: 'The format of the data returned by the URL endpoint. Valid values: `json` and `xml`. Default value: `json`.'
           nullable: true
         name:
           type: string
@@ -1476,13 +1468,13 @@ components:
           nullable: true
         service_discovery:
           type: boolean
-          description: "States if merchants are able to send dummy data to your service through the Shopify admin\r\nto see shipping rate examples. Valid values are \"true\" and \"false\"."
+          description: Whether merchants are able to send dummy data to your service through the Shopify admin to see shipping rate examples.
           nullable: true
-        format:
+        admin_graphql_api_id:
           type: string
-          description: "The format of the data returned by the URL endpoint. Valid values are \"json\" and \"xml\".\r\nIf a format is not specified, it will default to json."
+          description: The GraphQL unique identifier for the carrier service.
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     CreateCarrierServiceRequest:
       required:
         - carrier_service
@@ -1496,160 +1488,158 @@ components:
       properties:
         created_at:
           type: string
-          description: The date and time when the fulfillment was created.
+          description: 'The date and time when the fulfillment was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
           format: date-time
           nullable: true
         line_items:
           type: array
           items:
             $ref: '#/components/schemas/LineItem'
-          description: A historical record of each item in the fulfillment.
+          description: "A list of the fulfillment's line items, which includes:\r\n\r\n*   **id**: The ID of the line item within the fulfillment. \r\n*   **variant_id**: The ID of the product variant being fulfilled. \r\n*   **title**: The title of the product. \r\n*   **quantity**: The number of items in the fulfillment. \r\n*   **price**: The price of the item. \r\n*   **grams**: The weight of the item in grams. \r\n*   **sku**: The unique identifier of the item in the fulfillment. \r\n*   **variant_title**: The title of the product variant being fulfilled. \r\n*   **vendor**: The name of the supplier of the item. \r\n*   **fulfillment_service**: The service provider who is doing the fulfillment. This field will be deprecated. Use the `assigned_location` property on the `FulfillmentOrder` resource instead. \r\n*   **product_id**: The unique numeric identifier for the product in the fulfillment. \r\n*   **requires_shipping**: Whether a customer needs to provide a shipping address when placing an order for this product variant. \r\n*   **taxable**: Whether the line item is taxable. \r\n*   **gift_card**: Whether the line item is a [gift card](https://help.shopify.com/manual/products/gift-card-products). \r\n*   **name**: The name of the product variant. \r\n*   **variant_inventory_management**: The name of the inventory management system. \r\n*   **properties**: Any additional properties associated with the line item. \r\n*   **product_exists**: Whether the product exists. \r\n*   **fulfillable_quantity**: The amount available to fulfill. This is the quantity - max (refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity. This field will be deprecated. Use the `fulfillable_quantity` property of the `line_item` property on the `FulfillmentOrder` resource instead. \r\n*   **total_discount**: The total of any discounts applied to the line item. \r\n*   **fulfillment_status**: The status of an order in terms of the line items being fulfilled. Valid values: `fulfilled`, `null`, or `partial`. This field will be deprecated. Use the `status` property on the `FulfillmentOrder` resource instead. \r\n*   **fulfillment_line_item_id**: A unique identifier for a quantity of items within a single fulfillment. An order can have multiple fulfillment line items. \r\n*   **tax_lines**: The `title`, `price`, and `rate` of any taxes applied to the line item. \r\n*   **duties**: A list of duty objects, each containing information about a duty on the line item."
+          nullable: true
+        location_id:
+          type: integer
+          description: 'The unique identifier of the location that the fulfillment was processed at. To find the ID of the location, use the [Location resource](/docs/admin-api/rest/reference/inventory/location).'
+          format: int64
+          nullable: true
+        name:
+          type: string
+          description: 'The uniquely identifying fulfillment name, consisting of two parts separated by a `.`. The first part represents the order name and the second part represents the fulfillment number. The fulfillment number automatically increments depending on how many fulfillments are in an order (e.g. `#1001.1`, `#1001.2`).'
+          nullable: true
+        notify_customer:
+          type: boolean
+          description: 'Whether the customer should be notified. If set to `true`, then an email will be sent when the fulfillment is created or updated. For orders that were initially created using the API, the default value is `false`. For all other orders, the default value is `true`.'
+          nullable: true
         order_id:
           type: integer
           description: The unique numeric identifier for the order.
           format: int64
           nullable: true
+        origin_address:
+          type: string
+          description: "The address from which the fulfillment occurred:\r\n\r\n*   **address1**: The street address of the fulfillment location. \r\n*   **address2**: The second line of the address. Typically the number of the apartment, suite, or unit. \r\n*   **city**: The city of the fulfillment location. \r\n*   **country_code**: The country of the fulfillment location. \r\n*   **province_code**: The province of the fulfillment location. \r\n*   **zip**: The zip code of the fulfillment location."
+          nullable: true
         receipt:
-          description: A textfield with information about the receipt.
+          type: string
+          description: "A text field that provides information about the receipt:\r\n\r\n*   **testcase**: Whether the fulfillment was a testcase. \r\n*   **authorization**: The authorization code."
+          nullable: true
+        service:
+          type: string
+          description: The fulfillment service associated with the fulfillment.
+          nullable: true
+        shipment_status:
+          type: string
+          description: "The current shipment status of the fulfillment. Valid values:\r\n\r\n*   **label_printed**: A label for the shipment was purchased and printed. \r\n*   **label_purchased**: A label for the shipment was purchased, but not printed. \r\n*   **attempted_delivery**: Delivery of the shipment was attempted, but unable to be completed. \r\n*   **ready_for_pickup**: The shipment is ready for pickup at a shipping depot. \r\n*   **confirmed**: The carrier is aware of the shipment, but hasn't received it yet. \r\n*   **in_transit**: The shipment is being transported between shipping facilities on the way to its destination. \r\n*   **out_for_delivery**: The shipment is being delivered to its final destination. \r\n*   **delivered**: The shipment was succesfully delivered. \r\n*   **failure**: Something went wrong when pulling tracking information for the shipment, such as the tracking number was invalid or the shipment was canceled."
+          nullable: true
         status:
           type: string
-          description: "The status of the fulfillment. Valid values are 'pending', 'open', 'success', 'cancelled',\r\n'error' and 'failure'."
+          description: "The status of the fulfillment. Valid values:\r\n\r\n*   **pending**: Shopify has created the fulfillment and is waiting for the third-party fulfillment service to transition it to 'open' or 'success'. \r\n*   **open**: The fulfillment has been acknowledged by the service and is in processing. \r\n*   **success**: The fulfillment was successful. \r\n*   **cancelled**: The fulfillment was cancelled. \r\n*   **error**: There was an error with the fulfillment request. \r\n*   **failure**: The fulfillment request failed."
           nullable: true
-        location_id:
-          type: integer
-          description: The unique identifier of the location that the fulfillment should be processed for.
-          format: int64
-          nullable: true
-        email:
-          type: string
-          description: This property is undocumented by Shopify. It appears to be the customer's email address
-          nullable: true
-        notify_customer:
-          type: boolean
-          description: "A flag indicating whether the customer should be notified. If set to true, an email will be\r\nsent when the fulfillment is created or updated. The default value is false for fulfillments\r\non any orders created initially through the API. For all other orders, the default value is true."
-          nullable: true
-        destination:
-          $ref: '#/components/schemas/Address'
         tracking_company:
           type: string
-          description: The name of the shipping company.
-          nullable: true
-        tracking_number:
-          type: string
-          description: "The shipping number, provided by the shipping company. If multiple tracking numbers\r\nexist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingNumbers), returns the first number."
+          description: "The name of the tracking company. The following tracking companies display for shops located in any country: \r\n\r\n*   **4PX** \r\n*   **Amazon Logistics UK** \r\n*   **Amazon Logistics US** \r\n*   **Anjun Logistics** \r\n*   **APC** \r\n*   **Australia Post** \r\n*   **Bluedart** \r\n*   **Canada Post** \r\n*   **Canpar** \r\n*   **China Post** \r\n*   **Chukou1** \r\n*   **Correios** \r\n*   **Couriers Please** \r\n*   **Delhivery** \r\n*   **DHL eCommerce** \r\n*   **DHL eCommerce Asia** \r\n*   **DHL Express** \r\n*   **DPD** \r\n*   **DPD Local** \r\n*   **DPD UK** \r\n*   **Eagle** \r\n*   **FedEx** \r\n*   **FSC** \r\n*   **Asendia USA** \r\n*   **GLS** \r\n*   **GLS (US)** \r\n*   **Japan Post** \r\n*   **La Poste** \r\n*   **New Zealand Post** \r\n*   **Newgistics** \r\n*   **PostNL** \r\n*   **PostNord** \r\n*   **Purolator** \r\n*   **Royal Mail** \r\n*   **Sagawa** \r\n*   **Sendle** \r\n*   **SF Express** \r\n*   **SFC Fulfilllment** \r\n*   **Singapore Post** \r\n*   **StarTrack** \r\n*   **TNT** \r\n*   **Toll IPEC** \r\n*   **UPS** \r\n*   **USPS** \r\n*   **Whistl** \r\n*   **Yamato** \r\n*   **YunExpress**  \r\n\r\nThe following tracking companies are displayed for shops located in specific countries:\r\n\r\n*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL \r\n*   **Ireland**: An Post, Fastway \r\n*   **Australia**: Aramex Australia, Australia Post, Sendle \r\n*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 \r\n*   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress  <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nWhen creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.\r\n </div>"
           nullable: true
         tracking_numbers:
           type: array
           items:
             type: string
-          description: 'A list of shipping numbers, provided by the shipping company. May be null.'
-        tracking_url:
-          type: string
-          description: "The tracking url, provided by the shipping company. May be null. If multiple tracking URLs\r\nexist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingUrls), returns the first URL."
+          description: "A list of tracking numbers, provided by the shipping company. <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nIt is highly recommended that you send the tracking company and the tracking URL as well. If neither one of these is sent, then the tracking company will be determined automatically. This can result in an invalid tracking URL.\r\n\r\nThe tracking URL is displayed in the shipping confirmation email, which can optionally be sent to the customer. When accounts are enabled, it is also displayed in the customer's order history.\r\n </div>"
           nullable: true
         tracking_urls:
           type: array
           items:
             type: string
-          description: 'An array of one or more tracking urls, provided by the shipping company. May be null.'
+          description: The URLs of tracking pages for the fulfillment.
+          nullable: true
         updated_at:
           type: string
-          description: The date and time when the fulfillment was last modified.
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the fulfillment was last modified..'
           format: date-time
           nullable: true
         variant_inventory_management:
           type: string
-          description: States the name of the inventory management service.
+          description: The name of the inventory management service.
           nullable: true
-        service:
-          type: string
-          description: This property is undocumented by Shopify.
-          nullable: true
-        shipment_status:
-          type: string
-          description: This property is undocumented by Shopify.
-          nullable: true
-        name:
-          type: string
-          nullable: true
-      additionalProperties: false
+        destination:
+          $ref: '#/components/schemas/Address'
+      additionalProperties: { }
     CreateFulfillmentEvent:
       type: object
       properties:
-        created_at:
+        address1:
           type: string
-          description: The date and time when the fulfillment event was created.
-          format: date-time
-          nullable: true
-        order_id:
-          type: integer
-          description: The unique numeric identifier for the order.
-          format: int64
-          nullable: true
-        shop_id:
-          type: integer
-          description: The unique numeric identifier for the shop.
-          format: int64
-          nullable: true
-        fulfillment_id:
-          type: integer
-          description: The unique numeric identifier for the fulfillment.
-          format: int64
-          nullable: true
-        status:
-          type: string
-          description: "The status of the fulfillment event. Valid values are 'confirmed', 'in_transit', \r\n'out_for_delivery', 'delivered' and 'failure'"
-          nullable: true
-        happened_at:
-          type: string
-          description: The date and time when the fulfillment event occurred
-          format: date-time
-          nullable: true
-        message:
-          type: string
-          description: An arbitrary message describing the status.
+          description: The street address where the fulfillment event occurred.
           nullable: true
         city:
           type: string
-          description: The city in which the fulfillment event occurred.
-          nullable: true
-        province:
-          type: string
-          description: The province in which the fulfillment event occurred.
-          nullable: true
-        zip:
-          type: string
-          description: The zip code in the location in which the fulfillment event occurred.
+          description: The city where the fulfillment event occurred.
           nullable: true
         country:
           type: string
-          description: The country in which the fulfillment event occurred.
+          description: The country where the fulfillment event occurred.
           nullable: true
-        address1:
+        created_at:
           type: string
-          description: The fulfillment event's street address.
+          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was created.'
+          format: date-time
+          nullable: true
+        estimated_delivery_at:
+          type: string
+          description: 'The estimated delivery date based on the fulfillment''s tracking number, as long as it''s provided by one of the following carriers: USPS, FedEx, UPS, or Canada Post (Canada only). Value is `null` if no tracking number is available or if the tracking number is from an unsupported carrier. This property is available only when [carrier calculated rates](https://help.shopify.com/manual/shipping/rates-and-methods/custom-calculated-rates) are in use.'''
+          format: date-time
+          nullable: true
+        fulfillment_id:
+          type: integer
+          description: An ID for the fulfillment that's associated with the fulfillment event.
+          format: int64
+          nullable: true
+        happened_at:
+          type: string
+          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event occurred.'
+          format: date-time
           nullable: true
         latitude:
           type: number
-          description: Geographic coordinate specifying the north/south location of a fulfillment event.
+          description: A geographic coordinate specifying the latitude of the fulfillment event.
           format: decimal
           nullable: true
         longitude:
           type: number
-          description: Geographic coordinate specifying the east/west location of a fulfillment event.
+          description: A geographic coordinate specifying the longitude of the fulfillment event.
           format: decimal
           nullable: true
-        estimated_delivery_at:
+        message:
           type: string
-          description: The estimated date of delivery.
-          format: date-time
+          description: An arbitrary message describing the status. Can be provided by a shipping carrier.
+          nullable: true
+        order_id:
+          type: integer
+          description: The ID of the order that's associated with the fulfillment event.
+          format: int64
+          nullable: true
+        province:
+          type: string
+          description: The province where the fulfillment event occurred.
+          nullable: true
+        shop_id:
+          type: integer
+          description: An ID for the shop that's associated with the fulfillment event.
+          format: int64
+          nullable: true
+        status:
+          type: string
+          description: "The status of the fulfillment event. Valid values:\r\n\r\n*   **label_printed**: A label for the shipment was purchased and printed. \r\n*   **label_purchased**: A label for the shipment was purchased, but not printed. \r\n*   **attempted_delivery**: Delivery of the shipment was attempted, but unable to be completed. \r\n*   **ready_for_pickup**: The shipment is ready for pickup at a shipping depot. \r\n*   **picked_up**: The fulfillment was successfully picked up. \r\n*   **confirmed**: The carrier is aware of the shipment, but hasn't received it yet. \r\n*   **in_transit**: The shipment is being transported between shipping facilities on the way to its destination. \r\n*   **out_for_delivery**: The shipment is being delivered to its final destination. \r\n*   **delivered**: The shipment was successfully delivered. \r\n*   **failure**: Something went wrong when pulling tracking information for the shipment, such as the tracking number was invalid or the shipment was canceled."
           nullable: true
         updated_at:
           type: string
-          description: The date and time when the fulfillment event was last modified.
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was updated.'
           format: date-time
           nullable: true
-      additionalProperties: false
+        zip:
+          type: string
+          description: The zip code of the location where the fulfillment event occurred.
+          nullable: true
+      additionalProperties: { }
     CreateFulfillmentEventRequest:
       required:
         - fulfillment_event
@@ -1665,47 +1655,53 @@ components:
       properties:
         fulfillment:
           $ref: '#/components/schemas/CreateFulfillment'
-      additionalProperties: false
+      additionalProperties: { }
     CreateFulfillmentService:
-      required:
-        - format
-        - name
       type: object
       properties:
-        name:
+        admin_graphql_api_id:
           type: string
-          description: The name of the fulfillment service as seen by merchants and their customers.
+          description: The GraphQL GID for this fulfillment service.
+          nullable: true
         callback_url:
           type: string
-          description: "States the URL endpoint that Shopify needs to retrieve inventory and tracking updates.\r\nThis field is necessary if either inventory_management or tracking_support is set to \"true\"."
+          description: "The callback URL the fulfillment service has registered for requests.  \r\n If the Fulfillment Service has opted in to use fulfillment orders, then the `callback_url/fulfillment_order_notification` endpoint is also used to send [fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps#receiving-fulfillment_request-notifications).  \r\nThe `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`."
           nullable: true
         format:
           $ref: '#/components/schemas/FulfillmentServiceFormat'
+        fulfillment_orders_opt_in:
+          type: boolean
+          description: 'Whether the fulfillment service wants to register for APIs related to fulfillment orders. To manage fulfillments using fulfillment orders, see [*Manage fulfillments with Fulfillment and FulfillmentOrder resources*](/apps/fulfillment/fulfillment-service-apps).'
+          nullable: true
         handle:
           type: string
-          description: A human-friendly unique string for the fulfillment service generated from its title.
+          description: Human-readable unique identifier for this fulfillment service.
           nullable: true
         inventory_management:
           type: boolean
-          description: States if the fulfillment service tracks product inventory and provides updates to Shopify.
+          description: States if the fulfillment service tracks product inventory and provides updates to Shopify. Valid values are "true" and "false".
+          nullable: true
         location_id:
           type: integer
-          description: The unique identifier of the location tied to the fulfillment service
+          description: The unique identifier of the location associated with the fulfillment service
           format: int64
           nullable: true
-        provider_id:
+        name:
           type: string
+          description: The name of the fulfillment service as seen by merchants.
+          nullable: true
+        provider_id:
+          type: integer
           description: A unique identifier for the fulfillment service provider.
+          format: int64
           nullable: true
         requires_shipping_method:
           type: boolean
-          description: States if the fulfillment service requires products to be physically shipped.
+          description: States if the fulfillment service requires products to be physically shipped. Valid values are "true" and "false".
+          nullable: true
         tracking_support:
           type: boolean
-          description: States if the fulfillment service provides tracking numbers for packages.
-        email:
-          type: string
-          description: This property is undocumented by Shopify.
+          description: States if the fulfillment service provides tracking numbers for packages. Valid values are "true" and "false".
           nullable: true
         include_pending_stock:
           type: boolean
@@ -1715,11 +1711,11 @@ components:
           type: string
           description: This property is undocumented by Shopify.
           nullable: true
-        fulfillment_orders_opt_in:
-          type: boolean
-          description: Whether the fulfillment service wants to register for APIs related to fulfillment orders.
+        email:
+          type: string
+          description: This property is undocumented by Shopify.
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     CreateFulfillmentServiceRequest:
       required:
         - fulfillment_service
@@ -1742,47 +1738,68 @@ components:
         amount_set:
           $ref: '#/components/schemas/PriceSet'
       additionalProperties: { }
-    FulfillmentService:
-      required:
-        - format
-        - id
-        - name
+    FulfillmentRequestOrderLineItems:
       type: object
       properties:
-        name:
+        id:
+          type: integer
+          description: The ID of the fulfillment order line item.
+          format: int64
+          nullable: true
+        quantity:
+          type: integer
+          description: The total number of units to be fulfilled.
+          format: int64
+          nullable: true
+      additionalProperties: { }
+      description: An object representing a Shopify fulfillment request order line items.
+    FulfillmentService:
+      required:
+        - id
+      type: object
+      properties:
+        admin_graphql_api_id:
           type: string
-          description: The name of the fulfillment service as seen by merchants and their customers.
+          nullable: true
         callback_url:
           type: string
-          description: "States the URL endpoint that Shopify needs to retrieve inventory and tracking updates.\r\nThis field is necessary if either inventory_management or tracking_support is set to \"true\"."
+          description: "The callback URL the fulfillment service has registered for requests.  \r\n If the Fulfillment Service has opted in to use fulfillment orders, then the `callback_url/fulfillment_order_notification` endpoint is also used to send [fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps#receiving-fulfillment_request-notifications).  \r\nThe `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`."
           nullable: true
         format:
           $ref: '#/components/schemas/FulfillmentServiceFormat'
+        fulfillment_orders_opt_in:
+          type: boolean
+          description: 'Whether the fulfillment service wants to register for APIs related to fulfillment orders. To manage fulfillments using fulfillment orders, see [*Manage fulfillments with Fulfillment and FulfillmentOrder resources*](/apps/fulfillment/fulfillment-service-apps).'
+          nullable: true
         handle:
           type: string
-          description: A human-friendly unique string for the fulfillment service generated from its title.
+          description: Human-readable unique identifier for this fulfillment service.
           nullable: true
         inventory_management:
           type: boolean
-          description: States if the fulfillment service tracks product inventory and provides updates to Shopify.
+          description: States if the fulfillment service tracks product inventory and provides updates to Shopify. Valid values are "true" and "false".
+          nullable: true
         location_id:
           type: integer
-          description: The unique identifier of the location tied to the fulfillment service
+          description: The unique identifier of the location associated with the fulfillment service
           format: int64
           nullable: true
-        provider_id:
+        name:
           type: string
+          description: The name of the fulfillment service as seen by merchants.
+          nullable: true
+        provider_id:
+          type: integer
           description: A unique identifier for the fulfillment service provider.
+          format: int64
           nullable: true
         requires_shipping_method:
           type: boolean
-          description: States if the fulfillment service requires products to be physically shipped.
+          description: States if the fulfillment service requires products to be physically shipped. Valid values are "true" and "false".
+          nullable: true
         tracking_support:
           type: boolean
-          description: States if the fulfillment service provides tracking numbers for packages.
-        email:
-          type: string
-          description: This property is undocumented by Shopify.
+          description: States if the fulfillment service provides tracking numbers for packages. Valid values are "true" and "false".
           nullable: true
         include_pending_stock:
           type: boolean
@@ -1792,16 +1809,13 @@ components:
           type: string
           description: This property is undocumented by Shopify.
           nullable: true
-        fulfillment_orders_opt_in:
-          type: boolean
-          description: Whether the fulfillment service wants to register for APIs related to fulfillment orders.
+        email:
+          type: string
+          description: This property is undocumented by Shopify.
           nullable: true
         id:
           type: integer
           format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
       additionalProperties: { }
     FulfillmentServiceFormat:
       enum:
@@ -1920,6 +1934,7 @@ components:
           items:
             $ref: '#/components/schemas/TaxLine'
           description: 'An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem.'
+          nullable: true
         tip_payment_gateway:
           type: string
           description: 'The payment gateway used to tender the tip, such as shopify_payments. Present only on tips.'
@@ -1940,11 +1955,13 @@ components:
           items:
             $ref: '#/components/schemas/DiscountAllocation'
           description: An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
+          nullable: true
         properties:
           type: array
           items:
             $ref: '#/components/schemas/LineItemProperty'
           description: "An array of custom information for an item that has been added to the cart.\r\nOften used to provide product customization options.\r\nAn array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem."
+          nullable: true
         variant_inventory_management:
           type: string
           description: This property is undocumented by Shopify.
@@ -1960,6 +1977,7 @@ components:
           items:
             $ref: '#/components/schemas/LineItemDuty'
           description: 'A list of duty objects, each containing information about a duty on the line item'
+          nullable: true
         origin_location:
           $ref: '#/components/schemas/LineItemOriginLocation'
       additionalProperties: { }
@@ -1989,6 +2007,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TaxLine'
+          nullable: true
       additionalProperties: { }
     LineItemOriginLocation:
       required:
@@ -2035,9 +2054,13 @@ components:
       type: object
       properties:
         name:
+          type: string
           description: The name of the note attribute.
+          nullable: true
         value:
+          type: string
           description: The value of the note attribute.
+          nullable: true
       additionalProperties: { }
       description: An object representing a properties for OpenShopify.Admin.Builder.Models.LineItem.Properties
     Price:
@@ -2088,15 +2111,19 @@ components:
       properties:
         active:
           type: boolean
-          description: States whether or not this carrier service is active. Valid values are "true" and "false".
+          description: Whether this carrier service is active.
           nullable: true
         callback_url:
           type: string
-          description: States the URL endpoint that shopify needs to retrieve shipping rates. This must be a public URL.
+          description: The URL endpoint that Shopify needs to retrieve shipping rates. This must be a public URL.
           nullable: true
         carrier_service_type:
           type: string
-          description: Distinguishes between api or legacy carrier services.
+          description: Distinguishes between API or legacy carrier services.
+          nullable: true
+        format:
+          type: string
+          description: 'The format of the data returned by the URL endpoint. Valid values: `json` and `xml`. Default value: `json`.'
           nullable: true
         name:
           type: string
@@ -2104,19 +2131,15 @@ components:
           nullable: true
         service_discovery:
           type: boolean
-          description: "States if merchants are able to send dummy data to your service through the Shopify admin\r\nto see shipping rate examples. Valid values are \"true\" and \"false\"."
+          description: Whether merchants are able to send dummy data to your service through the Shopify admin to see shipping rate examples.
           nullable: true
-        format:
+        admin_graphql_api_id:
           type: string
-          description: "The format of the data returned by the URL endpoint. Valid values are \"json\" and \"xml\".\r\nIf a format is not specified, it will default to json."
           nullable: true
         id:
           type: integer
           format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     UpdateCarrierServiceRequest:
       required:
         - carrier_service
@@ -2132,138 +2155,152 @@ components:
       properties:
         created_at:
           type: string
-          description: The date and time when the fulfillment was created.
+          description: 'The date and time when the fulfillment was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
           format: date-time
           nullable: true
         line_items:
           type: array
           items:
             $ref: '#/components/schemas/LineItem'
-          description: A historical record of each item in the fulfillment.
+          description: "A list of the fulfillment's line items, which includes:\r\n\r\n*   **id**: The ID of the line item within the fulfillment. \r\n*   **variant_id**: The ID of the product variant being fulfilled. \r\n*   **title**: The title of the product. \r\n*   **quantity**: The number of items in the fulfillment. \r\n*   **price**: The price of the item. \r\n*   **grams**: The weight of the item in grams. \r\n*   **sku**: The unique identifier of the item in the fulfillment. \r\n*   **variant_title**: The title of the product variant being fulfilled. \r\n*   **vendor**: The name of the supplier of the item. \r\n*   **fulfillment_service**: The service provider who is doing the fulfillment. This field will be deprecated. Use the `assigned_location` property on the `FulfillmentOrder` resource instead. \r\n*   **product_id**: The unique numeric identifier for the product in the fulfillment. \r\n*   **requires_shipping**: Whether a customer needs to provide a shipping address when placing an order for this product variant. \r\n*   **taxable**: Whether the line item is taxable. \r\n*   **gift_card**: Whether the line item is a [gift card](https://help.shopify.com/manual/products/gift-card-products). \r\n*   **name**: The name of the product variant. \r\n*   **variant_inventory_management**: The name of the inventory management system. \r\n*   **properties**: Any additional properties associated with the line item. \r\n*   **product_exists**: Whether the product exists. \r\n*   **fulfillable_quantity**: The amount available to fulfill. This is the quantity - max (refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity. This field will be deprecated. Use the `fulfillable_quantity` property of the `line_item` property on the `FulfillmentOrder` resource instead. \r\n*   **total_discount**: The total of any discounts applied to the line item. \r\n*   **fulfillment_status**: The status of an order in terms of the line items being fulfilled. Valid values: `fulfilled`, `null`, or `partial`. This field will be deprecated. Use the `status` property on the `FulfillmentOrder` resource instead. \r\n*   **fulfillment_line_item_id**: A unique identifier for a quantity of items within a single fulfillment. An order can have multiple fulfillment line items. \r\n*   **tax_lines**: The `title`, `price`, and `rate` of any taxes applied to the line item. \r\n*   **duties**: A list of duty objects, each containing information about a duty on the line item."
+          nullable: true
+        location_id:
+          type: integer
+          description: 'The unique identifier of the location that the fulfillment was processed at. To find the ID of the location, use the [Location resource](/docs/admin-api/rest/reference/inventory/location).'
+          format: int64
+          nullable: true
+        name:
+          type: string
+          description: 'The uniquely identifying fulfillment name, consisting of two parts separated by a `.`. The first part represents the order name and the second part represents the fulfillment number. The fulfillment number automatically increments depending on how many fulfillments are in an order (e.g. `#1001.1`, `#1001.2`).'
+          nullable: true
+        notify_customer:
+          type: boolean
+          description: 'Whether the customer should be notified. If set to `true`, then an email will be sent when the fulfillment is created or updated. For orders that were initially created using the API, the default value is `false`. For all other orders, the default value is `true`.'
+          nullable: true
         order_id:
           type: integer
           description: The unique numeric identifier for the order.
           format: int64
           nullable: true
+        origin_address:
+          type: string
+          description: "The address from which the fulfillment occurred:\r\n\r\n*   **address1**: The street address of the fulfillment location. \r\n*   **address2**: The second line of the address. Typically the number of the apartment, suite, or unit. \r\n*   **city**: The city of the fulfillment location. \r\n*   **country_code**: The country of the fulfillment location. \r\n*   **province_code**: The province of the fulfillment location. \r\n*   **zip**: The zip code of the fulfillment location."
+          nullable: true
         receipt:
-          description: A textfield with information about the receipt.
+          type: string
+          description: "A text field that provides information about the receipt:\r\n\r\n*   **testcase**: Whether the fulfillment was a testcase. \r\n*   **authorization**: The authorization code."
+          nullable: true
+        service:
+          type: string
+          description: The fulfillment service associated with the fulfillment.
+          nullable: true
+        shipment_status:
+          type: string
+          description: "The current shipment status of the fulfillment. Valid values:\r\n\r\n*   **label_printed**: A label for the shipment was purchased and printed. \r\n*   **label_purchased**: A label for the shipment was purchased, but not printed. \r\n*   **attempted_delivery**: Delivery of the shipment was attempted, but unable to be completed. \r\n*   **ready_for_pickup**: The shipment is ready for pickup at a shipping depot. \r\n*   **confirmed**: The carrier is aware of the shipment, but hasn't received it yet. \r\n*   **in_transit**: The shipment is being transported between shipping facilities on the way to its destination. \r\n*   **out_for_delivery**: The shipment is being delivered to its final destination. \r\n*   **delivered**: The shipment was succesfully delivered. \r\n*   **failure**: Something went wrong when pulling tracking information for the shipment, such as the tracking number was invalid or the shipment was canceled."
+          nullable: true
         status:
           type: string
-          description: "The status of the fulfillment. Valid values are 'pending', 'open', 'success', 'cancelled',\r\n'error' and 'failure'."
+          description: "The status of the fulfillment. Valid values:\r\n\r\n*   **pending**: Shopify has created the fulfillment and is waiting for the third-party fulfillment service to transition it to 'open' or 'success'. \r\n*   **open**: The fulfillment has been acknowledged by the service and is in processing. \r\n*   **success**: The fulfillment was successful. \r\n*   **cancelled**: The fulfillment was cancelled. \r\n*   **error**: There was an error with the fulfillment request. \r\n*   **failure**: The fulfillment request failed."
           nullable: true
-        location_id:
-          type: integer
-          description: The unique identifier of the location that the fulfillment should be processed for.
-          format: int64
-          nullable: true
-        email:
-          type: string
-          description: This property is undocumented by Shopify. It appears to be the customer's email address
-          nullable: true
-        notify_customer:
-          type: boolean
-          description: "A flag indicating whether the customer should be notified. If set to true, an email will be\r\nsent when the fulfillment is created or updated. The default value is false for fulfillments\r\non any orders created initially through the API. For all other orders, the default value is true."
-          nullable: true
-        destination:
-          $ref: '#/components/schemas/Address'
         tracking_company:
           type: string
-          description: The name of the shipping company.
-          nullable: true
-        tracking_number:
-          type: string
-          description: "The shipping number, provided by the shipping company. If multiple tracking numbers\r\nexist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingNumbers), returns the first number."
+          description: "The name of the tracking company. The following tracking companies display for shops located in any country: \r\n\r\n*   **4PX** \r\n*   **Amazon Logistics UK** \r\n*   **Amazon Logistics US** \r\n*   **Anjun Logistics** \r\n*   **APC** \r\n*   **Australia Post** \r\n*   **Bluedart** \r\n*   **Canada Post** \r\n*   **Canpar** \r\n*   **China Post** \r\n*   **Chukou1** \r\n*   **Correios** \r\n*   **Couriers Please** \r\n*   **Delhivery** \r\n*   **DHL eCommerce** \r\n*   **DHL eCommerce Asia** \r\n*   **DHL Express** \r\n*   **DPD** \r\n*   **DPD Local** \r\n*   **DPD UK** \r\n*   **Eagle** \r\n*   **FedEx** \r\n*   **FSC** \r\n*   **Asendia USA** \r\n*   **GLS** \r\n*   **GLS (US)** \r\n*   **Japan Post** \r\n*   **La Poste** \r\n*   **New Zealand Post** \r\n*   **Newgistics** \r\n*   **PostNL** \r\n*   **PostNord** \r\n*   **Purolator** \r\n*   **Royal Mail** \r\n*   **Sagawa** \r\n*   **Sendle** \r\n*   **SF Express** \r\n*   **SFC Fulfilllment** \r\n*   **Singapore Post** \r\n*   **StarTrack** \r\n*   **TNT** \r\n*   **Toll IPEC** \r\n*   **UPS** \r\n*   **USPS** \r\n*   **Whistl** \r\n*   **Yamato** \r\n*   **YunExpress**  \r\n\r\nThe following tracking companies are displayed for shops located in specific countries:\r\n\r\n*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL \r\n*   **Ireland**: An Post, Fastway \r\n*   **Australia**: Aramex Australia, Australia Post, Sendle \r\n*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 \r\n*   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress  <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nWhen creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.\r\n </div>"
           nullable: true
         tracking_numbers:
           type: array
           items:
             type: string
-          description: 'A list of shipping numbers, provided by the shipping company. May be null.'
-        tracking_url:
-          type: string
-          description: "The tracking url, provided by the shipping company. May be null. If multiple tracking URLs\r\nexist (OpenShopify.Admin.Builder.Models.FulfillmentBase.TrackingUrls), returns the first URL."
+          description: "A list of tracking numbers, provided by the shipping company. <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nIt is highly recommended that you send the tracking company and the tracking URL as well. If neither one of these is sent, then the tracking company will be determined automatically. This can result in an invalid tracking URL.\r\n\r\nThe tracking URL is displayed in the shipping confirmation email, which can optionally be sent to the customer. When accounts are enabled, it is also displayed in the customer's order history.\r\n </div>"
           nullable: true
         tracking_urls:
           type: array
           items:
             type: string
-          description: 'An array of one or more tracking urls, provided by the shipping company. May be null.'
+          description: The URLs of tracking pages for the fulfillment.
+          nullable: true
         updated_at:
           type: string
-          description: The date and time when the fulfillment was last modified.
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the fulfillment was last modified..'
           format: date-time
           nullable: true
         variant_inventory_management:
           type: string
-          description: States the name of the inventory management service.
+          description: The name of the inventory management service.
           nullable: true
-        service:
-          type: string
-          description: This property is undocumented by Shopify.
-          nullable: true
-        shipment_status:
-          type: string
-          description: This property is undocumented by Shopify.
-          nullable: true
-        name:
-          type: string
-          nullable: true
+        destination:
+          $ref: '#/components/schemas/Address'
         id:
           type: integer
           format: int64
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     UpdateFulfillmentRequest:
       required:
         - fulfillment
       type: object
       properties:
+        message:
+          type: string
+          description: An optional message for the fulfillment request.
+          nullable: true
+        fulfillment_order_line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentRequestOrderLineItems'
+          description: 'The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.'
+          nullable: true
         fulfillment:
           $ref: '#/components/schemas/UpdateFulfillment'
-      additionalProperties: false
+      additionalProperties: { }
     UpdateFulfillmentService:
       required:
-        - format
         - id
-        - name
       type: object
       properties:
-        name:
+        admin_graphql_api_id:
           type: string
-          description: The name of the fulfillment service as seen by merchants and their customers.
+          nullable: true
         callback_url:
           type: string
-          description: "States the URL endpoint that Shopify needs to retrieve inventory and tracking updates.\r\nThis field is necessary if either inventory_management or tracking_support is set to \"true\"."
+          description: "The callback URL the fulfillment service has registered for requests.  \r\n If the Fulfillment Service has opted in to use fulfillment orders, then the `callback_url/fulfillment_order_notification` endpoint is also used to send [fulfillment and cancellation requests](/apps/fulfillment/fulfillment-service-apps#receiving-fulfillment_request-notifications).  \r\nThe `callback_url` field is required if `inventory_management`, `tracking_support`, or `fulfillment_orders_opt_in` is set to `true`."
           nullable: true
         format:
           $ref: '#/components/schemas/FulfillmentServiceFormat'
+        fulfillment_orders_opt_in:
+          type: boolean
+          description: 'Whether the fulfillment service wants to register for APIs related to fulfillment orders. To manage fulfillments using fulfillment orders, see [*Manage fulfillments with Fulfillment and FulfillmentOrder resources*](/apps/fulfillment/fulfillment-service-apps).'
+          nullable: true
         handle:
           type: string
-          description: A human-friendly unique string for the fulfillment service generated from its title.
+          description: Human-readable unique identifier for this fulfillment service.
           nullable: true
         inventory_management:
           type: boolean
-          description: States if the fulfillment service tracks product inventory and provides updates to Shopify.
+          description: States if the fulfillment service tracks product inventory and provides updates to Shopify. Valid values are "true" and "false".
+          nullable: true
         location_id:
           type: integer
-          description: The unique identifier of the location tied to the fulfillment service
+          description: The unique identifier of the location associated with the fulfillment service
           format: int64
           nullable: true
-        provider_id:
+        name:
           type: string
+          description: The name of the fulfillment service as seen by merchants.
+          nullable: true
+        provider_id:
+          type: integer
           description: A unique identifier for the fulfillment service provider.
+          format: int64
           nullable: true
         requires_shipping_method:
           type: boolean
-          description: States if the fulfillment service requires products to be physically shipped.
+          description: States if the fulfillment service requires products to be physically shipped. Valid values are "true" and "false".
+          nullable: true
         tracking_support:
           type: boolean
-          description: States if the fulfillment service provides tracking numbers for packages.
-        email:
-          type: string
-          description: This property is undocumented by Shopify.
+          description: States if the fulfillment service provides tracking numbers for packages. Valid values are "true" and "false".
           nullable: true
         include_pending_stock:
           type: boolean
@@ -2273,17 +2310,14 @@ components:
           type: string
           description: This property is undocumented by Shopify.
           nullable: true
-        fulfillment_orders_opt_in:
-          type: boolean
-          description: Whether the fulfillment service wants to register for APIs related to fulfillment orders.
+        email:
+          type: string
+          description: This property is undocumented by Shopify.
           nullable: true
         id:
           type: integer
           format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     UpdateFulfillmentServiceRequest:
       required:
         - fulfillment_service

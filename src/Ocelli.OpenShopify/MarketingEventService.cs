@@ -16,5 +16,5 @@ public class MarketingEventService : ShopifyService, IMarketingEventService
         _myShopifyUrl = myShopifyUrl;
     }
 
-    public IMarketingEventClient MarketingEvent => new MarketingEventClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
+    public IMarketingEventClient MarketingEvent => new MarketingEventClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
 }

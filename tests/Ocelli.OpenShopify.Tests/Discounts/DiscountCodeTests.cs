@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
+﻿using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
 using Xunit;
 using Xunit.Abstractions;
@@ -23,6 +22,7 @@ public class DiscountCodeTests : IClassFixture<SharedFixture>
 
     private SharedFixture Fixture { get; }
 
+    #region Create
     //TODO: Revisit DiscountCode after PriceRule tests are complete
     /*
     [SkippableFact, TestPriority(1)]
@@ -43,7 +43,11 @@ public class DiscountCodeTests : IClassFixture<SharedFixture>
         Assert.Equal(code, created.Code);
         Assert.NotNull(created.UsageCount);
     }
+    */
+    #endregion Create
 
+    #region Read
+    /*
     [SkippableFact, TestPriority(2)]
     public async Task Lists_DiscountCodes()
     {
@@ -63,7 +67,11 @@ public class DiscountCodeTests : IClassFixture<SharedFixture>
         Assert.NotNull(obj);
         Assert.Equal(Fixture.Code, obj.Code);
     }
+    */
+    #endregion Read
 
+    #region Update
+    /*
     [SkippableFact, TestPriority(3)]
     public async Task Updates_DiscountCode()
     {
@@ -75,7 +83,12 @@ public class DiscountCodeTests : IClassFixture<SharedFixture>
 
         Assert.Equal(newCode, updated.Code);
     }
+    */
+    #endregion Update
+
+    #region Delete
 
     //TODO: Create delete for discount code
-    */
+
+    #endregion Delete
 }

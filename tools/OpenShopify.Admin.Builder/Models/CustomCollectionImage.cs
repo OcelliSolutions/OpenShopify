@@ -6,7 +6,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// Represents the image for a <see cref="CustomCollection"/>
     /// </summary>
-    public class CustomCollectionImage
+    public partial record CustomCollectionImage
     {
         /// <summary>
         /// An image attached to a shop's theme returned as Base64-encoded binary data.
@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// The date the image was created.
         /// </summary>
         [JsonPropertyName("created_at")]
-        public DateTimeOffset? Created_At { get; set; }
+        public DateTimeOffset? CreatedAt { get; set; }
 
         /// <summary>
         /// Width of the image in pixels.

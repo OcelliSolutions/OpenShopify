@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class Price
+    public partial record Price
     {
         /// <summary>
         /// The three-letter code (ISO 4217 format) for currency.

@@ -69,28 +69,28 @@
     }
   ],
   "components": [
-      {
-        "name": "AccessScope",
-        "title": "AccessScope",
-        "type": "object",
-        "properties": [
-          {
-            "description": "The list of access scopes associated with the access token.",
-            "type": "string",
-            "example": [
-              {
-                "handle": "write_product_listings"
-              },
-              {
-                "handle": "read_shipping"
-              }
-            ],
-            "name": "access_scopes"
-          }
-        ],
-        "required": null
-      }
-    ],
+    {
+      "name": "AccessScope",
+      "title": "AccessScope",
+      "type": "object",
+      "properties": [
+        {
+          "description": "The list of access scopes associated with the access token.",
+          "type": "string",
+          "example": [
+            {
+              "handle": "write_product_listings"
+            },
+            {
+              "handle": "read_shipping"
+            }
+          ],
+          "name": "access_scopes"
+        }
+      ],
+      "required": null
+    }
+  ],
   "x-shopify-meta": {
     "channels": false,
     "file_name": "access/accessscope",

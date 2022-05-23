@@ -5,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing an application charge.
     /// </summary>
-    public class Charge : ShopifyObject
+    public partial record Charge : ShopifyObject
     {
         /// <summary>
         /// The URL that the customer should be sent to, to accept or decline the application charge.

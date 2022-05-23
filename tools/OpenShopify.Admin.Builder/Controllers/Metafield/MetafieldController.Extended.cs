@@ -1,9 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
-using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.Metafield;
 
@@ -15,9 +14,9 @@ public class MetafieldController : MetafieldControllerBase
     /// <inheritdoc />
     [HttpGet, Route("metafields.json")]
     [ProducesResponseType(typeof(MetafieldList), StatusCodes.Status200OK)]
-    public override Task ListMetafieldsFromResourcesEndpoint(DateTime? created_at_max, DateTime? created_at_min,
-        string? fields, string? key, int? limit, string? page_info, string? @namespace, int? since_id, string? type,
-        DateTime? updated_at_max, DateTime? updated_at_min, string? value_type)
+    public override Task ListMetafieldsFromResourcesEndpoint(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null,
+        string? fields = null, string? key = null, int? limit = null, string? page_info = null, string? @namespace = null, long? since_id = null, string? type = null,
+        DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null, string? value_type = null)
     {
         throw new NotImplementedException();
     }
@@ -41,7 +40,7 @@ public class MetafieldController : MetafieldControllerBase
     /// <inheritdoc />
     [HttpGet, Route("metafields/{metafield_id:long}.json")]
     [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status200OK)]
-    public override Task GetSpecificMetafield([Required] long metafield_id, string? fields)
+    public override Task GetSpecificMetafield([Required] long metafield_id, string? fields = null)
     {
         throw new NotImplementedException();
     }

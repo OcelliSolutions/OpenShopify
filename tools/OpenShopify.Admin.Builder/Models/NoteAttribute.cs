@@ -5,9 +5,9 @@ using System.Text.Json.Serialization;
 namespace OpenShopify.Admin.Builder.Models
 {
     /// <summary>
-    /// An object representing a note attribute for <see cref="Order.NoteAttributes"/>
+    /// An object representing a note attribute for <see cref="OrderBase.NoteAttributes"/>
     /// </summary>
-    public class NoteAttribute
+    public partial record NoteAttribute
     {
         /// <summary>
         /// The name of the note attribute.
@@ -19,6 +19,6 @@ namespace OpenShopify.Admin.Builder.Models
         /// The value of the note attribute.
         /// </summary>
         [JsonPropertyName("value")]
-        public object Value { get; set; }
+        public string? Value { get; set; }
     }
 }

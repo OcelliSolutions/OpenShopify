@@ -8,7 +8,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// Represents a customer that should be purged from your database after receiving a GDPR webhook.
     /// In some cases, a customer record contains only the customer's email address
     /// </summary>
-    public class RedactedCustomer
+    public partial record RedactedCustomer
     {
         /// <summary>
         /// The customer's id.

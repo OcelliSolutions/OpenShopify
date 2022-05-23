@@ -39,6 +39,7 @@ paths:
             format: int32
         - name: page_info
           in: query
+          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
@@ -46,7 +47,7 @@ paths:
           description: Restrict results to after the specified ID.
           schema:
             type: integer
-            format: int32
+            format: int64
         - name: status
           in: query
           description: 'Retrieve gift cards with a given status. Valid values:'
@@ -221,6 +222,7 @@ paths:
             format: int32
         - name: page_info
           in: query
+          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: order
@@ -330,82 +332,82 @@ components:
     CreateGiftCard:
       type: object
       properties:
+        api_client_id:
+          type: integer
+          description: The ID of the client that issued the gift card.
+          format: int64
+          nullable: true
         balance:
           type: number
-          description: Returns the amount of money remaining on the gift card.
+          description: The balance of the gift card.
           format: decimal
+          nullable: true
+        code:
+          type: string
+          description: 'The gift card code, which is a string of alphanumeric characters. For security reasons, this is available only upon creation of the gift card. (minimum: 8 characters, maximum: 20 characters)'
           nullable: true
         created_at:
           type: string
-          description: The date and time when the gift card was created.
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the gift card was updated.
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was created.'
           format: date-time
           nullable: true
         currency:
           type: string
-          description: The three letter code (ISO 4217) for the currency used for the gift card.
+          description: The currency of the gift card.
           nullable: true
-        initial_value:
-          type: number
-          description: Returns the initial amount of money on the gift card.
-          format: decimal
+        customer_id:
+          type: integer
+          description: The ID of the customer associated with this gift card.
+          format: int64
           nullable: true
         disabled_at:
           type: string
-          description: The date and time when the gift card was disabled.
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was disabled.'
           format: date-time
           nullable: true
         expires_on:
           type: string
-          description: The date and time when the gift card will expire.
+          description: The date (`YYYY-MM-DD` format) when the gift card expires. Returns `null` if the gift card doesn't have an expiration date.
           format: date-time
+          nullable: true
+        initial_value:
+          type: number
+          description: The initial value of the gift card when it was created.
+          format: decimal
+          nullable: true
+        last_characters:
+          type: string
+          description: 'The last four characters of the gift card code. Because gift cards are alternative payment methods, the full code cannot be retrieved.'
           nullable: true
         line_item_id:
           type: integer
-          description: A unique numeric identifier of the line_item that caused the creation of this gift card (if it was created by an order).
-          format: int64
-          nullable: true
-        api_client_id:
-          type: integer
-          description: A unique numeric identifier of the application that issued the gift card (if it was issued by an application).
-          format: int64
-          nullable: true
-        user_id:
-          type: integer
-          description: A unique numeric identifier of the user that issued the gift card (if it was issued by a user).
-          format: int64
-          nullable: true
-        customer_id:
-          type: integer
-          description: The id of a customer who is associated with this gift card.
+          description: 'The ID of the line item that initiated the creation of this gift card, if it was created by an order.'
           format: int64
           nullable: true
         note:
           type: string
-          description: The text of an optional note that a shop owner can attach to the gift card. Not visible to merchants.
-          nullable: true
-        template_suffix:
-          type: string
-          description: 'When specified, the gift card will be rendered using gift_card.SUFFIX.liquid instead of gift_card.liquid.'
-          nullable: true
-        last_characters:
-          type: string
-          description: 'The last four characters of the gift card code. Because gift cards are alternate payment methods, the full code cannot be retrieved.'
+          description: An optional note that a merchant can attach to the gift card that isn't visible to customers.
           nullable: true
         order_id:
           type: integer
-          description: A unique numeric identifier of the order that caused the creation of this gift card (if it was created by an order).
+          description: 'The ID of the order that initiated the creation of this gift card, if it was created by an order.'
           format: int64
           nullable: true
-        code:
+        template_suffix:
           type: string
-          description: Thethe gift card code. Only for Creation
+          description: 'The suffix of the Liquid template that''s used to render the gift card online. For example, if the value is `birthday`, then the gift card is rendered using the template `gift_card.birthday.liquid`. When the value is `null`, the default `gift_card.liquid` template is used.'
           nullable: true
-      additionalProperties: false
+        user_id:
+          type: integer
+          description: 'The ID of the user that issued the gift card, if it was issued by a user.'
+          format: int64
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was last modified.'
+          format: date-time
+          nullable: true
+      additionalProperties: { }
     CreateGiftCardRequest:
       required:
         - gift_card
@@ -419,80 +421,80 @@ components:
         - id
       type: object
       properties:
+        api_client_id:
+          type: integer
+          description: The ID of the client that issued the gift card.
+          format: int64
+          nullable: true
         balance:
           type: number
-          description: Returns the amount of money remaining on the gift card.
+          description: The balance of the gift card.
           format: decimal
+          nullable: true
+        code:
+          type: string
+          description: 'The gift card code, which is a string of alphanumeric characters. For security reasons, this is available only upon creation of the gift card. (minimum: 8 characters, maximum: 20 characters)'
           nullable: true
         created_at:
           type: string
-          description: The date and time when the gift card was created.
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the gift card was updated.
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was created.'
           format: date-time
           nullable: true
         currency:
           type: string
-          description: The three letter code (ISO 4217) for the currency used for the gift card.
+          description: The currency of the gift card.
           nullable: true
-        initial_value:
-          type: number
-          description: Returns the initial amount of money on the gift card.
-          format: decimal
+        customer_id:
+          type: integer
+          description: The ID of the customer associated with this gift card.
+          format: int64
           nullable: true
         disabled_at:
           type: string
-          description: The date and time when the gift card was disabled.
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was disabled.'
           format: date-time
           nullable: true
         expires_on:
           type: string
-          description: The date and time when the gift card will expire.
+          description: The date (`YYYY-MM-DD` format) when the gift card expires. Returns `null` if the gift card doesn't have an expiration date.
           format: date-time
+          nullable: true
+        initial_value:
+          type: number
+          description: The initial value of the gift card when it was created.
+          format: decimal
+          nullable: true
+        last_characters:
+          type: string
+          description: 'The last four characters of the gift card code. Because gift cards are alternative payment methods, the full code cannot be retrieved.'
           nullable: true
         line_item_id:
           type: integer
-          description: A unique numeric identifier of the line_item that caused the creation of this gift card (if it was created by an order).
-          format: int64
-          nullable: true
-        api_client_id:
-          type: integer
-          description: A unique numeric identifier of the application that issued the gift card (if it was issued by an application).
-          format: int64
-          nullable: true
-        user_id:
-          type: integer
-          description: A unique numeric identifier of the user that issued the gift card (if it was issued by a user).
-          format: int64
-          nullable: true
-        customer_id:
-          type: integer
-          description: The id of a customer who is associated with this gift card.
+          description: 'The ID of the line item that initiated the creation of this gift card, if it was created by an order.'
           format: int64
           nullable: true
         note:
           type: string
-          description: The text of an optional note that a shop owner can attach to the gift card. Not visible to merchants.
-          nullable: true
-        template_suffix:
-          type: string
-          description: 'When specified, the gift card will be rendered using gift_card.SUFFIX.liquid instead of gift_card.liquid.'
-          nullable: true
-        last_characters:
-          type: string
-          description: 'The last four characters of the gift card code. Because gift cards are alternate payment methods, the full code cannot be retrieved.'
+          description: An optional note that a merchant can attach to the gift card that isn't visible to customers.
           nullable: true
         order_id:
           type: integer
-          description: A unique numeric identifier of the order that caused the creation of this gift card (if it was created by an order).
+          description: 'The ID of the order that initiated the creation of this gift card, if it was created by an order.'
           format: int64
           nullable: true
-        code:
+        template_suffix:
           type: string
-          description: Thethe gift card code. Only for Creation
+          description: 'The suffix of the Liquid template that''s used to render the gift card online. For example, if the value is `birthday`, then the gift card is rendered using the template `gift_card.birthday.liquid`. When the value is `null`, the default `gift_card.liquid` template is used.'
+          nullable: true
+        user_id:
+          type: integer
+          description: 'The ID of the user that issued the gift card, if it was issued by a user.'
+          format: int64
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was last modified.'
+          format: date-time
           nullable: true
         id:
           type: integer
@@ -500,7 +502,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     UpdateGiftCardRequest:
       required:
         - gift_card

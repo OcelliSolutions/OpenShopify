@@ -23,13 +23,13 @@ public class ShippingAndFulfillmentService : ShopifyService, IShippingAndFulfill
         _myShopifyUrl = myShopifyUrl;
     }
     
-    public IAssignedFulfillmentOrderClient AssignedFulfillmentOrder => new AssignedFulfillmentOrderClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public ICancellationRequestClient CancellationRequest => new CancellationRequestClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public ICarrierServiceClient CarrierService => new CarrierServiceClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IFulfillmentClient Fulfillment => new FulfillmentClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IFulfillmentEventClient FulfillmentEvent => new FulfillmentEventClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IFulfillmentOrderClient FulfillmentOrder => new FulfillmentOrderClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IFulfillmentRequestClient FulfillmentRequest => new FulfillmentRequestClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IFulfillmentServiceClient FulfillmentService => new FulfillmentServiceClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public ILocationsForMoveClient LocationsForMove => new LocationsForMoveClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
+    public IAssignedFulfillmentOrderClient AssignedFulfillmentOrder => new AssignedFulfillmentOrderClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public ICancellationRequestClient CancellationRequest => new CancellationRequestClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public ICarrierServiceClient CarrierService => new CarrierServiceClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IFulfillmentClient Fulfillment => new FulfillmentClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IFulfillmentEventClient FulfillmentEvent => new FulfillmentEventClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IFulfillmentOrderClient FulfillmentOrder => new FulfillmentOrderClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IFulfillmentRequestClient FulfillmentRequest => new FulfillmentRequestClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IFulfillmentServiceClient FulfillmentService => new FulfillmentServiceClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public ILocationsForMoveClient LocationsForMove => new LocationsForMoveClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
 }

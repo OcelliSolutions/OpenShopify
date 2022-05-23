@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
-using OpenShopify.Common.Models;
+using OpenShopify.OAuth.Builder.Models;
 
 namespace OpenShopify.OAuth.Builder.Controllers.Access;
 
@@ -26,6 +26,12 @@ public class AccessScopeList
 }
 
 
-public class AccessScope : AccessScopeBase
+public record AccessScope
 {
+
+    /// <summary>
+    /// The list of access scopes associated with the access token.
+    /// </summary>
+    [JsonPropertyName("handle")]
+    public AuthorizationScope Handle { get; set; }
 }

@@ -24,6 +24,7 @@ public class ApplicationCreditTests : IClassFixture<SharedFixture>
 
     private SharedFixture Fixture { get; }
 
+    #region Create
     [Fact(Skip = "Unknown required scope."), TestPriority(10)]
     public async Task CreateApplicationCreditAsync_CanCreate()
     {
@@ -44,7 +45,9 @@ public class ApplicationCreditTests : IClassFixture<SharedFixture>
         Debug.Assert(created.Result.ApplicationCredit != null, "created.ApplicationCredit != null");
         Fixture.CreatedApplicationCredits.Add(created.Result.ApplicationCredit);
     }
+    #endregion Create
 
+    #region Read
     [SkippableFact(Skip = "Unknown required scope."), TestPriority(20)]
     public async Task GetApplicationCreditAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
@@ -77,4 +80,13 @@ public class ApplicationCreditTests : IClassFixture<SharedFixture>
             _additionalPropertiesHelper.CheckAdditionalProperties(token, Fixture.MyShopifyUrl);
         }
     }
+    #endregion Read
+
+    #region Update
+
+    #endregion Update
+
+    #region Delete
+
+    #endregion Delete
 }

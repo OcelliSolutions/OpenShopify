@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
 
@@ -12,12 +13,12 @@ public class PayoutsController : PayoutsControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("shopify_payments/payouts.json")]
-    public override Task ListPayouts(DateTime? date, DateTime? date_max, DateTime? date_min, long? last_id, int? since_id,
-        string? status)
+    public override Task ListPayouts(DateTime? date = null, DateTime? date_max = null, DateTime? date_min = null, long? last_id = null, long? since_id = null,
+        string? status = null)
     {
         throw new NotImplementedException();
     }
-
+    
     /// <inheritdoc />
     [HttpGet, Route("shopify_payments/payouts/{payout_id:long}.json")]
     public override Task GetPayout([Required] long payout_id)

@@ -12,11 +12,22 @@ namespace OpenShopify.Admin.Builder.Controllers.Orders;
 public class OrderController : OrderControllerBase
 {
     /// <inheritdoc />
+    [IgnoreApi, HttpGet, Route("orders.invalid")]
+    public override Task ListOrders(long attribution_app_id, DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null,
+        string? fields = null, string? financial_status = null, string? fulfillment_status = null, string? ids = null, int? limit = null, string? page_info = null,
+        DateTimeOffset? processed_at_max = null, DateTimeOffset? processed_at_min = null, long? since_id = null, string? status = null, DateTimeOffset? updated_at_max = null,
+        DateTimeOffset? updated_at_min = null)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc cref="OrderControllerBase.ListOrders" />
     [HttpGet, Route("orders.json")]
-    public override Task ListOrders(long? attribution_app_id, DateTime? created_at_max, DateTime? created_at_min,
-        string? fields, string financial_status, string fulfillment_status, string? ids, int? limit, string? page_info,
-        DateTime? processed_at_max, DateTime? processed_at_min, int? since_id, Status? status, DateTime? updated_at_max,
-        DateTime? updated_at_min)
+    public Task ListOrders(long? attribution_app_id, DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null,
+        string? fields = null, string? financial_status = null, string? fulfillment_status = null, string? ids = null,
+        int? limit = null, string? page_info = null, DateTimeOffset? processed_at_max = null,
+        DateTimeOffset? processed_at_min = null, long? since_id = null, string? status = null,
+        DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();
     }
@@ -30,7 +41,7 @@ public class OrderController : OrderControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}.json")]
-    public override Task GetSpecificOrder([Required] long order_id, string? fields)
+    public override Task GetSpecificOrder([Required] long order_id, string? fields = null)
     {
         throw new NotImplementedException();
     }
@@ -52,8 +63,8 @@ public class OrderController : OrderControllerBase
     /// <inheritdoc />
     [HttpGet, Route("orders/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task GetOrderCount(DateTime? created_at_max, DateTime? created_at_min, string financial_status,
-        string fulfillment_status, string status, DateTime? updated_at_max, DateTime? updated_at_min)
+    public override Task GetOrderCount(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null, string? financial_status = null,
+        string? fulfillment_status = null, string? status = null, DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();
     }
@@ -73,9 +84,18 @@ public class OrderController : OrderControllerBase
     }
 
     /// <inheritdoc />
+    [IgnoreApi, HttpPost, Route("orders/{order_id:long}/cancel.invalid")]
+    public override Task CancelOrder(long order_id, decimal? amount = null, string? currency = null, bool? email = null,
+        string? reason = null, string? refund = null, bool? restock = null)
+    {
+        throw new NotImplementedException();
+    }
+
+
+    /// <inheritdoc cref="OrderControllerBase.CancelOrder" />
     [HttpPost, Route("orders/{order_id:long}/cancel.json")]
-    public override Task CancelOrder([Required] long order_id, string? amount, string? currency, bool? email, string reason, object? refund,
-        bool? restock)
+    public Task CancelOrder(long order_id, decimal? amount = null, string? currency = null, bool? email = null,
+        string? reason = null, CreateRefund? refund = null, bool? restock = null)
     {
         throw new NotImplementedException();
     }

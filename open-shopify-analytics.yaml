@@ -44,6 +44,7 @@ paths:
             format: int32
         - name: page_info
           in: query
+          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
@@ -51,7 +52,7 @@ paths:
           description: Restrict results to after the specified ID.
           schema:
             type: integer
-            format: int32
+            format: int64
         - name: updated_at_max
           in: query
           description: 'Show reports last updated before date. (format: 2014-04-25T16:15:47-04:00)'
@@ -223,18 +224,22 @@ components:
       properties:
         category:
           type: string
+          description: 'The category for the report. When you create a report, the API will return `custom_app_reports`.'
           nullable: true
         name:
-          maxLength: 255
           type: string
+          description: 'The name of the report. Maximum length: 255 characters.'
           nullable: true
         shopify_ql:
           type: string
+          description: 'The ShopifyQL query that generates the report.See [Shopify Query Language](/api/admin/rest/reference/analytics/shopify-ql).'
           nullable: true
         updated_at:
           type: string
+          description: 'The date and time [(ISO 8601)](https://en.wikipedia.org/wiki/ISO_8601)when the report was last modified.'
           format: date-time
-      additionalProperties: false
+          nullable: true
+      additionalProperties: { }
     CreateReportRequest:
       required:
         - report
@@ -250,17 +255,21 @@ components:
       properties:
         category:
           type: string
+          description: 'The category for the report. When you create a report, the API will return `custom_app_reports`.'
           nullable: true
         name:
-          maxLength: 255
           type: string
+          description: 'The name of the report. Maximum length: 255 characters.'
           nullable: true
         shopify_ql:
           type: string
+          description: 'The ShopifyQL query that generates the report.See [Shopify Query Language](/api/admin/rest/reference/analytics/shopify-ql).'
           nullable: true
         updated_at:
           type: string
+          description: 'The date and time [(ISO 8601)](https://en.wikipedia.org/wiki/ISO_8601)when the report was last modified.'
           format: date-time
+          nullable: true
         id:
           type: integer
           format: int64
@@ -293,24 +302,28 @@ components:
       properties:
         category:
           type: string
+          description: 'The category for the report. When you create a report, the API will return `custom_app_reports`.'
           nullable: true
         name:
-          maxLength: 255
           type: string
+          description: 'The name of the report. Maximum length: 255 characters.'
           nullable: true
         shopify_ql:
           type: string
+          description: 'The ShopifyQL query that generates the report.See [Shopify Query Language](/api/admin/rest/reference/analytics/shopify-ql).'
           nullable: true
         updated_at:
           type: string
+          description: 'The date and time [(ISO 8601)](https://en.wikipedia.org/wiki/ISO_8601)when the report was last modified.'
           format: date-time
+          nullable: true
         id:
           type: integer
           format: int64
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     UpdateReportRequest:
       required:
         - report

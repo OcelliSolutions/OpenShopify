@@ -18,6 +18,6 @@ public class AccessService : ShopifyService, IAccessService
         _baseUri = base.PrepareRequest(myShopifyUrl);
         _myShopifyUrl = myShopifyUrl;
     }
-    public IAccessScopeClient AccessScope => new AccessScopeClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUriAccessScope.ToString(), ReadResponseAsString = false };
-    public IStorefrontAccessTokenClient StorefrontAccess => new StorefrontAccessTokenClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
+    public IAccessScopeClient AccessScope => new AccessScopeClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUriAccessScope.ToString(), ReadResponseAsString = true };
+    public IStorefrontAccessTokenClient StorefrontAccess => new StorefrontAccessTokenClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
 }

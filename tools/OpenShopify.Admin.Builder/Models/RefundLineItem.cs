@@ -2,13 +2,13 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class RefundLineItem : ShopifyObject
+    public partial record RefundLineItem : ShopifyObject
     {
         /// <summary>
         /// The single <see cref="Models.LineItem"/> being returned.
         /// </summary>
         [JsonPropertyName("line_item")]
-        public LineItem LineItem { get; set; }
+        public LineItem? LineItem { get; set; }
 
         /// <summary>
         /// The unique identifier of the refund line item.
@@ -38,13 +38,13 @@ namespace OpenShopify.Admin.Builder.Models
         /// The subtotal of the refund line item in shop and presentment currencies.
         /// </summary>
         [JsonPropertyName("subtotal_set")]
-        public PriceSet SubTotalTaxSet { get; set; }
+        public PriceSet? SubTotalTaxSet { get; set; }
 
         /// <summary>
         /// The total tax of the line item in shop and presentment currencies.
         /// </summary>
         [JsonPropertyName("total_tax_set")]
-        public PriceSet TotalTaxSet { get; set; }
+        public PriceSet? TotalTaxSet { get; set; }
 
         /// <summary>
         /// How this refund line item affects inventory levels.

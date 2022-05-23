@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class WeightBasedShippingRate : ShopifyObject
+    public partial record WeightBasedShippingRate : ShopifyObject
     {
         /// <summary>
         /// Minimum order weight

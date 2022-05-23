@@ -1,2618 +1,2647 @@
-﻿
-
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using OpenShopify.Common.Models;
 
 namespace OpenShopify.Admin.Builder.Models;
+// ReSharper disable All
 
-public class AccessScopeItem
-{
-    [JsonPropertyName("access_scope"), Required]
-    public AccessScope AccessScope { get; set; } = null!;
-}
-
-public class AccessScopeList
-{
-    [JsonPropertyName("access_scopes"), Required]
-    public IEnumerable<AccessScope> AccessScopes { get; set; } = null!;
-}
-		
-	
-public class AccessScope : AccessScopeBase
-{
-}
-	
-public class StorefrontAccessTokenItem
+public partial record StorefrontAccessTokenItem
 {
     [JsonPropertyName("storefront_access_token"), Required]
     public StorefrontAccessToken StorefrontAccessToken { get; set; } = null!;
 }
 
-public class StorefrontAccessTokenList
+public partial record StorefrontAccessTokenList
 {
     [JsonPropertyName("storefront_access_tokens"), Required]
     public IEnumerable<StorefrontAccessToken> StorefrontAccessTokens { get; set; } = null!;
 }
-public class CreateStorefrontAccessTokenRequest
+public partial record CreateStorefrontAccessTokenRequest
 {
     [JsonPropertyName("storefront_access_token"), Required]
     public CreateStorefrontAccessToken StorefrontAccessToken { get; set; } = null!;
 }
 
-public partial class CreateStorefrontAccessToken : StorefrontAccessTokenBase {}
-public class UpdateStorefrontAccessTokenRequest
+public partial record CreateStorefrontAccessToken : StorefrontAccessTokenBase {}
+public partial record UpdateStorefrontAccessTokenRequest
 {
     [JsonPropertyName("storefront_access_token"), Required]
     public UpdateStorefrontAccessToken StorefrontAccessToken { get; set; } = null!;
 }
 
-public partial class UpdateStorefrontAccessToken : StorefrontAccessToken{}
+public partial record UpdateStorefrontAccessToken : StorefrontAccessToken{}
 
 		
-	
-public class StorefrontAccessToken : StorefrontAccessTokenBase
+public partial record StorefrontAccessToken : StorefrontAccessTokenBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record StorefrontAccessTokenBase : StorefrontAccessTokenOrig{}
+
 	
-public class ReportItem
+public partial record ReportItem
 {
     [JsonPropertyName("report"), Required]
     public Report Report { get; set; } = null!;
 }
 
-public class ReportList
+public partial record ReportList
 {
     [JsonPropertyName("reports"), Required]
     public IEnumerable<Report> Reports { get; set; } = null!;
 }
-public class CreateReportRequest
+public partial record CreateReportRequest
 {
     [JsonPropertyName("report"), Required]
     public CreateReport Report { get; set; } = null!;
 }
 
-public partial class CreateReport : ReportBase {}
-public class UpdateReportRequest
+public partial record CreateReport : ReportBase {}
+public partial record UpdateReportRequest
 {
     [JsonPropertyName("report"), Required]
     public UpdateReport Report { get; set; } = null!;
 }
 
-public partial class UpdateReport : Report{}
+public partial record UpdateReport : Report{}
 
 		
-	
-public class Report : ReportBase
+public partial record Report : ReportBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record ReportBase : ReportOrig{}
+
 	
-public class ApplicationChargeItem
+public partial record ApplicationChargeItem
 {
     [JsonPropertyName("application_charge"), Required]
     public ApplicationCharge ApplicationCharge { get; set; } = null!;
 }
 
-public class ApplicationChargeList
+public partial record ApplicationChargeList
 {
     [JsonPropertyName("application_charges"), Required]
     public IEnumerable<ApplicationCharge> ApplicationCharges { get; set; } = null!;
 }
-public class CreateApplicationChargeRequest
+public partial record CreateApplicationChargeRequest
 {
     [JsonPropertyName("application_charge"), Required]
     public CreateApplicationCharge ApplicationCharge { get; set; } = null!;
 }
 
-public partial class CreateApplicationCharge : ApplicationChargeBase {}
-public class UpdateApplicationChargeRequest
+public partial record CreateApplicationCharge : ApplicationChargeBase {}
+public partial record UpdateApplicationChargeRequest
 {
     [JsonPropertyName("application_charge"), Required]
     public UpdateApplicationCharge ApplicationCharge { get; set; } = null!;
 }
 
-public partial class UpdateApplicationCharge : ApplicationCharge{}
+public partial record UpdateApplicationCharge : ApplicationCharge{}
 
 		
-	
-public class ApplicationCharge : ApplicationChargeBase
+public partial record ApplicationCharge : ApplicationChargeBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record ApplicationChargeBase : ApplicationChargeOrig{}
+
 	
-public class ApplicationCreditItem
+public partial record ApplicationCreditItem
 {
     [JsonPropertyName("application_credit"), Required]
     public ApplicationCredit ApplicationCredit { get; set; } = null!;
 }
 
-public class ApplicationCreditList
+public partial record ApplicationCreditList
 {
     [JsonPropertyName("application_credits"), Required]
     public IEnumerable<ApplicationCredit> ApplicationCredits { get; set; } = null!;
 }
-public class CreateApplicationCreditRequest
+public partial record CreateApplicationCreditRequest
 {
     [JsonPropertyName("application_credit"), Required]
     public CreateApplicationCredit ApplicationCredit { get; set; } = null!;
 }
 
-public partial class CreateApplicationCredit : ApplicationCreditBase {}
-public class UpdateApplicationCreditRequest
+public partial record CreateApplicationCredit : ApplicationCreditBase {}
+public partial record UpdateApplicationCreditRequest
 {
     [JsonPropertyName("application_credit"), Required]
     public UpdateApplicationCredit ApplicationCredit { get; set; } = null!;
 }
 
-public partial class UpdateApplicationCredit : ApplicationCredit{}
+public partial record UpdateApplicationCredit : ApplicationCredit{}
 
 		
-	
-public class ApplicationCredit : ApplicationCreditBase
+public partial record ApplicationCredit : ApplicationCreditBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record ApplicationCreditBase : ApplicationCreditOrig{}
+
 	
-public class RecurringApplicationChargeItem
+public partial record RecurringApplicationChargeItem
 {
     [JsonPropertyName("recurring_application_charge"), Required]
     public RecurringApplicationCharge RecurringApplicationCharge { get; set; } = null!;
 }
 
-public class RecurringApplicationChargeList
+public partial record RecurringApplicationChargeList
 {
     [JsonPropertyName("recurring_application_charges"), Required]
     public IEnumerable<RecurringApplicationCharge> RecurringApplicationCharges { get; set; } = null!;
 }
-public class CreateRecurringApplicationChargeRequest
+public partial record CreateRecurringApplicationChargeRequest
 {
     [JsonPropertyName("recurring_application_charge"), Required]
     public CreateRecurringApplicationCharge RecurringApplicationCharge { get; set; } = null!;
 }
 
-public partial class CreateRecurringApplicationCharge : RecurringApplicationChargeBase {}
-public class UpdateRecurringApplicationChargeRequest
+public partial record CreateRecurringApplicationCharge : RecurringApplicationChargeBase {}
+public partial record UpdateRecurringApplicationChargeRequest
 {
     [JsonPropertyName("recurring_application_charge"), Required]
     public UpdateRecurringApplicationCharge RecurringApplicationCharge { get; set; } = null!;
 }
 
-public partial class UpdateRecurringApplicationCharge : RecurringApplicationCharge{}
+public partial record UpdateRecurringApplicationCharge : RecurringApplicationCharge{}
 
 		
-	
-public class RecurringApplicationCharge : RecurringApplicationChargeBase
+public partial record RecurringApplicationCharge : RecurringApplicationChargeBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record RecurringApplicationChargeBase : RecurringApplicationChargeOrig{}
+
 	
-public class UsageChargeItem
+public partial record UsageChargeItem
 {
     [JsonPropertyName("usage_charge"), Required]
     public UsageCharge UsageCharge { get; set; } = null!;
 }
 
-public class UsageChargeList
+public partial record UsageChargeList
 {
     [JsonPropertyName("usage_charges"), Required]
     public IEnumerable<UsageCharge> UsageCharges { get; set; } = null!;
 }
-public class CreateUsageChargeRequest
+public partial record CreateUsageChargeRequest
 {
     [JsonPropertyName("usage_charge"), Required]
     public CreateUsageCharge UsageCharge { get; set; } = null!;
 }
 
-public partial class CreateUsageCharge : UsageChargeBase {}
-public class UpdateUsageChargeRequest
+public partial record CreateUsageCharge : UsageChargeBase {}
+public partial record UpdateUsageChargeRequest
 {
     [JsonPropertyName("usage_charge"), Required]
     public UpdateUsageCharge UsageCharge { get; set; } = null!;
 }
 
-public partial class UpdateUsageCharge : UsageCharge{}
+public partial record UpdateUsageCharge : UsageCharge{}
 
 		
-	
-public class UsageCharge : UsageChargeBase
+public partial record UsageCharge : UsageChargeBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record UsageChargeBase : UsageChargeOrig{}
+
 	
-public class CustomerItem
+public partial record CustomerItem
 {
     [JsonPropertyName("customer"), Required]
     public Customer Customer { get; set; } = null!;
 }
 
-public class CustomerList
+public partial record CustomerList
 {
     [JsonPropertyName("customers"), Required]
     public IEnumerable<Customer> Customers { get; set; } = null!;
 }
-public class CreateCustomerRequest
+public partial record CreateCustomerRequest
 {
     [JsonPropertyName("customer"), Required]
     public CreateCustomer Customer { get; set; } = null!;
 }
 
-public partial class CreateCustomer : CustomerBase {}
-public class UpdateCustomerRequest
+public partial record CreateCustomer : CustomerBase {}
+public partial record UpdateCustomerRequest
 {
     [JsonPropertyName("customer"), Required]
     public UpdateCustomer Customer { get; set; } = null!;
 }
 
-public partial class UpdateCustomer : Customer{}
+public partial record UpdateCustomer : Customer{}
 
 		
-	
-public class Customer : CustomerBase
+public partial record Customer : CustomerBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record CustomerBase : CustomerOrig{}
+
 	
-public class AddressItem
-{
-    [JsonPropertyName("address"), Required]
-    public Address Address { get; set; } = null!;
-}
-
-public class AddressList
-{
-    [JsonPropertyName("addresses"), Required]
-    public IEnumerable<Address> Addresses { get; set; } = null!;
-}
-public class CreateAddressRequest
-{
-    [JsonPropertyName("address"), Required]
-    public CreateAddress Address { get; set; } = null!;
-}
-
-public partial class CreateAddress : AddressBase {}
-public class UpdateAddressRequest
-{
-    [JsonPropertyName("address"), Required]
-    public UpdateAddress Address { get; set; } = null!;
-}
-
-public partial class UpdateAddress : Address{}
-
-		
-	
-public class Address : AddressBase
-{
-    [JsonPropertyName("id"), Required]
-    public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
-    public string? AdminGraphQLAPIId { get; set; }
-	}
-	
-public class CustomerAddressItem
-{
-    [JsonPropertyName("customer_address"), Required]
-    public Address CustomerAddress { get; set; } = null!;
-}
-
-public class CustomerAddressList
-{
-    [JsonPropertyName("customer_addresses"), Required]
-    public IEnumerable<Address> CustomerAddresses { get; set; } = null!;
-}
-public class CreateCustomerAddressRequest
-{
-    [JsonPropertyName("customer_address"), Required]
-    public CreateCustomerAddress CustomerAddress { get; set; } = null!;
-}
-
-public partial class CreateCustomerAddress : AddressBase {}
-public class UpdateCustomerAddressRequest
-{
-    [JsonPropertyName("customer_address"), Required]
-    public UpdateCustomerAddress CustomerAddress { get; set; } = null!;
-}
-
-public partial class UpdateCustomerAddress : Address{}
-
-		
-	
-public class CustomerAddress : AddressBase
-{
-    [JsonPropertyName("id"), Required]
-    public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
-    public string? AdminGraphQLAPIId { get; set; }
-	}
-	
-public class CustomerSavedSearchItem
+public partial record CustomerSavedSearchItem
 {
     [JsonPropertyName("customer_saved_search"), Required]
     public CustomerSavedSearch CustomerSavedSearch { get; set; } = null!;
 }
 
-public class CustomerSavedSearchList
+public partial record CustomerSavedSearchList
 {
     [JsonPropertyName("customer_saved_searches"), Required]
     public IEnumerable<CustomerSavedSearch> CustomerSavedSearches { get; set; } = null!;
 }
-public class CreateCustomerSavedSearchRequest
+public partial record CreateCustomerSavedSearchRequest
 {
     [JsonPropertyName("customer_saved_search"), Required]
     public CreateCustomerSavedSearch CustomerSavedSearch { get; set; } = null!;
 }
 
-public partial class CreateCustomerSavedSearch : CustomerSavedSearchBase {}
-public class UpdateCustomerSavedSearchRequest
+public partial record CreateCustomerSavedSearch : CustomerSavedSearchBase {}
+public partial record UpdateCustomerSavedSearchRequest
 {
     [JsonPropertyName("customer_saved_search"), Required]
     public UpdateCustomerSavedSearch CustomerSavedSearch { get; set; } = null!;
 }
 
-public partial class UpdateCustomerSavedSearch : CustomerSavedSearch{}
+public partial record UpdateCustomerSavedSearch : CustomerSavedSearch{}
 
 		
-	
-public class CustomerSavedSearch : CustomerSavedSearchBase
+public partial record CustomerSavedSearch : CustomerSavedSearchBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record CustomerSavedSearchBase : CustomerSavedSearchOrig{}
+
 	
-public class DeprecatedApiCallItem
+public partial record DeprecatedApiCallItem
 {
     [JsonPropertyName("deprecated_api_call"), Required]
     public DeprecatedApiCall DeprecatedApiCall { get; set; } = null!;
 }
 
-public class DeprecatedApiCallList
+public partial record DeprecatedApiCallList
 {
     [JsonPropertyName("deprecated_api_calls"), Required]
     public IEnumerable<DeprecatedApiCall> DeprecatedApiCalls { get; set; } = null!;
 }
 		
-	
-public class DeprecatedApiCall : DeprecatedApiCallBase
+public partial record DeprecatedApiCall : DeprecatedAPIcallsBase
 {
 }
+
+public partial record DeprecatedAPIcallsBase : DeprecatedAPIcallsOrig{}
+
 	
-public class DiscountCodeItem
+public partial record DiscountCodeItem
 {
     [JsonPropertyName("discount_code"), Required]
     public DiscountCode DiscountCode { get; set; } = null!;
 }
 
-public class DiscountCodeList
+public partial record DiscountCodeList
 {
     [JsonPropertyName("discount_codes"), Required]
     public IEnumerable<DiscountCode> DiscountCodes { get; set; } = null!;
 }
-public class CreateDiscountCodeRequest
+public partial record CreateDiscountCodeRequest
 {
     [JsonPropertyName("discount_code"), Required]
     public CreateDiscountCode DiscountCode { get; set; } = null!;
 }
 
-public partial class CreateDiscountCode : DiscountCodeBase {}
-public class UpdateDiscountCodeRequest
+public partial record CreateDiscountCode : DiscountCodeBase {}
+public partial record UpdateDiscountCodeRequest
 {
     [JsonPropertyName("discount_code"), Required]
     public UpdateDiscountCode DiscountCode { get; set; } = null!;
 }
 
-public partial class UpdateDiscountCode : DiscountCode{}
+public partial record UpdateDiscountCode : DiscountCode{}
 
 		
-	
-public class DiscountCode : DiscountCodeBase
+public partial record DiscountCode : DiscountCodeBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record DiscountCodeBase : DiscountCodeOrig{}
+
 	
-public class PriceRuleItem
+public partial record PriceRuleItem
 {
     [JsonPropertyName("price_rule"), Required]
     public PriceRule PriceRule { get; set; } = null!;
 }
 
-public class PriceRuleList
+public partial record PriceRuleList
 {
     [JsonPropertyName("price_rules"), Required]
     public IEnumerable<PriceRule> PriceRules { get; set; } = null!;
 }
-public class CreatePriceRuleRequest
+public partial record CreatePriceRuleRequest
 {
     [JsonPropertyName("price_rule"), Required]
     public CreatePriceRule PriceRule { get; set; } = null!;
 }
 
-public partial class CreatePriceRule : PriceRuleBase {}
-public class UpdatePriceRuleRequest
+public partial record CreatePriceRule : PriceRuleBase {}
+public partial record UpdatePriceRuleRequest
 {
     [JsonPropertyName("price_rule"), Required]
     public UpdatePriceRule PriceRule { get; set; } = null!;
 }
 
-public partial class UpdatePriceRule : PriceRule{}
+public partial record UpdatePriceRule : PriceRule{}
 
 		
-	
-public class PriceRule : PriceRuleBase
+public partial record PriceRule : PriceRuleBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record PriceRuleBase : PriceRuleOrig{}
+
 	
-public class EventItem
+public partial record EventItem
 {
     [JsonPropertyName("event"), Required]
     public Event Event { get; set; } = null!;
 }
 
-public class EventList
+public partial record EventList
 {
     [JsonPropertyName("events"), Required]
     public IEnumerable<Event> Events { get; set; } = null!;
 }
-public class CreateEventRequest
+public partial record CreateEventRequest
 {
     [JsonPropertyName("event"), Required]
     public CreateEvent Event { get; set; } = null!;
 }
 
-public partial class CreateEvent : EventBase {}
-public class UpdateEventRequest
+public partial record CreateEvent : EventBase {}
+public partial record UpdateEventRequest
 {
     [JsonPropertyName("event"), Required]
     public UpdateEvent Event { get; set; } = null!;
 }
 
-public partial class UpdateEvent : Event{}
+public partial record UpdateEvent : Event{}
 
 		
-	
-public class Event : EventBase
+public partial record Event : EventBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record EventBase : EventOrig{}
+
 	
-public class WebhookItem
+public partial record WebhookItem
 {
     [JsonPropertyName("webhook"), Required]
     public Webhook Webhook { get; set; } = null!;
 }
 
-public class WebhookList
+public partial record WebhookList
 {
     [JsonPropertyName("webhooks"), Required]
     public IEnumerable<Webhook> Webhooks { get; set; } = null!;
 }
-public class CreateWebhookRequest
+public partial record CreateWebhookRequest
 {
     [JsonPropertyName("webhook"), Required]
     public CreateWebhook Webhook { get; set; } = null!;
 }
 
-public partial class CreateWebhook : WebhookBase {}
-public class UpdateWebhookRequest
+public partial record CreateWebhook : WebhookBase {}
+public partial record UpdateWebhookRequest
 {
     [JsonPropertyName("webhook"), Required]
     public UpdateWebhook Webhook { get; set; } = null!;
 }
 
-public partial class UpdateWebhook : Webhook{}
+public partial record UpdateWebhook : Webhook{}
 
 		
-	
-public class Webhook : WebhookBase
+public partial record Webhook : WebhookBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record WebhookBase : WebhookOrig{}
+
 	
-public class InventoryItemItem
+public partial record InventoryItemItem
 {
     [JsonPropertyName("inventory_item"), Required]
     public InventoryItem InventoryItem { get; set; } = null!;
 }
 
-public class InventoryItemList
+public partial record InventoryItemList
 {
     [JsonPropertyName("inventory_items"), Required]
     public IEnumerable<InventoryItem> InventoryItems { get; set; } = null!;
 }
-public class CreateInventoryItemRequest
+public partial record CreateInventoryItemRequest
 {
     [JsonPropertyName("inventory_item"), Required]
     public CreateInventoryItem InventoryItem { get; set; } = null!;
 }
 
-public partial class CreateInventoryItem : InventoryItemBase {}
-public class UpdateInventoryItemRequest
+public partial record CreateInventoryItem : InventoryItemBase {}
+public partial record UpdateInventoryItemRequest
 {
     [JsonPropertyName("inventory_item"), Required]
     public UpdateInventoryItem InventoryItem { get; set; } = null!;
 }
 
-public partial class UpdateInventoryItem : InventoryItem{}
+public partial record UpdateInventoryItem : InventoryItem{}
 
 		
-	
-public class InventoryItem : InventoryItemBase
+public partial record InventoryItem : InventoryItemBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record InventoryItemBase : InventoryItemOrig{}
+
 	
-public class InventoryLevelItem
+public partial record InventoryLevelItem
 {
     [JsonPropertyName("inventory_level"), Required]
     public InventoryLevel InventoryLevel { get; set; } = null!;
 }
 
-public class InventoryLevelList
+public partial record InventoryLevelList
 {
     [JsonPropertyName("inventory_levels"), Required]
     public IEnumerable<InventoryLevel> InventoryLevels { get; set; } = null!;
 }
-public class CreateInventoryLevelRequest
+public partial record CreateInventoryLevelRequest
 {
     [JsonPropertyName("inventory_level"), Required]
     public CreateInventoryLevel InventoryLevel { get; set; } = null!;
 }
 
-public partial class CreateInventoryLevel : InventoryLevelBase {}
-public class UpdateInventoryLevelRequest
+public partial record CreateInventoryLevel : InventoryLevelBase {}
+public partial record UpdateInventoryLevelRequest
 {
     [JsonPropertyName("inventory_level"), Required]
     public UpdateInventoryLevel InventoryLevel { get; set; } = null!;
 }
 
-public partial class UpdateInventoryLevel : InventoryLevel{}
+public partial record UpdateInventoryLevel : InventoryLevel{}
 
 		
-	
-public class InventoryLevel : InventoryLevelBase
+public partial record InventoryLevel : InventoryLevelBase
 {
 }
+
+public partial record InventoryLevelBase : InventoryLevelOrig{}
+
 	
-public class LocationItem
+public partial record LocationItem
 {
     [JsonPropertyName("location"), Required]
     public Location Location { get; set; } = null!;
 }
 
-public class LocationList
+public partial record LocationList
 {
     [JsonPropertyName("locations"), Required]
     public IEnumerable<Location> Locations { get; set; } = null!;
 }
-public class CreateLocationRequest
+public partial record CreateLocationRequest
 {
     [JsonPropertyName("location"), Required]
     public CreateLocation Location { get; set; } = null!;
 }
 
-public partial class CreateLocation : LocationBase {}
-public class UpdateLocationRequest
+public partial record CreateLocation : LocationBase {}
+public partial record UpdateLocationRequest
 {
     [JsonPropertyName("location"), Required]
     public UpdateLocation Location { get; set; } = null!;
 }
 
-public partial class UpdateLocation : Location{}
+public partial record UpdateLocation : Location{}
 
 		
-	
-public class Location : LocationBase
+public partial record Location : LocationBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record LocationBase : LocationOrig{}
+
 	
-public class MarketingEventItem
+public partial record MarketingEventItem
 {
     [JsonPropertyName("marketing_event"), Required]
     public MarketingEvent MarketingEvent { get; set; } = null!;
 }
 
-public class MarketingEventList
+public partial record MarketingEventList
 {
     [JsonPropertyName("marketing_events"), Required]
     public IEnumerable<MarketingEvent> MarketingEvents { get; set; } = null!;
 }
-public class CreateMarketingEventRequest
+public partial record CreateMarketingEventRequest
 {
     [JsonPropertyName("marketing_event"), Required]
     public CreateMarketingEvent MarketingEvent { get; set; } = null!;
 }
 
-public partial class CreateMarketingEvent : MarketingEventBase {}
-public class UpdateMarketingEventRequest
+public partial record CreateMarketingEvent : MarketingEventBase {}
+public partial record UpdateMarketingEventRequest
 {
     [JsonPropertyName("marketing_event"), Required]
     public UpdateMarketingEvent MarketingEvent { get; set; } = null!;
 }
 
-public partial class UpdateMarketingEvent : MarketingEvent{}
+public partial record UpdateMarketingEvent : MarketingEvent{}
 
 		
-	
-public class MarketingEvent : MarketingEventBase
+public partial record MarketingEvent : MarketingEventBase
 {
-    [JsonPropertyName("id"), Required]
-    public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
-    public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record MarketingEventBase : MarketingEventOrig{}
+
 	
-public class MetafieldItem
+public partial record MetafieldItem
 {
     [JsonPropertyName("metafield"), Required]
     public Metafield Metafield { get; set; } = null!;
 }
 
-public class MetafieldList
+public partial record MetafieldList
 {
     [JsonPropertyName("metafields"), Required]
     public IEnumerable<Metafield> Metafields { get; set; } = null!;
 }
-public class CreateMetafieldRequest
+public partial record CreateMetafieldRequest
 {
     [JsonPropertyName("metafield"), Required]
     public CreateMetafield Metafield { get; set; } = null!;
 }
 
-public partial class CreateMetafield : MetafieldBase {}
-public class UpdateMetafieldRequest
+public partial record CreateMetafield : MetafieldBase {}
+public partial record UpdateMetafieldRequest
 {
     [JsonPropertyName("metafield"), Required]
     public UpdateMetafield Metafield { get; set; } = null!;
 }
 
-public partial class UpdateMetafield : Metafield{}
+public partial record UpdateMetafield : Metafield{}
 
 		
-	
-public class Metafield : MetafieldBase
+public partial record Metafield : MetafieldBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record MetafieldBase : MetafieldOrig{}
+
 	
-public class ArticleItem
+public partial record ArticleItem
 {
     [JsonPropertyName("article"), Required]
     public Article Article { get; set; } = null!;
 }
 
-public class ArticleList
+public partial record ArticleList
 {
     [JsonPropertyName("articles"), Required]
     public IEnumerable<Article> Articles { get; set; } = null!;
 }
-public class CreateArticleRequest
+public partial record CreateArticleRequest
 {
     [JsonPropertyName("article"), Required]
     public CreateArticle Article { get; set; } = null!;
 }
 
-public partial class CreateArticle : ArticleBase {}
-public class UpdateArticleRequest
+public partial record CreateArticle : ArticleBase {}
+public partial record UpdateArticleRequest
 {
     [JsonPropertyName("article"), Required]
     public UpdateArticle Article { get; set; } = null!;
 }
 
-public partial class UpdateArticle : Article{}
+public partial record UpdateArticle : Article{}
 
 		
-	
-public class Article : ArticleBase
+public partial record Article : ArticleBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record ArticleBase : ArticleOrig{}
+
 	
-public class AssetItem
+public partial record AssetItem
 {
     [JsonPropertyName("asset"), Required]
     public Asset Asset { get; set; } = null!;
 }
 
-public class AssetList
+public partial record AssetList
 {
     [JsonPropertyName("assets"), Required]
     public IEnumerable<Asset> Assets { get; set; } = null!;
 }
-public class CreateAssetRequest
+public partial record CreateAssetRequest
 {
     [JsonPropertyName("asset"), Required]
     public CreateAsset Asset { get; set; } = null!;
 }
 
-public partial class CreateAsset : AssetBase {}
-public class UpdateAssetRequest
+public partial record CreateAsset : AssetBase {}
+public partial record UpdateAssetRequest
 {
     [JsonPropertyName("asset"), Required]
     public UpdateAsset Asset { get; set; } = null!;
 }
 
-public partial class UpdateAsset : Asset{}
+public partial record UpdateAsset : Asset{}
 
 		
-	
-public class Asset : AssetBase
+public partial record Asset : AssetBase
 {
 }
+
+public partial record AssetBase : AssetOrig{}
+
 	
-public class BlogItem
+public partial record BlogItem
 {
     [JsonPropertyName("blog"), Required]
     public Blog Blog { get; set; } = null!;
 }
 
-public class BlogList
+public partial record BlogList
 {
     [JsonPropertyName("blogs"), Required]
     public IEnumerable<Blog> Blogs { get; set; } = null!;
 }
-public class CreateBlogRequest
+public partial record CreateBlogRequest
 {
     [JsonPropertyName("blog"), Required]
     public CreateBlog Blog { get; set; } = null!;
 }
 
-public partial class CreateBlog : BlogBase {}
-public class UpdateBlogRequest
+public partial record CreateBlog : BlogBase {}
+public partial record UpdateBlogRequest
 {
     [JsonPropertyName("blog"), Required]
     public UpdateBlog Blog { get; set; } = null!;
 }
 
-public partial class UpdateBlog : Blog{}
+public partial record UpdateBlog : Blog{}
 
 		
-	
-public class Blog : BlogBase
+public partial record Blog : BlogBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record BlogBase : BlogOrig{}
+
 	
-public class CommentItem
+public partial record CommentItem
 {
     [JsonPropertyName("comment"), Required]
     public Comment Comment { get; set; } = null!;
 }
 
-public class CommentList
+public partial record CommentList
 {
     [JsonPropertyName("comments"), Required]
     public IEnumerable<Comment> Comments { get; set; } = null!;
 }
-public class CreateCommentRequest
+public partial record CreateCommentRequest
 {
     [JsonPropertyName("comment"), Required]
     public CreateComment Comment { get; set; } = null!;
 }
 
-public partial class CreateComment : CommentBase {}
-public class UpdateCommentRequest
+public partial record CreateComment : CommentBase {}
+public partial record UpdateCommentRequest
 {
     [JsonPropertyName("comment"), Required]
     public UpdateComment Comment { get; set; } = null!;
 }
 
-public partial class UpdateComment : Comment{}
+public partial record UpdateComment : Comment{}
 
 		
-	
-public class Comment : CommentBase
+public partial record Comment : CommentBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record CommentBase : CommentOrig{}
+
 	
-public class PageItem
+public partial record PageItem
 {
     [JsonPropertyName("page"), Required]
     public Page Page { get; set; } = null!;
 }
 
-public class PageList
+public partial record PageList
 {
     [JsonPropertyName("pages"), Required]
     public IEnumerable<Page> Pages { get; set; } = null!;
 }
-public class CreatePageRequest
+public partial record CreatePageRequest
 {
     [JsonPropertyName("page"), Required]
     public CreatePage Page { get; set; } = null!;
 }
 
-public partial class CreatePage : PageBase {}
-public class UpdatePageRequest
+public partial record CreatePage : PageBase {}
+public partial record UpdatePageRequest
 {
     [JsonPropertyName("page"), Required]
     public UpdatePage Page { get; set; } = null!;
 }
 
-public partial class UpdatePage : Page{}
+public partial record UpdatePage : Page{}
 
 		
-	
-public class Page : PageBase
+public partial record Page : PageBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record PageBase : PageOrig{}
+
 	
-public class RedirectItem
+public partial record RedirectItem
 {
     [JsonPropertyName("redirect"), Required]
     public Redirect Redirect { get; set; } = null!;
 }
 
-public class RedirectList
+public partial record RedirectList
 {
     [JsonPropertyName("redirects"), Required]
     public IEnumerable<Redirect> Redirects { get; set; } = null!;
 }
-public class CreateRedirectRequest
+public partial record CreateRedirectRequest
 {
     [JsonPropertyName("redirect"), Required]
     public CreateRedirect Redirect { get; set; } = null!;
 }
 
-public partial class CreateRedirect : RedirectBase {}
-public class UpdateRedirectRequest
+public partial record CreateRedirect : RedirectBase {}
+public partial record UpdateRedirectRequest
 {
     [JsonPropertyName("redirect"), Required]
     public UpdateRedirect Redirect { get; set; } = null!;
 }
 
-public partial class UpdateRedirect : Redirect{}
+public partial record UpdateRedirect : Redirect{}
 
 		
-	
-public class Redirect : RedirectBase
+public partial record Redirect : RedirectBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record RedirectBase : RedirectOrig{}
+
 	
-public class ScriptTagItem
+public partial record ScriptTagItem
 {
     [JsonPropertyName("script_tag"), Required]
     public ScriptTag ScriptTag { get; set; } = null!;
 }
 
-public class ScriptTagList
+public partial record ScriptTagList
 {
     [JsonPropertyName("script_tags"), Required]
     public IEnumerable<ScriptTag> ScriptTags { get; set; } = null!;
 }
-public class CreateScriptTagRequest
+public partial record CreateScriptTagRequest
 {
     [JsonPropertyName("script_tag"), Required]
     public CreateScriptTag ScriptTag { get; set; } = null!;
 }
 
-public partial class CreateScriptTag : ScriptTagBase {}
-public class UpdateScriptTagRequest
+public partial record CreateScriptTag : ScriptTagBase {}
+public partial record UpdateScriptTagRequest
 {
     [JsonPropertyName("script_tag"), Required]
     public UpdateScriptTag ScriptTag { get; set; } = null!;
 }
 
-public partial class UpdateScriptTag : ScriptTag{}
+public partial record UpdateScriptTag : ScriptTag{}
 
 		
-	
-public class ScriptTag : ScriptTagBase
+public partial record ScriptTag : ScriptTagBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record ScriptTagBase : ScriptTagOrig{}
+
 	
-public class ThemeItem
+public partial record ThemeItem
 {
     [JsonPropertyName("theme"), Required]
     public Theme Theme { get; set; } = null!;
 }
 
-public class ThemeList
+public partial record ThemeList
 {
     [JsonPropertyName("themes"), Required]
     public IEnumerable<Theme> Themes { get; set; } = null!;
 }
-public class CreateThemeRequest
+public partial record CreateThemeRequest
 {
     [JsonPropertyName("theme"), Required]
     public CreateTheme Theme { get; set; } = null!;
 }
 
-public partial class CreateTheme : ThemeBase {}
-public class UpdateThemeRequest
+public partial record CreateTheme : ThemeBase {}
+public partial record UpdateThemeRequest
 {
     [JsonPropertyName("theme"), Required]
     public UpdateTheme Theme { get; set; } = null!;
 }
 
-public partial class UpdateTheme : Theme{}
+public partial record UpdateTheme : Theme{}
 
 		
-	
-public class Theme : ThemeBase
+public partial record Theme : ThemeBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record ThemeBase : ThemeOrig{}
+
 	
-public class AbandonedCheckoutItem
+public partial record AbandonedCheckoutItem
 {
     [JsonPropertyName("abandoned_checkout"), Required]
     public Checkout AbandonedCheckout { get; set; } = null!;
 }
 
-public class AbandonedCheckoutList
+public partial record AbandonedCheckoutList
 {
     [JsonPropertyName("abandoned_checkouts"), Required]
     public IEnumerable<Checkout> AbandonedCheckouts { get; set; } = null!;
 }
-public class CreateAbandonedCheckoutRequest
+public partial record CreateAbandonedCheckoutRequest
 {
     [JsonPropertyName("abandoned_checkout"), Required]
     public CreateAbandonedCheckout AbandonedCheckout { get; set; } = null!;
 }
 
-public partial class CreateAbandonedCheckout : CheckoutBase {}
-public class UpdateAbandonedCheckoutRequest
+public partial record CreateAbandonedCheckout : CheckoutBase {}
+public partial record UpdateAbandonedCheckoutRequest
 {
     [JsonPropertyName("abandoned_checkout"), Required]
     public UpdateAbandonedCheckout AbandonedCheckout { get; set; } = null!;
 }
 
-public partial class UpdateAbandonedCheckout : Checkout{}
+public partial record UpdateAbandonedCheckout : Checkout{}
 
 		
-	
-public class AbandonedCheckout : CheckoutBase
+public partial record AbandonedCheckout : CheckoutBase
 {
-    [JsonPropertyName("id"), Required]
-    public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
-    public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record CheckoutBase : CheckoutOrig{}
+
 	
-public class DraftOrderItem
+public partial record DraftOrderItem
 {
     [JsonPropertyName("draft_order"), Required]
     public DraftOrder DraftOrder { get; set; } = null!;
 }
 
-public class DraftOrderList
+public partial record DraftOrderList
 {
     [JsonPropertyName("draft_orders"), Required]
     public IEnumerable<DraftOrder> DraftOrders { get; set; } = null!;
 }
-public class CreateDraftOrderRequest
+public partial record CreateDraftOrderRequest
 {
     [JsonPropertyName("draft_order"), Required]
     public CreateDraftOrder DraftOrder { get; set; } = null!;
 }
 
-public partial class CreateDraftOrder : DraftOrderBase {}
-public class UpdateDraftOrderRequest
+public partial record CreateDraftOrder : DraftOrderBase {}
+public partial record UpdateDraftOrderRequest
 {
     [JsonPropertyName("draft_order"), Required]
     public UpdateDraftOrder DraftOrder { get; set; } = null!;
 }
 
-public partial class UpdateDraftOrder : DraftOrder{}
+public partial record UpdateDraftOrder : DraftOrder{}
 
 		
-	
-public class DraftOrder : DraftOrderBase
+public partial record DraftOrder : DraftOrderBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record DraftOrderBase : DraftOrderOrig{}
+
 	
-public class OrderItem
+public partial record OrderItem
 {
     [JsonPropertyName("order"), Required]
     public Order Order { get; set; } = null!;
 }
 
-public class OrderList
+public partial record OrderList
 {
     [JsonPropertyName("orders"), Required]
     public IEnumerable<Order> Orders { get; set; } = null!;
 }
-public class CreateOrderRequest
+public partial record CreateOrderRequest
 {
     [JsonPropertyName("order"), Required]
     public CreateOrder Order { get; set; } = null!;
 }
 
-public partial class CreateOrder : OrderBase {}
-public class UpdateOrderRequest
+public partial record CreateOrder : OrderBase {}
+public partial record UpdateOrderRequest
 {
     [JsonPropertyName("order"), Required]
     public UpdateOrder Order { get; set; } = null!;
 }
 
-public partial class UpdateOrder : Order{}
+public partial record UpdateOrder : Order{}
 
 		
-	
-public class Order : OrderBase
+public partial record Order : OrderBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record OrderBase : OrderOrig{}
+
 	
-public class OrderRiskItem
+public partial record OrderRiskItem
 {
     [JsonPropertyName("order_risk"), Required]
     public OrderRisk OrderRisk { get; set; } = null!;
 }
 
-public class OrderRiskList
+public partial record OrderRiskList
 {
     [JsonPropertyName("order_risks"), Required]
     public IEnumerable<OrderRisk> OrderRisks { get; set; } = null!;
 }
-public class CreateOrderRiskRequest
+public partial record CreateOrderRiskRequest
 {
     [JsonPropertyName("order_risk"), Required]
     public CreateOrderRisk OrderRisk { get; set; } = null!;
 }
 
-public partial class CreateOrderRisk : OrderRiskBase {}
-public class UpdateOrderRiskRequest
+public partial record CreateOrderRisk : OrderRiskBase {}
+public partial record UpdateOrderRiskRequest
 {
     [JsonPropertyName("order_risk"), Required]
     public UpdateOrderRisk OrderRisk { get; set; } = null!;
 }
 
-public partial class UpdateOrderRisk : OrderRisk{}
+public partial record UpdateOrderRisk : OrderRisk{}
 
 		
-	
-public class OrderRisk : OrderRiskBase
+public partial record OrderRisk : OrderRiskBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record OrderRiskBase : OrderRiskOrig{}
+
 	
-public class RefundItem
+public partial record RefundItem
 {
     [JsonPropertyName("refund"), Required]
     public Refund Refund { get; set; } = null!;
 }
 
-public class RefundList
+public partial record RefundList
 {
     [JsonPropertyName("refunds"), Required]
     public IEnumerable<Refund> Refunds { get; set; } = null!;
 }
-public class CreateRefundRequest
+public partial record CreateRefundRequest
 {
     [JsonPropertyName("refund"), Required]
     public CreateRefund Refund { get; set; } = null!;
 }
 
-public partial class CreateRefund : RefundBase {}
-public class UpdateRefundRequest
+public partial record CreateRefund : RefundBase {}
+public partial record UpdateRefundRequest
 {
     [JsonPropertyName("refund"), Required]
     public UpdateRefund Refund { get; set; } = null!;
 }
 
-public partial class UpdateRefund : Refund{}
+public partial record UpdateRefund : Refund{}
 
 		
-	
-public class Refund : RefundBase
+public partial record Refund : RefundBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record RefundBase : RefundOrig{}
+
 	
-public class TransactionItem
+public partial record TransactionItem
 {
     [JsonPropertyName("transaction"), Required]
     public Transaction Transaction { get; set; } = null!;
 }
 
-public class TransactionList
+public partial record TransactionList
 {
     [JsonPropertyName("transactions"), Required]
     public IEnumerable<Transaction> Transactions { get; set; } = null!;
 }
-public class CreateTransactionRequest
+public partial record CreateTransactionRequest
 {
     [JsonPropertyName("transaction"), Required]
     public CreateTransaction Transaction { get; set; } = null!;
 }
 
-public partial class CreateTransaction : TransactionBase {}
-public class UpdateTransactionRequest
+public partial record CreateTransaction : TransactionBase {}
+public partial record UpdateTransactionRequest
 {
     [JsonPropertyName("transaction"), Required]
     public UpdateTransaction Transaction { get; set; } = null!;
 }
 
-public partial class UpdateTransaction : Transaction{}
+public partial record UpdateTransaction : Transaction{}
 
 		
-	
-public class Transaction : TransactionBase
+public partial record Transaction : TransactionBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record TransactionBase : TransactionOrig{}
+
 	
-public class GiftCardItem
+public partial record GiftCardItem
 {
     [JsonPropertyName("gift_card"), Required]
     public GiftCard GiftCard { get; set; } = null!;
 }
 
-public class GiftCardList
+public partial record GiftCardList
 {
     [JsonPropertyName("gift_cards"), Required]
     public IEnumerable<GiftCard> GiftCards { get; set; } = null!;
 }
-public class CreateGiftCardRequest
+public partial record CreateGiftCardRequest
 {
     [JsonPropertyName("gift_card"), Required]
     public CreateGiftCard GiftCard { get; set; } = null!;
 }
 
-public partial class CreateGiftCard : GiftCardBase {}
-public class UpdateGiftCardRequest
+public partial record CreateGiftCard : GiftCardBase {}
+public partial record UpdateGiftCardRequest
 {
     [JsonPropertyName("gift_card"), Required]
     public UpdateGiftCard GiftCard { get; set; } = null!;
 }
 
-public partial class UpdateGiftCard : GiftCard{}
+public partial record UpdateGiftCard : GiftCard{}
 
 		
-	
-public class GiftCard : GiftCardBase
+public partial record GiftCard : GiftCardBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record GiftCardBase : GiftCardOrig{}
+
 	
-public class UserItem
+public partial record UserItem
 {
     [JsonPropertyName("user"), Required]
     public User User { get; set; } = null!;
 }
 
-public class UserList
+public partial record UserList
 {
     [JsonPropertyName("users"), Required]
     public IEnumerable<User> Users { get; set; } = null!;
 }
-public class CreateUserRequest
+public partial record CreateUserRequest
 {
     [JsonPropertyName("user"), Required]
     public CreateUser User { get; set; } = null!;
 }
 
-public partial class CreateUser : UserBase {}
-public class UpdateUserRequest
+public partial record CreateUser : UserBase {}
+public partial record UpdateUserRequest
 {
     [JsonPropertyName("user"), Required]
     public UpdateUser User { get; set; } = null!;
 }
 
-public partial class UpdateUser : User{}
+public partial record UpdateUser : User{}
 
 		
-	
-public class User : UserBase
+public partial record User : UserBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record UserBase : UserOrig{}
+
 	
-public class CollectItem
+public partial record CollectItem
 {
     [JsonPropertyName("collect"), Required]
     public Collect Collect { get; set; } = null!;
 }
 
-public class CollectList
+public partial record CollectList
 {
     [JsonPropertyName("collects"), Required]
     public IEnumerable<Collect> Collects { get; set; } = null!;
 }
-public class CreateCollectRequest
+public partial record CreateCollectRequest
 {
     [JsonPropertyName("collect"), Required]
     public CreateCollect Collect { get; set; } = null!;
 }
 
-public partial class CreateCollect : CollectBase {}
-public class UpdateCollectRequest
+public partial record CreateCollect : CollectBase {}
+public partial record UpdateCollectRequest
 {
     [JsonPropertyName("collect"), Required]
     public UpdateCollect Collect { get; set; } = null!;
 }
 
-public partial class UpdateCollect : Collect{}
+public partial record UpdateCollect : Collect{}
 
 		
-	
-public class Collect : CollectBase
+public partial record Collect : CollectBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record CollectBase : CollectOrig{}
+
 	
-public class CollectionItem
+public partial record CollectionItem
 {
     [JsonPropertyName("collection"), Required]
     public Collection Collection { get; set; } = null!;
 }
 
-public class CollectionList
+public partial record CollectionList
 {
     [JsonPropertyName("collections"), Required]
     public IEnumerable<Collection> Collections { get; set; } = null!;
 }
-public class CreateCollectionRequest
+public partial record CreateCollectionRequest
 {
     [JsonPropertyName("collection"), Required]
     public CreateCollection Collection { get; set; } = null!;
 }
 
-public partial class CreateCollection : CollectionBase {}
-public class UpdateCollectionRequest
+public partial record CreateCollection : CollectionBase {}
+public partial record UpdateCollectionRequest
 {
     [JsonPropertyName("collection"), Required]
     public UpdateCollection Collection { get; set; } = null!;
 }
 
-public partial class UpdateCollection : Collection{}
+public partial record UpdateCollection : Collection{}
 
 		
-	
-public class Collection : CollectionBase
+public partial record Collection : CollectionBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record CollectionBase : CollectionOrig{}
+
 	
-public class CustomCollectionItem
+public partial record CustomCollectionItem
 {
     [JsonPropertyName("custom_collection"), Required]
     public CustomCollection CustomCollection { get; set; } = null!;
 }
 
-public class CustomCollectionList
+public partial record CustomCollectionList
 {
     [JsonPropertyName("custom_collections"), Required]
     public IEnumerable<CustomCollection> CustomCollections { get; set; } = null!;
 }
-public class CreateCustomCollectionRequest
+public partial record CreateCustomCollectionRequest
 {
     [JsonPropertyName("custom_collection"), Required]
     public CreateCustomCollection CustomCollection { get; set; } = null!;
 }
 
-public partial class CreateCustomCollection : CustomCollectionBase {}
-public class UpdateCustomCollectionRequest
+public partial record CreateCustomCollection : CustomCollectionBase {}
+public partial record UpdateCustomCollectionRequest
 {
     [JsonPropertyName("custom_collection"), Required]
     public UpdateCustomCollection CustomCollection { get; set; } = null!;
 }
 
-public partial class UpdateCustomCollection : CustomCollection{}
+public partial record UpdateCustomCollection : CustomCollection{}
 
 		
-	
-public class CustomCollection : CustomCollectionBase
+public partial record CustomCollection : CustomCollectionBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record CustomCollectionBase : CustomCollectionOrig{}
+
 	
-public class ProductItem
+public partial record ProductItem
 {
     [JsonPropertyName("product"), Required]
     public Product Product { get; set; } = null!;
 }
 
-public class ProductList
+public partial record ProductList
 {
     [JsonPropertyName("products"), Required]
     public IEnumerable<Product> Products { get; set; } = null!;
 }
-public class CreateProductRequest
+public partial record CreateProductRequest
 {
     [JsonPropertyName("product"), Required]
     public CreateProduct Product { get; set; } = null!;
 }
 
-public partial class CreateProduct : ProductBase {}
-public class UpdateProductRequest
+public partial record CreateProduct : ProductBase {}
+public partial record UpdateProductRequest
 {
     [JsonPropertyName("product"), Required]
     public UpdateProduct Product { get; set; } = null!;
 }
 
-public partial class UpdateProduct : Product{}
+public partial record UpdateProduct : Product{}
 
 		
-	
-public class Product : ProductBase
+public partial record Product : ProductBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record ProductBase : ProductOrig{}
+
 	
-public class ProductImageItem
+public partial record ProductImageItem
 {
-    [JsonPropertyName("product_image"), Required]
+    [JsonPropertyName("image"), Required]
     public ProductImage ProductImage { get; set; } = null!;
 }
 
-public class ProductImageList
+public partial record ProductImageList
 {
-    [JsonPropertyName("product_images"), Required]
+    [JsonPropertyName("images"), Required]
     public IEnumerable<ProductImage> ProductImages { get; set; } = null!;
 }
-public class CreateProductImageRequest
+public partial record CreateProductImageRequest
 {
-    [JsonPropertyName("product_image"), Required]
+    [JsonPropertyName("image"), Required]
     public CreateProductImage ProductImage { get; set; } = null!;
 }
 
-public partial class CreateProductImage : ProductImageBase {}
-public class UpdateProductImageRequest
+public partial record CreateProductImage : ProductImageBase {}
+public partial record UpdateProductImageRequest
 {
-    [JsonPropertyName("product_image"), Required]
+    [JsonPropertyName("image"), Required]
     public UpdateProductImage ProductImage { get; set; } = null!;
 }
 
-public partial class UpdateProductImage : ProductImage{}
+public partial record UpdateProductImage : ProductImage{}
 
 		
-	
-public class ProductImage : ProductImageBase
+public partial record ProductImage : ProductImageBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record ProductImageBase : ProductImageOrig{}
+
 	
-public class ProductVariantItem
+public partial record ProductVariantItem
 {
-    [JsonPropertyName("product_variant"), Required]
+    [JsonPropertyName("variant"), Required]
     public ProductVariant ProductVariant { get; set; } = null!;
 }
 
-public class ProductVariantList
+public partial record ProductVariantList
 {
-    [JsonPropertyName("product_variants"), Required]
+    [JsonPropertyName("variants"), Required]
     public IEnumerable<ProductVariant> ProductVariants { get; set; } = null!;
 }
-public class CreateProductVariantRequest
+public partial record CreateProductVariantRequest
 {
-    [JsonPropertyName("product_variant"), Required]
+    [JsonPropertyName("variant"), Required]
     public CreateProductVariant ProductVariant { get; set; } = null!;
 }
 
-public partial class CreateProductVariant : ProductVariantBase {}
-public class UpdateProductVariantRequest
+public partial record CreateProductVariant : ProductVariantBase {}
+public partial record UpdateProductVariantRequest
 {
-    [JsonPropertyName("product_variant"), Required]
+    [JsonPropertyName("variant"), Required]
     public UpdateProductVariant ProductVariant { get; set; } = null!;
 }
 
-public partial class UpdateProductVariant : ProductVariant{}
+public partial record UpdateProductVariant : ProductVariant{}
 
 		
-	
-public class ProductVariant : ProductVariantBase
+public partial record ProductVariant : ProductVariantBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record ProductVariantBase : ProductVariantOrig{}
+
 	
-public class SmartCollectionItem
+public partial record SmartCollectionItem
 {
     [JsonPropertyName("smart_collection"), Required]
     public SmartCollection SmartCollection { get; set; } = null!;
 }
 
-public class SmartCollectionList
+public partial record SmartCollectionList
 {
     [JsonPropertyName("smart_collections"), Required]
     public IEnumerable<SmartCollection> SmartCollections { get; set; } = null!;
 }
-public class CreateSmartCollectionRequest
+public partial record CreateSmartCollectionRequest
 {
     [JsonPropertyName("smart_collection"), Required]
     public CreateSmartCollection SmartCollection { get; set; } = null!;
 }
 
-public partial class CreateSmartCollection : SmartCollectionBase {}
-public class UpdateSmartCollectionRequest
+public partial record CreateSmartCollection : SmartCollectionBase {}
+public partial record UpdateSmartCollectionRequest
 {
     [JsonPropertyName("smart_collection"), Required]
     public UpdateSmartCollection SmartCollection { get; set; } = null!;
 }
 
-public partial class UpdateSmartCollection : SmartCollection{}
+public partial record UpdateSmartCollection : SmartCollection{}
 
 		
-	
-public class SmartCollection : SmartCollectionBase
+public partial record SmartCollection : SmartCollectionBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record SmartCollectionBase : SmartCollectionOrig{}
+
 	
-public class CheckoutItem
+public partial record CheckoutItem
 {
     [JsonPropertyName("checkout"), Required]
     public Checkout Checkout { get; set; } = null!;
 }
 
-public class CheckoutList
+public partial record CheckoutList
 {
     [JsonPropertyName("checkouts"), Required]
     public IEnumerable<Checkout> Checkouts { get; set; } = null!;
 }
-public class CreateCheckoutRequest
+public partial record CreateCheckoutRequest
 {
     [JsonPropertyName("checkout"), Required]
     public CreateCheckout Checkout { get; set; } = null!;
 }
 
-public partial class CreateCheckout : CheckoutBase {}
-public class UpdateCheckoutRequest
+public partial record CreateCheckout : CheckoutBase {}
+public partial record UpdateCheckoutRequest
 {
     [JsonPropertyName("checkout"), Required]
     public UpdateCheckout Checkout { get; set; } = null!;
 }
 
-public partial class UpdateCheckout : Checkout{}
+public partial record UpdateCheckout : Checkout{}
 
 		
-	
-public class Checkout : CheckoutBase
+public partial record Checkout : CheckoutBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record CheckoutBase : CheckoutOrig{}
+
 	
-public class CollectionListingItem
+public partial record CollectionListingItem
 {
     [JsonPropertyName("collection_listing"), Required]
     public CollectionListing CollectionListing { get; set; } = null!;
 }
 
-public class CollectionListingList
+public partial record CollectionListingList
 {
     [JsonPropertyName("collection_listings"), Required]
     public IEnumerable<CollectionListing> CollectionListings { get; set; } = null!;
 }
-public class CreateCollectionListingRequest
+public partial record CreateCollectionListingRequest
 {
     [JsonPropertyName("collection_listing"), Required]
     public CreateCollectionListing CollectionListing { get; set; } = null!;
 }
 
-public partial class CreateCollectionListing : CollectionListingBase {}
-public class UpdateCollectionListingRequest
+public partial record CreateCollectionListing : CollectionListingBase {}
+public partial record UpdateCollectionListingRequest
 {
     [JsonPropertyName("collection_listing"), Required]
     public UpdateCollectionListing CollectionListing { get; set; } = null!;
 }
 
-public partial class UpdateCollectionListing : CollectionListing{}
+public partial record UpdateCollectionListing : CollectionListing{}
 
 		
-	
-public class CollectionListing : CollectionListingBase
+public partial record CollectionListing : CollectionListingBase
 {
-    [JsonPropertyName("id"), Required]
-    public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
-    public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record CollectionListingBase : CollectionListingOrig{}
+
 	
-public class MobilePlatformApplicationItem
+public partial record MobilePlatformApplicationItem
 {
     [JsonPropertyName("mobile_platform_application"), Required]
     public MobilePlatformApplication MobilePlatformApplication { get; set; } = null!;
 }
 
-public class MobilePlatformApplicationList
+public partial record MobilePlatformApplicationList
 {
     [JsonPropertyName("mobile_platform_applications"), Required]
     public IEnumerable<MobilePlatformApplication> MobilePlatformApplications { get; set; } = null!;
 }
-public class CreateMobilePlatformApplicationRequest
+public partial record CreateMobilePlatformApplicationRequest
 {
     [JsonPropertyName("mobile_platform_application"), Required]
     public CreateMobilePlatformApplication MobilePlatformApplication { get; set; } = null!;
 }
 
-public partial class CreateMobilePlatformApplication : MobilePlatformApplicationBase {}
-public class UpdateMobilePlatformApplicationRequest
+public partial record CreateMobilePlatformApplication : MobilePlatformApplicationBase {}
+public partial record UpdateMobilePlatformApplicationRequest
 {
     [JsonPropertyName("mobile_platform_application"), Required]
     public UpdateMobilePlatformApplication MobilePlatformApplication { get; set; } = null!;
 }
 
-public partial class UpdateMobilePlatformApplication : MobilePlatformApplication{}
+public partial record UpdateMobilePlatformApplication : MobilePlatformApplication{}
 
 		
-	
-public class MobilePlatformApplication : MobilePlatformApplicationBase
+public partial record MobilePlatformApplication : MobilePlatformApplicationBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record MobilePlatformApplicationBase : MobilePlatformApplicationOrig{}
+
 	
-public class PaymentItem
+public partial record PaymentItem
 {
     [JsonPropertyName("payment"), Required]
     public Payment Payment { get; set; } = null!;
 }
 
-public class PaymentList
+public partial record PaymentList
 {
     [JsonPropertyName("payments"), Required]
     public IEnumerable<Payment> Payments { get; set; } = null!;
 }
-public class CreatePaymentRequest
+public partial record CreatePaymentRequest
 {
     [JsonPropertyName("payment"), Required]
     public CreatePayment Payment { get; set; } = null!;
 }
 
-public partial class CreatePayment : PaymentBase {}
-public class UpdatePaymentRequest
+public partial record CreatePayment : PaymentBase {}
+public partial record UpdatePaymentRequest
 {
     [JsonPropertyName("payment"), Required]
     public UpdatePayment Payment { get; set; } = null!;
 }
 
-public partial class UpdatePayment : Payment{}
+public partial record UpdatePayment : Payment{}
 
 		
-	
-public class Payment : PaymentBase
+public partial record Payment : PaymentBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record PaymentBase : PaymentOrig{}
+
 	
-public class ProductResourceFeedbackItem
+public partial record ProductResourceFeedbackItem
 {
     [JsonPropertyName("product_resource_feedback"), Required]
     public ProductResourceFeedback ProductResourceFeedback { get; set; } = null!;
 }
 
-public class ProductResourceFeedbackList
+public partial record ProductResourceFeedbackList
 {
     [JsonPropertyName("product_resource_feedbacks"), Required]
     public IEnumerable<ProductResourceFeedback> ProductResourceFeedbacks { get; set; } = null!;
 }
-public class CreateProductResourceFeedbackRequest
+public partial record CreateProductResourceFeedbackRequest
 {
     [JsonPropertyName("product_resource_feedback"), Required]
     public CreateProductResourceFeedback ProductResourceFeedback { get; set; } = null!;
 }
 
-public partial class CreateProductResourceFeedback : ProductResourceFeedbackBase {}
-public class UpdateProductResourceFeedbackRequest
+public partial record CreateProductResourceFeedback : ProductResourceFeedbackBase {}
+public partial record UpdateProductResourceFeedbackRequest
 {
     [JsonPropertyName("product_resource_feedback"), Required]
     public UpdateProductResourceFeedback ProductResourceFeedback { get; set; } = null!;
 }
 
-public partial class UpdateProductResourceFeedback : ProductResourceFeedback{}
+public partial record UpdateProductResourceFeedback : ProductResourceFeedback{}
 
 		
-	
-public class ProductResourceFeedback : ProductResourceFeedbackBase
+public partial record ProductResourceFeedback : ProductResourceFeedbackBase
 {
-    [JsonPropertyName("id"), Required]
-    public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
-    public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record ProductResourceFeedbackBase : ProductResourceFeedbackOrig{}
+
 	
-public class ProductListingItem
+public partial record ProductListingItem
 {
     [JsonPropertyName("product_listing"), Required]
     public ProductListing ProductListing { get; set; } = null!;
 }
 
-public class ProductListingList
+public partial record ProductListingList
 {
     [JsonPropertyName("product_listings"), Required]
     public IEnumerable<ProductListing> ProductListings { get; set; } = null!;
 }
-public class CreateProductListingRequest
+public partial record CreateProductListingRequest
 {
     [JsonPropertyName("product_listing"), Required]
     public CreateProductListing ProductListing { get; set; } = null!;
 }
 
-public partial class CreateProductListing : ProductListingBase {}
-public class UpdateProductListingRequest
+public partial record CreateProductListing : ProductListingBase {}
+public partial record UpdateProductListingRequest
 {
     [JsonPropertyName("product_listing"), Required]
     public UpdateProductListing ProductListing { get; set; } = null!;
 }
 
-public partial class UpdateProductListing : ProductListing{}
+public partial record UpdateProductListing : ProductListing{}
 
 		
-	
-public class ProductListing : ProductListingBase
+public partial record ProductListing : ProductListingBase
 {
-    [JsonPropertyName("id"), Required]
-    public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
-    public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record ProductListingBase : ProductListingOrig{}
+
 	
-public class ResourceFeedbackItem
+public partial record ResourceFeedbackItem
 {
     [JsonPropertyName("resource_feedback"), Required]
     public ResourceFeedback ResourceFeedback { get; set; } = null!;
 }
 
-public class ResourceFeedbackList
+public partial record ResourceFeedbackList
 {
     [JsonPropertyName("resource_feedbacks"), Required]
     public IEnumerable<ResourceFeedback> ResourceFeedbacks { get; set; } = null!;
 }
-public class CreateResourceFeedbackRequest
+public partial record CreateResourceFeedbackRequest
 {
     [JsonPropertyName("resource_feedback"), Required]
     public CreateResourceFeedback ResourceFeedback { get; set; } = null!;
 }
 
-public partial class CreateResourceFeedback : ResourceFeedbackBase {}
-public class UpdateResourceFeedbackRequest
+public partial record CreateResourceFeedback : ResourceFeedbackBase {}
+public partial record UpdateResourceFeedbackRequest
 {
     [JsonPropertyName("resource_feedback"), Required]
     public UpdateResourceFeedback ResourceFeedback { get; set; } = null!;
 }
 
-public partial class UpdateResourceFeedback : ResourceFeedback{}
+public partial record UpdateResourceFeedback : ResourceFeedback{}
 
 		
-	
-public class ResourceFeedback : ResourceFeedbackBase
+public partial record ResourceFeedback : ResourceFeedbackBase
 {
-    [JsonPropertyName("id"), Required]
-    public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
-    public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record ResourceFeedbackBase : ResourceFeedbackOrig{}
+
 	
-public class AssignedFulfillmentOrderItem
+public partial record AssignedFulfillmentOrderItem
 {
     [JsonPropertyName("assigned_fulfillment_order"), Required]
     public FulfillmentOrder AssignedFulfillmentOrder { get; set; } = null!;
 }
 
-public class AssignedFulfillmentOrderList
+public partial record AssignedFulfillmentOrderList
 {
     [JsonPropertyName("assigned_fulfillment_orders"), Required]
     public IEnumerable<FulfillmentOrder> AssignedFulfillmentOrders { get; set; } = null!;
 }
-public class CreateAssignedFulfillmentOrderRequest
+public partial record CreateAssignedFulfillmentOrderRequest
 {
     [JsonPropertyName("assigned_fulfillment_order"), Required]
     public CreateAssignedFulfillmentOrder AssignedFulfillmentOrder { get; set; } = null!;
 }
 
-public partial class CreateAssignedFulfillmentOrder : FulfillmentOrderBase {}
-public class UpdateAssignedFulfillmentOrderRequest
+public partial record CreateAssignedFulfillmentOrder : FulfillmentOrderBase {}
+public partial record UpdateAssignedFulfillmentOrderRequest
 {
     [JsonPropertyName("assigned_fulfillment_order"), Required]
     public UpdateAssignedFulfillmentOrder AssignedFulfillmentOrder { get; set; } = null!;
 }
 
-public partial class UpdateAssignedFulfillmentOrder : FulfillmentOrder{}
+public partial record UpdateAssignedFulfillmentOrder : FulfillmentOrder{}
 
 		
-	
-public class AssignedFulfillmentOrder : FulfillmentOrderBase
+public partial record AssignedFulfillmentOrder : FulfillmentOrderBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record FulfillmentOrderBase : FulfillmentOrderOrig{}
+
 	
-public class CancellationRequestItem
+public partial record CancellationRequestItem
 {
     [JsonPropertyName("cancellation_request"), Required]
     public FulfillmentOrder CancellationRequest { get; set; } = null!;
 }
 
-public class CancellationRequestList
+public partial record CancellationRequestList
 {
     [JsonPropertyName("cancellation_request"), Required]
     public IEnumerable<FulfillmentOrder> CancellationRequest { get; set; } = null!;
 }
-public class CreateCancellationRequestRequest
+public partial record CreateCancellationRequestRequest
 {
     [JsonPropertyName("cancellation_request"), Required]
     public CreateCancellationRequest CancellationRequest { get; set; } = null!;
 }
 
-public partial class CreateCancellationRequest : FulfillmentOrderBase {}
-public class UpdateCancellationRequestRequest
+public partial record CreateCancellationRequest : FulfillmentOrderBase {}
+public partial record UpdateCancellationRequestRequest
 {
     [JsonPropertyName("cancellation_request"), Required]
     public UpdateCancellationRequest CancellationRequest { get; set; } = null!;
 }
 
-public partial class UpdateCancellationRequest : FulfillmentOrder{}
+public partial record UpdateCancellationRequest : FulfillmentOrder{}
 
 		
-	
-public class CancellationRequest : FulfillmentOrderBase
+public partial record CancellationRequest : FulfillmentOrderBase
 {
-    [JsonPropertyName("id"), Required]
-    public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
-    public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record FulfillmentOrderBase : FulfillmentOrderOrig{}
+
 	
-public class CarrierServiceItem
+public partial record CarrierServiceItem
 {
     [JsonPropertyName("carrier_service"), Required]
     public CarrierService CarrierService { get; set; } = null!;
 }
 
-public class CarrierServiceList
+public partial record CarrierServiceList
 {
     [JsonPropertyName("carrier_services"), Required]
     public IEnumerable<CarrierService> CarrierServices { get; set; } = null!;
 }
-public class CreateCarrierServiceRequest
+public partial record CreateCarrierServiceRequest
 {
     [JsonPropertyName("carrier_service"), Required]
     public CreateCarrierService CarrierService { get; set; } = null!;
 }
 
-public partial class CreateCarrierService : CarrierServiceBase {}
-public class UpdateCarrierServiceRequest
+public partial record CreateCarrierService : CarrierServiceBase {}
+public partial record UpdateCarrierServiceRequest
 {
     [JsonPropertyName("carrier_service"), Required]
     public UpdateCarrierService CarrierService { get; set; } = null!;
 }
 
-public partial class UpdateCarrierService : CarrierService{}
+public partial record UpdateCarrierService : CarrierService{}
 
 		
-	
-public class CarrierService : CarrierServiceBase
+public partial record CarrierService : CarrierServiceBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record CarrierServiceBase : CarrierServiceOrig{}
+
 	
-public class FulfillmentItem
+public partial record FulfillmentItem
 {
     [JsonPropertyName("fulfillment"), Required]
     public Fulfillment Fulfillment { get; set; } = null!;
 }
 
-public class FulfillmentList
+public partial record FulfillmentList
 {
     [JsonPropertyName("fulfillments"), Required]
     public IEnumerable<Fulfillment> Fulfillments { get; set; } = null!;
 }
-public class CreateFulfillmentRequest
+public partial record CreateFulfillmentRequest
 {
     [JsonPropertyName("fulfillment"), Required]
     public CreateFulfillment Fulfillment { get; set; } = null!;
 }
 
-public partial class CreateFulfillment : FulfillmentBase {}
-public class UpdateFulfillmentRequest
+public partial record CreateFulfillment : FulfillmentBase {}
+public partial record UpdateFulfillmentRequest
 {
     [JsonPropertyName("fulfillment"), Required]
     public UpdateFulfillment Fulfillment { get; set; } = null!;
 }
 
-public partial class UpdateFulfillment : Fulfillment{}
+public partial record UpdateFulfillment : Fulfillment{}
 
 		
-	
-public class Fulfillment : FulfillmentBase
+public partial record Fulfillment : FulfillmentBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record FulfillmentBase : FulfillmentOrig{}
+
 	
-public class FulfillmentEventItem
+public partial record FulfillmentEventItem
 {
     [JsonPropertyName("fulfillment_event"), Required]
     public FulfillmentEvent FulfillmentEvent { get; set; } = null!;
 }
 
-public class FulfillmentEventList
+public partial record FulfillmentEventList
 {
     [JsonPropertyName("fulfillment_events"), Required]
     public IEnumerable<FulfillmentEvent> FulfillmentEvents { get; set; } = null!;
 }
-public class CreateFulfillmentEventRequest
+public partial record CreateFulfillmentEventRequest
 {
     [JsonPropertyName("fulfillment_event"), Required]
     public CreateFulfillmentEvent FulfillmentEvent { get; set; } = null!;
 }
 
-public partial class CreateFulfillmentEvent : FulfillmentEventBase {}
-public class UpdateFulfillmentEventRequest
+public partial record CreateFulfillmentEvent : FulfillmentEventBase {}
+public partial record UpdateFulfillmentEventRequest
 {
     [JsonPropertyName("fulfillment_event"), Required]
     public UpdateFulfillmentEvent FulfillmentEvent { get; set; } = null!;
 }
 
-public partial class UpdateFulfillmentEvent : FulfillmentEvent{}
+public partial record UpdateFulfillmentEvent : FulfillmentEvent{}
 
 		
-	
-public class FulfillmentEvent : FulfillmentEventBase
+public partial record FulfillmentEvent : FulfillmentEventBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record FulfillmentEventBase : FulfillmentEventOrig{}
+
 	
-public class FulfillmentOrderItem
+public partial record FulfillmentOrderItem
 {
     [JsonPropertyName("fulfillment_order"), Required]
     public FulfillmentOrder FulfillmentOrder { get; set; } = null!;
 }
 
-public class FulfillmentOrderList
+public partial record FulfillmentOrderList
 {
     [JsonPropertyName("fulfillment_orders"), Required]
     public IEnumerable<FulfillmentOrder> FulfillmentOrders { get; set; } = null!;
 }
-public class CreateFulfillmentOrderRequest
+public partial record CreateFulfillmentOrderRequest
 {
     [JsonPropertyName("fulfillment_order"), Required]
     public CreateFulfillmentOrder FulfillmentOrder { get; set; } = null!;
 }
 
-public partial class CreateFulfillmentOrder : FulfillmentOrderBase {}
-public class UpdateFulfillmentOrderRequest
+public partial record CreateFulfillmentOrder : FulfillmentOrderBase {}
+public partial record UpdateFulfillmentOrderRequest
 {
     [JsonPropertyName("fulfillment_order"), Required]
     public UpdateFulfillmentOrder FulfillmentOrder { get; set; } = null!;
 }
 
-public partial class UpdateFulfillmentOrder : FulfillmentOrder{}
+public partial record UpdateFulfillmentOrder : FulfillmentOrder{}
 
 		
-	
-public class FulfillmentOrder : FulfillmentOrderBase
+public partial record FulfillmentOrder : FulfillmentOrderBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record FulfillmentOrderBase : FulfillmentOrderOrig{}
+
 	
-public class FulfillmentServiceItem
+public partial record FulfillmentRequestItem
+{
+    [JsonPropertyName("fulfillment_request"), Required]
+    public FulfillmentRequest FulfillmentRequest { get; set; } = null!;
+}
+
+public partial record FulfillmentRequestList
+{
+    [JsonPropertyName("fulfillment_requests"), Required]
+    public IEnumerable<FulfillmentRequest> FulfillmentRequests { get; set; } = null!;
+}
+public partial record CreateFulfillmentRequestRequest
+{
+    [JsonPropertyName("fulfillment_request"), Required]
+    public CreateFulfillmentRequest FulfillmentRequest { get; set; } = null!;
+}
+
+public partial record CreateFulfillmentRequest : FulfillmentRequestBase {}
+public partial record UpdateFulfillmentRequestRequest
+{
+    [JsonPropertyName("fulfillment_request"), Required]
+    public UpdateFulfillmentRequest FulfillmentRequest { get; set; } = null!;
+}
+
+public partial record UpdateFulfillmentRequest : FulfillmentRequest{}
+
+		
+public partial record FulfillmentRequest : FulfillmentRequestBase
+{
+}
+
+public partial record FulfillmentRequestBase : FulfillmentRequestOrig{}
+
+	
+public partial record FulfillmentServiceItem
 {
     [JsonPropertyName("fulfillment_service"), Required]
     public FulfillmentService FulfillmentService { get; set; } = null!;
 }
 
-public class FulfillmentServiceList
+public partial record FulfillmentServiceList
 {
     [JsonPropertyName("fulfillment_services"), Required]
     public IEnumerable<FulfillmentService> FulfillmentServices { get; set; } = null!;
 }
-public class CreateFulfillmentServiceRequest
+public partial record CreateFulfillmentServiceRequest
 {
     [JsonPropertyName("fulfillment_service"), Required]
     public CreateFulfillmentService FulfillmentService { get; set; } = null!;
 }
 
-public partial class CreateFulfillmentService : FulfillmentServiceBase {}
-public class UpdateFulfillmentServiceRequest
+public partial record CreateFulfillmentService : FulfillmentServiceBase {}
+public partial record UpdateFulfillmentServiceRequest
 {
     [JsonPropertyName("fulfillment_service"), Required]
     public UpdateFulfillmentService FulfillmentService { get; set; } = null!;
 }
 
-public partial class UpdateFulfillmentService : FulfillmentService{}
+public partial record UpdateFulfillmentService : FulfillmentService{}
 
 		
-	
-public class FulfillmentService : FulfillmentServiceBase
+public partial record FulfillmentService : FulfillmentServiceBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record FulfillmentServiceBase : FulfillmentServiceOrig{}
+
 	
-public class LocationsForMoveItem
+public partial record LocationsForMoveItem
 {
     [JsonPropertyName("locations_for_move"), Required]
     public LocationsForMove LocationsForMove { get; set; } = null!;
 }
 
-public class LocationsForMoveList
+public partial record LocationsForMoveList
 {
     [JsonPropertyName("locations_for_moves"), Required]
     public IEnumerable<LocationsForMove> LocationsForMoves { get; set; } = null!;
 }
-public class CreateLocationsForMoveRequest
+public partial record CreateLocationsForMoveRequest
 {
     [JsonPropertyName("locations_for_move"), Required]
     public CreateLocationsForMove LocationsForMove { get; set; } = null!;
 }
 
-public partial class CreateLocationsForMove : LocationsForMoveBase {}
-public class UpdateLocationsForMoveRequest
+public partial record CreateLocationsForMove : LocationsForMoveBase {}
+public partial record UpdateLocationsForMoveRequest
 {
     [JsonPropertyName("locations_for_move"), Required]
     public UpdateLocationsForMove LocationsForMove { get; set; } = null!;
 }
 
-public partial class UpdateLocationsForMove : LocationsForMove{}
+public partial record UpdateLocationsForMove : LocationsForMove{}
 
 		
-	
-public class LocationsForMove : LocationsForMoveBase
+public partial record LocationsForMove : LocationsForMoveBase
 {
-    [JsonPropertyName("id"), Required]
-    public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
-    public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record LocationsForMoveBase : LocationsForMoveOrig{}
+
 	
-public class BalanceItem
+public partial record BalanceItem
 {
     [JsonPropertyName("balance"), Required]
     public Balance Balance { get; set; } = null!;
 }
 
-public class BalanceList
+public partial record BalanceList
 {
     [JsonPropertyName("balances"), Required]
     public IEnumerable<Balance> Balances { get; set; } = null!;
 }
-public class CreateBalanceRequest
+public partial record CreateBalanceRequest
 {
     [JsonPropertyName("balance"), Required]
     public CreateBalance Balance { get; set; } = null!;
 }
 
-public partial class CreateBalance : BalanceBase {}
-public class UpdateBalanceRequest
+public partial record CreateBalance : BalanceBase {}
+public partial record UpdateBalanceRequest
 {
     [JsonPropertyName("balance"), Required]
     public UpdateBalance Balance { get; set; } = null!;
 }
 
-public partial class UpdateBalance : Balance{}
+public partial record UpdateBalance : Balance{}
 
 		
-	
-public class Balance : BalanceBase
+public partial record Balance : BalanceBase
 {
-    [JsonPropertyName("id"), Required]
-    public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
-    public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record BalanceBase : BalanceOrig{}
+
 	
-public class DisputeItem
+public partial record DisputeItem
 {
     [JsonPropertyName("dispute"), Required]
     public Dispute Dispute { get; set; } = null!;
 }
 
-public class DisputeList
+public partial record DisputeList
 {
     [JsonPropertyName("disputes"), Required]
     public IEnumerable<Dispute> Disputes { get; set; } = null!;
 }
-public class CreateDisputeRequest
+public partial record CreateDisputeRequest
 {
     [JsonPropertyName("dispute"), Required]
     public CreateDispute Dispute { get; set; } = null!;
 }
 
-public partial class CreateDispute : DisputeBase {}
-public class UpdateDisputeRequest
+public partial record CreateDispute : DisputeBase {}
+public partial record UpdateDisputeRequest
 {
     [JsonPropertyName("dispute"), Required]
     public UpdateDispute Dispute { get; set; } = null!;
 }
 
-public partial class UpdateDispute : Dispute{}
+public partial record UpdateDispute : Dispute{}
 
 		
-	
-public class Dispute : DisputeBase
+public partial record Dispute : DisputeBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record DisputeBase : DisputeOrig{}
+
 	
-public class DisputeEvidenceItem
-{
-    [JsonPropertyName("dispute_evidence"), Required]
-    public DisputeEvidence DisputeEvidence { get; set; } = null!;
-}
-
-public class DisputeEvidenceList
-{
-    [JsonPropertyName("dispute_evidences"), Required]
-    public IEnumerable<DisputeEvidence> DisputeEvidences { get; set; } = null!;
-}
-public class CreateDisputeEvidenceRequest
-{
-    [JsonPropertyName("dispute_evidence"), Required]
-    public CreateDisputeEvidence DisputeEvidence { get; set; } = null!;
-}
-
-public partial class CreateDisputeEvidence : DisputeEvidenceBase {}
-public class UpdateDisputeEvidenceRequest
-{
-    [JsonPropertyName("dispute_evidence"), Required]
-    public UpdateDisputeEvidence DisputeEvidence { get; set; } = null!;
-}
-
-public partial class UpdateDisputeEvidence : DisputeEvidence{}
-
-		
-	
-public class DisputeEvidence : DisputeEvidenceBase
-{
-    [JsonPropertyName("id"), Required]
-    public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
-    public string? AdminGraphQLAPIId { get; set; }
-	}
-	
-public class DisputeFileUploadItem
-{
-    [JsonPropertyName("dispute_file_upload"), Required]
-    public DisputeFileUpload DisputeFileUpload { get; set; } = null!;
-}
-
-public class DisputeFileUploadList
-{
-    [JsonPropertyName("dispute_file_uploads"), Required]
-    public IEnumerable<DisputeFileUpload> DisputeFileUploads { get; set; } = null!;
-}
-public class CreateDisputeFileUploadRequest
-{
-    [JsonPropertyName("dispute_file_upload"), Required]
-    public CreateDisputeFileUpload DisputeFileUpload { get; set; } = null!;
-}
-
-public partial class CreateDisputeFileUpload : DisputeFileUploadBase {}
-public class UpdateDisputeFileUploadRequest
-{
-    [JsonPropertyName("dispute_file_upload"), Required]
-    public UpdateDisputeFileUpload DisputeFileUpload { get; set; } = null!;
-}
-
-public partial class UpdateDisputeFileUpload : DisputeFileUpload{}
-
-		
-	
-public class DisputeFileUpload : DisputeFileUploadBase
-{
-    [JsonPropertyName("id"), Required]
-    public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
-    public string? AdminGraphQLAPIId { get; set; }
-	}
-	
-public class PayoutItem
+public partial record PayoutItem
 {
     [JsonPropertyName("payout"), Required]
     public Payout Payout { get; set; } = null!;
 }
 
-public class PayoutList
+public partial record PayoutList
 {
     [JsonPropertyName("payouts"), Required]
     public IEnumerable<Payout> Payouts { get; set; } = null!;
 }
-public class CreatePayoutRequest
+public partial record CreatePayoutRequest
 {
     [JsonPropertyName("payout"), Required]
     public CreatePayout Payout { get; set; } = null!;
 }
 
-public partial class CreatePayout : PayoutBase {}
-public class UpdatePayoutRequest
+public partial record CreatePayout : PayoutsBase {}
+public partial record UpdatePayoutRequest
 {
     [JsonPropertyName("payout"), Required]
     public UpdatePayout Payout { get; set; } = null!;
 }
 
-public partial class UpdatePayout : Payout{}
+public partial record UpdatePayout : Payout{}
 
 		
-	
-public class Payout : PayoutBase
+public partial record Payout : PayoutsBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record PayoutsBase : PayoutsOrig{}
+
 	
-public class CountryItem
+public partial record CountryItem
 {
     [JsonPropertyName("country"), Required]
     public Country Country { get; set; } = null!;
 }
 
-public class CountryList
+public partial record CountryList
 {
     [JsonPropertyName("countries"), Required]
     public IEnumerable<Country> Countries { get; set; } = null!;
 }
-public class CreateCountryRequest
+public partial record CreateCountryRequest
 {
     [JsonPropertyName("country"), Required]
     public CreateCountry Country { get; set; } = null!;
 }
 
-public partial class CreateCountry : CountryBase {}
-public class UpdateCountryRequest
+public partial record CreateCountry : CountryBase {}
+public partial record UpdateCountryRequest
 {
     [JsonPropertyName("country"), Required]
     public UpdateCountry Country { get; set; } = null!;
 }
 
-public partial class UpdateCountry : Country{}
+public partial record UpdateCountry : Country{}
 
 		
-	
-public class Country : CountryBase
+public partial record Country : CountryBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record CountryBase : CountryOrig{}
+
 	
-public class CurrencyItem
+public partial record CurrencyItem
 {
     [JsonPropertyName("currency"), Required]
     public Currency Currency { get; set; } = null!;
 }
 
-public class CurrencyList
+public partial record CurrencyList
 {
     [JsonPropertyName("currencies"), Required]
     public IEnumerable<Currency> Currencies { get; set; } = null!;
 }
-public class CreateCurrencyRequest
+public partial record CreateCurrencyRequest
 {
     [JsonPropertyName("currency"), Required]
     public CreateCurrency Currency { get; set; } = null!;
 }
 
-public partial class CreateCurrency : CurrencyBase {}
-public class UpdateCurrencyRequest
+public partial record CreateCurrency : CurrencyBase {}
+public partial record UpdateCurrencyRequest
 {
     [JsonPropertyName("currency"), Required]
     public UpdateCurrency Currency { get; set; } = null!;
 }
 
-public partial class UpdateCurrency : Currency{}
+public partial record UpdateCurrency : Currency{}
 
 		
-	
-public class Currency : CurrencyBase
+public partial record Currency : CurrencyBase
 {
 }
+
+public partial record CurrencyBase : CurrencyOrig{}
+
 	
-public class PolicyItem
+public partial record PolicyItem
 {
     [JsonPropertyName("policy"), Required]
     public Policy Policy { get; set; } = null!;
 }
 
-public class PolicyList
+public partial record PolicyList
 {
     [JsonPropertyName("policies"), Required]
     public IEnumerable<Policy> Policies { get; set; } = null!;
 }
-public class CreatePolicyRequest
+public partial record CreatePolicyRequest
 {
     [JsonPropertyName("policy"), Required]
     public CreatePolicy Policy { get; set; } = null!;
 }
 
-public partial class CreatePolicy : PolicyBase {}
-public class UpdatePolicyRequest
+public partial record CreatePolicy : PolicyBase {}
+public partial record UpdatePolicyRequest
 {
     [JsonPropertyName("policy"), Required]
     public UpdatePolicy Policy { get; set; } = null!;
 }
 
-public partial class UpdatePolicy : Policy{}
+public partial record UpdatePolicy : Policy{}
 
 		
-	
-public class Policy : PolicyBase
+public partial record Policy : PolicyBase
 {
 }
+
+public partial record PolicyBase : PolicyOrig{}
+
 	
-public class ProvinceItem
+public partial record ProvinceItem
 {
     [JsonPropertyName("province"), Required]
     public Province Province { get; set; } = null!;
 }
 
-public class ProvinceList
+public partial record ProvinceList
 {
     [JsonPropertyName("provinces"), Required]
     public IEnumerable<Province> Provinces { get; set; } = null!;
 }
-public class CreateProvinceRequest
+public partial record CreateProvinceRequest
 {
     [JsonPropertyName("province"), Required]
     public CreateProvince Province { get; set; } = null!;
 }
 
-public partial class CreateProvince : ProvinceBase {}
-public class UpdateProvinceRequest
+public partial record CreateProvince : ProvinceBase {}
+public partial record UpdateProvinceRequest
 {
     [JsonPropertyName("province"), Required]
     public UpdateProvince Province { get; set; } = null!;
 }
 
-public partial class UpdateProvince : Province{}
+public partial record UpdateProvince : Province{}
 
 		
-	
-public class Province : ProvinceBase
+public partial record Province : ProvinceBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record ProvinceBase : ProvinceOrig{}
+
 	
-public class ShippingZoneItem
+public partial record ShippingZoneItem
 {
     [JsonPropertyName("shipping_zone"), Required]
     public ShippingZone ShippingZone { get; set; } = null!;
 }
 
-public class ShippingZoneList
+public partial record ShippingZoneList
 {
     [JsonPropertyName("shipping_zones"), Required]
     public IEnumerable<ShippingZone> ShippingZones { get; set; } = null!;
 }
-public class CreateShippingZoneRequest
+public partial record CreateShippingZoneRequest
 {
     [JsonPropertyName("shipping_zone"), Required]
     public CreateShippingZone ShippingZone { get; set; } = null!;
 }
 
-public partial class CreateShippingZone : ShippingZoneBase {}
-public class UpdateShippingZoneRequest
+public partial record CreateShippingZone : ShippingZoneBase {}
+public partial record UpdateShippingZoneRequest
 {
     [JsonPropertyName("shipping_zone"), Required]
     public UpdateShippingZone ShippingZone { get; set; } = null!;
 }
 
-public partial class UpdateShippingZone : ShippingZone{}
+public partial record UpdateShippingZone : ShippingZone{}
 
 		
-	
-public class ShippingZone : ShippingZoneBase
+public partial record ShippingZone : ShippingZoneBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record ShippingZoneBase : ShippingZoneOrig{}
+
 	
-public class ShopItem
+public partial record ShopItem
 {
     [JsonPropertyName("shop"), Required]
     public Shop Shop { get; set; } = null!;
 }
 
-public class ShopList
+public partial record ShopList
 {
     [JsonPropertyName("shops"), Required]
     public IEnumerable<Shop> Shops { get; set; } = null!;
 }
-public class CreateShopRequest
+public partial record CreateShopRequest
 {
     [JsonPropertyName("shop"), Required]
     public CreateShop Shop { get; set; } = null!;
 }
 
-public partial class CreateShop : ShopBase {}
-public class UpdateShopRequest
+public partial record CreateShop : ShopBase {}
+public partial record UpdateShopRequest
 {
     [JsonPropertyName("shop"), Required]
     public UpdateShop Shop { get; set; } = null!;
 }
 
-public partial class UpdateShop : Shop{}
+public partial record UpdateShop : Shop{}
 
 		
-	
-public class Shop : ShopBase
+public partial record Shop : ShopBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record ShopBase : ShopOrig{}
+
 	
-public class TenderTransactionItem
+public partial record TenderTransactionItem
 {
     [JsonPropertyName("tender_transaction"), Required]
     public TenderTransaction TenderTransaction { get; set; } = null!;
 }
 
-public class TenderTransactionList
+public partial record TenderTransactionList
 {
     [JsonPropertyName("tender_transactions"), Required]
     public IEnumerable<TenderTransaction> TenderTransactions { get; set; } = null!;
 }
-public class CreateTenderTransactionRequest
+public partial record CreateTenderTransactionRequest
 {
     [JsonPropertyName("tender_transaction"), Required]
     public CreateTenderTransaction TenderTransaction { get; set; } = null!;
 }
 
-public partial class CreateTenderTransaction : TenderTransactionBase {}
-public class UpdateTenderTransactionRequest
+public partial record CreateTenderTransaction : TenderTransactionBase {}
+public partial record UpdateTenderTransactionRequest
 {
     [JsonPropertyName("tender_transaction"), Required]
     public UpdateTenderTransaction TenderTransaction { get; set; } = null!;
 }
 
-public partial class UpdateTenderTransaction : TenderTransaction{}
+public partial record UpdateTenderTransaction : TenderTransaction{}
 
 		
-	
-public class TenderTransaction : TenderTransactionBase
+public partial record TenderTransaction : TenderTransactionBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record TenderTransactionBase : TenderTransactionOrig{}
+
 	
-public class DiscountCodeCreationItem
+public partial record DiscountCodeCreationItem
 {
     [JsonPropertyName("discount_code_creation"), Required]
     public DiscountCodeCreation DiscountCodeCreation { get; set; } = null!;
 }
 
-public class DiscountCodeCreationList
+public partial record DiscountCodeCreationList
 {
     [JsonPropertyName("discount_code_creations"), Required]
     public IEnumerable<DiscountCodeCreation> DiscountCodeCreations { get; set; } = null!;
 }
-public class CreateDiscountCodeCreationRequest
+public partial record CreateDiscountCodeCreationRequest
 {
     [JsonPropertyName("discount_code_creation"), Required]
     public CreateDiscountCodeCreation DiscountCodeCreation { get; set; } = null!;
 }
 
-public partial class CreateDiscountCodeCreation : DiscountCodeCreationBase {}
-public class UpdateDiscountCodeCreationRequest
+public partial record CreateDiscountCodeCreation : DiscountCodeCreationBase {}
+public partial record UpdateDiscountCodeCreationRequest
 {
     [JsonPropertyName("discount_code_creation"), Required]
     public UpdateDiscountCodeCreation DiscountCodeCreation { get; set; } = null!;
 }
 
-public partial class UpdateDiscountCodeCreation : DiscountCodeCreation{}
+public partial record UpdateDiscountCodeCreation : DiscountCodeCreation{}
 
 		
-	
-public class DiscountCodeCreation : DiscountCodeCreationBase
+public partial record DiscountCodeCreation : DiscountCodeCreationBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record DiscountCodeCreationBase : DiscountCodeCreationOrig{}
+
 	
-public class EngagementItem
+public partial record EngagementItem
 {
     [JsonPropertyName("engagement"), Required]
     public Engagement Engagement { get; set; } = null!;
 }
 
-public class EngagementList
+public partial record EngagementList
 {
     [JsonPropertyName("engagements"), Required]
     public IEnumerable<Engagement> Engagements { get; set; } = null!;
 }
-public class CreateEngagementRequest
+public partial record CreateEngagementRequest
 {
     [JsonPropertyName("engagement"), Required]
     public CreateEngagement Engagement { get; set; } = null!;
 }
 
-public partial class CreateEngagement : EngagementBase {}
-public class UpdateEngagementRequest
+public partial record CreateEngagement : EngagementBase {}
+public partial record UpdateEngagementRequest
 {
     [JsonPropertyName("engagement"), Required]
     public UpdateEngagement Engagement { get; set; } = null!;
 }
 
-public partial class UpdateEngagement : Engagement{}
+public partial record UpdateEngagement : Engagement{}
 
 		
-	
-public class Engagement : EngagementBase
+public partial record Engagement : EngagementBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record EngagementBase : EngagementOrig{}
+
 	
-public class CustomerInviteItem
+public partial record CustomerInviteItem
 {
     [JsonPropertyName("customer_invite"), Required]
     public CustomerInvite CustomerInvite { get; set; } = null!;
 }
 
-public class CustomerInviteList
+public partial record CustomerInviteList
 {
     [JsonPropertyName("customer_invites"), Required]
     public IEnumerable<CustomerInvite> CustomerInvites { get; set; } = null!;
 }
-public class CreateCustomerInviteRequest
+public partial record CreateCustomerInviteRequest
 {
     [JsonPropertyName("customer_invite"), Required]
     public CreateCustomerInvite CustomerInvite { get; set; } = null!;
 }
 
-public partial class CreateCustomerInvite : CustomerInviteBase {}
-public class UpdateCustomerInviteRequest
+public partial record CreateCustomerInvite : CustomerInviteBase {}
+public partial record UpdateCustomerInviteRequest
 {
     [JsonPropertyName("customer_invite"), Required]
     public UpdateCustomerInvite CustomerInvite { get; set; } = null!;
 }
 
-public partial class UpdateCustomerInvite : CustomerInvite{}
+public partial record UpdateCustomerInvite : CustomerInvite{}
 
 		
-	
-public class CustomerInvite : CustomerInviteBase
+public partial record CustomerInvite : CustomerInviteBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	    [JsonPropertyName("admin_graphql_api_id")]
+
+    [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	}
+}
+
+public partial record CustomerInviteBase : CustomerInviteOrig{}
+
 	

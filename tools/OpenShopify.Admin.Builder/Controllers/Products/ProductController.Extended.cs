@@ -13,16 +13,33 @@ namespace OpenShopify.Admin.Builder.Controllers.Products;
 public class ProductController : ProductControllerBase
 {
     /// <inheritdoc />
-    [HttpGet, Route("products.json")]
+    [IgnoreApi, HttpGet, Route("products.invalid")]
     [ProducesResponseHeader("Link", StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProductList), StatusCodes.Status200OK)]
-    public override Task ListProducts(long? collection_id, DateTime? created_at_max, DateTime? created_at_min, string? fields,
-        string? handle, string? ids, int? limit, string? page_info, string? presentment_currencies, string? product_type,
-        DateTime? published_at_max, DateTime? published_at_min, string published_status, int? since_id, string status,
-        string? title, DateTime? updated_at_max, DateTime? updated_at_min, string? vendor)
+    public override Task ListProducts(long collection_id, DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null,
+        string? fields = null, string? handle = null, string? ids = null, int? limit = null, string? page_info = null,
+        string? presentment_currencies = null, string? product_type = null, DateTimeOffset? published_at_max = null,
+        DateTimeOffset? published_at_min = null, string? published_status = null, long? since_id = null,
+        string? status = null, string? title = null, DateTimeOffset? updated_at_max = null,
+        DateTimeOffset? updated_at_min = null, string? vendor = null)
     {
         throw new NotImplementedException();
     }
+
+    /// <inheritdoc cref="ProductControllerBase.ListProducts" />
+    [HttpGet, Route("products.json")]
+    [ProducesResponseHeader("Link", StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProductList), StatusCodes.Status200OK)]
+    public Task ListProducts(long? collection_id, DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null,
+        string? fields = null, string? handle = null, string? ids = null, int? limit = null, string? page_info = null,
+        string? presentment_currencies = null, string? product_type = null, DateTimeOffset? published_at_max = null,
+        DateTimeOffset? published_at_min = null, string? published_status = null, long? since_id = null,
+        string? status = null, string? title = null, DateTimeOffset? updated_at_max = null,
+        DateTimeOffset? updated_at_min = null, string? vendor = null)
+    {
+        throw new NotImplementedException();
+    }
+
 
     /// <inheritdoc />
     [HttpPost, Route("products.json")]
@@ -35,9 +52,10 @@ public class ProductController : ProductControllerBase
     /// <inheritdoc />
     [HttpGet, Route("products/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountProducts(long? collection_id, DateTime? created_at_max, DateTime? created_at_min,
-        string? product_type, DateTime? published_at_max, DateTime? published_at_min, string published_status,
-        DateTime? updated_at_max, DateTime? updated_at_min, string? vendor)
+    public override Task CountProducts(long? collection_id = null, DateTimeOffset? created_at_max = null,
+        DateTimeOffset? created_at_min = null, string? product_type = null, DateTimeOffset? published_at_max = null,
+        DateTimeOffset? published_at_min = null, string? published_status = null, DateTimeOffset? updated_at_max = null,
+        DateTimeOffset? updated_at_min = null, string? vendor = null)
     {
         throw new NotImplementedException();
     }
@@ -45,7 +63,7 @@ public class ProductController : ProductControllerBase
     /// <inheritdoc />
     [HttpGet, Route("products/{product_id:long}.json")]
     [ProducesResponseType(typeof(ProductItem), StatusCodes.Status200OK)]
-    public override Task GetProduct([Required] long product_id, string? fields)
+    public override Task GetProduct([Required] long product_id, string? fields = null)
     {
         throw new NotImplementedException();
     }

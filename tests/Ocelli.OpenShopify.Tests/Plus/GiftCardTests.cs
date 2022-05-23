@@ -9,12 +9,32 @@ namespace Ocelli.OpenShopify.Tests.Plus;
 public class GiftCardTests : IClassFixture<SharedFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly ITestOutputHelper _testOutputHelper;
+    private readonly PlusService _service;
 
     public GiftCardTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
     {
+        _testOutputHelper = testOutputHelper;
         Fixture = sharedFixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _service = new PlusService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
     private SharedFixture Fixture { get; }
+
+    #region Create
+
+    #endregion Create
+
+    #region Read
+
+    #endregion Read
+
+    #region Update
+
+    #endregion Update
+
+    #region Delete
+
+    #endregion Delete
 }

@@ -13,14 +13,14 @@ public class CollectionListingController : CollectionListingControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("collection_listings.json")]
-    public override Task GetCollectionListingsThatArePublishedToYourApp(int? limit, string? page_info)
+    public override Task GetCollectionListingsThatArePublishedToYourApp(int? limit = null, string? page_info = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("collection_listings/{collection_listing_id:long}/product_ids.json")]
-    public override Task GetProductIdsThatArePublishedToCollectionId([Required] long collection_listing_id, int? limit, string? page_info)
+    public override Task GetProductIdsThatArePublishedToCollectionId([Required] long collection_listing_id, int? limit = null, string? page_info = null)
     {
         throw new NotImplementedException();
     }

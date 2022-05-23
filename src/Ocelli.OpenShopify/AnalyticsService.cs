@@ -15,5 +15,5 @@ public class AnalyticsService : ShopifyService, IAnalyticsService
         _baseUri = base.PrepareRequest(myShopifyUrl);
         _myShopifyUrl = myShopifyUrl;
     }
-    public IReportClient Report => new ReportClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
+    public IReportClient Report => new ReportClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
 }

@@ -2,28 +2,28 @@
 
 namespace OpenShopify.Admin.Builder.Models;
 
-public class DeprecatedApiCallBase
+public partial record DeprecatedApiCall
 {
     /// <summary>
     /// The type of API that the call was made to. Valid values: REST, Webhook, GraphQL
     /// </summary>
     [JsonPropertyName("api_type")]
-    public string ApiType { get; set; }
+    public string? ApiType { get; set; }
     /// <summary>
     /// A description of the deprecation and any required migration steps.
     /// </summary>
     [JsonPropertyName("description")]
-    public string Description { get; set; }
+    public string? Description { get; set; }
     /// <summary>
     /// The documentation URL to the deprecated change.
     /// </summary>
     [JsonPropertyName("documentation_url")]
-    public string DocumentationUrl { get; set; }
+    public string? DocumentationUrl { get; set; }
     /// <summary>
     ///  description of the REST endpoint, webhook topic, or GraphQL field called.
     /// </summary>
     [JsonPropertyName("endpoint")]
-    public string Endpoint { get; set; }
+    public string? Endpoint { get; set; }
     /// <summary>
     /// The timestamp (ISO 4217 format) when the last deprecated API call was made.
     /// </summary>
@@ -43,5 +43,5 @@ public class DeprecatedApiCallBase
     /// The earliest API version to migrate to in order to avoid making the deprecated API calls.
     /// </summary>
     [JsonPropertyName("version")]
-    public string Version { get; set; }
+    public string? Version { get; set; }
 }

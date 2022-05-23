@@ -13,7 +13,7 @@ public class ThemeController : ThemeControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("themes.json")]
-    public override Task ListThemes(string? fields)
+    public override Task ListThemes(string? fields = null)
     {
         throw new NotImplementedException();
     }
@@ -27,7 +27,7 @@ public class ThemeController : ThemeControllerBase
 
     /// <inheritdoc />
     [HttpGet, Route("themes/{theme_id:long}.json")]
-    public override Task GetThemeByItsID([Required] long theme_id, string? fields)
+    public override Task GetThemeByItsID([Required] long theme_id, string? fields = null)
     {
         throw new NotImplementedException();
     }

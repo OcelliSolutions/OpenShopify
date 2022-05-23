@@ -16,5 +16,5 @@ public class TenderTransactionService : ShopifyService, ITenderTransactionServic
         _myShopifyUrl = myShopifyUrl;
     }
 
-    public ITenderTransactionClient TenderTransaction => new TenderTransactionClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
+    public ITenderTransactionClient TenderTransaction => new TenderTransactionClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
 }

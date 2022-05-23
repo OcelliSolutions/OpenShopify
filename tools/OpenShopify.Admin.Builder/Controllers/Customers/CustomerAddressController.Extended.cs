@@ -55,7 +55,8 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpPut, Route("customers/{customer_id:long}/addresses/set.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task PerformBulkOperationsForMultipleCustomerAddresses([Required] long address_ids, [Required] long customer_id, string operation)
+    public override Task PerformBulkOperationsForMultipleCustomerAddresses(string? address_ids = null, long? customer_id = null,
+        string? operation = null)
     {
         throw new NotImplementedException();
     }

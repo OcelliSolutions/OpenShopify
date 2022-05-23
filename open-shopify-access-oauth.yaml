@@ -4,7 +4,7 @@ info:
   description: OAuth
   version: '2022-04'
 servers:
-  - url: 'https://{store_name}.myshopify.com/admin'
+  - url: 'https://{store_name}.myshopify.com'
     variables:
       store_name:
         default: '{{store_name}}'
@@ -115,6 +115,9 @@ components:
         - write_translations
         - read_locales
         - write_locales
+        - read_customer_payment_methods
+        - read_own_subscription_contracts
+        - write_own_subscription_contracts
       type: string
       additionalProperties: { }
   securitySchemes:

@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class PrerequisiteValueRange
+    public record PrerequisiteValueRange
     {
         [JsonPropertyName("less_than_or_equal_to")]
         public decimal? LessThanOrEqualTo { get; set; }

@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
+﻿using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
 using Xunit;
 using Xunit.Abstractions;
@@ -14,38 +10,32 @@ namespace Ocelli.OpenShopify.Tests.Analytics;
 public class ReportTests : IClassFixture<SharedFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly ITestOutputHelper _testOutputHelper;
+    private readonly AnalyticsService _service;
 
     public ReportTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
     {
+        _testOutputHelper = testOutputHelper;
         Fixture = sharedFixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _service = new AnalyticsService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
     private SharedFixture Fixture { get; }
-    /*
-    [SkippableFact]
-    public async Task ListReportsAsync_AdditionalPropertiesAreEmpty_ShouldPass()
-    {
-        var requiredPermissions = new List<AuthorizationScope> { AuthorizationScope.read_reports };
-        Fixture.ValidateScopes(requiredPermissions);
-        var service = new AnalyticsService(Fixture.MyShopifyUrl, Fixture.AccessToken);
-        var result = await service.Report.ListReportsAsync();
-        _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
 
-        if (result.Reports != null && !result.Reports.Any())
-        {
-            Skip.If(result.Reports == null || !result.Reports.Any(),
-                "WARN: No data returned. Could not test");
-            return;
-        }
+    #region Create
 
-        Debug.Assert(result.Reports != null, "result.Reports != null");
-        foreach (var token in result.Reports)
-        {
-            _additionalPropertiesHelper.CheckAdditionalProperties(token, Fixture.MyShopifyUrl);
-        }
+    #endregion Create
 
-        Assert.NotEmpty(result.Reports);
-    }
-    */
+    #region Read
+
+    #endregion Read
+
+    #region Update
+
+    #endregion Update
+
+    #region Delete
+
+    #endregion Delete
 }

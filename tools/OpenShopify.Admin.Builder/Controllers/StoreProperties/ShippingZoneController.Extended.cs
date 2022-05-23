@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
 
@@ -11,7 +12,7 @@ public class ShippingZoneController : ShippingZoneControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("shipping_zones.json")]
-    public override Task ListShippingZones(string? fields)
+    public override Task ListShippingZones(string? fields = null)
     {
         throw new NotImplementedException();
     }

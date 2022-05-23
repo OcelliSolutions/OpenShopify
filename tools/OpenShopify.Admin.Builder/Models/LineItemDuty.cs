@@ -2,7 +2,7 @@
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class LineItemDuty : ShopifyObject
+    public partial record LineItemDuty : ShopifyObject
     {
         [JsonPropertyName("harmonized_system_code")]
         public string? HarmonizedSystemCode { get; set; }
@@ -11,12 +11,12 @@ namespace OpenShopify.Admin.Builder.Models
         public string? CountryCodeOfOrigin { get; set; }
 
         [JsonPropertyName("shop_money")]
-        public Price ShopMoney { get; set; }
+        public Price? ShopMoney { get; set; }
 
         [JsonPropertyName("presentment_money")]
-        public Price PresentmentMoney { get; set; }
+        public Price? PresentmentMoney { get; set; }
 
         [JsonPropertyName("tax_lines")]
-        public IEnumerable<TaxLine> TaxLines { get; set; }
+        public IEnumerable<TaxLine>? TaxLines { get; set; }
     }
 }

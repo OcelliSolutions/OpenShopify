@@ -6,7 +6,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// Represents a Shopify article's image.
     /// </summary>
-    public class ArticleImage
+    public partial record ArticleImage
     {
         /// <summary>
         /// A base64 image string only used when creating an image. It will be converted to the <see cref="Src"/> property.

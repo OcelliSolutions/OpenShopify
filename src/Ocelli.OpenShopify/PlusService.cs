@@ -16,6 +16,6 @@ public class PlusService : ShopifyService, IPlusService
         _myShopifyUrl = myShopifyUrl;
     }
     
-    public IGiftCardClient GiftCard => new GiftCardClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IUserClient User => new UserClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
+    public IGiftCardClient GiftCard => new GiftCardClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IUserClient User => new UserClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
 }

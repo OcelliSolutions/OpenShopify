@@ -6,7 +6,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify payments dispute.
     /// </summary>
-    public class ShopifyPaymentsDispute : ShopifyObject
+    public partial record ShopifyPaymentsDispute : ShopifyObject
     {
         [JsonPropertyName("order_id")]
         public long? OrderId { get; set; }

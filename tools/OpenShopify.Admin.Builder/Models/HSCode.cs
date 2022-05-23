@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class HSCode : ShopifyObject
+    public partial record HsCode : ShopifyObject
     {
         /// <summary>
         /// The two-digit code for the country where the inventory item was made.

@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class CurrencyExchangeAdjustment : ShopifyObject
+    public partial record CurrencyExchangeAdjustment : ShopifyObject
     {
         /// <summary>
         /// The difference between the amounts on the associated transaction and the parent transaction.

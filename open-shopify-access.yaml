@@ -111,14 +111,14 @@ components:
           nullable: true
         created_at:
           type: string
-          description: The date and time when the public access token was created. The API returns this value in ISO 8601 format.
+          description: 'The date and time when the public access token was created. The API returns this value in [ISO 8601 format](//en.wikipedia.org/wiki/ISO_8601).'
           format: date-time
           nullable: true
         title:
           type: string
-          description: "An arbitrary title for each token determined by the developer/application, used for reference purposes.\r\nNo constraint on uniqueness."
+          description: "An arbitrary title for each token determined by the developer/application, used for reference purposes. <div class=\"note\"> \r\n\r\n#### Note\r\n\r\nNo constraint on uniqueness.\r\n </div>"
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     CreateStorefrontAccessTokenRequest:
       required:
         - storefront_access_token
@@ -142,12 +142,12 @@ components:
           nullable: true
         created_at:
           type: string
-          description: The date and time when the public access token was created. The API returns this value in ISO 8601 format.
+          description: 'The date and time when the public access token was created. The API returns this value in [ISO 8601 format](//en.wikipedia.org/wiki/ISO_8601).'
           format: date-time
           nullable: true
         title:
           type: string
-          description: "An arbitrary title for each token determined by the developer/application, used for reference purposes.\r\nNo constraint on uniqueness."
+          description: "An arbitrary title for each token determined by the developer/application, used for reference purposes. <div class=\"note\"> \r\n\r\n#### Note\r\n\r\nNo constraint on uniqueness.\r\n </div>"
           nullable: true
         id:
           type: integer

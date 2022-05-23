@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
+﻿using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
 using Xunit;
 using Xunit.Abstractions;
@@ -14,27 +10,32 @@ namespace Ocelli.OpenShopify.Tests.StoreProperties;
 public class CurrencyTests : IClassFixture<SharedFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly ITestOutputHelper _testOutputHelper;
+    private readonly StorePropertiesService _service;
 
     public CurrencyTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
     {
+        _testOutputHelper = testOutputHelper;
         Fixture = sharedFixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _service = new StorePropertiesService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
     private SharedFixture Fixture { get; }
 
-    /*
-    [SkippableFact, TestPriority(20)]
-    public async Task ListCurrenciesEnabledOnShopAsync_AdditionalPropertiesAreEmpty_ShouldPass()
-    {
-        var service = new StorePropertiesService(Fixture.MyShopifyUrl, Fixture.AccessToken);
+    #region Create
 
-        var result =
-            await service.Currency.ListCurrenciesEnabledOnShopAsync();
-        _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
+    #endregion Create
 
-        Debug.Assert(result.Currencies != null, "result.Currencies != null");
-        Skip.If(!result.Currencies.Any(), "No results returned.");
-    }
-    */
+    #region Read
+
+    #endregion Read
+
+    #region Update
+
+    #endregion Update
+
+    #region Delete
+
+    #endregion Delete
 }

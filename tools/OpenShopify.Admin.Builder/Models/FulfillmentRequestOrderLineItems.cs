@@ -7,7 +7,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify fulfillment request order line items.
     /// </summary>
-    public class FulfillmentRequestOrderLineItems
+    public partial record FulfillmentRequestOrderLineItems
     {
         /// <summary>
         /// The ID of the fulfillment order line item.

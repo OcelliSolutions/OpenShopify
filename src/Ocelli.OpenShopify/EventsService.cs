@@ -15,6 +15,6 @@ public class EventsService : ShopifyService, IEventsService
         _baseUri = base.PrepareRequest(myShopifyUrl);
         _myShopifyUrl = myShopifyUrl;
     }
-    public IEventClient Event => new EventClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IWebhookClient Webhook => new WebhookClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
+    public IEventClient Event => new EventClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IWebhookClient Webhook => new WebhookClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
 }

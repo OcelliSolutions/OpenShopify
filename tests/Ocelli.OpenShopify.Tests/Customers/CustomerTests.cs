@@ -15,7 +15,8 @@ namespace Ocelli.OpenShopify.Tests.Customers;
 public class CustomerTests : IClassFixture<SharedFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly CustomersService _service; 
+    private readonly CustomersService _service;
+    private readonly ITestOutputHelper _testOutputHelper;
 
     public CustomerTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
     {
@@ -26,8 +27,8 @@ public class CustomerTests : IClassFixture<SharedFixture>
     }
 
     private SharedFixture Fixture { get; }
-    private readonly ITestOutputHelper _testOutputHelper;
 
+    #region Create
     [SkippableFact, TestPriority(10)]
     public async Task CreateCustomerAsync_CanCreate()
     {
@@ -66,7 +67,9 @@ public class CustomerTests : IClassFixture<SharedFixture>
         Assert.NotNull(customer.Addresses);
         Fixture.CreatedCustomers.Add(customer ?? throw new InvalidOperationException());
     }
-    
+    #endregion Create
+
+    #region Read
     [SkippableFact, TestPriority(20)]
     public async Task Counts_Customers()
     {
@@ -197,7 +200,9 @@ public class CustomerTests : IClassFixture<SharedFixture>
         _testOutputHelper.WriteLine(JsonSerializer.Serialize(url));
         Assert.Contains("account/activate", url.AccountActivationUrl!);
     }
+    #endregion Read
 
+    #region Update
     [SkippableFact, TestPriority(30)]
     public async Task Updates_Customers()
     {
@@ -251,7 +256,9 @@ public class CustomerTests : IClassFixture<SharedFixture>
         Fixture.CreatedCustomers.Remove(createdCustomer);
         Fixture.CreatedCustomers.Add(response.Result.Customer);
     }
+    #endregion Update
 
+    #region Delete
     [SkippableFact, TestPriority(40)]
     public async Task Deletes_Customers()
     {
@@ -275,4 +282,5 @@ public class CustomerTests : IClassFixture<SharedFixture>
         }
         Assert.Empty(errors);
     }
+    #endregion Delete
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
 using Xunit;
@@ -31,7 +32,8 @@ public class CustomerAddressTests : IClassFixture<SharedFixture>
     }
 
     private SharedFixture Fixture { get; }
-    
+
+    #region Create
     [SkippableFact, TestPriority(10)]
     public async Task Creates_Addresses()
     {
@@ -66,15 +68,21 @@ public class CustomerAddressTests : IClassFixture<SharedFixture>
         Assert.Equal(Fixture.BatchId, created.Address1);
         Assert.Equal(customer.FirstName, created.FirstName);
         Assert.Equal(customer.LastName, created.LastName);
-        Fixture.CreatedAddresses.Add(created);
-    }
 
+        var config = new MapperConfiguration(cfg => cfg.CreateMap<CustomerAddress, Address>());
+        var mapper = new Mapper(config);
+        var address = mapper.Map<Address>(created);
+        Fixture.CreatedAddresses.Add(address);
+    }
+    #endregion Create
+
+    #region Read
     [SkippableFact, TestPriority(20)]
     public async Task Lists_Addresses()
     {
         Skip.If(!Fixture.CreatedAddresses.Any(), "A customer must be created with the CustomerTests first. Run in parallel.");
         var address = Fixture.CreatedAddresses.First();
-        var response = await _service.CustomerAddress.ListAddressesForCustomerAsync(address.CustomerId);
+        var response = await _service.CustomerAddress.ListAddressesForCustomerAsync(address.CustomerId ?? 0);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var resultAddress in response.Result.Addresses)
         {
@@ -96,7 +104,7 @@ public class CustomerAddressTests : IClassFixture<SharedFixture>
         var createdAddress = Fixture.CreatedAddresses.First();
         var response =
             await _service.CustomerAddress.GetCustomerAddressAsync(
-                createdAddress.Id, createdAddress.CustomerId);
+                createdAddress.Id, createdAddress.CustomerId ?? 0);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.CustomerAddress, Fixture.MyShopifyUrl);
 
@@ -106,7 +114,9 @@ public class CustomerAddressTests : IClassFixture<SharedFixture>
         Assert.Equal(createdAddress.FirstName, address.FirstName);
         Assert.Equal(createdAddress.LastName, address.LastName);
     }
+    #endregion Read
 
+    #region Update
     [SkippableFact, TestPriority(30)]
     public async Task Updates_Addresses()
     {
@@ -122,7 +132,7 @@ public class CustomerAddressTests : IClassFixture<SharedFixture>
         };
         var response =
             await _service.CustomerAddress.UpdateCustomerAddressAsync(createdAddress.Id, 
-                createdAddress.CustomerId, request);
+                createdAddress.CustomerId ?? 0, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.CustomerAddress, Fixture.MyShopifyUrl);
         
@@ -130,9 +140,15 @@ public class CustomerAddressTests : IClassFixture<SharedFixture>
 
         // Reset the id so the Fixture can properly delete this object.
         Fixture.CreatedAddresses.Remove(createdAddress);
-        Fixture.CreatedAddresses.Add(response.Result.CustomerAddress);
-    }
 
+        var config = new MapperConfiguration(cfg => cfg.CreateMap<CustomerAddress, Address>());
+        var mapper = new Mapper(config);
+        var address = mapper.Map<Address>(response.Result.CustomerAddress);
+        Fixture.CreatedAddresses.Add(address);
+    }
+    #endregion Update
+
+    #region Delete
     [SkippableFact, TestPriority(40)]
     public async Task Deletes_Addresses()
     {
@@ -145,7 +161,7 @@ public class CustomerAddressTests : IClassFixture<SharedFixture>
             try
             {
                 await _service.CustomerAddress.DeleteAddressFromCustomersAddressListAsync(
-                        address.Id, address.CustomerId);
+                        address.Id, address.CustomerId ?? 0);
             }
             catch (Exception ex)
             {
@@ -159,5 +175,5 @@ public class CustomerAddressTests : IClassFixture<SharedFixture>
         }
         Assert.Empty(errors);
     }
-
+    #endregion Delete
 }

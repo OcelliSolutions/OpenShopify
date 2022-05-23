@@ -2,7 +2,7 @@
 
 namespace OpenShopify.Admin.Builder.Models;
 
-public partial class UpdateCustomer
+public partial record UpdateCustomer
 {
     /// <summary>
     /// An optional password for the user. Default is null.

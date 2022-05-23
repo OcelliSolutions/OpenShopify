@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class CollectionImage 
+    public partial record CollectionImage 
     {
         /// <summary>
         /// An image attached to a collection returned as Base64-encoded binary data.

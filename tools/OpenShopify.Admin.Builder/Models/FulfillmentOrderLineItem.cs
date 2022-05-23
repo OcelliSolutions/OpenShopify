@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class FulfillmentOrderLineItem
+    public partial record FulfillmentOrderLineItem
     {
         /// <summary>
         /// The ID of the fulfillment order line item.

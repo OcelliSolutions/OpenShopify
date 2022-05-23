@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class DiscountApplication
+    public partial record DiscountApplication
     {
         /// <summary>
         /// The discount application type. Valid values:

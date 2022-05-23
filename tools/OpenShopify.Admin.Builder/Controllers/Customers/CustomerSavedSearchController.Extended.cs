@@ -14,7 +14,7 @@ public class CustomerSavedSearchController : CustomerSavedSearchControllerBase
     /// <inheritdoc />
     [HttpGet, Route("customer_saved_searches.json")]
     [ProducesResponseType(typeof(CustomerSavedSearchList), StatusCodes.Status200OK)]
-    public override Task ListCustomerSavedSearches(string? fields, int? limit, string? page_info, int? since_id)
+    public override Task ListCustomerSavedSearches(string? fields = null, int? limit = null, string? page_info = null, long? since_id = null)
     {
         throw new NotImplementedException();
     }
@@ -30,7 +30,7 @@ public class CustomerSavedSearchController : CustomerSavedSearchControllerBase
     /// <inheritdoc />
     [HttpGet, Route("customer_saved_searches/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountCustomerSavedSearches(int? since_id)
+    public override Task CountCustomerSavedSearches(long? since_id = null)
     {
         throw new NotImplementedException();
     }
@@ -38,7 +38,7 @@ public class CustomerSavedSearchController : CustomerSavedSearchControllerBase
     /// <inheritdoc />
     [HttpGet, Route("customer_saved_searches/{customer_saved_search_id:long}.json")]
     [ProducesResponseType(typeof(CustomerSavedSearchItem), StatusCodes.Status200OK)]
-    public override Task GetCustomerSavedSearch([Required] long customer_saved_search_id, string? fields)
+    public override Task GetCustomerSavedSearch([Required] long customer_saved_search_id, string? fields = null)
     {
         throw new NotImplementedException();
     }
@@ -62,8 +62,8 @@ public class CustomerSavedSearchController : CustomerSavedSearchControllerBase
     /// <inheritdoc />
     [HttpGet, Route("customer_saved_searches/{customer_saved_search_id:long}/customers.json")]
     [ProducesResponseType(typeof(CustomerList), StatusCodes.Status200OK)]
-    public override Task ListCustomersReturnedByCustomerSavedSearch([Required] long customer_saved_search_id, string? fields,
-        int? limit, string? page_info, string? order)
+    public override Task ListCustomersByCustomerSavedSearch(long customer_saved_search_id, string? fields = null, int? limit = null,
+        string? page_info = null, string? order = null)
     {
         throw new NotImplementedException();
     }

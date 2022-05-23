@@ -13,8 +13,8 @@ public class FulfillmentController : FulfillmentControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/fulfillments.json")]
-    public override Task GetFulfillmentsAssociatedWithOrder([Required] long order_id, DateTime? created_at_max, DateTime? created_at_min,
-        string? fields, int? limit, string? page_info, int? since_id, DateTime? updated_at_max, DateTime? updated_at_min)
+    public override Task GetFulfillmentsAssociatedWithOrder([Required] long order_id, DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null,
+        string? fields = null, int? limit = null, string? page_info = null, long? since_id = null, DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();
     }
@@ -36,15 +36,16 @@ public class FulfillmentController : FulfillmentControllerBase
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/fulfillments/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountFulfillmentsAssociatedWithSpecificOrder([Required] long order_id, DateTime? created_at_max,
-        DateTime? created_at_min, DateTime? updated_at_max, DateTime? updated_at_min)
+    public override Task CountFulfillmentsAssociatedWithSpecificOrder(long? order_id = null, DateTimeOffset? created_at_max = null,
+        DateTimeOffset? created_at_min = null, DateTimeOffset? updated_at_max = null,
+        DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}.json")]
-    public override Task GetFulfillment([Required] long fulfillment_id, [Required] long order_id, string? fields)
+    public override Task GetFulfillment([Required] long fulfillment_id, [Required] long order_id, string? fields = null)
     {
         throw new NotImplementedException();
     }

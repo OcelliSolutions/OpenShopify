@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class DraftLineItem : LineItem 
+    public partial record DraftLineItem : LineItem 
     {
         /// <summary>
         ///  Indicates if this is a product variant line item, or a custom line item. If set to true indicates a custom line item. If set to false indicates a product variant line item. This is a read only field.
@@ -16,6 +16,6 @@ namespace OpenShopify.Admin.Builder.Models
         /// Discount which will be applied to the line item or the overall order. 
         /// </summary>
         [JsonPropertyName("applied_discount")]
-        public AppliedDiscount AppliedDiscount { get; set; }
+        public AppliedDiscount? AppliedDiscount { get; set; }
     }
 }

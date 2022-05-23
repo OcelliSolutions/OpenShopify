@@ -14,8 +14,8 @@ public class ReportController : ReportControllerBase
     /// <inheritdoc />
     [HttpGet, Route("reports.json")]
     [ProducesResponseType(typeof(ReportList), StatusCodes.Status200OK)]
-    public override Task ListReports(string? fields, string? ids, int? limit, string? page_info, int? since_id,
-        DateTime? updated_at_max, DateTime? updated_at_min)
+    public override Task ListReports(string? fields = null, string? ids = null, int? limit = null, string? page_info = null, long? since_id = null,
+        DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();
     }
@@ -31,7 +31,7 @@ public class ReportController : ReportControllerBase
     /// <inheritdoc />
     [HttpGet, Route("reports/{report_id:long}.json")]
     [ProducesResponseType(typeof(ReportItem), StatusCodes.Status200OK)]
-    public override Task GetReport([Required] long report_id, string? fields)
+    public override Task GetReport([Required] long report_id, string? fields = null)
     {
         throw new NotImplementedException();
     }

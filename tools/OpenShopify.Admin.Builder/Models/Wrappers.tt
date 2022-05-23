@@ -7,81 +7,82 @@
 <#
 	var sections = new List<SectionTemplate>()
 	{
-		new ("AccessScope", hasId:false, canCreate:false, canUpdate:false),
-		new ("StorefrontAccessToken"),
-		new ("Report"),
-		new ("ApplicationCharge"),
-		new ("ApplicationCredit"),
-		new ("RecurringApplicationCharge"),
-		new ("UsageCharge"),
-		new ("Customer"),
-		new ("Address", "Address", "Addresses"),
-		new ("Address", "CustomerAddress", "CustomerAddresses", baseClass: "AddressBase"),
-		new ("CustomerSavedSearch", "CustomerSavedSearch", "CustomerSavedSearches"),
-		new ("DeprecatedApiCall", hasId:false, canCreate:false, canUpdate:false),
-		new ("DiscountCode"),
-		new ("PriceRule"),
-		new ("Event"),
-		new ("Webhook"),
-		new ("InventoryItem"),
-		new ("InventoryLevel", hasId:false),
-		new ("Location"),
-		new ("MarketingEvent"),
-		new ("Metafield"),
-		new ("Article"),
-		new ("Asset", hasId:false),
-		new ("Blog"),
-		new ("Comment"),
-		new ("Page"),
-		new ("Redirect"),
-		new ("ScriptTag"),
-		new ("Theme"),
-		new ("Checkout", "AbandonedCheckout","AbandonedCheckouts", baseClass:"CheckoutBase"),
-		new ("DraftOrder"),
-		new ("Order"),
-		new ("OrderRisk"),
-		new ("Refund"),
-		new ("Transaction"),
-		new ("GiftCard"),
-		new ("User"),
-		new ("Collect"),
-		new ("Collection"),
-		new ("CustomCollection"),
-		new ("Product"),
-		new ("ProductImage"),
-		new ("ProductVariant"),
-		new ("SmartCollection"),
-		new ("Checkout"),
-		new ("CollectionListing"),
-		new ("MobilePlatformApplication"),
-		new ("Payment"),
-		new ("ProductResourceFeedback"),
-		new ("ProductListing"),
-		new ("ResourceFeedback"),
-		new ("FulfillmentOrder", "AssignedFulfillmentOrder", "AssignedFulfillmentOrders",baseClass:"FulfillmentOrderBase"),
-		new ("FulfillmentOrder", "CancellationRequest", "CancellationRequest", baseClass:"FulfillmentOrderBase"),
-		new ("CarrierService"),
-		new ("Fulfillment"),
-		new ("FulfillmentEvent"),
-		new ("FulfillmentOrder"),
-		//new ("FulfillmentRequest"),
-		new ("FulfillmentService"),
-		new ("LocationsForMove"),
-		new ("Balance"),
-		new ("Dispute"),
-		new ("DisputeEvidence"),
-		new ("DisputeFileUpload"),
-		new ("Payout"),
-		new ("Country", "Country", "Countries"),
-		new ("Currency", "Currency", "Currencies", hasId:false),
-		new ("Policy", "Policy", "Policies", hasId:false),
-		new ("Province"),
-		new ("ShippingZone"),
-		new ("Shop"),
-		new ("TenderTransaction"),
-		new ("DiscountCodeCreation"),
-		new ("Engagement"), 
-		new ("CustomerInvite")
+		//new (modelName:"AccessScope", hasId:false, canCreate:false, canUpdate:false),
+		new (modelName:"StorefrontAccessToken"),
+		new (modelName:"Report"),
+		new (modelName:"ApplicationCharge"),
+		new (modelName:"ApplicationCredit"),
+		new (modelName:"RecurringApplicationCharge"),
+		new (modelName:"UsageCharge"),
+		new (modelName:"Customer"),
+		//new (modelName:"Address", "Address", "Addresses", origClass:"CustomerAddressOrig", baseClass:"CustomerAddressBase"),
+		//new (modelName:"Address", "CustomerAddress", "CustomerAddresses", origClass: "AddressOrig", baseClass: "AddressBase"),
+		//new (modelName:"CustomerAddress", "CustomerAddress","CustomerAddresses"),
+		new (modelName:"CustomerSavedSearch", "CustomerSavedSearch", "CustomerSavedSearches"),
+		new (modelName:"DeprecatedApiCall", origClass:"DeprecatedAPIcallsOrig", baseClass:"DeprecatedAPIcallsBase", hasId:false, canCreate:false, canUpdate:false),
+		new (modelName:"DiscountCode"),
+		new (modelName:"PriceRule"),
+		new (modelName:"Event"),
+		new (modelName:"Webhook"),
+		new (modelName:"InventoryItem"),
+		new (modelName:"InventoryLevel", hasId:false),
+		new (modelName:"Location"),
+		new (modelName:"MarketingEvent", hasId:false),
+		new (modelName:"Metafield"),
+		new (modelName:"Article"),
+		new (modelName:"Asset", hasId:false),
+		new (modelName:"Blog"),
+		new (modelName:"Comment"),
+		new (modelName:"Page"),
+		new (modelName:"Redirect"),
+		new (modelName:"ScriptTag"),
+		new (modelName:"Theme"),
+		new (modelName:"Checkout", "AbandonedCheckout","AbandonedCheckouts", hasId:false, origClass:"CheckoutOrig", baseClass:"CheckoutBase"),
+		new (modelName:"DraftOrder"),
+		new (modelName:"Order"),
+		new (modelName:"OrderRisk"),
+		new (modelName:"Refund"),
+		new (modelName:"Transaction"),
+		new (modelName:"GiftCard"),
+		new (modelName:"User"),
+		new (modelName:"Collect"),
+		new (modelName:"Collection"),
+		new (modelName:"CustomCollection"),
+		new (modelName:"Product"),
+		new (modelName:"ProductImage", propertyName:"image", propertyNamePlural:"images"),
+		new (modelName:"ProductVariant", propertyName:"variant", propertyNamePlural:"variants"),
+		new (modelName:"SmartCollection"),
+		new (modelName:"Checkout"),
+		new (modelName:"CollectionListing", hasId:false),
+		new (modelName:"MobilePlatformApplication"),
+		new (modelName:"Payment"),
+		new (modelName:"ProductResourceFeedback", hasId:false),
+		new (modelName:"ProductListing", hasId:false),
+		new (modelName:"ResourceFeedback", hasId:false),
+		new (modelName:"FulfillmentOrder", "AssignedFulfillmentOrder", "AssignedFulfillmentOrders",origClass:"FulfillmentOrderOrig", baseClass:"FulfillmentOrderBase"),
+		new (modelName:"FulfillmentOrder", "CancellationRequest", "CancellationRequest", origClass:"FulfillmentOrderOrig", baseClass:"FulfillmentOrderBase", hasId:false),
+		new (modelName:"CarrierService"),
+		new (modelName:"Fulfillment"),
+		new (modelName:"FulfillmentEvent"),
+		new (modelName:"FulfillmentOrder"),
+		new (modelName:"FulfillmentRequest", hasId:false),
+		new (modelName:"FulfillmentService"),
+		new (modelName:"LocationsForMove", hasId:false),
+		new (modelName:"Balance", hasId:false),
+		new (modelName:"Dispute"),
+		//new (modelName:"DisputeEvidence"),
+		//new (modelName:"DisputeFileUpload"),
+		new (modelName:"Payout", origClass:"PayoutsOrig", baseClass:"PayoutsBase"),
+		new (modelName:"Country", "Country", "Countries"),
+		new (modelName:"Currency", "Currency", "Currencies", hasId:false),
+		new (modelName:"Policy", "Policy", "Policies", hasId:false),
+		new (modelName:"Province"),
+		new (modelName:"ShippingZone"),
+		new (modelName:"Shop"),
+		new (modelName:"TenderTransaction"),
+		new (modelName:"DiscountCodeCreation"),
+		new (modelName:"Engagement"), 
+		new (modelName:"CustomerInvite", baseClass:"CustomerInviteBase")
 	};
 #>
 using System.ComponentModel.DataAnnotations;
@@ -89,18 +90,19 @@ using System.Text.Json.Serialization;
 using OpenShopify.Common.Models;
 
 namespace OpenShopify.Admin.Builder.Models;
+// ReSharper disable All
 <#
 	foreach (var section in sections)
 	{
 		#>
 
-public class <#= section.ClassName #>Item
+public partial record <#= section.ClassName #>Item
 {
     [JsonPropertyName("<#= section.PropertyName #>"), Required]
     public <#= section.ModelName #> <#= section.ClassName #> { get; set; } = null!;
 }
 
-public class <#= section.ClassName #>List
+public partial record <#= section.ClassName #>List
 {
     [JsonPropertyName("<#= section.PropertyNamePlural #>"), Required]
     public IEnumerable<<#= section.ModelName #>> <#= section.ClassNamePlural #> { get; set; } = null!;
@@ -109,56 +111,54 @@ public class <#= section.ClassName #>List
 		if (section.CanCreate)
 		{
 #>
-public class Create<#= section.ClassName #>Request
+public partial record Create<#= section.ClassName #>Request
 {
     [JsonPropertyName("<#= section.PropertyName #>"), Required]
     public Create<#= section.ClassName #> <#= section.ClassName #> { get; set; } = null!;
 }
 
-public partial class Create<#= section.ClassName #> : <#= section.BaseClass #> {}
+public partial record Create<#= section.ClassName #> : <#= section.BaseClass #> {}
 <#
 		}
 
 		if (section.CanCreate)
 		{
 #>
-public class Update<#= section.ClassName #>Request
+public partial record Update<#= section.ClassName #>Request
 {
     [JsonPropertyName("<#= section.PropertyName #>"), Required]
     public Update<#= section.ClassName #> <#= section.ClassName #> { get; set; } = null!;
 }
 
-public partial class Update<#= section.ClassName #> : <#= section.ModelName #>{}
+public partial record Update<#= section.ClassName #> : <#= section.ModelName #>{}
 
 <#
 		}
 #>		
-	
-public class <#= section.ClassName #> : <#= section.BaseClass #>
+public partial record <#= section.ClassName #> : <#= section.BaseClass #>
 {
 <#	if (section.HasId)
 		{
 #>
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-	<#
-			if (section.HasAdminGraphQlapiId)
-			{
-#>
+
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
-	<#
-			}
+<#
 		}
-	#>
+#>
 }
+
+public partial record <#= section.BaseClass #> : <#= section.OrigClass #>{}
+
 	<#
 	}
 #><#+
-	public class SectionTemplate
+	public partial record SectionTemplate
 	{
 		public SectionTemplate(string modelName, string className = null, string classNamePlural = null, 
-			string propertyName = null, string propertyNamePlural = null, string baseClass = null,
+			string propertyName = null, string propertyNamePlural = null, string origClass = null, string baseClass = null,
 			bool hasId = true, bool hasAdminGraphQLAPIId = true, bool canCreate = true, bool canUpdate = true)
 		{
 			ModelName = modelName;
@@ -167,6 +167,7 @@ public class <#= section.ClassName #> : <#= section.BaseClass #>
 			CanCreate = canCreate;
 			CanUpdate = canUpdate;
 			ClassName = className ?? ModelName;
+			OrigClass = origClass ?? $@"{ClassName}Orig";
 			BaseClass = baseClass ?? $@"{ClassName}Base";
 			ClassNamePlural = classNamePlural ?? $@"{ModelName}s";
 			PropertyName = propertyName ?? ToSnakeCase(ClassName);
@@ -175,6 +176,7 @@ public class <#= section.ClassName #> : <#= section.BaseClass #>
 
 		public string ModelName { get; }
 		public string BaseClass { get; }
+		public string OrigClass { get; }
 		public bool HasId { get; }
 		public bool HasAdminGraphQlapiId { get; }
 		public bool CanCreate { get; }
@@ -189,4 +191,6 @@ public class <#= section.ClassName #> : <#= section.BaseClass #>
 			return string.IsNullOrWhiteSpace(s) ? null : Regex.Replace(s,"[A-Z]","_$0").ToLower().TrimStart('_');
 		}
 	}
+	
+// ReSharper restore All
 #>

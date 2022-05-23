@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
 
@@ -12,7 +13,7 @@ public class UserController : UserControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("users.json")]
-    public override Task ListUsers(int? limit, string? page_info)
+    public override Task ListUsers(int? limit = null, string? page_info = null)
     {
         throw new NotImplementedException();
     }

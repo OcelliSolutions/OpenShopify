@@ -31,7 +31,7 @@ public class SharedFixture : IDisposable
 #endif
         AccessToken = config.AccessToken;
         MyShopifyUrl = config.MyShopifyUrl;
-        Scopes = new List<AuthorizationScope?>();
+        //Scopes = new List<AuthorizationScope?>();
 
         Task.Run(async () => await this.LoadScopes()).Wait();
     }
@@ -46,13 +46,16 @@ public class SharedFixture : IDisposable
     public string Company => "OpenShopify";
     public string Note => "Test note about this customer.";
 
-    public List<AuthorizationScope?> Scopes { get; set; }
+    public List<AuthorizationScope> Scopes = new();
     public List<ApplicationCredit> CreatedApplicationCredits = new();
+    public List<Collect> CreatedCollects = new();
     public List<Customer> CreatedCustomers = new();
     public List<CustomerSavedSearch> CreatedCustomerSavedSearches  = new();
     public List<Address> CreatedAddresses = new();
+    //public List<CustomerAddress> CreatedCustomerAddresses = new();
     public List<FulfillmentService> CreatedFulfillmentServices = new();
     public List<PriceRule> CreatedPriceRule = new();
+    public List<Product> CreatedProducts = new();
 
     public void ValidateScopes(List<AuthorizationScope> requiredPermissions)
     {
@@ -76,7 +79,7 @@ public class SharedFixture : IDisposable
             var scopes = await service.AccessScope.ListAccessScopesAsync();
             if (scopes.Result.AccessScopes != null)
             {
-                Scopes = scopes.Result.AccessScopes.Select(s => s.Handle).ToList();
+                Scopes = scopes.Result.AccessScopes.Select(s => (AuthorizationScope)s.Handle).ToList();
             }
         }
         catch (ApiException<ErrorResponse?> ex)
@@ -102,7 +105,7 @@ public class SharedFixture : IDisposable
                 LastName = LastName,
                 Email = $@"{BatchId}@example.com",
                 AcceptsMarketing = false,
-                Addresses = new List<CreateAddress>()
+                Addresses = new List<CreateCustomerAddress>()
                 {
                     new()
                     {
@@ -146,6 +149,27 @@ public class SharedFixture : IDisposable
                 StartsAt = new DateTimeOffset(DateTime.Now)
             }
         };
+
+    /*
+    public CreateProductRequest CreateProductRequest =>
+        new()
+        {
+            Product = new()
+            {
+                Title = $@"{Company} Product ({BatchId})",
+                Vendor = Company,
+                BodyHtml = "<strong>This product was created while testing ShopifySharp!</strong>",
+                ProductType = "SAMPLE",
+                Images = new List<CreateProductImage>
+                {
+                    new ()
+                    {
+                        Attachment = "R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                    }
+                }
+            }
+        }
+    */
 }
 
 [AttributeUsage(AttributeTargets.Method)]

@@ -12,18 +12,23 @@ public class CountryTests : IClassFixture<SharedFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
     private readonly List<Country> _testCountries;
+    private readonly ITestOutputHelper _testOutputHelper;
+    private readonly StorePropertiesService _service;
     private const string CountryPrefix = "OpenShopify Country Test";
     private const string CountryCode = "US";
     private const string ProvinceCode = "CO";
 
     public CountryTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
     {
+        _testOutputHelper = testOutputHelper;
         Fixture = sharedFixture;
-        _testCountries = new List<Country>();
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _service = new StorePropertiesService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
     private SharedFixture Fixture { get; }
+
+    #region Create
     /*
     /// <summary>
     /// Create an fulfillment service first
@@ -49,7 +54,11 @@ public class CountryTests : IClassFixture<SharedFixture>
         Debug.Assert(created.Country != null, "created.Country != null");
         _testCountries.Add(created.Country);
     }
+    */
+    #endregion Create
 
+    #region Read
+    /*
     /// <summary>
     /// Ensure that the created country can be returned
     /// </summary>
@@ -105,42 +114,52 @@ public class CountryTests : IClassFixture<SharedFixture>
         _testCountries.AddRange(result.Countries.Where(fs =>
             !_testCountries.Exists(e => e.Id == fs.Id) && fs.Code == CountryCode));
     }
-
-    /// <summary>
-    /// update the newly created fulfillment service
-    /// </summary>
-    [SkippableFact, TestPriority(30)]
-    public async Task UpdateCountryAsync_CanUpdate()
-    {
-        var testCountry = _testCountries.First();
-        Assert.NotNull(testCountry.Id);
-        if (testCountry is not { Code: { } }) return;
-        var service = new StorePropertiesService(Fixture.MyShopifyUrl, Fixture.AccessToken);
-
-        var updateRequest = new CountryItem() { Country = testCountry };
-        updateRequest.Country!.Tax = .15;
-        updateRequest.Country!.TaxName = "Sample Tax";
-        var updated =
-            await service.Country.UpdateCountryAsync(updateRequest.Country.Id, updateRequest,
-                );
-        _additionalPropertiesHelper.CheckAdditionalProperties(updated, Fixture.MyShopifyUrl);
-
-        Assert.NotNull(updated.Country?.Id);
-        Assert.Equal(testCountry.Id, updated.Country?.Id);
-    }
-
-    [SkippableFact, TestPriority(40)]
-    public async Task DeleteExistingCountryAsync_CanDelete()
-    {
-        Skip.If(_testCountries.Count == 0);
-        var service = new StorePropertiesService(Fixture.MyShopifyUrl, Fixture.AccessToken);
-        foreach (var testCountry in _testCountries)
-        {
-            Debug.Assert(testCountry.Provinces != null, "testCountry.Provinces != null");
-            var testProvince = testCountry.Provinces.FirstOrDefault(p => p.Code == ProvinceCode);
-            if (testProvince != null)
-                await service.Country.DeleteExistingCountryAsync(testCountry.Id);
-        }
-    }
     */
+    #endregion Read
+
+    #region Update
+    /*
+        /// <summary>
+        /// update the newly created fulfillment service
+        /// </summary>
+        [SkippableFact, TestPriority(30)]
+        public async Task UpdateCountryAsync_CanUpdate()
+        {
+            var testCountry = _testCountries.First();
+            Assert.NotNull(testCountry.Id);
+            if (testCountry is not { Code: { } }) return;
+            var service = new StorePropertiesService(Fixture.MyShopifyUrl, Fixture.AccessToken);
+
+            var updateRequest = new CountryItem() { Country = testCountry };
+            updateRequest.Country!.Tax = .15;
+            updateRequest.Country!.TaxName = "Sample Tax";
+            var updated =
+                await service.Country.UpdateCountryAsync(updateRequest.Country.Id, updateRequest,
+                    );
+            _additionalPropertiesHelper.CheckAdditionalProperties(updated, Fixture.MyShopifyUrl);
+
+            Assert.NotNull(updated.Country?.Id);
+            Assert.Equal(testCountry.Id, updated.Country?.Id);
+        }
+    */
+    #endregion Update
+
+    #region Delete
+    /*
+    [SkippableFact, TestPriority(40)]
+        public async Task DeleteExistingCountryAsync_CanDelete()
+        {
+            Skip.If(_testCountries.Count == 0);
+            var service = new StorePropertiesService(Fixture.MyShopifyUrl, Fixture.AccessToken);
+            foreach (var testCountry in _testCountries)
+            {
+                Debug.Assert(testCountry.Provinces != null, "testCountry.Provinces != null");
+                var testProvince = testCountry.Provinces.FirstOrDefault(p => p.Code == ProvinceCode);
+                if (testProvince != null)
+                    await service.Country.DeleteExistingCountryAsync(testCountry.Id);
+            }
+        }
+
+    */
+    #endregion Delete
 }

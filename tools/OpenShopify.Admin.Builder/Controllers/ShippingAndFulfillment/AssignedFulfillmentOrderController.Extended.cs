@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
 
@@ -11,7 +12,7 @@ public class AssignedFulfillmentOrderController : AssignedFulfillmentOrderContro
 {
     /// <inheritdoc />
     [HttpGet, Route("assigned_fulfillment_orders.json")]
-    public override Task ListFulfillmentOrdersOnShopForSpecificApp(string? assignment_status, long? location_ids)
+    public override Task ListFulfillmentOrdersOnShopForSpecificApp(string? assignment_status = null, string? location_ids = null)
     {
         throw new NotImplementedException();
     }

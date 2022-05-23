@@ -36,7 +36,7 @@ paths:
           description: Restrict results to after the specified ID.
           schema:
             type: integer
-            format: int32
+            format: int64
       responses:
         '200':
           description: Success
@@ -262,7 +262,7 @@ paths:
           description: Restrict results to after the specified ID.
           schema:
             type: integer
-            format: int32
+            format: int64
       responses:
         '200':
           description: Success
@@ -441,28 +441,29 @@ components:
         - id
       type: object
       properties:
-        name:
-          type: string
-          description: 'The full name of the country, in English.'
-          nullable: true
-        tax:
-          type: number
-          description: The tax value in decimal format.
-          format: decimal
-          nullable: true
         code:
           type: string
-          description: The ISO 3166-1 alpha-2 two-letter country code for the country. The code for a given country will be the same as the code for the same country in another shop.
+          description: 'The two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format).'
           nullable: true
-        tax_name:
+        name:
           type: string
-          description: 'The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.'
+          description: The full name of the country in English.
           nullable: true
         provinces:
           type: array
           items:
             $ref: '#/components/schemas/Province'
-          description: The sub-regions of a country. The term provinces also encompasses states.
+          description: "The sub-regions of a country, such as its provinces or states. Each sub-region has the following properties:\r\n\r\n*   **code**: The two letter province or state code. \r\n*   **country_id**: The ID for the country to which this sub-region belongs. \r\n*   **id**: The ID for the particular sub-region. \r\n*   **name**: The name of the sub-region. \r\n*   **tax**: The tax value in decimal format. \r\n*   **tax_name**: The name of the tax as it is referred to in the applicable sub-region. For example, in Canada, the sales tax in the province Ontario is referred to as HST. \r\n*   **tax_type**: The tax type. Valid values: `null`, `normal`, or `harmonized`. If the value is `harmonized`, then the tax is compounded of the provincial and federal sales taxes. \r\n*   **tax_percentage**: The tax value in percent format."
+          nullable: true
+        tax:
+          type: number
+          description: The national sales tax rate applied to orders made by customers from that country.
+          format: decimal
+          nullable: true
+        tax_name:
+          type: string
+          description: 'The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.'
+          nullable: true
         id:
           type: integer
           format: int64
@@ -491,29 +492,24 @@ components:
     CreateCountry:
       type: object
       properties:
+        code:
+          type: string
+          description: 'The two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format).'
+          nullable: true
         name:
           type: string
-          description: 'The full name of the country, in English.'
+          description: The full name of the country in English.
+          nullable: true
+        provinces:
+          type: string
+          description: "The sub-regions of a country, such as its provinces or states. Each sub-region has the following properties:\r\n\r\n*   **code**: The two letter province or state code. \r\n*   **country_id**: The ID for the country to which this sub-region belongs. \r\n*   **id**: The ID for the particular sub-region. \r\n*   **name**: The name of the sub-region. \r\n*   **tax**: The tax value in decimal format. \r\n*   **tax_name**: The name of the tax as it is referred to in the applicable sub-region. For example, in Canada, the sales tax in the province Ontario is referred to as HST. \r\n*   **tax_type**: The tax type. Valid values: `null`, `normal`, or `harmonized`. If the value is `harmonized`, then the tax is compounded of the provincial and federal sales taxes. \r\n*   **tax_percentage**: The tax value in percent format."
           nullable: true
         tax:
           type: number
-          description: The tax value in decimal format.
+          description: The national sales tax rate applied to orders made by customers from that country.
           format: decimal
           nullable: true
-        code:
-          type: string
-          description: The ISO 3166-1 alpha-2 two-letter country code for the country. The code for a given country will be the same as the code for the same country in another shop.
-          nullable: true
-        tax_name:
-          type: string
-          description: 'The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.'
-          nullable: true
-        provinces:
-          type: array
-          items:
-            $ref: '#/components/schemas/Province'
-          description: The sub-regions of a country. The term provinces also encompasses states.
-      additionalProperties: false
+      additionalProperties: { }
     CreateCountryRequest:
       required:
         - country
@@ -527,11 +523,12 @@ components:
       properties:
         currency:
           type: string
+          description: 'The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency associated with this setting.'
+          nullable: true
         rate_updated_at:
           type: string
-          format: date-time
-        enabled:
-          type: boolean
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) whenthe conversion rate associated with this currency was last updated. If manual FX rates are active on a shop, then theupdated date of these rates will replace the automatic conversion rates. Conversion rates are checked every 15minutes, but typically updated only a few times a day. Manual FX rates are updated at the merchant''s request.'
+          nullable: true
       additionalProperties: { }
     CurrencyList:
       required:
@@ -548,40 +545,40 @@ components:
         - id
       type: object
       properties:
+        code:
+          type: string
+          description: The standard abbreviation for the province.
+          nullable: true
         country_id:
           type: integer
-          description: The unique numeric identifier for the country.
+          description: The ID for the country that the province belongs to.
           format: int64
           nullable: true
         name:
           type: string
-          description: The name of the province or state.
+          description: The full name of the province.
           nullable: true
-        code:
-          type: string
-          description: The two letter province or state code.
+        shipping_zone_id:
+          type: integer
+          description: The ID for the shipping zone that the province belongs to.
+          format: int64
           nullable: true
         tax:
           type: number
-          description: The tax value in decimal format.
+          description: The sales tax rate to be applied to orders made by customers from this province.
           format: decimal
           nullable: true
         tax_name:
           type: string
-          description: 'The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.'
+          description: The name of the tax for this province.
           nullable: true
         tax_type:
           type: string
-          description: 'A tax_type is applied for a compounded sales tax. For example, the Canadian HST is a compounded sales tax of both PST and GST.'
-          nullable: true
-        shipping_zone_id:
-          type: integer
-          description: The unique numeric identifier for the shipping zone.
-          format: int64
+          description: "The tax type. Valid values: `null`, `normal`, `harmonized`, or `compounded`. \r\n\r\nA harmonized tax is a combination of provincial and federal sales taxes.\r\n\r\nNormal and harmonized tax rates are applied to the pre-tax value of an order, but a compounded tax rate is applied on top of other tax rates. For example, if a $100 order receives a 5% normal tax rate and a 2% compound tax rate, then the post-tax total is $107.10 (`(100 x 1.05) x 1.02 = 107.1`)."
           nullable: true
         tax_percentage:
           type: number
-          description: The tax value in percent format.
+          description: The province's tax in percent format.
           format: decimal
           nullable: true
         id:
@@ -596,35 +593,36 @@ components:
         - id
       type: object
       properties:
-        name:
-          type: string
-          description: 'The full name of the country, in English.'
-          nullable: true
-        tax:
-          type: number
-          description: The tax value in decimal format.
-          format: decimal
-          nullable: true
         code:
           type: string
-          description: The ISO 3166-1 alpha-2 two-letter country code for the country. The code for a given country will be the same as the code for the same country in another shop.
+          description: 'The two-letter country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format).'
           nullable: true
-        tax_name:
+        name:
           type: string
-          description: 'The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.'
+          description: The full name of the country in English.
           nullable: true
         provinces:
           type: array
           items:
             $ref: '#/components/schemas/Province'
-          description: The sub-regions of a country. The term provinces also encompasses states.
+          description: "The sub-regions of a country, such as its provinces or states. Each sub-region has the following properties:\r\n\r\n*   **code**: The two letter province or state code. \r\n*   **country_id**: The ID for the country to which this sub-region belongs. \r\n*   **id**: The ID for the particular sub-region. \r\n*   **name**: The name of the sub-region. \r\n*   **tax**: The tax value in decimal format. \r\n*   **tax_name**: The name of the tax as it is referred to in the applicable sub-region. For example, in Canada, the sales tax in the province Ontario is referred to as HST. \r\n*   **tax_type**: The tax type. Valid values: `null`, `normal`, or `harmonized`. If the value is `harmonized`, then the tax is compounded of the provincial and federal sales taxes. \r\n*   **tax_percentage**: The tax value in percent format."
+          nullable: true
+        tax:
+          type: number
+          description: The national sales tax rate applied to orders made by customers from that country.
+          format: decimal
+          nullable: true
+        tax_name:
+          type: string
+          description: 'The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.'
+          nullable: true
         id:
           type: integer
           format: int64
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     UpdateCountryRequest:
       required:
         - country
@@ -638,40 +636,40 @@ components:
         - id
       type: object
       properties:
+        code:
+          type: string
+          description: The standard abbreviation for the province.
+          nullable: true
         country_id:
           type: integer
-          description: The unique numeric identifier for the country.
+          description: The ID for the country that the province belongs to.
           format: int64
           nullable: true
         name:
           type: string
-          description: The name of the province or state.
+          description: The full name of the province.
           nullable: true
-        code:
-          type: string
-          description: The two letter province or state code.
+        shipping_zone_id:
+          type: integer
+          description: The ID for the shipping zone that the province belongs to.
+          format: int64
           nullable: true
         tax:
           type: number
-          description: The tax value in decimal format.
+          description: The sales tax rate to be applied to orders made by customers from this province.
           format: decimal
           nullable: true
         tax_name:
           type: string
-          description: 'The name of the tax as it is referred to in the applicable province/state. For example, in Ontario, Canada the tax is referred to as HST.'
+          description: The name of the tax for this province.
           nullable: true
         tax_type:
           type: string
-          description: 'A tax_type is applied for a compounded sales tax. For example, the Canadian HST is a compounded sales tax of both PST and GST.'
-          nullable: true
-        shipping_zone_id:
-          type: integer
-          description: The unique numeric identifier for the shipping zone.
-          format: int64
+          description: "The tax type. Valid values: `null`, `normal`, `harmonized`, or `compounded`. \r\n\r\nA harmonized tax is a combination of provincial and federal sales taxes.\r\n\r\nNormal and harmonized tax rates are applied to the pre-tax value of an order, but a compounded tax rate is applied on top of other tax rates. For example, if a $100 order receives a 5% normal tax rate and a 2% compound tax rate, then the post-tax total is $107.10 (`(100 x 1.05) x 1.02 = 107.1`)."
           nullable: true
         tax_percentage:
           type: number
-          description: The tax value in percent format.
+          description: The province's tax in percent format.
           format: decimal
           nullable: true
         id:
@@ -680,7 +678,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     UpdateProvinceRequest:
       required:
         - province

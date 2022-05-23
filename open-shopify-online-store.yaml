@@ -67,6 +67,7 @@ paths:
             format: int32
         - name: page_info
           in: query
+          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: published_at_max
@@ -91,7 +92,7 @@ paths:
           description: Restrict results to after the specified ID.
           schema:
             type: integer
-            format: int32
+            format: int64
         - name: tag
           in: query
           description: Filter articles with a specific tag.
@@ -362,6 +363,7 @@ paths:
             format: int32
         - name: page_info
           in: query
+          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: popular
@@ -402,6 +404,7 @@ paths:
             format: int32
         - name: page_info
           in: query
+          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: popular
@@ -500,7 +503,7 @@ paths:
       summary: Deletes an asset from a theme
       operationId: DeleteAssetFromTheme
       parameters:
-        - name: 'asset[key]'
+        - name: assetkey
           in: query
           description: Deletes a single asset from a theme by specifying the asset's key.
           schema:
@@ -548,6 +551,7 @@ paths:
             format: int32
         - name: page_info
           in: query
+          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
@@ -555,7 +559,7 @@ paths:
           description: Restrict results to after the specified ID
           schema:
             type: integer
-            format: int32
+            format: int64
       responses:
         '200':
           description: Success
@@ -741,6 +745,7 @@ paths:
             format: int32
         - name: page_info
           in: query
+          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: published_at_max
@@ -765,7 +770,7 @@ paths:
           description: Restrict results to after the specified ID.
           schema:
             type: integer
-            format: int32
+            format: int64
         - name: status
           in: query
           description: Filter results by their status.
@@ -1058,7 +1063,7 @@ paths:
       tags:
         - Comment
       summary: Restores a previously removed comment
-      operationId: RestorePreviouslyRemovedComment
+      operationId: RestorePreviouslyDeletedComment
       parameters:
         - name: comment_id
           in: path
@@ -1115,6 +1120,7 @@ paths:
             format: int32
         - name: page_info
           in: query
+          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: published_at_max
@@ -1139,7 +1145,7 @@ paths:
           description: Restrict results to after the specified ID.
           schema:
             type: integer
-            format: int32
+            format: int64
         - name: title
           in: query
           description: Retrieve pages with a given title.
@@ -1371,6 +1377,7 @@ paths:
             format: int32
         - name: page_info
           in: query
+          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: path
@@ -1383,7 +1390,7 @@ paths:
           description: Restrict results to after the specified ID.
           schema:
             type: integer
-            format: int32
+            format: int64
         - name: target
           in: query
           description: Show redirects with a given target.
@@ -1579,6 +1586,7 @@ paths:
             format: int32
         - name: page_info
           in: query
+          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: since_id
@@ -1586,7 +1594,7 @@ paths:
           description: Restrict results to after the specified ID.
           schema:
             type: integer
-            format: int32
+            format: int64
         - name: src
           in: query
           description: Show script tags with this URL.
@@ -1926,11 +1934,11 @@ components:
       properties:
         author:
           type: string
-          description: The name of the author of this article
+          description: The name of the author of the article.
           nullable: true
         blog_id:
           type: integer
-          description: A unique numeric identifier for the blog containing the article.
+          description: The ID of the blog containing the article.
           format: int64
           nullable: true
         body_html:
@@ -1939,35 +1947,39 @@ components:
           nullable: true
         created_at:
           type: string
-          description: The date and time when the article was created.
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was created.'
           format: date-time
           nullable: true
         handle:
           type: string
-          description: A human-friendly unique string for an article automatically generated from its title. It is used in the article's URL.
+          description: A human-friendly unique string for the article that's automatically generated from the article's title.The handle is used in the article's URL.
           nullable: true
         image:
           $ref: '#/components/schemas/ArticleImage'
+        metafields:
+          type: string
+          description: "The additional information attached to an Article object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
+          nullable: true
         published:
           type: boolean
-          description: States whether or not the article is visible.
+          description: Whether the article is visible.
           nullable: true
         published_at:
           type: string
-          description: The date and time when the article was published.
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was published.'
           format: date-time
           nullable: true
         summary_html:
           type: string
-          description: 'The text of the summary of the article, complete with HTML markup.'
+          description: 'A summary of the article, which can include HTML markup. The summary is used by the online store theme to display the article on other pages, such as the home page or the main blog page.'
           nullable: true
         tags:
           type: string
-          description: 'Tags are additional short descriptors formatted as a string of comma-separated values. For example, if an article has three tags: tag1, tag2, tag3.'
+          description: A comma-separated list of tags. Tags are additional short descriptors formatted as a string of comma-separated values.
           nullable: true
         template_suffix:
           type: string
-          description: 'States the name of the template an article is using if it is using an alternate template. If an article is using the default article.liquid template, the value returned is null.'
+          description: 'The name of the template an article is using if it''s using an alternate template. If an article is using the default `article.liquid` template, then the value returned is `null`.'
           nullable: true
         title:
           type: string
@@ -1975,7 +1987,7 @@ components:
           nullable: true
         updated_at:
           type: string
-          description: The date and time when the article was last updated.
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was last updated.'
           format: date-time
           nullable: true
         user_id:
@@ -1983,7 +1995,7 @@ components:
           description: A unique numeric identifier for the author of the article.
           format: int64
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     CreateArticleRequest:
       required:
         - article
@@ -1997,57 +2009,49 @@ components:
       properties:
         attachment:
           type: string
-          description: An asset attached to a store's theme.
+          description: A base64-encoded image.
           nullable: true
         checksum:
           type: string
-          description: "The MD5 representation of the content, consisting of a string of 32 hexadecimal digits.\r\nMay be null if an asset has not been updated recently."
+          description: 'The [MD5](https://en.wikipedia.org/wiki/MD5) representation of the content, consisting of a string of 32 hexadecimal digits. May be null if an asset has not been updated recently.'
           nullable: true
         content_type:
           type: string
-          description: "MIME representation of the content, consisting of the type and subtype of the asset, \r\ne.g. \"image/gif\""
+          description: 'The [MIME](https://en.wikipedia.org/wiki/Media_type) representation of the content, consisting of the type and subtype of the asset.'
           nullable: true
         created_at:
           type: string
-          description: The date and time when the asset was created.
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
           format: date-time
           nullable: true
         key:
           type: string
-          description: "The path to the asset within a shop, prefixed with the asset's 'bucket' type,\r\n e.g. 'templates/index.liquid' or 'assets/bg-body.gif'."
+          description: 'The path to the asset within a theme. It consists of the file''s directory and filename. For example, the asset `assets/bg-body-green.gif` is in the **assets** directory, so its key is `assets/bg-body-green.gif`.'
           nullable: true
         public_url:
           type: string
-          description: The public facing URL of the asset.
+          description: The public-facing URL of the asset.
           nullable: true
         size:
-          type: integer
+          type: number
           description: The asset size in bytes.
-          format: int64
-          nullable: true
-        source_key:
-          type: string
-          description: "When set in an asset and used in !:AssetService.CreateOrUpdate(long, Asset), \r\na new asset will be created and copied from an asset with the key matching this source key."
-          nullable: true
-        src:
-          type: string
-          description: Specifies the location of an asset.
+          format: decimal
           nullable: true
         theme_id:
           type: integer
-          description: A unique numeric identifier for the theme.
+          description: The ID for the theme that an asset belongs to.
           format: int64
           nullable: true
         updated_at:
           type: string
-          description: The date and time when an asset was last updated.
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
           format: date-time
           nullable: true
         value:
           type: string
-          description: The asset that you are adding.
+          description: 'The text content of the asset, such as the HTML and Liquid markup of a template file.'
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     CreateAssetRequest:
       required:
         - asset
@@ -2061,26 +2065,32 @@ components:
       properties:
         commentable:
           type: string
-          description: "Indicates whether readers can post comments to the blog and if comments are moderated or not. Possible values are:\r\n\"no\" (default): Readers cannot post comments to blog articles.\r\n\"moderate\": Readers can post comments to blog articles, but comments must be moderated before they appear.\r\n\"yes\": Readers can post comments to blog articles without moderation."
+          description: "Indicates whether readers can post comments to the blog and if comments are moderated or not. Possible values are:\r\n\r\n*   **no (default)**: Readers cannot post comments to blog articles. \r\n*   **moderate**: Readers can post comments to blog articles, but comments must be moderated before they appear. \r\n*   **yes**: Readers can post comments to blog articles without moderation."
           nullable: true
         created_at:
           type: string
-          description: The date and time when the blog was created.
+          description: 'The date and time when the blog was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
           format: date-time
           nullable: true
         feedburner:
-          description: Feedburner is a web feed management provider and can be enabled to provide custom RSS feeds for Shopify bloggers. This property will default to blank or "null" unless feedburner is enabled through the shop admin.
-        feedburner_url:
           type: string
-          description: URL to the feedburner location for blogs that have enabled feedburner through their store admin.
+          description: 'FeedBurner is a web feed management provider and can be enabled to provide custom RSS feeds for Shopify bloggers. Google has stopped supporting FeedBurner, and new or existing blogs that are not already integrated with FeedBurner can''t use the service. This property will default to blank unless FeedBurner is enabled.'
+          nullable: true
+        feedburner_location:
+          type: string
+          description: 'The URL that points to the FeedBurner location for blogs that have FeedBurner enabled. Google has stopped supporting FeedBurner, and new or existing blogs that are not already integrated with FeedBurner can''t use the service. This property will default to blank unless FeedBurner is enabled'
           nullable: true
         handle:
           type: string
-          description: A human-friendly unique string for a blog automatically generated from its title. This handle is used by the Liquid templating language to refer to the blog.
+          description: 'A human-friendly unique string that is automatically generated from the title if no handle is sent during the creation of a blog. Duplicate handles are appended with an incremental number, for example, `blog-2`. The handle is customizable and is used by the Liquid templating language to refer to the blog. If you change the handle of a blog, then it can negatively affect the SEO of the shop. We recommend that you create a URL redirect to avoid any SEO issues.'
+          nullable: true
+        metafields:
+          type: string
+          description: "Attaches additional metadata to a store's resources:\r\n\r\n*   **key (required)**: Identifier for the metafield (maximum of 30 characters). \r\n*   **namespace (required)**: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters). \r\n*   **value (required)**: Information to be stored as metadata. \r\n*   **type (required)**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
           nullable: true
         tags:
           type: string
-          description: 'Tags are additional short descriptors formatted as a string of comma-separated values. For example, if an article has three tags: tag1, tag2, tag3.'
+          description: 'A list of tags associated with the 200 most recent blog articles. Tags are additional short descriptors formatted as a string of comma-separated values. For example, if an article has three tags: tag1, tag2, tag3. Tags are limited to 255 characters.'
           nullable: true
         template_suffix:
           type: string
@@ -2092,10 +2102,14 @@ components:
           nullable: true
         updated_at:
           type: string
-          description: 'The date and time when changes were last made to the blog''s properties. Note that this is not updated when creating, modifying or deleting articles in the blog.'
+          description: 'The date and time when changes were last made to the blog''s properties. Note that this is not updated when creating, modifying or deleting articles in the blog. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
           format: date-time
           nullable: true
-      additionalProperties: false
+        admin_graphql_api_id:
+          type: string
+          description: The GraphQL GID of the blog.
+          nullable: true
+      additionalProperties: { }
     CreateBlogRequest:
       required:
         - blog
@@ -2106,7 +2120,61 @@ components:
       additionalProperties: false
     CreateComment:
       type: object
-      additionalProperties: false
+      properties:
+        article_id:
+          type: integer
+          description: A unique numeric identifier for the article that the comment belongs to.
+          format: int64
+          nullable: true
+        author:
+          type: string
+          description: The name of the author of the comment.
+          nullable: true
+        blog_id:
+          type: integer
+          description: A unique numeric identifier for the blog containing the article that the comment belongs to.
+          format: int64
+          nullable: true
+        body:
+          type: string
+          description: 'The basic [Textile markup](https://en.wikipedia.org/wiki/Textile_(markup_language)) of a comment.'
+          nullable: true
+        body_html:
+          type: string
+          description: 'The text of the comment, complete with HTML markup.'
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the comment was created.'
+          format: date-time
+          nullable: true
+        email:
+          type: string
+          description: The email address of the author of the comment.
+          nullable: true
+        ip:
+          type: string
+          description: The IP address from which the comment was posted.
+          nullable: true
+        published_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the comment was published.'
+          format: date-time
+          nullable: true
+        status:
+          type: string
+          description: "The status of the comment. Valid values:\r\n\r\n*   **pending**: The comment has been created but is awaiting spam detection. Depending on the result of the spam detection and the shop owner's comment preferences, this property will be transitioned to either `spam`, `unapproved`, or `approved`. \r\n*   **unapproved (default)**: The comment is awaiting approval by the shop owner. It's not visible to the readers of the blog. \r\n*   **published**: The comment has been approved (if the blog requires comments to be approved) and is visible to readers of the blog. \r\n*   **spam**: The comment has been marked as spam and removed from the Shopify admin. It's not visible to readers of the blog. \r\n*   **removed**: The comment has been removed by the shop owner. It's not visible to readers of the blog."
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the comment was last modified. When the comment is created, this matches the value of `created_at`. If the blog requires comments to be approved, then this value is updated to the date and time when the comment is approved.'
+          format: date-time
+          nullable: true
+        user_agent:
+          type: string
+          description: The user agent string provided by the software used to create the comment (usually a browser).
+          nullable: true
+      additionalProperties: { }
     CreateCommentRequest:
       required:
         - comment
@@ -2118,42 +2186,61 @@ components:
     CreatePage:
       type: object
       properties:
-        title:
+        author:
           type: string
-          description: The name of the page.
+          description: The name of the person who created the page.
           nullable: true
         body_html:
           type: string
-          description: 'The content of the page, complete with HTML formatting.'
+          description: 'The text content of the page, complete with HTML markup.'
           nullable: true
         created_at:
           type: string
-          description: The date and time when the page was created. The API returns this value in ISO 8601 format.
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the page was last modified. The API returns this value in ISO 8601 format.
-          format: date-time
-          nullable: true
-        published_at:
-          type: string
-          description: The date and time when the page was published. The API returns this value in ISO 8601 format.
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the page was created.'
           format: date-time
           nullable: true
         handle:
           type: string
-          description: "A human-friendly unique string for the page automatically generated from its title.\r\nThey are used by the Liquid templating language to refer to objects."
+          description: 'A unique, human-friendly string for the page, generated automatically from its title. In themes, the Liquid templating language refers to a page by its handle.'
+          nullable: true
+        metafield:
+          type: string
+          description: "Additional information attached to the Page object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/docs/admin-api/rest/reference/metafield) resource."
+          nullable: true
+        published_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the page was published. Returns `null` when the page is hidden.'
+          format: date-time
+          nullable: true
+        shop_id:
+          type: integer
+          description: The ID of the shop to which the page belongs.
+          format: int64
           nullable: true
         template_suffix:
           type: string
-          description: "The suffix of the liquid template being used.\r\nBy default, the original template is called product.liquid, without any suffix.\r\nAny additional templates will be: product.suffix.liquid."
+          description: 'The suffix of the [template](/api/liquid/objects/template) that is used to render the page. If the value is an empty string or `null`, then the default page template is used.'
+          nullable: true
+        title:
+          type: string
+          description: The title of the page.
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the page was last updated.'
+          format: date-time
+          nullable: true
+        admin_graphql_api_id:
+          type: string
+          description: The GraphQL GID of the page.
           nullable: true
         metafields:
           type: array
           items:
-            $ref: '#/components/schemas/PageMetafield'
-      additionalProperties: false
+            $ref: '#/components/schemas/Metafield'
+          description: "Additional metadata about the OpenShopify.Admin.Builder.Models.PageBase. Note: This is not naturally returned with a OpenShopify.Admin.Builder.Models.PageBase response, as\r\nShopify will not return OpenShopify.Admin.Builder.Models.PageBase metafields unless specified. Instead, you need to query metafields with !:MetafieldService. \r\nUses include: Creating, updating, and deserializing webhook bodies that include them."
+          nullable: true
+      additionalProperties: { }
     CreatePageRequest:
       required:
         - page
@@ -2167,13 +2254,13 @@ components:
       properties:
         path:
           type: string
-          description: 'The "before" path to be redirected. When the user navigates to this path, they will be redirected to the path specified by target.'
+          description: 'The old path to be redirected. When the user visits this path, they will be redirected to the target. (maximum: 1024 characters)'
           nullable: true
         target:
           type: string
-          description: "The \"after\" path or URL to be redirected to. This property can be set to any path on the shop's site, or any URL, even one on a \r\ncompletely different domain."
+          description: 'The target location where the user will be redirected. When the user visits the old path specified by the `path` property, they will be redirected to this location. This property can be set to any path on the shop''s site, or to an external URL. (maximum: 255 characters)'
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     CreateRedirectRequest:
       required:
         - redirect
@@ -2187,27 +2274,31 @@ components:
       properties:
         created_at:
           type: string
-          description: The date and time when the OpenShopify.Admin.Builder.Models.ScriptTag was created.
+          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was created.'
           format: date-time
-          nullable: true
-        display_scope:
-          type: string
-          description: 'Where the script tag should be included on the store. Known values are ''online_store'', ''order_status'' or ''all''. Defaults to ''all''.'
           nullable: true
         event:
           type: string
-          description: DOM event which triggers the loading of the script. The only known value is 'onload'.
+          description: 'The DOM event that triggers the loading of the script. Valid values: `onload`.'
           nullable: true
         src:
           type: string
-          description: Specifies the location of the ScriptTag.
+          description: The URL of the remote script.
+          nullable: true
+        display_scope:
+          type: string
+          description: "The page or pages on the online store where the script should be included. Valid values: \r\n\r\n*   `online_store`: Include the script only on the web storefront. \r\n*   `order_status`: Include the script only on the order status page. \r\n*   `all`: Include the script on both the web storefront and the order status page."
+          nullable: true
+        cache:
+          type: string
+          description: "Whether the Shopify CDN can cache and serve the script tag. Valid values: \r\n\r\n*   `true`: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned. \r\n*   `false`: The script will be served as is.  Default value: `false`."
           nullable: true
         updated_at:
           type: string
-          description: The date and time when the OpenShopify.Admin.Builder.Models.ScriptTag was updated.
+          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was last updated.'
           format: date-time
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     CreateScriptTagRequest:
       required:
         - script_tag
@@ -2221,36 +2312,36 @@ components:
       properties:
         created_at:
           type: string
-          description: The date and time when the theme was created.
+          description: 'The date and time when the theme was created. (format: 2014-04-25T16:15:47-04:00)'
           format: date-time
           nullable: true
         name:
           type: string
           description: The name of the theme.
           nullable: true
-        role:
-          type: string
-          description: 'Specifies how the theme is being used within the shop. Known values are ''main'', ''mobile'' and ''unpublished''.'
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the theme was last updated.
-          format: date-time
-          nullable: true
         previewable:
           type: boolean
-          description: Indicates if the theme can currently be previewed.
+          description: Whether the theme can currently be previewed.
           nullable: true
         processing:
           type: boolean
-          description: Indicates if files are still being copied into place for this theme.
+          description: Whether files are still being copied into place for this theme.
+          nullable: true
+        role:
+          type: string
+          description: "Specifies how the theme is being used within the shop. Valid values: \r\n\r\n*   **main**: The theme is published. Customers see it when they visit the online store. \r\n*   **unpublished**: The theme is unpublished. Customers can't see it. \r\n*   **demo**: The theme is installed on the store as a demo. The theme can't be published until the merchant buys the full version. \r\n*   **development**: The theme is used for development. The theme can't be published, and is temporary."
           nullable: true
         theme_store_id:
           type: integer
-          description: The theme's store id. Can be null if not published in the store.
+          description: 'A unique identifier applied to Shopify-made themes that are installed from the [Shopify Theme Store](https://themes.shopify.com/) Theme Store. Not all themes available in the Theme Store are developed by Shopify. Returns `null` if the store''s theme isn''t made by Shopify, or if it wasn''t installed from the Theme Store.'
           format: int64
           nullable: true
-      additionalProperties: false
+        updated_at:
+          type: string
+          description: 'The date and time of when the theme was last updated. (format: 2014-04-25T16:15:47-04:00)'
+          format: date-time
+          nullable: true
+      additionalProperties: { }
     CreateThemeRequest:
       required:
         - theme
@@ -2259,48 +2350,55 @@ components:
         theme:
           $ref: '#/components/schemas/CreateTheme'
       additionalProperties: false
-    PageMetafield:
+    Metafield:
       required:
         - id
       type: object
       properties:
         created_at:
           type: string
-          description: The date and time when the metafield was created.
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was created.'
           format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the metafield was last updated.
-          format: date-time
-          nullable: true
-        key:
-          type: string
-          description: Identifier for the metafield (maximum of 30 characters).
-          nullable: true
-        value:
-          description: Information to be stored as metadata. Must be either a string or an int.
-        value_type:
-          type: string
-          description: States whether the information in the value is stored as a 'string' or 'integer.'
-          nullable: true
-        namespace:
-          type: string
-          description: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters).
           nullable: true
         description:
           type: string
-          description: Additional information about the metafield.
+          description: A description of the information that the metafield contains.
+          nullable: true
+        key:
+          type: string
+          description: 'The key of the metafield. Keys can be up to 30 characters long and can contain alphanumeric characters, hyphens, underscores, and periods.'
+          nullable: true
+        namespace:
+          type: string
+          description: A container for a group of metafields. Grouping metafields within a namespace prevents your metafields from conflicting with other metafields with the same key name. Must have between 3-20 characters.
           nullable: true
         owner_id:
           type: integer
-          description: 'The Id of the Shopify Resource that the metafield is associated with. This value could be the id of things like product, order, variant, collection.'
+          description: The unique ID of the resource that the metafield is attached to.
           format: int64
           nullable: true
         owner_resource:
           type: string
-          description: 'The name of the Shopify Resource that the metafield is associated with. This could be things like product, order, variant, collection.'
+          description: The type of resource that the metafield is attached to.
           nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was last updated.'
+          format: date-time
+          nullable: true
+        value:
+          type: string
+          description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
+          nullable: true
+        type:
+          type: string
+          description: 'The type of data that the metafield stores in the `value` field. Refer to the list of [supported types](/apps/metafields/types).'
+          nullable: true
+        value_type:
+          type: string
+          description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\n`value_type` is deprecated and replaced by `type` in API version 2021-07.\r\n </aside> The legacy type information for the stored value. Valid values: `string`, `integer`, `json_string`."
+          nullable: true
+          deprecated: true
         id:
           type: integer
           format: int64
@@ -2315,11 +2413,11 @@ components:
       properties:
         author:
           type: string
-          description: The name of the author of this article
+          description: The name of the author of the article.
           nullable: true
         blog_id:
           type: integer
-          description: A unique numeric identifier for the blog containing the article.
+          description: The ID of the blog containing the article.
           format: int64
           nullable: true
         body_html:
@@ -2328,35 +2426,39 @@ components:
           nullable: true
         created_at:
           type: string
-          description: The date and time when the article was created.
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was created.'
           format: date-time
           nullable: true
         handle:
           type: string
-          description: A human-friendly unique string for an article automatically generated from its title. It is used in the article's URL.
+          description: A human-friendly unique string for the article that's automatically generated from the article's title.The handle is used in the article's URL.
           nullable: true
         image:
           $ref: '#/components/schemas/ArticleImage'
+        metafields:
+          type: string
+          description: "The additional information attached to an Article object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
+          nullable: true
         published:
           type: boolean
-          description: States whether or not the article is visible.
+          description: Whether the article is visible.
           nullable: true
         published_at:
           type: string
-          description: The date and time when the article was published.
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was published.'
           format: date-time
           nullable: true
         summary_html:
           type: string
-          description: 'The text of the summary of the article, complete with HTML markup.'
+          description: 'A summary of the article, which can include HTML markup. The summary is used by the online store theme to display the article on other pages, such as the home page or the main blog page.'
           nullable: true
         tags:
           type: string
-          description: 'Tags are additional short descriptors formatted as a string of comma-separated values. For example, if an article has three tags: tag1, tag2, tag3.'
+          description: A comma-separated list of tags. Tags are additional short descriptors formatted as a string of comma-separated values.
           nullable: true
         template_suffix:
           type: string
-          description: 'States the name of the template an article is using if it is using an alternate template. If an article is using the default article.liquid template, the value returned is null.'
+          description: 'The name of the template an article is using if it''s using an alternate template. If an article is using the default `article.liquid` template, then the value returned is `null`.'
           nullable: true
         title:
           type: string
@@ -2364,7 +2466,7 @@ components:
           nullable: true
         updated_at:
           type: string
-          description: The date and time when the article was last updated.
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was last updated.'
           format: date-time
           nullable: true
         user_id:
@@ -2378,7 +2480,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     UpdateArticleRequest:
       required:
         - article
@@ -2394,26 +2496,31 @@ components:
       properties:
         commentable:
           type: string
-          description: "Indicates whether readers can post comments to the blog and if comments are moderated or not. Possible values are:\r\n\"no\" (default): Readers cannot post comments to blog articles.\r\n\"moderate\": Readers can post comments to blog articles, but comments must be moderated before they appear.\r\n\"yes\": Readers can post comments to blog articles without moderation."
+          description: "Indicates whether readers can post comments to the blog and if comments are moderated or not. Possible values are:\r\n\r\n*   **no (default)**: Readers cannot post comments to blog articles. \r\n*   **moderate**: Readers can post comments to blog articles, but comments must be moderated before they appear. \r\n*   **yes**: Readers can post comments to blog articles without moderation."
           nullable: true
         created_at:
           type: string
-          description: The date and time when the blog was created.
+          description: 'The date and time when the blog was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
           format: date-time
           nullable: true
         feedburner:
-          description: Feedburner is a web feed management provider and can be enabled to provide custom RSS feeds for Shopify bloggers. This property will default to blank or "null" unless feedburner is enabled through the shop admin.
-        feedburner_url:
+          description: 'FeedBurner is a web feed management provider and can be enabled to provide custom RSS feeds for Shopify bloggers. Google has stopped supporting FeedBurner, and new or existing blogs that are not already integrated with FeedBurner can''t use the service. This property will default to blank unless FeedBurner is enabled.'
+          nullable: true
+        feedburner_location:
           type: string
-          description: URL to the feedburner location for blogs that have enabled feedburner through their store admin.
+          description: 'The URL that points to the FeedBurner location for blogs that have FeedBurner enabled. Google has stopped supporting FeedBurner, and new or existing blogs that are not already integrated with FeedBurner can''t use the service. This property will default to blank unless FeedBurner is enabled'
           nullable: true
         handle:
           type: string
-          description: A human-friendly unique string for a blog automatically generated from its title. This handle is used by the Liquid templating language to refer to the blog.
+          description: 'A human-friendly unique string that is automatically generated from the title if no handle is sent during the creation of a blog. Duplicate handles are appended with an incremental number, for example, `blog-2`. The handle is customizable and is used by the Liquid templating language to refer to the blog. If you change the handle of a blog, then it can negatively affect the SEO of the shop. We recommend that you create a URL redirect to avoid any SEO issues.'
+          nullable: true
+        metafields:
+          type: string
+          description: "Attaches additional metadata to a store's resources:\r\n\r\n*   **key (required)**: Identifier for the metafield (maximum of 30 characters). \r\n*   **namespace (required)**: Container for a set of metadata. Namespaces help distinguish between metadata you created and metadata created by another individual with a similar namespace (maximum of 20 characters). \r\n*   **value (required)**: Information to be stored as metadata. \r\n*   **type (required)**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/api/admin-rest/latest/resources/metafield) resource."
           nullable: true
         tags:
           type: string
-          description: 'Tags are additional short descriptors formatted as a string of comma-separated values. For example, if an article has three tags: tag1, tag2, tag3.'
+          description: 'A list of tags associated with the 200 most recent blog articles. Tags are additional short descriptors formatted as a string of comma-separated values. For example, if an article has three tags: tag1, tag2, tag3. Tags are limited to 255 characters.'
           nullable: true
         template_suffix:
           type: string
@@ -2425,16 +2532,16 @@ components:
           nullable: true
         updated_at:
           type: string
-          description: 'The date and time when changes were last made to the blog''s properties. Note that this is not updated when creating, modifying or deleting articles in the blog.'
+          description: 'The date and time when changes were last made to the blog''s properties. Note that this is not updated when creating, modifying or deleting articles in the blog. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
           format: date-time
+          nullable: true
+        admin_graphql_api_id:
+          type: string
           nullable: true
         id:
           type: integer
           format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     UpdateBlogRequest:
       required:
         - blog
@@ -2448,13 +2555,66 @@ components:
         - id
       type: object
       properties:
+        article_id:
+          type: integer
+          description: A unique numeric identifier for the article that the comment belongs to.
+          format: int64
+          nullable: true
+        author:
+          type: string
+          description: The name of the author of the comment.
+          nullable: true
+        blog_id:
+          type: integer
+          description: A unique numeric identifier for the blog containing the article that the comment belongs to.
+          format: int64
+          nullable: true
+        body:
+          type: string
+          description: 'The basic [Textile markup](https://en.wikipedia.org/wiki/Textile_(markup_language)) of a comment.'
+          nullable: true
+        body_html:
+          type: string
+          description: 'The text of the comment, complete with HTML markup.'
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the comment was created.'
+          format: date-time
+          nullable: true
+        email:
+          type: string
+          description: The email address of the author of the comment.
+          nullable: true
+        ip:
+          type: string
+          description: The IP address from which the comment was posted.
+          nullable: true
+        published_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the comment was published.'
+          format: date-time
+          nullable: true
+        status:
+          type: string
+          description: "The status of the comment. Valid values:\r\n\r\n*   **pending**: The comment has been created but is awaiting spam detection. Depending on the result of the spam detection and the shop owner's comment preferences, this property will be transitioned to either `spam`, `unapproved`, or `approved`. \r\n*   **unapproved (default)**: The comment is awaiting approval by the shop owner. It's not visible to the readers of the blog. \r\n*   **published**: The comment has been approved (if the blog requires comments to be approved) and is visible to readers of the blog. \r\n*   **spam**: The comment has been marked as spam and removed from the Shopify admin. It's not visible to readers of the blog. \r\n*   **removed**: The comment has been removed by the shop owner. It's not visible to readers of the blog."
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the comment was last modified. When the comment is created, this matches the value of `created_at`. If the blog requires comments to be approved, then this value is updated to the date and time when the comment is approved.'
+          format: date-time
+          nullable: true
+        user_agent:
+          type: string
+          description: The user agent string provided by the software used to create the comment (usually a browser).
+          nullable: true
         id:
           type: integer
           format: int64
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     UpdateCommentRequest:
       required:
         - comment
@@ -2468,48 +2628,63 @@ components:
         - id
       type: object
       properties:
-        title:
+        author:
           type: string
-          description: The name of the page.
+          description: The name of the person who created the page.
           nullable: true
         body_html:
           type: string
-          description: 'The content of the page, complete with HTML formatting.'
+          description: 'The text content of the page, complete with HTML markup.'
           nullable: true
         created_at:
           type: string
-          description: The date and time when the page was created. The API returns this value in ISO 8601 format.
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the page was last modified. The API returns this value in ISO 8601 format.
-          format: date-time
-          nullable: true
-        published_at:
-          type: string
-          description: The date and time when the page was published. The API returns this value in ISO 8601 format.
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the page was created.'
           format: date-time
           nullable: true
         handle:
           type: string
-          description: "A human-friendly unique string for the page automatically generated from its title.\r\nThey are used by the Liquid templating language to refer to objects."
+          description: 'A unique, human-friendly string for the page, generated automatically from its title. In themes, the Liquid templating language refers to a page by its handle.'
+          nullable: true
+        metafield:
+          type: string
+          description: "Additional information attached to the Page object. It has the following properties: \r\n\r\n*   **key**: An identifier for the metafield. (maximum: 30 characters) \r\n*   **namespace**: A container for a set of metadata. Namespaces help distinguish between metadata created by different apps. (maximum: 20 characters) \r\n*   **value**: The information to be stored as metadata. \r\n*   **type**: The metafield's information type. Refer to the [full list of types](/apps/metafields/types). \r\n*   **description (optional)**: Additional information about the metafield.  \r\n\r\nFor more information on attaching metadata to Shopify resources, see the [Metafield](/docs/admin-api/rest/reference/metafield) resource."
+          nullable: true
+        published_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the page was published. Returns `null` when the page is hidden.'
+          format: date-time
+          nullable: true
+        shop_id:
+          type: integer
+          description: The ID of the shop to which the page belongs.
+          format: int64
           nullable: true
         template_suffix:
           type: string
-          description: "The suffix of the liquid template being used.\r\nBy default, the original template is called product.liquid, without any suffix.\r\nAny additional templates will be: product.suffix.liquid."
+          description: 'The suffix of the [template](/api/liquid/objects/template) that is used to render the page. If the value is an empty string or `null`, then the default page template is used.'
+          nullable: true
+        title:
+          type: string
+          description: The title of the page.
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the page was last updated.'
+          format: date-time
+          nullable: true
+        admin_graphql_api_id:
+          type: string
           nullable: true
         metafields:
           type: array
           items:
-            $ref: '#/components/schemas/PageMetafield'
+            $ref: '#/components/schemas/Metafield'
+          description: "Additional metadata about the OpenShopify.Admin.Builder.Models.PageBase. Note: This is not naturally returned with a OpenShopify.Admin.Builder.Models.PageBase response, as\r\nShopify will not return OpenShopify.Admin.Builder.Models.PageBase metafields unless specified. Instead, you need to query metafields with !:MetafieldService. \r\nUses include: Creating, updating, and deserializing webhook bodies that include them."
+          nullable: true
         id:
           type: integer
           format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     UpdatePageRequest:
       required:
         - page
@@ -2525,11 +2700,11 @@ components:
       properties:
         path:
           type: string
-          description: 'The "before" path to be redirected. When the user navigates to this path, they will be redirected to the path specified by target.'
+          description: 'The old path to be redirected. When the user visits this path, they will be redirected to the target. (maximum: 1024 characters)'
           nullable: true
         target:
           type: string
-          description: "The \"after\" path or URL to be redirected to. This property can be set to any path on the shop's site, or any URL, even one on a \r\ncompletely different domain."
+          description: 'The target location where the user will be redirected. When the user visits the old path specified by the `path` property, they will be redirected to this location. This property can be set to any path on the shop''s site, or to an external URL. (maximum: 255 characters)'
           nullable: true
         id:
           type: integer
@@ -2537,7 +2712,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     UpdateRedirectRequest:
       required:
         - redirect
@@ -2553,24 +2728,28 @@ components:
       properties:
         created_at:
           type: string
-          description: The date and time when the OpenShopify.Admin.Builder.Models.ScriptTag was created.
+          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was created.'
           format: date-time
-          nullable: true
-        display_scope:
-          type: string
-          description: 'Where the script tag should be included on the store. Known values are ''online_store'', ''order_status'' or ''all''. Defaults to ''all''.'
           nullable: true
         event:
           type: string
-          description: DOM event which triggers the loading of the script. The only known value is 'onload'.
+          description: 'The DOM event that triggers the loading of the script. Valid values: `onload`.'
           nullable: true
         src:
           type: string
-          description: Specifies the location of the ScriptTag.
+          description: The URL of the remote script.
+          nullable: true
+        display_scope:
+          type: string
+          description: "The page or pages on the online store where the script should be included. Valid values: \r\n\r\n*   `online_store`: Include the script only on the web storefront. \r\n*   `order_status`: Include the script only on the order status page. \r\n*   `all`: Include the script on both the web storefront and the order status page."
+          nullable: true
+        cache:
+          type: string
+          description: "Whether the Shopify CDN can cache and serve the script tag. Valid values: \r\n\r\n*   `true`: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned. \r\n*   `false`: The script will be served as is.  Default value: `false`."
           nullable: true
         updated_at:
           type: string
-          description: The date and time when the OpenShopify.Admin.Builder.Models.ScriptTag was updated.
+          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was last updated.'
           format: date-time
           nullable: true
         id:
@@ -2579,7 +2758,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     UpdateScriptTagRequest:
       required:
         - script_tag
@@ -2595,34 +2774,34 @@ components:
       properties:
         created_at:
           type: string
-          description: The date and time when the theme was created.
+          description: 'The date and time when the theme was created. (format: 2014-04-25T16:15:47-04:00)'
           format: date-time
           nullable: true
         name:
           type: string
           description: The name of the theme.
           nullable: true
-        role:
-          type: string
-          description: 'Specifies how the theme is being used within the shop. Known values are ''main'', ''mobile'' and ''unpublished''.'
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the theme was last updated.
-          format: date-time
-          nullable: true
         previewable:
           type: boolean
-          description: Indicates if the theme can currently be previewed.
+          description: Whether the theme can currently be previewed.
           nullable: true
         processing:
           type: boolean
-          description: Indicates if files are still being copied into place for this theme.
+          description: Whether files are still being copied into place for this theme.
+          nullable: true
+        role:
+          type: string
+          description: "Specifies how the theme is being used within the shop. Valid values: \r\n\r\n*   **main**: The theme is published. Customers see it when they visit the online store. \r\n*   **unpublished**: The theme is unpublished. Customers can't see it. \r\n*   **demo**: The theme is installed on the store as a demo. The theme can't be published until the merchant buys the full version. \r\n*   **development**: The theme is used for development. The theme can't be published, and is temporary."
           nullable: true
         theme_store_id:
           type: integer
-          description: The theme's store id. Can be null if not published in the store.
+          description: 'A unique identifier applied to Shopify-made themes that are installed from the [Shopify Theme Store](https://themes.shopify.com/) Theme Store. Not all themes available in the Theme Store are developed by Shopify. Returns `null` if the store''s theme isn''t made by Shopify, or if it wasn''t installed from the Theme Store.'
           format: int64
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time of when the theme was last updated. (format: 2014-04-25T16:15:47-04:00)'
+          format: date-time
           nullable: true
         id:
           type: integer
@@ -2630,7 +2809,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     UpdateThemeRequest:
       required:
         - theme

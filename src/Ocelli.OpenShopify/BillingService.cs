@@ -18,8 +18,8 @@ public class BillingService : ShopifyService, IBillingService
         _baseUri = base.PrepareRequest(myShopifyUrl);
         _myShopifyUrl = myShopifyUrl;
     }
-    public IApplicationChargeClient ApplicationCharge => new ApplicationChargeClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IApplicationCreditClient ApplicationCredit => new ApplicationCreditClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IRecurringApplicationChargeClient RecurringApplicationCharge => new RecurringApplicationChargeClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
-    public IUsageChargeClient UsageCharge => new UsageChargeClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
+    public IApplicationChargeClient ApplicationCharge => new ApplicationChargeClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IApplicationCreditClient ApplicationCredit => new ApplicationCreditClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IRecurringApplicationChargeClient RecurringApplicationCharge => new RecurringApplicationChargeClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
+    public IUsageChargeClient UsageCharge => new UsageChargeClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
 }

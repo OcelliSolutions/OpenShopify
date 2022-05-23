@@ -6,7 +6,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing the image for a <see cref="SmartCollection"/>.
     /// </summary>
-    public class SmartCollectionImage
+    public partial record SmartCollectionImage
     {
         /// <summary>
         /// The date the image was created.

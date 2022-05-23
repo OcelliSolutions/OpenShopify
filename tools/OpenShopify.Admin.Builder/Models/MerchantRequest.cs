@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class MerchantRequest
+    public partial record MerchantRequest
     {
         /// <summary>
         /// The message returned by the merchant, if any.
@@ -16,7 +16,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// The request options returned by the merchant, if any.
         /// </summary>
         [JsonPropertyName("request_options")]
-        public MerchantRequestOptions RequestOptions { get; set; }
+        public MerchantRequestOptions? RequestOptions { get; set; }
 
         /// <summary>
         /// The kind of request. Known valid values: "fulfillment_request", "cancellation_request", or "legacy_fulfill_request".

@@ -7,7 +7,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An entity representing a Shopify Smart Collection Rule.
     /// </summary>
-    public class SmartCollectionRules
+    public partial record SmartCollectionRules
     {
         /// <summary>
         /// The relationship between the column choice, and the condition.

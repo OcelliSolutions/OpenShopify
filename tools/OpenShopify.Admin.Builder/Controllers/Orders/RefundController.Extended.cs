@@ -13,22 +13,23 @@ public class RefundController : RefundControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/refunds.json")]
-    public override Task ListRefundsForOrder([Required] long order_id, string? fields, bool? in_shop_currency, int? limit, string? page_info)
+    public override Task ListRefundsForOrder([Required] long order_id, string? fields = null, bool? in_shop_currency = null, int? limit = null, string? page_info = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("orders/{order_id:long}/refunds.json")]
-    public override Task CreateRefund([Required] CreateRefundRequest request, [Required] long order_id, string? currency, string? discrepancy_reason,
-        string? note, string? notify, string? refund_line_items, string? restock, string? shipping, string? transactions)
+    public override Task CreateRefund(CreateRefundRequest request, long order_id, string? currency = null,
+        string? discrepancy_reason = null, string? note = null, string? notify = null, string? refund_line_items = null,
+        bool? restock = null, string? shipping = null, string? transactions = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/refunds/{refund_id:long}.json")]
-    public override Task GetSpecificRefund([Required] long order_id, [Required] long refund_id, string? fields, bool? in_shop_currency)
+    public override Task GetSpecificRefund([Required] long order_id, [Required] long refund_id, string? fields = null, bool? in_shop_currency = null)
     {
         throw new NotImplementedException();
     }

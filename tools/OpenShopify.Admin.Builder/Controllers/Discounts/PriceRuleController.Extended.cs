@@ -22,9 +22,9 @@ public class PriceRuleController : PriceRuleControllerBase
     /// <inheritdoc />
     [HttpGet, Route("price_rules.json")]
     [ProducesResponseType(typeof(PriceRuleList), StatusCodes.Status200OK)]
-    public override Task ListPriceRules(DateTime? created_at_max, DateTime? created_at_min, DateTime? ends_at_max,
-        DateTime? ends_at_min, int? limit, string? page_info, int? since_id, DateTime? starts_at_max, DateTime? starts_at_min,
-        string? times_used, DateTime? updated_at_max, DateTime? updated_at_min)
+    public override Task ListPriceRules(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null, DateTimeOffset? ends_at_max = null,
+        DateTimeOffset? ends_at_min = null, int? limit = null, string? page_info = null, long? since_id = null, DateTimeOffset? starts_at_max = null, DateTimeOffset? starts_at_min = null,
+        int? times_used = null, DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();
     }

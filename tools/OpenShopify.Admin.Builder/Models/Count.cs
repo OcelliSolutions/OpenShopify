@@ -2,7 +2,7 @@
 
 namespace OpenShopify.Admin.Builder.Models;
 
-public class CountItem
+public partial record CountItem
 {
     [JsonPropertyName("count")] public int Count { get; set; }
 }

@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class ShippingLine
+    public partial record ShippingLine
     {
         /// <summary>
         /// The carrier provided identifier.
@@ -38,7 +38,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
         /// </summary>
         [JsonPropertyName("discount_allocations")]
-        public IEnumerable<DiscountAllocation> DiscountAllocations { get; set; }
+        public IEnumerable<DiscountAllocation>? DiscountAllocations { get; set; }
 
         /// <summary>
         /// The source of the shipping method.
@@ -56,18 +56,18 @@ namespace OpenShopify.Admin.Builder.Models
         /// A list of <see cref="TaxLine"/> objects, each of which details the taxes applicable to this <see cref="ShippingLine"/>.
         /// </summary>
         [JsonPropertyName("tax_lines")]
-        public IEnumerable<TaxLine> TaxLines { get; set; }
+        public IEnumerable<TaxLine>? TaxLines { get; set; }
 
         /// <summary>
         /// The price of the shipping method in shop and presentment currencies.
         /// </summary>
         [JsonPropertyName("price_set")]
-        public PriceSet PriceSet { get; set; }
+        public PriceSet? PriceSet { get; set; }
 
         /// <summary>
         /// The price of the shipping method in both shop and presentment currencies after line-level discounts have been applied.
         /// </summary>
         [JsonPropertyName("discounted_price_set")]
-        public PriceSet DiscountedPriceSet { get; set; }
+        public PriceSet? DiscountedPriceSet { get; set; }
     }
 }

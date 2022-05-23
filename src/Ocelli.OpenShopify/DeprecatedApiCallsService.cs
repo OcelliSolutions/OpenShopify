@@ -15,5 +15,5 @@ public class DeprecatedApiCallsService : ShopifyService, IDeprecatedApiCallsServ
         _myShopifyUrl = myShopifyUrl;
     }
 
-    public IDeprecatedApiCallsClient DeprecatedApiCalls => new DeprecatedApiCallsClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
+    public IDeprecatedApiCallsClient DeprecatedApiCalls => new DeprecatedApiCallsClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
 }

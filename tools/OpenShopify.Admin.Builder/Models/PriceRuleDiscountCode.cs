@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class PriceRuleDiscountCode : ShopifyObject
+    public partial record PriceRuleDiscountCode : ShopifyObject
     {        
         /// <summary>
         /// The discount code.

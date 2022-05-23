@@ -83,7 +83,7 @@ builder.Services.AddSwaggerGen(c =>
     c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["action"]}");
     c.AddServer(new OpenApiServer
     {
-        Url = "https://{store_name}.myshopify.com/admin",
+        Url = "https://{store_name}.myshopify.com",
         Variables = new Dictionary<string, OpenApiServerVariable>(new List<KeyValuePair<string, OpenApiServerVariable>>()
         {
             new("store_name", new OpenApiServerVariable(){Default = "{{store_name}}", Description = "The sub-domain of the storefront."})

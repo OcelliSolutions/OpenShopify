@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class AssignedLocation
+    public partial record AssignedLocation
     {
         /// <summary>
         ///  The street address of the assigned location.

@@ -7,7 +7,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// Sent via the shop/redacted GDPR webhook, indicating that you should purge the shop's data from your systems.
     /// </summary>
-    public class ShopRedactedWebhook
+    public partial record ShopRedactedWebhook
     {
         /// <summary>
         /// The shop's id.

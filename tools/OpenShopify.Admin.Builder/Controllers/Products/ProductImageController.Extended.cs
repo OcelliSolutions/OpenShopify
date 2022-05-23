@@ -13,13 +13,15 @@ public class ProductImageController : ProductImageControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("products/{product_id:long}/images.json")]
-    public override Task ListProductImages([Required] long product_id, string? fields, int? since_id)
+    [ProducesResponseType(typeof(ProductImageList), StatusCodes.Status200OK)]
+    public override Task ListProductImages([Required] long product_id, string? fields = null, long? since_id = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPost, Route("products/{product_id:long}/images.json")]
+    [ProducesResponseType(typeof(ProductImageItem), StatusCodes.Status201Created)]
     public override Task CreateProductImage([Required] CreateProductImageRequest request, [Required] long product_id)
     {
         throw new NotImplementedException();
@@ -28,20 +30,22 @@ public class ProductImageController : ProductImageControllerBase
     /// <inheritdoc />
     [HttpGet, Route("products/{product_id:long}/images/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountProductImages([Required] long product_id, int? since_id)
+    public override Task CountProductImages(long? product_id = null, long? since_id = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("products/{product_id:long}/images/{image_id:long}.json")]
-    public override Task GetProductImage([Required] long image_id, [Required] long product_id, string? fields)
+    [ProducesResponseType(typeof(ProductImageItem), StatusCodes.Status200OK)]
+    public override Task GetProductImage([Required] long image_id, [Required] long product_id, string? fields = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpPut, Route("products/{product_id:long}/images/{image_id:long}.json")]
+    [ProducesResponseType(typeof(ProductImageItem), StatusCodes.Status200OK)]
     public override Task UpdateProductImage([Required] UpdateProductImageRequest request, [Required] long image_id, [Required] long product_id)
     {
         throw new NotImplementedException();
@@ -49,6 +53,7 @@ public class ProductImageController : ProductImageControllerBase
 
     /// <inheritdoc />
     [HttpDelete, Route("products/{product_id:long}/images/{image_id:long}.json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public override Task DeleteProductImage([Required] long image_id, [Required] long product_id)
     {
         throw new NotImplementedException();

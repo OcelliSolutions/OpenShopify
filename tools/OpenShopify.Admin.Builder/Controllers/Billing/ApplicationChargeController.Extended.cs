@@ -22,7 +22,7 @@ public class ApplicationChargeController : ApplicationChargeControllerBase
     /// <inheritdoc />
     [HttpGet, Route("application_charges.json")]
     [ProducesResponseType(typeof(ApplicationChargeList), StatusCodes.Status200OK)]
-    public override Task ListApplicationCharges(string? fields, int? since_id)
+    public override Task ListApplicationCharges(string? fields = null, long? since_id = null)
     {
         throw new NotImplementedException();
     }
@@ -30,7 +30,7 @@ public class ApplicationChargeController : ApplicationChargeControllerBase
     /// <inheritdoc />
     [HttpGet, Route("application_charges/{application_charge_id:long}.json")]
     [ProducesResponseType(typeof(ApplicationChargeItem), StatusCodes.Status200OK)]
-    public override Task GetApplicationCharge([Required] long application_charge_id, string? fields)
+    public override Task GetApplicationCharge([Required] long application_charge_id, string? fields = null)
     {
         throw new NotImplementedException();
     }

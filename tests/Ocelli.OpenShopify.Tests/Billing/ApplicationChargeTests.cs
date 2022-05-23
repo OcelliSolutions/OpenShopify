@@ -10,36 +10,32 @@ namespace Ocelli.OpenShopify.Tests.Billing;
 public class ApplicationChargeTests : IClassFixture<SharedFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly ITestOutputHelper _testOutputHelper;
+    private readonly BillingService _service;
 
     public ApplicationChargeTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
     {
+        _testOutputHelper = testOutputHelper;
         Fixture = sharedFixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _service = new BillingService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
     private SharedFixture Fixture { get; }
-    /*
-    [SkippableFact]
-    public async Task ListApplicationChargesAsync_AdditionalPropertiesAreEmpty_ShouldPass()
-    {
-        var service = new BillingService(Fixture.MyShopifyUrl, Fixture.AccessToken);
-        var result = await service.ApplicationCharge.ListApplicationChargesAsync();
-        _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
 
-        if (result.ApplicationCharges != null && !result.ApplicationCharges.Any())
-        {
-            Skip.If(result.ApplicationCharges == null || !result.ApplicationCharges.Any(),
-                "WARN: No data returned. Could not test");
-            return;
-        }
+    #region Create
 
-        Debug.Assert(result.ApplicationCharges != null, "result.ApplicationCharges != null");
-        foreach (var token in result.ApplicationCharges)
-        {
-            _additionalPropertiesHelper.CheckAdditionalProperties(token, Fixture.MyShopifyUrl);
-        }
+    #endregion Create
 
-        Assert.NotEmpty(result.ApplicationCharges);
-    }
-    */
+    #region Read
+
+    #endregion Read
+
+    #region Update
+
+    #endregion Update
+
+    #region Delete
+
+    #endregion Delete
 }

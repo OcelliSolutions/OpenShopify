@@ -34,6 +34,7 @@ paths:
             format: int32
         - name: page_info
           in: query
+          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: order
@@ -46,6 +47,7 @@ paths:
           description: Show tender transactions processed at the specified date.
           schema:
             type: string
+            format: date-time
         - name: processed_at_max
           in: query
           description: Show tender transactions processed_at or before the specified date.
@@ -63,7 +65,7 @@ paths:
           description: Retrieve only transactions after the specified ID.
           schema:
             type: integer
-            format: int32
+            format: int64
       responses:
         '200':
           description: Success

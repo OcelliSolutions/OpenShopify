@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class AppliedDiscount 
+    public partial record AppliedDiscount 
     {
         /// <summary>
         /// Title of the discount.

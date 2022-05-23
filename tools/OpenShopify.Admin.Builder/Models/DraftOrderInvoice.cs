@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models 
 {
-    public class DraftOrderInvoice
+    public partial record DraftOrderInvoice
     {
         [JsonPropertyName("to")]            
         public string? To { get; set; }
@@ -11,7 +11,7 @@ namespace OpenShopify.Admin.Builder.Models
         public string? From { get; set; }
 
         [JsonPropertyName("bcc")]    
-        public IEnumerable<string> BCC { get; set; }
+        public IEnumerable<string>? Bcc { get; set; }
 
         [JsonPropertyName("subject")]    
         public string? Subject { get; set; }

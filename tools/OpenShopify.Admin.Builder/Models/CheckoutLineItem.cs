@@ -2,7 +2,7 @@
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class CheckoutLineItem : LineItem
+    public partial record CheckoutLineItem : LineItem
     {
         /// <summary>
         /// The key for the line item.

@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class LineItem : ShopifyObject
+    public partial record LineItem : ShopifyObject
     {
         /// <summary>
         /// The amount available to fulfill. This is the quantity - max(refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity.
@@ -57,7 +57,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// A unique identifier of the item in the fulfillment.
         /// </summary>
         [JsonPropertyName("sku")]
-        public string? SKU { get; set; }
+        public string? Sku { get; set; }
 
         /// <summary>
         /// The title of the product.
@@ -105,7 +105,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// An array of <see cref="TaxLine"/> objects, each of which details the taxes applicable to this <see cref="LineItem"/>.
         /// </summary>
         [JsonPropertyName("tax_lines")]
-        public IEnumerable<TaxLine> TaxLines { get; set; }
+        public IEnumerable<TaxLine>? TaxLines { get; set; }
 
         /// <summary>
         /// The payment gateway used to tender the tip, such as shopify_payments. Present only on tips.
@@ -129,13 +129,13 @@ namespace OpenShopify.Admin.Builder.Models
         /// The total discount applied to the line item in shop and presentment currencies.
         /// </summary>
         [JsonPropertyName("total_discount_set")]
-        public PriceSet TotalDiscountSet { get; set; }
+        public PriceSet? TotalDiscountSet { get; set; }
 
         /// <summary>
         /// An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.
         /// </summary>
         [JsonPropertyName("discount_allocations")]
-        public IEnumerable<DiscountAllocation> DiscountAllocations { get; set; }
+        public IEnumerable<DiscountAllocation>? DiscountAllocations { get; set; }
 
         /// <summary>
         /// An array of custom information for an item that has been added to the cart.
@@ -146,7 +146,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// See https://github.com/nozzlegear/OpenShopify.Admin.Builder/pull/461 for why the custom converter is required
         /// </remarks>
         [JsonPropertyName("properties")]
-        public IEnumerable<LineItemProperty> Properties { get; set; }
+        public IEnumerable<LineItemProperty>? Properties { get; set; }
 
         /// <summary>
         /// This property is undocumented by Shopify.
@@ -164,18 +164,18 @@ namespace OpenShopify.Admin.Builder.Models
         /// The price of the line item in shop and presentment currencies
         /// </summary>
         [JsonPropertyName("price_set")]
-        public PriceSet PriceSet { get; set; }
+        public PriceSet? PriceSet { get; set; }
 
         /// <summary>
         /// A list of duty objects, each containing information about a duty on the line item
         /// </summary>
         [JsonPropertyName("duties")]
-        public IEnumerable<LineItemDuty> Duties { get; set; }
+        public IEnumerable<LineItemDuty>? Duties { get; set; }
 
         /// <summary>
         /// The location of the line item's fulfillment origin.
         /// </summary>
         [JsonPropertyName("origin_location")]
-        public LineItemOriginLocation OriginLocation { get; set; }
+        public LineItemOriginLocation? OriginLocation { get; set; }
     }
 }

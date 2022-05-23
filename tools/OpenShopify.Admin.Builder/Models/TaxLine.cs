@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class TaxLine
+    public partial record TaxLine
     {
         /// <summary>
         /// The amount of tax to be charged.
@@ -26,6 +26,6 @@ namespace OpenShopify.Admin.Builder.Models
         /// The amount added to the order for this tax in shop and presentment currencies.
         /// </summary>
         [JsonPropertyName("price_set")]
-        public PriceSet PriceSet { get; set; }
+        public PriceSet? PriceSet { get; set; }
     }
 }

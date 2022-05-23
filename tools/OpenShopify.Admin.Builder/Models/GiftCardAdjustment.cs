@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class GiftCardAdjustment : ShopifyObject
+    public partial record GiftCardAdjustment : ShopifyObject
     {
         /// <summary>
         /// A unique numeric identifier for gift card the adjustment is applied onto.

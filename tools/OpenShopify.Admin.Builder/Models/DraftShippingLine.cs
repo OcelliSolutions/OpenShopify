@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class DraftShippingLine
+    public partial record DraftShippingLine
     {
         /// <summary>
         /// Whether this is a regular shipping line or custom shipping line.

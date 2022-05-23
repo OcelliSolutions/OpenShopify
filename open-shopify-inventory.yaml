@@ -39,6 +39,7 @@ paths:
             format: int32
         - name: page_info
           in: query
+          description: A unique ID used to access a certain page of results.
           schema:
             type: string
       responses:
@@ -132,10 +133,9 @@ paths:
       parameters:
         - name: inventory_item_ids
           in: query
-          description: 'A comma-separated list of inventory item IDs. To find the ID of an inventory item, use the <a href=''/api/admin-rest/latest/resources/inventoryitem''>Inventory Item resource</a>'
+          description: 'A comma-separated list of inventory item IDs. To find the ID of an inventory item, use the [Inventory Item resource](/api/admin-rest/latest/resources/inventoryitem)'
           schema:
-            type: integer
-            format: int64
+            type: string
         - name: limit
           in: query
           description: The maximum number of results to show.
@@ -144,14 +144,14 @@ paths:
             format: int32
         - name: page_info
           in: query
+          description: A unique ID used to access a certain page of results.
           schema:
             type: string
         - name: location_ids
           in: query
-          description: 'A comma-separated list of location IDs. To find the ID of a location, use the <a href=''/api/admin-rest/latest/resources/location''>Location resource</a>'
+          description: 'A comma-separated list of location IDs. To find the ID of a location, use the [Location resource](/api/admin-rest/latest/resources/location)'
           schema:
-            type: integer
-            format: int64
+            type: string
         - name: updated_at_min
           in: query
           description: 'Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).'
@@ -189,7 +189,7 @@ paths:
             format: int64
         - name: location_id
           in: query
-          description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href=''/api/admin-rest/latest/resources/location''>Location resource</a>'
+          description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the [Location resource](/api/admin-rest/latest/resources/location)'
           required: true
           schema:
             type: integer
@@ -215,20 +215,18 @@ paths:
       parameters:
         - name: available_adjustment
           in: query
-          description: 'The amount to adjust the available inventory quantity. Send negative values to subtract from the current available quantity. For example, <code>"available_adjustment": 2</code> increases the current available quantity by 2, and <code>"available_adjustment": -3</code>decreases the current available quantity by 3.'
+          description: 'The amount to adjust the available inventory quantity. Send negative values to subtract from the current available quantity. For example, `"available_adjustment": 2` increases the current available quantity by 2, and `"available_adjustment": -3`decreases the current available quantity by 3.'
           schema:
             type: string
         - name: inventory_item_id
           in: query
           description: The ID of the inventory item.
-          required: true
           schema:
             type: integer
             format: int64
         - name: location_id
           in: query
-          description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href=''/api/admin-rest/latest/resources/location''>Location resource</a>'
-          required: true
+          description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the [Location resource](/api/admin-rest/latest/resources/location)'
           schema:
             type: integer
             format: int64
@@ -264,14 +262,14 @@ paths:
             format: int64
         - name: location_id
           in: query
-          description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href=''/api/admin-rest/latest/resources/location''>Location resource</a>'
+          description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the [Location resource](/api/admin-rest/latest/resources/location)'
           required: true
           schema:
             type: integer
             format: int64
         - name: relocate_if_necessary
           in: query
-          description: 'Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, refer to <a href="#inventory-levels-and-fulfillment-service-locations"><em>Inventory levels and fulfillment service locations</em></a>.'
+          description: 'Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, refer to [*Inventory levels and fulfillment service locations*](#inventory-levels-and-fulfillment-service-locations).'
           schema:
             type: boolean
       responses:
@@ -304,21 +302,19 @@ paths:
             type: string
         - name: inventory_item_id
           in: query
-          description: 'The ID of the inventory item associated with the inventory level. To find the ID of the inventory item, use the <a href=''/api/admin-rest/latest/resources/inventoryitem''>Inventory Item resource</a>'
-          required: true
+          description: 'The ID of the inventory item associated with the inventory level. To find the ID of the inventory item, use the [Inventory Item resource](/api/admin-rest/latest/resources/inventoryitem)'
           schema:
             type: integer
             format: int64
         - name: location_id
           in: query
-          description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the <a href=''/api/admin-rest/latest/resources/location''>Location resource</a>'
-          required: true
+          description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the [Location resource](/api/admin-rest/latest/resources/location)'
           schema:
             type: integer
             format: int64
         - name: disconnect_if_necessary
           in: query
-          description: 'Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service  is involved. For more information, refer to <a href="#inventory-levels-and-fulfillment-service-locations"><em>Inventory levels and fulfillment service locations</em></a>.'
+          description: 'Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service is involved. For more information, refer to [*Inventory levels and fulfillment service locations*](#inventory-levels-and-fulfillment-service-locations).'
           schema:
             type: boolean
       responses:
@@ -448,7 +444,7 @@ components:
           type: integer
           format: int32
       additionalProperties: { }
-    HSCode:
+    HsCode:
       required:
         - id
       type: object
@@ -474,49 +470,50 @@ components:
         - id
       type: object
       properties:
-        sku:
-          type: string
-          description: The unique SKU (Stock Keeping Unit) of the inventory item.
-          nullable: true
-        tracked:
-          type: boolean
-          description: 'Whether the inventory item is tracked. If true, then inventory quantity changes are tracked by Shopify.'
-          nullable: true
         cost:
           type: number
-          description: The unit cost of the inventory item.
+          description: The unit cost of the inventory item. The shop's default currency is used.
           format: decimal
           nullable: true
         country_code_of_origin:
           type: string
-          description: The two-digit code for the country where the inventory item was made.
-          nullable: true
-        province_code_of_origin:
-          type: string
-          description: The two-digit code for the province where the inventory item was made. Used only if the shipping provider for the inventory item is Canada Post.
-          nullable: true
-        harmonized_system_code:
-          type: string
-          description: The general Harmonized System (HS) code for the inventory item. Used if a country-specific HS code is not available.
+          description: 'The country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)) of where the item came from.'
           nullable: true
         country_harmonized_system_codes:
           type: array
           items:
-            $ref: '#/components/schemas/HSCode'
-          description: An array of country-specific Harmonized System (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.
-        requires_shipping:
-          type: boolean
-          description: Whether a customer needs to provide a shipping address when placing an order containing the inventory item.
+            $ref: '#/components/schemas/HsCode'
+          description: 'An array of country-specific [Harmonized System](https://en.wikipedia.org/wiki/Harmonized_System) (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.'
           nullable: true
         created_at:
           type: string
-          description: The date and time when the product variant was created. The API returns this value in ISO 8601 format.
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the inventory item was created.'
           format: date-time
+          nullable: true
+        harmonized_system_code:
+          type: string
+          description: 'The general [Harmonized System](https://en.wikipedia.org/wiki/Harmonized_System) (HS) code for the inventory item. Used if a country-specific HS code (`countryHarmonizedSystemCode`) is not available.'
+          nullable: true
+        province_code_of_origin:
+          type: string
+          description: 'The province code ([ISO 3166-2 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-2)) of where the item came from. The province code is only used if the shipping provider for the inventory item is Canada Post.'
+          nullable: true
+        sku:
+          type: string
+          description: The unique SKU (stock keeping unit) of the inventory item.
+          nullable: true
+        tracked:
+          type: boolean
+          description: 'Whether inventory levels are tracked for the item. If true, then the inventory quantity changes are tracked by Shopify.'
           nullable: true
         updated_at:
           type: string
-          description: The date and time when the product variant was last modified. The API returns this value in ISO 8601 format.
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the inventory item was last modified.'
           format: date-time
+          nullable: true
+        requires_shipping:
+          type: boolean
+          description: Whether a customer needs to provide a shipping address when placing an order containing the inventory item.
           nullable: true
         id:
           type: integer
@@ -546,24 +543,24 @@ components:
     InventoryLevel:
       type: object
       properties:
+        available:
+          type: integer
+          description: The available quantity of an inventory item at the inventory level's associated location. Returns `null` if the inventory item is not tracked.
+          format: int64
+          nullable: true
         inventory_item_id:
           type: integer
-          description: The unique identifier of the inventory item that the inventory level belongs to.
+          description: 'The ID of the inventory item associated with the inventory level. To find the ID of an inventory item, use the [Inventory Item resource](/api/admin-rest/latest/resources/inventoryitem)'
           format: int64
           nullable: true
         location_id:
           type: integer
-          description: The unique identifier of the location that the inventory level belongs to.
-          format: int64
-          nullable: true
-        available:
-          type: integer
-          description: The quantity of inventory items available for sale. Returns null if the inventory item is not tracked.
+          description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the [Location resource](/api/admin-rest/latest/resources/location)'
           format: int64
           nullable: true
         updated_at:
           type: string
-          description: The date and time when the inventory level was last modified.
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the inventory level was last modified.'
           format: date-time
           nullable: true
       additionalProperties: { }
@@ -592,65 +589,61 @@ components:
       properties:
         active:
           type: boolean
-          description: Whether the location is active.
-          nullable: true
-        name:
-          type: string
-          description: The name of the location.
+          description: 'Whether the location is active. If `true`, then the location can be used to sell products,stock inventory, and fulfill orders. Merchants can deactivate locations from the Shopify admin.Deactivated locations don''t contribute to the shop''s[location limit](https://help.shopify.com/manual/locations/setting-up-your-locations).'
           nullable: true
         address1:
           type: string
-          description: The first line of the address.
+          description: The location's street address.
           nullable: true
         address2:
           type: string
-          description: The second line of the address.
-          nullable: true
-        zip:
-          type: string
-          description: The zip or postal code.
+          description: The optional second line of the location's street address.
           nullable: true
         city:
           type: string
           description: The city the location is in.
           nullable: true
-        province:
-          type: string
-          description: The province the location is in.
-          nullable: true
-        province_code:
-          type: string
-          description: The code of the province the location is in.
-          nullable: true
         country:
           type: string
           description: The country the location is in.
           nullable: true
-        country_name:
-          type: string
-          description: The name of the country the location is in.
-          nullable: true
         country_code:
           type: string
-          description: The code of the country the location is in.
-          nullable: true
-        phone:
-          type: string
-          description: The phone number of the location. Can contain special chars like - and +.
+          description: 'The two-letter code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) corresponding to country the location is in.'
           nullable: true
         created_at:
           type: string
-          description: The date and time when the location was created.
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: The date and time when the location was last updated.
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the location was created.'
           format: date-time
           nullable: true
         legacy:
           type: boolean
-          description: 'Whether this is a fulfillment service location. If true, then the location is a fulfillment service location. If false, then the location was created by the merchant and isn''t tied to a fulfillment service.'
+          description: 'Whether this is a fulfillment service location. If `true`, then the location is a fulfillment service location. If `false`, then the location was created by the merchant and isn''t tied to a fulfillment service.'
+          nullable: true
+        name:
+          type: string
+          description: The name of the location.
+          nullable: true
+        phone:
+          type: string
+          description: 'The phone number of the location. This value can contain special characters, such as `-` or `+`.'
+          nullable: true
+        province:
+          type: string
+          description: 'The province, state, or district of the location.'
+          nullable: true
+        province_code:
+          type: string
+          description: 'The province, state, or district code ([ISO 3166-2 alpha-2 format](https://en.wikipedia.org/wiki/ISO_3166-2)) of the location.'
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the location was last updated.'
+          format: date-time
+          nullable: true
+        zip:
+          type: string
+          description: The zip or postal code.
           nullable: true
         localized_country_name:
           type: string
@@ -658,7 +651,7 @@ components:
           nullable: true
         localized_province_name:
           type: string
-          description: 'The localized name of the location''s region. Typically a province, state, or prefecture.'
+          description: 'The localized name of the location''s region. Typically a province, state, or district.'
           nullable: true
         id:
           type: integer
@@ -690,49 +683,50 @@ components:
         - id
       type: object
       properties:
-        sku:
-          type: string
-          description: The unique SKU (Stock Keeping Unit) of the inventory item.
-          nullable: true
-        tracked:
-          type: boolean
-          description: 'Whether the inventory item is tracked. If true, then inventory quantity changes are tracked by Shopify.'
-          nullable: true
         cost:
           type: number
-          description: The unit cost of the inventory item.
+          description: The unit cost of the inventory item. The shop's default currency is used.
           format: decimal
           nullable: true
         country_code_of_origin:
           type: string
-          description: The two-digit code for the country where the inventory item was made.
-          nullable: true
-        province_code_of_origin:
-          type: string
-          description: The two-digit code for the province where the inventory item was made. Used only if the shipping provider for the inventory item is Canada Post.
-          nullable: true
-        harmonized_system_code:
-          type: string
-          description: The general Harmonized System (HS) code for the inventory item. Used if a country-specific HS code is not available.
+          description: 'The country code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)) of where the item came from.'
           nullable: true
         country_harmonized_system_codes:
           type: array
           items:
-            $ref: '#/components/schemas/HSCode'
-          description: An array of country-specific Harmonized System (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.
-        requires_shipping:
-          type: boolean
-          description: Whether a customer needs to provide a shipping address when placing an order containing the inventory item.
+            $ref: '#/components/schemas/HsCode'
+          description: 'An array of country-specific [Harmonized System](https://en.wikipedia.org/wiki/Harmonized_System) (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.'
           nullable: true
         created_at:
           type: string
-          description: The date and time when the product variant was created. The API returns this value in ISO 8601 format.
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the inventory item was created.'
           format: date-time
+          nullable: true
+        harmonized_system_code:
+          type: string
+          description: 'The general [Harmonized System](https://en.wikipedia.org/wiki/Harmonized_System) (HS) code for the inventory item. Used if a country-specific HS code (`countryHarmonizedSystemCode`) is not available.'
+          nullable: true
+        province_code_of_origin:
+          type: string
+          description: 'The province code ([ISO 3166-2 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-2)) of where the item came from. The province code is only used if the shipping provider for the inventory item is Canada Post.'
+          nullable: true
+        sku:
+          type: string
+          description: The unique SKU (stock keeping unit) of the inventory item.
+          nullable: true
+        tracked:
+          type: boolean
+          description: 'Whether inventory levels are tracked for the item. If true, then the inventory quantity changes are tracked by Shopify.'
           nullable: true
         updated_at:
           type: string
-          description: The date and time when the product variant was last modified. The API returns this value in ISO 8601 format.
+          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the inventory item was last modified.'
           format: date-time
+          nullable: true
+        requires_shipping:
+          type: boolean
+          description: Whether a customer needs to provide a shipping address when placing an order containing the inventory item.
           nullable: true
         id:
           type: integer
@@ -740,7 +734,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: false
+      additionalProperties: { }
     UpdateInventoryItemRequest:
       required:
         - inventory_item

@@ -6,7 +6,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify payments balance.
     /// </summary>
-    public class ShopifyPaymentsBalance
+    public partial record ShopifyPaymentsBalance
     {
         [JsonPropertyName("currency")]
         public string? Currency { get; set; }

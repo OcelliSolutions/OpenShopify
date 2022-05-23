@@ -13,9 +13,9 @@ public class CommentController : CommentControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("comments.json")]
-    public override Task ListComments(DateTime? created_at_max, DateTime? created_at_min, string? fields, int? limit, string? page_info,
-        DateTime? published_at_max, DateTime? published_at_min, string published_status, int? since_id, string? status,
-        DateTime? updated_at_max, DateTime? updated_at_min)
+    public override Task ListComments(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null, string? fields = null, int? limit = null, string? page_info = null,
+        DateTimeOffset? published_at_max = null, DateTimeOffset? published_at_min = null, string? published_status = null, long? since_id = null, string? status = null,
+        DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();
     }
@@ -30,15 +30,15 @@ public class CommentController : CommentControllerBase
     /// <inheritdoc />
     [HttpGet, Route("comments/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountComments(DateTime? created_at_max, DateTime? created_at_min, DateTime? published_at_max,
-        DateTime? published_at_min, string published_status, string? status, DateTime? updated_at_max, DateTime? updated_at_min)
+    public override Task CountComments(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null, DateTimeOffset? published_at_max = null,
+        DateTimeOffset? published_at_min = null, string? published_status = null, string? status = null, DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("comments/{comment_id:long}.json")]
-    public override Task GetCommentByItsID([Required] long comment_id, string? fields)
+    public override Task GetCommentByItsID([Required] long comment_id, string? fields = null)
     {
         throw new NotImplementedException();
     }
@@ -80,7 +80,7 @@ public class CommentController : CommentControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("comments/{comment_id:long}/restore.json")]
-    public override Task RestorePreviouslyRemovedComment([Required] long comment_id)
+    public override Task RestorePreviouslyDeletedComment(long comment_id)
     {
         throw new NotImplementedException();
     }

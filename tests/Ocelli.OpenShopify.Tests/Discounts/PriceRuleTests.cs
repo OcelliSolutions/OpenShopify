@@ -26,6 +26,7 @@ public class PriceRuleTests : IClassFixture<SharedFixture>
 
     private SharedFixture Fixture { get; }
 
+    #region Create
     [SkippableFact, TestPriority(1)]
     public async Task Creates_PriceRules()
     {
@@ -44,7 +45,9 @@ public class PriceRuleTests : IClassFixture<SharedFixture>
         Assert.Equal(request.PriceRule.Value, created.Value);
         Fixture.CreatedPriceRule.Add(created);
     }
+    #endregion Create
 
+    #region Read
     [SkippableFact, TestPriority(2)]
     public async Task Lists_PriceRules()
     {
@@ -78,7 +81,9 @@ public class PriceRuleTests : IClassFixture<SharedFixture>
         Assert.Equal(createdPriceRule.AllocationMethod, priceRule.AllocationMethod);
         Assert.Equal(createdPriceRule.Value, priceRule.Value);
     }
+    #endregion Read
 
+    #region Update
     [SkippableFact, TestPriority(3)]
     public async Task Updates_PriceRules()
     {
@@ -105,6 +110,9 @@ public class PriceRuleTests : IClassFixture<SharedFixture>
         Fixture.CreatedPriceRule.Remove(createdPriceRule);
         Fixture.CreatedPriceRule.Add(response.Result.PriceRule);
     }
+    #endregion Update
+
+    #region Delete
     [SkippableFact, TestPriority(4)]
     public async Task Deletes_PriceRules()
     {
@@ -128,5 +136,5 @@ public class PriceRuleTests : IClassFixture<SharedFixture>
         }
         Assert.Empty(errors);
     }
-
+    #endregion Delete
 }

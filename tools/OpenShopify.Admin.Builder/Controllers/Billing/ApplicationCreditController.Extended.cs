@@ -22,7 +22,7 @@ public class ApplicationCreditController : ApplicationCreditControllerBase
     /// <inheritdoc />
     [HttpGet, Route("application_credits.json")]
     [ProducesResponseType(typeof(ApplicationCreditList), StatusCodes.Status200OK)]
-    public override Task ListApplicationCredits(string? fields)
+    public override Task ListApplicationCredits(string? fields = null)
     {
         throw new NotImplementedException();
     }
@@ -30,7 +30,7 @@ public class ApplicationCreditController : ApplicationCreditControllerBase
     /// <inheritdoc />
     [HttpGet, Route("application_credits/{application_credit_id:long}.json")]
     [ProducesResponseType(typeof(ApplicationCreditItem), StatusCodes.Status200OK)]
-    public override Task GetApplicationCredit([Required] long application_credit_id, string? fields)
+    public override Task GetApplicationCredit([Required] long application_credit_id, string? fields = null)
     {
         throw new NotImplementedException();
     }

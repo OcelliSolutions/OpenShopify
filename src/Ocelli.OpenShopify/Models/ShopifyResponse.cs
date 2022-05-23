@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 
 namespace Ocelli.OpenShopify;
-public class ShopifyResponse
+public partial record ShopifyResponse
 {
     public int StatusCode { get; private set; }
 
@@ -14,7 +14,7 @@ public class ShopifyResponse
     }
 }
 
-public class ShopifyResponse<TResult> : ShopifyResponse
+public partial record ShopifyResponse<TResult> : ShopifyResponse
 {
     private static readonly Regex _regexPrevLink = new(@"<(https://[^>]*)>\s*;\s*rel=""previous""", RegexOptions.Compiled | RegexOptions.CultureInvariant);
     private static readonly Regex _regexNextLink = new(@"<(https://[^>]*)>\s*;\s*rel=""next""", RegexOptions.Compiled | RegexOptions.CultureInvariant);
@@ -94,7 +94,7 @@ public class ShopifyResponse<TResult> : ShopifyResponse
 
 public record RateLimit(int Used, int Remaining);
 
-public class Pagination
+public partial record Pagination
 {
     public Pagination()
     {

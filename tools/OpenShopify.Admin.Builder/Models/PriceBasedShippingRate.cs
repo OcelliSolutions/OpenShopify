@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class PriceBasedShippingRate : ShopifyObject
+    public partial record PriceBasedShippingRate : ShopifyObject
     {
         /// <summary>
         /// The name of the price based shipping rate, specified by the user.

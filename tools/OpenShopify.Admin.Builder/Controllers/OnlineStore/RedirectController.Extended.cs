@@ -13,7 +13,7 @@ public class RedirectController : RedirectControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("redirects.json")]
-    public override Task ListUrlRedirects(string? fields, int? limit, string? page_info, string? path, int? since_id, string? target)
+    public override Task ListUrlRedirects(string? fields = null, int? limit = null, string? page_info = null, string? path = null, long? since_id = null, string? target = null)
     {
         throw new NotImplementedException();
     }
@@ -28,14 +28,14 @@ public class RedirectController : RedirectControllerBase
     /// <inheritdoc />
     [HttpGet, Route("redirects/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountUrlRedirects(string? path, string? target)
+    public override Task CountUrlRedirects(string? path = null, string? target = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("redirects/{redirect_id:long}.json")]
-    public override Task GetRedirect([Required] long redirect_id, string? fields)
+    public override Task GetRedirect([Required] long redirect_id, string? fields = null)
     {
         throw new NotImplementedException();
     }

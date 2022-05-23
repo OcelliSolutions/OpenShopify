@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class RefundOrderAdjustment : ShopifyObject
+    public partial record RefundOrderAdjustment : ShopifyObject
     {
         /// <summary>
         /// The unique identifier of the order
@@ -43,12 +43,12 @@ namespace OpenShopify.Admin.Builder.Models
         /// The amount of the order adjustment in shop and presentment currencies.
         /// </summary>
         [JsonPropertyName("amount_set")]
-        public PriceSet AmountSet { get; set; }
+        public PriceSet? AmountSet { get; set; }
 
         /// <summary>
         /// The tax amount of the order adjustment in shop and presentment currencies.
         /// </summary>
         [JsonPropertyName("tax_amount_set")]
-        public PriceSet TaxAmountSet { get; set; }
+        public PriceSet? TaxAmountSet { get; set; }
     }
 }

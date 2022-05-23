@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class FulfillmentOrderDestination
+    public partial record FulfillmentOrderDestination
     {
         /// <summary>
         /// The ID of the fulfillment order destination.

@@ -23,6 +23,7 @@ public class DeprecatedApiCallsTests : IClassFixture<SharedFixture>
 
     private SharedFixture Fixture { get; }
 
+    #region Read
     [SkippableFact(Skip = "The Deprecated API calls resource is available only for private apps and currently just returns 404."), TestPriority(20)]
     public async Task ListDeprecatedAPICallsAsync_CanList()
     {
@@ -33,4 +34,5 @@ public class DeprecatedApiCallsTests : IClassFixture<SharedFixture>
             _additionalPropertiesHelper.CheckAdditionalProperties(call, Fixture.MyShopifyUrl);
         }
     }
+    #endregion Read
 }

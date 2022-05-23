@@ -2,7 +2,7 @@
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class OutgoingRequest
+    public partial record OutgoingRequest
     {
         /// <summary>
         /// The message returned by the merchant, if any.
@@ -14,7 +14,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// The request options returned by the merchant, if any.
         /// </summary>
         [JsonPropertyName("request_options")]
-        public OutgoingRequestOptions RequestOptions { get; set; }
+        public OutgoingRequestOptions? RequestOptions { get; set; }
 
         [JsonPropertyName("sent_at")]
         public DateTimeOffset? SentAt { get; set; }

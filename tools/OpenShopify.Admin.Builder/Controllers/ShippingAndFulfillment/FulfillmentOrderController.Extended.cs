@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
 
@@ -40,7 +41,7 @@ public class FulfillmentOrderController : FulfillmentOrderControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/move.json")]
-    public override Task MoveFulfillmentOrderToNewLocation([Required] long fulfillment_order_id, long? new_location_id)
+    public override Task MoveFulfillmentOrderToNewLocation(long fulfillment_order_id, long new_location_id)
     {
         throw new NotImplementedException();
     }

@@ -26,6 +26,7 @@ public class CustomerSavedSearchTests : IClassFixture<SharedFixture>
 
     private SharedFixture Fixture { get; }
 
+    #region Create
     [SkippableFact, TestPriority(1)]
     public async Task Creates_CustomerSavedSearch()
     {
@@ -47,7 +48,9 @@ public class CustomerSavedSearchTests : IClassFixture<SharedFixture>
         Assert.Equal(request.CustomerSavedSearch.Query, customerSavedSearch.Query);
         Fixture.CreatedCustomerSavedSearches.Add(customerSavedSearch);
     }
+    #endregion Create
 
+    #region Read
     [SkippableFact, TestPriority(2)]
     public async Task Counts_CustomerSavedSearch()
     {
@@ -95,8 +98,7 @@ public class CustomerSavedSearchTests : IClassFixture<SharedFixture>
         Skip.If(!Fixture.CreatedCustomerSavedSearches.Any(), "This should be run with the create test.");
         var createdCustomerSavedSearch = Fixture.CreatedCustomerSavedSearches.First();
         var response =
-            await _service.CustomerSavedSearch.ListCustomersReturnedByCustomerSavedSearchAsync(
-                createdCustomerSavedSearch.Id);
+            await _service.CustomerSavedSearch.ListCustomersByCustomerSavedSearchAsync(createdCustomerSavedSearch.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var customer in response.Result.Customers)
         {
@@ -105,8 +107,9 @@ public class CustomerSavedSearchTests : IClassFixture<SharedFixture>
 
         Skip.If(!response.Result.Customers.Any(), "No customers returned. Cannot test.");
     }
+    #endregion Read
 
-
+    #region Update
     [SkippableFact, TestPriority(3)]
     public async Task Updates_CustomerSavedSearch()
     {
@@ -131,7 +134,9 @@ public class CustomerSavedSearchTests : IClassFixture<SharedFixture>
         Fixture.CreatedCustomerSavedSearches.Remove(createdCustomerSavedSearch);
         Fixture.CreatedCustomerSavedSearches.Add(response.Result.CustomerSavedSearch);
     }
+    #endregion Update
 
+    #region Delete
     [SkippableFact, TestPriority(4)]
     public async Task Deletes_CustomerSavedSearch()
     {
@@ -155,4 +160,5 @@ public class CustomerSavedSearchTests : IClassFixture<SharedFixture>
         }
         Assert.Empty(errors);
     }
+    #endregion Delete
 }

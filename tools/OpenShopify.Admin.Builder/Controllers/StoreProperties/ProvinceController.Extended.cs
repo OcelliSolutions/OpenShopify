@@ -13,7 +13,7 @@ public class ProvinceController : ProvinceControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("countries/{country_id:long}/provinces.json")]
-    public override Task ListProvincesForCountry([Required] long country_id, string? fields, int? since_id)
+    public override Task ListProvincesForCountry([Required] long country_id, string? fields = null, long? since_id = null)
     {
         throw new NotImplementedException();
     }
@@ -21,14 +21,14 @@ public class ProvinceController : ProvinceControllerBase
     /// <inheritdoc />
     [HttpGet, Route("countries/{country_id:long}/provinces/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountProvincesForCountry([Required] long country_id)
+    public override Task CountProvincesForCountry(long? country_id = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("countries/{country_id:long}/provinces/{province_id:long}.json")]
-    public override Task GetProvinceForCountry([Required] long country_id, [Required] long province_id, string? fields)
+    public override Task GetProvinceForCountry([Required] long country_id, [Required] long province_id, string? fields = null)
     {
         throw new NotImplementedException();
     }

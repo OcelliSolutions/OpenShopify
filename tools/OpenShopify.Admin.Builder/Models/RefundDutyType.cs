@@ -2,7 +2,7 @@
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class RefundDutyType
+    public partial record RefundDutyType
     {
         [JsonPropertyName("duty_id")]
         public long? DutyId { get; set; }

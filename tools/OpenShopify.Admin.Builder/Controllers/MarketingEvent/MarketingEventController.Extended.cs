@@ -14,7 +14,7 @@ public class MarketingEventController : MarketingEventControllerBase
     /// <inheritdoc />
     [HttpGet, Route("marketing_events.json")]
     [ProducesResponseType(typeof(MarketingEventList), StatusCodes.Status200OK)]
-    public override Task ListMarketingEvents(int? limit, string? page_info, string? offset)
+    public override Task ListMarketingEvents(int? limit = null, string? page_info = null, int? offset = null)
     {
         throw new NotImplementedException();
     }

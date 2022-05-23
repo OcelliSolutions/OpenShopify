@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class TrackingInfo
+    public partial record TrackingInfo
     {
         /// <summary>
         /// The tracking number.

@@ -15,5 +15,5 @@ public class MetafieldService : ShopifyService, IMetafieldService
         _myShopifyUrl = myShopifyUrl;
     }
 
-    public IMetafieldClient Metafield => new MetafieldClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = false };
+    public IMetafieldClient Metafield => new MetafieldClient(ShopifyHttpClients[_myShopifyUrl]) { BaseUrl = _baseUri.ToString(), ReadResponseAsString = true };
 }

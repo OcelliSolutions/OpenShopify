@@ -2,7 +2,6 @@
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using NJsonSchema;
 using NJsonSchema.CodeGeneration;
 using NJsonSchema.CodeGeneration.CSharp;
@@ -11,6 +10,24 @@ using NSwag.CodeGeneration.CSharp;
 using NSwag.CodeGeneration.CSharp.Models;
 using NSwag.CodeGeneration.OperationNameGenerators;
 using PluralizeService.Core;
+using JsonSerializer = System.Text.Json.JsonSerializer;
+
+dynamic GetMainMenu(string url)
+{
+    //Hidden in the documentation site is the json data for the navigation menu. Extract that and save so new sections can be quickly identified
+
+    var web = new HtmlWeb();
+    var doc = web.Load(url);
+    Console.WriteLine("Getting Main Menu");
+    var menuScript = doc.DocumentNode.SelectSingleNode("/html[1]/body[1]/script[2]");
+
+    var menuJson = menuScript.InnerText.Replace("//<![CDATA[", string.Empty).Replace("window.RailsData = ", string.Empty)
+        .Replace("//]]>", string.Empty);
+    dynamic mainMenu = JsonConvert.DeserializeObject(menuJson.ReplaceLineEndings(string.Empty)) ??
+                       throw new InvalidOperationException("No CDATA found for the main menu.");
+
+    return mainMenu;
+}
 
 const string adminUrl = @"https://shopify.dev/api/admin-rest";
 
@@ -20,19 +37,9 @@ var download = false;
 if(args.Length > 1)
     download = args[1] == "download";
 
-#region Main Menu 
-//Hidden in the documentation site is the json data for the navigation menu. Extract that and save so new sections can be quickly identified
+#region Main Menu
 
-var web = new HtmlWeb();
-var doc = web.Load(adminUrl);
-Console.WriteLine("Getting Main Menu");
-var menuScript = doc.DocumentNode.SelectSingleNode("/html[1]/body[1]/script[2]");
-
-var menuJson = menuScript.InnerText.Replace("//<![CDATA[", string.Empty).Replace("window.RailsData = ", string.Empty)
-    .Replace("//]]>", string.Empty);
-dynamic mainMenu = JsonConvert.DeserializeObject(menuJson.ReplaceLineEndings(string.Empty)) ??
-                   throw new InvalidOperationException("No CDATA found for the main menu.");
-
+var mainMenu = GetMainMenu(adminUrl);
 SaveJsonFile(@"../../../menu.json", mainMenu);
 
 #endregion Main Menu
@@ -56,6 +63,7 @@ else
         "rc" => rcVersion,
         _ => version
     };
+    var web = new HtmlWeb();
     foreach (var mainMenuItem in mainMenu.api.rest_sidenav)
     {
         var section = (string)mainMenuItem.label;
@@ -70,7 +78,7 @@ else
             var url = $@"https://shopify.dev/api/admin-rest/{getVersion}/resources/{child.key}";
             var path = $@"../../../{section}";
             var savePath = $@"{path}/{subSection}.json";
-            dynamic? openApi;
+            dynamic openApi;
             if (download)
             {
                 var childDoc = web.Load(url);
@@ -90,12 +98,16 @@ else
             else
             {
                 var content = File.ReadAllText(savePath);
-                openApi = JsonConvert.DeserializeObject(content);
+                openApi = JsonConvert.DeserializeObject(content) ?? throw new InvalidOperationException("No content found.");
             }
 
-            var clean = CleanOpenApi(openApi);
-            SaveJsonFile($@"{path}/{subSection}.clean.json", clean);
-            await CreateController(JsonConvert.SerializeObject(clean), section, subSection);
+            //var clean = CleanOpenApi(openApi);
+            if (openApi != null)
+            {
+                var clean = ConvertToOpenApiDocument(openApi);
+                SaveJsonFile($@"{path}/{subSection}.clean.json", clean);
+                await CreateController(clean, section, subSection);
+            }
         }
     }
 
@@ -121,58 +133,171 @@ void CreateFoldersIfMissing(string path)
     }
 }
 
-// given a pseudo-OpenApi spec from Shopify, make it valid version that can be used later
-dynamic CleanOpenApi(dynamic openApi)
+OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
 {
-    dynamic clean = new ExpandoObject();
-    clean.openapi = openApi.openapi;
-    clean.info = new ExpandoObject();
-    clean.info.title = openApi.info.title;
-    clean.info.description = HtmlToMarkdown((string)openApi.info.description) ?? string.Empty;
-    clean.info.version = openApi.info.version;
+    if (openApi == null) return new OpenApiDocument();
+    //create the main document header.
+    var clean = new OpenApiDocument
+    {
+        Info =
+        {
+            Version = openApi.info.version,
+            Title = openApi.info.title,
+            Description = HtmlToMarkdown((string)openApi.info.description)
+        }
+    };
     if (openApi.unsupported_version == true) return clean;
-    clean.paths = new Dictionary<string, Dictionary<string, dynamic>>();
+
+    // Servers are added later depending on the paths given
+    var hasDefaultRoute = false;
+    var hasOAuthRoute = false;
     foreach (var path in openApi.paths)
     {
+        // Get the path. Multiple operations (GET, POST, PUT, and DELETE) can share a path.
         string pathKey = path.url;
-        if (pathKey.IndexOf('?') > 0) 
+        if (pathKey.IndexOf('?') > 0)
             pathKey = pathKey.Substring(0, pathKey.IndexOf('?'));
-        pathKey = pathKey.Replace("/admin/api/{api_version}", string.Empty);
-
-        if (!clean.paths.ContainsKey(pathKey)) 
-            clean.paths.Add(pathKey, new Dictionary<string, dynamic>());
-
-        dynamic endpoint = new ExpandoObject();
-        endpoint.description = HtmlToMarkdown((string)path.description) ?? string.Empty;
-        endpoint.summary = path.summary;
-        endpoint.operationId = CreateOperationId((string)path.summary);
-        var parameters = path.parameters;
-        var pathParameters = new List<string>();
-        foreach (var parameter in parameters)
-        {
-            if((string)parameter["in"] == "path")
-                pathParameters.Add((string)parameter["name"]);
-        }
-
-        for (var i = 0; i < parameters.Count; i++)
-        {
-            var parameter = parameters[i];
-            if ((string)parameter["in"] == "path" || !pathParameters.Contains((string)parameter["name"])) continue;
-
-            //Console.WriteLine(parameter);
-            parameters.RemoveAt(i);
-            i--;
-        }
-
-        endpoint.parameters = parameters;
-
-        endpoint.responses = path.responses;
-
-        if(endpoint.operationId == "StoreCreditCardInTheCardVault") continue; //this calls an external service and should not be mapped.
         
+        if (pathKey.Contains("/admin/api/{api_version}"))
+        {
+            hasDefaultRoute = true;
+            pathKey = pathKey.Replace("/admin/api/{api_version}", string.Empty);
+        }
+
+        if (pathKey.Contains("/admin/oauth"))
+        {
+            hasOAuthRoute = true;
+            pathKey = pathKey.Replace("/admin", string.Empty);
+        }
+
+        //add the path if it has not been added yet
+        if (!clean.Paths.ContainsKey(pathKey))
+            clean.Paths.Add(pathKey, new OpenApiPathItem());
+
+        // Create the endpoint (GET, POST, PUT, and DELETE)
+        var endpoint = new OpenApiOperation
+        {
+            Description = HtmlToMarkdown((string)path.description),
+            Summary = path.summary,
+            OperationId = CreateOperationId((string)path.summary)
+        };
+
+        // add the input parameters
+        var hasLimit = false;
+        var hasPageInfo = false;
+        var requiredId = true;
+        foreach (var parameter in path.parameters)
+        {
+            // `api_version` is a server variables, not a path variable.
+            if(parameter.name == "api_version") continue;
+            if (parameter.name == "limit") hasLimit = true;
+            if (parameter.name == "page_info") hasPageInfo = true;
+
+            var schema = GetSchema((string)parameter.name);
+            schema.Description = HtmlToMarkdown(parameter.description);
+
+            var longParameters = new List<string>()
+                {
+                    "address_id", "application_charge_id", "application_credit_id", "article_id", "attribution_app_id", "batch_id", "blog_id", "carrier_service_id", "collect_id",
+                    "collection_id", "collection_listing_id", "comment_id", "country_id", "custom_collection_id", "customer_id", "customer_saved_search_id",
+                    "discount_code_id", "dispute_id", "draft_order_id", "event_id", "fulfillment_id", "fulfillment_order_id", "fulfillment_service_id", "gift_card_id", "image_id",
+                    "inventory_item_id", "last_id", "location_id", "marketing_event_id", "metafield_id", "mobile_platform_application_id", "new_location_id", "order_id", "page_id",
+                    "payment_id", "payout_id", "price_rule_id", "product_id", "product_listing_id", "province_id", "risk_id", "recurring_application_charge_id", "redirect_id", "refund_id",
+                    "report_id", "script_tag_id", "smart_collection_id", "storefront_access_token_id", "theme_id", "transaction_id", "usage_charge_id", "user_id", "variant_id", "webhook_id", "since_id"
+                };
+
+            var intParameters =
+                new List<string>()
+                {
+                    "limit", "offset"
+                };
+
+            var boolParameters = new List<string>()
+                {
+                    "disconnect_if_necessary", "in_shop_currency", "relocate_if_necessary", "use_customer_default_address", "email", "restock"
+                };
+
+            var stringParameters = new List<string>()
+            {
+                "fields"
+            };
+
+            if (longParameters.Contains((string)parameter.name))
+            {
+                schema.Type = JsonObjectType.Integer;
+                schema.Format = "int64";
+            }
+            else if (intParameters.Contains((string)parameter.name))
+            {
+                schema.Type = JsonObjectType.Integer;
+                schema.Format = "int32";
+            }
+            else if (boolParameters.Contains((string)parameter.name))
+            {
+                schema.Type = JsonObjectType.Boolean;
+                schema.Format = null;
+            }
+            else if (stringParameters.Contains((string)parameter.name))
+            {
+                schema.Type = JsonObjectType.String;
+                schema.Format = null;
+            }
+
+            // consecutive starting *id parameters are required, all others are optional.
+            if (((string)parameter.name).EndsWith("_id") && requiredId) requiredId = true;
+            else requiredId = false;
+
+            if (endpoint.OperationId.StartsWith("Count"))
+                requiredId = false;
+
+            var isRequired = longParameters.Contains((string)parameter.name) && requiredId;
+
+            if (parameter.name == "since_id" || parameter.name == "last_id")
+                isRequired = false;
+            
+            schema.Default = parameter.schema["default"];
+            if (parameter.schema["enum"] is not null)
+            {
+                foreach (var e in parameter.schema["enum"])
+                {
+                    schema.EnumerationNames.Add((string)e);
+                }
+            }
+            endpoint.Parameters.Add(new OpenApiParameter()
+            {
+                Name = parameter.name, 
+                Description = HtmlToMarkdown(parameter.description), 
+                Schema = schema,
+                IsRequired = isRequired, 
+                IsDeprecated = parameter.deprecated ?? false,
+                Kind = parameter["in"] switch
+                {
+                    "path" => OpenApiParameterKind.Path,
+                    "query" => OpenApiParameterKind.Query,
+                    "body" => OpenApiParameterKind.Body,
+                    "header" => OpenApiParameterKind.Header, 
+                    _ => OpenApiParameterKind.Undefined
+                } 
+            });
+        }
+        //many times the given spec does not explicitly add `page_info` for paginated endpoints. Add it.
+        if (hasLimit && !hasPageInfo)
+        {
+            var limit = endpoint.Parameters.First(p => p.Name == "limit");
+            var index = endpoint.Parameters.IndexOf(limit);
+
+            endpoint.Parameters.Insert(index+1, new OpenApiParameter()
+            {
+                Name = "page_info",
+                Description = "A unique ID used to access a certain page of results.",
+                Schema = new() { Type = JsonObjectType.String },
+                IsRequired = false
+            });
+        }
+
         try
         {
-            clean.paths[pathKey].Add((string)path.action, endpoint);
+            clean.Paths[pathKey].Add((string)path.action, endpoint);
         }
         catch (Exception ex)
         {
@@ -182,31 +307,183 @@ dynamic CleanOpenApi(dynamic openApi)
         }
     }
 
-    clean.components = new Dictionary<string, Dictionary<string, dynamic>>();
-    clean.components.Add("schemas", new Dictionary<string, dynamic>());
     foreach (var component in openApi.components)
     {
-        dynamic cleanComponent = new ExpandoObject();
-        cleanComponent.type = component.type;
-        if(component.description != null) cleanComponent.description = HtmlToMarkdown((string)component.description) ?? string.Empty;
-        var cleanProperties = new Dictionary<string, dynamic>();
-            
+        var cleanComponent = new JsonSchema
+        {
+            Id = component.name,
+            Type = JsonObjectType.Object,
+            Description = HtmlToMarkdown(component.description),
+            Title = component.title
+        };
+
+        var hasId = false;
         foreach (var property in component.properties)
         {
-            dynamic cleanProperty = new ExpandoObject();
-            if(property.id != null) cleanProperty.id = property.id;
-            cleanProperty.type = property.type;
-            if (property.description != null) cleanProperty.description = HtmlToMarkdown((string)property.description) ?? string.Empty;
-            if (property.example != null) cleanProperty.example = property.example;
+            //remove all the `id` properties. These will be manually added later
+            if (property.name == "id")
+            {
+                hasId = true;
+                continue;
+            }
+            var schema = GetSchema((string)property.name);
 
-            cleanProperties.Add((string)property.name, cleanProperty);
+            var cleanProperty = new JsonSchemaProperty
+            {
+                Id = property.id,
+                Type = schema.Type,
+                Description = HtmlToMarkdown(property.description),
+                Format = schema.Format,
+                Item = schema.Item,
+                IsRequired = property.required ?? false,
+                IsReadOnly = property.readOnly ?? false,
+                Example = property.example, 
+                IsDeprecated = property.deprecated ?? false
+            };
+            cleanComponent.Properties.Add((string)property.name, cleanProperty);
         }
-        cleanComponent.properties = cleanProperties;
+        if(!hasId)
+            Console.WriteLine($@"  * No ID: {cleanComponent.Id}Orig");
 
-        //None of the models are correct. Don't bother moving them over.
-        //clean.components["schemas"].Add($@"{component.name}Base", cleanComponent);
+        clean.Components.Schemas.Add($@"{cleanComponent.Id}Orig", cleanComponent);
     }
+    /*
+    //add the servers
+        if (hasDefaultRoute)
+        clean.Servers.Add(
+            new OpenApiServer()
+            {
+                Url = "https://{store_name}.myshopify.com/admin/api/{api_version}",
+                Variables =
+                {
+                    new KeyValuePair<string, OpenApiServerVariable>("store_name",
+                        new OpenApiServerVariable()
+                        {
+                            Default = "{{store_name}}", Description = "The sub-domain of the storefront."
+                        }),
+                    new KeyValuePair<string, OpenApiServerVariable>("api_version",
+                        new OpenApiServerVariable()
+                        {
+                            Default = openApi.info.version, Description = "The api version."
+                        })
+                }
+            });
+    if(hasOAuthRoute)
+        clean.Servers.Add(new OpenApiServer()
+        {
+            Url = "https://{store_name}.myshopify.com",
+            Variables =
+            {
+                new KeyValuePair<string, OpenApiServerVariable>("store_name",
+                    new OpenApiServerVariable()
+                    {
+                        Default = "{{store_name}}", Description = "The sub-domain of the storefront."
+                    })
+            }
+        });
+    */
+
     return clean;
+}
+
+JsonSchema GetSchema(string propertyName)
+{
+    var dateTimeProperties = new List<string>()
+    {
+        "created_at_max", "created_at_min", "ends_at_max", "ends_at_min",
+        "processed_at_max", "processed_at_min", "published_at_max", "published_at_min", "starts_at_max",
+        "starts_at_min", "updated_at_max", "updated_at_min", "updated_at", "updated_at", "starts_at",
+        "ends_at", "created_at", "closed_at", "published_at", "accepts_marketing_updated_at",
+        "invoice_sent_at", "completed_at", "happened_at", "estimated_delivery_at", "fulfill_at",
+        "disabled_at", "expires_on", "cancelled_at", "processed_at", "billing_on", "activated_on",
+        "cancelled_on", "trial_ends_on"
+    };
+    var dateProperties = new List<string>()
+    {
+        "date", "date_max", "date_min"
+    };
+    var longProperties = new List<string>()
+    {
+        "usage_limit"
+    };
+    var intProperties = new List<string>()
+    {
+        "position", "orders_count", "number", "order_number", "trial_days", "times_used", "times_used_max", "times_used_min"
+    };
+    var boolProperties = new List<string>()
+    {
+        "once_per_customer", "test", "published", "active", "service_discovery", "buyer_accepts_marketing",
+        "taxes_included", "featured", "enabled", "accepts_marketing", "verified_email", "tax_exempt",
+        "notify_customer", "requires_shipping_method", "TrackingSupport",
+        "include_pending_stock", "fulfillment_orders_opt_in", "tracked", "requires_shipping", "legacy",
+        "estimated_taxes", "cause_cancel", "display", "taxable", "multi_location_enabled", "password_enabled",
+        "tax_shipping", "county_taxes", "has_storefront", "setup_required", "disjunctive", "previewable",
+        "processing", "account_owner", "receive_announcements", "tracking_support", "inventory_management"
+    };
+    var decimalProperties = new List<string>()
+    {
+        "price", "amount", "latitude", "longitude", "subtotal_price", "total_discounts", "total_duties",
+        "total_line_items_price", "total_price", "total_tax", "total_weight", "tax", "total_spent", "balance",
+        "initial_value", "cost", "total_tip_received", "score", "compare_at_price", "weight",
+        "size", "grams", "height", "width", "inventory_quantity", "tax_percentage", "maximum_refundable",
+        "old_inventory_quantity"
+    };
+    var stringProperties = new List<string>()
+    {
+        "admin_graphql_api_id"
+    };
+    var longListProperties = new List<string>()
+    {
+        "entitled_product_ids", "prerequisite_saved_search_ids", "prerequisite_customer_ids", "entitles_variant_ids",
+        "entitles_collection_ids", "entitles_country_ids", "prerequisite_product_ids", "prerequisite_variant_ids",
+        "prerequisite_collection_ids", "customer_segment_prerequisite_ids", "variant_ids", "entitled_variant_ids",
+        "entitled_country_ids", "entitled_collection_ids", 
+    };
+    var stringListProperties = new List<string>()
+    {
+        "arguments", "tax_exemptions", "tracking_numbers", "tracking_urls", "supported_actions", 
+        "payment_gateway_names", "enabled_presentment_currencies", "permissions", "fields",
+        "metafield_namespaces"
+    };
+    var objectListProperties = new List<string>()
+    {
+        "arguments"
+    };
+    var schema = new JsonSchema(){Type = JsonObjectType.String};
+    if (stringProperties.Contains(propertyName)) schema = new() { Type = JsonObjectType.String };
+    else if (propertyName == "id" || propertyName.EndsWith("_id")) schema = new() { Type = JsonObjectType.Integer, Format = "int64"};
+    else if (dateTimeProperties.Contains(propertyName)) schema = new(){ Type = JsonObjectType.String, Format = "date-time"};
+    else if (dateProperties.Contains(propertyName)) schema = new() { Type = JsonObjectType.String, Format = "date", Pattern = "/([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/" };
+    else if (longProperties.Contains(propertyName)) schema = new() { Type = JsonObjectType.Integer, Format = "int64"};
+    else if (intProperties.Contains(propertyName)) schema = new() { Type = JsonObjectType.Integer, Format = "int32"};
+    else if (boolProperties.Contains(propertyName)) schema = new() { Type = JsonObjectType.Boolean};
+    else if (decimalProperties.Contains(propertyName)) schema = new() { Type = JsonObjectType.Number, Format = "decimal"};
+
+    else if (longListProperties.Contains(propertyName))
+    {
+        schema = new()
+        {
+            Type = JsonObjectType.Array, 
+            Item = new JsonSchema() { Type = JsonObjectType.Integer, Format = "int64" }
+        };
+    }
+    else if (stringListProperties.Contains(propertyName))
+    {
+        schema = new()
+        {
+            Type = JsonObjectType.Array,
+            Item = new JsonSchema() { Type = JsonObjectType.String }
+        };
+    }
+    if (objectListProperties.Contains(propertyName))
+    {
+        schema = new()
+        {
+            Type = JsonObjectType.Array,
+            Item = new JsonSchema() { Type = JsonObjectType.Object }
+        };
+    }
+    return schema;
 }
 
 //There is a ton of HTML in the spec. Get rid of it.
@@ -220,7 +497,18 @@ string? RemoveHtmlFromString(string? html)
     return html.Trim();
 }
 
-string? HtmlToMarkdown(string? html) => string.IsNullOrWhiteSpace(html) ? null : new Html2Markdown.Converter().Convert(html);
+string? HtmlToMarkdown(string? html)
+{
+    if (string.IsNullOrWhiteSpace(html)) return null;
+   
+    html = html.Replace("\r", "")
+        .Replace("\n", "")
+        .Trim();
+    html = Regex.Replace(html, $@"\s+", " ");
+    var markdown = string.IsNullOrWhiteSpace(html) ? null : new Html2Markdown.Converter().Convert(html);
+    return markdown?.Replace("<br />", "")
+        .Replace("<br/>", "");
+}
 
 //Remove key words from a string that can be used to create a proper OperationId/Parameter name.
 string CreateOperationId(string summary)
@@ -237,6 +525,26 @@ string CreateOperationId(string summary)
     summary = string.Join(' ', split);
     var rgx = new Regex("[^a-zA-Z0-9]");
     summary = rgx.Replace(summary, "");
+
+    summary = summary
+        .Replace("ReturnedBy", "By")
+        .Replace("Receive", "Get")
+        .Replace("Retrieve", "Get")
+        .Replace("Return", "Get")
+        .Replace("Modify", "Update")
+        .Replace("Remove", "Delete")
+        .Replace("CreateNew", "Create")
+        .Replace("UpdateExisting", "Update")
+        .Replace("GetListOfAll", "List")
+        .Replace("GetListOf", "List")
+        .Replace("GetAllOf", "List")
+        .Replace("GetAll", "List")
+        .Replace("GetDetailsForSingle", "Get")
+        .Replace("GetSingle", "Get")
+        .Replace("GetCountOfAll", "Count")
+        .Replace("GetCountOf", "Count")
+        .Replace("DeleteExisting", "Delete");
+
     return summary;
 }
 
@@ -255,30 +563,10 @@ static IEnumerable<char> CharsToTitleCase(string s)
 //static string TitleCase(string input) => Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(input);
 static string TitleCase(string input) => new (CharsToTitleCase(input).ToArray());
 
-async Task CreateController(string openApi, string section, string controllerName)
+async Task CreateController(OpenApiDocument document, string section, string controllerName)
 {
     try
     {
-        //convert the clean json to an OpenApiDocument.
-        var document = OpenApiDocument.FromJsonAsync(openApi).Result;
-        /*
-        foreach (var (schemaName, jsonSchema) in document.Components.Schemas)
-        {
-            document.Paths.Add(new KeyValuePair<string, OpenApiPathItem>($@"SAMPLE/{schemaName}",
-                new OpenApiPathItem()
-                {
-                    {
-                        "patch",
-                        new OpenApiOperation()
-                        {
-                            OperationId = $@"Sample{schemaName}",
-                            Responses = { { schemaName, new OpenApiResponse() { Schema = jsonSchema } } }
-                        }
-                    }
-                }));
-        }
-        */
-        
         var controllerNamespace = controllerName == "AccessScope"
             ? "OpenShopify.OAuth.Builder.Controllers"
             : "OpenShopify.Admin.Builder.Controllers";
@@ -292,26 +580,23 @@ async Task CreateController(string openApi, string section, string controllerNam
             GenerateOptionalParameters = true,
             AdditionalNamespaceUsages = new[] { "System.Text.Json" },
             ControllerTarget = CSharpControllerTarget.AspNetCore,
-            //ControllerStyle = CSharpControllerStyle.Partial,
-            ControllerStyle = CSharpControllerStyle.Abstract, 
+            ControllerStyle = CSharpControllerStyle.Abstract,
             //AdditionalContractNamespaceUsages = new []{modelNamespace},
             ExcludedParameterNames = new[] { "api_version" }, // `api_version` is going to be hard-coded in the spec to make things easier.
-            /*
             CodeGeneratorSettings =
             {
-                GenerateDefaultValues  = false,
-                SchemaType = SchemaType.OpenApi3,
-            },*/
+                SchemaType = SchemaType.OpenApi3
+            },
             CSharpGeneratorSettings =
             {
-                Namespace = controllerNamespace,
+                Namespace = modelNamespace,
                 //Namespace = "OpenShopify.Admin.Builder.Delete",
                 JsonLibrary = CSharpJsonLibrary.SystemTextJson,
                 GenerateOptionalPropertiesAsNullable = true,
                 GenerateNullableReferenceTypes = true,
-                GenerateDefaultValues = false,
-                GenerateDataAnnotations = true, 
-                GenerateNativeRecords = true,
+                GenerateDefaultValues = true,
+                GenerateDataAnnotations = true,
+                GenerateNativeRecords = true, DateType = "DateTime",
                 //HandleReferences = true,
                 PropertyNameGenerator = new CustomPropertyNameGenerator()
             }
@@ -319,93 +604,13 @@ async Task CreateController(string openApi, string section, string controllerNam
 
         var generator = new CSharpControllerGenerator(document, settings);
         var code = generator.GenerateFile();
-
-        //default values can still get generated, remove them.
-        code = code.Replace(" = \"any\"", string.Empty);
-        code = code.Replace(" = \"50\"", string.Empty);
-        code = code.Replace(" = 50", string.Empty);
-        code = code.Replace(" = \"disabled_at DESC\"", string.Empty);
-        code = code.Replace(" = \"last_order_date DESC\"", string.Empty);
-        code = code.Replace(" = null", string.Empty);
-        code = code.Replace(" = \"open\"", string.Empty);
-        code = code.Replace(" = \"closed\"", string.Empty);
-        code = code.Replace(" = \"other\"", string.Empty);
-        code = code.Replace(" = \"false\"", string.Empty);
-        code = code.Replace(" = \"true\"", string.Empty);
-        code = code.Replace(" = false", string.Empty);
-        code = code.Replace(" = true", string.Empty);
-        code = code.Replace(" ?? \"false\"", " ?? false");
-        code = code.Replace(" ?? \"true\"", " ?? true");
-        code = code.Replace(" ?? \"50\"", " ?? 50");
-
-        //all these parameters should be DateTime instead of object and string.
-        var dateTimeParameters = new List<string>()
-        {
-            "created_at_max", "created_at_min", "date", "date_max", "date_min", "ends_at_max", "ends_at_min", "processed_at_max", "processed_at_min", "published_at_max", "published_at_min", 
-            "starts_at_max", "starts_at_min", "updated_at_max", "updated_at_min"
-        };
-        code = ReplaceParameterTypes(code, dateTimeParameters,"object", "DateTime");
-        code = ReplaceParameterTypes(code, dateTimeParameters, "string", "DateTime");
-
-        //all these parameters should be long (id) instead of string.
-        code = ReplaceParameterTypes(code,
-            new List<string>()
-            {
-                "address_id", "application_charge_id", "application_credit_id", "article_id", "attribution_app_id", "batch_id", "blog_id", "carrier_service_id", "collect_id", 
-                "collection_id", "collection_listing_id", "comment_id", "country_id", "custom_collection_id", "customer_id", "customer_saved_search_id", 
-                "discount_code_id", "dispute_id", "draft_order_id", "event_id", "fulfillment_id", "fulfillment_order_id", "fulfillment_service_id", "gift_card_id", "image_id", 
-                "inventory_item_id", "last_id", "location_id", "marketing_event_id", "metafield_id", "mobile_platform_application_id", "new_location_id", "order_id", "page_id", 
-                "payment_id", "payout_id", "price_rule_id", "product_id", "product_listing_id", "province_id", "risk_id", "recurring_application_charge_id", "redirect_id", "refund_id",
-                "report_id", "script_tag_id", "smart_collection_id", "storefront_access_token_id", "theme_id", "transaction_id", "usage_charge_id", "user_id", "variant_id", "webhook_id"
-            },
-            "string", "[System.ComponentModel.DataAnnotations.Required] long");
-
-        code = ReplaceParameterTypes(code,
-            new List<string>()
-            {
-                "since_id", "limit"
-            },
-            "string", "int");
-
-        code = ReplaceParameterTypes(code,
-            new List<string>()
-            {
-                "disconnect_if_necessary", "in_shop_currency", "relocate_if_necessary"
-            },
-            "string", "bool");
-
-        //The `page_info` parameter is not documented and is required for pagination. If a method has a `limit` parameter, it should have `page_info` as well.
-        code = code.Replace("int? limit", "int? limit, string? page_info");
-        code = code.Replace("int limit", "int? limit, string? page_info");
-        code = code.Replace("limit ?? 50", "limit ?? 50, page_info");
-        code = code.Replace("string? page_info, string? page_info", "string? page_info");
-        code = code.Replace("page_info, page_info", "page_info");
-        code = code.Replace("string? page_info, [Microsoft.AspNetCore.Mvc.FromQuery] string? page_info", "string? page_info");
-
-        //Standardize method name prefixes
-        code = code.Replace("Task Receive", "Task Get");
-        code = code.Replace("Task Retrieve", "Task Get");
-        code = code.Replace("Task Return", "Task Get");
-        code = code.Replace("Task Modify", "Task Update");
-        code = code.Replace("Task Remove", "Task Delete");
-
-        code = code.Replace("Task CreateNew", "Task Create");
-        code = code.Replace("Task UpdateExisting", "Task Update");
-        code = code.Replace("Task GetListOfAll", "Task List");
-        code = code.Replace("Task GetListOf", "Task List");
-        code = code.Replace("Task GetAllOf", "Task List");
-        code = code.Replace("Task GetAll", "Task List");
-        code = code.Replace("Task GetDetailsForSingle", "Task Get");
-        code = code.Replace("Task GetSingle", "Task Get");
-        code = code.Replace("Task GetCountOfAll", "Task Count");
-        code = code.Replace("Task GetCountOf", "Task Count");
-        code = code.Replace("Task DeleteExisting", "Task Delete");
-
+        
         //Declare a new input parameter for POST and PUT methods.
         code = Regex.Replace(code, @"(Task Create\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.Create{controllerName}Request request, ");
         code = Regex.Replace(code, @"(Task Update\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.Update{controllerName}Request request, ");
-        code = code.Replace(", )", ")");
-
+        code = code.Replace(", )", ")")
+            .Replace("<br/>", "")
+            .Replace("<br />", "");
         var path = @"../../../../OpenShopify.Admin.Builder/Controllers";
         //var path = $@"../../../../OpenShopify.Admin.Builder/Delete";
         if(controllerName == "AccessScope")
@@ -425,17 +630,6 @@ async Task CreateController(string openApi, string section, string controllerNam
     }
 }
 
-string ReplaceParameterTypes(string code, List<string> parametersNames, string originalType, string newType)
-{
-    foreach (var parameter in parametersNames)
-    {
-        code = code.Replace($@"{originalType} {parameter}", $@"{newType} {parameter}");
-        code = code.Replace($@"{originalType}? {parameter}", $@"{newType}? {parameter}");
-    }
-
-    return code;
-}
-
 async Task CreateExtendedControllerIfMissing(string section, string controllerName)
 {
     var template = $@"using System.ComponentModel.DataAnnotations;
@@ -449,7 +643,7 @@ namespace OpenShopify.Admin.Builder.Controllers.{section};
 /// <inheritdoc />
 [ApiGroup(ApiGroupNames.{section})]
 [ApiController]
-public class {controllerName}Controller : {controllerName}ControllerBase {{}}";
+public class {controllerName}Controller : {controllerName}ControllerOrig {{}}";
     
     var path = @"../../../../OpenShopify.Admin.Builder/Controllers";
     if (controllerName == "AccessScope")
@@ -468,7 +662,7 @@ internal class CustomPropertyNameGenerator : IPropertyNameGenerator
     /// <param name="property">The property.</param>
     /// <returns>The new name.</returns>
     public virtual string Generate(JsonSchemaProperty property) =>
-        ConversionUtilities.ConvertToUpperCamelCase(property.Name
+        TitleCase(ConversionUtilities.ConvertToUpperCamelCase(property.Name
                 .Replace("\"", string.Empty)
                 .Replace("@", string.Empty)
                 .Replace("?", string.Empty)
@@ -484,5 +678,24 @@ internal class CustomPropertyNameGenerator : IPropertyNameGenerator
             .Replace("*", "Star")
             .Replace(":", "_")
             .Replace("-", "_")
-            .Replace("#", "_");
+            .Replace("#", "_")
+            .Replace("_", " "))
+            .Replace(" ", "");
+
+
+    // convert a string to title case.
+    static IEnumerable<char> CharsToTitleCase(string s)
+    {
+        var newWord = true;
+        foreach (var c in s)
+        {
+            if (newWord) { yield return char.ToUpper(c); newWord = false; }
+            else yield return c;
+            if (c == ' ') newWord = true;
+        }
+    }
+
+    //static string TitleCase(string input) => Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(input);
+    static string TitleCase(string input) => new(CharsToTitleCase(input).ToArray());
 }
+

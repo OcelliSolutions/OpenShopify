@@ -13,9 +13,9 @@ public class PageController : PageControllerBase
 {
     /// <inheritdoc />
     [HttpGet, Route("pages.json")]
-    public override Task ListPages(DateTime? created_at_max, DateTime? created_at_min, string? fields, string? handle,
-        int? limit, string? page_info, DateTime? published_at_max, DateTime? published_at_min, string published_status, int? since_id,
-        string? title, DateTime? updated_at_max, DateTime? updated_at_min)
+    public override Task ListPages(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null, string? fields = null, string? handle = null,
+        int? limit = null, string? page_info = null, DateTimeOffset? published_at_max = null, DateTimeOffset? published_at_min = null, string? published_status = null, long? since_id = null,
+        string? title = null, DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();
     }
@@ -30,15 +30,15 @@ public class PageController : PageControllerBase
     /// <inheritdoc />
     [HttpGet, Route("pages/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task GetPageCount(DateTime? created_at_max, DateTime? created_at_min, DateTime? published_at_max,
-        DateTime? published_at_min, string published_status, string? title, DateTime? updated_at_max, DateTime? updated_at_min)
+    public override Task GetPageCount(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null, DateTimeOffset? published_at_max = null,
+        DateTimeOffset? published_at_min = null, string? published_status = null, string? title = null, DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
     [HttpGet, Route("pages/{page_id:long}.json")]
-    public override Task GetPageByItsID([Required] long page_id, string? fields)
+    public override Task GetPageByItsID([Required] long page_id, string? fields = null)
     {
         throw new NotImplementedException();
     }

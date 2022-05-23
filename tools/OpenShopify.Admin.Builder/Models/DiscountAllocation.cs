@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class DiscountAllocation
+    public partial record DiscountAllocation
     {
         /// <summary>
         /// The discount amount allocated to the line (not sure why it is a string)
@@ -22,6 +22,6 @@ namespace OpenShopify.Admin.Builder.Models
         /// The discount amount allocated to the line item in shop and presentment currencies.
         /// </summary>
         [JsonPropertyName("amount_set")]
-        public PriceSet AmountSet { get; set; }
+        public PriceSet? AmountSet { get; set; }
     }
 }

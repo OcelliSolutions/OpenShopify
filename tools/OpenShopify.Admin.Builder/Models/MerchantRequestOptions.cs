@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public class MerchantRequestOptions
+    public partial record MerchantRequestOptions
     {
         [JsonPropertyName("shipping_method")]
         public string? ShippingMethod { get; set; }

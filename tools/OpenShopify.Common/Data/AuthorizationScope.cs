@@ -68,5 +68,13 @@ public enum AuthorizationScope
     read_translations,
     write_translations,
     read_locales,
-    write_locales
+    write_locales,
+
+    #region Subscriptions API
+
+    read_customer_payment_methods,
+    read_own_subscription_contracts,
+    write_own_subscription_contracts
+
+    #endregion Subscriptions API
 }
