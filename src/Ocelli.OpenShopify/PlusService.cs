@@ -10,7 +10,7 @@ public class PlusService : ShopifyService, IPlusService
     private readonly string _myShopifyUrl;
     private readonly Uri _baseUri;
 
-    public PlusService(string myShopifyUrl, string shopAccessToken) : base(myShopifyUrl, shopAccessToken)
+    public PlusService(string myShopifyUrl, string shopAccessToken, bool isPlusStore = false) : base(myShopifyUrl, shopAccessToken, isPlusStore)
     {
         _baseUri = base.PrepareRequest(myShopifyUrl);
         _myShopifyUrl = myShopifyUrl;

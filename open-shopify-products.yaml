@@ -122,7 +122,7 @@ paths:
       tags:
         - Collect
       summary: Retrieves a specific collect by its ID
-      operationId: GetSpecificCollect
+      operationId: GetCollect
       parameters:
         - name: collect_id
           in: path
@@ -2054,7 +2054,7 @@ components:
           format: int64
           nullable: true
         inventory_management:
-          type: boolean
+          type: string
           description: "The fulfillment service that tracks the number of items in stock for the product variant. Valid values: \r\n\r\n*   `shopify`: You are tracking inventory yourself using the admin. \r\n*   `null`: You aren't tracking inventory on the variant. \r\n*   the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice) that has inventory management enabled: This must be the same fulfillment service referenced by the `fulfillment_service` property."
           nullable: true
         inventory_policy:
@@ -2683,7 +2683,7 @@ components:
           format: int64
           nullable: true
         inventory_management:
-          type: boolean
+          type: string
           description: "The fulfillment service that tracks the number of items in stock for the product variant. Valid values: \r\n\r\n*   `shopify`: You are tracking inventory yourself using the admin. \r\n*   `null`: You aren't tracking inventory on the variant. \r\n*   the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice) that has inventory management enabled: This must be the same fulfillment service referenced by the `fulfillment_service` property."
           nullable: true
         inventory_policy:
@@ -3223,7 +3223,7 @@ components:
           format: int64
           nullable: true
         inventory_management:
-          type: boolean
+          type: string
           description: "The fulfillment service that tracks the number of items in stock for the product variant. Valid values: \r\n\r\n*   `shopify`: You are tracking inventory yourself using the admin. \r\n*   `null`: You aren't tracking inventory on the variant. \r\n*   the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice) that has inventory management enabled: This must be the same fulfillment service referenced by the `fulfillment_service` property."
           nullable: true
         inventory_policy:

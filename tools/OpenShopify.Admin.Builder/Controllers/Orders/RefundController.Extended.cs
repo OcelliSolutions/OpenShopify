@@ -32,7 +32,7 @@ public class RefundController : RefundControllerBase
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/refunds/{refund_id:long}.json")]
     [ProducesResponseType(typeof(RefundItem), StatusCodes.Status200OK)]
-    public override Task GetSpecificRefund([Required] long order_id, [Required] long refund_id, string? fields = null, bool? in_shop_currency = null)
+    public override Task GetRefund([Required] long order_id, [Required] long refund_id, string? fields = null, bool? in_shop_currency = null)
     {
         throw new NotImplementedException();
     }

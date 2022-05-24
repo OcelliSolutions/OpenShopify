@@ -539,7 +539,7 @@ paths:
       tags:
         - Order
       summary: Retrieve a specific order
-      operationId: GetSpecificOrder
+      operationId: GetOrder
       parameters:
         - name: order_id
           in: path
@@ -634,7 +634,7 @@ paths:
       tags:
         - Order
       summary: Retrieve an order count
-      operationId: GetOrderCount
+      operationId: CountOrders
       parameters:
         - name: created_at_max
           in: query
@@ -782,7 +782,7 @@ paths:
           in: query
           description: 'The reason for the order cancellation. Valid values: `customer`, `inventory`, `fraud`, `declined`, and `other`.)'
           schema:
-            type: string
+            $ref: '#/components/schemas/CancelReason'
         - name: restock
           in: query
           description: Whether to restock refunded items back to your store's inventory.
@@ -1122,7 +1122,7 @@ paths:
       tags:
         - Refund
       summary: Retrieves a specific refund
-      operationId: GetSpecificRefund
+      operationId: GetRefund
       parameters:
         - name: order_id
           in: path
@@ -1327,7 +1327,7 @@ paths:
       tags:
         - Transaction
       summary: Retrieves a specific transaction
-      operationId: GetSpecificTransaction
+      operationId: GetTransaction
       parameters:
         - name: order_id
           in: path
@@ -1477,6 +1477,15 @@ components:
           description: "The applied amount of the discount, based on the setting of value_type. \r\nWhen ValueType is set to fixed_amount discount amount = quantity /// value\r\nWhen ValueType is set to percentage discount amount = floor(price /// quantity /// value) / 100"
           format: decimal
           nullable: true
+      additionalProperties: { }
+    CancelReason:
+      enum:
+        - customer
+        - customer
+        - inventory
+        - declined
+        - other
+      type: string
       additionalProperties: { }
     Checkout:
       required:
@@ -2040,9 +2049,7 @@ components:
           description: Whether the customer consented to receive email updates from the shop.
           nullable: true
         cancel_reason:
-          type: string
-          description: "The reason why the order was canceled. Valid values: \r\n\r\n*   **customer**: The customer canceled the order. \r\n*   **fraud**: The order was fraudulent. \r\n*   **inventory**: Items in the order were not in inventory. \r\n*   **declined**: The payment was declined. \r\n*   **other**: A reason not in this list."
-          nullable: true
+          $ref: '#/components/schemas/CancelReason'
         cancelled_at:
           type: string
           description: The date and time when the order was canceled. Returns `null` if the order isn't canceled.
@@ -2077,9 +2084,7 @@ components:
           description: 'The current total discounts on the order in the shop currency. The value of this field reflects order edits, returns, and refunds.'
           nullable: true
         current_total_discounts_set:
-          type: string
-          description: 'The current total discounts on the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.'
-          nullable: true
+          $ref: '#/components/schemas/PriceSet'
         current_total_duties_set:
           $ref: '#/components/schemas/PriceSet'
         current_total_price:
@@ -2087,25 +2092,19 @@ components:
           description: 'The current total price of the order in the shop currency. The value of this field reflects order edits, returns, and refunds.'
           nullable: true
         current_total_price_set:
-          type: string
-          description: 'The current total price of the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.'
-          nullable: true
+          $ref: '#/components/schemas/PriceSet'
         current_subtotal_price:
           type: string
           description: 'The current subtotal price of the order in the shop currency. The value of this field reflects order edits, returns, and refunds.'
           nullable: true
         current_subtotal_price_set:
-          type: string
-          description: 'The current subtotal price of the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.'
-          nullable: true
+          $ref: '#/components/schemas/PriceSet'
         current_total_tax:
           type: string
           description: 'The current total taxes charged on the order in the shop currency. The value of this field reflects order edits, returns, or refunds.'
           nullable: true
         current_total_tax_set:
-          type: string
-          description: 'The current total taxes charged on the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.'
-          nullable: true
+          $ref: '#/components/schemas/PriceSet'
         customer:
           $ref: '#/components/schemas/Customer'
         customer_locale:
@@ -2133,9 +2132,7 @@ components:
           description: 'Whether taxes on the order are estimated. Many factors can change between the time a customer places an order and the time the order is shipped, which could affect the calculation of taxes. This property returns `false` when taxes on the order are finalized and aren''t subject to any changes.'
           nullable: true
         financial_status:
-          type: string
-          description: "The status of payments associated with the order. Can only be set when the order is created. Valid values: \r\n\r\n*   **pending**: The payments are pending. Payment might fail in this state. Check again to confirm whether the payments have been paid successfully. \r\n*   **authorized**: The payments have been authorized. \r\n*   **partially_paid**: The order has been partially paid. \r\n*   **paid**: The payments have been paid. \r\n*   **partially_refunded**: The payments have been partially refunded. \r\n*   **refunded**: The payments have been refunded. \r\n*   **voided**: The payments have been voided."
-          nullable: true
+          $ref: '#/components/schemas/FinancialStatus'
         fulfillments:
           type: array
           items:
@@ -2143,9 +2140,7 @@ components:
           description: 'An array of fulfillments associated with the order. For more information, see the [Fulfillment API](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment).'
           nullable: true
         fulfillment_status:
-          type: string
-          description: "The order's status in terms of fulfilled line items. You can use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource for a more granular view. Valid values: \r\n\r\n*   **fulfilled**: Every line item in the order has been fulfilled. \r\n*   **null**: None of the line items in the order have been fulfilled. \r\n*   **partial**: At least one line item in the order has been fulfilled. \r\n*   **restocked**: Every line item in the order has been restocked and the order canceled."
-          nullable: true
+          $ref: '#/components/schemas/FulfillmentStatus'
         gateway:
           type: string
           description: The payment gateway used.
@@ -2221,9 +2216,7 @@ components:
           format: date-time
           nullable: true
         processing_method:
-          type: string
-          description: "How the payment was processed. It has the following valid values: \r\n\r\n*   **checkout**: The order was processed using the Shopify checkout. \r\n*   **direct**: The order was processed using a [direct payment provider](https://help.shopify.com/manual/payments/third-party-providers/direct-and-external-providers). \r\n*   **manual**: The order was processed using a [manual payment method](https://help.shopify.com/manual/payments/manual-payments). \r\n*   **offsite**: The order was processed by an [external payment provider](https://help.shopify.com/manual/payments/third-party-providers/direct-and-external-providers) to the Shopify checkout. \r\n*   **express**: The order was processed using [PayPal Express Checkout](https://help.shopify.com/manual/payments/paypal). \r\n*   **free**: The order was processed as a free order using a discount code."
-          nullable: true
+          $ref: '#/components/schemas/ProcessingMethod'
         referring_site:
           type: string
           description: The website where the customer clicked a link to the shop.
@@ -2266,7 +2259,9 @@ components:
           description: 'Tags attached to the order, formatted as a string of comma-separated values. Tags are additional short descriptors, commonly used for filtering and searching. Each individual tag is limited to 40 characters in length.'
           nullable: true
         tax_lines:
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
           description: "An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged in the shop currency. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax. \r\n*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line.  When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order."
           nullable: true
         taxes_included:
@@ -2339,12 +2334,6 @@ components:
           type: string
           description: 'The URL pointing to the [order status web page](https://help.shopify.com/manual/orders/status-tracking), if applicable.'
           nullable: true
-        tax_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxLine'
-          description: "An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged in the shop currency. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax. \r\n*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line.  When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order."
-          nullable: true
         transactions:
           type: array
           items:
@@ -2356,6 +2345,20 @@ components:
           items:
             $ref: '#/components/schemas/Metafield'
           description: "Additional metadata about the OpenShopify.Admin.Builder.Models.OrderBase. Note: This is not naturally returned with a OpenShopify.Admin.Builder.Models.OrderBase response, as\r\nShopify will not return OpenShopify.Admin.Builder.Models.OrderBase metafields unless specified. Instead, you need to query metafields with !:MetafieldService. \r\nUses include: Creating, updating, and deserializing webhook bodies that include them."
+          nullable: true
+        checkout_id:
+          type: integer
+          format: int64
+          nullable: true
+        confirmed:
+          type: boolean
+          nullable: true
+        contact_email:
+          type: string
+          nullable: true
+        total_price_usd:
+          type: number
+          format: decimal
           nullable: true
       additionalProperties: { }
     CreateOrderRequest:
@@ -2412,10 +2415,10 @@ components:
       additionalProperties: { }
     CreateOrderRiskRequest:
       required:
-        - order_risk
+        - risk
       type: object
       properties:
-        order_risk:
+        risk:
           $ref: '#/components/schemas/CreateOrderRisk'
       additionalProperties: false
     CreateRefund:
@@ -3308,6 +3311,17 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
+    FinancialStatus:
+      enum:
+        - pending
+        - authorized
+        - partially_paid
+        - paid
+        - partially_refunded
+        - refunded
+        - voided
+      type: string
+      additionalProperties: { }
     Fulfillment:
       required:
         - id
@@ -3395,6 +3409,13 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+      additionalProperties: { }
+    FulfillmentStatus:
+      enum:
+        - fulfilled
+        - partial
+        - restocked
+      type: string
       additionalProperties: { }
     LineItem:
       required:
@@ -3702,9 +3723,7 @@ components:
           description: Whether the customer consented to receive email updates from the shop.
           nullable: true
         cancel_reason:
-          type: string
-          description: "The reason why the order was canceled. Valid values: \r\n\r\n*   **customer**: The customer canceled the order. \r\n*   **fraud**: The order was fraudulent. \r\n*   **inventory**: Items in the order were not in inventory. \r\n*   **declined**: The payment was declined. \r\n*   **other**: A reason not in this list."
-          nullable: true
+          $ref: '#/components/schemas/CancelReason'
         cancelled_at:
           type: string
           description: The date and time when the order was canceled. Returns `null` if the order isn't canceled.
@@ -3739,9 +3758,7 @@ components:
           description: 'The current total discounts on the order in the shop currency. The value of this field reflects order edits, returns, and refunds.'
           nullable: true
         current_total_discounts_set:
-          type: string
-          description: 'The current total discounts on the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.'
-          nullable: true
+          $ref: '#/components/schemas/PriceSet'
         current_total_duties_set:
           $ref: '#/components/schemas/PriceSet'
         current_total_price:
@@ -3749,25 +3766,19 @@ components:
           description: 'The current total price of the order in the shop currency. The value of this field reflects order edits, returns, and refunds.'
           nullable: true
         current_total_price_set:
-          type: string
-          description: 'The current total price of the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.'
-          nullable: true
+          $ref: '#/components/schemas/PriceSet'
         current_subtotal_price:
           type: string
           description: 'The current subtotal price of the order in the shop currency. The value of this field reflects order edits, returns, and refunds.'
           nullable: true
         current_subtotal_price_set:
-          type: string
-          description: 'The current subtotal price of the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.'
-          nullable: true
+          $ref: '#/components/schemas/PriceSet'
         current_total_tax:
           type: string
           description: 'The current total taxes charged on the order in the shop currency. The value of this field reflects order edits, returns, or refunds.'
           nullable: true
         current_total_tax_set:
-          type: string
-          description: 'The current total taxes charged on the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.'
-          nullable: true
+          $ref: '#/components/schemas/PriceSet'
         customer:
           $ref: '#/components/schemas/Customer'
         customer_locale:
@@ -3795,9 +3806,7 @@ components:
           description: 'Whether taxes on the order are estimated. Many factors can change between the time a customer places an order and the time the order is shipped, which could affect the calculation of taxes. This property returns `false` when taxes on the order are finalized and aren''t subject to any changes.'
           nullable: true
         financial_status:
-          type: string
-          description: "The status of payments associated with the order. Can only be set when the order is created. Valid values: \r\n\r\n*   **pending**: The payments are pending. Payment might fail in this state. Check again to confirm whether the payments have been paid successfully. \r\n*   **authorized**: The payments have been authorized. \r\n*   **partially_paid**: The order has been partially paid. \r\n*   **paid**: The payments have been paid. \r\n*   **partially_refunded**: The payments have been partially refunded. \r\n*   **refunded**: The payments have been refunded. \r\n*   **voided**: The payments have been voided."
-          nullable: true
+          $ref: '#/components/schemas/FinancialStatus'
         fulfillments:
           type: array
           items:
@@ -3805,9 +3814,7 @@ components:
           description: 'An array of fulfillments associated with the order. For more information, see the [Fulfillment API](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment).'
           nullable: true
         fulfillment_status:
-          type: string
-          description: "The order's status in terms of fulfilled line items. You can use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource for a more granular view. Valid values: \r\n\r\n*   **fulfilled**: Every line item in the order has been fulfilled. \r\n*   **null**: None of the line items in the order have been fulfilled. \r\n*   **partial**: At least one line item in the order has been fulfilled. \r\n*   **restocked**: Every line item in the order has been restocked and the order canceled."
-          nullable: true
+          $ref: '#/components/schemas/FulfillmentStatus'
         gateway:
           type: string
           description: The payment gateway used.
@@ -3883,9 +3890,7 @@ components:
           format: date-time
           nullable: true
         processing_method:
-          type: string
-          description: "How the payment was processed. It has the following valid values: \r\n\r\n*   **checkout**: The order was processed using the Shopify checkout. \r\n*   **direct**: The order was processed using a [direct payment provider](https://help.shopify.com/manual/payments/third-party-providers/direct-and-external-providers). \r\n*   **manual**: The order was processed using a [manual payment method](https://help.shopify.com/manual/payments/manual-payments). \r\n*   **offsite**: The order was processed by an [external payment provider](https://help.shopify.com/manual/payments/third-party-providers/direct-and-external-providers) to the Shopify checkout. \r\n*   **express**: The order was processed using [PayPal Express Checkout](https://help.shopify.com/manual/payments/paypal). \r\n*   **free**: The order was processed as a free order using a discount code."
-          nullable: true
+          $ref: '#/components/schemas/ProcessingMethod'
         referring_site:
           type: string
           description: The website where the customer clicked a link to the shop.
@@ -3928,7 +3933,9 @@ components:
           description: 'Tags attached to the order, formatted as a string of comma-separated values. Tags are additional short descriptors, commonly used for filtering and searching. Each individual tag is limited to 40 characters in length.'
           nullable: true
         tax_lines:
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
           description: "An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged in the shop currency. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax. \r\n*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line.  When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order."
           nullable: true
         taxes_included:
@@ -4001,12 +4008,6 @@ components:
           type: string
           description: 'The URL pointing to the [order status web page](https://help.shopify.com/manual/orders/status-tracking), if applicable.'
           nullable: true
-        tax_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxLine'
-          description: "An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged in the shop currency. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax. \r\n*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line.  When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order."
-          nullable: true
         transactions:
           type: array
           items:
@@ -4018,6 +4019,20 @@ components:
           items:
             $ref: '#/components/schemas/Metafield'
           description: "Additional metadata about the OpenShopify.Admin.Builder.Models.OrderBase. Note: This is not naturally returned with a OpenShopify.Admin.Builder.Models.OrderBase response, as\r\nShopify will not return OpenShopify.Admin.Builder.Models.OrderBase metafields unless specified. Instead, you need to query metafields with !:MetafieldService. \r\nUses include: Creating, updating, and deserializing webhook bodies that include them."
+          nullable: true
+        checkout_id:
+          type: integer
+          format: int64
+          nullable: true
+        confirmed:
+          type: boolean
+          nullable: true
+        contact_email:
+          type: string
+          nullable: true
+        total_price_usd:
+          type: number
+          format: decimal
           nullable: true
         id:
           type: integer
@@ -4098,18 +4113,18 @@ components:
       additionalProperties: { }
     OrderRiskItem:
       required:
-        - order_risk
+        - risk
       type: object
       properties:
-        order_risk:
+        risk:
           $ref: '#/components/schemas/OrderRisk'
       additionalProperties: { }
     OrderRiskList:
       required:
-        - order_risks
+        - risks
       type: object
       properties:
-        order_risks:
+        risks:
           type: array
           items:
             $ref: '#/components/schemas/OrderRisk'
@@ -4153,6 +4168,16 @@ components:
           $ref: '#/components/schemas/Price'
         presentment_money:
           $ref: '#/components/schemas/Price'
+      additionalProperties: { }
+    ProcessingMethod:
+      enum:
+        - checkout
+        - direct
+        - manual
+        - offsite
+        - express
+        - free
+      type: string
       additionalProperties: { }
     Refund:
       required:
@@ -4589,7 +4614,6 @@ components:
           type: string
           nullable: true
       additionalProperties: { }
-      description: An object representing a Shopify transaction.
     TransactionItem:
       required:
         - transaction
@@ -4777,9 +4801,7 @@ components:
           description: Whether the customer consented to receive email updates from the shop.
           nullable: true
         cancel_reason:
-          type: string
-          description: "The reason why the order was canceled. Valid values: \r\n\r\n*   **customer**: The customer canceled the order. \r\n*   **fraud**: The order was fraudulent. \r\n*   **inventory**: Items in the order were not in inventory. \r\n*   **declined**: The payment was declined. \r\n*   **other**: A reason not in this list."
-          nullable: true
+          $ref: '#/components/schemas/CancelReason'
         cancelled_at:
           type: string
           description: The date and time when the order was canceled. Returns `null` if the order isn't canceled.
@@ -4814,9 +4836,7 @@ components:
           description: 'The current total discounts on the order in the shop currency. The value of this field reflects order edits, returns, and refunds.'
           nullable: true
         current_total_discounts_set:
-          type: string
-          description: 'The current total discounts on the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.'
-          nullable: true
+          $ref: '#/components/schemas/PriceSet'
         current_total_duties_set:
           $ref: '#/components/schemas/PriceSet'
         current_total_price:
@@ -4824,25 +4844,19 @@ components:
           description: 'The current total price of the order in the shop currency. The value of this field reflects order edits, returns, and refunds.'
           nullable: true
         current_total_price_set:
-          type: string
-          description: 'The current total price of the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.'
-          nullable: true
+          $ref: '#/components/schemas/PriceSet'
         current_subtotal_price:
           type: string
           description: 'The current subtotal price of the order in the shop currency. The value of this field reflects order edits, returns, and refunds.'
           nullable: true
         current_subtotal_price_set:
-          type: string
-          description: 'The current subtotal price of the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.'
-          nullable: true
+          $ref: '#/components/schemas/PriceSet'
         current_total_tax:
           type: string
           description: 'The current total taxes charged on the order in the shop currency. The value of this field reflects order edits, returns, or refunds.'
           nullable: true
         current_total_tax_set:
-          type: string
-          description: 'The current total taxes charged on the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.'
-          nullable: true
+          $ref: '#/components/schemas/PriceSet'
         customer:
           $ref: '#/components/schemas/Customer'
         customer_locale:
@@ -4870,9 +4884,7 @@ components:
           description: 'Whether taxes on the order are estimated. Many factors can change between the time a customer places an order and the time the order is shipped, which could affect the calculation of taxes. This property returns `false` when taxes on the order are finalized and aren''t subject to any changes.'
           nullable: true
         financial_status:
-          type: string
-          description: "The status of payments associated with the order. Can only be set when the order is created. Valid values: \r\n\r\n*   **pending**: The payments are pending. Payment might fail in this state. Check again to confirm whether the payments have been paid successfully. \r\n*   **authorized**: The payments have been authorized. \r\n*   **partially_paid**: The order has been partially paid. \r\n*   **paid**: The payments have been paid. \r\n*   **partially_refunded**: The payments have been partially refunded. \r\n*   **refunded**: The payments have been refunded. \r\n*   **voided**: The payments have been voided."
-          nullable: true
+          $ref: '#/components/schemas/FinancialStatus'
         fulfillments:
           type: array
           items:
@@ -4880,9 +4892,7 @@ components:
           description: 'An array of fulfillments associated with the order. For more information, see the [Fulfillment API](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment).'
           nullable: true
         fulfillment_status:
-          type: string
-          description: "The order's status in terms of fulfilled line items. You can use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource for a more granular view. Valid values: \r\n\r\n*   **fulfilled**: Every line item in the order has been fulfilled. \r\n*   **null**: None of the line items in the order have been fulfilled. \r\n*   **partial**: At least one line item in the order has been fulfilled. \r\n*   **restocked**: Every line item in the order has been restocked and the order canceled."
-          nullable: true
+          $ref: '#/components/schemas/FulfillmentStatus'
         gateway:
           type: string
           description: The payment gateway used.
@@ -4958,9 +4968,7 @@ components:
           format: date-time
           nullable: true
         processing_method:
-          type: string
-          description: "How the payment was processed. It has the following valid values: \r\n\r\n*   **checkout**: The order was processed using the Shopify checkout. \r\n*   **direct**: The order was processed using a [direct payment provider](https://help.shopify.com/manual/payments/third-party-providers/direct-and-external-providers). \r\n*   **manual**: The order was processed using a [manual payment method](https://help.shopify.com/manual/payments/manual-payments). \r\n*   **offsite**: The order was processed by an [external payment provider](https://help.shopify.com/manual/payments/third-party-providers/direct-and-external-providers) to the Shopify checkout. \r\n*   **express**: The order was processed using [PayPal Express Checkout](https://help.shopify.com/manual/payments/paypal). \r\n*   **free**: The order was processed as a free order using a discount code."
-          nullable: true
+          $ref: '#/components/schemas/ProcessingMethod'
         referring_site:
           type: string
           description: The website where the customer clicked a link to the shop.
@@ -5003,7 +5011,9 @@ components:
           description: 'Tags attached to the order, formatted as a string of comma-separated values. Tags are additional short descriptors, commonly used for filtering and searching. Each individual tag is limited to 40 characters in length.'
           nullable: true
         tax_lines:
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
           description: "An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged in the shop currency. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax. \r\n*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line.  When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order."
           nullable: true
         taxes_included:
@@ -5076,12 +5086,6 @@ components:
           type: string
           description: 'The URL pointing to the [order status web page](https://help.shopify.com/manual/orders/status-tracking), if applicable.'
           nullable: true
-        tax_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxLine'
-          description: "An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged in the shop currency. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax. \r\n*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line.  When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order."
-          nullable: true
         transactions:
           type: array
           items:
@@ -5093,6 +5097,20 @@ components:
           items:
             $ref: '#/components/schemas/Metafield'
           description: "Additional metadata about the OpenShopify.Admin.Builder.Models.OrderBase. Note: This is not naturally returned with a OpenShopify.Admin.Builder.Models.OrderBase response, as\r\nShopify will not return OpenShopify.Admin.Builder.Models.OrderBase metafields unless specified. Instead, you need to query metafields with !:MetafieldService. \r\nUses include: Creating, updating, and deserializing webhook bodies that include them."
+          nullable: true
+        checkout_id:
+          type: integer
+          format: int64
+          nullable: true
+        confirmed:
+          type: boolean
+          nullable: true
+        contact_email:
+          type: string
+          nullable: true
+        total_price_usd:
+          type: number
+          format: decimal
           nullable: true
         id:
           type: integer
@@ -5163,10 +5181,10 @@ components:
       additionalProperties: { }
     UpdateOrderRiskRequest:
       required:
-        - order_risk
+        - risk
       type: object
       properties:
-        order_risk:
+        risk:
           $ref: '#/components/schemas/UpdateOrderRisk'
       additionalProperties: false
   securitySchemes:

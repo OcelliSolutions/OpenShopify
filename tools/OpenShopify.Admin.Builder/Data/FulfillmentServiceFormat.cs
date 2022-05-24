@@ -1,7 +1,11 @@
-﻿namespace OpenShopify.Common.Data;
+﻿using System.Runtime.Serialization;
+
+namespace OpenShopify.Admin.Builder.Data;
 
 public enum FulfillmentServiceFormat
 {
-    json,
-    xml
+    [EnumMember(Value = "json")]
+    Json,
+    [EnumMember(Value = "xml")]
+    Xml,
 }

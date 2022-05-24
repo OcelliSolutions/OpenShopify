@@ -40,7 +40,7 @@ public class MetafieldController : MetafieldControllerBase
     /// <inheritdoc />
     [HttpGet, Route("metafields/{metafield_id:long}.json")]
     [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status200OK)]
-    public override Task GetSpecificMetafield([Required] long metafield_id, string? fields = null)
+    public override Task GetMetafield([Required] long metafield_id, string? fields = null)
     {
         throw new NotImplementedException();
     }

@@ -60,7 +60,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CollectItem>> GetSpecificCollectAsync(long collectId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CollectItem>> GetCollectAsync(long collectId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -343,7 +343,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CollectItem>> GetSpecificCollectAsync(long collectId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CollectItem>> GetCollectAsync(long collectId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (collectId == null)
                 throw new System.ArgumentNullException("collectId");
@@ -5519,7 +5519,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public bool? InventoryManagement { get; set; } = default!;
+        public string? InventoryManagement { get; set; } = default!;
 
         /// <summary>
         /// Whether customers are allowed to place an order for the product variant when it's out of stock. Valid values: 
@@ -6765,7 +6765,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public bool? InventoryManagement { get; set; } = default!;
+        public string? InventoryManagement { get; set; } = default!;
 
         /// <summary>
         /// Whether customers are allowed to place an order for the product variant when it's out of stock. Valid values: 
@@ -7924,7 +7924,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public bool? InventoryManagement { get; set; } = default!;
+        public string? InventoryManagement { get; set; } = default!;
 
         /// <summary>
         /// Whether customers are allowed to place an order for the product variant when it's out of stock. Valid values: 

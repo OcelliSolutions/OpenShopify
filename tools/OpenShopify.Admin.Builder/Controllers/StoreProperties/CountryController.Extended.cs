@@ -38,7 +38,7 @@ public class CountryController : CountryControllerBase
     /// <inheritdoc />
     [HttpGet, Route("countries/{country_id:long}.json")]
     [ProducesResponseType(typeof(CountryItem), StatusCodes.Status200OK)]
-    public override Task GetSpecificCounty([Required] long country_id, string? fields = null)
+    public override Task GetCounty([Required] long country_id, string? fields = null)
     {
         throw new NotImplementedException();
     }

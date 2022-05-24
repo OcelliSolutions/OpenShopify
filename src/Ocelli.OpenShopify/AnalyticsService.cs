@@ -10,7 +10,7 @@ public class AnalyticsService : ShopifyService, IAnalyticsService
     private readonly string _myShopifyUrl;
     private readonly Uri _baseUri;
 
-    public AnalyticsService(string myShopifyUrl, string shopAccessToken) : base(myShopifyUrl, shopAccessToken)
+    public AnalyticsService(string myShopifyUrl, string shopAccessToken, bool isPlusStore = false) : base(myShopifyUrl, shopAccessToken, isPlusStore)
     {
         _baseUri = base.PrepareRequest(myShopifyUrl);
         _myShopifyUrl = myShopifyUrl;

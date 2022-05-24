@@ -114,7 +114,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public bool? InventoryManagement { get; set; } = default!;
+        public string? InventoryManagement { get; set; } = default!;
 
         /// <summary>
         /// The unique identifier of the location associated with the fulfillment service

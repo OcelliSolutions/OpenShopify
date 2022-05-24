@@ -38,7 +38,7 @@ public class TransactionController : TransactionControllerBase
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/transactions/{transaction_id:long}.json")]
     [ProducesResponseType(typeof(TransactionItem), StatusCodes.Status200OK)]
-    public override Task GetSpecificTransaction([Required] long order_id, [Required] long transaction_id, string? fields = null, bool? in_shop_currency = null)
+    public override Task GetTransaction([Required] long order_id, [Required] long transaction_id, string? fields = null, bool? in_shop_currency = null)
     {
         throw new NotImplementedException();
     }

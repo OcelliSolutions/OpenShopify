@@ -30,7 +30,7 @@ public class FulfillmentEventController : FulfillmentEventControllerBase
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events/{event_id:long}.json")]
     [ProducesResponseType(typeof(FulfillmentEventItem), StatusCodes.Status200OK)]
-    public override Task GetSpecificFulfillmentEvent([Required] long event_id, [Required] long fulfillment_id, [Required] long order_id)
+    public override Task GetFulfillmentEvent([Required] long event_id, [Required] long fulfillment_id, [Required] long order_id)
     {
         throw new NotImplementedException();
     }

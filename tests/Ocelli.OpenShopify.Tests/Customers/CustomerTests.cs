@@ -85,16 +85,15 @@ public class CustomerTests : IClassFixture<SharedFixture>
         foreach (var customerSavedSearch in response.Result.Customers)
         {
             _additionalPropertiesHelper.CheckAdditionalProperties(customerSavedSearch, Fixture.MyShopifyUrl);
+            if (customerSavedSearch.FirstName != null && customerSavedSearch.FirstName.Contains(Fixture.FirstName)
+                                                      && !Fixture.CreatedCustomers.Exists(w =>
+                                                          w.Id == customerSavedSearch.Id))
+                Fixture.CreatedCustomers.Add(customerSavedSearch);
         }
 
-        Assert.True(response.Result.Customers.Any());
-
-        //Add any created items from previously failed tests to the created list for later deletion.
-        Fixture.CreatedCustomers.AddRange(response.Result.Customers.Where(fs =>
-            !Fixture.CreatedCustomers.Exists(e => e.Id == fs.Id) &&
-            fs.FirstName!.StartsWith(Fixture.FirstName)));
+        Skip.If(!response.Result.Customers.Any());
     }
-    
+
     [SkippableFact, TestPriority(20)]
     public async Task Gets_Customer()
     {
@@ -144,9 +143,15 @@ public class CustomerTests : IClassFixture<SharedFixture>
         {
             var response = await _service.Customer.SearchForCustomersThatMatchSuppliedQueryAsync(query: Fixture.FirstName);
             _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-            Fixture.CreatedCustomers.AddRange(response.Result.Customers);
             foreach (var customer in response.Result.Customers)
+            {
                 _additionalPropertiesHelper.CheckAdditionalProperties(customer, Fixture.MyShopifyUrl);
+
+                if (customer.FirstName != null && customer.FirstName.Contains(Fixture.FirstName)
+                                               && !Fixture.CreatedCustomers.Exists(w =>
+                                                   w.Id == customer.Id))
+                    Fixture.CreatedCustomers.Add(customer);
+            }
         }
         catch (Exception ex)
         {

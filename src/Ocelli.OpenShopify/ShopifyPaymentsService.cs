@@ -16,7 +16,7 @@ public class ShopifyPaymentsService : ShopifyService, IShopifyPaymentsService
     private readonly string _myShopifyUrl;
     private readonly Uri _baseUri;
 
-    public ShopifyPaymentsService(string myShopifyUrl, string shopAccessToken) : base(myShopifyUrl, shopAccessToken)
+    public ShopifyPaymentsService(string myShopifyUrl, string shopAccessToken, bool isPlusStore = false) : base(myShopifyUrl, shopAccessToken, isPlusStore)
     {
         _baseUri = base.PrepareRequest(myShopifyUrl);
         _myShopifyUrl = myShopifyUrl;

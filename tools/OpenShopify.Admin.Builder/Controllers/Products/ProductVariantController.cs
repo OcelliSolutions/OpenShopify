@@ -146,7 +146,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("inventory_management")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public bool? InventoryManagement { get; set; } = default!;
+        public string? InventoryManagement { get; set; } = default!;
 
         /// <summary>
         /// Whether customers are allowed to place an order for the product variant when it's out of stock. Valid values: 

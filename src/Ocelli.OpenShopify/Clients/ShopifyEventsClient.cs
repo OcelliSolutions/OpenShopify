@@ -743,6 +743,16 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<WebhookItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
+                        if (status_ == 422)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<WebhookErrorResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<WebhookErrorResponse>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -1210,14 +1220,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.ICollection<string>? Fields { get; set; } = default!;
 
-        /// <summary>
-        /// Format in which the webhook subscription should send the data. Valid values are `JSON` and `XML`. Defaults to `JSON`.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("format")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Format { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public WebhookFormat? Format { get; set; } = default!;
 
         /// <summary>
         /// Optional array of namespaces for any metafields that should be included with each webhook.
@@ -1235,16 +1242,14 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("private_metafield_namespaces")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? PrivateMetafieldNamespaces { get; set; } = default!;
-
-        /// <summary>
-        /// Event that triggers the webhook. Valid values are: app/uninstalled, bulk_operations/finish, carts/create, carts/update, checkouts/create, checkouts/delete, checkouts/update, collection_listings/add, collection_listings/remove, collection_listings/update, collections/create, collections/delete, collections/update, customer_groups/create, customer_groups/delete, customer_groups/update, customer_payment_methods/create, customer_payment_methods/revoke, customer_payment_methods/update, customers/create, customers/delete, customers/disable, customers/enable, customers/update, customers_marketing_consent/update, disputes/create, disputes/update, domains/create, domains/destroy, domains/update, draft_orders/create, draft_orders/delete, draft_orders/update, fulfillment_events/create, fulfillment_events/delete, fulfillments/create, fulfillments/update, inventory_items/create, inventory_items/delete, inventory_items/update, inventory_levels/connect, inventory_levels/disconnect, inventory_levels/update, locales/create, locales/update, locations/create, locations/delete, locations/update, markets/create, markets/delete, markets/update, order_transactions/create, orders/cancelled, orders/create, orders/delete, orders/edited, orders/fulfilled, orders/paid, orders/partially_fulfilled, orders/updated, product_listings/add, product_listings/remove, product_listings/update, products/create, products/delete, products/update, profiles/create, profiles/delete, profiles/update, refunds/create, scheduled_product_listings/add, scheduled_product_listings/remove, scheduled_product_listings/update, selling_plan_groups/create, selling_plan_groups/delete, selling_plan_groups/update, shop/update, subscription_billing_attempts/challenged, subscription_billing_attempts/failure, subscription_billing_attempts/success, subscription_contracts/create, subscription_contracts/update, tender_transactions/create, themes/create, themes/delete, themes/publish, themes/update
-        /// </summary>
+        public System.Collections.Generic.ICollection<string>? PrivateMetafieldNamespaces { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("topic")]
 
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Topic { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public WebhookTopic Topic { get; set; } = default!;
 
         /// <summary>
         /// Date and time when the webhook subscription was updated. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).
@@ -1484,14 +1489,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.ICollection<string>? Fields { get; set; } = default!;
 
-        /// <summary>
-        /// Format in which the webhook subscription should send the data. Valid values are `JSON` and `XML`. Defaults to `JSON`.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("format")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Format { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public WebhookFormat? Format { get; set; } = default!;
 
         /// <summary>
         /// Optional array of namespaces for any metafields that should be included with each webhook.
@@ -1509,16 +1511,14 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("private_metafield_namespaces")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? PrivateMetafieldNamespaces { get; set; } = default!;
-
-        /// <summary>
-        /// Event that triggers the webhook. Valid values are: app/uninstalled, bulk_operations/finish, carts/create, carts/update, checkouts/create, checkouts/delete, checkouts/update, collection_listings/add, collection_listings/remove, collection_listings/update, collections/create, collections/delete, collections/update, customer_groups/create, customer_groups/delete, customer_groups/update, customer_payment_methods/create, customer_payment_methods/revoke, customer_payment_methods/update, customers/create, customers/delete, customers/disable, customers/enable, customers/update, customers_marketing_consent/update, disputes/create, disputes/update, domains/create, domains/destroy, domains/update, draft_orders/create, draft_orders/delete, draft_orders/update, fulfillment_events/create, fulfillment_events/delete, fulfillments/create, fulfillments/update, inventory_items/create, inventory_items/delete, inventory_items/update, inventory_levels/connect, inventory_levels/disconnect, inventory_levels/update, locales/create, locales/update, locations/create, locations/delete, locations/update, markets/create, markets/delete, markets/update, order_transactions/create, orders/cancelled, orders/create, orders/delete, orders/edited, orders/fulfilled, orders/paid, orders/partially_fulfilled, orders/updated, product_listings/add, product_listings/remove, product_listings/update, products/create, products/delete, products/update, profiles/create, profiles/delete, profiles/update, refunds/create, scheduled_product_listings/add, scheduled_product_listings/remove, scheduled_product_listings/update, selling_plan_groups/create, selling_plan_groups/delete, selling_plan_groups/update, shop/update, subscription_billing_attempts/challenged, subscription_billing_attempts/failure, subscription_billing_attempts/success, subscription_contracts/create, subscription_contracts/update, tender_transactions/create, themes/create, themes/delete, themes/publish, themes/update
-        /// </summary>
+        public System.Collections.Generic.ICollection<string>? PrivateMetafieldNamespaces { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("topic")]
 
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Topic { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public WebhookTopic Topic { get; set; } = default!;
 
         /// <summary>
         /// Date and time when the webhook subscription was updated. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).
@@ -1601,14 +1601,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.ICollection<string>? Fields { get; set; } = default!;
 
-        /// <summary>
-        /// Format in which the webhook subscription should send the data. Valid values are `JSON` and `XML`. Defaults to `JSON`.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("format")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Format { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public WebhookFormat? Format { get; set; } = default!;
 
         /// <summary>
         /// Optional array of namespaces for any metafields that should be included with each webhook.
@@ -1626,16 +1623,14 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("private_metafield_namespaces")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? PrivateMetafieldNamespaces { get; set; } = default!;
-
-        /// <summary>
-        /// Event that triggers the webhook. Valid values are: app/uninstalled, bulk_operations/finish, carts/create, carts/update, checkouts/create, checkouts/delete, checkouts/update, collection_listings/add, collection_listings/remove, collection_listings/update, collections/create, collections/delete, collections/update, customer_groups/create, customer_groups/delete, customer_groups/update, customer_payment_methods/create, customer_payment_methods/revoke, customer_payment_methods/update, customers/create, customers/delete, customers/disable, customers/enable, customers/update, customers_marketing_consent/update, disputes/create, disputes/update, domains/create, domains/destroy, domains/update, draft_orders/create, draft_orders/delete, draft_orders/update, fulfillment_events/create, fulfillment_events/delete, fulfillments/create, fulfillments/update, inventory_items/create, inventory_items/delete, inventory_items/update, inventory_levels/connect, inventory_levels/disconnect, inventory_levels/update, locales/create, locales/update, locations/create, locations/delete, locations/update, markets/create, markets/delete, markets/update, order_transactions/create, orders/cancelled, orders/create, orders/delete, orders/edited, orders/fulfilled, orders/paid, orders/partially_fulfilled, orders/updated, product_listings/add, product_listings/remove, product_listings/update, products/create, products/delete, products/update, profiles/create, profiles/delete, profiles/update, refunds/create, scheduled_product_listings/add, scheduled_product_listings/remove, scheduled_product_listings/update, selling_plan_groups/create, selling_plan_groups/delete, selling_plan_groups/update, shop/update, subscription_billing_attempts/challenged, subscription_billing_attempts/failure, subscription_billing_attempts/success, subscription_contracts/create, subscription_contracts/update, tender_transactions/create, themes/create, themes/delete, themes/publish, themes/update
-        /// </summary>
+        public System.Collections.Generic.ICollection<string>? PrivateMetafieldNamespaces { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("topic")]
 
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Topic { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public WebhookTopic Topic { get; set; } = default!;
 
         /// <summary>
         /// Date and time when the webhook subscription was updated. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).
@@ -1664,6 +1659,63 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class WebhookError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("topic")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<string>? Topic { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("address")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<string>? Address { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class WebhookErrorResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public WebhookError? Errors { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum WebhookFormat
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"json")]
+        json = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"xml")]
+        xml = 1,
 
     }
 
@@ -1706,6 +1758,255 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum WebhookTopic
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"app/uninstalled")]
+        app_uninstalled = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"bulk_operations/finish")]
+        bulk_operations_finish = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"carts/create")]
+        carts_create = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"carts/update")]
+        carts_update = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"checkouts/create")]
+        checkouts_create = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"checkouts/delete")]
+        checkouts_delete = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"checkouts/update")]
+        checkouts_update = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"collection_listings/add")]
+        collection_listings_add = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"collection_listings/remove")]
+        collection_listings_remove = 8,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"collection_listings/update")]
+        collection_listings_update = 9,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"collections/create")]
+        collections_create = 10,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"collections/delete")]
+        collections_delete = 11,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"collections/update")]
+        collections_update = 12,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"customer_groups/create")]
+        customer_groups_create = 13,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"customer_groups/delete")]
+        customer_groups_delete = 14,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"customer_groups/update")]
+        customer_groups_update = 15,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"customer_payment_methods/create")]
+        customer_payment_methods_create = 16,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"customer_payment_methods/revoke")]
+        customer_payment_methods_revoke = 17,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"customer_payment_methods/update")]
+        customer_payment_methods_update = 18,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"customers/create")]
+        customers_create = 19,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"customers/delete")]
+        customers_delete = 20,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"customers/disable")]
+        customers_disable = 21,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"customers/enable")]
+        customers_enable = 22,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"customers/update")]
+        customers_update = 23,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"customers_marketing_consent/update")]
+        customers_marketing_consent_update = 24,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"disputes/create")]
+        disputes_create = 25,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"disputes/update")]
+        disputes_update = 26,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"domains/create")]
+        domains_create = 27,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"domains/destroy")]
+        domains_destroy = 28,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"domains/update")]
+        domains_update = 29,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"draft_orders/create")]
+        draft_orders_create = 30,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"draft_orders/delete")]
+        draft_orders_delete = 31,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"draft_orders/update")]
+        draft_orders_update = 32,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fulfillment_events/create")]
+        fulfillment_events_create = 33,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fulfillment_events/delete")]
+        fulfillment_events_delete = 34,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fulfillments/create")]
+        fulfillments_create = 35,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fulfillments/update")]
+        fulfillments_update = 36,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"inventory_items/create")]
+        inventory_items_create = 37,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"inventory_items/delete")]
+        inventory_items_delete = 38,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"inventory_items/update")]
+        inventory_items_update = 39,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"inventory_levels/connect")]
+        inventory_levels_connect = 40,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"inventory_levels/disconnect")]
+        inventory_levels_disconnect = 41,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"inventory_levels/update")]
+        inventory_levels_update = 42,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"locales/create")]
+        locales_create = 43,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"locales/update")]
+        locales_update = 44,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"locations/create")]
+        locations_create = 45,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"locations/delete")]
+        locations_delete = 46,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"locations/update")]
+        locations_update = 47,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"order_transactions/create")]
+        order_transactions_create = 48,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"orders/cancelled")]
+        orders_cancelled = 49,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"orders/create")]
+        orders_create = 50,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"orders/delete")]
+        orders_delete = 51,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"orders/edited")]
+        orders_edited = 52,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"orders/fulfilled")]
+        orders_fulfilled = 53,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"orders/paid")]
+        orders_paid = 54,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"orders/partially_fulfilled")]
+        orders_partially_fulfilled = 55,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"orders/updated")]
+        orders_updated = 56,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"product_listings/add")]
+        product_listings_add = 57,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"product_listings/remove")]
+        product_listings_remove = 58,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"product_listings/update")]
+        product_listings_update = 59,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"products/create")]
+        products_create = 60,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"products/delete")]
+        products_delete = 61,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"products/update")]
+        products_update = 62,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"profiles/create")]
+        profiles_create = 63,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"profiles/delete")]
+        profiles_delete = 64,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"profiles/update")]
+        profiles_update = 65,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"refunds/create")]
+        refunds_create = 66,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"selling_plan_groups/create")]
+        selling_plan_groups_create = 67,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"selling_plan_groups/delete")]
+        selling_plan_groups_delete = 68,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"selling_plan_groups/update")]
+        selling_plan_groups_update = 69,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"shop/update")]
+        shop_update = 70,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"subscription_billing_attempts/challenged")]
+        subscription_billing_attempts_challenged = 71,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"subscription_billing_attempts/failure")]
+        subscription_billing_attempts_failure = 72,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"subscription_billing_attempts/success")]
+        subscription_billing_attempts_success = 73,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"subscription_contracts/create")]
+        subscription_contracts_create = 74,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"subscription_contracts/update")]
+        subscription_contracts_update = 75,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"tender_transactions/create")]
+        tender_transactions_create = 76,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"themes/create")]
+        themes_create = 77,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"themes/delete")]
+        themes_delete = 78,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"themes/publish")]
+        themes_publish = 79,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"themes/update")]
+        themes_update = 80,
 
     }
 

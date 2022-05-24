@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
@@ -47,7 +46,7 @@ public class CollectController : CollectControllerBase
     /// <inheritdoc />
     [HttpGet, Route("collects/{collect_id:long}.json")]
     [ProducesResponseType(typeof(CollectItem), StatusCodes.Status200OK)]
-    public override Task GetSpecificCollect([Required] long collect_id, string? fields = null)
+    public override Task GetCollect([Required] long collect_id, string? fields = null)
     {
         throw new NotImplementedException();
     }

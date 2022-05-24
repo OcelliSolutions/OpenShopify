@@ -14,7 +14,7 @@ public class OrdersService : ShopifyService, IOrdersService
     private readonly string _myShopifyUrl;
     private readonly Uri _baseUri;
 
-    public OrdersService(string myShopifyUrl, string shopAccessToken) : base(myShopifyUrl, shopAccessToken)
+    public OrdersService(string myShopifyUrl, string shopAccessToken, bool isPlusStore = false) : base(myShopifyUrl, shopAccessToken, isPlusStore)
     {
         _baseUri = base.PrepareRequest(myShopifyUrl);
         _myShopifyUrl = myShopifyUrl;

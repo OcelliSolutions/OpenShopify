@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Data;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
 using OpenShopify.Admin.Builder.Models;
@@ -45,7 +46,7 @@ public class OrderController : OrderControllerBase
     /// <inheritdoc />
     [HttpGet, Route("orders/{order_id:long}.json")]
     [ProducesResponseType(typeof(OrderItem), StatusCodes.Status200OK)]
-    public override Task GetSpecificOrder([Required] long order_id, string? fields = null)
+    public override Task GetOrder([Required] long order_id, string? fields = null)
     {
         throw new NotImplementedException();
     }
@@ -69,7 +70,7 @@ public class OrderController : OrderControllerBase
     /// <inheritdoc />
     [HttpGet, Route("orders/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task GetOrderCount(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null, string? financial_status = null,
+    public override Task CountOrders(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null, string? financial_status = null,
         string? fulfillment_status = null, string? status = null, DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();
@@ -105,7 +106,7 @@ public class OrderController : OrderControllerBase
     [HttpPost, Route("orders/{order_id:long}/cancel.json")]
     [ProducesResponseType(typeof(OrderItem), StatusCodes.Status200OK)]
     public Task CancelOrder(long order_id, decimal? amount = null, string? currency = null, bool? email = null,
-        string? reason = null, CreateRefund? refund = null, bool? restock = null)
+        CancelReason? reason = null, CreateRefund? refund = null, bool? restock = null)
     {
         throw new NotImplementedException();
     }

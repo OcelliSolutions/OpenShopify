@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
+using OpenShopify.Common.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.Events;
 
@@ -23,6 +24,7 @@ public class WebhookController : WebhookControllerBase
     /// <inheritdoc />
     [HttpPost, Route("webhooks.json")]
     [ProducesResponseType(typeof(WebhookItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(WebhookErrorResponse), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateWebhook([Required] CreateWebhookRequest request)
     {
         throw new NotImplementedException();

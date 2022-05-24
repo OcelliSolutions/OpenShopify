@@ -608,7 +608,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CollectionListingItem>> GetSpecificCollectionListingThatIsPublishedToYourAppAsync(long collectionListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CollectionListingItem>> GetCollectionListingThatIsPublishedToYourAppAsync(long collectionListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -832,7 +832,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CollectionListingItem>> GetSpecificCollectionListingThatIsPublishedToYourAppAsync(long collectionListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CollectionListingItem>> GetCollectionListingThatIsPublishedToYourAppAsync(long collectionListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (collectionListingId == null)
                 throw new System.ArgumentNullException("collectionListingId");
@@ -2234,7 +2234,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<ProductListingItem>> GetSpecificProductListingThatIsPublishedToYourAppAsync(long productListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ProductListingItem>> GetProductListingThatIsPublishedToYourAppAsync(long productListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2544,7 +2544,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductListingItem>> GetSpecificProductListingThatIsPublishedToYourAppAsync(long productListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductListingItem>> GetProductListingThatIsPublishedToYourAppAsync(long productListingId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (productListingId == null)
                 throw new System.ArgumentNullException("productListingId");

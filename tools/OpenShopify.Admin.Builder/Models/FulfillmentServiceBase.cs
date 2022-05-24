@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using OpenShopify.Common.Data;
+using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models
 {
@@ -7,6 +7,10 @@ namespace OpenShopify.Admin.Builder.Models
     {
         /// <inheritdoc cref="FulfillmentServiceOrig.Format"/>
         public new FulfillmentServiceFormat? Format { get; set; }
+
+        /// <inheritdoc cref="FulfillmentServiceOrig.InventoryManagement"/>
+        [JsonPropertyName("inventory_management")]
+        public new bool? InventoryManagement { get; set; }
 
         /// <summary>
         /// This property is undocumented by Shopify.

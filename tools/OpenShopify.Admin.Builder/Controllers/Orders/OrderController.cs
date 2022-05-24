@@ -57,7 +57,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}.json")]
-        public abstract System.Threading.Tasks.Task GetSpecificOrder(long order_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetOrder(long order_id, string? fields = null);
 
         /// <summary>
         /// Update an order
@@ -82,7 +82,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_max">Orders last updated before date specified.</param>
         /// <param name="updated_at_min">Orders last updated after date specified.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/count.json")]
-        public abstract System.Threading.Tasks.Task GetOrderCount(System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, string? financial_status = null, string? fulfillment_status = null, string? status = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task CountOrders(System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, string? financial_status = null, string? fulfillment_status = null, string? status = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Close an order

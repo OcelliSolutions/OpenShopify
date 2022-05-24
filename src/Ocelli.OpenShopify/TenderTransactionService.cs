@@ -10,7 +10,7 @@ public class TenderTransactionService : ShopifyService, ITenderTransactionServic
     private readonly string _myShopifyUrl;
     private readonly Uri _baseUri;
 
-    public TenderTransactionService(string myShopifyUrl, string shopAccessToken) : base(myShopifyUrl, shopAccessToken)
+    public TenderTransactionService(string myShopifyUrl, string shopAccessToken, bool isPlusStore = false) : base(myShopifyUrl, shopAccessToken, isPlusStore)
     {
         _baseUri = base.PrepareRequest(myShopifyUrl);
         _myShopifyUrl = myShopifyUrl;

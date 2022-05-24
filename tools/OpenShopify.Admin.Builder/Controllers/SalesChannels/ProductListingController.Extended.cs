@@ -39,7 +39,7 @@ public class ProductListingController : ProductListingControllerBase
     /// <inheritdoc />
     [HttpGet, Route("product_listings/{product_listing_id:long}.json")]
     [ProducesResponseType(typeof(ProductListingItem), StatusCodes.Status200OK)]
-    public override Task GetSpecificProductListingThatIsPublishedToYourApp([Required] long product_listing_id)
+    public override Task GetProductListingThatIsPublishedToYourApp([Required] long product_listing_id)
     {
         throw new NotImplementedException();
     }

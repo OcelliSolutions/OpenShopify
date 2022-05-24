@@ -53,7 +53,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <param name="in_shop_currency">Show amounts in the shop currency.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions/{transaction_id}.json")]
-        public abstract System.Threading.Tasks.Task GetSpecificTransaction(long order_id, long transaction_id, string? fields = null, bool? in_shop_currency = null);
+        public abstract System.Threading.Tasks.Task GetTransaction(long order_id, long transaction_id, string? fields = null, bool? in_shop_currency = null);
 
     }
 

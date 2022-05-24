@@ -45,7 +45,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Retrieve a specific collection listing that is published to your app
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task GetSpecificCollectionListingThatIsPublishedToYourApp(long collection_listing_id);
+        public abstract System.Threading.Tasks.Task GetCollectionListingThatIsPublishedToYourApp(long collection_listing_id);
 
         /// <summary>
         /// Create a collection listing to publish a collection to your app

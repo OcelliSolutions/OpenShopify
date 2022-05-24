@@ -16,5 +16,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\OpenShopify.Admin.Builder\OpenShopify.Admin.Builder.csproj" />
+	  <ProjectReference Include="..\OpenShopify.OAuth.Builder\OpenShopify.OAuth.Builder.csproj" />
 	</ItemGroup>
 </Project>

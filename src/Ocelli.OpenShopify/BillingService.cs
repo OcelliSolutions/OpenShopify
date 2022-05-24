@@ -13,7 +13,7 @@ public class BillingService : ShopifyService, IBillingService
     private readonly string _myShopifyUrl;
     private readonly Uri _baseUri;
 
-    public BillingService(string myShopifyUrl, string shopAccessToken) : base(myShopifyUrl, shopAccessToken)
+    public BillingService(string myShopifyUrl, string shopAccessToken, bool isPlusStore = false) : base(myShopifyUrl, shopAccessToken, isPlusStore)
     {
         _baseUri = base.PrepareRequest(myShopifyUrl);
         _myShopifyUrl = myShopifyUrl;

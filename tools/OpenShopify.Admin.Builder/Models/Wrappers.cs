@@ -22,6 +22,7 @@ public partial record CreateStorefrontAccessTokenRequest
     public CreateStorefrontAccessToken StorefrontAccessToken { get; set; } = null!;
 }
 
+/// <inheritdoc cref="StorefrontAccessTokenBase"/>
 public partial record CreateStorefrontAccessToken : StorefrontAccessTokenBase {}
 public partial record UpdateStorefrontAccessTokenRequest
 {
@@ -29,9 +30,11 @@ public partial record UpdateStorefrontAccessTokenRequest
     public UpdateStorefrontAccessToken StorefrontAccessToken { get; set; } = null!;
 }
 
+/// <inheritdoc cref="StorefrontAccessToken"/>
 public partial record UpdateStorefrontAccessToken : StorefrontAccessToken{}
 
 		
+/// <inheritdoc cref="StorefrontAccessTokenBase"/>
 public partial record StorefrontAccessToken : StorefrontAccessTokenBase
 {
     [JsonPropertyName("id"), Required]
@@ -41,6 +44,7 @@ public partial record StorefrontAccessToken : StorefrontAccessTokenBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="StorefrontAccessTokenOrig"/>
 public partial record StorefrontAccessTokenBase : StorefrontAccessTokenOrig{}
 
 	
@@ -61,6 +65,7 @@ public partial record CreateReportRequest
     public CreateReport Report { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ReportBase"/>
 public partial record CreateReport : ReportBase {}
 public partial record UpdateReportRequest
 {
@@ -68,9 +73,11 @@ public partial record UpdateReportRequest
     public UpdateReport Report { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Report"/>
 public partial record UpdateReport : Report{}
 
 		
+/// <inheritdoc cref="ReportBase"/>
 public partial record Report : ReportBase
 {
     [JsonPropertyName("id"), Required]
@@ -80,6 +87,7 @@ public partial record Report : ReportBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="ReportOrig"/>
 public partial record ReportBase : ReportOrig{}
 
 	
@@ -100,6 +108,7 @@ public partial record CreateApplicationChargeRequest
     public CreateApplicationCharge ApplicationCharge { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ApplicationChargeBase"/>
 public partial record CreateApplicationCharge : ApplicationChargeBase {}
 public partial record UpdateApplicationChargeRequest
 {
@@ -107,9 +116,11 @@ public partial record UpdateApplicationChargeRequest
     public UpdateApplicationCharge ApplicationCharge { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ApplicationCharge"/>
 public partial record UpdateApplicationCharge : ApplicationCharge{}
 
 		
+/// <inheritdoc cref="ApplicationChargeBase"/>
 public partial record ApplicationCharge : ApplicationChargeBase
 {
     [JsonPropertyName("id"), Required]
@@ -119,6 +130,7 @@ public partial record ApplicationCharge : ApplicationChargeBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="ApplicationChargeOrig"/>
 public partial record ApplicationChargeBase : ApplicationChargeOrig{}
 
 	
@@ -139,6 +151,7 @@ public partial record CreateApplicationCreditRequest
     public CreateApplicationCredit ApplicationCredit { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ApplicationCreditBase"/>
 public partial record CreateApplicationCredit : ApplicationCreditBase {}
 public partial record UpdateApplicationCreditRequest
 {
@@ -146,9 +159,11 @@ public partial record UpdateApplicationCreditRequest
     public UpdateApplicationCredit ApplicationCredit { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ApplicationCredit"/>
 public partial record UpdateApplicationCredit : ApplicationCredit{}
 
 		
+/// <inheritdoc cref="ApplicationCreditBase"/>
 public partial record ApplicationCredit : ApplicationCreditBase
 {
     [JsonPropertyName("id"), Required]
@@ -158,6 +173,7 @@ public partial record ApplicationCredit : ApplicationCreditBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="ApplicationCreditOrig"/>
 public partial record ApplicationCreditBase : ApplicationCreditOrig{}
 
 	
@@ -178,6 +194,7 @@ public partial record CreateRecurringApplicationChargeRequest
     public CreateRecurringApplicationCharge RecurringApplicationCharge { get; set; } = null!;
 }
 
+/// <inheritdoc cref="RecurringApplicationChargeBase"/>
 public partial record CreateRecurringApplicationCharge : RecurringApplicationChargeBase {}
 public partial record UpdateRecurringApplicationChargeRequest
 {
@@ -185,9 +202,11 @@ public partial record UpdateRecurringApplicationChargeRequest
     public UpdateRecurringApplicationCharge RecurringApplicationCharge { get; set; } = null!;
 }
 
+/// <inheritdoc cref="RecurringApplicationCharge"/>
 public partial record UpdateRecurringApplicationCharge : RecurringApplicationCharge{}
 
 		
+/// <inheritdoc cref="RecurringApplicationChargeBase"/>
 public partial record RecurringApplicationCharge : RecurringApplicationChargeBase
 {
     [JsonPropertyName("id"), Required]
@@ -197,6 +216,7 @@ public partial record RecurringApplicationCharge : RecurringApplicationChargeBas
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="RecurringApplicationChargeOrig"/>
 public partial record RecurringApplicationChargeBase : RecurringApplicationChargeOrig{}
 
 	
@@ -217,6 +237,7 @@ public partial record CreateUsageChargeRequest
     public CreateUsageCharge UsageCharge { get; set; } = null!;
 }
 
+/// <inheritdoc cref="UsageChargeBase"/>
 public partial record CreateUsageCharge : UsageChargeBase {}
 public partial record UpdateUsageChargeRequest
 {
@@ -224,9 +245,11 @@ public partial record UpdateUsageChargeRequest
     public UpdateUsageCharge UsageCharge { get; set; } = null!;
 }
 
+/// <inheritdoc cref="UsageCharge"/>
 public partial record UpdateUsageCharge : UsageCharge{}
 
 		
+/// <inheritdoc cref="UsageChargeBase"/>
 public partial record UsageCharge : UsageChargeBase
 {
     [JsonPropertyName("id"), Required]
@@ -236,6 +259,7 @@ public partial record UsageCharge : UsageChargeBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="UsageChargeOrig"/>
 public partial record UsageChargeBase : UsageChargeOrig{}
 
 	
@@ -256,6 +280,7 @@ public partial record CreateCustomerRequest
     public CreateCustomer Customer { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CustomerBase"/>
 public partial record CreateCustomer : CustomerBase {}
 public partial record UpdateCustomerRequest
 {
@@ -263,9 +288,11 @@ public partial record UpdateCustomerRequest
     public UpdateCustomer Customer { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Customer"/>
 public partial record UpdateCustomer : Customer{}
 
 		
+/// <inheritdoc cref="CustomerBase"/>
 public partial record Customer : CustomerBase
 {
     [JsonPropertyName("id"), Required]
@@ -275,6 +302,7 @@ public partial record Customer : CustomerBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="CustomerOrig"/>
 public partial record CustomerBase : CustomerOrig{}
 
 	
@@ -295,6 +323,7 @@ public partial record CreateCustomerSavedSearchRequest
     public CreateCustomerSavedSearch CustomerSavedSearch { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CustomerSavedSearchBase"/>
 public partial record CreateCustomerSavedSearch : CustomerSavedSearchBase {}
 public partial record UpdateCustomerSavedSearchRequest
 {
@@ -302,9 +331,11 @@ public partial record UpdateCustomerSavedSearchRequest
     public UpdateCustomerSavedSearch CustomerSavedSearch { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CustomerSavedSearch"/>
 public partial record UpdateCustomerSavedSearch : CustomerSavedSearch{}
 
 		
+/// <inheritdoc cref="CustomerSavedSearchBase"/>
 public partial record CustomerSavedSearch : CustomerSavedSearchBase
 {
     [JsonPropertyName("id"), Required]
@@ -314,6 +345,7 @@ public partial record CustomerSavedSearch : CustomerSavedSearchBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="CustomerSavedSearchOrig"/>
 public partial record CustomerSavedSearchBase : CustomerSavedSearchOrig{}
 
 	
@@ -329,10 +361,12 @@ public partial record DeprecatedApiCallList
     public IEnumerable<DeprecatedApiCall> DeprecatedApiCalls { get; set; } = null!;
 }
 		
+/// <inheritdoc cref="DeprecatedAPIcallsBase"/>
 public partial record DeprecatedApiCall : DeprecatedAPIcallsBase
 {
 }
 
+/// <inheritdoc cref="DeprecatedAPIcallsOrig"/>
 public partial record DeprecatedAPIcallsBase : DeprecatedAPIcallsOrig{}
 
 	
@@ -353,6 +387,7 @@ public partial record CreateDiscountCodeRequest
     public CreateDiscountCode DiscountCode { get; set; } = null!;
 }
 
+/// <inheritdoc cref="DiscountCodeBase"/>
 public partial record CreateDiscountCode : DiscountCodeBase {}
 public partial record UpdateDiscountCodeRequest
 {
@@ -360,9 +395,11 @@ public partial record UpdateDiscountCodeRequest
     public UpdateDiscountCode DiscountCode { get; set; } = null!;
 }
 
+/// <inheritdoc cref="DiscountCode"/>
 public partial record UpdateDiscountCode : DiscountCode{}
 
 		
+/// <inheritdoc cref="DiscountCodeBase"/>
 public partial record DiscountCode : DiscountCodeBase
 {
     [JsonPropertyName("id"), Required]
@@ -372,6 +409,7 @@ public partial record DiscountCode : DiscountCodeBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="DiscountCodeOrig"/>
 public partial record DiscountCodeBase : DiscountCodeOrig{}
 
 	
@@ -392,6 +430,7 @@ public partial record CreatePriceRuleRequest
     public CreatePriceRule PriceRule { get; set; } = null!;
 }
 
+/// <inheritdoc cref="PriceRuleBase"/>
 public partial record CreatePriceRule : PriceRuleBase {}
 public partial record UpdatePriceRuleRequest
 {
@@ -399,9 +438,11 @@ public partial record UpdatePriceRuleRequest
     public UpdatePriceRule PriceRule { get; set; } = null!;
 }
 
+/// <inheritdoc cref="PriceRule"/>
 public partial record UpdatePriceRule : PriceRule{}
 
 		
+/// <inheritdoc cref="PriceRuleBase"/>
 public partial record PriceRule : PriceRuleBase
 {
     [JsonPropertyName("id"), Required]
@@ -411,6 +452,7 @@ public partial record PriceRule : PriceRuleBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="PriceRuleOrig"/>
 public partial record PriceRuleBase : PriceRuleOrig{}
 
 	
@@ -431,6 +473,7 @@ public partial record CreateEventRequest
     public CreateEvent Event { get; set; } = null!;
 }
 
+/// <inheritdoc cref="EventBase"/>
 public partial record CreateEvent : EventBase {}
 public partial record UpdateEventRequest
 {
@@ -438,9 +481,11 @@ public partial record UpdateEventRequest
     public UpdateEvent Event { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Event"/>
 public partial record UpdateEvent : Event{}
 
 		
+/// <inheritdoc cref="EventBase"/>
 public partial record Event : EventBase
 {
     [JsonPropertyName("id"), Required]
@@ -450,6 +495,7 @@ public partial record Event : EventBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="EventOrig"/>
 public partial record EventBase : EventOrig{}
 
 	
@@ -470,6 +516,7 @@ public partial record CreateWebhookRequest
     public CreateWebhook Webhook { get; set; } = null!;
 }
 
+/// <inheritdoc cref="WebhookBase"/>
 public partial record CreateWebhook : WebhookBase {}
 public partial record UpdateWebhookRequest
 {
@@ -477,9 +524,11 @@ public partial record UpdateWebhookRequest
     public UpdateWebhook Webhook { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Webhook"/>
 public partial record UpdateWebhook : Webhook{}
 
 		
+/// <inheritdoc cref="WebhookBase"/>
 public partial record Webhook : WebhookBase
 {
     [JsonPropertyName("id"), Required]
@@ -489,6 +538,7 @@ public partial record Webhook : WebhookBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="WebhookOrig"/>
 public partial record WebhookBase : WebhookOrig{}
 
 	
@@ -509,6 +559,7 @@ public partial record CreateInventoryItemRequest
     public CreateInventoryItem InventoryItem { get; set; } = null!;
 }
 
+/// <inheritdoc cref="InventoryItemBase"/>
 public partial record CreateInventoryItem : InventoryItemBase {}
 public partial record UpdateInventoryItemRequest
 {
@@ -516,9 +567,11 @@ public partial record UpdateInventoryItemRequest
     public UpdateInventoryItem InventoryItem { get; set; } = null!;
 }
 
+/// <inheritdoc cref="InventoryItem"/>
 public partial record UpdateInventoryItem : InventoryItem{}
 
 		
+/// <inheritdoc cref="InventoryItemBase"/>
 public partial record InventoryItem : InventoryItemBase
 {
     [JsonPropertyName("id"), Required]
@@ -528,6 +581,7 @@ public partial record InventoryItem : InventoryItemBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="InventoryItemOrig"/>
 public partial record InventoryItemBase : InventoryItemOrig{}
 
 	
@@ -548,6 +602,7 @@ public partial record CreateInventoryLevelRequest
     public CreateInventoryLevel InventoryLevel { get; set; } = null!;
 }
 
+/// <inheritdoc cref="InventoryLevelBase"/>
 public partial record CreateInventoryLevel : InventoryLevelBase {}
 public partial record UpdateInventoryLevelRequest
 {
@@ -555,13 +610,16 @@ public partial record UpdateInventoryLevelRequest
     public UpdateInventoryLevel InventoryLevel { get; set; } = null!;
 }
 
+/// <inheritdoc cref="InventoryLevel"/>
 public partial record UpdateInventoryLevel : InventoryLevel{}
 
 		
+/// <inheritdoc cref="InventoryLevelBase"/>
 public partial record InventoryLevel : InventoryLevelBase
 {
 }
 
+/// <inheritdoc cref="InventoryLevelOrig"/>
 public partial record InventoryLevelBase : InventoryLevelOrig{}
 
 	
@@ -582,6 +640,7 @@ public partial record CreateLocationRequest
     public CreateLocation Location { get; set; } = null!;
 }
 
+/// <inheritdoc cref="LocationBase"/>
 public partial record CreateLocation : LocationBase {}
 public partial record UpdateLocationRequest
 {
@@ -589,9 +648,11 @@ public partial record UpdateLocationRequest
     public UpdateLocation Location { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Location"/>
 public partial record UpdateLocation : Location{}
 
 		
+/// <inheritdoc cref="LocationBase"/>
 public partial record Location : LocationBase
 {
     [JsonPropertyName("id"), Required]
@@ -601,6 +662,7 @@ public partial record Location : LocationBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="LocationOrig"/>
 public partial record LocationBase : LocationOrig{}
 
 	
@@ -621,6 +683,7 @@ public partial record CreateMarketingEventRequest
     public CreateMarketingEvent MarketingEvent { get; set; } = null!;
 }
 
+/// <inheritdoc cref="MarketingEventBase"/>
 public partial record CreateMarketingEvent : MarketingEventBase {}
 public partial record UpdateMarketingEventRequest
 {
@@ -628,13 +691,16 @@ public partial record UpdateMarketingEventRequest
     public UpdateMarketingEvent MarketingEvent { get; set; } = null!;
 }
 
+/// <inheritdoc cref="MarketingEvent"/>
 public partial record UpdateMarketingEvent : MarketingEvent{}
 
 		
+/// <inheritdoc cref="MarketingEventBase"/>
 public partial record MarketingEvent : MarketingEventBase
 {
 }
 
+/// <inheritdoc cref="MarketingEventOrig"/>
 public partial record MarketingEventBase : MarketingEventOrig{}
 
 	
@@ -655,6 +721,7 @@ public partial record CreateMetafieldRequest
     public CreateMetafield Metafield { get; set; } = null!;
 }
 
+/// <inheritdoc cref="MetafieldBase"/>
 public partial record CreateMetafield : MetafieldBase {}
 public partial record UpdateMetafieldRequest
 {
@@ -662,9 +729,11 @@ public partial record UpdateMetafieldRequest
     public UpdateMetafield Metafield { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Metafield"/>
 public partial record UpdateMetafield : Metafield{}
 
 		
+/// <inheritdoc cref="MetafieldBase"/>
 public partial record Metafield : MetafieldBase
 {
     [JsonPropertyName("id"), Required]
@@ -674,6 +743,7 @@ public partial record Metafield : MetafieldBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="MetafieldOrig"/>
 public partial record MetafieldBase : MetafieldOrig{}
 
 	
@@ -694,6 +764,7 @@ public partial record CreateArticleRequest
     public CreateArticle Article { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ArticleBase"/>
 public partial record CreateArticle : ArticleBase {}
 public partial record UpdateArticleRequest
 {
@@ -701,9 +772,11 @@ public partial record UpdateArticleRequest
     public UpdateArticle Article { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Article"/>
 public partial record UpdateArticle : Article{}
 
 		
+/// <inheritdoc cref="ArticleBase"/>
 public partial record Article : ArticleBase
 {
     [JsonPropertyName("id"), Required]
@@ -713,6 +786,7 @@ public partial record Article : ArticleBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="ArticleOrig"/>
 public partial record ArticleBase : ArticleOrig{}
 
 	
@@ -733,6 +807,7 @@ public partial record CreateAssetRequest
     public CreateAsset Asset { get; set; } = null!;
 }
 
+/// <inheritdoc cref="AssetBase"/>
 public partial record CreateAsset : AssetBase {}
 public partial record UpdateAssetRequest
 {
@@ -740,13 +815,16 @@ public partial record UpdateAssetRequest
     public UpdateAsset Asset { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Asset"/>
 public partial record UpdateAsset : Asset{}
 
 		
+/// <inheritdoc cref="AssetBase"/>
 public partial record Asset : AssetBase
 {
 }
 
+/// <inheritdoc cref="AssetOrig"/>
 public partial record AssetBase : AssetOrig{}
 
 	
@@ -767,6 +845,7 @@ public partial record CreateBlogRequest
     public CreateBlog Blog { get; set; } = null!;
 }
 
+/// <inheritdoc cref="BlogBase"/>
 public partial record CreateBlog : BlogBase {}
 public partial record UpdateBlogRequest
 {
@@ -774,9 +853,11 @@ public partial record UpdateBlogRequest
     public UpdateBlog Blog { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Blog"/>
 public partial record UpdateBlog : Blog{}
 
 		
+/// <inheritdoc cref="BlogBase"/>
 public partial record Blog : BlogBase
 {
     [JsonPropertyName("id"), Required]
@@ -786,6 +867,7 @@ public partial record Blog : BlogBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="BlogOrig"/>
 public partial record BlogBase : BlogOrig{}
 
 	
@@ -806,6 +888,7 @@ public partial record CreateCommentRequest
     public CreateComment Comment { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CommentBase"/>
 public partial record CreateComment : CommentBase {}
 public partial record UpdateCommentRequest
 {
@@ -813,9 +896,11 @@ public partial record UpdateCommentRequest
     public UpdateComment Comment { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Comment"/>
 public partial record UpdateComment : Comment{}
 
 		
+/// <inheritdoc cref="CommentBase"/>
 public partial record Comment : CommentBase
 {
     [JsonPropertyName("id"), Required]
@@ -825,6 +910,7 @@ public partial record Comment : CommentBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="CommentOrig"/>
 public partial record CommentBase : CommentOrig{}
 
 	
@@ -845,6 +931,7 @@ public partial record CreatePageRequest
     public CreatePage Page { get; set; } = null!;
 }
 
+/// <inheritdoc cref="PageBase"/>
 public partial record CreatePage : PageBase {}
 public partial record UpdatePageRequest
 {
@@ -852,9 +939,11 @@ public partial record UpdatePageRequest
     public UpdatePage Page { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Page"/>
 public partial record UpdatePage : Page{}
 
 		
+/// <inheritdoc cref="PageBase"/>
 public partial record Page : PageBase
 {
     [JsonPropertyName("id"), Required]
@@ -864,6 +953,7 @@ public partial record Page : PageBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="PageOrig"/>
 public partial record PageBase : PageOrig{}
 
 	
@@ -884,6 +974,7 @@ public partial record CreateRedirectRequest
     public CreateRedirect Redirect { get; set; } = null!;
 }
 
+/// <inheritdoc cref="RedirectBase"/>
 public partial record CreateRedirect : RedirectBase {}
 public partial record UpdateRedirectRequest
 {
@@ -891,9 +982,11 @@ public partial record UpdateRedirectRequest
     public UpdateRedirect Redirect { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Redirect"/>
 public partial record UpdateRedirect : Redirect{}
 
 		
+/// <inheritdoc cref="RedirectBase"/>
 public partial record Redirect : RedirectBase
 {
     [JsonPropertyName("id"), Required]
@@ -903,6 +996,7 @@ public partial record Redirect : RedirectBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="RedirectOrig"/>
 public partial record RedirectBase : RedirectOrig{}
 
 	
@@ -923,6 +1017,7 @@ public partial record CreateScriptTagRequest
     public CreateScriptTag ScriptTag { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ScriptTagBase"/>
 public partial record CreateScriptTag : ScriptTagBase {}
 public partial record UpdateScriptTagRequest
 {
@@ -930,9 +1025,11 @@ public partial record UpdateScriptTagRequest
     public UpdateScriptTag ScriptTag { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ScriptTag"/>
 public partial record UpdateScriptTag : ScriptTag{}
 
 		
+/// <inheritdoc cref="ScriptTagBase"/>
 public partial record ScriptTag : ScriptTagBase
 {
     [JsonPropertyName("id"), Required]
@@ -942,6 +1039,7 @@ public partial record ScriptTag : ScriptTagBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="ScriptTagOrig"/>
 public partial record ScriptTagBase : ScriptTagOrig{}
 
 	
@@ -962,6 +1060,7 @@ public partial record CreateThemeRequest
     public CreateTheme Theme { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ThemeBase"/>
 public partial record CreateTheme : ThemeBase {}
 public partial record UpdateThemeRequest
 {
@@ -969,9 +1068,11 @@ public partial record UpdateThemeRequest
     public UpdateTheme Theme { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Theme"/>
 public partial record UpdateTheme : Theme{}
 
 		
+/// <inheritdoc cref="ThemeBase"/>
 public partial record Theme : ThemeBase
 {
     [JsonPropertyName("id"), Required]
@@ -981,6 +1082,7 @@ public partial record Theme : ThemeBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="ThemeOrig"/>
 public partial record ThemeBase : ThemeOrig{}
 
 	
@@ -1001,6 +1103,7 @@ public partial record CreateAbandonedCheckoutRequest
     public CreateAbandonedCheckout AbandonedCheckout { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CheckoutBase"/>
 public partial record CreateAbandonedCheckout : CheckoutBase {}
 public partial record UpdateAbandonedCheckoutRequest
 {
@@ -1008,13 +1111,16 @@ public partial record UpdateAbandonedCheckoutRequest
     public UpdateAbandonedCheckout AbandonedCheckout { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Checkout"/>
 public partial record UpdateAbandonedCheckout : Checkout{}
 
 		
+/// <inheritdoc cref="CheckoutBase"/>
 public partial record AbandonedCheckout : CheckoutBase
 {
 }
 
+/// <inheritdoc cref="CheckoutOrig"/>
 public partial record CheckoutBase : CheckoutOrig{}
 
 	
@@ -1035,6 +1141,7 @@ public partial record CreateDraftOrderRequest
     public CreateDraftOrder DraftOrder { get; set; } = null!;
 }
 
+/// <inheritdoc cref="DraftOrderBase"/>
 public partial record CreateDraftOrder : DraftOrderBase {}
 public partial record UpdateDraftOrderRequest
 {
@@ -1042,9 +1149,11 @@ public partial record UpdateDraftOrderRequest
     public UpdateDraftOrder DraftOrder { get; set; } = null!;
 }
 
+/// <inheritdoc cref="DraftOrder"/>
 public partial record UpdateDraftOrder : DraftOrder{}
 
 		
+/// <inheritdoc cref="DraftOrderBase"/>
 public partial record DraftOrder : DraftOrderBase
 {
     [JsonPropertyName("id"), Required]
@@ -1054,6 +1163,7 @@ public partial record DraftOrder : DraftOrderBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="DraftOrderOrig"/>
 public partial record DraftOrderBase : DraftOrderOrig{}
 
 	
@@ -1069,10 +1179,12 @@ public partial record DraftOrderInvoiceList
     public IEnumerable<DraftOrderInvoice> DraftOrderInvoices { get; set; } = null!;
 }
 		
+/// <inheritdoc cref="DraftOrderInvoiceBase"/>
 public partial record DraftOrderInvoice : DraftOrderInvoiceBase
 {
 }
 
+/// <inheritdoc cref="DraftOrderInvoiceOrig"/>
 public partial record DraftOrderInvoiceBase : DraftOrderInvoiceOrig{}
 
 	
@@ -1093,6 +1205,7 @@ public partial record CreateOrderRequest
     public CreateOrder Order { get; set; } = null!;
 }
 
+/// <inheritdoc cref="OrderBase"/>
 public partial record CreateOrder : OrderBase {}
 public partial record UpdateOrderRequest
 {
@@ -1100,9 +1213,11 @@ public partial record UpdateOrderRequest
     public UpdateOrder Order { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Order"/>
 public partial record UpdateOrder : Order{}
 
 		
+/// <inheritdoc cref="OrderBase"/>
 public partial record Order : OrderBase
 {
     [JsonPropertyName("id"), Required]
@@ -1112,36 +1227,40 @@ public partial record Order : OrderBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="OrderOrig"/>
 public partial record OrderBase : OrderOrig{}
 
 	
 public partial record OrderRiskItem
 {
-    [JsonPropertyName("order_risk"), Required]
+    [JsonPropertyName("risk"), Required]
     public OrderRisk OrderRisk { get; set; } = null!;
 }
 
 public partial record OrderRiskList
 {
-    [JsonPropertyName("order_risks"), Required]
+    [JsonPropertyName("risks"), Required]
     public IEnumerable<OrderRisk> OrderRisks { get; set; } = null!;
 }
 public partial record CreateOrderRiskRequest
 {
-    [JsonPropertyName("order_risk"), Required]
+    [JsonPropertyName("risk"), Required]
     public CreateOrderRisk OrderRisk { get; set; } = null!;
 }
 
+/// <inheritdoc cref="OrderRiskBase"/>
 public partial record CreateOrderRisk : OrderRiskBase {}
 public partial record UpdateOrderRiskRequest
 {
-    [JsonPropertyName("order_risk"), Required]
+    [JsonPropertyName("risk"), Required]
     public UpdateOrderRisk OrderRisk { get; set; } = null!;
 }
 
+/// <inheritdoc cref="OrderRisk"/>
 public partial record UpdateOrderRisk : OrderRisk{}
 
 		
+/// <inheritdoc cref="OrderRiskBase"/>
 public partial record OrderRisk : OrderRiskBase
 {
     [JsonPropertyName("id"), Required]
@@ -1151,6 +1270,7 @@ public partial record OrderRisk : OrderRiskBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="OrderRiskOrig"/>
 public partial record OrderRiskBase : OrderRiskOrig{}
 
 	
@@ -1171,6 +1291,7 @@ public partial record CreateRefundRequest
     public CreateRefund Refund { get; set; } = null!;
 }
 
+/// <inheritdoc cref="RefundBase"/>
 public partial record CreateRefund : RefundBase {}
 public partial record UpdateRefundRequest
 {
@@ -1178,9 +1299,11 @@ public partial record UpdateRefundRequest
     public UpdateRefund Refund { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Refund"/>
 public partial record UpdateRefund : Refund{}
 
 		
+/// <inheritdoc cref="RefundBase"/>
 public partial record Refund : RefundBase
 {
     [JsonPropertyName("id"), Required]
@@ -1190,6 +1313,7 @@ public partial record Refund : RefundBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="RefundOrig"/>
 public partial record RefundBase : RefundOrig{}
 
 	
@@ -1210,6 +1334,7 @@ public partial record CreateTransactionRequest
     public CreateTransaction Transaction { get; set; } = null!;
 }
 
+/// <inheritdoc cref="TransactionBase"/>
 public partial record CreateTransaction : TransactionBase {}
 public partial record UpdateTransactionRequest
 {
@@ -1217,9 +1342,11 @@ public partial record UpdateTransactionRequest
     public UpdateTransaction Transaction { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Transaction"/>
 public partial record UpdateTransaction : Transaction{}
 
 		
+/// <inheritdoc cref="TransactionBase"/>
 public partial record Transaction : TransactionBase
 {
     [JsonPropertyName("id"), Required]
@@ -1229,6 +1356,7 @@ public partial record Transaction : TransactionBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="TransactionOrig"/>
 public partial record TransactionBase : TransactionOrig{}
 
 	
@@ -1249,6 +1377,7 @@ public partial record CreateGiftCardRequest
     public CreateGiftCard GiftCard { get; set; } = null!;
 }
 
+/// <inheritdoc cref="GiftCardBase"/>
 public partial record CreateGiftCard : GiftCardBase {}
 public partial record UpdateGiftCardRequest
 {
@@ -1256,9 +1385,11 @@ public partial record UpdateGiftCardRequest
     public UpdateGiftCard GiftCard { get; set; } = null!;
 }
 
+/// <inheritdoc cref="GiftCard"/>
 public partial record UpdateGiftCard : GiftCard{}
 
 		
+/// <inheritdoc cref="GiftCardBase"/>
 public partial record GiftCard : GiftCardBase
 {
     [JsonPropertyName("id"), Required]
@@ -1268,6 +1399,7 @@ public partial record GiftCard : GiftCardBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="GiftCardOrig"/>
 public partial record GiftCardBase : GiftCardOrig{}
 
 	
@@ -1288,6 +1420,7 @@ public partial record CreateUserRequest
     public CreateUser User { get; set; } = null!;
 }
 
+/// <inheritdoc cref="UserBase"/>
 public partial record CreateUser : UserBase {}
 public partial record UpdateUserRequest
 {
@@ -1295,9 +1428,11 @@ public partial record UpdateUserRequest
     public UpdateUser User { get; set; } = null!;
 }
 
+/// <inheritdoc cref="User"/>
 public partial record UpdateUser : User{}
 
 		
+/// <inheritdoc cref="UserBase"/>
 public partial record User : UserBase
 {
     [JsonPropertyName("id"), Required]
@@ -1307,6 +1442,7 @@ public partial record User : UserBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="UserOrig"/>
 public partial record UserBase : UserOrig{}
 
 	
@@ -1327,6 +1463,7 @@ public partial record CreateCollectRequest
     public CreateCollect Collect { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CollectBase"/>
 public partial record CreateCollect : CollectBase {}
 public partial record UpdateCollectRequest
 {
@@ -1334,9 +1471,11 @@ public partial record UpdateCollectRequest
     public UpdateCollect Collect { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Collect"/>
 public partial record UpdateCollect : Collect{}
 
 		
+/// <inheritdoc cref="CollectBase"/>
 public partial record Collect : CollectBase
 {
     [JsonPropertyName("id"), Required]
@@ -1346,6 +1485,7 @@ public partial record Collect : CollectBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="CollectOrig"/>
 public partial record CollectBase : CollectOrig{}
 
 	
@@ -1366,6 +1506,7 @@ public partial record CreateCollectionRequest
     public CreateCollection Collection { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CollectionBase"/>
 public partial record CreateCollection : CollectionBase {}
 public partial record UpdateCollectionRequest
 {
@@ -1373,9 +1514,11 @@ public partial record UpdateCollectionRequest
     public UpdateCollection Collection { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Collection"/>
 public partial record UpdateCollection : Collection{}
 
 		
+/// <inheritdoc cref="CollectionBase"/>
 public partial record Collection : CollectionBase
 {
     [JsonPropertyName("id"), Required]
@@ -1385,6 +1528,7 @@ public partial record Collection : CollectionBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="CollectionOrig"/>
 public partial record CollectionBase : CollectionOrig{}
 
 	
@@ -1405,6 +1549,7 @@ public partial record CreateCustomCollectionRequest
     public CreateCustomCollection CustomCollection { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CustomCollectionBase"/>
 public partial record CreateCustomCollection : CustomCollectionBase {}
 public partial record UpdateCustomCollectionRequest
 {
@@ -1412,9 +1557,11 @@ public partial record UpdateCustomCollectionRequest
     public UpdateCustomCollection CustomCollection { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CustomCollection"/>
 public partial record UpdateCustomCollection : CustomCollection{}
 
 		
+/// <inheritdoc cref="CustomCollectionBase"/>
 public partial record CustomCollection : CustomCollectionBase
 {
     [JsonPropertyName("id"), Required]
@@ -1424,6 +1571,7 @@ public partial record CustomCollection : CustomCollectionBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="CustomCollectionOrig"/>
 public partial record CustomCollectionBase : CustomCollectionOrig{}
 
 	
@@ -1444,6 +1592,7 @@ public partial record CreateProductRequest
     public CreateProduct Product { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ProductBase"/>
 public partial record CreateProduct : ProductBase {}
 public partial record UpdateProductRequest
 {
@@ -1451,9 +1600,11 @@ public partial record UpdateProductRequest
     public UpdateProduct Product { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Product"/>
 public partial record UpdateProduct : Product{}
 
 		
+/// <inheritdoc cref="ProductBase"/>
 public partial record Product : ProductBase
 {
     [JsonPropertyName("id"), Required]
@@ -1463,6 +1614,7 @@ public partial record Product : ProductBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="ProductOrig"/>
 public partial record ProductBase : ProductOrig{}
 
 	
@@ -1483,6 +1635,7 @@ public partial record CreateProductImageRequest
     public CreateProductImage ProductImage { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ProductImageBase"/>
 public partial record CreateProductImage : ProductImageBase {}
 public partial record UpdateProductImageRequest
 {
@@ -1490,9 +1643,11 @@ public partial record UpdateProductImageRequest
     public UpdateProductImage ProductImage { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ProductImage"/>
 public partial record UpdateProductImage : ProductImage{}
 
 		
+/// <inheritdoc cref="ProductImageBase"/>
 public partial record ProductImage : ProductImageBase
 {
     [JsonPropertyName("id"), Required]
@@ -1502,6 +1657,7 @@ public partial record ProductImage : ProductImageBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="ProductImageOrig"/>
 public partial record ProductImageBase : ProductImageOrig{}
 
 	
@@ -1522,6 +1678,7 @@ public partial record CreateProductVariantRequest
     public CreateProductVariant ProductVariant { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ProductVariantBase"/>
 public partial record CreateProductVariant : ProductVariantBase {}
 public partial record UpdateProductVariantRequest
 {
@@ -1529,9 +1686,11 @@ public partial record UpdateProductVariantRequest
     public UpdateProductVariant ProductVariant { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ProductVariant"/>
 public partial record UpdateProductVariant : ProductVariant{}
 
 		
+/// <inheritdoc cref="ProductVariantBase"/>
 public partial record ProductVariant : ProductVariantBase
 {
     [JsonPropertyName("id"), Required]
@@ -1541,6 +1700,7 @@ public partial record ProductVariant : ProductVariantBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="ProductVariantOrig"/>
 public partial record ProductVariantBase : ProductVariantOrig{}
 
 	
@@ -1561,6 +1721,7 @@ public partial record CreateSmartCollectionRequest
     public CreateSmartCollection SmartCollection { get; set; } = null!;
 }
 
+/// <inheritdoc cref="SmartCollectionBase"/>
 public partial record CreateSmartCollection : SmartCollectionBase {}
 public partial record UpdateSmartCollectionRequest
 {
@@ -1568,9 +1729,11 @@ public partial record UpdateSmartCollectionRequest
     public UpdateSmartCollection SmartCollection { get; set; } = null!;
 }
 
+/// <inheritdoc cref="SmartCollection"/>
 public partial record UpdateSmartCollection : SmartCollection{}
 
 		
+/// <inheritdoc cref="SmartCollectionBase"/>
 public partial record SmartCollection : SmartCollectionBase
 {
     [JsonPropertyName("id"), Required]
@@ -1580,6 +1743,7 @@ public partial record SmartCollection : SmartCollectionBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="SmartCollectionOrig"/>
 public partial record SmartCollectionBase : SmartCollectionOrig{}
 
 	
@@ -1600,6 +1764,7 @@ public partial record CreateCheckoutRequest
     public CreateCheckout Checkout { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CheckoutBase"/>
 public partial record CreateCheckout : CheckoutBase {}
 public partial record UpdateCheckoutRequest
 {
@@ -1607,9 +1772,11 @@ public partial record UpdateCheckoutRequest
     public UpdateCheckout Checkout { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Checkout"/>
 public partial record UpdateCheckout : Checkout{}
 
 		
+/// <inheritdoc cref="CheckoutBase"/>
 public partial record Checkout : CheckoutBase
 {
     [JsonPropertyName("id"), Required]
@@ -1619,6 +1786,7 @@ public partial record Checkout : CheckoutBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="CheckoutOrig"/>
 public partial record CheckoutBase : CheckoutOrig{}
 
 	
@@ -1639,6 +1807,7 @@ public partial record CreateCollectionListingRequest
     public CreateCollectionListing CollectionListing { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CollectionListingBase"/>
 public partial record CreateCollectionListing : CollectionListingBase {}
 public partial record UpdateCollectionListingRequest
 {
@@ -1646,13 +1815,16 @@ public partial record UpdateCollectionListingRequest
     public UpdateCollectionListing CollectionListing { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CollectionListing"/>
 public partial record UpdateCollectionListing : CollectionListing{}
 
 		
+/// <inheritdoc cref="CollectionListingBase"/>
 public partial record CollectionListing : CollectionListingBase
 {
 }
 
+/// <inheritdoc cref="CollectionListingOrig"/>
 public partial record CollectionListingBase : CollectionListingOrig{}
 
 	
@@ -1673,6 +1845,7 @@ public partial record CreateMobilePlatformApplicationRequest
     public CreateMobilePlatformApplication MobilePlatformApplication { get; set; } = null!;
 }
 
+/// <inheritdoc cref="MobilePlatformApplicationBase"/>
 public partial record CreateMobilePlatformApplication : MobilePlatformApplicationBase {}
 public partial record UpdateMobilePlatformApplicationRequest
 {
@@ -1680,9 +1853,11 @@ public partial record UpdateMobilePlatformApplicationRequest
     public UpdateMobilePlatformApplication MobilePlatformApplication { get; set; } = null!;
 }
 
+/// <inheritdoc cref="MobilePlatformApplication"/>
 public partial record UpdateMobilePlatformApplication : MobilePlatformApplication{}
 
 		
+/// <inheritdoc cref="MobilePlatformApplicationBase"/>
 public partial record MobilePlatformApplication : MobilePlatformApplicationBase
 {
     [JsonPropertyName("id"), Required]
@@ -1692,6 +1867,7 @@ public partial record MobilePlatformApplication : MobilePlatformApplicationBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="MobilePlatformApplicationOrig"/>
 public partial record MobilePlatformApplicationBase : MobilePlatformApplicationOrig{}
 
 	
@@ -1712,6 +1888,7 @@ public partial record CreatePaymentRequest
     public CreatePayment Payment { get; set; } = null!;
 }
 
+/// <inheritdoc cref="PaymentBase"/>
 public partial record CreatePayment : PaymentBase {}
 public partial record UpdatePaymentRequest
 {
@@ -1719,9 +1896,11 @@ public partial record UpdatePaymentRequest
     public UpdatePayment Payment { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Payment"/>
 public partial record UpdatePayment : Payment{}
 
 		
+/// <inheritdoc cref="PaymentBase"/>
 public partial record Payment : PaymentBase
 {
     [JsonPropertyName("id"), Required]
@@ -1731,6 +1910,7 @@ public partial record Payment : PaymentBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="PaymentOrig"/>
 public partial record PaymentBase : PaymentOrig{}
 
 	
@@ -1751,6 +1931,7 @@ public partial record CreateProductResourceFeedbackRequest
     public CreateProductResourceFeedback ProductResourceFeedback { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ProductResourceFeedbackBase"/>
 public partial record CreateProductResourceFeedback : ProductResourceFeedbackBase {}
 public partial record UpdateProductResourceFeedbackRequest
 {
@@ -1758,13 +1939,16 @@ public partial record UpdateProductResourceFeedbackRequest
     public UpdateProductResourceFeedback ProductResourceFeedback { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ProductResourceFeedback"/>
 public partial record UpdateProductResourceFeedback : ProductResourceFeedback{}
 
 		
+/// <inheritdoc cref="ProductResourceFeedbackBase"/>
 public partial record ProductResourceFeedback : ProductResourceFeedbackBase
 {
 }
 
+/// <inheritdoc cref="ProductResourceFeedbackOrig"/>
 public partial record ProductResourceFeedbackBase : ProductResourceFeedbackOrig{}
 
 	
@@ -1785,6 +1969,7 @@ public partial record CreateProductListingRequest
     public CreateProductListing ProductListing { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ProductListingBase"/>
 public partial record CreateProductListing : ProductListingBase {}
 public partial record UpdateProductListingRequest
 {
@@ -1792,13 +1977,16 @@ public partial record UpdateProductListingRequest
     public UpdateProductListing ProductListing { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ProductListing"/>
 public partial record UpdateProductListing : ProductListing{}
 
 		
+/// <inheritdoc cref="ProductListingBase"/>
 public partial record ProductListing : ProductListingBase
 {
 }
 
+/// <inheritdoc cref="ProductListingOrig"/>
 public partial record ProductListingBase : ProductListingOrig{}
 
 	
@@ -1819,6 +2007,7 @@ public partial record CreateResourceFeedbackRequest
     public CreateResourceFeedback ResourceFeedback { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ResourceFeedbackBase"/>
 public partial record CreateResourceFeedback : ResourceFeedbackBase {}
 public partial record UpdateResourceFeedbackRequest
 {
@@ -1826,13 +2015,16 @@ public partial record UpdateResourceFeedbackRequest
     public UpdateResourceFeedback ResourceFeedback { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ResourceFeedback"/>
 public partial record UpdateResourceFeedback : ResourceFeedback{}
 
 		
+/// <inheritdoc cref="ResourceFeedbackBase"/>
 public partial record ResourceFeedback : ResourceFeedbackBase
 {
 }
 
+/// <inheritdoc cref="ResourceFeedbackOrig"/>
 public partial record ResourceFeedbackBase : ResourceFeedbackOrig{}
 
 	
@@ -1853,6 +2045,7 @@ public partial record CreateAssignedFulfillmentOrderRequest
     public CreateAssignedFulfillmentOrder AssignedFulfillmentOrder { get; set; } = null!;
 }
 
+/// <inheritdoc cref="FulfillmentOrderBase"/>
 public partial record CreateAssignedFulfillmentOrder : FulfillmentOrderBase {}
 public partial record UpdateAssignedFulfillmentOrderRequest
 {
@@ -1860,9 +2053,11 @@ public partial record UpdateAssignedFulfillmentOrderRequest
     public UpdateAssignedFulfillmentOrder AssignedFulfillmentOrder { get; set; } = null!;
 }
 
+/// <inheritdoc cref="FulfillmentOrder"/>
 public partial record UpdateAssignedFulfillmentOrder : FulfillmentOrder{}
 
 		
+/// <inheritdoc cref="FulfillmentOrderBase"/>
 public partial record AssignedFulfillmentOrder : FulfillmentOrderBase
 {
     [JsonPropertyName("id"), Required]
@@ -1872,6 +2067,7 @@ public partial record AssignedFulfillmentOrder : FulfillmentOrderBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="FulfillmentOrderOrig"/>
 public partial record FulfillmentOrderBase : FulfillmentOrderOrig{}
 
 	
@@ -1892,6 +2088,7 @@ public partial record CreateCancellationRequestRequest
     public CreateCancellationRequest CancellationRequest { get; set; } = null!;
 }
 
+/// <inheritdoc cref="FulfillmentOrderBase"/>
 public partial record CreateCancellationRequest : FulfillmentOrderBase {}
 public partial record UpdateCancellationRequestRequest
 {
@@ -1899,13 +2096,16 @@ public partial record UpdateCancellationRequestRequest
     public UpdateCancellationRequest CancellationRequest { get; set; } = null!;
 }
 
+/// <inheritdoc cref="FulfillmentOrder"/>
 public partial record UpdateCancellationRequest : FulfillmentOrder{}
 
 		
+/// <inheritdoc cref="FulfillmentOrderBase"/>
 public partial record CancellationRequest : FulfillmentOrderBase
 {
 }
 
+/// <inheritdoc cref="FulfillmentOrderOrig"/>
 public partial record FulfillmentOrderBase : FulfillmentOrderOrig{}
 
 	
@@ -1926,6 +2126,7 @@ public partial record CreateCarrierServiceRequest
     public CreateCarrierService CarrierService { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CarrierServiceBase"/>
 public partial record CreateCarrierService : CarrierServiceBase {}
 public partial record UpdateCarrierServiceRequest
 {
@@ -1933,9 +2134,11 @@ public partial record UpdateCarrierServiceRequest
     public UpdateCarrierService CarrierService { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CarrierService"/>
 public partial record UpdateCarrierService : CarrierService{}
 
 		
+/// <inheritdoc cref="CarrierServiceBase"/>
 public partial record CarrierService : CarrierServiceBase
 {
     [JsonPropertyName("id"), Required]
@@ -1945,6 +2148,7 @@ public partial record CarrierService : CarrierServiceBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="CarrierServiceOrig"/>
 public partial record CarrierServiceBase : CarrierServiceOrig{}
 
 	
@@ -1965,6 +2169,7 @@ public partial record CreateFulfillmentRequest
     public CreateFulfillment Fulfillment { get; set; } = null!;
 }
 
+/// <inheritdoc cref="FulfillmentBase"/>
 public partial record CreateFulfillment : FulfillmentBase {}
 public partial record UpdateFulfillmentRequest
 {
@@ -1972,9 +2177,11 @@ public partial record UpdateFulfillmentRequest
     public UpdateFulfillment Fulfillment { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Fulfillment"/>
 public partial record UpdateFulfillment : Fulfillment{}
 
 		
+/// <inheritdoc cref="FulfillmentBase"/>
 public partial record Fulfillment : FulfillmentBase
 {
     [JsonPropertyName("id"), Required]
@@ -1984,6 +2191,7 @@ public partial record Fulfillment : FulfillmentBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="FulfillmentOrig"/>
 public partial record FulfillmentBase : FulfillmentOrig{}
 
 	
@@ -2004,6 +2212,7 @@ public partial record CreateFulfillmentEventRequest
     public CreateFulfillmentEvent FulfillmentEvent { get; set; } = null!;
 }
 
+/// <inheritdoc cref="FulfillmentEventBase"/>
 public partial record CreateFulfillmentEvent : FulfillmentEventBase {}
 public partial record UpdateFulfillmentEventRequest
 {
@@ -2011,9 +2220,11 @@ public partial record UpdateFulfillmentEventRequest
     public UpdateFulfillmentEvent FulfillmentEvent { get; set; } = null!;
 }
 
+/// <inheritdoc cref="FulfillmentEvent"/>
 public partial record UpdateFulfillmentEvent : FulfillmentEvent{}
 
 		
+/// <inheritdoc cref="FulfillmentEventBase"/>
 public partial record FulfillmentEvent : FulfillmentEventBase
 {
     [JsonPropertyName("id"), Required]
@@ -2023,6 +2234,7 @@ public partial record FulfillmentEvent : FulfillmentEventBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="FulfillmentEventOrig"/>
 public partial record FulfillmentEventBase : FulfillmentEventOrig{}
 
 	
@@ -2043,6 +2255,7 @@ public partial record CreateFulfillmentOrderRequest
     public CreateFulfillmentOrder FulfillmentOrder { get; set; } = null!;
 }
 
+/// <inheritdoc cref="FulfillmentOrderBase"/>
 public partial record CreateFulfillmentOrder : FulfillmentOrderBase {}
 public partial record UpdateFulfillmentOrderRequest
 {
@@ -2050,9 +2263,11 @@ public partial record UpdateFulfillmentOrderRequest
     public UpdateFulfillmentOrder FulfillmentOrder { get; set; } = null!;
 }
 
+/// <inheritdoc cref="FulfillmentOrder"/>
 public partial record UpdateFulfillmentOrder : FulfillmentOrder{}
 
 		
+/// <inheritdoc cref="FulfillmentOrderBase"/>
 public partial record FulfillmentOrder : FulfillmentOrderBase
 {
     [JsonPropertyName("id"), Required]
@@ -2062,6 +2277,7 @@ public partial record FulfillmentOrder : FulfillmentOrderBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="FulfillmentOrderOrig"/>
 public partial record FulfillmentOrderBase : FulfillmentOrderOrig{}
 
 	
@@ -2082,6 +2298,7 @@ public partial record CreateFulfillmentRequestRequest
     public CreateFulfillmentRequest FulfillmentRequest { get; set; } = null!;
 }
 
+/// <inheritdoc cref="FulfillmentRequestBase"/>
 public partial record CreateFulfillmentRequest : FulfillmentRequestBase {}
 public partial record UpdateFulfillmentRequestRequest
 {
@@ -2089,13 +2306,16 @@ public partial record UpdateFulfillmentRequestRequest
     public UpdateFulfillmentRequest FulfillmentRequest { get; set; } = null!;
 }
 
+/// <inheritdoc cref="FulfillmentRequest"/>
 public partial record UpdateFulfillmentRequest : FulfillmentRequest{}
 
 		
+/// <inheritdoc cref="FulfillmentRequestBase"/>
 public partial record FulfillmentRequest : FulfillmentRequestBase
 {
 }
 
+/// <inheritdoc cref="FulfillmentRequestOrig"/>
 public partial record FulfillmentRequestBase : FulfillmentRequestOrig{}
 
 	
@@ -2116,6 +2336,7 @@ public partial record CreateFulfillmentServiceRequest
     public CreateFulfillmentService FulfillmentService { get; set; } = null!;
 }
 
+/// <inheritdoc cref="FulfillmentServiceBase"/>
 public partial record CreateFulfillmentService : FulfillmentServiceBase {}
 public partial record UpdateFulfillmentServiceRequest
 {
@@ -2123,9 +2344,11 @@ public partial record UpdateFulfillmentServiceRequest
     public UpdateFulfillmentService FulfillmentService { get; set; } = null!;
 }
 
+/// <inheritdoc cref="FulfillmentService"/>
 public partial record UpdateFulfillmentService : FulfillmentService{}
 
 		
+/// <inheritdoc cref="FulfillmentServiceBase"/>
 public partial record FulfillmentService : FulfillmentServiceBase
 {
     [JsonPropertyName("id"), Required]
@@ -2135,6 +2358,7 @@ public partial record FulfillmentService : FulfillmentServiceBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="FulfillmentServiceOrig"/>
 public partial record FulfillmentServiceBase : FulfillmentServiceOrig{}
 
 	
@@ -2155,6 +2379,7 @@ public partial record CreateLocationsForMoveRequest
     public CreateLocationsForMove LocationsForMove { get; set; } = null!;
 }
 
+/// <inheritdoc cref="LocationsForMoveBase"/>
 public partial record CreateLocationsForMove : LocationsForMoveBase {}
 public partial record UpdateLocationsForMoveRequest
 {
@@ -2162,13 +2387,16 @@ public partial record UpdateLocationsForMoveRequest
     public UpdateLocationsForMove LocationsForMove { get; set; } = null!;
 }
 
+/// <inheritdoc cref="LocationsForMove"/>
 public partial record UpdateLocationsForMove : LocationsForMove{}
 
 		
+/// <inheritdoc cref="LocationsForMoveBase"/>
 public partial record LocationsForMove : LocationsForMoveBase
 {
 }
 
+/// <inheritdoc cref="LocationsForMoveOrig"/>
 public partial record LocationsForMoveBase : LocationsForMoveOrig{}
 
 	
@@ -2189,6 +2417,7 @@ public partial record CreateBalanceRequest
     public CreateBalance Balance { get; set; } = null!;
 }
 
+/// <inheritdoc cref="BalanceBase"/>
 public partial record CreateBalance : BalanceBase {}
 public partial record UpdateBalanceRequest
 {
@@ -2196,13 +2425,16 @@ public partial record UpdateBalanceRequest
     public UpdateBalance Balance { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Balance"/>
 public partial record UpdateBalance : Balance{}
 
 		
+/// <inheritdoc cref="BalanceBase"/>
 public partial record Balance : BalanceBase
 {
 }
 
+/// <inheritdoc cref="BalanceOrig"/>
 public partial record BalanceBase : BalanceOrig{}
 
 	
@@ -2223,6 +2455,7 @@ public partial record CreateDisputeRequest
     public CreateDispute Dispute { get; set; } = null!;
 }
 
+/// <inheritdoc cref="DisputeBase"/>
 public partial record CreateDispute : DisputeBase {}
 public partial record UpdateDisputeRequest
 {
@@ -2230,9 +2463,11 @@ public partial record UpdateDisputeRequest
     public UpdateDispute Dispute { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Dispute"/>
 public partial record UpdateDispute : Dispute{}
 
 		
+/// <inheritdoc cref="DisputeBase"/>
 public partial record Dispute : DisputeBase
 {
     [JsonPropertyName("id"), Required]
@@ -2242,6 +2477,7 @@ public partial record Dispute : DisputeBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="DisputeOrig"/>
 public partial record DisputeBase : DisputeOrig{}
 
 	
@@ -2262,6 +2498,7 @@ public partial record CreatePayoutRequest
     public CreatePayout Payout { get; set; } = null!;
 }
 
+/// <inheritdoc cref="PayoutsBase"/>
 public partial record CreatePayout : PayoutsBase {}
 public partial record UpdatePayoutRequest
 {
@@ -2269,9 +2506,11 @@ public partial record UpdatePayoutRequest
     public UpdatePayout Payout { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Payout"/>
 public partial record UpdatePayout : Payout{}
 
 		
+/// <inheritdoc cref="PayoutsBase"/>
 public partial record Payout : PayoutsBase
 {
     [JsonPropertyName("id"), Required]
@@ -2281,6 +2520,7 @@ public partial record Payout : PayoutsBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="PayoutsOrig"/>
 public partial record PayoutsBase : PayoutsOrig{}
 
 	
@@ -2301,6 +2541,7 @@ public partial record CreateCountryRequest
     public CreateCountry Country { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CountryBase"/>
 public partial record CreateCountry : CountryBase {}
 public partial record UpdateCountryRequest
 {
@@ -2308,9 +2549,11 @@ public partial record UpdateCountryRequest
     public UpdateCountry Country { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Country"/>
 public partial record UpdateCountry : Country{}
 
 		
+/// <inheritdoc cref="CountryBase"/>
 public partial record Country : CountryBase
 {
     [JsonPropertyName("id"), Required]
@@ -2320,6 +2563,7 @@ public partial record Country : CountryBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="CountryOrig"/>
 public partial record CountryBase : CountryOrig{}
 
 	
@@ -2340,6 +2584,7 @@ public partial record CreateCurrencyRequest
     public CreateCurrency Currency { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CurrencyBase"/>
 public partial record CreateCurrency : CurrencyBase {}
 public partial record UpdateCurrencyRequest
 {
@@ -2347,13 +2592,16 @@ public partial record UpdateCurrencyRequest
     public UpdateCurrency Currency { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Currency"/>
 public partial record UpdateCurrency : Currency{}
 
 		
+/// <inheritdoc cref="CurrencyBase"/>
 public partial record Currency : CurrencyBase
 {
 }
 
+/// <inheritdoc cref="CurrencyOrig"/>
 public partial record CurrencyBase : CurrencyOrig{}
 
 	
@@ -2374,6 +2622,7 @@ public partial record CreatePolicyRequest
     public CreatePolicy Policy { get; set; } = null!;
 }
 
+/// <inheritdoc cref="PolicyBase"/>
 public partial record CreatePolicy : PolicyBase {}
 public partial record UpdatePolicyRequest
 {
@@ -2381,13 +2630,16 @@ public partial record UpdatePolicyRequest
     public UpdatePolicy Policy { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Policy"/>
 public partial record UpdatePolicy : Policy{}
 
 		
+/// <inheritdoc cref="PolicyBase"/>
 public partial record Policy : PolicyBase
 {
 }
 
+/// <inheritdoc cref="PolicyOrig"/>
 public partial record PolicyBase : PolicyOrig{}
 
 	
@@ -2408,6 +2660,7 @@ public partial record CreateProvinceRequest
     public CreateProvince Province { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ProvinceBase"/>
 public partial record CreateProvince : ProvinceBase {}
 public partial record UpdateProvinceRequest
 {
@@ -2415,9 +2668,11 @@ public partial record UpdateProvinceRequest
     public UpdateProvince Province { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Province"/>
 public partial record UpdateProvince : Province{}
 
 		
+/// <inheritdoc cref="ProvinceBase"/>
 public partial record Province : ProvinceBase
 {
     [JsonPropertyName("id"), Required]
@@ -2427,6 +2682,7 @@ public partial record Province : ProvinceBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="ProvinceOrig"/>
 public partial record ProvinceBase : ProvinceOrig{}
 
 	
@@ -2447,6 +2703,7 @@ public partial record CreateShippingZoneRequest
     public CreateShippingZone ShippingZone { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ShippingZoneBase"/>
 public partial record CreateShippingZone : ShippingZoneBase {}
 public partial record UpdateShippingZoneRequest
 {
@@ -2454,9 +2711,11 @@ public partial record UpdateShippingZoneRequest
     public UpdateShippingZone ShippingZone { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ShippingZone"/>
 public partial record UpdateShippingZone : ShippingZone{}
 
 		
+/// <inheritdoc cref="ShippingZoneBase"/>
 public partial record ShippingZone : ShippingZoneBase
 {
     [JsonPropertyName("id"), Required]
@@ -2466,6 +2725,7 @@ public partial record ShippingZone : ShippingZoneBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="ShippingZoneOrig"/>
 public partial record ShippingZoneBase : ShippingZoneOrig{}
 
 	
@@ -2486,6 +2746,7 @@ public partial record CreateShopRequest
     public CreateShop Shop { get; set; } = null!;
 }
 
+/// <inheritdoc cref="ShopBase"/>
 public partial record CreateShop : ShopBase {}
 public partial record UpdateShopRequest
 {
@@ -2493,9 +2754,11 @@ public partial record UpdateShopRequest
     public UpdateShop Shop { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Shop"/>
 public partial record UpdateShop : Shop{}
 
 		
+/// <inheritdoc cref="ShopBase"/>
 public partial record Shop : ShopBase
 {
     [JsonPropertyName("id"), Required]
@@ -2505,6 +2768,7 @@ public partial record Shop : ShopBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="ShopOrig"/>
 public partial record ShopBase : ShopOrig{}
 
 	
@@ -2525,6 +2789,7 @@ public partial record CreateTenderTransactionRequest
     public CreateTenderTransaction TenderTransaction { get; set; } = null!;
 }
 
+/// <inheritdoc cref="TenderTransactionBase"/>
 public partial record CreateTenderTransaction : TenderTransactionBase {}
 public partial record UpdateTenderTransactionRequest
 {
@@ -2532,9 +2797,11 @@ public partial record UpdateTenderTransactionRequest
     public UpdateTenderTransaction TenderTransaction { get; set; } = null!;
 }
 
+/// <inheritdoc cref="TenderTransaction"/>
 public partial record UpdateTenderTransaction : TenderTransaction{}
 
 		
+/// <inheritdoc cref="TenderTransactionBase"/>
 public partial record TenderTransaction : TenderTransactionBase
 {
     [JsonPropertyName("id"), Required]
@@ -2544,6 +2811,7 @@ public partial record TenderTransaction : TenderTransactionBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="TenderTransactionOrig"/>
 public partial record TenderTransactionBase : TenderTransactionOrig{}
 
 	
@@ -2564,6 +2832,7 @@ public partial record CreateDiscountCodeCreationRequest
     public CreateDiscountCodeCreation DiscountCodeCreation { get; set; } = null!;
 }
 
+/// <inheritdoc cref="DiscountCodeCreationBase"/>
 public partial record CreateDiscountCodeCreation : DiscountCodeCreationBase {}
 public partial record UpdateDiscountCodeCreationRequest
 {
@@ -2571,9 +2840,11 @@ public partial record UpdateDiscountCodeCreationRequest
     public UpdateDiscountCodeCreation DiscountCodeCreation { get; set; } = null!;
 }
 
+/// <inheritdoc cref="DiscountCodeCreation"/>
 public partial record UpdateDiscountCodeCreation : DiscountCodeCreation{}
 
 		
+/// <inheritdoc cref="DiscountCodeCreationBase"/>
 public partial record DiscountCodeCreation : DiscountCodeCreationBase
 {
     [JsonPropertyName("id"), Required]
@@ -2583,6 +2854,7 @@ public partial record DiscountCodeCreation : DiscountCodeCreationBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="DiscountCodeCreationOrig"/>
 public partial record DiscountCodeCreationBase : DiscountCodeCreationOrig{}
 
 	
@@ -2603,6 +2875,7 @@ public partial record CreateEngagementRequest
     public CreateEngagement Engagement { get; set; } = null!;
 }
 
+/// <inheritdoc cref="EngagementBase"/>
 public partial record CreateEngagement : EngagementBase {}
 public partial record UpdateEngagementRequest
 {
@@ -2610,9 +2883,11 @@ public partial record UpdateEngagementRequest
     public UpdateEngagement Engagement { get; set; } = null!;
 }
 
+/// <inheritdoc cref="Engagement"/>
 public partial record UpdateEngagement : Engagement{}
 
 		
+/// <inheritdoc cref="EngagementBase"/>
 public partial record Engagement : EngagementBase
 {
     [JsonPropertyName("id"), Required]
@@ -2622,6 +2897,7 @@ public partial record Engagement : EngagementBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="EngagementOrig"/>
 public partial record EngagementBase : EngagementOrig{}
 
 	
@@ -2642,6 +2918,7 @@ public partial record CreateCustomerInviteRequest
     public CreateCustomerInvite CustomerInvite { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CustomerInviteBase"/>
 public partial record CreateCustomerInvite : CustomerInviteBase {}
 public partial record UpdateCustomerInviteRequest
 {
@@ -2649,9 +2926,11 @@ public partial record UpdateCustomerInviteRequest
     public UpdateCustomerInvite CustomerInvite { get; set; } = null!;
 }
 
+/// <inheritdoc cref="CustomerInvite"/>
 public partial record UpdateCustomerInvite : CustomerInvite{}
 
 		
+/// <inheritdoc cref="CustomerInviteBase"/>
 public partial record CustomerInvite : CustomerInviteBase
 {
     [JsonPropertyName("id"), Required]
@@ -2661,6 +2940,7 @@ public partial record CustomerInvite : CustomerInviteBase
     public string? AdminGraphQLAPIId { get; set; }
 }
 
+/// <inheritdoc cref="CustomerInviteOrig"/>
 public partial record CustomerInviteBase : CustomerInviteOrig{}
 
 	

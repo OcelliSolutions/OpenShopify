@@ -16,7 +16,7 @@ public class SalesChannelsService : ShopifyService, ISalesChannelsService
     private readonly string _myShopifyUrl;
     private readonly Uri _baseUri;
 
-    public SalesChannelsService(string myShopifyUrl, string shopAccessToken) : base(myShopifyUrl, shopAccessToken)
+    public SalesChannelsService(string myShopifyUrl, string shopAccessToken, bool isPlusStore = false) : base(myShopifyUrl, shopAccessToken, isPlusStore)
     {
         _baseUri = base.PrepareRequest(myShopifyUrl);
         _myShopifyUrl = myShopifyUrl;

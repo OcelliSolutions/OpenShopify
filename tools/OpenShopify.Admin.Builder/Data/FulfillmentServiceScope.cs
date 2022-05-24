@@ -1,7 +1,11 @@
-﻿namespace OpenShopify.Common.Data;
+﻿using System.Runtime.Serialization;
+
+namespace OpenShopify.Admin.Builder.Data;
 
 public enum FulfillmentServiceScope
 {
-    all,
-    current_client
+    [EnumMember(Value = "all")]
+    All,
+    [EnumMember(Value = "current_client")]
+    CurrentClient
 }

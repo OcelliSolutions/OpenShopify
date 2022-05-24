@@ -13,7 +13,7 @@ public class CustomersService : ShopifyService, ICustomersService
     private readonly Uri _baseUri;
     private readonly Uri _adminUri;
 
-    public CustomersService(string myShopifyUrl, string shopAccessToken) : base(myShopifyUrl, shopAccessToken)
+    public CustomersService(string myShopifyUrl, string shopAccessToken, bool isPlusStore = false) : base(myShopifyUrl, shopAccessToken, isPlusStore)
     {
         _adminUri = AuthorizationService.BuildShopUri(myShopifyUrl, true);
         _baseUri = base.PrepareRequest(myShopifyUrl);

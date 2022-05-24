@@ -110,7 +110,7 @@ paths:
       tags:
         - Country
       summary: Retrieves a specific county
-      operationId: GetSpecificCounty
+      operationId: GetCounty
       parameters:
         - name: country_id
           in: path
@@ -794,7 +794,6 @@ components:
           type: string
           nullable: true
       additionalProperties: { }
-      description: 'This is used to view shipping zones, their countries, provinces, and shipping rates.'
     ShippingZoneList:
       required:
         - shipping_zones

@@ -26,12 +26,14 @@ public class AbandonedCheckoutsTests : IClassFixture<SharedFixture>
 
     #region Create
 
+    //No endpoints
+
     #endregion Create
 
     #region Read
-    
+
     [SkippableFact, TestPriority(20)]
-    public async Task ListAbandonedCheckoutsAsync_AdditionalPropertiesIsEmpty()
+    public async Task ListAbandonedCheckoutsAsync_AdditionalPropertiesAreEmpty()
     {
         var response = await _service.AbandonedCheckouts.ListAbandonedCheckoutsAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
@@ -47,9 +49,13 @@ public class AbandonedCheckoutsTests : IClassFixture<SharedFixture>
 
     #region Update
 
+    //No endpoints
+
     #endregion Update
 
     #region Delete
+
+    //No endpoints
 
     #endregion Delete
 }

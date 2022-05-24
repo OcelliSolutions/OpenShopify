@@ -10,7 +10,7 @@ public class MarketingEventService : ShopifyService, IMarketingEventService
     private readonly string _myShopifyUrl;
     private readonly Uri _baseUri;
 
-    public MarketingEventService(string myShopifyUrl, string shopAccessToken) : base(myShopifyUrl, shopAccessToken)
+    public MarketingEventService(string myShopifyUrl, string shopAccessToken, bool isPlusStore = false) : base(myShopifyUrl, shopAccessToken, isPlusStore)
     {
         _baseUri = base.PrepareRequest(myShopifyUrl);
         _myShopifyUrl = myShopifyUrl;

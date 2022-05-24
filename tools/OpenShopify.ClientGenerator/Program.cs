@@ -78,7 +78,7 @@ foreach (var shopifyFile in shopifyFiles)
         ClientClassAccessModifier = "internal",
         AdditionalNamespaceUsages = new[] { "System.Text.Json" },
         GenerateExceptionClasses = false,
-        ParameterNameGenerator = new CustomParameterNameGenerator(), 
+        ParameterNameGenerator = new CustomParameterNameGenerator(),
         WrapResponses = true, 
         ResponseClass = "ShopifyResponse", 
         ExcludedParameterNames = new []{"api_version"},
@@ -98,6 +98,8 @@ foreach (var shopifyFile in shopifyFiles)
 
     var generator = new CSharpClientGenerator(document, settings);
     var code = generator.GenerateFile();
+    code = code.Replace("JsonStringEnumConverter", "JsonStringEnumMemberConverter");
+
     await File.WriteAllTextAsync($@"../../../../../src/Ocelli.OpenShopify/Clients/Shopify{className}Client.cs", code);
 
 }

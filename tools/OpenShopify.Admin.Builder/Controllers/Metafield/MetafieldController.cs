@@ -60,7 +60,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
-        public abstract System.Threading.Tasks.Task GetSpecificMetafield(long metafield_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetMetafield(long metafield_id, string? fields = null);
 
         /// <summary>
         /// Updates a metafield

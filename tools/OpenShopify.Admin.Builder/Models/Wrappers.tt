@@ -41,7 +41,7 @@
 		new (modelName:"DraftOrder"),
 		new (modelName:"DraftOrderInvoice", canCreate:false, canUpdate:false, hasId:false),
 		new (modelName:"Order"),
-		new (modelName:"OrderRisk"),
+		new (modelName:"OrderRisk", propertyName:"risk", propertyNamePlural:"risks"),
 		new (modelName:"Refund"),
 		new (modelName:"Transaction"),
 		new (modelName:"GiftCard"),
@@ -118,6 +118,7 @@ public partial record Create<#= section.ClassName #>Request
     public Create<#= section.ClassName #> <#= section.ClassName #> { get; set; } = null!;
 }
 
+/// <inheritdoc cref="<#= section.BaseClass #>"/>
 public partial record Create<#= section.ClassName #> : <#= section.BaseClass #> {}
 <#
 		}
@@ -131,11 +132,13 @@ public partial record Update<#= section.ClassName #>Request
     public Update<#= section.ClassName #> <#= section.ClassName #> { get; set; } = null!;
 }
 
+/// <inheritdoc cref="<#= section.ModelName #>"/>
 public partial record Update<#= section.ClassName #> : <#= section.ModelName #>{}
 
 <#
 		}
 #>		
+/// <inheritdoc cref="<#= section.BaseClass #>"/>
 public partial record <#= section.ClassName #> : <#= section.BaseClass #>
 {
 <#	if (section.HasId)
@@ -151,6 +154,7 @@ public partial record <#= section.ClassName #> : <#= section.BaseClass #>
 #>
 }
 
+/// <inheritdoc cref="<#= section.OrigClass #>"/>
 public partial record <#= section.BaseClass #> : <#= section.OrigClass #>{}
 
 	<#

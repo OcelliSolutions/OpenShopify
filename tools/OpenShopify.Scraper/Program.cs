@@ -418,7 +418,8 @@ JsonSchema GetSchema(string propertyName)
         "include_pending_stock", "fulfillment_orders_opt_in", "tracked", "requires_shipping", "legacy",
         "estimated_taxes", "cause_cancel", "display", "taxable", "multi_location_enabled", "password_enabled",
         "tax_shipping", "county_taxes", "has_storefront", "setup_required", "disjunctive", "previewable",
-        "processing", "account_owner", "receive_announcements", "tracking_support", "inventory_management"
+        "processing", "account_owner", "receive_announcements", "tracking_support",
+        "confirmed"
     };
     var decimalProperties = new List<string>()
     {
@@ -426,7 +427,7 @@ JsonSchema GetSchema(string propertyName)
         "total_line_items_price", "total_price", "total_tax", "total_weight", "tax", "total_spent", "balance",
         "initial_value", "cost", "total_tip_received", "score", "compare_at_price", "weight",
         "size", "grams", "height", "width", "inventory_quantity", "tax_percentage", "maximum_refundable",
-        "old_inventory_quantity"
+        "old_inventory_quantity", "total_price_usd"
     };
     var stringProperties = new List<string>()
     {
@@ -443,7 +444,7 @@ JsonSchema GetSchema(string propertyName)
     {
         "arguments", "tax_exemptions", "tracking_numbers", "tracking_urls", "supported_actions", 
         "payment_gateway_names", "enabled_presentment_currencies", "permissions", "fields",
-        "metafield_namespaces"
+        "metafield_namespaces", "private_metafield_namespaces"
     };
     var objectListProperties = new List<string>()
     {
@@ -542,7 +543,9 @@ string CreateOperationId(string summary)
         .Replace("ListAllOf", "List")
         .Replace("GetDetailsForSingle", "Get")
         .Replace("GetSingle", "Get")
+        .Replace("GetSpecific", "Get")
         .Replace("GetCountOfAll", "Count")
+        .Replace("GetOrderCount", "CountOrders")
         .Replace("GetCountOf", "Count")
         .Replace("DeleteExisting", "Delete")
         .Replace("ByItsID", "");

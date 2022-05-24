@@ -55,7 +55,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Retrieve a specific product listing that is published to your app
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("product_listings/{product_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task GetSpecificProductListingThatIsPublishedToYourApp(long product_listing_id);
+        public abstract System.Threading.Tasks.Task GetProductListingThatIsPublishedToYourApp(long product_listing_id);
 
         /// <summary>
         /// Create a product listing to publish a product to your app

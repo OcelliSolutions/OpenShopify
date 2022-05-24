@@ -16,6 +16,8 @@ internal class ShopifyClientBase
         //settings.Converters.Add(new IntConverter());
         //settings.Converters.Add(new StringConverter());
         
+        //settings.Converters.Add(new JsonStringEnumConverter());
+        settings.Converters.Add(new JsonStringEnumMemberConverter());
         settings.NumberHandling = JsonNumberHandling.AllowReadingFromString | JsonNumberHandling.WriteAsString;
         settings.PropertyNameCaseInsensitive = true;
         settings.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;

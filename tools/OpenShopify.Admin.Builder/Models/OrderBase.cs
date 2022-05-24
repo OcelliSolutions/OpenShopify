@@ -1,9 +1,28 @@
 using System.Text.Json.Serialization;
+using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models
 {
     public partial record OrderBase
     {
+        #region Property Override
+
+        /// <inheritdoc cref="OrderOrig.CancelReason"/>
+        [JsonPropertyName("cancel_reason")]
+        public new CancelReason? CancelReason { get; set; }
+
+        /// <inheritdoc cref="OrderOrig.FulfillmentStatus"/>
+        [JsonPropertyName("fulfillment_status")]
+        public new FulfillmentStatus? FulfillmentStatus { get; set; }
+
+        /// <inheritdoc cref="OrderOrig.FinancialStatus"/>
+        [JsonPropertyName("financial_status")]
+        public new FinancialStatus? FinancialStatus { get; set; }
+
+        /// <inheritdoc cref="OrderOrig.ProcessingMethod"/>
+        [JsonPropertyName("processing_method")]
+        public new ProcessingMethod? ProcessingMethod { get; set; }
+
         /// <inheritdoc cref="OrderOrig.BillingAddress"/>
         [JsonPropertyName("billing_address")]
         public new Address? BillingAddress { get; set; }
@@ -49,23 +68,20 @@ namespace OpenShopify.Admin.Builder.Models
         public new IEnumerable<ShippingLine>? ShippingLines { get; set; }
 
         /// <inheritdoc cref="OrderOrig.TaxLines"/>
-        [JsonPropertyName("tax_items")]
+        [JsonPropertyName("tax_lines")]
         public new IEnumerable<TaxLine>? TaxLines { get; set; }
-        
-        /// <summary>
-        /// An array of <see cref="Transaction"/> objects that detail all of the transactions in
-        /// this order.
-        /// </summary>
-        [JsonPropertyName("transactions")]
-        public IEnumerable<Transaction>? Transactions { get; set; }
 
-        /// <summary>
-        /// Additional metadata about the <see cref="OrderBase"/>. Note: This is not naturally returned with a <see cref="OrderBase"/> response, as
-        /// Shopify will not return <see cref="OrderBase"/> metafields unless specified. Instead, you need to query metafields with <see cref="MetafieldService"/>. 
-        /// Uses include: Creating, updating, and deserializing webhook bodies that include them.
-        /// </summary>
-        [JsonPropertyName("metafields")]
-        public IEnumerable<Metafield>? Metafields { get; set; }
+        /// <inheritdoc cref="OrderOrig.CurrentTotalDiscountsSet"/>
+        [JsonPropertyName("current_total_discounts_set")]
+        public new PriceSet? CurrentTotalDiscountsSet { get; set; }
+
+        /// <inheritdoc cref="OrderOrig.CurrentSubtotalPriceSet"/>
+        [JsonPropertyName("current_subtotal_price_set")]
+        public new PriceSet? CurrentSubtotalPriceSet { get; set; }
+
+        /// <inheritdoc cref="OrderOrig.CurrentTotalPriceSet"/>
+        [JsonPropertyName("current_total_price_set")]
+        public new PriceSet? CurrentTotalPriceSet { get; set; }
 
         /// <inheritdoc cref="OrderOrig.CurrentTotalDutiesSet"/>
         [JsonPropertyName("current_total_duties_set")]
@@ -98,5 +114,42 @@ namespace OpenShopify.Admin.Builder.Models
         /// <inheritdoc cref="OrderOrig.TotalTaxSet"/>
         [JsonPropertyName("total_tax_set")]
         public new PriceSet? TotalTaxSet { get; set; }
+
+        /// <inheritdoc cref="OrderOrig.CurrentTotalTaxSet"/>
+        [JsonPropertyName("current_total_tax_set")]
+        public new PriceSet? CurrentTotalTaxSet { get; set; }
+
+        #endregion Property Override
+
+        #region Undocumented properties
+
+        /// <summary>
+        /// An array of <see cref="Transaction"/> objects that detail all of the transactions in
+        /// this order.
+        /// </summary>
+        [JsonPropertyName("transactions")]
+        public IEnumerable<Transaction>? Transactions { get; set; }
+
+        /// <summary>
+        /// Additional metadata about the <see cref="OrderBase"/>. Note: This is not naturally returned with a <see cref="OrderBase"/> response, as
+        /// Shopify will not return <see cref="OrderBase"/> metafields unless specified. Instead, you need to query metafields with <see cref="MetafieldService"/>. 
+        /// Uses include: Creating, updating, and deserializing webhook bodies that include them.
+        /// </summary>
+        [JsonPropertyName("metafields")]
+        public IEnumerable<Metafield>? Metafields { get; set; }
+
+        [JsonPropertyName("checkout_id")] 
+        public long? CheckoutId { get; set; }
+
+        [JsonPropertyName("confirmed")]
+        public bool? Confirmed { get; set; }
+
+        [JsonPropertyName("contact_email")]
+        public string? ContactEmail { get; set; }
+
+        [JsonPropertyName("total_price_usd")]
+        public decimal? TotalPriceUsd { get; set; }
+
+        #endregion Undocumented Properties
     }
 }

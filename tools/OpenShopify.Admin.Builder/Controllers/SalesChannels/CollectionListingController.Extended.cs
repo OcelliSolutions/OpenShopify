@@ -30,7 +30,7 @@ public class CollectionListingController : CollectionListingControllerBase
     /// <inheritdoc />
     [HttpGet, Route("collection_listings/{collection_listing_id:long}.json")]
     [ProducesResponseType(typeof(CollectionListingItem), StatusCodes.Status200OK)]
-    public override Task GetSpecificCollectionListingThatIsPublishedToYourApp([Required] long collection_listing_id)
+    public override Task GetCollectionListingThatIsPublishedToYourApp([Required] long collection_listing_id)
     {
         throw new NotImplementedException();
     }

@@ -264,6 +264,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WebhookItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookErrorResponse'
   /webhooks/count.json:
     get:
       tags:
@@ -402,6 +417,8 @@ components:
           format: int32
       additionalProperties: { }
     CreateWebhook:
+      required:
+        - topic
       type: object
       properties:
         address:
@@ -424,9 +441,7 @@ components:
           description: 'An optional array of top-level resource fields that should be serialized and sent in the POST request. If absent, all fields will be sent.'
           nullable: true
         format:
-          type: string
-          description: Format in which the webhook subscription should send the data. Valid values are `JSON` and `XML`. Defaults to `JSON`.
-          nullable: true
+          $ref: '#/components/schemas/WebhookFormat'
         metafield_namespaces:
           type: array
           items:
@@ -434,13 +449,13 @@ components:
           description: Optional array of namespaces for any metafields that should be included with each webhook.
           nullable: true
         private_metafield_namespaces:
-          type: string
+          type: array
+          items:
+            type: string
           description: Optional array of namespaces for any private metafields that should be included with each webhook.
           nullable: true
         topic:
-          type: string
-          description: 'Event that triggers the webhook. Valid values are: app/uninstalled, bulk_operations/finish, carts/create, carts/update, checkouts/create, checkouts/delete, checkouts/update, collection_listings/add, collection_listings/remove, collection_listings/update, collections/create, collections/delete, collections/update, customer_groups/create, customer_groups/delete, customer_groups/update, customer_payment_methods/create, customer_payment_methods/revoke, customer_payment_methods/update, customers/create, customers/delete, customers/disable, customers/enable, customers/update, customers_marketing_consent/update, disputes/create, disputes/update, domains/create, domains/destroy, domains/update, draft_orders/create, draft_orders/delete, draft_orders/update, fulfillment_events/create, fulfillment_events/delete, fulfillments/create, fulfillments/update, inventory_items/create, inventory_items/delete, inventory_items/update, inventory_levels/connect, inventory_levels/disconnect, inventory_levels/update, locales/create, locales/update, locations/create, locations/delete, locations/update, markets/create, markets/delete, markets/update, order_transactions/create, orders/cancelled, orders/create, orders/delete, orders/edited, orders/fulfilled, orders/paid, orders/partially_fulfilled, orders/updated, product_listings/add, product_listings/remove, product_listings/update, products/create, products/delete, products/update, profiles/create, profiles/delete, profiles/update, refunds/create, scheduled_product_listings/add, scheduled_product_listings/remove, scheduled_product_listings/update, selling_plan_groups/create, selling_plan_groups/delete, selling_plan_groups/update, shop/update, subscription_billing_attempts/challenged, subscription_billing_attempts/failure, subscription_billing_attempts/success, subscription_contracts/create, subscription_contracts/update, tender_transactions/create, themes/create, themes/delete, themes/publish, themes/update'
-          nullable: true
+          $ref: '#/components/schemas/WebhookTopic'
         updated_at:
           type: string
           description: 'Date and time when the webhook subscription was updated. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
@@ -532,6 +547,7 @@ components:
     UpdateWebhook:
       required:
         - id
+        - topic
       type: object
       properties:
         address:
@@ -554,9 +570,7 @@ components:
           description: 'An optional array of top-level resource fields that should be serialized and sent in the POST request. If absent, all fields will be sent.'
           nullable: true
         format:
-          type: string
-          description: Format in which the webhook subscription should send the data. Valid values are `JSON` and `XML`. Defaults to `JSON`.
-          nullable: true
+          $ref: '#/components/schemas/WebhookFormat'
         metafield_namespaces:
           type: array
           items:
@@ -564,13 +578,13 @@ components:
           description: Optional array of namespaces for any metafields that should be included with each webhook.
           nullable: true
         private_metafield_namespaces:
-          type: string
+          type: array
+          items:
+            type: string
           description: Optional array of namespaces for any private metafields that should be included with each webhook.
           nullable: true
         topic:
-          type: string
-          description: 'Event that triggers the webhook. Valid values are: app/uninstalled, bulk_operations/finish, carts/create, carts/update, checkouts/create, checkouts/delete, checkouts/update, collection_listings/add, collection_listings/remove, collection_listings/update, collections/create, collections/delete, collections/update, customer_groups/create, customer_groups/delete, customer_groups/update, customer_payment_methods/create, customer_payment_methods/revoke, customer_payment_methods/update, customers/create, customers/delete, customers/disable, customers/enable, customers/update, customers_marketing_consent/update, disputes/create, disputes/update, domains/create, domains/destroy, domains/update, draft_orders/create, draft_orders/delete, draft_orders/update, fulfillment_events/create, fulfillment_events/delete, fulfillments/create, fulfillments/update, inventory_items/create, inventory_items/delete, inventory_items/update, inventory_levels/connect, inventory_levels/disconnect, inventory_levels/update, locales/create, locales/update, locations/create, locations/delete, locations/update, markets/create, markets/delete, markets/update, order_transactions/create, orders/cancelled, orders/create, orders/delete, orders/edited, orders/fulfilled, orders/paid, orders/partially_fulfilled, orders/updated, product_listings/add, product_listings/remove, product_listings/update, products/create, products/delete, products/update, profiles/create, profiles/delete, profiles/update, refunds/create, scheduled_product_listings/add, scheduled_product_listings/remove, scheduled_product_listings/update, selling_plan_groups/create, selling_plan_groups/delete, selling_plan_groups/update, shop/update, subscription_billing_attempts/challenged, subscription_billing_attempts/failure, subscription_billing_attempts/success, subscription_contracts/create, subscription_contracts/update, tender_transactions/create, themes/create, themes/delete, themes/publish, themes/update'
-          nullable: true
+          $ref: '#/components/schemas/WebhookTopic'
         updated_at:
           type: string
           description: 'Date and time when the webhook subscription was updated. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
@@ -594,6 +608,7 @@ components:
     Webhook:
       required:
         - id
+        - topic
       type: object
       properties:
         address:
@@ -616,9 +631,7 @@ components:
           description: 'An optional array of top-level resource fields that should be serialized and sent in the POST request. If absent, all fields will be sent.'
           nullable: true
         format:
-          type: string
-          description: Format in which the webhook subscription should send the data. Valid values are `JSON` and `XML`. Defaults to `JSON`.
-          nullable: true
+          $ref: '#/components/schemas/WebhookFormat'
         metafield_namespaces:
           type: array
           items:
@@ -626,13 +639,13 @@ components:
           description: Optional array of namespaces for any metafields that should be included with each webhook.
           nullable: true
         private_metafield_namespaces:
-          type: string
+          type: array
+          items:
+            type: string
           description: Optional array of namespaces for any private metafields that should be included with each webhook.
           nullable: true
         topic:
-          type: string
-          description: 'Event that triggers the webhook. Valid values are: app/uninstalled, bulk_operations/finish, carts/create, carts/update, checkouts/create, checkouts/delete, checkouts/update, collection_listings/add, collection_listings/remove, collection_listings/update, collections/create, collections/delete, collections/update, customer_groups/create, customer_groups/delete, customer_groups/update, customer_payment_methods/create, customer_payment_methods/revoke, customer_payment_methods/update, customers/create, customers/delete, customers/disable, customers/enable, customers/update, customers_marketing_consent/update, disputes/create, disputes/update, domains/create, domains/destroy, domains/update, draft_orders/create, draft_orders/delete, draft_orders/update, fulfillment_events/create, fulfillment_events/delete, fulfillments/create, fulfillments/update, inventory_items/create, inventory_items/delete, inventory_items/update, inventory_levels/connect, inventory_levels/disconnect, inventory_levels/update, locales/create, locales/update, locations/create, locations/delete, locations/update, markets/create, markets/delete, markets/update, order_transactions/create, orders/cancelled, orders/create, orders/delete, orders/edited, orders/fulfilled, orders/paid, orders/partially_fulfilled, orders/updated, product_listings/add, product_listings/remove, product_listings/update, products/create, products/delete, products/update, profiles/create, profiles/delete, profiles/update, refunds/create, scheduled_product_listings/add, scheduled_product_listings/remove, scheduled_product_listings/update, selling_plan_groups/create, selling_plan_groups/delete, selling_plan_groups/update, shop/update, subscription_billing_attempts/challenged, subscription_billing_attempts/failure, subscription_billing_attempts/success, subscription_contracts/create, subscription_contracts/update, tender_transactions/create, themes/create, themes/delete, themes/publish, themes/update'
-          nullable: true
+          $ref: '#/components/schemas/WebhookTopic'
         updated_at:
           type: string
           description: 'Date and time when the webhook subscription was updated. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
@@ -644,6 +657,32 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+      additionalProperties: { }
+    WebhookError:
+      type: object
+      properties:
+        topic:
+          type: array
+          items:
+            type: string
+          nullable: true
+        address:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: { }
+    WebhookErrorResponse:
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/WebhookError'
+      additionalProperties: { }
+    WebhookFormat:
+      enum:
+        - json
+        - xml
+      type: string
       additionalProperties: { }
     WebhookItem:
       required:
@@ -662,6 +701,91 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Webhook'
+      additionalProperties: { }
+    WebhookTopic:
+      enum:
+        - app/uninstalled
+        - bulk_operations/finish
+        - carts/create
+        - carts/update
+        - checkouts/create
+        - checkouts/delete
+        - checkouts/update
+        - collection_listings/add
+        - collection_listings/remove
+        - collection_listings/update
+        - collections/create
+        - collections/delete
+        - collections/update
+        - customer_groups/create
+        - customer_groups/delete
+        - customer_groups/update
+        - customer_payment_methods/create
+        - customer_payment_methods/revoke
+        - customer_payment_methods/update
+        - customers/create
+        - customers/delete
+        - customers/disable
+        - customers/enable
+        - customers/update
+        - customers_marketing_consent/update
+        - disputes/create
+        - disputes/update
+        - domains/create
+        - domains/destroy
+        - domains/update
+        - draft_orders/create
+        - draft_orders/delete
+        - draft_orders/update
+        - fulfillment_events/create
+        - fulfillment_events/delete
+        - fulfillments/create
+        - fulfillments/update
+        - inventory_items/create
+        - inventory_items/delete
+        - inventory_items/update
+        - inventory_levels/connect
+        - inventory_levels/disconnect
+        - inventory_levels/update
+        - locales/create
+        - locales/update
+        - locations/create
+        - locations/delete
+        - locations/update
+        - order_transactions/create
+        - orders/cancelled
+        - orders/create
+        - orders/delete
+        - orders/edited
+        - orders/fulfilled
+        - orders/paid
+        - orders/partially_fulfilled
+        - orders/updated
+        - product_listings/add
+        - product_listings/remove
+        - product_listings/update
+        - products/create
+        - products/delete
+        - products/update
+        - profiles/create
+        - profiles/delete
+        - profiles/update
+        - refunds/create
+        - selling_plan_groups/create
+        - selling_plan_groups/delete
+        - selling_plan_groups/update
+        - shop/update
+        - subscription_billing_attempts/challenged
+        - subscription_billing_attempts/failure
+        - subscription_billing_attempts/success
+        - subscription_contracts/create
+        - subscription_contracts/update
+        - tender_transactions/create
+        - themes/create
+        - themes/delete
+        - themes/publish
+        - themes/update
+      type: string
       additionalProperties: { }
   securitySchemes:
     ApiKey:

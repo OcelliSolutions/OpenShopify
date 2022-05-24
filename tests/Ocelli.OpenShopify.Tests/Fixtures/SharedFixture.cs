@@ -45,6 +45,7 @@ public class SharedFixture : IDisposable
     public string LastName => "Doe";
     public string Company => "OpenShopify";
     public string Note => "Test note about this customer.";
+    public string Email => "foo@example.com";
 
     public List<AuthorizationScope> Scopes = new();
     public List<ApplicationCredit> CreatedApplicationCredits = new();
@@ -54,8 +55,10 @@ public class SharedFixture : IDisposable
     public List<Address> CreatedAddresses = new();
     //public List<CustomerAddress> CreatedCustomerAddresses = new();
     public List<FulfillmentService> CreatedFulfillmentServices = new();
+    public List<Order> CreatedOrders = new();
     public List<PriceRule> CreatedPriceRule = new();
     public List<Product> CreatedProducts = new();
+    public List<Webhook> CreatedWebhooks = new();
 
     public void ValidateScopes(List<AuthorizationScope> requiredPermissions)
     {
@@ -150,6 +153,22 @@ public class SharedFixture : IDisposable
             }
         };
 
+    public CreateOrderRequest CreateSimpleOrder(long variantId) =>
+        new()
+        {
+            Order = new()
+            {
+                Email = Email,
+                LineItems = new List<LineItem>()
+                {
+                    new ()
+                    {
+                        VariantId = variantId,
+                        Quantity = 1
+                    }
+                }
+            }
+        };
     /*
     public CreateProductRequest CreateProductRequest =>
         new()

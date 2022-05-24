@@ -1,80 +1,150 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace OpenShopify.Common.Data;
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum AuthorizationScope
 {
-    read_content,
-    write_content,
-    read_themes,
-    write_themes,
-    read_products,
-    write_products,
-    read_customers,
-    write_customers,
-    read_orders,
-    read_all_orders,
-    write_orders,
-    read_script_tags,
-    write_script_tags,
-    read_fulfillments,
-    write_fulfillments,
-    read_shipping,
-    write_shipping,
-    read_analytics,
-    read_users,
-    write_users,
-    read_checkouts,
-    write_checkouts,
-    read_reports,
-    write_reports,
-    read_price_rules,
-    write_price_rules,
-    read_inventory,
-    write_inventory,
-    read_product_listings,
-    read_collection_listings,
-    read_draft_orders,
-    write_draft_orders,
-    write_merchant_managed_fulfillment_orders,
-    read_merchant_managed_fulfillment_orders,
-    read_marketing_events,
-    write_marketing_events,
-    read_resource_feedbacks,
-    write_resource_feedbacks,
-    unauthenticated_read_checkouts,
-    unauthenticated_read_collection_listings,
-    unauthenticated_read_customer_tags,
-    unauthenticated_read_customers,
-    unauthenticated_read_product_listings,
-    unauthenticated_read_product_tags,
-    unauthenticated_write_checkouts,
-    unauthenticated_write_customers,
-    unauthenticated_read_content,
-    read_locations,
-    write_locations,
-    read_order_edits,
-    write_order_edits,
-    read_assigned_fulfillment_orders,
-    write_assigned_fulfillment_orders,
-    read_third_party_fulfillment_orders,
-    write_third_party_fulfillment_orders,
-    read_gift_cards,
-    write_gift_cards,
-    read_discounts,
-    write_discounts,
-    read_shopify_payments_payouts,
-    read_shopify_payments_disputes,
-    read_translations,
-    write_translations,
-    read_locales,
-    write_locales,
+    [EnumMember(Value = "read_content")]
+    ReadContent,
+    [EnumMember(Value = "write_content")]
+    WriteContent,
+    [EnumMember(Value = "read_themes")]
+    ReadThemes,
+    [EnumMember(Value = "write_themes")]
+    WriteThemes,
+    [EnumMember(Value = "read_products")]
+    ReadProducts,
+    [EnumMember(Value = "write_products")]
+    WriteProducts,
+    [EnumMember(Value = "read_customers")]
+    ReadCustomers,
+    [EnumMember(Value = "write_customers")]
+    WriteCustomers,
+    [EnumMember(Value = "read_orders")]
+    ReadOrders,
+    [EnumMember(Value = "read_all_orders")]
+    ReadAllOrders,
+    [EnumMember(Value = "write_orders")]
+    WriteOrders,
+    [EnumMember(Value = "read_script_tags")]
+    ReadScriptTags,
+    [EnumMember(Value = "write_script_tags")]
+    WriteScriptTags,
+    [EnumMember(Value = "read_fulfillments")]
+    ReadFulfillments,
+    [EnumMember(Value = "write_fulfillments")]
+    WriteFulfillments,
+    [EnumMember(Value = "read_shipping")]
+    ReadShipping,
+    [EnumMember(Value = "write_shipping")]
+    WriteShipping,
+    [EnumMember(Value = "read_analytics")]
+    ReadAnalytics,
+    [EnumMember(Value = "read_users")]
+    ReadUsers,
+    [EnumMember(Value = "write_users")]
+    WriteUsers,
+    [EnumMember(Value = "read_checkouts")]
+    ReadCheckouts,
+    [EnumMember(Value = "write_checkouts")]
+    WriteCheckouts,
+    [EnumMember(Value = "read_reports")]
+    ReadReports,
+    [EnumMember(Value = "write_reports")]
+    WriteReports,
+    [EnumMember(Value = "read_price_rules")]
+    ReadPriceRules,
+    [EnumMember(Value = "write_price_rules")]
+    WritePriceRules,
+    [EnumMember(Value = "read_inventory")]
+    ReadInventory,
+    [EnumMember(Value = "write_inventory")]
+    WriteInventory,
+    [EnumMember(Value = "read_product_listings")]
+    ReadProductListings,
+    [EnumMember(Value = "read_collection_listings")]
+    ReadCollectionListings,
+    [EnumMember(Value = "read_draft_orders")]
+    ReadDraftOrders,
+    [EnumMember(Value = "write_draft_orders")]
+    WriteDraftOrders,
+    [EnumMember(Value = "write_merchant_managed_fulfillment_orders")]
+    WriteMerchantManagedFulfillmentOrders,
+    [EnumMember(Value = "read_merchant_managed_fulfillment_orders")]
+    ReadMerchantManagedFulfillmentOrders,
+    [EnumMember(Value = "read_marketing_events")]
+    ReadMarketingEvents,
+    [EnumMember(Value = "write_marketing_events")]
+    WriteMarketingEvents,
+    [EnumMember(Value = "read_resource_feedbacks")]
+    ReadResourceFeedbacks,
+    [EnumMember(Value = "write_resource_feedbacks")]
+    WriteResourceFeedbacks,
+    [EnumMember(Value = "unauthenticated_read_checkouts")]
+    UnauthenticatedReadCheckouts,
+    [EnumMember(Value = "unauthenticated_read_collection_listings")]
+    UnauthenticatedReadCollectionListings,
+    [EnumMember(Value = "unauthenticated_read_customer_tags")]
+    UnauthenticatedReadCustomerTags,
+    [EnumMember(Value = "unauthenticated_read_customers")]
+    UnauthenticatedReadCustomers,
+    [EnumMember(Value = "unauthenticated_read_product_listings")]
+    UnauthenticatedReadProductListings,
+    [EnumMember(Value = "unauthenticated_read_product_tags")]
+    UnauthenticatedReadProductTags,
+    [EnumMember(Value = "unauthenticated_write_checkouts")]
+    UnauthenticatedWriteCheckouts,
+    [EnumMember(Value = "unauthenticated_write_customers")]
+    UnauthenticatedWriteCustomers,
+    [EnumMember(Value = "unauthenticated_read_content")]
+    UnauthenticatedReadContent,
+    [EnumMember(Value = "read_locations")]
+    ReadLocations,
+    [EnumMember(Value = "write_locations")]
+    WriteLocations,
+    [EnumMember(Value = "read_order_edits")]
+    ReadOrderEdits,
+    [EnumMember(Value = "write_order_edits")]
+    WriteOrderEdits,
+    [EnumMember(Value = "read_assigned_fulfillment_orders")]
+    ReadAssignedFulfillmentOrders,
+    [EnumMember(Value = "write_assigned_fulfillment_orders")]
+    WriteAssignedFulfillmentOrders,
+    [EnumMember(Value = "read_third_party_fulfillment_orders")]
+    ReadThirdPartyFulfillmentOrders,
+    [EnumMember(Value = "write_third_party_fulfillment_orders")]
+    WriteThirdPartyFulfillmentOrders,
+    [EnumMember(Value = "read_gift_cards")]
+    ReadGiftCards,
+    [EnumMember(Value = "write_gift_cards")]
+    WriteGiftCards,
+    [EnumMember(Value = "read_discounts")]
+    ReadDiscounts,
+    [EnumMember(Value = "write_discounts")]
+    WriteDiscounts,
+    [EnumMember(Value = "read_shopify_payments_payouts")]
+    ReadShopifyPaymentsPayouts,
+    [EnumMember(Value = "read_shopify_payments_disputes")]
+    ReadShopifyPaymentsDisputes,
+    [EnumMember(Value = "read_translations")]
+    ReadTranslations,
+    [EnumMember(Value = "write_translations")]
+    WriteTranslations,
+    [EnumMember(Value = "read_locales")]
+    ReadLocales,
+    [EnumMember(Value = "write_locales")]
+    WriteLocales,
 
     #region Subscriptions API
 
-    read_customer_payment_methods,
-    read_own_subscription_contracts,
-    write_own_subscription_contracts
+
+    [EnumMember(Value = "read_customer_payment_methods")]
+    ReadCustomerPaymentMethods,
+    [EnumMember(Value = "read_own_subscription_contracts")]
+    ReadOwnSubscriptionContracts,
+    [EnumMember(Value = "write_own_subscription_contracts")]
+    WriteOwnSubscriptionContracts,
 
     #endregion Subscriptions API
 }

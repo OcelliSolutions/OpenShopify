@@ -55,7 +55,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <param name="in_shop_currency">Show amounts in the shop currency for the underlying transaction.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds/{refund_id}.json")]
-        public abstract System.Threading.Tasks.Task GetSpecificRefund(long order_id, long refund_id, string? fields = null, bool? in_shop_currency = null);
+        public abstract System.Threading.Tasks.Task GetRefund(long order_id, long refund_id, string? fields = null, bool? in_shop_currency = null);
 
         /// <summary>
         /// Calculates a refund

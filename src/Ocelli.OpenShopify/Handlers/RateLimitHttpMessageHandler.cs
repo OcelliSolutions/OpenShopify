@@ -60,13 +60,12 @@ internal class RateLimitHttpMessageHandler : DelegatingHandler
             {
                 var currentTime = DateTimeOffset.UtcNow;
                 // need to check again in case a reset has already happened in this period
-                if (currentTime.UtcTicks > Interlocked.Read(ref _nextResetTimeTicks))
-                {
-                    _semaphore.Release(_maxCount - _semaphore.CurrentCount);
+                if (currentTime.UtcTicks <= Interlocked.Read(ref _nextResetTimeTicks)) return;
 
-                    var newResetTimeTicks = (currentTime + _resetTimeSpan).UtcTicks;
-                    Interlocked.Exchange(ref _nextResetTimeTicks, newResetTimeTicks);
-                }
+                _semaphore.Release(_maxCount - _semaphore.CurrentCount);
+
+                var newResetTimeTicks = (currentTime + _resetTimeSpan).UtcTicks;
+                Interlocked.Exchange(ref _nextResetTimeTicks, newResetTimeTicks);
             }
         }
 

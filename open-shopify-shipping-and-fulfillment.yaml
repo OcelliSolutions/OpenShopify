@@ -858,7 +858,7 @@ paths:
       tags:
         - FulfillmentEvent
       summary: Retrieves a specific fulfillment event
-      operationId: GetSpecificFulfillmentEvent
+      operationId: GetFulfillmentEvent
       parameters:
         - name: event_id
           in: path
@@ -964,7 +964,7 @@ paths:
       tags:
         - FulfillmentOrder
       summary: Retrieves a specific fulfillment order
-      operationId: GetSpecificFulfillmentOrder
+      operationId: GetFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
           in: path
@@ -2423,7 +2423,6 @@ components:
           description: 'The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.'
           nullable: true
       additionalProperties: { }
-      description: An object representing a Shopify fulfillment request.
     FulfillmentRequestItem:
       required:
         - fulfillment_request

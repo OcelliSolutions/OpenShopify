@@ -17,7 +17,7 @@ public class ShippingAndFulfillmentService : ShopifyService, IShippingAndFulfill
     private readonly string _myShopifyUrl;
     private readonly Uri _baseUri;
 
-    public ShippingAndFulfillmentService(string myShopifyUrl, string shopAccessToken) : base(myShopifyUrl, shopAccessToken)
+    public ShippingAndFulfillmentService(string myShopifyUrl, string shopAccessToken, bool isPlusStore = false) : base(myShopifyUrl, shopAccessToken, isPlusStore)
     {
         _baseUri = base.PrepareRequest(myShopifyUrl);
         _myShopifyUrl = myShopifyUrl;

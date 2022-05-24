@@ -12,7 +12,7 @@ public class AccessService : ShopifyService, IAccessService
     private readonly Uri _baseUri;
     private readonly Uri _baseUriAccessScope;
 
-    public AccessService(string myShopifyUrl, string shopAccessToken) : base(myShopifyUrl, shopAccessToken)
+    public AccessService(string myShopifyUrl, string shopAccessToken, bool isPlusStore = false) : base(myShopifyUrl, shopAccessToken, isPlusStore)
     {
         _baseUriAccessScope = AuthorizationService.BuildShopUri(myShopifyUrl, true);
         _baseUri = base.PrepareRequest(myShopifyUrl);

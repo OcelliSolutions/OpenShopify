@@ -41,7 +41,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Retrieves a specific fulfillment event
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json")]
-        public abstract System.Threading.Tasks.Task GetSpecificFulfillmentEvent(long event_idUndefined, long fulfillment_id, long order_id);
+        public abstract System.Threading.Tasks.Task GetFulfillmentEvent(long event_idUndefined, long fulfillment_id, long order_id);
 
         /// <summary>
         /// Deletes a fulfillment event

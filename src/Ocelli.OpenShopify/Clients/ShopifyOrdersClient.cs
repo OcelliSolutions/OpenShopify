@@ -1210,7 +1210,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> GetSpecificOrderAsync(long orderId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> GetOrderAsync(long orderId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1241,7 +1241,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Orders last updated after date specified.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetOrderCountAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? financialStatus = null, string? fulfillmentStatus = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountOrdersAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? financialStatus = null, string? fulfillmentStatus = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1536,7 +1536,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> GetSpecificOrderAsync(long orderId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> GetOrderAsync(long orderId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -1770,7 +1770,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Orders last updated after date specified.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetOrderCountAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? financialStatus = null, string? fulfillmentStatus = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountOrdersAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? financialStatus = null, string? fulfillmentStatus = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/count.json?");
@@ -2829,7 +2829,7 @@ namespace Ocelli.OpenShopify
         /// <param name="inShopCurrency">Show amounts in the shop currency for the underlying transaction.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> GetSpecificRefundAsync(long orderId, long refundId, string? fields = null, bool? inShopCurrency = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> GetRefundAsync(long orderId, long refundId, string? fields = null, bool? inShopCurrency = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3097,7 +3097,7 @@ namespace Ocelli.OpenShopify
         /// <param name="inShopCurrency">Show amounts in the shop currency for the underlying transaction.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> GetSpecificRefundAsync(long orderId, long refundId, string? fields = null, bool? inShopCurrency = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> GetRefundAsync(long orderId, long refundId, string? fields = null, bool? inShopCurrency = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -3409,7 +3409,7 @@ namespace Ocelli.OpenShopify
         /// <param name="inShopCurrency">Show amounts in the shop currency.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<TransactionItem>> GetSpecificTransactionAsync(long orderId, long transactionId, string? fields = null, bool? inShopCurrency = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<TransactionItem>> GetTransactionAsync(long orderId, long transactionId, string? fields = null, bool? inShopCurrency = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -3703,7 +3703,7 @@ namespace Ocelli.OpenShopify
         /// <param name="inShopCurrency">Show amounts in the shop currency.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<TransactionItem>> GetSpecificTransactionAsync(long orderId, long transactionId, string? fields = null, bool? inShopCurrency = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<TransactionItem>> GetTransactionAsync(long orderId, long transactionId, string? fields = null, bool? inShopCurrency = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -5246,14 +5246,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? CurrentTotalDiscounts { get; set; } = default!;
 
-        /// <summary>
-        /// The current total discounts on the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("current_total_discounts_set")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CurrentTotalDiscountsSet { get; set; } = default!;
+        public PriceSet? CurrentTotalDiscountsSet { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("current_total_duties_set")]
 
@@ -5269,14 +5265,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? CurrentTotalPrice { get; set; } = default!;
 
-        /// <summary>
-        /// The current total price of the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("current_total_price_set")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CurrentTotalPriceSet { get; set; } = default!;
+        public PriceSet? CurrentTotalPriceSet { get; set; } = default!;
 
         /// <summary>
         /// The current subtotal price of the order in the shop currency. The value of this field reflects order edits, returns, and refunds.
@@ -5287,14 +5279,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? CurrentSubtotalPrice { get; set; } = default!;
 
-        /// <summary>
-        /// The current subtotal price of the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("current_subtotal_price_set")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CurrentSubtotalPriceSet { get; set; } = default!;
+        public PriceSet? CurrentSubtotalPriceSet { get; set; } = default!;
 
         /// <summary>
         /// The current total taxes charged on the order in the shop currency. The value of this field reflects order edits, returns, or refunds.
@@ -5305,14 +5293,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? CurrentTotalTax { get; set; } = default!;
 
-        /// <summary>
-        /// The current total taxes charged on the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("current_total_tax_set")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CurrentTotalTaxSet { get; set; } = default!;
+        public PriceSet? CurrentTotalTaxSet { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("customer")]
 
@@ -5773,7 +5757,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? TaxLines { get; set; } = default!;
+        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
 
         /// <summary>
         /// Whether taxes are included in the order subtotal.
@@ -5920,20 +5904,6 @@ namespace Ocelli.OpenShopify
         public string? OrderStatusUrl { get; set; } = default!;
 
         /// <summary>
-        /// An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: 
-        /// <br/>
-        /// <br/>*   **price**: The amount of tax to be charged in the shop currency. 
-        /// <br/>*   **rate**: The rate of tax to be applied. 
-        /// <br/>*   **title**: The name of the tax. 
-        /// <br/>*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line.  When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_items")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.Collections.Generic.ICollection<TaxLine>? TaxItems { get; set; } = default!;
-
-        /// <summary>
         /// An array of OpenShopify.Admin.Builder.Models.Transaction objects that detail all of the transactions in
         /// <br/>this order.
         /// </summary>
@@ -5953,6 +5923,26 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.ICollection<Metafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("checkout_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? CheckoutId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("confirmed")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? Confirmed { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("contact_email")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? ContactEmail { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_price_usd")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? TotalPriceUsd { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -6094,11 +6084,11 @@ namespace Ocelli.OpenShopify
     public partial class CreateOrderRiskRequest
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("order_risk")]
+        [System.Text.Json.Serialization.JsonPropertyName("risk")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
-        public CreateOrderRisk OrderRisk { get; set; } = new CreateOrderRisk();
+        public CreateOrderRisk Risk { get; set; } = new CreateOrderRisk();
 
     }
 
@@ -8137,14 +8127,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? CurrentTotalDiscounts { get; set; } = default!;
 
-        /// <summary>
-        /// The current total discounts on the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("current_total_discounts_set")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CurrentTotalDiscountsSet { get; set; } = default!;
+        public PriceSet? CurrentTotalDiscountsSet { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("current_total_duties_set")]
 
@@ -8160,14 +8146,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? CurrentTotalPrice { get; set; } = default!;
 
-        /// <summary>
-        /// The current total price of the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("current_total_price_set")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CurrentTotalPriceSet { get; set; } = default!;
+        public PriceSet? CurrentTotalPriceSet { get; set; } = default!;
 
         /// <summary>
         /// The current subtotal price of the order in the shop currency. The value of this field reflects order edits, returns, and refunds.
@@ -8178,14 +8160,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? CurrentSubtotalPrice { get; set; } = default!;
 
-        /// <summary>
-        /// The current subtotal price of the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("current_subtotal_price_set")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CurrentSubtotalPriceSet { get; set; } = default!;
+        public PriceSet? CurrentSubtotalPriceSet { get; set; } = default!;
 
         /// <summary>
         /// The current total taxes charged on the order in the shop currency. The value of this field reflects order edits, returns, or refunds.
@@ -8196,14 +8174,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? CurrentTotalTax { get; set; } = default!;
 
-        /// <summary>
-        /// The current total taxes charged on the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("current_total_tax_set")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CurrentTotalTaxSet { get; set; } = default!;
+        public PriceSet? CurrentTotalTaxSet { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("customer")]
 
@@ -8664,7 +8638,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? TaxLines { get; set; } = default!;
+        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
 
         /// <summary>
         /// Whether taxes are included in the order subtotal.
@@ -8811,20 +8785,6 @@ namespace Ocelli.OpenShopify
         public string? OrderStatusUrl { get; set; } = default!;
 
         /// <summary>
-        /// An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: 
-        /// <br/>
-        /// <br/>*   **price**: The amount of tax to be charged in the shop currency. 
-        /// <br/>*   **rate**: The rate of tax to be applied. 
-        /// <br/>*   **title**: The name of the tax. 
-        /// <br/>*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line.  When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_items")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.Collections.Generic.ICollection<TaxLine>? TaxItems { get; set; } = default!;
-
-        /// <summary>
         /// An array of OpenShopify.Admin.Builder.Models.Transaction objects that detail all of the transactions in
         /// <br/>this order.
         /// </summary>
@@ -8844,6 +8804,26 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.ICollection<Metafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("checkout_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? CheckoutId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("confirmed")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? Confirmed { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("contact_email")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? ContactEmail { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_price_usd")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? TotalPriceUsd { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
 
@@ -9035,11 +9015,11 @@ namespace Ocelli.OpenShopify
     public partial class OrderRiskItem
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("order_risk")]
+        [System.Text.Json.Serialization.JsonPropertyName("risk")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
-        public OrderRisk OrderRisk { get; set; } = new OrderRisk();
+        public OrderRisk Risk { get; set; } = new OrderRisk();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -9056,11 +9036,11 @@ namespace Ocelli.OpenShopify
     public partial class OrderRiskList
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("order_risks")]
+        [System.Text.Json.Serialization.JsonPropertyName("risks")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<OrderRisk> OrderRisks { get; set; } = new System.Collections.ObjectModel.Collection<OrderRisk>();
+        public System.Collections.Generic.ICollection<OrderRisk> Risks { get; set; } = new System.Collections.ObjectModel.Collection<OrderRisk>();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -9791,9 +9771,6 @@ namespace Ocelli.OpenShopify
 
     }
 
-    /// <summary>
-    /// An object representing a Shopify transaction.
-    /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class Transaction
     {
@@ -10557,14 +10534,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? CurrentTotalDiscounts { get; set; } = default!;
 
-        /// <summary>
-        /// The current total discounts on the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("current_total_discounts_set")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CurrentTotalDiscountsSet { get; set; } = default!;
+        public PriceSet? CurrentTotalDiscountsSet { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("current_total_duties_set")]
 
@@ -10580,14 +10553,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? CurrentTotalPrice { get; set; } = default!;
 
-        /// <summary>
-        /// The current total price of the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("current_total_price_set")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CurrentTotalPriceSet { get; set; } = default!;
+        public PriceSet? CurrentTotalPriceSet { get; set; } = default!;
 
         /// <summary>
         /// The current subtotal price of the order in the shop currency. The value of this field reflects order edits, returns, and refunds.
@@ -10598,14 +10567,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? CurrentSubtotalPrice { get; set; } = default!;
 
-        /// <summary>
-        /// The current subtotal price of the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("current_subtotal_price_set")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CurrentSubtotalPriceSet { get; set; } = default!;
+        public PriceSet? CurrentSubtotalPriceSet { get; set; } = default!;
 
         /// <summary>
         /// The current total taxes charged on the order in the shop currency. The value of this field reflects order edits, returns, or refunds.
@@ -10616,14 +10581,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? CurrentTotalTax { get; set; } = default!;
 
-        /// <summary>
-        /// The current total taxes charged on the order in shop and presentment currencies. The `amount` values associated with this field reflect order edits, returns, and refunds.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("current_total_tax_set")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CurrentTotalTaxSet { get; set; } = default!;
+        public PriceSet? CurrentTotalTaxSet { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("customer")]
 
@@ -11084,7 +11045,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? TaxLines { get; set; } = default!;
+        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
 
         /// <summary>
         /// Whether taxes are included in the order subtotal.
@@ -11231,20 +11192,6 @@ namespace Ocelli.OpenShopify
         public string? OrderStatusUrl { get; set; } = default!;
 
         /// <summary>
-        /// An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: 
-        /// <br/>
-        /// <br/>*   **price**: The amount of tax to be charged in the shop currency. 
-        /// <br/>*   **rate**: The rate of tax to be applied. 
-        /// <br/>*   **title**: The name of the tax. 
-        /// <br/>*   **channel_liable**: Whether the channel that submitted the tax line is liable for remitting. A value of `null` indicates unknown liability for the tax line.  When creating an order through the API, tax lines can be specified on the order or the line items but not both. Tax lines specified on the order are split across the *taxable* line items in the created order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tax_items")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.Collections.Generic.ICollection<TaxLine>? TaxItems { get; set; } = default!;
-
-        /// <summary>
         /// An array of OpenShopify.Admin.Builder.Models.Transaction objects that detail all of the transactions in
         /// <br/>this order.
         /// </summary>
@@ -11264,6 +11211,26 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.ICollection<Metafield>? Metafields { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("checkout_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? CheckoutId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("confirmed")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? Confirmed { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("contact_email")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? ContactEmail { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_price_usd")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? TotalPriceUsd { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
 
@@ -11425,11 +11392,11 @@ namespace Ocelli.OpenShopify
     public partial class UpdateOrderRiskRequest
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("order_risk")]
+        [System.Text.Json.Serialization.JsonPropertyName("risk")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
-        public UpdateOrderRisk OrderRisk { get; set; } = new UpdateOrderRisk();
+        public UpdateOrderRisk Risk { get; set; } = new UpdateOrderRisk();
 
     }
 

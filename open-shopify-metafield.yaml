@@ -164,7 +164,7 @@ paths:
       tags:
         - Metafield
       summary: Retrieve a specific metafield
-      operationId: GetSpecificMetafield
+      operationId: GetMetafield
       parameters:
         - name: metafield_id
           in: path

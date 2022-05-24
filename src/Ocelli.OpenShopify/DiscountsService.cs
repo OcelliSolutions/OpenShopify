@@ -10,7 +10,7 @@ public class DiscountsService : ShopifyService, IDiscountsService
     private readonly string _myShopifyUrl;
     private readonly Uri _baseUri;
 
-    public DiscountsService(string myShopifyUrl, string shopAccessToken) : base(myShopifyUrl, shopAccessToken)
+    public DiscountsService(string myShopifyUrl, string shopAccessToken, bool isPlusStore = false) : base(myShopifyUrl, shopAccessToken, isPlusStore)
     {
         _baseUri = base.PrepareRequest(myShopifyUrl);
         _myShopifyUrl = myShopifyUrl;

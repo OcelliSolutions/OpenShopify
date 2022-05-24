@@ -22,7 +22,7 @@ public class FulfillmentOrderController : FulfillmentOrderControllerBase
     /// <inheritdoc />
     [HttpGet, Route("fulfillment_orders/{fulfillment_order_id:long}.json")]
     [ProducesResponseType(typeof(FulfillmentOrderItem), StatusCodes.Status200OK)]
-    public override Task GetSpecificFulfillmentOrder([Required] long fulfillment_order_id)
+    public override Task GetFulfillmentOrder([Required] long fulfillment_order_id)
     {
         throw new NotImplementedException();
     }

@@ -550,7 +550,6 @@ components:
           type: string
           nullable: true
       additionalProperties: { }
-      description: An object representing a Shopify transaction.
     TransactionList:
       required:
         - transactions
