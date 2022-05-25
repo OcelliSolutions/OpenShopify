@@ -14,6 +14,7 @@ public class CollectController : CollectControllerBase
     /// <inheritdoc />
     [IgnoreApi, HttpPost, Route("collects.invalid")]
     [ProducesResponseType(typeof(CollectItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(CollectError), StatusCodes.Status422UnprocessableEntity)]
     public override Task AddProductToCustomCollection()
     {
         throw new NotImplementedException();
@@ -22,6 +23,7 @@ public class CollectController : CollectControllerBase
     /// <inheritdoc cref="CollectControllerBase.AddProductToCustomCollection" />
     [HttpPost, Route("collects.json")]
     [ProducesResponseType(typeof(CollectItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(CollectError), StatusCodes.Status422UnprocessableEntity)]
     public Task AddProductToCustomCollection(CollectItem request)
     {
         throw new NotImplementedException();

@@ -38,6 +38,7 @@ public class OrderController : OrderControllerBase
     /// <inheritdoc />
     [HttpPost, Route("orders.json")]
     [ProducesResponseType(typeof(OrderItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(OrderError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateOrder([Required] CreateOrderRequest request)
     {
         throw new NotImplementedException();
@@ -54,6 +55,7 @@ public class OrderController : OrderControllerBase
     /// <inheritdoc />
     [HttpPut, Route("orders/{order_id:long}.json")]
     [ProducesResponseType(typeof(OrderItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(OrderError), StatusCodes.Status422UnprocessableEntity)]
     public override Task UpdateOrder([Required] UpdateOrderRequest request, [Required] long order_id)
     {
         throw new NotImplementedException();

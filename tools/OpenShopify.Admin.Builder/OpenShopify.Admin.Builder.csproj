@@ -52,6 +52,10 @@
     <ProjectReference Include="..\OpenShopify.Common\OpenShopify.Common.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Models\WrappersError.tt">
+      <LastGenOutput>WrappersError.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
     <None Update="Models\Wrappers.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Wrappers.cs</LastGenOutput>
@@ -61,6 +65,11 @@
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Models\WrappersError.cs">
+      <DependentUpon>WrappersError.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Models\Wrappers.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

@@ -22,6 +22,7 @@ public class AssetController : AssetControllerBase
     /// <inheritdoc />
     [HttpPut, Route("themes/{theme_id:long}/assets.json")]
     [ProducesResponseType(typeof(AssetItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(AssetError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateOrUpdatesAssetForTheme([Required] CreateAssetRequest request, [Required] long theme_id, string? source_key = null, string? src = null)
     {
         throw new NotImplementedException();

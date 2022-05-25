@@ -20,6 +20,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:

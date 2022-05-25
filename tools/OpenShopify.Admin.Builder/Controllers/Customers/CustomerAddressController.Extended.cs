@@ -22,6 +22,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpPost, Route("customers/{customer_id:long}/addresses.json")]
     [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(CustomerAddressError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateAddressForCustomer([Required] CreateCustomerAddressRequest request, [Required] long customer_id)
     {
         throw new NotImplementedException();
@@ -38,6 +39,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpPut, Route("customers/{customer_id:long}/addresses/{address_id:long}.json")]
     [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CustomerAddressError), StatusCodes.Status422UnprocessableEntity)]
     public override Task UpdateCustomerAddress([Required] UpdateCustomerAddressRequest request, [Required] long address_id, [Required] long customer_id)
     {
         throw new NotImplementedException();

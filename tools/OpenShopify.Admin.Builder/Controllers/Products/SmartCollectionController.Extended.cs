@@ -24,6 +24,7 @@ public class SmartCollectionController : SmartCollectionControllerBase
     /// <inheritdoc />
     [HttpPost, Route("smart_collections.json")]
     [ProducesResponseType(typeof(SmartCollectionItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(SmartCollectionError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateSmartCollection([Required] CreateSmartCollectionRequest request)
     {
         throw new NotImplementedException();
@@ -48,6 +49,7 @@ public class SmartCollectionController : SmartCollectionControllerBase
     /// <inheritdoc />
     [HttpPut, Route("smart_collections/{smart_collection_id:long}.json")]
     [ProducesResponseType(typeof(SmartCollectionItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(SmartCollectionError), StatusCodes.Status422UnprocessableEntity)]
     public override Task UpdateSmartCollection([Required] UpdateSmartCollectionRequest request, [Required] long smart_collection_id)
     {
         throw new NotImplementedException();

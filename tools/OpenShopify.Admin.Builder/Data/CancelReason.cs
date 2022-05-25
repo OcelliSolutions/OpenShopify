@@ -7,7 +7,7 @@ public enum CancelReason
 {
     [EnumMember(Value = "customer"), Description("The customer canceled the order.")]
     Customer,
-    [EnumMember(Value = "customer"), Description("The order was fraudulent.")]
+    [EnumMember(Value = "fraud"), Description("The order was fraudulent.")]
     Fraud,
     [EnumMember(Value = "inventory"), Description("Items in the order were not in inventory.")]
     Inventory,

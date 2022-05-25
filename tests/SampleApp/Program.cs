@@ -29,7 +29,7 @@ app.MapGet("/signup", (string hmac, string shop, long timestamp, HttpContext htt
         //TODO: the following scopes require review from Shopify to enable. Do not include them for now.
         var extendedPermissions = new List<AuthorizationScope>
         {
-            AuthorizationScope.read_all_orders, 
+            //AuthorizationScope.read_all_orders, 
             AuthorizationScope.write_users, 
             AuthorizationScope.read_users, 
             AuthorizationScope.write_locations

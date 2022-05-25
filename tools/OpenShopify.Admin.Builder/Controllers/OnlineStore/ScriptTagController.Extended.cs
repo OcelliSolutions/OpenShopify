@@ -23,6 +23,7 @@ public class ScriptTagController : ScriptTagControllerBase
     /// <inheritdoc />
     [HttpPost, Route("script_tags.json")]
     [ProducesResponseType(typeof(ScriptTagItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ScriptTagError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateScriptTag([Required] CreateScriptTagRequest request)
     {
         throw new NotImplementedException();

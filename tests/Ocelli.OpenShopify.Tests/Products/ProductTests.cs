@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
@@ -18,10 +17,7 @@ public class ProductTests : IClassFixture<SharedFixture>
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
     private readonly ProductsService _service;
     private readonly ITestOutputHelper _testOutputHelper;
-    private const string ProductPrefix = "OpenShopify Product Test";
-    private const string Vendor = "OpenShopify";
-    private string TestProductName => $@"{ProductPrefix} {Fixture.BatchId}";
-
+    
     public ProductTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
     {
         _testOutputHelper = testOutputHelper;
@@ -33,31 +29,30 @@ public class ProductTests : IClassFixture<SharedFixture>
     private SharedFixture Fixture { get; }
 
     #region Create
-    /*
-    [SkippableFact, TestPriority(10)]
-    public async Task Creates_Products()
-    {
-        var obj = await Fixture.Create();
 
-        Assert.NotNull(obj);
-        Assert.True(obj.Id.HasValue);
-        Assert.Equal(Fixture.Title, obj.Title);
-        Assert.Equal(Fixture.BodyHtml, obj.BodyHtml);
-        Assert.Equal(Fixture.ProductType, obj.ProductType);
-        Assert.Equal(Fixture.Vendor, obj.Vendor);
+    [SkippableFact, TestPriority(10)]
+    public async Task CreateProductAsync_CanCreate()
+    {
+        var request = Fixture.CreateProductRequest;
+        var response = await _service.Product.CreateProductAsync(request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+
+        Fixture.CreatedProducts.Add(response.Result.Product);
     }
 
     [SkippableFact, TestPriority(10)]
-    public async Task Creates_Unpublished_Products()
+    public async Task CreateProductAsync_IsUnprocessableEntityError()
     {
-        var created = await Fixture.Create(options: new ProductCreateOptions()
+        var request = new CreateProductRequest()
         {
-            Published = false
-        });
-
-        Assert.False(created.PublishedAt.HasValue);
+            Product = new()
+            {
+                BodyHtml = "A mystery!"
+            }
+        };
+        await Assert.ThrowsAsync<ApiException<ProductError>>(async () => await _service.Product.CreateProductAsync(request));
     }
-    */
+
     #endregion Create
 
     #region Read
@@ -101,6 +96,9 @@ public class ProductTests : IClassFixture<SharedFixture>
             foreach (var product in response.Result.Products)
             {
                 _additionalPropertiesHelper.CheckAdditionalProperties(product, Fixture.MyShopifyUrl);
+                if (product.Vendor != null && product.Vendor.Contains(Fixture.Company)
+                                            && !Fixture.CreatedProducts.Exists(w => w.Id == product.Id))
+                    Fixture.CreatedProducts.Add(product);
             }
 
             if (!response.Pagination.HasNextPage) break;
@@ -119,89 +117,76 @@ public class ProductTests : IClassFixture<SharedFixture>
         var archivedResponse = await _service.Product.ListProductsAsync(status: "archived");
         Assert.True(archivedResponse.Result.Products.All(x => x.Status == "archived"));
     }
-    /*
-    [SkippableFact, TestPriority(20)]
-    public async Task Gets_Products()
-    {
-        var obj = await _service.GetAsync(Fixture.Created.First().Id.Value);
 
-        Assert.NotNull(obj);
-        Assert.True(obj.Id.HasValue);
-        Assert.Equal(Fixture.Title, obj.Title);
-        Assert.Equal(Fixture.BodyHtml, obj.BodyHtml);
-        Assert.Equal(Fixture.ProductType, obj.ProductType);
-        Assert.Equal(Fixture.Vendor, obj.Vendor);
+    [SkippableFact, TestPriority(20)]
+    public async Task GetProductAsync_AdditionalPropertiesAreEmpty()
+    {
+        var productListResponse = await _service.Product.ListProductsAsync(limit: 1);
+        Skip.If(!productListResponse.Result.Products.Any(), "No results returned. Unable to test");
+        var response = await _service.Product.GetProductAsync(productListResponse.Result.Products.First().Id);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Product, Fixture.MyShopifyUrl);
     }
-    */
+
+    [SkippableFact, TestPriority(20)]
+    public async Task GetProductAsync_TestCreated_AdditionalPropertiesAreEmpty()
+    {
+        Skip.If(!Fixture.CreatedProducts.Any(), "No results returned. Unable to test");
+        var product = Fixture.CreatedProducts.First();
+        var response = await _service.Product.GetProductAsync(product.Id);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Product, Fixture.MyShopifyUrl);
+    }
+
     #endregion Read
 
     #region Update
-    /*
-    [SkippableFact, TestPriority(30)]
-    public async Task Updates_Products()
-    {
-        string title = "ShopifySharp Updated Test Product";
-        var created = await Fixture.Create();
-        long id = created.Id.Value;
-
-        created.Title = title;
-        created.Id = null;
-
-        var updated = await _service.UpdateAsync(id, created);
-
-        // Reset the id so the Fixture can properly delete this object.
-        created.Id = id;
-
-        Assert.Equal(title, updated.Title);
-    }
 
     [SkippableFact, TestPriority(30)]
-    public async Task Publishes_Products()
+    public async Task UpdateProductAsync_CanUpdate()
     {
-        var created = await Fixture.Create(options: new ProductCreateOptions()
+        var originalProduct = Fixture.CreatedProducts.First();
+        var request = new UpdateProductRequest()
         {
-            Published = false
-        });
-        var published = await _service.PublishAsync(created.Id.Value);
+            Product = new()
+            {
+                Id = originalProduct.Id, 
+                Title = $@"New product title ({Fixture.BatchId})"
+            }
+        };
+        var response = await _service.Product.UpdateProductAsync(request.Product.Id, request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
-        Assert.True(published.PublishedAt.HasValue);
+        Fixture.CreatedProducts.Remove(originalProduct);
+        Fixture.CreatedProducts.Add(response.Result.Product);
     }
 
-    [SkippableFact, TestPriority(30)]
-    public async Task Unpublishes_Products()
-    {
-        var created = await Fixture.Create(options: new ProductCreateOptions()
-        {
-            Published = true
-        });
-        var unpublished = await _service.UnpublishAsync(created.Id.Value);
-
-        Assert.False(unpublished.PublishedAt.HasValue);
-    }
-    */
     #endregion Update
 
     #region Delete
-    /*
+
     [SkippableFact, TestPriority(40)]
-    public async Task Deletes_Products()
+    public async Task DeleteProductAsync_CanDelete()
     {
-        var created = await Fixture.Create(true);
-        bool threw = false;
-
-        try
+        Skip.If(Fixture.CreatedProducts.Count == 0, "WARN: No data returned. Could not test");
+        var errors = new List<Exception>();
+        foreach (var product in Fixture.CreatedProducts)
         {
-            await _service.DeleteAsync(created.Id.Value);
+            try
+            {
+                _ = await _service.Product.DeleteProductAsync(product.Id);
+            }
+            catch (Exception ex)
+            {
+                errors.Add(ex);
+            }
         }
-        catch (ShopifyException ex)
+
+        foreach (var error in errors)
         {
-            Console.WriteLine($"{nameof(Deletes_Products)} failed. {ex.Message}");
-
-            threw = true;
+            _testOutputHelper.WriteLine(error.Message);
         }
-
-        Assert.False(threw);
+        Assert.Empty(errors);
     }
-    */
     #endregion Delete
 }

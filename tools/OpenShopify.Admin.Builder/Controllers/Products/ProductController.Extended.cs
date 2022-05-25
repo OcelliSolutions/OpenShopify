@@ -44,6 +44,7 @@ public class ProductController : ProductControllerBase
     /// <inheritdoc />
     [HttpPost, Route("products.json")]
     [ProducesResponseType(typeof(ProductItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ProductError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateProduct([Required] CreateProductRequest request)
     {
         throw new NotImplementedException();
@@ -69,17 +70,10 @@ public class ProductController : ProductControllerBase
     }
 
     /// <inheritdoc />
-    [IgnoreApi, HttpPut, Route("products/{product_id:long}.invalid")]
-    [ProducesResponseType(typeof(ProductItem), StatusCodes.Status200OK)]
-    public override Task UpdateProduct([Required] UpdateProductRequest request, [Required] long product_id)
-    {
-        throw new NotImplementedException();
-    }
-
-    /// <inheritdoc cref="ProductControllerBase.UpdateProduct" />
     [HttpPut, Route("products/{product_id:long}.json")]
     [ProducesResponseType(typeof(ProductItem), StatusCodes.Status200OK)]
-    public Task UpdateProduct([Required] long product_id, ProductItem request)
+    [ProducesResponseType(typeof(ProductError), StatusCodes.Status422UnprocessableEntity)]
+    public override Task UpdateProduct([Required] UpdateProductRequest request, [Required] long product_id)
     {
         throw new NotImplementedException();
     }

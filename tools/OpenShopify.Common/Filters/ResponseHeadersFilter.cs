@@ -34,6 +34,13 @@ public class ResponseHeadersFilter : IOperationFilter
                     Description = responseHeader.Description, 
                 };
             }
+
+            if (operation.OperationId.StartsWith("List"))
+                response.Headers["Link"] = new OpenApiHeader
+                {
+                    Schema = new OpenApiSchema { Type = "string" },
+                    Description = "The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn't return enough records to generate an additional page of results, then the response won't have a link header."
+                };
             response.Headers["X-Shopify-Shop-Api-Call-Limit"] = new OpenApiHeader
             {
                 Schema = new OpenApiSchema { Type = "string" },

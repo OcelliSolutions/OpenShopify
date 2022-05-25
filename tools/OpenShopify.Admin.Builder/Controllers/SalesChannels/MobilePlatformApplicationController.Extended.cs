@@ -22,6 +22,7 @@ public class MobilePlatformApplicationController : MobilePlatformApplicationCont
     /// <inheritdoc />
     [HttpPost, Route("mobile_platform_applications.json")]
     [ProducesResponseType(typeof(MobilePlatformApplicationItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(MobilePlatformApplicationError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateMobilePlatformApplication([Required] CreateMobilePlatformApplicationRequest request)
     {
         throw new NotImplementedException();

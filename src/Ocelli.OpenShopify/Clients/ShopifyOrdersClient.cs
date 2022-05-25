@@ -466,6 +466,16 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<DraftOrderItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
+                        if (status_ == 422)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<DraftOrderError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<DraftOrderError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -653,6 +663,16 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return new ShopifyResponse<DraftOrderItem>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
+                        if (status_ == 422)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<DraftOrderError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<DraftOrderError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1271,7 +1291,7 @@ namespace Ocelli.OpenShopify
         /// <param name="body">The refund transactions to perform. Required for some more complex refund situations. For more information, see the [Refund API](/docs/admin-api/rest/reference/orders/refund#create-{{ current_version }}).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> CancelOrderAsync(long orderId, decimal? amount = null, string? currency = null, bool? email = null, string? reason = null, bool? restock = null, CreateRefund? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> CancelOrderAsync(long orderId, decimal? amount = null, string? currency = null, bool? email = null, CancelReason? reason = null, bool? restock = null, CreateRefund? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -1510,6 +1530,16 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<OrderItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
+                        if (status_ == 422)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<OrderError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<OrderError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -1668,6 +1698,16 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return new ShopifyResponse<OrderItem>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
+                        if (status_ == 422)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<OrderError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<OrderError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -2025,7 +2065,7 @@ namespace Ocelli.OpenShopify
         /// <param name="body">The refund transactions to perform. Required for some more complex refund situations. For more information, see the [Refund API](/docs/admin-api/rest/reference/orders/refund#create-{{ current_version }}).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> CancelOrderAsync(long orderId, decimal? amount = null, string? currency = null, bool? email = null, string? reason = null, bool? restock = null, CreateRefund? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> CancelOrderAsync(long orderId, decimal? amount = null, string? currency = null, bool? email = null, CancelReason? reason = null, bool? restock = null, CreateRefund? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -2356,6 +2396,16 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<OrderRiskItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
+                        if (status_ == 422)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<OrderRiskError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<OrderRiskError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -2590,6 +2640,16 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return new ShopifyResponse<OrderRiskItem>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
+                        if (status_ == 422)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<OrderRiskError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<OrderRiskError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -3070,6 +3130,16 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<RefundItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
+                        if (status_ == 422)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<RefundError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<RefundError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -3248,6 +3318,16 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return new ShopifyResponse<RefundItem>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
+                        if (status_ == 422)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<RefundError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<RefundError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -3600,6 +3680,16 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return new ShopifyResponse<TransactionItem>(status_, headers_, objectResponse_.Object);
+                        }
+                        else
+                        if (status_ == 422)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<TransactionError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<TransactionError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -3963,6 +4053,27 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum CancelReason
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"customer")]
+        customer = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fraud")]
+        fraud = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"inventory")]
+        inventory = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"declined")]
+        declined = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"other")]
+        other = 4,
 
     }
 
@@ -5163,20 +5274,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? BuyerAcceptsMarketing { get; set; } = default!;
 
-        /// <summary>
-        /// The reason why the order was canceled. Valid values: 
-        /// <br/>
-        /// <br/>*   **customer**: The customer canceled the order. 
-        /// <br/>*   **fraud**: The order was fraudulent. 
-        /// <br/>*   **inventory**: Items in the order were not in inventory. 
-        /// <br/>*   **declined**: The payment was declined. 
-        /// <br/>*   **other**: A reason not in this list.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("cancel_reason")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CancelReason { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public CancelReason? CancelReason { get; set; } = default!;
 
         /// <summary>
         /// The date and time when the order was canceled. Returns `null` if the order isn't canceled.
@@ -5384,22 +5486,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? EstimatedTaxes { get; set; } = default!;
 
-        /// <summary>
-        /// The status of payments associated with the order. Can only be set when the order is created. Valid values: 
-        /// <br/>
-        /// <br/>*   **pending**: The payments are pending. Payment might fail in this state. Check again to confirm whether the payments have been paid successfully. 
-        /// <br/>*   **authorized**: The payments have been authorized. 
-        /// <br/>*   **partially_paid**: The order has been partially paid. 
-        /// <br/>*   **paid**: The payments have been paid. 
-        /// <br/>*   **partially_refunded**: The payments have been partially refunded. 
-        /// <br/>*   **refunded**: The payments have been refunded. 
-        /// <br/>*   **voided**: The payments have been voided.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("financial_status")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? FinancialStatus { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public FinancialStatus? FinancialStatus { get; set; } = default!;
 
         /// <summary>
         /// An array of fulfillments associated with the order. For more information, see the [Fulfillment API](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment).
@@ -5410,19 +5501,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.ICollection<Fulfillment>? Fulfillments { get; set; } = default!;
 
-        /// <summary>
-        /// The order's status in terms of fulfilled line items. You can use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource for a more granular view. Valid values: 
-        /// <br/>
-        /// <br/>*   **fulfilled**: Every line item in the order has been fulfilled. 
-        /// <br/>*   **null**: None of the line items in the order have been fulfilled. 
-        /// <br/>*   **partial**: At least one line item in the order has been fulfilled. 
-        /// <br/>*   **restocked**: Every line item in the order has been restocked and the order canceled.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_status")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? FulfillmentStatus { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public FulfillmentStatus? FulfillmentStatus { get; set; } = default!;
 
         /// <summary>
         /// The payment gateway used.
@@ -5636,21 +5719,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.DateTimeOffset? ProcessedAt { get; set; } = default!;
 
-        /// <summary>
-        /// How the payment was processed. It has the following valid values: 
-        /// <br/>
-        /// <br/>*   **checkout**: The order was processed using the Shopify checkout. 
-        /// <br/>*   **direct**: The order was processed using a [direct payment provider](https://help.shopify.com/manual/payments/third-party-providers/direct-and-external-providers). 
-        /// <br/>*   **manual**: The order was processed using a [manual payment method](https://help.shopify.com/manual/payments/manual-payments). 
-        /// <br/>*   **offsite**: The order was processed by an [external payment provider](https://help.shopify.com/manual/payments/third-party-providers/direct-and-external-providers) to the Shopify checkout. 
-        /// <br/>*   **express**: The order was processed using [PayPal Express Checkout](https://help.shopify.com/manual/payments/paypal). 
-        /// <br/>*   **free**: The order was processed as a free order using a discount code.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("processing_method")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ProcessingMethod { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public ProcessingMethod? ProcessingMethod { get; set; } = default!;
 
         /// <summary>
         /// The website where the customer clicked a link to the shop.
@@ -7373,6 +7446,47 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class DraftOrderError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public DraftOrderErrorDetails Errors { get; set; } = new DraftOrderErrorDetails();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class DraftOrderErrorDetails
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("base")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<string>? Base { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class DraftOrderInvoice
     {
 
@@ -7522,6 +7636,48 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum FinancialStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"pending")]
+        pending = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"authorized")]
+        authorized = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"partially_paid")]
+        partially_paid = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"paid")]
+        paid = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"partially_refunded")]
+        partially_refunded = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"refunded")]
+        refunded = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"voided")]
+        voided = 6,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum FulfillmentStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fulfilled")]
+        fulfilled = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"partial")]
+        partial = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"restocked")]
+        restocked = 2,
 
     }
 
@@ -8044,20 +8200,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? BuyerAcceptsMarketing { get; set; } = default!;
 
-        /// <summary>
-        /// The reason why the order was canceled. Valid values: 
-        /// <br/>
-        /// <br/>*   **customer**: The customer canceled the order. 
-        /// <br/>*   **fraud**: The order was fraudulent. 
-        /// <br/>*   **inventory**: Items in the order were not in inventory. 
-        /// <br/>*   **declined**: The payment was declined. 
-        /// <br/>*   **other**: A reason not in this list.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("cancel_reason")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CancelReason { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public CancelReason? CancelReason { get; set; } = default!;
 
         /// <summary>
         /// The date and time when the order was canceled. Returns `null` if the order isn't canceled.
@@ -8265,22 +8412,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? EstimatedTaxes { get; set; } = default!;
 
-        /// <summary>
-        /// The status of payments associated with the order. Can only be set when the order is created. Valid values: 
-        /// <br/>
-        /// <br/>*   **pending**: The payments are pending. Payment might fail in this state. Check again to confirm whether the payments have been paid successfully. 
-        /// <br/>*   **authorized**: The payments have been authorized. 
-        /// <br/>*   **partially_paid**: The order has been partially paid. 
-        /// <br/>*   **paid**: The payments have been paid. 
-        /// <br/>*   **partially_refunded**: The payments have been partially refunded. 
-        /// <br/>*   **refunded**: The payments have been refunded. 
-        /// <br/>*   **voided**: The payments have been voided.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("financial_status")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? FinancialStatus { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public FinancialStatus? FinancialStatus { get; set; } = default!;
 
         /// <summary>
         /// An array of fulfillments associated with the order. For more information, see the [Fulfillment API](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment).
@@ -8291,19 +8427,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.ICollection<Fulfillment>? Fulfillments { get; set; } = default!;
 
-        /// <summary>
-        /// The order's status in terms of fulfilled line items. You can use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource for a more granular view. Valid values: 
-        /// <br/>
-        /// <br/>*   **fulfilled**: Every line item in the order has been fulfilled. 
-        /// <br/>*   **null**: None of the line items in the order have been fulfilled. 
-        /// <br/>*   **partial**: At least one line item in the order has been fulfilled. 
-        /// <br/>*   **restocked**: Every line item in the order has been restocked and the order canceled.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_status")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? FulfillmentStatus { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public FulfillmentStatus? FulfillmentStatus { get; set; } = default!;
 
         /// <summary>
         /// The payment gateway used.
@@ -8517,21 +8645,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.DateTimeOffset? ProcessedAt { get; set; } = default!;
 
-        /// <summary>
-        /// How the payment was processed. It has the following valid values: 
-        /// <br/>
-        /// <br/>*   **checkout**: The order was processed using the Shopify checkout. 
-        /// <br/>*   **direct**: The order was processed using a [direct payment provider](https://help.shopify.com/manual/payments/third-party-providers/direct-and-external-providers). 
-        /// <br/>*   **manual**: The order was processed using a [manual payment method](https://help.shopify.com/manual/payments/manual-payments). 
-        /// <br/>*   **offsite**: The order was processed by an [external payment provider](https://help.shopify.com/manual/payments/third-party-providers/direct-and-external-providers) to the Shopify checkout. 
-        /// <br/>*   **express**: The order was processed using [PayPal Express Checkout](https://help.shopify.com/manual/payments/paypal). 
-        /// <br/>*   **free**: The order was processed as a free order using a discount code.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("processing_method")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ProcessingMethod { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public ProcessingMethod? ProcessingMethod { get; set; } = default!;
 
         /// <summary>
         /// The website where the customer clicked a link to the shop.
@@ -8847,6 +8965,47 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class OrderError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public OrderErrorDetails Errors { get; set; } = new OrderErrorDetails();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class OrderErrorDetails
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("order")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<string>? Order { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class OrderItem
     {
 
@@ -9012,6 +9171,47 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class OrderRiskError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public OrderRiskErrorDetails Errors { get; set; } = new OrderRiskErrorDetails();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class OrderRiskErrorDetails
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("base")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<string>? Base { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class OrderRiskItem
     {
 
@@ -9115,6 +9315,33 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum ProcessingMethod
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"")]
+        Empty = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"checkout")]
+        checkout = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"direct")]
+        direct = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"manual")]
+        manual = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"offsite")]
+        offsite = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"express")]
+        express = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"free")]
+        free = 6,
 
     }
 
@@ -9335,6 +9562,47 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? RefundType { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class RefundError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public RefundErrorDetails Errors { get; set; } = new RefundErrorDetails();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class RefundErrorDetails
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("base")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<string>? Base { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -10041,6 +10309,47 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class TransactionError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public TransactionErrorDetails Errors { get; set; } = new TransactionErrorDetails();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class TransactionErrorDetails
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("base")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<string>? Base { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class TransactionItem
     {
 
@@ -10451,20 +10760,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? BuyerAcceptsMarketing { get; set; } = default!;
 
-        /// <summary>
-        /// The reason why the order was canceled. Valid values: 
-        /// <br/>
-        /// <br/>*   **customer**: The customer canceled the order. 
-        /// <br/>*   **fraud**: The order was fraudulent. 
-        /// <br/>*   **inventory**: Items in the order were not in inventory. 
-        /// <br/>*   **declined**: The payment was declined. 
-        /// <br/>*   **other**: A reason not in this list.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("cancel_reason")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CancelReason { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public CancelReason? CancelReason { get; set; } = default!;
 
         /// <summary>
         /// The date and time when the order was canceled. Returns `null` if the order isn't canceled.
@@ -10672,22 +10972,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? EstimatedTaxes { get; set; } = default!;
 
-        /// <summary>
-        /// The status of payments associated with the order. Can only be set when the order is created. Valid values: 
-        /// <br/>
-        /// <br/>*   **pending**: The payments are pending. Payment might fail in this state. Check again to confirm whether the payments have been paid successfully. 
-        /// <br/>*   **authorized**: The payments have been authorized. 
-        /// <br/>*   **partially_paid**: The order has been partially paid. 
-        /// <br/>*   **paid**: The payments have been paid. 
-        /// <br/>*   **partially_refunded**: The payments have been partially refunded. 
-        /// <br/>*   **refunded**: The payments have been refunded. 
-        /// <br/>*   **voided**: The payments have been voided.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("financial_status")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? FinancialStatus { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public FinancialStatus? FinancialStatus { get; set; } = default!;
 
         /// <summary>
         /// An array of fulfillments associated with the order. For more information, see the [Fulfillment API](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment).
@@ -10698,19 +10987,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.ICollection<Fulfillment>? Fulfillments { get; set; } = default!;
 
-        /// <summary>
-        /// The order's status in terms of fulfilled line items. You can use the [FulfillmentOrder](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentorder) resource for a more granular view. Valid values: 
-        /// <br/>
-        /// <br/>*   **fulfilled**: Every line item in the order has been fulfilled. 
-        /// <br/>*   **null**: None of the line items in the order have been fulfilled. 
-        /// <br/>*   **partial**: At least one line item in the order has been fulfilled. 
-        /// <br/>*   **restocked**: Every line item in the order has been restocked and the order canceled.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_status")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? FulfillmentStatus { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public FulfillmentStatus? FulfillmentStatus { get; set; } = default!;
 
         /// <summary>
         /// The payment gateway used.
@@ -10924,21 +11205,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.DateTimeOffset? ProcessedAt { get; set; } = default!;
 
-        /// <summary>
-        /// How the payment was processed. It has the following valid values: 
-        /// <br/>
-        /// <br/>*   **checkout**: The order was processed using the Shopify checkout. 
-        /// <br/>*   **direct**: The order was processed using a [direct payment provider](https://help.shopify.com/manual/payments/third-party-providers/direct-and-external-providers). 
-        /// <br/>*   **manual**: The order was processed using a [manual payment method](https://help.shopify.com/manual/payments/manual-payments). 
-        /// <br/>*   **offsite**: The order was processed by an [external payment provider](https://help.shopify.com/manual/payments/third-party-providers/direct-and-external-providers) to the Shopify checkout. 
-        /// <br/>*   **express**: The order was processed using [PayPal Express Checkout](https://help.shopify.com/manual/payments/paypal). 
-        /// <br/>*   **free**: The order was processed as a free order using a discount code.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("processing_method")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ProcessingMethod { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public ProcessingMethod? ProcessingMethod { get; set; } = default!;
 
         /// <summary>
         /// The website where the customer clicked a link to the shop.

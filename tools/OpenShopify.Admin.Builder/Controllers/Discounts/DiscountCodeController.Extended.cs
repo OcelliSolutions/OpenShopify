@@ -1,9 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
-using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.Discounts;
 
@@ -15,6 +14,7 @@ public class DiscountCodeController : DiscountCodeControllerBase
     /// <inheritdoc />
     [HttpPost, Route("price_rules/{price_rule_id:long}/discount_codes.json")]
     [ProducesResponseType(typeof(DiscountCodeItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(DiscountCodeError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateDiscountCode([Required] CreateDiscountCodeRequest request, [Required] long price_rule_id)
     {
         throw new NotImplementedException();

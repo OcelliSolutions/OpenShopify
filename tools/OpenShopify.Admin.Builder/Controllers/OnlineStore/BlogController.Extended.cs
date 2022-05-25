@@ -22,6 +22,7 @@ public class BlogController : BlogControllerBase
     /// <inheritdoc />
     [HttpPost, Route("blogs.json")]
     [ProducesResponseType(typeof(BlogItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(BlogError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateBlog([Required] CreateBlogRequest request, string? title = null)
     {
         throw new NotImplementedException();

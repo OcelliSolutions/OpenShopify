@@ -60,7 +60,7 @@
 		new (modelName:"ProductResourceFeedback", hasId:false),
 		new (modelName:"ProductListing", hasId:false),
 		new (modelName:"ResourceFeedback", hasId:false),
-		new (modelName:"FulfillmentOrder", "AssignedFulfillmentOrder", "AssignedFulfillmentOrders",origClass:"FulfillmentOrderOrig", baseClass:"FulfillmentOrderBase"),
+		new (modelName:"FulfillmentOrder", "AssignedFulfillmentOrder", "AssignedFulfillmentOrders",origClass:"FulfillmentOrderOrig", baseClass:"FulfillmentOrderBase", propertyName:"fulfillment_order", propertyNamePlural:"fulfillment_orders"),
 		new (modelName:"FulfillmentOrder", "CancellationRequest", "CancellationRequest", origClass:"FulfillmentOrderOrig", baseClass:"FulfillmentOrderBase", hasId:false),
 		new (modelName:"CarrierService"),
 		new (modelName:"Fulfillment"),
@@ -88,7 +88,6 @@
 #>
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-using OpenShopify.Common.Models;
 
 namespace OpenShopify.Admin.Builder.Models;
 // ReSharper disable All

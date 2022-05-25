@@ -5,6 +5,8 @@ namespace OpenShopify.Admin.Builder.Data;
 
 public enum ProcessingMethod
 {
+    [EnumMember(Value = ""), Description("No processing method given.")]
+    Null,
     [EnumMember(Value = "checkout"), Description("The order was processed using the Shopify checkout.")]
     Checkout,
     [EnumMember(Value = "direct"), Description("The order was processed using a direct payment provider.")]

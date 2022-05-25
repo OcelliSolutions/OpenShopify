@@ -12,6 +12,9 @@ namespace OpenShopify.Admin.Builder.Controllers.Billing;
 public class RecurringApplicationChargeController : RecurringApplicationChargeControllerBase
 {
     /// <inheritdoc />
+    [HttpPost, Route("recurring_application_charges.json")]
+    [ProducesResponseType(typeof(RecurringApplicationChargeItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(RecurringApplicationChargeError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateRecurringApplicationCharge([Required] CreateRecurringApplicationChargeRequest request)
     {
         throw new NotImplementedException();
@@ -44,16 +47,18 @@ public class RecurringApplicationChargeController : RecurringApplicationChargeCo
     /// <inheritdoc />
     [IgnoreApi, HttpPut, Route("recurring_application_charges/{recurring_application_charge_id:long}/customize.invalid")]
     [ProducesResponseType(typeof(RecurringApplicationChargeItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(RecurringApplicationChargeError), StatusCodes.Status422UnprocessableEntity)]
     public override Task UpdateCappedAmountOfRecurringApplicationCharge([Required] UpdateRecurringApplicationChargeRequest request,
         [Required] long recurring_application_charge_id)
     {
         throw new NotImplementedException();
     }
 
-    /// <inheritdoc cref="RecurringApplicationChargeControllerBase.UpdateTheCappedAmountOfRecurringApplicationCharge" />
+    /// <inheritdoc cref="RecurringApplicationChargeControllerBase.UpdateCappedAmountOfRecurringApplicationCharge" />
     [HttpPut, Route("recurring_application_charges/{recurring_application_charge_id:long}/customize.json")]
     [ProducesResponseType(typeof(RecurringApplicationChargeItem), StatusCodes.Status200OK)]
-    public Task UpdateTheCappedAmountOfRecurringApplicationCharge([Required] long recurring_application_charge_id, decimal capped_amount)
+    [ProducesResponseType(typeof(RecurringApplicationChargeError), StatusCodes.Status422UnprocessableEntity)]
+    public Task UpdateCappedAmountOfRecurringApplicationCharge([Required] long recurring_application_charge_id, decimal capped_amount)
     {
         throw new NotImplementedException();
     }

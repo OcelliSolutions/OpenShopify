@@ -23,6 +23,7 @@ public class FulfillmentController : FulfillmentControllerBase
     /// <inheritdoc />
     [HttpPost, Route("orders/{order_id:long}/fulfillments.json")]
     [ProducesResponseType(typeof(FulfillmentItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(FulfillmentError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateFulfillment([Required] CreateFulfillmentRequest request, [Required] long order_id)
     {
         throw new NotImplementedException();

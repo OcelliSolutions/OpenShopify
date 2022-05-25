@@ -50,6 +50,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CheckoutItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutError'
   '/checkouts/{token}/complete.json':
     post:
       tags:
@@ -158,6 +173,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -310,6 +329,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CollectionListingItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionListingError'
     delete:
       tags:
         - CollectionListing
@@ -344,6 +378,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -386,6 +424,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MobilePlatformApplicationItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobilePlatformApplicationError'
   '/mobile_platform_applications/{mobile_platform_application_id}.json':
     get:
       tags:
@@ -534,6 +587,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaymentItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentError'
     get:
       tags:
         - Payment
@@ -549,6 +617,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -801,6 +873,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductListingItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductListingError'
     delete:
       tags:
         - ProductListing
@@ -867,6 +954,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductResourceFeedbackItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResourceFeedbackError'
     get:
       tags:
         - ProductResourceFeedback
@@ -883,6 +985,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -942,6 +1048,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResourceFeedbackItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceFeedbackError'
     get:
       tags:
         - ResourceFeedback
@@ -951,6 +1072,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -1270,6 +1395,23 @@ components:
           type: string
           nullable: true
       additionalProperties: { }
+    CheckoutError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/CheckoutErrorDetails'
+      additionalProperties: { }
+    CheckoutErrorDetails:
+      type: object
+      properties:
+        base:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: { }
     CheckoutItem:
       required:
         - checkout
@@ -1472,6 +1614,23 @@ components:
           type: string
           description: The date and time when the collection was last modified. The API returns this in ISO_8601.
           format: date-time
+          nullable: true
+      additionalProperties: { }
+    CollectionListingError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/CollectionListingErrorDetails'
+      additionalProperties: { }
+    CollectionListingErrorDetails:
+      type: object
+      properties:
+        base:
+          type: array
+          items:
+            type: string
           nullable: true
       additionalProperties: { }
     CollectionListingItem:
@@ -2452,6 +2611,23 @@ components:
           type: string
           nullable: true
       additionalProperties: { }
+    MobilePlatformApplicationError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/MobilePlatformApplicationErrorDetails'
+      additionalProperties: { }
+    MobilePlatformApplicationErrorDetails:
+      type: object
+      properties:
+        base:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: { }
     MobilePlatformApplicationItem:
       required:
         - mobile_platform_application
@@ -2500,6 +2676,33 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+      additionalProperties: { }
+    PaymentError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/PaymentErrorDetails'
+      additionalProperties: { }
+    PaymentErrorDetails:
+      type: object
+      properties:
+        amount:
+          type: array
+          items:
+            type: string
+          nullable: true
+        payment_gateway:
+          type: array
+          items:
+            type: string
+          nullable: true
+        checkout:
+          type: array
+          items:
+            type: string
           nullable: true
       additionalProperties: { }
     PaymentItem:
@@ -2767,6 +2970,23 @@ components:
           description: The name of the vendor of the product.
           nullable: true
       additionalProperties: { }
+    ProductListingError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/ProductListingErrorDetails'
+      additionalProperties: { }
+    ProductListingErrorDetails:
+      type: object
+      properties:
+        base:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: { }
     ProductListingItem:
       required:
         - product_listing
@@ -2855,6 +3075,23 @@ components:
         resource_updated_at:
           type: string
           description: 'The forwarded `updated_at` timestamp of the product. Used only for versioned resources, where the `updated_at` timestamp changes based on merchant actions. When required, it is used along with `feedback_generated_at` to help determine whether incoming feedback is outdated compared to feedback already received, and if it should be ignored upon arrival.'
+          nullable: true
+      additionalProperties: { }
+    ProductResourceFeedbackError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/ProductResourceFeedbackErrorDetails'
+      additionalProperties: { }
+    ProductResourceFeedbackErrorDetails:
+      type: object
+      properties:
+        base:
+          type: array
+          items:
+            type: string
           nullable: true
       additionalProperties: { }
     ProductResourceFeedbackItem:
@@ -3055,6 +3292,23 @@ components:
         feedback_generated_at:
           type: string
           description: " The time at which the payload is constructed. Used to help determine whether incoming feedback is outdated compared to feedback already received, and if it should be ignored upon arrival. **Type:** ISO 8601 UTC datetime as string with year, month [or week], day, hour, minute, second, millisecond, and time zone. \r\n <div class=\"note\"> \r\n\r\n#### Note\r\n\r\nIf you queue a Feedback API payload for delivery at a later time, do not update this value when the API call is actually made; ensure that the current time is set when building the payload.\r\n </div>"
+          nullable: true
+      additionalProperties: { }
+    ResourceFeedbackError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/ResourceFeedbackErrorDetails'
+      additionalProperties: { }
+    ResourceFeedbackErrorDetails:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            type: string
           nullable: true
       additionalProperties: { }
     ResourceFeedbackItem:

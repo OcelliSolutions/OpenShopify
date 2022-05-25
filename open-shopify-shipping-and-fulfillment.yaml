@@ -30,7 +30,7 @@ paths:
           in: query
           description: 'The assigment status of the fulfillment orders that should be returned:'
           schema:
-            type: string
+            $ref: '#/components/schemas/FulfillmentAssignmentStatus'
         - name: location_ids
           in: query
           description: The IDs of the assigned locations of the fulfillment orders that should be returned.
@@ -40,6 +40,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -185,6 +189,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CarrierServiceItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierServiceError'
     get:
       tags:
         - CarrierService
@@ -194,6 +213,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -408,6 +431,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentError'
   '/fulfillment_orders/{fulfillment_order_id}/fulfillments.json':
     get:
       tags:
@@ -798,6 +836,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -853,6 +895,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentEventItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentEventError'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json':
     get:
       tags:
@@ -947,6 +1004,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -1339,6 +1400,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -1381,6 +1446,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentServiceItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentServiceError'
   '/fulfillment_services/{fulfillment_service_id}.json':
     get:
       tags:
@@ -1488,6 +1568,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -1578,10 +1662,10 @@ components:
       additionalProperties: { }
     AssignedFulfillmentOrderList:
       required:
-        - assigned_fulfillment_orders
+        - fulfillment_orders
       type: object
       properties:
-        assigned_fulfillment_orders:
+        fulfillment_orders:
           type: array
           items:
             $ref: '#/components/schemas/FulfillmentOrder'
@@ -1669,6 +1753,23 @@ components:
         id:
           type: integer
           format: int64
+      additionalProperties: { }
+    CarrierServiceError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/CarrierServiceErrorDetails'
+      additionalProperties: { }
+    CarrierServiceErrorDetails:
+      type: object
+      properties:
+        base:
+          type: array
+          items:
+            type: string
+          nullable: true
       additionalProperties: { }
     CarrierServiceItem:
       required:
@@ -2091,6 +2192,30 @@ components:
           type: string
           nullable: true
       additionalProperties: { }
+    FulfillmentAssignmentStatus:
+      enum:
+        - cancellation_requested
+        - fulfillment_requested
+        - fulfillment_accepted
+      type: string
+      additionalProperties: { }
+    FulfillmentError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/FulfillmentErrorDetails'
+      additionalProperties: { }
+    FulfillmentErrorDetails:
+      type: object
+      properties:
+        base:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: { }
     FulfillmentEvent:
       required:
         - id
@@ -2174,6 +2299,23 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+      additionalProperties: { }
+    FulfillmentEventError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/FulfillmentEventErrorDetails'
+      additionalProperties: { }
+    FulfillmentEventErrorDetails:
+      type: object
+      properties:
+        base:
+          type: array
+          items:
+            type: string
           nullable: true
       additionalProperties: { }
     FulfillmentEventItem:
@@ -2509,6 +2651,23 @@ components:
         id:
           type: integer
           format: int64
+      additionalProperties: { }
+    FulfillmentServiceError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/FulfillmentServiceErrorDetails'
+      additionalProperties: { }
+    FulfillmentServiceErrorDetails:
+      type: object
+      properties:
+        base:
+          type: array
+          items:
+            type: string
+          nullable: true
       additionalProperties: { }
     FulfillmentServiceFormat:
       enum:

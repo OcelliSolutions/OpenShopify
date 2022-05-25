@@ -31,7 +31,7 @@ foreach (var shopifyFile in shopifyFiles)
                 "LineItem", "Fulfillment", "DiscountCode", "DiscountApplication", "DiscountAllocation", "PaymentDetails",
                 "Price", "PriceSet", "Refund", "RefundDuty", "RefundDutyType", "RefundLineItem", "RefundLineItem",
                 "RefundOrderAdjustment", "Shipping", "ShippingLine", "TaxLine", "Transaction", "CurrencyExchangeAdjustment",
-                "Order", "OrderList"
+                "Order", "OrderList", "CancelReason", "FinancialStatus", "FulfillmentStatus", "ProcessingMethod"
             });
             break;
         case "Orders":

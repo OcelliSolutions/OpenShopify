@@ -14,6 +14,7 @@ public class ResourceFeedbackController : ResourceFeedbackControllerBase
     /// <inheritdoc />
     [HttpPost, Route("resource_feedback.json")]
     [ProducesResponseType(typeof(ResourceFeedbackItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ResourceFeedbackError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateResourceFeedback([Required] CreateResourceFeedbackRequest request, string? feedback_generated_at = null, string? messages = null,
         string? state = null)
     {

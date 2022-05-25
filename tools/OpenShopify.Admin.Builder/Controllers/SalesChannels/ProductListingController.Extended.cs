@@ -47,6 +47,7 @@ public class ProductListingController : ProductListingControllerBase
     /// <inheritdoc />
     [HttpPut, Route("product_listings/{product_listing_id:long}.json")]
     [ProducesResponseType(typeof(ProductListingItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProductListingError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateProductListingToPublishProductToYourApp([Required] CreateProductListingRequest request, [Required] long product_listing_id)
     {
         throw new NotImplementedException();

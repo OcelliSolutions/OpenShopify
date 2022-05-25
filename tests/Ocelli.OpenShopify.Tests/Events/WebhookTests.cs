@@ -55,7 +55,7 @@ public class WebhookTests : IClassFixture<SharedFixture>
                 Topic = WebhookTopic.app_uninstalled
             }
         };
-        await Assert.ThrowsAsync<ApiException<WebhookErrorResponse>>(async () => await _service.Webhook.CreateWebhookAsync(request));
+        await Assert.ThrowsAsync<ApiException<WebhookError>>(async () => await _service.Webhook.CreateWebhookAsync(request));
     }
 
     #endregion Create
@@ -100,8 +100,8 @@ public class WebhookTests : IClassFixture<SharedFixture>
     [SkippableFact, TestPriority(20)]
     public async Task GetWebhookAsync_TestCreated_AdditionalPropertiesAreEmpty()
     {
+        Skip.If(!Fixture.CreatedWebhooks.Any(), "No results returned. Unable to test");
         var webhook = Fixture.CreatedWebhooks.First();
-        Skip.If(webhook == null, "No results returned. Unable to test");
         var response = await _service.Webhook.GetWebhookAsync(webhook.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Webhook, Fixture.MyShopifyUrl);

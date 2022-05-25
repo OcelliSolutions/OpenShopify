@@ -81,6 +81,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -123,6 +127,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerError'
   /customers/search.json:
     get:
       tags:
@@ -378,6 +397,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -407,6 +430,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -456,6 +483,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerAddressItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAddressError'
   '/customers/{customer_id}/addresses/{address_id}.json':
     get:
       tags:
@@ -534,6 +576,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerAddressItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAddressError'
     delete:
       tags:
         - CustomerAddress
@@ -664,6 +721,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -706,6 +767,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerSavedSearchItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerSavedSearchError'
   /customer_saved_searches/count.json:
     get:
       tags:
@@ -868,6 +944,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -975,7 +1055,7 @@ components:
     CancelReason:
       enum:
         - customer
-        - customer
+        - fraud
         - inventory
         - declined
         - other
@@ -1535,6 +1615,23 @@ components:
           type: integer
           format: int64
       additionalProperties: { }
+    CustomerAddressError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/CustomerAddressErrorDetails'
+      additionalProperties: { }
+    CustomerAddressErrorDetails:
+      type: object
+      properties:
+        base:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: { }
     CustomerAddressItem:
       required:
         - customer_address
@@ -1542,6 +1639,23 @@ components:
       properties:
         customer_address:
           $ref: '#/components/schemas/CustomerAddress'
+      additionalProperties: { }
+    CustomerError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/CustomerErrorDetails'
+      additionalProperties: { }
+    CustomerErrorDetails:
+      type: object
+      properties:
+        base:
+          type: array
+          items:
+            type: string
+          nullable: true
       additionalProperties: { }
     CustomerInvite:
       required:
@@ -1631,6 +1745,28 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+      additionalProperties: { }
+    CustomerSavedSearchError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/CustomerSavedSearchErrorDetails'
+      additionalProperties: { }
+    CustomerSavedSearchErrorDetails:
+      type: object
+      properties:
+        name:
+          type: array
+          items:
+            type: string
+          nullable: true
+        search_terms:
+          type: array
+          items:
+            type: string
           nullable: true
       additionalProperties: { }
     CustomerSavedSearchItem:
@@ -2547,6 +2683,7 @@ components:
       additionalProperties: { }
     ProcessingMethod:
       enum:
+        - ''
         - checkout
         - direct
         - manual

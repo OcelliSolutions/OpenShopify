@@ -14,6 +14,7 @@ public class ApplicationCreditController : ApplicationCreditControllerBase
     /// <inheritdoc />
     [HttpPost, Route("application_credits.json")]
     [ProducesResponseType(typeof(ApplicationCreditItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApplicationCreditError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateApplicationCredit([Required] CreateApplicationCreditRequest request)
     {
         throw new NotImplementedException();

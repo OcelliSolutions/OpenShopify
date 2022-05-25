@@ -22,6 +22,7 @@ public class PaymentController : PaymentControllerBase
     /// <inheritdoc />
     [HttpPost, Route("checkouts/{token}/payments.json")]
     [ProducesResponseType(typeof(PaymentItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(PaymentError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreatePayment(CreatePaymentRequest request, decimal? amount = null, string? request_details = null,
         long? session_id = null, string? token = null, string? unique_token = null)
     {

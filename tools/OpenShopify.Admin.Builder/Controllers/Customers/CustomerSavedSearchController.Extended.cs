@@ -22,6 +22,7 @@ public class CustomerSavedSearchController : CustomerSavedSearchControllerBase
     /// <inheritdoc />
     [HttpPost, Route("customer_saved_searches.json")]
     [ProducesResponseType(typeof(CustomerSavedSearchItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(CustomerSavedSearchError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateCustomerSavedSearch([Required] CreateCustomerSavedSearchRequest request)
     {
         throw new NotImplementedException();

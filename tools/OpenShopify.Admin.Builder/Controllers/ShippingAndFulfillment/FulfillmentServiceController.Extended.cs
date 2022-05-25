@@ -31,6 +31,7 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_services.json")]
     [ProducesResponseType(typeof(FulfillmentServiceItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(FulfillmentServiceError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateFulfillmentService([Required] CreateFulfillmentServiceRequest request)
     {
         throw new NotImplementedException();

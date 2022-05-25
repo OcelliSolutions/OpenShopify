@@ -48,13 +48,15 @@ public class SharedFixture : IDisposable
     public string Email => "foo@example.com";
 
     public List<AuthorizationScope> Scopes = new();
+    public List<Address> CreatedAddresses = new();
     public List<ApplicationCredit> CreatedApplicationCredits = new();
+    public List<Blog> CreatedBlogs = new();
     public List<Collect> CreatedCollects = new();
     public List<Customer> CreatedCustomers = new();
     public List<CustomerSavedSearch> CreatedCustomerSavedSearches  = new();
-    public List<Address> CreatedAddresses = new();
     //public List<CustomerAddress> CreatedCustomerAddresses = new();
     public List<FulfillmentService> CreatedFulfillmentServices = new();
+    public List<GiftCard> CreatedGiftCards = new();
     public List<Order> CreatedOrders = new();
     public List<PriceRule> CreatedPriceRule = new();
     public List<Product> CreatedProducts = new();
@@ -107,7 +109,7 @@ public class SharedFixture : IDisposable
                 FirstName = FirstName,
                 LastName = LastName,
                 Email = $@"{BatchId}@example.com",
-                AcceptsMarketing = false,
+                //AcceptsMarketing = false,
                 Addresses = new List<CreateCustomerAddress>()
                 {
                     new()
@@ -169,26 +171,31 @@ public class SharedFixture : IDisposable
                 }
             }
         };
-    /*
+
+    public CreateFulfillmentServiceRequest CreateFulfillmentServiceRequest =>
+    new()
+    {
+        FulfillmentService = new CreateFulfillmentService()
+        {
+            Name = $@"{Company} FulfillmentService ({BatchId})",
+            Email = Email,
+            Format = FulfillmentServiceFormat.json,
+            CallbackUrl = "http://sample.com/callback"
+        }
+    };
+
     public CreateProductRequest CreateProductRequest =>
         new()
         {
             Product = new()
             {
-                Title = $@"{Company} Product ({BatchId})",
+                Title = $@"Burton Custom Freestyle 151 ({BatchId})",
+                BodyHtml = @"\u003cstrong\u003eGood snowboard!\u003c\/strong\u003e",
                 Vendor = Company,
-                BodyHtml = "<strong>This product was created while testing ShopifySharp!</strong>",
-                ProductType = "SAMPLE",
-                Images = new List<CreateProductImage>
-                {
-                    new ()
-                    {
-                        Attachment = "R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-                    }
-                }
+                ProductType = "Snowboard",
+                Tags = @"Barnes \u0026 Noble, Big Air, John's Fav"
             }
-        }
-    */
+        };
 }
 
 [AttributeUsage(AttributeTargets.Method)]

@@ -1,4 +1,6 @@
-﻿using Ocelli.OpenShopify.Tests.Fixtures;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
 using Xunit;
 using Xunit.Abstractions;
@@ -27,7 +29,7 @@ public class ArticleTests : IClassFixture<SharedFixture>
     #endregion Create
 
     #region Read
-
+    
     #endregion Read
 
     #region Update

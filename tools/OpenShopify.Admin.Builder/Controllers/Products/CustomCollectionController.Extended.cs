@@ -25,6 +25,7 @@ public class CustomCollectionController : CustomCollectionControllerBase
     /// <inheritdoc />
     [HttpPost, Route("custom_collections.json")]
     [ProducesResponseType(typeof(CustomCollectionItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(CustomCollectionError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateCustomCollection([Required] CreateCustomCollectionRequest request)
     {
         throw new NotImplementedException();
@@ -51,6 +52,7 @@ public class CustomCollectionController : CustomCollectionControllerBase
     /// <inheritdoc />
     [HttpPut, Route("custom_collections/{custom_collection_id:long}.json")]
     [ProducesResponseType(typeof(CustomCollectionItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CustomCollectionError), StatusCodes.Status422UnprocessableEntity)]
     public override Task UpdateCustomCollection([Required] UpdateCustomCollectionRequest request, [Required] long custom_collection_id)
     {
         throw new NotImplementedException();

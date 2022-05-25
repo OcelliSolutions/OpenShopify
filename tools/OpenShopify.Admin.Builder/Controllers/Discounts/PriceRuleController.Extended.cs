@@ -14,6 +14,7 @@ public class PriceRuleController : PriceRuleControllerBase
     /// <inheritdoc />
     [HttpPost, Route("price_rules.json")]
     [ProducesResponseType(typeof(PriceRuleItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(PriceRuleError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreatePriceRule([Required] CreatePriceRuleRequest request)
     {
         throw new NotImplementedException();

@@ -24,6 +24,7 @@ public class MetafieldController : MetafieldControllerBase
     /// <inheritdoc />
     [HttpPost, Route("metafields.json")]
     [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(MetafieldError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateMetafield([Required] CreateMetafieldRequest request)
     {
         throw new NotImplementedException();

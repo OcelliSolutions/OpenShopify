@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-using OpenShopify.Common.Models;
 
 namespace OpenShopify.Admin.Builder.Models;
 // ReSharper disable All
@@ -2030,18 +2029,18 @@ public partial record ResourceFeedbackBase : ResourceFeedbackOrig{}
 	
 public partial record AssignedFulfillmentOrderItem
 {
-    [JsonPropertyName("assigned_fulfillment_order"), Required]
+    [JsonPropertyName("fulfillment_order"), Required]
     public FulfillmentOrder AssignedFulfillmentOrder { get; set; } = null!;
 }
 
 public partial record AssignedFulfillmentOrderList
 {
-    [JsonPropertyName("assigned_fulfillment_orders"), Required]
+    [JsonPropertyName("fulfillment_orders"), Required]
     public IEnumerable<FulfillmentOrder> AssignedFulfillmentOrders { get; set; } = null!;
 }
 public partial record CreateAssignedFulfillmentOrderRequest
 {
-    [JsonPropertyName("assigned_fulfillment_order"), Required]
+    [JsonPropertyName("fulfillment_order"), Required]
     public CreateAssignedFulfillmentOrder AssignedFulfillmentOrder { get; set; } = null!;
 }
 
@@ -2049,7 +2048,7 @@ public partial record CreateAssignedFulfillmentOrderRequest
 public partial record CreateAssignedFulfillmentOrder : FulfillmentOrderBase {}
 public partial record UpdateAssignedFulfillmentOrderRequest
 {
-    [JsonPropertyName("assigned_fulfillment_order"), Required]
+    [JsonPropertyName("fulfillment_order"), Required]
     public UpdateAssignedFulfillmentOrder AssignedFulfillmentOrder { get; set; } = null!;
 }
 

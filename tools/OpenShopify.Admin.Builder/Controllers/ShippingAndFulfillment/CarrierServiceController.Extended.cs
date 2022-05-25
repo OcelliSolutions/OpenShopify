@@ -14,6 +14,7 @@ public class CarrierServiceController : CarrierServiceControllerBase
     /// <inheritdoc />
     [HttpPost, Route("carrier_services.json")]
     [ProducesResponseType(typeof(CarrierServiceItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(CarrierServiceError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateCarrierService([Required] CreateCarrierServiceRequest request)
     {
         throw new NotImplementedException();

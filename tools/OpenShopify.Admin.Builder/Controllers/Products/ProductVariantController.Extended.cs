@@ -23,6 +23,7 @@ public class ProductVariantController : ProductVariantControllerBase
     /// <inheritdoc />
     [HttpPost, Route("products/{product_id:long}/variants.json")]
     [ProducesResponseType(typeof(ProductVariantItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ProductVariantError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateProductVariant([Required] CreateProductVariantRequest request, [Required] long product_id)
     {
         throw new NotImplementedException();
@@ -47,6 +48,7 @@ public class ProductVariantController : ProductVariantControllerBase
     /// <inheritdoc />
     [HttpPut, Route("variants/{variant_id:long}.json")]
     [ProducesResponseType(typeof(ProductVariantItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProductVariantError), StatusCodes.Status422UnprocessableEntity)]
     public override Task UpdateProductVariant([Required] UpdateProductVariantRequest request, [Required] long variant_id)
     {
         throw new NotImplementedException();

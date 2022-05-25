@@ -14,6 +14,7 @@ public class DraftOrderController : DraftOrderControllerBase
     /// <inheritdoc />
     [HttpPost, Route("draft_orders.json")]
     [ProducesResponseType(typeof(DraftOrderItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(DraftOrderError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateDraftOrder(CreateDraftOrderRequest request, long customer_id, bool? use_customer_default_address = null)
     {
         throw new NotImplementedException();
@@ -31,6 +32,7 @@ public class DraftOrderController : DraftOrderControllerBase
     /// <inheritdoc />
     [HttpPut, Route("draft_orders/{draft_order_id:long}.json")]
     [ProducesResponseType(typeof(DraftOrderItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(DraftOrderError), StatusCodes.Status422UnprocessableEntity)]
     public override Task UpdateDraftOrder([Required] UpdateDraftOrderRequest request, [Required] long draft_order_id)
     {
         throw new NotImplementedException();

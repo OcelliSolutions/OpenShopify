@@ -114,6 +114,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -163,6 +167,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ArticleItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleError'
   '/blogs/{blog_id}/articles/count.json':
     get:
       tags:
@@ -356,6 +375,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -395,6 +418,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -440,6 +467,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -474,6 +505,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -533,6 +568,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AssetItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetError'
     delete:
       tags:
         - Asset
@@ -600,6 +650,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -648,6 +702,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlogItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogError'
   /blogs/count.json:
     get:
       tags:
@@ -844,6 +913,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -886,6 +959,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CommentItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentError'
   /comments/count.json:
     get:
       tags:
@@ -1251,6 +1339,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -1293,6 +1385,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PageItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageError'
   /pages/count.json:
     get:
       tags:
@@ -1504,6 +1611,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -1546,6 +1657,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RedirectItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedirectError'
   /redirects/count.json:
     get:
       tags:
@@ -1736,6 +1862,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -1778,6 +1908,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScriptTagItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScriptTagError'
   /script_tags/count.json:
     get:
       tags:
@@ -1921,6 +2066,10 @@ paths:
         '200':
           description: Success
           headers:
+            Link:
+              description: 'The link header includes a `rel` parameter, where `relation-types` describes the relation of the linked page to the current page of results. The value can either be `previous` or `next`. If your initial request doesn''t return enough records to generate an additional page of results, then the response won''t have a link header.'
+              schema:
+                type: string
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
               schema:
@@ -1963,6 +2112,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ThemeItem'
+        '422':
+          description: Client Error
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThemeError'
   '/themes/{theme_id}.json':
     get:
       tags:
@@ -2135,6 +2299,23 @@ components:
           type: string
           nullable: true
       additionalProperties: { }
+    ArticleError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/ArticleErrorDetails'
+      additionalProperties: { }
+    ArticleErrorDetails:
+      type: object
+      properties:
+        title:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: { }
     ArticleImage:
       type: object
       properties:
@@ -2212,6 +2393,23 @@ components:
         value:
           type: string
           description: 'The text content of the asset, such as the HTML and Liquid markup of a template file.'
+          nullable: true
+      additionalProperties: { }
+    AssetError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/AssetErrorDetails'
+      additionalProperties: { }
+    AssetErrorDetails:
+      type: object
+      properties:
+        base:
+          type: array
+          items:
+            type: string
           nullable: true
       additionalProperties: { }
     AssetItem:
@@ -2294,6 +2492,23 @@ components:
           type: integer
           format: int64
       additionalProperties: { }
+    BlogError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/BlogErrorDetails'
+      additionalProperties: { }
+    BlogErrorDetails:
+      type: object
+      properties:
+        title:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: { }
     BlogItem:
       required:
         - blog
@@ -2375,6 +2590,33 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+      additionalProperties: { }
+    CommentError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/CommentErrorDetails'
+      additionalProperties: { }
+    CommentErrorDetails:
+      type: object
+      properties:
+        author:
+          type: array
+          items:
+            type: string
+          nullable: true
+        body:
+          type: array
+          items:
+            type: string
+          nullable: true
+        email:
+          type: array
+          items:
+            type: string
           nullable: true
       additionalProperties: { }
     CommentItem:
@@ -2941,6 +3183,23 @@ components:
           type: integer
           format: int64
       additionalProperties: { }
+    PageError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/PageErrorDetails'
+      additionalProperties: { }
+    PageErrorDetails:
+      type: object
+      properties:
+        title:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: { }
     PageItem:
       required:
         - page
@@ -2977,6 +3236,28 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+      additionalProperties: { }
+    RedirectError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/RedirectErrorDetails'
+      additionalProperties: { }
+    RedirectErrorDetails:
+      type: object
+      properties:
+        path:
+          type: array
+          items:
+            type: string
+          nullable: true
+        target:
+          type: array
+          items:
+            type: string
           nullable: true
       additionalProperties: { }
     RedirectItem:
@@ -3033,6 +3314,28 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+      additionalProperties: { }
+    ScriptTagError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/ScriptTagErrorDetails'
+      additionalProperties: { }
+    ScriptTagErrorDetails:
+      type: object
+      properties:
+        src:
+          type: array
+          items:
+            type: string
+          nullable: true
+        event:
+          type: array
+          items:
+            type: string
           nullable: true
       additionalProperties: { }
     ScriptTagItem:
@@ -3103,6 +3406,23 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+      additionalProperties: { }
+    ThemeError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/ThemeErrorDetails'
+      additionalProperties: { }
+    ThemeErrorDetails:
+      type: object
+      properties:
+        name:
+          type: array
+          items:
+            type: string
           nullable: true
       additionalProperties: { }
     ThemeItem:

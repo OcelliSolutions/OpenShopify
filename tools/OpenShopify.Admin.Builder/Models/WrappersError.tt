@@ -1,0 +1,134 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#
+	var sections = new List<SectionTemplate>()
+	{
+		new("ApplicationCharge", new List<string> { "name", "price" }),
+		new("ApplicationCredit", new List<string> { "base" }),
+		new("Article", new List<string> { "title" }),
+		new("Asset", new List<string> { "base" }),
+		new("Balance", new List<string> { "base" }),
+		new("Blog", new List<string> { "title" }),
+		new("CarrierService", new List<string> { "base" }),
+		new("Checkout", new List<string> { "base" }),
+		new("Collect", new List<string> { "product", "collection" }),
+		new("Collection", new List<string> { "base" }),
+		new("CollectionListing", new List<string> { "base" }),
+		new("Comment", new List<string> { "author", "body", "email" }),
+		new("Country", new List<string> { "base" }),
+		new("Currency", new List<string> { "base" }),
+		new("CustomCollection", new List<string> { "title" }),
+		new("Customer", new List<string> { "base" }),
+		new("CustomerAddress", new List<string> { "base" }),
+		new("CustomerInvite", new List<string> { "base" }),
+		new("CustomerSavedSearch", new List<string> { "name", "search_terms" }),
+		new("DeprecatedApiCall", new List<string> { "base" }),
+		new("DiscountCode", new List<string> { "base" }),
+		new("DiscountCodeCreation", new List<string> { "base" }),
+		new("Dispute", new List<string> { "base" }),
+		new("DraftOrder", new List<string> { "base" }),
+		new("DraftOrderInvoice", new List<string> { "base" }),
+		new("Engagement", new List<string> { "base" }),
+		new("Event", new List<string> { "base" }),
+		new("Fulfillment", new List<string> { "base" }),
+		new("FulfillmentEvent", new List<string> { "base" }),
+		new("FulfillmentOrder", new List<string> { "base" }),
+		new("FulfillmentRequest", new List<string> { "base" }),
+		new("FulfillmentService", new List<string> { "base" }),
+		new("GiftCard", new List<string> { "base" }),
+		new("InventoryItem", new List<string> { "base" }),
+		new("InventoryLevel", new List<string> { "base" }),
+		new("Location", new List<string> { "base" }),
+		new("LocationsForMove", new List<string> { "base" }),
+		new("MarketingEvent", new List<string> { "base" }),
+		new("Metafield", new List<string> { "type", "namespace", "key" }),
+		new("MobilePlatformApplication", new List<string> { "base" }),
+		new("Order", new List<string> { "order" }),
+		new("OrderRisk", new List<string> { "base" }),
+		new("Page", new List<string> { "title" }),
+		new("Payment", new List<string> { "amount", "payment_gateway", "checkout" }),
+		new("Payout", new List<string> { "base" }),
+		new("Policy", new List<string> { "base" }),
+		new("PriceRule", new List<string> { "customer_segment_prerequisite_ids" }),
+		new("Product", new List<string> { "title" }),
+		new("ProductImage", new List<string> { "base" }),
+		new("ProductListing", new List<string> { "base" }),
+		new("ProductResourceFeedback", new List<string> { "base" }),
+		new("ProductVariant", new List<string> { "base" }),
+		new("Province", new List<string> { "base" }),
+		new("RecurringApplicationCharge", new List<string> { "name", "price" }),
+		new("Redirect", new List<string> { "path", "target" }),
+		new("Refund", new List<string> { "base" }),
+		new("Report", new List<string> { "base" }),
+		new("ResourceFeedback", new List<string> { "messages" }),
+		new("ScriptTag", new List<string> { "src", "event" }),
+		new("ShippingZone", new List<string> { "base" }),
+		new("Shop", new List<string> { "base" }),
+		new("SmartCollection", new List<string> { "title" }),
+		new("StorefrontAccessToken", new List<string> { "base" }),
+		new("TenderTransaction", new List<string> { "base" }),
+		new("Theme", new List<string> { "name" }),
+		new("Transaction", new List<string> { "base" }),
+		new("UsageCharge", new List<string> { "description", "price" }),
+		new("User", new List<string> { "base" }),
+		new("Webhook", new List<string> { "topic", "address" })
+	};
+#>
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
+namespace OpenShopify.Admin.Builder.Models;
+// ReSharper disable All
+<#
+	foreach (var section in sections)
+	{
+		#>
+public record <#= section.ClassName #>Error
+{
+    [JsonPropertyName("errors"), Required]
+    public <#= section.ClassName #>ErrorDetails Errors { get; set; } = null!;
+}
+
+public record <#= section.ClassName #>ErrorDetails
+{
+<#
+		foreach (var field in section.Fields)
+		{
+#>
+	[JsonPropertyName("<#= field #>")]
+    public IEnumerable<string>? <#= ToPascalCase(field) #> { get; set; }
+<#
+		}
+#>
+}
+
+	<#
+	}
+#><#+
+	public record SectionTemplate(string ClassName, List<string> Fields)
+	{
+		public string ClassName { get; } = ClassName;
+		public List<string> Fields { get; set; } = Fields;
+	}
+	public static string ToSnakeCase(string s)
+	{
+		return string.IsNullOrWhiteSpace(s) ? null : Regex.Replace(s,"[A-Z]","_$0").ToLower().TrimStart('_');
+	}
+
+	public static string ToPascalCase(string name)
+	{
+		if (!name.Contains(" "))
+		{
+			name = Regex.Replace(name, "(?<=[a-z])(?=[A-Z])", " ");
+		}
+		var s = System.Globalization.CultureInfo.CurrentCulture.
+			TextInfo.ToTitleCase(name.ToLower()).Replace(" ", "").Replace("_", "");
+
+		return s;
+	}
+
+// ReSharper restore All
+#>

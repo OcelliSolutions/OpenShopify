@@ -24,6 +24,7 @@ public class CommentController : CommentControllerBase
     /// <inheritdoc />
     [HttpPost, Route("comments.json")]
     [ProducesResponseType(typeof(CommentItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(CommentError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateCommentForArticle([Required] CreateCommentRequest request)
     {
         throw new NotImplementedException();
