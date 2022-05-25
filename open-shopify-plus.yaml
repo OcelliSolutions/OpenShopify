@@ -466,7 +466,7 @@ components:
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was last modified.'
           format: date-time
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateGiftCardRequest:
       required:
         - gift_card
@@ -683,7 +683,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateGiftCardRequest:
       required:
         - gift_card

@@ -168,7 +168,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_holds")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? FulfillmentHolds { get; set; } = default!;
+        public System.Collections.Generic.List<string>? FulfillmentHolds { get; set; } = default!;
 
         /// <summary>
         /// The international duties relevant to the fulfillment order.

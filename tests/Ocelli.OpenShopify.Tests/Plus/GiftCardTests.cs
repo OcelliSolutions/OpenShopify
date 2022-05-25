@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
@@ -6,15 +7,23 @@ using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Plus;
-[Collection("Shared collection")]
+
+public class GiftCardFixture : SharedFixture, IAsyncLifetime
+{
+    public List<GiftCard> CreatedGiftCards = new();
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class GiftCardTests : IClassFixture<SharedFixture>
+public class GiftCardTests : IClassFixture<GiftCardFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly PlusService _service;
 
-    public GiftCardTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public GiftCardTests(ITestOutputHelper testOutputHelper, GiftCardFixture sharedFixture)
     {
         _testOutputHelper = testOutputHelper;
         Fixture = sharedFixture;
@@ -22,7 +31,7 @@ public class GiftCardTests : IClassFixture<SharedFixture>
         _service = new PlusService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
+    private GiftCardFixture Fixture { get; }
 
     #region Create
 

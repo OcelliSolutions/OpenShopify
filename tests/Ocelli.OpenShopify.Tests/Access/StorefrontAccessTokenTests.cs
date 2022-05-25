@@ -8,25 +8,36 @@ using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Access;
 
-[Collection("Shared collection")]
+public class StorefrontAccessTokenFixture : SharedFixture, IAsyncLifetime
+{
+    public List<StorefrontAccessToken> CreatedStorefrontAccessTokens = new();
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class StorefrontAccessTokenTests : IClassFixture<SharedFixture>
+public class StorefrontAccessTokenTests : IClassFixture<StorefrontAccessTokenFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly AccessService _service;
+    private readonly ITestOutputHelper _testOutputHelper;
 
-    public StorefrontAccessTokenTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public StorefrontAccessTokenTests(ITestOutputHelper testOutputHelper, StorefrontAccessTokenFixture sharedFixture)
     {
+        _testOutputHelper = testOutputHelper;
         Fixture = sharedFixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _service = new AccessService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
-    /*
+    private StorefrontAccessTokenFixture Fixture { get; }
+
     [SkippableFact]
     public async Task
         ListStorefrontAccessTokensThatHaveBeenIssuedAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
-        var requiredPermissions = new List<AuthorizationScope>()
+        var requiredPermissions = new List<AuthorizationScope>
         {
             AuthorizationScope.read_products,
             AuthorizationScope.write_products,
@@ -40,23 +51,14 @@ public class StorefrontAccessTokenTests : IClassFixture<SharedFixture>
             AuthorizationScope.unauthenticated_read_customers
         };
         Fixture.ValidateScopes(requiredPermissions);
-        var service = new AccessService(Fixture.MyShopifyUrl, Fixture.AccessToken);
-        var result = await service.StorefrontAccess.ListStorefrontAccessTokensThatHaveBeenIssuedAsync();
-        _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
+        var response = await _service.StorefrontAccess.ListStorefrontAccessTokensThatHaveBeenIssuedAsync();
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
-        if (result.StorefrontAccessTokens == null)
-        {
-            Skip.If(result.StorefrontAccessTokens == null || !result.StorefrontAccessTokens.Any(),
-                "WARN: No data returned. Could not test");
-            return;
-        }
+        Skip.If(!response.Result.StorefrontAccessTokens.Any(), "WARN: No data returned. Could not test");
 
-        foreach (var token in result.StorefrontAccessTokens)
+        foreach (var token in response.Result.StorefrontAccessTokens)
         {
             _additionalPropertiesHelper.CheckAdditionalProperties(token, Fixture.MyShopifyUrl);
         }
-
-        Assert.NotEmpty(result.StorefrontAccessTokens);
     }
-    */
 }

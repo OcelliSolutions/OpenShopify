@@ -444,7 +444,7 @@ JsonSchema GetSchema(string propertyName)
     {
         "arguments", "tax_exemptions", "tracking_numbers", "tracking_urls", "supported_actions", 
         "payment_gateway_names", "enabled_presentment_currencies", "permissions", "fields",
-        "metafield_namespaces", "private_metafield_namespaces"
+        "metafield_namespaces", "private_metafield_namespaces", "fulfillment_holds"
     };
     var objectListProperties = new List<string>()
     {

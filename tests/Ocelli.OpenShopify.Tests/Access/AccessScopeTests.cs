@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
@@ -9,21 +9,28 @@ using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Access;
 
-[Collection("Shared collection")]
+public class AccessScopeFixture : SharedFixture, IAsyncLifetime
+{
+    public List<AccessScope> CreatedAccessScopes = new();
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class AccessScopeTests : IClassFixture<SharedFixture>
+public class AccessScopeTests : IClassFixture<AccessScopeFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
     private readonly AccessService _service;
 
-    public AccessScopeTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public AccessScopeTests(ITestOutputHelper testOutputHelper, AccessScopeFixture sharedFixture)
     {
         Fixture = sharedFixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
         _service = new AccessService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
+    private AccessScopeFixture Fixture { get; }
 
     [SkippableFact]
     public async Task ListAccessScopesAsync_AdditionalPropertiesAreEmpty_ShouldPass()

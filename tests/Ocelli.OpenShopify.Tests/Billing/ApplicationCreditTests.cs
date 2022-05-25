@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
@@ -7,32 +8,42 @@ using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Billing;
-[Collection("Shared collection")]
-[TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class ApplicationCreditTests : IClassFixture<SharedFixture>
+
+public class ApplicationCreditFixture : SharedFixture, IAsyncLifetime
 {
+    public List<ApplicationCredit> CreatedApplicationCredits = new();
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+}
+
+[TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
+public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
+{
+    private const string ApplicationCreditPrefix = "Refund for Foo";
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
     private readonly BillingService _service;
-    private const string ApplicationCreditPrefix = "Refund for Foo";
 
-    public ApplicationCreditTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public ApplicationCreditTests(ITestOutputHelper testOutputHelper, ApplicationCreditFixture sharedFixture)
     {
         Fixture = sharedFixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
         _service = new BillingService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
+    private ApplicationCreditFixture Fixture { get; }
 
     #region Create
-    [Fact(Skip = "Unknown required scope."), TestPriority(10)]
+
+    [Fact(Skip = "Unknown required scope.")]
+    [TestPriority(10)]
     public async Task CreateApplicationCreditAsync_CanCreate()
     {
         var name = $@"{ApplicationCreditPrefix} {Fixture.BatchId}";
-        var request = new CreateApplicationCreditRequest()
+        var request = new CreateApplicationCreditRequest
         {
-            ApplicationCredit = new CreateApplicationCredit()
-            { 
+            ApplicationCredit = new CreateApplicationCredit
+            {
                 Test = true, Description = name, Amount = (decimal)0.01
             }
         };
@@ -45,10 +56,13 @@ public class ApplicationCreditTests : IClassFixture<SharedFixture>
         Debug.Assert(created.Result.ApplicationCredit != null, "created.ApplicationCredit != null");
         Fixture.CreatedApplicationCredits.Add(created.Result.ApplicationCredit);
     }
+
     #endregion Create
 
     #region Read
-    [SkippableFact(Skip = "Unknown required scope."), TestPriority(20)]
+
+    [SkippableFact(Skip = "Unknown required scope.")]
+    [TestPriority(20)]
     public async Task GetApplicationCreditAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
         Skip.If(Fixture.CreatedApplicationCredits.FirstOrDefault()?.Id == null);
@@ -66,13 +80,14 @@ public class ApplicationCreditTests : IClassFixture<SharedFixture>
         Assert.True(credit.Amount > 0);
     }
 
-    [SkippableFact(Skip = "Unknown required scope."), TestPriority(20)]
+    [SkippableFact(Skip = "Unknown required scope.")]
+    [TestPriority(20)]
     public async Task GetAllApplicationCreditsAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
         var result =
             await _service.ApplicationCredit.ListApplicationCreditsAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
-        
+
         Skip.If(!result.Result.ApplicationCredits.Any(), "WARN: No data returned. Could not test");
 
         foreach (var token in result.Result.ApplicationCredits)
@@ -80,6 +95,7 @@ public class ApplicationCreditTests : IClassFixture<SharedFixture>
             _additionalPropertiesHelper.CheckAdditionalProperties(token, Fixture.MyShopifyUrl);
         }
     }
+
     #endregion Read
 
     #region Update

@@ -1,19 +1,28 @@
-﻿using Ocelli.OpenShopify.Tests.Fixtures;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Billing;
 
-[Collection("Shared collection")]
+public class ApplicationChargeFixture : SharedFixture, IAsyncLifetime
+{
+    public List<ApplicationCharge> CreatedApplicationCharges = new();
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class ApplicationChargeTests : IClassFixture<SharedFixture>
+public class ApplicationChargeTests : IClassFixture<ApplicationChargeFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly ITestOutputHelper _testOutputHelper;
     private readonly BillingService _service;
+    private readonly ITestOutputHelper _testOutputHelper;
 
-    public ApplicationChargeTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public ApplicationChargeTests(ITestOutputHelper testOutputHelper, ApplicationChargeFixture sharedFixture)
     {
         _testOutputHelper = testOutputHelper;
         Fixture = sharedFixture;
@@ -21,7 +30,7 @@ public class ApplicationChargeTests : IClassFixture<SharedFixture>
         _service = new BillingService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
+    private ApplicationChargeFixture Fixture { get; }
 
     #region Create
 

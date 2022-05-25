@@ -2710,7 +2710,7 @@ components:
           description: A unique numeric identifier for the author of the article.
           format: int64
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateArticleRequest:
       required:
         - article
@@ -2766,7 +2766,7 @@ components:
           type: string
           description: 'The text content of the asset, such as the HTML and Liquid markup of a template file.'
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateAssetRequest:
       required:
         - asset
@@ -2824,7 +2824,7 @@ components:
           type: string
           description: The GraphQL GID of the blog.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateBlogRequest:
       required:
         - blog
@@ -2889,7 +2889,7 @@ components:
           type: string
           description: The user agent string provided by the software used to create the comment (usually a browser).
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateCommentRequest:
       required:
         - comment
@@ -2955,7 +2955,7 @@ components:
             $ref: '#/components/schemas/Metafield'
           description: "Additional metadata about the OpenShopify.Admin.Builder.Models.PageBase. Note: This is not naturally returned with a OpenShopify.Admin.Builder.Models.PageBase response, as\r\nShopify will not return OpenShopify.Admin.Builder.Models.PageBase metafields unless specified. Instead, you need to query metafields with !:MetafieldService. \r\nUses include: Creating, updating, and deserializing webhook bodies that include them."
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreatePageRequest:
       required:
         - page
@@ -2975,7 +2975,7 @@ components:
           type: string
           description: 'The target location where the user will be redirected. When the user visits the old path specified by the `path` property, they will be redirected to this location. This property can be set to any path on the shop''s site, or to an external URL. (maximum: 255 characters)'
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateRedirectRequest:
       required:
         - redirect
@@ -3013,7 +3013,7 @@ components:
           description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was last updated.'
           format: date-time
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateScriptTagRequest:
       required:
         - script_tag
@@ -3056,7 +3056,7 @@ components:
           description: 'The date and time of when the theme was last updated. (format: 2014-04-25T16:15:47-04:00)'
           format: date-time
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateThemeRequest:
       required:
         - theme
@@ -3517,7 +3517,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateArticleRequest:
       required:
         - article
@@ -3578,7 +3578,7 @@ components:
         id:
           type: integer
           format: int64
-      additionalProperties: { }
+      additionalProperties: false
     UpdateBlogRequest:
       required:
         - blog
@@ -3651,7 +3651,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateCommentRequest:
       required:
         - comment
@@ -3721,7 +3721,7 @@ components:
         id:
           type: integer
           format: int64
-      additionalProperties: { }
+      additionalProperties: false
     UpdatePageRequest:
       required:
         - page
@@ -3749,7 +3749,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateRedirectRequest:
       required:
         - redirect
@@ -3795,7 +3795,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateScriptTagRequest:
       required:
         - script_tag
@@ -3846,7 +3846,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateThemeRequest:
       required:
         - theme

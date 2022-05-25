@@ -618,7 +618,7 @@ components:
           description: The national sales tax rate applied to orders made by customers from that country.
           format: decimal
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateCountryRequest:
       required:
         - country
@@ -1136,7 +1136,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateCountryRequest:
       required:
         - country
@@ -1192,7 +1192,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateProvinceRequest:
       required:
         - province

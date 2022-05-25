@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
@@ -6,15 +7,23 @@ using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.OnlineStore;
-[Collection("Shared collection")]
+
+public class BlogFixture : SharedFixture, IAsyncLifetime
+{
+    public List<Blog> CreatedBlogs = new();
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class BlogTests : IClassFixture<SharedFixture>
+public class BlogTests : IClassFixture<BlogFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly OnlineStoreService _service;
 
-    public BlogTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public BlogTests(ITestOutputHelper testOutputHelper, BlogFixture sharedFixture)
     {
         _testOutputHelper = testOutputHelper;
         Fixture = sharedFixture;
@@ -22,7 +31,7 @@ public class BlogTests : IClassFixture<SharedFixture>
         _service = new OnlineStoreService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
+    private BlogFixture Fixture { get; }
 
     #region Create
 

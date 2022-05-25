@@ -1230,7 +1230,7 @@ components:
           type: boolean
           description: Whether a welcome email should be sent to the new customer. Default is null.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateCustomerAddress:
       type: object
       properties:
@@ -1299,7 +1299,7 @@ components:
           type: boolean
           description: Indicates whether this address is the default address.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateCustomerAddressRequest:
       required:
         - customer_address
@@ -1371,7 +1371,7 @@ components:
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer saved search was last modified.'
           format: date-time
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateCustomerSavedSearchRequest:
       required:
         - customer_saved_search
@@ -3245,7 +3245,7 @@ components:
           type: string
           description: Should be set and match OpenShopify.Admin.Builder.Models.UpdateCustomer.Password. Default is null.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateCustomerAddress:
       required:
         - id
@@ -3319,7 +3319,7 @@ components:
         id:
           type: integer
           format: int64
-      additionalProperties: { }
+      additionalProperties: false
     UpdateCustomerAddressRequest:
       required:
         - customer_address
@@ -3365,7 +3365,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateCustomerSavedSearchRequest:
       required:
         - customer_saved_search

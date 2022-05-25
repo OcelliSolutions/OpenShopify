@@ -45,22 +45,10 @@ public class SharedFixture : IDisposable
     public string LastName => "Doe";
     public string Company => "OpenShopify";
     public string Note => "Test note about this customer.";
-    public string Email => "foo@example.com";
+    public string Email => $@"foo+{BatchId}@example.com";
+    public string CallbackUrl => "http://sample.com/callback";
 
     public List<AuthorizationScope> Scopes = new();
-    public List<Address> CreatedAddresses = new();
-    public List<ApplicationCredit> CreatedApplicationCredits = new();
-    public List<Blog> CreatedBlogs = new();
-    public List<Collect> CreatedCollects = new();
-    public List<Customer> CreatedCustomers = new();
-    public List<CustomerSavedSearch> CreatedCustomerSavedSearches  = new();
-    //public List<CustomerAddress> CreatedCustomerAddresses = new();
-    public List<FulfillmentService> CreatedFulfillmentServices = new();
-    public List<GiftCard> CreatedGiftCards = new();
-    public List<Order> CreatedOrders = new();
-    public List<PriceRule> CreatedPriceRule = new();
-    public List<Product> CreatedProducts = new();
-    public List<Webhook> CreatedWebhooks = new();
 
     public void ValidateScopes(List<AuthorizationScope> requiredPermissions)
     {
@@ -70,7 +58,7 @@ public class SharedFixture : IDisposable
                 $@"`{MyShopifyUrl}` credentials do not have the `{requiredPermission}` scope(s). Endpoint cannot be tested.");
         }
     }
-
+    
     public void Dispose()
     {
         GC.SuppressFinalize(this);
@@ -180,7 +168,7 @@ public class SharedFixture : IDisposable
             Name = $@"{Company} FulfillmentService ({BatchId})",
             Email = Email,
             Format = FulfillmentServiceFormat.json,
-            CallbackUrl = "http://sample.com/callback"
+            CallbackUrl = CallbackUrl
         }
     };
 

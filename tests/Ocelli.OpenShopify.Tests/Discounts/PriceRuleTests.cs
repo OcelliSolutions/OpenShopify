@@ -8,15 +8,22 @@ using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Discounts;
-[Collection("Shared collection")]
+
+public class PriceRuleFixture : SharedFixture, IAsyncLifetime
+{
+    public List<PriceRule> CreatedPriceRules = new();
+    public Task InitializeAsync() => Task.CompletedTask;
+    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class PriceRuleTests : IClassFixture<SharedFixture>
+public class PriceRuleTests : IClassFixture<PriceRuleFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly DiscountsService _service;
 
-    public PriceRuleTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public PriceRuleTests(ITestOutputHelper testOutputHelper, PriceRuleFixture sharedFixture)
     {
         Fixture = sharedFixture;
         _testOutputHelper = testOutputHelper;
@@ -24,7 +31,7 @@ public class PriceRuleTests : IClassFixture<SharedFixture>
         _service = new DiscountsService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
+    private PriceRuleFixture Fixture { get; }
 
     #region Create
     [SkippableFact, TestPriority(1)]
@@ -43,7 +50,7 @@ public class PriceRuleTests : IClassFixture<SharedFixture>
         Assert.Equal(request.PriceRule.TargetSelection, created.TargetSelection);
         Assert.Equal(request.PriceRule.AllocationMethod, created.AllocationMethod);
         Assert.Equal(request.PriceRule.Value, created.Value);
-        Fixture.CreatedPriceRule.Add(created);
+        Fixture.CreatedPriceRules.Add(created);
     }
     #endregion Create
 
@@ -59,16 +66,16 @@ public class PriceRuleTests : IClassFixture<SharedFixture>
         }
         Assert.True(response.Result.PriceRules.Any());
         //Add any created items from previously failed tests to the created list for later deletion.
-        Fixture.CreatedPriceRule.AddRange(response.Result.PriceRules.Where(fs =>
-            !Fixture.CreatedPriceRule.Exists(e => e.Id == fs.Id) &&
+        Fixture.CreatedPriceRules.AddRange(response.Result.PriceRules.Where(fs =>
+            !Fixture.CreatedPriceRules.Exists(e => e.Id == fs.Id) &&
             fs.Title!.StartsWith(Fixture.Company)));
     }
 
     [SkippableFact, TestPriority(2)]
     public async Task Gets_PriceRules()
     {
-        Skip.If(!Fixture.CreatedCustomers.Any(), "This should be run with the create test.");
-        var createdPriceRule = Fixture.CreatedPriceRule.First();
+        Skip.If(!Fixture.CreatedPriceRules.Any(), "This should be run with the create test.");
+        var createdPriceRule = Fixture.CreatedPriceRules.First();
         var response = await _service.PriceRule.GetPriceRuleAsync(createdPriceRule.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.PriceRule, Fixture.MyShopifyUrl);
@@ -88,8 +95,8 @@ public class PriceRuleTests : IClassFixture<SharedFixture>
     public async Task Updates_PriceRules()
     {
 
-        Skip.If(!Fixture.CreatedPriceRule.Any(), "This should be run with the create test.");
-        var createdPriceRule = Fixture.CreatedPriceRule.First();
+        Skip.If(!Fixture.CreatedPriceRules.Any(), "This should be run with the create test.");
+        var createdPriceRule = Fixture.CreatedPriceRules.First();
         var request = new UpdatePriceRuleRequest()
         {
             PriceRule = new ()
@@ -107,8 +114,8 @@ public class PriceRuleTests : IClassFixture<SharedFixture>
         Assert.Equal(request.PriceRule.Value, updated.Value);
 
         // Reset the id so the Fixture can properly delete this object.
-        Fixture.CreatedPriceRule.Remove(createdPriceRule);
-        Fixture.CreatedPriceRule.Add(response.Result.PriceRule);
+        Fixture.CreatedPriceRules.Remove(createdPriceRule);
+        Fixture.CreatedPriceRules.Add(response.Result.PriceRule);
     }
     #endregion Update
 
@@ -116,9 +123,9 @@ public class PriceRuleTests : IClassFixture<SharedFixture>
     [SkippableFact, TestPriority(4)]
     public async Task Deletes_PriceRules()
     {
-        Skip.If(Fixture.CreatedPriceRule.Count == 0, "WARN: No data returned. Could not test");
+        Skip.If(Fixture.CreatedPriceRules.Count == 0, "WARN: No data returned. Could not test");
         var errors = new List<Exception>();
-        foreach (var priceRule in Fixture.CreatedPriceRule)
+        foreach (var priceRule in Fixture.CreatedPriceRules)
         {
             try
             {

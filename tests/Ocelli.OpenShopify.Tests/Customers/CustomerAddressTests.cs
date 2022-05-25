@@ -9,21 +9,23 @@ using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Customers;
-[Collection("Shared collection")]
+
+public class CustomerAddressFixture : SharedFixture, IAsyncLifetime
+{
+    public List<Address> CreatedAddresses = new();
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class CustomerAddressTests : IClassFixture<SharedFixture>
+public class CustomerAddressTests : IClassFixture<CustomerAddressFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
     private readonly CustomersService _service;
     private readonly ITestOutputHelper _testOutputHelper;
-
-    /// <summary>
-    /// Customer Address tests should be run in conjunction with Address tests.
-    /// The priority number tells the test to run after customer completes.
-    /// </summary>
-    /// <param name="testOutputHelper"></param>
-    /// <param name="sharedFixture"></param>
-    public CustomerAddressTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    
+    public CustomerAddressTests(ITestOutputHelper testOutputHelper, CustomerAddressFixture sharedFixture)
     {
         Fixture = sharedFixture;
         _testOutputHelper = testOutputHelper;
@@ -31,7 +33,7 @@ public class CustomerAddressTests : IClassFixture<SharedFixture>
         _service = new CustomersService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
+    private CustomerAddressFixture Fixture { get; }
 
     #region Create
     [SkippableFact, TestPriority(10)]

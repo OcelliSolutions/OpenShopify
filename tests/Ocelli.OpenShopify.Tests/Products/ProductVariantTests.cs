@@ -1,43 +1,87 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.VisualBasic.CompilerServices;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Products;
-[Collection("Shared collection")]
+
+
+public class ProductVariantFixture : SharedFixture, IAsyncLifetime
+{
+    public Product Product = new();
+    public List<ProductVariant> CreatedProductVariants = new();
+    
+    public async Task InitializeAsync()
+    {
+        await CreateProduct();
+    }
+
+    public async Task CreateProduct()
+    {
+        var productService = new ProductsService(MyShopifyUrl, AccessToken);
+        var request = base.CreateProductRequest;
+        var productResponse = await productService.Product.CreateProductAsync(request);
+        Product = productResponse.Result.Product;
+    }
+    async Task IAsyncLifetime.DisposeAsync()
+    {
+        if (Product.Id > 0)
+        {
+            var productService = new ProductsService(MyShopifyUrl, AccessToken);
+            await productService.Product.DeleteProductAsync(Product.Id);
+        }
+    }
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class ProductVariantTests : IClassFixture<SharedFixture>
+public class ProductVariantTests : IClassFixture<ProductVariantFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly ProductsService _service;
 
-    public ProductVariantTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public ProductVariantTests(ITestOutputHelper testOutputHelper, ProductVariantFixture fixture)
     {
         _testOutputHelper = testOutputHelper;
-        Fixture = sharedFixture;
+        Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
         _service = new ProductsService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
+    private ProductVariantFixture Fixture { get; }
     #region Create
-    /*
-    [SkippableFact, TestPriority(10)]
-    public async Task Creates_Variants()
-    {
-        var created = await Fixture.Create();
 
-        Assert.NotNull(created);
-        Assert.True(created.Id.HasValue);
-        Assert.Equal(Fixture.Price, created.Price);
-        EmptyAssert.NotNullOrEmpty(created.Option1);
+    [SkippableFact, TestPriority(10)]
+    public async Task CreateProductVariantAsync_CanCreate()
+    {
+        var request = new CreateProductVariantRequest()
+        {
+            Variant = new()
+            {
+                Option1 = "Yellow",
+                Price = (decimal)1.00
+            }
+        };
+        var response = await _service.ProductVariant.CreateProductVariantAsync(Fixture.Product.Id, request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+
+        Fixture.CreatedProductVariants.Add(response.Result.Variant);
     }
-    */
+
+    [SkippableFact, TestPriority(10)]
+    public async Task CreateProductVariantAsync_IsUnprocessableEntityError()
+    {
+        var request = new CreateProductVariantRequest()
+        {
+            Variant = new()
+        };
+        await Assert.ThrowsAsync<ApiException<ProductVariantError>>(async () => await _service.ProductVariant.CreateProductVariantAsync(Fixture.Product.Id, request));
+    }
+
     #endregion Create
 
     #region Read
@@ -77,51 +121,55 @@ public class ProductVariantTests : IClassFixture<SharedFixture>
     }
     #endregion Read
 
+
     #region Update
-    /*
+
     [SkippableFact, TestPriority(30)]
-    public async Task Updates_Variants()
+    public async Task UpdateProductVariantAsync_CanUpdate()
     {
-        decimal newPrice = (decimal)11.22;
-        var created = await Fixture.Create();
-        long id = created.Id.Value;
+        var originalProductVariant = Fixture.CreatedProductVariants.First();
+        var request = new UpdateProductVariantRequest()
+        {
+            Variant = new()
+            {
+                Id = originalProductVariant.Id,
+                Option1 = "Not Pink", 
+                Price = (decimal)99.00
+            }
+        };
+        var response = await _service.ProductVariant.UpdateProductVariantAsync(request.Variant.Id, request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
-        created.Price = newPrice;
-        created.Id = null;
-        // Must set variant.InventoryQuantity to null as it is now read-only. Sending the quantity accidentally will result in an exception.
-        created.InventoryQuantity = null;
-
-        var updated = await Fixture.Service.UpdateAsync(id, created);
-
-        // Reset the id so the Fixture can properly delete this object.
-        created.Id = id;
-
-        Assert.Equal(newPrice, updated.Price);
+        Fixture.CreatedProductVariants.Remove(originalProductVariant);
+        Fixture.CreatedProductVariants.Add(response.Result.Variant);
     }
-    */
+
     #endregion Update
 
     #region Delete
-    /*
+
     [SkippableFact, TestPriority(40)]
-    public async Task Deletes_Variants()
+    public async Task DeleteProductVariantAsync_CanDelete()
     {
-        var created = await Fixture.Create(skipAddToCreatedList: true);
-        bool threw = false;
-
-        try
+        Skip.If(Fixture.CreatedProductVariants.Count == 0, "WARN: No data returned. Could not test");
+        var errors = new List<Exception>();
+        foreach (var productVariant in Fixture.CreatedProductVariants)
         {
-            await Fixture.Service.DeleteAsync(Fixture.ProductId, created.Id.Value);
+            try
+            {
+                _ = await _service.ProductVariant.DeleteProductVariantAsync(productVariant.ProductId ?? 0, productVariant.Id);
+            }
+            catch (Exception ex)
+            {
+                errors.Add(ex);
+            }
         }
-        catch (ShopifyException ex)
+
+        foreach (var error in errors)
         {
-            Console.WriteLine($"{nameof(Deletes_Variants)} failed. {ex.Message}");
-
-            threw = true;
+            _testOutputHelper.WriteLine(error.Message);
         }
-
-        Assert.False(threw);
+        Assert.Empty(errors);
     }
-    */
     #endregion Delete
 }

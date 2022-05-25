@@ -484,7 +484,7 @@ components:
           description: 'Date and time when the webhook subscription was updated. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
           format: date-time
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateWebhookRequest:
       required:
         - webhook
@@ -619,7 +619,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateWebhookRequest:
       required:
         - webhook

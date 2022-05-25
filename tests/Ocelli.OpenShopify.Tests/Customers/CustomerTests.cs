@@ -10,15 +10,23 @@ using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Customers;
-[Collection("Shared collection")]
+
+public class CustomerFixture : SharedFixture, IAsyncLifetime
+{
+    public List<Customer> CreatedCustomers = new();
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class CustomerTests : IClassFixture<SharedFixture>
+public class CustomerTests : IClassFixture<CustomerFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
     private readonly CustomersService _service;
     private readonly ITestOutputHelper _testOutputHelper;
 
-    public CustomerTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public CustomerTests(ITestOutputHelper testOutputHelper, CustomerFixture sharedFixture)
     {
         Fixture = sharedFixture;
         _testOutputHelper = testOutputHelper;
@@ -26,7 +34,7 @@ public class CustomerTests : IClassFixture<SharedFixture>
         _service = new CustomersService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
+    private CustomerFixture Fixture { get; }
 
     #region Create
     [SkippableFact, TestPriority(10)]

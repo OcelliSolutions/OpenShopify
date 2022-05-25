@@ -8,15 +8,23 @@ using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Events;
-[Collection("Shared collection")]
+
+public class WebhookFixture : SharedFixture, IAsyncLifetime
+{
+    public List<Webhook> CreatedWebhooks = new();
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class WebhookTests : IClassFixture<SharedFixture>
+public class WebhookTests : IClassFixture<WebhookFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly EventsService _service;
     private const string Domain = "sample.com";
-    public WebhookTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public WebhookTests(ITestOutputHelper testOutputHelper, WebhookFixture sharedFixture)
     {
         _testOutputHelper = testOutputHelper;
         Fixture = sharedFixture;
@@ -24,7 +32,7 @@ public class WebhookTests : IClassFixture<SharedFixture>
         _service = new EventsService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
+    private WebhookFixture Fixture { get; }
 
     #region Create
 

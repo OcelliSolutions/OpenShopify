@@ -34,7 +34,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// The ID of the assigned location.
         /// </summary>
         [JsonPropertyName("location_id")]
-        public string? LocationId { get; set; }
+        public long? LocationId { get; set; }
 
         /// <summary>
         /// The name of the assigned location.

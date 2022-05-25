@@ -2180,7 +2180,7 @@ components:
           type: string
           description: "The status of a draft order as it transitions into an order. When a draft order is created it is set to `open` status. The invoice can then be sent to the customer, and `status` changes to `invoice_sent`. The draft order can then be paid, set to pending, or paid by credit card. In each case, the draft order is set to `completed` and an order is created.\r\n\r\nAfter a draft order is set to `completed` the only further modifications that can be made are adding tags or metafields.\r\n\r\nValid values: * **open**: Draft order is open. * **invoice_sent**: Invoice has been sent for the draft order. * **completed**: Draft order has been completed and turned into an order."
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateDraftOrderRequest:
       required:
         - draft_order
@@ -2519,7 +2519,7 @@ components:
           type: number
           format: decimal
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateOrderRequest:
       required:
         - order
@@ -2571,7 +2571,7 @@ components:
           type: string
           description: The source of the order risk.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateOrderRiskRequest:
       required:
         - risk
@@ -2652,7 +2652,7 @@ components:
           type: string
           description: 'The three-letter code (ISO 4217 format) for the currency used for the refund. Note: Required whenever the shipping amount property is provided.'
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateRefundRequest:
       required:
         - refund
@@ -2764,7 +2764,7 @@ components:
           type: string
           description: "An adjustment on the transaction showing the amount lost or gained due to fluctuations in the currency exchange rate. It has the following attributes: \r\n\r\n*   **ID**: The ID of the adjustment. \r\n*   **adjustment**: The difference between the amounts on the associated transaction and the parent transaction. \r\n*   **original_amount**: The amount of the parent transaction in the shop currency. \r\n*   **final_amount**: The amount of the associated transaction in the shop currency. \r\n*   **currency**: The shop currency.  Requires the header `X-Shopify-Api-Features = include-currency-exchange-adjustments`."
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateTransactionRequest:
       required:
         - transaction
@@ -5016,7 +5016,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateDraftOrderRequest:
       required:
         - draft_order
@@ -5363,7 +5363,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateOrderRequest:
       required:
         - order
@@ -5423,7 +5423,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateOrderRiskRequest:
       required:
         - risk

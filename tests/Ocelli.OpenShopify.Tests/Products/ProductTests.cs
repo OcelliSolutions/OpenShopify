@@ -10,15 +10,22 @@ using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Products;
 
-[Collection("Shared collection")]
+public class ProductFixture : SharedFixture, IAsyncLifetime
+{
+    public List<Product> CreatedProducts = new();
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class ProductTests : IClassFixture<SharedFixture>
+public class ProductTests : IClassFixture<ProductFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
     private readonly ProductsService _service;
     private readonly ITestOutputHelper _testOutputHelper;
     
-    public ProductTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public ProductTests(ITestOutputHelper testOutputHelper, ProductFixture sharedFixture)
     {
         _testOutputHelper = testOutputHelper;
         Fixture = sharedFixture;
@@ -26,7 +33,7 @@ public class ProductTests : IClassFixture<SharedFixture>
         _service = new ProductsService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
+    private ProductFixture Fixture { get; }
 
     #region Create
 

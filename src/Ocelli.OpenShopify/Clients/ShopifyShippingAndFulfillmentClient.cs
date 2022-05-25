@@ -5143,7 +5143,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("location_id")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? LocationId { get; set; } = default!;
+        public long? LocationId { get; set; } = default!;
 
         /// <summary>
         /// The name of the assigned location.
@@ -5440,15 +5440,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? AdminGraphqlApiId { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -5735,15 +5726,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public Address? Destination { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -5866,25 +5848,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public long? ShopId { get; set; } = default!;
 
-        /// <summary>
-        /// The status of the fulfillment event. Valid values:
-        /// <br/>
-        /// <br/>*   **label_printed**: A label for the shipment was purchased and printed. 
-        /// <br/>*   **label_purchased**: A label for the shipment was purchased, but not printed. 
-        /// <br/>*   **attempted_delivery**: Delivery of the shipment was attempted, but unable to be completed. 
-        /// <br/>*   **ready_for_pickup**: The shipment is ready for pickup at a shipping depot. 
-        /// <br/>*   **picked_up**: The fulfillment was successfully picked up. 
-        /// <br/>*   **confirmed**: The carrier is aware of the shipment, but hasn't received it yet. 
-        /// <br/>*   **in_transit**: The shipment is being transported between shipping facilities on the way to its destination. 
-        /// <br/>*   **out_for_delivery**: The shipment is being delivered to its final destination. 
-        /// <br/>*   **delivered**: The shipment was successfully delivered. 
-        /// <br/>*   **failure**: Something went wrong when pulling tracking information for the shipment, such as the tracking number was invalid or the shipment was canceled.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("status")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Status { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public FulfillmentEventStatus? Status { get; set; } = default!;
 
         /// <summary>
         /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was updated.
@@ -5903,15 +5871,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Zip { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 
@@ -5936,15 +5895,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
         public CreateFulfillment Fulfillment { get; set; } = new CreateFulfillment();
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 
@@ -6075,15 +6025,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Email { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 
@@ -6601,25 +6542,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public long? ShopId { get; set; } = default!;
 
-        /// <summary>
-        /// The status of the fulfillment event. Valid values:
-        /// <br/>
-        /// <br/>*   **label_printed**: A label for the shipment was purchased and printed. 
-        /// <br/>*   **label_purchased**: A label for the shipment was purchased, but not printed. 
-        /// <br/>*   **attempted_delivery**: Delivery of the shipment was attempted, but unable to be completed. 
-        /// <br/>*   **ready_for_pickup**: The shipment is ready for pickup at a shipping depot. 
-        /// <br/>*   **picked_up**: The fulfillment was successfully picked up. 
-        /// <br/>*   **confirmed**: The carrier is aware of the shipment, but hasn't received it yet. 
-        /// <br/>*   **in_transit**: The shipment is being transported between shipping facilities on the way to its destination. 
-        /// <br/>*   **out_for_delivery**: The shipment is being delivered to its final destination. 
-        /// <br/>*   **delivered**: The shipment was successfully delivered. 
-        /// <br/>*   **failure**: Something went wrong when pulling tracking information for the shipment, such as the tracking number was invalid or the shipment was canceled.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("status")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Status { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public FulfillmentEventStatus? Status { get; set; } = default!;
 
         /// <summary>
         /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was updated.
@@ -6744,6 +6671,42 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum FulfillmentEventStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"label_printed")]
+        label_printed = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"label_purchased")]
+        label_purchased = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"attempted_delivery")]
+        attempted_delivery = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"ready_for_pickup")]
+        ready_for_pickup = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"picked_up")]
+        picked_up = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"confirmed")]
+        confirmed = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"in_transit")]
+        in_transit = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"out_for_delivery")]
+        out_for_delivery = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"delivered")]
+        delivered = 8,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"failure")]
+        failure = 9,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class FulfillmentItem
     {
 
@@ -6835,7 +6798,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_holds")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? FulfillmentHolds { get; set; } = default!;
+        public System.Collections.Generic.ICollection<string>? FulfillmentHolds { get; set; } = default!;
 
         /// <summary>
         /// The international duties relevant to the fulfillment order.
@@ -7800,15 +7763,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         public long Id { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -8105,15 +8059,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? AdminGraphqlApiId { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -8142,15 +8087,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
         public UpdateFulfillment Fulfillment { get; set; } = new UpdateFulfillment();
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 
@@ -8283,15 +8219,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         public long Id { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 

@@ -9,15 +9,23 @@ using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Orders;
-[Collection("Shared collection")]
+
+public class OrderFixture : SharedFixture, IAsyncLifetime
+{
+    public List<Order> CreatedOrders = new();
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class OrderTests : IClassFixture<SharedFixture>
+public class OrderTests : IClassFixture<OrderFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly OrdersService _service;
 
-    public OrderTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public OrderTests(ITestOutputHelper testOutputHelper, OrderFixture sharedFixture)
     {
         _testOutputHelper = testOutputHelper;
         Fixture = sharedFixture;
@@ -25,7 +33,7 @@ public class OrderTests : IClassFixture<SharedFixture>
         _service = new OrdersService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
+    private OrderFixture Fixture { get; }
 
     #region Create
     
@@ -83,7 +91,7 @@ public class OrderTests : IClassFixture<SharedFixture>
     #region Update
 
     [SkippableFact, TestPriority(30)]
-    public async Task UpdateWebhookAsync_CanUpdate()
+    public async Task UpdateOrderAsync_CanUpdate()
     {
         var originalOrder = Fixture.CreatedOrders.First();
         var request = new UpdateOrderRequest()
@@ -110,7 +118,7 @@ public class OrderTests : IClassFixture<SharedFixture>
 
 
     [SkippableFact, TestPriority(40)]
-    public async Task DeleteWebhookAsync_CanDelete()
+    public async Task DeleteOrderAsync_CanDelete()
     {
         Skip.If(Fixture.CreatedOrders.Count == 0, "WARN: No data returned. Could not test");
         var errors = new List<Exception>();

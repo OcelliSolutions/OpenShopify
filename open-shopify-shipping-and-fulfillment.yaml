@@ -1690,8 +1690,9 @@ components:
           description: The two-letter code for the country of the assigned location.
           nullable: true
         location_id:
-          type: string
+          type: integer
           description: The ID of the assigned location.
+          format: int64
           nullable: true
         name:
           type: string
@@ -1827,7 +1828,7 @@ components:
           type: string
           description: The GraphQL unique identifier for the carrier service.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateCarrierServiceRequest:
       required:
         - carrier_service
@@ -1915,7 +1916,7 @@ components:
           nullable: true
         destination:
           $ref: '#/components/schemas/Address'
-      additionalProperties: { }
+      additionalProperties: false
     CreateFulfillmentEvent:
       type: object
       properties:
@@ -1980,9 +1981,7 @@ components:
           format: int64
           nullable: true
         status:
-          type: string
-          description: "The status of the fulfillment event. Valid values:\r\n\r\n*   **label_printed**: A label for the shipment was purchased and printed. \r\n*   **label_purchased**: A label for the shipment was purchased, but not printed. \r\n*   **attempted_delivery**: Delivery of the shipment was attempted, but unable to be completed. \r\n*   **ready_for_pickup**: The shipment is ready for pickup at a shipping depot. \r\n*   **picked_up**: The fulfillment was successfully picked up. \r\n*   **confirmed**: The carrier is aware of the shipment, but hasn't received it yet. \r\n*   **in_transit**: The shipment is being transported between shipping facilities on the way to its destination. \r\n*   **out_for_delivery**: The shipment is being delivered to its final destination. \r\n*   **delivered**: The shipment was successfully delivered. \r\n*   **failure**: Something went wrong when pulling tracking information for the shipment, such as the tracking number was invalid or the shipment was canceled."
-          nullable: true
+          $ref: '#/components/schemas/FulfillmentEventStatus'
         updated_at:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was updated.'
@@ -1992,7 +1991,7 @@ components:
           type: string
           description: The zip code of the location where the fulfillment event occurred.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateFulfillmentEventRequest:
       required:
         - fulfillment_event
@@ -2008,7 +2007,7 @@ components:
       properties:
         fulfillment:
           $ref: '#/components/schemas/CreateFulfillment'
-      additionalProperties: { }
+      additionalProperties: false
     CreateFulfillmentService:
       type: object
       properties:
@@ -2068,7 +2067,7 @@ components:
           type: string
           description: This property is undocumented by Shopify.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateFulfillmentServiceRequest:
       required:
         - fulfillment_service
@@ -2282,9 +2281,7 @@ components:
           format: int64
           nullable: true
         status:
-          type: string
-          description: "The status of the fulfillment event. Valid values:\r\n\r\n*   **label_printed**: A label for the shipment was purchased and printed. \r\n*   **label_purchased**: A label for the shipment was purchased, but not printed. \r\n*   **attempted_delivery**: Delivery of the shipment was attempted, but unable to be completed. \r\n*   **ready_for_pickup**: The shipment is ready for pickup at a shipping depot. \r\n*   **picked_up**: The fulfillment was successfully picked up. \r\n*   **confirmed**: The carrier is aware of the shipment, but hasn't received it yet. \r\n*   **in_transit**: The shipment is being transported between shipping facilities on the way to its destination. \r\n*   **out_for_delivery**: The shipment is being delivered to its final destination. \r\n*   **delivered**: The shipment was successfully delivered. \r\n*   **failure**: Something went wrong when pulling tracking information for the shipment, such as the tracking number was invalid or the shipment was canceled."
-          nullable: true
+          $ref: '#/components/schemas/FulfillmentEventStatus'
         updated_at:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was updated.'
@@ -2336,6 +2333,20 @@ components:
           items:
             $ref: '#/components/schemas/FulfillmentEvent'
       additionalProperties: { }
+    FulfillmentEventStatus:
+      enum:
+        - label_printed
+        - label_purchased
+        - attempted_delivery
+        - ready_for_pickup
+        - picked_up
+        - confirmed
+        - in_transit
+        - out_for_delivery
+        - delivered
+        - failure
+      type: string
+      additionalProperties: { }
     FulfillmentItem:
       required:
         - fulfillment
@@ -2378,7 +2389,9 @@ components:
           description: The latest date and time by which all items in the fulfillment order need to be fulfilled.
           nullable: true
         fulfillment_holds:
-          type: string
+          type: array
+          items:
+            type: string
           description: "Represents the fulfillment holds applied on the fulfillment order.\r\n\r\n*   **reason**: The reason for the fulfillment hold. \r\n*   **reason_notes**: Additional information about the fulfillment hold reason."
           nullable: true
         international_duties:
@@ -3062,7 +3075,7 @@ components:
         id:
           type: integer
           format: int64
-      additionalProperties: { }
+      additionalProperties: false
     UpdateCarrierServiceRequest:
       required:
         - carrier_service
@@ -3158,7 +3171,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateFulfillmentRequest:
       required:
         - fulfillment
@@ -3176,7 +3189,7 @@ components:
           nullable: true
         fulfillment:
           $ref: '#/components/schemas/UpdateFulfillment'
-      additionalProperties: { }
+      additionalProperties: false
     UpdateFulfillmentService:
       required:
         - id
@@ -3240,7 +3253,7 @@ components:
         id:
           type: integer
           format: int64
-      additionalProperties: { }
+      additionalProperties: false
     UpdateFulfillmentServiceRequest:
       required:
         - fulfillment_service

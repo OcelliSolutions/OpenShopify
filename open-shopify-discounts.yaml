@@ -679,7 +679,7 @@ components:
           type: string
           description: The number of times that the discount code has been redeemed.
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateDiscountCodeRequest:
       required:
         - discount_code
@@ -828,7 +828,7 @@ components:
           type: string
           description: "The number of times the discount can be allocated on the cart - if eligible. For example a Buy 1 hat Get 1 hat for free discount can be applied 3 times on a cart having more than 6 hats, where maximum of 3 hats get discounted - if the `allocation_limit` is 3. Empty (`null`) `allocation_limit` means unlimited number of allocations.\r\n <div class=\"note note-caution\"> \r\n\r\n#### Caution\r\n\r\n`allocation_limit` is only working with Buy X Get Y discount. The default value on creation will be `null` (unlimited).\r\n </div>"
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreatePriceRuleRequest:
       required:
         - price_rule
@@ -1194,7 +1194,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateDiscountCodeRequest:
       required:
         - discount_code
@@ -1351,7 +1351,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdatePriceRuleRequest:
       required:
         - price_rule

@@ -15,12 +15,16 @@ public class AdditionalPropertiesDocumentFilter : IDocumentFilter
     {
         foreach (var (_, value) in context.SchemaRepository.Schemas
                      .Where(schema => schema.Value.AdditionalProperties == null && 
-                                      schema.Key != nameof(ErrorResponse) &&
-                                      !schema.Key.StartsWith("Create") &&
-                                      !schema.Key.StartsWith("Update")))
+                                      schema.Key != nameof(ErrorResponse)))
         {
             value.AdditionalPropertiesAllowed = true;
             value.AdditionalProperties = new OpenApiSchema();
+        }
+
+        foreach (var (_, value) in context.SchemaRepository.Schemas.Where(schema => schema.Key.Contains("Create") || schema.Key.Contains("Update")))
+        {
+            value.AdditionalPropertiesAllowed = false;
+            value.AdditionalProperties = null;
         }
     }
 }

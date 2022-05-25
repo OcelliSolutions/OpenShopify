@@ -329,7 +329,7 @@ components:
           description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\n`value_type` is deprecated and replaced by `type` in API version 2021-07.\r\n </aside> The legacy type information for the stored value. Valid values: `string`, `integer`, `json_string`."
           nullable: true
           deprecated: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateMetafieldRequest:
       required:
         - metafield
@@ -494,7 +494,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateMetafieldRequest:
       required:
         - metafield

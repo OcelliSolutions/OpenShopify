@@ -777,7 +777,7 @@ components:
         decorated_return_url:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateApplicationChargeRequest:
       required:
         - application_charge
@@ -802,7 +802,7 @@ components:
           type: boolean
           description: 'Whether the application credit is a test transaction. Valid values: `true`,`null`'
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateApplicationCreditRequest:
       required:
         - application_credit
@@ -888,7 +888,7 @@ components:
         decorated_return_url:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateRecurringApplicationChargeRequest:
       required:
         - recurring_application_charge
@@ -924,7 +924,7 @@ components:
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the usage charge was last updated.'
           format: date-time
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateUsageChargeRequest:
       required:
         - usage_charge
@@ -1144,7 +1144,7 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateRecurringApplicationChargeRequest:
       required:
         - recurring_application_charge

@@ -122,7 +122,7 @@ components:
           type: string
           description: "An arbitrary title for each token determined by the developer/application, used for reference purposes. <div class=\"note\"> \r\n\r\n#### Note\r\n\r\nNo constraint on uniqueness.\r\n </div>"
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateStorefrontAccessTokenRequest:
       required:
         - storefront_access_token

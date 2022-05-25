@@ -380,7 +380,7 @@ components:
           type: string
           description: "A list of the items that were marketed in the marketing event. Includes the `type` and `id` of each item. Valid values for `type` are: \r\n\r\n*   `product` \r\n*   `collection` \r\n*   `price_rule` \r\n*   `discount` (Will be replaced by price_rule after April 20, 2017.) \r\n*   `page` \r\n*   `article` \r\n*   `homepage` (Doesn't have an `id`.)"
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CreateMarketingEventRequest:
       required:
         - marketing_event
@@ -583,7 +583,7 @@ components:
           type: string
           description: "A list of the items that were marketed in the marketing event. Includes the `type` and `id` of each item. Valid values for `type` are: \r\n\r\n*   `product` \r\n*   `collection` \r\n*   `price_rule` \r\n*   `discount` (Will be replaced by price_rule after April 20, 2017.) \r\n*   `page` \r\n*   `article` \r\n*   `homepage` (Doesn't have an `id`.)"
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     UpdateMarketingEventRequest:
       required:
         - marketing_event

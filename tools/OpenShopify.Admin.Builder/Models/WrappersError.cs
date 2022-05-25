@@ -633,18 +633,6 @@ public record ProductResourceFeedbackErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-	public record ProductVariantError
-{
-    [JsonPropertyName("errors"), Required]
-    public ProductVariantErrorDetails Errors { get; set; } = null!;
-}
-
-public record ProductVariantErrorDetails
-{
-	[JsonPropertyName("base")]
-    public IEnumerable<string>? Base { get; set; }
-}
-
 	public record ProvinceError
 {
     [JsonPropertyName("errors"), Required]

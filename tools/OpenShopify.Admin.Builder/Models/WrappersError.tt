@@ -57,7 +57,7 @@
 		new("ProductImage", new List<string> { "base" }),
 		new("ProductListing", new List<string> { "base" }),
 		new("ProductResourceFeedback", new List<string> { "base" }),
-		new("ProductVariant", new List<string> { "base" }),
+		//new("ProductVariant", new List<string> { "variant" }),
 		new("Province", new List<string> { "base" }),
 		new("RecurringApplicationCharge", new List<string> { "name", "price" }),
 		new("Redirect", new List<string> { "path", "target" }),
