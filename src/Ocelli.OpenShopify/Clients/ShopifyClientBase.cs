@@ -14,8 +14,9 @@ internal class ShopifyClientBase
         //settings.Converters.Add(new DecimalConverter());
         //settings.Converters.Add(new DoubleConverter());
         //settings.Converters.Add(new IntConverter());
+        settings.Converters.Add(new LongConverter());
         //settings.Converters.Add(new StringConverter());
-        
+
         //settings.Converters.Add(new JsonStringEnumConverter());
         settings.Converters.Add(new JsonStringEnumMemberConverter());
         settings.NumberHandling = JsonNumberHandling.AllowReadingFromString | JsonNumberHandling.WriteAsString;

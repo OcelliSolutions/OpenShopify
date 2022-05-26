@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models
 {
@@ -11,6 +12,14 @@ namespace OpenShopify.Admin.Builder.Models
         /// <inheritdoc cref="SmartCollectionOrig.Rules"/>
         [JsonPropertyName("rules")]
         public new IEnumerable<SmartCollectionRules>? Rules { get; set; }
+
+        /// <inheritdoc cref="SmartCollectionOrig.PublishedScope"/>
+        [JsonPropertyName("published_scope")]
+        public new SmartCollectionPublishedScope? PublishedScope { get; set; }
+
+        /// <inheritdoc cref="SmartCollectionOrig.SortOrder"/>
+        [JsonPropertyName("sort_order")]
+        public new SortOrder? SortOrder { get; set; }
 
         [JsonPropertyName("products_count")] 
         public int? ProductsCount { get; set; }

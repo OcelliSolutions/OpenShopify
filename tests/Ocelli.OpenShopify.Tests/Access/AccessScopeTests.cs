@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
@@ -11,7 +10,11 @@ namespace Ocelli.OpenShopify.Tests.Access;
 
 public class AccessScopeFixture : SharedFixture, IAsyncLifetime
 {
-    public List<AccessScope> CreatedAccessScopes = new();
+    public AccessScopeFixture() =>
+        Service = new AccessService(MyShopifyUrl, AccessToken);
+
+    public AccessService Service { get; set; }
+
     public Task InitializeAsync() => Task.CompletedTask;
 
     Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
@@ -21,13 +24,11 @@ public class AccessScopeFixture : SharedFixture, IAsyncLifetime
 public class AccessScopeTests : IClassFixture<AccessScopeFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly AccessService _service;
 
-    public AccessScopeTests(ITestOutputHelper testOutputHelper, AccessScopeFixture sharedFixture)
+    public AccessScopeTests(AccessScopeFixture fixture, ITestOutputHelper testOutputHelper)
     {
-        Fixture = sharedFixture;
+        Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-        _service = new AccessService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
     private AccessScopeFixture Fixture { get; }
@@ -35,7 +36,7 @@ public class AccessScopeTests : IClassFixture<AccessScopeFixture>
     [SkippableFact]
     public async Task ListAccessScopesAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
-        var result = await _service.AccessScope.ListAccessScopesAsync();
+        var result = await Fixture.Service.AccessScope.ListAccessScopesAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
 
         if (result.Result.AccessScopes == null)
@@ -52,7 +53,7 @@ public class AccessScopeTests : IClassFixture<AccessScopeFixture>
 
         Assert.NotEmpty(result.Result.AccessScopes);
         var handles = result.Result.AccessScopes.Select(a => a.Handle!);
-        Assert.Contains(AuthorizationScope.read_orders, handles);
+        Assert.Contains(AuthorizationScope.ReadOrders, handles);
     }
 
     [SkippableFact]

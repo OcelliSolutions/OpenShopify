@@ -24,7 +24,7 @@ public class PageController : PageControllerBase
     /// <inheritdoc />
     [HttpPost, Route("pages.json")]
     [ProducesResponseType(typeof(PageItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(PageError), StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(typeof(PageError), StatusCodes.Status400BadRequest)]
     public override Task CreatePage([Required] CreatePageRequest request)
     {
         throw new NotImplementedException();

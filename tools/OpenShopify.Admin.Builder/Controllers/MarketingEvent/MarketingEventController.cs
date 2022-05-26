@@ -91,7 +91,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("remote_id")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public long? RemoteId { get; set; } = default!;
+        public string? RemoteId { get; set; } = default!;
 
         /// <summary>
         /// The type of marketing event. Valid values: `ad`, `post`, `message`, `retargeting`, `transactional`, `affiliate`, `loyalty`, `newsletter`, `abandoned_cart`. &lt;div class='note'&gt; 
@@ -123,7 +123,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("paid")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Paid { get; set; } = default!;
+        public bool? Paid { get; set; } = default!;
 
         /// <summary>
         /// The destination domain of the marketing event. Required if the `marketing_channel` is set to `search` or `social`.
@@ -168,7 +168,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("started_at")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? StartedAt { get; set; } = default!;
+        public System.DateTimeOffset? StartedAt { get; set; } = default!;
 
         /// <summary>
         /// For events with a duration, the time when the event was scheduled to end.
@@ -177,7 +177,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("scheduled_to_end_at")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ScheduledToEndAt { get; set; } = default!;
+        public System.DateTimeOffset? ScheduledToEndAt { get; set; } = default!;
 
         /// <summary>
         /// For events with a duration, the time when the event actually ended.
@@ -186,7 +186,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("ended_at")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? EndedAt { get; set; } = default!;
+        public System.DateTimeOffset? EndedAt { get; set; } = default!;
 
         /// <summary>
         /// The [UTM parameters](https://en.wikipedia.org/wiki/UTM_parameters) used in the links provided in the marketing event. Values must be unique and should not be url-encoded.

@@ -149,6 +149,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DraftOrderError'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateDraftOrderRequestError'
     get:
       tags:
         - DraftOrder
@@ -270,6 +285,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DraftOrderError'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateDraftOrderRequestError'
     get:
       tags:
         - DraftOrder
@@ -591,6 +621,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderError'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateOrderRequestError'
   '/orders/{order_id}.json':
     get:
       tags:
@@ -938,6 +983,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderRiskError'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateOrderRiskRequestError'
     get:
       tags:
         - OrderRisk
@@ -1242,6 +1302,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RefundError'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRefundRequestError'
   '/orders/{order_id}/refunds/{refund_id}.json':
     get:
       tags:
@@ -1452,6 +1527,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionError'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTransactionRequestError'
   '/orders/{order_id}/transactions/count.json':
     get:
       tags:
@@ -1628,9 +1718,7 @@ components:
           description: 'he value of the discount. If the type of the discount is fixed_amount, then this is a fixed dollar amount. If the type is percentage, then this is the percentage.'
           nullable: true
         value_type:
-          type: string
-          description: The type of discount. Known values are "percentage" and "fixed_amount".
-          nullable: true
+          $ref: '#/components/schemas/DiscountValueType'
         amount:
           type: number
           description: "The applied amount of the discount, based on the setting of value_type. \r\nWhen ValueType is set to fixed_amount discount amount = quantity /// value\r\nWhen ValueType is set to percentage discount amount = floor(price /// quantity /// value) / 100"
@@ -2068,23 +2156,19 @@ components:
           description: Name of the draft order.
           nullable: true
         customer:
-          type: string
-          description: 'Information about the customer. Learn more about [loading and removing customers](#loading-and-removing-customers). For more information about the `customer` object, see the [Customer resource](/api/admin-rest//resources/customer).'
-          nullable: true
+          $ref: '#/components/schemas/Customer'
         shipping_address:
-          type: string
-          description: "The mailing address to where the order will be shipped. This address is optional and will not be available on orders that do not require shipping. It has the following properties: \r\n\r\n*   **address1**: The street address of the shipping address. \r\n*   **address2**: An optional additional field for the street address of the shipping address. \r\n*   **city**: The city of the shipping address. \r\n*   **company**: The company of the person associated with the shipping address. \r\n*   **country**: The name of the country of the shipping address. \r\n*   **country_code**: The two-letter code for the country of the shipping address. \r\n*   **first_name**: The first name of the person associated with the payment method. \r\n*   **last_name**: The last name of the person associated with the payment method. \r\n*   **latitude**: The latitude of the shipping address. \r\n*   **longitude**: The longitude of the shipping address. \r\n*   **name**: The full name of the person associated with the payment method. \r\n*   **phone**: The phone number at the shipping address. \r\n*   **province**: The name of the state or province of the shipping address. \r\n*   **province_code**: The two-letter abbreviation of the state or province of the shipping address. \r\n*   **zip**: The zip or postal code of the shipping address."
-          nullable: true
+          $ref: '#/components/schemas/Address'
         billing_address:
-          type: string
-          description: "The mailing address associated with the payment method. This address is an optional field that won't be available on orders that do not require a payment method. It has the following properties: \r\n\r\n*   **address1**: The street address of the billing address. \r\n*   **address2**: An optional additional field for the street address of the billing address. \r\n*   **city**: The city of the billing address. \r\n*   **company**: The company of the person associated with the billing address. \r\n*   **country**: The name of the country of the billing address. \r\n*   **country_code**: The two-letter code ([ISO 3166-1 alpha-2 two-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)) for the country of the billing address. \r\n*   **first_name**: The first name of the person associated with the payment method. \r\n*   **last_name**: The last name of the person associated with the payment method. \r\n*   **latitude**: The latitude of the billing address. \r\n*   **longitude**: The longitude of the billing address. \r\n*   **name**: The full name of the person associated with the payment method. \r\n*   **phone**: The phone number at the billing address. \r\n*   **province**: The name of the billing address region, such as province, state, or prefecture. \r\n*   **province_code**: The two-letter abbreviation of the region for the billing address. \r\n*   **zip**: The postal code of the billing address, such as zip, postcode, or Eircode."
-          nullable: true
+          $ref: '#/components/schemas/Address'
         note:
           type: string
           description: The text of an optional note that a shop owner can attach to the draft order.
           nullable: true
         note_attributes:
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteAttribute'
           description: Extra information that is added to the order. Appears in the **Additional details** section of an order details page. Each array entry must contain a hash with `name` and `value` keys.
           nullable: true
         email:
@@ -2105,7 +2189,9 @@ components:
           description: The URL for the invoice.
           nullable: true
         line_items:
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/DraftLineItem'
           description: "Product variant line item or custom line item associated to the draft order. Each draft order must include at least one `line_item`. Each `line_item` object has the following properties: \r\n\r\n*   **custom**: *Read only field* Whether this is a custom line item or a product variant line item. If set to `true` indicates a custom line item. If set to `false` indicates a product variant line item. \r\n*   **id**: The ID of the line item. \r\n*   **variant_id**: The ID of the product variant ID corresponding to the line item. Required for a product variant line item. Set to `null` for a custom line item. \r\n*   **product_id**: The ID of the product corresponding to the line item’s product variant. \r\n*   **name**: The name of the product. \r\n*   **variant_title**: The title of the product variant. Defaults to `Custom` for custom line items created via the API. \r\n*   **vendor**: Vendor. \r\n*   **quantity**: The number of products that were purchased. \r\n*   **gift_card**: Indicates if the product is a gift card. Valid values are `true` or `false`. \r\n*   **fulfillment_service**: Service provider responsible for fulfillment. Valid values are either `manual` or the name of the provider. eg amazon, shipwire, etc. Defaults to `manual` for custom line items. \r\n*   **properties**: An array of custom information for an item that has been added to the draft order, often used to provide [product customization options](/api/liquid/objects/line_item#line_item-properties). Copied to created order when draft order is completed. \r\n*   **applied_discount**: The discount applied to the line item. For more information, see the `applied_discount` property. \r\n*   **tax_lines**: *Read only field* The calculated rate and amount of taxes for the line item. \r\n\r\n    *   **price**: The amount of tax to be charged. \r\n    *   **rate**: The rate of tax to be applied. \r\n    *   **title**: The name of the tax.  \r\n*   **title**: The title of the product or variant. Only applicable to custom line items. *Required field*. \r\n*   **price**: The price of the item before discounts have been applied. Only applicable to custom line items. *Required field*. \r\n*   **grams**: Weight in grams. Only applicable to custom line items. If not specified, defaults to 0. \r\n*   **requires_shipping**: Whether the fulfillment requires shipping. Applicable only to custom line items. Valid values are `true` or `false.` \r\n*   **sku**: A unique identifier of the item in the fulfillment. Applicable only to custom line items. \r\n*   **taxable**: Whether the product is taxable. Only applicable to custom line items."
           nullable: true
         payment_terms:
@@ -2113,9 +2199,7 @@ components:
           description: "The terms and conditions under which a payment should be processed.\r\n\r\n*   **amount**: The amount that is owed according to the payment terms. \r\n*   **currency**: The presentment currency for the payment. \r\n*   **payment_terms_name**: The name of the selected payment terms template for the draft order. \r\n*   **payment_terms_type**: The type of selected payment terms template for the draft order. \r\n*   **due_in_days**: The number of days between the invoice date and due date that is defined in the selected payment terms template. \r\n*   **payment_schedules**: An array of schedules associated to the payment terms. \r\n\r\n    *   **amount**: The amount that is owed according to the payment terms. \r\n    *   **currency**: The presentment currency for the payment. \r\n    *   **issued_at**: The date and time when the payment terms were initiated. \r\n    *   **due_at**: The date and time when the payment is due. Calculated based on `issued_at` and `due_in_days` or a customized fixed date if the type is fixed. \r\n    *   **completed_at**: The date and time when the purchase is completed. Returns **null** initially and updates when the payment is captured. \r\n    *   **expected_payment_method**: The name of the payment method gateway."
           nullable: true
         shipping_line:
-          type: string
-          description: "A `shipping_line` object, which details the shipping method used. The object has the following properties: \r\n\r\n*   **custom**: Whether this is a regular shipping line or custom shipping line. \r\n*   **handle**: The handle of the shipping rate which was selected and applied. Required for regular shipping lines. \r\n*   **title**: The title of the shipping method. Required for custom shipping lines. (maximum: 255 characters) \r\n*   **price**: The price of the shipping method. Required for custom shipping lines."
-          nullable: true
+          $ref: '#/components/schemas/DraftShippingLine'
         source_name:
           type: string
           description: 'The source of the checkout. To use this field for sales attribution, you must register the channels that your app is managing. You can register the channels that your app is managing by completing [this Google Form](https://docs.google.com/forms/d/e/1FAIpQLScmVTZRQNjOJ7RD738mL1lGeFjqKVe_FM2tO9xsm21QEo5Ozg/viewform?usp=sf_link). After you''ve submited your request, you need to wait for your request to be processed by Shopify. You can find a list of your channels in the Partner Dashboard, in your app''s Marketplace extension. You can specify a handle as the `source_name` value in your request.'
@@ -2135,13 +2219,13 @@ components:
           description: 'Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only. Valid values: * **EXEMPT_ALL**: This customer is exempt from all Canadian taxes. * **CA_STATUS_CARD_EXEMPTION**: This customer is exempt from specific taxes for holding a valid STATUS_CARD_EXEMPTION in Canada. * **CA_DIPLOMAT_EXEMPTION**: This customer is exempt from specific taxes for holding a valid DIPLOMAT_EXEMPTION in Canada. * **CA_BC_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in British Columbia. * **CA_MB_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Manitoba. * **CA_SK_RESELLER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in Saskatchewan. * **CA_BC_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in British Columbia. * **CA_MB_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Manitoba. * **CA_NS_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Nova Scotia. * **CA_PE_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Prince Edward Island. * **CA_SK_COMMERCIAL_FISHERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid COMMERCIAL_FISHERY_EXEMPTION in Saskatchewan. * **CA_BC_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in British Columbia. * **CA_SK_PRODUCTION_AND_MACHINERY_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PRODUCTION_AND_MACHINERY_EXEMPTION in Saskatchewan. * **CA_BC_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_SUB_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid SUB_CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_BC_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in British Columbia. * **CA_SK_CONTRACTOR_EXEMPTION**: This customer is exempt from specific taxes for holding a valid CONTRACTOR_EXEMPTION in Saskatchewan. * **CA_ON_PURCHASE_EXEMPTION**: This customer is exempt from specific taxes for holding a valid PURCHASE_EXEMPTION in Ontario. * **CA_MB_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Manitoba. * **CA_NS_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Nova Scotia. * **CA_SK_FARMER_EXEMPTION**: This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Saskatchewan.'
           nullable: true
         tax_lines:
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLine'
           description: "An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: \r\n\r\n*   **price**: The amount of tax to be charged. \r\n*   **rate**: The rate of tax to be applied. \r\n*   **title**: The name of the tax."
           nullable: true
         applied_discount:
-          type: string
-          description: "The discount applied to the line item or the draft order object. Each draft order object can have one `applied_discount` object and each draft order line item can have its own `applied_discount`. The object has the following properties: \r\n\r\n*   **title**: Title of the discount. \r\n*   **description**: Reason for the discount. \r\n*   **value**: The value of the discount. If the type of discount is `fixed_amount`, then it corresponds to a fixed dollar amount. If the type is `percentage`, then it corresponds to percentage. \r\n*   **value_type**: The type of discount. Valid values: `percentage`, `fixed_amount`. \r\n*   **amount**: The applied amount of the discount, based on the setting of `value_type`. For more information, see [*Applying discounts*](#applying-discounts)."
-          nullable: true
+          $ref: '#/components/schemas/AppliedDiscount'
         taxes_included:
           type: boolean
           description: Whether taxes are included in the order subtotal. Valid values are `true` or `false`.
@@ -2180,6 +2264,16 @@ components:
           type: string
           description: "The status of a draft order as it transitions into an order. When a draft order is created it is set to `open` status. The invoice can then be sent to the customer, and `status` changes to `invoice_sent`. The draft order can then be paid, set to pending, or paid by credit card. In each case, the draft order is set to `completed` and an order is created.\r\n\r\nAfter a draft order is set to `completed` the only further modifications that can be made are adding tags or metafields.\r\n\r\nValid values: * **open**: Draft order is open. * **invoice_sent**: Invoice has been sent for the draft order. * **completed**: Draft order has been completed and turned into an order."
           nullable: true
+        metafields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metafield'
+          description: "Additional metadata about the OpenShopify.Admin.Builder.Models.DraftOrder. Note: This is not naturally returned with a OpenShopify.Admin.Builder.Models.DraftOrder response, as\r\nShopify will not return OpenShopify.Admin.Builder.Models.DraftOrder metafields unless specified. Instead, you need to query metafields with !:MetafieldService. \r\nUses include: Creating, updating, and deserializing webhook bodies that include them."
+          nullable: true
+        use_customer_default_address:
+          type: boolean
+          description: An optional boolean that you can send as part of a draft order object to load customer shipping information.
+          nullable: true
       additionalProperties: false
     CreateDraftOrderRequest:
       required:
@@ -2188,6 +2282,21 @@ components:
       properties:
         draft_order:
           $ref: '#/components/schemas/CreateDraftOrder'
+      additionalProperties: false
+    CreateDraftOrderRequestError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/CreateDraftOrderRequestErrorDetails'
+      additionalProperties: false
+    CreateDraftOrderRequestErrorDetails:
+      type: object
+      properties:
+        base:
+          type: string
+          nullable: true
       additionalProperties: false
     CreateOrder:
       type: object
@@ -2528,6 +2637,21 @@ components:
         order:
           $ref: '#/components/schemas/CreateOrder'
       additionalProperties: false
+    CreateOrderRequestError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/CreateOrderRequestErrorDetails'
+      additionalProperties: false
+    CreateOrderRequestErrorDetails:
+      type: object
+      properties:
+        order:
+          type: string
+          nullable: true
+      additionalProperties: false
     CreateOrderRisk:
       type: object
       properties:
@@ -2559,9 +2683,7 @@ components:
           format: int64
           nullable: true
         recommendation:
-          type: string
-          description: "The recommended action given to the merchant. Valid values: \r\n\r\n*   **cancel**: There is a high level of risk that this order is fraudulent. The merchant should cancel the order. \r\n*   **investigate**: There is a medium level of risk that this order is fraudulent. The merchant should investigate the order. \r\n*   **accept**: There is a low level of risk that this order is fraudulent. The order risk found no indication of fraud."
-          nullable: true
+          $ref: '#/components/schemas/RiskRecommendation'
         score:
           type: number
           description: "**For internal use only**. A number between 0 and 1 that's assigned to the order. The closer the score is to 1, the more likely it is that the order is fraudulent. <aside class=\"note\"> \r\n\r\n#### Note\r\n\r\nThere is no guarantee of stability in risk scores. Scores are not probabilities. The relationship between scores and the probability of fraud can vary over time and between risk providers.\r\n </aside>"
@@ -2579,6 +2701,21 @@ components:
       properties:
         risk:
           $ref: '#/components/schemas/CreateOrderRisk'
+      additionalProperties: false
+    CreateOrderRiskRequestError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/CreateOrderRiskRequestErrorDetails'
+      additionalProperties: false
+    CreateOrderRiskRequestErrorDetails:
+      type: object
+      properties:
+        base:
+          type: string
+          nullable: true
       additionalProperties: false
     CreateRefund:
       type: object
@@ -2661,6 +2798,21 @@ components:
         refund:
           $ref: '#/components/schemas/CreateRefund'
       additionalProperties: false
+    CreateRefundRequestError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/CreateRefundRequestErrorDetails'
+      additionalProperties: false
+    CreateRefundRequestErrorDetails:
+      type: object
+      properties:
+        base:
+          type: string
+          nullable: true
+      additionalProperties: false
     CreateTransaction:
       type: object
       properties:
@@ -2692,21 +2844,15 @@ components:
           format: int64
           nullable: true
         error_code:
-          type: string
-          description: "A standardized error code, independent of the payment provider. Valid values: \r\n\r\n*   **incorrect_number** \r\n*   **invalid_number** \r\n*   **invalid_expiry_date** \r\n*   **invalid_cvc** \r\n*   **expired_card** \r\n*   **incorrect_cvc** \r\n*   **incorrect_zip** \r\n*   **incorrect_address** \r\n*   **card_declined** \r\n*   **processing_error** \r\n*   **call_issuer** \r\n*   **pick_up_card**"
-          nullable: true
+          $ref: '#/components/schemas/TransactionErrorCode'
         extended_authorization_attributes:
-          type: string
-          description: "The attributes associated with a Shopify Payments extended authorization period. It has the following attributes: \r\n\r\n*   **standard_authorization_expires_at**: The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the standard authorization period expires. After expiry, an extended authorization fee is applied upon capturing the payment. \r\n*   **extended_authorization_expires_at**: The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the extended authorization period expires. After expiry, the merchant can't capture the payment.  `extended_authorization_attributes` are available on the **Retrieve a specific transaction for an order** endpoint only if the following criteria applies: \r\n\r\n*   The store is on a [Shopify Plus](https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9) plan. \r\n*   The store uses Shopify Payments. \r\n*   The transaction being retrieved is an extended authorization, which is determined by the `capture_before` date in the charge.  If the criteria isn't met, then an empty JSON is returned for `extended_authorization_attributes`. To learn more about extended authorization periods, refer to [Payment authorization](https://help.shopify.com/en/manual/payments/payment-authorization)."
-          nullable: true
+          $ref: '#/components/schemas/ExtendedAuthorizationAttributes'
         gateway:
           type: string
           description: 'The name of the gateway the transaction was issued through. A list of gateways can be found on Shopify''s [payment gateways page](//www.shopify.com/payment-gateways).'
           nullable: true
         kind:
-          type: string
-          description: "The transaction's type. Valid values: \r\n\r\n*   **authorization**: Money that the customer has agreed to pay. The authorization period can be between 7 and 30 days (depending on your payment service) while a store waits for a payment to be captured. \r\n*   **capture**: A transfer of money that was reserved during the authorization of a shop. \r\n*   **sale**: The authorization and capture of a payment performed in one single step. \r\n*   **void**: The cancellation of a pending authorization or capture. \r\n*   **refund**: The partial or full return of captured money to the customer."
-          nullable: true
+          $ref: '#/components/schemas/TransactionKind'
         location_id:
           type: integer
           description: The ID of the physical location where the transaction was processed.
@@ -2722,18 +2868,14 @@ components:
           format: int64
           nullable: true
         payment_details:
-          type: string
-          description: "Information about the credit card used for this transaction. It has the following attributes: \r\n\r\n*   **credit_card_bin**: The [issuer identification number](https://en.wikipedia.org/wiki/ISO/IEC_7812) (IIN), formerly known as bank identification number (BIN) of the customer's credit card. This is made up of the first few digits of the credit card number. \r\n*   **avs_result_code**: The response code from the [address verification system](https://en.wikipedia.org/wiki/Address_Verification_System). The code is always a single letter. Refer to [this chart](http://www.emsecommerce.net/avs_cvv2_response_codes.htm) for the codes and their definitions. \r\n*   **cvv_result_code**: The response code from the credit card company indicating whether the customer entered the [card security code](https://en.wikipedia.org/wiki/Card_Security_Code), or card verification value, correctly. The code is a single letter or empty string; see [this chart](http://www.emsecommerce.net/avs_cvv2_response_codes.htm) for the codes and their definitions. \r\n*   **credit_card_number**: The customer's credit card number, with most of the leading digits redacted. \r\n*   **credit_card_company**: The name of the company that issued the customer's credit card."
-          nullable: true
+          $ref: '#/components/schemas/PaymentDetails'
         parent_id:
           type: integer
           description: "The ID of an associated transaction. \r\n\r\n*   For `capture` transactions, the parent needs to be an `authorization` transaction. \r\n*   For `void` transactions, the parent needs to be an `authorization` transaction. \r\n*   For `refund` transactions, the parent needs to be a `capture` or `sale` transaction."
           format: int64
           nullable: true
         payments_refund_attributes:
-          type: string
-          description: "The attributes associated with a Shopify Payments refund. It has the following attributes: \r\n\r\n*   **status**: The current status of the refund. Valid values: `pending`, `failure`, `success`, and `error`. \r\n*   **acquirer_reference_number**: A unique number associated with the transaction that can be used to track the refund. This property has a value only for transactions completed with Visa or Mastercard.  `payments_refund_attributes` are available on any JSON serialization of the order transaction only if the following criteria apply: \r\n\r\n*   The store is on a [Shopify Plus](https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9) plan. \r\n*   The store uses Shopify Payments. \r\n*   The order transaction **kind** is either `refund` or `void`.  If the criteria isn't met, then the `payments_refund_attributes` property is omitted."
-          nullable: true
+          $ref: '#/components/schemas/PaymentsRefundAttributes'
         processed_at:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when a transaction was processed. This value is the date that''s used in the analytic reports. By default, it matches the `created_at` value. If you''re importing transactions from an app or another platform, then you can set `processed_at` to a date and time in the past to match when the original transaction was processed.'
@@ -2761,8 +2903,11 @@ components:
           format: int64
           nullable: true
         currency_exchange_adjustment:
-          type: string
-          description: "An adjustment on the transaction showing the amount lost or gained due to fluctuations in the currency exchange rate. It has the following attributes: \r\n\r\n*   **ID**: The ID of the adjustment. \r\n*   **adjustment**: The difference between the amounts on the associated transaction and the parent transaction. \r\n*   **original_amount**: The amount of the parent transaction in the shop currency. \r\n*   **final_amount**: The amount of the associated transaction in the shop currency. \r\n*   **currency**: The shop currency.  Requires the header `X-Shopify-Api-Features = include-currency-exchange-adjustments`."
+          $ref: '#/components/schemas/CurrencyExchangeAdjustment'
+        maximum_refundable:
+          type: number
+          description: The maximum amount that can be refunded
+          format: decimal
           nullable: true
       additionalProperties: false
     CreateTransactionRequest:
@@ -2772,6 +2917,21 @@ components:
       properties:
         transaction:
           $ref: '#/components/schemas/CreateTransaction'
+      additionalProperties: false
+    CreateTransactionRequestError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/CreateTransactionRequestErrorDetails'
+      additionalProperties: false
+    CreateTransactionRequestErrorDetails:
+      type: object
+      properties:
+        base:
+          type: string
+          nullable: true
       additionalProperties: false
     CurrencyExchangeAdjustment:
       required:
@@ -3087,8 +3247,9 @@ components:
           format: int64
           nullable: true
         usage_count:
-          type: string
+          type: integer
           description: The number of times that the discount code has been redeemed.
+          format: int32
           nullable: true
         amount:
           type: string
@@ -3104,6 +3265,12 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+      additionalProperties: { }
+    DiscountValueType:
+      enum:
+        - fixed_amount
+        - percentage
+      type: string
       additionalProperties: { }
     DraftLineItem:
       required:
@@ -3487,6 +3654,20 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
+    ExtendedAuthorizationAttributes:
+      type: object
+      properties:
+        standard_authorization_expires_at:
+          type: string
+          description: 'The date and time (ISO 8601 format) when the standard authorization period expires. After expiry, an extended authorization fee is applied upon capturing the payment.'
+          format: date-time
+          nullable: true
+        extended_authorization_expires_at:
+          type: string
+          description: 'The date and time (ISO 8601 format) when the extended authorization period expires. After expiry, the merchant can''t capture the payment.'
+          format: date-time
+          nullable: true
+      additionalProperties: { }
     FinancialStatus:
       enum:
         - pending
@@ -3846,13 +4027,10 @@ components:
           format: date-time
           nullable: true
         value:
-          type: string
           description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
           nullable: true
         type:
-          type: string
-          description: 'The type of data that the metafield stores in the `value` field. Refer to the list of [supported types](/apps/metafields/types).'
-          nullable: true
+          $ref: '#/components/schemas/MetafieldType'
         value_type:
           type: string
           description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\n`value_type` is deprecated and replaced by `type` in API version 2021-07.\r\n </aside> The legacy type information for the stored value. Valid values: `string`, `integer`, `json_string`."
@@ -3864,6 +4042,27 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+      additionalProperties: { }
+    MetafieldType:
+      enum:
+        - boolean
+        - color
+        - date
+        - date_time
+        - dimension
+        - file_reference
+        - json
+        - multi_line_text_field
+        - number_decimal
+        - number_integer
+        - page_reference
+        - product_reference
+        - rating
+        - single_line_text_field
+        - variant_reference
+        - volume
+        - weight
+      type: string
       additionalProperties: { }
     NoteAttribute:
       type: object
@@ -4285,9 +4484,7 @@ components:
           format: int64
           nullable: true
         recommendation:
-          type: string
-          description: "The recommended action given to the merchant. Valid values: \r\n\r\n*   **cancel**: There is a high level of risk that this order is fraudulent. The merchant should cancel the order. \r\n*   **investigate**: There is a medium level of risk that this order is fraudulent. The merchant should investigate the order. \r\n*   **accept**: There is a low level of risk that this order is fraudulent. The order risk found no indication of fraud."
-          nullable: true
+          $ref: '#/components/schemas/RiskRecommendation'
         score:
           type: number
           description: "**For internal use only**. A number between 0 and 1 that's assigned to the order. The closer the score is to 1, the more likely it is that the order is fraudulent. <aside class=\"note\"> \r\n\r\n#### Note\r\n\r\nThere is no guarantee of stability in risk scores. Scores are not probabilities. The relationship between scores and the probability of fraud can vary over time and between risk providers.\r\n </aside>"
@@ -4356,6 +4553,24 @@ components:
           nullable: true
         credit_card_company:
           type: string
+          nullable: true
+      additionalProperties: { }
+    PaymentsRefundAttributeStatus:
+      enum:
+        - pending
+        - failure
+        - success
+        - error
+      type: string
+      additionalProperties: { }
+    PaymentsRefundAttributes:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/PaymentsRefundAttributeStatus'
+        acquirer_reference_number:
+          type: string
+          description: A unique number associated with the transaction that can be used to track the refund. This property has a value only for transactions completed with Visa or Mastercard.
           nullable: true
       additionalProperties: { }
     Price:
@@ -4620,6 +4835,13 @@ components:
         tax_amount_set:
           $ref: '#/components/schemas/PriceSet'
       additionalProperties: { }
+    RiskRecommendation:
+      enum:
+        - cancel
+        - investigate
+        - accept
+      type: string
+      additionalProperties: { }
     Shipping:
       type: object
       properties:
@@ -4762,21 +4984,15 @@ components:
           format: int64
           nullable: true
         error_code:
-          type: string
-          description: "A standardized error code, independent of the payment provider. Valid values: \r\n\r\n*   **incorrect_number** \r\n*   **invalid_number** \r\n*   **invalid_expiry_date** \r\n*   **invalid_cvc** \r\n*   **expired_card** \r\n*   **incorrect_cvc** \r\n*   **incorrect_zip** \r\n*   **incorrect_address** \r\n*   **card_declined** \r\n*   **processing_error** \r\n*   **call_issuer** \r\n*   **pick_up_card**"
-          nullable: true
+          $ref: '#/components/schemas/TransactionErrorCode'
         extended_authorization_attributes:
-          type: string
-          description: "The attributes associated with a Shopify Payments extended authorization period. It has the following attributes: \r\n\r\n*   **standard_authorization_expires_at**: The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the standard authorization period expires. After expiry, an extended authorization fee is applied upon capturing the payment. \r\n*   **extended_authorization_expires_at**: The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the extended authorization period expires. After expiry, the merchant can't capture the payment.  `extended_authorization_attributes` are available on the **Retrieve a specific transaction for an order** endpoint only if the following criteria applies: \r\n\r\n*   The store is on a [Shopify Plus](https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9) plan. \r\n*   The store uses Shopify Payments. \r\n*   The transaction being retrieved is an extended authorization, which is determined by the `capture_before` date in the charge.  If the criteria isn't met, then an empty JSON is returned for `extended_authorization_attributes`. To learn more about extended authorization periods, refer to [Payment authorization](https://help.shopify.com/en/manual/payments/payment-authorization)."
-          nullable: true
+          $ref: '#/components/schemas/ExtendedAuthorizationAttributes'
         gateway:
           type: string
           description: 'The name of the gateway the transaction was issued through. A list of gateways can be found on Shopify''s [payment gateways page](//www.shopify.com/payment-gateways).'
           nullable: true
         kind:
-          type: string
-          description: "The transaction's type. Valid values: \r\n\r\n*   **authorization**: Money that the customer has agreed to pay. The authorization period can be between 7 and 30 days (depending on your payment service) while a store waits for a payment to be captured. \r\n*   **capture**: A transfer of money that was reserved during the authorization of a shop. \r\n*   **sale**: The authorization and capture of a payment performed in one single step. \r\n*   **void**: The cancellation of a pending authorization or capture. \r\n*   **refund**: The partial or full return of captured money to the customer."
-          nullable: true
+          $ref: '#/components/schemas/TransactionKind'
         location_id:
           type: integer
           description: The ID of the physical location where the transaction was processed.
@@ -4799,9 +5015,7 @@ components:
           format: int64
           nullable: true
         payments_refund_attributes:
-          type: string
-          description: "The attributes associated with a Shopify Payments refund. It has the following attributes: \r\n\r\n*   **status**: The current status of the refund. Valid values: `pending`, `failure`, `success`, and `error`. \r\n*   **acquirer_reference_number**: A unique number associated with the transaction that can be used to track the refund. This property has a value only for transactions completed with Visa or Mastercard.  `payments_refund_attributes` are available on any JSON serialization of the order transaction only if the following criteria apply: \r\n\r\n*   The store is on a [Shopify Plus](https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9) plan. \r\n*   The store uses Shopify Payments. \r\n*   The order transaction **kind** is either `refund` or `void`.  If the criteria isn't met, then the `payments_refund_attributes` property is omitted."
-          nullable: true
+          $ref: '#/components/schemas/PaymentsRefundAttributes'
         processed_at:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when a transaction was processed. This value is the date that''s used in the analytic reports. By default, it matches the `created_at` value. If you''re importing transactions from an app or another platform, then you can set `processed_at` to a date and time in the past to match when the original transaction was processed.'
@@ -4850,6 +5064,22 @@ components:
         errors:
           $ref: '#/components/schemas/TransactionErrorDetails'
       additionalProperties: { }
+    TransactionErrorCode:
+      enum:
+        - incorrect_number
+        - invalid_number
+        - invalid_expiry_date
+        - invalid_cvc
+        - expired_card
+        - incorrect_cvc
+        - incorrect_zip
+        - incorrect_address
+        - card_declined
+        - processing_error
+        - call_issuer
+        - pick_up_card
+      type: string
+      additionalProperties: { }
     TransactionErrorDetails:
       type: object
       properties:
@@ -4866,6 +5096,15 @@ components:
       properties:
         transaction:
           $ref: '#/components/schemas/Transaction'
+      additionalProperties: { }
+    TransactionKind:
+      enum:
+        - authorization
+        - capture
+        - sale
+        - void
+        - refund
+      type: string
       additionalProperties: { }
     TransactionList:
       required:
@@ -5405,9 +5644,7 @@ components:
           format: int64
           nullable: true
         recommendation:
-          type: string
-          description: "The recommended action given to the merchant. Valid values: \r\n\r\n*   **cancel**: There is a high level of risk that this order is fraudulent. The merchant should cancel the order. \r\n*   **investigate**: There is a medium level of risk that this order is fraudulent. The merchant should investigate the order. \r\n*   **accept**: There is a low level of risk that this order is fraudulent. The order risk found no indication of fraud."
-          nullable: true
+          $ref: '#/components/schemas/RiskRecommendation'
         score:
           type: number
           description: "**For internal use only**. A number between 0 and 1 that's assigned to the order. The closer the score is to 1, the more likely it is that the order is fraudulent. <aside class=\"note\"> \r\n\r\n#### Note\r\n\r\nThere is no guarantee of stability in risk scores. Scores are not probabilities. The relationship between scores and the probability of fraud can vary over time and between risk providers.\r\n </aside>"

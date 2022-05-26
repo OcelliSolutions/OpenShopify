@@ -105,6 +105,25 @@ public record <#= section.ClassName #>ErrorDetails
 #>
 }
 
+public record Create<#= section.ClassName #>RequestError
+{
+    [JsonPropertyName("errors"), Required]
+    public Create<#= section.ClassName #>RequestErrorDetails Errors { get; set; } = null!;
+}
+
+public record Create<#= section.ClassName #>RequestErrorDetails
+{
+<#
+		foreach (var field in section.Fields)
+		{
+#>
+	[JsonPropertyName("<#= field #>")]
+    public string? <#= ToPascalCase(field) #> { get; set; }
+<#
+		}
+#>
+}
+
 	<#
 	}
 #><#+

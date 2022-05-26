@@ -23,7 +23,7 @@ public class CustomerController : CustomerControllerBase
     /// <inheritdoc />
     [HttpPost, Route("customers.json")]
     [ProducesResponseType(typeof(CustomerItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(CustomerError), StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(typeof(CustomerError), StatusCodes.Status400BadRequest)]
     public override Task CreateCustomer([Required] CreateCustomerRequest request)
     {
         throw new NotImplementedException();

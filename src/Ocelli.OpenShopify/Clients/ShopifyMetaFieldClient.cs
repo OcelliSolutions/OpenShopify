@@ -306,14 +306,14 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<MetafieldItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 422)
+                        if (status_ == 400)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<MetafieldError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<MetafieldError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<MetafieldError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -806,16 +806,13 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("value")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Value { get; set; } = default!;
-
-        /// <summary>
-        /// The type of data that the metafield stores in the `value` field. Refer to the list of [supported types](/apps/metafields/types).
-        /// </summary>
+        public object? Value { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Type { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public MetafieldType? Type { get; set; } = default!;
 
         /// <summary>
         /// &lt;aside class="note caution"&gt; 
@@ -919,16 +916,13 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("value")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Value { get; set; } = default!;
-
-        /// <summary>
-        /// The type of data that the metafield stores in the `value` field. Refer to the list of [supported types](/apps/metafields/types).
-        /// </summary>
+        public object? Value { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Type { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public MetafieldType? Type { get; set; } = default!;
 
         /// <summary>
         /// &lt;aside class="note caution"&gt; 
@@ -1060,6 +1054,63 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum MetafieldType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"boolean")]
+        Boolean = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"color")]
+        Color = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"date")]
+        Date = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"date_time")]
+        DateTime = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"dimension")]
+        Dimension = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"file_reference")]
+        FileReference = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"json")]
+        Json = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"multi_line_text_field")]
+        MultiLineTextField = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"number_decimal")]
+        NumberDecimal = 8,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"number_integer")]
+        NumberInteger = 9,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"page_reference")]
+        PageReference = 10,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"product_reference")]
+        ProductReference = 11,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"rating")]
+        Rating = 12,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"single_line_text_field")]
+        SingleLineTextField = 13,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"variant_reference")]
+        VariantReference = 14,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"volume")]
+        Volume = 15,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"weight")]
+        Weight = 16,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class UpdateMetafield
     {
         /// <summary>
@@ -1132,16 +1183,13 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("value")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Value { get; set; } = default!;
-
-        /// <summary>
-        /// The type of data that the metafield stores in the `value` field. Refer to the list of [supported types](/apps/metafields/types).
-        /// </summary>
+        public object? Value { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Type { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public MetafieldType? Type { get; set; } = default!;
 
         /// <summary>
         /// &lt;aside class="note caution"&gt; 

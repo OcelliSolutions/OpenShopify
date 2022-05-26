@@ -98,7 +98,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("messages")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Messages { get; set; } = default!;
+        public System.Collections.Generic.List<string>? Messages { get; set; } = default!;
 
         /// <summary>
         ///  The time at which the payload is constructed. Used to help determine whether incoming feedback is outdated compared to feedback already received, and if it should be ignored upon arrival. **Type:** ISO 8601 UTC DateTime as string with year, month [or week], day, hour, minute, second, millisecond, and time zone. 
@@ -113,7 +113,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("feedback_generated_at")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? FeedbackGeneratedAt { get; set; } = default!;
+        public System.DateTimeOffset? FeedbackGeneratedAt { get; set; } = default!;
 
         /// <summary>
         ///  The forwarded `updated_at` timestamp of the product. Used only for versioned resources, where the `updated_at` timestamp changes based on merchant actions. When required, it is used along with `feedback_generated_at` to help determine whether incoming feedback is outdated compared to feedback already received, and if it should be ignored upon arrival. 

@@ -22,7 +22,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpPost, Route("customers/{customer_id:long}/addresses.json")]
     [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(CustomerAddressError), StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(typeof(CustomerAddressError), StatusCodes.Status400BadRequest)]
     public override Task CreateAddressForCustomer([Required] CreateCustomerAddressRequest request, [Required] long customer_id)
     {
         throw new NotImplementedException();

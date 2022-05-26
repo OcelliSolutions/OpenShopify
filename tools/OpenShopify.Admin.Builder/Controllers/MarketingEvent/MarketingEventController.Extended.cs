@@ -22,7 +22,7 @@ public class MarketingEventController : MarketingEventControllerBase
     /// <inheritdoc />
     [HttpPost, Route("marketing_events.json")]
     [ProducesResponseType(typeof(MarketingEventItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(MarketingEventError), StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(typeof(MarketingEventError), StatusCodes.Status400BadRequest)]
     public override Task CreateMarketingEvent([Required] CreateMarketingEventRequest request)
     {
         throw new NotImplementedException();

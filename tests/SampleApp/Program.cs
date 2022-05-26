@@ -30,9 +30,9 @@ app.MapGet("/signup", (string hmac, string shop, long timestamp, HttpContext htt
         var extendedPermissions = new List<AuthorizationScope>
         {
             //AuthorizationScope.read_all_orders, 
-            AuthorizationScope.write_users, 
-            AuthorizationScope.read_users, 
-            AuthorizationScope.write_locations
+            AuthorizationScope.WriteUsers, 
+            AuthorizationScope.ReadUsers, 
+            AuthorizationScope.WriteLocations
         };
         var scopes = Enum.GetValues(typeof(AuthorizationScope))
             .Cast<AuthorizationScope>()

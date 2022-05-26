@@ -219,7 +219,7 @@ OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
 
             var stringParameters = new List<string>()
             {
-                "fields"
+                "fields", "messages"
             };
 
             if (longParameters.Contains((string)parameter.name))
@@ -396,7 +396,8 @@ JsonSchema GetSchema(string propertyName)
         "ends_at", "created_at", "closed_at", "published_at", "accepts_marketing_updated_at",
         "invoice_sent_at", "completed_at", "happened_at", "estimated_delivery_at", "fulfill_at",
         "disabled_at", "expires_on", "cancelled_at", "processed_at", "billing_on", "activated_on",
-        "cancelled_on", "trial_ends_on"
+        "cancelled_on", "trial_ends_on", "feedback_generated_at", "started_at", "scheduled_to_end_at", 
+        "ended_at"
     };
     var dateProperties = new List<string>()
     {
@@ -408,7 +409,8 @@ JsonSchema GetSchema(string propertyName)
     };
     var intProperties = new List<string>()
     {
-        "position", "orders_count", "number", "order_number", "trial_days", "times_used", "times_used_max", "times_used_min"
+        "position", "orders_count", "number", "order_number", "trial_days", "times_used", "times_used_max", "times_used_min",
+        "usage_count"
     };
     var boolProperties = new List<string>()
     {
@@ -419,7 +421,11 @@ JsonSchema GetSchema(string propertyName)
         "estimated_taxes", "cause_cancel", "display", "taxable", "multi_location_enabled", "password_enabled",
         "tax_shipping", "county_taxes", "has_storefront", "setup_required", "disjunctive", "previewable",
         "processing", "account_owner", "receive_announcements", "tracking_support",
-        "confirmed"
+        "confirmed", "cache", "paid", "enabled_universal_or_app_links", "enabled_shared_webcredentials",
+        "has_discounts", "has_gift_cards", "eligible_for_payments", "requires_extra_payments_agreement",
+        "password_enabled","has_storefront","eligible_for_card_reader_giveaway","finances",
+        "checkout_api_supported","multi_location_enabled","setup_required","pre_launch_enabled"
+
     };
     var decimalProperties = new List<string>()
     {
@@ -431,7 +437,7 @@ JsonSchema GetSchema(string propertyName)
     };
     var stringProperties = new List<string>()
     {
-        "admin_graphql_api_id"
+        "admin_graphql_api_id", "remote_id", "application_id"
     };
     var longListProperties = new List<string>()
     {
@@ -444,7 +450,8 @@ JsonSchema GetSchema(string propertyName)
     {
         "arguments", "tax_exemptions", "tracking_numbers", "tracking_urls", "supported_actions", 
         "payment_gateway_names", "enabled_presentment_currencies", "permissions", "fields",
-        "metafield_namespaces", "private_metafield_namespaces", "fulfillment_holds"
+        "metafield_namespaces", "private_metafield_namespaces", "fulfillment_holds", "messages",
+        "sha256_cert_fingerprints"
     };
     var objectListProperties = new List<string>()
     {
@@ -548,7 +555,8 @@ string CreateOperationId(string summary)
         .Replace("GetOrderCount", "CountOrders")
         .Replace("GetCountOf", "Count")
         .Replace("DeleteExisting", "Delete")
-        .Replace("ByItsID", "");
+        .Replace("ByItsID", "")
+        .Replace("ByID", "");
 
     return summary;
 }

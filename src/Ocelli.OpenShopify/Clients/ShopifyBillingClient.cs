@@ -2044,19 +2044,19 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"pending")]
-        pending = 0,
+        Pending = 0,
 
         [System.Runtime.Serialization.EnumMember(Value = @"accepted")]
-        accepted = 1,
+        Accepted = 1,
 
         [System.Runtime.Serialization.EnumMember(Value = @"active")]
-        active = 2,
+        Active = 2,
 
         [System.Runtime.Serialization.EnumMember(Value = @"declined")]
-        declined = 3,
+        Declined = 3,
 
         [System.Runtime.Serialization.EnumMember(Value = @"expired")]
-        expired = 4,
+        Expired = 4,
 
     }
 

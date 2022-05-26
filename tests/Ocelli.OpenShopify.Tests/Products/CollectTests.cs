@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
@@ -7,113 +7,111 @@ using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Products;
-[Collection("Shared collection")]
+
+public class CollectFixture : SharedFixture, IAsyncLifetime
+{
+    public ProductsService Service;
+    public List<Collect> CreatedCollects = new();
+
+    public CollectFixture()
+    {
+        Service = new ProductsService(MyShopifyUrl, AccessToken);
+    }
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    async Task IAsyncLifetime.DisposeAsync()
+    {
+        await DeleteCollectAsync_CanDelete();
+    }
+    
+    public async Task DeleteCollectAsync_CanDelete()
+    {
+        foreach (var collect in CreatedCollects)
+        {
+            _ = await Service.Collect.DeleteProductFromCollectionAsync(collect.Id);
+        }
+        CreatedCollects.Clear();
+    }
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class CollectTests : IClassFixture<SharedFixture>
+public class CollectTests : IClassFixture<CollectFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly ITestOutputHelper _testOutputHelper;
-    private readonly ProductsService _service;
-
-    public CollectTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public CollectTests(CollectFixture fixture, ITestOutputHelper testOutputHelper)
     {
-        _testOutputHelper = testOutputHelper;
-        Fixture = sharedFixture;
+        Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-        _service = new ProductsService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
-    #region Create
-
-    /*
-    [SkippableFact, TestPriority(10)]
-    public async Task Creates_Collects()
-    {
-        var collect = await Fixture.Create();
-
-        Assert.NotNull(collect);
-        Assert.True(collect.Id.HasValue);
-        Assert.Equal(Fixture.CollectionId, collect.CollectionId);
-        Assert.True(collect.ProductId > 0);
-    }
-    */
-    #endregion Create
+    private CollectFixture Fixture { get; }
 
     #region Read
+
     [SkippableFact, TestPriority(20)]
-    public async Task Counts_Collects()
+    public async Task CountCollectsAsync_CanGet()
     {
-        var response = await _service.Collect.CountCollectsAsync();
+        var response = await Fixture.Service.Collect.CountCollectsAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        Assert.NotNull(response.Result.Count);
+        var count = response.Result.Count;
+        Skip.If(count == 0, "No results returned. Unable to test");
     }
 
     [SkippableFact, TestPriority(20)]
-    public async Task Lists_Collects()
+    public async Task ListCollectsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await _service.Collect.ListCollectsAsync();
+        var response = await Fixture.Service.Collect.ListCollectsAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var collect in response.Result.Collects)
         {
             _additionalPropertiesHelper.CheckAdditionalProperties(collect, Fixture.MyShopifyUrl);
         }
-        Skip.If(!response.Result.Collects.Any());
-    }
-    /*
-    [SkippableFact, TestPriority(20)]
-    public async Task Lists_Collects_With_A_Filter()
-    {
-        var productId = Fixture.Created.First().ProductId;
-        var collects = await Fixture.Service.ListAsync(new CollectListFilter()
-        {
-            ProductId = productId,
-        });
-
-        Assert.True(collects.Items.Count() > 0);
-        Assert.All(collects.Items, collect => Assert.True(collect.ProductId > 0));
+        Skip.If(!response.Result.Collects.Any(), "No results returned. Unable to test");
     }
 
     [SkippableFact, TestPriority(20)]
-    public async Task Gets_Collects()
+    public async Task GetCollectAsync_TestCreated_AdditionalPropertiesAreEmpty()
     {
-        var collect = await Fixture.Service.GetAsync(Fixture.Created.First().Id.Value);
-
-        Assert.NotNull(collect);
-        Assert.True(collect.Id.HasValue);
-        Assert.Equal(Fixture.CollectionId, collect.CollectionId);
-        Assert.True(collect.ProductId > 0);
+        Skip.If(!Fixture.CreatedCollects.Any(), "Must be run with create test");
+        var collect = Fixture.CreatedCollects.First();
+        var response = await Fixture.Service.Collect.GetCollectAsync(collect.Id);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Collect, Fixture.MyShopifyUrl);
     }
-    */
+
     #endregion Read
 
     #region Update
+    /*
+    [SkippableFact, TestPriority(30)]
+    public async Task UpdateCollectAsync_CanUpdate()
+    {
+        var originalCollect = Fixture.CreatedCollects.First();
+        var request = new UpdateCollectRequest()
+        {
+            Collect = new()
+            {
+                Id = originalCollect.Id,
+                Fields = new List<string> { "id" }
+            }
+        };
+        var response = await Fixture.Service.Collect.AddProductToCustomCollectionAsync(request.Collect.Id, request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
-    //TODO: is there an update method?
-
+        Fixture.CreatedCollects.Remove(originalCollect);
+        Fixture.CreatedCollects.Add(response.Result.Collect);
+    }
+    */
     #endregion Update
 
     #region Delete
-    /*
-    [SkippableFact, TestPriority(40)]
-    public async Task Deletes_Collects()
+
+    [SkippableFact, TestPriority(99)]
+    public async Task DeleteCollectAsync_CanDelete()
     {
-        var created = await Fixture.Create(true);
-        bool thrown = false;
-
-        try
-        {
-            await Fixture.Service.DeleteAsync(created.Id.Value);
-        }
-        catch (ShopifyException ex)
-        {
-            Console.Write($"{nameof(Deletes_Collects)} failed. {ex.Message}.");
-
-            thrown = true;
-        }
-
-        Assert.False(thrown);
+        await Fixture.DeleteCollectAsync_CanDelete();
     }
-    */
-    #endregion Delete
-}
+
+
+    #endregion
+    }

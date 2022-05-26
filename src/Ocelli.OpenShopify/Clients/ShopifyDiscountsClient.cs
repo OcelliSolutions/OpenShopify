@@ -90,7 +90,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> CreateDiscountCodeCreationJobAsync(long priceRuleId, CreateDiscountCodeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> CreateDiscountCodeCreationJobAsync(long priceRuleId, CreateDiscountCodeBatchRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -203,14 +203,14 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<DiscountCodeItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 422)
+                        if (status_ == 400)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<DiscountCodeError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<DiscountCodeError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<DiscountCodeError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -708,7 +708,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> CreateDiscountCodeCreationJobAsync(long priceRuleId, CreateDiscountCodeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeCreationItem>> CreateDiscountCodeCreationJobAsync(long priceRuleId, CreateDiscountCodeBatchRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (priceRuleId == null)
                 throw new System.ArgumentNullException("priceRuleId");
@@ -1795,7 +1795,19 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("usage_count")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? UsageCount { get; set; } = default!;
+        public int? UsageCount { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateDiscountCodeBatchRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("discount_codes")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<CreateDiscountCode> DiscountCodes { get; set; } = new System.Collections.ObjectModel.Collection<CreateDiscountCode>();
 
     }
 
@@ -2184,7 +2196,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("usage_count")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? UsageCount { get; set; } = default!;
+        public int? UsageCount { get; set; } = default!;
 
         /// <summary>
         /// The amount of the discount.
@@ -2234,10 +2246,102 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         public long Id { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("price_rule_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? PriceRuleId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("started_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? StartedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("completed_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? CompletedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public DiscountCodeCreationStatus? Status { get; set; } = default!;
+
+        /// <summary>
+        /// The number of discount codes to create
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("codes_count")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public int? CodesCount { get; set; } = default!;
+
+        /// <summary>
+        /// The number of discount codes created successfully.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("imported_count")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public int? ImportedCount { get; set; } = default!;
+
+        /// <summary>
+        /// The number of discount codes that were not created successfully. Unsuccessful attempts will retry up to three times.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("failed_count")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public int? FailedCount { get; set; } = default!;
+
+        /// <summary>
+        /// A report that specifies when no discount codes were created because the provided data was invalid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("logs")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<string>? Logs { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public DiscountCodeCreationErrors? Errors { get; set; } = default!;
+
         [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? AdminGraphqlApiId { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class DiscountCodeCreationErrors
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<string>? Code { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -2268,6 +2372,21 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum DiscountCodeCreationStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"queued")]
+        Queued = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"running")]
+        Running = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"completed")]
+        Completed = 2,
 
     }
 
@@ -2897,7 +3016,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("usage_count")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? UsageCount { get; set; } = default!;
+        public int? UsageCount { get; set; } = default!;
 
         /// <summary>
         /// The amount of the discount.

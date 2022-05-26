@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
@@ -6,75 +7,68 @@ using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Events;
-[Collection("Shared collection")]
+
+public class EventFixture : SharedFixture, IAsyncLifetime
+{
+    public List<Event> CreatedEvents = new();
+    public EventsService Service;
+
+    public EventFixture() =>
+        Service = new EventsService(MyShopifyUrl, AccessToken);
+
+    public Task InitializeAsync() => Task.CompletedTask;
+    public Task DisposeAsync() => Task.CompletedTask;
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class EventTests : IClassFixture<SharedFixture>
+public class EventTests : IClassFixture<EventFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly ITestOutputHelper _testOutputHelper;
-    private readonly EventsService _service;
 
-    public EventTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public EventTests(EventFixture fixture, ITestOutputHelper testOutputHelper)
     {
-        _testOutputHelper = testOutputHelper;
-        Fixture = sharedFixture;
+        Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-        _service = new EventsService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
-
-    #region Create
-
-    #endregion Create
+    private EventFixture Fixture { get; }
 
     #region Read
+
     [SkippableFact]
-    public async Task Counts_Events()
+    [TestPriority(20)]
+    public async Task CountEventsAsync_CanGet()
     {
-        var response = await _service.Event.CountEventsAsync();
+        var response = await Fixture.Service.Event.CountEventsAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
-        Assert.True(count > 0);
+        Skip.If(count == 0, "No results returned. Unable to test");
     }
 
     [SkippableFact]
-    public async Task Lists_Events()
+    [TestPriority(20)]
+    public async Task ListEventsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await _service.Event.ListEventsAsync();
+        var response = await Fixture.Service.Event.ListEventsAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        foreach (var resultEvent in response.Result.Events)
+        foreach (var @event in response.Result.Events)
         {
-            _additionalPropertiesHelper.CheckAdditionalProperties(resultEvent, Fixture.MyShopifyUrl);
+            _additionalPropertiesHelper.CheckAdditionalProperties(@event, Fixture.MyShopifyUrl);
         }
-        var list = response.Result.Events;
-        Assert.True(list.Any());
+
+        Skip.If(!response.Result.Events.Any(), "No results returned. Unable to test");
     }
 
     [SkippableFact]
-    public async Task Gets_Events()
+    [TestPriority(20)]
+    public async Task GetEventAsync_TestCreated_AdditionalPropertiesAreEmpty()
     {
-        var allEvents = await _service.Event.ListEventsAsync(limit:1);
-        var firstEvent = allEvents.Result.Events.First();
-        var response = await _service.Event.GetEventAsync(firstEvent.Id);
+        Skip.If(!Fixture.CreatedEvents.Any(), "Must be run with create test");
+        var @event = Fixture.CreatedEvents.First();
+        var response = await Fixture.Service.Event.GetEventAsync(@event.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-
-        var @event = response.Result.Event;
-        Assert.NotNull(@event);
-        //Assert.NotNull(@event.Author);
-        Assert.True(@event.CreatedAt.HasValue);
-        Assert.NotNull(@event.Message);
-        Assert.True(@event.SubjectId > 0);
-        Assert.NotNull(@event.SubjectType);
-        Assert.NotNull(@event.Verb);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Event, Fixture.MyShopifyUrl);
     }
+
     #endregion Read
-
-    #region Update
-
-    #endregion Update
-
-    #region Delete
-
-    #endregion Delete
 }

@@ -127,8 +127,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerItem'
-        '422':
-          description: Client Error
+        '400':
+          description: Bad Request
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -483,8 +483,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerAddressItem'
-        '422':
-          description: Client Error
+        '400':
+          description: Bad Request
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -767,8 +767,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomerSavedSearchItem'
-        '422':
-          description: Client Error
+        '400':
+          description: Bad Request
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1866,8 +1866,9 @@ components:
           format: int64
           nullable: true
         usage_count:
-          type: string
+          type: integer
           description: The number of times that the discount code has been redeemed.
+          format: int32
           nullable: true
         amount:
           type: string
@@ -1898,6 +1899,20 @@ components:
         consent_updated_at:
           type: string
           description: 'The date and time when the customer consented to receive marketing material by email. If no date is provided, then the date and time when the consent information was sent is used.'
+          format: date-time
+          nullable: true
+      additionalProperties: { }
+    ExtendedAuthorizationAttributes:
+      type: object
+      properties:
+        standard_authorization_expires_at:
+          type: string
+          description: 'The date and time (ISO 8601 format) when the standard authorization period expires. After expiry, an extended authorization fee is applied upon capturing the payment.'
+          format: date-time
+          nullable: true
+        extended_authorization_expires_at:
+          type: string
+          description: 'The date and time (ISO 8601 format) when the extended authorization period expires. After expiry, the merchant can''t capture the payment.'
           format: date-time
           nullable: true
       additionalProperties: { }
@@ -2260,13 +2275,10 @@ components:
           format: date-time
           nullable: true
         value:
-          type: string
           description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
           nullable: true
         type:
-          type: string
-          description: 'The type of data that the metafield stores in the `value` field. Refer to the list of [supported types](/apps/metafields/types).'
-          nullable: true
+          $ref: '#/components/schemas/MetafieldType'
         value_type:
           type: string
           description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\n`value_type` is deprecated and replaced by `type` in API version 2021-07.\r\n </aside> The legacy type information for the stored value. Valid values: `string`, `integer`, `json_string`."
@@ -2278,6 +2290,27 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+      additionalProperties: { }
+    MetafieldType:
+      enum:
+        - boolean
+        - color
+        - date
+        - date_time
+        - dimension
+        - file_reference
+        - json
+        - multi_line_text_field
+        - number_decimal
+        - number_integer
+        - page_reference
+        - product_reference
+        - rating
+        - single_line_text_field
+        - variant_reference
+        - volume
+        - weight
+      type: string
       additionalProperties: { }
     NoteAttribute:
       type: object
@@ -2660,6 +2693,24 @@ components:
           type: string
           nullable: true
       additionalProperties: { }
+    PaymentsRefundAttributeStatus:
+      enum:
+        - pending
+        - failure
+        - success
+        - error
+      type: string
+      additionalProperties: { }
+    PaymentsRefundAttributes:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/PaymentsRefundAttributeStatus'
+        acquirer_reference_number:
+          type: string
+          description: A unique number associated with the transaction that can be used to track the refund. This property has a value only for transactions completed with Visa or Mastercard.
+          nullable: true
+      additionalProperties: { }
     Price:
       type: object
       properties:
@@ -3029,21 +3080,15 @@ components:
           format: int64
           nullable: true
         error_code:
-          type: string
-          description: "A standardized error code, independent of the payment provider. Valid values: \r\n\r\n*   **incorrect_number** \r\n*   **invalid_number** \r\n*   **invalid_expiry_date** \r\n*   **invalid_cvc** \r\n*   **expired_card** \r\n*   **incorrect_cvc** \r\n*   **incorrect_zip** \r\n*   **incorrect_address** \r\n*   **card_declined** \r\n*   **processing_error** \r\n*   **call_issuer** \r\n*   **pick_up_card**"
-          nullable: true
+          $ref: '#/components/schemas/TransactionErrorCode'
         extended_authorization_attributes:
-          type: string
-          description: "The attributes associated with a Shopify Payments extended authorization period. It has the following attributes: \r\n\r\n*   **standard_authorization_expires_at**: The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the standard authorization period expires. After expiry, an extended authorization fee is applied upon capturing the payment. \r\n*   **extended_authorization_expires_at**: The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the extended authorization period expires. After expiry, the merchant can't capture the payment.  `extended_authorization_attributes` are available on the **Retrieve a specific transaction for an order** endpoint only if the following criteria applies: \r\n\r\n*   The store is on a [Shopify Plus](https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9) plan. \r\n*   The store uses Shopify Payments. \r\n*   The transaction being retrieved is an extended authorization, which is determined by the `capture_before` date in the charge.  If the criteria isn't met, then an empty JSON is returned for `extended_authorization_attributes`. To learn more about extended authorization periods, refer to [Payment authorization](https://help.shopify.com/en/manual/payments/payment-authorization)."
-          nullable: true
+          $ref: '#/components/schemas/ExtendedAuthorizationAttributes'
         gateway:
           type: string
           description: 'The name of the gateway the transaction was issued through. A list of gateways can be found on Shopify''s [payment gateways page](//www.shopify.com/payment-gateways).'
           nullable: true
         kind:
-          type: string
-          description: "The transaction's type. Valid values: \r\n\r\n*   **authorization**: Money that the customer has agreed to pay. The authorization period can be between 7 and 30 days (depending on your payment service) while a store waits for a payment to be captured. \r\n*   **capture**: A transfer of money that was reserved during the authorization of a shop. \r\n*   **sale**: The authorization and capture of a payment performed in one single step. \r\n*   **void**: The cancellation of a pending authorization or capture. \r\n*   **refund**: The partial or full return of captured money to the customer."
-          nullable: true
+          $ref: '#/components/schemas/TransactionKind'
         location_id:
           type: integer
           description: The ID of the physical location where the transaction was processed.
@@ -3066,9 +3111,7 @@ components:
           format: int64
           nullable: true
         payments_refund_attributes:
-          type: string
-          description: "The attributes associated with a Shopify Payments refund. It has the following attributes: \r\n\r\n*   **status**: The current status of the refund. Valid values: `pending`, `failure`, `success`, and `error`. \r\n*   **acquirer_reference_number**: A unique number associated with the transaction that can be used to track the refund. This property has a value only for transactions completed with Visa or Mastercard.  `payments_refund_attributes` are available on any JSON serialization of the order transaction only if the following criteria apply: \r\n\r\n*   The store is on a [Shopify Plus](https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9) plan. \r\n*   The store uses Shopify Payments. \r\n*   The order transaction **kind** is either `refund` or `void`.  If the criteria isn't met, then the `payments_refund_attributes` property is omitted."
-          nullable: true
+          $ref: '#/components/schemas/PaymentsRefundAttributes'
         processed_at:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when a transaction was processed. This value is the date that''s used in the analytic reports. By default, it matches the `created_at` value. If you''re importing transactions from an app or another platform, then you can set `processed_at` to a date and time in the past to match when the original transaction was processed.'
@@ -3108,6 +3151,31 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+      additionalProperties: { }
+    TransactionErrorCode:
+      enum:
+        - incorrect_number
+        - invalid_number
+        - invalid_expiry_date
+        - invalid_cvc
+        - expired_card
+        - incorrect_cvc
+        - incorrect_zip
+        - incorrect_address
+        - card_declined
+        - processing_error
+        - call_issuer
+        - pick_up_card
+      type: string
+      additionalProperties: { }
+    TransactionKind:
+      enum:
+        - authorization
+        - capture
+        - sale
+        - void
+        - refund
+      type: string
       additionalProperties: { }
     UpdateCustomer:
       required:

@@ -93,8 +93,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MarketingEventItem'
-        '422':
-          description: Client Error
+        '400':
+          description: Bad Request
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -305,6 +305,12 @@ paths:
                 $ref: '#/components/schemas/EngagementList'
 components:
   schemas:
+    BudgetType:
+      enum:
+        - daily
+        - lifetime
+      type: string
+      additionalProperties: { }
     CountItem:
       type: object
       properties:
@@ -316,20 +322,15 @@ components:
       type: object
       properties:
         remote_id:
-          type: integer
+          type: string
           description: An optional remote identifier for a marketing event. The remote identifier lets Shopify validate engagement data.
-          format: int64
           nullable: true
         event_type:
-          type: string
-          description: "The type of marketing event. Valid values: `ad`, `post`, `message`, `retargeting`, `transactional`, `affiliate`, `loyalty`, `newsletter`, `abandoned_cart`. <div class='note'> \r\n\r\n#### Note\r\n\r\nIf there are values that you’d like to use for event_type that are not in the list above, then please post your request [here](https://ecommerce.shopify.com/c/partner-feedback/t/marketing-events-apis-feedback-thread-521758). Our approach is to be more structured than using freeform text, but to still allow for categorization of most types of marketing actions.\r\n </div>"
-          nullable: true
+          $ref: '#/components/schemas/EventType'
         marketing_channel:
-          type: string
-          description: 'The channel that your marketing event will use. Valid values: `search`, `display`, `social`, `email`, `referral`.'
-          nullable: true
+          $ref: '#/components/schemas/MarketingChannel'
         paid:
-          type: string
+          type: boolean
           description: Whether the event is paid or organic.
           nullable: true
         referring_domain:
@@ -345,20 +346,21 @@ components:
           description: The currency for the budget. Required if `budget` is specified.
           nullable: true
         budget_type:
-          type: string
-          description: 'The type of the budget. Required if `budget` is specified. Valid values: `daily`, `lifetime`.'''
-          nullable: true
+          $ref: '#/components/schemas/BudgetType'
         started_at:
           type: string
           description: The time when the marketing action was started.
+          format: date-time
           nullable: true
         scheduled_to_end_at:
           type: string
           description: 'For events with a duration, the time when the event was scheduled to end.'
+          format: date-time
           nullable: true
         ended_at:
           type: string
           description: 'For events with a duration, the time when the event actually ended.'
+          format: date-time
           nullable: true
         UTM parameters:
           type: string
@@ -377,8 +379,23 @@ components:
           description: 'A link to the live version of the event, or to a rendered preview in the app that created it.'
           nullable: true
         marketed_resources:
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketedResource'
           description: "A list of the items that were marketed in the marketing event. Includes the `type` and `id` of each item. Valid values for `type` are: \r\n\r\n*   `product` \r\n*   `collection` \r\n*   `price_rule` \r\n*   `discount` (Will be replaced by price_rule after April 20, 2017.) \r\n*   `page` \r\n*   `article` \r\n*   `homepage` (Doesn't have an `id`.)"
+          nullable: true
+        utm_campaign:
+          type: string
+          nullable: true
+        utm_source:
+          type: string
+          nullable: true
+        utm_medium:
+          type: string
+          nullable: true
+        marketing_activity_id:
+          type: integer
+          format: int64
           nullable: true
       additionalProperties: false
     CreateMarketingEventRequest:
@@ -411,24 +428,53 @@ components:
           items:
             $ref: '#/components/schemas/Engagement'
       additionalProperties: { }
+    EventType:
+      enum:
+        - ad
+        - post
+        - message
+        - retargeting
+        - transactional
+        - affiliate
+        - loyalty
+        - newsletter
+        - abandoned_cart
+      type: string
+      additionalProperties: { }
+    MarketedResource:
+      enum:
+        - product
+        - collection
+        - price_rule
+        - page
+        - article
+        - homepage
+      type: string
+      additionalProperties: { }
+    MarketingChannel:
+      enum:
+        - search
+        - display
+        - social
+        - email
+        - referral
+      type: string
+      additionalProperties: { }
     MarketingEvent:
+      required:
+        - id
       type: object
       properties:
         remote_id:
-          type: integer
+          type: string
           description: An optional remote identifier for a marketing event. The remote identifier lets Shopify validate engagement data.
-          format: int64
           nullable: true
         event_type:
-          type: string
-          description: "The type of marketing event. Valid values: `ad`, `post`, `message`, `retargeting`, `transactional`, `affiliate`, `loyalty`, `newsletter`, `abandoned_cart`. <div class='note'> \r\n\r\n#### Note\r\n\r\nIf there are values that you’d like to use for event_type that are not in the list above, then please post your request [here](https://ecommerce.shopify.com/c/partner-feedback/t/marketing-events-apis-feedback-thread-521758). Our approach is to be more structured than using freeform text, but to still allow for categorization of most types of marketing actions.\r\n </div>"
-          nullable: true
+          $ref: '#/components/schemas/EventType'
         marketing_channel:
-          type: string
-          description: 'The channel that your marketing event will use. Valid values: `search`, `display`, `social`, `email`, `referral`.'
-          nullable: true
+          $ref: '#/components/schemas/MarketingChannel'
         paid:
-          type: string
+          type: boolean
           description: Whether the event is paid or organic.
           nullable: true
         referring_domain:
@@ -444,20 +490,21 @@ components:
           description: The currency for the budget. Required if `budget` is specified.
           nullable: true
         budget_type:
-          type: string
-          description: 'The type of the budget. Required if `budget` is specified. Valid values: `daily`, `lifetime`.'''
-          nullable: true
+          $ref: '#/components/schemas/BudgetType'
         started_at:
           type: string
           description: The time when the marketing action was started.
+          format: date-time
           nullable: true
         scheduled_to_end_at:
           type: string
           description: 'For events with a duration, the time when the event was scheduled to end.'
+          format: date-time
           nullable: true
         ended_at:
           type: string
           description: 'For events with a duration, the time when the event actually ended.'
+          format: date-time
           nullable: true
         UTM parameters:
           type: string
@@ -476,8 +523,29 @@ components:
           description: 'A link to the live version of the event, or to a rendered preview in the app that created it.'
           nullable: true
         marketed_resources:
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketedResource'
           description: "A list of the items that were marketed in the marketing event. Includes the `type` and `id` of each item. Valid values for `type` are: \r\n\r\n*   `product` \r\n*   `collection` \r\n*   `price_rule` \r\n*   `discount` (Will be replaced by price_rule after April 20, 2017.) \r\n*   `page` \r\n*   `article` \r\n*   `homepage` (Doesn't have an `id`.)"
+          nullable: true
+        utm_campaign:
+          type: string
+          nullable: true
+        utm_source:
+          type: string
+          nullable: true
+        utm_medium:
+          type: string
+          nullable: true
+        marketing_activity_id:
+          type: integer
+          format: int64
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
           nullable: true
       additionalProperties: { }
     MarketingEventError:
@@ -516,23 +584,20 @@ components:
             $ref: '#/components/schemas/MarketingEvent'
       additionalProperties: { }
     UpdateMarketingEvent:
+      required:
+        - id
       type: object
       properties:
         remote_id:
-          type: integer
+          type: string
           description: An optional remote identifier for a marketing event. The remote identifier lets Shopify validate engagement data.
-          format: int64
           nullable: true
         event_type:
-          type: string
-          description: "The type of marketing event. Valid values: `ad`, `post`, `message`, `retargeting`, `transactional`, `affiliate`, `loyalty`, `newsletter`, `abandoned_cart`. <div class='note'> \r\n\r\n#### Note\r\n\r\nIf there are values that you’d like to use for event_type that are not in the list above, then please post your request [here](https://ecommerce.shopify.com/c/partner-feedback/t/marketing-events-apis-feedback-thread-521758). Our approach is to be more structured than using freeform text, but to still allow for categorization of most types of marketing actions.\r\n </div>"
-          nullable: true
+          $ref: '#/components/schemas/EventType'
         marketing_channel:
-          type: string
-          description: 'The channel that your marketing event will use. Valid values: `search`, `display`, `social`, `email`, `referral`.'
-          nullable: true
+          $ref: '#/components/schemas/MarketingChannel'
         paid:
-          type: string
+          type: boolean
           description: Whether the event is paid or organic.
           nullable: true
         referring_domain:
@@ -548,20 +613,21 @@ components:
           description: The currency for the budget. Required if `budget` is specified.
           nullable: true
         budget_type:
-          type: string
-          description: 'The type of the budget. Required if `budget` is specified. Valid values: `daily`, `lifetime`.'''
-          nullable: true
+          $ref: '#/components/schemas/BudgetType'
         started_at:
           type: string
           description: The time when the marketing action was started.
+          format: date-time
           nullable: true
         scheduled_to_end_at:
           type: string
           description: 'For events with a duration, the time when the event was scheduled to end.'
+          format: date-time
           nullable: true
         ended_at:
           type: string
           description: 'For events with a duration, the time when the event actually ended.'
+          format: date-time
           nullable: true
         UTM parameters:
           type: string
@@ -580,8 +646,29 @@ components:
           description: 'A link to the live version of the event, or to a rendered preview in the app that created it.'
           nullable: true
         marketed_resources:
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketedResource'
           description: "A list of the items that were marketed in the marketing event. Includes the `type` and `id` of each item. Valid values for `type` are: \r\n\r\n*   `product` \r\n*   `collection` \r\n*   `price_rule` \r\n*   `discount` (Will be replaced by price_rule after April 20, 2017.) \r\n*   `page` \r\n*   `article` \r\n*   `homepage` (Doesn't have an `id`.)"
+          nullable: true
+        utm_campaign:
+          type: string
+          nullable: true
+        utm_source:
+          type: string
+          nullable: true
+        utm_medium:
+          type: string
+          nullable: true
+        marketing_activity_id:
+          type: integer
+          format: int64
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
           nullable: true
       additionalProperties: false
     UpdateMarketingEventRequest:

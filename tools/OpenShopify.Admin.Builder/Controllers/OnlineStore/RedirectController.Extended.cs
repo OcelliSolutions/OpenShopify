@@ -22,7 +22,7 @@ public class RedirectController : RedirectControllerBase
     /// <inheritdoc />
     [HttpPost, Route("redirects.json")]
     [ProducesResponseType(typeof(RedirectItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(RedirectError), StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(typeof(RedirectError), StatusCodes.Status400BadRequest)]
     public override Task CreateRedirect([Required] CreateRedirectRequest request)
     {
         throw new NotImplementedException();

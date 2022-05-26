@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
@@ -8,156 +7,233 @@ using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.ShippingAndFulfillment;
-[Collection("Shared collection")]
-[TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class FulfillmentEventTests : IClassFixture<SharedFixture>
-{
-    private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly ITestOutputHelper _testOutputHelper;
-    private readonly ShippingAndFulfillmentService _service;
 
-    public FulfillmentEventTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+public class FulfillmentEventFixture : SharedFixture, IAsyncLifetime
+{
+    public List<FulfillmentEvent> CreatedFulfillmentEvents = new();
+    public Fulfillment Fulfillment = new();
+    public FulfillmentService FulfillmentService = new();
+    public Order Order = new();
+    public Product Product = new();
+    public ProductVariant ProductVariant = new();
+    public ShippingAndFulfillmentService Service;
+
+    public FulfillmentEventFixture() =>
+        Service = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
+
+    public async Task InitializeAsync()
     {
-        _testOutputHelper = testOutputHelper;
-        Fixture = sharedFixture;
-        _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-        _service = new ShippingAndFulfillmentService(Fixture.MyShopifyUrl, Fixture.AccessToken);
+        await CreateFulfillmentService();
+        await CreateProduct();
+        await CreateOrder();
+        await CreateFulfillment();
     }
 
-    private SharedFixture Fixture { get; }
-
-    /*
-    //TODO:complete after fulfillment tests
-    #region Create
-
-    [SkippableFact, TestPriority(10)]
-    public async Task CreateFulfillmentEventAsync_CanCreate()
+    async Task IAsyncLifetime.DisposeAsync()
     {
-        var request = new CreateFulfillmentEventRequest()
+        await DeleteFulfillmentEventAsync_CanDelete();
+
+        if (Order.Id > 0)
         {
-            FulfillmentEvent = new()
+            var orderService = new OrdersService(MyShopifyUrl, AccessToken);
+            await orderService.Order.DeleteOrderAsync(Order.Id);
+        }
+
+        if (Product.Id > 0)
+        {
+            var productService = new ProductsService(MyShopifyUrl, AccessToken);
+            await productService.Product.DeleteProductAsync(Product.Id);
+        }
+
+        if (FulfillmentService.Id > 0)
+        {
+            var fulfillmentService = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
+            await fulfillmentService.FulfillmentService.DeleteFulfillmentServiceAsync(FulfillmentService.Id);
+        }
+    }
+    
+    public async Task DeleteFulfillmentEventAsync_CanDelete()
+    {
+        foreach (var fulfillmentEvent in CreatedFulfillmentEvents)
+        {
+            _ = await Service.FulfillmentEvent.DeleteFulfillmentEventAsync(fulfillmentEvent.Id, Fulfillment.Id,
+                Order.Id);
+        }
+        CreatedFulfillmentEvents.Clear();
+    }
+
+    public async Task CreateFulfillmentService()
+    {
+        var fulfillmentService = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
+        var request = CreateFulfillmentServiceRequest();
+        request.FulfillmentService.CallbackUrl += "/fulfillment_event";
+        var response = await fulfillmentService.FulfillmentService.CreateFulfillmentServiceAsync(request);
+        FulfillmentService = response.Result.FulfillmentService;
+    }
+
+    public async Task CreateProduct()
+    {
+        var productService = new ProductsService(MyShopifyUrl, AccessToken);
+        var request = CreateProductRequest();
+        request.Product.Variants ??= new List<ProductVariant>();
+        request.Product.Variants.Add(new ProductVariant { Sku = BatchId });
+        var productResponse = await productService.Product.CreateProductAsync(request);
+        Product = productResponse.Result.Product;
+
+        if (Product.Variants != null)
+        {
+            var variant = Product.Variants.First();
+            var variantRequest = new UpdateProductVariantRequest
             {
-                Status = FulfillmentEventStatus.in_transit
+                Variant = new UpdateProductVariant
+                {
+                    Id = variant.Id,
+                    Sku = BatchId,
+                    FulfillmentService = FulfillmentService.Handle,
+                    Option1 = variant.Option1
+                }
+            };
+            var variantResponse =
+                await productService.ProductVariant.UpdateProductVariantAsync(variant.Id, variantRequest);
+            ProductVariant = variantResponse.Result.Variant;
+            Product.Variants.Remove(variant);
+            Product.Variants.Add(ProductVariant);
+        }
+    }
+
+    public async Task CreateOrder()
+    {
+        var orderService = new OrdersService(MyShopifyUrl, AccessToken);
+        var request = new CreateOrderRequest
+        {
+            Order = new CreateOrder
+            {
+                Email = Email,
+                LineItems = new List<LineItem>
+                {
+                    new()
+                    {
+                        VariantId = ProductVariant.Id,
+                        Quantity = 1
+                    }
+                }
             }
         };
-        var response = await _service.FulfillmentEvent.CreateFulfillmentEventAsync(request);
+        var response = await orderService.Order.CreateOrderAsync(request);
+        Order = response.Result.Order;
+    }
+
+    public async Task CreateFulfillment()
+    {
+        //TODO: Figure out what objects can have a `test` property and validate accordingly.
+        var request = new CreateFulfillmentRequest
+        {
+            Fulfillment = new CreateFulfillment
+            {
+                LocationId = Fulfillment.LocationId,
+                TrackingNumbers = new List<string> { "123456789" },
+                TrackingUrls = new List<string>
+                {
+                    "https://shipping.xyz/track.php?num=123456789", "https://anothershipper.corp/track.php?code=abc"
+                },
+                NotifyCustomer = true
+            }
+        };
+        var response = await Service.Fulfillment.CreateFulfillmentAsync(Order.Id, request);
+        Fulfillment = response.Result.Fulfillment;
+    }
+}
+
+[TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
+public class FulfillmentEventTests : IClassFixture<FulfillmentEventFixture>
+{
+    private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+
+    public FulfillmentEventTests(FulfillmentEventFixture fixture, ITestOutputHelper testOutputHelper)
+    {
+        Fixture = fixture;
+        _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+    }
+
+    private FulfillmentEventFixture Fixture { get; }
+
+    #region Create
+
+    [SkippableFact]
+    [TestPriority(10)]
+    public async Task CreateFulfillmentEventAsync_CanCreate()
+    {
+        var request = new CreateFulfillmentEventRequest
+        {
+            FulfillmentEvent = new CreateFulfillmentEvent
+            {
+                Status = FulfillmentEventStatus.InTransit
+            }
+        };
+        var response =
+            await Fixture.Service.FulfillmentEvent.CreateFulfillmentEventAsync(Fixture.Fulfillment.Id, Fixture.Order.Id,
+                request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedFulfillmentEvents.Add(response.Result.FulfillmentEvent);
     }
 
-    [SkippableFact, TestPriority(10)]
+    [SkippableFact]
+    [TestPriority(10)]
     public async Task CreateFulfillmentEventAsync_IsUnprocessableEntityError()
     {
-        var request = new CreateFulfillmentEventRequest()
+        var request = new CreateFulfillmentEventRequest
         {
-            FulfillmentEvent = new()
-            {
-                Topic = FulfillmentEventTopic.app_uninstalled
-            }
+            FulfillmentEvent = new CreateFulfillmentEvent()
         };
-        await Assert.ThrowsAsync<ApiException<FulfillmentEventError>>(async () => await _service.FulfillmentEvent.CreateFulfillmentEventAsync(request));
+        await Assert.ThrowsAsync<ApiException<FulfillmentEventError>>(async () =>
+            await Fixture.Service.FulfillmentEvent.CreateFulfillmentEventAsync(Fixture.Fulfillment.Id, Fixture.Order.Id,
+                request));
     }
 
     #endregion Create
 
     #region Read
 
-    [SkippableFact, TestPriority(20)]
-    public async Task CountFulfillmentEventsAsync_CanGet()
-    {
-        var response = await _service.FulfillmentEvent.CountFulfillmentEventsAsync();
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        var count = response.Result.Count;
-        Skip.If(count == 0, "No results returned. Unable to test");
-    }
-
-    [SkippableFact, TestPriority(20)]
+    [SkippableFact]
+    [TestPriority(20)]
     public async Task ListFulfillmentEventsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await _service.FulfillmentEvent.ListFulfillmentEventsAsync();
+        var response =
+            await Fixture.Service.FulfillmentEvent.ListFulfillmentEventsForSpecificFulfillmentAsync(
+                Fixture.Fulfillment.Id, Fixture.Order.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var fulfillmentEvent in response.Result.FulfillmentEvents)
         {
             _additionalPropertiesHelper.CheckAdditionalProperties(fulfillmentEvent, Fixture.MyShopifyUrl);
-            if (fulfillmentEvent.Address != null && fulfillmentEvent.Address.Contains(Domain)
-                                        && !Fixture.CreatedFulfillmentEvents.Exists(w => w.Id == fulfillmentEvent.Id))
-                Fixture.CreatedFulfillmentEvents.Add(fulfillmentEvent);
         }
-        var list = response.Result.FulfillmentEvents;
-        Skip.If(!list.Any(), "No results returned. Unable to test");
+
+        Skip.If(!response.Result.FulfillmentEvents.Any(), "No results returned. Unable to test");
     }
 
-    [SkippableFact, TestPriority(20)]
-    public async Task GetFulfillmentEventAsync_AdditionalPropertiesAreEmpty()
-    {
-        var fulfillmentEventListResponse = await _service.FulfillmentEvent.ListFulfillmentEventsAsync(limit: 1);
-        Skip.If(!fulfillmentEventListResponse.Result.FulfillmentEvents.Any(), "No results returned. Unable to test");
-        var response = await _service.FulfillmentEvent.GetFulfillmentEventAsync(fulfillmentEventListResponse.Result.FulfillmentEvents.First().Id);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.FulfillmentEvent, Fixture.MyShopifyUrl);
-    }
-
-    [SkippableFact, TestPriority(20)]
+    [SkippableFact]
+    [TestPriority(20)]
     public async Task GetFulfillmentEventAsync_TestCreated_AdditionalPropertiesAreEmpty()
     {
-        Skip.If(!Fixture.CreatedFulfillmentEvents.Any(), "No results returned. Unable to test");
+        Skip.If(!Fixture.CreatedFulfillmentEvents.Any(), "Must be run with create test");
         var fulfillmentEvent = Fixture.CreatedFulfillmentEvents.First();
-        var response = await _service.FulfillmentEvent.GetFulfillmentEventAsync(fulfillmentEvent.Id);
+        var response =
+            await Fixture.Service.FulfillmentEvent.GetFulfillmentEventAsync(fulfillmentEvent.Id, Fixture.Fulfillment.Id,
+                Fixture.Order.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.FulfillmentEvent, Fixture.MyShopifyUrl);
     }
 
     #endregion Read
 
-    #region Update
-
-    [SkippableFact, TestPriority(30)]
-    public async Task UpdateFulfillmentEventAsync_CanUpdate()
-    {
-        var originalFulfillmentEvent = Fixture.CreatedFulfillmentEvents.First();
-        var request = new UpdateFulfillmentEventRequest()
-        {
-            FulfillmentEvent = new()
-            {
-                Id = originalFulfillmentEvent.Id,
-                Fields = new List<string>() { "id" }
-            }
-        };
-        var response = await _service.FulfillmentEvent.UpdateFulfillmentEventAsync(request.FulfillmentEvent.Id, request);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-
-        Fixture.CreatedFulfillmentEvents.Remove(originalFulfillmentEvent);
-        Fixture.CreatedFulfillmentEvents.Add(response.Result.FulfillmentEvent);
-    }
-
-    #endregion Update
-
     #region Delete
 
-    [SkippableFact, TestPriority(40)]
+
+    [SkippableFact, TestPriority(99)]
     public async Task DeleteFulfillmentEventAsync_CanDelete()
     {
-        Skip.If(Fixture.CreatedFulfillmentEvents.Count == 0, "WARN: No data returned. Could not test");
-        var errors = new List<Exception>();
-        foreach (var fulfillmentEvent in Fixture.CreatedFulfillmentEvents)
-        {
-            try
-            {
-                _ = await _service.FulfillmentEvent.DeleteFulfillmentEventAsync(fulfillmentEvent.Id);
-            }
-            catch (Exception ex)
-            {
-                errors.Add(ex);
-            }
-        }
-
-        foreach (var error in errors)
-        {
-            _testOutputHelper.WriteLine(error.Message);
-        }
-        Assert.Empty(errors);
+        await Fixture.DeleteFulfillmentEventAsync_CanDelete();
     }
-    #endregion Delete
-    */
-}
+
+    #endregion
+    }

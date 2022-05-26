@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
@@ -6,56 +7,48 @@ using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Orders;
-[Collection("Shared collection")]
+
+public class AbandonedCheckoutFixture : SharedFixture, IAsyncLifetime
+{
+    public List<Checkout> CreatedAbandonedCheckouts = new();
+    public OrdersService Service;
+
+    public AbandonedCheckoutFixture() =>
+        Service = new OrdersService(MyShopifyUrl, AccessToken);
+
+    public Task InitializeAsync() => Task.CompletedTask;
+    public Task DisposeAsync() => Task.CompletedTask;
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class AbandonedCheckoutsTests : IClassFixture<SharedFixture>
+public class AbandonedCheckoutTests : IClassFixture<AbandonedCheckoutFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly ITestOutputHelper _testOutputHelper;
-    private readonly OrdersService _service;
 
-    public AbandonedCheckoutsTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public AbandonedCheckoutTests(AbandonedCheckoutFixture fixture, ITestOutputHelper testOutputHelper)
     {
-        _testOutputHelper = testOutputHelper;
-        Fixture = sharedFixture;
+        Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-        _service = new OrdersService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
-
-    #region Create
-
-    //No endpoints
-
-    #endregion Create
+    private AbandonedCheckoutFixture Fixture { get; }
 
     #region Read
 
-    [SkippableFact, TestPriority(20)]
+    //TODO: needs a test to trigger an abandoned checkout
+    [SkippableFact]
+    [TestPriority(20)]
     public async Task ListAbandonedCheckoutsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await _service.AbandonedCheckouts.ListAbandonedCheckoutsAsync();
+        var response = await Fixture.Service.AbandonedCheckouts.ListAbandonedCheckoutsAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        foreach (var abandonedCheckouts in response.Result.Checkouts)
+        foreach (var abandonedCheckout in response.Result.Checkouts)
         {
-            _additionalPropertiesHelper.CheckAdditionalProperties(abandonedCheckouts, Fixture.MyShopifyUrl);
+            _additionalPropertiesHelper.CheckAdditionalProperties(abandonedCheckout, Fixture.MyShopifyUrl);
         }
-        var list = response.Result.Checkouts;
-        Skip.If(!list.Any(), "No data returned. Unable to test.");
+
+        Skip.If(!response.Result.Checkouts.Any(), "No results returned. Unable to test");
     }
 
     #endregion Read
-
-    #region Update
-
-    //No endpoints
-
-    #endregion Update
-
-    #region Delete
-
-    //No endpoints
-
-    #endregion Delete
 }

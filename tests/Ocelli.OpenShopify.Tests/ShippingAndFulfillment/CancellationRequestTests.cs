@@ -6,21 +6,19 @@ using Xunit.Abstractions;
 namespace Ocelli.OpenShopify.Tests.ShippingAndFulfillment;
 [Collection("Shared collection")]
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class CancellationRequestTests : IClassFixture<SharedFixture>
+public class CancellationRequestTests : IClassFixture<CancellationRequestFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly ITestOutputHelper _testOutputHelper;
-    private readonly ShippingAndFulfillmentService _service;
+        
 
-    public CancellationRequestTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public CancellationRequestTests(CancellationRequestFixture fixture, ITestOutputHelper testOutputHelper)
     {
-        _testOutputHelper = testOutputHelper;
-        Fixture = sharedFixture;
+                Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-        _service = new ShippingAndFulfillmentService(Fixture.MyShopifyUrl, Fixture.AccessToken);
-    }
+            }
 
-    private SharedFixture Fixture { get; }
+    public CancellationRequestFixture Fixture { get; set; }
+
 
     #region Create
 
@@ -37,4 +35,9 @@ public class CancellationRequestTests : IClassFixture<SharedFixture>
     #region Delete
 
     #endregion Delete
+}
+
+public class CancellationRequestFixture
+{
+    public ITestOutputHelper TestOutputHelper { get; set; }
 }

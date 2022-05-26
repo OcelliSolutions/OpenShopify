@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public partial record DraftOrder
+    public partial record DraftOrderBase
     {
         /// <inheritdoc cref="DraftOrderOrig.Customer"/>
         [JsonPropertyName("customer")]

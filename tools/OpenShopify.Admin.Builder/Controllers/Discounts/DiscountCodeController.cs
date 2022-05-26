@@ -141,7 +141,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("usage_count")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? UsageCount { get; set; } = default!;
+        public int? UsageCount { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

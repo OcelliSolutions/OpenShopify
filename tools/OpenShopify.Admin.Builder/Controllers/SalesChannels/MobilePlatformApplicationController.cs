@@ -67,7 +67,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("application_id")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public long? ApplicationId { get; set; } = default!;
+        public string? ApplicationId { get; set; } = default!;
 
         /// <summary>
         /// The platform of the application.
@@ -85,7 +85,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("sha256_cert_fingerprints")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Sha256CertFingerprints { get; set; } = default!;
+        public System.Collections.Generic.List<string>? Sha256CertFingerprints { get; set; } = default!;
 
         /// <summary>
         /// Whether the application supports iOS universal links and Android App Links. If true, then URLs can be set up to link directly to the application. If false, then URLs can't link directly to the application.
@@ -94,7 +94,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("enabled_universal_or_app_links")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? EnabledUniversalOrAppLinks { get; set; } = default!;
+        public bool? EnabledUniversalOrAppLinks { get; set; } = default!;
 
         /// <summary>
         /// Whether the application supports iOS shared web credentials.
@@ -103,7 +103,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("enabled_shared_webcredentials")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? EnabledSharedWebcredentials { get; set; } = default!;
+        public bool? EnabledSharedWebcredentials { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

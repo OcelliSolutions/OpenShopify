@@ -23,7 +23,8 @@ public class ReportController : ReportControllerBase
     /// <inheritdoc />
     [HttpPost, Route("reports.json")]
     [ProducesResponseType(typeof(ReportItem), StatusCodes.Status201Created)]
-    public override Task CreateReport([Required] CreateReportRequest request, string? name, string? shopify_ql)
+    [ProducesResponseType(typeof(ReportError), StatusCodes.Status400BadRequest)]
+    public override Task CreateReport([Required] CreateReportRequest request, string? name = null, string? shopify_ql = null)
     {
         throw new NotImplementedException();
     }
@@ -39,6 +40,7 @@ public class ReportController : ReportControllerBase
     /// <inheritdoc />
     [HttpPut, Route("reports/{report_id:long}.json")]
     [ProducesResponseType(typeof(ReportItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ReportError), StatusCodes.Status422UnprocessableEntity)]
     public override Task UpdateReport([Required] UpdateReportRequest request, [Required] long report_id)
     {
         throw new NotImplementedException();

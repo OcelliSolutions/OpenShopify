@@ -336,14 +336,14 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<CustomerItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 422)
+                        if (status_ == 400)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<CustomerError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<CustomerError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<CustomerError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1317,14 +1317,14 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<CustomerAddressItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 422)
+                        if (status_ == 400)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<CustomerAddressError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<CustomerAddressError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<CustomerAddressError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -2096,14 +2096,14 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<CustomerSavedSearchItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 422)
+                        if (status_ == 400)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<CustomerSavedSearchError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<CustomerSavedSearchError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<CustomerSavedSearchError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {

@@ -23,6 +23,7 @@ public class RefundController : RefundControllerBase
     [HttpPost, Route("orders/{order_id:long}/refunds.json")]
     [ProducesResponseType(typeof(RefundItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(RefundError), StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(typeof(CreateRefundRequestError), StatusCodes.Status400BadRequest)]
     public override Task CreateRefund(CreateRefundRequest request, long order_id, string? currency = null,
         string? discrepancy_reason = null, string? note = null, string? notify = null, string? refund_line_items = null,
         bool? restock = null, string? shipping = null, string? transactions = null)

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
@@ -7,121 +7,163 @@ using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Products;
-[Collection("Shared collection")]
+
+public class ProductImageFixture : SharedFixture, IAsyncLifetime
+{
+    public List<ProductImage> CreatedProductImages = new();
+    public Product Product = new();
+    public ProductsService Service;
+
+    public ProductImageFixture() =>
+        Service = new ProductsService(MyShopifyUrl, AccessToken);
+
+    public async Task InitializeAsync()
+    {
+        await CreateProduct();
+    }
+
+    public async Task CreateProduct()
+    {
+        var request = CreateProductRequest();
+        var response = await Service.Product.CreateProductAsync(request);
+        Product = response.Result.Product;
+    }
+
+    async Task IAsyncLifetime.DisposeAsync()
+    {
+        await DeleteProductImageAsync_CanDelete();
+
+        if (Product.Id > 0)
+        {
+            await Service.Product.DeleteProductAsync(Product.Id);
+        }
+    }
+    
+    public async Task DeleteProductImageAsync_CanDelete()
+    {
+        foreach (var productImage in CreatedProductImages)
+        {
+            _ = await Service.ProductImage.DeleteProductImageAsync(productImage.Id, Product.Id);
+        }
+        CreatedProductImages.Clear();
+    }
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class ProductImageTests : IClassFixture<SharedFixture>
+public class ProductImageTests : IClassFixture<ProductImageFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly ITestOutputHelper _testOutputHelper;
-    private readonly ProductsService _service;
 
-    public ProductImageTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public ProductImageTests(ProductImageFixture fixture, ITestOutputHelper testOutputHelper)
     {
-        _testOutputHelper = testOutputHelper;
-        Fixture = sharedFixture;
+        Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-        _service = new ProductsService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
+    private ProductImageFixture Fixture { get; }
+
+    #region Update
+
+    [SkippableFact]
+    [TestPriority(30)]
+    public async Task UpdateProductImageAsync_CanUpdate()
+    {
+        var originalProductImage = Fixture.CreatedProductImages.First();
+        var request = new UpdateProductImageRequest
+        {
+            Image = new UpdateProductImage
+            {
+                Id = originalProductImage.Id,
+                Position = 2,
+                Alt = Fixture.UniqueString()
+            }
+        };
+        var response = await Fixture.Service.ProductImage.UpdateProductImageAsync(originalProductImage.Id,
+            Fixture.Product.Id, request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+
+        Fixture.CreatedProductImages.Remove(originalProductImage);
+        Fixture.CreatedProductImages.Add(response.Result.Image);
+    }
+
+    #endregion Update
 
     #region Create
-    /*
-    [SkippableFact, TestPriority(10)]
-    public async Task Creates_ProductImages()
-    {
-        var created = await Fixture.Create();
 
-        Assert.NotNull(created);
-        Assert.True(created.Id.HasValue);
-        Assert.Equal(Fixture.ProductId, created.ProductId);
+    [SkippableFact]
+    [TestPriority(10)]
+    public async Task CreateProductImageAsync_CanCreate()
+    {
+        var request = Fixture.CreateProductImageRequest();
+        var response = await Fixture.Service.ProductImage.CreateProductImageAsync(Fixture.Product.Id, request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+
+        Fixture.CreatedProductImages.Add(response.Result.Image);
     }
-    */
+
+    [SkippableFact]
+    [TestPriority(10)]
+    public async Task CreateProductImageAsync_IsUnprocessableEntityError()
+    {
+        var request = new CreateProductImageRequest
+        {
+            Image = new CreateProductImage()
+        };
+        await Assert.ThrowsAsync<ApiException<ProductImageError>>(async () =>
+            await Fixture.Service.ProductImage.CreateProductImageAsync(Fixture.Product.Id, request));
+    }
+
     #endregion Create
 
     #region Read
 
-    [SkippableFact, TestPriority(20)]
-    public async Task Counts_ProductImages()
+    [SkippableFact]
+    [TestPriority(20)]
+    public async Task CountProductImagesAsync_CanGet()
     {
-        var productResponse = await _service.Product.ListProductsAsync(limit: 1);
-        var product = productResponse.Result.Products.First();
-        var response = await _service.ProductImage.CountProductImagesAsync(product.Id);
+        var response = await Fixture.Service.ProductImage.CountProductImagesAsync(Fixture.Product.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        Assert.NotNull(response.Result.Count);
+        var count = response.Result.Count;
+        Skip.If(count == 0, "No results returned. Unable to test");
     }
 
-    [SkippableFact, TestPriority(20)]
-    public async Task Lists_ProductImages()
+    [SkippableFact]
+    [TestPriority(20)]
+    public async Task ListProductImagesAsync_AdditionalPropertiesAreEmpty()
     {
-        var productResponse = await _service.Product.ListProductsAsync(limit: 1);
-        var product = productResponse.Result.Products.First();
-        var response = await _service.ProductImage.ListProductImagesAsync(product.Id);
+        var response = await Fixture.Service.ProductImage.ListProductImagesAsync(Fixture.Product.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var productImage in response.Result.Images)
         {
             _additionalPropertiesHelper.CheckAdditionalProperties(productImage, Fixture.MyShopifyUrl);
         }
-        Skip.If(!response.Result.Images.Any());
+
+        Skip.If(!response.Result.Images.Any(), "No results returned. Unable to test");
     }
 
-    
-    [SkippableFact, TestPriority(20)]
-    public async Task Gets_ProductImages()
+    [SkippableFact]
+    [TestPriority(20)]
+    public async Task GetProductImageAsync_TestCreated_AdditionalPropertiesAreEmpty()
     {
-        var productResponse = await _service.Product.ListProductsAsync(limit: 1);
-        var product = productResponse.Result.Products.First();
-        var productImagesResponse = await _service.ProductImage.ListProductImagesAsync(product.Id);
-        var productImage = productImagesResponse.Result.Images.First();
-        var response = await _service.ProductImage.GetProductImageAsync(productImage.Id, productImage.ProductId ?? 0);
+        Skip.If(!Fixture.CreatedProductImages.Any(), "Must be run with create test");
+        var productImage = Fixture.CreatedProductImages.First();
+        var response =
+            await Fixture.Service.ProductImage.GetProductImageAsync(productImage.Id, Fixture.Product.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Image, Fixture.MyShopifyUrl);
     }
+
     #endregion Read
 
-    #region Update
-    /*
-    [SkippableFact, TestPriority(30)]
-    public async Task Updates_ProductImages()
-    {
-        var created = await Fixture.Create();
-        var newAlt = $"ShopifySharp test {Guid.NewGuid()}";
-        long id = created.Id.Value;
-
-        created.Alt = newAlt;
-        created.Id = null;
-
-        var updated = await Fixture.Service.UpdateAsync(created.ProductId.Value, id, created);
-
-        // Reset the id so the Fixture can properly delete this object.
-        created.Id = id;
-
-        Assert.Equal(newAlt, updated.Alt);
-    }
-    */
-    #endregion Update
-
     #region Delete
-    /*
-    [SkippableFact, TestPriority(40)]
-    public async Task Deletes_ProductImages()
+
+
+    [SkippableFact]
+    [TestPriority(99)]
+    public async Task DeleteProductImageAsync_CanDelete()
     {
-        var created = await Fixture.Create(true);
-        bool threw = false;
-
-        try
-        {
-            await Fixture.Service.DeleteAsync(Fixture.ProductId, created.Id.Value);
-        }
-        catch (ShopifyException ex)
-        {
-            Console.WriteLine($"{nameof(Deletes_ProductImages)} failed. {ex.Message}");
-
-            threw = true;
-        }
-
-        Assert.False(threw);
+        await Fixture.DeleteProductImageAsync_CanDelete();
     }
-    */
+
     #endregion Delete
-}
+    }

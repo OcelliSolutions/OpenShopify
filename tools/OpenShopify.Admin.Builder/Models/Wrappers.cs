@@ -616,6 +616,11 @@ public partial record UpdateInventoryLevel : InventoryLevel{}
 /// <inheritdoc cref="InventoryLevelBase"/>
 public partial record InventoryLevel : InventoryLevelBase
 {
+    [JsonPropertyName("id"), Required]
+    public long Id { get; set; }
+
+    [JsonPropertyName("admin_graphql_api_id")]
+    public string? AdminGraphQLAPIId { get; set; }
 }
 
 /// <inheritdoc cref="InventoryLevelOrig"/>
@@ -697,6 +702,11 @@ public partial record UpdateMarketingEvent : MarketingEvent{}
 /// <inheritdoc cref="MarketingEventBase"/>
 public partial record MarketingEvent : MarketingEventBase
 {
+    [JsonPropertyName("id"), Required]
+    public long Id { get; set; }
+
+    [JsonPropertyName("admin_graphql_api_id")]
+    public string? AdminGraphQLAPIId { get; set; }
 }
 
 /// <inheritdoc cref="MarketingEventOrig"/>
@@ -1821,6 +1831,11 @@ public partial record UpdateCollectionListing : CollectionListing{}
 /// <inheritdoc cref="CollectionListingBase"/>
 public partial record CollectionListing : CollectionListingBase
 {
+    [JsonPropertyName("id"), Required]
+    public long Id { get; set; }
+
+    [JsonPropertyName("admin_graphql_api_id")]
+    public string? AdminGraphQLAPIId { get; set; }
 }
 
 /// <inheritdoc cref="CollectionListingOrig"/>
@@ -1983,6 +1998,11 @@ public partial record UpdateProductListing : ProductListing{}
 /// <inheritdoc cref="ProductListingBase"/>
 public partial record ProductListing : ProductListingBase
 {
+    [JsonPropertyName("id"), Required]
+    public long Id { get; set; }
+
+    [JsonPropertyName("admin_graphql_api_id")]
+    public string? AdminGraphQLAPIId { get; set; }
 }
 
 /// <inheritdoc cref="ProductListingOrig"/>
@@ -1997,7 +2017,7 @@ public partial record ResourceFeedbackItem
 
 public partial record ResourceFeedbackList
 {
-    [JsonPropertyName("resource_feedbacks"), Required]
+    [JsonPropertyName("resource_feedback"), Required]
     public IEnumerable<ResourceFeedback> ResourceFeedbacks { get; set; } = null!;
 }
 public partial record CreateResourceFeedbackRequest

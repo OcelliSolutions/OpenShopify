@@ -25,7 +25,7 @@ public class ArticleController : ArticleControllerBase
     /// <inheritdoc />
     [HttpPost, Route("blogs/{blog_id:long}/articles.json")]
     [ProducesResponseType(typeof(ArticleItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ArticleError), StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(typeof(ArticleError), StatusCodes.Status406NotAcceptable)]
     public override Task CreateArticleForBlog([Required] CreateArticleRequest request, [Required] long blog_id)
     {
         throw new NotImplementedException();
@@ -90,8 +90,4 @@ public class ArticleController : ArticleControllerBase
         throw new NotImplementedException();
     }
 
-}
-
-public class ArticleItem
-{
 }

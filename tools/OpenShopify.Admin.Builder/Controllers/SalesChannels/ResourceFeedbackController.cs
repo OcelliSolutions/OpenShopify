@@ -32,7 +32,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="messages">An array containing a single message.See [*Formatting the resource feedback message field*](#formatting-the-resource-feedback-field-{{ current_version }}) for formatting requirements.</param>
         /// <param name="state">Must be one of the following values:</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("resource_feedback.json")]
-        public abstract System.Threading.Tasks.Task CreateResourceFeedback([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateResourceFeedbackRequest request, string? feedback_generated_at = null, string? messages = null, string? state = null);
+        public abstract System.Threading.Tasks.Task CreateResourceFeedback([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateResourceFeedbackRequest request, System.DateTimeOffset? feedback_generated_at = null, string? messages = null, string? state = null);
 
         /// <summary>
         /// Receive a list of all ResourceFeedbacks
@@ -101,7 +101,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("messages")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Messages { get; set; } = default!;
+        public System.Collections.Generic.List<string>? Messages { get; set; } = default!;
 
         /// <summary>
         ///  The time at which the payload is constructed. Used to help determine whether incoming feedback is outdated compared to feedback already received, and if it should be ignored upon arrival. **Type:** ISO 8601 UTC datetime as string with year, month [or week], day, hour, minute, second, millisecond, and time zone. 
@@ -116,7 +116,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("feedback_generated_at")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? FeedbackGeneratedAt { get; set; } = default!;
+        public System.DateTimeOffset? FeedbackGeneratedAt { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

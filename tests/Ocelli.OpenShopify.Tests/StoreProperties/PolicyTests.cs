@@ -6,22 +6,19 @@ using Xunit.Abstractions;
 namespace Ocelli.OpenShopify.Tests.StoreProperties;
 [Collection("Shared collection")]
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class PolicyTests : IClassFixture<SharedFixture>
+public class PolicyTests : IClassFixture<PolicyFixture>
 {
+    private PolicyFixture Fixture { get; }
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly ITestOutputHelper _testOutputHelper;
-    private readonly StorePropertiesService _service;
+        
 
-    public PolicyTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public PolicyTests(PolicyFixture fixture, ITestOutputHelper testOutputHelper)
     {
-        _testOutputHelper = testOutputHelper;
-        Fixture = sharedFixture;
+                Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-        _service = new StorePropertiesService(Fixture.MyShopifyUrl, Fixture.AccessToken);
-    }
+            }
 
-    private SharedFixture Fixture { get; }
-
+    
     #region Create
 
     #endregion Create
@@ -37,4 +34,9 @@ public class PolicyTests : IClassFixture<SharedFixture>
     #region Delete
 
     #endregion Delete
+}
+
+public class PolicyFixture
+{
+    public ITestOutputHelper TestOutputHelper { get; set; }
 }

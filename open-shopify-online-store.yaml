@@ -167,8 +167,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ArticleItem'
-        '422':
-          description: Client Error
+        '406':
+          description: Not Acceptable
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -553,8 +553,8 @@ paths:
               $ref: '#/components/schemas/CreateAssetRequest'
         required: true
       responses:
-        '201':
-          description: Created
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -568,8 +568,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AssetItem'
-        '422':
-          description: Client Error
+        '406':
+          description: Not Acceptable
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -579,27 +579,22 @@ paths:
               description: Contains the number of seconds to wait until you can make a request again.
               schema:
                 type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AssetError'
     delete:
       tags:
         - Asset
       summary: Deletes an asset from a theme
       operationId: DeleteAssetFromTheme
       parameters:
-        - name: assetkey
-          in: query
-          description: Deletes a single asset from a theme by specifying the asset's key.
-          schema:
-            type: string
         - name: theme_id
           in: path
           required: true
           schema:
             type: integer
             format: int64
+        - name: 'asset[key]'
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Success
@@ -702,8 +697,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlogItem'
-        '422':
-          description: Client Error
+        '400':
+          description: Bad Request
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -959,8 +954,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CommentItem'
-        '422':
-          description: Client Error
+        '400':
+          description: Bad Request
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1385,8 +1380,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PageItem'
-        '422':
-          description: Client Error
+        '400':
+          description: Bad Request
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1657,8 +1652,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RedirectItem'
-        '422':
-          description: Client Error
+        '400':
+          description: Bad Request
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -1908,8 +1903,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScriptTagItem'
-        '422':
-          description: Client Error
+        '400':
+          description: Bad Request
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -2112,8 +2107,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ThemeItem'
-        '422':
-          description: Client Error
+        '400':
+          description: Bad Request
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -2335,7 +2330,12 @@ components:
       additionalProperties: { }
       description: Represents a Shopify article's image.
     ArticleItem:
+      required:
+        - article
       type: object
+      properties:
+        article:
+          $ref: '#/components/schemas/Article'
       additionalProperties: { }
     ArticleList:
       required:
@@ -2394,19 +2394,7 @@ components:
           type: string
           description: 'The text content of the asset, such as the HTML and Liquid markup of a template file.'
           nullable: true
-      additionalProperties: { }
-    AssetError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/AssetErrorDetails'
-      additionalProperties: { }
-    AssetErrorDetails:
-      type: object
-      properties:
-        base:
+        warnings:
           type: array
           items:
             type: string
@@ -2766,6 +2754,11 @@ components:
           type: string
           description: 'The text content of the asset, such as the HTML and Liquid markup of a template file.'
           nullable: true
+        warnings:
+          type: array
+          items:
+            type: string
+          nullable: true
       additionalProperties: false
     CreateAssetRequest:
       required:
@@ -2993,19 +2986,15 @@ components:
           format: date-time
           nullable: true
         event:
-          type: string
-          description: 'The DOM event that triggers the loading of the script. Valid values: `onload`.'
-          nullable: true
+          $ref: '#/components/schemas/ScriptTagEvent'
         src:
           type: string
           description: The URL of the remote script.
           nullable: true
         display_scope:
-          type: string
-          description: "The page or pages on the online store where the script should be included. Valid values: \r\n\r\n*   `online_store`: Include the script only on the web storefront. \r\n*   `order_status`: Include the script only on the order status page. \r\n*   `all`: Include the script on both the web storefront and the order status page."
-          nullable: true
+          $ref: '#/components/schemas/ScriptTagDisplayScope'
         cache:
-          type: string
+          type: boolean
           description: "Whether the Shopify CDN can cache and serve the script tag. Valid values: \r\n\r\n*   `true`: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned. \r\n*   `false`: The script will be served as is.  Default value: `false`."
           nullable: true
         updated_at:
@@ -3043,9 +3032,7 @@ components:
           description: Whether files are still being copied into place for this theme.
           nullable: true
         role:
-          type: string
-          description: "Specifies how the theme is being used within the shop. Valid values: \r\n\r\n*   **main**: The theme is published. Customers see it when they visit the online store. \r\n*   **unpublished**: The theme is unpublished. Customers can't see it. \r\n*   **demo**: The theme is installed on the store as a demo. The theme can't be published until the merchant buys the full version. \r\n*   **development**: The theme is used for development. The theme can't be published, and is temporary."
-          nullable: true
+          $ref: '#/components/schemas/ThemeRole'
         theme_store_id:
           type: integer
           description: 'A unique identifier applied to Shopify-made themes that are installed from the [Shopify Theme Store](https://themes.shopify.com/) Theme Store. Not all themes available in the Theme Store are developed by Shopify. Returns `null` if the store''s theme isn''t made by Shopify, or if it wasn''t installed from the Theme Store.'
@@ -3055,6 +3042,9 @@ components:
           type: string
           description: 'The date and time of when the theme was last updated. (format: 2014-04-25T16:15:47-04:00)'
           format: date-time
+          nullable: true
+        src:
+          type: string
           nullable: true
       additionalProperties: false
     CreateThemeRequest:
@@ -3102,13 +3092,10 @@ components:
           format: date-time
           nullable: true
         value:
-          type: string
           description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
           nullable: true
         type:
-          type: string
-          description: 'The type of data that the metafield stores in the `value` field. Refer to the list of [supported types](/apps/metafields/types).'
-          nullable: true
+          $ref: '#/components/schemas/MetafieldType'
         value_type:
           type: string
           description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\n`value_type` is deprecated and replaced by `type` in API version 2021-07.\r\n </aside> The legacy type information for the stored value. Valid values: `string`, `integer`, `json_string`."
@@ -3120,6 +3107,27 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+      additionalProperties: { }
+    MetafieldType:
+      enum:
+        - boolean
+        - color
+        - date
+        - date_time
+        - dimension
+        - file_reference
+        - json
+        - multi_line_text_field
+        - number_decimal
+        - number_integer
+        - page_reference
+        - product_reference
+        - rating
+        - single_line_text_field
+        - variant_reference
+        - volume
+        - weight
+      type: string
       additionalProperties: { }
     Page:
       required:
@@ -3289,19 +3297,15 @@ components:
           format: date-time
           nullable: true
         event:
-          type: string
-          description: 'The DOM event that triggers the loading of the script. Valid values: `onload`.'
-          nullable: true
+          $ref: '#/components/schemas/ScriptTagEvent'
         src:
           type: string
           description: The URL of the remote script.
           nullable: true
         display_scope:
-          type: string
-          description: "The page or pages on the online store where the script should be included. Valid values: \r\n\r\n*   `online_store`: Include the script only on the web storefront. \r\n*   `order_status`: Include the script only on the order status page. \r\n*   `all`: Include the script on both the web storefront and the order status page."
-          nullable: true
+          $ref: '#/components/schemas/ScriptTagDisplayScope'
         cache:
-          type: string
+          type: boolean
           description: "Whether the Shopify CDN can cache and serve the script tag. Valid values: \r\n\r\n*   `true`: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned. \r\n*   `false`: The script will be served as is.  Default value: `false`."
           nullable: true
         updated_at:
@@ -3315,6 +3319,13 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+      additionalProperties: { }
+    ScriptTagDisplayScope:
+      enum:
+        - online_store
+        - order_status
+        - all
+      type: string
       additionalProperties: { }
     ScriptTagError:
       required:
@@ -3337,6 +3348,11 @@ components:
           items:
             type: string
           nullable: true
+      additionalProperties: { }
+    ScriptTagEvent:
+      enum:
+        - onload
+      type: string
       additionalProperties: { }
     ScriptTagItem:
       required:
@@ -3388,9 +3404,7 @@ components:
           description: Whether files are still being copied into place for this theme.
           nullable: true
         role:
-          type: string
-          description: "Specifies how the theme is being used within the shop. Valid values: \r\n\r\n*   **main**: The theme is published. Customers see it when they visit the online store. \r\n*   **unpublished**: The theme is unpublished. Customers can't see it. \r\n*   **demo**: The theme is installed on the store as a demo. The theme can't be published until the merchant buys the full version. \r\n*   **development**: The theme is used for development. The theme can't be published, and is temporary."
-          nullable: true
+          $ref: '#/components/schemas/ThemeRole'
         theme_store_id:
           type: integer
           description: 'A unique identifier applied to Shopify-made themes that are installed from the [Shopify Theme Store](https://themes.shopify.com/) Theme Store. Not all themes available in the Theme Store are developed by Shopify. Returns `null` if the store''s theme isn''t made by Shopify, or if it wasn''t installed from the Theme Store.'
@@ -3400,6 +3414,9 @@ components:
           type: string
           description: 'The date and time of when the theme was last updated. (format: 2014-04-25T16:15:47-04:00)'
           format: date-time
+          nullable: true
+        src:
+          type: string
           nullable: true
         id:
           type: integer
@@ -3442,6 +3459,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Theme'
+      additionalProperties: { }
+    ThemeRole:
+      enum:
+        - main
+        - unpublished
+        - demo
+        - development
+      type: string
       additionalProperties: { }
     UpdateArticle:
       required:
@@ -3769,19 +3794,15 @@ components:
           format: date-time
           nullable: true
         event:
-          type: string
-          description: 'The DOM event that triggers the loading of the script. Valid values: `onload`.'
-          nullable: true
+          $ref: '#/components/schemas/ScriptTagEvent'
         src:
           type: string
           description: The URL of the remote script.
           nullable: true
         display_scope:
-          type: string
-          description: "The page or pages on the online store where the script should be included. Valid values: \r\n\r\n*   `online_store`: Include the script only on the web storefront. \r\n*   `order_status`: Include the script only on the order status page. \r\n*   `all`: Include the script on both the web storefront and the order status page."
-          nullable: true
+          $ref: '#/components/schemas/ScriptTagDisplayScope'
         cache:
-          type: string
+          type: boolean
           description: "Whether the Shopify CDN can cache and serve the script tag. Valid values: \r\n\r\n*   `true`: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned. \r\n*   `false`: The script will be served as is.  Default value: `false`."
           nullable: true
         updated_at:
@@ -3827,9 +3848,7 @@ components:
           description: Whether files are still being copied into place for this theme.
           nullable: true
         role:
-          type: string
-          description: "Specifies how the theme is being used within the shop. Valid values: \r\n\r\n*   **main**: The theme is published. Customers see it when they visit the online store. \r\n*   **unpublished**: The theme is unpublished. Customers can't see it. \r\n*   **demo**: The theme is installed on the store as a demo. The theme can't be published until the merchant buys the full version. \r\n*   **development**: The theme is used for development. The theme can't be published, and is temporary."
-          nullable: true
+          $ref: '#/components/schemas/ThemeRole'
         theme_store_id:
           type: integer
           description: 'A unique identifier applied to Shopify-made themes that are installed from the [Shopify Theme Store](https://themes.shopify.com/) Theme Store. Not all themes available in the Theme Store are developed by Shopify. Returns `null` if the store''s theme isn''t made by Shopify, or if it wasn''t installed from the Theme Store.'
@@ -3839,6 +3858,9 @@ components:
           type: string
           description: 'The date and time of when the theme was last updated. (format: 2014-04-25T16:15:47-04:00)'
           format: date-time
+          nullable: true
+        src:
+          type: string
           nullable: true
         id:
           type: integer

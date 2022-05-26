@@ -67,7 +67,7 @@ paths:
       tags:
         - InventoryItem
       summary: Retrieves a single inventory item by ID
-      operationId: GetInventoryItemByID
+      operationId: GetInventoryItem
       parameters:
         - name: inventory_item_id
           in: path
@@ -557,6 +557,8 @@ components:
             $ref: '#/components/schemas/InventoryItem'
       additionalProperties: { }
     InventoryLevel:
+      required:
+        - id
       type: object
       properties:
         available:
@@ -578,6 +580,12 @@ components:
           type: string
           description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the inventory level was last modified.'
           format: date-time
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
           nullable: true
       additionalProperties: { }
     InventoryLevelItem:

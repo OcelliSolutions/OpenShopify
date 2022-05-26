@@ -57,8 +57,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DiscountCodeItem'
-        '422':
-          description: Client Error
+        '400':
+          description: Bad Request
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -294,10 +294,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateDiscountCodeRequest'
+              $ref: '#/components/schemas/CreateDiscountCodeBatchRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateDiscountCodeRequest'
+              $ref: '#/components/schemas/CreateDiscountCodeBatchRequest'
         required: true
       responses:
         '201':
@@ -676,9 +676,20 @@ components:
           format: int64
           nullable: true
         usage_count:
-          type: string
+          type: integer
           description: The number of times that the discount code has been redeemed.
+          format: int32
           nullable: true
+      additionalProperties: false
+    CreateDiscountCodeBatchRequest:
+      required:
+        - discount_codes
+      type: object
+      properties:
+        discount_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateDiscountCode'
       additionalProperties: false
     CreateDiscountCodeRequest:
       required:
@@ -862,8 +873,9 @@ components:
           format: int64
           nullable: true
         usage_count:
-          type: string
+          type: integer
           description: The number of times that the discount code has been redeemed.
+          format: int32
           nullable: true
         amount:
           type: string
@@ -888,8 +900,61 @@ components:
         id:
           type: integer
           format: int64
+        price_rule_id:
+          type: integer
+          format: int64
+        started_at:
+          type: string
+          format: date-time
+          nullable: true
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          $ref: '#/components/schemas/DiscountCodeCreationStatus'
+        codes_count:
+          type: integer
+          description: The number of discount codes to create
+          format: int32
+          nullable: true
+        imported_count:
+          type: integer
+          description: The number of discount codes created successfully.
+          format: int32
+          nullable: true
+        failed_count:
+          type: integer
+          description: The number of discount codes that were not created successfully. Unsuccessful attempts will retry up to three times.
+          format: int32
+          nullable: true
+        logs:
+          type: array
+          items:
+            type: string
+          description: A report that specifies when no discount codes were created because the provided data was invalid.
+          nullable: true
+        errors:
+          $ref: '#/components/schemas/DiscountCodeCreationErrors'
         admin_graphql_api_id:
           type: string
+          nullable: true
+      additionalProperties: { }
+    DiscountCodeCreationErrors:
+      type: object
+      properties:
+        code:
+          type: array
+          items:
+            type: string
           nullable: true
       additionalProperties: { }
     DiscountCodeCreationItem:
@@ -899,6 +964,13 @@ components:
       properties:
         discount_code_creation:
           $ref: '#/components/schemas/DiscountCodeCreation'
+      additionalProperties: { }
+    DiscountCodeCreationStatus:
+      enum:
+        - queued
+        - running
+        - completed
+      type: string
       additionalProperties: { }
     DiscountCodeError:
       required:
@@ -1177,8 +1249,9 @@ components:
           format: int64
           nullable: true
         usage_count:
-          type: string
+          type: integer
           description: The number of times that the discount code has been redeemed.
+          format: int32
           nullable: true
         amount:
           type: string

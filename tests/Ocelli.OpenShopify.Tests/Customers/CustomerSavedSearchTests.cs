@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
@@ -12,161 +11,138 @@ namespace Ocelli.OpenShopify.Tests.Customers;
 public class CustomerSavedSearchFixture : SharedFixture, IAsyncLifetime
 {
     public List<CustomerSavedSearch> CreatedCustomerSavedSearches = new();
+    public CustomersService Service;
+
+    public CustomerSavedSearchFixture() =>
+        Service = new CustomersService(MyShopifyUrl, AccessToken);
+
     public Task InitializeAsync() => Task.CompletedTask;
 
-    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+    async Task IAsyncLifetime.DisposeAsync() => await DeleteCustomerSavedSearchAsync_CanDelete();
+
+    public async Task DeleteCustomerSavedSearchAsync_CanDelete()
+    {
+        foreach (var customerSavedSearch in CreatedCustomerSavedSearches)
+        {
+            _ = await Service.CustomerSavedSearch.DeleteCustomerSavedSearchAsync(customerSavedSearch.Id);
+        }
+
+        CreatedCustomerSavedSearches.Clear();
+    }
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
 public class CustomerSavedSearchTests : IClassFixture<CustomerSavedSearchFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly ITestOutputHelper _testOutputHelper;
-    private readonly CustomersService _service;
 
-    public CustomerSavedSearchTests(ITestOutputHelper testOutputHelper, CustomerSavedSearchFixture sharedFixture)
+    public CustomerSavedSearchTests(CustomerSavedSearchFixture fixture, ITestOutputHelper testOutputHelper)
     {
-        Fixture = sharedFixture;
-        _testOutputHelper = testOutputHelper;
+        Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-        _service = new CustomersService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
     private CustomerSavedSearchFixture Fixture { get; }
 
-    #region Create
-    [SkippableFact, TestPriority(1)]
-    public async Task Creates_CustomerSavedSearch()
-    {
-        var request = new CreateCustomerSavedSearchRequest()
-        {
-            CustomerSavedSearch = new()
-            {
-                Name = $@"{Fixture.Company} {Fixture.BatchId}",
-                Query = "-notes"
-            }
-        };
-        var response = await _service.CustomerSavedSearch.CreateCustomerSavedSearchAsync(request);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.CustomerSavedSearch, Fixture.MyShopifyUrl);
-
-        var customerSavedSearch = response.Result.CustomerSavedSearch;
-        Assert.NotNull(customerSavedSearch.Name);
-        Assert.Equal(request.CustomerSavedSearch.Name, customerSavedSearch.Name);
-        Assert.Equal(request.CustomerSavedSearch.Query, customerSavedSearch.Query);
-        Fixture.CreatedCustomerSavedSearches.Add(customerSavedSearch);
-    }
-    #endregion Create
-
-    #region Read
-    [SkippableFact, TestPriority(2)]
-    public async Task Counts_CustomerSavedSearch()
-    {
-        var response = await _service.CustomerSavedSearch.CountCustomerSavedSearchesAsync();
-        Assert.True(response.Result.Count > 0);
-    }
-
-    [SkippableFact, TestPriority(2)]
-    public async Task Lists_CustomerSavedSearch()
-    {
-        var response = await _service.CustomerSavedSearch.ListCustomerSavedSearchesAsync();
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        foreach (var customerSavedSearch in response.Result.CustomerSavedSearches)
-        {
-            _additionalPropertiesHelper.CheckAdditionalProperties(customerSavedSearch, Fixture.MyShopifyUrl);
-        }
-
-        Assert.True(response.Result.CustomerSavedSearches.Any());
-
-        //Add any created items from previously failed tests to the created list for later deletion.
-        Fixture.CreatedCustomerSavedSearches.AddRange(response.Result.CustomerSavedSearches.Where(fs =>
-            !Fixture.CreatedCustomerSavedSearches.Exists(e => e.Id == fs.Id) &&
-            fs.Name!.StartsWith(Fixture.Company)));
-    }
-
-    [SkippableFact, TestPriority(2)]
-    public async Task Gets_CustomerSavedSearch()
-    {
-        Skip.If(!Fixture.CreatedCustomerSavedSearches.Any(), "This should be run with the create test.");
-        var createdCustomerSavedSearch = Fixture.CreatedCustomerSavedSearches.First();
-        var response = await _service.CustomerSavedSearch.GetCustomerSavedSearchAsync(createdCustomerSavedSearch.Id);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.CustomerSavedSearch, Fixture.MyShopifyUrl);
-
-        var customerSavedSearch = response.Result.CustomerSavedSearch;
-
-        Assert.NotNull(customerSavedSearch);
-        Assert.Equal(createdCustomerSavedSearch.Name, customerSavedSearch.Name);
-        Assert.Equal(createdCustomerSavedSearch.Query, customerSavedSearch.Query);
-    }
-
-    [SkippableFact, TestPriority(2)]
-    public async Task Retrieves_Customers_In_A_Saved_Search()
-    {
-        Skip.If(!Fixture.CreatedCustomerSavedSearches.Any(), "This should be run with the create test.");
-        var createdCustomerSavedSearch = Fixture.CreatedCustomerSavedSearches.First();
-        var response =
-            await _service.CustomerSavedSearch.ListCustomersByCustomerSavedSearchAsync(createdCustomerSavedSearch.Id);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        foreach (var customer in response.Result.Customers)
-        {
-            _additionalPropertiesHelper.CheckAdditionalProperties(customer, Fixture.MyShopifyUrl);
-        }
-
-        Skip.If(!response.Result.Customers.Any(), "No customers returned. Cannot test.");
-    }
-    #endregion Read
-
     #region Update
-    [SkippableFact, TestPriority(3)]
-    public async Task Updates_CustomerSavedSearch()
+
+    [SkippableFact]
+    [TestPriority(30)]
+    public async Task UpdateCustomerSavedSearchAsync_CanUpdate()
     {
-        Skip.If(!Fixture.CreatedCustomerSavedSearches.Any(), "This should be run with the create test.");
-        var createdCustomerSavedSearch = Fixture.CreatedCustomerSavedSearches.First();
-        var request = new UpdateCustomerSavedSearchRequest()
+        var originalCustomerSavedSearch = Fixture.CreatedCustomerSavedSearches.First();
+        var request = new UpdateCustomerSavedSearchRequest
         {
-            CustomerSavedSearch = new()
+            CustomerSavedSearch = new UpdateCustomerSavedSearch
             {
-                Id = createdCustomerSavedSearch.Id,
-                Name = $@"{createdCustomerSavedSearch.Name} (UPDATED)"
+                Id = originalCustomerSavedSearch.Id,
+                Name = @"This Name Has Been Changed"
             }
         };
         var response =
-            await _service.CustomerSavedSearch.UpdateCustomerSavedSearchAsync(createdCustomerSavedSearch.Id, request);
-        
-        Assert.Equal(request.CustomerSavedSearch.Name, response.Result.CustomerSavedSearch.Name);
-        //since the query was not sent in the update, the response should show the original.
-        Assert.Equal(createdCustomerSavedSearch.Query, response.Result.CustomerSavedSearch.Query);
+            await Fixture.Service.CustomerSavedSearch.UpdateCustomerSavedSearchAsync(request.CustomerSavedSearch.Id,
+                request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
-        // Reset the id so the Fixture can properly delete this object.
-        Fixture.CreatedCustomerSavedSearches.Remove(createdCustomerSavedSearch);
+        Fixture.CreatedCustomerSavedSearches.Remove(originalCustomerSavedSearch);
         Fixture.CreatedCustomerSavedSearches.Add(response.Result.CustomerSavedSearch);
     }
+
     #endregion Update
 
     #region Delete
-    [SkippableFact, TestPriority(4)]
-    public async Task Deletes_CustomerSavedSearch()
+
+    [SkippableFact]
+    [TestPriority(99)]
+    public async Task DeleteCustomerSavedSearchAsync_CanDelete() =>
+        await Fixture.DeleteCustomerSavedSearchAsync_CanDelete();
+
+    #endregion Delete
+
+    #region Create
+
+    [SkippableFact]
+    [TestPriority(10)]
+    public async Task CreateCustomerSavedSearchAsync_CanCreate()
     {
-        Skip.If(Fixture.CreatedCustomerSavedSearches.Count == 0, "WARN: No data returned. Could not test");
-        var errors = new List<Exception>();
-        foreach (var customerSavedSearch in Fixture.CreatedCustomerSavedSearches)
+        var request = Fixture.CreateCustomerSavedSearchRequest();
+        var response = await Fixture.Service.CustomerSavedSearch.CreateCustomerSavedSearchAsync(request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+
+        Fixture.CreatedCustomerSavedSearches.Add(response.Result.CustomerSavedSearch);
+    }
+
+    [SkippableFact]
+    [TestPriority(10)]
+    public async Task CreateCustomerSavedSearchAsync_IsUnprocessableEntityError()
+    {
+        var request = new CreateCustomerSavedSearchRequest
         {
-            try
-            {
-                await _service.CustomerSavedSearch.DeleteCustomerSavedSearchAsync(customerSavedSearch.Id);
-            }
-            catch (Exception ex)
-            {
-                errors.Add(ex);
-            }
+            CustomerSavedSearch = new CreateCustomerSavedSearch()
+        };
+        await Assert.ThrowsAsync<ApiException<CustomerSavedSearchError>>(async () =>
+            await Fixture.Service.CustomerSavedSearch.CreateCustomerSavedSearchAsync(request));
+    }
+
+    #endregion Create
+
+    #region Read
+
+    [SkippableFact]
+    [TestPriority(20)]
+    public async Task CountCustomerSavedSearchesAsync_CanGet()
+    {
+        var response = await Fixture.Service.CustomerSavedSearch.CountCustomerSavedSearchesAsync();
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        var count = response.Result.Count;
+        Skip.If(count == 0, "No results returned. Unable to test");
+    }
+
+    [SkippableFact]
+    [TestPriority(20)]
+    public async Task ListCustomerSavedSearchesAsync_AdditionalPropertiesAreEmpty()
+    {
+        var response = await Fixture.Service.CustomerSavedSearch.ListCustomerSavedSearchesAsync();
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        foreach (var customerSavedSearche in response.Result.CustomerSavedSearches)
+        {
+            _additionalPropertiesHelper.CheckAdditionalProperties(customerSavedSearche, Fixture.MyShopifyUrl);
         }
 
-        foreach (var error in errors)
-        {
-            _testOutputHelper.WriteLine(error.Message);
-        }
-        Assert.Empty(errors);
+        Skip.If(!response.Result.CustomerSavedSearches.Any(), "No results returned. Unable to test");
     }
-    #endregion Delete
+
+    [SkippableFact]
+    [TestPriority(20)]
+    public async Task GetCustomerSavedSearchAsync_TestCreated_AdditionalPropertiesAreEmpty()
+    {
+        Skip.If(!Fixture.CreatedCustomerSavedSearches.Any(), "Must be run with create test");
+        var customerSavedSearche = Fixture.CreatedCustomerSavedSearches.First();
+        var response = await Fixture.Service.CustomerSavedSearch.GetCustomerSavedSearchAsync(customerSavedSearche.Id);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.CustomerSavedSearch,
+            Fixture.MyShopifyUrl);
+    }
+
+    #endregion Read
 }

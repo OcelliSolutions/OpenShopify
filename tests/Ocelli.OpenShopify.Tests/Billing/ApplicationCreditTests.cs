@@ -12,6 +12,12 @@ namespace Ocelli.OpenShopify.Tests.Billing;
 public class ApplicationCreditFixture : SharedFixture, IAsyncLifetime
 {
     public List<ApplicationCredit> CreatedApplicationCredits = new();
+
+    public ApplicationCreditFixture() =>
+        Service = new BillingService(MyShopifyUrl, AccessToken);
+
+    public BillingService Service { get; set; }
+
     public Task InitializeAsync() => Task.CompletedTask;
 
     Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
@@ -22,14 +28,13 @@ public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
 {
     private const string ApplicationCreditPrefix = "Refund for Foo";
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly BillingService _service;
+    
 
-    public ApplicationCreditTests(ITestOutputHelper testOutputHelper, ApplicationCreditFixture sharedFixture)
+    public ApplicationCreditTests(ApplicationCreditFixture fixture, ITestOutputHelper testOutputHelper)
     {
-        Fixture = sharedFixture;
+        Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-        _service = new BillingService(Fixture.MyShopifyUrl, Fixture.AccessToken);
-    }
+            }
 
     private ApplicationCreditFixture Fixture { get; }
 
@@ -48,7 +53,7 @@ public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
             }
         };
         var created =
-            await _service.ApplicationCredit.CreateApplicationCreditAsync(request);
+            await Fixture.Service.ApplicationCredit.CreateApplicationCreditAsync(request);
         _additionalPropertiesHelper.CheckAdditionalProperties(created, Fixture.MyShopifyUrl);
 
         Assert.Equal(name, created.Result.ApplicationCredit.Description);
@@ -69,7 +74,7 @@ public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
         var applicationCredit = Fixture.CreatedApplicationCredits.First();
 
         var single =
-            await _service.ApplicationCredit.GetApplicationCreditAsync(applicationCredit.Id);
+            await Fixture.Service.ApplicationCredit.GetApplicationCreditAsync(applicationCredit.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(single, Fixture.MyShopifyUrl);
 
         var credit = single.Result.ApplicationCredit;
@@ -85,7 +90,7 @@ public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
     public async Task GetAllApplicationCreditsAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
         var result =
-            await _service.ApplicationCredit.ListApplicationCreditsAsync();
+            await Fixture.Service.ApplicationCredit.ListApplicationCreditsAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
 
         Skip.If(!result.Result.ApplicationCredits.Any(), "WARN: No data returned. Could not test");

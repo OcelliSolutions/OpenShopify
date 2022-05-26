@@ -21,7 +21,7 @@ public class ProductImageController : ProductImageControllerBase
 
     /// <inheritdoc />
     [HttpPost, Route("products/{product_id:long}/images.json")]
-    [ProducesResponseType(typeof(ProductImageItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ProductImageItem), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProductImageError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateProductImage([Required] CreateProductImageRequest request, [Required] long product_id)
     {

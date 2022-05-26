@@ -53,7 +53,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<System.Collections.Generic.IDictionary<string, object>>> CreateArticleForBlogAsync(long blogId, CreateArticleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ArticleItem>> CreateArticleForBlogAsync(long blogId, CreateArticleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -77,7 +77,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">Show only certain fields, specifed by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<System.Collections.Generic.IDictionary<string, object>>> GetArticleAsync(long articleId, long blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ArticleItem>> GetArticleAsync(long articleId, long blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -85,7 +85,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<System.Collections.Generic.IDictionary<string, object>>> UpdateArticleAsync(long articleId, long blogId, UpdateArticleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ArticleItem>> UpdateArticleAsync(long articleId, long blogId, UpdateArticleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -310,7 +310,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<System.Collections.Generic.IDictionary<string, object>>> CreateArticleForBlogAsync(long blogId, CreateArticleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ArticleItem>> CreateArticleForBlogAsync(long blogId, CreateArticleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (blogId == null)
                 throw new System.ArgumentNullException("blogId");
@@ -357,22 +357,22 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 201)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.IDictionary<string, object>>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ArticleItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<System.Collections.Generic.IDictionary<string, object>>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<ArticleItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 422)
+                        if (status_ == 406)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ArticleError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<ArticleError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<ArticleError>("Not Acceptable", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -511,7 +511,7 @@ namespace Ocelli.OpenShopify
         /// <param name="fields">Show only certain fields, specifed by a comma-separated list of field names.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<System.Collections.Generic.IDictionary<string, object>>> GetArticleAsync(long articleId, long blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ArticleItem>> GetArticleAsync(long articleId, long blogId, string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (articleId == null)
                 throw new System.ArgumentNullException("articleId");
@@ -561,12 +561,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.IDictionary<string, object>>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ArticleItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<System.Collections.Generic.IDictionary<string, object>>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<ArticleItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -594,7 +594,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<System.Collections.Generic.IDictionary<string, object>>> UpdateArticleAsync(long articleId, long blogId, UpdateArticleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ArticleItem>> UpdateArticleAsync(long articleId, long blogId, UpdateArticleRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (articleId == null)
                 throw new System.ArgumentNullException("articleId");
@@ -645,12 +645,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.IDictionary<string, object>>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ArticleItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<System.Collections.Generic.IDictionary<string, object>>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<ArticleItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {
@@ -1109,7 +1109,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="sourceKey">The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.</param>
         /// <param name="src">The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.</param>
-        /// <returns>Created</returns>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<AssetItem>> CreateOrUpdatesAssetForThemeAsync(long themeId, CreateAssetRequest body, string? sourceKey = null, string? src = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -1117,7 +1117,6 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Deletes an asset from a theme
         /// </summary>
-        /// <param name="assetkey">Deletes a single asset from a theme by specifying the asset's key.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse> DeleteAssetFromThemeAsync(long themeId, string? assetkey = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1242,7 +1241,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <param name="sourceKey">The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.</param>
         /// <param name="src">The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.</param>
-        /// <returns>Created</returns>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<AssetItem>> CreateOrUpdatesAssetForThemeAsync(long themeId, CreateAssetRequest body, string? sourceKey = null, string? src = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -1298,7 +1297,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 201)
+                        if (status_ == 200)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<AssetItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
@@ -1308,14 +1307,10 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<AssetItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 422)
+                        if (status_ == 406)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<AssetError>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<AssetError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Not Acceptable", status_, responseText_, headers_, null);
                         }
                         else
                         {
@@ -1341,7 +1336,6 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Deletes an asset from a theme
         /// </summary>
-        /// <param name="assetkey">Deletes a single asset from a theme by specifying the asset's key.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse> DeleteAssetFromThemeAsync(long themeId, string? assetkey = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1354,7 +1348,7 @@ namespace Ocelli.OpenShopify
             urlBuilder_.Replace("{theme_id}", System.Uri.EscapeDataString(ConvertToString(themeId, System.Globalization.CultureInfo.InvariantCulture)));
             if (assetkey != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("assetkey") + "=").Append(System.Uri.EscapeDataString(ConvertToString(assetkey, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("asset[key]") + "=").Append(System.Uri.EscapeDataString(ConvertToString(assetkey, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -1763,14 +1757,14 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<BlogItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 422)
+                        if (status_ == 400)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<BlogError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<BlogError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<BlogError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -2517,14 +2511,14 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<CommentItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 422)
+                        if (status_ == 400)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<CommentError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<CommentError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<CommentError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -3587,14 +3581,14 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<PageItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 422)
+                        if (status_ == 400)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<PageError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<PageError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<PageError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -4314,14 +4308,14 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<RedirectItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 422)
+                        if (status_ == 400)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<RedirectError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<RedirectError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<RedirectError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -5022,14 +5016,14 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<ScriptTagItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 422)
+                        if (status_ == 400)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ScriptTagError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<ScriptTagError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<ScriptTagError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -5674,14 +5668,14 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<ThemeItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 422)
+                        if (status_ == 400)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ThemeError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<ThemeError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<ThemeError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -6280,8 +6274,23 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ArticleItem : System.Collections.Generic.Dictionary<string, object>
+    public partial class ArticleItem
     {
+
+        [System.Text.Json.Serialization.JsonPropertyName("article")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public Article Article { get; set; } = new Article();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
 
     }
 
@@ -6399,46 +6408,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Value { get; set; } = default!;
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class AssetError
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
-        [System.ComponentModel.DataAnnotations.Required]
-        public AssetErrorDetails Errors { get; set; } = new AssetErrorDetails();
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class AssetErrorDetails
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("base")]
+        [System.Text.Json.Serialization.JsonPropertyName("warnings")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.Collections.Generic.ICollection<string>? Base { get; set; } = default!;
+        public System.Collections.Generic.ICollection<string>? Warnings { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -7202,6 +7175,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Value { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("warnings")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<string>? Warnings { get; set; } = default!;
+
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -7657,14 +7635,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
-        /// <summary>
-        /// The DOM event that triggers the loading of the script. Valid values: `onload`.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("event")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Event { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public ScriptTagEvent? Event { get; set; } = default!;
 
         /// <summary>
         /// The URL of the remote script.
@@ -7675,18 +7650,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Src { get; set; } = default!;
 
-        /// <summary>
-        /// The page or pages on the online store where the script should be included. Valid values: 
-        /// <br/>
-        /// <br/>*   `online_store`: Include the script only on the web storefront. 
-        /// <br/>*   `order_status`: Include the script only on the order status page. 
-        /// <br/>*   `all`: Include the script on both the web storefront and the order status page.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("display_scope")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? DisplayScope { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public ScriptTagDisplayScope? DisplayScope { get; set; } = default!;
 
         /// <summary>
         /// Whether the Shopify CDN can cache and serve the script tag. Valid values: 
@@ -7698,7 +7666,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("cache")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Cache { get; set; } = default!;
+        public bool? Cache { get; set; } = default!;
 
         /// <summary>
         /// The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was last updated.
@@ -7762,19 +7730,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? Processing { get; set; } = default!;
 
-        /// <summary>
-        /// Specifies how the theme is being used within the shop. Valid values: 
-        /// <br/>
-        /// <br/>*   **main**: The theme is published. Customers see it when they visit the online store. 
-        /// <br/>*   **unpublished**: The theme is unpublished. Customers can't see it. 
-        /// <br/>*   **demo**: The theme is installed on the store as a demo. The theme can't be published until the merchant buys the full version. 
-        /// <br/>*   **development**: The theme is used for development. The theme can't be published, and is temporary.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("role")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Role { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public ThemeRole? Role { get; set; } = default!;
 
         /// <summary>
         /// A unique identifier applied to Shopify-made themes that are installed from the [Shopify Theme Store](https://themes.shopify.com/) Theme Store. Not all themes available in the Theme Store are developed by Shopify. Returns `null` if the store's theme isn't made by Shopify, or if it wasn't installed from the Theme Store.
@@ -7793,6 +7753,11 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("src")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Src { get; set; } = default!;
 
     }
 
@@ -8166,14 +8131,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
-        /// <summary>
-        /// The DOM event that triggers the loading of the script. Valid values: `onload`.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("event")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Event { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public ScriptTagEvent? Event { get; set; } = default!;
 
         /// <summary>
         /// The URL of the remote script.
@@ -8184,18 +8146,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Src { get; set; } = default!;
 
-        /// <summary>
-        /// The page or pages on the online store where the script should be included. Valid values: 
-        /// <br/>
-        /// <br/>*   `online_store`: Include the script only on the web storefront. 
-        /// <br/>*   `order_status`: Include the script only on the order status page. 
-        /// <br/>*   `all`: Include the script on both the web storefront and the order status page.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("display_scope")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? DisplayScope { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public ScriptTagDisplayScope? DisplayScope { get; set; } = default!;
 
         /// <summary>
         /// Whether the Shopify CDN can cache and serve the script tag. Valid values: 
@@ -8207,7 +8162,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("cache")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Cache { get; set; } = default!;
+        public bool? Cache { get; set; } = default!;
 
         /// <summary>
         /// The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was last updated.
@@ -8236,6 +8191,21 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum ScriptTagDisplayScope
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"online_store")]
+        OnlineStore = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"order_status")]
+        OrderStatus = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"all")]
+        All = 2,
 
     }
 
@@ -8282,6 +8252,15 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum ScriptTagEvent
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"onload")]
+        Onload = 0,
 
     }
 
@@ -8386,19 +8365,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? Processing { get; set; } = default!;
 
-        /// <summary>
-        /// Specifies how the theme is being used within the shop. Valid values: 
-        /// <br/>
-        /// <br/>*   **main**: The theme is published. Customers see it when they visit the online store. 
-        /// <br/>*   **unpublished**: The theme is unpublished. Customers can't see it. 
-        /// <br/>*   **demo**: The theme is installed on the store as a demo. The theme can't be published until the merchant buys the full version. 
-        /// <br/>*   **development**: The theme is used for development. The theme can't be published, and is temporary.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("role")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Role { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public ThemeRole? Role { get; set; } = default!;
 
         /// <summary>
         /// A unique identifier applied to Shopify-made themes that are installed from the [Shopify Theme Store](https://themes.shopify.com/) Theme Store. Not all themes available in the Theme Store are developed by Shopify. Returns `null` if the store's theme isn't made by Shopify, or if it wasn't installed from the Theme Store.
@@ -8417,6 +8388,11 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("src")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Src { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
 
@@ -8519,6 +8495,24 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum ThemeRole
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"main")]
+        Main = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unpublished")]
+        Unpublished = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"demo")]
+        Demo = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"development")]
+        Development = 3,
 
     }
 
@@ -9151,14 +9145,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
-        /// <summary>
-        /// The DOM event that triggers the loading of the script. Valid values: `onload`.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("event")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Event { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public ScriptTagEvent? Event { get; set; } = default!;
 
         /// <summary>
         /// The URL of the remote script.
@@ -9169,18 +9160,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Src { get; set; } = default!;
 
-        /// <summary>
-        /// The page or pages on the online store where the script should be included. Valid values: 
-        /// <br/>
-        /// <br/>*   `online_store`: Include the script only on the web storefront. 
-        /// <br/>*   `order_status`: Include the script only on the order status page. 
-        /// <br/>*   `all`: Include the script on both the web storefront and the order status page.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("display_scope")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? DisplayScope { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public ScriptTagDisplayScope? DisplayScope { get; set; } = default!;
 
         /// <summary>
         /// Whether the Shopify CDN can cache and serve the script tag. Valid values: 
@@ -9192,7 +9176,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("cache")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Cache { get; set; } = default!;
+        public bool? Cache { get; set; } = default!;
 
         /// <summary>
         /// The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was last updated.
@@ -9266,19 +9250,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? Processing { get; set; } = default!;
 
-        /// <summary>
-        /// Specifies how the theme is being used within the shop. Valid values: 
-        /// <br/>
-        /// <br/>*   **main**: The theme is published. Customers see it when they visit the online store. 
-        /// <br/>*   **unpublished**: The theme is unpublished. Customers can't see it. 
-        /// <br/>*   **demo**: The theme is installed on the store as a demo. The theme can't be published until the merchant buys the full version. 
-        /// <br/>*   **development**: The theme is used for development. The theme can't be published, and is temporary.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("role")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Role { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public ThemeRole? Role { get; set; } = default!;
 
         /// <summary>
         /// A unique identifier applied to Shopify-made themes that are installed from the [Shopify Theme Store](https://themes.shopify.com/) Theme Store. Not all themes available in the Theme Store are developed by Shopify. Returns `null` if the store's theme isn't made by Shopify, or if it wasn't installed from the Theme Store.
@@ -9297,6 +9273,11 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("src")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Src { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
 

@@ -476,6 +476,16 @@ namespace Ocelli.OpenShopify
                             throw new ApiException<DraftOrderError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
+                        if (status_ == 400)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<CreateDraftOrderRequestError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<CreateDraftOrderRequestError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -673,6 +683,16 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<DraftOrderError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        if (status_ == 400)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<CreateDraftOrderRequestError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<CreateDraftOrderRequestError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1538,6 +1558,16 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<OrderError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        if (status_ == 400)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<CreateOrderRequestError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<CreateOrderRequestError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -2406,6 +2436,16 @@ namespace Ocelli.OpenShopify
                             throw new ApiException<OrderRiskError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
+                        if (status_ == 400)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<CreateOrderRiskRequestError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<CreateOrderRiskRequestError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -3140,6 +3180,16 @@ namespace Ocelli.OpenShopify
                             throw new ApiException<RefundError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
+                        if (status_ == 400)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<CreateRefundRequestError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<CreateRefundRequestError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -3692,6 +3742,16 @@ namespace Ocelli.OpenShopify
                             throw new ApiException<TransactionError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
+                        if (status_ == 400)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<CreateTransactionRequestError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<CreateTransactionRequestError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -4025,14 +4085,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Value { get; set; } = default!;
 
-        /// <summary>
-        /// The type of discount. Known values are "percentage" and "fixed_amount".
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("value_type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ValueType { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public DiscountValueType? ValueType { get; set; } = default!;
 
         /// <summary>
         /// The applied amount of the discount, based on the setting of value_type. 
@@ -4061,19 +4118,19 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"customer")]
-        customer = 0,
+        Customer = 0,
 
         [System.Runtime.Serialization.EnumMember(Value = @"fraud")]
-        fraud = 1,
+        Fraud = 1,
 
         [System.Runtime.Serialization.EnumMember(Value = @"inventory")]
-        inventory = 2,
+        Inventory = 2,
 
         [System.Runtime.Serialization.EnumMember(Value = @"declined")]
-        declined = 3,
+        Declined = 3,
 
         [System.Runtime.Serialization.EnumMember(Value = @"other")]
-        other = 4,
+        Other = 4,
 
     }
 
@@ -4893,64 +4950,20 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Name { get; set; } = default!;
 
-        /// <summary>
-        /// Information about the customer. Learn more about [loading and removing customers](#loading-and-removing-customers). For more information about the `customer` object, see the [Customer resource](/api/admin-rest//resources/customer).
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("customer")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Customer { get; set; } = default!;
-
-        /// <summary>
-        /// The mailing address to where the order will be shipped. This address is optional and will not be available on orders that do not require shipping. It has the following properties: 
-        /// <br/>
-        /// <br/>*   **address1**: The street address of the shipping address. 
-        /// <br/>*   **address2**: An optional additional field for the street address of the shipping address. 
-        /// <br/>*   **city**: The city of the shipping address. 
-        /// <br/>*   **company**: The company of the person associated with the shipping address. 
-        /// <br/>*   **country**: The name of the country of the shipping address. 
-        /// <br/>*   **country_code**: The two-letter code for the country of the shipping address. 
-        /// <br/>*   **first_name**: The first name of the person associated with the payment method. 
-        /// <br/>*   **last_name**: The last name of the person associated with the payment method. 
-        /// <br/>*   **latitude**: The latitude of the shipping address. 
-        /// <br/>*   **longitude**: The longitude of the shipping address. 
-        /// <br/>*   **name**: The full name of the person associated with the payment method. 
-        /// <br/>*   **phone**: The phone number at the shipping address. 
-        /// <br/>*   **province**: The name of the state or province of the shipping address. 
-        /// <br/>*   **province_code**: The two-letter abbreviation of the state or province of the shipping address. 
-        /// <br/>*   **zip**: The zip or postal code of the shipping address.
-        /// </summary>
+        public Customer? Customer { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("shipping_address")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ShippingAddress { get; set; } = default!;
-
-        /// <summary>
-        /// The mailing address associated with the payment method. This address is an optional field that won't be available on orders that do not require a payment method. It has the following properties: 
-        /// <br/>
-        /// <br/>*   **address1**: The street address of the billing address. 
-        /// <br/>*   **address2**: An optional additional field for the street address of the billing address. 
-        /// <br/>*   **city**: The city of the billing address. 
-        /// <br/>*   **company**: The company of the person associated with the billing address. 
-        /// <br/>*   **country**: The name of the country of the billing address. 
-        /// <br/>*   **country_code**: The two-letter code ([ISO 3166-1 alpha-2 two-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)) for the country of the billing address. 
-        /// <br/>*   **first_name**: The first name of the person associated with the payment method. 
-        /// <br/>*   **last_name**: The last name of the person associated with the payment method. 
-        /// <br/>*   **latitude**: The latitude of the billing address. 
-        /// <br/>*   **longitude**: The longitude of the billing address. 
-        /// <br/>*   **name**: The full name of the person associated with the payment method. 
-        /// <br/>*   **phone**: The phone number at the billing address. 
-        /// <br/>*   **province**: The name of the billing address region, such as province, state, or prefecture. 
-        /// <br/>*   **province_code**: The two-letter abbreviation of the region for the billing address. 
-        /// <br/>*   **zip**: The postal code of the billing address, such as zip, postcode, or Eircode.
-        /// </summary>
+        public Address? ShippingAddress { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("billing_address")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? BillingAddress { get; set; } = default!;
+        public Address? BillingAddress { get; set; } = default!;
 
         /// <summary>
         /// The text of an optional note that a shop owner can attach to the draft order.
@@ -4968,7 +4981,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? NoteAttributes { get; set; } = default!;
+        public System.Collections.Generic.ICollection<NoteAttribute>? NoteAttributes { get; set; } = default!;
 
         /// <summary>
         /// The customer's email address.
@@ -5037,7 +5050,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("line_items")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? LineItems { get; set; } = default!;
+        public System.Collections.Generic.ICollection<DraftLineItem>? LineItems { get; set; } = default!;
 
         /// <summary>
         /// The terms and conditions under which a payment should be processed.
@@ -5062,19 +5075,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? PaymentTerms { get; set; } = default!;
 
-        /// <summary>
-        /// A `shipping_line` object, which details the shipping method used. The object has the following properties: 
-        /// <br/>
-        /// <br/>*   **custom**: Whether this is a regular shipping line or custom shipping line. 
-        /// <br/>*   **handle**: The handle of the shipping rate which was selected and applied. Required for regular shipping lines. 
-        /// <br/>*   **title**: The title of the shipping method. Required for custom shipping lines. (maximum: 255 characters) 
-        /// <br/>*   **price**: The price of the shipping method. Required for custom shipping lines.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("shipping_line")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ShippingLine { get; set; } = default!;
+        public DraftShippingLine? ShippingLine { get; set; } = default!;
 
         /// <summary>
         /// The source of the checkout. To use this field for sales attribution, you must register the channels that your app is managing. You can register the channels that your app is managing by completing [this Google Form](https://docs.google.com/forms/d/e/1FAIpQLScmVTZRQNjOJ7RD738mL1lGeFjqKVe_FM2tO9xsm21QEo5Ozg/viewform?usp=sf_link). After you've submited your request, you need to wait for your request to be processed by Shopify. You can find a list of your channels in the Partner Dashboard, in your app's Marketplace extension. You can specify a handle as the `source_name` value in your request.
@@ -5123,22 +5127,12 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("tax_lines")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? TaxLines { get; set; } = default!;
-
-        /// <summary>
-        /// The discount applied to the line item or the draft order object. Each draft order object can have one `applied_discount` object and each draft order line item can have its own `applied_discount`. The object has the following properties: 
-        /// <br/>
-        /// <br/>*   **title**: Title of the discount. 
-        /// <br/>*   **description**: Reason for the discount. 
-        /// <br/>*   **value**: The value of the discount. If the type of discount is `fixed_amount`, then it corresponds to a fixed dollar amount. If the type is `percentage`, then it corresponds to percentage. 
-        /// <br/>*   **value_type**: The type of discount. Valid values: `percentage`, `fixed_amount`. 
-        /// <br/>*   **amount**: The applied amount of the discount, based on the setting of `value_type`. For more information, see [*Applying discounts*](#applying-discounts).
-        /// </summary>
+        public System.Collections.Generic.ICollection<TaxLine>? TaxLines { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("applied_discount")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? AppliedDiscount { get; set; } = default!;
+        public AppliedDiscount? AppliedDiscount { get; set; } = default!;
 
         /// <summary>
         /// Whether taxes are included in the order subtotal. Valid values are `true` or `false`.
@@ -5216,6 +5210,26 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Status { get; set; } = default!;
 
+        /// <summary>
+        /// Additional metadata about the OpenShopify.Admin.Builder.Models.DraftOrder. Note: This is not naturally returned with a OpenShopify.Admin.Builder.Models.DraftOrder response, as
+        /// <br/>Shopify will not return OpenShopify.Admin.Builder.Models.DraftOrder metafields unless specified. Instead, you need to query metafields with !:MetafieldService. 
+        /// <br/>Uses include: Creating, updating, and deserializing webhook bodies that include them.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("metafields")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<Metafield>? Metafields { get; set; } = default!;
+
+        /// <summary>
+        /// An optional boolean that you can send as part of a draft order object to load customer shipping information.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("use_customer_default_address")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? UseCustomerDefaultAddress { get; set; } = default!;
+
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -5227,6 +5241,29 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
         public CreateDraftOrder DraftOrder { get; set; } = new CreateDraftOrder();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateDraftOrderRequestError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public CreateDraftOrderRequestErrorDetails Errors { get; set; } = new CreateDraftOrderRequestErrorDetails();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateDraftOrderRequestErrorDetails
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("base")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Base { get; set; } = default!;
 
     }
 
@@ -6023,6 +6060,29 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateOrderRequestError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public CreateOrderRequestErrorDetails Errors { get; set; } = new CreateOrderRequestErrorDetails();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateOrderRequestErrorDetails
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("order")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Order { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CreateOrderRisk
     {
         /// <summary>
@@ -6088,18 +6148,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public long? OrderId { get; set; } = default!;
 
-        /// <summary>
-        /// The recommended action given to the merchant. Valid values: 
-        /// <br/>
-        /// <br/>*   **cancel**: There is a high level of risk that this order is fraudulent. The merchant should cancel the order. 
-        /// <br/>*   **investigate**: There is a medium level of risk that this order is fraudulent. The merchant should investigate the order. 
-        /// <br/>*   **accept**: There is a low level of risk that this order is fraudulent. The order risk found no indication of fraud.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("recommendation")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Recommendation { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public RiskRecommendation? Recommendation { get; set; } = default!;
 
         /// <summary>
         /// **For internal use only**. A number between 0 and 1 that's assigned to the order. The closer the score is to 1, the more likely it is that the order is fraudulent. &lt;aside class="note"&gt; 
@@ -6135,6 +6188,29 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
         public CreateOrderRisk Risk { get; set; } = new CreateOrderRisk();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateOrderRiskRequestError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public CreateOrderRiskRequestErrorDetails Errors { get; set; } = new CreateOrderRiskRequestErrorDetails();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateOrderRiskRequestErrorDetails
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("base")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Base { get; set; } = default!;
 
     }
 
@@ -6311,6 +6387,29 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateRefundRequestError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public CreateRefundRequestErrorDetails Errors { get; set; } = new CreateRefundRequestErrorDetails();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateRefundRequestErrorDetails
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("base")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Base { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CreateTransaction
     {
         /// <summary>
@@ -6367,43 +6466,16 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public long? DeviceId { get; set; } = default!;
 
-        /// <summary>
-        /// A standardized error code, independent of the payment provider. Valid values: 
-        /// <br/>
-        /// <br/>*   **incorrect_number** 
-        /// <br/>*   **invalid_number** 
-        /// <br/>*   **invalid_expiry_date** 
-        /// <br/>*   **invalid_cvc** 
-        /// <br/>*   **expired_card** 
-        /// <br/>*   **incorrect_cvc** 
-        /// <br/>*   **incorrect_zip** 
-        /// <br/>*   **incorrect_address** 
-        /// <br/>*   **card_declined** 
-        /// <br/>*   **processing_error** 
-        /// <br/>*   **call_issuer** 
-        /// <br/>*   **pick_up_card**
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("error_code")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ErrorCode { get; set; } = default!;
-
-        /// <summary>
-        /// The attributes associated with a Shopify Payments extended authorization period. It has the following attributes: 
-        /// <br/>
-        /// <br/>*   **standard_authorization_expires_at**: The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the standard authorization period expires. After expiry, an extended authorization fee is applied upon capturing the payment. 
-        /// <br/>*   **extended_authorization_expires_at**: The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the extended authorization period expires. After expiry, the merchant can't capture the payment.  `extended_authorization_attributes` are available on the **Retrieve a specific transaction for an order** endpoint only if the following criteria applies: 
-        /// <br/>
-        /// <br/>*   The store is on a [Shopify Plus](https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9) plan. 
-        /// <br/>*   The store uses Shopify Payments. 
-        /// <br/>*   The transaction being retrieved is an extended authorization, which is determined by the `capture_before` date in the charge.  If the criteria isn't met, then an empty JSON is returned for `extended_authorization_attributes`. To learn more about extended authorization periods, refer to [Payment authorization](https://help.shopify.com/en/manual/payments/payment-authorization).
-        /// </summary>
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public TransactionErrorCode? ErrorCode { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("extended_authorization_attributes")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ExtendedAuthorizationAttributes { get; set; } = default!;
+        public ExtendedAuthorizationAttributes? ExtendedAuthorizationAttributes { get; set; } = default!;
 
         /// <summary>
         /// The name of the gateway the transaction was issued through. A list of gateways can be found on Shopify's [payment gateways page](//www.shopify.com/payment-gateways).
@@ -6414,20 +6486,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Gateway { get; set; } = default!;
 
-        /// <summary>
-        /// The transaction's type. Valid values: 
-        /// <br/>
-        /// <br/>*   **authorization**: Money that the customer has agreed to pay. The authorization period can be between 7 and 30 days (depending on your payment service) while a store waits for a payment to be captured. 
-        /// <br/>*   **capture**: A transfer of money that was reserved during the authorization of a shop. 
-        /// <br/>*   **sale**: The authorization and capture of a payment performed in one single step. 
-        /// <br/>*   **void**: The cancellation of a pending authorization or capture. 
-        /// <br/>*   **refund**: The partial or full return of captured money to the customer.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("kind")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Kind { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public TransactionKind? Kind { get; set; } = default!;
 
         /// <summary>
         /// The ID of the physical location where the transaction was processed.
@@ -6456,20 +6519,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public long? OrderId { get; set; } = default!;
 
-        /// <summary>
-        /// Information about the credit card used for this transaction. It has the following attributes: 
-        /// <br/>
-        /// <br/>*   **credit_card_bin**: The [issuer identification number](https://en.wikipedia.org/wiki/ISO/IEC_7812) (IIN), formerly known as bank identification number (BIN) of the customer's credit card. This is made up of the first few digits of the credit card number. 
-        /// <br/>*   **avs_result_code**: The response code from the [address verification system](https://en.wikipedia.org/wiki/Address_Verification_System). The code is always a single letter. Refer to [this chart](http://www.emsecommerce.net/avs_cvv2_response_codes.htm) for the codes and their definitions. 
-        /// <br/>*   **cvv_result_code**: The response code from the credit card company indicating whether the customer entered the [card security code](https://en.wikipedia.org/wiki/Card_Security_Code), or card verification value, correctly. The code is a single letter or empty string; see [this chart](http://www.emsecommerce.net/avs_cvv2_response_codes.htm) for the codes and their definitions. 
-        /// <br/>*   **credit_card_number**: The customer's credit card number, with most of the leading digits redacted. 
-        /// <br/>*   **credit_card_company**: The name of the company that issued the customer's credit card.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("payment_details")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? PaymentDetails { get; set; } = default!;
+        public PaymentDetails? PaymentDetails { get; set; } = default!;
 
         /// <summary>
         /// The ID of an associated transaction. 
@@ -6484,21 +6537,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public long? ParentId { get; set; } = default!;
 
-        /// <summary>
-        /// The attributes associated with a Shopify Payments refund. It has the following attributes: 
-        /// <br/>
-        /// <br/>*   **status**: The current status of the refund. Valid values: `pending`, `failure`, `success`, and `error`. 
-        /// <br/>*   **acquirer_reference_number**: A unique number associated with the transaction that can be used to track the refund. This property has a value only for transactions completed with Visa or Mastercard.  `payments_refund_attributes` are available on any JSON serialization of the order transaction only if the following criteria apply: 
-        /// <br/>
-        /// <br/>*   The store is on a [Shopify Plus](https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9) plan. 
-        /// <br/>*   The store uses Shopify Payments. 
-        /// <br/>*   The order transaction **kind** is either `refund` or `void`.  If the criteria isn't met, then the `payments_refund_attributes` property is omitted.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("payments_refund_attributes")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? PaymentsRefundAttributes { get; set; } = default!;
+        public PaymentsRefundAttributes? PaymentsRefundAttributes { get; set; } = default!;
 
         /// <summary>
         /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when a transaction was processed. This value is the date that's used in the analytic reports. By default, it matches the `created_at` value. If you're importing transactions from an app or another platform, then you can set `processed_at` to a date and time in the past to match when the original transaction was processed.
@@ -6554,20 +6596,19 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public long? UserId { get; set; } = default!;
 
-        /// <summary>
-        /// An adjustment on the transaction showing the amount lost or gained due to fluctuations in the currency exchange rate. It has the following attributes: 
-        /// <br/>
-        /// <br/>*   **ID**: The ID of the adjustment. 
-        /// <br/>*   **adjustment**: The difference between the amounts on the associated transaction and the parent transaction. 
-        /// <br/>*   **original_amount**: The amount of the parent transaction in the shop currency. 
-        /// <br/>*   **final_amount**: The amount of the associated transaction in the shop currency. 
-        /// <br/>*   **currency**: The shop currency.  Requires the header `X-Shopify-Api-Features = include-currency-exchange-adjustments`.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("currency_exchange_adjustment")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CurrencyExchangeAdjustment { get; set; } = default!;
+        public CurrencyExchangeAdjustment? CurrencyExchangeAdjustment { get; set; } = default!;
+
+        /// <summary>
+        /// The maximum amount that can be refunded
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("maximum_refundable")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? MaximumRefundable { get; set; } = default!;
 
     }
 
@@ -6580,6 +6621,29 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
         public CreateTransaction Transaction { get; set; } = new CreateTransaction();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateTransactionRequestError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public CreateTransactionRequestErrorDetails Errors { get; set; } = new CreateTransactionRequestErrorDetails();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateTransactionRequestErrorDetails
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("base")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Base { get; set; } = default!;
 
     }
 
@@ -6791,6 +6855,18 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum DiscountValueType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"fixed_amount")]
+        FixedAmount = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"percentage")]
+        Percentage = 1,
 
     }
 
@@ -7595,29 +7671,61 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ExtendedAuthorizationAttributes
+    {
+        /// <summary>
+        /// The date and time (ISO 8601 format) when the standard authorization period expires. After expiry, an extended authorization fee is applied upon capturing the payment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("standard_authorization_expires_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? StandardAuthorizationExpiresAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time (ISO 8601 format) when the extended authorization period expires. After expiry, the merchant can't capture the payment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("extended_authorization_expires_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? ExtendedAuthorizationExpiresAt { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public enum FinancialStatus
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"pending")]
-        pending = 0,
+        Pending = 0,
 
         [System.Runtime.Serialization.EnumMember(Value = @"authorized")]
-        authorized = 1,
+        Authorized = 1,
 
         [System.Runtime.Serialization.EnumMember(Value = @"partially_paid")]
-        partially_paid = 2,
+        PartiallyPaid = 2,
 
         [System.Runtime.Serialization.EnumMember(Value = @"paid")]
-        paid = 3,
+        Paid = 3,
 
         [System.Runtime.Serialization.EnumMember(Value = @"partially_refunded")]
-        partially_refunded = 4,
+        PartiallyRefunded = 4,
 
         [System.Runtime.Serialization.EnumMember(Value = @"refunded")]
-        refunded = 5,
+        Refunded = 5,
 
         [System.Runtime.Serialization.EnumMember(Value = @"voided")]
-        voided = 6,
+        Voided = 6,
 
     }
 
@@ -7626,13 +7734,13 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"fulfilled")]
-        fulfilled = 0,
+        Fulfilled = 0,
 
         [System.Runtime.Serialization.EnumMember(Value = @"partial")]
-        partial = 1,
+        Partial = 1,
 
         [System.Runtime.Serialization.EnumMember(Value = @"restocked")]
-        restocked = 2,
+        Restocked = 2,
 
     }
 
@@ -9068,18 +9176,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public long? OrderId { get; set; } = default!;
 
-        /// <summary>
-        /// The recommended action given to the merchant. Valid values: 
-        /// <br/>
-        /// <br/>*   **cancel**: There is a high level of risk that this order is fraudulent. The merchant should cancel the order. 
-        /// <br/>*   **investigate**: There is a medium level of risk that this order is fraudulent. The merchant should investigate the order. 
-        /// <br/>*   **accept**: There is a low level of risk that this order is fraudulent. The order risk found no indication of fraud.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("recommendation")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Recommendation { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public RiskRecommendation? Recommendation { get; set; } = default!;
 
         /// <summary>
         /// **For internal use only**. A number between 0 and 1 that's assigned to the order. The closer the score is to 1, the more likely it is that the order is fraudulent. &lt;aside class="note"&gt; 
@@ -9249,6 +9350,54 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum PaymentsRefundAttributeStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"pending")]
+        Pending = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"failure")]
+        Failure = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"success")]
+        Success = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"error")]
+        Error = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class PaymentsRefundAttributes
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public PaymentsRefundAttributeStatus? Status { get; set; } = default!;
+
+        /// <summary>
+        /// A unique number associated with the transaction that can be used to track the refund. This property has a value only for transactions completed with Visa or Mastercard.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("acquirer_reference_number")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? AcquirerReferenceNumber { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class PriceSet
     {
 
@@ -9281,22 +9430,22 @@ namespace Ocelli.OpenShopify
         Empty = 0,
 
         [System.Runtime.Serialization.EnumMember(Value = @"checkout")]
-        checkout = 1,
+        Checkout = 1,
 
         [System.Runtime.Serialization.EnumMember(Value = @"direct")]
-        direct = 2,
+        Direct = 2,
 
         [System.Runtime.Serialization.EnumMember(Value = @"manual")]
-        manual = 3,
+        Manual = 3,
 
         [System.Runtime.Serialization.EnumMember(Value = @"offsite")]
-        offsite = 4,
+        Offsite = 4,
 
         [System.Runtime.Serialization.EnumMember(Value = @"express")]
-        express = 5,
+        Express = 5,
 
         [System.Runtime.Serialization.EnumMember(Value = @"free")]
-        free = 6,
+        Free = 6,
 
     }
 
@@ -9803,6 +9952,21 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum RiskRecommendation
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"cancel")]
+        Cancel = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"investigate")]
+        Investigate = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"accept")]
+        Accept = 2,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class Shipping
     {
         /// <summary>
@@ -10051,43 +10215,16 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public long? DeviceId { get; set; } = default!;
 
-        /// <summary>
-        /// A standardized error code, independent of the payment provider. Valid values: 
-        /// <br/>
-        /// <br/>*   **incorrect_number** 
-        /// <br/>*   **invalid_number** 
-        /// <br/>*   **invalid_expiry_date** 
-        /// <br/>*   **invalid_cvc** 
-        /// <br/>*   **expired_card** 
-        /// <br/>*   **incorrect_cvc** 
-        /// <br/>*   **incorrect_zip** 
-        /// <br/>*   **incorrect_address** 
-        /// <br/>*   **card_declined** 
-        /// <br/>*   **processing_error** 
-        /// <br/>*   **call_issuer** 
-        /// <br/>*   **pick_up_card**
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("error_code")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ErrorCode { get; set; } = default!;
-
-        /// <summary>
-        /// The attributes associated with a Shopify Payments extended authorization period. It has the following attributes: 
-        /// <br/>
-        /// <br/>*   **standard_authorization_expires_at**: The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the standard authorization period expires. After expiry, an extended authorization fee is applied upon capturing the payment. 
-        /// <br/>*   **extended_authorization_expires_at**: The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the extended authorization period expires. After expiry, the merchant can't capture the payment.  `extended_authorization_attributes` are available on the **Retrieve a specific transaction for an order** endpoint only if the following criteria applies: 
-        /// <br/>
-        /// <br/>*   The store is on a [Shopify Plus](https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9) plan. 
-        /// <br/>*   The store uses Shopify Payments. 
-        /// <br/>*   The transaction being retrieved is an extended authorization, which is determined by the `capture_before` date in the charge.  If the criteria isn't met, then an empty JSON is returned for `extended_authorization_attributes`. To learn more about extended authorization periods, refer to [Payment authorization](https://help.shopify.com/en/manual/payments/payment-authorization).
-        /// </summary>
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public TransactionErrorCode? ErrorCode { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("extended_authorization_attributes")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ExtendedAuthorizationAttributes { get; set; } = default!;
+        public ExtendedAuthorizationAttributes? ExtendedAuthorizationAttributes { get; set; } = default!;
 
         /// <summary>
         /// The name of the gateway the transaction was issued through. A list of gateways can be found on Shopify's [payment gateways page](//www.shopify.com/payment-gateways).
@@ -10098,20 +10235,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Gateway { get; set; } = default!;
 
-        /// <summary>
-        /// The transaction's type. Valid values: 
-        /// <br/>
-        /// <br/>*   **authorization**: Money that the customer has agreed to pay. The authorization period can be between 7 and 30 days (depending on your payment service) while a store waits for a payment to be captured. 
-        /// <br/>*   **capture**: A transfer of money that was reserved during the authorization of a shop. 
-        /// <br/>*   **sale**: The authorization and capture of a payment performed in one single step. 
-        /// <br/>*   **void**: The cancellation of a pending authorization or capture. 
-        /// <br/>*   **refund**: The partial or full return of captured money to the customer.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("kind")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Kind { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public TransactionKind? Kind { get; set; } = default!;
 
         /// <summary>
         /// The ID of the physical location where the transaction was processed.
@@ -10158,21 +10286,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public long? ParentId { get; set; } = default!;
 
-        /// <summary>
-        /// The attributes associated with a Shopify Payments refund. It has the following attributes: 
-        /// <br/>
-        /// <br/>*   **status**: The current status of the refund. Valid values: `pending`, `failure`, `success`, and `error`. 
-        /// <br/>*   **acquirer_reference_number**: A unique number associated with the transaction that can be used to track the refund. This property has a value only for transactions completed with Visa or Mastercard.  `payments_refund_attributes` are available on any JSON serialization of the order transaction only if the following criteria apply: 
-        /// <br/>
-        /// <br/>*   The store is on a [Shopify Plus](https://www.shopify.com/plus?shpxid=72e62d60-101E-4719-442C-5B4B3876EBD9) plan. 
-        /// <br/>*   The store uses Shopify Payments. 
-        /// <br/>*   The order transaction **kind** is either `refund` or `void`.  If the criteria isn't met, then the `payments_refund_attributes` property is omitted.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("payments_refund_attributes")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? PaymentsRefundAttributes { get; set; } = default!;
+        public PaymentsRefundAttributes? PaymentsRefundAttributes { get; set; } = default!;
 
         /// <summary>
         /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when a transaction was processed. This value is the date that's used in the analytic reports. By default, it matches the `created_at` value. If you're importing transactions from an app or another platform, then you can set `processed_at` to a date and time in the past to match when the original transaction was processed.
@@ -10285,6 +10402,48 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum TransactionErrorCode
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"incorrect_number")]
+        IncorrectNumber = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"invalid_number")]
+        InvalidNumber = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"invalid_expiry_date")]
+        InvalidExpiryDate = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"invalid_cvc")]
+        InvalidCvc = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"expired_card")]
+        ExpiredCard = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"incorrect_cvc")]
+        IncorrectCvc = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"incorrect_zip")]
+        IncorrectZip = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"incorrect_address")]
+        IncorrectAddress = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"card_declined")]
+        CardDeclined = 8,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"processing_error")]
+        ProcessingError = 9,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"call_issuer")]
+        CallIssuer = 10,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"pick_up_card")]
+        PickUpCard = 11,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class TransactionErrorDetails
     {
 
@@ -10322,6 +10481,27 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum TransactionKind
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"authorization")]
+        Authorization = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"capture")]
+        Capture = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"sale")]
+        Sale = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"void")]
+        Void = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"refund")]
+        Refund = 4,
 
     }
 
@@ -11539,18 +11719,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public long? OrderId { get; set; } = default!;
 
-        /// <summary>
-        /// The recommended action given to the merchant. Valid values: 
-        /// <br/>
-        /// <br/>*   **cancel**: There is a high level of risk that this order is fraudulent. The merchant should cancel the order. 
-        /// <br/>*   **investigate**: There is a medium level of risk that this order is fraudulent. The merchant should investigate the order. 
-        /// <br/>*   **accept**: There is a low level of risk that this order is fraudulent. The order risk found no indication of fraud.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("recommendation")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Recommendation { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public RiskRecommendation? Recommendation { get; set; } = default!;
 
         /// <summary>
         /// **For internal use only**. A number between 0 and 1 that's assigned to the order. The closer the score is to 1, the more likely it is that the order is fraudulent. &lt;aside class="note"&gt; 

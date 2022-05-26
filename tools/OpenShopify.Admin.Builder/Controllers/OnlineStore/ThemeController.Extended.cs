@@ -22,7 +22,7 @@ public class ThemeController : ThemeControllerBase
     /// <inheritdoc />
     [HttpPost, Route("themes.json")]
     [ProducesResponseType(typeof(ThemeItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ThemeError), StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(typeof(ThemeError), StatusCodes.Status400BadRequest)]
     public override Task CreateTheme([Required] CreateThemeRequest request)
     {
         throw new NotImplementedException();

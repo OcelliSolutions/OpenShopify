@@ -2536,7 +2536,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Create a new Product Image
         /// </summary>
-        /// <returns>Created</returns>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ProductImageItem>> CreateProductImageAsync(long productId, CreateProductImageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -2697,7 +2697,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Create a new Product Image
         /// </summary>
-        /// <returns>Created</returns>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductImageItem>> CreateProductImageAsync(long productId, CreateProductImageRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -2744,7 +2744,7 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 201)
+                        if (status_ == 200)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<ProductImageItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
@@ -5537,6 +5537,21 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("alt")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Alt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("filename")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Filename { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("attachment")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Attachment { get; set; } = default!;
+
         /// <summary>
         /// Additional metadata about the OpenShopify.Admin.Builder.Models.ProductImageBase. Note: This is not naturally returned with a OpenShopify.Admin.Builder.Models.ProductImageBase response, as
         /// <br/>Shopify will not return OpenShopify.Admin.Builder.Models.ProductImageBase metafields unless specified. Instead, you need to query metafields with !:MetafieldService. 
@@ -5902,17 +5917,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.DateTimeOffset? PublishedAt { get; set; } = default!;
 
-        /// <summary>
-        /// Whether the smart collection is published to the Point of Sale channel. Valid values: 
-        /// <br/>
-        /// <br/>*   `web`: The smart collection is published to the Online Store channel but not published to the Point of Sale channel. 
-        /// <br/>*   `global`: The smart collection is published to both the Online Store channel and the Point of Sale channel.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? PublishedScope { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public SmartCollectionPublishedScope? PublishedScope { get; set; } = default!;
 
         /// <summary>
         /// The list of rules that define what products go into the smart collection. Each rule has the following properties:
@@ -5971,23 +5980,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? Disjunctive { get; set; } = default!;
 
-        /// <summary>
-        /// The order of the products in the smart collection. Valid values:
-        /// <br/>
-        /// <br/>*   `alpha-asc`: The products are sorted alphabetically from A to Z. 
-        /// <br/>*   `alpha-des`: The products are sorted alphabetically from Z to A. 
-        /// <br/>*   `best-selling`: The products are sorted by number of sales. 
-        /// <br/>*   `created`: The products are sorted by the date they were created, from oldest to newest. 
-        /// <br/>*   `created-desc`: The products are sorted by the date they were created, from newest to oldest. 
-        /// <br/>*   `manual`: The products are manually sorted by the shop owner. 
-        /// <br/>*   `price-asc`: The products are sorted by price from lowest to highest. 
-        /// <br/>*   `price-desc`: The products are sorted by price from highest to lowest.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("sort_order")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? SortOrder { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public SortOrder? SortOrder { get; set; } = default!;
 
         /// <summary>
         /// The suffix of the Liquid template that the shop uses. By default, the original template is called product.liquid, and additional templates are called product.`suffix`.liquid.
@@ -6704,6 +6701,21 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("alt")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Alt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("filename")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Filename { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("attachment")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Attachment { get; set; } = default!;
+
         /// <summary>
         /// Additional metadata about the OpenShopify.Admin.Builder.Models.ProductImageBase. Note: This is not naturally returned with a OpenShopify.Admin.Builder.Models.ProductImageBase response, as
         /// <br/>Shopify will not return OpenShopify.Admin.Builder.Models.ProductImageBase metafields unless specified. Instead, you need to query metafields with !:MetafieldService. 
@@ -7309,6 +7321,69 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum RuleColumn
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"title")]
+        Title = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"type")]
+        Type = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"vendor")]
+        Vendor = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"variant_title")]
+        VariantTitle = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"variant_compare_at_price")]
+        VariantCompareAtPrice = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"variant_weight")]
+        VariantWeight = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"variant_inventory")]
+        VariantInventory = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"variant_price")]
+        VariantPrice = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"tag")]
+        Tag = 8,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum RuleRelation
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"greater_than")]
+        GreaterThan = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"less_than")]
+        LessThan = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"equals")]
+        Equals = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"not_equals")]
+        NotEquals = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"starts_with")]
+        StartsWith = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"ends_with")]
+        EndsWith = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"contains")]
+        Contains = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"not_contains")]
+        NotContains = 7,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class SmartCollection
     {
         /// <summary>
@@ -7343,17 +7418,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.DateTimeOffset? PublishedAt { get; set; } = default!;
 
-        /// <summary>
-        /// Whether the smart collection is published to the Point of Sale channel. Valid values: 
-        /// <br/>
-        /// <br/>*   `web`: The smart collection is published to the Online Store channel but not published to the Point of Sale channel. 
-        /// <br/>*   `global`: The smart collection is published to both the Online Store channel and the Point of Sale channel.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? PublishedScope { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public SmartCollectionPublishedScope? PublishedScope { get; set; } = default!;
 
         /// <summary>
         /// The list of rules that define what products go into the smart collection. Each rule has the following properties:
@@ -7412,23 +7481,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? Disjunctive { get; set; } = default!;
 
-        /// <summary>
-        /// The order of the products in the smart collection. Valid values:
-        /// <br/>
-        /// <br/>*   `alpha-asc`: The products are sorted alphabetically from A to Z. 
-        /// <br/>*   `alpha-des`: The products are sorted alphabetically from Z to A. 
-        /// <br/>*   `best-selling`: The products are sorted by number of sales. 
-        /// <br/>*   `created`: The products are sorted by the date they were created, from oldest to newest. 
-        /// <br/>*   `created-desc`: The products are sorted by the date they were created, from newest to oldest. 
-        /// <br/>*   `manual`: The products are manually sorted by the shop owner. 
-        /// <br/>*   `price-asc`: The products are sorted by price from lowest to highest. 
-        /// <br/>*   `price-desc`: The products are sorted by price from highest to lowest.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("sort_order")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? SortOrder { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public SortOrder? SortOrder { get; set; } = default!;
 
         /// <summary>
         /// The suffix of the Liquid template that the shop uses. By default, the original template is called product.liquid, and additional templates are called product.`suffix`.liquid.
@@ -7648,20 +7705,30 @@ namespace Ocelli.OpenShopify
 
     }
 
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum SmartCollectionPublishedScope
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"web")]
+        Web = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"global")]
+        Global = 1,
+
+    }
+
     /// <summary>
     /// An entity representing a Shopify Smart Collection Rule.
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class SmartCollectionRules
     {
-        /// <summary>
-        /// The relationship between the column choice, and the condition.
-        /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("relation")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Relation { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public RuleRelation? Relation { get; set; } = default!;
 
         /// <summary>
         /// Select products for a collection using a condition. Conditions are either strings or numbers, depending on the relation.
@@ -7672,14 +7739,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Condition { get; set; } = default!;
 
-        /// <summary>
-        /// The properties of a product that can be used to to populate a collection.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("column")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Column { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public RuleColumn? Column { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -7689,6 +7753,36 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum SortOrder
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"alpha-asc")]
+        AlphaAsc = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"alpha-des")]
+        AlphaDes = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"best-selling")]
+        BestSelling = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"created")]
+        Created = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"created-desc")]
+        CreatedDesc = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"manual")]
+        Manual = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"price-asc")]
+        PriceAsc = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"price-desc")]
+        PriceDesc = 7,
 
     }
 
@@ -8092,6 +8186,21 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("alt")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Alt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("filename")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Filename { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("attachment")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Attachment { get; set; } = default!;
+
         /// <summary>
         /// Additional metadata about the OpenShopify.Admin.Builder.Models.ProductImageBase. Note: This is not naturally returned with a OpenShopify.Admin.Builder.Models.ProductImageBase response, as
         /// <br/>Shopify will not return OpenShopify.Admin.Builder.Models.ProductImageBase metafields unless specified. Instead, you need to query metafields with !:MetafieldService. 
@@ -8477,17 +8586,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.DateTimeOffset? PublishedAt { get; set; } = default!;
 
-        /// <summary>
-        /// Whether the smart collection is published to the Point of Sale channel. Valid values: 
-        /// <br/>
-        /// <br/>*   `web`: The smart collection is published to the Online Store channel but not published to the Point of Sale channel. 
-        /// <br/>*   `global`: The smart collection is published to both the Online Store channel and the Point of Sale channel.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? PublishedScope { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public SmartCollectionPublishedScope? PublishedScope { get; set; } = default!;
 
         /// <summary>
         /// The list of rules that define what products go into the smart collection. Each rule has the following properties:
@@ -8546,23 +8649,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? Disjunctive { get; set; } = default!;
 
-        /// <summary>
-        /// The order of the products in the smart collection. Valid values:
-        /// <br/>
-        /// <br/>*   `alpha-asc`: The products are sorted alphabetically from A to Z. 
-        /// <br/>*   `alpha-des`: The products are sorted alphabetically from Z to A. 
-        /// <br/>*   `best-selling`: The products are sorted by number of sales. 
-        /// <br/>*   `created`: The products are sorted by the date they were created, from oldest to newest. 
-        /// <br/>*   `created-desc`: The products are sorted by the date they were created, from newest to oldest. 
-        /// <br/>*   `manual`: The products are manually sorted by the shop owner. 
-        /// <br/>*   `price-asc`: The products are sorted by price from lowest to highest. 
-        /// <br/>*   `price-desc`: The products are sorted by price from highest to lowest.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("sort_order")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? SortOrder { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public SortOrder? SortOrder { get; set; } = default!;
 
         /// <summary>
         /// The suffix of the Liquid template that the shop uses. By default, the original template is called product.liquid, and additional templates are called product.`suffix`.liquid.

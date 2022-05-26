@@ -1019,8 +1019,8 @@ paths:
               $ref: '#/components/schemas/CreateProductImageRequest'
         required: true
       responses:
-        '201':
-          description: Created
+        '200':
+          description: Success
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -2207,6 +2207,15 @@ components:
           description: 'The date and time when the product image was last modified. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
           format: date-time
           nullable: true
+        alt:
+          type: string
+          nullable: true
+        filename:
+          type: string
+          nullable: true
+        attachment:
+          type: string
+          nullable: true
         metafields:
           type: array
           items:
@@ -2396,9 +2405,7 @@ components:
           format: date-time
           nullable: true
         published_scope:
-          type: string
-          description: "Whether the smart collection is published to the Point of Sale channel. Valid values: \r\n\r\n*   `web`: The smart collection is published to the Online Store channel but not published to the Point of Sale channel. \r\n*   `global`: The smart collection is published to both the Online Store channel and the Point of Sale channel."
-          nullable: true
+          $ref: '#/components/schemas/SmartCollectionPublishedScope'
         rules:
           type: array
           items:
@@ -2410,9 +2417,7 @@ components:
           description: "Whether the product must match all the rules to be included in the smart collection. Valid values: \r\n\r\n*   `true`: Products only need to match one or more of the rules to be included in the smart collection. \r\n*   `false`: Products must match all of the rules to be included in the smart collection."
           nullable: true
         sort_order:
-          type: string
-          description: "The order of the products in the smart collection. Valid values:\r\n\r\n*   `alpha-asc`: The products are sorted alphabetically from A to Z. \r\n*   `alpha-des`: The products are sorted alphabetically from Z to A. \r\n*   `best-selling`: The products are sorted by number of sales. \r\n*   `created`: The products are sorted by the date they were created, from oldest to newest. \r\n*   `created-desc`: The products are sorted by the date they were created, from newest to oldest. \r\n*   `manual`: The products are manually sorted by the shop owner. \r\n*   `price-asc`: The products are sorted by price from lowest to highest. \r\n*   `price-desc`: The products are sorted by price from highest to lowest."
-          nullable: true
+          $ref: '#/components/schemas/SortOrder'
         template_suffix:
           type: string
           description: 'The suffix of the Liquid template that the shop uses. By default, the original template is called product.liquid, and additional templates are called product.`suffix`.liquid.'
@@ -2617,13 +2622,10 @@ components:
           format: date-time
           nullable: true
         value:
-          type: string
           description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
           nullable: true
         type:
-          type: string
-          description: 'The type of data that the metafield stores in the `value` field. Refer to the list of [supported types](/apps/metafields/types).'
-          nullable: true
+          $ref: '#/components/schemas/MetafieldType'
         value_type:
           type: string
           description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\n`value_type` is deprecated and replaced by `type` in API version 2021-07.\r\n </aside> The legacy type information for the stored value. Valid values: `string`, `integer`, `json_string`."
@@ -2635,6 +2637,27 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+      additionalProperties: { }
+    MetafieldType:
+      enum:
+        - boolean
+        - color
+        - date
+        - date_time
+        - dimension
+        - file_reference
+        - json
+        - multi_line_text_field
+        - number_decimal
+        - number_integer
+        - page_reference
+        - product_reference
+        - rating
+        - single_line_text_field
+        - variant_reference
+        - volume
+        - weight
+      type: string
       additionalProperties: { }
     PresentmentPrice:
       type: object
@@ -2808,6 +2831,15 @@ components:
           type: string
           description: 'The date and time when the product image was last modified. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
           format: date-time
+          nullable: true
+        alt:
+          type: string
+          nullable: true
+        filename:
+          type: string
+          nullable: true
+        attachment:
+          type: string
           nullable: true
         metafields:
           type: array
@@ -3088,6 +3120,31 @@ components:
           items:
             $ref: '#/components/schemas/ProductVariant'
       additionalProperties: { }
+    RuleColumn:
+      enum:
+        - title
+        - type
+        - vendor
+        - variant_title
+        - variant_compare_at_price
+        - variant_weight
+        - variant_inventory
+        - variant_price
+        - tag
+      type: string
+      additionalProperties: { }
+    RuleRelation:
+      enum:
+        - greater_than
+        - less_than
+        - equals
+        - not_equals
+        - starts_with
+        - ends_with
+        - contains
+        - not_contains
+      type: string
+      additionalProperties: { }
     SmartCollection:
       required:
         - id
@@ -3109,9 +3166,7 @@ components:
           format: date-time
           nullable: true
         published_scope:
-          type: string
-          description: "Whether the smart collection is published to the Point of Sale channel. Valid values: \r\n\r\n*   `web`: The smart collection is published to the Online Store channel but not published to the Point of Sale channel. \r\n*   `global`: The smart collection is published to both the Online Store channel and the Point of Sale channel."
-          nullable: true
+          $ref: '#/components/schemas/SmartCollectionPublishedScope'
         rules:
           type: array
           items:
@@ -3123,9 +3178,7 @@ components:
           description: "Whether the product must match all the rules to be included in the smart collection. Valid values: \r\n\r\n*   `true`: Products only need to match one or more of the rules to be included in the smart collection. \r\n*   `false`: Products must match all of the rules to be included in the smart collection."
           nullable: true
         sort_order:
-          type: string
-          description: "The order of the products in the smart collection. Valid values:\r\n\r\n*   `alpha-asc`: The products are sorted alphabetically from A to Z. \r\n*   `alpha-des`: The products are sorted alphabetically from Z to A. \r\n*   `best-selling`: The products are sorted by number of sales. \r\n*   `created`: The products are sorted by the date they were created, from oldest to newest. \r\n*   `created-desc`: The products are sorted by the date they were created, from newest to oldest. \r\n*   `manual`: The products are manually sorted by the shop owner. \r\n*   `price-asc`: The products are sorted by price from lowest to highest. \r\n*   `price-desc`: The products are sorted by price from highest to lowest."
-          nullable: true
+          $ref: '#/components/schemas/SortOrder'
         template_suffix:
           type: string
           description: 'The suffix of the Liquid template that the shop uses. By default, the original template is called product.liquid, and additional templates are called product.`suffix`.liquid.'
@@ -3223,23 +3276,37 @@ components:
           items:
             $ref: '#/components/schemas/SmartCollection'
       additionalProperties: { }
+    SmartCollectionPublishedScope:
+      enum:
+        - web
+        - global
+      type: string
+      additionalProperties: { }
     SmartCollectionRules:
       type: object
       properties:
         relation:
-          type: string
-          description: 'The relationship between the column choice, and the condition.'
-          nullable: true
+          $ref: '#/components/schemas/RuleRelation'
         condition:
           type: string
           description: 'Select products for a collection using a condition. Conditions are either strings or numbers, depending on the relation.'
           nullable: true
         column:
-          type: string
-          description: The properties of a product that can be used to to populate a collection.
-          nullable: true
+          $ref: '#/components/schemas/RuleColumn'
       additionalProperties: { }
       description: An entity representing a Shopify Smart Collection Rule.
+    SortOrder:
+      enum:
+        - alpha-asc
+        - alpha-des
+        - best-selling
+        - created
+        - created-desc
+        - manual
+        - price-asc
+        - price-desc
+      type: string
+      additionalProperties: { }
     UpdateCustomCollection:
       required:
         - id
@@ -3451,6 +3518,15 @@ components:
           description: 'The date and time when the product image was last modified. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
           format: date-time
           nullable: true
+        alt:
+          type: string
+          nullable: true
+        filename:
+          type: string
+          nullable: true
+        attachment:
+          type: string
+          nullable: true
         metafields:
           type: array
           items:
@@ -3656,9 +3732,7 @@ components:
           format: date-time
           nullable: true
         published_scope:
-          type: string
-          description: "Whether the smart collection is published to the Point of Sale channel. Valid values: \r\n\r\n*   `web`: The smart collection is published to the Online Store channel but not published to the Point of Sale channel. \r\n*   `global`: The smart collection is published to both the Online Store channel and the Point of Sale channel."
-          nullable: true
+          $ref: '#/components/schemas/SmartCollectionPublishedScope'
         rules:
           type: array
           items:
@@ -3670,9 +3744,7 @@ components:
           description: "Whether the product must match all the rules to be included in the smart collection. Valid values: \r\n\r\n*   `true`: Products only need to match one or more of the rules to be included in the smart collection. \r\n*   `false`: Products must match all of the rules to be included in the smart collection."
           nullable: true
         sort_order:
-          type: string
-          description: "The order of the products in the smart collection. Valid values:\r\n\r\n*   `alpha-asc`: The products are sorted alphabetically from A to Z. \r\n*   `alpha-des`: The products are sorted alphabetically from Z to A. \r\n*   `best-selling`: The products are sorted by number of sales. \r\n*   `created`: The products are sorted by the date they were created, from oldest to newest. \r\n*   `created-desc`: The products are sorted by the date they were created, from newest to oldest. \r\n*   `manual`: The products are manually sorted by the shop owner. \r\n*   `price-asc`: The products are sorted by price from lowest to highest. \r\n*   `price-desc`: The products are sorted by price from highest to lowest."
-          nullable: true
+          $ref: '#/components/schemas/SortOrder'
         template_suffix:
           type: string
           description: 'The suffix of the Liquid template that the shop uses. By default, the original template is called product.liquid, and additional templates are called product.`suffix`.liquid.'

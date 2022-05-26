@@ -66,7 +66,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> UpdateCountryAsync(long countryId, CountryItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> UpdateCountryAsync(long countryId, UpdateCountryRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -248,14 +248,14 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<CountryItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 422)
+                        if (status_ == 400)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<CountryError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<CountryError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<CountryError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -433,10 +433,13 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> UpdateCountryAsync(long countryId, CountryItem? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountryItem>> UpdateCountryAsync(long countryId, UpdateCountryRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (countryId == null)
                 throw new System.ArgumentNullException("countryId");
+
+            if (body == null)
+                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/countries/{country_id}.json");
@@ -2870,7 +2873,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("checkout_api_supported")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CheckoutApiSupported { get; set; } = default!;
+        public bool? CheckoutApiSupported { get; set; } = default!;
 
         /// <summary>
         /// The shop's city.
@@ -2969,7 +2972,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("eligible_for_card_reader_giveaway")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? EligibleForCardReaderGiveaway { get; set; } = default!;
+        public bool? EligibleForCardReaderGiveaway { get; set; } = default!;
 
         /// <summary>
         /// Whether the shop is eligible to use Shopify Payments.
@@ -2978,7 +2981,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("eligible_for_payments")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? EligibleForPayments { get; set; } = default!;
+        public bool? EligibleForPayments { get; set; } = default!;
 
         /// <summary>
         /// The contact email used for communication between Shopify and the shop owner.
@@ -2997,7 +3000,7 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         [System.Obsolete]
-        public string? Finances { get; set; } = default!;
+        public bool? Finances { get; set; } = default!;
 
         /// <summary>
         /// As of API version 2021-07, this field has been deprecated and is currently unused. Previously indicated whether the shop forced requests made to its resources to be made over SSL using the HTTPS protocol. All requests now use HTTPS, so `force_ssl` is always `true`.
@@ -3034,7 +3037,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("has_discounts")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? HasDiscounts { get; set; } = default!;
+        public bool? HasDiscounts { get; set; } = default!;
 
         /// <summary>
         /// Whether any active gift cards exist for the shop.
@@ -3043,7 +3046,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("has_gift_cards")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? HasGiftCards { get; set; } = default!;
+        public bool? HasGiftCards { get; set; } = default!;
 
         /// <summary>
         /// Whether the shop has an online store.
@@ -3178,7 +3181,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("pre_launch_enabled")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? PreLaunchEnabled { get; set; } = default!;
+        public bool? PreLaunchEnabled { get; set; } = default!;
 
         /// <summary>
         /// The cookie consent level defined on the shop's online store.
@@ -3242,7 +3245,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("requires_extra_payments_agreement")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? RequiresExtraPaymentsAgreement { get; set; } = default!;
+        public bool? RequiresExtraPaymentsAgreement { get; set; } = default!;
 
         /// <summary>
         /// Whether the shop has any outstanding setup steps.

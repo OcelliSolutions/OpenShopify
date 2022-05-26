@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
@@ -11,25 +10,38 @@ namespace Ocelli.OpenShopify.Tests.Events;
 
 public class WebhookFixture : SharedFixture, IAsyncLifetime
 {
+    public EventsService Service;
     public List<Webhook> CreatedWebhooks = new();
+
+    public WebhookFixture()
+    {
+        Service = new EventsService(MyShopifyUrl, AccessToken);
+    }
     public Task InitializeAsync() => Task.CompletedTask;
 
-    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+    async Task IAsyncLifetime.DisposeAsync()
+    {
+        await DeleteWebhookAsync_CanDelete();
+    }
+
+    public async Task DeleteWebhookAsync_CanDelete()
+    {
+        foreach (var webhook in CreatedWebhooks)
+        {
+            _ = await Service.Webhook.DeleteWebhookAsync(webhook.Id);
+        }
+        CreatedWebhooks.Clear();
+    }
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
 public class WebhookTests : IClassFixture<WebhookFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly ITestOutputHelper _testOutputHelper;
-    private readonly EventsService _service;
-    private const string Domain = "sample.com";
-    public WebhookTests(ITestOutputHelper testOutputHelper, WebhookFixture sharedFixture)
+    public WebhookTests(WebhookFixture fixture, ITestOutputHelper testOutputHelper)
     {
-        _testOutputHelper = testOutputHelper;
-        Fixture = sharedFixture;
+        Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-        _service = new EventsService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
     private WebhookFixture Fixture { get; }
@@ -39,15 +51,8 @@ public class WebhookTests : IClassFixture<WebhookFixture>
     [SkippableFact, TestPriority(10)]
     public async Task CreateWebhookAsync_CanCreate()
     {
-        var request = new CreateWebhookRequest()
-        {
-            Webhook = new()
-            {
-                Topic = WebhookTopic.fulfillment_events_create, 
-                Address = $@"https://{Domain}/api/webhook/fulfillment_events_create"
-            }
-        };
-        var response = await _service.Webhook.CreateWebhookAsync(request);
+        var request = Fixture.CreateWebhookRequest();
+        var response = await Fixture.Service.Webhook.CreateWebhookAsync(request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedWebhooks.Add(response.Result.Webhook);
@@ -59,11 +64,8 @@ public class WebhookTests : IClassFixture<WebhookFixture>
         var request = new CreateWebhookRequest()
         {
             Webhook = new()
-            {
-                Topic = WebhookTopic.app_uninstalled
-            }
         };
-        await Assert.ThrowsAsync<ApiException<WebhookError>>(async () => await _service.Webhook.CreateWebhookAsync(request));
+        await Assert.ThrowsAsync<ApiException<WebhookError>>(async () => await Fixture.Service.Webhook.CreateWebhookAsync(request));
     }
 
     #endregion Create
@@ -73,7 +75,7 @@ public class WebhookTests : IClassFixture<WebhookFixture>
     [SkippableFact, TestPriority(20)]
     public async Task CountWebhooksAsync_CanGet()
     {
-        var response = await _service.Webhook.CountWebhooksAsync();
+        var response = await Fixture.Service.Webhook.CountWebhooksAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -82,35 +84,21 @@ public class WebhookTests : IClassFixture<WebhookFixture>
     [SkippableFact, TestPriority(20)]
     public async Task ListWebhooksAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await _service.Webhook.ListWebhooksAsync();
+        var response = await Fixture.Service.Webhook.ListWebhooksAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var webhook in response.Result.Webhooks)
         {
             _additionalPropertiesHelper.CheckAdditionalProperties(webhook, Fixture.MyShopifyUrl);
-            if (webhook.Address != null && webhook.Address.Contains(Domain)
-                                        && !Fixture.CreatedWebhooks.Exists(w => w.Id == webhook.Id))
-                Fixture.CreatedWebhooks.Add(webhook);
         }
-        var list = response.Result.Webhooks;
-        Skip.If(!list.Any(), "No results returned. Unable to test");
-    }
-
-    [SkippableFact, TestPriority(20)]
-    public async Task GetWebhookAsync_AdditionalPropertiesAreEmpty()
-    {
-        var webhookListResponse = await _service.Webhook.ListWebhooksAsync(limit: 1);
-        Skip.If(!webhookListResponse.Result.Webhooks.Any(), "No results returned. Unable to test");
-        var response = await _service.Webhook.GetWebhookAsync(webhookListResponse.Result.Webhooks.First().Id);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Webhook, Fixture.MyShopifyUrl);
+        Skip.If(!response.Result.Webhooks.Any(), "No results returned. Unable to test");
     }
 
     [SkippableFact, TestPriority(20)]
     public async Task GetWebhookAsync_TestCreated_AdditionalPropertiesAreEmpty()
     {
-        Skip.If(!Fixture.CreatedWebhooks.Any(), "No results returned. Unable to test");
+        Skip.If(!Fixture.CreatedWebhooks.Any(), "Must be run with create test");
         var webhook = Fixture.CreatedWebhooks.First();
-        var response = await _service.Webhook.GetWebhookAsync(webhook.Id);
+        var response = await Fixture.Service.Webhook.GetWebhookAsync(webhook.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Webhook, Fixture.MyShopifyUrl);
     }
@@ -128,10 +116,10 @@ public class WebhookTests : IClassFixture<WebhookFixture>
             Webhook = new()
             {
                 Id = originalWebhook.Id, 
-                Fields = new List<string>(){"id"}
+                Fields = new List<string>{"id"}
             }
         };
-        var response = await _service.Webhook.UpdateWebhookAsync(request.Webhook.Id, request);
+        var response = await Fixture.Service.Webhook.UpdateWebhookAsync(originalWebhook.Id, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedWebhooks.Remove(originalWebhook);
@@ -142,28 +130,11 @@ public class WebhookTests : IClassFixture<WebhookFixture>
 
     #region Delete
 
-    [SkippableFact, TestPriority(40)]
+    [SkippableFact, TestPriority(99)]
     public async Task DeleteWebhookAsync_CanDelete()
     {
-        Skip.If(Fixture.CreatedWebhooks.Count == 0, "WARN: No data returned. Could not test");
-        var errors = new List<Exception>();
-        foreach (var webhook in Fixture.CreatedWebhooks)
-        {
-            try
-            {
-                _ = await _service.Webhook.DeleteWebhookAsync(webhook.Id);
-            }
-            catch (Exception ex)
-            {
-                errors.Add(ex);
-            }
-        }
-
-        foreach (var error in errors)
-        {
-            _testOutputHelper.WriteLine(error.Message);
-        }
-        Assert.Empty(errors);
+        await Fixture.DeleteWebhookAsync_CanDelete();
     }
+
     #endregion Delete
-}
+    }

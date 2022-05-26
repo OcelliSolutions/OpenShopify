@@ -6,22 +6,19 @@ using Xunit.Abstractions;
 namespace Ocelli.OpenShopify.Tests.TenderTransaction;
 [Collection("Shared collection")]
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class TenderTransactionTests : IClassFixture<SharedFixture>
+public class TenderTransactionTests : IClassFixture<TenderTransactionFixture>
 {
+    private TenderTransactionFixture Fixture { get; }
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly ITestOutputHelper _testOutputHelper;
-    private readonly TenderTransactionService _service;
+        
 
-    public TenderTransactionTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public TenderTransactionTests(TenderTransactionFixture fixture, ITestOutputHelper testOutputHelper)
     {
-        _testOutputHelper = testOutputHelper;
-        Fixture = sharedFixture;
+                Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-        _service = new TenderTransactionService(Fixture.MyShopifyUrl, Fixture.AccessToken);
-    }
+            }
 
-    private SharedFixture Fixture { get; }
-
+    
     #region Create
 
     #endregion Create
@@ -37,4 +34,9 @@ public class TenderTransactionTests : IClassFixture<SharedFixture>
     #region Delete
 
     #endregion Delete
+}
+
+public class TenderTransactionFixture
+{
+    public ITestOutputHelper TestOutputHelper { get; set; }
 }

@@ -10,6 +10,12 @@ namespace Ocelli.OpenShopify.Tests.Billing;
 public class UsageChargeFixture : SharedFixture, IAsyncLifetime
 {
     public List<UsageCharge> CreatedUsageCharges = new();
+
+    public UsageChargeFixture() =>
+        Service = new BillingService(MyShopifyUrl, AccessToken);
+
+    public BillingService Service { get; set; }
+
     public Task InitializeAsync() => Task.CompletedTask;
 
     Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
@@ -19,16 +25,12 @@ public class UsageChargeFixture : SharedFixture, IAsyncLifetime
 public class UsageChargeTests : IClassFixture<UsageChargeFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly BillingService _service;
-    private readonly ITestOutputHelper _testOutputHelper;
 
-    public UsageChargeTests(ITestOutputHelper testOutputHelper, UsageChargeFixture sharedFixture)
+    public UsageChargeTests(UsageChargeFixture fixture, ITestOutputHelper testOutputHelper)
     {
-        _testOutputHelper = testOutputHelper;
-        Fixture = sharedFixture;
+                Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-        _service = new BillingService(Fixture.MyShopifyUrl, Fixture.AccessToken);
-    }
+            }
 
     private UsageChargeFixture Fixture { get; }
 

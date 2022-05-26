@@ -87,8 +87,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CountryItem'
-        '422':
-          description: Client Error
+        '400':
+          description: Bad Request
           headers:
             X-Shopify-Shop-Api-Call-Limit:
               description: How many requests you’ve made for a particular store
@@ -174,10 +174,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CountryItem'
+              $ref: '#/components/schemas/UpdateCountryRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CountryItem'
+              $ref: '#/components/schemas/UpdateCountryRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -870,7 +871,7 @@ components:
           description: The optional second line of the shop's street address.
           nullable: true
         checkout_api_supported:
-          type: string
+          type: boolean
           description: 'Whether the shop is capable of accepting payments directly through the [Checkout API](/apps/channels/checkout-api).'
           nullable: true
         city:
@@ -917,11 +918,11 @@ components:
           description: 'A list of enabled currencies ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) that the shop accepts. Merchants can enable currencies from their Shopify Payments settings in the Shopify Admin.'
           nullable: true
         eligible_for_card_reader_giveaway:
-          type: string
+          type: boolean
           description: Whether the shop is eligible to receive a free credit card reader from Shopify.
           nullable: true
         eligible_for_payments:
-          type: string
+          type: boolean
           description: Whether the shop is eligible to use Shopify Payments.
           nullable: true
         email:
@@ -929,7 +930,7 @@ components:
           description: The contact email used for communication between Shopify and the shop owner.
           nullable: true
         finances:
-          type: string
+          type: boolean
           description: 'This field has been deprecated, and is currently unused. Hardcoded to `true`.'
           nullable: true
           deprecated: true
@@ -947,11 +948,11 @@ components:
           description: 'Whether the GSuite login is enabled. Shops with this feature will be able to log in through the GSuite login page. Valid values: `true`, `null`'
           nullable: true
         has_discounts:
-          type: string
+          type: boolean
           description: Whether any active discounts exist for the shop.
           nullable: true
         has_gift_cards:
-          type: string
+          type: boolean
           description: Whether any active gift cards exist for the shop.
           nullable: true
         has_storefront:
@@ -1013,7 +1014,7 @@ components:
           description: The display name of the Shopify plan the shop is on.
           nullable: true
         pre_launch_enabled:
-          type: string
+          type: boolean
           description: Whether the pre-launch page is enabled on the shop's online store.
           nullable: true
         cookie_consent_level:
@@ -1043,7 +1044,7 @@ components:
           description: The two- or three-letter code for the shop's province or state.
           nullable: true
         requires_extra_payments_agreement:
-          type: string
+          type: boolean
           description: Whether the shop requires an extra Shopify Payments agreement.
           nullable: true
         setup_required:

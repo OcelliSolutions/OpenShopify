@@ -6,21 +6,19 @@ using Xunit.Abstractions;
 namespace Ocelli.OpenShopify.Tests.ShopifyPayments;
 [Collection("Shared collection")]
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class BalanceTests : IClassFixture<SharedFixture>
+public class BalanceTests : IClassFixture<BalanceFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly ITestOutputHelper _testOutputHelper;
-    private readonly ShopifyPaymentsService _service;
+        
 
-    public BalanceTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public BalanceTests(BalanceFixture fixture, ITestOutputHelper testOutputHelper)
     {
-        _testOutputHelper = testOutputHelper;
-        Fixture = sharedFixture;
+                Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-        _service = new ShopifyPaymentsService(Fixture.MyShopifyUrl, Fixture.AccessToken);
-    }
+            }
 
-    private SharedFixture Fixture { get; }
+    public BalanceFixture Fixture { get; set; }
+
 
     #region Create
 
@@ -37,4 +35,9 @@ public class BalanceTests : IClassFixture<SharedFixture>
     #region Delete
 
     #endregion Delete
+}
+
+public class BalanceFixture
+{
+    public ITestOutputHelper TestOutputHelper { get; set; }
 }

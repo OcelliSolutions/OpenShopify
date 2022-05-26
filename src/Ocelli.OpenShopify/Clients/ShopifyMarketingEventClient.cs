@@ -270,14 +270,14 @@ namespace Ocelli.OpenShopify
                             return new ShopifyResponse<MarketingEventItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
-                        if (status_ == 422)
+                        if (status_ == 400)
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<MarketingEventError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<MarketingEventError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<MarketingEventError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -818,6 +818,18 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum BudgetType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"daily")]
+        Daily = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"lifetime")]
+        Lifetime = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CreateMarketingEvent
     {
         /// <summary>
@@ -827,30 +839,19 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("remote_id")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public long? RemoteId { get; set; } = default!;
-
-        /// <summary>
-        /// The type of marketing event. Valid values: `ad`, `post`, `message`, `retargeting`, `transactional`, `affiliate`, `loyalty`, `newsletter`, `abandoned_cart`. &lt;div class='note'&gt; 
-        /// <br/>
-        /// <br/>#### Note
-        /// <br/>
-        /// <br/>If there are values that you’d like to use for event_type that are not in the list above, then please post your request [here](https://ecommerce.shopify.com/c/partner-feedback/t/marketing-events-apis-feedback-thread-521758). Our approach is to be more structured than using freeform text, but to still allow for categorization of most types of marketing actions.
-        /// <br/> &lt;/div&gt;
-        /// </summary>
+        public string? RemoteId { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("event_type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? EventType { get; set; } = default!;
-
-        /// <summary>
-        /// The channel that your marketing event will use. Valid values: `search`, `display`, `social`, `email`, `referral`.
-        /// </summary>
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public EventType? EventType { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("marketing_channel")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? MarketingChannel { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public MarketingChannel? MarketingChannel { get; set; } = default!;
 
         /// <summary>
         /// Whether the event is paid or organic.
@@ -859,7 +860,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("paid")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Paid { get; set; } = default!;
+        public bool? Paid { get; set; } = default!;
 
         /// <summary>
         /// The destination domain of the marketing event. Required if the `marketing_channel` is set to `search` or `social`.
@@ -888,14 +889,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Currency { get; set; } = default!;
 
-        /// <summary>
-        /// The type of the budget. Required if `budget` is specified. Valid values: `daily`, `lifetime`.'
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("budget_type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? BudgetType { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public BudgetType? BudgetType { get; set; } = default!;
 
         /// <summary>
         /// The time when the marketing action was started.
@@ -904,7 +902,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("started_at")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? StartedAt { get; set; } = default!;
+        public System.DateTimeOffset? StartedAt { get; set; } = default!;
 
         /// <summary>
         /// For events with a duration, the time when the event was scheduled to end.
@@ -913,7 +911,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("scheduled_to_end_at")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ScheduledToEndAt { get; set; } = default!;
+        public System.DateTimeOffset? ScheduledToEndAt { get; set; } = default!;
 
         /// <summary>
         /// For events with a duration, the time when the event actually ended.
@@ -922,7 +920,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("ended_at")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? EndedAt { get; set; } = default!;
+        public System.DateTimeOffset? EndedAt { get; set; } = default!;
 
         /// <summary>
         /// The [UTM parameters](https://en.wikipedia.org/wiki/UTM_parameters) used in the links provided in the marketing event. Values must be unique and should not be url-encoded.
@@ -977,7 +975,29 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("marketed_resources")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? MarketedResources { get; set; } = default!;
+
+        // TODO(system.text.json): Add string enum item converter
+        public System.Collections.Generic.ICollection<MarketedResource>? MarketedResources { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("utm_campaign")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? UtmCampaign { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("utm_source")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? UtmSource { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("utm_medium")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? UtmMedium { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("marketing_activity_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? MarketingActivityId { get; set; } = default!;
 
     }
 
@@ -1040,6 +1060,84 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum EventType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"ad")]
+        Ad = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"post")]
+        Post = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"message")]
+        Message = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"retargeting")]
+        Retargeting = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"transactional")]
+        Transactional = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"affiliate")]
+        Affiliate = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"loyalty")]
+        Loyalty = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"newsletter")]
+        Newsletter = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"abandoned_cart")]
+        AbandonedCart = 8,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum MarketedResource
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"product")]
+        Product = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"collection")]
+        Collection = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"price_rule")]
+        PriceRule = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"page")]
+        Page = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"article")]
+        Article = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"homepage")]
+        Homepage = 5,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum MarketingChannel
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"search")]
+        Search = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"display")]
+        Display = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"social")]
+        Social = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"email")]
+        Email = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"referral")]
+        Referral = 4,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class MarketingEvent
     {
         /// <summary>
@@ -1049,30 +1147,19 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("remote_id")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public long? RemoteId { get; set; } = default!;
-
-        /// <summary>
-        /// The type of marketing event. Valid values: `ad`, `post`, `message`, `retargeting`, `transactional`, `affiliate`, `loyalty`, `newsletter`, `abandoned_cart`. &lt;div class='note'&gt; 
-        /// <br/>
-        /// <br/>#### Note
-        /// <br/>
-        /// <br/>If there are values that you’d like to use for event_type that are not in the list above, then please post your request [here](https://ecommerce.shopify.com/c/partner-feedback/t/marketing-events-apis-feedback-thread-521758). Our approach is to be more structured than using freeform text, but to still allow for categorization of most types of marketing actions.
-        /// <br/> &lt;/div&gt;
-        /// </summary>
+        public string? RemoteId { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("event_type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? EventType { get; set; } = default!;
-
-        /// <summary>
-        /// The channel that your marketing event will use. Valid values: `search`, `display`, `social`, `email`, `referral`.
-        /// </summary>
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public EventType? EventType { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("marketing_channel")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? MarketingChannel { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public MarketingChannel? MarketingChannel { get; set; } = default!;
 
         /// <summary>
         /// Whether the event is paid or organic.
@@ -1081,7 +1168,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("paid")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Paid { get; set; } = default!;
+        public bool? Paid { get; set; } = default!;
 
         /// <summary>
         /// The destination domain of the marketing event. Required if the `marketing_channel` is set to `search` or `social`.
@@ -1110,14 +1197,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Currency { get; set; } = default!;
 
-        /// <summary>
-        /// The type of the budget. Required if `budget` is specified. Valid values: `daily`, `lifetime`.'
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("budget_type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? BudgetType { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public BudgetType? BudgetType { get; set; } = default!;
 
         /// <summary>
         /// The time when the marketing action was started.
@@ -1126,7 +1210,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("started_at")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? StartedAt { get; set; } = default!;
+        public System.DateTimeOffset? StartedAt { get; set; } = default!;
 
         /// <summary>
         /// For events with a duration, the time when the event was scheduled to end.
@@ -1135,7 +1219,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("scheduled_to_end_at")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ScheduledToEndAt { get; set; } = default!;
+        public System.DateTimeOffset? ScheduledToEndAt { get; set; } = default!;
 
         /// <summary>
         /// For events with a duration, the time when the event actually ended.
@@ -1144,7 +1228,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("ended_at")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? EndedAt { get; set; } = default!;
+        public System.DateTimeOffset? EndedAt { get; set; } = default!;
 
         /// <summary>
         /// The [UTM parameters](https://en.wikipedia.org/wiki/UTM_parameters) used in the links provided in the marketing event. Values must be unique and should not be url-encoded.
@@ -1199,7 +1283,39 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("marketed_resources")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? MarketedResources { get; set; } = default!;
+
+        // TODO(system.text.json): Add string enum item converter
+        public System.Collections.Generic.ICollection<MarketedResource>? MarketedResources { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("utm_campaign")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? UtmCampaign { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("utm_source")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? UtmSource { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("utm_medium")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? UtmMedium { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("marketing_activity_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? MarketingActivityId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -1305,30 +1421,19 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("remote_id")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public long? RemoteId { get; set; } = default!;
-
-        /// <summary>
-        /// The type of marketing event. Valid values: `ad`, `post`, `message`, `retargeting`, `transactional`, `affiliate`, `loyalty`, `newsletter`, `abandoned_cart`. &lt;div class='note'&gt; 
-        /// <br/>
-        /// <br/>#### Note
-        /// <br/>
-        /// <br/>If there are values that you’d like to use for event_type that are not in the list above, then please post your request [here](https://ecommerce.shopify.com/c/partner-feedback/t/marketing-events-apis-feedback-thread-521758). Our approach is to be more structured than using freeform text, but to still allow for categorization of most types of marketing actions.
-        /// <br/> &lt;/div&gt;
-        /// </summary>
+        public string? RemoteId { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("event_type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? EventType { get; set; } = default!;
-
-        /// <summary>
-        /// The channel that your marketing event will use. Valid values: `search`, `display`, `social`, `email`, `referral`.
-        /// </summary>
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public EventType? EventType { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("marketing_channel")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? MarketingChannel { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public MarketingChannel? MarketingChannel { get; set; } = default!;
 
         /// <summary>
         /// Whether the event is paid or organic.
@@ -1337,7 +1442,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("paid")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Paid { get; set; } = default!;
+        public bool? Paid { get; set; } = default!;
 
         /// <summary>
         /// The destination domain of the marketing event. Required if the `marketing_channel` is set to `search` or `social`.
@@ -1366,14 +1471,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Currency { get; set; } = default!;
 
-        /// <summary>
-        /// The type of the budget. Required if `budget` is specified. Valid values: `daily`, `lifetime`.'
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("budget_type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? BudgetType { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public BudgetType? BudgetType { get; set; } = default!;
 
         /// <summary>
         /// The time when the marketing action was started.
@@ -1382,7 +1484,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("started_at")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? StartedAt { get; set; } = default!;
+        public System.DateTimeOffset? StartedAt { get; set; } = default!;
 
         /// <summary>
         /// For events with a duration, the time when the event was scheduled to end.
@@ -1391,7 +1493,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("scheduled_to_end_at")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ScheduledToEndAt { get; set; } = default!;
+        public System.DateTimeOffset? ScheduledToEndAt { get; set; } = default!;
 
         /// <summary>
         /// For events with a duration, the time when the event actually ended.
@@ -1400,7 +1502,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("ended_at")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? EndedAt { get; set; } = default!;
+        public System.DateTimeOffset? EndedAt { get; set; } = default!;
 
         /// <summary>
         /// The [UTM parameters](https://en.wikipedia.org/wiki/UTM_parameters) used in the links provided in the marketing event. Values must be unique and should not be url-encoded.
@@ -1455,7 +1557,39 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("marketed_resources")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? MarketedResources { get; set; } = default!;
+
+        // TODO(system.text.json): Add string enum item converter
+        public System.Collections.Generic.ICollection<MarketedResource>? MarketedResources { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("utm_campaign")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? UtmCampaign { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("utm_source")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? UtmSource { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("utm_medium")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? UtmMedium { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("marketing_activity_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? MarketingActivityId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? AdminGraphqlApiId { get; set; } = default!;
 
     }
 

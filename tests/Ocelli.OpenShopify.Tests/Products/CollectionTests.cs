@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
@@ -6,60 +7,56 @@ using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Products;
-[Collection("Shared collection")]
+public class CollectionFixture : SharedFixture, IAsyncLifetime
+{
+    public ProductsService Service;
+    public List<Collection> CreatedCollections = new();
+
+    public CollectionFixture()
+    {
+        Service = new ProductsService(MyShopifyUrl, AccessToken);
+    }
+    public Task InitializeAsync() => Task.CompletedTask;
+    public Task DisposeAsync() => Task.CompletedTask;
+}
+
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-public class CollectionTests : IClassFixture<SharedFixture>
+public class CollectionTests : IClassFixture<CollectionFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly ITestOutputHelper _testOutputHelper;
-    private readonly ProductsService _service;
-
-    public CollectionTests(ITestOutputHelper testOutputHelper, SharedFixture sharedFixture)
+    public CollectionTests(CollectionFixture fixture, ITestOutputHelper testOutputHelper)
     {
-        _testOutputHelper = testOutputHelper;
-        Fixture = sharedFixture;
+        Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-        _service = new ProductsService(Fixture.MyShopifyUrl, Fixture.AccessToken);
     }
 
-    private SharedFixture Fixture { get; }
-
-    #region Create
-
-    #endregion Create
-
+    private CollectionFixture Fixture { get; }
+    
     #region Read
 
     [SkippableFact, TestPriority(20)]
-    public async Task Lists_Products_Belonging_To_Collection()
+    public async Task ListCollectionsAsync_AdditionalPropertiesAreEmpty()
     {
-        var collectResponse = await _service.Collect.ListCollectsAsync(limit: 1);
-        var collect = collectResponse.Result.Collects.First();
-        var response = await _service.Collection.ListProductsBelongingToCollectionAsync(collect.CollectionId ?? 0);
+        Skip.If(!Fixture.CreatedCollections.Any(), "Must be run with create test");
+        var collection = Fixture.CreatedCollections.First();
+        var response = await Fixture.Service.Collection.ListProductsBelongingToCollectionAsync(collection.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var product in response.Result.Products)
         {
             _additionalPropertiesHelper.CheckAdditionalProperties(product, Fixture.MyShopifyUrl);
         }
+        Skip.If(!response.Result.Products.Any(), "No results returned. Unable to test");
     }
 
     [SkippableFact, TestPriority(20)]
-    public async Task Gets_Collects()
+    public async Task GetCollectionAsync_TestCreated_AdditionalPropertiesAreEmpty()
     {
-        var collectResponse = await _service.Collect.ListCollectsAsync(limit: 1);
-        var collect = collectResponse.Result.Collects.First();
-        var response = await _service.Collection.GetCollectionAsync(collect.CollectionId ?? 0);
+        Skip.If(!Fixture.CreatedCollections.Any(), "Must be run with create test");
+        var collection = Fixture.CreatedCollections.First();
+        var response = await Fixture.Service.Collection.GetCollectionAsync(collection.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Collection, Fixture.MyShopifyUrl);
     }
 
     #endregion Read
-
-    #region Update
-
-    #endregion Update
-
-    #region Delete
-
-    #endregion Delete
 }

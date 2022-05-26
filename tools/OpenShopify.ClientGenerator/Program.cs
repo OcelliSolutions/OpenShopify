@@ -18,7 +18,10 @@ foreach (var shopifyFile in shopifyFiles)
     
     var excludeNamesForClient = new List<string> { "ErrorResponse", "ShopifyResponse", "CountItem" };
     if (className != "Metafield")
-        excludeNamesForClient.Add("Metafield");
+        excludeNamesForClient.AddRange(new List<string>
+        {
+            "Metafield", "MetafieldType"
+        });
     switch (className)
     {
         case "DiscountCode":
@@ -31,7 +34,9 @@ foreach (var shopifyFile in shopifyFiles)
                 "LineItem", "Fulfillment", "DiscountCode", "DiscountApplication", "DiscountAllocation", "PaymentDetails",
                 "Price", "PriceSet", "Refund", "RefundDuty", "RefundDutyType", "RefundLineItem", "RefundLineItem",
                 "RefundOrderAdjustment", "Shipping", "ShippingLine", "TaxLine", "Transaction", "CurrencyExchangeAdjustment",
-                "Order", "OrderList", "CancelReason", "FinancialStatus", "FulfillmentStatus", "ProcessingMethod"
+                "Order", "OrderList", "CancelReason", "FinancialStatus", "FulfillmentStatus", "ProcessingMethod",
+                "TransactionErrorCode", "TransactionKind", "ExtendedAuthorizationAttributes", "PaymentsRefundAttributeStatus",
+                "PaymentsRefundAttributes"
             });
             break;
         case "Orders":
@@ -54,7 +59,9 @@ foreach (var shopifyFile in shopifyFiles)
         case "ShopifyPayments":
             excludeNamesForClient.AddRange(new List<string>
             {
-                "TransactionList", "TransactionItem", "Transaction", "CurrencyExchangeAdjustment", "PaymentDetails"
+                "TransactionList", "TransactionItem", "Transaction", "CurrencyExchangeAdjustment", "PaymentDetails",
+                "TransactionErrorCode", "TransactionKind", "ExtendedAuthorizationAttributes", "PaymentsRefundAttributeStatus",
+                "PaymentsRefundAttributes"
             });
             break;
         case "ShippingAndFulfillment":
@@ -223,7 +230,23 @@ public class CustomEnumNameGenerator : IEnumNameGenerator
             name = "__" + name.Substring(2);
         }
         
-        return InvalidNameCharactersPattern.Replace(name
+        var s = InvalidNameCharactersPattern.Replace(name
             .Replace(":", "-").Replace(@"""", @""), "_");
+        return TitleCase(s.Replace("_", " ")).Replace(" ", "");
     }
+    // convert a string to title case.
+    static IEnumerable<char> CharsToTitleCase(string s)
+    {
+        var newWord = true;
+        foreach (var c in s)
+        {
+            if (newWord) { yield return char.ToUpper(c); newWord = false; }
+            else yield return c;
+            if (c == ' ') newWord = true;
+        }
+    }
+
+    //static string TitleCase(string input) => Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(input);
+    static string TitleCase(string input) => new(CharsToTitleCase(input).ToArray());
 }
+

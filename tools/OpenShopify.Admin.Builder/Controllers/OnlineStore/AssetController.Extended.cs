@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace OpenShopify.Admin.Builder.Controllers.OnlineStore;
 
@@ -21,8 +22,8 @@ public class AssetController : AssetControllerBase
 
     /// <inheritdoc />
     [HttpPut, Route("themes/{theme_id:long}/assets.json")]
-    [ProducesResponseType(typeof(AssetItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(AssetError), StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(typeof(AssetItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
     public override Task CreateOrUpdatesAssetForTheme([Required] CreateAssetRequest request, [Required] long theme_id, string? source_key = null, string? src = null)
     {
         throw new NotImplementedException();
@@ -39,7 +40,7 @@ public class AssetController : AssetControllerBase
     /// <inheritdoc cref="AssetControllerBase.DeleteAssetFromTheme" />
     [HttpDelete, Route("themes/{theme_id:long}/assets.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public Task DeleteAssetFromTheme(string assetkey, long theme_id)
+    public Task DeleteAssetFromTheme(long theme_id, [FromQuery(Name = "asset[key]")] string asset_key)
     {
         throw new NotImplementedException();
     }

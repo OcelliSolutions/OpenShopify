@@ -11,25 +11,40 @@ namespace Ocelli.OpenShopify.Tests.Discounts;
 
 public class PriceRuleFixture : SharedFixture, IAsyncLifetime
 {
+    public DiscountsService Service;
     public List<PriceRule> CreatedPriceRules = new();
+
+    public PriceRuleFixture()
+    {
+        Service = new DiscountsService(MyShopifyUrl, AccessToken);
+    }
     public Task InitializeAsync() => Task.CompletedTask;
-    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+
+    async Task IAsyncLifetime.DisposeAsync()
+    {
+        await DeletePriceRuleAsync_CanDelete();
+    }
+    
+    public async Task DeletePriceRuleAsync_CanDelete()
+    {
+        foreach (var priceRule in CreatedPriceRules)
+        {
+            _ = await Service.PriceRule.DeletePriceRuleAsync(priceRule.Id);
+        }
+    }
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
 public class PriceRuleTests : IClassFixture<PriceRuleFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    private readonly ITestOutputHelper _testOutputHelper;
-    private readonly DiscountsService _service;
+        
 
-    public PriceRuleTests(ITestOutputHelper testOutputHelper, PriceRuleFixture sharedFixture)
+    public PriceRuleTests(PriceRuleFixture fixture, ITestOutputHelper testOutputHelper)
     {
-        Fixture = sharedFixture;
-        _testOutputHelper = testOutputHelper;
-        _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-        _service = new DiscountsService(Fixture.MyShopifyUrl, Fixture.AccessToken);
-    }
+        Fixture = fixture;
+                _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+            }
 
     private PriceRuleFixture Fixture { get; }
 
@@ -37,8 +52,8 @@ public class PriceRuleTests : IClassFixture<PriceRuleFixture>
     [SkippableFact, TestPriority(1)]
     public async Task Creates_PriceRules()
     {
-        var request = Fixture.CreatePriceRuleRequest;
-        var response = await _service.PriceRule.CreatePriceRuleAsync(request);
+        var request = Fixture.CreatePriceRuleRequest();
+        var response = await Fixture.Service.PriceRule.CreatePriceRuleAsync(request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.PriceRule, Fixture.MyShopifyUrl);
 
@@ -58,7 +73,7 @@ public class PriceRuleTests : IClassFixture<PriceRuleFixture>
     [SkippableFact, TestPriority(2)]
     public async Task Lists_PriceRules()
     {
-        var response = await _service.PriceRule.ListPriceRulesAsync();
+        var response = await Fixture.Service.PriceRule.ListPriceRulesAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var priceRule in response.Result.PriceRules)
         {
@@ -76,7 +91,7 @@ public class PriceRuleTests : IClassFixture<PriceRuleFixture>
     {
         Skip.If(!Fixture.CreatedPriceRules.Any(), "This should be run with the create test.");
         var createdPriceRule = Fixture.CreatedPriceRules.First();
-        var response = await _service.PriceRule.GetPriceRuleAsync(createdPriceRule.Id);
+        var response = await Fixture.Service.PriceRule.GetPriceRuleAsync(createdPriceRule.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.PriceRule, Fixture.MyShopifyUrl);
 
@@ -106,7 +121,7 @@ public class PriceRuleTests : IClassFixture<PriceRuleFixture>
             }
         };
 
-        var response = await _service.PriceRule.UpdatePriceRuleAsync(createdPriceRule.Id, request);
+        var response = await Fixture.Service.PriceRule.UpdatePriceRuleAsync(createdPriceRule.Id, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.PriceRule, Fixture.MyShopifyUrl);
 
@@ -120,28 +135,15 @@ public class PriceRuleTests : IClassFixture<PriceRuleFixture>
     #endregion Update
 
     #region Delete
-    [SkippableFact, TestPriority(4)]
-    public async Task Deletes_PriceRules()
+
+    [SkippableFact, TestPriority(99)]
+    public async Task DeletePriceRuleAsync_CanDelete()
     {
-        Skip.If(Fixture.CreatedPriceRules.Count == 0, "WARN: No data returned. Could not test");
-        var errors = new List<Exception>();
         foreach (var priceRule in Fixture.CreatedPriceRules)
         {
-            try
-            {
-                await _service.PriceRule.DeletePriceRuleAsync(priceRule.Id);
-            }
-            catch (Exception ex)
-            {
-                errors.Add(ex);
-            }
+            _ = await Fixture.Service.PriceRule.DeletePriceRuleAsync(priceRule.Id);
         }
-
-        foreach (var error in errors)
-        {
-            _testOutputHelper.WriteLine(error.Message);
-        }
-        Assert.Empty(errors);
+        Fixture.CreatedPriceRules.Clear();
     }
     #endregion Delete
 }

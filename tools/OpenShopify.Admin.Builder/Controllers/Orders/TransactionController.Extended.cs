@@ -23,6 +23,7 @@ public class TransactionController : TransactionControllerBase
     [HttpPost, Route("orders/{order_id:long}/transactions.json")]
     [ProducesResponseType(typeof(TransactionItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(TransactionError), StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(typeof(CreateTransactionRequestError), StatusCodes.Status400BadRequest)]
     public override Task CreateTransactionForOrder([Required] CreateTransactionRequest request, [Required] long order_id, string? source = null)
     {
         throw new NotImplementedException();

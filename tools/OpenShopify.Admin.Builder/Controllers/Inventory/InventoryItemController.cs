@@ -38,7 +38,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Retrieves a single inventory item by ID
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_items/{inventory_item_id}.json")]
-        public abstract System.Threading.Tasks.Task GetInventoryItemByID(long inventory_item_id);
+        public abstract System.Threading.Tasks.Task GetInventoryItem(long inventory_item_id);
 
         /// <summary>
         /// Updates an existing inventory item

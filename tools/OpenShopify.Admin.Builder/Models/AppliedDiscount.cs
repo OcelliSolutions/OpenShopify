@@ -1,6 +1,7 @@
 
 
 using System.Text.Json.Serialization;
+using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models
 {
@@ -28,7 +29,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// The type of discount. Known values are "percentage" and "fixed_amount".
         /// </summary>
         [JsonPropertyName("value_type")]
-        public string? ValueType { get; set; }
+        public DiscountValueType? ValueType { get; set; }
 
         /// <summary>
         /// The applied amount of the discount, based on the setting of value_type. 

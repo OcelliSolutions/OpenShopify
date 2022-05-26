@@ -22,7 +22,7 @@ public class CountryController : CountryControllerBase
     /// <inheritdoc />
     [HttpPost, Route("countries.json")]
     [ProducesResponseType(typeof(CountryItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(CountryError), StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(typeof(CountryError), StatusCodes.Status400BadRequest)]
     public override Task CreateCountry([Required] CreateCountryRequest request)
     {
         throw new NotImplementedException();
@@ -45,16 +45,9 @@ public class CountryController : CountryControllerBase
     }
 
     /// <inheritdoc />
-    [IgnoreApi, HttpPut, Route("countries/{country_id}.invalid")]
-    public override Task UpdateCountry([Required] UpdateCountryRequest request, [Required] long country_id)
-    {
-        throw new NotImplementedException();
-    }
-
-    /// <inheritdoc cref="CountryControllerBase.UpdateCountry" />
-    [HttpPut, Route("countries/{country_id:long}.json")]
+    [HttpPut, Route("countries/{country_id}.json")]
     [ProducesResponseType(typeof(CountryItem), StatusCodes.Status200OK)]
-    public Task UpdateCountry([Required] long country_id, CountryItem request)
+    public override Task UpdateCountry([Required] UpdateCountryRequest request, [Required] long country_id)
     {
         throw new NotImplementedException();
     }

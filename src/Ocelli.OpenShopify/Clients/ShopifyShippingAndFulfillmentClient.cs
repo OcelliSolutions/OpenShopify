@@ -6371,13 +6371,13 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"cancellation_requested")]
-        cancellation_requested = 0,
+        CancellationRequested = 0,
 
         [System.Runtime.Serialization.EnumMember(Value = @"fulfillment_requested")]
-        fulfillment_requested = 1,
+        FulfillmentRequested = 1,
 
         [System.Runtime.Serialization.EnumMember(Value = @"fulfillment_accepted")]
-        fulfillment_accepted = 2,
+        FulfillmentAccepted = 2,
 
     }
 
@@ -6675,34 +6675,34 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"label_printed")]
-        label_printed = 0,
+        LabelPrinted = 0,
 
         [System.Runtime.Serialization.EnumMember(Value = @"label_purchased")]
-        label_purchased = 1,
+        LabelPurchased = 1,
 
         [System.Runtime.Serialization.EnumMember(Value = @"attempted_delivery")]
-        attempted_delivery = 2,
+        AttemptedDelivery = 2,
 
         [System.Runtime.Serialization.EnumMember(Value = @"ready_for_pickup")]
-        ready_for_pickup = 3,
+        ReadyForPickup = 3,
 
         [System.Runtime.Serialization.EnumMember(Value = @"picked_up")]
-        picked_up = 4,
+        PickedUp = 4,
 
         [System.Runtime.Serialization.EnumMember(Value = @"confirmed")]
-        confirmed = 5,
+        Confirmed = 5,
 
         [System.Runtime.Serialization.EnumMember(Value = @"in_transit")]
-        in_transit = 6,
+        InTransit = 6,
 
         [System.Runtime.Serialization.EnumMember(Value = @"out_for_delivery")]
-        out_for_delivery = 7,
+        OutForDelivery = 7,
 
         [System.Runtime.Serialization.EnumMember(Value = @"delivered")]
-        delivered = 8,
+        Delivered = 8,
 
         [System.Runtime.Serialization.EnumMember(Value = @"failure")]
-        failure = 9,
+        Failure = 9,
 
     }
 
@@ -7458,10 +7458,10 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"json")]
-        json = 0,
+        Json = 0,
 
         [System.Runtime.Serialization.EnumMember(Value = @"xml")]
-        xml = 1,
+        Xml = 1,
 
     }
 
@@ -7512,10 +7512,10 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"all")]
-        all = 0,
+        All = 0,
 
         [System.Runtime.Serialization.EnumMember(Value = @"current_client")]
-        current_client = 1,
+        CurrentClient = 1,
 
     }
 

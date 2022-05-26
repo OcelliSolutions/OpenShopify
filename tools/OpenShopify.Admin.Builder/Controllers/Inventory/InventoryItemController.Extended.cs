@@ -22,7 +22,7 @@ public class InventoryItemController : InventoryItemControllerBase
     /// <inheritdoc />
     [HttpGet, Route("inventory_items/{inventory_item_id:long}.json")]
     [ProducesResponseType(typeof(InventoryItemItem), StatusCodes.Status200OK)]
-    public override Task GetInventoryItemByID([Required] long inventory_item_id)
+    public override Task GetInventoryItem([Required] long inventory_item_id)
     {
         throw new NotImplementedException();
     }

@@ -283,208 +283,208 @@ namespace Ocelli.OpenShopify
     {
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_content")]
-        read_content = 0,
+        ReadContent = 0,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_content")]
-        write_content = 1,
+        WriteContent = 1,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_themes")]
-        read_themes = 2,
+        ReadThemes = 2,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_themes")]
-        write_themes = 3,
+        WriteThemes = 3,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_products")]
-        read_products = 4,
+        ReadProducts = 4,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_products")]
-        write_products = 5,
+        WriteProducts = 5,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_customers")]
-        read_customers = 6,
+        ReadCustomers = 6,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_customers")]
-        write_customers = 7,
+        WriteCustomers = 7,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_orders")]
-        read_orders = 8,
+        ReadOrders = 8,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_all_orders")]
-        read_all_orders = 9,
+        ReadAllOrders = 9,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_orders")]
-        write_orders = 10,
+        WriteOrders = 10,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_script_tags")]
-        read_script_tags = 11,
+        ReadScriptTags = 11,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_script_tags")]
-        write_script_tags = 12,
+        WriteScriptTags = 12,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_fulfillments")]
-        read_fulfillments = 13,
+        ReadFulfillments = 13,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_fulfillments")]
-        write_fulfillments = 14,
+        WriteFulfillments = 14,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_shipping")]
-        read_shipping = 15,
+        ReadShipping = 15,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_shipping")]
-        write_shipping = 16,
+        WriteShipping = 16,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_analytics")]
-        read_analytics = 17,
+        ReadAnalytics = 17,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_users")]
-        read_users = 18,
+        ReadUsers = 18,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_users")]
-        write_users = 19,
+        WriteUsers = 19,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_checkouts")]
-        read_checkouts = 20,
+        ReadCheckouts = 20,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_checkouts")]
-        write_checkouts = 21,
+        WriteCheckouts = 21,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_reports")]
-        read_reports = 22,
+        ReadReports = 22,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_reports")]
-        write_reports = 23,
+        WriteReports = 23,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_price_rules")]
-        read_price_rules = 24,
+        ReadPriceRules = 24,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_price_rules")]
-        write_price_rules = 25,
+        WritePriceRules = 25,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_inventory")]
-        read_inventory = 26,
+        ReadInventory = 26,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_inventory")]
-        write_inventory = 27,
+        WriteInventory = 27,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_product_listings")]
-        read_product_listings = 28,
+        ReadProductListings = 28,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_collection_listings")]
-        read_collection_listings = 29,
+        ReadCollectionListings = 29,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_draft_orders")]
-        read_draft_orders = 30,
+        ReadDraftOrders = 30,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_draft_orders")]
-        write_draft_orders = 31,
+        WriteDraftOrders = 31,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_merchant_managed_fulfillment_orders")]
-        write_merchant_managed_fulfillment_orders = 32,
+        WriteMerchantManagedFulfillmentOrders = 32,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_merchant_managed_fulfillment_orders")]
-        read_merchant_managed_fulfillment_orders = 33,
+        ReadMerchantManagedFulfillmentOrders = 33,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_marketing_events")]
-        read_marketing_events = 34,
+        ReadMarketingEvents = 34,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_marketing_events")]
-        write_marketing_events = 35,
+        WriteMarketingEvents = 35,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_resource_feedbacks")]
-        read_resource_feedbacks = 36,
+        ReadResourceFeedbacks = 36,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_resource_feedbacks")]
-        write_resource_feedbacks = 37,
+        WriteResourceFeedbacks = 37,
 
         [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_read_checkouts")]
-        unauthenticated_read_checkouts = 38,
+        UnauthenticatedReadCheckouts = 38,
 
         [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_read_collection_listings")]
-        unauthenticated_read_collection_listings = 39,
+        UnauthenticatedReadCollectionListings = 39,
 
         [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_read_customer_tags")]
-        unauthenticated_read_customer_tags = 40,
+        UnauthenticatedReadCustomerTags = 40,
 
         [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_read_customers")]
-        unauthenticated_read_customers = 41,
+        UnauthenticatedReadCustomers = 41,
 
         [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_read_product_listings")]
-        unauthenticated_read_product_listings = 42,
+        UnauthenticatedReadProductListings = 42,
 
         [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_read_product_tags")]
-        unauthenticated_read_product_tags = 43,
+        UnauthenticatedReadProductTags = 43,
 
         [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_write_checkouts")]
-        unauthenticated_write_checkouts = 44,
+        UnauthenticatedWriteCheckouts = 44,
 
         [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_write_customers")]
-        unauthenticated_write_customers = 45,
+        UnauthenticatedWriteCustomers = 45,
 
         [System.Runtime.Serialization.EnumMember(Value = @"unauthenticated_read_content")]
-        unauthenticated_read_content = 46,
+        UnauthenticatedReadContent = 46,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_locations")]
-        read_locations = 47,
+        ReadLocations = 47,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_locations")]
-        write_locations = 48,
+        WriteLocations = 48,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_order_edits")]
-        read_order_edits = 49,
+        ReadOrderEdits = 49,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_order_edits")]
-        write_order_edits = 50,
+        WriteOrderEdits = 50,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_assigned_fulfillment_orders")]
-        read_assigned_fulfillment_orders = 51,
+        ReadAssignedFulfillmentOrders = 51,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_assigned_fulfillment_orders")]
-        write_assigned_fulfillment_orders = 52,
+        WriteAssignedFulfillmentOrders = 52,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_third_party_fulfillment_orders")]
-        read_third_party_fulfillment_orders = 53,
+        ReadThirdPartyFulfillmentOrders = 53,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_third_party_fulfillment_orders")]
-        write_third_party_fulfillment_orders = 54,
+        WriteThirdPartyFulfillmentOrders = 54,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_gift_cards")]
-        read_gift_cards = 55,
+        ReadGiftCards = 55,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_gift_cards")]
-        write_gift_cards = 56,
+        WriteGiftCards = 56,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_discounts")]
-        read_discounts = 57,
+        ReadDiscounts = 57,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_discounts")]
-        write_discounts = 58,
+        WriteDiscounts = 58,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_shopify_payments_payouts")]
-        read_shopify_payments_payouts = 59,
+        ReadShopifyPaymentsPayouts = 59,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_shopify_payments_disputes")]
-        read_shopify_payments_disputes = 60,
+        ReadShopifyPaymentsDisputes = 60,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_translations")]
-        read_translations = 61,
+        ReadTranslations = 61,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_translations")]
-        write_translations = 62,
+        WriteTranslations = 62,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_locales")]
-        read_locales = 63,
+        ReadLocales = 63,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_locales")]
-        write_locales = 64,
+        WriteLocales = 64,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_customer_payment_methods")]
-        read_customer_payment_methods = 65,
+        ReadCustomerPaymentMethods = 65,
 
         [System.Runtime.Serialization.EnumMember(Value = @"read_own_subscription_contracts")]
-        read_own_subscription_contracts = 66,
+        ReadOwnSubscriptionContracts = 66,
 
         [System.Runtime.Serialization.EnumMember(Value = @"write_own_subscription_contracts")]
-        write_own_subscription_contracts = 67,
+        WriteOwnSubscriptionContracts = 67,
 
     }
 

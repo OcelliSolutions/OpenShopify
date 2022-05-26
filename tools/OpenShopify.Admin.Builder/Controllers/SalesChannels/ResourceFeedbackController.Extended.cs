@@ -12,11 +12,20 @@ namespace OpenShopify.Admin.Builder.Controllers.SalesChannels;
 public class ResourceFeedbackController : ResourceFeedbackControllerBase
 {
     /// <inheritdoc />
-    [HttpPost, Route("resource_feedback.json")]
-    [ProducesResponseType(typeof(ResourceFeedbackItem), StatusCodes.Status201Created)]
+    [IgnoreApi, HttpPost, Route("resource_feedback.invalid")]
+    [ProducesResponseType(typeof(ResourceFeedbackItem), StatusCodes.Status202Accepted)]
     [ProducesResponseType(typeof(ResourceFeedbackError), StatusCodes.Status422UnprocessableEntity)]
-    public override Task CreateResourceFeedback([Required] CreateResourceFeedbackRequest request, string? feedback_generated_at = null, string? messages = null,
+    public override Task CreateResourceFeedback([Required] CreateResourceFeedbackRequest request, DateTimeOffset? feedbackGeneratedAt = null, string? messages = null,
         string? state = null)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc cref="ResourceFeedbackControllerBase.CreateResourceFeedback" />
+    [HttpPost, Route("resource_feedback.json")]
+    [ProducesResponseType(typeof(ResourceFeedbackItem), StatusCodes.Status202Accepted)]
+    [ProducesResponseType(typeof(ResourceFeedbackError), StatusCodes.Status422UnprocessableEntity)]
+    public Task CreateResourceFeedback([Required] CreateResourceFeedbackRequest request)
     {
         throw new NotImplementedException();
     }
