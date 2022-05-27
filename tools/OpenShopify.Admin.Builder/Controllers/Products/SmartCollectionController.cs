@@ -85,10 +85,8 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Updates the ordering type of products in a smart collection
         /// </summary>
-        /// <param name="products">An array of product IDs, in the order that you want them to appear at the top of the collection. When `products` is specified but empty, any previously sorted products are cleared.</param>
-        /// <param name="sort_order">The type of sorting to apply. Valid values are listed in the [Properties](#properties) section above.</param>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("smart_collections/{smart_collection_id}/order.json")]
-        public abstract System.Threading.Tasks.Task UpdateOrderingTypeOfProductsInSmartCollection([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateSmartCollectionRequest request, long smart_collection_id, string? products = null, string? sort_order = null);
+        public abstract System.Threading.Tasks.Task UpdateOrderingTypeOfProductsInSmartCollection([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateOrderingTypeOfProductsInSmartCollectionRequest request, long smart_collection_id);
 
     }
 

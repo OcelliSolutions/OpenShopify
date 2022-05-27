@@ -25,7 +25,7 @@ public class CommentController : CommentControllerBase
     [HttpPost, Route("comments.json")]
     [ProducesResponseType(typeof(CommentItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(CommentError), StatusCodes.Status400BadRequest)]
-    public override Task CreateCommentForArticle([Required] CreateCommentRequest request)
+    public override Task CreateComment([Required] CreateCommentRequest request)
     {
         throw new NotImplementedException();
     }
@@ -50,12 +50,12 @@ public class CommentController : CommentControllerBase
     /// <inheritdoc />
     [HttpPut, Route("comments/{comment_id:long}.json")]
     [ProducesResponseType(typeof(CommentItem), StatusCodes.Status200OK)]
-    public override Task UpdateCommentOfArticle([Required] UpdateCommentRequest request, [Required] long comment_id)
+    public override Task UpdateComment([Required] UpdateCommentRequest ofArticleRequest, [Required] long comment_id)
     {
         throw new NotImplementedException();
     }
-
-    /// <inheritdoc />
+    
+    /// <inheritdoc cref="CommentControllerBase.MarkCommentAsSpam" />
     [HttpPost, Route("comments/{comment_id:long}/spam.json")]
     [ProducesResponseType(typeof(CommentItem), StatusCodes.Status200OK)]
     public override Task MarkCommentAsSpam([Required] long comment_id)
@@ -63,7 +63,7 @@ public class CommentController : CommentControllerBase
         throw new NotImplementedException();
     }
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="CommentControllerBase.MarkCommentAsNotSpam" />
     [HttpPost, Route("comments/{comment_id:long}/not_spam.json")]
     [ProducesResponseType(typeof(CommentItem), StatusCodes.Status200OK)]
     public override Task MarkCommentAsNotSpam([Required] long comment_id)

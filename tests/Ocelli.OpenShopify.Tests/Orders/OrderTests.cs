@@ -116,6 +116,9 @@ public class OrderTests : IClassFixture<OrderFixture>
         var request = new CreateOrderRequest
         {
             Order = new CreateOrder()
+            {
+                Name = Fixture.UniqueString()
+            }
         };
         await Assert.ThrowsAsync<ApiException<OrderError>>(async () =>
             await Fixture.Service.Order.CreateOrderAsync(request));

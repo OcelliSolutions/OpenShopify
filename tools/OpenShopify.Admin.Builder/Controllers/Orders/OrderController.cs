@@ -99,14 +99,8 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Cancel an order
         /// </summary>
-        /// <param name="amount">The amount to refund. If set, Shopify attempts to refund the specified amount, depending on its status. Shopify refunds through a manual gateway in cases where the original transaction was not made in Shopify. Refunds through a manual gateway are recorded as a refund on Shopify, but the customer is not refunded.</param>
-        /// <param name="currency">The currency of the refund that's issued when the order is canceled. Required for multi-currency orders whenever the `amount` property is provided.</param>
-        /// <param name="email">Whether to send an email to the customer notifying them of the cancellation.</param>
-        /// <param name="reason">The reason for the order cancellation. Valid values: `customer`, `inventory`, `fraud`, `declined`, and `other`.)</param>
-        /// <param name="refund">The refund transactions to perform. Required for some more complex refund situations. For more information, see the [Refund API](/docs/admin-api/rest/reference/orders/refund#create-{{ current_version }}).</param>
-        /// <param name="restock">Whether to restock refunded items back to your store's inventory.</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/cancel.json")]
-        public abstract System.Threading.Tasks.Task CancelOrder(long order_id, decimal? amount = null, string? currency = null, bool? email = null, string? reason = null, string? refund = null, bool? restock = null);
+        public abstract System.Threading.Tasks.Task CancelOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CancelOrderRequest request, long order_id);
 
     }
 

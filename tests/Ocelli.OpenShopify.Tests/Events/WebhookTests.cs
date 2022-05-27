@@ -58,14 +58,31 @@ public class WebhookTests : IClassFixture<WebhookFixture>
         Fixture.CreatedWebhooks.Add(response.Result.Webhook);
     }
 
-    [SkippableFact, TestPriority(10)]
+    [SkippableFact]
+    [TestPriority(10)]
+    public async Task CreateWebhookAsync_EmptyBody_IsError()
+    {
+        var request = new CreateWebhookRequest
+        {
+            Webhook = new CreateWebhook()
+        };
+        await Assert.ThrowsAsync<ApiException<WebhookError>>(async () =>
+            await Fixture.Service.Webhook.CreateWebhookAsync(request));
+    }
+
+    [SkippableFact]
+    [TestPriority(10)]
     public async Task CreateWebhookAsync_IsUnprocessableEntityError()
     {
-        var request = new CreateWebhookRequest()
+        var request = new CreateWebhookRequest
         {
-            Webhook = new()
+            Webhook = new CreateWebhook()
+            { 
+                Topic = WebhookTopic.AppUninstalled
+            }
         };
-        await Assert.ThrowsAsync<ApiException<WebhookError>>(async () => await Fixture.Service.Webhook.CreateWebhookAsync(request));
+        await Assert.ThrowsAsync<ApiException<WebhookError>>(async () =>
+            await Fixture.Service.Webhook.CreateWebhookAsync(request));
     }
 
     #endregion Create

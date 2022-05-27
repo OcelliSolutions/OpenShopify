@@ -14,7 +14,7 @@ public class CollectionListingController : CollectionListingControllerBase
     /// <inheritdoc />
     [HttpGet, Route("collection_listings.json")]
     [ProducesResponseType(typeof(CollectionListingList), StatusCodes.Status200OK)]
-    public override Task GetCollectionListingsThatArePublishedToYourApp(int? limit = null, string? page_info = null)
+    public override Task GetCollectionListings(int? limit = null, string? page_info = null)
     {
         throw new NotImplementedException();
     }
@@ -30,7 +30,7 @@ public class CollectionListingController : CollectionListingControllerBase
     /// <inheritdoc />
     [HttpGet, Route("collection_listings/{collection_listing_id:long}.json")]
     [ProducesResponseType(typeof(CollectionListingItem), StatusCodes.Status200OK)]
-    public override Task GetCollectionListingThatIsPublishedToYourApp([Required] long collection_listing_id)
+    public override Task GetCollectionListing([Required] long collection_listing_id)
     {
         throw new NotImplementedException();
     }
@@ -39,7 +39,7 @@ public class CollectionListingController : CollectionListingControllerBase
     [HttpPut, Route("collection_listings/{collection_listing_id:long}.json")]
     [ProducesResponseType(typeof(CollectionListingItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(CollectionListingError), StatusCodes.Status422UnprocessableEntity)]
-    public override Task CreateCollectionListingToPublishCollectionToYourApp([Required] CreateCollectionListingRequest request,
+    public override Task CreateCollectionListing([Required] CreateCollectionListingRequest request,
         [Required] long collection_listing_id)
     {
         throw new NotImplementedException();
@@ -48,7 +48,7 @@ public class CollectionListingController : CollectionListingControllerBase
     /// <inheritdoc />
     [HttpDelete, Route("collection_listings/{collection_listing_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteCollectionListingToUnpublishCollectionFromYourApp([Required] long collection_listing_id)
+    public override Task DeleteCollectionListing([Required] long collection_listing_id)
     {
         throw new NotImplementedException();
     }

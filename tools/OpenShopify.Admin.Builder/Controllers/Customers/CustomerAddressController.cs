@@ -35,7 +35,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Creates a new address for a customer
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses.json")]
-        public abstract System.Threading.Tasks.Task CreateAddressForCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCustomerAddressRequest request, long customer_id);
+        public abstract System.Threading.Tasks.Task CreateAddressForCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateAddressForCustomerRequest request, long customer_id);
 
         /// <summary>
         /// Retrieves details for a single customer address
@@ -58,16 +58,14 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Performs bulk operations for multiple customer addresses
         /// </summary>
-        /// <param name="address_ids">Performs bulk operations for customer addresses specified by a comma-separated list of IDs.</param>
-        /// <param name="operation">Operation to perform by keyword (for example, destroy)</param>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/set.json")]
-        public abstract System.Threading.Tasks.Task PerformBulkOperationsForMultipleCustomerAddresses(string? address_ids = null, long? customer_id = null, string? operation = null);
+        public abstract System.Threading.Tasks.Task PerformBulkOperationsForMultipleCustomerAddresses([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.PerformBulkOperationsForMultipleCustomerAddressesRequest request, long customer_id);
 
         /// <summary>
         /// Sets the default address for a customer
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/addresses/{address_id}/default.json")]
-        public abstract System.Threading.Tasks.Task SetDefaultAddressForCustomer(long address_id, long customer_id);
+        public abstract System.Threading.Tasks.Task SetDefaultAddressForCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.SetDefaultAddressForCustomerRequest request, long address_id, long customer_id);
 
     }
 

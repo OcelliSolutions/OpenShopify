@@ -294,11 +294,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Create a new DraftOrder
         /// </summary>
-        /// <param name="customerId">Used to load the customer. When a customer is loaded, the customer’s email address is also associated.</param>
-        /// <param name="useCustomerDefaultAddress">An optional boolean that you can send as part of a draft order object to load customer shipping information. Valid values: true or false.</param>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DraftOrderItem>> CreateDraftOrderAsync(long? customerId = null, bool? useCustomerDefaultAddress = null, CreateDraftOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DraftOrderItem>> CreateDraftOrderAsync(CreateDraftOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -357,7 +355,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DraftOrderInvoiceItem>> SendInvoiceAsync(long draftOrderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DraftOrderInvoiceItem>> SendInvoiceAsync(long draftOrderId, SendInvoiceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -365,7 +363,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<DraftOrderItem>> CompleteDraftOrderAsync(long draftOrderId, string? paymentPending = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DraftOrderItem>> CompleteDraftOrderAsync(long draftOrderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -405,23 +403,15 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Create a new DraftOrder
         /// </summary>
-        /// <param name="customerId">Used to load the customer. When a customer is loaded, the customer’s email address is also associated.</param>
-        /// <param name="useCustomerDefaultAddress">An optional boolean that you can send as part of a draft order object to load customer shipping information. Valid values: true or false.</param>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DraftOrderItem>> CreateDraftOrderAsync(long? customerId = null, bool? useCustomerDefaultAddress = null, CreateDraftOrderRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DraftOrderItem>> CreateDraftOrderAsync(CreateDraftOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            if (body == null)
+                throw new System.ArgumentNullException("body");
+
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/draft_orders.json?");
-            if (customerId != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("customer_id") + "=").Append(System.Uri.EscapeDataString(ConvertToString(customerId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (useCustomerDefaultAddress != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("use_customer_default_address") + "=").Append(System.Uri.EscapeDataString(ConvertToString(useCustomerDefaultAddress, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            urlBuilder_.Length--;
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/draft_orders.json");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -478,12 +468,12 @@ namespace Ocelli.OpenShopify
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<CreateDraftOrderRequestError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<DraftOrderGeneralError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<CreateDraftOrderRequestError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<DraftOrderGeneralError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -687,12 +677,12 @@ namespace Ocelli.OpenShopify
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<CreateDraftOrderRequestError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<DraftOrderGeneralError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<CreateDraftOrderRequestError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<DraftOrderGeneralError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -959,10 +949,13 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DraftOrderInvoiceItem>> SendInvoiceAsync(long draftOrderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DraftOrderInvoiceItem>> SendInvoiceAsync(long draftOrderId, SendInvoiceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (draftOrderId == null)
                 throw new System.ArgumentNullException("draftOrderId");
+
+            if (body == null)
+                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/draft_orders/{draft_order_id}/send_invoice.json");
@@ -974,7 +967,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
@@ -1034,19 +1029,17 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DraftOrderItem>> CompleteDraftOrderAsync(long draftOrderId, string? paymentPending = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DraftOrderItem>> CompleteDraftOrderAsync(long draftOrderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (draftOrderId == null)
                 throw new System.ArgumentNullException("draftOrderId");
 
+            if (body == null)
+                throw new System.ArgumentNullException("body");
+
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/draft_orders/{draft_order_id}/complete.json?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/draft_orders/{draft_order_id}/complete.json");
             urlBuilder_.Replace("{draft_order_id}", System.Uri.EscapeDataString(ConvertToString(draftOrderId, System.Globalization.CultureInfo.InvariantCulture)));
-            if (paymentPending != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("payment_pending") + "=").Append(System.Uri.EscapeDataString(ConvertToString(paymentPending, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            urlBuilder_.Length--;
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1054,7 +1047,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
@@ -1303,15 +1298,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Cancel an order
         /// </summary>
-        /// <param name="amount">The amount to refund. If set, Shopify attempts to refund the specified amount, depending on its status. Shopify refunds through a manual gateway in cases where the original transaction was not made in Shopify. Refunds through a manual gateway are recorded as a refund on Shopify, but the customer is not refunded.</param>
-        /// <param name="currency">The currency of the refund that's issued when the order is canceled. Required for multi-currency orders whenever the `amount` property is provided.</param>
-        /// <param name="email">Whether to send an email to the customer notifying them of the cancellation.</param>
-        /// <param name="reason">The reason for the order cancellation. Valid values: `customer`, `inventory`, `fraud`, `declined`, and `other`.)</param>
-        /// <param name="restock">Whether to restock refunded items back to your store's inventory.</param>
-        /// <param name="body">The refund transactions to perform. Required for some more complex refund situations. For more information, see the [Refund API](/docs/admin-api/rest/reference/orders/refund#create-{{ current_version }}).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> CancelOrderAsync(long orderId, decimal? amount = null, string? currency = null, bool? email = null, CancelReason? reason = null, bool? restock = null, CreateRefund? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> CancelOrderAsync(long orderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -1562,12 +1551,12 @@ namespace Ocelli.OpenShopify
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<CreateOrderRequestError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<OrderGeneralError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<CreateOrderRequestError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<OrderGeneralError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -2087,43 +2076,19 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Cancel an order
         /// </summary>
-        /// <param name="amount">The amount to refund. If set, Shopify attempts to refund the specified amount, depending on its status. Shopify refunds through a manual gateway in cases where the original transaction was not made in Shopify. Refunds through a manual gateway are recorded as a refund on Shopify, but the customer is not refunded.</param>
-        /// <param name="currency">The currency of the refund that's issued when the order is canceled. Required for multi-currency orders whenever the `amount` property is provided.</param>
-        /// <param name="email">Whether to send an email to the customer notifying them of the cancellation.</param>
-        /// <param name="reason">The reason for the order cancellation. Valid values: `customer`, `inventory`, `fraud`, `declined`, and `other`.)</param>
-        /// <param name="restock">Whether to restock refunded items back to your store's inventory.</param>
-        /// <param name="body">The refund transactions to perform. Required for some more complex refund situations. For more information, see the [Refund API](/docs/admin-api/rest/reference/orders/refund#create-{{ current_version }}).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> CancelOrderAsync(long orderId, decimal? amount = null, string? currency = null, bool? email = null, CancelReason? reason = null, bool? restock = null, CreateRefund? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderItem>> CancelOrderAsync(long orderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
 
+            if (body == null)
+                throw new System.ArgumentNullException("body");
+
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/cancel.json?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/cancel.json");
             urlBuilder_.Replace("{order_id}", System.Uri.EscapeDataString(ConvertToString(orderId, System.Globalization.CultureInfo.InvariantCulture)));
-            if (amount != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("amount") + "=").Append(System.Uri.EscapeDataString(ConvertToString(amount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (currency != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("currency") + "=").Append(System.Uri.EscapeDataString(ConvertToString(currency, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (email != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("email") + "=").Append(System.Uri.EscapeDataString(ConvertToString(email, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (reason != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("reason") + "=").Append(System.Uri.EscapeDataString(ConvertToString(reason, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (restock != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("restock") + "=").Append(System.Uri.EscapeDataString(ConvertToString(restock, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            urlBuilder_.Length--;
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -2297,7 +2262,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<OrderRiskItem>> CreateOrderRiskForOrderAsync(long orderId, CreateOrderRiskRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<OrderRiskItem>> CreateOrderRiskAsync(long orderId, CreateOrderRiskRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2305,7 +2270,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<OrderRiskList>> ListOrderRisksForOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<OrderRiskList>> ListOrderRisksAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2329,7 +2294,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<OrderRiskItem>> DeleteOrderRiskForOrderAsync(long orderId, long riskId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<OrderRiskItem>> DeleteOrderRiskAsync(long orderId, long riskId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -2371,7 +2336,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderRiskItem>> CreateOrderRiskForOrderAsync(long orderId, CreateOrderRiskRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderRiskItem>> CreateOrderRiskAsync(long orderId, CreateOrderRiskRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -2438,12 +2403,12 @@ namespace Ocelli.OpenShopify
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<CreateOrderRiskRequestError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<OrderRiskGeneralError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<CreateOrderRiskRequestError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<OrderRiskGeneralError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -2471,7 +2436,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderRiskList>> ListOrderRisksForOrderAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderRiskList>> ListOrderRisksAsync(long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -2717,7 +2682,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderRiskItem>> DeleteOrderRiskForOrderAsync(long orderId, long riskId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderRiskItem>> DeleteOrderRiskAsync(long orderId, long riskId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -2903,23 +2868,15 @@ namespace Ocelli.OpenShopify
         /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<RefundList>> ListRefundsForOrderAsync(long orderId, string? fields = null, bool? inShopCurrency = null, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<RefundList>> ListRefundsAsync(long orderId, string? fields = null, bool? inShopCurrency = null, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
         /// Creates a refund
         /// </summary>
-        /// <param name="currency">The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency used for the refund.</param>
-        /// <param name="discrepancyReason">An optional comment that explains a discrepancy between calculated and actual refund amounts. Used to populate the `reason` property of the resulting `order_adjustment` object attached to the refund. Valid values: `restock`, `damage`, `customer`, and `other`.</param>
-        /// <param name="note">An optional note attached to a refund.</param>
-        /// <param name="notify">Whether to send a refund notification to the customer.</param>
-        /// <param name="refundLineItems">A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:</param>
-        /// <param name="restock">Whether to add the line items back to the store inventory. Use `restock_type` for refund line items instead.</param>
-        /// <param name="shipping">Specify how much shipping to refund. It has the following properties:</param>
-        /// <param name="transactions">A list of [transactions](/api/admin-rest/current/resources/transaction) to process as refunds. Use the `calculate` endpoint to obtain these transactions.</param>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> CreateRefundAsync(long orderId, string? currency = null, string? discrepancyReason = null, string? note = null, string? notify = null, string? refundLineItems = null, bool? restock = null, string? shipping = null, string? transactions = null, CreateRefundRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> CreateRefundAsync(long orderId, CreateRefundRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2935,12 +2892,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Calculates a refund
         /// </summary>
-        /// <param name="currency">The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency used for the refund. **Note:** Required whenever the shipping `amount` property is provided.</param>
-        /// <param name="refundLineItems">A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:</param>
-        /// <param name="shipping">Specify how much shipping to refund. It has the following properties:</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> CalculateRefundAsync(long orderId, string? currency = null, string? refundLineItems = null, string? shipping = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> CalculateRefundAsync(long orderId, CalculateRefundRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -2986,7 +2940,7 @@ namespace Ocelli.OpenShopify
         /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RefundList>> ListRefundsForOrderAsync(long orderId, string? fields = null, bool? inShopCurrency = null, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RefundList>> ListRefundsAsync(long orderId, string? fields = null, bool? inShopCurrency = null, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -3075,57 +3029,19 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates a refund
         /// </summary>
-        /// <param name="currency">The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency used for the refund.</param>
-        /// <param name="discrepancyReason">An optional comment that explains a discrepancy between calculated and actual refund amounts. Used to populate the `reason` property of the resulting `order_adjustment` object attached to the refund. Valid values: `restock`, `damage`, `customer`, and `other`.</param>
-        /// <param name="note">An optional note attached to a refund.</param>
-        /// <param name="notify">Whether to send a refund notification to the customer.</param>
-        /// <param name="refundLineItems">A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:</param>
-        /// <param name="restock">Whether to add the line items back to the store inventory. Use `restock_type` for refund line items instead.</param>
-        /// <param name="shipping">Specify how much shipping to refund. It has the following properties:</param>
-        /// <param name="transactions">A list of [transactions](/api/admin-rest/current/resources/transaction) to process as refunds. Use the `calculate` endpoint to obtain these transactions.</param>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> CreateRefundAsync(long orderId, string? currency = null, string? discrepancyReason = null, string? note = null, string? notify = null, string? refundLineItems = null, bool? restock = null, string? shipping = null, string? transactions = null, CreateRefundRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> CreateRefundAsync(long orderId, CreateRefundRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
 
+            if (body == null)
+                throw new System.ArgumentNullException("body");
+
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/refunds.json?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/refunds.json");
             urlBuilder_.Replace("{order_id}", System.Uri.EscapeDataString(ConvertToString(orderId, System.Globalization.CultureInfo.InvariantCulture)));
-            if (currency != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("currency") + "=").Append(System.Uri.EscapeDataString(ConvertToString(currency, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (discrepancyReason != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("discrepancy_reason") + "=").Append(System.Uri.EscapeDataString(ConvertToString(discrepancyReason, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (note != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("note") + "=").Append(System.Uri.EscapeDataString(ConvertToString(note, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (notify != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("notify") + "=").Append(System.Uri.EscapeDataString(ConvertToString(notify, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (refundLineItems != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("refund_line_items") + "=").Append(System.Uri.EscapeDataString(ConvertToString(refundLineItems, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (restock != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("restock") + "=").Append(System.Uri.EscapeDataString(ConvertToString(restock, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (shipping != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("shipping") + "=").Append(System.Uri.EscapeDataString(ConvertToString(shipping, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (transactions != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("transactions") + "=").Append(System.Uri.EscapeDataString(ConvertToString(transactions, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            urlBuilder_.Length--;
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -3182,12 +3098,12 @@ namespace Ocelli.OpenShopify
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<CreateRefundRequestError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<RefundGeneralError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<CreateRefundRequestError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<RefundGeneralError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -3302,32 +3218,19 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Calculates a refund
         /// </summary>
-        /// <param name="currency">The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency used for the refund. **Note:** Required whenever the shipping `amount` property is provided.</param>
-        /// <param name="refundLineItems">A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:</param>
-        /// <param name="shipping">Specify how much shipping to refund. It has the following properties:</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> CalculateRefundAsync(long orderId, string? currency = null, string? refundLineItems = null, string? shipping = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RefundItem>> CalculateRefundAsync(long orderId, CalculateRefundRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
 
+            if (body == null)
+                throw new System.ArgumentNullException("body");
+
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/refunds/calculate.json?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/refunds/calculate.json");
             urlBuilder_.Replace("{order_id}", System.Uri.EscapeDataString(ConvertToString(orderId, System.Globalization.CultureInfo.InvariantCulture)));
-            if (currency != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("currency") + "=").Append(System.Uri.EscapeDataString(ConvertToString(currency, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (refundLineItems != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("refund_line_items") + "=").Append(System.Uri.EscapeDataString(ConvertToString(refundLineItems, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (shipping != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("shipping") + "=").Append(System.Uri.EscapeDataString(ConvertToString(shipping, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            urlBuilder_.Length--;
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -3335,7 +3238,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
@@ -3518,10 +3423,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates a transaction for an order
         /// </summary>
-        /// <param name="source">An optional origin of the transaction. Set to `external` to import a cash transaction for the associated order.</param>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<TransactionItem>> CreateTransactionForOrderAsync(long orderId, CreateTransactionRequest body, string? source = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<TransactionItem>> CreateTransactionAsync(long orderId, CreateTransactionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3669,10 +3573,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates a transaction for an order
         /// </summary>
-        /// <param name="source">An optional origin of the transaction. Set to `external` to import a cash transaction for the associated order.</param>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<TransactionItem>> CreateTransactionForOrderAsync(long orderId, CreateTransactionRequest body, string? source = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<TransactionItem>> CreateTransactionAsync(long orderId, CreateTransactionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (orderId == null)
                 throw new System.ArgumentNullException("orderId");
@@ -3681,13 +3584,8 @@ namespace Ocelli.OpenShopify
                 throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/transactions.json?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/transactions.json");
             urlBuilder_.Replace("{order_id}", System.Uri.EscapeDataString(ConvertToString(orderId, System.Globalization.CultureInfo.InvariantCulture)));
-            if (source != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("source") + "=").Append(System.Uri.EscapeDataString(ConvertToString(source, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            urlBuilder_.Length--;
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -3744,12 +3642,12 @@ namespace Ocelli.OpenShopify
                         else
                         if (status_ == 400)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<CreateTransactionRequestError>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<TransactionGeneralError>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new ApiException<CreateTransactionRequestError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new ApiException<TransactionGeneralError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -4110,6 +4008,85 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CalculateRefundRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("refund")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public CalculateRefundRequestDetail? Refund { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CalculateRefundRequestDetail
+    {
+        /// <summary>
+        /// The three-letter code (ISO 4217 format) for the currency used for the refund. Note: Required whenever the shipping amount property is provided.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Currency { get; set; } = default!;
+
+        /// <summary>
+        /// A list of refunded line items. Each entry has the following properties: 
+        /// <br/>
+        /// <br/>*   **id**: The unique identifier of the line item in the refund. 
+        /// <br/>*   **line_item**: A line item being refunded. 
+        /// <br/>*   **line_item_id**: The ID of the related line item in the order. 
+        /// <br/>*   **quantity**: The refunded quantity of the associated line item. 
+        /// <br/>*   **restock_type**: How this refund line item affects inventory levels. Valid values: 
+        /// <br/>
+        /// <br/>    *   **no_restock**: Refunding these items won't affect inventory. The number of fulfillable units for this line item will remain unchanged. For example, a refund payment can be issued but no items will be refunded or made available for sale again. 
+        /// <br/>    *   **cancel**: The items have not yet been fulfilled. The canceled quantity will be added back to the available count. The number of fulfillable units for this line item will decrease. 
+        /// <br/>    *   **return**: The items were already delivered, and will be returned to the merchant. The refunded quantity will be added back to the available count. The number of fulfillable units for this line item will remain unchanged. 
+        /// <br/>    *   **legacy_restock**: The deprecated `restock` property was used for this refund. These items were made available for sale again. This value is not accepted when creating new refunds.   
+        /// <br/>*   **location_id**: The unique identifier of the [location](/api/admin-rest/current/resources/location) where the items will be restocked. Required when `restock_type` has the value `return` or `cancel`. 
+        /// <br/>*   **subtotal**: The subtotal of the refund line item. 
+        /// <br/>*   **total_tax**: The total tax on the refund line item. 
+        /// <br/>*   **subtotal_set**: The subtotal of the refund line item in shop and presentment currencies. 
+        /// <br/>*   **total_tax_set**: The total tax of the line item in shop and presentment currencies.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("refund_line_items")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<RefundLineItem>? RefundLineItems { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public Shipping? Shipping { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CancelOrderRequest : System.Collections.Generic.Dictionary<string, object>
+    {
 
     }
 
@@ -4930,6 +4907,12 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CompleteDraftOrderRequest : System.Collections.Generic.Dictionary<string, object>
+    {
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CreateDraftOrder
     {
         /// <summary>
@@ -5241,29 +5224,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
         public CreateDraftOrder DraftOrder { get; set; } = new CreateDraftOrder();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateDraftOrderRequestError
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
-        [System.ComponentModel.DataAnnotations.Required]
-        public CreateDraftOrderRequestErrorDetails Errors { get; set; } = new CreateDraftOrderRequestErrorDetails();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateDraftOrderRequestErrorDetails
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("base")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Base { get; set; } = default!;
 
     }
 
@@ -6060,29 +6020,6 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateOrderRequestError
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
-        [System.ComponentModel.DataAnnotations.Required]
-        public CreateOrderRequestErrorDetails Errors { get; set; } = new CreateOrderRequestErrorDetails();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateOrderRequestErrorDetails
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("order")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Order { get; set; } = default!;
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CreateOrderRisk
     {
         /// <summary>
@@ -6188,29 +6125,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
         public CreateOrderRisk Risk { get; set; } = new CreateOrderRisk();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateOrderRiskRequestError
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
-        [System.ComponentModel.DataAnnotations.Required]
-        public CreateOrderRiskRequestErrorDetails Errors { get; set; } = new CreateOrderRiskRequestErrorDetails();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateOrderRiskRequestErrorDetails
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("base")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Base { get; set; } = default!;
 
     }
 
@@ -6372,6 +6286,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Currency { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("total_duties_set")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public PriceSet? TotalDutiesSet { get; set; } = default!;
+
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -6383,29 +6302,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
         public CreateRefund Refund { get; set; } = new CreateRefund();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateRefundRequestError
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
-        [System.ComponentModel.DataAnnotations.Required]
-        public CreateRefundRequestErrorDetails Errors { get; set; } = new CreateRefundRequestErrorDetails();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateRefundRequestErrorDetails
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("base")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Base { get; set; } = default!;
 
     }
 
@@ -6621,29 +6517,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
         public CreateTransaction Transaction { get; set; } = new CreateTransaction();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateTransactionRequestError
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
-        [System.ComponentModel.DataAnnotations.Required]
-        public CreateTransactionRequestErrorDetails Errors { get; set; } = new CreateTransactionRequestErrorDetails();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateTransactionRequestErrorDetails
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("base")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Base { get; set; } = default!;
 
     }
 
@@ -7505,6 +7378,47 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.ICollection<string>? Base { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class DraftOrderGeneralError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public DraftOrderGeneralErrorDetails Errors { get; set; } = new DraftOrderGeneralErrorDetails();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class DraftOrderGeneralErrorDetails
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("base")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Base { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -9069,6 +8983,47 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class OrderGeneralError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public OrderGeneralErrorDetails Errors { get; set; } = new OrderGeneralErrorDetails();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class OrderGeneralErrorDetails
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("order")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Order { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class OrderItem
     {
 
@@ -9255,6 +9210,47 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.ICollection<string>? Base { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class OrderRiskGeneralError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public OrderRiskGeneralErrorDetails Errors { get; set; } = new OrderRiskGeneralErrorDetails();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class OrderRiskGeneralErrorDetails
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("base")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Base { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -9607,6 +9603,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Currency { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("total_duties_set")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public PriceSet? TotalDutiesSet { get; set; } = default!;
+
         [System.Text.Json.Serialization.JsonPropertyName("id")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
@@ -9720,6 +9721,47 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class RefundGeneralError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public RefundGeneralErrorDetails Errors { get; set; } = new RefundGeneralErrorDetails();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class RefundGeneralErrorDetails
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("base")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Base { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class RefundItem
     {
 
@@ -9808,14 +9850,11 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public PriceSet? TotalTaxSet { get; set; } = default!;
 
-        /// <summary>
-        /// How this refund line item affects inventory levels.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("restock_type")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? RestockType { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public RestockType? RestockType { get; set; } = default!;
 
         /// <summary>
         /// The unique identifier of the location where the items will be restocked.
@@ -9952,6 +9991,24 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum RestockType
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"no_restock")]
+        NoRestock = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"cancel")]
+        Cancel = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"return")]
+        Return = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"legacy_restock")]
+        LegacyRestock = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public enum RiskRecommendation
     {
 
@@ -9963,6 +10020,27 @@ namespace Ocelli.OpenShopify
 
         [System.Runtime.Serialization.EnumMember(Value = @"accept")]
         Accept = 2,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class SendInvoiceRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("draft_order_invoice")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public DraftOrderInvoice DraftOrderInvoice { get; set; } = new DraftOrderInvoice();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
 
     }
 
@@ -9995,6 +10073,11 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public decimal? MaximumRefundable { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? Tax { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -10451,6 +10534,47 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.ICollection<string>? Base { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class TransactionGeneralError
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("errors")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public TransactionGeneralErrorDetails Errors { get; set; } = new TransactionGeneralErrorDetails();
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class TransactionGeneralErrorDetails
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("base")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Base { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

@@ -15,6 +15,7 @@ public class CarrierServiceController : CarrierServiceControllerBase
     [HttpPost, Route("carrier_services.json")]
     [ProducesResponseType(typeof(CarrierServiceItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(CarrierServiceError), StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(typeof(CarrierServiceGeneralError), StatusCodes.Status400BadRequest)]
     public override Task CreateCarrierService([Required] CreateCarrierServiceRequest request)
     {
         throw new NotImplementedException();
@@ -31,6 +32,7 @@ public class CarrierServiceController : CarrierServiceControllerBase
     /// <inheritdoc />
     [HttpPut, Route("carrier_services/{carrier_service_id:long}.json")]
     [ProducesResponseType(typeof(CarrierServiceItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CarrierServiceGeneralError), StatusCodes.Status400BadRequest)]
     public override Task UpdateCarrierService([Required] UpdateCarrierServiceRequest request, [Required] long carrier_service_id)
     {
         throw new NotImplementedException();

@@ -28,10 +28,8 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Create a new DraftOrder
         /// </summary>
-        /// <param name="customer_id">Used to load the customer. When a customer is loaded, the customer’s email address is also associated.</param>
-        /// <param name="use_customer_default_address">An optional boolean that you can send as part of a draft order object to load customer shipping information. Valid values: true or false.</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("draft_orders.json")]
-        public abstract System.Threading.Tasks.Task CreateDraftOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateDraftOrderRequest request, long customer_id, bool? use_customer_default_address = null);
+        public abstract System.Threading.Tasks.Task CreateDraftOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateDraftOrderRequest request);
 
         /// <summary>
         /// Retrieves a list of draft orders
@@ -79,13 +77,13 @@ namespace OpenShopify.Admin.Builder.Models
         /// Send an invoice
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("draft_orders/{draft_order_id}/send_invoice.json")]
-        public abstract System.Threading.Tasks.Task SendInvoice(long draft_order_id);
+        public abstract System.Threading.Tasks.Task SendInvoice([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.SendInvoiceRequest request, long draft_order_id);
 
         /// <summary>
         /// Complete a draft order
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("draft_orders/{draft_order_id}/complete.json")]
-        public abstract System.Threading.Tasks.Task CompleteDraftOrder(long draft_order_id, string? payment_pending = null);
+        public abstract System.Threading.Tasks.Task CompleteDraftOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CompleteDraftOrderRequest request, long draft_order_id);
 
     }
 

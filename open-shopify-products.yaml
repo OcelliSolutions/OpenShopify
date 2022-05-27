@@ -1800,25 +1800,14 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: products
-          in: query
-          description: 'An array of product IDs, in the order that you want them to appear at the top of the collection. When `products` is specified but empty, any previously sorted products are cleared.'
-          schema:
-            type: string
-        - name: sort_order
-          in: query
-          description: 'The type of sorting to apply. Valid values are listed in the [Properties](#properties) section above.'
-          schema:
-            type: string
-            default: (current value)
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateSmartCollectionRequest'
+              $ref: '#/components/schemas/UpdateOrderingTypeOfProductsInSmartCollectionRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/UpdateSmartCollectionRequest'
+              $ref: '#/components/schemas/UpdateOrderingTypeOfProductsInSmartCollectionRequest'
         required: true
       responses:
         '200':
@@ -3382,6 +3371,9 @@ components:
       properties:
         custom_collection:
           $ref: '#/components/schemas/UpdateCustomCollection'
+      additionalProperties: false
+    UpdateOrderingTypeOfProductsInSmartCollectionRequest:
+      type: object
       additionalProperties: false
     UpdateProduct:
       required:

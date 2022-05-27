@@ -22,9 +22,11 @@ public class AssignedFulfillmentOrderFixture : SharedFixture, IAsyncLifetime
 
     public async Task InitializeAsync()
     {
-        await CreateFulfillmentService();
-        await CreateProduct();
-        await CreateOrder();
+        FulfillmentService = await CreateFulfillmentService();
+        Product = await CreateProduct(FulfillmentService);
+        ProductVariant = Product.Variants!.First(v => v.FulfillmentService != null);
+        Order = await CreateOrder(ProductVariant);
+        
     }
 
     async Task IAsyncLifetime.DisposeAsync()
@@ -46,53 +48,6 @@ public class AssignedFulfillmentOrderFixture : SharedFixture, IAsyncLifetime
             var fulfillmentService = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
             await fulfillmentService.FulfillmentService.DeleteFulfillmentServiceAsync(FulfillmentService.Id);
         }
-    }
-
-    public async Task CreateFulfillmentService()
-    {
-        var fulfillmentService = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
-        var request = CreateFulfillmentServiceRequest();
-        request.FulfillmentService.CallbackUrl += "/assigned_fulfillment_order";
-        var response = await fulfillmentService.FulfillmentService.CreateFulfillmentServiceAsync(request);
-        FulfillmentService = response.Result.FulfillmentService;
-    }
-
-    public async Task CreateProduct()
-    {
-        var productService = new ProductsService(MyShopifyUrl, AccessToken);
-        var request = CreateProductRequest();
-        request.Product.Variants ??= new List<ProductVariant>();
-        request.Product.Variants.Add(new ProductVariant { Sku = BatchId });
-        var productResponse = await productService.Product.CreateProductAsync(request);
-        Product = productResponse.Result.Product;
-
-        if (Product.Variants != null)
-        {
-            var variant = Product.Variants.First();
-            var variantRequest = new UpdateProductVariantRequest
-            {
-                Variant = new UpdateProductVariant
-                {
-                    Id = variant.Id,
-                    Sku = BatchId,
-                    FulfillmentService = FulfillmentService.Handle,
-                    Option1 = variant.Option1
-                }
-            };
-            var variantResponse =
-                await productService.ProductVariant.UpdateProductVariantAsync(variant.Id, variantRequest);
-            ProductVariant = variantResponse.Result.Variant;
-            Product.Variants.Remove(variant);
-            Product.Variants.Add(ProductVariant);
-        }
-    }
-
-    public async Task CreateOrder()
-    {
-        var orderService = new OrdersService(MyShopifyUrl, AccessToken);
-        var request = CreateOrderRequest(ProductVariant.Id);
-        var response = await orderService.Order.CreateOrderAsync(request);
-        Order = response.Result.Order;
     }
 }
 

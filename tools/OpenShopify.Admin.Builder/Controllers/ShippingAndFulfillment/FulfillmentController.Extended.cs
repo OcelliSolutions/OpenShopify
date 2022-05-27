@@ -24,6 +24,7 @@ public class FulfillmentController : FulfillmentControllerBase
     [HttpPost, Route("orders/{order_id:long}/fulfillments.json")]
     [ProducesResponseType(typeof(FulfillmentItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(FulfillmentError), StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(typeof(FulfillmentGeneralError), StatusCodes.Status400BadRequest)]
     public override Task CreateFulfillment([Required] CreateFulfillmentRequest request, [Required] long order_id)
     {
         throw new NotImplementedException();
@@ -66,8 +67,9 @@ public class FulfillmentController : FulfillmentControllerBase
     /// <inheritdoc />
     [HttpPost, Route("fulfillments.json")]
     [ProducesResponseType(typeof(FulfillmentItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(FulfillmentGeneralError), StatusCodes.Status400BadRequest)]
     //TODO: wrong request type
-    public override Task CreateFulfillmentForOneOrManyFulfillmentOrders([Required] CreateFulfillmentRequest request)
+    public override Task CreateFulfillmentForOneOrManyFulfillmentOrders([Required] CreateFulfillmentForOneOrManyFulfillmentOrdersRequest request)
     {
         throw new NotImplementedException();
     }
@@ -76,7 +78,8 @@ public class FulfillmentController : FulfillmentControllerBase
     /// <inheritdoc />
     [HttpPost, Route("fulfillments/{fulfillment_id:long}/update_tracking.json")]
     [ProducesResponseType(typeof(FulfillmentItem), StatusCodes.Status200OK)]
-    public override Task UpdateTrackingInformationForFulfillment([Required] UpdateFulfillmentRequest request, [Required] long fulfillment_id)
+    [ProducesResponseType(typeof(FulfillmentGeneralError), StatusCodes.Status400BadRequest)]
+    public override Task UpdateTrackingInformationForFulfillment([Required] UpdateTrackingInformationForFulfillmentRequest request, [Required] long fulfillment_id)
     {
         throw new NotImplementedException();
     }
@@ -84,14 +87,13 @@ public class FulfillmentController : FulfillmentControllerBase
     /// <inheritdoc />
     [HttpPost, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/complete.json")]
     [ProducesResponseType(typeof(FulfillmentItem), StatusCodes.Status200OK)]
-    public override Task CompleteFulfillment([Required] long fulfillment_id, [Required] long order_id)
-    {
-        throw new NotImplementedException();
-    }
+    [ProducesResponseType(typeof(FulfillmentGeneralError), StatusCodes.Status400BadRequest)]
+    public override Task CompleteFulfillment([Required] CompleteFulfillmentRequest request, long fulfillment_id, long order_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
     [HttpPost, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/open.json")]
     [ProducesResponseType(typeof(FulfillmentItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(FulfillmentGeneralError), StatusCodes.Status400BadRequest)]
     public override Task TransitionFulfillmentFromPendingToOpen([Required] long fulfillment_id, [Required] long order_id)
     {
         throw new NotImplementedException();
@@ -100,15 +102,16 @@ public class FulfillmentController : FulfillmentControllerBase
     /// <inheritdoc />
     [HttpPost, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/cancel.json")]
     [ProducesResponseType(typeof(FulfillmentItem), StatusCodes.Status200OK)]
-    public override Task CancelFulfillmentForSpecificOrderID([Required] long fulfillment_id, [Required] long order_id)
-    {
+    [ProducesResponseType(typeof(FulfillmentGeneralError), StatusCodes.Status400BadRequest)]
+    public override Task CancelFulfillmentForSpecificOrderID([Required] CancelFulfillmentForSpecificOrderIDRequest request, long fulfillment_id,
+        long order_id) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
     [HttpPost, Route("fulfillments/{fulfillment_id:long}/cancel.json")]
     [ProducesResponseType(typeof(FulfillmentItem), StatusCodes.Status200OK)]
-    public override Task CancelFulfillment([Required] long fulfillment_id)
+    [ProducesResponseType(typeof(FulfillmentGeneralError), StatusCodes.Status400BadRequest)]
+    public override Task CancelFulfillment([Required] CancelFulfillmentRequest request, long fulfillment_id)
     {
         throw new NotImplementedException();
     }

@@ -14,7 +14,7 @@ public class ArticleController : ArticleControllerBase
     /// <inheritdoc />
     [HttpGet, Route("blogs/{blog_id:long}/articles.json")]
     [ProducesResponseType(typeof(ArticleList), StatusCodes.Status200OK)]
-    public override Task ListArticlesFromBlog([Required] long blog_id, string? author = null, DateTimeOffset? created_at_max = null,
+    public override Task ListArticles([Required] long blog_id, string? author = null, DateTimeOffset? created_at_max = null,
         DateTimeOffset? created_at_min = null, string? fields = null, string? handle = null, int? limit = null, string? page_info = null, DateTimeOffset? published_at_max = null,
         DateTimeOffset? published_at_min = null, string? published_status = null, long? since_id = null, string? tag = null, DateTimeOffset? updated_at_max = null,
         DateTimeOffset? updated_at_min = null)
@@ -26,7 +26,7 @@ public class ArticleController : ArticleControllerBase
     [HttpPost, Route("blogs/{blog_id:long}/articles.json")]
     [ProducesResponseType(typeof(ArticleItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ArticleError), StatusCodes.Status406NotAcceptable)]
-    public override Task CreateArticleForBlog([Required] CreateArticleRequest request, [Required] long blog_id)
+    public override Task CreateArticle([Required] CreateArticleRequest forBlogRequest, [Required] long blog_id)
     {
         throw new NotImplementedException();
     }
@@ -34,7 +34,7 @@ public class ArticleController : ArticleControllerBase
     /// <inheritdoc />
     [HttpGet, Route("blogs/{blog_id:long}/articles/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountArticlesFromBlog(long? blog_id = null, DateTimeOffset? created_at_max = null,
+    public override Task CountArticles(long? blog_id = null, DateTimeOffset? created_at_max = null,
         DateTimeOffset? created_at_min = null, DateTimeOffset? published_at_max = null,
         DateTimeOffset? published_at_min = null, string? published_status = null, DateTimeOffset? updated_at_max = null,
         DateTimeOffset? updated_at_min = null)

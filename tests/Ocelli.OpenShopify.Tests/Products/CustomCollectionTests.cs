@@ -91,20 +91,7 @@ public class CustomCollectionTests : IClassFixture<CustomCollectionFixture>
 
         Fixture.CreatedCustomCollections.Add(response.Result.CustomCollection);
     }
-
-    //TODO: There is a different between an empty create error and an invalid request. Build out tests for each scenario.
-    [SkippableFact]
-    [TestPriority(10)]
-    public async Task CreateCustomCollectionAsync_IsUnprocessableEntityError()
-    {
-        var request = new CreateCustomCollectionRequest
-        {
-            CustomCollection = new CreateCustomCollection()
-        };
-        await Assert.ThrowsAsync<ApiException<CustomCollectionError>>(async () =>
-            await Fixture.Service.CustomCollection.CreateCustomCollectionAsync(request));
-    }
-
+    
     #endregion Create
 
     #region Read

@@ -87,6 +87,9 @@ public class DraftOrderTests : IClassFixture<DraftOrderFixture>
         var request = new CreateDraftOrderRequest
         {
             DraftOrder = new CreateDraftOrder()
+            {
+                Name = Fixture.UniqueString()
+            }
         };
         await Assert.ThrowsAsync<ApiException<DraftOrderError>>(async () =>
             await Fixture.Service.DraftOrder.CreateDraftOrderAsync(body: request));

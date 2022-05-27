@@ -35,10 +35,8 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Creates or updates an asset for a theme
         /// </summary>
-        /// <param name="source_key">The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.</param>
-        /// <param name="src">The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.</param>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}/assets.json")]
-        public abstract System.Threading.Tasks.Task CreateOrUpdatesAssetForTheme([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateAssetRequest request, long theme_id, string? source_key = null, string? src = null);
+        public abstract System.Threading.Tasks.Task CreateOrUpdatesAssetForTheme([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateOrUpdatesAssetForThemeRequest request, long theme_id);
 
         /// <summary>
         /// Deletes an asset from a theme

@@ -80,18 +80,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates marketing engagements on a marketing event
         /// </summary>
-        /// <param name="occurredOn">The date that these engagements occurred on, in the format “YYYY-MM-DD”.</param>
-        /// <param name="adSpend">The total ad spend for the day, if the marketing event is a paid ad with a daily spend.</param>
-        /// <param name="clicksCount">The total number of clicks on the marketing event for the day.</param>
-        /// <param name="commentsCount">The total number of comments for the day.</param>
-        /// <param name="favoritesCount">The total number of favorites for the day.</param>
-        /// <param name="impressionsCount">The total number of impressions for the day. An impression occurs when the marketing event is served to a customer, either as a email or through a marketing channel.</param>
-        /// <param name="isCumulative">Whether the engagements are reported as lifetime values rather than daily totals.</param>
-        /// <param name="sharesCount">The total number of shares for the day.</param>
-        /// <param name="viewsCount">The total number of views for the day. A view occurs when a customer reads the marketing event that was served to them, for example, if the customer opens the email or spends time looking at a Facebook post.</param>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<EngagementList>> CreateMarketingEngagementsOnMarketingEventAsync(long marketingEventId, CreateMarketingEventRequest body, string? occurredOn = null, string? adSpend = null, string? clicksCount = null, string? commentsCount = null, string? favoritesCount = null, string? impressionsCount = null, string? isCumulative = null, string? sharesCount = null, string? viewsCount = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<EngagementList>> CreateMarketingEngagementsOnMarketingEventAsync(long marketingEventId, CreateMarketingEngagementsOnMarketingEventRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -595,18 +586,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates marketing engagements on a marketing event
         /// </summary>
-        /// <param name="occurredOn">The date that these engagements occurred on, in the format “YYYY-MM-DD”.</param>
-        /// <param name="adSpend">The total ad spend for the day, if the marketing event is a paid ad with a daily spend.</param>
-        /// <param name="clicksCount">The total number of clicks on the marketing event for the day.</param>
-        /// <param name="commentsCount">The total number of comments for the day.</param>
-        /// <param name="favoritesCount">The total number of favorites for the day.</param>
-        /// <param name="impressionsCount">The total number of impressions for the day. An impression occurs when the marketing event is served to a customer, either as a email or through a marketing channel.</param>
-        /// <param name="isCumulative">Whether the engagements are reported as lifetime values rather than daily totals.</param>
-        /// <param name="sharesCount">The total number of shares for the day.</param>
-        /// <param name="viewsCount">The total number of views for the day. A view occurs when a customer reads the marketing event that was served to them, for example, if the customer opens the email or spends time looking at a Facebook post.</param>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<EngagementList>> CreateMarketingEngagementsOnMarketingEventAsync(long marketingEventId, CreateMarketingEventRequest body, string? occurredOn = null, string? adSpend = null, string? clicksCount = null, string? commentsCount = null, string? favoritesCount = null, string? impressionsCount = null, string? isCumulative = null, string? sharesCount = null, string? viewsCount = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<EngagementList>> CreateMarketingEngagementsOnMarketingEventAsync(long marketingEventId, CreateMarketingEngagementsOnMarketingEventRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (marketingEventId == null)
                 throw new System.ArgumentNullException("marketingEventId");
@@ -615,45 +597,8 @@ namespace Ocelli.OpenShopify
                 throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/marketing_events/{marketing_event_id}/engagements.json?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/marketing_events/{marketing_event_id}/engagements.json");
             urlBuilder_.Replace("{marketing_event_id}", System.Uri.EscapeDataString(ConvertToString(marketingEventId, System.Globalization.CultureInfo.InvariantCulture)));
-            if (occurredOn != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("occurred_on") + "=").Append(System.Uri.EscapeDataString(ConvertToString(occurredOn, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (adSpend != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("ad_spend") + "=").Append(System.Uri.EscapeDataString(ConvertToString(adSpend, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (clicksCount != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("clicks_count") + "=").Append(System.Uri.EscapeDataString(ConvertToString(clicksCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (commentsCount != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("comments_count") + "=").Append(System.Uri.EscapeDataString(ConvertToString(commentsCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (favoritesCount != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("favorites_count") + "=").Append(System.Uri.EscapeDataString(ConvertToString(favoritesCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (impressionsCount != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("impressions_count") + "=").Append(System.Uri.EscapeDataString(ConvertToString(impressionsCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (isCumulative != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("is_cumulative") + "=").Append(System.Uri.EscapeDataString(ConvertToString(isCumulative, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (sharesCount != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("shares_count") + "=").Append(System.Uri.EscapeDataString(ConvertToString(sharesCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (viewsCount != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("views_count") + "=").Append(System.Uri.EscapeDataString(ConvertToString(viewsCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            urlBuilder_.Length--;
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -826,6 +771,12 @@ namespace Ocelli.OpenShopify
 
         [System.Runtime.Serialization.EnumMember(Value = @"lifetime")]
         Lifetime = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateMarketingEngagementsOnMarketingEventRequest
+    {
 
     }
 

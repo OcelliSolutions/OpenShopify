@@ -98,18 +98,6 @@ paths:
         - DraftOrder
       summary: Create a new DraftOrder
       operationId: CreateDraftOrder
-      parameters:
-        - name: customer_id
-          in: query
-          description: 'Used to load the customer. When a customer is loaded, the customer’s email address is also associated.'
-          schema:
-            type: integer
-            format: int64
-        - name: use_customer_default_address
-          in: query
-          description: 'An optional boolean that you can send as part of a draft order object to load customer shipping information. Valid values: true or false.'
-          schema:
-            type: boolean
       requestBody:
         content:
           application/json:
@@ -118,6 +106,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateDraftOrderRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -163,7 +152,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateDraftOrderRequestError'
+                $ref: '#/components/schemas/DraftOrderGeneralError'
     get:
       tags:
         - DraftOrder
@@ -299,7 +288,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateDraftOrderRequestError'
+                $ref: '#/components/schemas/DraftOrderGeneralError'
     get:
       tags:
         - DraftOrder
@@ -416,6 +405,15 @@ paths:
           schema:
             type: integer
             format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendInvoiceRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SendInvoiceRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -445,10 +443,15 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: payment_pending
-          in: query
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompleteDraftOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CompleteDraftOrderRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -635,7 +638,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateOrderRequestError'
+                $ref: '#/components/schemas/OrderGeneralError'
   '/orders/{order_id}.json':
     get:
       tags:
@@ -879,41 +882,15 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: amount
-          in: query
-          description: 'The amount to refund. If set, Shopify attempts to refund the specified amount, depending on its status. Shopify refunds through a manual gateway in cases where the original transaction was not made in Shopify. Refunds through a manual gateway are recorded as a refund on Shopify, but the customer is not refunded.'
-          schema:
-            type: number
-            format: decimal
-        - name: currency
-          in: query
-          description: The currency of the refund that's issued when the order is canceled. Required for multi-currency orders whenever the `amount` property is provided.
-          schema:
-            type: string
-        - name: email
-          in: query
-          description: Whether to send an email to the customer notifying them of the cancellation.
-          schema:
-            type: boolean
-        - name: reason
-          in: query
-          description: 'The reason for the order cancellation. Valid values: `customer`, `inventory`, `fraud`, `declined`, and `other`.)'
-          schema:
-            $ref: '#/components/schemas/CancelReason'
-        - name: restock
-          in: query
-          description: Whether to restock refunded items back to your store's inventory.
-          schema:
-            type: boolean
       requestBody:
-        description: 'The refund transactions to perform. Required for some more complex refund situations. For more information, see the [Refund API](/docs/admin-api/rest/reference/orders/refund#create-{{ current_version }}).'
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateRefund'
+              $ref: '#/components/schemas/CancelOrderRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateRefund'
+              $ref: '#/components/schemas/CancelOrderRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -935,7 +912,7 @@ paths:
       tags:
         - OrderRisk
       summary: Creates an order risk for an order
-      operationId: CreateOrderRiskForOrder
+      operationId: CreateOrderRisk
       parameters:
         - name: order_id
           in: path
@@ -997,12 +974,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateOrderRiskRequestError'
+                $ref: '#/components/schemas/OrderRiskGeneralError'
     get:
       tags:
         - OrderRisk
       summary: Retrieves a list of all order risks for an order
-      operationId: ListOrderRisksForOrder
+      operationId: ListOrderRisks
       parameters:
         - name: order_id
           in: path
@@ -1127,7 +1104,7 @@ paths:
       tags:
         - OrderRisk
       summary: Deletes an order risk for an order
-      operationId: DeleteOrderRiskForOrder
+      operationId: DeleteOrderRisk
       parameters:
         - name: order_id
           in: path
@@ -1162,7 +1139,7 @@ paths:
       tags:
         - Refund
       summary: Retrieves a list of refunds for an order
-      operationId: ListRefundsForOrder
+      operationId: ListRefunds
       parameters:
         - name: order_id
           in: path
@@ -1223,46 +1200,6 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: currency
-          in: query
-          description: 'The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency used for the refund.'
-          schema:
-            type: string
-        - name: discrepancy_reason
-          in: query
-          description: 'An optional comment that explains a discrepancy between calculated and actual refund amounts. Used to populate the `reason` property of the resulting `order_adjustment` object attached to the refund. Valid values: `restock`, `damage`, `customer`, and `other`.'
-          schema:
-            type: string
-        - name: note
-          in: query
-          description: An optional note attached to a refund.
-          schema:
-            type: string
-        - name: notify
-          in: query
-          description: Whether to send a refund notification to the customer.
-          schema:
-            type: string
-        - name: refund_line_items
-          in: query
-          description: 'A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:'
-          schema:
-            type: string
-        - name: restock
-          in: query
-          description: Whether to add the line items back to the store inventory. Use `restock_type` for refund line items instead.
-          schema:
-            type: boolean
-        - name: shipping
-          in: query
-          description: 'Specify how much shipping to refund. It has the following properties:'
-          schema:
-            type: string
-        - name: transactions
-          in: query
-          description: 'A list of [transactions](/api/admin-rest/current/resources/transaction) to process as refunds. Use the `calculate` endpoint to obtain these transactions.'
-          schema:
-            type: string
       requestBody:
         content:
           application/json:
@@ -1271,6 +1208,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateRefundRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -1316,7 +1254,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateRefundRequestError'
+                $ref: '#/components/schemas/RefundGeneralError'
   '/orders/{order_id}/refunds/{refund_id}.json':
     get:
       tags:
@@ -1375,21 +1313,15 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: currency
-          in: query
-          description: 'The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency used for the refund. **Note:** Required whenever the shipping `amount` property is provided.'
-          schema:
-            type: string
-        - name: refund_line_items
-          in: query
-          description: 'A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:'
-          schema:
-            type: string
-        - name: shipping
-          in: query
-          description: 'Specify how much shipping to refund. It has the following properties:'
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalculateRefundRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CalculateRefundRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -1474,7 +1406,7 @@ paths:
       tags:
         - Transaction
       summary: Creates a transaction for an order
-      operationId: CreateTransactionForOrder
+      operationId: CreateTransaction
       parameters:
         - name: order_id
           in: path
@@ -1482,11 +1414,6 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: source
-          in: query
-          description: An optional origin of the transaction. Set to `external` to import a cash transaction for the associated order.
-          schema:
-            type: string
       requestBody:
         content:
           application/json:
@@ -1541,7 +1468,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateTransactionRequestError'
+                $ref: '#/components/schemas/TransactionGeneralError'
   '/orders/{order_id}/transactions/count.json':
     get:
       tags:
@@ -1724,6 +1651,31 @@ components:
           description: "The applied amount of the discount, based on the setting of value_type. \r\nWhen ValueType is set to fixed_amount discount amount = quantity /// value\r\nWhen ValueType is set to percentage discount amount = floor(price /// quantity /// value) / 100"
           format: decimal
           nullable: true
+      additionalProperties: { }
+    CalculateRefundRequest:
+      type: object
+      properties:
+        refund:
+          $ref: '#/components/schemas/CalculateRefundRequestDetail'
+      additionalProperties: { }
+    CalculateRefundRequestDetail:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: 'The three-letter code (ISO 4217 format) for the currency used for the refund. Note: Required whenever the shipping amount property is provided.'
+          nullable: true
+        refund_line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundLineItem'
+          description: "A list of refunded line items. Each entry has the following properties: \r\n\r\n*   **id**: The unique identifier of the line item in the refund. \r\n*   **line_item**: A line item being refunded. \r\n*   **line_item_id**: The ID of the related line item in the order. \r\n*   **quantity**: The refunded quantity of the associated line item. \r\n*   **restock_type**: How this refund line item affects inventory levels. Valid values: \r\n\r\n    *   **no_restock**: Refunding these items won't affect inventory. The number of fulfillable units for this line item will remain unchanged. For example, a refund payment can be issued but no items will be refunded or made available for sale again. \r\n    *   **cancel**: The items have not yet been fulfilled. The canceled quantity will be added back to the available count. The number of fulfillable units for this line item will decrease. \r\n    *   **return**: The items were already delivered, and will be returned to the merchant. The refunded quantity will be added back to the available count. The number of fulfillable units for this line item will remain unchanged. \r\n    *   **legacy_restock**: The deprecated `restock` property was used for this refund. These items were made available for sale again. This value is not accepted when creating new refunds.   \r\n*   **location_id**: The unique identifier of the [location](/api/admin-rest/current/resources/location) where the items will be restocked. Required when `restock_type` has the value `return` or `cancel`. \r\n*   **subtotal**: The subtotal of the refund line item. \r\n*   **total_tax**: The total tax on the refund line item. \r\n*   **subtotal_set**: The subtotal of the refund line item in shop and presentment currencies. \r\n*   **total_tax_set**: The total tax of the line item in shop and presentment currencies."
+          nullable: true
+        shipping:
+          $ref: '#/components/schemas/Shipping'
+      additionalProperties: { }
+    CancelOrderRequest:
+      type: object
       additionalProperties: { }
     CancelReason:
       enum:
@@ -2136,6 +2088,9 @@ components:
           description: The browser's user agent string.
           nullable: true
       additionalProperties: { }
+    CompleteDraftOrderRequest:
+      type: object
+      additionalProperties: { }
     CountItem:
       type: object
       properties:
@@ -2282,21 +2237,6 @@ components:
       properties:
         draft_order:
           $ref: '#/components/schemas/CreateDraftOrder'
-      additionalProperties: false
-    CreateDraftOrderRequestError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/CreateDraftOrderRequestErrorDetails'
-      additionalProperties: false
-    CreateDraftOrderRequestErrorDetails:
-      type: object
-      properties:
-        base:
-          type: string
-          nullable: true
       additionalProperties: false
     CreateOrder:
       type: object
@@ -2637,21 +2577,6 @@ components:
         order:
           $ref: '#/components/schemas/CreateOrder'
       additionalProperties: false
-    CreateOrderRequestError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/CreateOrderRequestErrorDetails'
-      additionalProperties: false
-    CreateOrderRequestErrorDetails:
-      type: object
-      properties:
-        order:
-          type: string
-          nullable: true
-      additionalProperties: false
     CreateOrderRisk:
       type: object
       properties:
@@ -2701,21 +2626,6 @@ components:
       properties:
         risk:
           $ref: '#/components/schemas/CreateOrderRisk'
-      additionalProperties: false
-    CreateOrderRiskRequestError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/CreateOrderRiskRequestErrorDetails'
-      additionalProperties: false
-    CreateOrderRiskRequestErrorDetails:
-      type: object
-      properties:
-        base:
-          type: string
-          nullable: true
       additionalProperties: false
     CreateRefund:
       type: object
@@ -2789,6 +2699,8 @@ components:
           type: string
           description: 'The three-letter code (ISO 4217 format) for the currency used for the refund. Note: Required whenever the shipping amount property is provided.'
           nullable: true
+        total_duties_set:
+          $ref: '#/components/schemas/PriceSet'
       additionalProperties: false
     CreateRefundRequest:
       required:
@@ -2797,21 +2709,6 @@ components:
       properties:
         refund:
           $ref: '#/components/schemas/CreateRefund'
-      additionalProperties: false
-    CreateRefundRequestError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/CreateRefundRequestErrorDetails'
-      additionalProperties: false
-    CreateRefundRequestErrorDetails:
-      type: object
-      properties:
-        base:
-          type: string
-          nullable: true
       additionalProperties: false
     CreateTransaction:
       type: object
@@ -2917,21 +2814,6 @@ components:
       properties:
         transaction:
           $ref: '#/components/schemas/CreateTransaction'
-      additionalProperties: false
-    CreateTransactionRequestError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/CreateTransactionRequestErrorDetails'
-      additionalProperties: false
-    CreateTransactionRequestErrorDetails:
-      type: object
-      properties:
-        base:
-          type: string
-          nullable: true
       additionalProperties: false
     CurrencyExchangeAdjustment:
       required:
@@ -3567,6 +3449,21 @@ components:
           type: array
           items:
             type: string
+          nullable: true
+      additionalProperties: { }
+    DraftOrderGeneralError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/DraftOrderGeneralErrorDetails'
+      additionalProperties: { }
+    DraftOrderGeneralErrorDetails:
+      type: object
+      properties:
+        base:
+          type: string
           nullable: true
       additionalProperties: { }
     DraftOrderInvoice:
@@ -4433,6 +4330,21 @@ components:
             type: string
           nullable: true
       additionalProperties: { }
+    OrderGeneralError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/OrderGeneralErrorDetails'
+      additionalProperties: { }
+    OrderGeneralErrorDetails:
+      type: object
+      properties:
+        order:
+          type: string
+          nullable: true
+      additionalProperties: { }
     OrderItem:
       required:
         - order
@@ -4516,6 +4428,21 @@ components:
           type: array
           items:
             type: string
+          nullable: true
+      additionalProperties: { }
+    OrderRiskGeneralError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/OrderRiskGeneralErrorDetails'
+      additionalProperties: { }
+    OrderRiskGeneralErrorDetails:
+      type: object
+      properties:
+        base:
+          type: string
           nullable: true
       additionalProperties: { }
     OrderRiskItem:
@@ -4679,6 +4606,8 @@ components:
           type: string
           description: 'The three-letter code (ISO 4217 format) for the currency used for the refund. Note: Required whenever the shipping amount property is provided.'
           nullable: true
+        total_duties_set:
+          $ref: '#/components/schemas/PriceSet'
         id:
           type: integer
           format: int64
@@ -4722,6 +4651,21 @@ components:
           type: array
           items:
             type: string
+          nullable: true
+      additionalProperties: { }
+    RefundGeneralError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/RefundGeneralErrorDetails'
+      additionalProperties: { }
+    RefundGeneralErrorDetails:
+      type: object
+      properties:
+        base:
+          type: string
           nullable: true
       additionalProperties: { }
     RefundItem:
@@ -4771,9 +4715,7 @@ components:
         total_tax_set:
           $ref: '#/components/schemas/PriceSet'
         restock_type:
-          type: string
-          description: How this refund line item affects inventory levels.
-          nullable: true
+          $ref: '#/components/schemas/RestockType'
         location_id:
           type: integer
           description: "The unique identifier of the location where the items will be restocked.\r\nRequired when restock_type has the value return or cancel."
@@ -4835,12 +4777,28 @@ components:
         tax_amount_set:
           $ref: '#/components/schemas/PriceSet'
       additionalProperties: { }
+    RestockType:
+      enum:
+        - no_restock
+        - cancel
+        - return
+        - legacy_restock
+      type: string
+      additionalProperties: { }
     RiskRecommendation:
       enum:
         - cancel
         - investigate
         - accept
       type: string
+      additionalProperties: { }
+    SendInvoiceRequest:
+      required:
+        - draft_order_invoice
+      type: object
+      properties:
+        draft_order_invoice:
+          $ref: '#/components/schemas/DraftOrderInvoice'
       additionalProperties: { }
     Shipping:
       type: object
@@ -4857,6 +4815,10 @@ components:
         maximum_refundable:
           type: number
           description: The maximum amount that can be refunded
+          format: decimal
+          nullable: true
+        tax:
+          type: number
           format: decimal
           nullable: true
       additionalProperties: { }
@@ -5087,6 +5049,21 @@ components:
           type: array
           items:
             type: string
+          nullable: true
+      additionalProperties: { }
+    TransactionGeneralError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/TransactionGeneralErrorDetails'
+      additionalProperties: { }
+    TransactionGeneralErrorDetails:
+      type: object
+      properties:
+        base:
+          type: string
           nullable: true
       additionalProperties: { }
     TransactionItem:

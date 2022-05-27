@@ -41,10 +41,8 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Creates a new report
         /// </summary>
-        /// <param name="name">The name of the report. Maximum length: 255 characters.</param>
-        /// <param name="shopify_ql">The ShopifyQL the report will query.</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("reports.json")]
-        public abstract System.Threading.Tasks.Task CreateReport([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateReportRequest request, string? name = null, string? shopify_ql = null);
+        public abstract System.Threading.Tasks.Task CreateReport([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateReportRequest request);
 
         /// <summary>
         /// Retrieves a single report

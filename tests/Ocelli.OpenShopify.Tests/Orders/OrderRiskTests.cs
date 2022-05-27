@@ -22,8 +22,8 @@ public class OrderRiskFixture : SharedFixture, IAsyncLifetime
 
     public async Task InitializeAsync()
     {
-        await CreateProduct();
-        await CreateOrder();
+        Product = await CreateProduct();
+        Order = await CreateOrder(Product.Variants!.First());
     }
 
     async Task IAsyncLifetime.DisposeAsync()
@@ -43,27 +43,11 @@ public class OrderRiskFixture : SharedFixture, IAsyncLifetime
         }
     }
 
-    public async Task CreateProduct()
-    {
-        var request = CreateProductRequest();
-        var service = new ProductsService(MyShopifyUrl, AccessToken);
-        var response = await service.Product.CreateProductAsync(request);
-        Product = response.Result.Product;
-    }
-
-    public async Task CreateOrder()
-    {
-        var request = CreateOrderRequest(Product.Variants!.First().Id);
-        var service = new OrdersService(MyShopifyUrl, AccessToken);
-        var response = await service.Order.CreateOrderAsync(request);
-        Order = response.Result.Order;
-    }
-
     public async Task DeleteOrderRiskAsync_CanDelete()
     {
         foreach (var orderRisk in CreatedOrderRisks)
         {
-            _ = await Service.OrderRisk.DeleteOrderRiskForOrderAsync(Order.Id, orderRisk.Id);
+            _ = await Service.OrderRisk.DeleteOrderRiskAsync(Order.Id, orderRisk.Id);
         }
         CreatedOrderRisks.Clear();
     }
@@ -119,7 +103,7 @@ public class OrderRiskTests : IClassFixture<OrderRiskFixture>
     public async Task CreateOrderRiskAsync_CanCreate()
     {
         var request = Fixture.CreateOrderRiskRequest();
-        var response = await Fixture.Service.OrderRisk.CreateOrderRiskForOrderAsync(Fixture.Order.Id, request);
+        var response = await Fixture.Service.OrderRisk.CreateOrderRiskAsync(Fixture.Order.Id, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedOrderRisks.Add(response.Result.Risk);
@@ -133,7 +117,7 @@ public class OrderRiskTests : IClassFixture<OrderRiskFixture>
     [TestPriority(20)]
     public async Task ListOrderRisksAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.OrderRisk.ListOrderRisksForOrderAsync(Fixture.Order.Id);
+        var response = await Fixture.Service.OrderRisk.ListOrderRisksAsync(Fixture.Order.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var orderRisk in response.Result.Risks)
         {

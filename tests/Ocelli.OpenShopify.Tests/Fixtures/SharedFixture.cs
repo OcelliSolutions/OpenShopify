@@ -80,6 +80,90 @@ public class SharedFixture
         }
     }
 
+
+    public async Task<FulfillmentService> CreateFulfillmentService([CallerMemberName] string callerName = "")
+    {
+        var fulfillmentService = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
+        var request = CreateFulfillmentServiceRequest(callerName);
+        request.FulfillmentService.CallbackUrl += $@"/{callerName}";
+        var response = await fulfillmentService.FulfillmentService.CreateFulfillmentServiceAsync(request);
+        return response.Result.FulfillmentService;
+    }
+
+    public async Task<Product> CreateProduct([CallerMemberName] string callerName = "")
+    {
+        var productService = new ProductsService(MyShopifyUrl, AccessToken);
+        var request = CreateProductRequest(callerName);
+        request.Product.Variants ??= new List<ProductVariant>();
+        request.Product.Variants.Add(new ProductVariant { Sku = BatchId });
+        var productResponse = await productService.Product.CreateProductAsync(request);
+        return productResponse.Result.Product;
+    }
+
+    public async Task<Product> CreateProduct(FulfillmentService fulfillmentService, [CallerMemberName] string callerName = "")
+    {
+        var productService = new ProductsService(MyShopifyUrl, AccessToken);
+        var product = await CreateProduct(callerName);
+
+        if (product.Variants == null) return product;
+
+        var variant = product.Variants.First();
+        var variantRequest = new UpdateProductVariantRequest
+        {
+            Variant = new UpdateProductVariant
+            {
+                Id = variant.Id,
+                Sku = BatchId,
+                FulfillmentService = fulfillmentService.Handle,
+                Option1 = variant.Option1,
+                Price = variant.Price ?? (decimal)10.00
+            }
+        };
+        var variantResponse = await productService.ProductVariant.UpdateProductVariantAsync(variant.Id, variantRequest);
+        product.Variants.Remove(variant);
+        product.Variants.Add(variantResponse.Result.Variant);
+
+        return product;
+    }
+
+    public async Task<Order> CreateOrder(ProductVariant productVariant, [CallerMemberName] string callerName = "")
+    {
+        var orderService = new OrdersService(MyShopifyUrl, AccessToken);
+        var request = CreateOrderRequest(productVariant.Id, callerName);
+        var response = await orderService.Order.CreateOrderAsync(request);
+        return response.Result.Order;
+    }
+    public async Task<IEnumerable<FulfillmentOrder>> GetFulfillmentOrders(Order order)
+    {
+        var service = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
+        var response = await service.FulfillmentOrder.ListFulfillmentOrdersForSpecificOrderAsync(order.Id);
+        return response.Result.FulfillmentOrders;
+    }
+
+    public async Task<Fulfillment> CreateFulfillment(Order order, FulfillmentService fulfillmentService)
+    {
+        //TODO: Figure out what objects can have a `test` property and validate accordingly.
+        var service = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
+        var request = CreateFulfillmentRequest(fulfillmentService);
+        var response = await service.Fulfillment.CreateFulfillmentAsync(order.Id, request);
+        return response.Result.Fulfillment;
+    }
+
+    public CreateFulfillmentRequest CreateFulfillmentRequest(FulfillmentService fulfillmentService) =>
+        new()
+        {
+            Fulfillment = new CreateFulfillment
+            {
+                LocationId = fulfillmentService.LocationId,
+                TrackingNumbers = new List<string> { "123456789" },
+                TrackingUrls = new List<string>
+                {
+                    "https://shipping.xyz/track.php?num=123456789", "https://anothershipper.corp/track.php?code=abc"
+                },
+                NotifyCustomer = true
+            }
+        };
+
     public CreateCustomerRequest CreateCustomerRequest([CallerMemberName] string callerName = "") =>
         new()
         {
@@ -139,6 +223,7 @@ public class SharedFixture
         {
             Order = new CreateOrder
             {
+                Test = true,
                 Email = Email,
                 Note = UniqueString(callerName),
                 LineItems = new List<LineItem>
@@ -147,6 +232,13 @@ public class SharedFixture
                     {
                         VariantId = variantId,
                         Quantity = 1
+                    }
+                }, ShippingLines = new List<ShippingLine>()
+                {
+                    new ()
+                    {
+                        Title = UniqueString(callerName),
+                        Price = (decimal)2.00
                     }
                 }
             }
@@ -160,7 +252,12 @@ public class SharedFixture
                 Name = UniqueString(callerName),
                 Email = Email,
                 Format = FulfillmentServiceFormat.Json,
-                CallbackUrl = CallbackUrl
+                CallbackUrl = CallbackUrl,
+                FulfillmentOrdersOptIn = true, 
+                TrackingSupport = true, 
+                IncludePendingStock = true,
+                InventoryManagement = true, 
+                RequiresShippingMethod = false
             }
         };
 
@@ -185,6 +282,54 @@ public class SharedFixture
                 Title = UniqueString(callerName)
             }
         };
+    public CreateApplicationChargeRequest CreateApplicationChargeRequest([CallerMemberName] string callerName = "") =>
+        new()
+        {
+            ApplicationCharge = new()
+            {
+                Test = true, 
+                Name = UniqueString(callerName),
+                Price = (decimal)100.0,
+                ReturnUrl = $@"{CallbackUrl}/{callerName}"
+            }
+        };
+
+    public CreateApplicationCreditRequest CreateApplicationCreditRequest([CallerMemberName] string callerName = "") =>
+        new()
+        {
+            ApplicationCredit = new()
+            {
+                Test = true,
+                Description = UniqueString(callerName),
+                Amount = (decimal)5.0
+            }
+        };
+
+    public CreateRecurringApplicationChargeRequest CreateRecurringApplicationChargeRequest([CallerMemberName] string callerName = "") =>
+        new()
+        {
+            RecurringApplicationCharge = new()
+            {
+                Test = true,
+                Name = UniqueString(callerName), 
+                Price = (decimal)5.00
+            }
+        };
+
+
+    public CreateTransactionRequest CreateTransactionRequest(Order order, [CallerMemberName] string callerName = "") =>
+        new()
+        {
+            Transaction = new()
+            {
+                Test = true,
+                Currency = "USD",
+                Amount = (decimal)10.00,
+                Kind = TransactionKind.Capture, 
+                ParentId = order.Id
+            }
+        };
+
 
     public CreateArticleRequest CreateArticleRequest([CallerMemberName] string callerName = "") =>
         new()
@@ -222,7 +367,7 @@ public class SharedFixture
             }
         };
 
-    public CreateCustomerAddressRequest CreateCustomerAddressRequest([CallerMemberName] string callerName = "") =>
+    public CreateAddressForCustomerRequest CreateAddressForCustomerRequest([CallerMemberName] string callerName = "") =>
         new()
         {
             CustomerAddress = new CreateCustomerAddress

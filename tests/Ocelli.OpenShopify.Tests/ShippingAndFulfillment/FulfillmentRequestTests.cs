@@ -9,21 +9,51 @@ using Xunit.Abstractions;
 namespace Ocelli.OpenShopify.Tests.ShippingAndFulfillment;
 public class FulfillmentRequestFixture : SharedFixture, IAsyncLifetime
 {
-    public EventsService Service;
-    public List<FulfillmentRequest> CreatedFulfillmentRequests = new();
+    public ShippingAndFulfillmentService Service;
+    public FulfillmentService FulfillmentService = new();
+    public Product Product = new();
+    public ProductVariant ProductVariant = new();
+    public FulfillmentOrder FulfillmentOrder = new();
+    public Order Order = new();
 
     public FulfillmentRequestFixture()
     {
-        Service = new EventsService(MyShopifyUrl, AccessToken);
+        Service = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
     }
-    public Task InitializeAsync() => Task.CompletedTask;
+    public async Task InitializeAsync()
+    {
+        FulfillmentService = await CreateFulfillmentService(GetType().Name);
+        Product = await CreateProduct(FulfillmentService, GetType().Name);
+        ProductVariant = Product.Variants!.First(v => v.FulfillmentService != null);
+        Order = await CreateOrder(ProductVariant, GetType().Name);
+        var fulfillmentOrders = await GetFulfillmentOrders(Order);
+        FulfillmentOrder = fulfillmentOrders.First();
+        //Figure out how to populate FulfillmentOrder
+    }
 
     async Task IAsyncLifetime.DisposeAsync()
     {
+        if (Order.Id > 0)
+        {
+            var orderService = new OrdersService(MyShopifyUrl, AccessToken);
+            await orderService.Order.DeleteOrderAsync(Order.Id);
+        }
+
+        if (Product.Id > 0)
+        {
+            var productService = new ProductsService(MyShopifyUrl, AccessToken);
+            await productService.Product.DeleteProductAsync(Product.Id);
+        }
+
+        if (FulfillmentService.Id > 0)
+        {
+            var fulfillmentService = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
+            await fulfillmentService.FulfillmentService.DeleteFulfillmentServiceAsync(FulfillmentService.Id);
+        }
     }
 }
 
-/*
+
  //TODO: this is non-standard and will require more work.
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
 public class FulfillmentRequestTests : IClassFixture<FulfillmentRequestFixture>
@@ -36,87 +66,15 @@ public class FulfillmentRequestTests : IClassFixture<FulfillmentRequestFixture>
     }
 
     private FulfillmentRequestFixture Fixture { get; }
-
-    #region Create
-
+    /*
     [SkippableFact, TestPriority(10)]
     public async Task CreateFulfillmentRequestAsync_CanCreate()
     {
         var request = Fixture.CreateFulfillmentRequestRequest();
-        var response = await Fixture.Service.FulfillmentRequest.CreateFulfillmentRequestAsync(request);
+        var response = await Fixture.Service.FulfillmentRequest.SendFulfillmentRequestAsync(Fixture.FulfillmentOrder.Id, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedFulfillmentRequests.Add(response.Result.FulfillmentRequest);
     }
-
-    [SkippableFact, TestPriority(10)]
-    public async Task CreateFulfillmentRequestAsync_IsUnprocessableEntityError()
-    {
-        var request = new CreateFulfillmentRequestRequest()
-        {
-            FulfillmentRequest = new()
-        };
-        await Assert.ThrowsAsync<ApiException<FulfillmentRequestError>>(async () => await Fixture.Service.FulfillmentRequest.CreateFulfillmentRequestAsync(request));
-    }
-
-    #endregion Create
-
-    #region Read
-
-    [SkippableFact, TestPriority(20)]
-    public async Task CountFulfillmentRequestsAsync_CanGet()
-    {
-        var response = await Fixture.Service.FulfillmentRequest.CountFulfillmentRequestsAsync();
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        var count = response.Result.Count;
-        Skip.If(count == 0, "No results returned. Unable to test");
-    }
-
-    [SkippableFact, TestPriority(20)]
-    public async Task ListFulfillmentRequestsAsync_AdditionalPropertiesAreEmpty()
-    {
-        var response = await Fixture.Service.FulfillmentRequest.ListFulfillmentRequestsAsync();
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        foreach (var fulfillmentRequest in response.Result.FulfillmentRequests)
-        {
-            _additionalPropertiesHelper.CheckAdditionalProperties(fulfillmentRequest, Fixture.MyShopifyUrl);
-        }
-        Skip.If(!response.Result.FulfillmentRequests.Any(), "No results returned. Unable to test");
-    }
-
-    [SkippableFact, TestPriority(20)]
-    public async Task GetFulfillmentRequestAsync_TestCreated_AdditionalPropertiesAreEmpty()
-    {
-        Skip.If(!Fixture.CreatedFulfillmentRequests.Any(), "Must be run with create test");
-        var fulfillmentRequest = Fixture.CreatedFulfillmentRequests.First();
-        var response = await Fixture.Service.FulfillmentRequest.GetFulfillmentRequestAsync(fulfillmentRequest.Id);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.FulfillmentRequest, Fixture.MyShopifyUrl);
-    }
-
-    #endregion Read
-
-    #region Update
-
-    [SkippableFact, TestPriority(30)]
-    public async Task UpdateFulfillmentRequestAsync_CanUpdate()
-    {
-        var originalFulfillmentRequest = Fixture.CreatedFulfillmentRequests.First();
-        var request = new UpdateFulfillmentRequestRequest()
-        {
-            FulfillmentRequest = new()
-            {
-                Id = originalFulfillmentRequest.Id,
-                Fields = new List<string> { "id" }
-            }
-        };
-        var response = await Fixture.Service.FulfillmentRequest.UpdateFulfillmentRequestAsync(originalFulfillmentRequest.Id, request);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-
-        Fixture.CreatedFulfillmentRequests.Remove(originalFulfillmentRequest);
-        Fixture.CreatedFulfillmentRequests.Add(response.Result.FulfillmentRequest);
-    }
-
-    #endregion Update
+    */
 }
-*/

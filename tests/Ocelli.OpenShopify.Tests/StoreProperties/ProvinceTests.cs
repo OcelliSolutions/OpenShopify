@@ -57,7 +57,7 @@ public class ProvinceTests : IClassFixture<ProvinceFixture>
             }
         };
         var response =
-            await Fixture.Service.Province.UpdateProvinceForCountryAsync(request.Province.CountryId ?? 0,
+            await Fixture.Service.Province.UpdateProvinceAsync(request.Province.CountryId ?? 0,
                 request.Province.Id, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
@@ -73,7 +73,7 @@ public class ProvinceTests : IClassFixture<ProvinceFixture>
     [TestPriority(20)]
     public async Task CountProvincesAsync_CanGet()
     {
-        var response = await Fixture.Service.Province.CountProvincesForCountryAsync(Fixture.Countries.First().Id);
+        var response = await Fixture.Service.Province.CountProvincesAsync(Fixture.Countries.First().Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -83,7 +83,7 @@ public class ProvinceTests : IClassFixture<ProvinceFixture>
     [TestPriority(20)]
     public async Task ListProvincesAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.Province.ListProvincesForCountryAsync(Fixture.Countries.First().Id);
+        var response = await Fixture.Service.Province.ListProvincesAsync(Fixture.Countries.First().Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var province in response.Result.Provinces)
         {
@@ -100,7 +100,7 @@ public class ProvinceTests : IClassFixture<ProvinceFixture>
     {
         Skip.If(!Fixture.Provinces.Any(), "Must be run with create test");
         var province = Fixture.Provinces.First();
-        var response = await Fixture.Service.Province.GetProvinceForCountryAsync(province.CountryId ?? 0, province.Id);
+        var response = await Fixture.Service.Province.GetProvinceAsync(province.CountryId ?? 0, province.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Province, Fixture.MyShopifyUrl);
     }

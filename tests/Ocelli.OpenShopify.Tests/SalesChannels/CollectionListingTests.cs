@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
@@ -27,7 +26,7 @@ public class CollectionListingFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var collectionListing in CreatedCollectionListings)
         {
-            _ = await Service.CollectionListing.DeleteCollectionListingToUnpublishCollectionFromYourAppAsync(collectionListing.Id);
+            _ = await Service.CollectionListing.DeleteCollectionListingAsync(collectionListing.Id);
         }
         CreatedCollectionListings.Clear();
     }

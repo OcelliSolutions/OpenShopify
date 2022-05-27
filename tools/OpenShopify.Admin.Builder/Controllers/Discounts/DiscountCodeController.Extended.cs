@@ -15,7 +15,7 @@ public class DiscountCodeController : DiscountCodeControllerBase
     [HttpPost, Route("price_rules/{price_rule_id:long}/discount_codes.json")]
     [ProducesResponseType(typeof(DiscountCodeItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(DiscountCodeError), StatusCodes.Status400BadRequest)]
-    public override Task CreateDiscountCode([Required] CreateDiscountCodeRequest request, [Required] long price_rule_id)
+    public override Task CreateDiscountCode([Required] CreateDiscountCodeRequest creationJobRequest, [Required] long price_rule_id)
     {
         throw new NotImplementedException();
     }
@@ -71,7 +71,7 @@ public class DiscountCodeController : DiscountCodeControllerBase
     /// <inheritdoc />
     [IgnoreApi, HttpPost, Route("price_rules/{price_rule_id:long}/batch.invalid")]
     [ProducesResponseType(typeof(DiscountCodeCreationItem), StatusCodes.Status201Created)]
-    public override Task CreateDiscountCodeCreationJob([Required] CreateDiscountCodeRequest request, [Required] long price_rule_id)
+    public override Task CreateDiscountCodeCreationJob([Required] CreateDiscountCodeCreationJobRequest creationJobRequest, [Required] long price_rule_id)
     {
         throw new NotImplementedException();
     }

@@ -44,11 +44,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates a new report
         /// </summary>
-        /// <param name="name">The name of the report. Maximum length: 255 characters.</param>
-        /// <param name="shopifyQl">The ShopifyQL the report will query.</param>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<ReportItem>> CreateReportAsync(CreateReportRequest body, string? name = null, string? shopifyQl = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ReportItem>> CreateReportAsync(CreateReportRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -219,26 +217,15 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Creates a new report
         /// </summary>
-        /// <param name="name">The name of the report. Maximum length: 255 characters.</param>
-        /// <param name="shopifyQl">The ShopifyQL the report will query.</param>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ReportItem>> CreateReportAsync(CreateReportRequest body, string? name = null, string? shopifyQl = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ReportItem>> CreateReportAsync(CreateReportRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (body == null)
                 throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/reports.json?");
-            if (name != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("name") + "=").Append(System.Uri.EscapeDataString(ConvertToString(name, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (shopifyQl != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("shopify_ql") + "=").Append(System.Uri.EscapeDataString(ConvertToString(shopifyQl, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            urlBuilder_.Length--;
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/reports.json");
 
             var client_ = _httpClient;
             var disposeClient_ = false;

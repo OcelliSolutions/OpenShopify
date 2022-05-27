@@ -14,7 +14,7 @@ public class WebhookController : WebhookControllerBase
     /// <inheritdoc />
     [HttpGet, Route("webhooks.json")]
     [ProducesResponseType(typeof(WebhookList), StatusCodes.Status200OK)]
-    public override Task ListWebhooks(string? address, DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null, string? fields = null,
+    public override Task ListWebhooks(string? address = null, DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null, string? fields = null,
         int? limit = null, string? page_info = null, long? since_id = null, string? topic = null, DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();
@@ -32,7 +32,7 @@ public class WebhookController : WebhookControllerBase
     /// <inheritdoc />
     [HttpGet, Route("webhooks/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountWebhooks(string? address, string? topic)
+    public override Task CountWebhooks(string? address = null, string? topic = null)
     {
         throw new NotImplementedException();
     }

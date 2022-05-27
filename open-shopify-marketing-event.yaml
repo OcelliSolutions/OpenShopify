@@ -233,59 +233,14 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: occurred_on
-          in: query
-          description: 'The date that these engagements occurred on, in the format “YYYY-MM-DD”.'
-          schema:
-            type: string
-        - name: ad_spend
-          in: query
-          description: 'The total ad spend for the day, if the marketing event is a paid ad with a daily spend.'
-          schema:
-            type: string
-        - name: clicks_count
-          in: query
-          description: The total number of clicks on the marketing event for the day.
-          schema:
-            type: string
-        - name: comments_count
-          in: query
-          description: The total number of comments for the day.
-          schema:
-            type: string
-        - name: favorites_count
-          in: query
-          description: The total number of favorites for the day.
-          schema:
-            type: string
-        - name: impressions_count
-          in: query
-          description: 'The total number of impressions for the day. An impression occurs when the marketing event is served to a customer, either as a email or through a marketing channel.'
-          schema:
-            type: string
-        - name: is_cumulative
-          in: query
-          description: Whether the engagements are reported as lifetime values rather than daily totals.
-          schema:
-            type: string
-        - name: shares_count
-          in: query
-          description: The total number of shares for the day.
-          schema:
-            type: string
-        - name: views_count
-          in: query
-          description: 'The total number of views for the day. A view occurs when a customer reads the marketing event that was served to them, for example, if the customer opens the email or spends time looking at a Facebook post.'
-          schema:
-            type: string
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateMarketingEventRequest'
+              $ref: '#/components/schemas/CreateMarketingEngagementsOnMarketingEventRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateMarketingEventRequest'
+              $ref: '#/components/schemas/CreateMarketingEngagementsOnMarketingEventRequest'
         required: true
       responses:
         '201':
@@ -318,6 +273,9 @@ components:
           type: integer
           format: int32
       additionalProperties: { }
+    CreateMarketingEngagementsOnMarketingEventRequest:
+      type: object
+      additionalProperties: false
     CreateMarketingEvent:
       type: object
       properties:

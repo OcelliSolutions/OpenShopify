@@ -28,23 +28,20 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Sends a cancellation request
         /// </summary>
-        /// <param name="message">An optional reason for the cancellation request.</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancellation_request.json")]
-        public abstract System.Threading.Tasks.Task SendCancellationRequest(long fulfillment_order_id, string? message = null);
+        public abstract System.Threading.Tasks.Task SendCancellationRequest([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.SendCancellationRequestRequest request, long fulfillment_order_id);
 
         /// <summary>
         /// Accepts a cancellation request
         /// </summary>
-        /// <param name="message">An optional reason for accepting the cancellation request.</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json")]
-        public abstract System.Threading.Tasks.Task AcceptCancellationRequest(long fulfillment_order_id, string? message = null);
+        public abstract System.Threading.Tasks.Task AcceptCancellationRequest([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.AcceptCancellationRequestRequest request, long fulfillment_order_id);
 
         /// <summary>
         /// Rejects a cancellation request
         /// </summary>
-        /// <param name="message">An optional reason for rejecting the cancellation request.</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json")]
-        public abstract System.Threading.Tasks.Task RejectCancellationRequest(long fulfillment_order_id, string? message = null);
+        public abstract System.Threading.Tasks.Task RejectCancellationRequest([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.RejectCancellationRequestRequest request, long fulfillment_order_id);
 
     }
 

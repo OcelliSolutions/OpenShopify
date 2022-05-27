@@ -14,7 +14,7 @@ public class ProductListingController : ProductListingControllerBase
     /// <inheritdoc />
     [HttpGet, Route("product_listings.json")]
     [ProducesResponseType(typeof(ProductListingList), StatusCodes.Status200OK)]
-    public override Task GetProductListingsThatArePublishedToYourApp(long collection_id, string? handle = null, int? limit = null,
+    public override Task GetProductListings(long collection_id, string? handle = null, int? limit = null,
         string? page_info = null, string? product_ids = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();
@@ -23,7 +23,7 @@ public class ProductListingController : ProductListingControllerBase
     /// <inheritdoc />
     [HttpGet, Route("product_listings/product_ids.json")]
     [ProducesResponseType(typeof(ProductList), StatusCodes.Status200OK)]
-    public override Task GetProductIdsThatArePublishedToYourApp(int? limit = null, string? page_info = null)
+    public override Task GetProductIds(int? limit = null, string? page_info = null)
     {
         throw new NotImplementedException();
     }
@@ -31,7 +31,7 @@ public class ProductListingController : ProductListingControllerBase
     /// <inheritdoc />
     [HttpGet, Route("product_listings/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountProductsThatArePublishedToYourApp()
+    public override Task CountProducts()
     {
         throw new NotImplementedException();
     }
@@ -39,7 +39,7 @@ public class ProductListingController : ProductListingControllerBase
     /// <inheritdoc />
     [HttpGet, Route("product_listings/{product_listing_id:long}.json")]
     [ProducesResponseType(typeof(ProductListingItem), StatusCodes.Status200OK)]
-    public override Task GetProductListingThatIsPublishedToYourApp([Required] long product_listing_id)
+    public override Task GetProductListing([Required] long product_listing_id)
     {
         throw new NotImplementedException();
     }
@@ -48,15 +48,15 @@ public class ProductListingController : ProductListingControllerBase
     [HttpPut, Route("product_listings/{product_listing_id:long}.json")]
     [ProducesResponseType(typeof(ProductListingItem), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProductListingError), StatusCodes.Status422UnprocessableEntity)]
-    public override Task CreateProductListingToPublishProductToYourApp([Required] CreateProductListingRequest request, [Required] long product_listing_id)
+    public override Task CreateProductListing([Required] CreateProductListingRequest request, [Required] long product_listing_id)
     {
         throw new NotImplementedException();
     }
-
+    
     /// <inheritdoc />
     [HttpDelete, Route("product_listings/{product_listing_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteProductListingToUnpublishProductFromYourApp([Required] long product_listing_id)
+    public override Task DeleteProductListing([Required] long product_listing_id)
     {
         throw new NotImplementedException();
     }

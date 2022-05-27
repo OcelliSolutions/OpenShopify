@@ -43,13 +43,13 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_max">Show articles last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Show articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles.json")]
-        public abstract System.Threading.Tasks.Task ListArticlesFromBlog(long blog_id, string? author = null, System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, string? fields = null, string? handle = null, int? limit = null, string? page_info = null, System.DateTimeOffset? published_at_max = null, System.DateTimeOffset? published_at_min = null, string? published_status = null, long? since_id = null, string? tag = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task ListArticles(long blog_id, string? author = null, System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, string? fields = null, string? handle = null, int? limit = null, string? page_info = null, System.DateTimeOffset? published_at_max = null, System.DateTimeOffset? published_at_min = null, string? published_status = null, long? since_id = null, string? tag = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Creates an article for a blog
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles.json")]
-        public abstract System.Threading.Tasks.Task CreateArticleForBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateArticleRequest request, long blog_id);
+        public abstract System.Threading.Tasks.Task CreateArticle([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateArticleRequest request, long blog_id);
 
         /// <summary>
         /// Retrieves a count of all articles from a blog
@@ -62,7 +62,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_max">Count articles last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Count articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/count.json")]
-        public abstract System.Threading.Tasks.Task CountArticlesFromBlog(long? blog_id = null, System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, System.DateTimeOffset? published_at_max = null, System.DateTimeOffset? published_at_min = null, string? published_status = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task CountArticles(long? blog_id = null, System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, System.DateTimeOffset? published_at_max = null, System.DateTimeOffset? published_at_min = null, string? published_status = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Receive a single Article

@@ -57,7 +57,7 @@ public class MarketingEventTests : IClassFixture<MarketingEventFixture>
             MarketingEvent = new UpdateMarketingEvent
             {
                 Id = originalMarketingEvent.Id,
-                RemoteId = "1000:2000",
+                RemoteId = $@"1000:2000:{Fixture.BatchId}",
                 StartedAt = DateTimeOffset.Now.AddMonths(-1),
                 EndedAt = DateTimeOffset.Now.AddDays(-1),
                 ScheduledToEndAt = DateTimeOffset.Now,

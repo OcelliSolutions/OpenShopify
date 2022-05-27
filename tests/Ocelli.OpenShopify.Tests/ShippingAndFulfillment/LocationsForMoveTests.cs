@@ -22,32 +22,11 @@ public class LocationsForMoveFixture : SharedFixture, IAsyncLifetime
 
     public async Task InitializeAsync()
     {
-        await CreateProduct();
-        await CreateOrder();
-        //await CreateFulfillmentOrder();
+        Product = await CreateProduct();
+        Order = await CreateOrder(Product.Variants!.First());
+        var fulfillmentOrders = await GetFulfillmentOrders(Order);
+        FulfillmentOrder = fulfillmentOrders.First();
     }
-
-    public async Task CreateProduct()
-    {
-        var request = base.CreateProductRequest();
-        var service = new ProductsService(MyShopifyUrl, AccessToken);
-        var response = await service.Product.CreateProductAsync(request);
-        Product = response.Result.Product;
-
-    }
-    public async Task CreateOrder()
-    {
-        var request = base.CreateOrderRequest(Product.Variants!.First().Id);
-        var service = new OrdersService(MyShopifyUrl, AccessToken);
-        var response = await service.Order.CreateOrderAsync(request);
-        Order = response.Result.Order;
-    }
-    /*
-    public async Task CreateFulfillmentOrder()
-    {
-        var request = CreateFulfillmentOrderRequest();
-        var response = await Service.FulfillmentOrder.
-    }*/
 
     public async Task DisposeAsync()
     {
@@ -83,11 +62,11 @@ public class LocationsForMoveTests : IClassFixture<LocationsForMoveFixture>
     {
         var response = await Fixture.Service.LocationsForMove.ListLocationsThatFulfillmentOrderCanPotentiallyMoveToAsync(Fixture.FulfillmentOrder.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        foreach (var locationsForMove in response.Result.LocationsForMoves)
+        foreach (var locationsForMove in response.Result.LocationsForMove)
         {
             _additionalPropertiesHelper.CheckAdditionalProperties(locationsForMove, Fixture.MyShopifyUrl);
         }
-        Skip.If(!response.Result.LocationsForMoves.Any(), "No results returned. Unable to test");
+        Skip.If(!response.Result.LocationsForMove.Any(), "No results returned. Unable to test");
     }
 
     #endregion Read

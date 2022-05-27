@@ -2090,44 +2090,6 @@ public partial record AssignedFulfillmentOrder : FulfillmentOrderBase
 public partial record FulfillmentOrderBase : FulfillmentOrderOrig{}
 
 	
-public partial record CancellationRequestItem
-{
-    [JsonPropertyName("cancellation_request"), Required]
-    public FulfillmentOrder CancellationRequest { get; set; } = null!;
-}
-
-public partial record CancellationRequestList
-{
-    [JsonPropertyName("cancellation_request"), Required]
-    public IEnumerable<FulfillmentOrder> CancellationRequest { get; set; } = null!;
-}
-public partial record CreateCancellationRequestRequest
-{
-    [JsonPropertyName("cancellation_request"), Required]
-    public CreateCancellationRequest CancellationRequest { get; set; } = null!;
-}
-
-/// <inheritdoc cref="FulfillmentOrderBase"/>
-public partial record CreateCancellationRequest : FulfillmentOrderBase {}
-public partial record UpdateCancellationRequestRequest
-{
-    [JsonPropertyName("cancellation_request"), Required]
-    public UpdateCancellationRequest CancellationRequest { get; set; } = null!;
-}
-
-/// <inheritdoc cref="FulfillmentOrder"/>
-public partial record UpdateCancellationRequest : FulfillmentOrder{}
-
-		
-/// <inheritdoc cref="FulfillmentOrderBase"/>
-public partial record CancellationRequest : FulfillmentOrderBase
-{
-}
-
-/// <inheritdoc cref="FulfillmentOrderOrig"/>
-public partial record FulfillmentOrderBase : FulfillmentOrderOrig{}
-
-	
 public partial record CarrierServiceItem
 {
     [JsonPropertyName("carrier_service"), Required]
@@ -2389,7 +2351,7 @@ public partial record LocationsForMoveItem
 
 public partial record LocationsForMoveList
 {
-    [JsonPropertyName("locations_for_moves"), Required]
+    [JsonPropertyName("locations_for_move"), Required]
     public IEnumerable<LocationsForMove> LocationsForMoves { get; set; } = null!;
 }
 public partial record CreateLocationsForMoveRequest

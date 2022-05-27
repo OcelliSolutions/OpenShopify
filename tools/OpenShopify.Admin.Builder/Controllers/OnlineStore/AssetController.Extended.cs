@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
-using Swashbuckle.AspNetCore.Annotations;
 
 namespace OpenShopify.Admin.Builder.Controllers.OnlineStore;
 
@@ -24,7 +23,7 @@ public class AssetController : AssetControllerBase
     [HttpPut, Route("themes/{theme_id:long}/assets.json")]
     [ProducesResponseType(typeof(AssetItem), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
-    public override Task CreateOrUpdatesAssetForTheme([Required] CreateAssetRequest request, [Required] long theme_id, string? source_key = null, string? src = null)
+    public override Task CreateOrUpdatesAssetForTheme([Required] CreateOrUpdatesAssetForThemeRequest request, [Required] long theme_id)
     {
         throw new NotImplementedException();
     }

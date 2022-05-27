@@ -376,6 +376,15 @@ paths:
           schema:
             type: integer
             format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelRecurringApplicationChargeRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CancelRecurringApplicationChargeRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -401,7 +410,7 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: capped_amount
+        - name: 'recurring_application_charge[capped_amount]'
           in: query
           schema:
             type: number
@@ -732,6 +741,9 @@ components:
           items:
             $ref: '#/components/schemas/ApplicationCredit'
       additionalProperties: { }
+    CancelRecurringApplicationChargeRequest:
+      type: object
+      additionalProperties: { }
     CreateApplicationCharge:
       type: object
       properties:
@@ -1059,99 +1071,8 @@ components:
           items:
             $ref: '#/components/schemas/RecurringApplicationCharge'
       additionalProperties: { }
-    UpdateRecurringApplicationCharge:
-      required:
-        - id
+    UpdateCappedAmountOfRecurringApplicationChargeRequest:
       type: object
-      properties:
-        activated_on:
-          type: string
-          description: "The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer activated the recurring application charge.  \r\n**Note:** The recurring application charge must be activated or the returned value is `null`."
-          format: date-time
-          nullable: true
-        billing_on:
-          type: string
-          description: "The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer is billed.  \r\n**Note:** The recurring application charge must be accepted or the returned value is `null`."
-          format: date-time
-          nullable: true
-        cancelled_on:
-          type: string
-          description: "The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the merchant canceled their recurring application charge.  \r\n**Note:** Returns `null` when the recurring application charge is not canceled."
-          format: date-time
-          nullable: true
-        capped_amount:
-          type: string
-          description: 'The limit a customer can be charged for usage based billing. If this property is provided, then you must also provide the `terms` property. See [usage charges](/docs/admin-api/rest/reference/billing/usagecharge) for more information.'
-          nullable: true
-        confirmation_url:
-          type: string
-          description: The URL where the merchant accepts or declines the recurring application charge.
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the recurring application charge was created.'
-          format: date-time
-          nullable: true
-        name:
-          type: string
-          description: The name of the recurring application charge.
-          nullable: true
-        price:
-          type: number
-          description: 'The price of the recurring application charge. The maximum price is 10,000.'
-          format: decimal
-          nullable: true
-        return_url:
-          type: string
-          description: The URL where the merchant is redirected after accepting the charge.
-          nullable: true
-        status:
-          type: string
-          description: "The status of the recurring charge. Valid values:\r\n\r\n*   **pending**: The recurring charge is pending. \r\n*   **accepted**: **Removed in version 2021-01**. The recurring charge has been accepted. As of API version 2021-01, when a merchant accepts a charge, the charge immediately transitions from `pending` to `active`. \r\n*   **active**: The recurring charge is activated. This is the only status that actually causes a merchant to be charged. As of API version 2021-01, when a merchant accepts a charge, the charge immediately transitions from `pending` to `active`. \r\n*   **declined**: The recurring charge has been declined. \r\n*   **expired**: The recurring charge was not accepted within 2 days of being created. \r\n*   **frozen**: The recurring charge is on hold due to a shop subscription non-payment. The charge will re-activate once subscription payments resume. \r\n*   **cancelled**: The developer cancelled the charge."
-          nullable: true
-        terms:
-          type: string
-          description: 'The terms and conditions of usage based billing charges. Must be present in order to create usage charges, for example when the `capped_amount` property is provided. Presented to the merchant when they approve an app''s usage charges.'
-          nullable: true
-        test:
-          type: boolean
-          description: 'Whether the application charge is a test transaction. Valid values: `true`,`null`.'
-          nullable: true
-        trial_days:
-          type: integer
-          description: The number of days that the customer is eligible for a free trial.
-          format: int32
-          nullable: true
-        trial_ends_on:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the free trial ends.'
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the recurring application charge was last updated.'
-          format: date-time
-          nullable: true
-        api_client_id:
-          type: integer
-          format: int64
-        decorated_return_url:
-          type: string
-          nullable: true
-        id:
-          type: integer
-          format: int64
-        admin_graphql_api_id:
-          type: string
-          nullable: true
-      additionalProperties: false
-    UpdateRecurringApplicationChargeRequest:
-      required:
-        - recurring_application_charge
-      type: object
-      properties:
-        recurring_application_charge:
-          $ref: '#/components/schemas/UpdateRecurringApplicationCharge'
       additionalProperties: false
     UsageCharge:
       required:

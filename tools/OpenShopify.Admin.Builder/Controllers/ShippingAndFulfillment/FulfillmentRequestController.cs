@@ -28,24 +28,20 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Sends a fulfillment request
         /// </summary>
-        /// <param name="fulfillment_order_line_items">The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.</param>
-        /// <param name="message">An optional message for the fulfillment request.</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json")]
-        public abstract System.Threading.Tasks.Task SendFulfillmentRequest(long fulfillment_order_id, string? fulfillment_order_line_items = null, string? message = null);
+        public abstract System.Threading.Tasks.Task SendFulfillmentRequest([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.SendFulfillmentRequestRequest request, long fulfillment_order_id);
 
         /// <summary>
         /// Accepts a fulfillment request
         /// </summary>
-        /// <param name="message">An optional reason for accepting the fulfillment request.</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json")]
-        public abstract System.Threading.Tasks.Task AcceptFulfillmentRequest(long fulfillment_order_id, string? message = null);
+        public abstract System.Threading.Tasks.Task AcceptFulfillmentRequest([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.AcceptFulfillmentRequestRequest request, long fulfillment_order_id);
 
         /// <summary>
         /// Rejects a fulfillment request
         /// </summary>
-        /// <param name="message">An optional reason for rejecting the fulfillment request.</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json")]
-        public abstract System.Threading.Tasks.Task RejectFulfillmentRequest(long fulfillment_order_id, string? message = null);
+        public abstract System.Threading.Tasks.Task RejectFulfillmentRequest([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.RejectFulfillmentRequestRequest request, long fulfillment_order_id);
 
     }
 

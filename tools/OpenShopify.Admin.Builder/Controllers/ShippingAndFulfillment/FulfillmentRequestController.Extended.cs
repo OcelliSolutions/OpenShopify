@@ -14,8 +14,8 @@ public class FulfillmentRequestController : FulfillmentRequestControllerBase
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/fulfillment_request.json")]
     [ProducesResponseType(typeof(FulfillmentRequestItem), StatusCodes.Status200OK)]
-    public override Task SendFulfillmentRequest([Required] long fulfillment_order_id, string? fulfillment_order_line_items = null,
-        string? message = null)
+    [ProducesResponseType(typeof(FulfillmentRequestGeneralError), StatusCodes.Status400BadRequest)]
+    public override Task SendFulfillmentRequest([Required] SendFulfillmentRequestRequest request, long fulfillment_order_id)
     {
         throw new NotImplementedException();
     }
@@ -23,7 +23,8 @@ public class FulfillmentRequestController : FulfillmentRequestControllerBase
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/fulfillment_request/accept.json")]
     [ProducesResponseType(typeof(FulfillmentRequestItem), StatusCodes.Status200OK)]
-    public override Task AcceptFulfillmentRequest([Required] long fulfillment_order_id, string? message = null)
+    [ProducesResponseType(typeof(FulfillmentRequestGeneralError), StatusCodes.Status400BadRequest)]
+    public override Task AcceptFulfillmentRequest([Required] AcceptFulfillmentRequestRequest request, long fulfillment_order_id)
     {
         throw new NotImplementedException();
     }
@@ -31,7 +32,8 @@ public class FulfillmentRequestController : FulfillmentRequestControllerBase
     /// <inheritdoc />
     [HttpPost, Route("fulfillment_orders/{fulfillment_order_id:long}/fulfillment_request/reject.json")]
     [ProducesResponseType(typeof(FulfillmentRequestItem), StatusCodes.Status200OK)]
-    public override Task RejectFulfillmentRequest([Required] long fulfillment_order_id, string? message = null)
+    [ProducesResponseType(typeof(FulfillmentRequestGeneralError), StatusCodes.Status400BadRequest)]
+    public override Task RejectFulfillmentRequest([Required] RejectFulfillmentRequestRequest request, long fulfillment_order_id)
     {
         throw new NotImplementedException();
     }

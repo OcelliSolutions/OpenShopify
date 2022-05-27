@@ -23,7 +23,7 @@ public class CustomerAddressController : CustomerAddressControllerBase
     [HttpPost, Route("customers/{customer_id:long}/addresses.json")]
     [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(CustomerAddressError), StatusCodes.Status400BadRequest)]
-    public override Task CreateAddressForCustomer([Required] CreateCustomerAddressRequest request, [Required] long customer_id)
+    public override Task CreateAddressForCustomer([Required] CreateAddressForCustomerRequest request, [Required] long customer_id)
     {
         throw new NotImplementedException();
     }
@@ -57,16 +57,20 @@ public class CustomerAddressController : CustomerAddressControllerBase
     /// <inheritdoc />
     [HttpPut, Route("customers/{customer_id:long}/addresses/set.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task PerformBulkOperationsForMultipleCustomerAddresses(string? address_ids = null, long? customer_id = null,
-        string? operation = null)
+    public override Task PerformBulkOperationsForMultipleCustomerAddresses([Required] PerformBulkOperationsForMultipleCustomerAddressesRequest request, long customer_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
+    [IgnoreApi, HttpPut, Route("customers/{customer_id:long}/addresses/{address_id:long}/default.invalid")]
+    [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status200OK)]
+    public override Task SetDefaultAddressForCustomer([Required] SetDefaultAddressForCustomerRequest request, long address_id, long customer_id) => throw new NotImplementedException();
+
+    /// <inheritdoc cref="CustomerAddressControllerBase.SetDefaultAddressForCustomer" />
     [HttpPut, Route("customers/{customer_id:long}/addresses/{address_id:long}/default.json")]
     [ProducesResponseType(typeof(CustomerAddressItem), StatusCodes.Status200OK)]
-    public override Task SetDefaultAddressForCustomer([Required] long address_id, [Required] long customer_id)
+    public Task SetDefaultAddressForCustomer([Required] long address_id, [Required] long customer_id)
     {
         throw new NotImplementedException();
     }

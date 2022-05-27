@@ -90,17 +90,6 @@ paths:
         - Report
       summary: Creates a new report
       operationId: CreateReport
-      parameters:
-        - name: name
-          in: query
-          description: 'The name of the report. Maximum length: 255 characters.'
-          schema:
-            type: string
-        - name: shopify_ql
-          in: query
-          description: The ShopifyQL the report will query.
-          schema:
-            type: string
       requestBody:
         content:
           application/json:

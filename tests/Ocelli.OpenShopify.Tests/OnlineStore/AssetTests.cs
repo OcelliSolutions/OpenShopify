@@ -83,9 +83,9 @@ public class AssetTests : IClassFixture<AssetFixture>
     [TestPriority(10)]
     public async Task CreateAssetAsync_CanCreate()
     {
-        var request = new CreateAssetRequest
+        var request = new CreateOrUpdatesAssetForThemeRequest
         {
-            Asset = new CreateAsset
+            Asset = new CreateAsset()
             {
                 Key = "assets/empty.gif",
                 Attachment = @"R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\n"
@@ -101,7 +101,7 @@ public class AssetTests : IClassFixture<AssetFixture>
     [TestPriority(10)]
     public async Task CreateAssetAsync_IsUnprocessableEntityError()
     {
-        var request = new CreateAssetRequest
+        var request = new CreateOrUpdatesAssetForThemeRequest()
         {
             Asset = new CreateAsset()
         };

@@ -39,7 +39,7 @@ public class OrderController : OrderControllerBase
     [HttpPost, Route("orders.json")]
     [ProducesResponseType(typeof(OrderItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(OrderError), StatusCodes.Status422UnprocessableEntity)]
-    [ProducesResponseType(typeof(CreateOrderRequestError), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(OrderGeneralError), StatusCodes.Status400BadRequest)]
     public override Task CreateOrder([Required] CreateOrderRequest request)
     {
         throw new NotImplementedException();
@@ -96,21 +96,7 @@ public class OrderController : OrderControllerBase
     }
 
     /// <inheritdoc />
-    [IgnoreApi, HttpPost, Route("orders/{order_id:long}/cancel.invalid")]
-    [ProducesResponseType(typeof(OrderItem), StatusCodes.Status200OK)]
-    public override Task CancelOrder(long order_id, decimal? amount = null, string? currency = null, bool? email = null,
-        string? reason = null, string? refund = null, bool? restock = null)
-    {
-        throw new NotImplementedException();
-    }
-
-
-    /// <inheritdoc cref="OrderControllerBase.CancelOrder" />
     [HttpPost, Route("orders/{order_id:long}/cancel.json")]
     [ProducesResponseType(typeof(OrderItem), StatusCodes.Status200OK)]
-    public Task CancelOrder(long order_id, decimal? amount = null, string? currency = null, bool? email = null,
-        CancelReason? reason = null, CreateRefund? refund = null, bool? restock = null)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task CancelOrder([Required] CancelOrderRequest request, long order_id) => throw new NotImplementedException();
 }

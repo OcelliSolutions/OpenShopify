@@ -14,7 +14,7 @@ public class PaymentController : PaymentControllerBase
     ///TODO: different URLs https://shopify.dev/api/admin-rest/2022-04/resources/payment#post-https:-elb.deposit.shopifycs.com-sessions
     /// <inheritdoc />
     [IgnoreApi, HttpPost, Route("elb.deposit.shopifycs.com/sessions")]
-    public override Task StoreCreditCardInCardVault(string credit_card = null)
+    public override Task StoreCreditCardInCardVault()
     {
         throw new NotImplementedException();
     }
@@ -23,16 +23,12 @@ public class PaymentController : PaymentControllerBase
     [HttpPost, Route("checkouts/{token}/payments.json")]
     [ProducesResponseType(typeof(PaymentItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(PaymentError), StatusCodes.Status422UnprocessableEntity)]
-    public override Task CreatePayment(CreatePaymentRequest request, decimal? amount = null, string? request_details = null,
-        long? session_id = null, string? token = null, string? unique_token = null)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task CreatePayment([Required] CreatePaymentRequest request, string token) => throw new NotImplementedException();
 
     /// <inheritdoc />
     [HttpGet, Route("checkouts/{token}/payments.json")]
     [ProducesResponseType(typeof(PaymentList), StatusCodes.Status200OK)]
-    public override Task ListPaymentsOnParticularCheckout(string? token = null)
+    public override Task ListPaymentsOnParticularCheckout(string token)
     {
         throw new NotImplementedException();
     }
@@ -40,7 +36,7 @@ public class PaymentController : PaymentControllerBase
     /// <inheritdoc />
     [HttpGet, Route("checkouts/{token}/payments/{payment_id:long}.json")]
     [ProducesResponseType(typeof(PaymentItem), StatusCodes.Status200OK)]
-    public override Task GetPayment([Required] long payment_id, string? token = null)
+    public override Task GetPayment([Required] long payment_id, string token)
     {
         throw new NotImplementedException();
     }
@@ -48,7 +44,7 @@ public class PaymentController : PaymentControllerBase
     /// <inheritdoc />
     [HttpGet, Route("checkouts/{token}/payments/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountNumberOfPaymentsAttemptedOnCheckout(string? token = null)
+    public override Task CountNumberOfPaymentsAttemptedOnCheckout(string token)
     {
         throw new NotImplementedException();
     }

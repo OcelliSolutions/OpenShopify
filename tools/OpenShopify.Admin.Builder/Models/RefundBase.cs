@@ -47,6 +47,10 @@ namespace OpenShopify.Admin.Builder.Models
         /// <inheritdoc cref="RefundOrig.RefundDuties"/>
         [JsonPropertyName("refund_duties")]
         public new IEnumerable<RefundDutyType>? RefundDuties { get; set; }
+
+        
+        [JsonPropertyName("total_duties_set")]
+        public PriceSet? TotalDutiesSet { get; set; }
     }
 
     public partial record Shipping
@@ -68,5 +72,8 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         [JsonPropertyName("maximum_refundable")]
         public decimal? MaximumRefundable { get; set; }
+        
+        [JsonPropertyName("tax")]
+        public decimal? Tax { get; set; }
     }
 }

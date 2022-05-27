@@ -78,19 +78,19 @@ namespace OpenShopify.Admin.Builder.Models
         /// Creates a fulfillment for one or many fulfillment orders
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillments.json")]
-        public abstract System.Threading.Tasks.Task CreateFulfillmentForOneOrManyFulfillmentOrders([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateFulfillmentRequest request);
+        public abstract System.Threading.Tasks.Task CreateFulfillmentForOneOrManyFulfillmentOrders([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateFulfillmentForOneOrManyFulfillmentOrdersRequest request);
 
         /// <summary>
         /// Updates the tracking information for a fulfillment
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillments/{fulfillment_id}/update_tracking.json")]
-        public abstract System.Threading.Tasks.Task UpdateTrackingInformationForFulfillment([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateFulfillmentRequest request, long fulfillment_id);
+        public abstract System.Threading.Tasks.Task UpdateTrackingInformationForFulfillment([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateTrackingInformationForFulfillmentRequest request, long fulfillment_id);
 
         /// <summary>
         /// Complete a fulfillment
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/complete.json")]
-        public abstract System.Threading.Tasks.Task CompleteFulfillment(long fulfillment_id, long order_id);
+        public abstract System.Threading.Tasks.Task CompleteFulfillment([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CompleteFulfillmentRequest request, long fulfillment_id, long order_id);
 
         /// <summary>
         /// Transition a fulfillment from pending to open.
@@ -102,13 +102,13 @@ namespace OpenShopify.Admin.Builder.Models
         /// Cancel a fulfillment for a specific order ID
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/cancel.json")]
-        public abstract System.Threading.Tasks.Task CancelFulfillmentForSpecificOrderID(long fulfillment_id, long order_id);
+        public abstract System.Threading.Tasks.Task CancelFulfillmentForSpecificOrderID([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CancelFulfillmentForSpecificOrderIDRequest request, long fulfillment_id, long order_id);
 
         /// <summary>
         /// Cancels a fulfillment
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillments/{fulfillment_id}/cancel.json")]
-        public abstract System.Threading.Tasks.Task CancelFulfillment(long fulfillment_id);
+        public abstract System.Threading.Tasks.Task CancelFulfillment([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CancelFulfillmentRequest request, long fulfillment_id);
 
     }
 

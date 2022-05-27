@@ -67,17 +67,8 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Creates marketing engagements on a marketing event
         /// </summary>
-        /// <param name="occurred_on">The date that these engagements occurred on, in the format “YYYY-MM-DD”.</param>
-        /// <param name="ad_spend">The total ad spend for the day, if the marketing event is a paid ad with a daily spend.</param>
-        /// <param name="clicks_count">The total number of clicks on the marketing event for the day.</param>
-        /// <param name="comments_count">The total number of comments for the day.</param>
-        /// <param name="favorites_count">The total number of favorites for the day.</param>
-        /// <param name="impressions_count">The total number of impressions for the day. An impression occurs when the marketing event is served to a customer, either as a email or through a marketing channel.</param>
-        /// <param name="is_cumulative">Whether the engagements are reported as lifetime values rather than daily totals.</param>
-        /// <param name="shares_count">The total number of shares for the day.</param>
-        /// <param name="views_count">The total number of views for the day. A view occurs when a customer reads the marketing event that was served to them, for example, if the customer opens the email or spends time looking at a Facebook post.</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("marketing_events/{marketing_event_id}/engagements.json")]
-        public abstract System.Threading.Tasks.Task CreateMarketingEngagementsOnMarketingEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateMarketingEventRequest request, long marketing_event_id, string? occurred_on = null, string? ad_spend = null, string? clicks_count = null, string? comments_count = null, string? favorites_count = null, string? impressions_count = null, string? is_cumulative = null, string? shares_count = null, string? views_count = null);
+        public abstract System.Threading.Tasks.Task CreateMarketingEngagementsOnMarketingEvent([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateMarketingEngagementsOnMarketingEventRequest request, long marketing_event_id);
 
     }
 

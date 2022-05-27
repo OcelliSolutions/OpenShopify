@@ -30,7 +30,7 @@ public partial record CustomerAddressList
     [JsonPropertyName("customer_addresses"), Required]
     public IEnumerable<CustomerAddress> CustomerAddresses { get; set; } = null!;
 }
-public partial record CreateCustomerAddressRequest
+public partial record CreateAddressForCustomerRequest
 {
     [JsonPropertyName("customer_address"), Required]
     public CreateCustomerAddress CustomerAddress { get; set; } = null!;

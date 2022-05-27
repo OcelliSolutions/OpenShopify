@@ -56,7 +56,7 @@ public class CustomerController : CustomerControllerBase
     /// <inheritdoc />
     [IgnoreApi, HttpPost, Route("customers/{customer_id:long}/account_activation_url.invalid")]
     [ProducesResponseType(typeof(AccountActivationBase), StatusCodes.Status200OK)]
-    public override Task CreateAccountActivationUrlForCustomer([Required] CreateCustomerRequest request, [Required] long customer_id)
+    public override Task CreateAccountActivationUrlForCustomer([Required] CreateAccountActivationUrlForCustomerRequest createAccountActivationUrlForCustomerRequest, [Required] long customer_id)
     {
         throw new NotImplementedException();
     }
@@ -72,15 +72,13 @@ public class CustomerController : CustomerControllerBase
     /// <inheritdoc />
     [IgnoreApi, HttpPost, Route("customers/{customer_id:long}/send_invite.invalid")]
     [ProducesResponseType(typeof(CustomerInviteItem), StatusCodes.Status201Created)]
-    public override Task SendAccountInviteToCustomer([Required] long customer_id)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task SendAccountInviteToCustomer([Required] SendAccountInviteToCustomerRequest request, long customer_id) => throw new NotImplementedException();
+
 
     /// <inheritdoc cref="CustomerControllerBase.SendAccountInviteToCustomer" />
     [HttpPost, Route("customers/{customer_id:long}/send_invite.json")]
     [ProducesResponseType(typeof(CustomerInviteItem), StatusCodes.Status201Created)]
-    public Task SendAccountInviteToCustomer(CreateCustomerInviteRequest request, [Required] long customer_id)
+    public Task SendAccountInviteToCustomer([Required] CreateCustomerInviteRequest request, [Required] long customer_id)
     {
         throw new NotImplementedException();
     }

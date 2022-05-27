@@ -20,8 +20,8 @@ public class TransactionFixture : SharedFixture, IAsyncLifetime
 
     public async Task InitializeAsync()
     {
-        await CreateProduct();
-        await CreateOrder();
+        Product = await CreateProduct();
+        Order = await CreateOrder(Product.Variants!.First());
     }
 
     async Task IAsyncLifetime.DisposeAsync()
@@ -37,23 +37,6 @@ public class TransactionFixture : SharedFixture, IAsyncLifetime
             var productService = new ProductsService(MyShopifyUrl, AccessToken);
             await productService.Product.DeleteProductAsync(Product.Id);
         }
-    }
-
-    public async Task CreateProduct()
-    {
-        var productService = new ProductsService(MyShopifyUrl, AccessToken);
-        var request = CreateProductRequest();
-        request.Product.Title = $@"{Company} OrderTransaction {BatchId}";
-        var productResponse = await productService.Product.CreateProductAsync(request);
-        Product = productResponse.Result.Product;
-    }
-
-    public async Task CreateOrder()
-    {
-        var orderService = new OrdersService(MyShopifyUrl, AccessToken);
-        var request = base.CreateOrderRequest(Product.Variants!.First().Id);
-        var response = await orderService.Order.CreateOrderAsync(request);
-        Order = response.Result.Order;
     }
 }
 
@@ -88,7 +71,7 @@ public class TransactionTests : IClassFixture<TransactionFixture>
                 ParentId = Fixture.Order.Id
             }
         };
-        var response = await Fixture.Service.Transaction.CreateTransactionForOrderAsync(Fixture.Order.Id, request);
+        var response = await Fixture.Service.Transaction.CreateTransactionAsync(Fixture.Order.Id, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedTransactions.Add(response.Result.Transaction);
@@ -102,8 +85,8 @@ public class TransactionTests : IClassFixture<TransactionFixture>
         {
             Transaction = new CreateTransaction()
         };
-        await Assert.ThrowsAsync<ApiException<CreateTransactionRequestError>>(async () =>
-            await Fixture.Service.Transaction.CreateTransactionForOrderAsync(Fixture.Order.Id, request));
+        await Assert.ThrowsAsync<ApiException<TransactionGeneralError>>(async () =>
+            await Fixture.Service.Transaction.CreateTransactionAsync(Fixture.Order.Id, request));
     }
 
     #endregion Create

@@ -28,7 +28,7 @@ public class ProductListingFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var productListing in CreatedProductListings)
         {
-            _ = await Service.ProductListing.DeleteProductListingToUnpublishProductFromYourAppAsync(productListing.Id);
+            _ = await Service.ProductListing.DeleteProductListingAsync(productListing.Id);
         }
         CreatedProductListings.Clear();
     }

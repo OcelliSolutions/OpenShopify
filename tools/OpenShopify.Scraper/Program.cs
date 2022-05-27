@@ -186,41 +186,67 @@ OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
         var hasLimit = false;
         var hasPageInfo = false;
         var requiredId = true;
+
+        var longParameters = new List<string>()
+        {
+            "address_id", "application_charge_id", "application_credit_id", "article_id", "attribution_app_id", "batch_id", "blog_id", "carrier_service_id", "collect_id",
+            "collection_id", "collection_listing_id", "comment_id", "country_id", "custom_collection_id", "customer_id", "customer_saved_search_id",
+            "discount_code_id", "dispute_id", "draft_order_id", "event_id", "fulfillment_id", "fulfillment_order_id", "fulfillment_service_id", "gift_card_id", "image_id",
+            "inventory_item_id", "last_id", "location_id", "marketing_event_id", "metafield_id", "mobile_platform_application_id", "new_location_id", "order_id", "page_id",
+            "payment_id", "payout_id", "price_rule_id", "product_id", "product_listing_id", "province_id", "risk_id", "recurring_application_charge_id", "redirect_id", "refund_id",
+            "report_id", "script_tag_id", "smart_collection_id", "storefront_access_token_id", "theme_id", "transaction_id", "usage_charge_id", "user_id", "variant_id", "webhook_id", "since_id"
+        };
+
+        var intParameters =
+            new List<string>()
+            {
+                "limit", "offset"
+            };
+
+        var boolParameters = new List<string>()
+        {
+            "disconnect_if_necessary", "in_shop_currency", "relocate_if_necessary", "use_customer_default_address", "email", "restock"
+        };
+
+        var stringParameters = new List<string>()
+        {
+            "fields", "messages"
+        };
+
+        var requiredParameters = new List<string>()
+        {
+            "token"
+        };
+
+        var ignoreParameters = new List<string>()
+        {
+            "new_location_id"
+        };
         foreach (var parameter in path.parameters)
         {
             // `api_version` is a server variables, not a path variable.
             if(parameter.name == "api_version") continue;
+
+            //if this is a PUT or POST endpoint and the parameter is not in the route, ignore it. It will be passed in the body.
+            if (path.action.ToString().ToLower() == "post" || path.action.ToString().ToLower() == "put")
+                if(!pathKey.Contains( string.Concat("{", parameter.name, "}")))
+                    continue;
+
+            /*
+            if(!((string)parameter.name).EndsWith("_id"))
+                if((path.action.ToString().ToLower() == "post" || path.action.ToString().ToLower() == "put") && 
+                   !requiredParameters.Contains((string)parameter.name))
+                    continue;
+
+            if (ignoreParameters.Contains((string)parameter.name))
+                continue;
+            */
+
             if (parameter.name == "limit") hasLimit = true;
             if (parameter.name == "page_info") hasPageInfo = true;
-
+            
             var schema = GetSchema((string)parameter.name);
             schema.Description = HtmlToMarkdown(parameter.description);
-
-            var longParameters = new List<string>()
-                {
-                    "address_id", "application_charge_id", "application_credit_id", "article_id", "attribution_app_id", "batch_id", "blog_id", "carrier_service_id", "collect_id",
-                    "collection_id", "collection_listing_id", "comment_id", "country_id", "custom_collection_id", "customer_id", "customer_saved_search_id",
-                    "discount_code_id", "dispute_id", "draft_order_id", "event_id", "fulfillment_id", "fulfillment_order_id", "fulfillment_service_id", "gift_card_id", "image_id",
-                    "inventory_item_id", "last_id", "location_id", "marketing_event_id", "metafield_id", "mobile_platform_application_id", "new_location_id", "order_id", "page_id",
-                    "payment_id", "payout_id", "price_rule_id", "product_id", "product_listing_id", "province_id", "risk_id", "recurring_application_charge_id", "redirect_id", "refund_id",
-                    "report_id", "script_tag_id", "smart_collection_id", "storefront_access_token_id", "theme_id", "transaction_id", "usage_charge_id", "user_id", "variant_id", "webhook_id", "since_id"
-                };
-
-            var intParameters =
-                new List<string>()
-                {
-                    "limit", "offset"
-                };
-
-            var boolParameters = new List<string>()
-                {
-                    "disconnect_if_necessary", "in_shop_currency", "relocate_if_necessary", "use_customer_default_address", "email", "restock"
-                };
-
-            var stringParameters = new List<string>()
-            {
-                "fields", "messages"
-            };
 
             if (longParameters.Contains((string)parameter.name))
             {
@@ -251,6 +277,7 @@ OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
                 requiredId = false;
 
             var isRequired = longParameters.Contains((string)parameter.name) && requiredId;
+            isRequired = requiredParameters.Contains((string)parameter.name) || requiredId;
 
             if (parameter.name == "since_id" || parameter.name == "last_id")
                 isRequired = false;
@@ -424,7 +451,7 @@ JsonSchema GetSchema(string propertyName)
         "confirmed", "cache", "paid", "enabled_universal_or_app_links", "enabled_shared_webcredentials",
         "has_discounts", "has_gift_cards", "eligible_for_payments", "requires_extra_payments_agreement",
         "password_enabled","has_storefront","eligible_for_card_reader_giveaway","finances",
-        "checkout_api_supported","multi_location_enabled","setup_required","pre_launch_enabled"
+        "checkout_api_supported","multi_location_enabled","setup_required","pre_launch_enabled", "notify_merchant"
 
     };
     var decimalProperties = new List<string>()
@@ -555,6 +582,21 @@ string CreateOperationId(string summary)
         .Replace("GetOrderCount", "CountOrders")
         .Replace("GetCountOf", "Count")
         .Replace("DeleteExisting", "Delete")
+        .Replace("ForArticle", "")
+        .Replace("OfArticle", "")
+        .Replace("FromBlog", "")
+        .Replace("ForBlog", "")
+        .Replace("OfBlog", "")
+        .Replace("ForOrder", "")
+        .Replace("OfOrder", "")
+        .Replace("ForCountry", "")
+        .Replace("ThatArePublishedToYourApp", "")
+        .Replace("ThatIsPublishedToYourApp", "")
+        .Replace("ToPublishCollectionToYourApp", "")
+        .Replace("ToPublishProductToYourApp","")
+        .Replace("ToUnpublishCollectionFromYourApp", "")
+        .Replace("ToUnpublishProductFromYourApp", "")
+        .Replace("WithStatusOPEN","")
         .Replace("ByItsID", "")
         .Replace("ByID", "");
 
@@ -619,8 +661,16 @@ async Task CreateController(OpenApiDocument document, string section, string con
         var code = generator.GenerateFile();
         
         //Declare a new input parameter for POST and PUT methods.
-        code = Regex.Replace(code, @"(Task Create\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.Create{controllerName}Request request, ");
-        code = Regex.Replace(code, @"(Task Update\w+)\(", $@"$1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.Update{controllerName}Request request, ");
+        var keyWords = new List<string>()
+        {
+            "Create", "Update", "Send", "Accept", "Reject", "Move", "Apply", "Release", "Reschedule", "Cancel",
+            "Calculate", "Complete", "PerformBulk", "Adjust", "Connect", "Set"
+        };
+        foreach (var keyWord in keyWords)
+        {
+            code = Regex.Replace(code, $@"Task ({keyWord}\w+)\(", $@"Task $1([System.ComponentModel.DataAnnotations.Required] {modelNamespace}.$1Request request, ");
+        }
+
         code = code.Replace(", )", ")")
             .Replace("<br/>", "")
             .Replace("<br />", "");

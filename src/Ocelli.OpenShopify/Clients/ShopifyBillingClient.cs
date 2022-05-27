@@ -876,7 +876,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> CancelRecurringApplicationChargeAsync(long recurringApplicationChargeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> CancelRecurringApplicationChargeAsync(long recurringApplicationChargeId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -884,7 +884,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<RecurringApplicationChargeItem>> UpdateCappedAmountOfRecurringApplicationChargeAsync(long recurringApplicationChargeId, decimal? cappedAmount = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<RecurringApplicationChargeItem>> UpdateCappedAmountOfRecurringApplicationChargeAsync(long recurringApplicationChargeId, decimal? recurringApplicationChargecappedAmount = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -1173,10 +1173,13 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CancelRecurringApplicationChargeAsync(long recurringApplicationChargeId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> CancelRecurringApplicationChargeAsync(long recurringApplicationChargeId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (recurringApplicationChargeId == null)
                 throw new System.ArgumentNullException("recurringApplicationChargeId");
+
+            if (body == null)
+                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/recurring_application_charges/{recurring_application_charge_id}.json");
@@ -1188,6 +1191,9 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("DELETE");
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -1241,7 +1247,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RecurringApplicationChargeItem>> UpdateCappedAmountOfRecurringApplicationChargeAsync(long recurringApplicationChargeId, decimal? cappedAmount = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RecurringApplicationChargeItem>> UpdateCappedAmountOfRecurringApplicationChargeAsync(long recurringApplicationChargeId, decimal? recurringApplicationChargecappedAmount = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (recurringApplicationChargeId == null)
                 throw new System.ArgumentNullException("recurringApplicationChargeId");
@@ -1249,9 +1255,9 @@ namespace Ocelli.OpenShopify
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/recurring_application_charges/{recurring_application_charge_id}/customize.json?");
             urlBuilder_.Replace("{recurring_application_charge_id}", System.Uri.EscapeDataString(ConvertToString(recurringApplicationChargeId, System.Globalization.CultureInfo.InvariantCulture)));
-            if (cappedAmount != null)
+            if (recurringApplicationChargecappedAmount != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("capped_amount") + "=").Append(System.Uri.EscapeDataString(ConvertToString(cappedAmount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("recurring_application_charge[capped_amount]") + "=").Append(System.Uri.EscapeDataString(ConvertToString(recurringApplicationChargecappedAmount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -2195,6 +2201,12 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CancelRecurringApplicationChargeRequest : System.Collections.Generic.Dictionary<string, object>
+    {
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CreateApplicationCharge
     {
         /// <summary>
@@ -2843,185 +2855,8 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class UpdateRecurringApplicationCharge
+    public partial class UpdateCappedAmountOfRecurringApplicationChargeRequest
     {
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer activated the recurring application charge.  
-        /// <br/>**Note:** The recurring application charge must be activated or the returned value is `null`.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("activated_on")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? ActivatedOn { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer is billed.  
-        /// <br/>**Note:** The recurring application charge must be accepted or the returned value is `null`.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("billing_on")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? BillingOn { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the merchant canceled their recurring application charge.  
-        /// <br/>**Note:** Returns `null` when the recurring application charge is not canceled.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("cancelled_on")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CancelledOn { get; set; } = default!;
-
-        /// <summary>
-        /// The limit a customer can be charged for usage based billing. If this property is provided, then you must also provide the `terms` property. See [usage charges](/docs/admin-api/rest/reference/billing/usagecharge) for more information.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("capped_amount")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CappedAmount { get; set; } = default!;
-
-        /// <summary>
-        /// The URL where the merchant accepts or declines the recurring application charge.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("confirmation_url")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ConfirmationUrl { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the recurring application charge was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the recurring application charge.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The price of the recurring application charge. The maximum price is 10,000.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("price")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public decimal? Price { get; set; } = default!;
-
-        /// <summary>
-        /// The URL where the merchant is redirected after accepting the charge.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("return_url")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ReturnUrl { get; set; } = default!;
-
-        /// <summary>
-        /// The status of the recurring charge. Valid values:
-        /// <br/>
-        /// <br/>*   **pending**: The recurring charge is pending. 
-        /// <br/>*   **accepted**: **Removed in version 2021-01**. The recurring charge has been accepted. As of API version 2021-01, when a merchant accepts a charge, the charge immediately transitions from `pending` to `active`. 
-        /// <br/>*   **active**: The recurring charge is activated. This is the only status that actually causes a merchant to be charged. As of API version 2021-01, when a merchant accepts a charge, the charge immediately transitions from `pending` to `active`. 
-        /// <br/>*   **declined**: The recurring charge has been declined. 
-        /// <br/>*   **expired**: The recurring charge was not accepted within 2 days of being created. 
-        /// <br/>*   **frozen**: The recurring charge is on hold due to a shop subscription non-payment. The charge will re-activate once subscription payments resume. 
-        /// <br/>*   **cancelled**: The developer cancelled the charge.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("status")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Status { get; set; } = default!;
-
-        /// <summary>
-        /// The terms and conditions of usage based billing charges. Must be present in order to create usage charges, for example when the `capped_amount` property is provided. Presented to the merchant when they approve an app's usage charges.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("terms")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Terms { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the application charge is a test transaction. Valid values: `true`,`null`.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("test")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public bool? Test { get; set; } = default!;
-
-        /// <summary>
-        /// The number of days that the customer is eligible for a free trial.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("trial_days")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public int? TrialDays { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the free trial ends.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("trial_ends_on")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? TrialEndsOn { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the recurring application charge was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("api_client_id")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public long? ApiClientId { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("decorated_return_url")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? DecoratedReturnUrl { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
-        public long Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class UpdateRecurringApplicationChargeRequest
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("recurring_application_charge")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
-        [System.ComponentModel.DataAnnotations.Required]
-        public UpdateRecurringApplicationCharge RecurringApplicationCharge { get; set; } = new UpdateRecurringApplicationCharge();
 
     }
 

@@ -15,7 +15,7 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     /// <inheritdoc />
     [IgnoreApi, HttpGet, Route("fulfillment_services.invalid")]
     [ProducesResponseType(typeof(FulfillmentServiceList), StatusCodes.Status200OK)]
-    public override Task ListFulfillmentServices(string? scope)
+    public override Task ListFulfillmentServices(string? scope = null)
     {
         throw new NotImplementedException();
     }
@@ -32,6 +32,7 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     [HttpPost, Route("fulfillment_services.json")]
     [ProducesResponseType(typeof(FulfillmentServiceItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(FulfillmentServiceError), StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(typeof(FulfillmentServiceGeneralError), StatusCodes.Status400BadRequest)]
     public override Task CreateFulfillmentService([Required] CreateFulfillmentServiceRequest request)
     {
         throw new NotImplementedException();
@@ -49,6 +50,7 @@ public class FulfillmentServiceController : FulfillmentServiceControllerBase
     /// <inheritdoc cref="FulfillmentServiceControllerBase.UpdateFulfillmentService" />
     [HttpPut, Route("fulfillment_services/{fulfillment_service_id:long}.json")]
     [ProducesResponseType(typeof(FulfillmentServiceItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(FulfillmentServiceGeneralError), StatusCodes.Status400BadRequest)]
     public override Task UpdateFulfillmentService([Required] UpdateFulfillmentServiceRequest request, [Required] long fulfillment_service_id)
     {
         throw new NotImplementedException();

@@ -35,25 +35,25 @@ namespace OpenShopify.Admin.Builder.Models
         /// Completes a checkout
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}/complete.json")]
-        public abstract System.Threading.Tasks.Task CompleteCheckout(string? token = null);
+        public abstract System.Threading.Tasks.Task CompleteCheckout([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CompleteCheckoutRequest request, string token);
 
         /// <summary>
         /// Retrieves a checkout
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}.json")]
-        public abstract System.Threading.Tasks.Task GetCheckout(string? token = null);
+        public abstract System.Threading.Tasks.Task GetCheckout(string token);
 
         /// <summary>
         /// Modifies an existing checkout
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}.json")]
-        public abstract System.Threading.Tasks.Task UpdateCheckout([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCheckoutRequest request, string? token = null);
+        public abstract System.Threading.Tasks.Task UpdateCheckout([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCheckoutRequest request, string token);
 
         /// <summary>
         /// Retrieves a list of shipping rates
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("checkouts/{token}/shipping_rates.json")]
-        public abstract System.Threading.Tasks.Task ListShippingRates(string? token = null);
+        public abstract System.Threading.Tasks.Task ListShippingRates(string token);
 
     }
 

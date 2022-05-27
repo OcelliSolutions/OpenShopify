@@ -50,13 +50,13 @@ namespace OpenShopify.Admin.Builder.Models
         /// Cancels a recurring application charge
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}.json")]
-        public abstract System.Threading.Tasks.Task CancelRecurringApplicationCharge(long recurring_application_charge_id);
+        public abstract System.Threading.Tasks.Task CancelRecurringApplicationCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CancelRecurringApplicationChargeRequest request, long recurring_application_charge_id);
 
         /// <summary>
         /// Updates the capped amount of a recurring application charge
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/customize.json")]
-        public abstract System.Threading.Tasks.Task UpdateCappedAmountOfRecurringApplicationCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateRecurringApplicationChargeRequest request, long recurring_application_charge_id);
+        public abstract System.Threading.Tasks.Task UpdateCappedAmountOfRecurringApplicationCharge([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.UpdateCappedAmountOfRecurringApplicationChargeRequest request, long recurring_application_charge_id);
 
     }
 

@@ -31,8 +31,7 @@ public class InventoryLevelController : InventoryLevelControllerBase
     /// <inheritdoc />
     [HttpPost, Route("inventory_levels/adjust.json")]
     [ProducesResponseType(typeof(InventoryLevelItem), StatusCodes.Status200OK)]
-    public override Task AdjustInventoryLevelOfInventoryItemAtLocation(string? available_adjustment = null, long? inventory_item_id = null,
-        long? location_id = null)
+    public override Task AdjustInventoryLevelOfInventoryItemAtLocation([Required] AdjustInventoryLevelOfInventoryItemAtLocationRequest request)
     {
         throw new NotImplementedException();
     }
@@ -40,7 +39,7 @@ public class InventoryLevelController : InventoryLevelControllerBase
     /// <inheritdoc />
     [HttpPost, Route("inventory_levels/connect.json")]
     [ProducesResponseType(typeof(InventoryLevelItem), StatusCodes.Status201Created)]
-    public override Task ConnectInventoryItemToLocation([Required] long inventory_item_id, [Required] long location_id, bool? relocate_if_necessary = null)
+    public override Task ConnectInventoryItemToLocation([Required] ConnectInventoryItemToLocationRequest request)
     {
         throw new NotImplementedException();
     }
@@ -48,8 +47,7 @@ public class InventoryLevelController : InventoryLevelControllerBase
     /// <inheritdoc />
     [HttpPost, Route("inventory_levels/set.json")]
     [ProducesResponseType(typeof(InventoryLevelItem), StatusCodes.Status200OK)]
-    public override Task SetInventoryLevelForInventoryItemAtLocation(string? available = null, long? inventory_item_id = null,
-        long? location_id = null, bool? disconnect_if_necessary = null)
+    public override Task SetInventoryLevelForInventoryItemAtLocation([Required] SetInventoryLevelForInventoryItemAtLocationRequest request)
     {
         throw new NotImplementedException();
     }

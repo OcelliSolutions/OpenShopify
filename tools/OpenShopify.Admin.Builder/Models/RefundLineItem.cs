@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models
 {
@@ -50,7 +51,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// How this refund line item affects inventory levels.
         /// </summary>
         [JsonPropertyName("restock_type")]
-        public string? RestockType { get; set; }
+        public RestockType? RestockType { get; set; }
 
         /// <summary>
         /// The unique identifier of the location where the items will be restocked.

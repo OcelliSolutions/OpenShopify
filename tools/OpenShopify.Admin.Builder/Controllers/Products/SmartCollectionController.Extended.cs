@@ -67,8 +67,7 @@ public class SmartCollectionController : SmartCollectionControllerBase
     [HttpPut, Route("smart_collections/{smart_collection_id:long}/order.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     //TODO: wrong request type
-    public override Task UpdateOrderingTypeOfProductsInSmartCollection([Required] UpdateSmartCollectionRequest request, [Required] long smart_collection_id,
-        string? products, string? sort_order = "(current value)")
+    public override Task UpdateOrderingTypeOfProductsInSmartCollection([Required] UpdateOrderingTypeOfProductsInSmartCollectionRequest request, [Required] long smart_collection_id)
     {
         throw new NotImplementedException();
     }

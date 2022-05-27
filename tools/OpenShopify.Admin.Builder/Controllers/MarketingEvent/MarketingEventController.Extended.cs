@@ -64,9 +64,7 @@ public class MarketingEventController : MarketingEventControllerBase
     [HttpPost, Route("marketing_events/{marketing_event_id:long}/engagements.json")]
     [ProducesResponseType(typeof(EngagementList), StatusCodes.Status201Created)]
     //TODO: wrong request type
-    public override Task CreateMarketingEngagementsOnMarketingEvent([Required] CreateMarketingEventRequest request, [Required] long marketing_event_id, string occurred_on,
-        string? ad_spend, string? clicks_count, string? comments_count, string? favorites_count, string? impressions_count,
-        string? is_cumulative, string? shares_count, string? views_count)
+    public override Task CreateMarketingEngagementsOnMarketingEvent([Required] CreateMarketingEngagementsOnMarketingEventRequest request, [Required] long marketing_event_id)
     {
         throw new NotImplementedException();
     }

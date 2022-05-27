@@ -69,11 +69,15 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: message
-          in: query
-          description: An optional reason for the cancellation request.
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendCancellationRequestRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SendCancellationRequestRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -89,7 +93,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CancellationRequestItem'
+                $ref: '#/components/schemas/FulfillmentOrderItem'
   '/fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json':
     post:
       tags:
@@ -103,11 +107,15 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: message
-          in: query
-          description: An optional reason for accepting the cancellation request.
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AcceptCancellationRequestRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AcceptCancellationRequestRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -123,7 +131,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CancellationRequestItem'
+                $ref: '#/components/schemas/FulfillmentOrderItem'
   '/fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json':
     post:
       tags:
@@ -137,11 +145,15 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: message
-          in: query
-          description: An optional reason for rejecting the cancellation request.
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RejectCancellationRequestRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RejectCancellationRequestRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -157,7 +169,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CancellationRequestItem'
+                $ref: '#/components/schemas/FulfillmentOrderItem'
   /carrier_services.json:
     post:
       tags:
@@ -204,6 +216,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CarrierServiceError'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierServiceGeneralError'
     get:
       tags:
         - CarrierService
@@ -267,6 +294,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CarrierServiceItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierServiceGeneralError'
     get:
       tags:
         - CarrierService
@@ -446,6 +488,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentError'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/fulfillments.json':
     get:
       tags:
@@ -621,10 +678,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateFulfillmentRequest'
+              $ref: '#/components/schemas/CreateFulfillmentForOneOrManyFulfillmentOrdersRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateFulfillmentRequest'
+              $ref: '#/components/schemas/CreateFulfillmentForOneOrManyFulfillmentOrdersRequest'
         required: true
       responses:
         '201':
@@ -642,6 +699,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentGeneralError'
   '/fulfillments/{fulfillment_id}/update_tracking.json':
     post:
       tags:
@@ -658,10 +730,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateFulfillmentRequest'
+              $ref: '#/components/schemas/UpdateTrackingInformationForFulfillmentRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/UpdateFulfillmentRequest'
+              $ref: '#/components/schemas/UpdateTrackingInformationForFulfillmentRequest'
         required: true
       responses:
         '200':
@@ -679,6 +751,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentGeneralError'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/complete.json':
     post:
       tags:
@@ -698,6 +785,15 @@ paths:
           schema:
             type: integer
             format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompleteFulfillmentRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CompleteFulfillmentRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -714,6 +810,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentGeneralError'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/open.json':
     post:
       tags:
@@ -749,6 +860,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentGeneralError'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/cancel.json':
     post:
       tags:
@@ -768,6 +894,15 @@ paths:
           schema:
             type: integer
             format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelFulfillmentForSpecificOrderIDRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CancelFulfillmentForSpecificOrderIDRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -784,6 +919,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentGeneralError'
   '/fulfillments/{fulfillment_id}/cancel.json':
     post:
       tags:
@@ -797,6 +947,15 @@ paths:
           schema:
             type: integer
             format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelFulfillmentRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CancelFulfillmentRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -813,6 +972,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentGeneralError'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/events.json':
     get:
       tags:
@@ -910,6 +1084,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentEventError'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentEventGeneralError'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json':
     get:
       tags:
@@ -1062,6 +1251,15 @@ paths:
           schema:
             type: integer
             format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelFulfillmentOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CancelFulfillmentOrderRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -1078,6 +1276,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentOrderItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentOrderGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/close.json':
     post:
       tags:
@@ -1091,11 +1304,15 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: message
-          in: query
-          description: An optional reason for marking the fulfillment order as incomplete.
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkFulfillmentOrderAsIncompleteRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MarkFulfillmentOrderAsIncompleteRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -1112,6 +1329,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentOrderItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentOrderGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/move.json':
     post:
       tags:
@@ -1125,12 +1357,15 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: new_location_id
-          in: query
-          description: The id of the location to which the fulfillment order will be moved.
-          schema:
-            type: integer
-            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MoveFulfillmentOrderToNewLocationRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MoveFulfillmentOrderToNewLocationRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -1147,6 +1382,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentOrderItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentOrderGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/open.json':
     post:
       tags:
@@ -1160,6 +1410,15 @@ paths:
           schema:
             type: integer
             format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkFulfillmentOrderAsOpenRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MarkFulfillmentOrderAsOpenRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -1176,6 +1435,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentOrderItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentOrderGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/reschedule.json':
     post:
       tags:
@@ -1189,6 +1463,15 @@ paths:
           schema:
             type: integer
             format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RescheduleFulfillAtTimeOfScheduledFulfillmentOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RescheduleFulfillAtTimeOfScheduledFulfillmentOrderRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -1205,12 +1488,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentOrderItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentOrderGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/hold.json':
     post:
       tags:
         - FulfillmentOrder
       summary: Applies a fulfillment hold on a fulfillment order with status <code>OPEN</code>
-      operationId: ApplyFulfillmentHoldOnFulfillmentOrderWithStatusOPEN
+      operationId: ApplyFulfillmentHoldOnFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
           in: path
@@ -1218,21 +1516,15 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: notify_merchant
-          in: query
-          description: 'Whether the merchant should receive a notification about the fulfillment hold. If set to true, then the merchant will be notified on the Shopify mobile app (if they use it to manage their store). The default value is false.'
-          schema:
-            type: string
-        - name: reason
-          in: query
-          description: A mandatory reason for the fulfillment hold.
-          schema:
-            type: string
-        - name: reason_notes
-          in: query
-          description: Optional additional information about the fulfillment hold reason.
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplyFulfillmentHoldOnFulfillmentOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ApplyFulfillmentHoldOnFulfillmentOrderRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -1249,6 +1541,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentOrderItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentOrderGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/release_hold.json':
     post:
       tags:
@@ -1262,6 +1569,15 @@ paths:
           schema:
             type: integer
             format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReleaseFulfillmentHoldOnFulfillmentOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ReleaseFulfillmentHoldOnFulfillmentOrderRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -1278,6 +1594,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentOrderItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentOrderGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json':
     post:
       tags:
@@ -1291,16 +1622,15 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: fulfillment_order_line_items
-          in: query
-          description: 'The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.'
-          schema:
-            type: string
-        - name: message
-          in: query
-          description: An optional message for the fulfillment request.
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendFulfillmentRequestRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SendFulfillmentRequestRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -1317,6 +1647,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentRequestItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentRequestGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json':
     post:
       tags:
@@ -1330,11 +1675,15 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: message
-          in: query
-          description: An optional reason for accepting the fulfillment request.
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AcceptFulfillmentRequestRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AcceptFulfillmentRequestRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -1351,6 +1700,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentRequestItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentRequestGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json':
     post:
       tags:
@@ -1364,11 +1728,15 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: message
-          in: query
-          description: An optional reason for rejecting the fulfillment request.
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RejectFulfillmentRequestRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RejectFulfillmentRequestRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -1385,6 +1753,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentRequestItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentRequestGeneralError'
   /fulfillment_services.json:
     get:
       tags:
@@ -1461,6 +1844,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentServiceError'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentServiceGeneralError'
   '/fulfillment_services/{fulfillment_service_id}.json':
     get:
       tags:
@@ -1527,6 +1925,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentServiceItem'
+        '400':
+          description: Bad Request
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentServiceGeneralError'
     delete:
       tags:
         - FulfillmentService
@@ -1586,6 +1999,15 @@ paths:
                 $ref: '#/components/schemas/LocationsForMoveList'
 components:
   schemas:
+    AcceptCancellationRequestRequest:
+      type: object
+      properties:
+        cancellation_request:
+          $ref: '#/components/schemas/CancellationRequest'
+      additionalProperties: { }
+    AcceptFulfillmentRequestRequest:
+      type: object
+      additionalProperties: { }
     Address:
       required:
         - id
@@ -1660,6 +2082,14 @@ components:
           type: integer
           format: int64
       additionalProperties: { }
+    ApplyFulfillmentHoldOnFulfillmentOrderRequest:
+      required:
+        - fulfillment_hold
+      type: object
+      properties:
+        fulfillment_hold:
+          $ref: '#/components/schemas/FulfillmentHoldRequestDetail'
+      additionalProperties: { }
     AssignedFulfillmentOrderList:
       required:
         - fulfillment_orders
@@ -1711,13 +2141,22 @@ components:
           description: The ZIP code of the assigned location.
           nullable: true
       additionalProperties: { }
-    CancellationRequestItem:
-      required:
-        - cancellation_request
+    CancelFulfillmentForSpecificOrderIDRequest:
+      type: object
+      additionalProperties: { }
+    CancelFulfillmentOrderRequest:
+      type: object
+      additionalProperties: { }
+    CancelFulfillmentRequest:
+      type: object
+      additionalProperties: { }
+    CancellationRequest:
       type: object
       properties:
-        cancellation_request:
-          $ref: '#/components/schemas/FulfillmentOrder'
+        message:
+          type: string
+          description: An optional reason for rejecting the cancellation request.
+          nullable: true
       additionalProperties: { }
     CarrierService:
       required:
@@ -1772,6 +2211,21 @@ components:
             type: string
           nullable: true
       additionalProperties: { }
+    CarrierServiceGeneralError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/CarrierServiceGeneralErrorDetails'
+      additionalProperties: { }
+    CarrierServiceGeneralErrorDetails:
+      type: object
+      properties:
+        base:
+          type: string
+          nullable: true
+      additionalProperties: { }
     CarrierServiceItem:
       required:
         - carrier_service
@@ -1789,6 +2243,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CarrierService'
+      additionalProperties: { }
+    CompleteFulfillmentRequest:
+      type: object
       additionalProperties: { }
     CountItem:
       type: object
@@ -2000,6 +2457,9 @@ components:
         fulfillment_event:
           $ref: '#/components/schemas/CreateFulfillmentEvent'
       additionalProperties: false
+    CreateFulfillmentForOneOrManyFulfillmentOrdersRequest:
+      type: object
+      additionalProperties: false
     CreateFulfillmentRequest:
       required:
         - fulfillment
@@ -2085,9 +2545,26 @@ components:
           format: int64
           nullable: true
         method_type:
+          $ref: '#/components/schemas/DeliveryMethodType'
+        min_delivery_date_time:
           type: string
-          description: "The type of delivery method. Valid values.\r\n<br>local: A delivery to a customer's doorstep</br><br>none: No delivery method</br><br>pick_up: A delivery that a customer picks up at your retail store, curbside, or any location that you choose</br><br>retail: A delivery to a retail store</br><br>shipping: A delivery to a customer using a shipping carrier</br>"
+          description: The minimum date and time by which the delivery is expected to be completed.
+          format: date-time
           nullable: true
+        max_delivery_date_time:
+          type: string
+          description: The maximum date and time by which the delivery is expected to be completed.
+          format: date-time
+          nullable: true
+      additionalProperties: { }
+    DeliveryMethodType:
+      enum:
+        - local
+        - none
+        - pick_up
+        - retail
+        - shipping
+      type: string
       additionalProperties: { }
     DiscountAllocation:
       type: object
@@ -2315,6 +2792,21 @@ components:
             type: string
           nullable: true
       additionalProperties: { }
+    FulfillmentEventGeneralError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/FulfillmentEventGeneralErrorDetails'
+      additionalProperties: { }
+    FulfillmentEventGeneralErrorDetails:
+      type: object
+      properties:
+        base:
+          type: string
+          nullable: true
+      additionalProperties: { }
     FulfillmentEventItem:
       required:
         - fulfillment_event
@@ -2346,6 +2838,56 @@ components:
         - delivered
         - failure
       type: string
+      additionalProperties: { }
+    FulfillmentGeneralError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/FulfillmentGeneralErrorDetails'
+      additionalProperties: { }
+    FulfillmentGeneralErrorDetails:
+      type: object
+      properties:
+        base:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    FulfillmentHold:
+      type: object
+      properties:
+        reason:
+          type: string
+          description: The reason for the fulfillment hold.
+          nullable: true
+        reason_notes:
+          type: string
+          description: Additional information about the fulfillment hold reason.
+          nullable: true
+      additionalProperties: { }
+    FulfillmentHoldReason:
+      enum:
+        - awaiting_payment
+        - high_risk_of_fraud
+        - incorrect_address
+        - inventory_out_of_stock
+        - other
+      type: string
+      additionalProperties: { }
+    FulfillmentHoldRequestDetail:
+      type: object
+      properties:
+        notify_merchant:
+          type: boolean
+          description: 'Whether the merchant should receive a notification about the fulfillment hold. If set to true, then the merchant will be notified on the Shopify mobile app (if they use it to manage their store). The default value is false'
+          nullable: true
+        reason:
+          $ref: '#/components/schemas/FulfillmentHoldReason'
+        reason_notes:
+          type: string
+          description: Optional additional information about the fulfillment hold reason.
+          nullable: true
       additionalProperties: { }
     FulfillmentItem:
       required:
@@ -2391,7 +2933,7 @@ components:
         fulfillment_holds:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/FulfillmentHold'
           description: "Represents the fulfillment holds applied on the fulfillment order.\r\n\r\n*   **reason**: The reason for the fulfillment hold. \r\n*   **reason_notes**: Additional information about the fulfillment hold reason."
           nullable: true
         international_duties:
@@ -2410,22 +2952,18 @@ components:
           format: int64
           nullable: true
         request_status:
-          type: string
-          description: "The request status of the fulfillment order. Valid values:\r\n\r\n*   **unsubmitted**: The initial request status for newly-created fulfillment orders. This is the only valid request status for fulfillment orders that aren't assigned to a fulfillment service.  \r\n*   **submitted**: The merchant requested fulfillment for this fulfillment order.  \r\n*   **accepted**: The fulfillment service accepted the merchant's fulfillment request.  \r\n*   **rejected**: The fulfillment service rejected the merchant's fulfillment request.  \r\n*   **cancellation_requested**: The merchant requested a cancellation of the fulfillment request for this fulfillment order.  \r\n*   **cancellation_accepted**: The fulfillment service accepted the merchant's fulfillment cancellation request.  \r\n*   **cancellation_rejected**: The fulfillment service rejected the merchant's fulfillment cancellation request.  \r\n*   **closed**: The fulfillment service closed the fulfillment order without completing it."
-          nullable: true
+          $ref: '#/components/schemas/RequestStatus'
         shop_id:
           type: integer
           description: The ID of the shop that's associated with the fulfillment order.
           format: int64
           nullable: true
         status:
-          type: string
-          description: "The status of the fulfillment order. Valid values:\r\n\r\n*   **open**: The fulfillment order is ready for fulfillment.  \r\n*   **in_progress**: The fulfillment order is being processed.  \r\n*   **scheduled**: The fulfillment order is deferred and will be ready for fulfillment after the datetime specified in `fulfill_at`.  \r\n*   **cancelled**: The fulfillment order has been cancelled by the merchant.  \r\n*   **on_hold**: The fulfillment order is on hold. The fulfillment process can't be initiated until the hold on the fulfillment order is released.  \r\n*   **incomplete**: The fulfillment order cannot be completed as requested.  \r\n*   **closed**: The fulfillment order has been completed and closed."
-          nullable: true
+          $ref: '#/components/schemas/FulfillmentOrderStatus'
         supported_actions:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/FulfillmentOrderActions'
           description: The actions that can be performed on this fulfillment order.
           nullable: true
         merchant_requests:
@@ -2447,6 +2985,25 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+      additionalProperties: { }
+    FulfillmentOrderActions:
+      enum:
+        - create_fulfillment
+        - request_fulfillment
+        - cancel_fulfillment_order
+        - request_cancellation
+        - release_hold
+        - mark_as_open
+        - hold
+      type: string
+      additionalProperties: { }
+    FulfillmentOrderCancellationRequestDetail:
+      type: object
+      properties:
+        message:
+          type: string
+          description: An optional reason for marking the fulfillment order as incomplete.
           nullable: true
       additionalProperties: { }
     FulfillmentOrderDestination:
@@ -2500,6 +3057,21 @@ components:
         zip:
           type: string
           description: The ZIP code of the destination.
+          nullable: true
+      additionalProperties: { }
+    FulfillmentOrderGeneralError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/FulfillmentOrderGeneralErrorDetails'
+      additionalProperties: { }
+    FulfillmentOrderGeneralErrorDetails:
+      type: object
+      properties:
+        base:
+          type: string
           nullable: true
       additionalProperties: { }
     FulfillmentOrderItem:
@@ -2564,6 +3136,17 @@ components:
           items:
             $ref: '#/components/schemas/FulfillmentOrder'
       additionalProperties: { }
+    FulfillmentOrderStatus:
+      enum:
+        - open
+        - in_progress
+        - scheduled
+        - cancelled
+        - on_hold
+        - incomplete
+        - closed
+      type: string
+      additionalProperties: { }
     FulfillmentRequest:
       type: object
       properties:
@@ -2576,6 +3159,21 @@ components:
           items:
             $ref: '#/components/schemas/FulfillmentRequestOrderLineItems'
           description: 'The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.'
+          nullable: true
+      additionalProperties: { }
+    FulfillmentRequestGeneralError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/FulfillmentRequestGeneralErrorDetails'
+      additionalProperties: { }
+    FulfillmentRequestGeneralErrorDetails:
+      type: object
+      properties:
+        base:
+          type: string
           nullable: true
       additionalProperties: { }
     FulfillmentRequestItem:
@@ -2687,6 +3285,21 @@ components:
         - json
         - xml
       type: string
+      additionalProperties: { }
+    FulfillmentServiceGeneralError:
+      required:
+        - errors
+      type: object
+      properties:
+        errors:
+          $ref: '#/components/schemas/FulfillmentServiceGeneralErrorDetails'
+      additionalProperties: { }
+    FulfillmentServiceGeneralErrorDetails:
+      type: object
+      properties:
+        base:
+          type: string
+          nullable: true
       additionalProperties: { }
     FulfillmentServiceItem:
       required:
@@ -2931,20 +3544,36 @@ components:
     LocationsForMove:
       type: object
       properties:
-        locations_for_move:
+        location:
+          $ref: '#/components/schemas/MoveLocation'
+        movable:
+          type: boolean
+          description: Whether the fulfillment order can be moved to the location
+        message:
           type: string
-          description: "A list of locations that a fulfillment order can potentially move to.\r\n\r\n*   **location**: The location being considered as the fulfillment order's new assigned location. \r\n*   **movable**: Whether the fulfillment order can be moved to the location. \r\n*   **message**: A human-readable string with the reason why the fulfillment order, or some of its line items, can't be moved to the location."
+          description: 'A human-readable string with the reason why the fulfillment order, or some of its line items, can''t be moved to the location.'
           nullable: true
       additionalProperties: { }
     LocationsForMoveList:
       required:
-        - locations_for_moves
+        - locations_for_move
       type: object
       properties:
-        locations_for_moves:
+        locations_for_move:
           type: array
           items:
             $ref: '#/components/schemas/LocationsForMove'
+      additionalProperties: { }
+    MarkFulfillmentOrderAsIncompleteRequest:
+      required:
+        - fulfillment_order
+      type: object
+      properties:
+        fulfillment_order:
+          $ref: '#/components/schemas/FulfillmentOrderCancellationRequestDetail'
+      additionalProperties: { }
+    MarkFulfillmentOrderAsOpenRequest:
+      type: object
       additionalProperties: { }
     MerchantRequest:
       type: object
@@ -2972,6 +3601,31 @@ components:
         date:
           type: string
           format: date-time
+          nullable: true
+      additionalProperties: { }
+    MoveFulfillmentOrderToNewLocationRequest:
+      required:
+        - fulfillment_order
+      type: object
+      properties:
+        fulfillment_order:
+          $ref: '#/components/schemas/MoveFulfillmentOrderToNewLocationRequestDetail'
+      additionalProperties: { }
+    MoveFulfillmentOrderToNewLocationRequestDetail:
+      type: object
+      properties:
+        new_location_id:
+          type: integer
+          format: int64
+      additionalProperties: { }
+    MoveLocation:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
           nullable: true
       additionalProperties: { }
     OutgoingRequest:
@@ -3019,6 +3673,42 @@ components:
           $ref: '#/components/schemas/Price'
         presentment_money:
           $ref: '#/components/schemas/Price'
+      additionalProperties: { }
+    RejectCancellationRequestRequest:
+      type: object
+      properties:
+        cancellation_request:
+          $ref: '#/components/schemas/CancellationRequest'
+      additionalProperties: { }
+    RejectFulfillmentRequestRequest:
+      type: object
+      additionalProperties: { }
+    ReleaseFulfillmentHoldOnFulfillmentOrderRequest:
+      type: object
+      additionalProperties: { }
+    RequestStatus:
+      enum:
+        - unsubmitted
+        - submitted
+        - accepted
+        - rejected
+        - cancellation_requested
+        - cancellation_accepted
+        - cancellation_rejected
+        - closed
+      type: string
+      additionalProperties: { }
+    RescheduleFulfillAtTimeOfScheduledFulfillmentOrderRequest:
+      type: object
+      additionalProperties: { }
+    SendCancellationRequestRequest:
+      type: object
+      properties:
+        cancellation_request:
+          $ref: '#/components/schemas/CancellationRequest'
+      additionalProperties: { }
+    SendFulfillmentRequestRequest:
+      type: object
       additionalProperties: { }
     TaxLine:
       type: object
@@ -3261,6 +3951,9 @@ components:
       properties:
         fulfillment_service:
           $ref: '#/components/schemas/UpdateFulfillmentService'
+      additionalProperties: false
+    UpdateTrackingInformationForFulfillmentRequest:
+      type: object
       additionalProperties: false
   securitySchemes:
     ApiKey:

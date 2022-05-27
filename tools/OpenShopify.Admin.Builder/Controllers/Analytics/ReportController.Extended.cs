@@ -24,7 +24,7 @@ public class ReportController : ReportControllerBase
     [HttpPost, Route("reports.json")]
     [ProducesResponseType(typeof(ReportItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ReportError), StatusCodes.Status400BadRequest)]
-    public override Task CreateReport([Required] CreateReportRequest request, string? name = null, string? shopify_ql = null)
+    public override Task CreateReport([Required] CreateReportRequest request)
     {
         throw new NotImplementedException();
     }

@@ -78,13 +78,13 @@ namespace OpenShopify.Admin.Builder.Models
         /// Creates an account activation URL for a customer
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/account_activation_url.json")]
-        public abstract System.Threading.Tasks.Task CreateAccountActivationUrlForCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCustomerRequest request, long customer_id);
+        public abstract System.Threading.Tasks.Task CreateAccountActivationUrlForCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateAccountActivationUrlForCustomerRequest request, long customer_id);
 
         /// <summary>
         /// Sends an account invite to a customer
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/send_invite.json")]
-        public abstract System.Threading.Tasks.Task SendAccountInviteToCustomer(long customer_id);
+        public abstract System.Threading.Tasks.Task SendAccountInviteToCustomer([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.SendAccountInviteToCustomerRequest request, long customer_id);
 
         /// <summary>
         /// Retrieves a count of customers

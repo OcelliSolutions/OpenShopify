@@ -52,7 +52,7 @@ public class CommentFixture : SharedFixture, IAsyncLifetime
     private async Task CreateArticle()
     {
         var request = CreateArticleRequest();
-        var response = await Service.Article.CreateArticleForBlogAsync(Blog.Id, request);
+        var response = await Service.Article.CreateArticleAsync(Blog.Id, request);
         Article = response.Result.Article;
     }
 }
@@ -85,7 +85,7 @@ public class CommentTests : IClassFixture<CommentFixture>
                 Body = "You can even update through a web service."
             }
         };
-        var response = await Fixture.Service.Comment.UpdateCommentOfArticleAsync(request.Comment.Id, request);
+        var response = await Fixture.Service.Comment.UpdateCommentAsync(request.Comment.Id, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedComments.Remove(originalComment);
@@ -104,7 +104,7 @@ public class CommentTests : IClassFixture<CommentFixture>
         {
             Comment = new CreateComment
             {
-                Body = "I like comments\nAnd I like posting them *RESTfully*.",
+                Body = @"I like comments\nAnd I like posting them *RESTfully*.",
                 Author = $@"{Fixture.FirstName} {Fixture.LastName}",
                 Email = Fixture.Email,
                 Ip = "107.20.160.121",
@@ -112,7 +112,7 @@ public class CommentTests : IClassFixture<CommentFixture>
                 ArticleId = Fixture.Article.Id
             }
         };
-        var response = await Fixture.Service.Comment.CreateCommentForArticleAsync(request);
+        var response = await Fixture.Service.Comment.CreateCommentAsync(request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedComments.Add(response.Result.Comment);
@@ -127,7 +127,7 @@ public class CommentTests : IClassFixture<CommentFixture>
             Comment = new CreateComment()
         };
         await Assert.ThrowsAsync<ApiException<CommentError>>(async () =>
-            await Fixture.Service.Comment.CreateCommentForArticleAsync(request));
+            await Fixture.Service.Comment.CreateCommentAsync(request));
     }
 
     #endregion Create

@@ -33,21 +33,13 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="limit">The maximum number of results to retrieve.</param>
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds.json")]
-        public abstract System.Threading.Tasks.Task ListRefundsForOrder(long order_id, string? fields = null, bool? in_shop_currency = null, int? limit = null, string? page_info = null);
+        public abstract System.Threading.Tasks.Task ListRefunds(long order_id, string? fields = null, bool? in_shop_currency = null, int? limit = null, string? page_info = null);
 
         /// <summary>
         /// Creates a refund
         /// </summary>
-        /// <param name="currency">The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency used for the refund.</param>
-        /// <param name="discrepancy_reason">An optional comment that explains a discrepancy between calculated and actual refund amounts. Used to populate the `reason` property of the resulting `order_adjustment` object attached to the refund. Valid values: `restock`, `damage`, `customer`, and `other`.</param>
-        /// <param name="note">An optional note attached to a refund.</param>
-        /// <param name="notify">Whether to send a refund notification to the customer.</param>
-        /// <param name="refund_line_items">A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:</param>
-        /// <param name="restock">Whether to add the line items back to the store inventory. Use `restock_type` for refund line items instead.</param>
-        /// <param name="shipping">Specify how much shipping to refund. It has the following properties:</param>
-        /// <param name="transactions">A list of [transactions](/api/admin-rest/current/resources/transaction) to process as refunds. Use the `calculate` endpoint to obtain these transactions.</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds.json")]
-        public abstract System.Threading.Tasks.Task CreateRefund([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateRefundRequest request, long order_id, string? currency = null, string? discrepancy_reason = null, string? note = null, string? notify = null, string? refund_line_items = null, bool? restock = null, string? shipping = null, string? transactions = null);
+        public abstract System.Threading.Tasks.Task CreateRefund([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateRefundRequest request, long order_id);
 
         /// <summary>
         /// Retrieves a specific refund
@@ -60,11 +52,8 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Calculates a refund
         /// </summary>
-        /// <param name="currency">The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency used for the refund. **Note:** Required whenever the shipping `amount` property is provided.</param>
-        /// <param name="refund_line_items">A list of line item IDs, quantities to refund, and restock instructions. Each entry has the following properties:</param>
-        /// <param name="shipping">Specify how much shipping to refund. It has the following properties:</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds/calculate.json")]
-        public abstract System.Threading.Tasks.Task CalculateRefund(long order_id, string? currency = null, string? refund_line_items = null, string? shipping = null);
+        public abstract System.Threading.Tasks.Task CalculateRefund([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CalculateRefundRequest request, long order_id);
 
     }
 

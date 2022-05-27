@@ -24,7 +24,7 @@ paths:
       tags:
         - Article
       summary: Retrieves a list of all articles from a blog
-      operationId: ListArticlesFromBlog
+      operationId: ListArticles
       parameters:
         - name: blog_id
           in: path
@@ -134,7 +134,7 @@ paths:
       tags:
         - Article
       summary: Creates an article for a blog
-      operationId: CreateArticleForBlog
+      operationId: CreateArticle
       parameters:
         - name: blog_id
           in: path
@@ -187,7 +187,7 @@ paths:
       tags:
         - Article
       summary: Retrieves a count of all articles from a blog
-      operationId: CountArticlesFromBlog
+      operationId: CountArticles
       parameters:
         - name: blog_id
           in: path
@@ -533,24 +533,14 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: source_key
-          in: query
-          description: The path within the theme to an existing asset. Include in the body of the PUT request to create a duplicate asset.
-          schema:
-            type: string
-        - name: src
-          in: query
-          description: The source URL of an image. Include in the body of the PUT request to upload the image to Shopify.
-          schema:
-            type: string
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateAssetRequest'
+              $ref: '#/components/schemas/CreateOrUpdatesAssetForThemeRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateAssetRequest'
+              $ref: '#/components/schemas/CreateOrUpdatesAssetForThemeRequest'
         required: true
       responses:
         '200':
@@ -666,12 +656,6 @@ paths:
         - Blog
       summary: Create a new Blog
       operationId: CreateBlog
-      parameters:
-        - name: title
-          in: query
-          description: 'The title of the blog. Maximum length: 255 characters.'
-          schema:
-            type: string
       requestBody:
         content:
           application/json:
@@ -928,7 +912,7 @@ paths:
       tags:
         - Comment
       summary: Creates a comment for an article
-      operationId: CreateCommentForArticle
+      operationId: CreateComment
       requestBody:
         content:
           application/json:
@@ -1076,7 +1060,7 @@ paths:
       tags:
         - Comment
       summary: Updates a comment of an article
-      operationId: UpdateCommentOfArticle
+      operationId: UpdateComment
       parameters:
         - name: comment_id
           in: path
@@ -2760,14 +2744,6 @@ components:
             type: string
           nullable: true
       additionalProperties: false
-    CreateAssetRequest:
-      required:
-        - asset
-      type: object
-      properties:
-        asset:
-          $ref: '#/components/schemas/CreateAsset'
-      additionalProperties: false
     CreateBlog:
       type: object
       properties:
@@ -2890,6 +2866,14 @@ components:
       properties:
         comment:
           $ref: '#/components/schemas/CreateComment'
+      additionalProperties: false
+    CreateOrUpdatesAssetForThemeRequest:
+      required:
+        - asset
+      type: object
+      properties:
+        asset:
+          $ref: '#/components/schemas/CreateAsset'
       additionalProperties: false
     CreatePage:
       type: object

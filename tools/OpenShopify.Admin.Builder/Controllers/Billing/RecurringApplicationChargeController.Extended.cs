@@ -12,7 +12,7 @@ namespace OpenShopify.Admin.Builder.Controllers.Billing;
 public class RecurringApplicationChargeController : RecurringApplicationChargeControllerBase
 {
     /// <inheritdoc />
-    [HttpPost, Route("recurring_application_charges.json")]
+    [HttpPost, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges.json")]
     [ProducesResponseType(typeof(RecurringApplicationChargeItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(RecurringApplicationChargeError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateRecurringApplicationCharge([Required] CreateRecurringApplicationChargeRequest request)
@@ -21,7 +21,7 @@ public class RecurringApplicationChargeController : RecurringApplicationChargeCo
     }
 
     /// <inheritdoc />
-    [HttpGet, Route("recurring_application_charges.json")]
+    [HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges.json")]
     [ProducesResponseType(typeof(RecurringApplicationChargeList), StatusCodes.Status200OK)]
     public override Task ListRecurringApplicationCharges(string? fields = null, long? since_id = null)
     {
@@ -29,7 +29,7 @@ public class RecurringApplicationChargeController : RecurringApplicationChargeCo
     }
 
     /// <inheritdoc />
-    [HttpGet, Route("recurring_application_charges/{recurring_application_charge_id:long}.json")]
+    [HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id:long}.json")]
     [ProducesResponseType(typeof(RecurringApplicationChargeItem), StatusCodes.Status200OK)]
     public override Task GetCharge([Required] long recurring_application_charge_id, string? fields = null)
     {
@@ -37,28 +37,28 @@ public class RecurringApplicationChargeController : RecurringApplicationChargeCo
     }
 
     /// <inheritdoc />
-    [HttpDelete, Route("recurring_application_charges/{recurring_application_charge_id:long}.json")]
+    [HttpDelete, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task CancelRecurringApplicationCharge([Required] long recurring_application_charge_id)
+    public override Task CancelRecurringApplicationCharge([Required] CancelRecurringApplicationChargeRequest request, long recurring_application_charge_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc />
-    [IgnoreApi, HttpPut, Route("recurring_application_charges/{recurring_application_charge_id:long}/customize.invalid")]
+    [IgnoreApi, HttpPut, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id:long}/customize.invalid")]
     [ProducesResponseType(typeof(RecurringApplicationChargeItem), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(RecurringApplicationChargeError), StatusCodes.Status422UnprocessableEntity)]
-    public override Task UpdateCappedAmountOfRecurringApplicationCharge([Required] UpdateRecurringApplicationChargeRequest request,
+    public override Task UpdateCappedAmountOfRecurringApplicationCharge([Required] UpdateCappedAmountOfRecurringApplicationChargeRequest request,
         [Required] long recurring_application_charge_id)
     {
         throw new NotImplementedException();
     }
 
     /// <inheritdoc cref="RecurringApplicationChargeControllerBase.UpdateCappedAmountOfRecurringApplicationCharge" />
-    [HttpPut, Route("recurring_application_charges/{recurring_application_charge_id:long}/customize.json")]
+    [HttpPut, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id:long}/customize.json")]
     [ProducesResponseType(typeof(RecurringApplicationChargeItem), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(RecurringApplicationChargeError), StatusCodes.Status422UnprocessableEntity)]
-    public Task UpdateCappedAmountOfRecurringApplicationCharge([Required] long recurring_application_charge_id, decimal capped_amount)
+    public Task UpdateCappedAmountOfRecurringApplicationCharge([Required] long recurring_application_charge_id, [FromQuery(Name = "recurring_application_charge[capped_amount]")] decimal capped_amount)
     {
         throw new NotImplementedException();
     }

@@ -105,13 +105,13 @@ public record <#= section.ClassName #>ErrorDetails
 #>
 }
 
-public record Create<#= section.ClassName #>RequestError
+public record <#= section.ClassName #>GeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public Create<#= section.ClassName #>RequestErrorDetails Errors { get; set; } = null!;
+    public <#= section.ClassName #>GeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record Create<#= section.ClassName #>RequestErrorDetails
+public record <#= section.ClassName #>GeneralErrorDetails
 {
 <#
 		foreach (var field in section.Fields)

@@ -75,7 +75,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Creates a discount code creation job
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("price_rules/{price_rule_id}/batch.json")]
-        public abstract System.Threading.Tasks.Task CreateDiscountCodeCreationJob([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateDiscountCodeRequest request, long price_rule_id);
+        public abstract System.Threading.Tasks.Task CreateDiscountCodeCreationJob([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateDiscountCodeCreationJobRequest request, long price_rule_id);
 
         /// <summary>
         /// Retrieves a discount code creation job

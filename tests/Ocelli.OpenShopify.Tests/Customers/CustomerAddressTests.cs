@@ -93,7 +93,7 @@ public class CustomerAddressTests : IClassFixture<CustomerAddressFixture>
     [TestPriority(10)]
     public async Task CreateCustomerAddressAsync_CanCreate()
     {
-        var request = Fixture.CreateCustomerAddressRequest();
+        var request = Fixture.CreateAddressForCustomerRequest();
         var response =
             await Fixture.Service.CustomerAddress.CreateAddressForCustomerAsync(Fixture.Customer.Id, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
@@ -105,7 +105,7 @@ public class CustomerAddressTests : IClassFixture<CustomerAddressFixture>
     [TestPriority(10)]
     public async Task CreateCustomerAddressAsync_IsUnprocessableEntityError()
     {
-        var request = new CreateCustomerAddressRequest
+        var request = new CreateAddressForCustomerRequest()
         {
             CustomerAddress = new CreateCustomerAddress()
         };

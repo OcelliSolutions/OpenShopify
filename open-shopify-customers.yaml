@@ -337,6 +337,7 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateCustomerInviteRequest'
+        required: true
       responses:
         '201':
           description: Created
@@ -462,10 +463,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateCustomerAddressRequest'
+              $ref: '#/components/schemas/CreateAddressForCustomerRequest'
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateCustomerAddressRequest'
+              $ref: '#/components/schemas/CreateAddressForCustomerRequest'
         required: true
       responses:
         '201':
@@ -627,20 +628,21 @@ paths:
         - CustomerAddress
       operationId: PerformBulkOperationsForMultipleCustomerAddresses
       parameters:
-        - name: address_ids
-          in: query
-          schema:
-            type: string
         - name: customer_id
           in: path
           required: true
           schema:
             type: integer
             format: int64
-        - name: operation
-          in: query
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PerformBulkOperationsForMultipleCustomerAddressesRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PerformBulkOperationsForMultipleCustomerAddressesRequest'
+        required: true
       responses:
         '200':
           description: Success
@@ -1096,6 +1098,20 @@ components:
           type: integer
           format: int32
       additionalProperties: { }
+    CreateAccountActivationUrlForCustomerRequest:
+      type: object
+      properties:
+        account_activation_url:
+          type: string
+      additionalProperties: false
+    CreateAddressForCustomerRequest:
+      required:
+        - customer_address
+      type: object
+      properties:
+        customer_address:
+          $ref: '#/components/schemas/CreateCustomerAddress'
+      additionalProperties: false
     CreateCustomer:
       type: object
       properties:
@@ -1299,14 +1315,6 @@ components:
           type: boolean
           description: Indicates whether this address is the default address.
           nullable: true
-      additionalProperties: false
-    CreateCustomerAddressRequest:
-      required:
-        - customer_address
-      type: object
-      properties:
-        customer_address:
-          $ref: '#/components/schemas/CreateCustomerAddress'
       additionalProperties: false
     CreateCustomerInvite:
       type: object
@@ -2711,6 +2719,9 @@ components:
           description: A unique number associated with the transaction that can be used to track the refund. This property has a value only for transactions completed with Visa or Mastercard.
           nullable: true
       additionalProperties: { }
+    PerformBulkOperationsForMultipleCustomerAddressesRequest:
+      type: object
+      additionalProperties: { }
     Price:
       type: object
       properties:
@@ -2817,6 +2828,8 @@ components:
           type: string
           description: 'The three-letter code (ISO 4217 format) for the currency used for the refund. Note: Required whenever the shipping amount property is provided.'
           nullable: true
+        total_duties_set:
+          $ref: '#/components/schemas/PriceSet'
         id:
           type: integer
           format: int64
@@ -2884,9 +2897,7 @@ components:
         total_tax_set:
           $ref: '#/components/schemas/PriceSet'
         restock_type:
-          type: string
-          description: How this refund line item affects inventory levels.
-          nullable: true
+          $ref: '#/components/schemas/RestockType'
         location_id:
           type: integer
           description: "The unique identifier of the location where the items will be restocked.\r\nRequired when restock_type has the value return or cancel."
@@ -2938,6 +2949,20 @@ components:
         tax_amount_set:
           $ref: '#/components/schemas/PriceSet'
       additionalProperties: { }
+    RestockType:
+      enum:
+        - no_restock
+        - cancel
+        - return
+        - legacy_restock
+      type: string
+      additionalProperties: { }
+    SendAccountInviteToCustomerRequest:
+      type: object
+      additionalProperties: { }
+    SetDefaultAddressForCustomerRequest:
+      type: object
+      additionalProperties: { }
     Shipping:
       type: object
       properties:
@@ -2953,6 +2978,10 @@ components:
         maximum_refundable:
           type: number
           description: The maximum amount that can be refunded
+          format: decimal
+          nullable: true
+        tax:
+          type: number
           format: decimal
           nullable: true
       additionalProperties: { }

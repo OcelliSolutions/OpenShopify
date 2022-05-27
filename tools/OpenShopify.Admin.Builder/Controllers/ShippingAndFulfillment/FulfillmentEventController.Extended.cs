@@ -23,6 +23,7 @@ public class FulfillmentEventController : FulfillmentEventControllerBase
     [HttpPost, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events.json")]
     [ProducesResponseType(typeof(FulfillmentEventItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(FulfillmentEventError), StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(typeof(FulfillmentEventGeneralError), StatusCodes.Status400BadRequest)]
     public override Task CreateFulfillmentEvent([Required] CreateFulfillmentEventRequest request, [Required] long fulfillment_id, [Required] long order_id)
     {
         throw new NotImplementedException();

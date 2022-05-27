@@ -100,6 +100,9 @@ public class SmartCollectionTests : IClassFixture<SmartCollectionFixture>
         var request = new CreateSmartCollectionRequest
         {
             SmartCollection = new CreateSmartCollection()
+            {
+                Title = Fixture.UniqueString()
+            }
         };
         await Assert.ThrowsAsync<ApiException<SmartCollectionError>>(async () =>
             await Fixture.Service.SmartCollection.CreateSmartCollectionAsync(request));

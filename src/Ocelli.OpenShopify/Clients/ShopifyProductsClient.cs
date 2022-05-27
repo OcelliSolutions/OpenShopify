@@ -3988,11 +3988,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Updates the ordering type of products in a smart collection
         /// </summary>
-        /// <param name="products">An array of product IDs, in the order that you want them to appear at the top of the collection. When `products` is specified but empty, any previously sorted products are cleared.</param>
-        /// <param name="sortOrder">The type of sorting to apply. Valid values are listed in the [Properties](#properties) section above.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderingTypeOfProductsInSmartCollectionAsync(long smartCollectionId, UpdateSmartCollectionRequest body, string? products = null, string? sortOrder = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderingTypeOfProductsInSmartCollectionAsync(long smartCollectionId, UpdateOrderingTypeOfProductsInSmartCollectionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -4598,11 +4596,9 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Updates the ordering type of products in a smart collection
         /// </summary>
-        /// <param name="products">An array of product IDs, in the order that you want them to appear at the top of the collection. When `products` is specified but empty, any previously sorted products are cleared.</param>
-        /// <param name="sortOrder">The type of sorting to apply. Valid values are listed in the [Properties](#properties) section above.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderingTypeOfProductsInSmartCollectionAsync(long smartCollectionId, UpdateSmartCollectionRequest body, string? products = null, string? sortOrder = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> UpdateOrderingTypeOfProductsInSmartCollectionAsync(long smartCollectionId, UpdateOrderingTypeOfProductsInSmartCollectionRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (smartCollectionId == null)
                 throw new System.ArgumentNullException("smartCollectionId");
@@ -4611,17 +4607,8 @@ namespace Ocelli.OpenShopify
                 throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/smart_collections/{smart_collection_id}/order.json?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/smart_collections/{smart_collection_id}/order.json");
             urlBuilder_.Replace("{smart_collection_id}", System.Uri.EscapeDataString(ConvertToString(smartCollectionId, System.Globalization.CultureInfo.InvariantCulture)));
-            if (products != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("products") + "=").Append(System.Uri.EscapeDataString(ConvertToString(products, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (sortOrder != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("sort_order") + "=").Append(System.Uri.EscapeDataString(ConvertToString(sortOrder, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            urlBuilder_.Length--;
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -7933,6 +7920,12 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
         public UpdateCustomCollection CustomCollection { get; set; } = new UpdateCustomCollection();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class UpdateOrderingTypeOfProductsInSmartCollectionRequest
+    {
 
     }
 

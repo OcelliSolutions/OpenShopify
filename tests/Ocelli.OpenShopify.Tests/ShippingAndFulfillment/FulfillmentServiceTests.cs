@@ -84,10 +84,10 @@ public class FulfillmentServiceTests : IClassFixture<FulfillmentServiceFixture>
 
         Fixture.CreatedFulfillmentServices.Add(response.Result.FulfillmentService);
     }
-
+    /*
     [SkippableFact]
     [TestPriority(10)]
-    public async Task CreateFulfillmentServiceAsync_IsUnprocessableEntityError()
+    public async Task CreateFulfillmentServiceAsync_EmptyBody_IsError()
     {
         var request = new CreateFulfillmentServiceRequest
         {
@@ -96,6 +96,22 @@ public class FulfillmentServiceTests : IClassFixture<FulfillmentServiceFixture>
         await Assert.ThrowsAsync<ApiException<FulfillmentServiceError>>(async () =>
             await Fixture.Service.FulfillmentService.CreateFulfillmentServiceAsync(request));
     }
+
+    [SkippableFact]
+    [TestPriority(10)]
+    public async Task CreateFulfillmentServiceAsync_IsUnprocessableEntityError()
+    {
+        var request = new CreateFulfillmentServiceRequest
+        {
+            FulfillmentService = new CreateFulfillmentService()
+            {
+                Name = Fixture.UniqueString()
+            }
+        };
+        await Assert.ThrowsAsync<ApiException<FulfillmentServiceError>>(async () =>
+            await Fixture.Service.FulfillmentService.CreateFulfillmentServiceAsync(request));
+    }
+    */
 
     #endregion Create
 
@@ -138,4 +154,4 @@ public class FulfillmentServiceTests : IClassFixture<FulfillmentServiceFixture>
     }
 
     #endregion
-    }
+}

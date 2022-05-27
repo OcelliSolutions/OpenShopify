@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
@@ -11,19 +9,49 @@ namespace Ocelli.OpenShopify.Tests.ShippingAndFulfillment;
 public class FulfillmentOrderFixture : SharedFixture, IAsyncLifetime
 {
     public ShippingAndFulfillmentService Service;
-    public List<FulfillmentOrder> CreatedFulfillmentOrders = new();
+    public FulfillmentService FulfillmentService = new();
+    public Product Product = new();
+    public ProductVariant ProductVariant = new();
+    public FulfillmentOrder FulfillmentOrder = new();
+    public Order Order = new();
 
     public FulfillmentOrderFixture()
     {
         Service = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
     }
-    public Task InitializeAsync() => Task.CompletedTask;
-
+    public async Task InitializeAsync()
+    {
+        FulfillmentService = await CreateFulfillmentService(GetType().Name);
+        Product = await CreateProduct(FulfillmentService, GetType().Name);
+        ProductVariant = Product.Variants!.First(v => v.FulfillmentService != null);
+        Order = await CreateOrder(ProductVariant, GetType().Name);
+        var fulfillmentOrders = await GetFulfillmentOrders(Order);
+        FulfillmentOrder = fulfillmentOrders.First();
+        //Figure out how to populate FulfillmentOrder
+    }
+    
     async Task IAsyncLifetime.DisposeAsync()
     {
+        if (Order.Id > 0)
+        {
+            var orderService = new OrdersService(MyShopifyUrl, AccessToken);
+            await orderService.Order.DeleteOrderAsync(Order.Id);
+        }
+
+        if (Product.Id > 0)
+        {
+            var productService = new ProductsService(MyShopifyUrl, AccessToken);
+            await productService.Product.DeleteProductAsync(Product.Id);
+        }
+
+        if (FulfillmentService.Id > 0)
+        {
+            var fulfillmentService = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
+            await fulfillmentService.FulfillmentService.DeleteFulfillmentServiceAsync(FulfillmentService.Id);
+        }
     }
 }
-/*
+
  //TODO: This is non-standard and will require some more work.
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
 public class FulfillmentOrderTests : IClassFixture<FulfillmentOrderFixture>
@@ -40,42 +68,113 @@ public class FulfillmentOrderTests : IClassFixture<FulfillmentOrderFixture>
     #region Create
 
     [SkippableFact, TestPriority(10)]
-    public async Task CreateFulfillmentOrderAsync_CanCreate()
+    public async Task CancelFulfillmentOrderAsync_CanCreate()
     {
-        var request = Fixture.CreateFulfillmentOrderRequest();
-        var response = await Fixture.Service.FulfillmentOrder.CreateFulfillmentOrderAsync(request);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        Assert.Contains(FulfillmentOrderActions.CancelFulfillmentOrder, Fixture.FulfillmentOrder.SupportedActions!);
+        var request = new CancelFulfillmentOrderRequest()
+        {
 
-        Fixture.CreatedFulfillmentOrders.Add(response.Result.FulfillmentOrder);
+        };
+        var response = await Fixture.Service.FulfillmentOrder.CancelFulfillmentOrderAsync(Fixture.FulfillmentOrder.Id, request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.FulfillmentOrder, Fixture.MyShopifyUrl);
     }
 
     [SkippableFact, TestPriority(10)]
-    public async Task CreateFulfillmentOrderAsync_IsUnprocessableEntityError()
+    public async Task MarkFulfillmentOrderAsIncompleteAsync_CanCreate()
     {
-        var request = new CreateFulfillmentOrderRequest()
+        Assert.Equal(FulfillmentOrderStatus.InProgress, Fixture.FulfillmentOrder.Status);
+        var request = new MarkFulfillmentOrderAsIncompleteRequest()
+        {
+
+        };
+        var response = await Fixture.Service.FulfillmentOrder.MarkFulfillmentOrderAsIncompleteAsync(Fixture.FulfillmentOrder.Id, request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.FulfillmentOrder, Fixture.MyShopifyUrl);
+    }
+
+    [SkippableFact, TestPriority(10)]
+    public async Task ApplyFulfillmentHoldOnFulfillmentOrderWithStatusOPENAsync_CanCreate()
+    {
+        Assert.Equal(FulfillmentOrderStatus.Open, Fixture.FulfillmentOrder.Status);
+        var request = new ApplyFulfillmentHoldOnFulfillmentOrderRequest()
+        {
+            FulfillmentHold = new()
+            {
+                Reason = FulfillmentHoldReason.InventoryOutOfStock,
+                ReasonNotes = "Not enough inventory to complete this work"
+            }
+        };
+        var response = await Fixture.Service.FulfillmentOrder.ApplyFulfillmentHoldOnFulfillmentOrderAsync(Fixture.FulfillmentOrder.Id, request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.FulfillmentOrder, Fixture.MyShopifyUrl);
+    }
+
+    [SkippableFact, TestPriority(10)]
+    public async Task MoveFulfillmentOrderToNewLocationAsync_CanCreate()
+    {
+        var locationResponse =
+            await Fixture.Service.LocationsForMove.ListLocationsThatFulfillmentOrderCanPotentiallyMoveToAsync(
+                Fixture.FulfillmentOrder.Id);
+
+        var request = new MoveFulfillmentOrderToNewLocationRequest()
         {
             FulfillmentOrder = new()
+            {
+                NewLocationId = locationResponse.Result.LocationsForMove.First().Location?.Id
+            }
         };
-        await Assert.ThrowsAsync<ApiException<FulfillmentOrderError>>(async () => await Fixture.Service.FulfillmentOrder.CreateFulfillmentOrderAsync(request));
+        var response = await Fixture.Service.FulfillmentOrder.MoveFulfillmentOrderToNewLocationAsync(Fixture.FulfillmentOrder.Id, request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.FulfillmentOrder, Fixture.MyShopifyUrl);
+    }
+
+    [SkippableFact, TestPriority(10)]
+    public async Task MarkFulfillmentOrderAsOpenAsync_CanCreate()
+    {
+        Assert.Contains(FulfillmentOrderActions.MarkAsOpen, Fixture.FulfillmentOrder.SupportedActions!);
+        var request = new MarkFulfillmentOrderAsOpenRequest()
+        {
+
+        };
+        var response = await Fixture.Service.FulfillmentOrder.MarkFulfillmentOrderAsOpenAsync(Fixture.FulfillmentOrder.Id, request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.FulfillmentOrder, Fixture.MyShopifyUrl);
+    }
+
+    [SkippableFact, TestPriority(10)]
+    public async Task ReleaseFulfillmentHoldOnFulfillmentOrderAsync_CanCreate()
+    {
+        Assert.Contains(FulfillmentOrderActions.ReleaseHold, Fixture.FulfillmentOrder.SupportedActions!);
+        var request = new ReleaseFulfillmentHoldOnFulfillmentOrderRequest()
+        {
+            //TODO: populate the request fields
+        };
+        var response = await Fixture.Service.FulfillmentOrder.ReleaseFulfillmentHoldOnFulfillmentOrderAsync(Fixture.FulfillmentOrder.Id, request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.FulfillmentOrder, Fixture.MyShopifyUrl);
+    }
+
+    [SkippableFact, TestPriority(10)]
+    public async Task RescheduleFulfillAtTimeOfScheduledFulfillmentOrderAsync_CanCreate()
+    {
+        var request = new RescheduleFulfillAtTimeOfScheduledFulfillmentOrderRequest()
+        {
+            //TODO: populate the request fields
+        };
+        var response = await Fixture.Service.FulfillmentOrder.RescheduleFulfillAtTimeOfScheduledFulfillmentOrderAsync(Fixture.FulfillmentOrder.Id, request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.FulfillmentOrder, Fixture.MyShopifyUrl);
     }
 
     #endregion Create
 
     #region Read
-
-    [SkippableFact, TestPriority(20)]
-    public async Task CountFulfillmentOrdersAsync_CanGet()
-    {
-        var response = await Fixture.Service.FulfillmentOrder.CountFulfillmentOrdersAsync();
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        var count = response.Result.Count;
-        Skip.If(count == 0, "No results returned. Unable to test");
-    }
-
+    
     [SkippableFact, TestPriority(20)]
     public async Task ListFulfillmentOrdersAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.FulfillmentOrder.ListFulfillmentOrdersAsync();
+        var response = await Fixture.Service.FulfillmentOrder.ListFulfillmentOrdersForSpecificOrderAsync(Fixture.Order.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var fulfillmentOrder in response.Result.FulfillmentOrders)
         {
@@ -87,36 +186,11 @@ public class FulfillmentOrderTests : IClassFixture<FulfillmentOrderFixture>
     [SkippableFact, TestPriority(20)]
     public async Task GetFulfillmentOrderAsync_TestCreated_AdditionalPropertiesAreEmpty()
     {
-        Skip.If(!Fixture.CreatedFulfillmentOrders.Any(), "Must be run with create test");
-        var fulfillmentOrder = Fixture.CreatedFulfillmentOrders.First();
-        var response = await Fixture.Service.FulfillmentOrder.GetFulfillmentOrderAsync(fulfillmentOrder.Id);
+        Skip.If(Fixture.FulfillmentOrder == null, "Must be run with create test");
+        var response = await Fixture.Service.FulfillmentOrder.GetFulfillmentOrderAsync(Fixture.FulfillmentOrder.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.FulfillmentOrder, Fixture.MyShopifyUrl);
     }
 
     #endregion Read
-
-    #region Update
-
-    [SkippableFact, TestPriority(30)]
-    public async Task UpdateFulfillmentOrderAsync_CanUpdate()
-    {
-        var originalFulfillmentOrder = Fixture.CreatedFulfillmentOrders.First();
-        var request = new UpdateFulfillmentOrderRequest()
-        {
-            FulfillmentOrder = new()
-            {
-                Id = originalFulfillmentOrder.Id,
-                Fields = new List<string> { "id" }
-            }
-        };
-        var response = await Fixture.Service.FulfillmentOrder.UpdateFulfillmentOrderAsync(originalFulfillmentOrder.Id, request);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-
-        Fixture.CreatedFulfillmentOrders.Remove(originalFulfillmentOrder);
-        Fixture.CreatedFulfillmentOrders.Add(response.Result.FulfillmentOrder);
-    }
-
-    #endregion Update
 }
-*/

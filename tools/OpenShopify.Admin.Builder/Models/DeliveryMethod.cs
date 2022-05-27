@@ -1,10 +1,9 @@
-
-
 using System.Text.Json.Serialization;
+using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models
 {
-    public partial record DeliveryMethod
+    public record DeliveryMethod
     {
         /// <summary>
         /// The ID of the delivery method.
@@ -21,6 +20,18 @@ namespace OpenShopify.Admin.Builder.Models
         /// <br>shipping: A delivery to a customer using a shipping carrier</br>
         /// </summary>
         [JsonPropertyName("method_type")]
-        public string? MethodType { get; set; }
+        public DeliveryMethodType? MethodType { get; set; }
+
+        /// <summary>
+        /// The minimum date and time by which the delivery is expected to be completed.
+        /// </summary>
+        [JsonPropertyName("min_delivery_date_time")]
+        public DateTimeOffset? MinDeliveryDateTime { get; set; }
+
+        /// <summary>
+        /// The maximum date and time by which the delivery is expected to be completed.
+        /// </summary>
+        [JsonPropertyName("max_delivery_date_time")]
+        public DateTimeOffset? MaxDeliveryDateTime { get; set; }
     }
 }

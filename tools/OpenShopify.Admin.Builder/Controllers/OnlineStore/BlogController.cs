@@ -39,9 +39,8 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Create a new Blog
         /// </summary>
-        /// <param name="title">The title of the blog. Maximum length: 255 characters.</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("blogs.json")]
-        public abstract System.Threading.Tasks.Task CreateBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateBlogRequest request, string? title = null);
+        public abstract System.Threading.Tasks.Task CreateBlog([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateBlogRequest request);
 
         /// <summary>
         /// Receive a count of all Blogs

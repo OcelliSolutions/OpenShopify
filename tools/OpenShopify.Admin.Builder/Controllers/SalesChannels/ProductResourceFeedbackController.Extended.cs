@@ -15,7 +15,7 @@ public class ProductResourceFeedbackController : ProductResourceFeedbackControll
     [HttpPost, Route("products/{product_id:long}/resource_feedback.json")]
     [ProducesResponseType(typeof(ProductResourceFeedbackItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ProductResourceFeedbackError), StatusCodes.Status422UnprocessableEntity)]
-    public override Task CreateProductResourceFeedback([Required] CreateProductResourceFeedbackRequest request, [Required] long product_id, string? state)
+    public override Task CreateProductResourceFeedback([Required] CreateProductResourceFeedbackRequest request, [Required] long product_id)
     {
         throw new NotImplementedException();
     }

@@ -276,7 +276,7 @@ paths:
       tags:
         - Province
       summary: Retrieves a list of provinces for a country
-      operationId: ListProvincesForCountry
+      operationId: ListProvinces
       parameters:
         - name: country_id
           in: path
@@ -320,7 +320,7 @@ paths:
       tags:
         - Province
       summary: Retrieves a count of provinces for a country
-      operationId: CountProvincesForCountry
+      operationId: CountProvinces
       parameters:
         - name: country_id
           in: path
@@ -349,7 +349,7 @@ paths:
       tags:
         - Province
       summary: Retrieves a single province for a country
-      operationId: GetProvinceForCountry
+      operationId: GetProvince
       parameters:
         - name: country_id
           in: path
@@ -388,7 +388,7 @@ paths:
       tags:
         - Province
       summary: Updates an existing province for a country
-      operationId: UpdateProvinceForCountry
+      operationId: UpdateProvince
       parameters:
         - name: country_id
           in: path
@@ -1087,6 +1087,9 @@ components:
         zip:
           type: string
           description: The shop's zip or postal code.
+          nullable: true
+        visitor_tracking_consent_preference:
+          type: string
           nullable: true
         id:
           type: integer

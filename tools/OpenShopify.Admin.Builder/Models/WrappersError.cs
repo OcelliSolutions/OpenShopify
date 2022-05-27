@@ -17,13 +17,13 @@ public record ApplicationChargeErrorDetails
     public IEnumerable<string>? Price { get; set; }
 }
 
-public record CreateApplicationChargeRequestError
+public record ApplicationChargeGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateApplicationChargeRequestErrorDetails Errors { get; set; } = null!;
+    public ApplicationChargeGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateApplicationChargeRequestErrorDetails
+public record ApplicationChargeGeneralErrorDetails
 {
 	[JsonPropertyName("name")]
     public string? Name { get; set; }
@@ -43,13 +43,13 @@ public record ApplicationCreditErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateApplicationCreditRequestError
+public record ApplicationCreditGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateApplicationCreditRequestErrorDetails Errors { get; set; } = null!;
+    public ApplicationCreditGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateApplicationCreditRequestErrorDetails
+public record ApplicationCreditGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -67,13 +67,13 @@ public record ArticleErrorDetails
     public IEnumerable<string>? Title { get; set; }
 }
 
-public record CreateArticleRequestError
+public record ArticleGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateArticleRequestErrorDetails Errors { get; set; } = null!;
+    public ArticleGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateArticleRequestErrorDetails
+public record ArticleGeneralErrorDetails
 {
 	[JsonPropertyName("title")]
     public string? Title { get; set; }
@@ -91,13 +91,13 @@ public record AssetErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateAssetRequestError
+public record AssetGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateAssetRequestErrorDetails Errors { get; set; } = null!;
+    public AssetGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateAssetRequestErrorDetails
+public record AssetGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -115,13 +115,13 @@ public record BalanceErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateBalanceRequestError
+public record BalanceGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateBalanceRequestErrorDetails Errors { get; set; } = null!;
+    public BalanceGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateBalanceRequestErrorDetails
+public record BalanceGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -139,13 +139,13 @@ public record BlogErrorDetails
     public IEnumerable<string>? Title { get; set; }
 }
 
-public record CreateBlogRequestError
+public record BlogGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateBlogRequestErrorDetails Errors { get; set; } = null!;
+    public BlogGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateBlogRequestErrorDetails
+public record BlogGeneralErrorDetails
 {
 	[JsonPropertyName("title")]
     public string? Title { get; set; }
@@ -163,13 +163,13 @@ public record CarrierServiceErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateCarrierServiceRequestError
+public record CarrierServiceGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateCarrierServiceRequestErrorDetails Errors { get; set; } = null!;
+    public CarrierServiceGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateCarrierServiceRequestErrorDetails
+public record CarrierServiceGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -187,13 +187,13 @@ public record CheckoutErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateCheckoutRequestError
+public record CheckoutGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateCheckoutRequestErrorDetails Errors { get; set; } = null!;
+    public CheckoutGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateCheckoutRequestErrorDetails
+public record CheckoutGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -213,13 +213,13 @@ public record CollectErrorDetails
     public IEnumerable<string>? Collection { get; set; }
 }
 
-public record CreateCollectRequestError
+public record CollectGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateCollectRequestErrorDetails Errors { get; set; } = null!;
+    public CollectGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateCollectRequestErrorDetails
+public record CollectGeneralErrorDetails
 {
 	[JsonPropertyName("product")]
     public string? Product { get; set; }
@@ -239,13 +239,13 @@ public record CollectionErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateCollectionRequestError
+public record CollectionGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateCollectionRequestErrorDetails Errors { get; set; } = null!;
+    public CollectionGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateCollectionRequestErrorDetails
+public record CollectionGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -263,13 +263,13 @@ public record CollectionListingErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateCollectionListingRequestError
+public record CollectionListingGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateCollectionListingRequestErrorDetails Errors { get; set; } = null!;
+    public CollectionListingGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateCollectionListingRequestErrorDetails
+public record CollectionListingGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -291,13 +291,13 @@ public record CommentErrorDetails
     public IEnumerable<string>? Email { get; set; }
 }
 
-public record CreateCommentRequestError
+public record CommentGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateCommentRequestErrorDetails Errors { get; set; } = null!;
+    public CommentGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateCommentRequestErrorDetails
+public record CommentGeneralErrorDetails
 {
 	[JsonPropertyName("author")]
     public string? Author { get; set; }
@@ -319,13 +319,13 @@ public record CountryErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateCountryRequestError
+public record CountryGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateCountryRequestErrorDetails Errors { get; set; } = null!;
+    public CountryGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateCountryRequestErrorDetails
+public record CountryGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -343,13 +343,13 @@ public record CurrencyErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateCurrencyRequestError
+public record CurrencyGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateCurrencyRequestErrorDetails Errors { get; set; } = null!;
+    public CurrencyGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateCurrencyRequestErrorDetails
+public record CurrencyGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -367,13 +367,13 @@ public record CustomCollectionErrorDetails
     public IEnumerable<string>? Title { get; set; }
 }
 
-public record CreateCustomCollectionRequestError
+public record CustomCollectionGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateCustomCollectionRequestErrorDetails Errors { get; set; } = null!;
+    public CustomCollectionGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateCustomCollectionRequestErrorDetails
+public record CustomCollectionGeneralErrorDetails
 {
 	[JsonPropertyName("title")]
     public string? Title { get; set; }
@@ -391,13 +391,13 @@ public record CustomerErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateCustomerRequestError
+public record CustomerGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateCustomerRequestErrorDetails Errors { get; set; } = null!;
+    public CustomerGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateCustomerRequestErrorDetails
+public record CustomerGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -415,13 +415,13 @@ public record CustomerAddressErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateCustomerAddressRequestError
+public record CustomerAddressGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateCustomerAddressRequestErrorDetails Errors { get; set; } = null!;
+    public CustomerAddressGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateCustomerAddressRequestErrorDetails
+public record CustomerAddressGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -439,13 +439,13 @@ public record CustomerInviteErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateCustomerInviteRequestError
+public record CustomerInviteGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateCustomerInviteRequestErrorDetails Errors { get; set; } = null!;
+    public CustomerInviteGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateCustomerInviteRequestErrorDetails
+public record CustomerInviteGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -465,13 +465,13 @@ public record CustomerSavedSearchErrorDetails
     public IEnumerable<string>? SearchTerms { get; set; }
 }
 
-public record CreateCustomerSavedSearchRequestError
+public record CustomerSavedSearchGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateCustomerSavedSearchRequestErrorDetails Errors { get; set; } = null!;
+    public CustomerSavedSearchGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateCustomerSavedSearchRequestErrorDetails
+public record CustomerSavedSearchGeneralErrorDetails
 {
 	[JsonPropertyName("name")]
     public string? Name { get; set; }
@@ -491,13 +491,13 @@ public record DeprecatedApiCallErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateDeprecatedApiCallRequestError
+public record DeprecatedApiCallGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateDeprecatedApiCallRequestErrorDetails Errors { get; set; } = null!;
+    public DeprecatedApiCallGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateDeprecatedApiCallRequestErrorDetails
+public record DeprecatedApiCallGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -515,13 +515,13 @@ public record DiscountCodeErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateDiscountCodeRequestError
+public record DiscountCodeGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateDiscountCodeRequestErrorDetails Errors { get; set; } = null!;
+    public DiscountCodeGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateDiscountCodeRequestErrorDetails
+public record DiscountCodeGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -539,13 +539,13 @@ public record DiscountCodeCreationErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateDiscountCodeCreationRequestError
+public record DiscountCodeCreationGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateDiscountCodeCreationRequestErrorDetails Errors { get; set; } = null!;
+    public DiscountCodeCreationGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateDiscountCodeCreationRequestErrorDetails
+public record DiscountCodeCreationGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -563,13 +563,13 @@ public record DisputeErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateDisputeRequestError
+public record DisputeGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateDisputeRequestErrorDetails Errors { get; set; } = null!;
+    public DisputeGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateDisputeRequestErrorDetails
+public record DisputeGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -587,13 +587,13 @@ public record DraftOrderErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateDraftOrderRequestError
+public record DraftOrderGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateDraftOrderRequestErrorDetails Errors { get; set; } = null!;
+    public DraftOrderGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateDraftOrderRequestErrorDetails
+public record DraftOrderGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -611,13 +611,13 @@ public record DraftOrderInvoiceErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateDraftOrderInvoiceRequestError
+public record DraftOrderInvoiceGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateDraftOrderInvoiceRequestErrorDetails Errors { get; set; } = null!;
+    public DraftOrderInvoiceGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateDraftOrderInvoiceRequestErrorDetails
+public record DraftOrderInvoiceGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -635,13 +635,13 @@ public record EngagementErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateEngagementRequestError
+public record EngagementGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateEngagementRequestErrorDetails Errors { get; set; } = null!;
+    public EngagementGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateEngagementRequestErrorDetails
+public record EngagementGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -659,13 +659,13 @@ public record EventErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateEventRequestError
+public record EventGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateEventRequestErrorDetails Errors { get; set; } = null!;
+    public EventGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateEventRequestErrorDetails
+public record EventGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -683,13 +683,13 @@ public record FulfillmentErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateFulfillmentRequestError
+public record FulfillmentGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateFulfillmentRequestErrorDetails Errors { get; set; } = null!;
+    public FulfillmentGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateFulfillmentRequestErrorDetails
+public record FulfillmentGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -707,13 +707,13 @@ public record FulfillmentEventErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateFulfillmentEventRequestError
+public record FulfillmentEventGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateFulfillmentEventRequestErrorDetails Errors { get; set; } = null!;
+    public FulfillmentEventGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateFulfillmentEventRequestErrorDetails
+public record FulfillmentEventGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -731,13 +731,13 @@ public record FulfillmentOrderErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateFulfillmentOrderRequestError
+public record FulfillmentOrderGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateFulfillmentOrderRequestErrorDetails Errors { get; set; } = null!;
+    public FulfillmentOrderGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateFulfillmentOrderRequestErrorDetails
+public record FulfillmentOrderGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -755,13 +755,13 @@ public record FulfillmentRequestErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateFulfillmentRequestRequestError
+public record FulfillmentRequestGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateFulfillmentRequestRequestErrorDetails Errors { get; set; } = null!;
+    public FulfillmentRequestGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateFulfillmentRequestRequestErrorDetails
+public record FulfillmentRequestGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -779,13 +779,13 @@ public record FulfillmentServiceErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateFulfillmentServiceRequestError
+public record FulfillmentServiceGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateFulfillmentServiceRequestErrorDetails Errors { get; set; } = null!;
+    public FulfillmentServiceGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateFulfillmentServiceRequestErrorDetails
+public record FulfillmentServiceGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -803,13 +803,13 @@ public record GiftCardErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateGiftCardRequestError
+public record GiftCardGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateGiftCardRequestErrorDetails Errors { get; set; } = null!;
+    public GiftCardGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateGiftCardRequestErrorDetails
+public record GiftCardGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -827,13 +827,13 @@ public record InventoryItemErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateInventoryItemRequestError
+public record InventoryItemGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateInventoryItemRequestErrorDetails Errors { get; set; } = null!;
+    public InventoryItemGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateInventoryItemRequestErrorDetails
+public record InventoryItemGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -851,13 +851,13 @@ public record InventoryLevelErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateInventoryLevelRequestError
+public record InventoryLevelGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateInventoryLevelRequestErrorDetails Errors { get; set; } = null!;
+    public InventoryLevelGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateInventoryLevelRequestErrorDetails
+public record InventoryLevelGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -875,13 +875,13 @@ public record LocationErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateLocationRequestError
+public record LocationGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateLocationRequestErrorDetails Errors { get; set; } = null!;
+    public LocationGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateLocationRequestErrorDetails
+public record LocationGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -899,13 +899,13 @@ public record LocationsForMoveErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateLocationsForMoveRequestError
+public record LocationsForMoveGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateLocationsForMoveRequestErrorDetails Errors { get; set; } = null!;
+    public LocationsForMoveGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateLocationsForMoveRequestErrorDetails
+public record LocationsForMoveGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -923,13 +923,13 @@ public record MarketingEventErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateMarketingEventRequestError
+public record MarketingEventGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateMarketingEventRequestErrorDetails Errors { get; set; } = null!;
+    public MarketingEventGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateMarketingEventRequestErrorDetails
+public record MarketingEventGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -951,13 +951,13 @@ public record MetafieldErrorDetails
     public IEnumerable<string>? Key { get; set; }
 }
 
-public record CreateMetafieldRequestError
+public record MetafieldGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateMetafieldRequestErrorDetails Errors { get; set; } = null!;
+    public MetafieldGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateMetafieldRequestErrorDetails
+public record MetafieldGeneralErrorDetails
 {
 	[JsonPropertyName("type")]
     public string? Type { get; set; }
@@ -979,13 +979,13 @@ public record MobilePlatformApplicationErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateMobilePlatformApplicationRequestError
+public record MobilePlatformApplicationGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateMobilePlatformApplicationRequestErrorDetails Errors { get; set; } = null!;
+    public MobilePlatformApplicationGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateMobilePlatformApplicationRequestErrorDetails
+public record MobilePlatformApplicationGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -1003,13 +1003,13 @@ public record OrderErrorDetails
     public IEnumerable<string>? Order { get; set; }
 }
 
-public record CreateOrderRequestError
+public record OrderGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateOrderRequestErrorDetails Errors { get; set; } = null!;
+    public OrderGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateOrderRequestErrorDetails
+public record OrderGeneralErrorDetails
 {
 	[JsonPropertyName("order")]
     public string? Order { get; set; }
@@ -1027,13 +1027,13 @@ public record OrderRiskErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateOrderRiskRequestError
+public record OrderRiskGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateOrderRiskRequestErrorDetails Errors { get; set; } = null!;
+    public OrderRiskGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateOrderRiskRequestErrorDetails
+public record OrderRiskGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -1051,13 +1051,13 @@ public record PageErrorDetails
     public IEnumerable<string>? Title { get; set; }
 }
 
-public record CreatePageRequestError
+public record PageGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreatePageRequestErrorDetails Errors { get; set; } = null!;
+    public PageGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreatePageRequestErrorDetails
+public record PageGeneralErrorDetails
 {
 	[JsonPropertyName("title")]
     public string? Title { get; set; }
@@ -1079,13 +1079,13 @@ public record PaymentErrorDetails
     public IEnumerable<string>? Checkout { get; set; }
 }
 
-public record CreatePaymentRequestError
+public record PaymentGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreatePaymentRequestErrorDetails Errors { get; set; } = null!;
+    public PaymentGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreatePaymentRequestErrorDetails
+public record PaymentGeneralErrorDetails
 {
 	[JsonPropertyName("amount")]
     public string? Amount { get; set; }
@@ -1107,13 +1107,13 @@ public record PayoutErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreatePayoutRequestError
+public record PayoutGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreatePayoutRequestErrorDetails Errors { get; set; } = null!;
+    public PayoutGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreatePayoutRequestErrorDetails
+public record PayoutGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -1131,13 +1131,13 @@ public record PolicyErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreatePolicyRequestError
+public record PolicyGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreatePolicyRequestErrorDetails Errors { get; set; } = null!;
+    public PolicyGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreatePolicyRequestErrorDetails
+public record PolicyGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -1155,13 +1155,13 @@ public record PriceRuleErrorDetails
     public IEnumerable<string>? CustomerSegmentPrerequisiteIds { get; set; }
 }
 
-public record CreatePriceRuleRequestError
+public record PriceRuleGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreatePriceRuleRequestErrorDetails Errors { get; set; } = null!;
+    public PriceRuleGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreatePriceRuleRequestErrorDetails
+public record PriceRuleGeneralErrorDetails
 {
 	[JsonPropertyName("customer_segment_prerequisite_ids")]
     public string? CustomerSegmentPrerequisiteIds { get; set; }
@@ -1179,13 +1179,13 @@ public record ProductErrorDetails
     public IEnumerable<string>? Title { get; set; }
 }
 
-public record CreateProductRequestError
+public record ProductGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateProductRequestErrorDetails Errors { get; set; } = null!;
+    public ProductGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateProductRequestErrorDetails
+public record ProductGeneralErrorDetails
 {
 	[JsonPropertyName("title")]
     public string? Title { get; set; }
@@ -1203,13 +1203,13 @@ public record ProductImageErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateProductImageRequestError
+public record ProductImageGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateProductImageRequestErrorDetails Errors { get; set; } = null!;
+    public ProductImageGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateProductImageRequestErrorDetails
+public record ProductImageGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -1227,13 +1227,13 @@ public record ProductListingErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateProductListingRequestError
+public record ProductListingGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateProductListingRequestErrorDetails Errors { get; set; } = null!;
+    public ProductListingGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateProductListingRequestErrorDetails
+public record ProductListingGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -1251,13 +1251,13 @@ public record ProductResourceFeedbackErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateProductResourceFeedbackRequestError
+public record ProductResourceFeedbackGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateProductResourceFeedbackRequestErrorDetails Errors { get; set; } = null!;
+    public ProductResourceFeedbackGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateProductResourceFeedbackRequestErrorDetails
+public record ProductResourceFeedbackGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -1275,13 +1275,13 @@ public record ProvinceErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateProvinceRequestError
+public record ProvinceGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateProvinceRequestErrorDetails Errors { get; set; } = null!;
+    public ProvinceGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateProvinceRequestErrorDetails
+public record ProvinceGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -1301,13 +1301,13 @@ public record RecurringApplicationChargeErrorDetails
     public IEnumerable<string>? Price { get; set; }
 }
 
-public record CreateRecurringApplicationChargeRequestError
+public record RecurringApplicationChargeGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateRecurringApplicationChargeRequestErrorDetails Errors { get; set; } = null!;
+    public RecurringApplicationChargeGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateRecurringApplicationChargeRequestErrorDetails
+public record RecurringApplicationChargeGeneralErrorDetails
 {
 	[JsonPropertyName("name")]
     public string? Name { get; set; }
@@ -1329,13 +1329,13 @@ public record RedirectErrorDetails
     public IEnumerable<string>? Target { get; set; }
 }
 
-public record CreateRedirectRequestError
+public record RedirectGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateRedirectRequestErrorDetails Errors { get; set; } = null!;
+    public RedirectGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateRedirectRequestErrorDetails
+public record RedirectGeneralErrorDetails
 {
 	[JsonPropertyName("path")]
     public string? Path { get; set; }
@@ -1355,13 +1355,13 @@ public record RefundErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateRefundRequestError
+public record RefundGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateRefundRequestErrorDetails Errors { get; set; } = null!;
+    public RefundGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateRefundRequestErrorDetails
+public record RefundGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -1379,13 +1379,13 @@ public record ReportErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateReportRequestError
+public record ReportGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateReportRequestErrorDetails Errors { get; set; } = null!;
+    public ReportGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateReportRequestErrorDetails
+public record ReportGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -1403,13 +1403,13 @@ public record ResourceFeedbackErrorDetails
     public IEnumerable<string>? Messages { get; set; }
 }
 
-public record CreateResourceFeedbackRequestError
+public record ResourceFeedbackGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateResourceFeedbackRequestErrorDetails Errors { get; set; } = null!;
+    public ResourceFeedbackGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateResourceFeedbackRequestErrorDetails
+public record ResourceFeedbackGeneralErrorDetails
 {
 	[JsonPropertyName("messages")]
     public string? Messages { get; set; }
@@ -1429,13 +1429,13 @@ public record ScriptTagErrorDetails
     public IEnumerable<string>? Event { get; set; }
 }
 
-public record CreateScriptTagRequestError
+public record ScriptTagGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateScriptTagRequestErrorDetails Errors { get; set; } = null!;
+    public ScriptTagGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateScriptTagRequestErrorDetails
+public record ScriptTagGeneralErrorDetails
 {
 	[JsonPropertyName("src")]
     public string? Src { get; set; }
@@ -1455,13 +1455,13 @@ public record ShippingZoneErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateShippingZoneRequestError
+public record ShippingZoneGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateShippingZoneRequestErrorDetails Errors { get; set; } = null!;
+    public ShippingZoneGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateShippingZoneRequestErrorDetails
+public record ShippingZoneGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -1479,13 +1479,13 @@ public record ShopErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateShopRequestError
+public record ShopGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateShopRequestErrorDetails Errors { get; set; } = null!;
+    public ShopGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateShopRequestErrorDetails
+public record ShopGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -1503,13 +1503,13 @@ public record SmartCollectionErrorDetails
     public IEnumerable<string>? Title { get; set; }
 }
 
-public record CreateSmartCollectionRequestError
+public record SmartCollectionGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateSmartCollectionRequestErrorDetails Errors { get; set; } = null!;
+    public SmartCollectionGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateSmartCollectionRequestErrorDetails
+public record SmartCollectionGeneralErrorDetails
 {
 	[JsonPropertyName("title")]
     public string? Title { get; set; }
@@ -1527,13 +1527,13 @@ public record StorefrontAccessTokenErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateStorefrontAccessTokenRequestError
+public record StorefrontAccessTokenGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateStorefrontAccessTokenRequestErrorDetails Errors { get; set; } = null!;
+    public StorefrontAccessTokenGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateStorefrontAccessTokenRequestErrorDetails
+public record StorefrontAccessTokenGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -1551,13 +1551,13 @@ public record TenderTransactionErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateTenderTransactionRequestError
+public record TenderTransactionGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateTenderTransactionRequestErrorDetails Errors { get; set; } = null!;
+    public TenderTransactionGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateTenderTransactionRequestErrorDetails
+public record TenderTransactionGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -1575,13 +1575,13 @@ public record ThemeErrorDetails
     public IEnumerable<string>? Name { get; set; }
 }
 
-public record CreateThemeRequestError
+public record ThemeGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateThemeRequestErrorDetails Errors { get; set; } = null!;
+    public ThemeGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateThemeRequestErrorDetails
+public record ThemeGeneralErrorDetails
 {
 	[JsonPropertyName("name")]
     public string? Name { get; set; }
@@ -1599,13 +1599,13 @@ public record TransactionErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateTransactionRequestError
+public record TransactionGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateTransactionRequestErrorDetails Errors { get; set; } = null!;
+    public TransactionGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateTransactionRequestErrorDetails
+public record TransactionGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -1625,13 +1625,13 @@ public record UsageChargeErrorDetails
     public IEnumerable<string>? Price { get; set; }
 }
 
-public record CreateUsageChargeRequestError
+public record UsageChargeGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateUsageChargeRequestErrorDetails Errors { get; set; } = null!;
+    public UsageChargeGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateUsageChargeRequestErrorDetails
+public record UsageChargeGeneralErrorDetails
 {
 	[JsonPropertyName("description")]
     public string? Description { get; set; }
@@ -1651,13 +1651,13 @@ public record UserErrorDetails
     public IEnumerable<string>? Base { get; set; }
 }
 
-public record CreateUserRequestError
+public record UserGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateUserRequestErrorDetails Errors { get; set; } = null!;
+    public UserGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateUserRequestErrorDetails
+public record UserGeneralErrorDetails
 {
 	[JsonPropertyName("base")]
     public string? Base { get; set; }
@@ -1677,13 +1677,13 @@ public record WebhookErrorDetails
     public IEnumerable<string>? Address { get; set; }
 }
 
-public record CreateWebhookRequestError
+public record WebhookGeneralError
 {
     [JsonPropertyName("errors"), Required]
-    public CreateWebhookRequestErrorDetails Errors { get; set; } = null!;
+    public WebhookGeneralErrorDetails Errors { get; set; } = null!;
 }
 
-public record CreateWebhookRequestErrorDetails
+public record WebhookGeneralErrorDetails
 {
 	[JsonPropertyName("topic")]
     public string? Topic { get; set; }

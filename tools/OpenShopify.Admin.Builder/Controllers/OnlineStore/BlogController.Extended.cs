@@ -23,7 +23,7 @@ public class BlogController : BlogControllerBase
     [HttpPost, Route("blogs.json")]
     [ProducesResponseType(typeof(BlogItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(BlogError), StatusCodes.Status400BadRequest)]
-    public override Task CreateBlog([Required] CreateBlogRequest request, string? title = null)
+    public override Task CreateBlog([Required] CreateBlogRequest request)
     {
         throw new NotImplementedException();
     }

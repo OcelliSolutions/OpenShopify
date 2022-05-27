@@ -18,17 +18,15 @@ public class CarrierServiceFixture : SharedFixture, IAsyncLifetime
 
     public Task InitializeAsync() => Task.CompletedTask;
 
-    async Task IAsyncLifetime.DisposeAsync()
-    {
-        await DeleteCarrierServiceAsync_CanDelete();
-    }
-    
+    async Task IAsyncLifetime.DisposeAsync() => await DeleteCarrierServiceAsync_CanDelete();
+
     public async Task DeleteCarrierServiceAsync_CanDelete()
     {
         foreach (var carrierService in CreatedCarrierServices)
         {
             _ = await Service.CarrierService.DeleteCarrierServiceAsync(carrierService.Id);
         }
+
         CreatedCarrierServices.Clear();
     }
 }
@@ -71,6 +69,14 @@ public class CarrierServiceTests : IClassFixture<CarrierServiceFixture>
 
     #endregion Update
 
+    #region Delete
+
+    [SkippableFact]
+    [TestPriority(99)]
+    public async Task DeleteCarrierServiceAsync_CanDelete() => await Fixture.DeleteCarrierServiceAsync_CanDelete();
+
+    #endregion
+
     #region Create
 
     [SkippableFact]
@@ -85,14 +91,24 @@ public class CarrierServiceTests : IClassFixture<CarrierServiceFixture>
     }
 
     [SkippableFact]
-    [TestPriority(10)]
+    [TestPriority(11)]
     public async Task CreateCarrierServiceAsync_IsUnprocessableEntityError()
+    {
+        Skip.If(!Fixture.CreatedCarrierServices.Any(), "This needs the create test to run at the same time.");
+        var request = Fixture.CreateCarrierServiceRequest();
+        await Assert.ThrowsAsync<ApiException<CarrierServiceError>>(async () =>
+            await Fixture.Service.CarrierService.CreateCarrierServiceAsync(request));
+    }
+
+    [SkippableFact]
+    [TestPriority(11)]
+    public async Task CreateCarrierServiceAsync_IsGeneralError()
     {
         var request = new CreateCarrierServiceRequest
         {
             CarrierService = new CreateCarrierService()
         };
-        await Assert.ThrowsAsync<ApiException<CarrierServiceError>>(async () =>
+        await Assert.ThrowsAsync<ApiException<CarrierServiceGeneralError>>(async () =>
             await Fixture.Service.CarrierService.CreateCarrierServiceAsync(request));
     }
 
@@ -126,15 +142,4 @@ public class CarrierServiceTests : IClassFixture<CarrierServiceFixture>
     }
 
     #endregion Read
-
-    #region Delete
-
-
-    [SkippableFact, TestPriority(99)]
-    public async Task DeleteCarrierServiceAsync_CanDelete()
-    {
-        await Fixture.DeleteCarrierServiceAsync_CanDelete();
-    }
-
-    #endregion
-    }
+}

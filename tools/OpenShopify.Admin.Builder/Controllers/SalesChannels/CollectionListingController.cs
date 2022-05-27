@@ -31,7 +31,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="limit">Amount of results</param>
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collection_listings.json")]
-        public abstract System.Threading.Tasks.Task GetCollectionListingsThatArePublishedToYourApp(int? limit = null, string? page_info = null);
+        public abstract System.Threading.Tasks.Task GetCollectionListings(int? limit = null, string? page_info = null);
 
         /// <summary>
         /// Retrieve &lt;code&gt;product_ids&lt;/code&gt; that are published to a &lt;code&gt;collection_id&lt;/code&gt;
@@ -45,19 +45,19 @@ namespace OpenShopify.Admin.Builder.Models
         /// Retrieve a specific collection listing that is published to your app
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task GetCollectionListingThatIsPublishedToYourApp(long collection_listing_id);
+        public abstract System.Threading.Tasks.Task GetCollectionListing(long collection_listing_id);
 
         /// <summary>
         /// Create a collection listing to publish a collection to your app
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task CreateCollectionListingToPublishCollectionToYourApp([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCollectionListingRequest request, long collection_listing_id);
+        public abstract System.Threading.Tasks.Task CreateCollectionListing([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateCollectionListingRequest request, long collection_listing_id);
 
         /// <summary>
         /// Delete a collection listing to unpublish a collection from your app
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteCollectionListingToUnpublishCollectionFromYourApp(long collection_listing_id);
+        public abstract System.Threading.Tasks.Task DeleteCollectionListing(long collection_listing_id);
 
     }
 

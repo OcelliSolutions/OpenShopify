@@ -47,30 +47,20 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Adjusts the inventory level of an inventory item at a location
         /// </summary>
-        /// <param name="available_adjustment">The amount to adjust the available inventory quantity. Send negative values to subtract from the current available quantity. For example, `"available_adjustment": 2` increases the current available quantity by 2, and `"available_adjustment": -3`decreases the current available quantity by 3.</param>
-        /// <param name="inventory_item_id">The ID of the inventory item.</param>
-        /// <param name="location_id">The ID of the location that the inventory level belongs to. To find the ID of the location, use the [Location resource](/api/admin-rest/latest/resources/location)</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("inventory_levels/adjust.json")]
-        public abstract System.Threading.Tasks.Task AdjustInventoryLevelOfInventoryItemAtLocation(string? available_adjustment = null, long? inventory_item_id = null, long? location_id = null);
+        public abstract System.Threading.Tasks.Task AdjustInventoryLevelOfInventoryItemAtLocation([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.AdjustInventoryLevelOfInventoryItemAtLocationRequest request);
 
         /// <summary>
         /// Connects an inventory item to a location
         /// </summary>
-        /// <param name="inventory_item_id">The ID of the inventory item.</param>
-        /// <param name="location_id">The ID of the location that the inventory level belongs to. To find the ID of the location, use the [Location resource](/api/admin-rest/latest/resources/location)</param>
-        /// <param name="relocate_if_necessary">Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, refer to [*Inventory levels and fulfillment service locations*](#inventory-levels-and-fulfillment-service-locations).</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("inventory_levels/connect.json")]
-        public abstract System.Threading.Tasks.Task ConnectInventoryItemToLocation(long inventory_item_id, long location_id, bool? relocate_if_necessary = null);
+        public abstract System.Threading.Tasks.Task ConnectInventoryItemToLocation([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ConnectInventoryItemToLocationRequest request);
 
         /// <summary>
         /// Sets the inventory level for an inventory item at a location
         /// </summary>
-        /// <param name="available">Sets the available inventory quantity.</param>
-        /// <param name="inventory_item_id">The ID of the inventory item associated with the inventory level. To find the ID of the inventory item, use the [Inventory Item resource](/api/admin-rest/latest/resources/inventoryitem)</param>
-        /// <param name="location_id">The ID of the location that the inventory level belongs to. To find the ID of the location, use the [Location resource](/api/admin-rest/latest/resources/location)</param>
-        /// <param name="disconnect_if_necessary">Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service is involved. For more information, refer to [*Inventory levels and fulfillment service locations*](#inventory-levels-and-fulfillment-service-locations).</param>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("inventory_levels/set.json")]
-        public abstract System.Threading.Tasks.Task SetInventoryLevelForInventoryItemAtLocation(string? available = null, long? inventory_item_id = null, long? location_id = null, bool? disconnect_if_necessary = null);
+        public abstract System.Threading.Tasks.Task SetInventoryLevelForInventoryItemAtLocation([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.SetInventoryLevelForInventoryItemAtLocationRequest request);
 
     }
 

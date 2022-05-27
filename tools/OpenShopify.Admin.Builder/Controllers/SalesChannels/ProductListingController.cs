@@ -35,7 +35,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="product_ids">A comma-separated list of product ids</param>
         /// <param name="updated_at_min">Filter by product listings last updated after a certain date and time (formatted in ISO 8601)</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("product_listings.json")]
-        public abstract System.Threading.Tasks.Task GetProductListingsThatArePublishedToYourApp(long collection_id, string? handle = null, int? limit = null, string? page_info = null, string? product_ids = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task GetProductListings(long collection_id, string? handle = null, int? limit = null, string? page_info = null, string? product_ids = null, System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Retrieve &lt;code&gt;product_ids&lt;/code&gt; that are published to your app
@@ -43,31 +43,31 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="limit">Amount of results</param>
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("product_listings/product_ids.json")]
-        public abstract System.Threading.Tasks.Task GetProductIdsThatArePublishedToYourApp(int? limit = null, string? page_info = null);
+        public abstract System.Threading.Tasks.Task GetProductIds(int? limit = null, string? page_info = null);
 
         /// <summary>
         /// Retrieve a count of products that are published to your app
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("product_listings/count.json")]
-        public abstract System.Threading.Tasks.Task CountProductsThatArePublishedToYourApp();
+        public abstract System.Threading.Tasks.Task CountProducts();
 
         /// <summary>
         /// Retrieve a specific product listing that is published to your app
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("product_listings/{product_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task GetProductListingThatIsPublishedToYourApp(long product_listing_id);
+        public abstract System.Threading.Tasks.Task GetProductListing(long product_listing_id);
 
         /// <summary>
         /// Create a product listing to publish a product to your app
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPut, Microsoft.AspNetCore.Mvc.Route("product_listings/{product_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task CreateProductListingToPublishProductToYourApp([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateProductListingRequest request, long product_listing_id);
+        public abstract System.Threading.Tasks.Task CreateProductListing([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateProductListingRequest request, long product_listing_id);
 
         /// <summary>
         /// Delete a product listing to unpublish a product from your app
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("product_listings/{product_listing_id}.json")]
-        public abstract System.Threading.Tasks.Task DeleteProductListingToUnpublishProductFromYourApp(long product_listing_id);
+        public abstract System.Threading.Tasks.Task DeleteProductListing(long product_listing_id);
 
     }
 

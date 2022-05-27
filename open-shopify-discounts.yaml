@@ -691,6 +691,9 @@ components:
           items:
             $ref: '#/components/schemas/CreateDiscountCode'
       additionalProperties: false
+    CreateDiscountCodeCreationJobRequest:
+      type: object
+      additionalProperties: false
     CreateDiscountCodeRequest:
       required:
         - discount_code
