@@ -8,7 +8,7 @@ on:
 env:
   PROJECT_PATH: "src/Ocelli.OpenShopify/Ocelli.OpenShopify.csproj"
   PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
-  NUGET_SOURCE_URL: "https://nuget.pkg.github.com/ocelli-solutions/index.json"
+  NUGET_SOURCE_URL: "https://github.com/OcelliSolutions/OpenShopify"
 
 jobs:
   deploy:
