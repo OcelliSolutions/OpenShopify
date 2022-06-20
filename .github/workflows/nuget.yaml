@@ -8,7 +8,7 @@ on:
 env:
   PROJECT_PATH: "src/Ocelli.OpenShopify/Ocelli.OpenShopify.csproj"
   PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
-  NUGET_SOURCE_URL: "https://github.com/OcelliSolutions/OpenShopify"
+  NUGET_SOURCE_URL: "https://nuget.pkg.github.com/OcelliSolutions/index.json"
 
 jobs:
   deploy:
@@ -36,5 +36,8 @@ jobs:
       - name: "Pack project"
         run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration Release -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
 
+      - name: "Authenticate"
+        run: dotnet nuget add source --username ${{ secrets.NUGET_USERNAME }} --password ${{ secrets.NUGET_API_TOKEN }} --store-password-in-clear-text --name github ${{ env.NUGET_SOURCE_URL }}
+
       - name: "Push package"
-        run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg -k ${{ secrets.NUGET_API_TOKEN }} -s ${{ env.NUGET_SOURCE_URL }}
+        run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg -k ${{ secrets.NUGET_API_TOKEN }} --source "github"
