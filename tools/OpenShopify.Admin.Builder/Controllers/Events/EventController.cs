@@ -37,14 +37,14 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="since_id">Show only results after the specified ID.</param>
         /// <param name="verb">Show events of a certain type.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("events.json")]
-        public abstract System.Threading.Tasks.Task ListEvents(System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, string? fields = null, string? filter = null, int? limit = null, string? page_info = null, long? since_id = null, string? verb = null);
+        public abstract System.Threading.Tasks.Task ListEvents([Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? filter = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? verb = null);
 
         /// <summary>
         /// Retrieves a single event
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("events/{event_id}.json")]
-        public abstract System.Threading.Tasks.Task GetEvent(long event_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetEvent(long event_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Retrieves a count of events
@@ -52,7 +52,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="created_at_max">Count only events created at or before this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="created_at_min">Count only events created at or after this date and time. (format: 2014-04-25T16:15:47-04:00)</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("events/count.json")]
-        public abstract System.Threading.Tasks.Task CountEvents(System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null);
+        public abstract System.Threading.Tasks.Task CountEvents([Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_min = null);
 
     }
 
@@ -76,15 +76,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Body { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the event was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
         /// <summary>
         /// A human readable description of the event.

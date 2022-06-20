@@ -2,7 +2,7 @@
 
 namespace OpenShopify.Admin.Builder.Models;
 
-public record CancellationRequest
+public record MessageDetail
 {
     /// <summary>
     /// An optional reason for rejecting the cancellation request.

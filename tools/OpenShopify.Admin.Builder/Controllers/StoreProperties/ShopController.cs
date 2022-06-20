@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shop.json")]
-        public abstract System.Threading.Tasks.Task GetShopsConfiguration(string? fields = null);
+        public abstract System.Threading.Tasks.Task GetShopsConfiguration([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
     }
 
@@ -108,15 +108,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? CountyTaxes { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) when the shop was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
         /// <summary>
         /// The contact email used for communication between the shop owner and the customer.
@@ -498,15 +489,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? TransactionalSmsDisabled { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) when the shop was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         /// <summary>
         /// The default unit of weight measurement for the shop.

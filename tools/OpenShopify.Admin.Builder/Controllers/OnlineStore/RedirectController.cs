@@ -35,7 +35,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <param name="target">Show redirects with a given target.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("redirects.json")]
-        public abstract System.Threading.Tasks.Task ListUrlRedirects(string? fields = null, int? limit = null, string? page_info = null, string? path = null, long? since_id = null, string? target = null);
+        public abstract System.Threading.Tasks.Task ListUrlRedirects([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? path = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? target = null);
 
         /// <summary>
         /// Creates a redirect
@@ -49,14 +49,14 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="path">Count redirects with given path.</param>
         /// <param name="target">Count redirects with given target.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("redirects/count.json")]
-        public abstract System.Threading.Tasks.Task CountUrlRedirects(string? path = null, string? target = null);
+        public abstract System.Threading.Tasks.Task CountUrlRedirects([Microsoft.AspNetCore.Mvc.FromQuery] string? path = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? target = null);
 
         /// <summary>
         /// Retrieves a single redirect
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("redirects/{redirect_id}.json")]
-        public abstract System.Threading.Tasks.Task GetRedirect(long redirect_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetRedirect(long redirect_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates an existing redirect

@@ -31,7 +31,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="limit">Amount of results</param>
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collection_listings.json")]
-        public abstract System.Threading.Tasks.Task GetCollectionListings(int? limit = null, string? page_info = null);
+        public abstract System.Threading.Tasks.Task GetCollectionListings([Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null);
 
         /// <summary>
         /// Retrieve &lt;code&gt;product_ids&lt;/code&gt; that are published to a &lt;code&gt;collection_id&lt;/code&gt;
@@ -39,7 +39,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="limit">Amount of results</param>
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collection_listings/{collection_listing_id}/product_ids.json")]
-        public abstract System.Threading.Tasks.Task GetProductIdsThatArePublishedToCollectionId(long collection_listing_id, int? limit = null, string? page_info = null);
+        public abstract System.Threading.Tasks.Task GetProductIdsThatArePublishedToCollectionId(long collection_listing_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null);
 
         /// <summary>
         /// Retrieve a specific collection listing that is published to your app
@@ -144,15 +144,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? SortOrder { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the collection was last modified. The API returns this in ISO_8601.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

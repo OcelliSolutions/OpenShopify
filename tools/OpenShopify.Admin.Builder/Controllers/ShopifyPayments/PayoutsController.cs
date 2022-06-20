@@ -35,7 +35,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="since_id">Filter the response to payouts made after the specified ID.</param>
         /// <param name="status">Filter the response to payouts made with the specified status.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/payouts.json")]
-        public abstract System.Threading.Tasks.Task ListPayouts(DateTime? date = null, DateTime? date_max = null, DateTime? date_min = null, long? last_id = null, long? since_id = null, string? status = null);
+        public abstract System.Threading.Tasks.Task ListPayouts([Microsoft.AspNetCore.Mvc.FromQuery] DateTime? date = null, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? date_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] DateTime? date_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? last_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? status = null);
 
         /// <summary>
         /// Return a single payout

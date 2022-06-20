@@ -1646,7 +1646,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FulfillmentRequestItem'
+                $ref: '#/components/schemas/SendFulfillmentRequestItem'
         '400':
           description: Bad Request
           headers:
@@ -1699,7 +1699,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FulfillmentRequestItem'
+                $ref: '#/components/schemas/AcceptFulfillmentRequestItem'
         '400':
           description: Bad Request
           headers:
@@ -1752,7 +1752,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FulfillmentRequestItem'
+                $ref: '#/components/schemas/RejectFulfillmentRequestItem'
         '400':
           description: Bad Request
           headers:
@@ -2003,11 +2003,22 @@ components:
       type: object
       properties:
         cancellation_request:
-          $ref: '#/components/schemas/CancellationRequest'
-      additionalProperties: { }
-    AcceptFulfillmentRequestRequest:
+          $ref: '#/components/schemas/MessageDetail'
+      additionalProperties: false
+    AcceptFulfillmentRequestItem:
       type: object
-      additionalProperties: { }
+      properties:
+        fulfillment_order:
+          $ref: '#/components/schemas/FulfillmentOrderWithOrigin'
+      additionalProperties: false
+    AcceptFulfillmentRequestRequest:
+      required:
+        - fulfillment_request
+      type: object
+      properties:
+        fulfillment_request:
+          $ref: '#/components/schemas/MessageDetail'
+      additionalProperties: false
     Address:
       required:
         - id
@@ -2089,7 +2100,7 @@ components:
       properties:
         fulfillment_hold:
           $ref: '#/components/schemas/FulfillmentHoldRequestDetail'
-      additionalProperties: { }
+      additionalProperties: false
     AssignedFulfillmentOrderList:
       required:
         - fulfillment_orders
@@ -2143,21 +2154,13 @@ components:
       additionalProperties: { }
     CancelFulfillmentForSpecificOrderIDRequest:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     CancelFulfillmentOrderRequest:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     CancelFulfillmentRequest:
       type: object
-      additionalProperties: { }
-    CancellationRequest:
-      type: object
-      properties:
-        message:
-          type: string
-          description: An optional reason for rejecting the cancellation request.
-          nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     CarrierService:
       required:
         - id
@@ -2193,6 +2196,16 @@ components:
         id:
           type: integer
           format: int64
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     CarrierServiceError:
       required:
@@ -2246,7 +2259,7 @@ components:
       additionalProperties: { }
     CompleteFulfillmentRequest:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     CountItem:
       type: object
       properties:
@@ -2297,11 +2310,6 @@ components:
     CreateFulfillment:
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time when the fulfillment was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         line_items:
           type: array
           items:
@@ -2362,11 +2370,6 @@ components:
             type: string
           description: The URLs of tracking pages for the fulfillment.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the fulfillment was last modified..'
-          format: date-time
-          nullable: true
         variant_inventory_management:
           type: string
           description: The name of the inventory management service.
@@ -2388,11 +2391,6 @@ components:
         country:
           type: string
           description: The country where the fulfillment event occurred.
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was created.'
-          format: date-time
           nullable: true
         estimated_delivery_at:
           type: string
@@ -2439,11 +2437,6 @@ components:
           nullable: true
         status:
           $ref: '#/components/schemas/FulfillmentEventStatus'
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was updated.'
-          format: date-time
-          nullable: true
         zip:
           type: string
           description: The zip code of the location where the fulfillment event occurred.
@@ -2585,11 +2578,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time when the fulfillment was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         line_items:
           type: array
           items:
@@ -2650,11 +2638,6 @@ components:
             type: string
           description: The URLs of tracking pages for the fulfillment.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the fulfillment was last modified..'
-          format: date-time
-          nullable: true
         variant_inventory_management:
           type: string
           description: The name of the inventory management service.
@@ -2666,6 +2649,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     FulfillmentAssignmentStatus:
@@ -2708,11 +2701,6 @@ components:
         country:
           type: string
           description: The country where the fulfillment event occurred.
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was created.'
-          format: date-time
           nullable: true
         estimated_delivery_at:
           type: string
@@ -2759,11 +2747,6 @@ components:
           nullable: true
         status:
           $ref: '#/components/schemas/FulfillmentEventStatus'
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was updated.'
-          format: date-time
-          nullable: true
         zip:
           type: string
           description: The zip code of the location where the fulfillment event occurred.
@@ -2773,6 +2756,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     FulfillmentEventError:
@@ -2910,6 +2903,9 @@ components:
     FulfillmentOrder:
       required:
         - id
+        - request_status
+        - status
+        - supported_actions
       type: object
       properties:
         assigned_location_id:
@@ -2965,7 +2961,6 @@ components:
           items:
             $ref: '#/components/schemas/FulfillmentOrderActions'
           description: The actions that can be performed on this fulfillment order.
-          nullable: true
         merchant_requests:
           type: array
           items:
@@ -2985,6 +2980,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     FulfillmentOrderActions:
@@ -3147,19 +3152,101 @@ components:
         - closed
       type: string
       additionalProperties: { }
-    FulfillmentRequest:
+    FulfillmentOrderWithOrigin:
+      required:
+        - id
+        - request_status
+        - status
+        - supported_actions
       type: object
       properties:
-        message:
-          type: string
-          description: An optional message for the fulfillment request.
+        assigned_location_id:
+          type: integer
+          description: The ID of the location that has been assigned to do the work.
+          format: int64
           nullable: true
-        fulfillment_order_line_items:
+        destination:
+          $ref: '#/components/schemas/FulfillmentOrderDestination'
+        delivery_method:
+          $ref: '#/components/schemas/DeliveryMethod'
+        fulfill_at:
+          type: string
+          description: 'The date and time at which the fulfillment order will be fulfillable. When this date and time is reached, a `scheduled` fulfillment order is automatically transitioned to `open`. For more information about fulfillment statuses, refer to the **status** property.'
+          format: date-time
+          nullable: true
+        fulfill_by:
+          type: string
+          description: The latest date and time by which all items in the fulfillment order need to be fulfilled.
+          nullable: true
+        fulfillment_holds:
           type: array
           items:
-            $ref: '#/components/schemas/FulfillmentRequestOrderLineItems'
-          description: 'The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.'
+            $ref: '#/components/schemas/FulfillmentHold'
+          description: "Represents the fulfillment holds applied on the fulfillment order.\r\n\r\n*   **reason**: The reason for the fulfillment hold. \r\n*   **reason_notes**: Additional information about the fulfillment hold reason."
           nullable: true
+        international_duties:
+          type: string
+          description: "The international duties relevant to the fulfillment order.\r\n\r\n*   **incoterm**: The method of duties payment. Valid values: \r\n\r\n    *   **DAP**: Delivered at place. \r\n    *   **DDP**: Delivered duty paid."
+          nullable: true
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentOrderLineItem'
+          description: 'Represents line items belonging to a fulfillment order:'
+          nullable: true
+        order_id:
+          type: integer
+          description: The ID of the order that's associated with the fulfillment order.
+          format: int64
+          nullable: true
+        request_status:
+          $ref: '#/components/schemas/RequestStatus'
+        shop_id:
+          type: integer
+          description: The ID of the shop that's associated with the fulfillment order.
+          format: int64
+          nullable: true
+        status:
+          $ref: '#/components/schemas/FulfillmentOrderStatus'
+        supported_actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentOrderActions'
+          description: The actions that can be performed on this fulfillment order.
+        merchant_requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantRequest'
+          description: "A list of requests sent by the merchant to the fulfillment service for this fulfillment order.\r\n\r\n*   **message**: The message returned by the merchant, if any. \r\n*   **request_options**: The request options returned by the merchant, if any. \r\n*   **kind**: The kind of request. Valid values: *fulfillment_request*, *cancellation_request*, or *legacy_fulfill_request*."
+          nullable: true
+        assigned_location:
+          type: string
+          description: "The fulfillment order's assigned location. This is the location expected to perform fulfillment.\r\n\r\n*   **address1**: The street address of the assigned location. \r\n*   **address2**: An optional additional field for the street address of the assigned location. \r\n*   **city**: The city of the assigned location. \r\n*   **country_code**: The two-letter code for the country of the assigned location. \r\n*   **location_id**: The ID of the assigned location. \r\n*   **name**: The name of the assigned location. \r\n*   **phone**: The phone number of the assigned location. \r\n*   **province**: The province of the assigned location. \r\n*   **zip**: The ZIP code of the assigned location."
+          nullable: true
+        outgoing_requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutgoingRequest'
+          description: Followings actions can be performed on this fulfillment order.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
+        origin:
+          $ref: '#/components/schemas/AssignedLocation'
       additionalProperties: { }
     FulfillmentRequestGeneralError:
       required:
@@ -3175,14 +3262,6 @@ components:
         base:
           type: string
           nullable: true
-      additionalProperties: { }
-    FulfillmentRequestItem:
-      required:
-        - fulfillment_request
-      type: object
-      properties:
-        fulfillment_request:
-          $ref: '#/components/schemas/FulfillmentRequest'
       additionalProperties: { }
     FulfillmentRequestOrderLineItems:
       type: object
@@ -3262,6 +3341,16 @@ components:
         id:
           type: integer
           format: int64
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     FulfillmentServiceError:
       required:
@@ -3553,6 +3642,16 @@ components:
           type: string
           description: 'A human-readable string with the reason why the fulfillment order, or some of its line items, can''t be moved to the location.'
           nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     LocationsForMoveList:
       required:
@@ -3603,6 +3702,14 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
+    MessageDetail:
+      type: object
+      properties:
+        message:
+          type: string
+          description: An optional reason for rejecting the cancellation request.
+          nullable: true
+      additionalProperties: { }
     MoveFulfillmentOrderToNewLocationRequest:
       required:
         - fulfillment_order
@@ -3610,14 +3717,14 @@ components:
       properties:
         fulfillment_order:
           $ref: '#/components/schemas/MoveFulfillmentOrderToNewLocationRequestDetail'
-      additionalProperties: { }
+      additionalProperties: false
     MoveFulfillmentOrderToNewLocationRequestDetail:
       type: object
       properties:
         new_location_id:
           type: integer
           format: int64
-      additionalProperties: { }
+      additionalProperties: false
     MoveLocation:
       type: object
       properties:
@@ -3627,7 +3734,7 @@ components:
         name:
           type: string
           nullable: true
-      additionalProperties: { }
+      additionalProperties: false
     OutgoingRequest:
       type: object
       properties:
@@ -3678,14 +3785,25 @@ components:
       type: object
       properties:
         cancellation_request:
-          $ref: '#/components/schemas/CancellationRequest'
-      additionalProperties: { }
-    RejectFulfillmentRequestRequest:
+          $ref: '#/components/schemas/MessageDetail'
+      additionalProperties: false
+    RejectFulfillmentRequestItem:
       type: object
-      additionalProperties: { }
+      properties:
+        fulfillment_order:
+          $ref: '#/components/schemas/FulfillmentOrderWithOrigin'
+      additionalProperties: false
+    RejectFulfillmentRequestRequest:
+      required:
+        - fulfillment_request
+      type: object
+      properties:
+        fulfillment_request:
+          $ref: '#/components/schemas/MessageDetail'
+      additionalProperties: false
     ReleaseFulfillmentHoldOnFulfillmentOrderRequest:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     RequestStatus:
       enum:
         - unsubmitted
@@ -3700,16 +3818,43 @@ components:
       additionalProperties: { }
     RescheduleFulfillAtTimeOfScheduledFulfillmentOrderRequest:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     SendCancellationRequestRequest:
       type: object
       properties:
         cancellation_request:
-          $ref: '#/components/schemas/CancellationRequest'
-      additionalProperties: { }
-    SendFulfillmentRequestRequest:
+          $ref: '#/components/schemas/MessageDetail'
+      additionalProperties: false
+    SendFulfillmentRequestDetail:
       type: object
-      additionalProperties: { }
+      properties:
+        message:
+          type: string
+          nullable: true
+        fulfillment_order_line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentRequestOrderLineItems'
+          nullable: true
+      additionalProperties: false
+    SendFulfillmentRequestItem:
+      type: object
+      properties:
+        original_fulfillment_order:
+          $ref: '#/components/schemas/FulfillmentOrderWithOrigin'
+        submitted_fulfillment_order:
+          $ref: '#/components/schemas/FulfillmentOrderWithOrigin'
+        unsubmitted_fulfillment_order:
+          $ref: '#/components/schemas/FulfillmentOrderWithOrigin'
+      additionalProperties: false
+    SendFulfillmentRequestRequest:
+      required:
+        - fulfillment_request
+      type: object
+      properties:
+        fulfillment_request:
+          $ref: '#/components/schemas/SendFulfillmentRequestDetail'
+      additionalProperties: false
     TaxLine:
       type: object
       properties:
@@ -3779,11 +3924,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time when the fulfillment was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         line_items:
           type: array
           items:
@@ -3844,11 +3984,6 @@ components:
             type: string
           description: The URLs of tracking pages for the fulfillment.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the fulfillment was last modified..'
-          format: date-time
-          nullable: true
         variant_inventory_management:
           type: string
           description: The name of the inventory management service.
@@ -3867,16 +4002,6 @@ components:
         - fulfillment
       type: object
       properties:
-        message:
-          type: string
-          description: An optional message for the fulfillment request.
-          nullable: true
-        fulfillment_order_line_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/FulfillmentRequestOrderLineItems'
-          description: 'The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.'
-          nullable: true
         fulfillment:
           $ref: '#/components/schemas/UpdateFulfillment'
       additionalProperties: false

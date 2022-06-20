@@ -48,7 +48,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_min">Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="vendor">Return products by product vendor.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products.json")]
-        public abstract System.Threading.Tasks.Task ListProducts(long collection_id, System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, string? fields = null, string? handle = null, string? ids = null, int? limit = null, string? page_info = null, string? presentment_currencies = null, string? product_type = null, System.DateTimeOffset? published_at_max = null, System.DateTimeOffset? published_at_min = null, string? published_status = null, long? since_id = null, string? status = null, string? title = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null, string? vendor = null);
+        public abstract System.Threading.Tasks.Task ListProducts([Microsoft.AspNetCore.Mvc.FromQuery] long collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.Collections.Generic.IEnumerable<long>? ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? presentment_currencies = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_type = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? status = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? title = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? vendor = null);
 
         /// <summary>
         /// Create a new product
@@ -70,14 +70,14 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_min">Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="vendor">Return products by product vendor.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/count.json")]
-        public abstract System.Threading.Tasks.Task CountProducts(long? collection_id = null, System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, string? product_type = null, System.DateTimeOffset? published_at_max = null, System.DateTimeOffset? published_at_min = null, string? published_status = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null, string? vendor = null);
+        public abstract System.Threading.Tasks.Task CountProducts([Microsoft.AspNetCore.Mvc.FromQuery] long? collection_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_type = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? vendor = null);
 
         /// <summary>
         /// Retrieve a single product
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}.json")]
-        public abstract System.Threading.Tasks.Task GetProduct(long product_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetProduct(long product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates a product
@@ -104,15 +104,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? BodyHtml { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
         /// <summary>
         /// A unique human-friendly string for the product. Automatically generated from the product's `title`. Used by the Liquid templating language to refer to objects.
@@ -210,15 +201,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was last modified. A product's `updated_at` value can change for different reasons. For example, if an order is placed for a product that has inventory tracking set up, then the inventory adjustment is counted as an update.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         /// <summary>
         /// An array of [product variants](/docs/admin-api/rest/reference/products/product-variant), each representing a different version of the product.

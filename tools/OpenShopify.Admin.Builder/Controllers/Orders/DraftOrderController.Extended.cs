@@ -24,7 +24,7 @@ public class DraftOrderController : DraftOrderControllerBase
     /// <inheritdoc />
     [HttpGet, Route("draft_orders.json")]
     [ProducesResponseType(typeof(DraftOrderList), StatusCodes.Status200OK)]
-    public override Task ListDraftOrders(string? fieldsQuery = null, string? ids = null, int? limit = null, string? page_info = null, long? since_id = null, string? status = null,
+    public override Task ListDraftOrders(string? fieldsQuery = null, [FromQuery] IEnumerable<long>? ids = null, int? limit = null, string? page_info = null, long? since_id = null, string? status = null,
         DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();

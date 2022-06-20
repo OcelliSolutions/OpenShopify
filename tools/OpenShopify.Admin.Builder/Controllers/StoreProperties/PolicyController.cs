@@ -64,24 +64,6 @@ namespace OpenShopify.Admin.Builder.Models
         public string? Url { get; set; } = default!;
 
         /// <summary>
-        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the policy was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the policy was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        /// <summary>
         /// A unique identifer for the policy used to build the policy's URL.
         /// </summary>
 

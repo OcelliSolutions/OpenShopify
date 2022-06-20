@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="fields">Specify which fields to show using a comma-separated list of field names.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}/assets.json")]
-        public abstract System.Threading.Tasks.Task ListAssetsForTheme(long theme_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task ListAssetsForTheme(long theme_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Creates or updates an asset for a theme
@@ -43,7 +43,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="assetkey">Deletes a single asset from a theme by specifying the asset's key.</param>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("themes/{theme_id}/assets.json")]
-        public abstract System.Threading.Tasks.Task DeleteAssetFromTheme(string? assetkey = null, long? theme_id = null);
+        public abstract System.Threading.Tasks.Task DeleteAssetFromTheme([Microsoft.AspNetCore.Mvc.FromQuery(Name = "asset[key]")] string? assetkey = null, long? theme_id = null);
 
     }
 
@@ -76,15 +76,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? ContentType { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
         /// <summary>
         /// The path to the asset within a theme. It consists of the file's directory and filename. For example, the asset `assets/bg-body-green.gif` is in the **assets** directory, so its key is `assets/bg-body-green.gif`.
@@ -121,15 +112,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public long? ThemeId { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         /// <summary>
         /// The text content of the asset, such as the HTML and Liquid markup of a template file.

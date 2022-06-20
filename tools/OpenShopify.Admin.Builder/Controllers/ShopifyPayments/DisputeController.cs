@@ -33,7 +33,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="since_id">Return only disputes after the specified ID.</param>
         /// <param name="status">Return only disputes with the specified status.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/disputes.json")]
-        public abstract System.Threading.Tasks.Task ListDisputes(string? initiated_at = null, long? last_id = null, long? since_id = null, string? status = null);
+        public abstract System.Threading.Tasks.Task ListDisputes([Microsoft.AspNetCore.Mvc.FromQuery] string? initiated_at = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? last_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? status = null);
 
         /// <summary>
         /// Return a single dispute

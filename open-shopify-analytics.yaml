@@ -34,8 +34,13 @@ paths:
         - name: ids
           in: query
           description: A comma-separated list of report IDs.
+          style: form
+          explode: false
           schema:
-            type: string
+            type: array
+            items:
+              type: integer
+              format: int64
         - name: limit
           in: query
           description: The amount of results to return.
@@ -257,11 +262,6 @@ components:
           type: string
           description: 'The ShopifyQL query that generates the report.See [Shopify Query Language](/api/admin/rest/reference/analytics/shopify-ql).'
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time [(ISO 8601)](https://en.wikipedia.org/wiki/ISO_8601)when the report was last modified.'
-          format: date-time
-          nullable: true
       additionalProperties: false
     CreateReportRequest:
       required:
@@ -288,16 +288,21 @@ components:
           type: string
           description: 'The ShopifyQL query that generates the report.See [Shopify Query Language](/api/admin/rest/reference/analytics/shopify-ql).'
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time [(ISO 8601)](https://en.wikipedia.org/wiki/ISO_8601)when the report was last modified.'
-          format: date-time
-          nullable: true
         id:
           type: integer
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     ReportError:
@@ -351,11 +356,6 @@ components:
         shopify_ql:
           type: string
           description: 'The ShopifyQL query that generates the report.See [Shopify Query Language](/api/admin/rest/reference/analytics/shopify-ql).'
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time [(ISO 8601)](https://en.wikipedia.org/wiki/ISO_8601)when the report was last modified.'
-          format: date-time
           nullable: true
         id:
           type: integer

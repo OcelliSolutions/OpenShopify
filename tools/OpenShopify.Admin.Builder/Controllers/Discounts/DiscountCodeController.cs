@@ -60,7 +60,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="code">Retrieves the location of a discount code by code name.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("discount_codes/lookup.json")]
-        public abstract System.Threading.Tasks.Task GetLocationOfDiscountCode(string? code = null);
+        public abstract System.Threading.Tasks.Task GetLocationOfDiscountCode([Microsoft.AspNetCore.Mvc.FromQuery] string? code = null);
 
         /// <summary>
         /// Retrieves a count of discount codes for a shop
@@ -69,7 +69,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="times_used_max">Show discount codes used greater than or equal to this value.</param>
         /// <param name="times_used_min">Show discount codes used less than or equal to this value.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("discount_codes/count.json")]
-        public abstract System.Threading.Tasks.Task CountDiscountCodesForShop(int? times_used = null, int? times_used_max = null, int? times_used_min = null);
+        public abstract System.Threading.Tasks.Task CountDiscountCodesForShop([Microsoft.AspNetCore.Mvc.FromQuery] int? times_used = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? times_used_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? times_used_min = null);
 
         /// <summary>
         /// Creates a discount code creation job
@@ -106,24 +106,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Code { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the discount code was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the discount code was updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         /// <summary>
         /// The ID for the price rule that this discount code belongs to.

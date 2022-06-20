@@ -43,24 +43,6 @@ namespace OpenShopify.Admin.Builder.Models
     public partial record ResourceFeedbackOrig
     {
         /// <summary>
-        /// DateTime when the resource feedback record was stored by Shopify. **Type:** ISO 8601 UTC DateTime as string with year, month (or week), day, hour, minute, second, time zone.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// DateTime when the resource feedback record was last updated by Shopify. **Type:** ISO 8601 UTC DateTime as string with year, month (or week), day, hour, minute, second, time zone.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        /// <summary>
         /// Unique id of the resource.
         /// </summary>
 

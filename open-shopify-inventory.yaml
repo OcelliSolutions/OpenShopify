@@ -29,8 +29,13 @@ paths:
         - name: ids
           in: query
           description: Show only inventory items specified by a comma-separated list of IDs.
+          style: form
+          explode: false
           schema:
-            type: string
+            type: array
+            items:
+              type: integer
+              format: int64
         - name: limit
           in: query
           description: The maximum number of results to show.
@@ -421,10 +426,10 @@ components:
   schemas:
     AdjustInventoryLevelOfInventoryItemAtLocationRequest:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     ConnectInventoryItemToLocationRequest:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     CountItem:
       type: object
       properties:
@@ -473,11 +478,6 @@ components:
             $ref: '#/components/schemas/HsCode'
           description: 'An array of country-specific [Harmonized System](https://en.wikipedia.org/wiki/Harmonized_System) (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the inventory item was created.'
-          format: date-time
-          nullable: true
         harmonized_system_code:
           type: string
           description: 'The general [Harmonized System](https://en.wikipedia.org/wiki/Harmonized_System) (HS) code for the inventory item. Used if a country-specific HS code (`countryHarmonizedSystemCode`) is not available.'
@@ -494,11 +494,6 @@ components:
           type: boolean
           description: 'Whether inventory levels are tracked for the item. If true, then the inventory quantity changes are tracked by Shopify.'
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the inventory item was last modified.'
-          format: date-time
-          nullable: true
         requires_shipping:
           type: boolean
           description: Whether a customer needs to provide a shipping address when placing an order containing the inventory item.
@@ -508,6 +503,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     InventoryItemItem:
@@ -548,16 +553,21 @@ components:
           description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the [Location resource](/api/admin-rest/latest/resources/location)'
           format: int64
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the inventory level was last modified.'
-          format: date-time
-          nullable: true
         id:
           type: integer
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     InventoryLevelItem:
@@ -607,11 +617,6 @@ components:
           type: string
           description: 'The two-letter code ([ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) corresponding to country the location is in.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the location was created.'
-          format: date-time
-          nullable: true
         legacy:
           type: boolean
           description: 'Whether this is a fulfillment service location. If `true`, then the location is a fulfillment service location. If `false`, then the location was created by the merchant and isn''t tied to a fulfillment service.'
@@ -631,11 +636,6 @@ components:
         province_code:
           type: string
           description: 'The province, state, or district code ([ISO 3166-2 alpha-2 format](https://en.wikipedia.org/wiki/ISO_3166-2)) of the location.'
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the location was last updated.'
-          format: date-time
           nullable: true
         zip:
           type: string
@@ -658,6 +658,16 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     LocationItem:
       required:
@@ -679,7 +689,7 @@ components:
       additionalProperties: { }
     SetInventoryLevelForInventoryItemAtLocationRequest:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     UpdateInventoryItem:
       required:
         - id
@@ -700,11 +710,6 @@ components:
             $ref: '#/components/schemas/HsCode'
           description: 'An array of country-specific [Harmonized System](https://en.wikipedia.org/wiki/Harmonized_System) (HS) codes for the item. Used to determine duties when shipping the inventory item to certain countries.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the inventory item was created.'
-          format: date-time
-          nullable: true
         harmonized_system_code:
           type: string
           description: 'The general [Harmonized System](https://en.wikipedia.org/wiki/Harmonized_System) (HS) code for the inventory item. Used if a country-specific HS code (`countryHarmonizedSystemCode`) is not available.'
@@ -720,11 +725,6 @@ components:
         tracked:
           type: boolean
           description: 'Whether inventory levels are tracked for the item. If true, then the inventory quantity changes are tracked by Shopify.'
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the inventory item was last modified.'
-          format: date-time
           nullable: true
         requires_shipping:
           type: boolean

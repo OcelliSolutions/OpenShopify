@@ -1312,7 +1312,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CompleteFulfillmentAsync(long fulfillmentId, long orderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CompleteFulfillmentAsync(long fulfillmentId, long orderId, CompleteFulfillmentRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1328,7 +1328,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CancelFulfillmentForSpecificOrderIDAsync(long fulfillmentId, long orderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CancelFulfillmentForSpecificOrderIDAsync(long fulfillmentId, long orderId, CancelFulfillmentForSpecificOrderIDRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1336,7 +1336,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CancelFulfillmentAsync(long fulfillmentId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CancelFulfillmentAsync(long fulfillmentId, CancelFulfillmentRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -2103,7 +2103,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CompleteFulfillmentAsync(long fulfillmentId, long orderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CompleteFulfillmentAsync(long fulfillmentId, long orderId, CompleteFulfillmentRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (fulfillmentId == null)
                 throw new System.ArgumentNullException("fulfillmentId");
@@ -2286,7 +2286,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CancelFulfillmentForSpecificOrderIDAsync(long fulfillmentId, long orderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CancelFulfillmentForSpecificOrderIDAsync(long fulfillmentId, long orderId, CancelFulfillmentForSpecificOrderIDRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (fulfillmentId == null)
                 throw new System.ArgumentNullException("fulfillmentId");
@@ -2380,7 +2380,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CancelFulfillmentAsync(long fulfillmentId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CancelFulfillmentAsync(long fulfillmentId, CancelFulfillmentRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (fulfillmentId == null)
                 throw new System.ArgumentNullException("fulfillmentId");
@@ -3100,7 +3100,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> CancelFulfillmentOrderAsync(long fulfillmentOrderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> CancelFulfillmentOrderAsync(long fulfillmentOrderId, CancelFulfillmentOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3132,7 +3132,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> RescheduleFulfillAtTimeOfScheduledFulfillmentOrderAsync(long fulfillmentOrderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> RescheduleFulfillAtTimeOfScheduledFulfillmentOrderAsync(long fulfillmentOrderId, RescheduleFulfillAtTimeOfScheduledFulfillmentOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3148,7 +3148,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> ReleaseFulfillmentHoldOnFulfillmentOrderAsync(long fulfillmentOrderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> ReleaseFulfillmentHoldOnFulfillmentOrderAsync(long fulfillmentOrderId, ReleaseFulfillmentHoldOnFulfillmentOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -3338,7 +3338,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> CancelFulfillmentOrderAsync(long fulfillmentOrderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> CancelFulfillmentOrderAsync(long fulfillmentOrderId, CancelFulfillmentOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (fulfillmentOrderId == null)
                 throw new System.ArgumentNullException("fulfillmentOrderId");
@@ -3698,7 +3698,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> RescheduleFulfillAtTimeOfScheduledFulfillmentOrderAsync(long fulfillmentOrderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> RescheduleFulfillAtTimeOfScheduledFulfillmentOrderAsync(long fulfillmentOrderId, RescheduleFulfillAtTimeOfScheduledFulfillmentOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (fulfillmentOrderId == null)
                 throw new System.ArgumentNullException("fulfillmentOrderId");
@@ -3878,7 +3878,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> ReleaseFulfillmentHoldOnFulfillmentOrderAsync(long fulfillmentOrderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> ReleaseFulfillmentHoldOnFulfillmentOrderAsync(long fulfillmentOrderId, ReleaseFulfillmentHoldOnFulfillmentOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (fulfillmentOrderId == null)
                 throw new System.ArgumentNullException("fulfillmentOrderId");
@@ -4072,7 +4072,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentRequestItem>> SendFulfillmentRequestAsync(long fulfillmentOrderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<SendFulfillmentRequestItem>> SendFulfillmentRequestAsync(long fulfillmentOrderId, SendFulfillmentRequestRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4080,7 +4080,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentRequestItem>> AcceptFulfillmentRequestAsync(long fulfillmentOrderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<AcceptFulfillmentRequestItem>> AcceptFulfillmentRequestAsync(long fulfillmentOrderId, AcceptFulfillmentRequestRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -4088,7 +4088,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentRequestItem>> RejectFulfillmentRequestAsync(long fulfillmentOrderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<RejectFulfillmentRequestItem>> RejectFulfillmentRequestAsync(long fulfillmentOrderId, RejectFulfillmentRequestRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -4130,7 +4130,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentRequestItem>> SendFulfillmentRequestAsync(long fulfillmentOrderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<SendFulfillmentRequestItem>> SendFulfillmentRequestAsync(long fulfillmentOrderId, SendFulfillmentRequestRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (fulfillmentOrderId == null)
                 throw new System.ArgumentNullException("fulfillmentOrderId");
@@ -4177,12 +4177,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<FulfillmentRequestItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<SendFulfillmentRequestItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<FulfillmentRequestItem>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<SendFulfillmentRequestItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 400)
@@ -4220,7 +4220,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentRequestItem>> AcceptFulfillmentRequestAsync(long fulfillmentOrderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<AcceptFulfillmentRequestItem>> AcceptFulfillmentRequestAsync(long fulfillmentOrderId, AcceptFulfillmentRequestRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (fulfillmentOrderId == null)
                 throw new System.ArgumentNullException("fulfillmentOrderId");
@@ -4267,12 +4267,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<FulfillmentRequestItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<AcceptFulfillmentRequestItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<FulfillmentRequestItem>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<AcceptFulfillmentRequestItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 400)
@@ -4310,7 +4310,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentRequestItem>> RejectFulfillmentRequestAsync(long fulfillmentOrderId, System.Collections.Generic.IDictionary<string, object> body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<RejectFulfillmentRequestItem>> RejectFulfillmentRequestAsync(long fulfillmentOrderId, RejectFulfillmentRequestRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (fulfillmentOrderId == null)
                 throw new System.ArgumentNullException("fulfillmentOrderId");
@@ -4357,12 +4357,12 @@ namespace Ocelli.OpenShopify
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<FulfillmentRequestItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<RejectFulfillmentRequestItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            return new ShopifyResponse<FulfillmentRequestItem>(status_, headers_, objectResponse_.Object);
+                            return new ShopifyResponse<RejectFulfillmentRequestItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         if (status_ == 400)
@@ -5302,22 +5302,30 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("cancellation_request")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public CancellationRequest? CancellationRequest { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
+        public MessageDetail? CancellationRequest { get; set; } = default!;
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class AcceptFulfillmentRequestRequest : System.Collections.Generic.Dictionary<string, object>
+    public partial class AcceptFulfillmentRequestItem
     {
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_order")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public FulfillmentOrderWithOrigin? FulfillmentOrder { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class AcceptFulfillmentRequestRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_request")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public MessageDetail FulfillmentRequest { get; set; } = new MessageDetail();
 
     }
 
@@ -5330,15 +5338,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
         public FulfillmentHoldRequestDetail FulfillmentHold { get; set; } = new FulfillmentHoldRequestDetail();
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 
@@ -5459,43 +5458,20 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CancelFulfillmentForSpecificOrderIDRequest : System.Collections.Generic.Dictionary<string, object>
+    public partial class CancelFulfillmentForSpecificOrderIDRequest
     {
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CancelFulfillmentOrderRequest : System.Collections.Generic.Dictionary<string, object>
+    public partial class CancelFulfillmentOrderRequest
     {
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CancelFulfillmentRequest : System.Collections.Generic.Dictionary<string, object>
+    public partial class CancelFulfillmentRequest
     {
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CancellationRequest
-    {
-        /// <summary>
-        /// An optional reason for rejecting the cancellation request.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("message")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Message { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 
@@ -5565,6 +5541,24 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         public long Id { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -5702,7 +5696,7 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CompleteFulfillmentRequest : System.Collections.Generic.Dictionary<string, object>
+    public partial class CompleteFulfillmentRequest
     {
 
     }
@@ -5790,15 +5784,6 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CreateFulfillment
     {
-        /// <summary>
-        /// The date and time when the fulfillment was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
         /// <summary>
         /// A list of the fulfillment's line items, which includes:
         /// <br/>
@@ -6037,15 +6022,6 @@ namespace Ocelli.OpenShopify
         public System.Collections.Generic.ICollection<string>? TrackingUrls { get; set; } = default!;
 
         /// <summary>
-        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the fulfillment was last modified..
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        /// <summary>
         /// The name of the inventory management service.
         /// </summary>
 
@@ -6090,15 +6066,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Country { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
         /// <summary>
         /// The estimated delivery date based on the fulfillment's tracking number, as long as it's provided by one of the following carriers: USPS, FedEx, UPS, or Canada Post (Canada only). Value is `null` if no tracking number is available or if the tracking number is from an unsupported carrier. This property is available only when [carrier calculated rates](https://help.shopify.com/manual/shipping/rates-and-methods/custom-calculated-rates) are in use.'
@@ -6186,15 +6153,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
         public FulfillmentEventStatus? Status { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         /// <summary>
         /// The zip code of the location where the fulfillment event occurred.
@@ -6451,15 +6409,6 @@ namespace Ocelli.OpenShopify
     public partial class Fulfillment
     {
         /// <summary>
-        /// The date and time when the fulfillment was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
         /// A list of the fulfillment's line items, which includes:
         /// <br/>
         /// <br/>*   **id**: The ID of the line item within the fulfillment. 
@@ -6697,15 +6646,6 @@ namespace Ocelli.OpenShopify
         public System.Collections.Generic.ICollection<string>? TrackingUrls { get; set; } = default!;
 
         /// <summary>
-        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the fulfillment was last modified..
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        /// <summary>
         /// The name of the inventory management service.
         /// </summary>
 
@@ -6728,6 +6668,24 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -6827,15 +6785,6 @@ namespace Ocelli.OpenShopify
         public string? Country { get; set; } = default!;
 
         /// <summary>
-        /// The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
         /// The estimated delivery date based on the fulfillment's tracking number, as long as it's provided by one of the following carriers: USPS, FedEx, UPS, or Canada Post (Canada only). Value is `null` if no tracking number is available or if the tracking number is from an unsupported carrier. This property is available only when [carrier calculated rates](https://help.shopify.com/manual/shipping/rates-and-methods/custom-calculated-rates) are in use.'
         /// </summary>
 
@@ -6923,15 +6872,6 @@ namespace Ocelli.OpenShopify
         public FulfillmentEventStatus? Status { get; set; } = default!;
 
         /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        /// <summary>
         /// The zip code of the location where the fulfillment event occurred.
         /// </summary>
 
@@ -6949,6 +6889,24 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -7381,9 +7339,10 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("request_status")]
 
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public RequestStatus? RequestStatus { get; set; } = default!;
+        public RequestStatus RequestStatus { get; set; } = default!;
 
         /// <summary>
         /// The ID of the shop that's associated with the fulfillment order.
@@ -7396,9 +7355,10 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("status")]
 
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
-        public FulfillmentOrderStatus? Status { get; set; } = default!;
+        public FulfillmentOrderStatus Status { get; set; } = default!;
 
         /// <summary>
         /// The actions that can be performed on this fulfillment order.
@@ -7406,10 +7366,11 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("supported_actions")]
 
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
 
         // TODO(system.text.json): Add string enum item converter
-        public System.Collections.Generic.ICollection<FulfillmentOrderActions>? SupportedActions { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<FulfillmentOrderActions> SupportedActions { get; set; } = new System.Collections.ObjectModel.Collection<FulfillmentOrderActions>();
 
         /// <summary>
         /// A list of requests sent by the merchant to the fulfillment service for this fulfillment order.
@@ -7447,6 +7408,24 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -7828,25 +7807,197 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class FulfillmentRequest
+    public partial class FulfillmentOrderWithOrigin
     {
         /// <summary>
-        /// An optional message for the fulfillment request.
+        /// The ID of the location that has been assigned to do the work.
         /// </summary>
 
-        [System.Text.Json.Serialization.JsonPropertyName("message")]
+        [System.Text.Json.Serialization.JsonPropertyName("assigned_location_id")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Message { get; set; } = default!;
+        public long? AssignedLocationId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("destination")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public FulfillmentOrderDestination? Destination { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("delivery_method")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public DeliveryMethod? DeliveryMethod { get; set; } = default!;
 
         /// <summary>
-        /// The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.
+        /// The date and time at which the fulfillment order will be fulfillable. When this date and time is reached, a `scheduled` fulfillment order is automatically transitioned to `open`. For more information about fulfillment statuses, refer to the **status** property.
         /// </summary>
 
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_order_line_items")]
+        [System.Text.Json.Serialization.JsonPropertyName("fulfill_at")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.Collections.Generic.ICollection<FulfillmentRequestOrderLineItems>? FulfillmentOrderLineItems { get; set; } = default!;
+        public System.DateTimeOffset? FulfillAt { get; set; } = default!;
+
+        /// <summary>
+        /// The latest date and time by which all items in the fulfillment order need to be fulfilled.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfill_by")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? FulfillBy { get; set; } = default!;
+
+        /// <summary>
+        /// Represents the fulfillment holds applied on the fulfillment order.
+        /// <br/>
+        /// <br/>*   **reason**: The reason for the fulfillment hold. 
+        /// <br/>*   **reason_notes**: Additional information about the fulfillment hold reason.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_holds")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<FulfillmentHold>? FulfillmentHolds { get; set; } = default!;
+
+        /// <summary>
+        /// The international duties relevant to the fulfillment order.
+        /// <br/>
+        /// <br/>*   **incoterm**: The method of duties payment. Valid values: 
+        /// <br/>
+        /// <br/>    *   **DAP**: Delivered at place. 
+        /// <br/>    *   **DDP**: Delivered duty paid.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("international_duties")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? InternationalDuties { get; set; } = default!;
+
+        /// <summary>
+        /// Represents line items belonging to a fulfillment order:
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("line_items")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<FulfillmentOrderLineItem>? LineItems { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the order that's associated with the fulfillment order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? OrderId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("request_status")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public RequestStatus RequestStatus { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the shop that's associated with the fulfillment order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("shop_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? ShopId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public FulfillmentOrderStatus Status { get; set; } = default!;
+
+        /// <summary>
+        /// The actions that can be performed on this fulfillment order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("supported_actions")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+
+        // TODO(system.text.json): Add string enum item converter
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<FulfillmentOrderActions> SupportedActions { get; set; } = new System.Collections.ObjectModel.Collection<FulfillmentOrderActions>();
+
+        /// <summary>
+        /// A list of requests sent by the merchant to the fulfillment service for this fulfillment order.
+        /// <br/>
+        /// <br/>*   **message**: The message returned by the merchant, if any. 
+        /// <br/>*   **request_options**: The request options returned by the merchant, if any. 
+        /// <br/>*   **kind**: The kind of request. Valid values: *fulfillment_request*, *cancellation_request*, or *legacy_fulfill_request*.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("merchant_requests")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<MerchantRequest>? MerchantRequests { get; set; } = default!;
+
+        /// <summary>
+        /// The fulfillment order's assigned location. This is the location expected to perform fulfillment.
+        /// <br/>
+        /// <br/>*   **address1**: The street address of the assigned location. 
+        /// <br/>*   **address2**: An optional additional field for the street address of the assigned location. 
+        /// <br/>*   **city**: The city of the assigned location. 
+        /// <br/>*   **country_code**: The two-letter code for the country of the assigned location. 
+        /// <br/>*   **location_id**: The ID of the assigned location. 
+        /// <br/>*   **name**: The name of the assigned location. 
+        /// <br/>*   **phone**: The phone number of the assigned location. 
+        /// <br/>*   **province**: The province of the assigned location. 
+        /// <br/>*   **zip**: The ZIP code of the assigned location.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("assigned_location")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? AssignedLocation { get; set; } = default!;
+
+        /// <summary>
+        /// Followings actions can be performed on this fulfillment order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("outgoing_requests")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<OutgoingRequest>? OutgoingRequests { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? AdminGraphqlApiId { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("origin")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public AssignedLocation? Origin { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -7888,27 +8039,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Base { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class FulfillmentRequestItem
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_request")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
-        [System.ComponentModel.DataAnnotations.Required]
-        public FulfillmentRequest FulfillmentRequest { get; set; } = new FulfillmentRequest();
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -8085,6 +8215,24 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         public long Id { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -8272,6 +8420,24 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Message { get; set; } = default!;
 
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
         [System.Text.Json.Serialization.JsonExtensionData]
@@ -8399,14 +8565,16 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class MoveFulfillmentOrderToNewLocationRequest
+    public partial class MessageDetail
     {
+        /// <summary>
+        /// An optional reason for rejecting the cancellation request.
+        /// </summary>
 
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_order")]
+        [System.Text.Json.Serialization.JsonPropertyName("message")]
 
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
-        [System.ComponentModel.DataAnnotations.Required]
-        public MoveFulfillmentOrderToNewLocationRequestDetail FulfillmentOrder { get; set; } = new MoveFulfillmentOrderToNewLocationRequestDetail();
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Message { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 
@@ -8420,6 +8588,18 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class MoveFulfillmentOrderToNewLocationRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_order")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public MoveFulfillmentOrderToNewLocationRequestDetail FulfillmentOrder { get; set; } = new MoveFulfillmentOrderToNewLocationRequestDetail();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class MoveFulfillmentOrderToNewLocationRequestDetail
     {
 
@@ -8427,15 +8607,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public long? NewLocationId { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 
@@ -8452,15 +8623,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Name { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 
@@ -8533,27 +8695,35 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("cancellation_request")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public CancellationRequest? CancellationRequest { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
+        public MessageDetail? CancellationRequest { get; set; } = default!;
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class RejectFulfillmentRequestRequest : System.Collections.Generic.Dictionary<string, object>
+    public partial class RejectFulfillmentRequestItem
     {
 
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_order")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public FulfillmentOrderWithOrigin? FulfillmentOrder { get; set; } = default!;
+
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class ReleaseFulfillmentHoldOnFulfillmentOrderRequest : System.Collections.Generic.Dictionary<string, object>
+    public partial class RejectFulfillmentRequestRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_request")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public MessageDetail FulfillmentRequest { get; set; } = new MessageDetail();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ReleaseFulfillmentHoldOnFulfillmentOrderRequest
     {
 
     }
@@ -8589,7 +8759,7 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class RescheduleFulfillAtTimeOfScheduledFulfillmentOrderRequest : System.Collections.Generic.Dictionary<string, object>
+    public partial class RescheduleFulfillAtTimeOfScheduledFulfillmentOrderRequest
     {
 
     }
@@ -8601,22 +8771,56 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("cancellation_request")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public CancellationRequest? CancellationRequest { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
+        public MessageDetail? CancellationRequest { get; set; } = default!;
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class SendFulfillmentRequestRequest : System.Collections.Generic.Dictionary<string, object>
+    public partial class SendFulfillmentRequestDetail
     {
+
+        [System.Text.Json.Serialization.JsonPropertyName("message")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Message { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_order_line_items")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<FulfillmentRequestOrderLineItems>? FulfillmentOrderLineItems { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class SendFulfillmentRequestItem
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("original_fulfillment_order")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public FulfillmentOrderWithOrigin? OriginalFulfillmentOrder { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("submitted_fulfillment_order")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public FulfillmentOrderWithOrigin? SubmittedFulfillmentOrder { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("unsubmitted_fulfillment_order")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public FulfillmentOrderWithOrigin? UnsubmittedFulfillmentOrder { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class SendFulfillmentRequestRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_request")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public SendFulfillmentRequestDetail FulfillmentRequest { get; set; } = new SendFulfillmentRequestDetail();
 
     }
 
@@ -8704,15 +8908,6 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class UpdateFulfillment
     {
-        /// <summary>
-        /// The date and time when the fulfillment was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
         /// <summary>
         /// A list of the fulfillment's line items, which includes:
         /// <br/>
@@ -8951,15 +9146,6 @@ namespace Ocelli.OpenShopify
         public System.Collections.Generic.ICollection<string>? TrackingUrls { get; set; } = default!;
 
         /// <summary>
-        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the fulfillment was last modified..
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
-        /// <summary>
         /// The name of the inventory management service.
         /// </summary>
 
@@ -8988,23 +9174,6 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class UpdateFulfillmentRequest
     {
-        /// <summary>
-        /// An optional message for the fulfillment request.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("message")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Message { get; set; } = default!;
-
-        /// <summary>
-        /// The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_order_line_items")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.Collections.Generic.ICollection<FulfillmentRequestOrderLineItems>? FulfillmentOrderLineItems { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment")]
 

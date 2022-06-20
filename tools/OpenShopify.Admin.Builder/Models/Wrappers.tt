@@ -66,7 +66,7 @@
 		new (modelName:"Fulfillment"),
 		new (modelName:"FulfillmentEvent"),
 		new (modelName:"FulfillmentOrder"),
-		new (modelName:"FulfillmentRequest", hasId:false),
+		//new (modelName:"FulfillmentRequest", hasId:false),
 		new (modelName:"FulfillmentService"),
 		new (modelName:"LocationsForMove", propertyNamePlural:"locations_for_move", hasId:false),
 		new (modelName:"Balance", hasId:false),
@@ -132,7 +132,13 @@ public partial record Update<#= section.ClassName #>Request
 }
 
 /// <inheritdoc cref="<#= section.ModelName #>"/>
-public partial record Update<#= section.ClassName #> : <#= section.ModelName #>{}
+public partial record Update<#= section.ClassName #> : <#= section.ModelName #>
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 <#
 		}
@@ -151,6 +157,18 @@ public partial record <#= section.ClassName #> : <#= section.BaseClass #>
 <#
 		}
 #>
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="<#= section.OrigClass #>"/>

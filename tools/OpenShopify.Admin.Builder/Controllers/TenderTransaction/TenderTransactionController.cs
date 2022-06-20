@@ -36,7 +36,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="processed_at_min">Show tender transactions processed_at or after the specified date.</param>
         /// <param name="since_id">Retrieve only transactions after the specified ID.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("tender_transactions.json")]
-        public abstract System.Threading.Tasks.Task ListTenderTransactions(int? limit = null, string? page_info = null, string? order = null, System.DateTimeOffset? processed_at = null, System.DateTimeOffset? processed_at_max = null, System.DateTimeOffset? processed_at_min = null, long? since_id = null);
+        public abstract System.Threading.Tasks.Task ListTenderTransactions([Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? order = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? processed_at = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? processed_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? processed_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null);
 
     }
 

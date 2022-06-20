@@ -285,11 +285,6 @@ components:
     CreateMetafield:
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was created.'
-          format: date-time
-          nullable: true
         description:
           type: string
           description: A description of the information that the metafield contains.
@@ -310,11 +305,6 @@ components:
         owner_resource:
           type: string
           description: The type of resource that the metafield is attached to.
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was last updated.'
-          format: date-time
           nullable: true
         value:
           description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
@@ -340,11 +330,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was created.'
-          format: date-time
-          nullable: true
         description:
           type: string
           description: A description of the information that the metafield contains.
@@ -366,11 +351,6 @@ components:
           type: string
           description: The type of resource that the metafield is attached to.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was last updated.'
-          format: date-time
-          nullable: true
         value:
           description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
           nullable: true
@@ -386,6 +366,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     MetafieldError:
@@ -459,11 +449,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was created.'
-          format: date-time
-          nullable: true
         description:
           type: string
           description: A description of the information that the metafield contains.
@@ -484,11 +469,6 @@ components:
         owner_resource:
           type: string
           description: The type of resource that the metafield is attached to.
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was last updated.'
-          format: date-time
           nullable: true
         value:
           description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'

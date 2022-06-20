@@ -29,7 +29,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Retrieves a list of fulfillment orders for a specific order
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillment_orders.json")]
-        public abstract System.Threading.Tasks.Task ListFulfillmentOrdersForSpecificOrder(long order_idUndefined);
+        public abstract System.Threading.Tasks.Task ListFulfillmentOrdersForSpecificOrder(long order_idPath);
 
         /// <summary>
         /// Retrieves a specific fulfillment order

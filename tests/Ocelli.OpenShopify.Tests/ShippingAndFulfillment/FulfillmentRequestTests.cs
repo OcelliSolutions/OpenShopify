@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
@@ -29,6 +28,20 @@ public class FulfillmentRequestFixture : SharedFixture, IAsyncLifetime
         var fulfillmentOrders = await GetFulfillmentOrders(Order);
         FulfillmentOrder = fulfillmentOrders.First();
         //Figure out how to populate FulfillmentOrder
+    }
+
+    public async Task<ShopifyResponse<SendFulfillmentRequestItem>> SendFulfillmentRequestAsync(string? message)
+    {
+
+        var request = new SendFulfillmentRequestRequest()
+        {
+            FulfillmentRequest = new SendFulfillmentRequestDetail()
+            {
+                Message = message
+            }
+        };
+        var response = await Service.FulfillmentRequest.SendFulfillmentRequestAsync(FulfillmentOrder.Id, request);
+        return response;
     }
 
     async Task IAsyncLifetime.DisposeAsync()
@@ -62,19 +75,63 @@ public class FulfillmentRequestTests : IClassFixture<FulfillmentRequestFixture>
     public FulfillmentRequestTests(FulfillmentRequestFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
+        _testOutputHelper = testOutputHelper;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
     }
 
     private FulfillmentRequestFixture Fixture { get; }
-    /*
-    [SkippableFact, TestPriority(10)]
-    public async Task CreateFulfillmentRequestAsync_CanCreate()
-    {
-        var request = Fixture.CreateFulfillmentRequestRequest();
-        var response = await Fixture.Service.FulfillmentRequest.SendFulfillmentRequestAsync(Fixture.FulfillmentOrder.Id, request);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+    private readonly ITestOutputHelper _testOutputHelper;
 
-        Fixture.CreatedFulfillmentRequests.Add(response.Result.FulfillmentRequest);
+    [SkippableFact, TestPriority(10)]
+    public async Task SendFulfillmentRequestAsync_CanCreate()
+    {
+        var response = await Fixture.SendFulfillmentRequestAsync($@"@{Fixture.BatchId}, Fulfill this ASAP please.");
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result, Fixture.MyShopifyUrl);
+
+        var originalFulfillmentOrder = response.Result.OriginalFulfillmentOrder;
+        var submittedFulfillmentOrder = response.Result.SubmittedFulfillmentOrder;
+        var unsubmittedFulfillmentOrder = response.Result.UnsubmittedFulfillmentOrder;
+
+        Assert.Equal(RequestStatus.Submitted, submittedFulfillmentOrder?.RequestStatus);
+        Assert.Equal(FulfillmentOrderStatus.Open, submittedFulfillmentOrder?.Status);
+        Assert.Null(unsubmittedFulfillmentOrder); //no line items were specified, so there is nothing unsubmitted.
     }
-    */
+
+    [SkippableFact, TestPriority(10)]
+    public async Task AcceptFulfillmentRequestAsync_CanCreate()
+    {
+        var sendFulfillmentResponse = await Fixture.SendFulfillmentRequestAsync($@"@{Fixture.BatchId}, Fulfill this ASAP please.");
+        
+        var submittedFulfillmentOrder = sendFulfillmentResponse.Result.SubmittedFulfillmentOrder;
+
+        var response = await Fixture.Service.FulfillmentRequest.AcceptFulfillmentRequestAsync(
+            submittedFulfillmentOrder?.Id ?? 0,
+            new AcceptFulfillmentRequestRequest() { FulfillmentRequest = new MessageDetail() { Message = "We will start processing your fulfillment on the next business day." } });
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result, Fixture.MyShopifyUrl);
+
+        var acceptedResponse = response.Result.FulfillmentOrder;
+        Assert.Equal(RequestStatus.Accepted, acceptedResponse.RequestStatus);
+        Assert.Equal(FulfillmentOrderStatus.InProgress, acceptedResponse.Status);
+    }
+
+
+    [SkippableFact, TestPriority(10)]
+    public async Task RejectFulfillmentRequestAsync_CanCreate()
+    {
+        var sendFulfillmentResponse = await Fixture.SendFulfillmentRequestAsync($@"@{Fixture.BatchId}, Fulfill this ASAP please.");
+
+        var submittedFulfillmentOrder = sendFulfillmentResponse.Result.SubmittedFulfillmentOrder;
+
+        var response = await Fixture.Service.FulfillmentRequest.RejectFulfillmentRequestAsync(
+            submittedFulfillmentOrder?.Id ?? 0,
+            new RejectFulfillmentRequestRequest() { FulfillmentRequest = new MessageDetail() { Message = "Not enough inventory on hand to complete the work." } });
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result, Fixture.MyShopifyUrl);
+
+        var acceptedResponse = response.Result.FulfillmentOrder;
+        Assert.Equal(RequestStatus.Rejected, acceptedResponse.RequestStatus);
+        Assert.Equal(FulfillmentOrderStatus.Open, acceptedResponse.Status);
+    }
 }

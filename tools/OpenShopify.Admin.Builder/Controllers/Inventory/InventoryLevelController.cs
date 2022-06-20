@@ -34,7 +34,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="location_ids">A comma-separated list of location IDs. To find the ID of a location, use the [Location resource](/api/admin-rest/latest/resources/location)</param>
         /// <param name="updated_at_min">Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_levels.json")]
-        public abstract System.Threading.Tasks.Task ListInventoryLevels(string? inventory_item_ids = null, int? limit = null, string? page_info = null, string? location_ids = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task ListInventoryLevels([Microsoft.AspNetCore.Mvc.FromQuery] string? inventory_item_ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? location_ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Deletes an inventory level from a location
@@ -42,7 +42,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="inventory_item_id">The ID for the inventory item.</param>
         /// <param name="location_id">The ID of the location that the inventory level belongs to. To find the ID of the location, use the [Location resource](/api/admin-rest/latest/resources/location)</param>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("inventory_levels.json")]
-        public abstract System.Threading.Tasks.Task DeleteInventoryLevelFromLocation(long inventory_item_id, long location_id);
+        public abstract System.Threading.Tasks.Task DeleteInventoryLevelFromLocation([Microsoft.AspNetCore.Mvc.FromQuery] long inventory_item_id, [Microsoft.AspNetCore.Mvc.FromQuery] long location_id);
 
         /// <summary>
         /// Adjusts the inventory level of an inventory item at a location
@@ -93,15 +93,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public long? LocationId { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the inventory level was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

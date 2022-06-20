@@ -29,7 +29,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Retrieves a list of fulfillment events for a specific fulfillment
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events.json")]
-        public abstract System.Threading.Tasks.Task ListFulfillmentEventsForSpecificFulfillment(long fulfillment_idUndefined, long order_idUndefined);
+        public abstract System.Threading.Tasks.Task ListFulfillmentEventsForSpecificFulfillment(long fulfillment_idPath, long order_idPath);
 
         /// <summary>
         /// Creates a fulfillment event
@@ -41,7 +41,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Retrieves a specific fulfillment event
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json")]
-        public abstract System.Threading.Tasks.Task GetFulfillmentEvent(long event_idUndefined, long fulfillment_id, long order_id);
+        public abstract System.Threading.Tasks.Task GetFulfillmentEvent(long event_idPath, long fulfillment_id, long order_id);
 
         /// <summary>
         /// Deletes a fulfillment event
@@ -80,15 +80,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Country { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
         /// <summary>
         /// The estimated delivery date based on the fulfillment's tracking number, as long as it's provided by one of the following carriers: USPS, FedEx, UPS, or Canada Post (Canada only). Value is `null` if no tracking number is available or if the tracking number is from an unsupported carrier. This property is available only when [carrier calculated rates](https://help.shopify.com/manual/shipping/rates-and-methods/custom-calculated-rates) are in use.'
@@ -190,15 +181,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Status { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the fulfillment event was updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         /// <summary>
         /// The zip code of the location where the fulfillment event occurred.

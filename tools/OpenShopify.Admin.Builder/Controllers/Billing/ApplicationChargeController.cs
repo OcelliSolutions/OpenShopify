@@ -37,14 +37,14 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_charges.json")]
-        public abstract System.Threading.Tasks.Task ListApplicationCharges(string? fields = null, long? since_id = null);
+        public abstract System.Threading.Tasks.Task ListApplicationCharges([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null);
 
         /// <summary>
         /// Retrieves an application charge
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("application_charges/{application_charge_id}.json")]
-        public abstract System.Threading.Tasks.Task GetApplicationCharge(long application_charge_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetApplicationCharge(long application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
     }
 
@@ -59,15 +59,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? ConfirmationUrl { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the application charge was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
         /// <summary>
         /// The application charge name.
@@ -119,15 +110,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? Test { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the charge was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

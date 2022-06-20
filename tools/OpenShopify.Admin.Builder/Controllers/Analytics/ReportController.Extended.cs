@@ -14,7 +14,7 @@ public class ReportController : ReportControllerBase
     /// <inheritdoc />
     [HttpGet, Route("reports.json")]
     [ProducesResponseType(typeof(ReportList), StatusCodes.Status200OK)]
-    public override Task ListReports(string? fields = null, string? ids = null, int? limit = null, string? page_info = null, long? since_id = null,
+    public override Task ListReports(string? fields = null, [FromQuery] IEnumerable<long>? ids = null, int? limit = null, string? page_info = null, long? since_id = null,
         DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();

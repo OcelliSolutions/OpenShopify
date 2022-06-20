@@ -14,7 +14,7 @@ public class CustomerController : CustomerControllerBase
     /// <inheritdoc />
     [HttpGet, Route("customers.json")]
     [ProducesResponseType(typeof(CustomerList), StatusCodes.Status200OK)]
-    public override Task ListCustomers(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null, string? fields = null, string? ids = null,
+    public override Task ListCustomers(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null, string? fields = null, [FromQuery] IEnumerable<long>? ids = null,
         int? limit = null, string? page_info = null, long? since_id = null, DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {
         throw new NotImplementedException();

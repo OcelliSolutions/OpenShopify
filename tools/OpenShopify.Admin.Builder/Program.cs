@@ -104,6 +104,7 @@ builder.Services.AddSwaggerGen(c =>
     c.DocumentFilter<AdditionalPropertiesDocumentFilter>();
     c.DocumentFilter<IgnoreApiDocumentFilter>();
     c.OperationFilter<ResponseHeadersFilter>();
+    c.OperationFilter<CommaSeparatedParameterOperationFilter>();
     c.SchemaFilter<DescribeEnumMemberValues>();
     c.AddSecurityDefinition("ApiKey",
         new OpenApiSecurityScheme

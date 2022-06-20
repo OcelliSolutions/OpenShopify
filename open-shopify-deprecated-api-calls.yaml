@@ -90,6 +90,16 @@ components:
           type: string
           description: The earliest API version to migrate to in order to avoid making the deprecated API calls.
           nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     DeprecatedApiCallList:
       required:

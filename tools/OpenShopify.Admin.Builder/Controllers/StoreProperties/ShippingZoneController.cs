@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shipping_zones.json")]
-        public abstract System.Threading.Tasks.Task ListShippingZones(string? fields = null);
+        public abstract System.Threading.Tasks.Task ListShippingZones([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
     }
 

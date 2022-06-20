@@ -452,11 +452,6 @@ components:
           type: string
           description: The Admin API version that Shopify uses to serialize webhook events. This value is inherited from the app that created the webhook subscription.
           nullable: true
-        created_at:
-          type: string
-          description: 'Date and time when the webhook subscription was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         fields:
           type: array
           items:
@@ -479,11 +474,6 @@ components:
           nullable: true
         topic:
           $ref: '#/components/schemas/WebhookTopic'
-        updated_at:
-          type: string
-          description: 'Date and time when the webhook subscription was updated. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
       additionalProperties: false
     CreateWebhookRequest:
       required:
@@ -506,11 +496,6 @@ components:
         body:
           type: string
           description: A text field containing information about the event.
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the event was created.'
-          format: date-time
           nullable: true
         description:
           type: string
@@ -548,6 +533,16 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     EventItem:
       required:
@@ -581,11 +576,6 @@ components:
           type: string
           description: The Admin API version that Shopify uses to serialize webhook events. This value is inherited from the app that created the webhook subscription.
           nullable: true
-        created_at:
-          type: string
-          description: 'Date and time when the webhook subscription was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         fields:
           type: array
           items:
@@ -608,11 +598,6 @@ components:
           nullable: true
         topic:
           $ref: '#/components/schemas/WebhookTopic'
-        updated_at:
-          type: string
-          description: 'Date and time when the webhook subscription was updated. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         id:
           type: integer
           format: int64
@@ -642,11 +627,6 @@ components:
           type: string
           description: The Admin API version that Shopify uses to serialize webhook events. This value is inherited from the app that created the webhook subscription.
           nullable: true
-        created_at:
-          type: string
-          description: 'Date and time when the webhook subscription was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         fields:
           type: array
           items:
@@ -669,16 +649,21 @@ components:
           nullable: true
         topic:
           $ref: '#/components/schemas/WebhookTopic'
-        updated_at:
-          type: string
-          description: 'Date and time when the webhook subscription was updated. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         id:
           type: integer
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     WebhookError:

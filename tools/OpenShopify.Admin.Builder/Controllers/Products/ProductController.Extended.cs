@@ -17,7 +17,7 @@ public class ProductController : ProductControllerBase
     [ProducesResponseHeader("Link", StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProductList), StatusCodes.Status200OK)]
     public override Task ListProducts(long collection_id, DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null,
-        string? fields = null, string? handle = null, string? ids = null, int? limit = null, string? page_info = null,
+        string? fields = null, string? handle = null, [FromQuery] IEnumerable<long>? ids = null, int? limit = null, string? page_info = null,
         string? presentment_currencies = null, string? product_type = null, DateTimeOffset? published_at_max = null,
         DateTimeOffset? published_at_min = null, string? published_status = null, long? since_id = null,
         string? status = null, string? title = null, DateTimeOffset? updated_at_max = null,
@@ -31,7 +31,7 @@ public class ProductController : ProductControllerBase
     [ProducesResponseHeader("Link", StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProductList), StatusCodes.Status200OK)]
     public Task ListProducts(long? collection_id, DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null,
-        string? fields = null, string? handle = null, string? ids = null, int? limit = null, string? page_info = null,
+        string? fields = null, string? handle = null, [FromQuery] IEnumerable<long>? ids = null, int? limit = null, string? page_info = null,
         string? presentment_currencies = null, string? product_type = null, DateTimeOffset? published_at_max = null,
         DateTimeOffset? published_at_min = null, string? published_status = null, long? since_id = null,
         string? status = null, string? title = null, DateTimeOffset? updated_at_max = null,

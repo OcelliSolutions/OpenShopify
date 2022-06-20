@@ -43,7 +43,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_max">Show articles last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Show articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles.json")]
-        public abstract System.Threading.Tasks.Task ListArticles(long blog_id, string? author = null, System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, string? fields = null, string? handle = null, int? limit = null, string? page_info = null, System.DateTimeOffset? published_at_max = null, System.DateTimeOffset? published_at_min = null, string? published_status = null, long? since_id = null, string? tag = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task ListArticles(long blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? author = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? tag = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Creates an article for a blog
@@ -62,14 +62,14 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_max">Count articles last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Count articles last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/count.json")]
-        public abstract System.Threading.Tasks.Task CountArticles(long? blog_id = null, System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, System.DateTimeOffset? published_at_max = null, System.DateTimeOffset? published_at_min = null, string? published_status = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task CountArticles(long? blog_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Receive a single Article
         /// </summary>
         /// <param name="fields">Show only certain fields, specifed by a comma-separated list of field names.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/{article_id}.json")]
-        public abstract System.Threading.Tasks.Task GetArticle(long article_id, long blog_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetArticle(long article_id, long blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates an article
@@ -96,7 +96,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         /// <param name="popular">A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("articles/tags.json")]
-        public abstract System.Threading.Tasks.Task ListArticleTags(int? limit = null, string? page_info = null, string? popular = null);
+        public abstract System.Threading.Tasks.Task ListArticleTags([Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? popular = null);
 
         /// <summary>
         /// Retrieves a list of all article tags from a specific blog
@@ -105,7 +105,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         /// <param name="popular">A flag for ordering retrieved tags. If present in the request, then the results will be ordered by popularity, starting with the most popular tag.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("blogs/{blog_id}/articles/tags.json")]
-        public abstract System.Threading.Tasks.Task ListArticleTagsFromSpecificBlog(long blog_id, int? limit = null, string? page_info = null, string? popular = null);
+        public abstract System.Threading.Tasks.Task ListArticleTagsFromSpecificBlog(long blog_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? popular = null);
 
     }
 
@@ -138,15 +138,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? BodyHtml { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
         /// <summary>
         /// A human-friendly unique string for the article that's automatically generated from the article's title.The handle is used in the article's URL.
@@ -240,15 +231,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         /// <summary>
         /// A unique numeric identifier for the author of the article.

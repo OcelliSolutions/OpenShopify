@@ -30,7 +30,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collections/{collection_id}.json")]
-        public abstract System.Threading.Tasks.Task GetCollection(long collection_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetCollection(long collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Retrieve a list of products belonging to a collection
@@ -38,7 +38,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="limit">The number of products to retrieve.</param>
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("collections/{collection_id}/products.json")]
-        public abstract System.Threading.Tasks.Task ListProductsBelongingToCollection(long collection_id, int? limit = null, string? page_info = null);
+        public abstract System.Threading.Tasks.Task ListProductsBelongingToCollection(long collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null);
 
     }
 
@@ -135,15 +135,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the collection was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

@@ -47,7 +47,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_max">Show price rules last updated before date (format 2017-03-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Show price rules last updated after date (format 2017-03-25T16:15:47-04:00).</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("price_rules.json")]
-        public abstract System.Threading.Tasks.Task ListPriceRules(System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, System.DateTimeOffset? ends_at_max = null, System.DateTimeOffset? ends_at_min = null, int? limit = null, string? page_info = null, long? since_id = null, System.DateTimeOffset? starts_at_max = null, System.DateTimeOffset? starts_at_min = null, int? times_used = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task ListPriceRules([Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? ends_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? ends_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? starts_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? starts_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? times_used = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Updates an existing a price rule
@@ -91,24 +91,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? AllocationMethod { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the price rule was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the price rule was updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         /// <summary>
         /// The customer selection for the price rule. Valid values:

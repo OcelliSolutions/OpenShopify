@@ -587,11 +587,6 @@ components:
           type: string
           description: The URL where the merchant accepts or declines the application charge.
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the application charge was created.'
-          format: date-time
-          nullable: true
         name:
           type: string
           description: The application charge name.
@@ -611,11 +606,6 @@ components:
           type: boolean
           description: 'Whether the application charge is a test transaction. Valid values:`true`,`null`.'
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the charge was last updated.'
-          format: date-time
-          nullable: true
         api_client_id:
           type: integer
           format: int32
@@ -630,6 +620,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     ApplicationChargeError:
@@ -705,6 +705,16 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     ApplicationCreditError:
       required:
@@ -743,18 +753,13 @@ components:
       additionalProperties: { }
     CancelRecurringApplicationChargeRequest:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     CreateApplicationCharge:
       type: object
       properties:
         confirmation_url:
           type: string
           description: The URL where the merchant accepts or declines the application charge.
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the application charge was created.'
-          format: date-time
           nullable: true
         name:
           type: string
@@ -774,11 +779,6 @@ components:
         test:
           type: boolean
           description: 'Whether the application charge is a test transaction. Valid values:`true`,`null`.'
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the charge was last updated.'
-          format: date-time
           nullable: true
         api_client_id:
           type: integer
@@ -849,11 +849,6 @@ components:
           type: string
           description: The URL where the merchant accepts or declines the recurring application charge.
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the recurring application charge was created.'
-          format: date-time
-          nullable: true
         name:
           type: string
           description: The name of the recurring application charge.
@@ -889,11 +884,6 @@ components:
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the free trial ends.'
           format: date-time
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the recurring application charge was last updated.'
-          format: date-time
-          nullable: true
         api_client_id:
           type: integer
           format: int64
@@ -912,11 +902,6 @@ components:
     CreateUsageCharge:
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the usage charge was created.'
-          format: date-time
-          nullable: true
         description:
           type: string
           description: The description of the usage charge.
@@ -930,11 +915,6 @@ components:
           type: integer
           description: The ID of the recurring application charge that the usage charge belongs to.
           format: int64
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the usage charge was last updated.'
-          format: date-time
           nullable: true
       additionalProperties: false
     CreateUsageChargeRequest:
@@ -973,11 +953,6 @@ components:
           type: string
           description: The URL where the merchant accepts or declines the recurring application charge.
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the recurring application charge was created.'
-          format: date-time
-          nullable: true
         name:
           type: string
           description: The name of the recurring application charge.
@@ -1013,11 +988,6 @@ components:
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the free trial ends.'
           format: date-time
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the recurring application charge was last updated.'
-          format: date-time
-          nullable: true
         api_client_id:
           type: integer
           format: int64
@@ -1029,6 +999,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     RecurringApplicationChargeError:
@@ -1079,11 +1059,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the usage charge was created.'
-          format: date-time
-          nullable: true
         description:
           type: string
           description: The description of the usage charge.
@@ -1098,16 +1073,21 @@ components:
           description: The ID of the recurring application charge that the usage charge belongs to.
           format: int64
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the usage charge was last updated.'
-          format: date-time
-          nullable: true
         id:
           type: integer
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     UsageChargeError:

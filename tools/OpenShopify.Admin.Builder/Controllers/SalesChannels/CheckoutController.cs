@@ -115,15 +115,6 @@ namespace OpenShopify.Admin.Builder.Models
         public bool? BuyerAcceptsMarketing { get; set; } = default!;
 
         /// <summary>
-        /// The date and time ([ISO 8601 format](//en.wikipedia.org/wiki/ISO_8601)) when the checkout was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
         /// The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) of the shop's default currency at the time of checkout. For the currency that the customer used at checkout, see `presentment_currency`.
         /// </summary>
 
@@ -400,15 +391,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public decimal? TotalTax { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601 format](//en.wikipedia.org/wiki/ISO_8601) format) when the checkout was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         /// <summary>
         /// The ID of the user who created the checkout. This value is passed to the order. Default value: `null`.

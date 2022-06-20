@@ -34,7 +34,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         /// <param name="status">Retrieve gift cards with a given status. Valid values:</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards.json")]
-        public abstract System.Threading.Tasks.Task ListGiftCards(string? fields = null, int? limit = null, string? page_info = null, long? since_id = null, string? status = null);
+        public abstract System.Threading.Tasks.Task ListGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? status = null);
 
         /// <summary>
         /// Creates a gift card
@@ -59,7 +59,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="status">Count gift cards with a given status. Valid values:</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/count.json")]
-        public abstract System.Threading.Tasks.Task CountGiftCards(string? status = null);
+        public abstract System.Threading.Tasks.Task CountGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? status = null);
 
         /// <summary>
         /// Disables a gift card
@@ -76,7 +76,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="order">The field and direction to order results by.</param>
         /// <param name="query">The text to search for.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("gift_cards/search.json")]
-        public abstract System.Threading.Tasks.Task SearchForGiftCards(string? fields = null, int? limit = null, string? page_info = null, string? order = null, string? query = null);
+        public abstract System.Threading.Tasks.Task SearchForGiftCards([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? order = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? query = null);
 
     }
 
@@ -109,15 +109,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Code { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
         /// <summary>
         /// The currency of the gift card.
@@ -217,15 +208,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public long? UserId { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

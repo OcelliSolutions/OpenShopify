@@ -39,7 +39,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_max">Retrieve webhooks that were updated after a given date and time (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Retrieve webhooks that were updated before a given date and time (format: 2014-04-25T16:15:47-04:00).</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("webhooks.json")]
-        public abstract System.Threading.Tasks.Task ListWebhooks(string? address = null, System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, string? fields = null, int? limit = null, string? page_info = null, long? since_id = null, string? topic = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task ListWebhooks([Microsoft.AspNetCore.Mvc.FromQuery] string? address = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? topic = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Create a new Webhook
@@ -53,14 +53,14 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="address">Webhook subscriptions that send the POST request to this URI.</param>
         /// <param name="topic">The topic of the webhook subscriptions.For a list of valid values, refer to the [`topic` property](#topic-property-{{ current_version }}).</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("webhooks/count.json")]
-        public abstract System.Threading.Tasks.Task CountWebhooks(string? address = null, string? topic = null);
+        public abstract System.Threading.Tasks.Task CountWebhooks([Microsoft.AspNetCore.Mvc.FromQuery] string? address = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? topic = null);
 
         /// <summary>
         /// Receive a single Webhook
         /// </summary>
         /// <param name="fields">Comma-separated list of the properties you want returned for each item in the result list. Use this parameter to restrict the returned list of items to only those properties you specify.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("webhooks/{webhook_id}.json")]
-        public abstract System.Threading.Tasks.Task GetWebhook(long webhook_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetWebhook(long webhook_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Modify an existing Webhook
@@ -96,15 +96,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? ApiVersion { get; set; } = default!;
-
-        /// <summary>
-        /// Date and time when the webhook subscription was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
         /// <summary>
         /// An optional array of top-level resource fields that should be serialized and sent in the POST request. If absent, all fields will be sent.
@@ -150,15 +141,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Topic { get; set; } = default!;
-
-        /// <summary>
-        /// Date and time when the webhook subscription was updated. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

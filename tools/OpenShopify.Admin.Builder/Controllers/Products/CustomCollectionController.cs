@@ -42,7 +42,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_max">Show custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Show custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("custom_collections.json")]
-        public abstract System.Threading.Tasks.Task ListCustomCollections(string? fields = null, string? handle = null, string? ids = null, int? limit = null, string? page_info = null, long? product_id = null, System.DateTimeOffset? published_at_max = null, System.DateTimeOffset? published_at_min = null, string? published_status = null, long? since_id = null, string? title = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task ListCustomCollections([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.Collections.Generic.IEnumerable<long>? ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? product_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? title = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Creates a custom collection
@@ -61,14 +61,14 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_max">Count custom collections last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Count custom collections last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("custom_collections/count.json")]
-        public abstract System.Threading.Tasks.Task CountCustomCollections(long? product_id = null, System.DateTimeOffset? published_at_max = null, System.DateTimeOffset? published_at_min = null, string? published_status = null, string? title = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task CountCustomCollections([Microsoft.AspNetCore.Mvc.FromQuery] long? product_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? published_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? published_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? published_status = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? title = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Retrieves a single custom collection
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("custom_collections/{custom_collection_id}.json")]
-        public abstract System.Threading.Tasks.Task GetCustomCollection(long custom_collection_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetCustomCollection(long custom_collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates an existing custom collection
@@ -186,15 +186,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the custom collection was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

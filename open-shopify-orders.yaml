@@ -159,15 +159,21 @@ paths:
       summary: Retrieves a list of draft orders
       operationId: ListDraftOrders
       parameters:
-        - name: fieldsQuery
+        - name: fields
           in: query
+          description: A comma-separated list of fields to include in the response
           schema:
             type: string
         - name: ids
           in: query
           description: Filter by list of IDs
+          style: form
+          explode: false
           schema:
-            type: string
+            type: array
+            items:
+              type: integer
+              format: int64
         - name: limit
           in: query
           description: Amount of results
@@ -511,8 +517,13 @@ paths:
         - name: ids
           in: query
           description: Retrieve only orders specified by a comma-separated list of order IDs.
+          style: form
+          explode: false
           schema:
-            type: string
+            type: array
+            items:
+              type: integer
+              format: int64
         - name: limit
           in: query
           description: The maximum number of results to show on a page.
@@ -1657,7 +1668,7 @@ components:
       properties:
         refund:
           $ref: '#/components/schemas/CalculateRefundRequestDetail'
-      additionalProperties: { }
+      additionalProperties: false
     CalculateRefundRequestDetail:
       type: object
       properties:
@@ -1673,10 +1684,10 @@ components:
           nullable: true
         shipping:
           $ref: '#/components/schemas/Shipping'
-      additionalProperties: { }
+      additionalProperties: false
     CancelOrderRequest:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     CancelReason:
       enum:
         - customer
@@ -1685,7 +1696,7 @@ components:
         - declined
         - other
       type: string
-      additionalProperties: { }
+      additionalProperties: false
     Checkout:
       required:
         - id
@@ -1700,11 +1711,6 @@ components:
         buyer_accepts_marketing:
           type: boolean
           description: Whether the customer has consented to receive marketing material via email.
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](//en.wikipedia.org/wiki/ISO_8601)) when the checkout was created.'
-          format: date-time
           nullable: true
         currency:
           type: string
@@ -1818,11 +1824,6 @@ components:
           description: The sum of all the taxes applied to the checkout in presentment currency.
           format: decimal
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](//en.wikipedia.org/wiki/ISO_8601) format) when the checkout was last modified.'
-          format: date-time
-          nullable: true
         user_id:
           type: integer
           description: 'The ID of the user who created the checkout. This value is passed to the order. Default value: `null`.'
@@ -1915,6 +1916,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     CheckoutLineItem:
@@ -2090,7 +2101,7 @@ components:
       additionalProperties: { }
     CompleteDraftOrderRequest:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     CountItem:
       type: object
       properties:
@@ -2205,16 +2216,6 @@ components:
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order is created and the draft order is completed.'
           format: date-time
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was created in Shopify.'
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was last modified.'
-          format: date-time
-          nullable: true
         status:
           type: string
           description: "The status of a draft order as it transitions into an order. When a draft order is created it is set to `open` status. The invoice can then be sent to the customer, and `status` changes to `invoice_sent`. The draft order can then be paid, set to pending, or paid by credit card. In each case, the draft order is set to `completed` and an order is created.\r\n\r\nAfter a draft order is set to `completed` the only further modifications that can be made are adding tags or metafields.\r\n\r\nValid values: * **open**: Draft order is open. * **invoice_sent**: Invoice has been sent for the draft order. * **completed**: Draft order has been completed and turned into an order."
@@ -2276,11 +2277,6 @@ components:
         closed_at:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was closed. Returns `null` if the order isn''t closed.'
-          format: date-time
-          nullable: true
-        created_at:
-          type: string
-          description: 'The autogenerated date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was created in Shopify. The value for this property cannot be changed.'
           format: date-time
           nullable: true
         currency:
@@ -2528,11 +2524,6 @@ components:
           description: The sum of all line item weights in grams. The sum is not adjusted as items are removed from the order.
           format: decimal
           nullable: true
-        updated_at:
-          type: string
-          description: "The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was last modified.\r\n\r\nFiltering orders by `updated_at` is not an effective method for fetching orders because its value can change when no visible fields of an order have been updated. Use the [Webhook](/docs/admin-api/rest/reference/events/webhook) and [Event](/docs/admin-api/rest/reference/events/event) APIs to subscribe to order events instead."
-          format: date-time
-          nullable: true
         user_id:
           type: integer
           description: 'The ID of the user logged into Shopify POS who processed the order, if applicable.'
@@ -2630,11 +2621,6 @@ components:
     CreateRefund:
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the refund was created.'
-          format: date-time
-          nullable: true
         duties:
           type: array
           items:
@@ -2725,11 +2711,6 @@ components:
         authorization_expires_at:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the Shopify Payments authorization expires.'
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the transaction was created.'
-          format: date-time
           nullable: true
         currency:
           type: string
@@ -2867,11 +2848,6 @@ components:
           type: string
           description: 'The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency that the customer used when they paid for their last order. Defaults to the shop currency. Returns the shop currency for test orders.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer was created.'
-          format: date-time
-          nullable: true
         default_address:
           $ref: '#/components/schemas/CustomerAddress'
         email:
@@ -2948,11 +2924,6 @@ components:
           description: The total amount of money that the customer has spent across their order history.
           format: decimal
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer information was last updated.'
-          format: date-time
-          nullable: true
         verified_email:
           type: boolean
           description: Whether the customer has verified their email address.
@@ -2974,6 +2945,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     CustomerAddress:
@@ -3113,16 +3094,6 @@ components:
           type: string
           description: "The case-insensitive discount code that customers use at checkout. (maximum: 255 characters)\r\n <div class=\"note note-caution\"> \r\n\r\nUse the same value for `code` as the `title` property of the associated [price rule](/docs/admin-api/rest/reference/discounts/pricerule/#title-property).\r\n </div>"
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the discount code was created.'
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the discount code was updated.'
-          format: date-time
-          nullable: true
         price_rule_id:
           type: integer
           description: The ID for the price rule that this discount code belongs to.
@@ -3146,6 +3117,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     DiscountValueType:
@@ -3403,16 +3384,6 @@ components:
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order is created and the draft order is completed.'
           format: date-time
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was created in Shopify.'
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was last modified.'
-          format: date-time
-          nullable: true
         status:
           type: string
           description: "The status of a draft order as it transitions into an order. When a draft order is created it is set to `open` status. The invoice can then be sent to the customer, and `status` changes to `invoice_sent`. The draft order can then be paid, set to pending, or paid by credit card. In each case, the draft order is set to `completed` and an order is created.\r\n\r\nAfter a draft order is set to `completed` the only further modifications that can be made are adding tags or metafields.\r\n\r\nValid values: * **open**: Draft order is open. * **invoice_sent**: Invoice has been sent for the draft order. * **completed**: Draft order has been completed and turned into an order."
@@ -3432,6 +3403,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     DraftOrderError:
@@ -3485,6 +3466,16 @@ components:
           nullable: true
         custom_message:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     DraftOrderInvoiceItem:
@@ -3581,11 +3572,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time when the fulfillment was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         line_items:
           type: array
           items:
@@ -3646,11 +3632,6 @@ components:
             type: string
           description: The URLs of tracking pages for the fulfillment.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the fulfillment was last modified..'
-          format: date-time
-          nullable: true
         variant_inventory_management:
           type: string
           description: The name of the inventory management service.
@@ -3662,6 +3643,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     FulfillmentStatus:
@@ -3892,11 +3883,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was created.'
-          format: date-time
-          nullable: true
         description:
           type: string
           description: A description of the information that the metafield contains.
@@ -3918,11 +3904,6 @@ components:
           type: string
           description: The type of resource that the metafield is attached to.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was last updated.'
-          format: date-time
-          nullable: true
         value:
           description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
           nullable: true
@@ -3938,6 +3919,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     MetafieldType:
@@ -4014,11 +4005,6 @@ components:
         closed_at:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was closed. Returns `null` if the order isn''t closed.'
-          format: date-time
-          nullable: true
-        created_at:
-          type: string
-          description: 'The autogenerated date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was created in Shopify. The value for this property cannot be changed.'
           format: date-time
           nullable: true
         currency:
@@ -4266,11 +4252,6 @@ components:
           description: The sum of all line item weights in grams. The sum is not adjusted as items are removed from the order.
           format: decimal
           nullable: true
-        updated_at:
-          type: string
-          description: "The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was last modified.\r\n\r\nFiltering orders by `updated_at` is not an effective method for fetching orders because its value can change when no visible fields of an order have been updated. Use the [Webhook](/docs/admin-api/rest/reference/events/webhook) and [Event](/docs/admin-api/rest/reference/events/event) APIs to subscribe to order events instead."
-          format: date-time
-          nullable: true
         user_id:
           type: integer
           description: 'The ID of the user logged into Shopify POS who processed the order, if applicable.'
@@ -4311,6 +4292,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     OrderError:
@@ -4411,6 +4402,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     OrderRiskError:
@@ -4537,11 +4538,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the refund was created.'
-          format: date-time
-          nullable: true
         duties:
           type: array
           items:
@@ -4613,6 +4609,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     RefundDuty:
@@ -4799,7 +4805,7 @@ components:
       properties:
         draft_order_invoice:
           $ref: '#/components/schemas/DraftOrderInvoice'
-      additionalProperties: { }
+      additionalProperties: false
     Shipping:
       type: object
       properties:
@@ -4931,11 +4937,6 @@ components:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the Shopify Payments authorization expires.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the transaction was created.'
-          format: date-time
-          nullable: true
         currency:
           type: string
           description: 'The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency used for the payment.'
@@ -5016,6 +5017,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     TransactionError:
@@ -5202,16 +5213,6 @@ components:
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order is created and the draft order is completed.'
           format: date-time
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was created in Shopify.'
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was last modified.'
-          format: date-time
-          nullable: true
         status:
           type: string
           description: "The status of a draft order as it transitions into an order. When a draft order is created it is set to `open` status. The invoice can then be sent to the customer, and `status` changes to `invoice_sent`. The draft order can then be paid, set to pending, or paid by credit card. In each case, the draft order is set to `completed` and an order is created.\r\n\r\nAfter a draft order is set to `completed` the only further modifications that can be made are adding tags or metafields.\r\n\r\nValid values: * **open**: Draft order is open. * **invoice_sent**: Invoice has been sent for the draft order. * **completed**: Draft order has been completed and turned into an order."
@@ -5281,11 +5282,6 @@ components:
         closed_at:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was closed. Returns `null` if the order isn''t closed.'
-          format: date-time
-          nullable: true
-        created_at:
-          type: string
-          description: 'The autogenerated date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was created in Shopify. The value for this property cannot be changed.'
           format: date-time
           nullable: true
         currency:
@@ -5532,11 +5528,6 @@ components:
           type: number
           description: The sum of all line item weights in grams. The sum is not adjusted as items are removed from the order.
           format: decimal
-          nullable: true
-        updated_at:
-          type: string
-          description: "The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was last modified.\r\n\r\nFiltering orders by `updated_at` is not an effective method for fetching orders because its value can change when no visible fields of an order have been updated. Use the [Webhook](/docs/admin-api/rest/reference/events/webhook) and [Event](/docs/admin-api/rest/reference/events/event) APIs to subscribe to order events instead."
-          format: date-time
           nullable: true
         user_id:
           type: integer

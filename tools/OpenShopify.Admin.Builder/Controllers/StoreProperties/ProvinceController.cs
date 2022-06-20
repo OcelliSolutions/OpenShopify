@@ -31,7 +31,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of fields names.</param>
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces.json")]
-        public abstract System.Threading.Tasks.Task ListProvinces(long country_id, string? fields = null, long? since_id = null);
+        public abstract System.Threading.Tasks.Task ListProvinces(long country_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null);
 
         /// <summary>
         /// Retrieves a count of provinces for a country
@@ -44,7 +44,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("countries/{country_id}/provinces/{province_id}.json")]
-        public abstract System.Threading.Tasks.Task GetProvince(long country_id, long province_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetProvince(long country_id, long province_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates an existing province for a country

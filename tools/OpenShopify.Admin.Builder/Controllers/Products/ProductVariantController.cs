@@ -34,7 +34,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="presentment_currencies">Return presentment prices in only certain currencies, specified by a comma-separated list of [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency codes.</param>
         /// <param name="since_id">Restrict results to after the specified ID</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/variants.json")]
-        public abstract System.Threading.Tasks.Task ListProductVariants(long product_id, string? fields = null, int? limit = null, string? page_info = null, string? presentment_currencies = null, long? since_id = null);
+        public abstract System.Threading.Tasks.Task ListProductVariants(long product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? presentment_currencies = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null);
 
         /// <summary>
         /// Create a new Product Variant
@@ -53,7 +53,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("variants/{variant_id}.json")]
-        public abstract System.Threading.Tasks.Task GetProductVariant(long variant_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetProductVariant(long variant_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Modify an existing Product Variant
@@ -89,15 +89,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public decimal? CompareAtPrice { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product variant was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
         /// <summary>
         /// The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice).
@@ -282,15 +273,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the product variant was last modified. Gets returned in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         /// <summary>
         /// The weight of the product variant in the unit system specified with `weight_unit`.

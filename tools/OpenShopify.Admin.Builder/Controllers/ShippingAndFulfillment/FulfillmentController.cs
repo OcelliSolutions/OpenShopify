@@ -37,7 +37,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_max">Show fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Show fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments.json")]
-        public abstract System.Threading.Tasks.Task GetFulfillmentsAssociatedWithOrder(long order_id, System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, string? fields = null, int? limit = null, string? page_info = null, long? since_id = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task GetFulfillmentsAssociatedWithOrder(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Create a new Fulfillment
@@ -49,7 +49,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Retrieves fulfillments associated with a fulfillment order
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/fulfillments.json")]
-        public abstract System.Threading.Tasks.Task GetFulfillmentsAssociatedWithFulfillmentOrder(long fulfillment_order_idUndefined);
+        public abstract System.Threading.Tasks.Task GetFulfillmentsAssociatedWithFulfillmentOrder(long fulfillment_order_idPath);
 
         /// <summary>
         /// Retrieves a count of fulfillments associated with a specific order
@@ -59,14 +59,14 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_max">Count fulfillments last updated before date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Count fulfillments last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/count.json")]
-        public abstract System.Threading.Tasks.Task CountFulfillmentsAssociatedWithSpecificOrder(long? order_id = null, System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task CountFulfillmentsAssociatedWithSpecificOrder(long? order_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Receive a single Fulfillment
         /// </summary>
         /// <param name="fields">Comma-separated list of fields to include in the response.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/fulfillments/{fulfillment_id}.json")]
-        public abstract System.Threading.Tasks.Task GetFulfillment(long fulfillment_id, long order_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetFulfillment(long fulfillment_id, long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Modify an existing Fulfillment
@@ -115,15 +115,6 @@ namespace OpenShopify.Admin.Builder.Models
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record FulfillmentOrig
     {
-        /// <summary>
-        /// The date and time when the fulfillment was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
         /// <summary>
         /// A list of the fulfillment's line items, which includes:
         /// 
@@ -360,15 +351,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.List<string>? TrackingUrls { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the fulfillment was last modified..
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         /// <summary>
         /// The name of the inventory management service.

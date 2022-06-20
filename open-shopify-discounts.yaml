@@ -660,25 +660,10 @@ components:
           type: string
           description: "The case-insensitive discount code that customers use at checkout. (maximum: 255 characters)\r\n <div class=\"note note-caution\"> \r\n\r\nUse the same value for `code` as the `title` property of the associated [price rule](/docs/admin-api/rest/reference/discounts/pricerule/#title-property).\r\n </div>"
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the discount code was created.'
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the discount code was updated.'
-          format: date-time
-          nullable: true
         price_rule_id:
           type: integer
           description: The ID for the price rule that this discount code belongs to.
           format: int64
-          nullable: true
-        usage_count:
-          type: integer
-          description: The number of times that the discount code has been redeemed.
-          format: int32
           nullable: true
       additionalProperties: false
     CreateDiscountCodeBatchRequest:
@@ -708,16 +693,6 @@ components:
         allocation_method:
           type: string
           description: "The allocation method of the price rule. Valid values:\r\n\r\n*   **each**: The discount is applied to each of the entitled items. For example, for a price rule that takes $15 off, each entitled line item in a checkout will be discounted by $15. \r\n*   **across**: The calculated discount amount will be applied across the entitled items. For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items.  \r\n\r\nWhen the value of `target_type` is `shipping_line`, then this value must be `each`."
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the price rule was created.'
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the price rule was updated.'
-          format: date-time
           nullable: true
         customer_selection:
           type: string
@@ -860,16 +835,6 @@ components:
           type: string
           description: "The case-insensitive discount code that customers use at checkout. (maximum: 255 characters)\r\n <div class=\"note note-caution\"> \r\n\r\nUse the same value for `code` as the `title` property of the associated [price rule](/docs/admin-api/rest/reference/discounts/pricerule/#title-property).\r\n </div>"
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the discount code was created.'
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the discount code was updated.'
-          format: date-time
-          nullable: true
         price_rule_id:
           type: integer
           description: The ID for the price rule that this discount code belongs to.
@@ -894,6 +859,16 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     DiscountCodeCreation:
       required:
@@ -911,14 +886,6 @@ components:
           format: date-time
           nullable: true
         completed_at:
-          type: string
-          format: date-time
-          nullable: true
-        created_at:
-          type: string
-          format: date-time
-          nullable: true
-        updated_at:
           type: string
           format: date-time
           nullable: true
@@ -949,6 +916,16 @@ components:
           $ref: '#/components/schemas/DiscountCodeCreationErrors'
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     DiscountCodeCreationErrors:
@@ -1051,16 +1028,6 @@ components:
         allocation_method:
           type: string
           description: "The allocation method of the price rule. Valid values:\r\n\r\n*   **each**: The discount is applied to each of the entitled items. For example, for a price rule that takes $15 off, each entitled line item in a checkout will be discounted by $15. \r\n*   **across**: The calculated discount amount will be applied across the entitled items. For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items.  \r\n\r\nWhen the value of `target_type` is `shipping_line`, then this value must be `each`."
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the price rule was created.'
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the price rule was updated.'
-          format: date-time
           nullable: true
         customer_selection:
           type: string
@@ -1191,6 +1158,16 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     PriceRuleError:
       required:
@@ -1236,25 +1213,10 @@ components:
           type: string
           description: "The case-insensitive discount code that customers use at checkout. (maximum: 255 characters)\r\n <div class=\"note note-caution\"> \r\n\r\nUse the same value for `code` as the `title` property of the associated [price rule](/docs/admin-api/rest/reference/discounts/pricerule/#title-property).\r\n </div>"
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the discount code was created.'
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the discount code was updated.'
-          format: date-time
-          nullable: true
         price_rule_id:
           type: integer
           description: The ID for the price rule that this discount code belongs to.
           format: int64
-          nullable: true
-        usage_count:
-          type: integer
-          description: The number of times that the discount code has been redeemed.
-          format: int32
           nullable: true
         amount:
           type: string
@@ -1287,16 +1249,6 @@ components:
         allocation_method:
           type: string
           description: "The allocation method of the price rule. Valid values:\r\n\r\n*   **each**: The discount is applied to each of the entitled items. For example, for a price rule that takes $15 off, each entitled line item in a checkout will be discounted by $15. \r\n*   **across**: The calculated discount amount will be applied across the entitled items. For example, for a price rule that takes $15 off, the discount will be applied across all the entitled items.  \r\n\r\nWhen the value of `target_type` is `shipping_line`, then this value must be `each`."
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the price rule was created.'
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the price rule was updated.'
-          format: date-time
           nullable: true
         customer_selection:
           type: string

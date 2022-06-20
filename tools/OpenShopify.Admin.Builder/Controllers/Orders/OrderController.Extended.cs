@@ -16,7 +16,7 @@ public class OrderController : OrderControllerBase
     [IgnoreApi, HttpGet, Route("orders.invalid")]
     [ProducesResponseType(typeof(OrderList), StatusCodes.Status200OK)]
     public override Task ListOrders(long attribution_app_id, DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null,
-        string? fields = null, string? financial_status = null, string? fulfillment_status = null, string? ids = null, int? limit = null, string? page_info = null,
+        string? fields = null, string? financial_status = null, string? fulfillment_status = null, [FromQuery] IEnumerable<long>? ids = null, int? limit = null, string? page_info = null,
         DateTimeOffset? processed_at_max = null, DateTimeOffset? processed_at_min = null, long? since_id = null, string? status = null, DateTimeOffset? updated_at_max = null,
         DateTimeOffset? updated_at_min = null)
     {
@@ -27,7 +27,7 @@ public class OrderController : OrderControllerBase
     [HttpGet, Route("orders.json")]
     [ProducesResponseType(typeof(OrderList), StatusCodes.Status200OK)]
     public Task ListOrders(long? attribution_app_id, DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null,
-        string? fields = null, string? financial_status = null, string? fulfillment_status = null, string? ids = null,
+        string? fields = null, string? financial_status = null, string? fulfillment_status = null, [FromQuery] IEnumerable<long>? ids = null,
         int? limit = null, string? page_info = null, DateTimeOffset? processed_at_max = null,
         DateTimeOffset? processed_at_min = null, long? since_id = null, string? status = null,
         DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)

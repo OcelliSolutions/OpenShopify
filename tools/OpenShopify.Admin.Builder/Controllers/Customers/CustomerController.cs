@@ -42,7 +42,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_min">Show customers last updated after a specified date.  
         /// (format: 2014-04-25T16:15:47-04:00)</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers.json")]
-        public abstract System.Threading.Tasks.Task ListCustomers(System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, string? fields = null, string? ids = null, int? limit = null, string? page_info = null, long? since_id = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task ListCustomers([Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.Collections.Generic.IEnumerable<long>? ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Creates a customer
@@ -59,14 +59,14 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="order">Set the field and direction by which to order results.</param>
         /// <param name="query">Text to search for in the shop's customer data.**Note:** Supported queries: `accepts_marketing`,`activation_date`, `address1`, `address2`, `city`,`company`, `country`, `customer_date`, `customer_first_name`,`customer_id`, `customer_last_name`, `customer_tag`, ` email`,`email_marketing_state`, `first_name`, `first_order_date`, `id`,`last_abandoned_order_date`, `last_name`, `multipass_identifier`,`orders_count`, `order_date`, `phone`, `province`,`shop_id`, `state`, `tag`, `total_spent`,`updated_at`, `verified_email`, `product_subscriber_status`. All other queriesreturns all customers.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/search.json")]
-        public abstract System.Threading.Tasks.Task SearchForCustomersThatMatchSuppliedQuery(string? fields = null, int? limit = null, string? page_info = null, string? order = null, string? query = null);
+        public abstract System.Threading.Tasks.Task SearchForCustomersThatMatchSuppliedQuery([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? order = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? query = null);
 
         /// <summary>
         /// Retrieves a single customer
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}.json")]
-        public abstract System.Threading.Tasks.Task GetCustomer(long customer_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetCustomer(long customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates a customer
@@ -97,7 +97,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="status">The status of the orders to return. The status defaults to open.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customers/{customer_id}/orders.json")]
-        public abstract System.Threading.Tasks.Task ListOrdersThatBelongToCustomer(long customer_id, string? status = null);
+        public abstract System.Threading.Tasks.Task ListOrdersThatBelongToCustomer(long customer_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? status = null);
 
     }
 
@@ -141,15 +141,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Currency { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
         /// <summary>
         /// The default address for the customer. The default address has the following properties: * **address1**: The first line of the customer's mailing address. * **address2**: An additional field for the customer's mailing address. * **city**: The customer's city, town, or village. * **company**: The customer's company. * **country**: The customer's country. * **country_code**: The two-letter country code corresponding to the customer's country. * **country_name**: The customer's normalized country name. * **customer_id**: A unique identifier for the customer. * **default**: Returns `true` for each default address. * **first_name**: The customer's first name. * **id**: A unique identifier for the address. * **last_name**: The customer's last name. * **name**: The customer's first and last names. * **phone**: The customer's phone number at this address. * **province**: The customer's region name. Typically a province, a state, or a prefecture. * **province_code**: The two-letter code for the customer's region. * **zip**: The customer's postal code, also known as zip, postcode, Eircode, etc. 
@@ -340,15 +331,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public decimal? TotalSpent { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer information was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         /// <summary>
         /// Whether the customer has verified their email address.

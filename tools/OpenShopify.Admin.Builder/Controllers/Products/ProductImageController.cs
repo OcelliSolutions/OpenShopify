@@ -31,7 +31,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         /// <param name="since_id">Restrict results to after the specified ID</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images.json")]
-        public abstract System.Threading.Tasks.Task ListProductImages(long product_id, string? fields = null, long? since_id = null);
+        public abstract System.Threading.Tasks.Task ListProductImages(long product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null);
 
         /// <summary>
         /// Create a new Product Image
@@ -44,14 +44,14 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="since_id">Restrict results to after the specified ID</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images/count.json")]
-        public abstract System.Threading.Tasks.Task CountProductImages(long? product_id = null, long? since_id = null);
+        public abstract System.Threading.Tasks.Task CountProductImages(long? product_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null);
 
         /// <summary>
         /// Receive a single Product Image
         /// </summary>
         /// <param name="fields">comma-separated list of fields to include in the response</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/images/{image_id}.json")]
-        public abstract System.Threading.Tasks.Task GetProductImage(long image_id, long product_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetProductImage(long image_id, long product_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Modify an existing Product Image
@@ -70,15 +70,6 @@ namespace OpenShopify.Admin.Builder.Models
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record ProductImageOrig
     {
-        /// <summary>
-        /// The date and time when the product image was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
         /// <summary>
         /// The order of the product image in the list. The first product image is at position 1 and is the "main" image for the product.
         /// </summary>
@@ -132,15 +123,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public decimal? Height { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the product image was last modified. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

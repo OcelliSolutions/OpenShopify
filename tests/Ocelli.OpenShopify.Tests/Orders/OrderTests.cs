@@ -154,6 +154,22 @@ public class OrderTests : IClassFixture<OrderFixture>
 
     [SkippableFact]
     [TestPriority(20)]
+    public async Task ListOrdersAsync_CanGetListOfOrders()
+    {
+        var initialList = await Fixture.Service.Order.ListOrdersAsync();
+        var response = await Fixture.Service.Order.ListOrdersAsync(ids: initialList.Result.Orders.Select(o => o.Id));
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        foreach (var order in response.Result.Orders)
+        {
+            _additionalPropertiesHelper.CheckAdditionalProperties(order, Fixture.MyShopifyUrl);
+        }
+        Assert.True(initialList.Result.Orders.Count > 0);
+        Assert.Equal(initialList.Result.Orders.Count, response.Result.Orders.Count);
+        Skip.If(!response.Result.Orders.Any(), "No results returned. Unable to test");
+    }
+
+    [SkippableFact]
+    [TestPriority(20)]
     public async Task GetOrderAsync_TestCreated_AdditionalPropertiesAreEmpty()
     {
         Skip.If(!Fixture.CreatedOrders.Any(), "Must be run with create test");

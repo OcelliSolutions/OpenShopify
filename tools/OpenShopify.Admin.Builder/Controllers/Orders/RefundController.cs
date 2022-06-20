@@ -33,7 +33,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="limit">The maximum number of results to retrieve.</param>
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds.json")]
-        public abstract System.Threading.Tasks.Task ListRefunds(long order_id, string? fields = null, bool? in_shop_currency = null, int? limit = null, string? page_info = null);
+        public abstract System.Threading.Tasks.Task ListRefunds(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null);
 
         /// <summary>
         /// Creates a refund
@@ -47,7 +47,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <param name="in_shop_currency">Show amounts in the shop currency for the underlying transaction.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/refunds/{refund_id}.json")]
-        public abstract System.Threading.Tasks.Task GetRefund(long order_id, long refund_id, string? fields = null, bool? in_shop_currency = null);
+        public abstract System.Threading.Tasks.Task GetRefund(long order_id, long refund_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency = null);
 
         /// <summary>
         /// Calculates a refund
@@ -60,15 +60,6 @@ namespace OpenShopify.Admin.Builder.Models
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record RefundOrig
     {
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the refund was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
         /// <summary>
         /// A list of duties that have been reimbursed as part of the refund.
         /// </summary>

@@ -290,8 +290,13 @@ paths:
         - name: ids
           in: query
           description: Show only collections specified by a comma-separated list of IDs.
+          style: form
+          explode: false
           schema:
-            type: string
+            type: array
+            items:
+              type: integer
+              format: int64
         - name: limit
           in: query
           description: The maximum number of results to retrieve.
@@ -625,8 +630,13 @@ paths:
         - name: ids
           in: query
           description: Return only products specified by a comma-separated list of product IDs.
+          style: form
+          explode: false
           schema:
-            type: string
+            type: array
+            items:
+              type: integer
+              format: int64
         - name: limit
           in: query
           description: Return up to this many results per page.
@@ -1490,8 +1500,13 @@ paths:
         - name: ids
           in: query
           description: Show only the smart collections specified by a comma-separated list of IDs.
+          style: form
+          explode: false
           schema:
-            type: string
+            type: array
+            items:
+              type: integer
+              format: int64
         - name: limit
           in: query
           description: The number of results to show.
@@ -1833,11 +1848,6 @@ components:
           description: The ID of the custom collection containing the product.
           format: int64
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the collect was created.'
-          format: date-time
-          nullable: true
         position:
           type: integer
           description: The position of this product in a manually sorted custom collection. The first position is 1. This value is applied only when the custom collection is sorted manually.
@@ -1852,16 +1862,21 @@ components:
           type: string
           description: This is the same value as `position` but padded with leading zeroes to make it alphanumeric-sortable. This value is applied only when the custom collection is sorted manually.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the collect was last updated.'
-          format: date-time
-          nullable: true
         id:
           type: integer
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     CollectError:
@@ -1940,11 +1955,6 @@ components:
           type: string
           description: 'The name of the collection. (limit: 255 characters)'
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the collection was last modified.'
-          format: date-time
-          nullable: true
         products_count:
           type: integer
           format: int32
@@ -1957,6 +1967,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     CollectionImage:
@@ -2041,11 +2061,6 @@ components:
           type: string
           description: 'The name of the custom collection. (limit: 255 characters)'
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the custom collection was last modified.'
-          format: date-time
-          nullable: true
         collects:
           type: array
           items:
@@ -2077,11 +2092,6 @@ components:
         body_html:
           type: string
           description: A description of the product. Supports HTML formatting.
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was created.'
-          format: date-time
           nullable: true
         handle:
           type: string
@@ -2128,11 +2138,6 @@ components:
           type: string
           description: The name of the product.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was last modified. A product''s `updated_at` value can change for different reasons. For example, if an order is placed for a product that has inventory tracking set up, then the inventory adjustment is counted as an update.'
-          format: date-time
-          nullable: true
         variants:
           type: array
           items:
@@ -2155,11 +2160,6 @@ components:
     CreateProductImage:
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time when the product image was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         position:
           type: integer
           description: The order of the product image in the list. The first product image is at position 1 and is the "main" image for the product.
@@ -2190,11 +2190,6 @@ components:
           type: number
           description: Height dimension of the image which is determined on upload.
           format: decimal
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time when the product image was last modified. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
           nullable: true
         alt:
           type: string
@@ -2239,11 +2234,6 @@ components:
           type: number
           description: The original price of the item before an adjustment or a sale.
           format: decimal
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product variant was created.'
-          format: date-time
           nullable: true
         fulfillment_service:
           type: string
@@ -2334,11 +2324,6 @@ components:
           type: string
           description: 'The title of the product variant. The `title` field is a concatenation of the `option1`, `option2`, and `option3` fields. You can only update `title` indirectly using the `option` fields.'
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time when the product variant was last modified. Gets returned in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         weight:
           type: number
           description: The weight of the product variant in the unit system specified with `weight_unit`.
@@ -2415,11 +2400,6 @@ components:
           type: string
           description: 'The name of the smart collection. Maximum length: 255 characters.'
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the smart collection was last modified.'
-          format: date-time
-          nullable: true
         products_count:
           type: integer
           format: int32
@@ -2479,11 +2459,6 @@ components:
           type: string
           description: 'The name of the custom collection. (limit: 255 characters)'
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the custom collection was last modified.'
-          format: date-time
-          nullable: true
         collects:
           type: array
           items:
@@ -2505,6 +2480,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     CustomCollectionError:
@@ -2579,11 +2564,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was created.'
-          format: date-time
-          nullable: true
         description:
           type: string
           description: A description of the information that the metafield contains.
@@ -2605,11 +2585,6 @@ components:
           type: string
           description: The type of resource that the metafield is attached to.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was last updated.'
-          format: date-time
-          nullable: true
         value:
           description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
           nullable: true
@@ -2625,6 +2600,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     MetafieldType:
@@ -2678,11 +2663,6 @@ components:
           type: string
           description: A description of the product. Supports HTML formatting.
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was created.'
-          format: date-time
-          nullable: true
         handle:
           type: string
           description: A unique human-friendly string for the product. Automatically generated from the product's `title`. Used by the Liquid templating language to refer to objects.
@@ -2728,11 +2708,6 @@ components:
           type: string
           description: The name of the product.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was last modified. A product''s `updated_at` value can change for different reasons. For example, if an order is placed for a product that has inventory tracking set up, then the inventory adjustment is counted as an update.'
-          format: date-time
-          nullable: true
         variants:
           type: array
           items:
@@ -2757,6 +2732,16 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     ProductError:
       required:
@@ -2780,11 +2765,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time when the product image was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         position:
           type: integer
           description: The order of the product image in the list. The first product image is at position 1 and is the "main" image for the product.
@@ -2816,11 +2796,6 @@ components:
           description: Height dimension of the image which is determined on upload.
           format: decimal
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time when the product image was last modified. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         alt:
           type: string
           nullable: true
@@ -2841,6 +2816,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     ProductImageError:
@@ -2943,11 +2928,6 @@ components:
           description: The original price of the item before an adjustment or a sale.
           format: decimal
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product variant was created.'
-          format: date-time
-          nullable: true
         fulfillment_service:
           type: string
           description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice).'
@@ -3037,11 +3017,6 @@ components:
           type: string
           description: 'The title of the product variant. The `title` field is a concatenation of the `option1`, `option2`, and `option3` fields. You can only update `title` indirectly using the `option` fields.'
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time when the product variant was last modified. Gets returned in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         weight:
           type: number
           description: The weight of the product variant in the unit system specified with `weight_unit`.
@@ -3074,6 +3049,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     ProductVariantError:
@@ -3176,11 +3161,6 @@ components:
           type: string
           description: 'The name of the smart collection. Maximum length: 255 characters.'
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the smart collection was last modified.'
-          format: date-time
-          nullable: true
         products_count:
           type: integer
           format: int32
@@ -3196,6 +3176,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     SmartCollectionError:
@@ -3336,11 +3326,6 @@ components:
           type: string
           description: 'The name of the custom collection. (limit: 255 characters)'
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the custom collection was last modified.'
-          format: date-time
-          nullable: true
         collects:
           type: array
           items:
@@ -3383,11 +3368,6 @@ components:
         body_html:
           type: string
           description: A description of the product. Supports HTML formatting.
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was created.'
-          format: date-time
           nullable: true
         handle:
           type: string
@@ -3434,11 +3414,6 @@ components:
           type: string
           description: The name of the product.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was last modified. A product''s `updated_at` value can change for different reasons. For example, if an order is placed for a product that has inventory tracking set up, then the inventory adjustment is counted as an update.'
-          format: date-time
-          nullable: true
         variants:
           type: array
           items:
@@ -3469,11 +3444,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time when the product image was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         position:
           type: integer
           description: The order of the product image in the list. The first product image is at position 1 and is the "main" image for the product.
@@ -3504,11 +3474,6 @@ components:
           type: number
           description: Height dimension of the image which is determined on upload.
           format: decimal
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time when the product image was last modified. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
           nullable: true
         alt:
           type: string
@@ -3561,11 +3526,6 @@ components:
           type: number
           description: The original price of the item before an adjustment or a sale.
           format: decimal
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product variant was created.'
-          format: date-time
           nullable: true
         fulfillment_service:
           type: string
@@ -3656,11 +3616,6 @@ components:
           type: string
           description: 'The title of the product variant. The `title` field is a concatenation of the `option1`, `option2`, and `option3` fields. You can only update `title` indirectly using the `option` fields.'
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time when the product variant was last modified. Gets returned in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         weight:
           type: number
           description: The weight of the product variant in the unit system specified with `weight_unit`.
@@ -3744,11 +3699,6 @@ components:
         title:
           type: string
           description: 'The name of the smart collection. Maximum length: 255 characters.'
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the smart collection was last modified.'
-          format: date-time
           nullable: true
         products_count:
           type: integer

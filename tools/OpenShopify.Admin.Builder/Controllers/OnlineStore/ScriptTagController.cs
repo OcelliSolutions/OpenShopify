@@ -38,7 +38,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_max">Show script tags last updated before this date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="updated_at_min">Show script tags last updated after this date. (format: 2014-04-25T16:15:47-04:00)</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags.json")]
-        public abstract System.Threading.Tasks.Task ListScriptTags(System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, string? fields = null, int? limit = null, string? page_info = null, long? since_id = null, string? src = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task ListScriptTags([Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? src = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Creates a new script tag
@@ -51,14 +51,14 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="src">Count only script tags with a given URL.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags/count.json")]
-        public abstract System.Threading.Tasks.Task CountScriptTags(string? src = null);
+        public abstract System.Threading.Tasks.Task CountScriptTags([Microsoft.AspNetCore.Mvc.FromQuery] string? src = null);
 
         /// <summary>
         /// Retrieves a single script tag
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("script_tags/{script_tag_id}.json")]
-        public abstract System.Threading.Tasks.Task GetScriptTag(long script_tag_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetScriptTag(long script_tag_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates a script tag
@@ -77,15 +77,6 @@ namespace OpenShopify.Admin.Builder.Models
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record ScriptTagOrig
     {
-        /// <summary>
-        /// The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
         /// <summary>
         /// The DOM event that triggers the loading of the script. Valid values: `onload`.
         /// </summary>
@@ -128,15 +119,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? Cache { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

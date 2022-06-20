@@ -22,4 +22,34 @@ namespace OpenShopify.Admin.Builder.Models
         public long? Quantity { get; set; }
 
     }
+
+    public partial record SendFulfillmentRequestItem
+    {
+        [JsonPropertyName("original_fulfillment_order")]
+        public FulfillmentOrderWithOrigin OriginalFulfillmentOrder { get; set; } = null!;
+
+        [JsonPropertyName("submitted_fulfillment_order")]
+        public FulfillmentOrderWithOrigin SubmittedFulfillmentOrder { get; set; } = null!;
+
+        [JsonPropertyName("unsubmitted_fulfillment_order")]
+        public FulfillmentOrderWithOrigin? UnsubmittedFulfillmentOrder { get; set; }
+    }
+
+    public record FulfillmentOrderWithOrigin : FulfillmentOrder
+    {
+        [JsonPropertyName("origin")]
+        public new AssignedLocation? AssignedLocation { get; set; }
+    }
+
+
+    public partial record AcceptFulfillmentRequestItem
+    {
+        [JsonPropertyName("fulfillment_order")]
+        public FulfillmentOrderWithOrigin FulfillmentOrder { get; set; } = null!;
+    }
+    public partial record RejectFulfillmentRequestItem
+    {
+        [JsonPropertyName("fulfillment_order")]
+        public FulfillmentOrderWithOrigin FulfillmentOrder { get; set; } = null!;
+    }
 }

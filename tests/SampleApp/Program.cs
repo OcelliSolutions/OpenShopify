@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
-using Microsoft.OpenApi.Extensions;
 using Ocelli.OpenShopify;
+using SampleApp.Extensions;
 using JsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
 using MvcJsonOptions = Microsoft.AspNetCore.Mvc.JsonOptions;
 
@@ -29,15 +29,19 @@ app.MapGet("/signup", (string hmac, string shop, long timestamp, HttpContext htt
         //TODO: the following scopes require review from Shopify to enable. Do not include them for now.
         var extendedPermissions = new List<AuthorizationScope>
         {
-            //AuthorizationScope.read_all_orders, 
+            AuthorizationScope.ReadAllOrders, 
             AuthorizationScope.WriteUsers, 
             AuthorizationScope.ReadUsers, 
-            AuthorizationScope.WriteLocations
+            AuthorizationScope.WriteLocations,
+
+            AuthorizationScope.ReadCustomerPaymentMethods,
+            AuthorizationScope.WriteOwnSubscriptionContracts,
+            AuthorizationScope.ReadOwnSubscriptionContracts
         };
         var scopes = Enum.GetValues(typeof(AuthorizationScope))
             .Cast<AuthorizationScope>()
             .Where(d => !extendedPermissions.Contains(d))
-            .Select(d => d.GetDisplayName())
+            .Select(EnumExtensions.GetEnumMemberValue)
             .ToList();
         
         var redirectUrl = new UriBuilder()

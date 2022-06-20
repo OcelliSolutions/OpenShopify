@@ -9,6 +9,7 @@ using NSwag;
 using NSwag.CodeGeneration.CSharp;
 using NSwag.CodeGeneration.CSharp.Models;
 using NSwag.CodeGeneration.OperationNameGenerators;
+using PluralizationService.Core.Builder.Base;
 using PluralizeService.Core;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
@@ -213,6 +214,11 @@ OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
             "fields", "messages"
         };
 
+        var longListParameters = new List<string>()
+        {
+            "ids"
+        };
+
         var requiredParameters = new List<string>()
         {
             "token"
@@ -268,6 +274,11 @@ OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
                 schema.Type = JsonObjectType.String;
                 schema.Format = null;
             }
+            else if (longListParameters.Contains((string)parameter.name))
+            {
+                schema.Type = JsonObjectType.Array;
+                schema.Item = new JsonSchema() { Type = JsonObjectType.Integer, Format = "int64"};
+            }
 
             // consecutive starting *id parameters are required, all others are optional.
             if (((string)parameter.name).EndsWith("_id") && requiredId) requiredId = true;
@@ -290,22 +301,27 @@ OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
                     schema.EnumerationNames.Add((string)e);
                 }
             }
-            endpoint.Parameters.Add(new OpenApiParameter()
+
+            var openApiParameter = new OpenApiParameter()
             {
-                Name = parameter.name, 
-                Description = HtmlToMarkdown(parameter.description), 
+                Name = parameter.name,
+                Description = HtmlToMarkdown(parameter.description),
                 Schema = schema,
-                IsRequired = isRequired, 
+                IsRequired = isRequired,
                 IsDeprecated = parameter.deprecated ?? false,
                 Kind = parameter["in"] switch
                 {
                     "path" => OpenApiParameterKind.Path,
                     "query" => OpenApiParameterKind.Query,
                     "body" => OpenApiParameterKind.Body,
-                    "header" => OpenApiParameterKind.Header, 
-                    _ => OpenApiParameterKind.Undefined
-                } 
-            });
+                    "header" => OpenApiParameterKind.Header,
+                    _ => OpenApiParameterKind.Query
+                }
+            };
+            if (pathKey.Contains(string.Concat("{", parameter.name, "}")))
+                openApiParameter.Kind = OpenApiParameterKind.Path;  
+
+            endpoint.Parameters.Add(openApiParameter);
         }
         //many times the given spec does not explicitly add `page_info` for paginated endpoints. Add it.
         if (hasLimit && !hasPageInfo)
@@ -353,6 +369,9 @@ OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
                 hasId = true;
                 continue;
             }
+            //remove all the `created_at` and `updated_at` properties. These will be manually added later
+            if (property.name == "created_at" || property.name == "updated_at")
+                continue;
             var schema = GetSchema((string)property.name);
 
             var cleanProperty = new JsonSchemaProperty
@@ -471,7 +490,7 @@ JsonSchema GetSchema(string propertyName)
         "entitled_product_ids", "prerequisite_saved_search_ids", "prerequisite_customer_ids", "entitles_variant_ids",
         "entitles_collection_ids", "entitles_country_ids", "prerequisite_product_ids", "prerequisite_variant_ids",
         "prerequisite_collection_ids", "customer_segment_prerequisite_ids", "variant_ids", "entitled_variant_ids",
-        "entitled_country_ids", "entitled_collection_ids", 
+        "entitled_country_ids", "entitled_collection_ids", "ids" 
     };
     var stringListProperties = new List<string>()
     {

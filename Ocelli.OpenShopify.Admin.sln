@@ -47,9 +47,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenShopify.ClientGenerator
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApp", "tests\SampleApp\SampleApp.csproj", "{7DF98584-205B-4447-93AC-DF1C21674B79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenShopify.OAuth.Builder", "tools\OpenShopify.OAuth.Builder\OpenShopify.OAuth.Builder.csproj", "{ED9C2EE4-2403-46DF-B898-61D52DF3E239}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenShopify.OAuth.Builder", "tools\OpenShopify.OAuth.Builder\OpenShopify.OAuth.Builder.csproj", "{ED9C2EE4-2403-46DF-B898-61D52DF3E239}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenShopify.Common", "tools\OpenShopify.Common\OpenShopify.Common.csproj", "{0D63A207-A11B-444B-8B65-79EE6F7F48F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenShopify.Common", "tools\OpenShopify.Common\OpenShopify.Common.csproj", "{0D63A207-A11B-444B-8B65-79EE6F7F48F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

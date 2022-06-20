@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Fixtures;
 using Ocelli.OpenShopify.Tests.Helpers;
@@ -6,30 +7,49 @@ using Xunit;
 using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.ShippingAndFulfillment;
-/*
+
 public class CancellationRequestFixture : SharedFixture, IAsyncLifetime
 {
-    public EventsService Service;
-    public List<Ocelli.OpenShopify.CancellationRequestItem> CreatedCancellationRequests = new();
+    public ShippingAndFulfillmentService Service;
+    public FulfillmentService FulfillmentService = new();
+    public Product Product = new();
+    public ProductVariant ProductVariant = new();
+    public FulfillmentOrder FulfillmentOrder = new();
+    public IEnumerable<Order> Orders = new List<Order>();
 
     public CancellationRequestFixture()
     {
-        Service = new EventsService(MyShopifyUrl, AccessToken);
+        Service = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
     }
-    public Task InitializeAsync() => Task.CompletedTask;
+    public async Task InitializeAsync()
+    {
+        FulfillmentService = await CreateFulfillmentService(GetType().Name);
+        Product = await CreateProduct(FulfillmentService, GetType().Name);
+        ProductVariant = Product.Variants!.First(v => v.FulfillmentService != null);
+    }
 
     async Task IAsyncLifetime.DisposeAsync()
     {
-        await DeleteCancellationRequestAsync_CanDelete();
-    }
-
-    public async Task DeleteCancellationRequestAsync_CanDelete()
-    {
-        foreach (var cancellationRequest in CreatedCancellationRequests)
+        if (Orders.Any())
         {
-            _ = await Service.CancellationRequest.DeleteCancellationRequestAsync(cancellationRequest.Id);
+            foreach (var order in Orders)
+            {
+                var orderService = new OrdersService(MyShopifyUrl, AccessToken);
+                await orderService.Order.DeleteOrderAsync(order.Id);
+            }
         }
-        CreatedCancellationRequests.Clear();
+
+        if (Product.Id > 0)
+        {
+            var productService = new ProductsService(MyShopifyUrl, AccessToken);
+            await productService.Product.DeleteProductAsync(Product.Id);
+        }
+
+        if (FulfillmentService.Id > 0)
+        {
+            var fulfillmentService = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
+            await fulfillmentService.FulfillmentService.DeleteFulfillmentServiceAsync(FulfillmentService.Id);
+        }
     }
 }
 
@@ -48,15 +68,28 @@ public class CancellationRequestTests : IClassFixture<CancellationRequestFixture
     #region Create
 
     [SkippableFact, TestPriority(10)]
-    public async Task CreateCancellationRequestAsync_CanCreate()
+    public async Task SendCancellationRequestAsync_CanCreate()
     {
-        var request = Fixture.CreateCancellationRequestRequest();
-        var response = await Fixture.Service.CancellationRequest.CreateCancellationRequestAsync(request);
+        var order = await Fixture.CreateOrder(Fixture.ProductVariant, GetType().Name);
+        var fulfillmentOrders = await Fixture.GetFulfillmentOrders(order);
+        var fulfillmentOrder = fulfillmentOrders.First();
+        //Fixture.Service.FulfillmentRequest.AcceptFulfillmentRequestAsync(fulfillmentOrder.Id,new AcceptFulfillmentRequestRequest() { });
+        var request = new SendCancellationRequestRequest()
+        {
+            CancellationRequest = new MessageDetail()
+            {
+                Message = $@"@{Fixture.BatchId}, Please wrap in yellow paper."
+            }
+        };
+        var response =
+            await Fixture.Service.CancellationRequest.SendCancellationRequestAsync(fulfillmentOrder.Id, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result, Fixture.MyShopifyUrl);
 
-        Fixture.CreatedCancellationRequests.Add(response.Result.CancellationRequest);
+        //Assert.Equal(FulfillmentOrderStatus.Scheduled, response.Result.FulfillmentOrder.Status);
+        Assert.Equal(RequestStatus.CancellationRequested, response.Result.FulfillmentOrder.RequestStatus);
     }
-
+    /*
     [SkippableFact]
     [TestPriority(10)]
     public async Task CreateCancellationRequestAsync_EmptyBody_IsError()
@@ -84,74 +117,6 @@ public class CancellationRequestTests : IClassFixture<CancellationRequestFixture
             await Fixture.Service.CancellationRequest.CreateCancellationRequestAsync(request));
     }
 
+    */
     #endregion Create
-
-    #region Read
-
-    [SkippableFact, TestPriority(20)]
-    public async Task CountCancellationRequestsAsync_CanGet()
-    {
-        var response = await Fixture.Service.CancellationRequest.CountCancellationRequestsAsync();
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        var count = response.Result.Count;
-        Skip.If(count == 0, "No results returned. Unable to test");
-    }
-
-    [SkippableFact, TestPriority(20)]
-    public async Task ListCancellationRequestsAsync_AdditionalPropertiesAreEmpty()
-    {
-        var response = await Fixture.Service.CancellationRequest.ListCancellationRequestsAsync();
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        foreach (var cancellationRequest in response.Result.CancellationRequests)
-        {
-            _additionalPropertiesHelper.CheckAdditionalProperties(cancellationRequest, Fixture.MyShopifyUrl);
-        }
-        Skip.If(!response.Result.CancellationRequests.Any(), "No results returned. Unable to test");
-    }
-
-    [SkippableFact, TestPriority(20)]
-    public async Task GetCancellationRequestAsync_TestCreated_AdditionalPropertiesAreEmpty()
-    {
-        Skip.If(!Fixture.CreatedCancellationRequests.Any(), "Must be run with create test");
-        var cancellationRequest = Fixture.CreatedCancellationRequests.First();
-        var response = await Fixture.Service.CancellationRequest.GetCancellationRequestAsync(cancellationRequest.Id);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.CancellationRequest, Fixture.MyShopifyUrl);
-    }
-
-    #endregion Read
-
-    #region Update
-
-    [SkippableFact, TestPriority(30)]
-    public async Task UpdateCancellationRequestAsync_CanUpdate()
-    {
-        var originalCancellationRequest = Fixture.CreatedCancellationRequests.First();
-        var request = new UpdateCancellationRequestRequest()
-        {
-            CancellationRequest = new()
-            {
-                Id = originalCancellationRequest.Id,
-                Fields = new List<string> { "id" }
-            }
-        };
-        var response = await Fixture.Service.CancellationRequest.UpdateCancellationRequestAsync(originalCancellationRequest.Id, request);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-
-        Fixture.CreatedCancellationRequests.Remove(originalCancellationRequest);
-        Fixture.CreatedCancellationRequests.Add(response.Result.CancellationRequest);
-    }
-
-    #endregion Update
-
-    #region Delete
-
-    [SkippableFact, TestPriority(99)]
-    public async Task DeleteCancellationRequestAsync_CanDelete()
-    {
-        await Fixture.DeleteCancellationRequestAsync_CanDelete();
-    }
-
-    #endregion Delete
 }
-*/

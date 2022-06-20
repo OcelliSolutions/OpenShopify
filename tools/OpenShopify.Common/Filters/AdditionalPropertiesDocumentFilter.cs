@@ -21,7 +21,12 @@ public class AdditionalPropertiesDocumentFilter : IDocumentFilter
             value.AdditionalProperties = new OpenApiSchema();
         }
 
-        foreach (var (_, value) in context.SchemaRepository.Schemas.Where(schema => schema.Key.Contains("Create") || schema.Key.Contains("Update")))
+        var objectPrefixExcludeAdditionalProperties = new List<string>()
+        {
+            "Create", "Update", "Send", "Accept", "Reject", "Move", "Apply", "Release", "Reschedule", "Cancel",
+            "Calculate", "Complete", "PerformBulk", "Adjust", "Connect", "Set"
+        };
+        foreach (var (_, value) in context.SchemaRepository.Schemas.Where(schema => objectPrefixExcludeAdditionalProperties.Any(p => schema.Key.StartsWith(p))))
         {
             value.AdditionalPropertiesAllowed = false;
             value.AdditionalProperties = null;

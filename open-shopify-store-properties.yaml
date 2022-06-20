@@ -563,6 +563,16 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     CountryError:
       required:
@@ -639,6 +649,16 @@ components:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) whenthe conversion rate associated with this currency was last updated. If manual FX rates are active on a shop, then theupdated date of these rates will replace the automatic conversion rates. Conversion rates are checked every 15minutes, but typically updated only a few times a day. Manual FX rates are updated at the merchant''s request.'
           nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     CurrencyList:
       required:
@@ -665,19 +685,19 @@ components:
           type: string
           description: The public URL of the policy.
           nullable: true
+        handle:
+          type: string
+          description: A unique identifer for the policy used to build the policy's URL.
+          nullable: true
         created_at:
           type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the policy was created.'
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
           format: date-time
           nullable: true
         updated_at:
           type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the policy was last modified.'
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
           format: date-time
-          nullable: true
-        handle:
-          type: string
-          description: A unique identifer for the policy used to build the policy's URL.
           nullable: true
       additionalProperties: { }
     PolicyList:
@@ -774,6 +794,16 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     ProvinceItem:
       required:
@@ -846,6 +876,16 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     ShippingZoneList:
       required:
@@ -893,11 +933,6 @@ components:
         county_taxes:
           type: boolean
           description: 'Whether the shop is applying taxes on a per-county basis. Only applicable to shops based in the US. Valid values: `true` or `null`."'
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) when the shop was created.'
-          format: date-time
           nullable: true
         customer_email:
           type: string
@@ -1075,11 +1110,6 @@ components:
           type: string
           description: Whether transactional SMS sent by Shopify are disabled on the shop's online store.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) when the shop was last updated.'
-          format: date-time
-          nullable: true
         weight_unit:
           type: string
           description: The default unit of weight measurement for the shop.
@@ -1096,6 +1126,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     ShopItem:

@@ -34,7 +34,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Retrieves a list of draft orders
         /// </summary>
-        /// <param name="fieldsUndefined">A comma-separated list of fields to include in the response</param>
+        /// <param name="fieldsQuery">A comma-separated list of fields to include in the response</param>
         /// <param name="ids">Filter by list of IDs</param>
         /// <param name="limit">Amount of results</param>
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
@@ -42,7 +42,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_max">Show orders last updated before date (format: 2014-04-25T16:15:47-04:00)</param>
         /// <param name="updated_at_min">Show orders last updated after date (format: 2014-04-25T16:15:47-04:00)</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("draft_orders.json")]
-        public abstract System.Threading.Tasks.Task ListDraftOrders(string? fieldsUndefined = null, string? ids = null, int? limit = null, string? page_info = null, long? since_id = null, string? status = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task ListDraftOrders([Microsoft.AspNetCore.Mvc.FromQuery(Name = "fields")] string? fieldsQuery = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.Collections.Generic.IEnumerable<long>? ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? status = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Modify an existing DraftOrder
@@ -55,7 +55,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("draft_orders/{draft_order_id}.json")]
-        public abstract System.Threading.Tasks.Task GetDraftOrder(long draft_order_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetDraftOrder(long draft_order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Remove an existing DraftOrder
@@ -71,7 +71,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_max">Count draft orders last updated before the specified date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <param name="updated_at_min">Count draft orders last updated after the specified date (format: 2014-04-25T16:15:47-04:00).</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("draft_orders/count.json")]
-        public abstract System.Threading.Tasks.Task CountDraftOrders(long? since_id = null, string? status = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task CountDraftOrders([Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? status = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Send an invoice
@@ -399,24 +399,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.DateTimeOffset? CompletedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was created in Shopify.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         /// <summary>
         /// The status of a draft order as it transitions into an order. When a draft order is created it is set to `open` status. The invoice can then be sent to the customer, and `status` changes to `invoice_sent`. The draft order can then be paid, set to pending, or paid by credit card. In each case, the draft order is set to `completed` and an order is created.

@@ -29,37 +29,19 @@ namespace OpenShopify.Admin.Builder.Models
         /// Create a new Product ResourceFeedback
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/resource_feedback.json")]
-        public abstract System.Threading.Tasks.Task CreateProductResourceFeedback([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateProductResourceFeedbackRequest request, long product_idUndefined);
+        public abstract System.Threading.Tasks.Task CreateProductResourceFeedback([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateProductResourceFeedbackRequest request, long product_idPath);
 
         /// <summary>
         /// Receive a list of all Product ResourceFeedbacks
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("products/{product_id}/resource_feedback.json")]
-        public abstract System.Threading.Tasks.Task ListProductResourceFeedbacks(long product_idUndefined);
+        public abstract System.Threading.Tasks.Task ListProductResourceFeedbacks(long product_idPath);
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record ProductResourceFeedbackOrig
     {
-        /// <summary>
-        /// DateTime when the resource feedback record was stored by Shopify. **Type:** ISO 8601 UTC DateTime as string with year, month (or week), day, hour, minute, second, time zone.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
-        /// DateTime when the resource feedback record was last updated by Shopify. **Type:** ISO 8601 UTC DateTime as string with year, month (or week), day, hour, minute, second, time zone.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
-
         /// <summary>
         /// Unique id of the resource.
         /// </summary>

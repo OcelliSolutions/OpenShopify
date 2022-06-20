@@ -31,7 +31,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="limit">The maximum number of results to show on a page.</param>
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("users.json")]
-        public abstract System.Threading.Tasks.Task ListUsers(int? limit = null, string? page_info = null);
+        public abstract System.Threading.Tasks.Task ListUsers([Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? page_info = null);
 
         /// <summary>
         /// Retrieves a single user

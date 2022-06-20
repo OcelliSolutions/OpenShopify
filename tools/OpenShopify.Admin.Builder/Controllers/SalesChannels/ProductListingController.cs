@@ -35,7 +35,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="product_ids">A comma-separated list of product ids</param>
         /// <param name="updated_at_min">Filter by product listings last updated after a certain date and time (formatted in ISO 8601)</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("product_listings.json")]
-        public abstract System.Threading.Tasks.Task GetProductListings(long collection_id, string? handle = null, int? limit = null, string? page_info = null, string? product_ids = null, System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task GetProductListings([Microsoft.AspNetCore.Mvc.FromQuery] long collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Retrieve &lt;code&gt;product_ids&lt;/code&gt; that are published to your app
@@ -43,7 +43,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="limit">Amount of results</param>
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("product_listings/product_ids.json")]
-        public abstract System.Threading.Tasks.Task GetProductIds(int? limit = null, string? page_info = null);
+        public abstract System.Threading.Tasks.Task GetProductIds([Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null);
 
         /// <summary>
         /// Retrieve a count of products that are published to your app
@@ -91,15 +91,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? BodyHtml { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the product was created. The API returns this in ISO 8601.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
         /// <summary>
         /// A human-friendly unique string for the Product automatically generated from its title.
@@ -163,15 +154,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Title { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time when the product was last modified. The API returns this in ISO 8601.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         /// <summary>
         /// A list of variant objects, each one representing a slightly different version of the product. For example, if a product comes in different sizes and colors, each size and color permutation (such as "small black", "medium black", "large blue"), would be a variant. 

@@ -46,8 +46,13 @@ paths:
         - name: ids
           in: query
           description: Restrict results to customers specified by a comma-separated list of IDs.
+          style: form
+          explode: false
           schema:
-            type: string
+            type: array
+            items:
+              type: integer
+              format: int64
         - name: limit
           in: query
           description: The maximum number of results to show.
@@ -1062,7 +1067,7 @@ components:
         - declined
         - other
       type: string
-      additionalProperties: { }
+      additionalProperties: false
     ClientDetails:
       type: object
       properties:
@@ -1135,11 +1140,6 @@ components:
         currency:
           type: string
           description: 'The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency that the customer used when they paid for their last order. Defaults to the shop currency. Returns the shop currency for test orders.'
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer was created.'
-          format: date-time
           nullable: true
         default_address:
           $ref: '#/components/schemas/CreateCustomerAddress'
@@ -1220,11 +1220,6 @@ components:
           type: number
           description: The total amount of money that the customer has spent across their order history.
           format: decimal
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer information was last updated.'
-          format: date-time
           nullable: true
         verified_email:
           type: boolean
@@ -1361,11 +1356,6 @@ components:
     CreateCustomerSavedSearch:
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer saved search was created.'
-          format: date-time
-          nullable: true
         name:
           type: string
           description: The name given by the shop owner to the customer saved search.
@@ -1373,11 +1363,6 @@ components:
         query:
           type: string
           description: 'The set of conditions that determines which customers are returned by the saved search. For more information, see [*Customer saved search queries*](#customer-saved-search-queries).'
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer saved search was last modified.'
-          format: date-time
           nullable: true
       additionalProperties: false
     CreateCustomerSavedSearchRequest:
@@ -1439,11 +1424,6 @@ components:
         currency:
           type: string
           description: 'The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency that the customer used when they paid for their last order. Defaults to the shop currency. Returns the shop currency for test orders.'
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer was created.'
-          format: date-time
           nullable: true
         default_address:
           $ref: '#/components/schemas/CustomerAddress'
@@ -1521,11 +1501,6 @@ components:
           description: The total amount of money that the customer has spent across their order history.
           format: decimal
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer information was last updated.'
-          format: date-time
-          nullable: true
         verified_email:
           type: boolean
           description: Whether the customer has verified their email address.
@@ -1547,6 +1522,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     CustomerAddress:
@@ -1698,6 +1683,16 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     CustomerInviteItem:
       required:
@@ -1730,11 +1725,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer saved search was created.'
-          format: date-time
-          nullable: true
         name:
           type: string
           description: The name given by the shop owner to the customer saved search.
@@ -1743,16 +1733,21 @@ components:
           type: string
           description: 'The set of conditions that determines which customers are returned by the saved search. For more information, see [*Customer saved search queries*](#customer-saved-search-queries).'
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer saved search was last modified.'
-          format: date-time
-          nullable: true
         id:
           type: integer
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     CustomerSavedSearchError:
@@ -1858,16 +1853,6 @@ components:
           type: string
           description: "The case-insensitive discount code that customers use at checkout. (maximum: 255 characters)\r\n <div class=\"note note-caution\"> \r\n\r\nUse the same value for `code` as the `title` property of the associated [price rule](/docs/admin-api/rest/reference/discounts/pricerule/#title-property).\r\n </div>"
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the discount code was created.'
-          format: date-time
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the discount code was updated.'
-          format: date-time
-          nullable: true
         price_rule_id:
           type: integer
           description: The ID for the price rule that this discount code belongs to.
@@ -1891,6 +1876,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     EmailMarketingConsent:
@@ -1940,11 +1935,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time when the fulfillment was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         line_items:
           type: array
           items:
@@ -2005,11 +1995,6 @@ components:
             type: string
           description: The URLs of tracking pages for the fulfillment.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the fulfillment was last modified..'
-          format: date-time
-          nullable: true
         variant_inventory_management:
           type: string
           description: The name of the inventory management service.
@@ -2021,6 +2006,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     FulfillmentStatus:
@@ -2251,11 +2246,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was created.'
-          format: date-time
-          nullable: true
         description:
           type: string
           description: A description of the information that the metafield contains.
@@ -2277,11 +2267,6 @@ components:
           type: string
           description: The type of resource that the metafield is attached to.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was last updated.'
-          format: date-time
-          nullable: true
         value:
           description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
           nullable: true
@@ -2297,6 +2282,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     MetafieldType:
@@ -2373,11 +2368,6 @@ components:
         closed_at:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was closed. Returns `null` if the order isn''t closed.'
-          format: date-time
-          nullable: true
-        created_at:
-          type: string
-          description: 'The autogenerated date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was created in Shopify. The value for this property cannot be changed.'
           format: date-time
           nullable: true
         currency:
@@ -2625,11 +2615,6 @@ components:
           description: The sum of all line item weights in grams. The sum is not adjusted as items are removed from the order.
           format: decimal
           nullable: true
-        updated_at:
-          type: string
-          description: "The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the order was last modified.\r\n\r\nFiltering orders by `updated_at` is not an effective method for fetching orders because its value can change when no visible fields of an order have been updated. Use the [Webhook](/docs/admin-api/rest/reference/events/webhook) and [Event](/docs/admin-api/rest/reference/events/event) APIs to subscribe to order events instead."
-          format: date-time
-          nullable: true
         user_id:
           type: integer
           description: 'The ID of the user logged into Shopify POS who processed the order, if applicable.'
@@ -2670,6 +2655,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     OrderList:
@@ -2721,7 +2716,7 @@ components:
       additionalProperties: { }
     PerformBulkOperationsForMultipleCustomerAddressesRequest:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     Price:
       type: object
       properties:
@@ -2759,11 +2754,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the refund was created.'
-          format: date-time
-          nullable: true
         duties:
           type: array
           items:
@@ -2835,6 +2825,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     RefundDuty:
@@ -2959,10 +2959,10 @@ components:
       additionalProperties: { }
     SendAccountInviteToCustomerRequest:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     SetDefaultAddressForCustomerRequest:
       type: object
-      additionalProperties: { }
+      additionalProperties: false
     Shipping:
       type: object
       properties:
@@ -3094,11 +3094,6 @@ components:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the Shopify Payments authorization expires.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the transaction was created.'
-          format: date-time
-          nullable: true
         currency:
           type: string
           description: 'The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency used for the payment.'
@@ -3180,6 +3175,16 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     TransactionErrorCode:
       enum:
@@ -3225,11 +3230,6 @@ components:
         currency:
           type: string
           description: 'The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency that the customer used when they paid for their last order. Defaults to the shop currency. Returns the shop currency for test orders.'
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer was created.'
-          format: date-time
           nullable: true
         default_address:
           $ref: '#/components/schemas/CustomerAddress'
@@ -3306,11 +3306,6 @@ components:
           type: number
           description: The total amount of money that the customer has spent across their order history.
           format: decimal
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer information was last updated.'
-          format: date-time
           nullable: true
         verified_email:
           type: boolean
@@ -3438,11 +3433,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer saved search was created.'
-          format: date-time
-          nullable: true
         name:
           type: string
           description: The name given by the shop owner to the customer saved search.
@@ -3450,11 +3440,6 @@ components:
         query:
           type: string
           description: 'The set of conditions that determines which customers are returned by the saved search. For more information, see [*Customer saved search queries*](#customer-saved-search-queries).'
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer saved search was last modified.'
-          format: date-time
           nullable: true
         id:
           type: integer

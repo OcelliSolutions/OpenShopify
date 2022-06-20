@@ -32,7 +32,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         /// <param name="offset">The number of marketing events to skip.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("marketing_events.json")]
-        public abstract System.Threading.Tasks.Task ListMarketingEvents(int? limit = null, string? page_info = null, int? offset = null);
+        public abstract System.Threading.Tasks.Task ListMarketingEvents([Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? offset = null);
 
         /// <summary>
         /// Creates a marketing event

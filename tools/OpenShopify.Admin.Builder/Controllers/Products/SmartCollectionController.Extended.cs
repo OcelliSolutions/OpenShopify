@@ -14,7 +14,7 @@ public class SmartCollectionController : SmartCollectionControllerBase
     /// <inheritdoc />
     [HttpGet, Route("smart_collections.json")]
     [ProducesResponseType(typeof(SmartCollectionList), StatusCodes.Status200OK)]
-    public override Task ListSmartCollections(string? fields = null, string? handle = null, string? ids = null, int? limit = null, string? page_info = null, long? product_id = null,
+    public override Task ListSmartCollections(string? fields = null, string? handle = null, [FromQuery] IEnumerable<long>? ids = null, int? limit = null, string? page_info = null, long? product_id = null,
         DateTimeOffset? published_at_max = null, DateTimeOffset? published_at_min = null, string? published_status = null, long? since_id = null, string? title = null,
         DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)
     {

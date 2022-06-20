@@ -6,6 +6,15 @@
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Coverage\**" />
+    <Compile Remove="TestResults\**" />
+    <EmbeddedResource Remove="Coverage\**" />
+    <EmbeddedResource Remove="TestResults\**" />
+    <None Remove="Coverage\**" />
+    <None Remove="TestResults\**" />
+  </ItemGroup>
   <ItemGroup>
 	  <PackageReference Include="AutoMapper" Version="11.0.1" />
 	  <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />

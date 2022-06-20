@@ -41,7 +41,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="updated_at_min">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <param name="value_type">The legacy type information for the stored value. Replaced by `type`</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields.json")]
-        public abstract System.Threading.Tasks.Task ListMetafieldsFromResourcesEndpoint(System.DateTimeOffset? created_at_max = null, System.DateTimeOffset? created_at_min = null, string? fields = null, string? key = null, int? limit = null, string? page_info = null, string? @namespace = null, long? since_id = null, string? type = null, System.DateTimeOffset? updated_at_max = null, System.DateTimeOffset? updated_at_min = null, string? value_type = null);
+        public abstract System.Threading.Tasks.Task ListMetafieldsFromResourcesEndpoint([Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? key = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery(Name = "namespace")] string? @namespace = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? type = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? value_type = null);
 
         /// <summary>
         /// Create a metafield
@@ -60,7 +60,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="fields">Retrieve only certain fields, specified by a comma-separated list of fields names.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
-        public abstract System.Threading.Tasks.Task GetMetafield(long metafield_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetMetafield(long metafield_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates a metafield
@@ -79,15 +79,6 @@ namespace OpenShopify.Admin.Builder.Models
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record MetafieldOrig
     {
-        /// <summary>
-        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
         /// <summary>
         /// A description of the information that the metafield contains.
         /// </summary>
@@ -132,15 +123,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? OwnerResource { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was last updated.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         /// <summary>
         /// The data to store in the metafield. The value is always stored as a string, regardless of the metafield's type.

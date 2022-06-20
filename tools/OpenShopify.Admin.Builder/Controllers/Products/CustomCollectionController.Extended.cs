@@ -14,7 +14,7 @@ public class CustomCollectionController : CustomCollectionControllerBase
     /// <inheritdoc />
     [HttpGet, Route("custom_collections.json")]
     [ProducesResponseType(typeof(CustomCollectionList), StatusCodes.Status200OK)]
-    public override Task ListCustomCollections(string? fields = null, string? handle = null, string? ids = null, int? limit = null,
+    public override Task ListCustomCollections(string? fields = null, string? handle = null, [FromQuery] IEnumerable<long>? ids = null, int? limit = null,
         string? page_info = null, long? product_id = null, DateTimeOffset? published_at_max = null,
         DateTimeOffset? published_at_min = null, string? published_status = null, long? since_id = null,
         string? title = null, DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null)

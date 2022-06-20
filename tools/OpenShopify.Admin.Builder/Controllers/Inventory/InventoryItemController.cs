@@ -32,7 +32,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="limit">The maximum number of results to show.</param>
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_items.json")]
-        public abstract System.Threading.Tasks.Task ListInventoryItems(string? ids = null, int? limit = null, string? page_info = null);
+        public abstract System.Threading.Tasks.Task ListInventoryItems([Microsoft.AspNetCore.Mvc.FromQuery] System.Collections.Generic.IEnumerable<long>? ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null);
 
         /// <summary>
         /// Retrieves a single inventory item by ID
@@ -79,15 +79,6 @@ namespace OpenShopify.Admin.Builder.Models
         public string? CountryHarmonizedSystemCodes { get; set; } = default!;
 
         /// <summary>
-        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the inventory item was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
         /// The general [Harmonized System](https://en.wikipedia.org/wiki/Harmonized_System) (HS) code for the inventory item. Used if a country-specific HS code (`countryHarmonizedSystemCode`) is not available.
         /// </summary>
 
@@ -122,15 +113,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? Tracked { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the inventory item was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         /// <summary>
         /// Whether a customer needs to provide a shipping address when placing an order containing the inventory item.

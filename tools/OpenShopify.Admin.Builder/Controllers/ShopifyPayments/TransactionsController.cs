@@ -34,7 +34,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="since_id">Filter response to transactions exclusively after the specified ID.</param>
         /// <param name="test">Filter response to transactions placed in test mode.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("shopify_payments/balance/transactions.json")]
-        public abstract System.Threading.Tasks.Task ListBalanceTransactions(long payout_id, long? last_id = null, string? payout_status = null, long? since_id = null, bool? test = null);
+        public abstract System.Threading.Tasks.Task ListBalanceTransactions([Microsoft.AspNetCore.Mvc.FromQuery] long payout_id, [Microsoft.AspNetCore.Mvc.FromQuery] long? last_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? payout_status = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] bool? test = null);
 
     }
 

@@ -1,5 +1,8 @@
-﻿using System.Text.Json;
+﻿using System.Text;
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
+using System.Web;
 using Ocelli.OpenShopify.Converters;
 
 namespace Ocelli.OpenShopify;
@@ -23,4 +26,22 @@ internal class ShopifyClientBase
         settings.PropertyNameCaseInsensitive = true;
         settings.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
     }
+    /*
+    internal Task PrepareRequestAsync(HttpClient client, HttpRequestMessage request, StringBuilder urlBuilder, CancellationToken cancellationToken)
+    {
+        var url = urlBuilder.ToString();
+        var x = new UriBuilder(urlBuilder.ToString());
+        var keys = HttpUtility.ParseQueryString(x.Query);
+        var newUrl = new UriBuilder(x.Scheme, x.Host, x.Port, x.Path + "?");
+        var newUrlBuilder = new System.Text.StringBuilder(newUrl.ToString());
+        foreach (string? key in keys)
+        {
+            var matches = Regex.Matches(url, $@"[?&]{key}=(\w+)");
+            var values = matches.Select(m => m.Groups[1]);
+            newUrlBuilder.Append(System.Uri.EscapeDataString(key) + "=").Append(string.Join(",", values)).Append("&");
+        }
+
+        urlBuilder = newUrlBuilder;
+    }
+    */
 }

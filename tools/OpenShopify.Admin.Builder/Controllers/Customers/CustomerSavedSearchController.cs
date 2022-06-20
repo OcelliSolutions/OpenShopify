@@ -33,7 +33,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         /// <param name="since_id">Restrict results to after the specified ID.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches.json")]
-        public abstract System.Threading.Tasks.Task ListCustomerSavedSearches(string? fields = null, int? limit = null, string? page_info = null, long? since_id = null);
+        public abstract System.Threading.Tasks.Task ListCustomerSavedSearches([Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null);
 
         /// <summary>
         /// Creates a customer saved search
@@ -46,14 +46,14 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="since_id">Restrict results to after the specified ID</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/count.json")]
-        public abstract System.Threading.Tasks.Task CountCustomerSavedSearches(long? since_id = null);
+        public abstract System.Threading.Tasks.Task CountCustomerSavedSearches([Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null);
 
         /// <summary>
         /// Retrieves a single customer saved search
         /// </summary>
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}.json")]
-        public abstract System.Threading.Tasks.Task GetCustomerSavedSearch(long customer_saved_search_id, string? fields = null);
+        public abstract System.Threading.Tasks.Task GetCustomerSavedSearch(long customer_saved_search_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Updates a customer saved search
@@ -75,22 +75,13 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="page_info">A unique ID used to access a certain page of results.</param>
         /// <param name="order">Set the field and direction by which to order results.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("customer_saved_searches/{customer_saved_search_id}/customers.json")]
-        public abstract System.Threading.Tasks.Task ListCustomersByCustomerSavedSearch(long customer_saved_search_id, string? fields = null, int? limit = null, string? page_info = null, string? order = null);
+        public abstract System.Threading.Tasks.Task ListCustomersByCustomerSavedSearch(long customer_saved_search_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? order = null);
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial record CustomerSavedSearchOrig
     {
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer saved search was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
         /// <summary>
         /// The name given by the shop owner to the customer saved search.
         /// </summary>
@@ -108,15 +99,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Query { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the customer saved search was last modified.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

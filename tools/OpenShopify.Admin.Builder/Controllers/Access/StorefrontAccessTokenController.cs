@@ -67,15 +67,6 @@ namespace OpenShopify.Admin.Builder.Models
         public string? AccessScope { get; set; } = default!;
 
         /// <summary>
-        /// The date and time when the public access token was created. The API returns this value in [ISO 8601 format](//en.wikipedia.org/wiki/ISO_8601).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
-
-        /// <summary>
         /// An arbitrary title for each token determined by the developer/application, used for reference purposes. &lt;div class="note"&gt; 
         /// 
         /// #### Note

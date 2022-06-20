@@ -5,5 +5,5 @@ namespace OpenShopify.Admin.Builder.Models;
 public record AcceptCancellationRequestRequest
 {
     [JsonPropertyName("cancellation_request")]
-    public CancellationRequest CancellationRequest { get; set; } = null!;
+    public MessageDetail MessageDetail { get; set; } = null!;
 }

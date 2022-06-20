@@ -405,11 +405,6 @@ components:
           type: string
           description: 'The gift card code, which is a string of alphanumeric characters. For security reasons, this is available only upon creation of the gift card. (minimum: 8 characters, maximum: 20 characters)'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was created.'
-          format: date-time
-          nullable: true
         currency:
           type: string
           description: The currency of the gift card.
@@ -460,11 +455,6 @@ components:
           type: integer
           description: 'The ID of the user that issued the gift card, if it was issued by a user.'
           format: int64
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was last modified.'
-          format: date-time
           nullable: true
       additionalProperties: false
     CreateGiftCardRequest:
@@ -494,11 +484,6 @@ components:
           type: string
           description: 'The gift card code, which is a string of alphanumeric characters. For security reasons, this is available only upon creation of the gift card. (minimum: 8 characters, maximum: 20 characters)'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was created.'
-          format: date-time
-          nullable: true
         currency:
           type: string
           description: The currency of the gift card.
@@ -550,16 +535,21 @@ components:
           description: 'The ID of the user that issued the gift card, if it was issued by a user.'
           format: int64
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was last modified.'
-          format: date-time
-          nullable: true
         id:
           type: integer
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     GiftCardError:
@@ -616,11 +606,6 @@ components:
           type: string
           description: 'The gift card code, which is a string of alphanumeric characters. For security reasons, this is available only upon creation of the gift card. (minimum: 8 characters, maximum: 20 characters)'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was created.'
-          format: date-time
-          nullable: true
         currency:
           type: string
           description: The currency of the gift card.
@@ -671,11 +656,6 @@ components:
           type: integer
           description: 'The ID of the user that issued the gift card, if it was issued by a user.'
           format: int64
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the gift card was last modified.'
-          format: date-time
           nullable: true
         id:
           type: integer
@@ -757,6 +737,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     UserItem:

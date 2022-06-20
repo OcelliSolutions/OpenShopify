@@ -1,4 +1,6 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc;
 using OpenShopify.Admin.Builder.Data;
 
 namespace OpenShopify.Admin.Builder.Models
@@ -40,16 +42,16 @@ namespace OpenShopify.Admin.Builder.Models
         public new IEnumerable<FulfillmentHold>? FulfillmentHolds { get; set; }
 
         /// <inheritdoc cref="FulfillmentOrderOrig.RequestStatus"/>
-        [JsonPropertyName("request_status")]
-        public new RequestStatus? RequestStatus { get; set; }
+        [JsonPropertyName("request_status"), Required]
+        public new RequestStatus RequestStatus { get; set; }
 
         /// <inheritdoc cref="FulfillmentOrderOrig.Status"/>
-        [JsonPropertyName("status")]
-        public new FulfillmentOrderStatus? Status { get; set; }
+        [JsonPropertyName("status"), Required]
+        public new FulfillmentOrderStatus Status { get; set; }
 
         /// <inheritdoc cref="FulfillmentOrderOrig.SupportedActions"/>
-        [JsonPropertyName("supported_actions")]
-        public new IEnumerable<FulfillmentOrderActions>? SupportedActions { get; set; }
+        [JsonPropertyName("supported_actions"), Required]
+        public new IEnumerable<FulfillmentOrderActions> SupportedActions { get; set; } = null!;
     }
 
     public record FulfillmentHold

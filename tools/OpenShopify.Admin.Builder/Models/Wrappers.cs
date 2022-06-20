@@ -30,7 +30,13 @@ public partial record UpdateStorefrontAccessTokenRequest
 }
 
 /// <inheritdoc cref="StorefrontAccessToken"/>
-public partial record UpdateStorefrontAccessToken : StorefrontAccessToken{}
+public partial record UpdateStorefrontAccessToken : StorefrontAccessToken
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="StorefrontAccessTokenBase"/>
@@ -41,6 +47,18 @@ public partial record StorefrontAccessToken : StorefrontAccessTokenBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="StorefrontAccessTokenOrig"/>
@@ -73,7 +91,13 @@ public partial record UpdateReportRequest
 }
 
 /// <inheritdoc cref="Report"/>
-public partial record UpdateReport : Report{}
+public partial record UpdateReport : Report
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="ReportBase"/>
@@ -84,6 +108,18 @@ public partial record Report : ReportBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="ReportOrig"/>
@@ -116,7 +152,13 @@ public partial record UpdateApplicationChargeRequest
 }
 
 /// <inheritdoc cref="ApplicationCharge"/>
-public partial record UpdateApplicationCharge : ApplicationCharge{}
+public partial record UpdateApplicationCharge : ApplicationCharge
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="ApplicationChargeBase"/>
@@ -127,6 +169,18 @@ public partial record ApplicationCharge : ApplicationChargeBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="ApplicationChargeOrig"/>
@@ -159,7 +213,13 @@ public partial record UpdateApplicationCreditRequest
 }
 
 /// <inheritdoc cref="ApplicationCredit"/>
-public partial record UpdateApplicationCredit : ApplicationCredit{}
+public partial record UpdateApplicationCredit : ApplicationCredit
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="ApplicationCreditBase"/>
@@ -170,6 +230,18 @@ public partial record ApplicationCredit : ApplicationCreditBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="ApplicationCreditOrig"/>
@@ -202,7 +274,13 @@ public partial record UpdateRecurringApplicationChargeRequest
 }
 
 /// <inheritdoc cref="RecurringApplicationCharge"/>
-public partial record UpdateRecurringApplicationCharge : RecurringApplicationCharge{}
+public partial record UpdateRecurringApplicationCharge : RecurringApplicationCharge
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="RecurringApplicationChargeBase"/>
@@ -213,6 +291,18 @@ public partial record RecurringApplicationCharge : RecurringApplicationChargeBas
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="RecurringApplicationChargeOrig"/>
@@ -245,7 +335,13 @@ public partial record UpdateUsageChargeRequest
 }
 
 /// <inheritdoc cref="UsageCharge"/>
-public partial record UpdateUsageCharge : UsageCharge{}
+public partial record UpdateUsageCharge : UsageCharge
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="UsageChargeBase"/>
@@ -256,6 +352,18 @@ public partial record UsageCharge : UsageChargeBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="UsageChargeOrig"/>
@@ -288,7 +396,13 @@ public partial record UpdateCustomerRequest
 }
 
 /// <inheritdoc cref="Customer"/>
-public partial record UpdateCustomer : Customer{}
+public partial record UpdateCustomer : Customer
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="CustomerBase"/>
@@ -299,6 +413,18 @@ public partial record Customer : CustomerBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="CustomerOrig"/>
@@ -331,7 +457,13 @@ public partial record UpdateCustomerSavedSearchRequest
 }
 
 /// <inheritdoc cref="CustomerSavedSearch"/>
-public partial record UpdateCustomerSavedSearch : CustomerSavedSearch{}
+public partial record UpdateCustomerSavedSearch : CustomerSavedSearch
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="CustomerSavedSearchBase"/>
@@ -342,6 +474,18 @@ public partial record CustomerSavedSearch : CustomerSavedSearchBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="CustomerSavedSearchOrig"/>
@@ -363,6 +507,18 @@ public partial record DeprecatedApiCallList
 /// <inheritdoc cref="DeprecatedAPIcallsBase"/>
 public partial record DeprecatedApiCall : DeprecatedAPIcallsBase
 {
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="DeprecatedAPIcallsOrig"/>
@@ -395,7 +551,13 @@ public partial record UpdateDiscountCodeRequest
 }
 
 /// <inheritdoc cref="DiscountCode"/>
-public partial record UpdateDiscountCode : DiscountCode{}
+public partial record UpdateDiscountCode : DiscountCode
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="DiscountCodeBase"/>
@@ -406,6 +568,18 @@ public partial record DiscountCode : DiscountCodeBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="DiscountCodeOrig"/>
@@ -438,7 +612,13 @@ public partial record UpdatePriceRuleRequest
 }
 
 /// <inheritdoc cref="PriceRule"/>
-public partial record UpdatePriceRule : PriceRule{}
+public partial record UpdatePriceRule : PriceRule
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="PriceRuleBase"/>
@@ -449,6 +629,18 @@ public partial record PriceRule : PriceRuleBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="PriceRuleOrig"/>
@@ -481,7 +673,13 @@ public partial record UpdateEventRequest
 }
 
 /// <inheritdoc cref="Event"/>
-public partial record UpdateEvent : Event{}
+public partial record UpdateEvent : Event
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="EventBase"/>
@@ -492,6 +690,18 @@ public partial record Event : EventBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="EventOrig"/>
@@ -524,7 +734,13 @@ public partial record UpdateWebhookRequest
 }
 
 /// <inheritdoc cref="Webhook"/>
-public partial record UpdateWebhook : Webhook{}
+public partial record UpdateWebhook : Webhook
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="WebhookBase"/>
@@ -535,6 +751,18 @@ public partial record Webhook : WebhookBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="WebhookOrig"/>
@@ -567,7 +795,13 @@ public partial record UpdateInventoryItemRequest
 }
 
 /// <inheritdoc cref="InventoryItem"/>
-public partial record UpdateInventoryItem : InventoryItem{}
+public partial record UpdateInventoryItem : InventoryItem
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="InventoryItemBase"/>
@@ -578,6 +812,18 @@ public partial record InventoryItem : InventoryItemBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="InventoryItemOrig"/>
@@ -610,7 +856,13 @@ public partial record UpdateInventoryLevelRequest
 }
 
 /// <inheritdoc cref="InventoryLevel"/>
-public partial record UpdateInventoryLevel : InventoryLevel{}
+public partial record UpdateInventoryLevel : InventoryLevel
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="InventoryLevelBase"/>
@@ -621,6 +873,18 @@ public partial record InventoryLevel : InventoryLevelBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="InventoryLevelOrig"/>
@@ -653,7 +917,13 @@ public partial record UpdateLocationRequest
 }
 
 /// <inheritdoc cref="Location"/>
-public partial record UpdateLocation : Location{}
+public partial record UpdateLocation : Location
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="LocationBase"/>
@@ -664,6 +934,18 @@ public partial record Location : LocationBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="LocationOrig"/>
@@ -696,7 +978,13 @@ public partial record UpdateMarketingEventRequest
 }
 
 /// <inheritdoc cref="MarketingEvent"/>
-public partial record UpdateMarketingEvent : MarketingEvent{}
+public partial record UpdateMarketingEvent : MarketingEvent
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="MarketingEventBase"/>
@@ -707,6 +995,18 @@ public partial record MarketingEvent : MarketingEventBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="MarketingEventOrig"/>
@@ -739,7 +1039,13 @@ public partial record UpdateMetafieldRequest
 }
 
 /// <inheritdoc cref="Metafield"/>
-public partial record UpdateMetafield : Metafield{}
+public partial record UpdateMetafield : Metafield
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="MetafieldBase"/>
@@ -750,6 +1056,18 @@ public partial record Metafield : MetafieldBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="MetafieldOrig"/>
@@ -782,7 +1100,13 @@ public partial record UpdateArticleRequest
 }
 
 /// <inheritdoc cref="Article"/>
-public partial record UpdateArticle : Article{}
+public partial record UpdateArticle : Article
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="ArticleBase"/>
@@ -793,6 +1117,18 @@ public partial record Article : ArticleBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="ArticleOrig"/>
@@ -825,12 +1161,30 @@ public partial record UpdateAssetRequest
 }
 
 /// <inheritdoc cref="Asset"/>
-public partial record UpdateAsset : Asset{}
+public partial record UpdateAsset : Asset
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="AssetBase"/>
 public partial record Asset : AssetBase
 {
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="AssetOrig"/>
@@ -863,7 +1217,13 @@ public partial record UpdateBlogRequest
 }
 
 /// <inheritdoc cref="Blog"/>
-public partial record UpdateBlog : Blog{}
+public partial record UpdateBlog : Blog
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="BlogBase"/>
@@ -874,6 +1234,18 @@ public partial record Blog : BlogBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="BlogOrig"/>
@@ -906,7 +1278,13 @@ public partial record UpdateCommentRequest
 }
 
 /// <inheritdoc cref="Comment"/>
-public partial record UpdateComment : Comment{}
+public partial record UpdateComment : Comment
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="CommentBase"/>
@@ -917,6 +1295,18 @@ public partial record Comment : CommentBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="CommentOrig"/>
@@ -949,7 +1339,13 @@ public partial record UpdatePageRequest
 }
 
 /// <inheritdoc cref="Page"/>
-public partial record UpdatePage : Page{}
+public partial record UpdatePage : Page
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="PageBase"/>
@@ -960,6 +1356,18 @@ public partial record Page : PageBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="PageOrig"/>
@@ -992,7 +1400,13 @@ public partial record UpdateRedirectRequest
 }
 
 /// <inheritdoc cref="Redirect"/>
-public partial record UpdateRedirect : Redirect{}
+public partial record UpdateRedirect : Redirect
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="RedirectBase"/>
@@ -1003,6 +1417,18 @@ public partial record Redirect : RedirectBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="RedirectOrig"/>
@@ -1035,7 +1461,13 @@ public partial record UpdateScriptTagRequest
 }
 
 /// <inheritdoc cref="ScriptTag"/>
-public partial record UpdateScriptTag : ScriptTag{}
+public partial record UpdateScriptTag : ScriptTag
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="ScriptTagBase"/>
@@ -1046,6 +1478,18 @@ public partial record ScriptTag : ScriptTagBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="ScriptTagOrig"/>
@@ -1078,7 +1522,13 @@ public partial record UpdateThemeRequest
 }
 
 /// <inheritdoc cref="Theme"/>
-public partial record UpdateTheme : Theme{}
+public partial record UpdateTheme : Theme
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="ThemeBase"/>
@@ -1089,6 +1539,18 @@ public partial record Theme : ThemeBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="ThemeOrig"/>
@@ -1121,12 +1583,30 @@ public partial record UpdateAbandonedCheckoutRequest
 }
 
 /// <inheritdoc cref="Checkout"/>
-public partial record UpdateAbandonedCheckout : Checkout{}
+public partial record UpdateAbandonedCheckout : Checkout
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="CheckoutBase"/>
 public partial record AbandonedCheckout : CheckoutBase
 {
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="CheckoutOrig"/>
@@ -1159,7 +1639,13 @@ public partial record UpdateDraftOrderRequest
 }
 
 /// <inheritdoc cref="DraftOrder"/>
-public partial record UpdateDraftOrder : DraftOrder{}
+public partial record UpdateDraftOrder : DraftOrder
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="DraftOrderBase"/>
@@ -1170,6 +1656,18 @@ public partial record DraftOrder : DraftOrderBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="DraftOrderOrig"/>
@@ -1191,6 +1689,18 @@ public partial record DraftOrderInvoiceList
 /// <inheritdoc cref="DraftOrderInvoiceBase"/>
 public partial record DraftOrderInvoice : DraftOrderInvoiceBase
 {
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="DraftOrderInvoiceOrig"/>
@@ -1223,7 +1733,13 @@ public partial record UpdateOrderRequest
 }
 
 /// <inheritdoc cref="Order"/>
-public partial record UpdateOrder : Order{}
+public partial record UpdateOrder : Order
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="OrderBase"/>
@@ -1234,6 +1750,18 @@ public partial record Order : OrderBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="OrderOrig"/>
@@ -1266,7 +1794,13 @@ public partial record UpdateOrderRiskRequest
 }
 
 /// <inheritdoc cref="OrderRisk"/>
-public partial record UpdateOrderRisk : OrderRisk{}
+public partial record UpdateOrderRisk : OrderRisk
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="OrderRiskBase"/>
@@ -1277,6 +1811,18 @@ public partial record OrderRisk : OrderRiskBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="OrderRiskOrig"/>
@@ -1309,7 +1855,13 @@ public partial record UpdateRefundRequest
 }
 
 /// <inheritdoc cref="Refund"/>
-public partial record UpdateRefund : Refund{}
+public partial record UpdateRefund : Refund
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="RefundBase"/>
@@ -1320,6 +1872,18 @@ public partial record Refund : RefundBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="RefundOrig"/>
@@ -1352,7 +1916,13 @@ public partial record UpdateTransactionRequest
 }
 
 /// <inheritdoc cref="Transaction"/>
-public partial record UpdateTransaction : Transaction{}
+public partial record UpdateTransaction : Transaction
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="TransactionBase"/>
@@ -1363,6 +1933,18 @@ public partial record Transaction : TransactionBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="TransactionOrig"/>
@@ -1395,7 +1977,13 @@ public partial record UpdateGiftCardRequest
 }
 
 /// <inheritdoc cref="GiftCard"/>
-public partial record UpdateGiftCard : GiftCard{}
+public partial record UpdateGiftCard : GiftCard
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="GiftCardBase"/>
@@ -1406,6 +1994,18 @@ public partial record GiftCard : GiftCardBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="GiftCardOrig"/>
@@ -1438,7 +2038,13 @@ public partial record UpdateUserRequest
 }
 
 /// <inheritdoc cref="User"/>
-public partial record UpdateUser : User{}
+public partial record UpdateUser : User
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="UserBase"/>
@@ -1449,6 +2055,18 @@ public partial record User : UserBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="UserOrig"/>
@@ -1481,7 +2099,13 @@ public partial record UpdateCollectRequest
 }
 
 /// <inheritdoc cref="Collect"/>
-public partial record UpdateCollect : Collect{}
+public partial record UpdateCollect : Collect
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="CollectBase"/>
@@ -1492,6 +2116,18 @@ public partial record Collect : CollectBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="CollectOrig"/>
@@ -1524,7 +2160,13 @@ public partial record UpdateCollectionRequest
 }
 
 /// <inheritdoc cref="Collection"/>
-public partial record UpdateCollection : Collection{}
+public partial record UpdateCollection : Collection
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="CollectionBase"/>
@@ -1535,6 +2177,18 @@ public partial record Collection : CollectionBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="CollectionOrig"/>
@@ -1567,7 +2221,13 @@ public partial record UpdateCustomCollectionRequest
 }
 
 /// <inheritdoc cref="CustomCollection"/>
-public partial record UpdateCustomCollection : CustomCollection{}
+public partial record UpdateCustomCollection : CustomCollection
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="CustomCollectionBase"/>
@@ -1578,6 +2238,18 @@ public partial record CustomCollection : CustomCollectionBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="CustomCollectionOrig"/>
@@ -1610,7 +2282,13 @@ public partial record UpdateProductRequest
 }
 
 /// <inheritdoc cref="Product"/>
-public partial record UpdateProduct : Product{}
+public partial record UpdateProduct : Product
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="ProductBase"/>
@@ -1621,6 +2299,18 @@ public partial record Product : ProductBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="ProductOrig"/>
@@ -1653,7 +2343,13 @@ public partial record UpdateProductImageRequest
 }
 
 /// <inheritdoc cref="ProductImage"/>
-public partial record UpdateProductImage : ProductImage{}
+public partial record UpdateProductImage : ProductImage
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="ProductImageBase"/>
@@ -1664,6 +2360,18 @@ public partial record ProductImage : ProductImageBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="ProductImageOrig"/>
@@ -1696,7 +2404,13 @@ public partial record UpdateProductVariantRequest
 }
 
 /// <inheritdoc cref="ProductVariant"/>
-public partial record UpdateProductVariant : ProductVariant{}
+public partial record UpdateProductVariant : ProductVariant
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="ProductVariantBase"/>
@@ -1707,6 +2421,18 @@ public partial record ProductVariant : ProductVariantBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="ProductVariantOrig"/>
@@ -1739,7 +2465,13 @@ public partial record UpdateSmartCollectionRequest
 }
 
 /// <inheritdoc cref="SmartCollection"/>
-public partial record UpdateSmartCollection : SmartCollection{}
+public partial record UpdateSmartCollection : SmartCollection
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="SmartCollectionBase"/>
@@ -1750,6 +2482,18 @@ public partial record SmartCollection : SmartCollectionBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="SmartCollectionOrig"/>
@@ -1782,7 +2526,13 @@ public partial record UpdateCheckoutRequest
 }
 
 /// <inheritdoc cref="Checkout"/>
-public partial record UpdateCheckout : Checkout{}
+public partial record UpdateCheckout : Checkout
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="CheckoutBase"/>
@@ -1793,6 +2543,18 @@ public partial record Checkout : CheckoutBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="CheckoutOrig"/>
@@ -1825,7 +2587,13 @@ public partial record UpdateCollectionListingRequest
 }
 
 /// <inheritdoc cref="CollectionListing"/>
-public partial record UpdateCollectionListing : CollectionListing{}
+public partial record UpdateCollectionListing : CollectionListing
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="CollectionListingBase"/>
@@ -1836,6 +2604,18 @@ public partial record CollectionListing : CollectionListingBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="CollectionListingOrig"/>
@@ -1868,7 +2648,13 @@ public partial record UpdateMobilePlatformApplicationRequest
 }
 
 /// <inheritdoc cref="MobilePlatformApplication"/>
-public partial record UpdateMobilePlatformApplication : MobilePlatformApplication{}
+public partial record UpdateMobilePlatformApplication : MobilePlatformApplication
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="MobilePlatformApplicationBase"/>
@@ -1879,6 +2665,18 @@ public partial record MobilePlatformApplication : MobilePlatformApplicationBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="MobilePlatformApplicationOrig"/>
@@ -1911,7 +2709,13 @@ public partial record UpdatePaymentRequest
 }
 
 /// <inheritdoc cref="Payment"/>
-public partial record UpdatePayment : Payment{}
+public partial record UpdatePayment : Payment
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="PaymentBase"/>
@@ -1922,6 +2726,18 @@ public partial record Payment : PaymentBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="PaymentOrig"/>
@@ -1954,12 +2770,30 @@ public partial record UpdateProductResourceFeedbackRequest
 }
 
 /// <inheritdoc cref="ProductResourceFeedback"/>
-public partial record UpdateProductResourceFeedback : ProductResourceFeedback{}
+public partial record UpdateProductResourceFeedback : ProductResourceFeedback
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="ProductResourceFeedbackBase"/>
 public partial record ProductResourceFeedback : ProductResourceFeedbackBase
 {
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="ProductResourceFeedbackOrig"/>
@@ -1992,7 +2826,13 @@ public partial record UpdateProductListingRequest
 }
 
 /// <inheritdoc cref="ProductListing"/>
-public partial record UpdateProductListing : ProductListing{}
+public partial record UpdateProductListing : ProductListing
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="ProductListingBase"/>
@@ -2003,6 +2843,18 @@ public partial record ProductListing : ProductListingBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="ProductListingOrig"/>
@@ -2035,12 +2887,30 @@ public partial record UpdateResourceFeedbackRequest
 }
 
 /// <inheritdoc cref="ResourceFeedback"/>
-public partial record UpdateResourceFeedback : ResourceFeedback{}
+public partial record UpdateResourceFeedback : ResourceFeedback
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="ResourceFeedbackBase"/>
 public partial record ResourceFeedback : ResourceFeedbackBase
 {
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="ResourceFeedbackOrig"/>
@@ -2073,7 +2943,13 @@ public partial record UpdateAssignedFulfillmentOrderRequest
 }
 
 /// <inheritdoc cref="FulfillmentOrder"/>
-public partial record UpdateAssignedFulfillmentOrder : FulfillmentOrder{}
+public partial record UpdateAssignedFulfillmentOrder : FulfillmentOrder
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="FulfillmentOrderBase"/>
@@ -2084,6 +2960,18 @@ public partial record AssignedFulfillmentOrder : FulfillmentOrderBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="FulfillmentOrderOrig"/>
@@ -2116,7 +3004,13 @@ public partial record UpdateCarrierServiceRequest
 }
 
 /// <inheritdoc cref="CarrierService"/>
-public partial record UpdateCarrierService : CarrierService{}
+public partial record UpdateCarrierService : CarrierService
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="CarrierServiceBase"/>
@@ -2127,6 +3021,18 @@ public partial record CarrierService : CarrierServiceBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="CarrierServiceOrig"/>
@@ -2159,7 +3065,13 @@ public partial record UpdateFulfillmentRequest
 }
 
 /// <inheritdoc cref="Fulfillment"/>
-public partial record UpdateFulfillment : Fulfillment{}
+public partial record UpdateFulfillment : Fulfillment
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="FulfillmentBase"/>
@@ -2170,6 +3082,18 @@ public partial record Fulfillment : FulfillmentBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="FulfillmentOrig"/>
@@ -2202,7 +3126,13 @@ public partial record UpdateFulfillmentEventRequest
 }
 
 /// <inheritdoc cref="FulfillmentEvent"/>
-public partial record UpdateFulfillmentEvent : FulfillmentEvent{}
+public partial record UpdateFulfillmentEvent : FulfillmentEvent
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="FulfillmentEventBase"/>
@@ -2213,6 +3143,18 @@ public partial record FulfillmentEvent : FulfillmentEventBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="FulfillmentEventOrig"/>
@@ -2245,7 +3187,13 @@ public partial record UpdateFulfillmentOrderRequest
 }
 
 /// <inheritdoc cref="FulfillmentOrder"/>
-public partial record UpdateFulfillmentOrder : FulfillmentOrder{}
+public partial record UpdateFulfillmentOrder : FulfillmentOrder
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="FulfillmentOrderBase"/>
@@ -2256,48 +3204,22 @@ public partial record FulfillmentOrder : FulfillmentOrderBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="FulfillmentOrderOrig"/>
 public partial record FulfillmentOrderBase : FulfillmentOrderOrig{}
-
-	
-public partial record FulfillmentRequestItem
-{
-    [JsonPropertyName("fulfillment_request"), Required]
-    public FulfillmentRequest FulfillmentRequest { get; set; } = null!;
-}
-
-public partial record FulfillmentRequestList
-{
-    [JsonPropertyName("fulfillment_requests"), Required]
-    public IEnumerable<FulfillmentRequest> FulfillmentRequests { get; set; } = null!;
-}
-public partial record CreateFulfillmentRequestRequest
-{
-    [JsonPropertyName("fulfillment_request"), Required]
-    public CreateFulfillmentRequest FulfillmentRequest { get; set; } = null!;
-}
-
-/// <inheritdoc cref="FulfillmentRequestBase"/>
-public partial record CreateFulfillmentRequest : FulfillmentRequestBase {}
-public partial record UpdateFulfillmentRequestRequest
-{
-    [JsonPropertyName("fulfillment_request"), Required]
-    public UpdateFulfillmentRequest FulfillmentRequest { get; set; } = null!;
-}
-
-/// <inheritdoc cref="FulfillmentRequest"/>
-public partial record UpdateFulfillmentRequest : FulfillmentRequest{}
-
-		
-/// <inheritdoc cref="FulfillmentRequestBase"/>
-public partial record FulfillmentRequest : FulfillmentRequestBase
-{
-}
-
-/// <inheritdoc cref="FulfillmentRequestOrig"/>
-public partial record FulfillmentRequestBase : FulfillmentRequestOrig{}
 
 	
 public partial record FulfillmentServiceItem
@@ -2326,7 +3248,13 @@ public partial record UpdateFulfillmentServiceRequest
 }
 
 /// <inheritdoc cref="FulfillmentService"/>
-public partial record UpdateFulfillmentService : FulfillmentService{}
+public partial record UpdateFulfillmentService : FulfillmentService
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="FulfillmentServiceBase"/>
@@ -2337,6 +3265,18 @@ public partial record FulfillmentService : FulfillmentServiceBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="FulfillmentServiceOrig"/>
@@ -2369,12 +3309,30 @@ public partial record UpdateLocationsForMoveRequest
 }
 
 /// <inheritdoc cref="LocationsForMove"/>
-public partial record UpdateLocationsForMove : LocationsForMove{}
+public partial record UpdateLocationsForMove : LocationsForMove
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="LocationsForMoveBase"/>
 public partial record LocationsForMove : LocationsForMoveBase
 {
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="LocationsForMoveOrig"/>
@@ -2407,12 +3365,30 @@ public partial record UpdateBalanceRequest
 }
 
 /// <inheritdoc cref="Balance"/>
-public partial record UpdateBalance : Balance{}
+public partial record UpdateBalance : Balance
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="BalanceBase"/>
 public partial record Balance : BalanceBase
 {
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="BalanceOrig"/>
@@ -2445,7 +3421,13 @@ public partial record UpdateDisputeRequest
 }
 
 /// <inheritdoc cref="Dispute"/>
-public partial record UpdateDispute : Dispute{}
+public partial record UpdateDispute : Dispute
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="DisputeBase"/>
@@ -2456,6 +3438,18 @@ public partial record Dispute : DisputeBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="DisputeOrig"/>
@@ -2488,7 +3482,13 @@ public partial record UpdatePayoutRequest
 }
 
 /// <inheritdoc cref="Payout"/>
-public partial record UpdatePayout : Payout{}
+public partial record UpdatePayout : Payout
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="PayoutsBase"/>
@@ -2499,6 +3499,18 @@ public partial record Payout : PayoutsBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="PayoutsOrig"/>
@@ -2531,7 +3543,13 @@ public partial record UpdateCountryRequest
 }
 
 /// <inheritdoc cref="Country"/>
-public partial record UpdateCountry : Country{}
+public partial record UpdateCountry : Country
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="CountryBase"/>
@@ -2542,6 +3560,18 @@ public partial record Country : CountryBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="CountryOrig"/>
@@ -2574,12 +3604,30 @@ public partial record UpdateCurrencyRequest
 }
 
 /// <inheritdoc cref="Currency"/>
-public partial record UpdateCurrency : Currency{}
+public partial record UpdateCurrency : Currency
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="CurrencyBase"/>
 public partial record Currency : CurrencyBase
 {
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="CurrencyOrig"/>
@@ -2612,12 +3660,30 @@ public partial record UpdatePolicyRequest
 }
 
 /// <inheritdoc cref="Policy"/>
-public partial record UpdatePolicy : Policy{}
+public partial record UpdatePolicy : Policy
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="PolicyBase"/>
 public partial record Policy : PolicyBase
 {
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="PolicyOrig"/>
@@ -2650,7 +3716,13 @@ public partial record UpdateProvinceRequest
 }
 
 /// <inheritdoc cref="Province"/>
-public partial record UpdateProvince : Province{}
+public partial record UpdateProvince : Province
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="ProvinceBase"/>
@@ -2661,6 +3733,18 @@ public partial record Province : ProvinceBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="ProvinceOrig"/>
@@ -2693,7 +3777,13 @@ public partial record UpdateShippingZoneRequest
 }
 
 /// <inheritdoc cref="ShippingZone"/>
-public partial record UpdateShippingZone : ShippingZone{}
+public partial record UpdateShippingZone : ShippingZone
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="ShippingZoneBase"/>
@@ -2704,6 +3794,18 @@ public partial record ShippingZone : ShippingZoneBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="ShippingZoneOrig"/>
@@ -2736,7 +3838,13 @@ public partial record UpdateShopRequest
 }
 
 /// <inheritdoc cref="Shop"/>
-public partial record UpdateShop : Shop{}
+public partial record UpdateShop : Shop
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="ShopBase"/>
@@ -2747,6 +3855,18 @@ public partial record Shop : ShopBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="ShopOrig"/>
@@ -2779,7 +3899,13 @@ public partial record UpdateTenderTransactionRequest
 }
 
 /// <inheritdoc cref="TenderTransaction"/>
-public partial record UpdateTenderTransaction : TenderTransaction{}
+public partial record UpdateTenderTransaction : TenderTransaction
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="TenderTransactionBase"/>
@@ -2790,6 +3916,18 @@ public partial record TenderTransaction : TenderTransactionBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="TenderTransactionOrig"/>
@@ -2822,7 +3960,13 @@ public partial record UpdateDiscountCodeCreationRequest
 }
 
 /// <inheritdoc cref="DiscountCodeCreation"/>
-public partial record UpdateDiscountCodeCreation : DiscountCodeCreation{}
+public partial record UpdateDiscountCodeCreation : DiscountCodeCreation
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="DiscountCodeCreationBase"/>
@@ -2833,6 +3977,18 @@ public partial record DiscountCodeCreation : DiscountCodeCreationBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="DiscountCodeCreationOrig"/>
@@ -2865,7 +4021,13 @@ public partial record UpdateEngagementRequest
 }
 
 /// <inheritdoc cref="Engagement"/>
-public partial record UpdateEngagement : Engagement{}
+public partial record UpdateEngagement : Engagement
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="EngagementBase"/>
@@ -2876,6 +4038,18 @@ public partial record Engagement : EngagementBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="EngagementOrig"/>
@@ -2908,7 +4082,13 @@ public partial record UpdateCustomerInviteRequest
 }
 
 /// <inheritdoc cref="CustomerInvite"/>
-public partial record UpdateCustomerInvite : CustomerInvite{}
+public partial record UpdateCustomerInvite : CustomerInvite
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
 
 		
 /// <inheritdoc cref="CustomerInviteBase"/>
@@ -2919,6 +4099,18 @@ public partial record CustomerInvite : CustomerInviteBase
 
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
 }
 
 /// <inheritdoc cref="CustomerInviteOrig"/>

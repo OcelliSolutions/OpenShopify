@@ -32,7 +32,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="in_shop_currency">Show amounts in the shop currency.</param>
         /// <param name="since_id">Retrieve only transactions after the specified ID.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions.json")]
-        public abstract System.Threading.Tasks.Task ListTransactions(long order_id, string? fields = null, bool? in_shop_currency = null, long? since_id = null);
+        public abstract System.Threading.Tasks.Task ListTransactions(long order_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null);
 
         /// <summary>
         /// Creates a transaction for an order
@@ -52,7 +52,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="fields">Show only certain fields, specified by a comma-separated list of field names.</param>
         /// <param name="in_shop_currency">Show amounts in the shop currency.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/transactions/{transaction_id}.json")]
-        public abstract System.Threading.Tasks.Task GetTransaction(long order_id, long transaction_id, string? fields = null, bool? in_shop_currency = null);
+        public abstract System.Threading.Tasks.Task GetTransaction(long order_id, long transaction_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] bool? in_shop_currency = null);
 
     }
 
@@ -85,15 +85,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? AuthorizationExpiresAt { get; set; } = default!;
-
-        /// <summary>
-        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the transaction was created.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
 
         /// <summary>
         /// The three-letter code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) for the currency used for the payment.

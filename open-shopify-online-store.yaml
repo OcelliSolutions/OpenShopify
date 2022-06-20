@@ -2221,11 +2221,6 @@ components:
           type: string
           description: 'The text of the body of the article, complete with HTML markup.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was created.'
-          format: date-time
-          nullable: true
         handle:
           type: string
           description: A human-friendly unique string for the article that's automatically generated from the article's title.The handle is used in the article's URL.
@@ -2261,11 +2256,6 @@ components:
           type: string
           description: The title of the article.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was last updated.'
-          format: date-time
-          nullable: true
         user_id:
           type: integer
           description: A unique numeric identifier for the author of the article.
@@ -2276,6 +2266,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     ArticleError:
@@ -2346,11 +2346,6 @@ components:
           type: string
           description: 'The [MIME](https://en.wikipedia.org/wiki/Media_type) representation of the content, consisting of the type and subtype of the asset.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
-          format: date-time
-          nullable: true
         key:
           type: string
           description: 'The path to the asset within a theme. It consists of the file''s directory and filename. For example, the asset `assets/bg-body-green.gif` is in the **assets** directory, so its key is `assets/bg-body-green.gif`.'
@@ -2369,11 +2364,6 @@ components:
           description: The ID for the theme that an asset belongs to.
           format: int64
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
-          format: date-time
-          nullable: true
         value:
           type: string
           description: 'The text content of the asset, such as the HTML and Liquid markup of a template file.'
@@ -2382,6 +2372,16 @@ components:
           type: array
           items:
             type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     AssetItem:
@@ -2420,11 +2420,6 @@ components:
           type: string
           description: "Indicates whether readers can post comments to the blog and if comments are moderated or not. Possible values are:\r\n\r\n*   **no (default)**: Readers cannot post comments to blog articles. \r\n*   **moderate**: Readers can post comments to blog articles, but comments must be moderated before they appear. \r\n*   **yes**: Readers can post comments to blog articles without moderation."
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time when the blog was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         feedburner:
           description: 'FeedBurner is a web feed management provider and can be enabled to provide custom RSS feeds for Shopify bloggers. Google has stopped supporting FeedBurner, and new or existing blogs that are not already integrated with FeedBurner can''t use the service. This property will default to blank unless FeedBurner is enabled.'
           nullable: true
@@ -2452,17 +2447,22 @@ components:
           type: string
           description: The title of the blog.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time when changes were last made to the blog''s properties. Note that this is not updated when creating, modifying or deleting articles in the blog. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         admin_graphql_api_id:
           type: string
           nullable: true
         id:
           type: integer
           format: int64
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     BlogError:
       required:
@@ -2526,11 +2526,6 @@ components:
           type: string
           description: 'The text of the comment, complete with HTML markup.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the comment was created.'
-          format: date-time
-          nullable: true
         email:
           type: string
           description: The email address of the author of the comment.
@@ -2548,11 +2543,6 @@ components:
           type: string
           description: "The status of the comment. Valid values:\r\n\r\n*   **pending**: The comment has been created but is awaiting spam detection. Depending on the result of the spam detection and the shop owner's comment preferences, this property will be transitioned to either `spam`, `unapproved`, or `approved`. \r\n*   **unapproved (default)**: The comment is awaiting approval by the shop owner. It's not visible to the readers of the blog. \r\n*   **published**: The comment has been approved (if the blog requires comments to be approved) and is visible to readers of the blog. \r\n*   **spam**: The comment has been marked as spam and removed from the Shopify admin. It's not visible to readers of the blog. \r\n*   **removed**: The comment has been removed by the shop owner. It's not visible to readers of the blog."
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the comment was last modified. When the comment is created, this matches the value of `created_at`. If the blog requires comments to be approved, then this value is updated to the date and time when the comment is approved.'
-          format: date-time
-          nullable: true
         user_agent:
           type: string
           description: The user agent string provided by the software used to create the comment (usually a browser).
@@ -2562,6 +2552,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     CommentError:
@@ -2632,11 +2632,6 @@ components:
           type: string
           description: 'The text of the body of the article, complete with HTML markup.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was created.'
-          format: date-time
-          nullable: true
         handle:
           type: string
           description: A human-friendly unique string for the article that's automatically generated from the article's title.The handle is used in the article's URL.
@@ -2672,11 +2667,6 @@ components:
           type: string
           description: The title of the article.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was last updated.'
-          format: date-time
-          nullable: true
         user_id:
           type: integer
           description: A unique numeric identifier for the author of the article.
@@ -2706,11 +2696,6 @@ components:
           type: string
           description: 'The [MIME](https://en.wikipedia.org/wiki/Media_type) representation of the content, consisting of the type and subtype of the asset.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
-          format: date-time
-          nullable: true
         key:
           type: string
           description: 'The path to the asset within a theme. It consists of the file''s directory and filename. For example, the asset `assets/bg-body-green.gif` is in the **assets** directory, so its key is `assets/bg-body-green.gif`.'
@@ -2729,11 +2714,6 @@ components:
           description: The ID for the theme that an asset belongs to.
           format: int64
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
-          format: date-time
-          nullable: true
         value:
           type: string
           description: 'The text content of the asset, such as the HTML and Liquid markup of a template file.'
@@ -2750,11 +2730,6 @@ components:
         commentable:
           type: string
           description: "Indicates whether readers can post comments to the blog and if comments are moderated or not. Possible values are:\r\n\r\n*   **no (default)**: Readers cannot post comments to blog articles. \r\n*   **moderate**: Readers can post comments to blog articles, but comments must be moderated before they appear. \r\n*   **yes**: Readers can post comments to blog articles without moderation."
-          nullable: true
-        created_at:
-          type: string
-          description: 'The date and time when the blog was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
           nullable: true
         feedburner:
           type: string
@@ -2783,11 +2758,6 @@ components:
         title:
           type: string
           description: The title of the blog.
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time when changes were last made to the blog''s properties. Note that this is not updated when creating, modifying or deleting articles in the blog. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
           nullable: true
         admin_graphql_api_id:
           type: string
@@ -2827,11 +2797,6 @@ components:
           type: string
           description: 'The text of the comment, complete with HTML markup.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the comment was created.'
-          format: date-time
-          nullable: true
         email:
           type: string
           description: The email address of the author of the comment.
@@ -2848,11 +2813,6 @@ components:
         status:
           type: string
           description: "The status of the comment. Valid values:\r\n\r\n*   **pending**: The comment has been created but is awaiting spam detection. Depending on the result of the spam detection and the shop owner's comment preferences, this property will be transitioned to either `spam`, `unapproved`, or `approved`. \r\n*   **unapproved (default)**: The comment is awaiting approval by the shop owner. It's not visible to the readers of the blog. \r\n*   **published**: The comment has been approved (if the blog requires comments to be approved) and is visible to readers of the blog. \r\n*   **spam**: The comment has been marked as spam and removed from the Shopify admin. It's not visible to readers of the blog. \r\n*   **removed**: The comment has been removed by the shop owner. It's not visible to readers of the blog."
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the comment was last modified. When the comment is created, this matches the value of `created_at`. If the blog requires comments to be approved, then this value is updated to the date and time when the comment is approved.'
-          format: date-time
           nullable: true
         user_agent:
           type: string
@@ -2886,11 +2846,6 @@ components:
           type: string
           description: 'The text content of the page, complete with HTML markup.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the page was created.'
-          format: date-time
-          nullable: true
         handle:
           type: string
           description: 'A unique, human-friendly string for the page, generated automatically from its title. In themes, the Liquid templating language refers to a page by its handle.'
@@ -2916,11 +2871,6 @@ components:
         title:
           type: string
           description: The title of the page.
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the page was last updated.'
-          format: date-time
           nullable: true
         admin_graphql_api_id:
           type: string
@@ -2964,11 +2914,6 @@ components:
     CreateScriptTag:
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was created.'
-          format: date-time
-          nullable: true
         event:
           $ref: '#/components/schemas/ScriptTagEvent'
         src:
@@ -2980,11 +2925,6 @@ components:
         cache:
           type: boolean
           description: "Whether the Shopify CDN can cache and serve the script tag. Valid values: \r\n\r\n*   `true`: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned. \r\n*   `false`: The script will be served as is.  Default value: `false`."
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was last updated.'
-          format: date-time
           nullable: true
       additionalProperties: false
     CreateScriptTagRequest:
@@ -2998,11 +2938,6 @@ components:
     CreateTheme:
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time when the theme was created. (format: 2014-04-25T16:15:47-04:00)'
-          format: date-time
-          nullable: true
         name:
           type: string
           description: The name of the theme.
@@ -3022,11 +2957,6 @@ components:
           description: 'A unique identifier applied to Shopify-made themes that are installed from the [Shopify Theme Store](https://themes.shopify.com/) Theme Store. Not all themes available in the Theme Store are developed by Shopify. Returns `null` if the store''s theme isn''t made by Shopify, or if it wasn''t installed from the Theme Store.'
           format: int64
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time of when the theme was last updated. (format: 2014-04-25T16:15:47-04:00)'
-          format: date-time
-          nullable: true
         src:
           type: string
           nullable: true
@@ -3044,11 +2974,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was created.'
-          format: date-time
-          nullable: true
         description:
           type: string
           description: A description of the information that the metafield contains.
@@ -3070,11 +2995,6 @@ components:
           type: string
           description: The type of resource that the metafield is attached to.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the metafield was last updated.'
-          format: date-time
-          nullable: true
         value:
           description: 'The data to store in the metafield. The value is always stored as a string, regardless of the metafield''s type.'
           nullable: true
@@ -3090,6 +3010,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     MetafieldType:
@@ -3126,11 +3056,6 @@ components:
           type: string
           description: 'The text content of the page, complete with HTML markup.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the page was created.'
-          format: date-time
-          nullable: true
         handle:
           type: string
           description: 'A unique, human-friendly string for the page, generated automatically from its title. In themes, the Liquid templating language refers to a page by its handle.'
@@ -3157,11 +3082,6 @@ components:
           type: string
           description: The title of the page.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the page was last updated.'
-          format: date-time
-          nullable: true
         admin_graphql_api_id:
           type: string
           nullable: true
@@ -3174,6 +3094,16 @@ components:
         id:
           type: integer
           format: int64
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     PageError:
       required:
@@ -3229,6 +3159,16 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
       additionalProperties: { }
     RedirectError:
       required:
@@ -3275,11 +3215,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was created.'
-          format: date-time
-          nullable: true
         event:
           $ref: '#/components/schemas/ScriptTagEvent'
         src:
@@ -3292,16 +3227,21 @@ components:
           type: boolean
           description: "Whether the Shopify CDN can cache and serve the script tag. Valid values: \r\n\r\n*   `true`: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned. \r\n*   `false`: The script will be served as is.  Default value: `false`."
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was last updated.'
-          format: date-time
-          nullable: true
         id:
           type: integer
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     ScriptTagDisplayScope:
@@ -3370,11 +3310,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time when the theme was created. (format: 2014-04-25T16:15:47-04:00)'
-          format: date-time
-          nullable: true
         name:
           type: string
           description: The name of the theme.
@@ -3394,11 +3329,6 @@ components:
           description: 'A unique identifier applied to Shopify-made themes that are installed from the [Shopify Theme Store](https://themes.shopify.com/) Theme Store. Not all themes available in the Theme Store are developed by Shopify. Returns `null` if the store''s theme isn''t made by Shopify, or if it wasn''t installed from the Theme Store.'
           format: int64
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time of when the theme was last updated. (format: 2014-04-25T16:15:47-04:00)'
-          format: date-time
-          nullable: true
         src:
           type: string
           nullable: true
@@ -3407,6 +3337,16 @@ components:
           format: int64
         admin_graphql_api_id:
           type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
           nullable: true
       additionalProperties: { }
     ThemeError:
@@ -3470,11 +3410,6 @@ components:
           type: string
           description: 'The text of the body of the article, complete with HTML markup.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was created.'
-          format: date-time
-          nullable: true
         handle:
           type: string
           description: A human-friendly unique string for the article that's automatically generated from the article's title.The handle is used in the article's URL.
@@ -3510,11 +3445,6 @@ components:
           type: string
           description: The title of the article.
           nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the article was last updated.'
-          format: date-time
-          nullable: true
         user_id:
           type: integer
           description: A unique numeric identifier for the author of the article.
@@ -3544,11 +3474,6 @@ components:
           type: string
           description: "Indicates whether readers can post comments to the blog and if comments are moderated or not. Possible values are:\r\n\r\n*   **no (default)**: Readers cannot post comments to blog articles. \r\n*   **moderate**: Readers can post comments to blog articles, but comments must be moderated before they appear. \r\n*   **yes**: Readers can post comments to blog articles without moderation."
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time when the blog was created. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
-          nullable: true
         feedburner:
           description: 'FeedBurner is a web feed management provider and can be enabled to provide custom RSS feeds for Shopify bloggers. Google has stopped supporting FeedBurner, and new or existing blogs that are not already integrated with FeedBurner can''t use the service. This property will default to blank unless FeedBurner is enabled.'
           nullable: true
@@ -3575,11 +3500,6 @@ components:
         title:
           type: string
           description: The title of the blog.
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time when changes were last made to the blog''s properties. Note that this is not updated when creating, modifying or deleting articles in the blog. The API returns this value in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).'
-          format: date-time
           nullable: true
         admin_graphql_api_id:
           type: string
@@ -3623,11 +3543,6 @@ components:
           type: string
           description: 'The text of the comment, complete with HTML markup.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the comment was created.'
-          format: date-time
-          nullable: true
         email:
           type: string
           description: The email address of the author of the comment.
@@ -3644,11 +3559,6 @@ components:
         status:
           type: string
           description: "The status of the comment. Valid values:\r\n\r\n*   **pending**: The comment has been created but is awaiting spam detection. Depending on the result of the spam detection and the shop owner's comment preferences, this property will be transitioned to either `spam`, `unapproved`, or `approved`. \r\n*   **unapproved (default)**: The comment is awaiting approval by the shop owner. It's not visible to the readers of the blog. \r\n*   **published**: The comment has been approved (if the blog requires comments to be approved) and is visible to readers of the blog. \r\n*   **spam**: The comment has been marked as spam and removed from the Shopify admin. It's not visible to readers of the blog. \r\n*   **removed**: The comment has been removed by the shop owner. It's not visible to readers of the blog."
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the comment was last modified. When the comment is created, this matches the value of `created_at`. If the blog requires comments to be approved, then this value is updated to the date and time when the comment is approved.'
-          format: date-time
           nullable: true
         user_agent:
           type: string
@@ -3682,11 +3592,6 @@ components:
           type: string
           description: 'The text content of the page, complete with HTML markup.'
           nullable: true
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the page was created.'
-          format: date-time
-          nullable: true
         handle:
           type: string
           description: 'A unique, human-friendly string for the page, generated automatically from its title. In themes, the Liquid templating language refers to a page by its handle.'
@@ -3712,11 +3617,6 @@ components:
         title:
           type: string
           description: The title of the page.
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the page was last updated.'
-          format: date-time
           nullable: true
         admin_graphql_api_id:
           type: string
@@ -3772,11 +3672,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was created.'
-          format: date-time
-          nullable: true
         event:
           $ref: '#/components/schemas/ScriptTagEvent'
         src:
@@ -3788,11 +3683,6 @@ components:
         cache:
           type: boolean
           description: "Whether the Shopify CDN can cache and serve the script tag. Valid values: \r\n\r\n*   `true`: The script will be cached and served by the CDN. The cache expires 15 minutes after the script tag is successfully returned. \r\n*   `false`: The script will be served as is.  Default value: `false`."
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time ([ISO 8601](http://en.wikipedia.org/wiki/ISO_8601)) when the script tag was last updated.'
-          format: date-time
           nullable: true
         id:
           type: integer
@@ -3814,11 +3704,6 @@ components:
         - id
       type: object
       properties:
-        created_at:
-          type: string
-          description: 'The date and time when the theme was created. (format: 2014-04-25T16:15:47-04:00)'
-          format: date-time
-          nullable: true
         name:
           type: string
           description: The name of the theme.
@@ -3837,11 +3722,6 @@ components:
           type: integer
           description: 'A unique identifier applied to Shopify-made themes that are installed from the [Shopify Theme Store](https://themes.shopify.com/) Theme Store. Not all themes available in the Theme Store are developed by Shopify. Returns `null` if the store''s theme isn''t made by Shopify, or if it wasn''t installed from the Theme Store.'
           format: int64
-          nullable: true
-        updated_at:
-          type: string
-          description: 'The date and time of when the theme was last updated. (format: 2014-04-25T16:15:47-04:00)'
-          format: date-time
           nullable: true
         src:
           type: string

@@ -99,13 +99,20 @@ foreach (var shopifyFile in shopifyFiles)
             GenerateDefaultValues = true,
             GenerateDataAnnotations = true, 
             ExcludedTypeNames = excludedNames,
-            PropertyNameGenerator = new CustomPropertyNameGenerator()
+            PropertyNameGenerator = new CustomPropertyNameGenerator(),
+            ClassStyle = CSharpClassStyle.Poco
         }
     };
 
     var generator = new CSharpClientGenerator(document, settings);
     var code = generator.GenerateFile();
     code = code.Replace("JsonStringEnumConverter", "JsonStringEnumMemberConverter");
+
+    var pattern = @"foreach \(var item_ in (\w+).*?\}";
+    if(Regex.IsMatch(code, pattern))
+        Console.WriteLine(Regex.Match(code, pattern));
+    code = Regex.Replace(code, $@"foreach \(var item_ in (\w+).*?\}}", $@"{{urlBuilder_.Append(System.Uri.EscapeDataString(""$1"") + ""="").Append(System.Uri.EscapeDataString(string.Join("","", $1))).Append(""&""); }}");
+    
 
     await File.WriteAllTextAsync($@"../../../../../src/Ocelli.OpenShopify/Clients/Shopify{className}Client.cs", code);
 

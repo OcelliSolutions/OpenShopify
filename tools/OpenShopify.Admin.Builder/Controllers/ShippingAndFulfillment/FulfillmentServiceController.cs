@@ -29,7 +29,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Receive a list of all FulfillmentServices
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("fulfillment_services.json")]
-        public abstract System.Threading.Tasks.Task ListFulfillmentServices(string? scope = null);
+        public abstract System.Threading.Tasks.Task ListFulfillmentServices([Microsoft.AspNetCore.Mvc.FromQuery] string? scope = null);
 
         /// <summary>
         /// Create a new FulfillmentService
