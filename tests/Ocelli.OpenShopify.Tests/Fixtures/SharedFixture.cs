@@ -34,12 +34,18 @@ public class SharedFixture
 #if DEBUG
         DaysToTest = 10;
 #endif
+        ApiKey = config.ApiKey;
+        SecretKey = config.ApiSecret;
         AccessToken = config.AccessToken;
         MyShopifyUrl = config.MyShopifyUrl;
         //Scopes = new List<AuthorizationScope?>();
 
         Task.Run(async () => await LoadScopes()).Wait();
     }
+
+    internal string ApiKey { get; set; }
+
+    internal string SecretKey { get; set; }
 
     internal string BatchId { get; }
     public int DaysToTest { get; set; }

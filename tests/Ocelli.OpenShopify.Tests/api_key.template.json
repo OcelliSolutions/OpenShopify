@@ -1,4 +1,6 @@
 {
   "access_token": "value",
-  "my_shopify_url": "value"
+  "my_shopify_url": "value",
+  "api_key": "value",
+  "api_secret": "value"
 }
