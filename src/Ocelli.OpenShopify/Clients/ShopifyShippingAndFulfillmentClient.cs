@@ -7305,19 +7305,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.ICollection<FulfillmentHold>? FulfillmentHolds { get; set; } = default!;
 
-        /// <summary>
-        /// The international duties relevant to the fulfillment order.
-        /// <br/>
-        /// <br/>*   **incoterm**: The method of duties payment. Valid values: 
-        /// <br/>
-        /// <br/>    *   **DAP**: Delivered at place. 
-        /// <br/>    *   **DDP**: Delivered duty paid.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("international_duties")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? InternationalDuties { get; set; } = default!;
+        public InternationalDuties? InternationalDuties { get; set; } = default!;
 
         /// <summary>
         /// Represents line items belonging to a fulfillment order:
@@ -7858,19 +7849,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.ICollection<FulfillmentHold>? FulfillmentHolds { get; set; } = default!;
 
-        /// <summary>
-        /// The international duties relevant to the fulfillment order.
-        /// <br/>
-        /// <br/>*   **incoterm**: The method of duties payment. Valid values: 
-        /// <br/>
-        /// <br/>    *   **DAP**: Delivered at place. 
-        /// <br/>    *   **DDP**: Delivered duty paid.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("international_duties")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? InternationalDuties { get; set; } = default!;
+        public InternationalDuties? InternationalDuties { get; set; } = default!;
 
         /// <summary>
         /// Represents line items belonging to a fulfillment order:
@@ -8390,6 +8372,39 @@ namespace Ocelli.OpenShopify
 
         [System.Runtime.Serialization.EnumMember(Value = @"current_client")]
         CurrentClient = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum IncoTerm
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"DAP")]
+        DAP = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"DDP")]
+        DDP = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.0.0 (NJsonSchema v10.7.1.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class InternationalDuties
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("incoterm")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public IncoTerm? Incoterm { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
 
     }
 

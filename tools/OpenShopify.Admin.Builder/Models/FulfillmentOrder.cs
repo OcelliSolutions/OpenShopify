@@ -52,6 +52,10 @@ namespace OpenShopify.Admin.Builder.Models
         /// <inheritdoc cref="FulfillmentOrderOrig.SupportedActions"/>
         [JsonPropertyName("supported_actions"), Required]
         public new IEnumerable<FulfillmentOrderActions> SupportedActions { get; set; } = null!;
+
+        /// <inheritdoc cref="FulfillmentOrderOrig.InternationalDuties"/>
+        [JsonPropertyName("international_duties")]
+        public new InternationalDuties? InternationalDuties { get; set; } = default!;
     }
 
     public record FulfillmentHold

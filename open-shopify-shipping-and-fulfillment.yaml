@@ -2933,9 +2933,7 @@ components:
           description: "Represents the fulfillment holds applied on the fulfillment order.\r\n\r\n*   **reason**: The reason for the fulfillment hold. \r\n*   **reason_notes**: Additional information about the fulfillment hold reason."
           nullable: true
         international_duties:
-          type: string
-          description: "The international duties relevant to the fulfillment order.\r\n\r\n*   **incoterm**: The method of duties payment. Valid values: \r\n\r\n    *   **DAP**: Delivered at place. \r\n    *   **DDP**: Delivered duty paid."
-          nullable: true
+          $ref: '#/components/schemas/InternationalDuties'
         line_items:
           type: array
           items:
@@ -3185,9 +3183,7 @@ components:
           description: "Represents the fulfillment holds applied on the fulfillment order.\r\n\r\n*   **reason**: The reason for the fulfillment hold. \r\n*   **reason_notes**: Additional information about the fulfillment hold reason."
           nullable: true
         international_duties:
-          type: string
-          description: "The international duties relevant to the fulfillment order.\r\n\r\n*   **incoterm**: The method of duties payment. Valid values: \r\n\r\n    *   **DAP**: Delivered at place. \r\n    *   **DDP**: Delivered duty paid."
-          nullable: true
+          $ref: '#/components/schemas/InternationalDuties'
         line_items:
           type: array
           items:
@@ -3413,6 +3409,18 @@ components:
         - all
         - current_client
       type: string
+      additionalProperties: { }
+    IncoTerm:
+      enum:
+        - DAP
+        - DDP
+      type: string
+      additionalProperties: { }
+    InternationalDuties:
+      type: object
+      properties:
+        incoterm:
+          $ref: '#/components/schemas/IncoTerm'
       additionalProperties: { }
     LineItem:
       required:

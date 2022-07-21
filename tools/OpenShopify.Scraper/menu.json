@@ -1,8 +1,21 @@
 {
   "features": [
+    "app_bridge",
+    "b2b_liquid",
+    "bfs_cli",
+    "bfs_distro",
+    "bfs_qr_tutorial",
     "cg_fe_comment",
     "cg_ownership",
-    "cg_slack_notifications"
+    "cg_slack_notifications",
+    "data_protection",
+    "editions_banner",
+    "editions_footer_cta",
+    "getting_featured",
+    "liquid_api_next",
+    "liquid_example_rendering",
+    "marketplace_kit2",
+    "web_pixels"
   ],
   "enable_theme_mode": true,
   "api": {
@@ -413,12 +426,12 @@
     "landing_page": "admin_rest",
     "selectable_versions": [
       "unstable",
+      "2022-10",
       "2022-07",
       "2022-04",
       "2022-01",
-      "2021-10",
-      "2021-07"
+      "2021-10"
     ],
-    "current_stable_version": "2022-04"
+    "current_stable_version": "2022-07"
   }
 }
