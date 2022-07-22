@@ -2999,6 +2999,7 @@ components:
         - release_hold
         - mark_as_open
         - hold
+        - revert_to_unfulfilled
       type: string
       additionalProperties: { }
     FulfillmentOrderCancellationRequestDetail:

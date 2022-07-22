@@ -17,5 +17,7 @@ public enum FulfillmentOrderActions
     [EnumMember(Value = "mark_as_open")]
     MarkAsOpen,
     [EnumMember(Value = "hold")]
-    Hold
+    Hold,
+    [EnumMember(Value = "revert_to_unfulfilled")]
+    RevertToUnfulfilled
 }
