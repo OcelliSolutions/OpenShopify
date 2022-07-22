@@ -9,8 +9,8 @@
 
 
 	<ItemGroup>
-		<PackageReference Include="NSwag.CodeGeneration.CSharp" Version="13.16.0" />
-		<PackageReference Include="NSwag.Core.Yaml" Version="13.16.0" />
+		<PackageReference Include="NSwag.CodeGeneration.CSharp" Version="13.16.1" />
+		<PackageReference Include="NSwag.Core.Yaml" Version="13.16.1" />
 	</ItemGroup>
 
 

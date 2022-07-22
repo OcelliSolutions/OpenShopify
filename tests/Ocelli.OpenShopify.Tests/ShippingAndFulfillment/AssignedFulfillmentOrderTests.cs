@@ -75,6 +75,7 @@ public class AssignedFulfillmentOrderTests : IClassFixture<AssignedFulfillmentOr
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var assignedFulfillmentOrder in response.Result.FulfillmentOrders)
         {
+            Assert.NotNull(assignedFulfillmentOrder.OrderId);
             _additionalPropertiesHelper.CheckAdditionalProperties(assignedFulfillmentOrder, Fixture.MyShopifyUrl);
         }
 

@@ -1,8 +1,5 @@
-﻿using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Text.RegularExpressions;
-using System.Web;
 using Ocelli.OpenShopify.Converters;
 
 namespace Ocelli.OpenShopify;
@@ -17,7 +14,7 @@ internal class ShopifyClientBase
         //settings.Converters.Add(new DecimalConverter());
         //settings.Converters.Add(new DoubleConverter());
         //settings.Converters.Add(new IntConverter());
-        settings.Converters.Add(new LongConverter());
+        //settings.Converters.Add(new LongConverter());
         //settings.Converters.Add(new StringConverter());
 
         //settings.Converters.Add(new JsonStringEnumConverter());

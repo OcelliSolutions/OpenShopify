@@ -16,7 +16,6 @@
     <None Remove="TestResults\**" />
   </ItemGroup>
   <ItemGroup>
-	  <PackageReference Include="AutoMapper" Version="11.0.1" />
 	  <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
 	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
 	  <PackageReference Include="shortid" Version="4.0.0" />
