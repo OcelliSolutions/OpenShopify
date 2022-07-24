@@ -2380,6 +2380,15 @@ namespace Ocelli.OpenShopify
         public string? RateUpdatedAt { get; set; } = default!;
 
         /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("enabled")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? Enabled { get; set; } = default!;
+
+        /// <summary>
         /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
         /// </summary>
 

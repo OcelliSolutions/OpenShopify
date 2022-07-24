@@ -46,7 +46,7 @@ public class CurrencyTests : IClassFixture<CurrencyFixture>
             _additionalPropertiesHelper.CheckAdditionalProperties(currency, Fixture.MyShopifyUrl);
         }
 
-        Skip.If(!response.Result.Currencies.Any(), "No results returned. Unable to test");
+        Skip.If(!response.Result.Currencies.Any(), "No results returned. Currencies must be added manually. https://help.shopify.com/en/manual/payments/shopify-payments/multi-currency/setup");
     }
 
     #endregion Read

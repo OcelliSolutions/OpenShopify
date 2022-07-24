@@ -649,6 +649,9 @@ components:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) whenthe conversion rate associated with this currency was last updated. If manual FX rates are active on a shop, then theupdated date of these rates will replace the automatic conversion rates. Conversion rates are checked every 15minutes, but typically updated only a few times a day. Manual FX rates are updated at the merchant''s request.'
           nullable: true
+        enabled:
+          type: boolean
+          description: This property is undocumented by Shopify.
         created_at:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'

@@ -7,7 +7,7 @@ namespace Ocelli.OpenShopify.Tests;
 public class MiscellaneousTests
 {
     [Fact]
-    void AdditionalProperties_CanUpdate()
+    public void AdditionalProperties_CanUpdate()
     {
         var types = Assembly
             .GetExecutingAssembly()

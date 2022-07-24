@@ -47,6 +47,7 @@ public class ProvinceTests : IClassFixture<ProvinceFixture>
     [TestPriority(30)]
     public async Task UpdateProvinceAsync_CanUpdate()
     {
+        Skip.If(!Fixture.Provinces.Any(), "No provinces exist for store. Follow https://help.shopify.com/en/manual/shipping/setting-up-and-managing-your-shipping/setting-up-shipping-zones#add-a-shipping-zone to add a shipping zone manually first.");
         var originalProvince = Fixture.Provinces.First();
         var request = new UpdateProvinceRequest
         {
@@ -76,7 +77,7 @@ public class ProvinceTests : IClassFixture<ProvinceFixture>
         var response = await Fixture.Service.Province.CountProvincesAsync(Fixture.Countries.First().Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
-        Skip.If(count == 0, "No results returned. Unable to test");
+        Skip.If(count == 0, "No provinces exist for store. Follow https://help.shopify.com/en/manual/shipping/setting-up-and-managing-your-shipping/setting-up-shipping-zones#add-a-shipping-zone to add a shipping zone manually first.");
     }
 
     [SkippableFact]
@@ -91,14 +92,14 @@ public class ProvinceTests : IClassFixture<ProvinceFixture>
         }
 
         Fixture.Provinces.AddRange(response.Result.Provinces);
-        Skip.If(!response.Result.Provinces.Any(), "No results returned. Unable to test");
+        Skip.If(!response.Result.Provinces.Any(), "No provinces exist for store. Follow https://help.shopify.com/en/manual/shipping/setting-up-and-managing-your-shipping/setting-up-shipping-zones#add-a-shipping-zone to add a shipping zone manually first.");
     }
 
     [SkippableFact]
     [TestPriority(21)]
     public async Task GetProvinceAsync_TestCreated_AdditionalPropertiesAreEmpty()
     {
-        Skip.If(!Fixture.Provinces.Any(), "Must be run with create test");
+        Skip.If(!Fixture.Provinces.Any(), "No provinces exist for store. Follow https://help.shopify.com/en/manual/shipping/setting-up-and-managing-your-shipping/setting-up-shipping-zones#add-a-shipping-zone to add a shipping zone manually first.");
         var province = Fixture.Provinces.First();
         var response = await Fixture.Service.Province.GetProvinceAsync(province.CountryId ?? 0, province.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);

@@ -31,7 +31,7 @@ foreach (var shopifyFile in shopifyFiles)
             excludeNamesForClient.AddRange(new List<string>
             {
                 "LineItemProperty", "OrderMetafield", "NoteAttribute", "LineItemOriginLocation", "LineItemDuty", 
-                "LineItem", "Fulfillment", "DiscountCode", "DiscountApplication", "DiscountAllocation", "PaymentDetails",
+                "LineItem", "Fulfillment", "DiscountCode", "DiscountCodeErrors", "DiscountApplication", "DiscountAllocation", "PaymentDetails",
                 "Price", "PriceSet", "Refund", "RefundDuty", "RefundDutyType", "RefundLineItem", "RefundLineItem",
                 "RefundOrderAdjustment", "Shipping", "ShippingLine", "TaxLine", "Transaction", "CurrencyExchangeAdjustment",
                 "Order", "OrderList", "CancelReason", "FinancialStatus", "FulfillmentStatus", "ProcessingMethod",
@@ -43,14 +43,14 @@ foreach (var shopifyFile in shopifyFiles)
             excludeNamesForClient.AddRange(new List<string>
             {
                 "Address", "ClientDetails", "Customer", "CustomerAddress","EmailMarketingConsent", "SmsMarketingConsent", 
-                "CustomerMetafield", "DiscountCode", "Price", "Fulfillment"
+                "CustomerMetafield", "DiscountCode", "DiscountCodeErrors","Price", "Fulfillment"
             });
             break;
         case "SalesChannels":
             excludeNamesForClient.AddRange(new List<string>
             {
                 "Address", "Customer", "CustomerAddress", "EmailMarketingConsent", "SmsMarketingConsent", 
-                "CustomerMetafield", "DiscountAllocation", "DiscountCode", "LineItem", "LineItemDuty", 
+                "CustomerMetafield", "DiscountAllocation", "DiscountCode", "DiscountCodeErrors","LineItem", "LineItemDuty", 
                 "LineItemOriginLocation", "LineItemProperty", "Price", "PriceSet", "ShippingLine", "TaxLine",
                 "ProductImage", "Product", "PresentmentPrice", "ProductList", "ProductOption", "ProductVariant",
                 "Checkout", "CheckoutLineItem", "Transaction", "TransactionItem", "TransactionList"

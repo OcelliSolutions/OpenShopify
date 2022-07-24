@@ -34,7 +34,8 @@ public class DiscountCodeFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var discountCode in CreatedDiscountCodes)
         {
-            _ = await Service.DiscountCode.DeleteDiscountCodeAsync(discountCode.Id, PriceRule.Id);
+            if(discountCode.Id > 0)
+                _ = await Service.DiscountCode.DeleteDiscountCodeAsync(discountCode.Id ?? 0, PriceRule.Id);
         }
         CreatedDiscountCodes.Clear();
         CreatedDiscountCodeCreations.Clear();
@@ -76,10 +77,10 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
             {
                 Id = originalDiscountCode.Id,
                 PriceRuleId = originalDiscountCode.PriceRuleId,
-                Code = "WINTERSALE20OFF"
+                Code = "WINTERSALE30OFF"
             }
         };
-        var response = await Fixture.Service.DiscountCode.UpdateDiscountCodeAsync(request.DiscountCode.Id,
+        var response = await Fixture.Service.DiscountCode.UpdateDiscountCodeAsync(request.DiscountCode.Id ?? 0,
             Fixture.PriceRule.Id, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
@@ -140,7 +141,7 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
 
         var batch = response.Result.DiscountCodeCreation;
         Fixture.CreatedDiscountCodeCreations.Add(batch);
-        var list = await Fixture.Service.DiscountCode.ListDiscountCodesForDiscountCodeCreationJobAsync(batch.Id,
+        var list = await Fixture.Service.DiscountCode.ListDiscountCodesForDiscountCodeCreationJobAsync(batch.Id ?? 0,
             Fixture.PriceRule.Id);
         Fixture.CreatedDiscountCodes.AddRange(list.Result.DiscountCodes);
     }
@@ -192,7 +193,7 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
         Skip.If(!Fixture.CreatedDiscountCodeCreations.Any(), "Must be run with create test");
         var batch = Fixture.CreatedDiscountCodeCreations.First();
         var response =
-            await Fixture.Service.DiscountCode.ListDiscountCodesForDiscountCodeCreationJobAsync(batch.Id,
+            await Fixture.Service.DiscountCode.ListDiscountCodesForDiscountCodeCreationJobAsync(batch.Id ?? 0,
                 Fixture.PriceRule.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var discountCode in response.Result.DiscountCodes)
@@ -210,7 +211,7 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
         Skip.If(!Fixture.CreatedDiscountCodes.Any(), "Must be run with create test");
         var discountCode = Fixture.CreatedDiscountCodes.First();
         var response =
-            await Fixture.Service.DiscountCode.GetDiscountCodeAsync(discountCode.Id, Fixture.PriceRule.Id);
+            await Fixture.Service.DiscountCode.GetDiscountCodeAsync(discountCode.Id ?? 0, Fixture.PriceRule.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.DiscountCode, Fixture.MyShopifyUrl);
     }
@@ -222,7 +223,7 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
         Skip.If(!Fixture.CreatedDiscountCodeCreations.Any(), "Must be run with create test");
         var batch = Fixture.CreatedDiscountCodeCreations.First();
         var response =
-            await Fixture.Service.DiscountCode.GetDiscountCodeCreationJobAsync(batch.Id, Fixture.PriceRule.Id);
+            await Fixture.Service.DiscountCode.GetDiscountCodeCreationJobAsync(batch.Id ?? 0, Fixture.PriceRule.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.DiscountCodeCreation,
             Fixture.MyShopifyUrl);

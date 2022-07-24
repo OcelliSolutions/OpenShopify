@@ -20,7 +20,7 @@
 		//new (modelName:"CustomerAddress", "CustomerAddress","CustomerAddresses"),
 		new (modelName:"CustomerSavedSearch", "CustomerSavedSearch", "CustomerSavedSearches"),
 		new (modelName:"DeprecatedApiCall", origClass:"DeprecatedAPIcallsOrig", baseClass:"DeprecatedAPIcallsBase", hasId:false, canCreate:false, canUpdate:false),
-		new (modelName:"DiscountCode"),
+		new (modelName:"DiscountCode", nullableId:true),
 		new (modelName:"PriceRule"),
 		new (modelName:"Event"),
 		new (modelName:"Webhook"),
@@ -81,7 +81,7 @@
 		new (modelName:"ShippingZone"),
 		new (modelName:"Shop"),
 		new (modelName:"TenderTransaction"),
-		new (modelName:"DiscountCodeCreation"),
+		new (modelName:"DiscountCodeCreation", nullableId:true),
 		new (modelName:"Engagement"), 
 		new (modelName:"CustomerInvite", baseClass:"CustomerInviteBase")
 	};
@@ -148,10 +148,21 @@ public partial record <#= section.ClassName #> : <#= section.BaseClass #>
 {
 <#	if (section.HasId)
 		{
+			if (section.NullableId)
+			{
+#>
+    [JsonPropertyName("id")]
+    public long? Id { get; set; }
+<#
+			}
+			else
+			{
 #>
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
+<#
+			}
+#>
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 <#
@@ -181,10 +192,11 @@ public partial record <#= section.BaseClass #> : <#= section.OrigClass #>{}
 	{
 		public SectionTemplate(string modelName, string className = null, string classNamePlural = null, 
 			string propertyName = null, string propertyNamePlural = null, string origClass = null, string baseClass = null,
-			bool hasId = true, bool hasAdminGraphQLAPIId = true, bool canCreate = true, bool canUpdate = true)
+			bool hasId = true, bool nullableId = false, bool hasAdminGraphQLAPIId = true, bool canCreate = true, bool canUpdate = true)
 		{
 			ModelName = modelName;
 			HasId = hasId;
+			NullableId = nullableId;
 			HasAdminGraphQlapiId = hasAdminGraphQLAPIId;
 			CanCreate = canCreate;
 			CanUpdate = canUpdate;
@@ -200,6 +212,7 @@ public partial record <#= section.BaseClass #> : <#= section.OrigClass #>{}
 		public string BaseClass { get; }
 		public string OrigClass { get; }
 		public bool HasId { get; }
+		public bool NullableId { get; }
 		public bool HasAdminGraphQlapiId { get; }
 		public bool CanCreate { get; }
 		public bool CanUpdate { get; }

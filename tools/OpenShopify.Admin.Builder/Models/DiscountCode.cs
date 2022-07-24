@@ -17,5 +17,18 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         [JsonPropertyName("type")]
         public string? Type { get; set; }
+
+
+        /// <summary>
+        /// This property is undocumented by Shopify.
+        /// </summary>
+        [JsonPropertyName("errors")]
+        public DiscountCodeErrors? Errors { get; set; }
+    }
+
+    public record DiscountCodeErrors
+    {
+        [JsonPropertyName("code")]
+        public IEnumerable<string>? Code { get; set; }
     }
 }

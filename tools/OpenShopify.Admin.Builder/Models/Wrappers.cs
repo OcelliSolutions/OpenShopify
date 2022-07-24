@@ -44,7 +44,6 @@ public partial record StorefrontAccessToken : StorefrontAccessTokenBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -105,7 +104,6 @@ public partial record Report : ReportBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -166,7 +164,6 @@ public partial record ApplicationCharge : ApplicationChargeBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -227,7 +224,6 @@ public partial record ApplicationCredit : ApplicationCreditBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -288,7 +284,6 @@ public partial record RecurringApplicationCharge : RecurringApplicationChargeBas
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -349,7 +344,6 @@ public partial record UsageCharge : UsageChargeBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -410,7 +404,6 @@ public partial record Customer : CustomerBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -471,7 +464,6 @@ public partial record CustomerSavedSearch : CustomerSavedSearchBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -563,9 +555,8 @@ public partial record UpdateDiscountCode : DiscountCode
 /// <inheritdoc cref="DiscountCodeBase"/>
 public partial record DiscountCode : DiscountCodeBase
 {
-    [JsonPropertyName("id"), Required]
-    public long Id { get; set; }
-
+    [JsonPropertyName("id")]
+    public long? Id { get; set; }
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -626,7 +617,6 @@ public partial record PriceRule : PriceRuleBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -687,7 +677,6 @@ public partial record Event : EventBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -748,7 +737,6 @@ public partial record Webhook : WebhookBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -809,7 +797,6 @@ public partial record InventoryItem : InventoryItemBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -870,7 +857,6 @@ public partial record InventoryLevel : InventoryLevelBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -931,7 +917,6 @@ public partial record Location : LocationBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -992,7 +977,6 @@ public partial record MarketingEvent : MarketingEventBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -1053,7 +1037,6 @@ public partial record Metafield : MetafieldBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -1114,7 +1097,6 @@ public partial record Article : ArticleBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -1231,7 +1213,6 @@ public partial record Blog : BlogBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -1292,7 +1273,6 @@ public partial record Comment : CommentBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -1353,7 +1333,6 @@ public partial record Page : PageBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -1414,7 +1393,6 @@ public partial record Redirect : RedirectBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -1475,7 +1453,6 @@ public partial record ScriptTag : ScriptTagBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -1536,7 +1513,6 @@ public partial record Theme : ThemeBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -1653,7 +1629,6 @@ public partial record DraftOrder : DraftOrderBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -1747,7 +1722,6 @@ public partial record Order : OrderBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -1808,7 +1782,6 @@ public partial record OrderRisk : OrderRiskBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -1869,7 +1842,6 @@ public partial record Refund : RefundBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -1930,7 +1902,6 @@ public partial record Transaction : TransactionBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -1991,7 +1962,6 @@ public partial record GiftCard : GiftCardBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -2052,7 +2022,6 @@ public partial record User : UserBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -2113,7 +2082,6 @@ public partial record Collect : CollectBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -2174,7 +2142,6 @@ public partial record Collection : CollectionBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -2235,7 +2202,6 @@ public partial record CustomCollection : CustomCollectionBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -2296,7 +2262,6 @@ public partial record Product : ProductBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -2357,7 +2322,6 @@ public partial record ProductImage : ProductImageBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -2418,7 +2382,6 @@ public partial record ProductVariant : ProductVariantBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -2479,7 +2442,6 @@ public partial record SmartCollection : SmartCollectionBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -2540,7 +2502,6 @@ public partial record Checkout : CheckoutBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -2601,7 +2562,6 @@ public partial record CollectionListing : CollectionListingBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -2662,7 +2622,6 @@ public partial record MobilePlatformApplication : MobilePlatformApplicationBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -2723,7 +2682,6 @@ public partial record Payment : PaymentBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -2840,7 +2798,6 @@ public partial record ProductListing : ProductListingBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -2957,7 +2914,6 @@ public partial record AssignedFulfillmentOrder : FulfillmentOrderBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -3018,7 +2974,6 @@ public partial record CarrierService : CarrierServiceBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -3079,7 +3034,6 @@ public partial record Fulfillment : FulfillmentBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -3140,7 +3094,6 @@ public partial record FulfillmentEvent : FulfillmentEventBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -3201,7 +3154,6 @@ public partial record FulfillmentOrder : FulfillmentOrderBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -3262,7 +3214,6 @@ public partial record FulfillmentService : FulfillmentServiceBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -3435,7 +3386,6 @@ public partial record Dispute : DisputeBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -3496,7 +3446,6 @@ public partial record Payout : PayoutsBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -3557,7 +3506,6 @@ public partial record Country : CountryBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -3730,7 +3678,6 @@ public partial record Province : ProvinceBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -3791,7 +3738,6 @@ public partial record ShippingZone : ShippingZoneBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -3852,7 +3798,6 @@ public partial record Shop : ShopBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -3913,7 +3858,6 @@ public partial record TenderTransaction : TenderTransactionBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -3972,9 +3916,8 @@ public partial record UpdateDiscountCodeCreation : DiscountCodeCreation
 /// <inheritdoc cref="DiscountCodeCreationBase"/>
 public partial record DiscountCodeCreation : DiscountCodeCreationBase
 {
-    [JsonPropertyName("id"), Required]
-    public long Id { get; set; }
-
+    [JsonPropertyName("id")]
+    public long? Id { get; set; }
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -4035,7 +3978,6 @@ public partial record Engagement : EngagementBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
@@ -4096,7 +4038,6 @@ public partial record CustomerInvite : CustomerInviteBase
 {
     [JsonPropertyName("id"), Required]
     public long Id { get; set; }
-
     [JsonPropertyName("admin_graphql_api_id")]
     public string? AdminGraphQLAPIId { get; set; }
 	
