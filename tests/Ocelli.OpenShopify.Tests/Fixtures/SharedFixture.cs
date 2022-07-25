@@ -38,6 +38,7 @@ public class SharedFixture
         SecretKey = config.ApiSecret;
         AccessToken = config.AccessToken;
         MyShopifyUrl = config.MyShopifyUrl;
+        WebhookTest = config.Webhook;
         //Scopes = new List<AuthorizationScope?>();
 
         Task.Run(async () => await LoadScopes()).Wait();
@@ -51,13 +52,15 @@ public class SharedFixture
     public int DaysToTest { get; set; }
     public string AccessToken { get; set; }
     public string MyShopifyUrl { get; set; }
-
+    public WebhookTest? WebhookTest { get; set; }
     public string FirstName => "John (OpenShopify)";
     public string LastName => "Doe";
     public string Company => "OpenShopify";
     public string Note => "Test note about this customer.";
     public string Email => $@"foo+{BatchId}@example.com";
     public string CallbackUrl => @"https://sample.com/callback";
+
+    
     public void ValidateScopes(List<AuthorizationScope> requiredPermissions)
     {
         foreach (var requiredPermission in requiredPermissions)
@@ -145,7 +148,7 @@ public class SharedFixture
         var response = await service.FulfillmentOrder.ListFulfillmentOrdersForSpecificOrderAsync(order.Id);
         return response.Result.FulfillmentOrders;
     }
-
+    /*
     public async Task<Fulfillment> CreateFulfillment(Order order, FulfillmentService fulfillmentService)
     {
         //TODO: Figure out what objects can have a `test` property and validate accordingly.
@@ -154,7 +157,7 @@ public class SharedFixture
         var response = await service.Fulfillment.CreateFulfillmentAsync(order.Id, request);
         return response.Result.Fulfillment;
     }
-
+    
     public CreateFulfillmentRequest CreateFulfillmentRequest(FulfillmentService fulfillmentService) =>
         new()
         {
@@ -168,7 +171,7 @@ public class SharedFixture
                 },
                 NotifyCustomer = true
             }
-        };
+        };*/
 
     public CreateCustomerRequest CreateCustomerRequest([CallerMemberName] string callerName = "") =>
         new()

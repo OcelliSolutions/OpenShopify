@@ -2,5 +2,9 @@
   "access_token": "value",
   "my_shopify_url": "value",
   "api_key": "value",
-  "api_secret": "value"
+  "api_secret": "value",
+  "webhook": {
+    "hmac": "value",
+    "data": {}
+  }
 }

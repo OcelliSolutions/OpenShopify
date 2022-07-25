@@ -1,5 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Primitives;
@@ -152,6 +157,20 @@ public class AuthorizationTests : IClassFixture<AuthorizationScopeFixture>
         const string invalidUrl = "foo";
 
         Assert.False(await AuthorizationService.IsValidShopDomainAsync(invalidUrl));
+    }
+
+    [SkippableFact]
+    public void Validates_Webhook()
+    {
+        Skip.If(Fixture.WebhookTest?.Hmac == null, "Define a test webhook response in `api_key.json`");
+        var qs = new List<KeyValuePair<string, StringValues>>()
+        {
+            new ("X-Shopify-Hmac-SHA256" , Fixture.WebhookTest.Hmac )
+        };
+        var data = JsonSerializer.Serialize(Fixture.WebhookTest.Data);
+        //var stream = Ser<dynamic>.SerializeToStream(Fixture.WebhookTest.Data);
+        var isValid = AuthorizationService.IsAuthenticWebhook(qs, data, Fixture.SecretKey);
+        Assert.True(isValid);
     }
 
     [Fact]

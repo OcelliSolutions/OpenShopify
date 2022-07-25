@@ -12,5 +12,9 @@ internal class ShopifyConfig
     [JsonPropertyName("api_secret")]
     public string ApiSecret { get; set; } = null!;
 
-    [JsonPropertyName("my_shopify_url")] public string MyShopifyUrl { get; set; } = null!;
+    [JsonPropertyName("my_shopify_url")] 
+    public string MyShopifyUrl { get; set; } = null!;
+
+    [JsonPropertyName("webhook")]
+    public WebhookTest? Webhook { get; set; }
 }
