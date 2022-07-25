@@ -5562,7 +5562,7 @@ namespace Ocelli.OpenShopify
         public decimal? CompareAtPrice { get; set; } = default!;
 
         /// <summary>
-        /// The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice).
+        /// The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a breaking change to this field, therefore this field is due to be deprecated and will no longer be supported. Fulfillment services will all be opted into SKU sharing in 2023-04. Once opted into sku sharing, a product variant could be linked to multiple fulfillment services. Please refer to [InventoryLevel](/docs/admin-api/rest/reference/inventory/inventorylevel) to see how variants are associated to multiple fulfillment services.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]
@@ -6892,7 +6892,7 @@ namespace Ocelli.OpenShopify
         public decimal? CompareAtPrice { get; set; } = default!;
 
         /// <summary>
-        /// The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice).
+        /// The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a breaking change to this field, therefore this field is due to be deprecated and will no longer be supported. Fulfillment services will all be opted into SKU sharing in 2023-04. Once opted into sku sharing, a product variant could be linked to multiple fulfillment services. Please refer to [InventoryLevel](/docs/admin-api/rest/reference/inventory/inventorylevel) to see how variants are associated to multiple fulfillment services.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]
@@ -8173,7 +8173,7 @@ namespace Ocelli.OpenShopify
         public decimal? CompareAtPrice { get; set; } = default!;
 
         /// <summary>
-        /// The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice).
+        /// The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a breaking change to this field, therefore this field is due to be deprecated and will no longer be supported. Fulfillment services will all be opted into SKU sharing in 2023-04. Once opted into sku sharing, a product variant could be linked to multiple fulfillment services. Please refer to [InventoryLevel](/docs/admin-api/rest/reference/inventory/inventorylevel) to see how variants are associated to multiple fulfillment services.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfillment_service")]

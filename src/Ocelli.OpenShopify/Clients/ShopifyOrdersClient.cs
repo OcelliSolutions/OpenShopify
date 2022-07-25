@@ -4900,7 +4900,7 @@ namespace Ocelli.OpenShopify
     public partial class CreateDraftOrder
     {
         /// <summary>
-        /// The ID of the order that 's created and associated with the draft order after the draft order is completed.
+        /// The ID of the order that's created and associated with the draft order after the draft order is completed.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("order_id")]
@@ -4933,7 +4933,7 @@ namespace Ocelli.OpenShopify
         public Address? BillingAddress { get; set; } = default!;
 
         /// <summary>
-        /// The text of an optional note that a shop owner can attach to the draft order.
+        /// The text of an optional note that a merchant can attach to the draft order.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("note")]
@@ -4942,7 +4942,7 @@ namespace Ocelli.OpenShopify
         public string? Note { get; set; } = default!;
 
         /// <summary>
-        /// Extra information that is added to the order. Appears in the **Additional details** section of an order details page. Each array entry must contain a hash with `name` and `value` keys.
+        /// The extra information that's added to the order. The information appears in the**Additional details** section of an order details page. Each array entry must contain a hash with `name` and `value` keys.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
@@ -4987,18 +4987,18 @@ namespace Ocelli.OpenShopify
         public string? InvoiceUrl { get; set; } = default!;
 
         /// <summary>
-        /// Product variant line item or custom line item associated to the draft order. Each draft order must include at least one `line_item`. Each `line_item` object has the following properties: 
+        /// The product variant line item or custom line item associated to the draft order. Each draft order must include at least one `line_item`. Each `line_item` resource has the following properties: 
         /// <br/>
         /// <br/>*   **custom**: *Read only field* Whether this is a custom line item or a product variant line item. If set to `true` indicates a custom line item. If set to `false` indicates a product variant line item. 
         /// <br/>*   **id**: The ID of the line item. 
-        /// <br/>*   **variant_id**: The ID of the product variant ID corresponding to the line item. Required for a product variant line item. Set to `null` for a custom line item. 
+        /// <br/>*   **variant_id**: The ID of the product variant corresponding to the line item. Required for a product variant line item. Set to `null` for a custom line item. 
         /// <br/>*   **product_id**: The ID of the product corresponding to the line item’s product variant. 
         /// <br/>*   **name**: The name of the product. 
         /// <br/>*   **variant_title**: The title of the product variant. Defaults to `Custom` for custom line items created via the API. 
-        /// <br/>*   **vendor**: Vendor. 
+        /// <br/>*   **vendor**: The vendor. 
         /// <br/>*   **quantity**: The number of products that were purchased. 
-        /// <br/>*   **gift_card**: Indicates if the product is a gift card. Valid values are `true` or `false`. 
-        /// <br/>*   **fulfillment_service**: Service provider responsible for fulfillment. Valid values are either `manual` or the name of the provider. eg amazon, shipwire, etc. Defaults to `manual` for custom line items. 
+        /// <br/>*   **gift_card**: Indicates if the product is a gift card. Valid values: `true` or `false`. 
+        /// <br/>*   **fulfillment_service**: The service provider responsible for fulfillment. Valid values are either `manual` or the name of the provider, for example amazon, shipwire. Defaults to `manual` for custom line items. 
         /// <br/>*   **properties**: An array of custom information for an item that has been added to the draft order, often used to provide [product customization options](/api/liquid/objects/line_item#line_item-properties). Copied to created order when draft order is completed. 
         /// <br/>*   **applied_discount**: The discount applied to the line item. For more information, see the `applied_discount` property. 
         /// <br/>*   **tax_lines**: *Read only field* The calculated rate and amount of taxes for the line item. 
@@ -5006,12 +5006,12 @@ namespace Ocelli.OpenShopify
         /// <br/>    *   **price**: The amount of tax to be charged. 
         /// <br/>    *   **rate**: The rate of tax to be applied. 
         /// <br/>    *   **title**: The name of the tax.  
-        /// <br/>*   **title**: The title of the product or variant. Only applicable to custom line items. *Required field*. 
-        /// <br/>*   **price**: The price of the item before discounts have been applied. Only applicable to custom line items. *Required field*. 
-        /// <br/>*   **grams**: Weight in grams. Only applicable to custom line items. If not specified, defaults to 0. 
-        /// <br/>*   **requires_shipping**: Whether the fulfillment requires shipping. Applicable only to custom line items. Valid values are `true` or `false.` 
-        /// <br/>*   **sku**: A unique identifier of the item in the fulfillment. Applicable only to custom line items. 
-        /// <br/>*   **taxable**: Whether the product is taxable. Only applicable to custom line items.
+        /// <br/>*   **title**: The title of the product or variant. Applicable only to custom line items. *Required field*. 
+        /// <br/>*   **price**: The price of the item before discounts have been applied. Applicable only to custom line items. *Required field*. 
+        /// <br/>*   **grams**: The weight of the item in grams. Applicable only to custom line items. If not specified, defaults to 0. 
+        /// <br/>*   **requires_shipping**: Whether the fulfillment requires shipping. Applicable only to custom line items. Valid values: `true` or `false.` 
+        /// <br/>*   **sku**: A unique identifier for the item in the fulfillment. Applicable only to custom line items. 
+        /// <br/>*   **taxable**: Whether the product is taxable. Applicable only to custom line items.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("line_items")]
@@ -5048,7 +5048,7 @@ namespace Ocelli.OpenShopify
         public DraftShippingLine? ShippingLine { get; set; } = default!;
 
         /// <summary>
-        /// The source of the checkout. To use this field for sales attribution, you must register the channels that your app is managing. You can register the channels that your app is managing by completing [this Google Form](https://docs.google.com/forms/d/e/1FAIpQLScmVTZRQNjOJ7RD738mL1lGeFjqKVe_FM2tO9xsm21QEo5Ozg/viewform?usp=sf_link). After you've submited your request, you need to wait for your request to be processed by Shopify. You can find a list of your channels in the Partner Dashboard, in your app's Marketplace extension. You can specify a handle as the `source_name` value in your request.
+        /// The source of the checkout. To use this field for sales attribution, you need to register the channels that your app is managing. You can register the channels that your app is managing by completing the [Order Attribution Access Form](https://docs.google.com/forms/d/e/1FAIpQLScmVTZRQNjOJ7RD738mL1lGeFjqKVe_FM2tO9xsm21QEo5Ozg/viewform?usp=sf_link). After you've submited the form, you'll need to wait for your request to be processed by Shopify. You can find a list of your channels in the Partner Dashboard, in your app's Marketplace extension. You can specify a handle as the `source_name` value in your request.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("source_name")]
@@ -5084,7 +5084,7 @@ namespace Ocelli.OpenShopify
         public System.Collections.Generic.ICollection<string>? TaxExemptions { get; set; } = default!;
 
         /// <summary>
-        /// An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: 
+        /// An array of tax line resources, each of which details a tax applicable to the order. Each `tax_lines` resource has the following properties: 
         /// <br/>
         /// <br/>*   **price**: The amount of tax to be charged. 
         /// <br/>*   **rate**: The rate of tax to be applied. 
@@ -5102,7 +5102,7 @@ namespace Ocelli.OpenShopify
         public AppliedDiscount? AppliedDiscount { get; set; } = default!;
 
         /// <summary>
-        /// Whether taxes are included in the order subtotal. Valid values are `true` or `false`.
+        /// Whether taxes are included in the order subtotal. Valid values: `true` or `false`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("taxes_included")]
@@ -5120,7 +5120,7 @@ namespace Ocelli.OpenShopify
         public decimal? TotalTax { get; set; } = default!;
 
         /// <summary>
-        /// the price of the order before shipping and taxes.
+        /// The price of the order before shipping and taxes.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("subtotal_price")]
@@ -5129,7 +5129,7 @@ namespace Ocelli.OpenShopify
         public decimal? SubtotalPrice { get; set; } = default!;
 
         /// <summary>
-        /// The sum of all the prices of all the items in the order, taxes and discounts included.
+        /// The sum of all the prices of all the items in the order, including taxes and discounts.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("total_price")]
@@ -6959,7 +6959,7 @@ namespace Ocelli.OpenShopify
     public partial class DraftOrder
     {
         /// <summary>
-        /// The ID of the order that 's created and associated with the draft order after the draft order is completed.
+        /// The ID of the order that's created and associated with the draft order after the draft order is completed.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("order_id")]
@@ -6992,7 +6992,7 @@ namespace Ocelli.OpenShopify
         public Address? BillingAddress { get; set; } = default!;
 
         /// <summary>
-        /// The text of an optional note that a shop owner can attach to the draft order.
+        /// The text of an optional note that a merchant can attach to the draft order.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("note")]
@@ -7001,7 +7001,7 @@ namespace Ocelli.OpenShopify
         public string? Note { get; set; } = default!;
 
         /// <summary>
-        /// Extra information that is added to the order. Appears in the **Additional details** section of an order details page. Each array entry must contain a hash with `name` and `value` keys.
+        /// The extra information that's added to the order. The information appears in the**Additional details** section of an order details page. Each array entry must contain a hash with `name` and `value` keys.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
@@ -7046,18 +7046,18 @@ namespace Ocelli.OpenShopify
         public string? InvoiceUrl { get; set; } = default!;
 
         /// <summary>
-        /// Product variant line item or custom line item associated to the draft order. Each draft order must include at least one `line_item`. Each `line_item` object has the following properties: 
+        /// The product variant line item or custom line item associated to the draft order. Each draft order must include at least one `line_item`. Each `line_item` resource has the following properties: 
         /// <br/>
         /// <br/>*   **custom**: *Read only field* Whether this is a custom line item or a product variant line item. If set to `true` indicates a custom line item. If set to `false` indicates a product variant line item. 
         /// <br/>*   **id**: The ID of the line item. 
-        /// <br/>*   **variant_id**: The ID of the product variant ID corresponding to the line item. Required for a product variant line item. Set to `null` for a custom line item. 
+        /// <br/>*   **variant_id**: The ID of the product variant corresponding to the line item. Required for a product variant line item. Set to `null` for a custom line item. 
         /// <br/>*   **product_id**: The ID of the product corresponding to the line item’s product variant. 
         /// <br/>*   **name**: The name of the product. 
         /// <br/>*   **variant_title**: The title of the product variant. Defaults to `Custom` for custom line items created via the API. 
-        /// <br/>*   **vendor**: Vendor. 
+        /// <br/>*   **vendor**: The vendor. 
         /// <br/>*   **quantity**: The number of products that were purchased. 
-        /// <br/>*   **gift_card**: Indicates if the product is a gift card. Valid values are `true` or `false`. 
-        /// <br/>*   **fulfillment_service**: Service provider responsible for fulfillment. Valid values are either `manual` or the name of the provider. eg amazon, shipwire, etc. Defaults to `manual` for custom line items. 
+        /// <br/>*   **gift_card**: Indicates if the product is a gift card. Valid values: `true` or `false`. 
+        /// <br/>*   **fulfillment_service**: The service provider responsible for fulfillment. Valid values are either `manual` or the name of the provider, for example amazon, shipwire. Defaults to `manual` for custom line items. 
         /// <br/>*   **properties**: An array of custom information for an item that has been added to the draft order, often used to provide [product customization options](/api/liquid/objects/line_item#line_item-properties). Copied to created order when draft order is completed. 
         /// <br/>*   **applied_discount**: The discount applied to the line item. For more information, see the `applied_discount` property. 
         /// <br/>*   **tax_lines**: *Read only field* The calculated rate and amount of taxes for the line item. 
@@ -7065,12 +7065,12 @@ namespace Ocelli.OpenShopify
         /// <br/>    *   **price**: The amount of tax to be charged. 
         /// <br/>    *   **rate**: The rate of tax to be applied. 
         /// <br/>    *   **title**: The name of the tax.  
-        /// <br/>*   **title**: The title of the product or variant. Only applicable to custom line items. *Required field*. 
-        /// <br/>*   **price**: The price of the item before discounts have been applied. Only applicable to custom line items. *Required field*. 
-        /// <br/>*   **grams**: Weight in grams. Only applicable to custom line items. If not specified, defaults to 0. 
-        /// <br/>*   **requires_shipping**: Whether the fulfillment requires shipping. Applicable only to custom line items. Valid values are `true` or `false.` 
-        /// <br/>*   **sku**: A unique identifier of the item in the fulfillment. Applicable only to custom line items. 
-        /// <br/>*   **taxable**: Whether the product is taxable. Only applicable to custom line items.
+        /// <br/>*   **title**: The title of the product or variant. Applicable only to custom line items. *Required field*. 
+        /// <br/>*   **price**: The price of the item before discounts have been applied. Applicable only to custom line items. *Required field*. 
+        /// <br/>*   **grams**: The weight of the item in grams. Applicable only to custom line items. If not specified, defaults to 0. 
+        /// <br/>*   **requires_shipping**: Whether the fulfillment requires shipping. Applicable only to custom line items. Valid values: `true` or `false.` 
+        /// <br/>*   **sku**: A unique identifier for the item in the fulfillment. Applicable only to custom line items. 
+        /// <br/>*   **taxable**: Whether the product is taxable. Applicable only to custom line items.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("line_items")]
@@ -7107,7 +7107,7 @@ namespace Ocelli.OpenShopify
         public DraftShippingLine? ShippingLine { get; set; } = default!;
 
         /// <summary>
-        /// The source of the checkout. To use this field for sales attribution, you must register the channels that your app is managing. You can register the channels that your app is managing by completing [this Google Form](https://docs.google.com/forms/d/e/1FAIpQLScmVTZRQNjOJ7RD738mL1lGeFjqKVe_FM2tO9xsm21QEo5Ozg/viewform?usp=sf_link). After you've submited your request, you need to wait for your request to be processed by Shopify. You can find a list of your channels in the Partner Dashboard, in your app's Marketplace extension. You can specify a handle as the `source_name` value in your request.
+        /// The source of the checkout. To use this field for sales attribution, you need to register the channels that your app is managing. You can register the channels that your app is managing by completing the [Order Attribution Access Form](https://docs.google.com/forms/d/e/1FAIpQLScmVTZRQNjOJ7RD738mL1lGeFjqKVe_FM2tO9xsm21QEo5Ozg/viewform?usp=sf_link). After you've submited the form, you'll need to wait for your request to be processed by Shopify. You can find a list of your channels in the Partner Dashboard, in your app's Marketplace extension. You can specify a handle as the `source_name` value in your request.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("source_name")]
@@ -7143,7 +7143,7 @@ namespace Ocelli.OpenShopify
         public System.Collections.Generic.ICollection<string>? TaxExemptions { get; set; } = default!;
 
         /// <summary>
-        /// An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: 
+        /// An array of tax line resources, each of which details a tax applicable to the order. Each `tax_lines` resource has the following properties: 
         /// <br/>
         /// <br/>*   **price**: The amount of tax to be charged. 
         /// <br/>*   **rate**: The rate of tax to be applied. 
@@ -7161,7 +7161,7 @@ namespace Ocelli.OpenShopify
         public AppliedDiscount? AppliedDiscount { get; set; } = default!;
 
         /// <summary>
-        /// Whether taxes are included in the order subtotal. Valid values are `true` or `false`.
+        /// Whether taxes are included in the order subtotal. Valid values: `true` or `false`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("taxes_included")]
@@ -7179,7 +7179,7 @@ namespace Ocelli.OpenShopify
         public decimal? TotalTax { get; set; } = default!;
 
         /// <summary>
-        /// the price of the order before shipping and taxes.
+        /// The price of the order before shipping and taxes.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("subtotal_price")]
@@ -7188,7 +7188,7 @@ namespace Ocelli.OpenShopify
         public decimal? SubtotalPrice { get; set; } = default!;
 
         /// <summary>
-        /// The sum of all the prices of all the items in the order, taxes and discounts included.
+        /// The sum of all the prices of all the items in the order, including taxes and discounts.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("total_price")]
@@ -10625,7 +10625,7 @@ namespace Ocelli.OpenShopify
     public partial class UpdateDraftOrder
     {
         /// <summary>
-        /// The ID of the order that 's created and associated with the draft order after the draft order is completed.
+        /// The ID of the order that's created and associated with the draft order after the draft order is completed.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("order_id")]
@@ -10658,7 +10658,7 @@ namespace Ocelli.OpenShopify
         public Address? BillingAddress { get; set; } = default!;
 
         /// <summary>
-        /// The text of an optional note that a shop owner can attach to the draft order.
+        /// The text of an optional note that a merchant can attach to the draft order.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("note")]
@@ -10667,7 +10667,7 @@ namespace Ocelli.OpenShopify
         public string? Note { get; set; } = default!;
 
         /// <summary>
-        /// Extra information that is added to the order. Appears in the **Additional details** section of an order details page. Each array entry must contain a hash with `name` and `value` keys.
+        /// The extra information that's added to the order. The information appears in the**Additional details** section of an order details page. Each array entry must contain a hash with `name` and `value` keys.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
@@ -10712,18 +10712,18 @@ namespace Ocelli.OpenShopify
         public string? InvoiceUrl { get; set; } = default!;
 
         /// <summary>
-        /// Product variant line item or custom line item associated to the draft order. Each draft order must include at least one `line_item`. Each `line_item` object has the following properties: 
+        /// The product variant line item or custom line item associated to the draft order. Each draft order must include at least one `line_item`. Each `line_item` resource has the following properties: 
         /// <br/>
         /// <br/>*   **custom**: *Read only field* Whether this is a custom line item or a product variant line item. If set to `true` indicates a custom line item. If set to `false` indicates a product variant line item. 
         /// <br/>*   **id**: The ID of the line item. 
-        /// <br/>*   **variant_id**: The ID of the product variant ID corresponding to the line item. Required for a product variant line item. Set to `null` for a custom line item. 
+        /// <br/>*   **variant_id**: The ID of the product variant corresponding to the line item. Required for a product variant line item. Set to `null` for a custom line item. 
         /// <br/>*   **product_id**: The ID of the product corresponding to the line item’s product variant. 
         /// <br/>*   **name**: The name of the product. 
         /// <br/>*   **variant_title**: The title of the product variant. Defaults to `Custom` for custom line items created via the API. 
-        /// <br/>*   **vendor**: Vendor. 
+        /// <br/>*   **vendor**: The vendor. 
         /// <br/>*   **quantity**: The number of products that were purchased. 
-        /// <br/>*   **gift_card**: Indicates if the product is a gift card. Valid values are `true` or `false`. 
-        /// <br/>*   **fulfillment_service**: Service provider responsible for fulfillment. Valid values are either `manual` or the name of the provider. eg amazon, shipwire, etc. Defaults to `manual` for custom line items. 
+        /// <br/>*   **gift_card**: Indicates if the product is a gift card. Valid values: `true` or `false`. 
+        /// <br/>*   **fulfillment_service**: The service provider responsible for fulfillment. Valid values are either `manual` or the name of the provider, for example amazon, shipwire. Defaults to `manual` for custom line items. 
         /// <br/>*   **properties**: An array of custom information for an item that has been added to the draft order, often used to provide [product customization options](/api/liquid/objects/line_item#line_item-properties). Copied to created order when draft order is completed. 
         /// <br/>*   **applied_discount**: The discount applied to the line item. For more information, see the `applied_discount` property. 
         /// <br/>*   **tax_lines**: *Read only field* The calculated rate and amount of taxes for the line item. 
@@ -10731,12 +10731,12 @@ namespace Ocelli.OpenShopify
         /// <br/>    *   **price**: The amount of tax to be charged. 
         /// <br/>    *   **rate**: The rate of tax to be applied. 
         /// <br/>    *   **title**: The name of the tax.  
-        /// <br/>*   **title**: The title of the product or variant. Only applicable to custom line items. *Required field*. 
-        /// <br/>*   **price**: The price of the item before discounts have been applied. Only applicable to custom line items. *Required field*. 
-        /// <br/>*   **grams**: Weight in grams. Only applicable to custom line items. If not specified, defaults to 0. 
-        /// <br/>*   **requires_shipping**: Whether the fulfillment requires shipping. Applicable only to custom line items. Valid values are `true` or `false.` 
-        /// <br/>*   **sku**: A unique identifier of the item in the fulfillment. Applicable only to custom line items. 
-        /// <br/>*   **taxable**: Whether the product is taxable. Only applicable to custom line items.
+        /// <br/>*   **title**: The title of the product or variant. Applicable only to custom line items. *Required field*. 
+        /// <br/>*   **price**: The price of the item before discounts have been applied. Applicable only to custom line items. *Required field*. 
+        /// <br/>*   **grams**: The weight of the item in grams. Applicable only to custom line items. If not specified, defaults to 0. 
+        /// <br/>*   **requires_shipping**: Whether the fulfillment requires shipping. Applicable only to custom line items. Valid values: `true` or `false.` 
+        /// <br/>*   **sku**: A unique identifier for the item in the fulfillment. Applicable only to custom line items. 
+        /// <br/>*   **taxable**: Whether the product is taxable. Applicable only to custom line items.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("line_items")]
@@ -10773,7 +10773,7 @@ namespace Ocelli.OpenShopify
         public DraftShippingLine? ShippingLine { get; set; } = default!;
 
         /// <summary>
-        /// The source of the checkout. To use this field for sales attribution, you must register the channels that your app is managing. You can register the channels that your app is managing by completing [this Google Form](https://docs.google.com/forms/d/e/1FAIpQLScmVTZRQNjOJ7RD738mL1lGeFjqKVe_FM2tO9xsm21QEo5Ozg/viewform?usp=sf_link). After you've submited your request, you need to wait for your request to be processed by Shopify. You can find a list of your channels in the Partner Dashboard, in your app's Marketplace extension. You can specify a handle as the `source_name` value in your request.
+        /// The source of the checkout. To use this field for sales attribution, you need to register the channels that your app is managing. You can register the channels that your app is managing by completing the [Order Attribution Access Form](https://docs.google.com/forms/d/e/1FAIpQLScmVTZRQNjOJ7RD738mL1lGeFjqKVe_FM2tO9xsm21QEo5Ozg/viewform?usp=sf_link). After you've submited the form, you'll need to wait for your request to be processed by Shopify. You can find a list of your channels in the Partner Dashboard, in your app's Marketplace extension. You can specify a handle as the `source_name` value in your request.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("source_name")]
@@ -10809,7 +10809,7 @@ namespace Ocelli.OpenShopify
         public System.Collections.Generic.ICollection<string>? TaxExemptions { get; set; } = default!;
 
         /// <summary>
-        /// An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties: 
+        /// An array of tax line resources, each of which details a tax applicable to the order. Each `tax_lines` resource has the following properties: 
         /// <br/>
         /// <br/>*   **price**: The amount of tax to be charged. 
         /// <br/>*   **rate**: The rate of tax to be applied. 
@@ -10827,7 +10827,7 @@ namespace Ocelli.OpenShopify
         public AppliedDiscount? AppliedDiscount { get; set; } = default!;
 
         /// <summary>
-        /// Whether taxes are included in the order subtotal. Valid values are `true` or `false`.
+        /// Whether taxes are included in the order subtotal. Valid values: `true` or `false`.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("taxes_included")]
@@ -10845,7 +10845,7 @@ namespace Ocelli.OpenShopify
         public decimal? TotalTax { get; set; } = default!;
 
         /// <summary>
-        /// the price of the order before shipping and taxes.
+        /// The price of the order before shipping and taxes.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("subtotal_price")]
@@ -10854,7 +10854,7 @@ namespace Ocelli.OpenShopify
         public decimal? SubtotalPrice { get; set; } = default!;
 
         /// <summary>
-        /// The sum of all the prices of all the items in the order, taxes and discounts included.
+        /// The sum of all the prices of all the items in the order, including taxes and discounts.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("total_price")]

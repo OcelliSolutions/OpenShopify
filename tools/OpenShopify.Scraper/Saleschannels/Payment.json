@@ -5,7 +5,7 @@
     "description": "    <div class=\"note\">\n      <h4>Note</h4>\n      <p>Sales channels require elevated permissions to interact with the Payment resource. For more information, see\n      <a href=\"/apps/channels/getting-started#step-2-request-payment-processing-optional\">\n      <em>Request payment processing</em></a>.</p>\n    </div>\n\n    <p>The Payment resource allows sales channels to build a fully native checkout experience by submitting a customer's\n    payment details directly to Shopify.</p>\n\n    <p>To complete a payment using the Payment resource, first create a payment session by submitting the card details to\n    Shopify's card vault in exchange for a session ID. The session ID can then be used to create a payment for an\n    existing <a href=\"/docs/admin-api/rest/reference/sales-channels/checkout\">Checkout</a>.</p>\n\n    <p>For more information about using the Payment resource, see\n    <a href=\"/apps/channels/checkout-api/complete-payment\"><em>Completing a payment</em></a>.</p>\n\n    <p>The Payment resource is compatible only with direct payment gateways. For a list of all supported payment gateways, see\n    <a href=\"https://help.shopify.com/manual/payments/third-party-providers/direct-and-external-providers\"><em>Direct and external credit card\n    payment providers</em></a>.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/2048",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -512,7 +512,7 @@
         {
           "status": "202",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
+          "request_path": "/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
@@ -534,26 +534,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"payment\":{\"request_details\":{\"ip_address\":\"123.1.1.1\",\"accept_language\":\"en-US,en;q=0.8,fr;q=0.6\",\"user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"},\"amount\":\"398.00\",\"session_id\":\"global-771baf31bac9f4e1\",\"unique_token\":\"client-side-idempotency-token\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/1071573807.json\" \\\n-H \"Retry-After: 1\"\n"
+              "example_code": "curl -d '{\"payment\":{\"request_details\":{\"ip_address\":\"123.1.1.1\",\"accept_language\":\"en-US,en;q=0.8,fr;q=0.6\",\"user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"},\"amount\":\"398.00\",\"session_id\":\"global-771baf31bac9f4e1\",\"unique_token\":\"client-side-idempotency-token\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/1071573807.json\" \\\n-H \"Retry-After: 1\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npayment = ShopifyAPI::Payment.new(session: test_session)\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"\npayment.request_details = {\n  \"ip_address\" => \"123.1.1.1\",\n  \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n}\npayment.amount = \"398.00\"\npayment.session_id = \"global-771baf31bac9f4e1\"\npayment.unique_token = \"client-side-idempotency-token\"\npayment.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npayment = ShopifyAPI::Payment.new(session: test_session)\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"\npayment.request_details = {\n  \"ip_address\" => \"123.1.1.1\",\n  \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n}\npayment.amount = \"398.00\"\npayment.session_id = \"global-771baf31bac9f4e1\"\npayment.unique_token = \"client-side-idempotency-token\"\npayment.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst payment = new Payment({session: test_session});\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\npayment.request_details = {\n  \"ip_address\": \"123.1.1.1\",\n  \"accept_language\": \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n};\npayment.amount = \"398.00\";\npayment.session_id = \"global-771baf31bac9f4e1\";\npayment.unique_token = \"client-side-idempotency-token\";\nawait payment.save({});"
+              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst payment = new Payment({session: test_session});\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\npayment.request_details = {\n  \"ip_address\": \"123.1.1.1\",\n  \"accept_language\": \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n};\npayment.amount = \"398.00\";\npayment.session_id = \"global-771baf31bac9f4e1\";\npayment.unique_token = \"client-side-idempotency-token\";\nawait payment.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$payment = new Payment($this->test_session);\n$payment->checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\n$payment->request_details = [\n    \"ip_address\" => \"123.1.1.1\",\n    \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n    \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n];\n$payment->amount = \"398.00\";\n$payment->session_id = \"global-771baf31bac9f4e1\";\n$payment->unique_token = \"client-side-idempotency-token\";\n$payment->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$payment = new Payment($this->test_session);\n$payment->checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\n$payment->request_details = [\n    \"ip_address\" => \"123.1.1.1\",\n    \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n    \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n];\n$payment->amount = \"398.00\";\n$payment->session_id = \"global-771baf31bac9f4e1\";\n$payment->unique_token = \"client-side-idempotency-token\";\n$payment->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
+          "request_path": "/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
@@ -569,26 +569,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"payment\":{\"request_details\":{\"ip_address\":\"123.1.1.1\",\"accept_language\":\"en-US,en;q=0.8,fr;q=0.6\",\"user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"},\"amount\":\"419.49\",\"session_id\":\"global-683a547abf18c5f8\",\"unique_token\":\"client-side-idempotency-token\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"payment\":{\"request_details\":{\"ip_address\":\"123.1.1.1\",\"accept_language\":\"en-US,en;q=0.8,fr;q=0.6\",\"user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"},\"amount\":\"419.49\",\"session_id\":\"global-683a547abf18c5f8\",\"unique_token\":\"client-side-idempotency-token\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npayment = ShopifyAPI::Payment.new(session: test_session)\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"\npayment.request_details = {\n  \"ip_address\" => \"123.1.1.1\",\n  \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n}\npayment.amount = \"419.49\"\npayment.session_id = \"global-683a547abf18c5f8\"\npayment.unique_token = \"client-side-idempotency-token\"\npayment.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npayment = ShopifyAPI::Payment.new(session: test_session)\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"\npayment.request_details = {\n  \"ip_address\" => \"123.1.1.1\",\n  \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n}\npayment.amount = \"419.49\"\npayment.session_id = \"global-683a547abf18c5f8\"\npayment.unique_token = \"client-side-idempotency-token\"\npayment.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst payment = new Payment({session: test_session});\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\npayment.request_details = {\n  \"ip_address\": \"123.1.1.1\",\n  \"accept_language\": \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n};\npayment.amount = \"419.49\";\npayment.session_id = \"global-683a547abf18c5f8\";\npayment.unique_token = \"client-side-idempotency-token\";\nawait payment.save({});"
+              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst payment = new Payment({session: test_session});\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\npayment.request_details = {\n  \"ip_address\": \"123.1.1.1\",\n  \"accept_language\": \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n};\npayment.amount = \"419.49\";\npayment.session_id = \"global-683a547abf18c5f8\";\npayment.unique_token = \"client-side-idempotency-token\";\nawait payment.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$payment = new Payment($this->test_session);\n$payment->checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\n$payment->request_details = [\n    \"ip_address\" => \"123.1.1.1\",\n    \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n    \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n];\n$payment->amount = \"419.49\";\n$payment->session_id = \"global-683a547abf18c5f8\";\n$payment->unique_token = \"client-side-idempotency-token\";\n$payment->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$payment = new Payment($this->test_session);\n$payment->checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\n$payment->request_details = [\n    \"ip_address\" => \"123.1.1.1\",\n    \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n    \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n];\n$payment->amount = \"419.49\";\n$payment->session_id = \"global-683a547abf18c5f8\";\n$payment->unique_token = \"client-side-idempotency-token\";\n$payment->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
+          "request_path": "/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
@@ -604,26 +604,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"payment\":{\"request_details\":{\"ip_address\":\"123.1.1.1\",\"accept_language\":\"en-US,en;q=0.8,fr;q=0.6\",\"user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"},\"amount\":\"419.49\",\"session_id\":\"global-an_invalid_session_id\",\"unique_token\":\"client-side-idempotency-token\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"payment\":{\"request_details\":{\"ip_address\":\"123.1.1.1\",\"accept_language\":\"en-US,en;q=0.8,fr;q=0.6\",\"user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"},\"amount\":\"419.49\",\"session_id\":\"global-an_invalid_session_id\",\"unique_token\":\"client-side-idempotency-token\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npayment = ShopifyAPI::Payment.new(session: test_session)\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"\npayment.request_details = {\n  \"ip_address\" => \"123.1.1.1\",\n  \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n}\npayment.amount = \"419.49\"\npayment.session_id = \"global-an_invalid_session_id\"\npayment.unique_token = \"client-side-idempotency-token\"\npayment.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npayment = ShopifyAPI::Payment.new(session: test_session)\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"\npayment.request_details = {\n  \"ip_address\" => \"123.1.1.1\",\n  \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n}\npayment.amount = \"419.49\"\npayment.session_id = \"global-an_invalid_session_id\"\npayment.unique_token = \"client-side-idempotency-token\"\npayment.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst payment = new Payment({session: test_session});\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\npayment.request_details = {\n  \"ip_address\": \"123.1.1.1\",\n  \"accept_language\": \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n};\npayment.amount = \"419.49\";\npayment.session_id = \"global-an_invalid_session_id\";\npayment.unique_token = \"client-side-idempotency-token\";\nawait payment.save({});"
+              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst payment = new Payment({session: test_session});\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\npayment.request_details = {\n  \"ip_address\": \"123.1.1.1\",\n  \"accept_language\": \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n};\npayment.amount = \"419.49\";\npayment.session_id = \"global-an_invalid_session_id\";\npayment.unique_token = \"client-side-idempotency-token\";\nawait payment.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$payment = new Payment($this->test_session);\n$payment->checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\n$payment->request_details = [\n    \"ip_address\" => \"123.1.1.1\",\n    \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n    \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n];\n$payment->amount = \"419.49\";\n$payment->session_id = \"global-an_invalid_session_id\";\n$payment->unique_token = \"client-side-idempotency-token\";\n$payment->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$payment = new Payment($this->test_session);\n$payment->checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\n$payment->request_details = [\n    \"ip_address\" => \"123.1.1.1\",\n    \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n    \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n];\n$payment->amount = \"419.49\";\n$payment->session_id = \"global-an_invalid_session_id\";\n$payment->unique_token = \"client-side-idempotency-token\";\n$payment->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
+          "request_path": "/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
@@ -639,19 +639,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"payment\":{\"request_details\":{\"ip_address\":\"123.1.1.1\",\"accept_language\":\"en-US,en;q=0.8,fr;q=0.6\",\"user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"},\"amount\":\"398.00\",\"session_id\":\"global-944c253c9332c62d\",\"unique_token\":\"client-side-idempotency-token\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"payment\":{\"request_details\":{\"ip_address\":\"123.1.1.1\",\"accept_language\":\"en-US,en;q=0.8,fr;q=0.6\",\"user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"},\"amount\":\"398.00\",\"session_id\":\"global-944c253c9332c62d\",\"unique_token\":\"client-side-idempotency-token\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npayment = ShopifyAPI::Payment.new(session: test_session)\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"\npayment.request_details = {\n  \"ip_address\" => \"123.1.1.1\",\n  \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n}\npayment.amount = \"398.00\"\npayment.session_id = \"global-944c253c9332c62d\"\npayment.unique_token = \"client-side-idempotency-token\"\npayment.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\npayment = ShopifyAPI::Payment.new(session: test_session)\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"\npayment.request_details = {\n  \"ip_address\" => \"123.1.1.1\",\n  \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n}\npayment.amount = \"398.00\"\npayment.session_id = \"global-944c253c9332c62d\"\npayment.unique_token = \"client-side-idempotency-token\"\npayment.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst payment = new Payment({session: test_session});\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\npayment.request_details = {\n  \"ip_address\": \"123.1.1.1\",\n  \"accept_language\": \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n};\npayment.amount = \"398.00\";\npayment.session_id = \"global-944c253c9332c62d\";\npayment.unique_token = \"client-side-idempotency-token\";\nawait payment.save({});"
+              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst payment = new Payment({session: test_session});\npayment.checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\npayment.request_details = {\n  \"ip_address\": \"123.1.1.1\",\n  \"accept_language\": \"en-US,en;q=0.8,fr;q=0.6\",\n  \"user_agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n};\npayment.amount = \"398.00\";\npayment.session_id = \"global-944c253c9332c62d\";\npayment.unique_token = \"client-side-idempotency-token\";\nawait payment.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$payment = new Payment($this->test_session);\n$payment->checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\n$payment->request_details = [\n    \"ip_address\" => \"123.1.1.1\",\n    \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n    \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n];\n$payment->amount = \"398.00\";\n$payment->session_id = \"global-944c253c9332c62d\";\n$payment->unique_token = \"client-side-idempotency-token\";\n$payment->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$payment = new Payment($this->test_session);\n$payment->checkout_id = \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\";\n$payment->request_details = [\n    \"ip_address\" => \"123.1.1.1\",\n    \"accept_language\" => \"en-US,en;q=0.8,fr;q=0.6\",\n    \"user_agent\" => \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36\"\n];\n$payment->amount = \"398.00\";\n$payment->session_id = \"global-944c253c9332c62d\";\n$payment->unique_token = \"client-side-idempotency-token\";\n$payment->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -913,7 +913,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
+          "request_path": "/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json",
@@ -929,7 +929,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -937,11 +937,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payment.all({\n  session: test_session,\n  checkout_id: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n});"
+              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payment.all({\n  session: test_session,\n  checkout_id: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayment::all(\n    $this->test_session, // Session\n    [\"checkout_id\" => \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayment::all(\n    $this->test_session, // Session\n    [\"checkout_id\" => \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -1458,7 +1458,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json",
+          "request_path": "/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json",
@@ -1478,7 +1478,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json\"\n"
             },
             {
               "language": "ruby",
@@ -1486,18 +1486,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payment.find({\n  session: test_session,\n  checkout_id: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n  id: 25428999,\n});"
+              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payment.find({\n  session: test_session,\n  checkout_id: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n  id: 25428999,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayment::find(\n    $this->test_session, // Session\n    25428999, // Id\n    [\"checkout_id\" => \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayment::find(\n    $this->test_session, // Session\n    25428999, // Id\n    [\"checkout_id\" => \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json",
+          "request_path": "/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json",
@@ -1517,7 +1517,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/25428999.json\"\n"
             },
             {
               "language": "ruby",
@@ -1525,11 +1525,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payment.find({\n  session: test_session,\n  checkout_id: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n  id: 25428999,\n});"
+              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payment.find({\n  session: test_session,\n  checkout_id: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n  id: 25428999,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayment::find(\n    $this->test_session, // Session\n    25428999, // Id\n    [\"checkout_id\" => \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayment::find(\n    $this->test_session, // Session\n    25428999, // Id\n    [\"checkout_id\" => \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -1579,7 +1579,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/count.json",
+          "request_path": "/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/count.json",
@@ -1595,7 +1595,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x/payments/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -1603,11 +1603,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payment.count({\n  session: test_session,\n  checkout_id: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n});"
+              "example_code": "import {Payment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payment.count({\n  session: test_session,\n  checkout_id: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayment::count(\n    $this->test_session, // Session\n    [\"checkout_id\" => \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Payment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayment::count(\n    $this->test_session, // Session\n    [\"checkout_id\" => \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -1649,7 +1649,7 @@
           "name": "payment_processing_error_message"
         },
         {
-          "description": "        Specifies the URL that your app or sales channel needs to send the customer to so that they can authenticate their payment. To learn more about how to use this property, refer to the <a href=\"/apps/payments\"><em>Payments Apps overview</em></a>.\n",
+          "description": "        Specifies the URL that your app or sales channel needs to send the customer to so that they can authenticate their payment. To learn more about how to use this property, refer to <a href=\"/apps/payments\"><em>Payments Apps overview</em></a>.\n",
           "type": "string",
           "example": {
             "redirect_url": "https://shop-domain-url.myshopify.com/:shop_id/checkouts/:token/authentications/:auth_token/3ds"
@@ -1705,5 +1705,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

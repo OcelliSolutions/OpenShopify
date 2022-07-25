@@ -205,6 +205,7 @@ public class RefundTests : IClassFixture<RefundFixture>
     public async Task GetRefundAsync_TestCreated_AdditionalPropertiesAreEmpty()
     {
         Skip.If(!Fixture.CreatedRefunds.Any(), "Must be run with create test");
+        Skip.If(Fixture.Order.Id == 0, "Must be run with create test. Order not assigned.");
         var refund = Fixture.CreatedRefunds.First();
         var response = await Fixture.Service.Refund.GetRefundAsync(Fixture.Order.Id, refund.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);

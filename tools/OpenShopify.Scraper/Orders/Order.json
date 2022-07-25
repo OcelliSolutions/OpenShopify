@@ -5,7 +5,7 @@
     "description": "<p>An order is a customer's request to purchase one or more products from a shop. You can create, retrieve, update, and delete orders using the Order resource.</p>\n<h4>Usage notes</h4>\n{{ '/api/reference/order.png' | image }}\n<ul>\n  <li>When you create an order through the API, no payment information is collected, and no transaction is performed.</li>\n  <li>After an order is created, you can change only a few of its attributes using the API. You can't change the items or the quantities in an order using the REST API, but you can change them using the <a href=\"/api/examples/order-editing\">GraphQL Admin API</a>.</li>\n  <li>You can add <a href=\"/docs/admin-api/rest/reference/metafield\">metafields</a> to the Order resource.</li>\n  <li>You can allow merchants to create orders manually by using the <a href=\"/docs/admin-api/rest/reference/orders/draftorder\">DraftOrder resource</a>.</li>\n</ul>\n<div class=\"note note-caution\">\n  <h4>Caution</h4>\n  <p>You can't use the Order resource to create a new checkout for an individual store. To create a checkout, you need to use the <a href=\"/apps/channels/checkout-api\">Checkout API</a> or an SDK powered by the <a href=\"/docs/storefront-api\">Storefront API</a>, such as the <a href=\"/tools/libraries/storefront-api/javascript\">JavaScript Buy SDK</a>, <a href=\"/tools/libraries/storefront-api/ios\">iOS Buy SDK</a>, or <a href=\"/tools/libraries/storefront-api/android\">Android Buy SDK</a>.</p>\n</div>\n<div class=\"note note-caution\">\n  <h4>Caution</h4>\n  <p>\n    Only the last 60 days' worth of orders from a store are accessible from the Order resource by default.\n    If you want to access older orders, then you need to <a href=\"/apps/auth/oauth/getting-started#orders-permissions\">request access to all orders</a>.\n    If your app is granted access, then you can add the <code>read_all_orders</code> scope to your app along with <code>read_orders</code> or <code>write_orders</code>.\n    <a href=\"/apps/auth/basic-http\">Private apps</a> are not affected by this change and are automatically granted the scope.\n  </p>\n</div>\n<p><b>Caution:</b> Only use this data if it's required for your app's functionality. Shopify will restrict <a href=\"/api/usage/access-scopes\">access to scopes</a> for apps that don't have a legitimate use for the associated data.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/1672",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -4091,7 +4091,7 @@
         {
           "status": "200",
           "request_query": "status=any",
-          "request_path": "/admin/api/2022-04/orders.json",
+          "request_path": "/admin/api/2022-07/orders.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/orders.json",
@@ -4107,7 +4107,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders.json?status=any\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders.json?status=any\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -4115,18 +4115,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.all({\n  session: test_session,\n  status: \"any\",\n});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.all({\n  session: test_session,\n  status: \"any\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"any\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"any\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "ids=1073459965",
-          "request_path": "/admin/api/2022-04/orders.json",
+          "request_path": "/admin/api/2022-07/orders.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/orders.json",
@@ -4142,7 +4142,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders.json?ids=1073459965\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders.json?ids=1073459965\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -4150,18 +4150,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.all({\n  session: test_session,\n  ids: \"1073459965\",\n});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.all({\n  session: test_session,\n  ids: \"1073459965\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"ids\" => \"1073459965\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"ids\" => \"1073459965\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "financial_status=authorized",
-          "request_path": "/admin/api/2022-04/orders.json",
+          "request_path": "/admin/api/2022-07/orders.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/orders.json",
@@ -4177,7 +4177,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders.json?financial_status=authorized\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders.json?financial_status=authorized\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -4185,18 +4185,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.all({\n  session: test_session,\n  financial_status: \"authorized\",\n});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.all({\n  session: test_session,\n  financial_status: \"authorized\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"financial_status\" => \"authorized\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"financial_status\" => \"authorized\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "updated_at_min=2005-07-31T15%3A57%3A11-04%3A00",
-          "request_path": "/admin/api/2022-04/orders.json",
+          "request_path": "/admin/api/2022-07/orders.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/orders.json",
@@ -4212,7 +4212,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders.json?updated_at_min=2005-07-31T15%3A57%3A11-04%3A00\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders.json?updated_at_min=2005-07-31T15%3A57%3A11-04%3A00\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -4220,18 +4220,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.all({\n  session: test_session,\n  updated_at_min: \"2005-07-31T15:57:11-04:00\",\n});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.all({\n  session: test_session,\n  updated_at_min: \"2005-07-31T15:57:11-04:00\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"updated_at_min\" => \"2005-07-31T15:57:11-04:00\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"updated_at_min\" => \"2005-07-31T15:57:11-04:00\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "fields=created_at%2Cid%2Cname%2Ctotal-price",
-          "request_path": "/admin/api/2022-04/orders.json",
+          "request_path": "/admin/api/2022-07/orders.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/orders.json",
@@ -4247,7 +4247,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders.json?fields=created_at%2Cid%2Cname%2Ctotal-price\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders.json?fields=created_at%2Cid%2Cname%2Ctotal-price\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -4255,18 +4255,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.all({\n  session: test_session,\n  fields: \"created_at,id,name,total-price\",\n});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.all({\n  session: test_session,\n  fields: \"created_at,id,name,total-price\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"fields\" => \"created_at,id,name,total-price\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"fields\" => \"created_at,id,name,total-price\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "since_id=123",
-          "request_path": "/admin/api/2022-04/orders.json",
+          "request_path": "/admin/api/2022-07/orders.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/orders.json",
@@ -4282,7 +4282,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders.json?since_id=123\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders.json?since_id=123\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -4290,11 +4290,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.all({\n  session: test_session,\n  since_id: \"123\",\n});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.all({\n  session: test_session,\n  since_id: \"123\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"123\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"123\"], // Params\n);"
             }
           ]
         }
@@ -5609,7 +5609,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469.json",
+          "request_path": "/admin/api/2022-07/orders/450789469.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/orders/450789469.json",
@@ -5625,7 +5625,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -5633,18 +5633,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.find({\n  session: test_session,\n  id: 450789469,\n});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.find({\n  session: test_session,\n  id: 450789469,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::find(\n    $this->test_session, // Session\n    450789469, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::find(\n    $this->test_session, // Session\n    450789469, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "fields=id%2Cline_items%2Cname%2Ctotal_price",
-          "request_path": "/admin/api/2022-04/orders/450789469.json",
+          "request_path": "/admin/api/2022-07/orders/450789469.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/orders/450789469.json",
@@ -5660,7 +5660,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469.json?fields=id%2Cline_items%2Cname%2Ctotal_price\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469.json?fields=id%2Cline_items%2Cname%2Ctotal_price\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -5668,11 +5668,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.find({\n  session: test_session,\n  id: 450789469,\n  fields: \"id,line_items,name,total_price\",\n});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.find({\n  session: test_session,\n  id: 450789469,\n  fields: \"id,line_items,name,total_price\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::find(\n    $this->test_session, // Session\n    450789469, // Id\n    [], // Url Ids\n    [\"fields\" => \"id,line_items,name,total_price\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::find(\n    $this->test_session, // Session\n    450789469, // Id\n    [], // Url Ids\n    [\"fields\" => \"id,line_items,name,total_price\"], // Params\n);"
             }
           ]
         }
@@ -14525,7 +14525,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469.json",
+          "request_path": "/admin/api/2022-07/orders/450789469.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/2021-07/orders/450789469.json",
@@ -14541,26 +14541,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"note\":\"Customer contacted us about a custom engraving on this iPod\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"note\":\"Customer contacted us about a custom engraving on this iPod\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.note = \"Customer contacted us about a custom engraving on this iPod\"\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.note = \"Customer contacted us about a custom engraving on this iPod\"\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.note = \"Customer contacted us about a custom engraving on this iPod\";\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.note = \"Customer contacted us about a custom engraving on this iPod\";\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->note = \"Customer contacted us about a custom engraving on this iPod\";\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->note = \"Customer contacted us about a custom engraving on this iPod\";\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469.json",
+          "request_path": "/admin/api/2022-07/orders/450789469.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/2021-07/orders/450789469.json",
@@ -14576,26 +14576,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"note_attributes\":[{\"name\":\"colour\",\"value\":\"red\"}]}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"note_attributes\":[{\"name\":\"colour\",\"value\":\"red\"}]}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.note_attributes = [\n  {\n    \"name\" => \"colour\",\n    \"value\" => \"red\"\n  }\n]\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.note_attributes = [\n  {\n    \"name\" => \"colour\",\n    \"value\" => \"red\"\n  }\n]\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.note_attributes = [\n  {\n    \"name\": \"colour\",\n    \"value\": \"red\"\n  }\n];\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.note_attributes = [\n  {\n    \"name\": \"colour\",\n    \"value\": \"red\"\n  }\n];\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->note_attributes = [\n    [\n        \"name\" => \"colour\",\n        \"value\" => \"red\"\n    ]\n];\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->note_attributes = [\n    [\n        \"name\" => \"colour\",\n        \"value\" => \"red\"\n    ]\n];\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469.json",
+          "request_path": "/admin/api/2022-07/orders/450789469.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/2021-07/orders/450789469.json",
@@ -14611,26 +14611,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"email\":\"a-different@email.com\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"email\":\"a-different@email.com\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.email = \"a-different@email.com\"\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.email = \"a-different@email.com\"\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.email = \"a-different@email.com\";\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.email = \"a-different@email.com\";\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->email = \"a-different@email.com\";\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->email = \"a-different@email.com\";\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469.json",
+          "request_path": "/admin/api/2022-07/orders/450789469.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/2021-07/orders/450789469.json",
@@ -14646,26 +14646,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"phone\":\"+15145556677\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"phone\":\"+15145556677\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.phone = \"+15145556677\"\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.phone = \"+15145556677\"\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.phone = \"+15145556677\";\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.phone = \"+15145556677\";\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->phone = \"+15145556677\";\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->phone = \"+15145556677\";\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469.json",
+          "request_path": "/admin/api/2022-07/orders/450789469.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/2021-07/orders/450789469.json",
@@ -14681,26 +14681,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"buyer_accepts_marketing\":true}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"buyer_accepts_marketing\":true}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.buyer_accepts_marketing = true\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.buyer_accepts_marketing = true\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.buyer_accepts_marketing = true;\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.buyer_accepts_marketing = true;\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->buyer_accepts_marketing = true;\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->buyer_accepts_marketing = true;\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469.json",
+          "request_path": "/admin/api/2022-07/orders/450789469.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/2021-07/orders/450789469.json",
@@ -14716,26 +14716,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"shipping_address\":{\"address1\":\"123 Ship Street\",\"city\":\"Shipsville\"}}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"shipping_address\":{\"address1\":\"123 Ship Street\",\"city\":\"Shipsville\"}}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.shipping_address = {\n  \"address1\" => \"123 Ship Street\",\n  \"city\" => \"Shipsville\"\n}\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.shipping_address = {\n  \"address1\" => \"123 Ship Street\",\n  \"city\" => \"Shipsville\"\n}\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.shipping_address = {\n  \"address1\": \"123 Ship Street\",\n  \"city\": \"Shipsville\"\n};\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.shipping_address = {\n  \"address1\": \"123 Ship Street\",\n  \"city\": \"Shipsville\"\n};\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->shipping_address = [\n    \"address1\" => \"123 Ship Street\",\n    \"city\" => \"Shipsville\"\n];\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->shipping_address = [\n    \"address1\" => \"123 Ship Street\",\n    \"city\" => \"Shipsville\"\n];\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469.json",
+          "request_path": "/admin/api/2022-07/orders/450789469.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/2021-07/orders/450789469.json",
@@ -14751,26 +14751,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"customer\":null}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"customer\":null}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.customer = nil\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.customer = nil\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.customer = null;\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.customer = null;\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->customer = null;\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->customer = null;\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469.json",
+          "request_path": "/admin/api/2022-07/orders/450789469.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/2021-07/orders/450789469.json",
@@ -14786,26 +14786,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"tags\":\"External, Inbound, Outbound\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"tags\":\"External, Inbound, Outbound\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.tags = \"External, Inbound, Outbound\"\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.tags = \"External, Inbound, Outbound\"\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.tags = \"External, Inbound, Outbound\";\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.tags = \"External, Inbound, Outbound\";\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->tags = \"External, Inbound, Outbound\";\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->tags = \"External, Inbound, Outbound\";\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469.json",
+          "request_path": "/admin/api/2022-07/orders/450789469.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/2021-07/orders/450789469.json",
@@ -14821,19 +14821,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"metafields\":[{\"key\":\"new\",\"value\":\"newvalue\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"id\":450789469,\"metafields\":[{\"key\":\"new\",\"value\":\"newvalue\",\"type\":\"single_line_text_field\",\"namespace\":\"global\"}]}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.metafields = [\n  {\n    \"key\" => \"new\",\n    \"value\" => \"newvalue\",\n    \"type\" => \"single_line_text_field\",\n    \"namespace\" => \"global\"\n  }\n]\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.id = 450789469\norder.metafields = [\n  {\n    \"key\" => \"new\",\n    \"value\" => \"newvalue\",\n    \"type\" => \"single_line_text_field\",\n    \"namespace\" => \"global\"\n  }\n]\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.metafields = [\n  {\n    \"key\": \"new\",\n    \"value\": \"newvalue\",\n    \"type\": \"single_line_text_field\",\n    \"namespace\": \"global\"\n  }\n];\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\norder.metafields = [\n  {\n    \"key\": \"new\",\n    \"value\": \"newvalue\",\n    \"type\": \"single_line_text_field\",\n    \"namespace\": \"global\"\n  }\n];\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->metafields = [\n    [\n        \"key\" => \"new\",\n        \"value\" => \"newvalue\",\n        \"type\" => \"single_line_text_field\",\n        \"namespace\" => \"global\"\n    ]\n];\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->metafields = [\n    [\n        \"key\" => \"new\",\n        \"value\" => \"newvalue\",\n        \"type\" => \"single_line_text_field\",\n        \"namespace\" => \"global\"\n    ]\n];\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -14881,7 +14881,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469.json",
+          "request_path": "/admin/api/2022-07/orders/450789469.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/orders/450789469.json",
@@ -14897,7 +14897,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -14905,11 +14905,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.delete({\n  session: test_session,\n  id: 450789469,\n});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.delete({\n  session: test_session,\n  id: 450789469,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::delete(\n    $this->test_session, // Session\n    450789469, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::delete(\n    $this->test_session, // Session\n    450789469, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -15081,7 +15081,7 @@
         {
           "status": "200",
           "request_query": "status=any",
-          "request_path": "/admin/api/2022-04/orders/count.json",
+          "request_path": "/admin/api/2022-07/orders/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/orders/count.json",
@@ -15097,7 +15097,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/count.json?status=any\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/count.json?status=any\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -15105,18 +15105,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.count({\n  session: test_session,\n  status: \"any\",\n});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.count({\n  session: test_session,\n  status: \"any\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"any\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"any\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "financial_status=authorized",
-          "request_path": "/admin/api/2022-04/orders/count.json",
+          "request_path": "/admin/api/2022-07/orders/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/orders/count.json",
@@ -15132,7 +15132,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/count.json?financial_status=authorized\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/count.json?financial_status=authorized\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -15140,11 +15140,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.count({\n  session: test_session,\n  financial_status: \"authorized\",\n});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Order.count({\n  session: test_session,\n  financial_status: \"authorized\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"financial_status\" => \"authorized\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrder::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"financial_status\" => \"authorized\"], // Params\n);"
             }
           ]
         }
@@ -16192,7 +16192,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/close.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/close.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/close.json",
@@ -16208,7 +16208,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/close.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/close.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -16216,11 +16216,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\nawait order.close({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\nawait order.close({});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->close(\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->close(\n    [], // Params\n);"
             }
           ]
         }
@@ -17268,7 +17268,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/open.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/open.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/open.json",
@@ -17284,7 +17284,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/open.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/open.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -17292,11 +17292,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\nawait order.open({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\nawait order.open({});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->open(\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->open(\n    [], // Params\n);"
             }
           ]
         }
@@ -22195,7 +22195,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/cancel.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/cancel.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/cancel.json",
@@ -22211,7 +22211,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/cancel.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/cancel.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -22219,18 +22219,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\nawait order.cancel({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\nawait order.cancel({});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->cancel(\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->cancel(\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/cancel.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/cancel.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/cancel.json",
@@ -22246,7 +22246,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"amount\":\"10.00\",\"currency\":\"USD\"}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/cancel.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"amount\":\"10.00\",\"currency\":\"USD\"}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/cancel.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -22254,18 +22254,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\nawait order.cancel({\n  body: {\"amount\": \"10.00\", \"currency\": \"USD\"},\n});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\nawait order.cancel({\n  body: {\"amount\": \"10.00\", \"currency\": \"USD\"},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->cancel(\n    [], // Params\n    [\"amount\" => \"10.00\", \"currency\" => \"USD\"], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->cancel(\n    [], // Params\n    [\"amount\" => \"10.00\", \"currency\" => \"USD\"], // Body\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/cancel.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/cancel.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/cancel.json",
@@ -22281,7 +22281,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"amount\":\"109.00\",\"currency\":\"USD\"}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/cancel.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"amount\":\"109.00\",\"currency\":\"USD\"}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/cancel.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -22289,18 +22289,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\nawait order.cancel({\n  body: {\"amount\": \"109.00\", \"currency\": \"USD\"},\n});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\nawait order.cancel({\n  body: {\"amount\": \"109.00\", \"currency\": \"USD\"},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->cancel(\n    [], // Params\n    [\"amount\" => \"109.00\", \"currency\" => \"USD\"], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->cancel(\n    [], // Params\n    [\"amount\" => \"109.00\", \"currency\" => \"USD\"], // Body\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/cancel.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/cancel.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/cancel.json",
@@ -22316,7 +22316,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"refund\":{\"note\":\"Customer made a mistake\",\"shipping\":{\"full_refund\":true},\"refund_line_items\":[{\"line_item_id\":466157049,\"quantity\":1,\"restock_type\":\"cancel\",\"location_id\":24826418}],\"transactions\":[{\"parent_id\":1068278483,\"amount\":\"10.00\",\"kind\":\"refund\",\"gateway\":\"bogus\"},{\"parent_id\":1068278484,\"amount\":\"100.00\",\"kind\":\"refund\",\"gateway\":\"gift_card\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/cancel.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"refund\":{\"note\":\"Customer made a mistake\",\"shipping\":{\"full_refund\":true},\"refund_line_items\":[{\"line_item_id\":466157049,\"quantity\":1,\"restock_type\":\"cancel\",\"location_id\":24826418}],\"transactions\":[{\"parent_id\":1068278483,\"amount\":\"10.00\",\"kind\":\"refund\",\"gateway\":\"bogus\"},{\"parent_id\":1068278484,\"amount\":\"100.00\",\"kind\":\"refund\",\"gateway\":\"gift_card\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/cancel.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -22324,18 +22324,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\nawait order.cancel({\n  body: {\"refund\": {\"note\": \"Customer made a mistake\", \"shipping\": {\"full_refund\": true}, \"refund_line_items\": [{\"line_item_id\": 466157049, \"quantity\": 1, \"restock_type\": \"cancel\", \"location_id\": 24826418}], \"transactions\": [{\"parent_id\": 1068278483, \"amount\": \"10.00\", \"kind\": \"refund\", \"gateway\": \"bogus\"}, {\"parent_id\": 1068278484, \"amount\": \"100.00\", \"kind\": \"refund\", \"gateway\": \"gift_card\"}]}},\n});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\nawait order.cancel({\n  body: {\"refund\": {\"note\": \"Customer made a mistake\", \"shipping\": {\"full_refund\": true}, \"refund_line_items\": [{\"line_item_id\": 466157049, \"quantity\": 1, \"restock_type\": \"cancel\", \"location_id\": 24826418}], \"transactions\": [{\"parent_id\": 1068278483, \"amount\": \"10.00\", \"kind\": \"refund\", \"gateway\": \"bogus\"}, {\"parent_id\": 1068278484, \"amount\": \"100.00\", \"kind\": \"refund\", \"gateway\": \"gift_card\"}]}},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->cancel(\n    [], // Params\n    [\"refund\" => [\"note\" => \"Customer made a mistake\", \"shipping\" => [\"full_refund\" => true], \"refund_line_items\" => [[\"line_item_id\" => 466157049, \"quantity\" => 1, \"restock_type\" => \"cancel\", \"location_id\" => 24826418]], \"transactions\" => [[\"parent_id\" => 1068278483, \"amount\" => \"10.00\", \"kind\" => \"refund\", \"gateway\" => \"bogus\"], [\"parent_id\" => 1068278484, \"amount\" => \"100.00\", \"kind\" => \"refund\", \"gateway\" => \"gift_card\"]]]], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->cancel(\n    [], // Params\n    [\"refund\" => [\"note\" => \"Customer made a mistake\", \"shipping\" => [\"full_refund\" => true], \"refund_line_items\" => [[\"line_item_id\" => 466157049, \"quantity\" => 1, \"restock_type\" => \"cancel\", \"location_id\" => 24826418]], \"transactions\" => [[\"parent_id\" => 1068278483, \"amount\" => \"10.00\", \"kind\" => \"refund\", \"gateway\" => \"bogus\"], [\"parent_id\" => 1068278484, \"amount\" => \"100.00\", \"kind\" => \"refund\", \"gateway\" => \"gift_card\"]]]], // Body\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/cancel.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/cancel.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/cancel.json",
@@ -22351,7 +22351,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/cancel.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/cancel.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -22359,11 +22359,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\nawait order.cancel({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.id = 450789469;\nawait order.cancel({});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->cancel(\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->id = 450789469;\n$order->cancel(\n    [], // Params\n);"
             }
           ]
         }
@@ -25161,7 +25161,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders.json",
+          "request_path": "/admin/api/2022-07/orders.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders.json",
@@ -25177,26 +25177,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"line_items\":[{\"variant_id\":447654529,\"quantity\":1}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"line_items\":[{\"variant_id\":447654529,\"quantity\":1}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.line_items = [\n  {\n    \"variant_id\" => 447654529,\n    \"quantity\" => 1\n  }\n]\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.line_items = [\n  {\n    \"variant_id\" => 447654529,\n    \"quantity\" => 1\n  }\n]\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.line_items = [\n  {\n    \"variant_id\": 447654529,\n    \"quantity\": 1\n  }\n];\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.line_items = [\n  {\n    \"variant_id\": 447654529,\n    \"quantity\": 1\n  }\n];\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->line_items = [\n    [\n        \"variant_id\" => 447654529,\n        \"quantity\" => 1\n    ]\n];\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->line_items = [\n    [\n        \"variant_id\" => 447654529,\n        \"quantity\" => 1\n    ]\n];\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders.json",
+          "request_path": "/admin/api/2022-07/orders.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders.json",
@@ -25212,26 +25212,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"email\":\"foo@example.com\",\"fulfillment_status\":\"fulfilled\",\"send_receipt\":true,\"send_fulfillment_receipt\":true,\"line_items\":[{\"variant_id\":457924702,\"quantity\":1}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"email\":\"foo@example.com\",\"fulfillment_status\":\"fulfilled\",\"send_receipt\":true,\"send_fulfillment_receipt\":true,\"line_items\":[{\"variant_id\":457924702,\"quantity\":1}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.email = \"foo@example.com\"\norder.fulfillment_status = \"fulfilled\"\norder.send_receipt = true\norder.send_fulfillment_receipt = true\norder.line_items = [\n  {\n    \"variant_id\" => 457924702,\n    \"quantity\" => 1\n  }\n]\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.email = \"foo@example.com\"\norder.fulfillment_status = \"fulfilled\"\norder.send_receipt = true\norder.send_fulfillment_receipt = true\norder.line_items = [\n  {\n    \"variant_id\" => 457924702,\n    \"quantity\" => 1\n  }\n]\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.email = \"foo@example.com\";\norder.fulfillment_status = \"fulfilled\";\norder.send_receipt = true;\norder.send_fulfillment_receipt = true;\norder.line_items = [\n  {\n    \"variant_id\": 457924702,\n    \"quantity\": 1\n  }\n];\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.email = \"foo@example.com\";\norder.fulfillment_status = \"fulfilled\";\norder.send_receipt = true;\norder.send_fulfillment_receipt = true;\norder.line_items = [\n  {\n    \"variant_id\": 457924702,\n    \"quantity\": 1\n  }\n];\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->email = \"foo@example.com\";\n$order->fulfillment_status = \"fulfilled\";\n$order->send_receipt = true;\n$order->send_fulfillment_receipt = true;\n$order->line_items = [\n    [\n        \"variant_id\" => 457924702,\n        \"quantity\" => 1\n    ]\n];\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->email = \"foo@example.com\";\n$order->fulfillment_status = \"fulfilled\";\n$order->send_receipt = true;\n$order->send_fulfillment_receipt = true;\n$order->line_items = [\n    [\n        \"variant_id\" => 457924702,\n        \"quantity\" => 1\n    ]\n];\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders.json",
+          "request_path": "/admin/api/2022-07/orders.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders.json",
@@ -25247,26 +25247,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"email\":\"foo@example.com\",\"fulfillment_status\":\"fulfilled\",\"line_items\":[{\"variant_id\":447654529,\"quantity\":1}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"email\":\"foo@example.com\",\"fulfillment_status\":\"fulfilled\",\"line_items\":[{\"variant_id\":447654529,\"quantity\":1}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.email = \"foo@example.com\"\norder.fulfillment_status = \"fulfilled\"\norder.line_items = [\n  {\n    \"variant_id\" => 447654529,\n    \"quantity\" => 1\n  }\n]\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.email = \"foo@example.com\"\norder.fulfillment_status = \"fulfilled\"\norder.line_items = [\n  {\n    \"variant_id\" => 447654529,\n    \"quantity\" => 1\n  }\n]\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.email = \"foo@example.com\";\norder.fulfillment_status = \"fulfilled\";\norder.line_items = [\n  {\n    \"variant_id\": 447654529,\n    \"quantity\": 1\n  }\n];\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.email = \"foo@example.com\";\norder.fulfillment_status = \"fulfilled\";\norder.line_items = [\n  {\n    \"variant_id\": 447654529,\n    \"quantity\": 1\n  }\n];\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->email = \"foo@example.com\";\n$order->fulfillment_status = \"fulfilled\";\n$order->line_items = [\n    [\n        \"variant_id\" => 447654529,\n        \"quantity\" => 1\n    ]\n];\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->email = \"foo@example.com\";\n$order->fulfillment_status = \"fulfilled\";\n$order->line_items = [\n    [\n        \"variant_id\" => 447654529,\n        \"quantity\" => 1\n    ]\n];\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders.json",
+          "request_path": "/admin/api/2022-07/orders.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders.json",
@@ -25282,26 +25282,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"email\":\"foo@example.com\",\"fulfillment_status\":\"fulfilled\",\"fulfillments\":[{\"location_id\":24826418}],\"line_items\":[{\"variant_id\":447654529,\"quantity\":1}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"email\":\"foo@example.com\",\"fulfillment_status\":\"fulfilled\",\"fulfillments\":[{\"location_id\":24826418}],\"line_items\":[{\"variant_id\":447654529,\"quantity\":1}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.email = \"foo@example.com\"\norder.fulfillment_status = \"fulfilled\"\norder.fulfillments = [\n  {\n    \"location_id\" => 24826418\n  }\n]\norder.line_items = [\n  {\n    \"variant_id\" => 447654529,\n    \"quantity\" => 1\n  }\n]\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.email = \"foo@example.com\"\norder.fulfillment_status = \"fulfilled\"\norder.fulfillments = [\n  {\n    \"location_id\" => 24826418\n  }\n]\norder.line_items = [\n  {\n    \"variant_id\" => 447654529,\n    \"quantity\" => 1\n  }\n]\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.email = \"foo@example.com\";\norder.fulfillment_status = \"fulfilled\";\norder.fulfillments = [\n  {\n    \"location_id\": 24826418\n  }\n];\norder.line_items = [\n  {\n    \"variant_id\": 447654529,\n    \"quantity\": 1\n  }\n];\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.email = \"foo@example.com\";\norder.fulfillment_status = \"fulfilled\";\norder.fulfillments = [\n  {\n    \"location_id\": 24826418\n  }\n];\norder.line_items = [\n  {\n    \"variant_id\": 447654529,\n    \"quantity\": 1\n  }\n];\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->email = \"foo@example.com\";\n$order->fulfillment_status = \"fulfilled\";\n$order->fulfillments = [\n    [\n        \"location_id\" => 24826418\n    ]\n];\n$order->line_items = [\n    [\n        \"variant_id\" => 447654529,\n        \"quantity\" => 1\n    ]\n];\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->email = \"foo@example.com\";\n$order->fulfillment_status = \"fulfilled\";\n$order->fulfillments = [\n    [\n        \"location_id\" => 24826418\n    ]\n];\n$order->line_items = [\n    [\n        \"variant_id\" => 447654529,\n        \"quantity\" => 1\n    ]\n];\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders.json",
+          "request_path": "/admin/api/2022-07/orders.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders.json",
@@ -25317,26 +25317,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"line_items\":[{\"title\":\"Big Brown Bear Boots\",\"price\":74.99,\"grams\":\"1300\",\"quantity\":3,\"tax_lines\":[{\"price\":13.5,\"rate\":0.06,\"title\":\"State tax\"}]}],\"transactions\":[{\"kind\":\"sale\",\"status\":\"success\",\"amount\":238.47}],\"total_tax\":13.5,\"currency\":\"EUR\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"line_items\":[{\"title\":\"Big Brown Bear Boots\",\"price\":74.99,\"grams\":\"1300\",\"quantity\":3,\"tax_lines\":[{\"price\":13.5,\"rate\":0.06,\"title\":\"State tax\"}]}],\"transactions\":[{\"kind\":\"sale\",\"status\":\"success\",\"amount\":238.47}],\"total_tax\":13.5,\"currency\":\"EUR\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.line_items = [\n  {\n    \"title\" => \"Big Brown Bear Boots\",\n    \"price\" => 74.99,\n    \"grams\" => \"1300\",\n    \"quantity\" => 3,\n    \"tax_lines\" => [\n      {\n        \"price\" => 13.5,\n        \"rate\" => 0.06,\n        \"title\" => \"State tax\"\n      }\n    ]\n  }\n]\norder.transactions = [\n  {\n    \"kind\" => \"sale\",\n    \"status\" => \"success\",\n    \"amount\" => 238.47\n  }\n]\norder.total_tax = 13.5\norder.currency = \"EUR\"\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.line_items = [\n  {\n    \"title\" => \"Big Brown Bear Boots\",\n    \"price\" => 74.99,\n    \"grams\" => \"1300\",\n    \"quantity\" => 3,\n    \"tax_lines\" => [\n      {\n        \"price\" => 13.5,\n        \"rate\" => 0.06,\n        \"title\" => \"State tax\"\n      }\n    ]\n  }\n]\norder.transactions = [\n  {\n    \"kind\" => \"sale\",\n    \"status\" => \"success\",\n    \"amount\" => 238.47\n  }\n]\norder.total_tax = 13.5\norder.currency = \"EUR\"\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.line_items = [\n  {\n    \"title\": \"Big Brown Bear Boots\",\n    \"price\": 74.99,\n    \"grams\": \"1300\",\n    \"quantity\": 3,\n    \"tax_lines\": [\n      {\n        \"price\": 13.5,\n        \"rate\": 0.06,\n        \"title\": \"State tax\"\n      }\n    ]\n  }\n];\norder.transactions = [\n  {\n    \"kind\": \"sale\",\n    \"status\": \"success\",\n    \"amount\": 238.47\n  }\n];\norder.total_tax = 13.5;\norder.currency = \"EUR\";\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.line_items = [\n  {\n    \"title\": \"Big Brown Bear Boots\",\n    \"price\": 74.99,\n    \"grams\": \"1300\",\n    \"quantity\": 3,\n    \"tax_lines\": [\n      {\n        \"price\": 13.5,\n        \"rate\": 0.06,\n        \"title\": \"State tax\"\n      }\n    ]\n  }\n];\norder.transactions = [\n  {\n    \"kind\": \"sale\",\n    \"status\": \"success\",\n    \"amount\": 238.47\n  }\n];\norder.total_tax = 13.5;\norder.currency = \"EUR\";\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->line_items = [\n    [\n        \"title\" => \"Big Brown Bear Boots\",\n        \"price\" => 74.99,\n        \"grams\" => \"1300\",\n        \"quantity\" => 3,\n        \"tax_lines\" => [\n            [\n                \"price\" => 13.5,\n                \"rate\" => 0.06,\n                \"title\" => \"State tax\"\n            ]\n        ]\n    ]\n];\n$order->transactions = [\n    [\n        \"kind\" => \"sale\",\n        \"status\" => \"success\",\n        \"amount\" => 238.47\n    ]\n];\n$order->total_tax = 13.5;\n$order->currency = \"EUR\";\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->line_items = [\n    [\n        \"title\" => \"Big Brown Bear Boots\",\n        \"price\" => 74.99,\n        \"grams\" => \"1300\",\n        \"quantity\" => 3,\n        \"tax_lines\" => [\n            [\n                \"price\" => 13.5,\n                \"rate\" => 0.06,\n                \"title\" => \"State tax\"\n            ]\n        ]\n    ]\n];\n$order->transactions = [\n    [\n        \"kind\" => \"sale\",\n        \"status\" => \"success\",\n        \"amount\" => 238.47\n    ]\n];\n$order->total_tax = 13.5;\n$order->currency = \"EUR\";\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders.json",
+          "request_path": "/admin/api/2022-07/orders.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders.json",
@@ -25352,26 +25352,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"line_items\":[{\"title\":\"Red Leather Coat\",\"price\":129.99,\"grams\":\"1700\",\"quantity\":1},{\"title\":\"Blue Suede Shoes\",\"price\":85.95,\"grams\":\"750\",\"quantity\":1,\"taxable\":false},{\"title\":\"Raspberry Beret\",\"price\":19.99,\"grams\":\"320\",\"quantity\":2}],\"tax_lines\":[{\"price\":10.2,\"rate\":0.06,\"title\":\"State tax\"},{\"price\":4.25,\"rate\":0.025,\"title\":\"County tax\"}],\"total_tax\":14.45}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"line_items\":[{\"title\":\"Red Leather Coat\",\"price\":129.99,\"grams\":\"1700\",\"quantity\":1},{\"title\":\"Blue Suede Shoes\",\"price\":85.95,\"grams\":\"750\",\"quantity\":1,\"taxable\":false},{\"title\":\"Raspberry Beret\",\"price\":19.99,\"grams\":\"320\",\"quantity\":2}],\"tax_lines\":[{\"price\":10.2,\"rate\":0.06,\"title\":\"State tax\"},{\"price\":4.25,\"rate\":0.025,\"title\":\"County tax\"}],\"total_tax\":14.45}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.line_items = [\n  {\n    \"title\" => \"Red Leather Coat\",\n    \"price\" => 129.99,\n    \"grams\" => \"1700\",\n    \"quantity\" => 1\n  },\n  {\n    \"title\" => \"Blue Suede Shoes\",\n    \"price\" => 85.95,\n    \"grams\" => \"750\",\n    \"quantity\" => 1,\n    \"taxable\" => false\n  },\n  {\n    \"title\" => \"Raspberry Beret\",\n    \"price\" => 19.99,\n    \"grams\" => \"320\",\n    \"quantity\" => 2\n  }\n]\norder.tax_lines = [\n  {\n    \"price\" => 10.2,\n    \"rate\" => 0.06,\n    \"title\" => \"State tax\"\n  },\n  {\n    \"price\" => 4.25,\n    \"rate\" => 0.025,\n    \"title\" => \"County tax\"\n  }\n]\norder.total_tax = 14.45\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.line_items = [\n  {\n    \"title\" => \"Red Leather Coat\",\n    \"price\" => 129.99,\n    \"grams\" => \"1700\",\n    \"quantity\" => 1\n  },\n  {\n    \"title\" => \"Blue Suede Shoes\",\n    \"price\" => 85.95,\n    \"grams\" => \"750\",\n    \"quantity\" => 1,\n    \"taxable\" => false\n  },\n  {\n    \"title\" => \"Raspberry Beret\",\n    \"price\" => 19.99,\n    \"grams\" => \"320\",\n    \"quantity\" => 2\n  }\n]\norder.tax_lines = [\n  {\n    \"price\" => 10.2,\n    \"rate\" => 0.06,\n    \"title\" => \"State tax\"\n  },\n  {\n    \"price\" => 4.25,\n    \"rate\" => 0.025,\n    \"title\" => \"County tax\"\n  }\n]\norder.total_tax = 14.45\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.line_items = [\n  {\n    \"title\": \"Red Leather Coat\",\n    \"price\": 129.99,\n    \"grams\": \"1700\",\n    \"quantity\": 1\n  },\n  {\n    \"title\": \"Blue Suede Shoes\",\n    \"price\": 85.95,\n    \"grams\": \"750\",\n    \"quantity\": 1,\n    \"taxable\": false\n  },\n  {\n    \"title\": \"Raspberry Beret\",\n    \"price\": 19.99,\n    \"grams\": \"320\",\n    \"quantity\": 2\n  }\n];\norder.tax_lines = [\n  {\n    \"price\": 10.2,\n    \"rate\": 0.06,\n    \"title\": \"State tax\"\n  },\n  {\n    \"price\": 4.25,\n    \"rate\": 0.025,\n    \"title\": \"County tax\"\n  }\n];\norder.total_tax = 14.45;\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.line_items = [\n  {\n    \"title\": \"Red Leather Coat\",\n    \"price\": 129.99,\n    \"grams\": \"1700\",\n    \"quantity\": 1\n  },\n  {\n    \"title\": \"Blue Suede Shoes\",\n    \"price\": 85.95,\n    \"grams\": \"750\",\n    \"quantity\": 1,\n    \"taxable\": false\n  },\n  {\n    \"title\": \"Raspberry Beret\",\n    \"price\": 19.99,\n    \"grams\": \"320\",\n    \"quantity\": 2\n  }\n];\norder.tax_lines = [\n  {\n    \"price\": 10.2,\n    \"rate\": 0.06,\n    \"title\": \"State tax\"\n  },\n  {\n    \"price\": 4.25,\n    \"rate\": 0.025,\n    \"title\": \"County tax\"\n  }\n];\norder.total_tax = 14.45;\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->line_items = [\n    [\n        \"title\" => \"Red Leather Coat\",\n        \"price\" => 129.99,\n        \"grams\" => \"1700\",\n        \"quantity\" => 1\n    ],\n    [\n        \"title\" => \"Blue Suede Shoes\",\n        \"price\" => 85.95,\n        \"grams\" => \"750\",\n        \"quantity\" => 1,\n        \"taxable\" => false\n    ],\n    [\n        \"title\" => \"Raspberry Beret\",\n        \"price\" => 19.99,\n        \"grams\" => \"320\",\n        \"quantity\" => 2\n    ]\n];\n$order->tax_lines = [\n    [\n        \"price\" => 10.2,\n        \"rate\" => 0.06,\n        \"title\" => \"State tax\"\n    ],\n    [\n        \"price\" => 4.25,\n        \"rate\" => 0.025,\n        \"title\" => \"County tax\"\n    ]\n];\n$order->total_tax = 14.45;\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->line_items = [\n    [\n        \"title\" => \"Red Leather Coat\",\n        \"price\" => 129.99,\n        \"grams\" => \"1700\",\n        \"quantity\" => 1\n    ],\n    [\n        \"title\" => \"Blue Suede Shoes\",\n        \"price\" => 85.95,\n        \"grams\" => \"750\",\n        \"quantity\" => 1,\n        \"taxable\" => false\n    ],\n    [\n        \"title\" => \"Raspberry Beret\",\n        \"price\" => 19.99,\n        \"grams\" => \"320\",\n        \"quantity\" => 2\n    ]\n];\n$order->tax_lines = [\n    [\n        \"price\" => 10.2,\n        \"rate\" => 0.06,\n        \"title\" => \"State tax\"\n    ],\n    [\n        \"price\" => 4.25,\n        \"rate\" => 0.025,\n        \"title\" => \"County tax\"\n    ]\n];\n$order->total_tax = 14.45;\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders.json",
+          "request_path": "/admin/api/2022-07/orders.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders.json",
@@ -25387,26 +25387,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"line_items\":[{\"title\":\"Clicky Keyboard\",\"price\":99.99,\"grams\":\"600\",\"quantity\":1,\"tax_lines\":[{\"price\":1.0,\"rate\":0.01,\"title\":\"Keyboard tax\"}]}],\"tax_lines\":[{\"price\":6.0,\"rate\":0.06,\"title\":\"State tax\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"line_items\":[{\"title\":\"Clicky Keyboard\",\"price\":99.99,\"grams\":\"600\",\"quantity\":1,\"tax_lines\":[{\"price\":1.0,\"rate\":0.01,\"title\":\"Keyboard tax\"}]}],\"tax_lines\":[{\"price\":6.0,\"rate\":0.06,\"title\":\"State tax\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.line_items = [\n  {\n    \"title\" => \"Clicky Keyboard\",\n    \"price\" => 99.99,\n    \"grams\" => \"600\",\n    \"quantity\" => 1,\n    \"tax_lines\" => [\n      {\n        \"price\" => 1.0,\n        \"rate\" => 0.01,\n        \"title\" => \"Keyboard tax\"\n      }\n    ]\n  }\n]\norder.tax_lines = [\n  {\n    \"price\" => 6.0,\n    \"rate\" => 0.06,\n    \"title\" => \"State tax\"\n  }\n]\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.line_items = [\n  {\n    \"title\" => \"Clicky Keyboard\",\n    \"price\" => 99.99,\n    \"grams\" => \"600\",\n    \"quantity\" => 1,\n    \"tax_lines\" => [\n      {\n        \"price\" => 1.0,\n        \"rate\" => 0.01,\n        \"title\" => \"Keyboard tax\"\n      }\n    ]\n  }\n]\norder.tax_lines = [\n  {\n    \"price\" => 6.0,\n    \"rate\" => 0.06,\n    \"title\" => \"State tax\"\n  }\n]\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.line_items = [\n  {\n    \"title\": \"Clicky Keyboard\",\n    \"price\": 99.99,\n    \"grams\": \"600\",\n    \"quantity\": 1,\n    \"tax_lines\": [\n      {\n        \"price\": 1.0,\n        \"rate\": 0.01,\n        \"title\": \"Keyboard tax\"\n      }\n    ]\n  }\n];\norder.tax_lines = [\n  {\n    \"price\": 6.0,\n    \"rate\": 0.06,\n    \"title\": \"State tax\"\n  }\n];\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.line_items = [\n  {\n    \"title\": \"Clicky Keyboard\",\n    \"price\": 99.99,\n    \"grams\": \"600\",\n    \"quantity\": 1,\n    \"tax_lines\": [\n      {\n        \"price\": 1.0,\n        \"rate\": 0.01,\n        \"title\": \"Keyboard tax\"\n      }\n    ]\n  }\n];\norder.tax_lines = [\n  {\n    \"price\": 6.0,\n    \"rate\": 0.06,\n    \"title\": \"State tax\"\n  }\n];\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->line_items = [\n    [\n        \"title\" => \"Clicky Keyboard\",\n        \"price\" => 99.99,\n        \"grams\" => \"600\",\n        \"quantity\" => 1,\n        \"tax_lines\" => [\n            [\n                \"price\" => 1.0,\n                \"rate\" => 0.01,\n                \"title\" => \"Keyboard tax\"\n            ]\n        ]\n    ]\n];\n$order->tax_lines = [\n    [\n        \"price\" => 6.0,\n        \"rate\" => 0.06,\n        \"title\" => \"State tax\"\n    ]\n];\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->line_items = [\n    [\n        \"title\" => \"Clicky Keyboard\",\n        \"price\" => 99.99,\n        \"grams\" => \"600\",\n        \"quantity\" => 1,\n        \"tax_lines\" => [\n            [\n                \"price\" => 1.0,\n                \"rate\" => 0.01,\n                \"title\" => \"Keyboard tax\"\n            ]\n        ]\n    ]\n];\n$order->tax_lines = [\n    [\n        \"price\" => 6.0,\n        \"rate\" => 0.06,\n        \"title\" => \"State tax\"\n    ]\n];\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders.json",
+          "request_path": "/admin/api/2022-07/orders.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders.json",
@@ -25422,26 +25422,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"line_items\":[{\"variant_id\":447654529,\"quantity\":1}],\"customer\":{\"id\":207119551},\"financial_status\":\"pending\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"line_items\":[{\"variant_id\":447654529,\"quantity\":1}],\"customer\":{\"id\":207119551},\"financial_status\":\"pending\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.line_items = [\n  {\n    \"variant_id\" => 447654529,\n    \"quantity\" => 1\n  }\n]\norder.customer = {\n  \"id\" => 207119551\n}\norder.financial_status = \"pending\"\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.line_items = [\n  {\n    \"variant_id\" => 447654529,\n    \"quantity\" => 1\n  }\n]\norder.customer = {\n  \"id\" => 207119551\n}\norder.financial_status = \"pending\"\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.line_items = [\n  {\n    \"variant_id\": 447654529,\n    \"quantity\": 1\n  }\n];\norder.customer = {\n  \"id\": 207119551\n};\norder.financial_status = \"pending\";\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.line_items = [\n  {\n    \"variant_id\": 447654529,\n    \"quantity\": 1\n  }\n];\norder.customer = {\n  \"id\": 207119551\n};\norder.financial_status = \"pending\";\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->line_items = [\n    [\n        \"variant_id\" => 447654529,\n        \"quantity\" => 1\n    ]\n];\n$order->customer = [\n    \"id\" => 207119551\n];\n$order->financial_status = \"pending\";\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->line_items = [\n    [\n        \"variant_id\" => 447654529,\n        \"quantity\" => 1\n    ]\n];\n$order->customer = [\n    \"id\" => 207119551\n];\n$order->financial_status = \"pending\";\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders.json",
+          "request_path": "/admin/api/2022-07/orders.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders.json",
@@ -25457,26 +25457,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"line_items\":[{\"variant_id\":447654529,\"quantity\":1}],\"customer\":{\"first_name\":\"Paul\",\"last_name\":\"Norman\",\"email\":\"paul.norman@example.com\"},\"billing_address\":{\"first_name\":\"John\",\"last_name\":\"Smith\",\"address1\":\"123 Fake Street\",\"phone\":\"555-555-5555\",\"city\":\"Fakecity\",\"province\":\"Ontario\",\"country\":\"Canada\",\"zip\":\"K2P 1L4\"},\"shipping_address\":{\"first_name\":\"Jane\",\"last_name\":\"Smith\",\"address1\":\"123 Fake Street\",\"phone\":\"777-777-7777\",\"city\":\"Fakecity\",\"province\":\"Ontario\",\"country\":\"Canada\",\"zip\":\"K2P 1L4\"},\"email\":\"jane@example.com\",\"transactions\":[{\"kind\":\"authorization\",\"status\":\"success\",\"amount\":50.0}],\"financial_status\":\"partially_paid\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"line_items\":[{\"variant_id\":447654529,\"quantity\":1}],\"customer\":{\"first_name\":\"Paul\",\"last_name\":\"Norman\",\"email\":\"paul.norman@example.com\"},\"billing_address\":{\"first_name\":\"John\",\"last_name\":\"Smith\",\"address1\":\"123 Fake Street\",\"phone\":\"555-555-5555\",\"city\":\"Fakecity\",\"province\":\"Ontario\",\"country\":\"Canada\",\"zip\":\"K2P 1L4\"},\"shipping_address\":{\"first_name\":\"Jane\",\"last_name\":\"Smith\",\"address1\":\"123 Fake Street\",\"phone\":\"777-777-7777\",\"city\":\"Fakecity\",\"province\":\"Ontario\",\"country\":\"Canada\",\"zip\":\"K2P 1L4\"},\"email\":\"jane@example.com\",\"transactions\":[{\"kind\":\"authorization\",\"status\":\"success\",\"amount\":50.0}],\"financial_status\":\"partially_paid\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.line_items = [\n  {\n    \"variant_id\" => 447654529,\n    \"quantity\" => 1\n  }\n]\norder.customer = {\n  \"first_name\" => \"Paul\",\n  \"last_name\" => \"Norman\",\n  \"email\" => \"paul.norman@example.com\"\n}\norder.billing_address = {\n  \"first_name\" => \"John\",\n  \"last_name\" => \"Smith\",\n  \"address1\" => \"123 Fake Street\",\n  \"phone\" => \"555-555-5555\",\n  \"city\" => \"Fakecity\",\n  \"province\" => \"Ontario\",\n  \"country\" => \"Canada\",\n  \"zip\" => \"K2P 1L4\"\n}\norder.shipping_address = {\n  \"first_name\" => \"Jane\",\n  \"last_name\" => \"Smith\",\n  \"address1\" => \"123 Fake Street\",\n  \"phone\" => \"777-777-7777\",\n  \"city\" => \"Fakecity\",\n  \"province\" => \"Ontario\",\n  \"country\" => \"Canada\",\n  \"zip\" => \"K2P 1L4\"\n}\norder.email = \"jane@example.com\"\norder.transactions = [\n  {\n    \"kind\" => \"authorization\",\n    \"status\" => \"success\",\n    \"amount\" => 50.0\n  }\n]\norder.financial_status = \"partially_paid\"\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.line_items = [\n  {\n    \"variant_id\" => 447654529,\n    \"quantity\" => 1\n  }\n]\norder.customer = {\n  \"first_name\" => \"Paul\",\n  \"last_name\" => \"Norman\",\n  \"email\" => \"paul.norman@example.com\"\n}\norder.billing_address = {\n  \"first_name\" => \"John\",\n  \"last_name\" => \"Smith\",\n  \"address1\" => \"123 Fake Street\",\n  \"phone\" => \"555-555-5555\",\n  \"city\" => \"Fakecity\",\n  \"province\" => \"Ontario\",\n  \"country\" => \"Canada\",\n  \"zip\" => \"K2P 1L4\"\n}\norder.shipping_address = {\n  \"first_name\" => \"Jane\",\n  \"last_name\" => \"Smith\",\n  \"address1\" => \"123 Fake Street\",\n  \"phone\" => \"777-777-7777\",\n  \"city\" => \"Fakecity\",\n  \"province\" => \"Ontario\",\n  \"country\" => \"Canada\",\n  \"zip\" => \"K2P 1L4\"\n}\norder.email = \"jane@example.com\"\norder.transactions = [\n  {\n    \"kind\" => \"authorization\",\n    \"status\" => \"success\",\n    \"amount\" => 50.0\n  }\n]\norder.financial_status = \"partially_paid\"\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.line_items = [\n  {\n    \"variant_id\": 447654529,\n    \"quantity\": 1\n  }\n];\norder.customer = {\n  \"first_name\": \"Paul\",\n  \"last_name\": \"Norman\",\n  \"email\": \"paul.norman@example.com\"\n};\norder.billing_address = {\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"address1\": \"123 Fake Street\",\n  \"phone\": \"555-555-5555\",\n  \"city\": \"Fakecity\",\n  \"province\": \"Ontario\",\n  \"country\": \"Canada\",\n  \"zip\": \"K2P 1L4\"\n};\norder.shipping_address = {\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Smith\",\n  \"address1\": \"123 Fake Street\",\n  \"phone\": \"777-777-7777\",\n  \"city\": \"Fakecity\",\n  \"province\": \"Ontario\",\n  \"country\": \"Canada\",\n  \"zip\": \"K2P 1L4\"\n};\norder.email = \"jane@example.com\";\norder.transactions = [\n  {\n    \"kind\": \"authorization\",\n    \"status\": \"success\",\n    \"amount\": 50.0\n  }\n];\norder.financial_status = \"partially_paid\";\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.line_items = [\n  {\n    \"variant_id\": 447654529,\n    \"quantity\": 1\n  }\n];\norder.customer = {\n  \"first_name\": \"Paul\",\n  \"last_name\": \"Norman\",\n  \"email\": \"paul.norman@example.com\"\n};\norder.billing_address = {\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"address1\": \"123 Fake Street\",\n  \"phone\": \"555-555-5555\",\n  \"city\": \"Fakecity\",\n  \"province\": \"Ontario\",\n  \"country\": \"Canada\",\n  \"zip\": \"K2P 1L4\"\n};\norder.shipping_address = {\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Smith\",\n  \"address1\": \"123 Fake Street\",\n  \"phone\": \"777-777-7777\",\n  \"city\": \"Fakecity\",\n  \"province\": \"Ontario\",\n  \"country\": \"Canada\",\n  \"zip\": \"K2P 1L4\"\n};\norder.email = \"jane@example.com\";\norder.transactions = [\n  {\n    \"kind\": \"authorization\",\n    \"status\": \"success\",\n    \"amount\": 50.0\n  }\n];\norder.financial_status = \"partially_paid\";\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->line_items = [\n    [\n        \"variant_id\" => 447654529,\n        \"quantity\" => 1\n    ]\n];\n$order->customer = [\n    \"first_name\" => \"Paul\",\n    \"last_name\" => \"Norman\",\n    \"email\" => \"paul.norman@example.com\"\n];\n$order->billing_address = [\n    \"first_name\" => \"John\",\n    \"last_name\" => \"Smith\",\n    \"address1\" => \"123 Fake Street\",\n    \"phone\" => \"555-555-5555\",\n    \"city\" => \"Fakecity\",\n    \"province\" => \"Ontario\",\n    \"country\" => \"Canada\",\n    \"zip\" => \"K2P 1L4\"\n];\n$order->shipping_address = [\n    \"first_name\" => \"Jane\",\n    \"last_name\" => \"Smith\",\n    \"address1\" => \"123 Fake Street\",\n    \"phone\" => \"777-777-7777\",\n    \"city\" => \"Fakecity\",\n    \"province\" => \"Ontario\",\n    \"country\" => \"Canada\",\n    \"zip\" => \"K2P 1L4\"\n];\n$order->email = \"jane@example.com\";\n$order->transactions = [\n    [\n        \"kind\" => \"authorization\",\n        \"status\" => \"success\",\n        \"amount\" => 50.0\n    ]\n];\n$order->financial_status = \"partially_paid\";\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->line_items = [\n    [\n        \"variant_id\" => 447654529,\n        \"quantity\" => 1\n    ]\n];\n$order->customer = [\n    \"first_name\" => \"Paul\",\n    \"last_name\" => \"Norman\",\n    \"email\" => \"paul.norman@example.com\"\n];\n$order->billing_address = [\n    \"first_name\" => \"John\",\n    \"last_name\" => \"Smith\",\n    \"address1\" => \"123 Fake Street\",\n    \"phone\" => \"555-555-5555\",\n    \"city\" => \"Fakecity\",\n    \"province\" => \"Ontario\",\n    \"country\" => \"Canada\",\n    \"zip\" => \"K2P 1L4\"\n];\n$order->shipping_address = [\n    \"first_name\" => \"Jane\",\n    \"last_name\" => \"Smith\",\n    \"address1\" => \"123 Fake Street\",\n    \"phone\" => \"777-777-7777\",\n    \"city\" => \"Fakecity\",\n    \"province\" => \"Ontario\",\n    \"country\" => \"Canada\",\n    \"zip\" => \"K2P 1L4\"\n];\n$order->email = \"jane@example.com\";\n$order->transactions = [\n    [\n        \"kind\" => \"authorization\",\n        \"status\" => \"success\",\n        \"amount\" => 50.0\n    ]\n];\n$order->financial_status = \"partially_paid\";\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders.json",
+          "request_path": "/admin/api/2022-07/orders.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders.json",
@@ -25492,19 +25492,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"order\":{\"line_items\":[{\"variant_id\":447654529,\"quantity\":1}],\"email\":\"jane@example.com\",\"phone\":\"18885551234\",\"billing_address\":{\"first_name\":\"John\",\"last_name\":\"Smith\",\"address1\":\"123 Fake Street\",\"phone\":\"555-555-5555\",\"city\":\"Fakecity\",\"province\":\"Ontario\",\"country\":\"Canada\",\"zip\":\"K2P 1L4\"},\"shipping_address\":{\"first_name\":\"Jane\",\"last_name\":\"Smith\",\"address1\":\"123 Fake Street\",\"phone\":\"777-777-7777\",\"city\":\"Fakecity\",\"province\":\"Ontario\",\"country\":\"Canada\",\"zip\":\"K2P 1L4\"},\"transactions\":[{\"kind\":\"sale\",\"status\":\"success\",\"amount\":50.0}],\"financial_status\":\"paid\",\"discount_codes\":[{\"code\":\"FAKE30\",\"amount\":\"9.00\",\"type\":\"percentage\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"order\":{\"line_items\":[{\"variant_id\":447654529,\"quantity\":1}],\"email\":\"jane@example.com\",\"phone\":\"18885551234\",\"billing_address\":{\"first_name\":\"John\",\"last_name\":\"Smith\",\"address1\":\"123 Fake Street\",\"phone\":\"555-555-5555\",\"city\":\"Fakecity\",\"province\":\"Ontario\",\"country\":\"Canada\",\"zip\":\"K2P 1L4\"},\"shipping_address\":{\"first_name\":\"Jane\",\"last_name\":\"Smith\",\"address1\":\"123 Fake Street\",\"phone\":\"777-777-7777\",\"city\":\"Fakecity\",\"province\":\"Ontario\",\"country\":\"Canada\",\"zip\":\"K2P 1L4\"},\"transactions\":[{\"kind\":\"sale\",\"status\":\"success\",\"amount\":50.0}],\"financial_status\":\"paid\",\"discount_codes\":[{\"code\":\"FAKE30\",\"amount\":\"9.00\",\"type\":\"percentage\"}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.line_items = [\n  {\n    \"variant_id\" => 447654529,\n    \"quantity\" => 1\n  }\n]\norder.email = \"jane@example.com\"\norder.phone = \"18885551234\"\norder.billing_address = {\n  \"first_name\" => \"John\",\n  \"last_name\" => \"Smith\",\n  \"address1\" => \"123 Fake Street\",\n  \"phone\" => \"555-555-5555\",\n  \"city\" => \"Fakecity\",\n  \"province\" => \"Ontario\",\n  \"country\" => \"Canada\",\n  \"zip\" => \"K2P 1L4\"\n}\norder.shipping_address = {\n  \"first_name\" => \"Jane\",\n  \"last_name\" => \"Smith\",\n  \"address1\" => \"123 Fake Street\",\n  \"phone\" => \"777-777-7777\",\n  \"city\" => \"Fakecity\",\n  \"province\" => \"Ontario\",\n  \"country\" => \"Canada\",\n  \"zip\" => \"K2P 1L4\"\n}\norder.transactions = [\n  {\n    \"kind\" => \"sale\",\n    \"status\" => \"success\",\n    \"amount\" => 50.0\n  }\n]\norder.financial_status = \"paid\"\norder.discount_codes = [\n  {\n    \"code\" => \"FAKE30\",\n    \"amount\" => \"9.00\",\n    \"type\" => \"percentage\"\n  }\n]\norder.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder = ShopifyAPI::Order.new(session: test_session)\norder.line_items = [\n  {\n    \"variant_id\" => 447654529,\n    \"quantity\" => 1\n  }\n]\norder.email = \"jane@example.com\"\norder.phone = \"18885551234\"\norder.billing_address = {\n  \"first_name\" => \"John\",\n  \"last_name\" => \"Smith\",\n  \"address1\" => \"123 Fake Street\",\n  \"phone\" => \"555-555-5555\",\n  \"city\" => \"Fakecity\",\n  \"province\" => \"Ontario\",\n  \"country\" => \"Canada\",\n  \"zip\" => \"K2P 1L4\"\n}\norder.shipping_address = {\n  \"first_name\" => \"Jane\",\n  \"last_name\" => \"Smith\",\n  \"address1\" => \"123 Fake Street\",\n  \"phone\" => \"777-777-7777\",\n  \"city\" => \"Fakecity\",\n  \"province\" => \"Ontario\",\n  \"country\" => \"Canada\",\n  \"zip\" => \"K2P 1L4\"\n}\norder.transactions = [\n  {\n    \"kind\" => \"sale\",\n    \"status\" => \"success\",\n    \"amount\" => 50.0\n  }\n]\norder.financial_status = \"paid\"\norder.discount_codes = [\n  {\n    \"code\" => \"FAKE30\",\n    \"amount\" => \"9.00\",\n    \"type\" => \"percentage\"\n  }\n]\norder.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.line_items = [\n  {\n    \"variant_id\": 447654529,\n    \"quantity\": 1\n  }\n];\norder.email = \"jane@example.com\";\norder.phone = \"18885551234\";\norder.billing_address = {\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"address1\": \"123 Fake Street\",\n  \"phone\": \"555-555-5555\",\n  \"city\": \"Fakecity\",\n  \"province\": \"Ontario\",\n  \"country\": \"Canada\",\n  \"zip\": \"K2P 1L4\"\n};\norder.shipping_address = {\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Smith\",\n  \"address1\": \"123 Fake Street\",\n  \"phone\": \"777-777-7777\",\n  \"city\": \"Fakecity\",\n  \"province\": \"Ontario\",\n  \"country\": \"Canada\",\n  \"zip\": \"K2P 1L4\"\n};\norder.transactions = [\n  {\n    \"kind\": \"sale\",\n    \"status\": \"success\",\n    \"amount\": 50.0\n  }\n];\norder.financial_status = \"paid\";\norder.discount_codes = [\n  {\n    \"code\": \"FAKE30\",\n    \"amount\": \"9.00\",\n    \"type\": \"percentage\"\n  }\n];\nawait order.save({});"
+              "example_code": "import {Order} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order = new Order({session: test_session});\norder.line_items = [\n  {\n    \"variant_id\": 447654529,\n    \"quantity\": 1\n  }\n];\norder.email = \"jane@example.com\";\norder.phone = \"18885551234\";\norder.billing_address = {\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"address1\": \"123 Fake Street\",\n  \"phone\": \"555-555-5555\",\n  \"city\": \"Fakecity\",\n  \"province\": \"Ontario\",\n  \"country\": \"Canada\",\n  \"zip\": \"K2P 1L4\"\n};\norder.shipping_address = {\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Smith\",\n  \"address1\": \"123 Fake Street\",\n  \"phone\": \"777-777-7777\",\n  \"city\": \"Fakecity\",\n  \"province\": \"Ontario\",\n  \"country\": \"Canada\",\n  \"zip\": \"K2P 1L4\"\n};\norder.transactions = [\n  {\n    \"kind\": \"sale\",\n    \"status\": \"success\",\n    \"amount\": 50.0\n  }\n];\norder.financial_status = \"paid\";\norder.discount_codes = [\n  {\n    \"code\": \"FAKE30\",\n    \"amount\": \"9.00\",\n    \"type\": \"percentage\"\n  }\n];\nawait order.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->line_items = [\n    [\n        \"variant_id\" => 447654529,\n        \"quantity\" => 1\n    ]\n];\n$order->email = \"jane@example.com\";\n$order->phone = \"18885551234\";\n$order->billing_address = [\n    \"first_name\" => \"John\",\n    \"last_name\" => \"Smith\",\n    \"address1\" => \"123 Fake Street\",\n    \"phone\" => \"555-555-5555\",\n    \"city\" => \"Fakecity\",\n    \"province\" => \"Ontario\",\n    \"country\" => \"Canada\",\n    \"zip\" => \"K2P 1L4\"\n];\n$order->shipping_address = [\n    \"first_name\" => \"Jane\",\n    \"last_name\" => \"Smith\",\n    \"address1\" => \"123 Fake Street\",\n    \"phone\" => \"777-777-7777\",\n    \"city\" => \"Fakecity\",\n    \"province\" => \"Ontario\",\n    \"country\" => \"Canada\",\n    \"zip\" => \"K2P 1L4\"\n];\n$order->transactions = [\n    [\n        \"kind\" => \"sale\",\n        \"status\" => \"success\",\n        \"amount\" => 50.0\n    ]\n];\n$order->financial_status = \"paid\";\n$order->discount_codes = [\n    [\n        \"code\" => \"FAKE30\",\n        \"amount\" => \"9.00\",\n        \"type\" => \"percentage\"\n    ]\n];\n$order->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Order;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order = new Order($this->test_session);\n$order->line_items = [\n    [\n        \"variant_id\" => 447654529,\n        \"quantity\" => 1\n    ]\n];\n$order->email = \"jane@example.com\";\n$order->phone = \"18885551234\";\n$order->billing_address = [\n    \"first_name\" => \"John\",\n    \"last_name\" => \"Smith\",\n    \"address1\" => \"123 Fake Street\",\n    \"phone\" => \"555-555-5555\",\n    \"city\" => \"Fakecity\",\n    \"province\" => \"Ontario\",\n    \"country\" => \"Canada\",\n    \"zip\" => \"K2P 1L4\"\n];\n$order->shipping_address = [\n    \"first_name\" => \"Jane\",\n    \"last_name\" => \"Smith\",\n    \"address1\" => \"123 Fake Street\",\n    \"phone\" => \"777-777-7777\",\n    \"city\" => \"Fakecity\",\n    \"province\" => \"Ontario\",\n    \"country\" => \"Canada\",\n    \"zip\" => \"K2P 1L4\"\n];\n$order->transactions = [\n    [\n        \"kind\" => \"sale\",\n        \"status\" => \"success\",\n        \"amount\" => 50.0\n    ]\n];\n$order->financial_status = \"paid\";\n$order->discount_codes = [\n    [\n        \"code\" => \"FAKE30\",\n        \"amount\" => \"9.00\",\n        \"type\" => \"percentage\"\n    ]\n];\n$order->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -25538,7 +25538,7 @@
             "country": "Canada",
             "first_name": "Christopher",
             "last_name": "Gorski",
-            "phone": "+1(613)555-1212",
+            "phone": "(555)555-5555",
             "province": "Alberta",
             "zip": "T0E 0M0",
             "name": "Christopher Gorski",
@@ -26518,5 +26518,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": "Sample usage notes"
-  }
+  },
+  "personal_data_fields": []
 }

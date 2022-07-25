@@ -658,7 +658,7 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Creates a carrier service
+        /// Create a new CarrierService
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -666,7 +666,7 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Retrieves a list of carrier services
+        /// Receive a list of all CarrierServices
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -674,7 +674,7 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Updates a carrier service
+        /// Modify an existing CarrierService
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -682,7 +682,7 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Retrieves a single carrier service
+        /// Receive a single CarrierService
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -690,7 +690,7 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Deletes a carrier service
+        /// Remove an existing CarrierService
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -732,7 +732,7 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Creates a carrier service
+        /// Create a new CarrierService
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -828,7 +828,7 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Retrieves a list of carrier services
+        /// Receive a list of all CarrierServices
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -898,7 +898,7 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Updates a carrier service
+        /// Modify an existing CarrierService
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -988,7 +988,7 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Retrieves a single carrier service
+        /// Receive a single CarrierService
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1062,7 +1062,7 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Deletes a carrier service
+        /// Remove an existing CarrierService
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1250,14 +1250,6 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Create a new Fulfillment
-        /// </summary>
-        /// <returns>Created</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CreateFulfillmentAsync(long orderId, CreateFulfillmentRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
         /// Retrieves fulfillments associated with a fulfillment order
         /// </summary>
         /// <returns>Success</returns>
@@ -1287,14 +1279,6 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Modify an existing Fulfillment
-        /// </summary>
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> UpdateFulfillmentAsync(long fulfillmentId, long orderId, UpdateFulfillmentRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
         /// Creates a fulfillment for one or many fulfillment orders
         /// </summary>
         /// <returns>Created</returns>
@@ -1305,30 +1289,6 @@ namespace Ocelli.OpenShopify
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> UpdateTrackingInformationForFulfillmentAsync(long fulfillmentId, UpdateTrackingInformationForFulfillmentRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Complete a fulfillment
-        /// </summary>
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CompleteFulfillmentAsync(long fulfillmentId, long orderId, CompleteFulfillmentRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Transition a fulfillment from pending to open.
-        /// </summary>
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> TransitionFulfillmentFromPendingToOpenAsync(long fulfillmentId, long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Cancel a fulfillment for a specific order ID
-        /// </summary>
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CancelFulfillmentForSpecificOrderIDAsync(long fulfillmentId, long orderId, CancelFulfillmentForSpecificOrderIDRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1466,106 +1426,6 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return new ShopifyResponse<FulfillmentList>(status_, headers_, objectResponse_.Object);
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create a new Fulfillment
-        /// </summary>
-        /// <returns>Created</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CreateFulfillmentAsync(long orderId, CreateFulfillmentRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            if (orderId == null)
-                throw new System.ArgumentNullException("orderId");
-
-            if (body == null)
-                throw new System.ArgumentNullException("body");
-
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/fulfillments.json");
-            urlBuilder_.Replace("{order_id}", System.Uri.EscapeDataString(ConvertToString(orderId, System.Globalization.CultureInfo.InvariantCulture)));
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("POST");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 201)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<FulfillmentItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return new ShopifyResponse<FulfillmentItem>(status_, headers_, objectResponse_.Object);
-                        }
-                        else
-                        if (status_ == 422)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<FulfillmentError>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<FulfillmentError>("Client Error", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        if (status_ == 400)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<FulfillmentGeneralError>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<FulfillmentGeneralError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -1842,90 +1702,6 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Modify an existing Fulfillment
-        /// </summary>
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> UpdateFulfillmentAsync(long fulfillmentId, long orderId, UpdateFulfillmentRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            if (fulfillmentId == null)
-                throw new System.ArgumentNullException("fulfillmentId");
-
-            if (orderId == null)
-                throw new System.ArgumentNullException("orderId");
-
-            if (body == null)
-                throw new System.ArgumentNullException("body");
-
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/fulfillments/{fulfillment_id}.json");
-            urlBuilder_.Replace("{fulfillment_id}", System.Uri.EscapeDataString(ConvertToString(fulfillmentId, System.Globalization.CultureInfo.InvariantCulture)));
-            urlBuilder_.Replace("{order_id}", System.Uri.EscapeDataString(ConvertToString(orderId, System.Globalization.CultureInfo.InvariantCulture)));
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("PUT");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<FulfillmentItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return new ShopifyResponse<FulfillmentItem>(status_, headers_, objectResponse_.Object);
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
         /// Creates a fulfillment for one or many fulfillment orders
         /// </summary>
         /// <returns>Created</returns>
@@ -2024,283 +1800,6 @@ namespace Ocelli.OpenShopify
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/fulfillments/{fulfillment_id}/update_tracking.json");
             urlBuilder_.Replace("{fulfillment_id}", System.Uri.EscapeDataString(ConvertToString(fulfillmentId, System.Globalization.CultureInfo.InvariantCulture)));
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("POST");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<FulfillmentItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return new ShopifyResponse<FulfillmentItem>(status_, headers_, objectResponse_.Object);
-                        }
-                        else
-                        if (status_ == 400)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<FulfillmentGeneralError>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<FulfillmentGeneralError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Complete a fulfillment
-        /// </summary>
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CompleteFulfillmentAsync(long fulfillmentId, long orderId, CompleteFulfillmentRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            if (fulfillmentId == null)
-                throw new System.ArgumentNullException("fulfillmentId");
-
-            if (orderId == null)
-                throw new System.ArgumentNullException("orderId");
-
-            if (body == null)
-                throw new System.ArgumentNullException("body");
-
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/fulfillments/{fulfillment_id}/complete.json");
-            urlBuilder_.Replace("{fulfillment_id}", System.Uri.EscapeDataString(ConvertToString(fulfillmentId, System.Globalization.CultureInfo.InvariantCulture)));
-            urlBuilder_.Replace("{order_id}", System.Uri.EscapeDataString(ConvertToString(orderId, System.Globalization.CultureInfo.InvariantCulture)));
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("POST");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<FulfillmentItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return new ShopifyResponse<FulfillmentItem>(status_, headers_, objectResponse_.Object);
-                        }
-                        else
-                        if (status_ == 400)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<FulfillmentGeneralError>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<FulfillmentGeneralError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Transition a fulfillment from pending to open.
-        /// </summary>
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> TransitionFulfillmentFromPendingToOpenAsync(long fulfillmentId, long orderId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            if (fulfillmentId == null)
-                throw new System.ArgumentNullException("fulfillmentId");
-
-            if (orderId == null)
-                throw new System.ArgumentNullException("orderId");
-
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/fulfillments/{fulfillment_id}/open.json");
-            urlBuilder_.Replace("{fulfillment_id}", System.Uri.EscapeDataString(ConvertToString(fulfillmentId, System.Globalization.CultureInfo.InvariantCulture)));
-            urlBuilder_.Replace("{order_id}", System.Uri.EscapeDataString(ConvertToString(orderId, System.Globalization.CultureInfo.InvariantCulture)));
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
-                    request_.Method = new System.Net.Http.HttpMethod("POST");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<FulfillmentItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return new ShopifyResponse<FulfillmentItem>(status_, headers_, objectResponse_.Object);
-                        }
-                        else
-                        if (status_ == 400)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<FulfillmentGeneralError>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            throw new ApiException<FulfillmentGeneralError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Cancel a fulfillment for a specific order ID
-        /// </summary>
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CancelFulfillmentForSpecificOrderIDAsync(long fulfillmentId, long orderId, CancelFulfillmentForSpecificOrderIDRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            if (fulfillmentId == null)
-                throw new System.ArgumentNullException("fulfillmentId");
-
-            if (orderId == null)
-                throw new System.ArgumentNullException("orderId");
-
-            if (body == null)
-                throw new System.ArgumentNullException("body");
-
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/{order_id}/fulfillments/{fulfillment_id}/cancel.json");
-            urlBuilder_.Replace("{fulfillment_id}", System.Uri.EscapeDataString(ConvertToString(fulfillmentId, System.Globalization.CultureInfo.InvariantCulture)));
-            urlBuilder_.Replace("{order_id}", System.Uri.EscapeDataString(ConvertToString(orderId, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -3136,11 +2635,19 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Applies a fulfillment hold on a fulfillment order with status &lt;code&gt;OPEN&lt;/code&gt;
+        /// Applies a fulfillment hold on a fulfillment order with status OPEN
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<FulfillmentOrderItem>> ApplyFulfillmentHoldOnFulfillmentOrderAsync(long fulfillmentOrderId, ApplyFulfillmentHoldOnFulfillmentOrderRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Sets deadline for fulfillment orders
+        /// </summary>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<ShopifyResponse> SetDeadlineForFulfillmentOrdersAsync(SetDeadlineForFulfillmentOrdersRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3784,7 +3291,7 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Applies a fulfillment hold on a fulfillment order with status &lt;code&gt;OPEN&lt;/code&gt;
+        /// Applies a fulfillment hold on a fulfillment order with status OPEN
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -3851,6 +3358,73 @@ namespace Ocelli.OpenShopify
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             throw new ApiException<FulfillmentOrderGeneralError>("Bad Request", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Sets deadline for fulfillment orders
+        /// </summary>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse> SetDeadlineForFulfillmentOrdersAsync(SetDeadlineForFulfillmentOrdersRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/fulfillment_orders/set_fulfillment_orders_deadline.json");
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            return new ShopifyResponse(status_, headers_);
                         }
                         else
                         {
@@ -5458,12 +5032,6 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CancelFulfillmentForSpecificOrderIDRequest
-    {
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CancelFulfillmentOrderRequest
     {
 
@@ -5504,15 +5072,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? CarrierServiceType { get; set; } = default!;
-
-        /// <summary>
-        /// The format of the data returned by the URL endpoint. Valid values: `json` and `xml`. Default value: `json`.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("format")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Format { get; set; } = default!;
 
         /// <summary>
         /// The name of the shipping service as seen by merchants and their customers.
@@ -5696,12 +5255,6 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CompleteFulfillmentRequest
-    {
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CreateCarrierService
     {
         /// <summary>
@@ -5732,15 +5285,6 @@ namespace Ocelli.OpenShopify
         public string? CarrierServiceType { get; set; } = default!;
 
         /// <summary>
-        /// The format of the data returned by the URL endpoint. Valid values: `json` and `xml`. Default value: `json`.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("format")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Format { get; set; } = default!;
-
-        /// <summary>
         /// The name of the shipping service as seen by merchants and their customers.
         /// </summary>
 
@@ -5759,7 +5303,7 @@ namespace Ocelli.OpenShopify
         public bool? ServiceDiscovery { get; set; } = default!;
 
         /// <summary>
-        /// The GraphQL unique identifier for the carrier service.
+        /// The GraphQL GID for this carrier service.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
@@ -5778,262 +5322,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
         [System.ComponentModel.DataAnnotations.Required]
         public CreateCarrierService CarrierService { get; set; } = new CreateCarrierService();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateFulfillment
-    {
-        /// <summary>
-        /// A list of the fulfillment's line items, which includes:
-        /// <br/>
-        /// <br/>*   **id**: The ID of the line item within the fulfillment. 
-        /// <br/>*   **variant_id**: The ID of the product variant being fulfilled. 
-        /// <br/>*   **title**: The title of the product. 
-        /// <br/>*   **quantity**: The number of items in the fulfillment. 
-        /// <br/>*   **price**: The price of the item. 
-        /// <br/>*   **grams**: The weight of the item in grams. 
-        /// <br/>*   **sku**: The unique identifier of the item in the fulfillment. 
-        /// <br/>*   **variant_title**: The title of the product variant being fulfilled. 
-        /// <br/>*   **vendor**: The name of the supplier of the item. 
-        /// <br/>*   **fulfillment_service**: The service provider who is doing the fulfillment. This field will be deprecated. Use the `assigned_location` property on the `FulfillmentOrder` resource instead. 
-        /// <br/>*   **product_id**: The unique numeric identifier for the product in the fulfillment. 
-        /// <br/>*   **requires_shipping**: Whether a customer needs to provide a shipping address when placing an order for this product variant. 
-        /// <br/>*   **taxable**: Whether the line item is taxable. 
-        /// <br/>*   **gift_card**: Whether the line item is a [gift card](https://help.shopify.com/manual/products/gift-card-products). 
-        /// <br/>*   **name**: The name of the product variant. 
-        /// <br/>*   **variant_inventory_management**: The name of the inventory management system. 
-        /// <br/>*   **properties**: Any additional properties associated with the line item. 
-        /// <br/>*   **product_exists**: Whether the product exists. 
-        /// <br/>*   **fulfillable_quantity**: The amount available to fulfill. This is the quantity - max (refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity. This field will be deprecated. Use the `fulfillable_quantity` property of the `line_item` property on the `FulfillmentOrder` resource instead. 
-        /// <br/>*   **total_discount**: The total of any discounts applied to the line item. 
-        /// <br/>*   **fulfillment_status**: The status of an order in terms of the line items being fulfilled. Valid values: `fulfilled`, `null`, or `partial`. This field will be deprecated. Use the `status` property on the `FulfillmentOrder` resource instead. 
-        /// <br/>*   **fulfillment_line_item_id**: A unique identifier for a quantity of items within a single fulfillment. An order can have multiple fulfillment line items. 
-        /// <br/>*   **tax_lines**: The `title`, `price`, and `rate` of any taxes applied to the line item. 
-        /// <br/>*   **duties**: A list of duty objects, each containing information about a duty on the line item.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("line_items")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.Collections.Generic.ICollection<LineItem>? LineItems { get; set; } = default!;
-
-        /// <summary>
-        /// The unique identifier of the location that the fulfillment was processed at. To find the ID of the location, use the [Location resource](/docs/admin-api/rest/reference/inventory/location).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public long? LocationId { get; set; } = default!;
-
-        /// <summary>
-        /// The uniquely identifying fulfillment name, consisting of two parts separated by a `.`. The first part represents the order name and the second part represents the fulfillment number. The fulfillment number automatically increments depending on how many fulfillments are in an order (e.g. `#1001.1`, `#1001.2`).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the customer should be notified. If set to `true`, then an email will be sent when the fulfillment is created or updated. For orders that were initially created using the API, the default value is `false`. For all other orders, the default value is `true`.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("notify_customer")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public bool? NotifyCustomer { get; set; } = default!;
-
-        /// <summary>
-        /// The unique numeric identifier for the order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public long? OrderId { get; set; } = default!;
-
-        /// <summary>
-        /// The address from which the fulfillment occurred:
-        /// <br/>
-        /// <br/>*   **address1**: The street address of the fulfillment location. 
-        /// <br/>*   **address2**: The second line of the address. Typically the number of the apartment, suite, or unit. 
-        /// <br/>*   **city**: The city of the fulfillment location. 
-        /// <br/>*   **country_code**: The country of the fulfillment location. 
-        /// <br/>*   **province_code**: The province of the fulfillment location. 
-        /// <br/>*   **zip**: The zip code of the fulfillment location.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("origin_address")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? OriginAddress { get; set; } = default!;
-
-        /// <summary>
-        /// A text field that provides information about the receipt:
-        /// <br/>
-        /// <br/>*   **testcase**: Whether the fulfillment was a testcase. 
-        /// <br/>*   **authorization**: The authorization code.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("receipt")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Receipt { get; set; } = default!;
-
-        /// <summary>
-        /// The fulfillment service associated with the fulfillment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("service")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Service { get; set; } = default!;
-
-        /// <summary>
-        /// The current shipment status of the fulfillment. Valid values:
-        /// <br/>
-        /// <br/>*   **label_printed**: A label for the shipment was purchased and printed. 
-        /// <br/>*   **label_purchased**: A label for the shipment was purchased, but not printed. 
-        /// <br/>*   **attempted_delivery**: Delivery of the shipment was attempted, but unable to be completed. 
-        /// <br/>*   **ready_for_pickup**: The shipment is ready for pickup at a shipping depot. 
-        /// <br/>*   **confirmed**: The carrier is aware of the shipment, but hasn't received it yet. 
-        /// <br/>*   **in_transit**: The shipment is being transported between shipping facilities on the way to its destination. 
-        /// <br/>*   **out_for_delivery**: The shipment is being delivered to its final destination. 
-        /// <br/>*   **delivered**: The shipment was succesfully delivered. 
-        /// <br/>*   **failure**: Something went wrong when pulling tracking information for the shipment, such as the tracking number was invalid or the shipment was canceled.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("shipment_status")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ShipmentStatus { get; set; } = default!;
-
-        /// <summary>
-        /// The status of the fulfillment. Valid values:
-        /// <br/>
-        /// <br/>*   **pending**: Shopify has created the fulfillment and is waiting for the third-party fulfillment service to transition it to 'open' or 'success'. 
-        /// <br/>*   **open**: The fulfillment has been acknowledged by the service and is in processing. 
-        /// <br/>*   **success**: The fulfillment was successful. 
-        /// <br/>*   **cancelled**: The fulfillment was cancelled. 
-        /// <br/>*   **error**: There was an error with the fulfillment request. 
-        /// <br/>*   **failure**: The fulfillment request failed.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("status")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Status { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the tracking company. The following tracking companies display for shops located in any country: 
-        /// <br/>
-        /// <br/>*   **4PX** 
-        /// <br/>*   **Amazon Logistics UK** 
-        /// <br/>*   **Amazon Logistics US** 
-        /// <br/>*   **Anjun Logistics** 
-        /// <br/>*   **APC** 
-        /// <br/>*   **Australia Post** 
-        /// <br/>*   **Bluedart** 
-        /// <br/>*   **Canada Post** 
-        /// <br/>*   **Canpar** 
-        /// <br/>*   **China Post** 
-        /// <br/>*   **Chukou1** 
-        /// <br/>*   **Correios** 
-        /// <br/>*   **Couriers Please** 
-        /// <br/>*   **Delhivery** 
-        /// <br/>*   **DHL eCommerce** 
-        /// <br/>*   **DHL eCommerce Asia** 
-        /// <br/>*   **DHL Express** 
-        /// <br/>*   **DPD** 
-        /// <br/>*   **DPD Local** 
-        /// <br/>*   **DPD UK** 
-        /// <br/>*   **Eagle** 
-        /// <br/>*   **FedEx** 
-        /// <br/>*   **FSC** 
-        /// <br/>*   **Asendia USA** 
-        /// <br/>*   **GLS** 
-        /// <br/>*   **GLS (US)** 
-        /// <br/>*   **Japan Post** 
-        /// <br/>*   **La Poste** 
-        /// <br/>*   **New Zealand Post** 
-        /// <br/>*   **Newgistics** 
-        /// <br/>*   **PostNL** 
-        /// <br/>*   **PostNord** 
-        /// <br/>*   **Purolator** 
-        /// <br/>*   **Royal Mail** 
-        /// <br/>*   **Sagawa** 
-        /// <br/>*   **Sendle** 
-        /// <br/>*   **SF Express** 
-        /// <br/>*   **SFC Fulfilllment** 
-        /// <br/>*   **Singapore Post** 
-        /// <br/>*   **StarTrack** 
-        /// <br/>*   **TNT** 
-        /// <br/>*   **Toll IPEC** 
-        /// <br/>*   **UPS** 
-        /// <br/>*   **USPS** 
-        /// <br/>*   **Whistl** 
-        /// <br/>*   **Yamato** 
-        /// <br/>*   **YunExpress**  
-        /// <br/>
-        /// <br/>The following tracking companies are displayed for shops located in specific countries:
-        /// <br/>
-        /// <br/>*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL 
-        /// <br/>*   **Ireland**: An Post, Fastway 
-        /// <br/>*   **Australia**: Aramex Australia, Australia Post, Sendle 
-        /// <br/>*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 
-        /// <br/>*   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress  &lt;div class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Important
-        /// <br/>
-        /// <br/>When creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.
-        /// <br/> &lt;/div&gt;
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tracking_company")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? TrackingCompany { get; set; } = default!;
-
-        /// <summary>
-        /// A list of tracking numbers, provided by the shipping company. &lt;div class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Important
-        /// <br/>
-        /// <br/>It is highly recommended that you send the tracking company and the tracking URL as well. If neither one of these is sent, then the tracking company will be determined automatically. This can result in an invalid tracking URL.
-        /// <br/>
-        /// <br/>The tracking URL is displayed in the shipping confirmation email, which can optionally be sent to the customer. When accounts are enabled, it is also displayed in the customer's order history.
-        /// <br/> &lt;/div&gt;
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tracking_numbers")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.Collections.Generic.ICollection<string>? TrackingNumbers { get; set; } = default!;
-
-        /// <summary>
-        /// The URLs of tracking pages for the fulfillment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tracking_urls")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.Collections.Generic.ICollection<string>? TrackingUrls { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the inventory management service.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("variant_inventory_management")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? VariantInventoryManagement { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("destination")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public Address? Destination { get; set; } = default!;
 
     }
 
@@ -6184,18 +5472,6 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class CreateFulfillmentRequest
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillment")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
-        [System.ComponentModel.DataAnnotations.Required]
-        public CreateFulfillment Fulfillment { get; set; } = new CreateFulfillment();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CreateFulfillmentService
     {
         /// <summary>
@@ -6232,6 +5508,15 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? FulfillmentOrdersOptIn { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the fulfillment service can stock inventory alongside other locations.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("permits_sku_sharing")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? PermitsSkuSharing { get; set; } = default!;
 
         /// <summary>
         /// Human-readable unique identifier for this fulfillment service.
@@ -6710,47 +5995,6 @@ namespace Ocelli.OpenShopify
 
         [System.Runtime.Serialization.EnumMember(Value = @"fulfillment_accepted")]
         FulfillmentAccepted = 2,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class FulfillmentError
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("errors")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
-        [System.ComponentModel.DataAnnotations.Required]
-        public FulfillmentErrorDetails Errors { get; set; } = new FulfillmentErrorDetails();
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class FulfillmentErrorDetails
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("base")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.Collections.Generic.ICollection<string>? Base { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
 
     }
 
@@ -8107,6 +7351,15 @@ namespace Ocelli.OpenShopify
         public bool? FulfillmentOrdersOptIn { get; set; } = default!;
 
         /// <summary>
+        /// Whether the fulfillment service can stock inventory alongside other locations.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("permits_sku_sharing")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? PermitsSkuSharing { get; set; } = default!;
+
+        /// <summary>
         /// Human-readable unique identifier for this fulfillment service.
         /// </summary>
 
@@ -8843,6 +8096,22 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class SetDeadlineForFulfillmentOrdersRequest
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_order_ids")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<long>? FulfillmentOrderIds { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_deadline")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? FulfillmentDeadline { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class UpdateCarrierService
     {
         /// <summary>
@@ -8871,15 +8140,6 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? CarrierServiceType { get; set; } = default!;
-
-        /// <summary>
-        /// The format of the data returned by the URL endpoint. Valid values: `json` and `xml`. Default value: `json`.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("format")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Format { get; set; } = default!;
 
         /// <summary>
         /// The name of the shipping service as seen by merchants and their customers.
@@ -8924,284 +8184,6 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class UpdateFulfillment
-    {
-        /// <summary>
-        /// A list of the fulfillment's line items, which includes:
-        /// <br/>
-        /// <br/>*   **id**: The ID of the line item within the fulfillment. 
-        /// <br/>*   **variant_id**: The ID of the product variant being fulfilled. 
-        /// <br/>*   **title**: The title of the product. 
-        /// <br/>*   **quantity**: The number of items in the fulfillment. 
-        /// <br/>*   **price**: The price of the item. 
-        /// <br/>*   **grams**: The weight of the item in grams. 
-        /// <br/>*   **sku**: The unique identifier of the item in the fulfillment. 
-        /// <br/>*   **variant_title**: The title of the product variant being fulfilled. 
-        /// <br/>*   **vendor**: The name of the supplier of the item. 
-        /// <br/>*   **fulfillment_service**: The service provider who is doing the fulfillment. This field will be deprecated. Use the `assigned_location` property on the `FulfillmentOrder` resource instead. 
-        /// <br/>*   **product_id**: The unique numeric identifier for the product in the fulfillment. 
-        /// <br/>*   **requires_shipping**: Whether a customer needs to provide a shipping address when placing an order for this product variant. 
-        /// <br/>*   **taxable**: Whether the line item is taxable. 
-        /// <br/>*   **gift_card**: Whether the line item is a [gift card](https://help.shopify.com/manual/products/gift-card-products). 
-        /// <br/>*   **name**: The name of the product variant. 
-        /// <br/>*   **variant_inventory_management**: The name of the inventory management system. 
-        /// <br/>*   **properties**: Any additional properties associated with the line item. 
-        /// <br/>*   **product_exists**: Whether the product exists. 
-        /// <br/>*   **fulfillable_quantity**: The amount available to fulfill. This is the quantity - max (refunded_quantity, fulfilled_quantity) - pending_fulfilled_quantity - open_fulfilled_quantity. This field will be deprecated. Use the `fulfillable_quantity` property of the `line_item` property on the `FulfillmentOrder` resource instead. 
-        /// <br/>*   **total_discount**: The total of any discounts applied to the line item. 
-        /// <br/>*   **fulfillment_status**: The status of an order in terms of the line items being fulfilled. Valid values: `fulfilled`, `null`, or `partial`. This field will be deprecated. Use the `status` property on the `FulfillmentOrder` resource instead. 
-        /// <br/>*   **fulfillment_line_item_id**: A unique identifier for a quantity of items within a single fulfillment. An order can have multiple fulfillment line items. 
-        /// <br/>*   **tax_lines**: The `title`, `price`, and `rate` of any taxes applied to the line item. 
-        /// <br/>*   **duties**: A list of duty objects, each containing information about a duty on the line item.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("line_items")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.Collections.Generic.ICollection<LineItem>? LineItems { get; set; } = default!;
-
-        /// <summary>
-        /// The unique identifier of the location that the fulfillment was processed at. To find the ID of the location, use the [Location resource](/docs/admin-api/rest/reference/inventory/location).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public long? LocationId { get; set; } = default!;
-
-        /// <summary>
-        /// The uniquely identifying fulfillment name, consisting of two parts separated by a `.`. The first part represents the order name and the second part represents the fulfillment number. The fulfillment number automatically increments depending on how many fulfillments are in an order (e.g. `#1001.1`, `#1001.2`).
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// Whether the customer should be notified. If set to `true`, then an email will be sent when the fulfillment is created or updated. For orders that were initially created using the API, the default value is `false`. For all other orders, the default value is `true`.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("notify_customer")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public bool? NotifyCustomer { get; set; } = default!;
-
-        /// <summary>
-        /// The unique numeric identifier for the order.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("order_id")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public long? OrderId { get; set; } = default!;
-
-        /// <summary>
-        /// The address from which the fulfillment occurred:
-        /// <br/>
-        /// <br/>*   **address1**: The street address of the fulfillment location. 
-        /// <br/>*   **address2**: The second line of the address. Typically the number of the apartment, suite, or unit. 
-        /// <br/>*   **city**: The city of the fulfillment location. 
-        /// <br/>*   **country_code**: The country of the fulfillment location. 
-        /// <br/>*   **province_code**: The province of the fulfillment location. 
-        /// <br/>*   **zip**: The zip code of the fulfillment location.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("origin_address")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? OriginAddress { get; set; } = default!;
-
-        /// <summary>
-        /// A text field that provides information about the receipt:
-        /// <br/>
-        /// <br/>*   **testcase**: Whether the fulfillment was a testcase. 
-        /// <br/>*   **authorization**: The authorization code.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("receipt")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Receipt { get; set; } = default!;
-
-        /// <summary>
-        /// The fulfillment service associated with the fulfillment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("service")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Service { get; set; } = default!;
-
-        /// <summary>
-        /// The current shipment status of the fulfillment. Valid values:
-        /// <br/>
-        /// <br/>*   **label_printed**: A label for the shipment was purchased and printed. 
-        /// <br/>*   **label_purchased**: A label for the shipment was purchased, but not printed. 
-        /// <br/>*   **attempted_delivery**: Delivery of the shipment was attempted, but unable to be completed. 
-        /// <br/>*   **ready_for_pickup**: The shipment is ready for pickup at a shipping depot. 
-        /// <br/>*   **confirmed**: The carrier is aware of the shipment, but hasn't received it yet. 
-        /// <br/>*   **in_transit**: The shipment is being transported between shipping facilities on the way to its destination. 
-        /// <br/>*   **out_for_delivery**: The shipment is being delivered to its final destination. 
-        /// <br/>*   **delivered**: The shipment was succesfully delivered. 
-        /// <br/>*   **failure**: Something went wrong when pulling tracking information for the shipment, such as the tracking number was invalid or the shipment was canceled.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("shipment_status")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ShipmentStatus { get; set; } = default!;
-
-        /// <summary>
-        /// The status of the fulfillment. Valid values:
-        /// <br/>
-        /// <br/>*   **pending**: Shopify has created the fulfillment and is waiting for the third-party fulfillment service to transition it to 'open' or 'success'. 
-        /// <br/>*   **open**: The fulfillment has been acknowledged by the service and is in processing. 
-        /// <br/>*   **success**: The fulfillment was successful. 
-        /// <br/>*   **cancelled**: The fulfillment was cancelled. 
-        /// <br/>*   **error**: There was an error with the fulfillment request. 
-        /// <br/>*   **failure**: The fulfillment request failed.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("status")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Status { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the tracking company. The following tracking companies display for shops located in any country: 
-        /// <br/>
-        /// <br/>*   **4PX** 
-        /// <br/>*   **Amazon Logistics UK** 
-        /// <br/>*   **Amazon Logistics US** 
-        /// <br/>*   **Anjun Logistics** 
-        /// <br/>*   **APC** 
-        /// <br/>*   **Australia Post** 
-        /// <br/>*   **Bluedart** 
-        /// <br/>*   **Canada Post** 
-        /// <br/>*   **Canpar** 
-        /// <br/>*   **China Post** 
-        /// <br/>*   **Chukou1** 
-        /// <br/>*   **Correios** 
-        /// <br/>*   **Couriers Please** 
-        /// <br/>*   **Delhivery** 
-        /// <br/>*   **DHL eCommerce** 
-        /// <br/>*   **DHL eCommerce Asia** 
-        /// <br/>*   **DHL Express** 
-        /// <br/>*   **DPD** 
-        /// <br/>*   **DPD Local** 
-        /// <br/>*   **DPD UK** 
-        /// <br/>*   **Eagle** 
-        /// <br/>*   **FedEx** 
-        /// <br/>*   **FSC** 
-        /// <br/>*   **Asendia USA** 
-        /// <br/>*   **GLS** 
-        /// <br/>*   **GLS (US)** 
-        /// <br/>*   **Japan Post** 
-        /// <br/>*   **La Poste** 
-        /// <br/>*   **New Zealand Post** 
-        /// <br/>*   **Newgistics** 
-        /// <br/>*   **PostNL** 
-        /// <br/>*   **PostNord** 
-        /// <br/>*   **Purolator** 
-        /// <br/>*   **Royal Mail** 
-        /// <br/>*   **Sagawa** 
-        /// <br/>*   **Sendle** 
-        /// <br/>*   **SF Express** 
-        /// <br/>*   **SFC Fulfilllment** 
-        /// <br/>*   **Singapore Post** 
-        /// <br/>*   **StarTrack** 
-        /// <br/>*   **TNT** 
-        /// <br/>*   **Toll IPEC** 
-        /// <br/>*   **UPS** 
-        /// <br/>*   **USPS** 
-        /// <br/>*   **Whistl** 
-        /// <br/>*   **Yamato** 
-        /// <br/>*   **YunExpress**  
-        /// <br/>
-        /// <br/>The following tracking companies are displayed for shops located in specific countries:
-        /// <br/>
-        /// <br/>*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL 
-        /// <br/>*   **Ireland**: An Post, Fastway 
-        /// <br/>*   **Australia**: Aramex Australia, Australia Post, Sendle 
-        /// <br/>*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 
-        /// <br/>*   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress  &lt;div class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Important
-        /// <br/>
-        /// <br/>When creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.
-        /// <br/> &lt;/div&gt;
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tracking_company")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? TrackingCompany { get; set; } = default!;
-
-        /// <summary>
-        /// A list of tracking numbers, provided by the shipping company. &lt;div class="note"&gt; 
-        /// <br/>
-        /// <br/>#### Important
-        /// <br/>
-        /// <br/>It is highly recommended that you send the tracking company and the tracking URL as well. If neither one of these is sent, then the tracking company will be determined automatically. This can result in an invalid tracking URL.
-        /// <br/>
-        /// <br/>The tracking URL is displayed in the shipping confirmation email, which can optionally be sent to the customer. When accounts are enabled, it is also displayed in the customer's order history.
-        /// <br/> &lt;/div&gt;
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tracking_numbers")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.Collections.Generic.ICollection<string>? TrackingNumbers { get; set; } = default!;
-
-        /// <summary>
-        /// The URLs of tracking pages for the fulfillment.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("tracking_urls")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.Collections.Generic.ICollection<string>? TrackingUrls { get; set; } = default!;
-
-        /// <summary>
-        /// The name of the inventory management service.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("variant_inventory_management")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? VariantInventoryManagement { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("destination")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public Address? Destination { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
-        public long Id { get; set; } = default!;
-
-        [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? AdminGraphqlApiId { get; set; } = default!;
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class UpdateFulfillmentRequest
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("fulfillment")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
-        [System.ComponentModel.DataAnnotations.Required]
-        public UpdateFulfillment Fulfillment { get; set; } = new UpdateFulfillment();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class UpdateFulfillmentService
     {
 
@@ -9235,6 +8217,15 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public bool? FulfillmentOrdersOptIn { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the fulfillment service can stock inventory alongside other locations.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("permits_sku_sharing")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? PermitsSkuSharing { get; set; } = default!;
 
         /// <summary>
         /// Human-readable unique identifier for this fulfillment service.

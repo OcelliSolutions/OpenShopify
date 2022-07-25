@@ -12,18 +12,17 @@ namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 public class AssignedFulfillmentOrderController : AssignedFulfillmentOrderControllerBase
 {
     /// <inheritdoc />
-    [IgnoreApi, HttpGet, Route("assigned_fulfillment_orders.invalid")]
+    [IgnoreApi]
+    [HttpGet]
+    [Route("assigned_fulfillment_orders.invalid")]
     [ProducesResponseType(typeof(AssignedFulfillmentOrderList), StatusCodes.Status200OK)]
-    public override Task ListFulfillmentOrdersOnShopForSpecificApp(string? assignment_status = null, string? location_ids = null)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task ListFulfillmentOrdersOnShopForSpecificApp(string? assignment_status = null,
+        string? location_ids = null) => throw new NotImplementedException();
 
     /// <inheritdoc cref="AssignedFulfillmentOrderControllerBase.ListFulfillmentOrdersOnShopForSpecificApp" />
-    [HttpGet, Route("assigned_fulfillment_orders.json")]
+    [HttpGet]
+    [Route("assigned_fulfillment_orders.json")]
     [ProducesResponseType(typeof(AssignedFulfillmentOrderList), StatusCodes.Status200OK)]
-    public Task ListFulfillmentOrdersOnShopForSpecificApp(FulfillmentAssignmentStatus? assignment_status = null, string? location_ids = null)
-    {
-        throw new NotImplementedException();
-    }
+    public Task ListFulfillmentOrdersOnShopForSpecificApp(FulfillmentAssignmentStatus? assignment_status = null,
+        string? location_ids = null) => throw new NotImplementedException();
 }

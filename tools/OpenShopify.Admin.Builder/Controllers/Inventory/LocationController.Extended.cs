@@ -12,34 +12,27 @@ namespace OpenShopify.Admin.Builder.Controllers.Inventory;
 public class LocationController : LocationControllerBase
 {
     /// <inheritdoc />
-    [HttpGet, Route("locations.json")]
+    [HttpGet]
+    [Route("locations.json")]
     [ProducesResponseType(typeof(LocationList), StatusCodes.Status200OK)]
-    public override Task ListLocations()
-    {
-        throw new NotImplementedException();
-    }
+    public override Task ListLocations() => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpGet, Route("locations/{location_id:long}.json")]
+    [HttpGet]
+    [Route("locations/{location_id:long}.json")]
     [ProducesResponseType(typeof(LocationItem), StatusCodes.Status200OK)]
-    public override Task GetLocation([Required] long location_id)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task GetLocation([Required] long location_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpGet, Route("locations/count.json")]
+    [HttpGet]
+    [Route("locations/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountLocations()
-    {
-        throw new NotImplementedException();
-    }
+    public override Task CountLocations() => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpGet, Route("locations/{location_id:long}/inventory_levels.json")]
+    [HttpGet]
+    [Route("locations/{location_id:long}/inventory_levels.json")]
     [ProducesResponseType(typeof(LocationList), StatusCodes.Status200OK)]
-    public override Task ListInventoryLevelsForLocation([Required] long location_id)
-    {
+    public override Task ListInventoryLevelsForLocation([Required] long location_id) =>
         throw new NotImplementedException();
-    }
 }

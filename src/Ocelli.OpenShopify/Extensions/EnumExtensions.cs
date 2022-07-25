@@ -1,35 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.Serialization;
 
 namespace Ocelli.OpenShopify.Extensions;
 
 internal static class EnumExtensions
 {
-    internal static string? GetDisplayName(this Enum enumValue) =>
-        enumValue.GetType()
-            .GetMember(enumValue.ToString())
-            .First()
-            .GetCustomAttribute<DisplayAttribute>()?
-            .GetName();
-
-    internal static T? GetEnumFromString<T>(this string? name) where T : Enum
-    {
-        var type = typeof(T);
-
-        foreach (var field in type.GetFields())
-        {
-            if (Attribute.GetCustomAttribute(field, typeof(DisplayAttribute)) is DisplayAttribute attribute)
-            {
-                if (attribute.Name == name) return (T?)field.GetValue(null);
-            }
-
-            if (field.Name == name) return (T?)field.GetValue(null);
-        }
-
-        throw new ArgumentOutOfRangeException(nameof(name));
-    }
-
     /// <summary>
     /// Reads and uses the enum's <see cref="EnumMemberAttribute"/> for serialization.
     /// </summary>

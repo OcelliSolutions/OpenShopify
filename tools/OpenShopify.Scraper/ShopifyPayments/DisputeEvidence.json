@@ -1,9 +1,490 @@
 {
-  "name": "Dispute Evidence",
-  "versions": [],
+  "openapi": "3.0.0",
   "info": {
     "title": "Dispute Evidence",
-    "version": "2022-04"
+    "description": "Dispute evidence is submitted by the merchant to support the legitimacy of a\n<a href=\"/docs/admin-api/rest/reference/shopify_payments/dispute\">\n  dispute\n</a>.\n",
+    "x-owner": null,
+    "x-description-list": null,
+    "version": "2022-07"
   },
-  "unsupported_version": true
+  "paths": [
+    {
+      "description": "Retrieves evidence associated with dispute ID.",
+      "summary": "Returns evidence associated with the dispute",
+      "operationId": "Returnsevidenceassociatedwiththedispute",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "dispute_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Returns evidence associated with the dispute",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Retrieves dispute evidence by dispute ID": {
+                  "value": {
+                    "dispute_evidence": {
+                      "id": 819974671,
+                      "payments_dispute_id": 598735659,
+                      "access_activity_log": null,
+                      "billing_address": {
+                        "id": 867402159,
+                        "address1": "123 Amoebobacterieae St",
+                        "address2": "",
+                        "city": "Ottawa",
+                        "province": "Ontario",
+                        "province_code": "ON",
+                        "country": "Canada",
+                        "country_code": "CA",
+                        "zip": "K2P0V6"
+                      },
+                      "cancellation_policy_disclosure": null,
+                      "cancellation_rebuttal": null,
+                      "customer_email_address": "example@email.com",
+                      "customer_first_name": "Kermit",
+                      "customer_last_name": "the Frog",
+                      "product_description": "Product name: Draft\nTitle: 151cm\nPrice: $10.00\nQuantity: 1\nProduct Description: good board",
+                      "refund_policy_disclosure": null,
+                      "refund_refusal_explanation": null,
+                      "shipping_address": {
+                        "id": 867402159,
+                        "address1": "123 Amoebobacterieae St",
+                        "address2": "",
+                        "city": "Ottawa",
+                        "province": "Ontario",
+                        "province_code": "ON",
+                        "country": "Canada",
+                        "country_code": "CA",
+                        "zip": "K2P0V6"
+                      },
+                      "uncategorized_text": "Sample uncategorized text",
+                      "created_at": "2022-06-07T12:30:15-06:00",
+                      "updated_at": "2022-06-07T12:30:33-06:00",
+                      "submitted_by_merchant_on": null,
+                      "fulfillments": [
+                        {
+                          "shipping_carrier": "UPS",
+                          "shipping_tracking_number": "1234",
+                          "shipping_date": "2017-01-01"
+                        },
+                        {
+                          "shipping_carrier": "FedEx",
+                          "shipping_tracking_number": "4321",
+                          "shipping_date": "2017-01-02"
+                        }
+                      ],
+                      "dispute_evidence_files": {
+                        "cancellation_policy_file_id": null,
+                        "customer_communication_file_id": 539650252,
+                        "customer_signature_file_id": 799719586,
+                        "refund_policy_file_id": null,
+                        "service_documentation_file_id": null,
+                        "shipping_documentation_file_id": 799719586,
+                        "uncategorized_file_id": 567271523
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-07/shopify_payments/disputes/598735659/dispute_evidences.json",
+          "request_method": "GET",
+          "request": {
+            "action": "GET /admin/api/2022-07/shopify_payments/disputes/598735659/dispute_evidences.json",
+            "headers": {},
+            "body": ""
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"dispute_evidence\":{\"id\":819974671,\"payments_dispute_id\":598735659,\"access_activity_log\":null,\"billing_address\":{\"id\":867402159,\"address1\":\"123 Amoebobacterieae St\",\"address2\":\"\",\"city\":\"Ottawa\",\"province\":\"Ontario\",\"province_code\":\"ON\",\"country\":\"Canada\",\"country_code\":\"CA\",\"zip\":\"K2P0V6\"},\"cancellation_policy_disclosure\":null,\"cancellation_rebuttal\":null,\"customer_email_address\":\"example@email.com\",\"customer_first_name\":\"Kermit\",\"customer_last_name\":\"the Frog\",\"product_description\":\"Product name: Draft\\nTitle: 151cm\\nPrice: $10.00\\nQuantity: 1\\nProduct Description: good board\",\"refund_policy_disclosure\":null,\"refund_refusal_explanation\":null,\"shipping_address\":{\"id\":867402159,\"address1\":\"123 Amoebobacterieae St\",\"address2\":\"\",\"city\":\"Ottawa\",\"province\":\"Ontario\",\"province_code\":\"ON\",\"country\":\"Canada\",\"country_code\":\"CA\",\"zip\":\"K2P0V6\"},\"uncategorized_text\":\"Sample uncategorized text\",\"created_at\":\"2022-06-07T14:30:15-04:00\",\"updated_at\":\"2022-06-07T14:30:33-04:00\",\"submitted_by_merchant_on\":null,\"fulfillments\":[{\"shipping_carrier\":\"UPS\",\"shipping_tracking_number\":\"1234\",\"shipping_date\":\"2017-01-01\"},{\"shipping_carrier\":\"FedEx\",\"shipping_tracking_number\":\"4321\",\"shipping_date\":\"2017-01-02\"}],\"dispute_evidence_files\":{\"cancellation_policy_file_id\":null,\"customer_communication_file_id\":539650252,\"customer_signature_file_id\":799719586,\"refund_policy_file_id\":null,\"service_documentation_file_id\":null,\"shipping_documentation_file_id\":799719586,\"uncategorized_file_id\":567271523}}}"
+          },
+          "name": "Retrieves dispute evidence by dispute ID",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/shopify_payments/disputes/598735659/dispute_evidences.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nShopifyAPI::DisputeEvidence.find(\n  session: test_session,\n  dispute_id: 598735659,\n)"
+            },
+            {
+              "language": "node",
+              "example_code": "import {DisputeEvidence} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait DisputeEvidence.find({\n  session: test_session,\n  dispute_id: 598735659,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\DisputeEvidence;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nDisputeEvidence::find(\n    $this->test_session, // Session\n    598735659, // Id\n    [], // Url Ids\n    [], // Params\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/shopify_payments/disputes/{dispute_id}/dispute_evidences.json",
+      "action": "get"
+    },
+    {
+      "description": "Updates dispute evidence associated with the dispute ID.",
+      "summary": "Updates dispute evidence",
+      "operationId": "Updatesdisputeevidence",
+      "parameters": [
+        {
+          "name": "api_version",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "dispute_id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Updates dispute evidence",
+          "content": {
+            "application/json": {
+              "examples": {
+                "Update dispute evidence's refund refusal explanation": {
+                  "value": {
+                    "dispute_evidence": {
+                      "id": 819974671,
+                      "payments_dispute_id": 598735659,
+                      "access_activity_log": null,
+                      "billing_address": {
+                        "id": 867402159,
+                        "address1": "123 Amoebobacterieae St",
+                        "address2": "",
+                        "city": "Ottawa",
+                        "province": "Ontario",
+                        "province_code": "ON",
+                        "country": "Canada",
+                        "country_code": "CA",
+                        "zip": "K2P0V6"
+                      },
+                      "cancellation_policy_disclosure": null,
+                      "cancellation_rebuttal": null,
+                      "customer_email_address": "example@email.com",
+                      "customer_first_name": "Kermit",
+                      "customer_last_name": "the Frog",
+                      "product_description": "Product name: Draft\nTitle: 151cm\nPrice: $10.00\nQuantity: 1\nProduct Description: good board",
+                      "refund_policy_disclosure": null,
+                      "refund_refusal_explanation": "Product must have receipt of proof of purchase",
+                      "shipping_address": {
+                        "id": 867402159,
+                        "address1": "123 Amoebobacterieae St",
+                        "address2": "",
+                        "city": "Ottawa",
+                        "province": "Ontario",
+                        "province_code": "ON",
+                        "country": "Canada",
+                        "country_code": "CA",
+                        "zip": "K2P0V6"
+                      },
+                      "uncategorized_text": "Sample uncategorized text",
+                      "created_at": "2022-06-07T12:30:15-06:00",
+                      "updated_at": "2022-06-07T12:30:42-06:00",
+                      "submitted_by_merchant_on": null,
+                      "fulfillments": [
+                        {
+                          "shipping_carrier": "UPS",
+                          "shipping_tracking_number": "1234",
+                          "shipping_date": "2017-01-01"
+                        },
+                        {
+                          "shipping_carrier": "FedEx",
+                          "shipping_tracking_number": "4321",
+                          "shipping_date": "2017-01-02"
+                        }
+                      ],
+                      "dispute_evidence_files": {
+                        "cancellation_policy_file_id": null,
+                        "customer_communication_file_id": 539650252,
+                        "customer_signature_file_id": 799719586,
+                        "refund_policy_file_id": null,
+                        "service_documentation_file_id": null,
+                        "shipping_documentation_file_id": 799719586,
+                        "uncategorized_file_id": 567271523
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-examples": [
+        {
+          "status": "200",
+          "request_query": "",
+          "request_path": "/admin/api/2022-07/shopify_payments/disputes/598735659/dispute_evidences.json",
+          "request_method": "PUT",
+          "request": {
+            "action": "PUT /admin/api/2022-07/shopify_payments/disputes/598735659/dispute_evidences.json",
+            "headers": {},
+            "body": "{\"dispute_evidence\":{\"refund_refusal_explanation\":\"Product must have receipt of proof of purchase\"}}"
+          },
+          "response": {
+            "action": "HTTP/1.1 200 OK",
+            "headers": {},
+            "body": "{\"dispute_evidence\":{\"id\":819974671,\"payments_dispute_id\":598735659,\"access_activity_log\":null,\"billing_address\":{\"id\":867402159,\"address1\":\"123 Amoebobacterieae St\",\"address2\":\"\",\"city\":\"Ottawa\",\"province\":\"Ontario\",\"province_code\":\"ON\",\"country\":\"Canada\",\"country_code\":\"CA\",\"zip\":\"K2P0V6\"},\"cancellation_policy_disclosure\":null,\"cancellation_rebuttal\":null,\"customer_email_address\":\"example@email.com\",\"customer_first_name\":\"Kermit\",\"customer_last_name\":\"the Frog\",\"product_description\":\"Product name: Draft\\nTitle: 151cm\\nPrice: $10.00\\nQuantity: 1\\nProduct Description: good board\",\"refund_policy_disclosure\":null,\"refund_refusal_explanation\":\"Product must have receipt of proof of purchase\",\"shipping_address\":{\"id\":867402159,\"address1\":\"123 Amoebobacterieae St\",\"address2\":\"\",\"city\":\"Ottawa\",\"province\":\"Ontario\",\"province_code\":\"ON\",\"country\":\"Canada\",\"country_code\":\"CA\",\"zip\":\"K2P0V6\"},\"uncategorized_text\":\"Sample uncategorized text\",\"created_at\":\"2022-06-07T14:30:15-04:00\",\"updated_at\":\"2022-06-07T14:30:42-04:00\",\"submitted_by_merchant_on\":null,\"fulfillments\":[{\"shipping_carrier\":\"UPS\",\"shipping_tracking_number\":\"1234\",\"shipping_date\":\"2017-01-01\"},{\"shipping_carrier\":\"FedEx\",\"shipping_tracking_number\":\"4321\",\"shipping_date\":\"2017-01-02\"}],\"dispute_evidence_files\":{\"cancellation_policy_file_id\":null,\"customer_communication_file_id\":539650252,\"customer_signature_file_id\":799719586,\"refund_policy_file_id\":null,\"service_documentation_file_id\":null,\"shipping_documentation_file_id\":799719586,\"uncategorized_file_id\":567271523}}}"
+          },
+          "name": "Update dispute evidence's refund refusal explanation",
+          "codeSamples": [
+            {
+              "language": "curl",
+              "example_code": "curl -d '{\"dispute_evidence\":{\"refund_refusal_explanation\":\"Product must have receipt of proof of purchase\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/shopify_payments/disputes/598735659/dispute_evidences.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+            },
+            {
+              "language": "ruby",
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ndispute_evidence = ShopifyAPI::DisputeEvidence.new(session: test_session)\ndispute_evidence.dispute_id = 598735659\ndispute_evidence.refund_refusal_explanation = \"Product must have receipt of proof of purchase\"\ndispute_evidence.save!"
+            },
+            {
+              "language": "node",
+              "example_code": "import {DisputeEvidence} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst dispute_evidence = new DisputeEvidence({session: test_session});\ndispute_evidence.dispute_id = 598735659;\ndispute_evidence.refund_refusal_explanation = \"Product must have receipt of proof of purchase\";\nawait dispute_evidence.save({\n  update: true,\n});"
+            },
+            {
+              "language": "php",
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\DisputeEvidence;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$dispute_evidence = new DisputeEvidence($this->test_session);\n$dispute_evidence->dispute_id = 598735659;\n$dispute_evidence->refund_refusal_explanation = \"Product must have receipt of proof of purchase\";\n$dispute_evidence->save(\n    true, // Update Object\n);"
+            }
+          ]
+        }
+      ],
+      "url": "/admin/api/{api_version}/shopify_payments/disputes/{dispute_id}/dispute_evidences.json",
+      "action": "put"
+    }
+  ],
+  "components": [
+    {
+      "name": "DisputeEvidence",
+      "title": "Dispute Evidence",
+      "type": "object",
+      "properties": [
+        {
+          "description": "The ID of the dispute evidence.",
+          "type": "string",
+          "example": {
+            "id": 54534554564
+          },
+          "name": "id"
+        },
+        {
+          "description": "The ID of the dispute that the dispute evidence belongs to.",
+          "type": "string",
+          "example": {
+            "payments_dispute_id": 54534554564
+          },
+          "name": "payments_dispute_id"
+        },
+        {
+          "description": "The activity logs associated with the dispute evidence.",
+          "type": "string",
+          "example": {
+            "access_activity_log": "Test access activity logs"
+          },
+          "name": "access_activity_log"
+        },
+        {
+          "description": "The customer's email address.",
+          "type": "string",
+          "example": {
+            "customer_email_address": "kermit@shopify.com"
+          },
+          "name": "customer_email_address"
+        },
+        {
+          "description": "The customer's first name.",
+          "type": "string",
+          "example": {
+            "customer_first_name": "Kermit"
+          },
+          "name": "customer_first_name"
+        },
+        {
+          "description": "The customer's last name.",
+          "type": "string",
+          "example": {
+            "customer_last_name": "The Frog"
+          },
+          "name": "customer_last_name"
+        },
+        {
+          "description": "The uncategorized text for the dispute evidence.",
+          "type": "string",
+          "example": {
+            "uncategorized_text": "Other compelling text for dispute"
+          },
+          "name": "uncategorized_text"
+        },
+        {
+          "description": "The mailing address for shipping that is provided by the customer.",
+          "type": "string",
+          "example": {
+            "address1": "1 Infinite Loop",
+            "address2": "Muppet Studio",
+            "city": "Cupertino",
+            "zip": "95014",
+            "country": "US",
+            "province": "California"
+          },
+          "name": "shipping_address_attributes"
+        },
+        {
+          "description": "The cancellation policy disclosure associated with the dispute evidence.",
+          "type": "string",
+          "example": {
+            "cancellation_policy_disclosure": "Test cancellation policy disclosure"
+          },
+          "name": "cancellation_policy_disclosure"
+        },
+        {
+          "description": "The cancellation rebuttal associated with the dispute evidence.",
+          "type": "string",
+          "example": {
+            "cancellation_rebuttal": "Test cancellation rebuttal"
+          },
+          "name": "cancellation_rebuttal"
+        },
+        {
+          "description": "The refund policy disclosure associated with the dispute evidence.",
+          "type": "string",
+          "example": {
+            "refund_policy_disclosure": "Test refund policy disclosure"
+          },
+          "name": "refund_policy_disclosure"
+        },
+        {
+          "description": "The refund refusal explanation associated with the dispute evidence.",
+          "type": "string",
+          "example": {
+            "refund_refusal_explanation": "Test refund refusal explanation"
+          },
+          "name": "refund_refusal_explanation"
+        },
+        {
+          "description": "The product description for this dispute evidence.",
+          "type": "string",
+          "example": {
+            "Product name": "Draft",
+            "Title": "151cm",
+            "Price": "$10.00",
+            "Quantity": "1",
+            "Product Description": "good board"
+          },
+          "name": "product_description"
+        },
+        {
+          "description": "Whether the dispute evidence is submitted.",
+          "type": "string",
+          "example": {
+            "submitted": false
+          },
+          "name": "submitted"
+        },
+        {
+          "description": "          \"The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\">ISO 8601</a> format) when\n          dispute evidence was created.\n",
+          "type": "string",
+          "example": {
+            "created_at": "2022-01-09T09:00:00-07:00"
+          },
+          "name": "created_at"
+        },
+        {
+          "description": "          \"The date and time (<a href=\"https://en.wikipedia.org/wiki/ISO_8601\">ISO 8601</a> format) when\n          dispute evidence was updated. Returns <code>null</code> if evidence has not yet been updated.\n",
+          "type": "string",
+          "example": {
+            "updated_on": "2022-01-09T09:00:00-07:00"
+          },
+          "name": "updated_on"
+        },
+        {
+          "description": "Dispute files associated with dispute evidence.",
+          "type": "string",
+          "example": {
+            "cancellation_policy_file_id": null,
+            "customer_communication_file_id": null,
+            "customer_signature_file_id": null,
+            "refund_policy_file_id": null,
+            "service_documentation_file_id": null,
+            "shipping_documentation_file_id": null,
+            "uncategorized_file_id": 1
+          },
+          "name": "dispute_evidence_files"
+        },
+        {
+          "description": "The billing address that is provided by the customer.",
+          "type": "string",
+          "example": {
+            "billing_address_attributes": {
+              "address1": "1 Infinite Loop",
+              "address2": "Muppet Studio",
+              "city": "Cupertino",
+              "zip": "95014",
+              "country": "US",
+              "province": "California"
+            }
+          },
+          "name": "billing_address"
+        },
+        {
+          "description": "The fulfillments associated with the dispute evidence.",
+          "type": "string",
+          "example": {
+            "shipping_carrier": "FedEx",
+            "shipping_tracking_number": 4321,
+            "shipping_date": "2017-01-02T06:00:00-07:00"
+          },
+          "name": "fulfillments"
+        }
+      ],
+      "required": null
+    }
+  ],
+  "x-shopify-meta": {
+    "channels": false,
+    "file_name": "shopify_payments/dispute/dispute_evidence",
+    "gid": "4F7ECEBD-2695-4C07-98A3-EE8E2425C959",
+    "glossary": false,
+    "hidden": false,
+    "legacy-urls": null,
+    "meta_description": "Get information regarding Shopify Payments dispute evidences.",
+    "postman_group": "Shopify Payments",
+    "keywords": [
+      "api"
+    ],
+    "api_versioning": true,
+    "shopify_plus": false,
+    "weight": null,
+    "usage-notes": null
+  },
+  "personal_data_fields": []
 }

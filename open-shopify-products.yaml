@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Products
   description: Products
-  version: '2022-04'
+  version: '2022-07'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-04'
+        default: '2022-07'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -2237,7 +2237,7 @@ components:
           nullable: true
         fulfillment_service:
           type: string
-          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice).'
+          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a breaking change to this field, therefore this field is due to be deprecated and will no longer be supported. Fulfillment services will all be opted into SKU sharing in 2023-04. Once opted into sku sharing, a product variant could be linked to multiple fulfillment services. Please refer to [InventoryLevel](/docs/admin-api/rest/reference/inventory/inventorylevel) to see how variants are associated to multiple fulfillment services.'
           nullable: true
         grams:
           type: number
@@ -2930,7 +2930,7 @@ components:
           nullable: true
         fulfillment_service:
           type: string
-          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice).'
+          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a breaking change to this field, therefore this field is due to be deprecated and will no longer be supported. Fulfillment services will all be opted into SKU sharing in 2023-04. Once opted into sku sharing, a product variant could be linked to multiple fulfillment services. Please refer to [InventoryLevel](/docs/admin-api/rest/reference/inventory/inventorylevel) to see how variants are associated to multiple fulfillment services.'
           nullable: true
         grams:
           type: number
@@ -3529,7 +3529,7 @@ components:
           nullable: true
         fulfillment_service:
           type: string
-          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice).'
+          description: 'The fulfillment service associated with the product variant. Valid values: `manual` or the handle of a [fulfillment service](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillmentservice). Multi-managed inventory introduced a breaking change to this field, therefore this field is due to be deprecated and will no longer be supported. Fulfillment services will all be opted into SKU sharing in 2023-04. Once opted into sku sharing, a product variant could be linked to multiple fulfillment services. Please refer to [InventoryLevel](/docs/admin-api/rest/reference/inventory/inventorylevel) to see how variants are associated to multiple fulfillment services.'
           nullable: true
         grams:
           type: number

@@ -5,7 +5,7 @@
     "description": "        <p>Each tender transaction represents money passing between the merchant and a customer. A tender transaction\n        with a positive amount represents a transaction where the customer paid money to the merchant. A negative\n        amount represents a transaction where the merchant refunded money back to the customer. Tender transactions\n        represent transactions that modify the shop's balance.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/255",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -219,7 +219,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/tender_transactions.json",
+          "request_path": "/admin/api/2022-07/tender_transactions.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/tender_transactions.json",
@@ -235,7 +235,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/tender_transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/tender_transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -243,18 +243,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n});"
+              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "since_id=1011222857",
-          "request_path": "/admin/api/2022-04/tender_transactions.json",
+          "request_path": "/admin/api/2022-07/tender_transactions.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/tender_transactions.json",
@@ -270,7 +270,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/tender_transactions.json?since_id=1011222857\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/tender_transactions.json?since_id=1011222857\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -278,18 +278,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n  since_id: \"1011222857\",\n});"
+              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n  since_id: \"1011222857\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"1011222857\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"1011222857\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "processed_at_min=2005-08-06+10%3A22%3A51+-0400",
-          "request_path": "/admin/api/2022-04/tender_transactions.json",
+          "request_path": "/admin/api/2022-07/tender_transactions.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/tender_transactions.json",
@@ -305,7 +305,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/tender_transactions.json?processed_at_min=2005-08-06+10%3A22%3A51+-0400\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/tender_transactions.json?processed_at_min=2005-08-06+10%3A22%3A51+-0400\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -313,18 +313,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n  processed_at_min: \"2005-08-06 10:22:51 -0400\",\n});"
+              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n  processed_at_min: \"2005-08-06 10:22:51 -0400\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"processed_at_min\" => \"2005-08-06 10:22:51 -0400\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"processed_at_min\" => \"2005-08-06 10:22:51 -0400\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "processed_at_max=2005-08-06+10%3A22%3A51+-0400",
-          "request_path": "/admin/api/2022-04/tender_transactions.json",
+          "request_path": "/admin/api/2022-07/tender_transactions.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/tender_transactions.json",
@@ -340,7 +340,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/tender_transactions.json?processed_at_max=2005-08-06+10%3A22%3A51+-0400\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/tender_transactions.json?processed_at_max=2005-08-06+10%3A22%3A51+-0400\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -348,18 +348,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n  processed_at_max: \"2005-08-06 10:22:51 -0400\",\n});"
+              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n  processed_at_max: \"2005-08-06 10:22:51 -0400\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"processed_at_max\" => \"2005-08-06 10:22:51 -0400\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"processed_at_max\" => \"2005-08-06 10:22:51 -0400\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "processed_at_max=2005-08-05+10%3A22%3A51+-0400",
-          "request_path": "/admin/api/2022-04/tender_transactions.json",
+          "request_path": "/admin/api/2022-07/tender_transactions.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/tender_transactions.json",
@@ -375,7 +375,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/tender_transactions.json?processed_at_max=2005-08-05+10%3A22%3A51+-0400\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/tender_transactions.json?processed_at_max=2005-08-05+10%3A22%3A51+-0400\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -383,18 +383,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n  processed_at_max: \"2005-08-05 10:22:51 -0400\",\n});"
+              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n  processed_at_max: \"2005-08-05 10:22:51 -0400\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"processed_at_max\" => \"2005-08-05 10:22:51 -0400\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"processed_at_max\" => \"2005-08-05 10:22:51 -0400\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "order=processed_at+ASC",
-          "request_path": "/admin/api/2022-04/tender_transactions.json",
+          "request_path": "/admin/api/2022-07/tender_transactions.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/tender_transactions.json",
@@ -410,7 +410,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/tender_transactions.json?order=processed_at+ASC\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/tender_transactions.json?order=processed_at+ASC\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -418,11 +418,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n  order: \"processed_at ASC\",\n});"
+              "example_code": "import {TenderTransaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait TenderTransaction.all({\n  session: test_session,\n  order: \"processed_at ASC\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"order\" => \"processed_at ASC\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\TenderTransaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTenderTransaction::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"order\" => \"processed_at ASC\"], // Params\n);"
             }
           ]
         }
@@ -530,5 +530,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

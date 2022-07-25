@@ -11,10 +11,8 @@ namespace OpenShopify.Admin.Builder.Controllers.StoreProperties;
 public class PolicyController : PolicyControllerBase
 {
     /// <inheritdoc />
-    [HttpGet, Route("policies.json")]
+    [HttpGet]
+    [Route("policies.json")]
     [ProducesResponseType(typeof(PolicyList), StatusCodes.Status200OK)]
-    public override Task ListShopsPolicies()
-    {
-        throw new NotImplementedException();
-    }
+    public override Task ListShopsPolicies() => throw new NotImplementedException();
 }

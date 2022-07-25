@@ -5,7 +5,7 @@
     "description": "        <p>A theme controls the look and feel of a Shopify online store.</p>\n        {{ '/api/reference/theme.png' | image }}\n        <p>A store can have a maximum of 20 themes, one of which is the published theme that customers see when they visit the online store. Customers can't see unpublished themes. When you publish a theme, the previously published theme becomes unpublished.</p>\n        <p>To modify theme files after they're uploaded, use the <a href=\"/docs/admin-api/rest/reference/online-store/asset\">Asset</a> resource. To learn how to create your own theme, refer to <a href=\"/concepts/themes\"><em>Building themes</em></a></p>\n",
     "x-owner": "https://vault.shopify.io/teams/469",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -84,7 +84,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/themes.json",
+          "request_path": "/admin/api/2022-07/themes.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/themes.json",
@@ -100,7 +100,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/themes.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/themes.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -108,11 +108,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Theme.all({\n  session: test_session,\n});"
+              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Theme.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTheme::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTheme::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -182,7 +182,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/themes.json",
+          "request_path": "/admin/api/2022-07/themes.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/themes.json",
@@ -198,26 +198,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"theme\":{\"name\":\"Lemongrass\",\"src\":\"http://themes.shopify.com/theme.zip\",\"role\":\"main\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/themes.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"theme\":{\"name\":\"Lemongrass\",\"src\":\"http://themes.shopify.com/theme.zip\",\"role\":\"main\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/themes.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntheme = ShopifyAPI::Theme.new(session: test_session)\ntheme.name = \"Lemongrass\"\ntheme.src = \"http://themes.shopify.com/theme.zip\"\ntheme.role = \"main\"\ntheme.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntheme = ShopifyAPI::Theme.new(session: test_session)\ntheme.name = \"Lemongrass\"\ntheme.src = \"http://themes.shopify.com/theme.zip\"\ntheme.role = \"main\"\ntheme.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst theme = new Theme({session: test_session});\ntheme.name = \"Lemongrass\";\ntheme.src = \"http://themes.shopify.com/theme.zip\";\ntheme.role = \"main\";\nawait theme.save({});"
+              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst theme = new Theme({session: test_session});\ntheme.name = \"Lemongrass\";\ntheme.src = \"http://themes.shopify.com/theme.zip\";\ntheme.role = \"main\";\nawait theme.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$theme = new Theme($this->test_session);\n$theme->name = \"Lemongrass\";\n$theme->src = \"http://themes.shopify.com/theme.zip\";\n$theme->role = \"main\";\n$theme->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$theme = new Theme($this->test_session);\n$theme->name = \"Lemongrass\";\n$theme->src = \"http://themes.shopify.com/theme.zip\";\n$theme->role = \"main\";\n$theme->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/themes.json",
+          "request_path": "/admin/api/2022-07/themes.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/themes.json",
@@ -233,19 +233,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"theme\":{\"body\":\"foobar\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/themes.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"theme\":{\"body\":\"foobar\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/themes.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntheme = ShopifyAPI::Theme.new(session: test_session)\ntheme.body = \"foobar\"\ntheme.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntheme = ShopifyAPI::Theme.new(session: test_session)\ntheme.body = \"foobar\"\ntheme.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst theme = new Theme({session: test_session});\ntheme.body = \"foobar\";\nawait theme.save({});"
+              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst theme = new Theme({session: test_session});\ntheme.body = \"foobar\";\nawait theme.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$theme = new Theme($this->test_session);\n$theme->body = \"foobar\";\n$theme->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$theme = new Theme($this->test_session);\n$theme->body = \"foobar\";\n$theme->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -313,7 +313,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/themes/828155753.json",
+          "request_path": "/admin/api/2022-07/themes/828155753.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/themes/828155753.json",
@@ -329,7 +329,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/themes/828155753.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -337,11 +337,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Theme.find({\n  session: test_session,\n  id: 828155753,\n});"
+              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Theme.find({\n  session: test_session,\n  id: 828155753,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTheme::find(\n    $this->test_session, // Session\n    828155753, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTheme::find(\n    $this->test_session, // Session\n    828155753, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -416,7 +416,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/themes/752253240.json",
+          "request_path": "/admin/api/2022-07/themes/752253240.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/themes/752253240.json",
@@ -432,26 +432,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"theme\":{\"id\":752253240,\"name\":\"Experimental\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/752253240.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"theme\":{\"id\":752253240,\"name\":\"Experimental\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/themes/752253240.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntheme = ShopifyAPI::Theme.new(session: test_session)\ntheme.id = 752253240\ntheme.name = \"Experimental\"\ntheme.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntheme = ShopifyAPI::Theme.new(session: test_session)\ntheme.id = 752253240\ntheme.name = \"Experimental\"\ntheme.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst theme = new Theme({session: test_session});\ntheme.id = 752253240;\ntheme.name = \"Experimental\";\nawait theme.save({});"
+              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst theme = new Theme({session: test_session});\ntheme.id = 752253240;\ntheme.name = \"Experimental\";\nawait theme.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$theme = new Theme($this->test_session);\n$theme->id = 752253240;\n$theme->name = \"Experimental\";\n$theme->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$theme = new Theme($this->test_session);\n$theme->id = 752253240;\n$theme->name = \"Experimental\";\n$theme->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/themes/752253240.json",
+          "request_path": "/admin/api/2022-07/themes/752253240.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/themes/752253240.json",
@@ -467,19 +467,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"theme\":{\"id\":752253240,\"role\":\"main\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/752253240.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"theme\":{\"id\":752253240,\"role\":\"main\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/themes/752253240.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntheme = ShopifyAPI::Theme.new(session: test_session)\ntheme.id = 752253240\ntheme.role = \"main\"\ntheme.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntheme = ShopifyAPI::Theme.new(session: test_session)\ntheme.id = 752253240\ntheme.role = \"main\"\ntheme.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst theme = new Theme({session: test_session});\ntheme.id = 752253240;\ntheme.role = \"main\";\nawait theme.save({});"
+              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst theme = new Theme({session: test_session});\ntheme.id = 752253240;\ntheme.role = \"main\";\nawait theme.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$theme = new Theme($this->test_session);\n$theme->id = 752253240;\n$theme->role = \"main\";\n$theme->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$theme = new Theme($this->test_session);\n$theme->id = 752253240;\n$theme->role = \"main\";\n$theme->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -537,7 +537,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/themes/752253240.json",
+          "request_path": "/admin/api/2022-07/themes/752253240.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/themes/752253240.json",
@@ -553,7 +553,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/752253240.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-07/themes/752253240.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -561,11 +561,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Theme.delete({\n  session: test_session,\n  id: 752253240,\n});"
+              "example_code": "import {Theme} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Theme.delete({\n  session: test_session,\n  id: 752253240,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTheme::delete(\n    $this->test_session, // Session\n    752253240, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Theme;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTheme::delete(\n    $this->test_session, // Session\n    752253240, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -657,5 +657,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

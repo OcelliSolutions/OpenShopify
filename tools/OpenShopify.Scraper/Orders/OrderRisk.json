@@ -5,7 +5,7 @@
     "description": "        <p>The Order Risk resource allows you to create, retrieve, update, and delete order risks. Order risks represent the results of fraud checks that have been completed for an order.</p>\n        <h4>Usage notes</h4>\n        <ul>\n          <li>When determining an order's risk level, Shopify takes into account only those order risks that have the display property set to <code>true</code>. Orders with a display set to <code>false</code> will not be returned through the Order Risk resource. It's not advised to create order risks with a display set to <code>false</code>. This property might be removed in future API versions.</li>\n          <li>Risk assessments will favor the most severe risk recommendation for an order. Keep this in mind when creating new order risks.</li>\n        </ul>\n",
     "x-owner": "https://vault.shopify.io/teams/1429",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -61,7 +61,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/risks.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/risks.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/risks.json",
@@ -77,19 +77,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"risk\":{\"message\":\"This order came from an anonymous proxy\",\"recommendation\":\"cancel\",\"score\":1.0,\"source\":\"External\",\"cause_cancel\":true,\"display\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/risks.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"risk\":{\"message\":\"This order came from an anonymous proxy\",\"recommendation\":\"cancel\",\"score\":1.0,\"source\":\"External\",\"cause_cancel\":true,\"display\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/risks.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder_risk = ShopifyAPI::OrderRisk.new(session: test_session)\norder_risk.order_id = 450789469\norder_risk.message = \"This order came from an anonymous proxy\"\norder_risk.recommendation = \"cancel\"\norder_risk.score = 1.0\norder_risk.source = \"External\"\norder_risk.cause_cancel = true\norder_risk.display = true\norder_risk.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder_risk = ShopifyAPI::OrderRisk.new(session: test_session)\norder_risk.order_id = 450789469\norder_risk.message = \"This order came from an anonymous proxy\"\norder_risk.recommendation = \"cancel\"\norder_risk.score = 1.0\norder_risk.source = \"External\"\norder_risk.cause_cancel = true\norder_risk.display = true\norder_risk.save!"
             },
             {
               "language": "node",
-              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order_risk = new OrderRisk({session: test_session});\norder_risk.order_id = 450789469;\norder_risk.message = \"This order came from an anonymous proxy\";\norder_risk.recommendation = \"cancel\";\norder_risk.score = 1.0;\norder_risk.source = \"External\";\norder_risk.cause_cancel = true;\norder_risk.display = true;\nawait order_risk.save({});"
+              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order_risk = new OrderRisk({session: test_session});\norder_risk.order_id = 450789469;\norder_risk.message = \"This order came from an anonymous proxy\";\norder_risk.recommendation = \"cancel\";\norder_risk.score = 1.0;\norder_risk.source = \"External\";\norder_risk.cause_cancel = true;\norder_risk.display = true;\nawait order_risk.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\OrderRisk;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order_risk = new OrderRisk($this->test_session);\n$order_risk->order_id = 450789469;\n$order_risk->message = \"This order came from an anonymous proxy\";\n$order_risk->recommendation = \"cancel\";\n$order_risk->score = 1.0;\n$order_risk->source = \"External\";\n$order_risk->cause_cancel = true;\n$order_risk->display = true;\n$order_risk->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\OrderRisk;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order_risk = new OrderRisk($this->test_session);\n$order_risk->order_id = 450789469;\n$order_risk->message = \"This order came from an anonymous proxy\";\n$order_risk->recommendation = \"cancel\";\n$order_risk->score = 1.0;\n$order_risk->source = \"External\";\n$order_risk->cause_cancel = true;\n$order_risk->display = true;\n$order_risk->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -164,7 +164,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/risks.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/risks.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/orders/450789469/risks.json",
@@ -180,7 +180,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/risks.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/risks.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -188,11 +188,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait OrderRisk.all({\n  session: test_session,\n  order_id: 450789469,\n});"
+              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait OrderRisk.all({\n  session: test_session,\n  order_id: 450789469,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\OrderRisk;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrderRisk::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\OrderRisk;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrderRisk::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -261,7 +261,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/risks/284138680.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/risks/284138680.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/orders/450789469/risks/284138680.json",
@@ -277,7 +277,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/risks/284138680.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/risks/284138680.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -285,11 +285,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait OrderRisk.find({\n  session: test_session,\n  order_id: 450789469,\n  id: 284138680,\n});"
+              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait OrderRisk.find({\n  session: test_session,\n  order_id: 450789469,\n  id: 284138680,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\OrderRisk;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrderRisk::find(\n    $this->test_session, // Session\n    284138680, // Id\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\OrderRisk;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrderRisk::find(\n    $this->test_session, // Session\n    284138680, // Id\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -358,7 +358,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/risks/284138680.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/risks/284138680.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/orders/450789469/risks/284138680.json",
@@ -374,19 +374,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"risk\":{\"id\":284138680,\"message\":\"After further review, this is a legitimate order\",\"recommendation\":\"accept\",\"source\":\"External\",\"cause_cancel\":false,\"score\":0.0}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/risks/284138680.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"risk\":{\"id\":284138680,\"message\":\"After further review, this is a legitimate order\",\"recommendation\":\"accept\",\"source\":\"External\",\"cause_cancel\":false,\"score\":0.0}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/risks/284138680.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder_risk = ShopifyAPI::OrderRisk.new(session: test_session)\norder_risk.order_id = 450789469\norder_risk.id = 284138680\norder_risk.message = \"After further review, this is a legitimate order\"\norder_risk.recommendation = \"accept\"\norder_risk.source = \"External\"\norder_risk.cause_cancel = false\norder_risk.score = 0.0\norder_risk.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\norder_risk = ShopifyAPI::OrderRisk.new(session: test_session)\norder_risk.order_id = 450789469\norder_risk.id = 284138680\norder_risk.message = \"After further review, this is a legitimate order\"\norder_risk.recommendation = \"accept\"\norder_risk.source = \"External\"\norder_risk.cause_cancel = false\norder_risk.score = 0.0\norder_risk.save!"
             },
             {
               "language": "node",
-              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order_risk = new OrderRisk({session: test_session});\norder_risk.order_id = 450789469;\norder_risk.id = 284138680;\norder_risk.message = \"After further review, this is a legitimate order\";\norder_risk.recommendation = \"accept\";\norder_risk.source = \"External\";\norder_risk.cause_cancel = false;\norder_risk.score = 0.0;\nawait order_risk.save({});"
+              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst order_risk = new OrderRisk({session: test_session});\norder_risk.order_id = 450789469;\norder_risk.id = 284138680;\norder_risk.message = \"After further review, this is a legitimate order\";\norder_risk.recommendation = \"accept\";\norder_risk.source = \"External\";\norder_risk.cause_cancel = false;\norder_risk.score = 0.0;\nawait order_risk.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\OrderRisk;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order_risk = new OrderRisk($this->test_session);\n$order_risk->order_id = 450789469;\n$order_risk->id = 284138680;\n$order_risk->message = \"After further review, this is a legitimate order\";\n$order_risk->recommendation = \"accept\";\n$order_risk->source = \"External\";\n$order_risk->cause_cancel = false;\n$order_risk->score = 0.0;\n$order_risk->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\OrderRisk;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$order_risk = new OrderRisk($this->test_session);\n$order_risk->order_id = 450789469;\n$order_risk->id = 284138680;\n$order_risk->message = \"After further review, this is a legitimate order\";\n$order_risk->recommendation = \"accept\";\n$order_risk->source = \"External\";\n$order_risk->cause_cancel = false;\n$order_risk->score = 0.0;\n$order_risk->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -442,7 +442,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/risks/284138680.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/risks/284138680.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/orders/450789469/risks/284138680.json",
@@ -458,7 +458,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/risks/284138680.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/risks/284138680.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -466,11 +466,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait OrderRisk.delete({\n  session: test_session,\n  order_id: 450789469,\n  id: 284138680,\n});"
+              "example_code": "import {OrderRisk} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait OrderRisk.delete({\n  session: test_session,\n  order_id: 450789469,\n  id: 284138680,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\OrderRisk;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrderRisk::delete(\n    $this->test_session, // Session\n    284138680, // Id\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\OrderRisk;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nOrderRisk::delete(\n    $this->test_session, // Session\n    284138680, // Id\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -570,5 +570,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

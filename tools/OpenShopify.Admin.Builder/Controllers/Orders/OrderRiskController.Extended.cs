@@ -12,45 +12,39 @@ namespace OpenShopify.Admin.Builder.Controllers.Orders;
 public class OrderRiskController : OrderRiskControllerBase
 {
     /// <inheritdoc />
-    [HttpPost, Route("orders/{order_id:long}/risks.json")]
+    [HttpPost]
+    [Route("orders/{order_id:long}/risks.json")]
     [ProducesResponseType(typeof(OrderRiskItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(OrderRiskError), StatusCodes.Status422UnprocessableEntity)]
     [ProducesResponseType(typeof(OrderRiskGeneralError), StatusCodes.Status400BadRequest)]
-    public override Task CreateOrderRisk([Required] CreateOrderRiskRequest forOrderRequest, [Required] long order_id)
-    {
+    public override Task CreateOrderRisk([Required] CreateOrderRiskRequest forOrderRequest, [Required] long order_id) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpGet, Route("orders/{order_id:long}/risks.json")]
+    [HttpGet]
+    [Route("orders/{order_id:long}/risks.json")]
     [ProducesResponseType(typeof(OrderRiskList), StatusCodes.Status200OK)]
-    public override Task ListOrderRisks([Required] long order_id)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task ListOrderRisks([Required] long order_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpGet, Route("orders/{order_id:long}/risks/{risk_id:long}.json")]
+    [HttpGet]
+    [Route("orders/{order_id:long}/risks/{risk_id:long}.json")]
     [ProducesResponseType(typeof(OrderRiskItem), StatusCodes.Status200OK)]
-    public override Task GetOrderRisk([Required] long order_id, [Required] long risk_id)
-    {
+    public override Task GetOrderRisk([Required] long order_id, [Required] long risk_id) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpPut, Route("orders/{order_id:long}/risks/{risk_id:long}.json")]
+    [HttpPut]
+    [Route("orders/{order_id:long}/risks/{risk_id:long}.json")]
     [ProducesResponseType(typeof(OrderRiskItem), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(OrderRiskError), StatusCodes.Status422UnprocessableEntity)]
-    public override Task UpdateOrderRisk([Required] UpdateOrderRiskRequest request, [Required] long order_id, [Required] long risk_id)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task UpdateOrderRisk([Required] UpdateOrderRiskRequest request, [Required] long order_id,
+        [Required] long risk_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpDelete, Route("orders/{order_id:long}/risks/{risk_id:long}.json")]
+    [HttpDelete]
+    [Route("orders/{order_id:long}/risks/{risk_id:long}.json")]
     [ProducesResponseType(typeof(OrderRiskItem), StatusCodes.Status200OK)]
-    public override Task DeleteOrderRisk([Required] long order_id, [Required] long risk_id)
-    {
+    public override Task DeleteOrderRisk([Required] long order_id, [Required] long risk_id) =>
         throw new NotImplementedException();
-    }
 }

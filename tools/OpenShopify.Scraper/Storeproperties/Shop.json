@@ -5,7 +5,7 @@
     "description": "        <p>The Shop resource is a collection of general business and store management settings and information about\n        the store. The resource lets you retrieve information about the store, but it doesn't let you update any information.\n        Only the merchant can update this information from inside the Shopify admin.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/47",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -120,7 +120,7 @@
         {
           "status": "200",
           "request_query": "fields=address1%2Caddress2%2Ccity%2Cprovince%2Ccountry",
-          "request_path": "/admin/api/2022-04/shop.json",
+          "request_path": "/admin/api/2022-07/shop.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/shop.json",
@@ -136,7 +136,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/shop.json?fields=address1%2Caddress2%2Ccity%2Cprovince%2Ccountry\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/shop.json?fields=address1%2Caddress2%2Ccity%2Cprovince%2Ccountry\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -144,18 +144,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Shop} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Shop.all({\n  session: test_session,\n  fields: \"address1,address2,city,province,country\",\n});"
+              "example_code": "import {Shop} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Shop.all({\n  session: test_session,\n  fields: \"address1,address2,city,province,country\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Shop;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nShop::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"fields\" => \"address1,address2,city,province,country\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Shop;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nShop::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"fields\" => \"address1,address2,city,province,country\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/shop.json",
+          "request_path": "/admin/api/2022-07/shop.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/shop.json",
@@ -171,7 +171,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/shop.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/shop.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -179,11 +179,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Shop} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Shop.all({\n  session: test_session,\n});"
+              "example_code": "import {Shop} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Shop.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Shop;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nShop::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Shop;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nShop::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -560,5 +560,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

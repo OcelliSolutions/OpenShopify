@@ -5,7 +5,7 @@
     "description": "        <p>A location represents a geographical location where your stores, pop-up stores, headquarters,\n        and warehouses exist. You can use the Location resource to track sales, manage inventory,\n        and configure the tax rates to apply at checkout. For a better understanding of the relationship\n        between locations, inventory levels and inventory items, refer to the\n        <a href=\"/api/admin-rest/latest/resources/inventorylevel\">\n        InventoryLevel</a> resource reference documentation</p>\n",
     "x-owner": "https://vault.shopify.io/teams/126",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -148,7 +148,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/locations.json",
+          "request_path": "/admin/api/2022-07/locations.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/locations.json",
@@ -164,7 +164,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/locations.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/locations.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -172,11 +172,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.all({\n  session: test_session,\n});"
+              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Location;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocation::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Location;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocation::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -244,7 +244,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/locations/487838322.json",
+          "request_path": "/admin/api/2022-07/locations/487838322.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/locations/487838322.json",
@@ -260,7 +260,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/locations/487838322.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/locations/487838322.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -268,11 +268,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.find({\n  session: test_session,\n  id: 487838322,\n});"
+              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.find({\n  session: test_session,\n  id: 487838322,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Location;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocation::find(\n    $this->test_session, // Session\n    487838322, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Location;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocation::find(\n    $this->test_session, // Session\n    487838322, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -314,7 +314,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/locations/count.json",
+          "request_path": "/admin/api/2022-07/locations/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/locations/count.json",
@@ -330,7 +330,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/locations/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/locations/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -338,11 +338,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.count({\n  session: test_session,\n});"
+              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.count({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Location;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocation::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Location;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocation::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -421,7 +421,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/locations/487838322/inventory_levels.json",
+          "request_path": "/admin/api/2022-07/locations/487838322/inventory_levels.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/locations/487838322/inventory_levels.json",
@@ -437,7 +437,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/locations/487838322/inventory_levels.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/locations/487838322/inventory_levels.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -445,11 +445,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.inventory_levels({\n  session: test_session,\n  id: 487838322,\n});"
+              "example_code": "import {Location} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Location.inventory_levels({\n  session: test_session,\n  id: 487838322,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Location;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocation::inventory_levels(\n    $this->test_session, // Session\n    487838322, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Location;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocation::inventory_levels(\n    $this->test_session, // Session\n    487838322, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -588,5 +588,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

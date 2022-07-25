@@ -12,27 +12,24 @@ namespace OpenShopify.Admin.Builder.Controllers.Billing;
 public class ApplicationChargeController : ApplicationChargeControllerBase
 {
     /// <inheritdoc />
-    [HttpPost, Route("application_charges.json")]
+    [HttpPost]
+    [Route("application_charges.json")]
     [ProducesResponseType(typeof(ApplicationChargeItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ApplicationChargeError), StatusCodes.Status422UnprocessableEntity)]
-    public override Task CreateApplicationCharge([Required] CreateApplicationChargeRequest request)
-    {
+    public override Task CreateApplicationCharge([Required] CreateApplicationChargeRequest request) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpGet, Route("application_charges.json")]
+    [HttpGet]
+    [Route("application_charges.json")]
     [ProducesResponseType(typeof(ApplicationChargeList), StatusCodes.Status200OK)]
-    public override Task ListApplicationCharges(string? fields = null, long? since_id = null)
-    {
+    public override Task ListApplicationCharges(string? fields = null, long? since_id = null) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpGet, Route("application_charges/{application_charge_id:long}.json")]
+    [HttpGet]
+    [Route("application_charges/{application_charge_id:long}.json")]
     [ProducesResponseType(typeof(ApplicationChargeItem), StatusCodes.Status200OK)]
-    public override Task GetApplicationCharge([Required] long application_charge_id, string? fields = null)
-    {
+    public override Task GetApplicationCharge([Required] long application_charge_id, string? fields = null) =>
         throw new NotImplementedException();
-    }
 }

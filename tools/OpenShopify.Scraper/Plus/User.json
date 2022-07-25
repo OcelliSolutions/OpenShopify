@@ -5,7 +5,7 @@
     "description": "        <div class=\"note note-plus\">\n          <h4>Shopify Plus</h4>\n          <p>The User resource is available for <a href=\"/concepts/apps#private-apps\">private apps</a> and <a href=\"/concepts/apps#custom-apps\">custom apps</a> installed on <strong><a href=\"https://help.shopify.com/en/manual/intro-to-shopify/pricing-plans/shopify-plus\">Shopify Plus</a></strong> stores. Contact Shopify Plus Support to enable this API resource for your store.</p>\n        </div>\n        <p>The User resource lets you retrieve information about staff on a Shopify shop, including\n        <a href=\"https://help.shopify.com/en/manual/your-account/staff-accounts/staff-permissions\">staff permissions</a>.</p>\n        <p>Permissions determine the level of access that staff have to a merchant's store. From the Shopify admin, merchants can give each staff\n        individual permissions that control access to a part of Shopify. The API only lets you retrieve information about staff.\n        </p>\n",
     "x-owner": "https://vault.shopify.io/teams/1772",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -161,7 +161,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/users.json",
+          "request_path": "/admin/api/2022-07/users.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/users.json",
@@ -177,7 +177,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/users.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/users.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -185,11 +185,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.all({\n  session: test_session,\n});"
+              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\User;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUser::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\User;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUser::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -320,7 +320,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/users/548380009.json",
+          "request_path": "/admin/api/2022-07/users/548380009.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/users/548380009.json",
@@ -336,7 +336,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/users/548380009.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/users/548380009.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -344,11 +344,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.find({\n  session: test_session,\n  id: 548380009,\n});"
+              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.find({\n  session: test_session,\n  id: 548380009,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\User;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUser::find(\n    $this->test_session, // Session\n    548380009, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\User;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUser::find(\n    $this->test_session, // Session\n    548380009, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -471,7 +471,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/users/current.json",
+          "request_path": "/admin/api/2022-07/users/current.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/users/current.json",
@@ -487,7 +487,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/users/current.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/users/current.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -495,11 +495,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.current({\n  session: test_session,\n});"
+              "example_code": "import {User} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait User.current({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\User;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUser::current(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\User;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nUser::current(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -625,5 +625,6 @@
     "shopify_plus": true,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

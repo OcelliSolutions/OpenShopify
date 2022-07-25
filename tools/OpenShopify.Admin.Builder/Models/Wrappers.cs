@@ -3406,6 +3406,126 @@ public partial record Dispute : DisputeBase
 public partial record DisputeBase : DisputeOrig{}
 
 	
+public partial record DisputeEvidenceItem
+{
+    [JsonPropertyName("dispute_evidence"), Required]
+    public DisputeEvidence DisputeEvidence { get; set; } = null!;
+}
+
+public partial record DisputeEvidenceList
+{
+    [JsonPropertyName("dispute_evidences"), Required]
+    public IEnumerable<DisputeEvidence> DisputeEvidences { get; set; } = null!;
+}
+public partial record CreateDisputeEvidenceRequest
+{
+    [JsonPropertyName("dispute_evidence"), Required]
+    public CreateDisputeEvidence DisputeEvidence { get; set; } = null!;
+}
+
+/// <inheritdoc cref="DisputeEvidenceBase"/>
+public partial record CreateDisputeEvidence : DisputeEvidenceBase {}
+public partial record UpdateDisputeEvidenceRequest
+{
+    [JsonPropertyName("dispute_evidence"), Required]
+    public UpdateDisputeEvidence DisputeEvidence { get; set; } = null!;
+}
+
+/// <inheritdoc cref="DisputeEvidence"/>
+public partial record UpdateDisputeEvidence : DisputeEvidence
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
+
+		
+/// <inheritdoc cref="DisputeEvidenceBase"/>
+public partial record DisputeEvidence : DisputeEvidenceBase
+{
+    [JsonPropertyName("id"), Required]
+    public long Id { get; set; }
+    [JsonPropertyName("admin_graphql_api_id")]
+    public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
+}
+
+/// <inheritdoc cref="DisputeEvidenceOrig"/>
+public partial record DisputeEvidenceBase : DisputeEvidenceOrig{}
+
+	
+public partial record DisputeFileUploadItem
+{
+    [JsonPropertyName("dispute_file_upload"), Required]
+    public DisputeFileUpload DisputeFileUpload { get; set; } = null!;
+}
+
+public partial record DisputeFileUploadList
+{
+    [JsonPropertyName("dispute_file_uploads"), Required]
+    public IEnumerable<DisputeFileUpload> DisputeFileUploads { get; set; } = null!;
+}
+public partial record CreateDisputeFileUploadRequest
+{
+    [JsonPropertyName("dispute_file_upload"), Required]
+    public CreateDisputeFileUpload DisputeFileUpload { get; set; } = null!;
+}
+
+/// <inheritdoc cref="DisputeFileUploadBase"/>
+public partial record CreateDisputeFileUpload : DisputeFileUploadBase {}
+public partial record UpdateDisputeFileUploadRequest
+{
+    [JsonPropertyName("dispute_file_upload"), Required]
+    public UpdateDisputeFileUpload DisputeFileUpload { get; set; } = null!;
+}
+
+/// <inheritdoc cref="DisputeFileUpload"/>
+public partial record UpdateDisputeFileUpload : DisputeFileUpload
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
+
+		
+/// <inheritdoc cref="DisputeFileUploadBase"/>
+public partial record DisputeFileUpload : DisputeFileUploadBase
+{
+    [JsonPropertyName("id"), Required]
+    public long Id { get; set; }
+    [JsonPropertyName("admin_graphql_api_id")]
+    public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
+}
+
+/// <inheritdoc cref="DisputeFileUploadOrig"/>
+public partial record DisputeFileUploadBase : DisputeFileUploadOrig{}
+
+	
 public partial record PayoutItem
 {
     [JsonPropertyName("payout"), Required]

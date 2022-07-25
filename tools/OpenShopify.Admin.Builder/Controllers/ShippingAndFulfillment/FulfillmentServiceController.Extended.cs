@@ -13,54 +13,47 @@ namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 public class FulfillmentServiceController : FulfillmentServiceControllerBase
 {
     /// <inheritdoc />
-    [IgnoreApi, HttpGet, Route("fulfillment_services.invalid")]
+    [IgnoreApi]
+    [HttpGet]
+    [Route("fulfillment_services.invalid")]
     [ProducesResponseType(typeof(FulfillmentServiceList), StatusCodes.Status200OK)]
-    public override Task ListFulfillmentServices(string? scope = null)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task ListFulfillmentServices(string? scope = null) => throw new NotImplementedException();
 
     /// <inheritdoc cref="FulfillmentServiceControllerBase.ListFulfillmentServices" />
-    [HttpGet, Route("fulfillment_services.json")]
+    [HttpGet]
+    [Route("fulfillment_services.json")]
     [ProducesResponseType(typeof(FulfillmentServiceList), StatusCodes.Status200OK)]
-    public Task ListFulfillmentServices(FulfillmentServiceScope? scope)
-    {
-        throw new NotImplementedException();
-    }
+    public Task ListFulfillmentServices(FulfillmentServiceScope? scope) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpPost, Route("fulfillment_services.json")]
+    [HttpPost]
+    [Route("fulfillment_services.json")]
     [ProducesResponseType(typeof(FulfillmentServiceItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(FulfillmentServiceError), StatusCodes.Status422UnprocessableEntity)]
     [ProducesResponseType(typeof(FulfillmentServiceGeneralError), StatusCodes.Status400BadRequest)]
-    public override Task CreateFulfillmentService([Required] CreateFulfillmentServiceRequest request)
-    {
+    public override Task CreateFulfillmentService([Required] CreateFulfillmentServiceRequest request) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpGet, Route("fulfillment_services/{fulfillment_service_id:long}.json")]
+    [HttpGet]
+    [Route("fulfillment_services/{fulfillment_service_id:long}.json")]
     [ProducesResponseType(typeof(FulfillmentServiceItem), StatusCodes.Status200OK)]
-    public override Task GetFulfillmentService([Required] long fulfillment_service_id)
-    {
+    public override Task GetFulfillmentService([Required] long fulfillment_service_id) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
     /// <inheritdoc cref="FulfillmentServiceControllerBase.UpdateFulfillmentService" />
-    [HttpPut, Route("fulfillment_services/{fulfillment_service_id:long}.json")]
+    [HttpPut]
+    [Route("fulfillment_services/{fulfillment_service_id:long}.json")]
     [ProducesResponseType(typeof(FulfillmentServiceItem), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(FulfillmentServiceGeneralError), StatusCodes.Status400BadRequest)]
-    public override Task UpdateFulfillmentService([Required] UpdateFulfillmentServiceRequest request, [Required] long fulfillment_service_id)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task UpdateFulfillmentService([Required] UpdateFulfillmentServiceRequest request,
+        [Required] long fulfillment_service_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpDelete, Route("fulfillment_services/{fulfillment_service_id:long}.json")]
+    [HttpDelete]
+    [Route("fulfillment_services/{fulfillment_service_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteFulfillmentService([Required] long fulfillment_service_id)
-    {
+    public override Task DeleteFulfillmentService([Required] long fulfillment_service_id) =>
         throw new NotImplementedException();
-    }
 }

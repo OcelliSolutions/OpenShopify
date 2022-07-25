@@ -11,12 +11,11 @@ namespace OpenShopify.Admin.Builder.Controllers.TenderTransaction;
 public class TenderTransactionController : TenderTransactionControllerBase
 {
     /// <inheritdoc />
-    [HttpGet, Route("tender_transactions.json")]
+    [HttpGet]
+    [Route("tender_transactions.json")]
     [ProducesResponseType(typeof(TenderTransactionList), StatusCodes.Status200OK)]
     public override Task ListTenderTransactions(int? limit = null, string? page_info = null, string? order = null,
         DateTimeOffset? processed_at = null, DateTimeOffset? processed_at_max = null,
-        DateTimeOffset? processed_at_min = null, long? since_id = null)
-    {
+        DateTimeOffset? processed_at_min = null, long? since_id = null) =>
         throw new NotImplementedException();
-    }
 }

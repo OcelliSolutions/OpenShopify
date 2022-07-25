@@ -11,10 +11,8 @@ namespace OpenShopify.Admin.Builder.Controllers.StoreProperties;
 public class CurrencyController : CurrencyControllerBase
 {
     /// <inheritdoc />
-    [HttpGet, Route("currencies.json")]
+    [HttpGet]
+    [Route("currencies.json")]
     [ProducesResponseType(typeof(CurrencyList), StatusCodes.Status200OK)]
-    public override Task ListCurrenciesEnabledOnShop()
-    {
-        throw new NotImplementedException();
-    }
+    public override Task ListCurrenciesEnabledOnShop() => throw new NotImplementedException();
 }

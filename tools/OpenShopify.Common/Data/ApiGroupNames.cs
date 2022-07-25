@@ -6,45 +6,45 @@ namespace OpenShopify.Common.Data;
 
 public enum ApiGroupNames
 {
-    [GroupInfo(Title = "Access", Description = "Authentication and Authorization", Version = "2022-04")]
+    [GroupInfo(Title = "Access", Description = "Authentication and Authorization", Version = "2022-07")]
     Access,
-    [GroupInfo(Title = "Access (OAuth)", Description = "OAuth", Version = "2022-04")]
+    [GroupInfo(Title = "Access (OAuth)", Description = "OAuth", Version = "2022-07")]
     AccessOAuth,
-    [GroupInfo(Title = "Analytics", Description = "Reporting and Analytics", Version = "2022-04")]
+    [GroupInfo(Title = "Analytics", Description = "Reporting and Analytics", Version = "2022-07")]
     Analytics,
-    [GroupInfo(Title = "Billing", Description = "Billing", Version = "2022-04")]
+    [GroupInfo(Title = "Billing", Description = "Billing", Version = "2022-07")]
     Billing,
-    [GroupInfo(Title = "Customers", Description = "Customers", Version = "2022-04")]
+    [GroupInfo(Title = "Customers", Description = "Customers", Version = "2022-07")]
     Customers,
-    [GroupInfo(Title = "Deprecated API Calls", Description = "Deprecated API Calls", Version = "2022-04")]
+    [GroupInfo(Title = "Deprecated API Calls", Description = "Deprecated API Calls", Version = "2022-07")]
     DeprecatedApiCalls,
-    [GroupInfo(Title = "Discounts", Description = "Discounts", Version = "2022-04")]
+    [GroupInfo(Title = "Discounts", Description = "Discounts", Version = "2022-07")]
     Discounts,
-    [GroupInfo(Title = "Events", Description = "Events", Version = "2022-04")]
+    [GroupInfo(Title = "Events", Description = "Events", Version = "2022-07")]
     Events,
-    [GroupInfo(Title = "Inventory", Description = "Inventory", Version = "2022-04")]
+    [GroupInfo(Title = "Inventory", Description = "Inventory", Version = "2022-07")]
     Inventory,
-    [GroupInfo(Title = "Marketing Event", Description = "Marketing Event", Version = "2022-04")]
+    [GroupInfo(Title = "Marketing Event", Description = "Marketing Event", Version = "2022-07")]
     MarketingEvent,
-    [GroupInfo(Title = "Metafield", Description = "Metafield", Version = "2022-04")]
+    [GroupInfo(Title = "Metafield", Description = "Metafield", Version = "2022-07")]
     Metafield,
-    [GroupInfo(Title = "Online Store", Description = "Online Store", Version = "2022-04")]
+    [GroupInfo(Title = "Online Store", Description = "Online Store", Version = "2022-07")]
     OnlineStore,
-    [GroupInfo(Title = "Orders", Description = "Orders", Version = "2022-04")]
+    [GroupInfo(Title = "Orders", Description = "Orders", Version = "2022-07")]
     Orders,
-    [GroupInfo(Title = "Plus", Description = "Plus", Version = "2022-04")]
+    [GroupInfo(Title = "Plus", Description = "Plus", Version = "2022-07")]
     Plus,
-    [GroupInfo(Title = "Products", Description = "Products", Version = "2022-04")]
+    [GroupInfo(Title = "Products", Description = "Products", Version = "2022-07")]
     Products,
-    [GroupInfo(Title = "Sales Channels", Description = "Sales Channels", Version = "2022-04")]
+    [GroupInfo(Title = "Sales Channels", Description = "Sales Channels", Version = "2022-07")]
     SalesChannels,
-    [GroupInfo(Title = "Shipping & Fulfillment", Description = "Shipping & Fulfillment", Version = "2022-04")]
+    [GroupInfo(Title = "Shipping & Fulfillment", Description = "Shipping & Fulfillment", Version = "2022-07")]
     ShippingAndFulfillment,
-    [GroupInfo(Title = "Shopify Payments", Description = "Shopify Payments", Version = "2022-04")]
+    [GroupInfo(Title = "Shopify Payments", Description = "Shopify Payments", Version = "2022-07")]
     ShopifyPayments,
-    [GroupInfo(Title = "Store Properties", Description = "Store Properties", Version = "2022-04")]
+    [GroupInfo(Title = "Store Properties", Description = "Store Properties", Version = "2022-07")]
     StoreProperties,
-    [GroupInfo(Title = "Tender Transaction", Description = "Tender Transaction", Version = "2022-04")]
+    [GroupInfo(Title = "Tender Transaction", Description = "Tender Transaction", Version = "2022-07")]
     TenderTransaction
 }
 

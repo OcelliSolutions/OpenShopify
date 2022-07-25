@@ -5,7 +5,7 @@
     "description": "        <p>Transactions are created for every order that results in an exchange of money.</p>\n        {{ '/api/reference/transaction.png' | image }}\n        <p>There are five types of transactions:</p>\n        <ul>\n         <li><strong>Authorization</strong>: An amount reserved against the cardholder's funding source. Money does not change hands until the authorization is captured.</li>\n         <li><strong>Sale</strong>: An authorization and capture performed together in a single step.</li>\n         <li><strong>Capture</strong>: A transfer of the money that was reserved during the authorization stage.</li>\n         <li><strong>Void</strong>: A cancellation of a pending authorization or capture.</li>\n         <li><strong>Refund</strong>: A partial or full return of captured funds to the cardholder. A refund can happen only after a capture is processed.</li>\n        </ul>\n        <p>Refund transactions must be created by using the <a href=\"/docs/admin-api/rest/reference/orders/refund\">Refund resource</a>.</p>\n        <div class=\"note\">\n          <h4>Note</h4>\n          <p>An order can have more than one authorization transaction associated with it. This might happen when an order is edited or when a post-purchase upsell is added to the order. To be notified when an order is edited subscribe to the OrderEdit webhook.</p>\n          <p>If your app captures payments, you should make a <code>GET</code> request to the <code>/admin/api/{version}/orders/{order_id}/transactions.json</code> endpoint to retrieve the\n           authorization transactions associated with an order. Then, to complete the full order payment capture, you should use the <code>authorization</code> or <code>parent_id</code>\n           properties in separate capture <code>POST</code> requests to the same endpoint for each authorization transaction.</p>\n        </div>\n        <div class=\"note\">\n          <h4>Note</h4>\n          <p>An order can have no more than 100 transactions associated with it.</p>\n        </div>\n",
     "x-owner": "https://vault.shopify.io/teams/255",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -199,7 +199,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/transactions.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/transactions.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/orders/450789469/transactions.json",
@@ -215,7 +215,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -223,18 +223,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.all({\n  session: test_session,\n  order_id: 450789469,\n});"
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.all({\n  session: test_session,\n  order_id: 450789469,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "since_id=801038806",
-          "request_path": "/admin/api/2022-04/orders/450789469/transactions.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/transactions.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/orders/450789469/transactions.json",
@@ -250,7 +250,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/transactions.json?since_id=801038806\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/transactions.json?since_id=801038806\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -258,11 +258,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.all({\n  session: test_session,\n  order_id: 450789469,\n  since_id: \"801038806\",\n});"
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.all({\n  session: test_session,\n  order_id: 450789469,\n  since_id: \"801038806\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [\"since_id\" => \"801038806\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::all(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [\"since_id\" => \"801038806\"], // Params\n);"
             }
           ]
         }
@@ -467,7 +467,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/transactions.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/transactions.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/transactions.json",
@@ -483,26 +483,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"capture\",\"parent_id\":389404469}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"capture\",\"parent_id\":389404469}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.currency = \"USD\"\ntransaction.amount = \"10.00\"\ntransaction.kind = \"capture\"\ntransaction.parent_id = 389404469\ntransaction.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.currency = \"USD\"\ntransaction.amount = \"10.00\"\ntransaction.kind = \"capture\"\ntransaction.parent_id = 389404469\ntransaction.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"capture\";\ntransaction.parent_id = 389404469;\nawait transaction.save({});"
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"capture\";\ntransaction.parent_id = 389404469;\nawait transaction.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->currency = \"USD\";\n$transaction->amount = \"10.00\";\n$transaction->kind = \"capture\";\n$transaction->parent_id = 389404469;\n$transaction->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->currency = \"USD\";\n$transaction->amount = \"10.00\";\n$transaction->kind = \"capture\";\n$transaction->parent_id = 389404469;\n$transaction->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/transactions.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/transactions.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/transactions.json",
@@ -518,26 +518,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"void\",\"parent_id\":389404469}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"void\",\"parent_id\":389404469}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.currency = \"USD\"\ntransaction.amount = \"10.00\"\ntransaction.kind = \"void\"\ntransaction.parent_id = 389404469\ntransaction.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.currency = \"USD\"\ntransaction.amount = \"10.00\"\ntransaction.kind = \"void\"\ntransaction.parent_id = 389404469\ntransaction.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"void\";\ntransaction.parent_id = 389404469;\nawait transaction.save({});"
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"void\";\ntransaction.parent_id = 389404469;\nawait transaction.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->currency = \"USD\";\n$transaction->amount = \"10.00\";\n$transaction->kind = \"void\";\n$transaction->parent_id = 389404469;\n$transaction->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->currency = \"USD\";\n$transaction->amount = \"10.00\";\n$transaction->kind = \"void\";\n$transaction->parent_id = 389404469;\n$transaction->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/transactions.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/transactions.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/transactions.json",
@@ -553,26 +553,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"capture\",\"parent_id\":389404469,\"test\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"transaction\":{\"currency\":\"USD\",\"amount\":\"10.00\",\"kind\":\"capture\",\"parent_id\":389404469,\"test\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.currency = \"USD\"\ntransaction.amount = \"10.00\"\ntransaction.kind = \"capture\"\ntransaction.parent_id = 389404469\ntransaction.test = true\ntransaction.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.currency = \"USD\"\ntransaction.amount = \"10.00\"\ntransaction.kind = \"capture\"\ntransaction.parent_id = 389404469\ntransaction.test = true\ntransaction.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"capture\";\ntransaction.parent_id = 389404469;\ntransaction.test = true;\nawait transaction.save({});"
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.currency = \"USD\";\ntransaction.amount = \"10.00\";\ntransaction.kind = \"capture\";\ntransaction.parent_id = 389404469;\ntransaction.test = true;\nawait transaction.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->currency = \"USD\";\n$transaction->amount = \"10.00\";\n$transaction->kind = \"capture\";\n$transaction->parent_id = 389404469;\n$transaction->test = true;\n$transaction->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->currency = \"USD\";\n$transaction->amount = \"10.00\";\n$transaction->kind = \"capture\";\n$transaction->parent_id = 389404469;\n$transaction->test = true;\n$transaction->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/transactions.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/transactions.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/orders/450789469/transactions.json",
@@ -588,19 +588,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"transaction\":{\"kind\":\"capture\",\"authorization\":\"authorization-key\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"transaction\":{\"kind\":\"capture\",\"authorization\":\"authorization-key\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/transactions.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.kind = \"capture\"\ntransaction.authorization = \"authorization-key\"\ntransaction.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ntransaction = ShopifyAPI::Transaction.new(session: test_session)\ntransaction.order_id = 450789469\ntransaction.kind = \"capture\"\ntransaction.authorization = \"authorization-key\"\ntransaction.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.kind = \"capture\";\ntransaction.authorization = \"authorization-key\";\nawait transaction.save({});"
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst transaction = new Transaction({session: test_session});\ntransaction.order_id = 450789469;\ntransaction.kind = \"capture\";\ntransaction.authorization = \"authorization-key\";\nawait transaction.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->kind = \"capture\";\n$transaction->authorization = \"authorization-key\";\n$transaction->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$transaction = new Transaction($this->test_session);\n$transaction->order_id = 450789469;\n$transaction->kind = \"capture\";\n$transaction->authorization = \"authorization-key\";\n$transaction->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -650,7 +650,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/transactions/count.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/transactions/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/orders/450789469/transactions/count.json",
@@ -666,7 +666,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/transactions/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/transactions/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -674,11 +674,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.count({\n  session: test_session,\n  order_id: 450789469,\n});"
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.count({\n  session: test_session,\n  order_id: 450789469,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::count(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::count(\n    $this->test_session, // Session\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -787,7 +787,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/orders/450789469/transactions/389404469.json",
+          "request_path": "/admin/api/2022-07/orders/450789469/transactions/389404469.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2021-01/orders/450789469/transactions/389404469.json",
@@ -803,7 +803,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/orders/450789469/transactions/389404469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/orders/450789469/transactions/389404469.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -811,11 +811,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.find({\n  session: test_session,\n  order_id: 450789469,\n  id: 389404469,\n});"
+              "example_code": "import {Transaction} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Transaction.find({\n  session: test_session,\n  order_id: 450789469,\n  id: 389404469,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::find(\n    $this->test_session, // Session\n    389404469, // Id\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Transaction;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nTransaction::find(\n    $this->test_session, // Session\n    389404469, // Id\n    [\"order_id\" => \"450789469\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -1027,5 +1027,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

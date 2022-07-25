@@ -5,7 +5,7 @@
     "description": "Payouts represent the movement of money between a Shopify Payments\naccount balance and a connected bank account.\n",
     "x-owner": "https://vault.shopify.io/teams/663",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -344,7 +344,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/shopify_payments/payouts.json",
+          "request_path": "/admin/api/2022-07/shopify_payments/payouts.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/shopify_payments/payouts.json",
@@ -360,7 +360,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/shopify_payments/payouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/shopify_payments/payouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -368,18 +368,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Payout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payout.all({\n  session: test_session,\n});"
+              "example_code": "import {Payout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payout.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayout::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Payout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayout::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "date_max=2012-11-12",
-          "request_path": "/admin/api/2022-04/shopify_payments/payouts.json",
+          "request_path": "/admin/api/2022-07/shopify_payments/payouts.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/shopify_payments/payouts.json",
@@ -395,7 +395,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/shopify_payments/payouts.json?date_max=2012-11-12\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/shopify_payments/payouts.json?date_max=2012-11-12\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -403,11 +403,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Payout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payout.all({\n  session: test_session,\n  date_max: \"2012-11-12\",\n});"
+              "example_code": "import {Payout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payout.all({\n  session: test_session,\n  date_max: \"2012-11-12\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayout::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"date_max\" => \"2012-11-12\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Payout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayout::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"date_max\" => \"2012-11-12\"], // Params\n);"
             }
           ]
         }
@@ -475,7 +475,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/shopify_payments/payouts/623721858.json",
+          "request_path": "/admin/api/2022-07/shopify_payments/payouts/623721858.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/shopify_payments/payouts/623721858.json",
@@ -491,7 +491,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/shopify_payments/payouts/623721858.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/shopify_payments/payouts/623721858.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -499,11 +499,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Payout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payout.find({\n  session: test_session,\n  id: 623721858,\n});"
+              "example_code": "import {Payout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Payout.find({\n  session: test_session,\n  id: 623721858,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Payout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayout::find(\n    $this->test_session, // Session\n    623721858, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Payout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nPayout::find(\n    $this->test_session, // Session\n    623721858, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -578,5 +578,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

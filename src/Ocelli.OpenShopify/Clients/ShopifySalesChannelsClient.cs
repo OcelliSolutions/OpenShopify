@@ -4488,7 +4488,7 @@ namespace Ocelli.OpenShopify
         public string? PaymentProcessingErrorMessage { get; set; } = default!;
 
         /// <summary>
-        /// Specifies the URL that your app or sales channel needs to send the customer to so that they can authenticate their payment. To learn more about how to use this property, refer to the [*Payments Apps overview*](/apps/payments).
+        /// Specifies the URL that your app or sales channel needs to send the customer to so that they can authenticate their payment. To learn more about how to use this property, refer to [*Payments Apps overview*](/apps/payments).
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("next_action")]
@@ -5048,7 +5048,7 @@ namespace Ocelli.OpenShopify
         public string? PaymentProcessingErrorMessage { get; set; } = default!;
 
         /// <summary>
-        /// Specifies the URL that your app or sales channel needs to send the customer to so that they can authenticate their payment. To learn more about how to use this property, refer to the [*Payments Apps overview*](/apps/payments).
+        /// Specifies the URL that your app or sales channel needs to send the customer to so that they can authenticate their payment. To learn more about how to use this property, refer to [*Payments Apps overview*](/apps/payments).
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("next_action")]

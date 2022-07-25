@@ -38,7 +38,7 @@ public class RecurringApplicationChargeTests : IClassFixture<RecurringApplicatio
     
     #region Read
 
-    [SkippableFact(Skip = "Unknown required scope.")]
+    [SkippableFact]
     [TestPriority(20)]
     public async Task ListRecurringApplicationChargesAsync_AdditionalPropertiesAreEmpty()
     {
@@ -48,17 +48,18 @@ public class RecurringApplicationChargeTests : IClassFixture<RecurringApplicatio
         {
             _additionalPropertiesHelper.CheckAdditionalProperties(recurringApplicationCharge, Fixture.MyShopifyUrl);
         }
-
-        var list = response.Result.RecurringApplicationCharges;
-        Assert.True(list.Any());
+        
+        Skip.If(!response.Result.RecurringApplicationCharges.Any(), "No results returned. Unable to test");
     }
 
-    [SkippableFact(Skip = "Unknown required scope.")]
+    [SkippableFact]
     [TestPriority(20)]
     public async Task GetRecurringApplicationChargeAsync_AdditionalPropertiesAreEmpty()
     {
         var recurringApplicationChargeListResponse =
             await Fixture.Service.RecurringApplicationCharge.ListRecurringApplicationChargesAsync();
+
+        Skip.If(!recurringApplicationChargeListResponse.Result.RecurringApplicationCharges.Any(), "No results returned. Unable to test");
         var response = await Fixture.Service.RecurringApplicationCharge.GetChargeAsync(recurringApplicationChargeListResponse
             .Result.RecurringApplicationCharges.First().Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);

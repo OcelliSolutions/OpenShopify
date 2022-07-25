@@ -6,7 +6,7 @@ namespace Ocelli.OpenShopify;
 
 public abstract class ShopifyService
 {
-    protected const string Version = "2022-04";
+    protected const string Version = "2022-07";
     internal static ConcurrentDictionary<string, HttpClient> ShopifyHttpClients = new();
     protected JsonSerializerOptions Options = new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull};
 
@@ -21,7 +21,7 @@ public abstract class ShopifyService
         var httpClient = new HttpClient(new RateLimitHttpMessageHandler
         {
             InnerHandler = new HttpClientHandler(), 
-            CallsPerMinute = isPlusStore ? 80 : 40
+            CallsPerMinute = isPlusStore ? 75 : 35
         });
         httpClient.DefaultRequestHeaders.Clear();
         httpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Shopify-Access-Token", shopAccessToken);

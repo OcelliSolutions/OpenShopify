@@ -12,35 +12,32 @@ namespace OpenShopify.Admin.Builder.Controllers.OnlineStore;
 public class AssetController : AssetControllerBase
 {
     /// <inheritdoc />
-    [HttpGet, Route("themes/{theme_id:long}/assets.json")]
+    [HttpGet]
+    [Route("themes/{theme_id:long}/assets.json")]
     [ProducesResponseType(typeof(AssetList), StatusCodes.Status200OK)]
-    public override Task ListAssetsForTheme([Required] long theme_id, string? fields = null)
-    {
+    public override Task ListAssetsForTheme([Required] long theme_id, string? fields = null) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpPut, Route("themes/{theme_id:long}/assets.json")]
+    [HttpPut]
+    [Route("themes/{theme_id:long}/assets.json")]
     [ProducesResponseType(typeof(AssetItem), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
-    public override Task CreateOrUpdatesAssetForTheme([Required] CreateOrUpdatesAssetForThemeRequest request, [Required] long theme_id)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task CreateOrUpdatesAssetForTheme([Required] CreateOrUpdatesAssetForThemeRequest request,
+        [Required] long theme_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [IgnoreApi, HttpDelete, Route("themes/{theme_id:long}/assets.invalid")]
+    [IgnoreApi]
+    [HttpDelete]
+    [Route("themes/{theme_id:long}/assets.invalid")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteAssetFromTheme(string? assetkey = null, long? theme_id = null)
-    {
+    public override Task DeleteAssetFromTheme(string? assetkey = null, long? theme_id = null) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc cref="AssetControllerBase.DeleteAssetFromTheme" />
-    [HttpDelete, Route("themes/{theme_id:long}/assets.json")]
+    [HttpDelete]
+    [Route("themes/{theme_id:long}/assets.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public Task DeleteAssetFromTheme(long theme_id, [FromQuery(Name = "asset[key]")] string asset_key)
-    {
+    public Task DeleteAssetFromTheme(long theme_id, [FromQuery(Name = "asset[key]")] string asset_key) =>
         throw new NotImplementedException();
-    }
 }

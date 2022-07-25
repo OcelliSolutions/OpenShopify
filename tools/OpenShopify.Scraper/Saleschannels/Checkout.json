@@ -5,7 +5,7 @@
     "description": "    <p>If you're building an app with the <a href=\"/concepts/channels\">Sales Channel SDK</a>, then you can use\n    the Checkout API to let customers purchase products from Shopify stores that have installed your sales channel.</p>\n\n    <p>Shopify uses the Checkout resource to manage a user's cart as it transitions to a paid order. This process includes\n    specifying which line items are included in the checkout, attaching a customer's shipping and payment details, and\n    calculating tax and shipping rates. Credit card payments can be attached to a Checkout using the\n    <a href=\"/docs/admin-api/rest/reference/sales-channels/payment\">Payment</a> resource.</p>\n\n    <p>For a detailed tutorial that walks you through the key capabilities of the Checkout API, see\n    <a href=\"/apps/channels/checkout-api\"><em>Sell through the Checkout API</em></a>.</p>\n\n    <div class=\"note note\">\n      <h4>Note</h4>\n      <p>You can't use the Checkout API to create a new checkout user experience for an individual store. For that you\n      need to use an SDK that's powered by the <a href=\"/docs/storefront-api\">Storefront API</a> instead, such as the\n      <a href=\"/tools/libraries/storefront-api/javascript\">JavaScript Buy</a>, <a href=\"/tools/libraries/storefront-api/mobile\">iOS Buy</a>, and\n      <a href=\"/tools/libraries/storefront-api/mobile\">Android Buy</a> SDKs.</p>\n    </div>\n",
     "x-owner": "https://vault.shopify.io/teams/1526",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -249,7 +249,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts.json",
+          "request_path": "/admin/api/2022-07/checkouts.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/checkouts.json",
@@ -269,26 +269,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"checkout\":{\"line_items\":[{\"variant_id\":39072856,\"quantity\":5}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/b78d4099d9415288e788def7df19b7b3.json\"\n"
+              "example_code": "curl -d '{\"checkout\":{\"line_items\":[{\"variant_id\":39072856,\"quantity\":5}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/b78d4099d9415288e788def7df19b7b3.json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.line_items = [\n  {\n    \"variant_id\" => 39072856,\n    \"quantity\" => 5\n  }\n]\ncheckout.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.line_items = [\n  {\n    \"variant_id\" => 39072856,\n    \"quantity\" => 5\n  }\n]\ncheckout.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.line_items = [\n  {\n    \"variant_id\": 39072856,\n    \"quantity\": 5\n  }\n];\nawait checkout.save({});"
+              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.line_items = [\n  {\n    \"variant_id\": 39072856,\n    \"quantity\": 5\n  }\n];\nawait checkout.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->line_items = [\n    [\n        \"variant_id\" => 39072856,\n        \"quantity\" => 5\n    ]\n];\n$checkout->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->line_items = [\n    [\n        \"variant_id\" => 39072856,\n        \"quantity\" => 5\n    ]\n];\n$checkout->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts.json",
+          "request_path": "/admin/api/2022-07/checkouts.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/checkouts.json",
@@ -304,26 +304,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"checkout\":{\"line_items\":[{\"variant_id\":123456789,\"quantity\":1}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"checkout\":{\"line_items\":[{\"variant_id\":123456789,\"quantity\":1}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.line_items = [\n  {\n    \"variant_id\" => 123456789,\n    \"quantity\" => 1\n  }\n]\ncheckout.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.line_items = [\n  {\n    \"variant_id\" => 123456789,\n    \"quantity\" => 1\n  }\n]\ncheckout.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.line_items = [\n  {\n    \"variant_id\": 123456789,\n    \"quantity\": 1\n  }\n];\nawait checkout.save({});"
+              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.line_items = [\n  {\n    \"variant_id\": 123456789,\n    \"quantity\": 1\n  }\n];\nawait checkout.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->line_items = [\n    [\n        \"variant_id\" => 123456789,\n        \"quantity\" => 1\n    ]\n];\n$checkout->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->line_items = [\n    [\n        \"variant_id\" => 123456789,\n        \"quantity\" => 1\n    ]\n];\n$checkout->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts.json",
+          "request_path": "/admin/api/2022-07/checkouts.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/checkouts.json",
@@ -339,26 +339,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"checkout\":{\"line_items\":[{\"variant_id\":39072856,\"quantity\":1},{\"variant_id\":1,\"quantity\":1},{\"variant_id\":1,\"quantity\":1},{\"variant_id\":49148385,\"quantity\":1},{\"variant_id\":1,\"quantity\":1}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"checkout\":{\"line_items\":[{\"variant_id\":39072856,\"quantity\":1},{\"variant_id\":1,\"quantity\":1},{\"variant_id\":1,\"quantity\":1},{\"variant_id\":49148385,\"quantity\":1},{\"variant_id\":1,\"quantity\":1}]}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.line_items = [\n  {\n    \"variant_id\" => 39072856,\n    \"quantity\" => 1\n  },\n  {\n    \"variant_id\" => 1,\n    \"quantity\" => 1\n  },\n  {\n    \"variant_id\" => 1,\n    \"quantity\" => 1\n  },\n  {\n    \"variant_id\" => 49148385,\n    \"quantity\" => 1\n  },\n  {\n    \"variant_id\" => 1,\n    \"quantity\" => 1\n  }\n]\ncheckout.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.line_items = [\n  {\n    \"variant_id\" => 39072856,\n    \"quantity\" => 1\n  },\n  {\n    \"variant_id\" => 1,\n    \"quantity\" => 1\n  },\n  {\n    \"variant_id\" => 1,\n    \"quantity\" => 1\n  },\n  {\n    \"variant_id\" => 49148385,\n    \"quantity\" => 1\n  },\n  {\n    \"variant_id\" => 1,\n    \"quantity\" => 1\n  }\n]\ncheckout.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.line_items = [\n  {\n    \"variant_id\": 39072856,\n    \"quantity\": 1\n  },\n  {\n    \"variant_id\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"variant_id\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"variant_id\": 49148385,\n    \"quantity\": 1\n  },\n  {\n    \"variant_id\": 1,\n    \"quantity\": 1\n  }\n];\nawait checkout.save({});"
+              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.line_items = [\n  {\n    \"variant_id\": 39072856,\n    \"quantity\": 1\n  },\n  {\n    \"variant_id\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"variant_id\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"variant_id\": 49148385,\n    \"quantity\": 1\n  },\n  {\n    \"variant_id\": 1,\n    \"quantity\": 1\n  }\n];\nawait checkout.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->line_items = [\n    [\n        \"variant_id\" => 39072856,\n        \"quantity\" => 1\n    ],\n    [\n        \"variant_id\" => 1,\n        \"quantity\" => 1\n    ],\n    [\n        \"variant_id\" => 1,\n        \"quantity\" => 1\n    ],\n    [\n        \"variant_id\" => 49148385,\n        \"quantity\" => 1\n    ],\n    [\n        \"variant_id\" => 1,\n        \"quantity\" => 1\n    ]\n];\n$checkout->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->line_items = [\n    [\n        \"variant_id\" => 39072856,\n        \"quantity\" => 1\n    ],\n    [\n        \"variant_id\" => 1,\n        \"quantity\" => 1\n    ],\n    [\n        \"variant_id\" => 1,\n        \"quantity\" => 1\n    ],\n    [\n        \"variant_id\" => 49148385,\n        \"quantity\" => 1\n    ],\n    [\n        \"variant_id\" => 1,\n        \"quantity\" => 1\n    ]\n];\n$checkout->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts.json",
+          "request_path": "/admin/api/2022-07/checkouts.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/checkouts.json",
@@ -378,19 +378,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"checkout\":{\"email\":\"me@example.com\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/bc4925b491a7b13f91e432c1b3206fea.json\"\n"
+              "example_code": "curl -d '{\"checkout\":{\"email\":\"me@example.com\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/bc4925b491a7b13f91e432c1b3206fea.json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.email = \"me@example.com\"\ncheckout.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.email = \"me@example.com\"\ncheckout.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.email = \"me@example.com\";\nawait checkout.save({});"
+              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.email = \"me@example.com\";\nawait checkout.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->email = \"me@example.com\";\n$checkout->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->email = \"me@example.com\";\n$checkout->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -554,7 +554,7 @@
         {
           "status": "202",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/b490a9220cd14d7344024f4874f640a6/complete.json",
+          "request_path": "/admin/api/2022-07/checkouts/b490a9220cd14d7344024f4874f640a6/complete.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/checkouts/b490a9220cd14d7344024f4874f640a6/complete.json",
@@ -576,7 +576,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/b490a9220cd14d7344024f4874f640a6/complete.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/b490a9220cd14d7344024f4874f640a6.json\" \\\n-H \"Retry-After: 1\"\n"
+              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/b490a9220cd14d7344024f4874f640a6/complete.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/b490a9220cd14d7344024f4874f640a6.json\" \\\n-H \"Retry-After: 1\"\n"
             },
             {
               "language": "ruby",
@@ -584,11 +584,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.token = \"b490a9220cd14d7344024f4874f640a6\";\nawait checkout.complete({});"
+              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.token = \"b490a9220cd14d7344024f4874f640a6\";\nawait checkout.complete({});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->token = \"b490a9220cd14d7344024f4874f640a6\";\n$checkout->complete(\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->token = \"b490a9220cd14d7344024f4874f640a6\";\n$checkout->complete(\n    [], // Params\n);"
             }
           ]
         }
@@ -1169,7 +1169,7 @@
         {
           "status": "202",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
+          "request_path": "/admin/api/2022-07/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
@@ -1191,7 +1191,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\" \\\n-H \"Retry-After: 1\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\" \\\n-H \"Retry-After: 1\"\n"
             },
             {
               "language": "ruby",
@@ -1199,18 +1199,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.find({\n  session: test_session,\n  token: \"exuw7apwoycchjuwtiqg8nytfhphr62a\",\n});"
+              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.find({\n  session: test_session,\n  token: \"exuw7apwoycchjuwtiqg8nytfhphr62a\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::find(\n    $this->test_session, // Session\n    \"exuw7apwoycchjuwtiqg8nytfhphr62a\", // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::find(\n    $this->test_session, // Session\n    \"exuw7apwoycchjuwtiqg8nytfhphr62a\", // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/bd5a8aa1ecd019dd3520ff791ee3a24c.json",
+          "request_path": "/admin/api/2022-07/checkouts/bd5a8aa1ecd019dd3520ff791ee3a24c.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/checkouts/bd5a8aa1ecd019dd3520ff791ee3a24c.json",
@@ -1230,7 +1230,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/bd5a8aa1ecd019dd3520ff791ee3a24c.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/bd5a8aa1ecd019dd3520ff791ee3a24c.json\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/bd5a8aa1ecd019dd3520ff791ee3a24c.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/bd5a8aa1ecd019dd3520ff791ee3a24c.json\"\n"
             },
             {
               "language": "ruby",
@@ -1238,18 +1238,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.find({\n  session: test_session,\n  token: \"bd5a8aa1ecd019dd3520ff791ee3a24c\",\n});"
+              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.find({\n  session: test_session,\n  token: \"bd5a8aa1ecd019dd3520ff791ee3a24c\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::find(\n    $this->test_session, // Session\n    \"bd5a8aa1ecd019dd3520ff791ee3a24c\", // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::find(\n    $this->test_session, // Session\n    \"bd5a8aa1ecd019dd3520ff791ee3a24c\", // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "202",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x.json",
+          "request_path": "/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x.json",
@@ -1271,7 +1271,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x.json\" \\\n-H \"Retry-After: 1\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/7yjf4v2we7gamku6a6h7tvm8h3mmvs4x.json\" \\\n-H \"Retry-After: 1\"\n"
             },
             {
               "language": "ruby",
@@ -1279,11 +1279,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.find({\n  session: test_session,\n  token: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n});"
+              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.find({\n  session: test_session,\n  token: \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::find(\n    $this->test_session, // Session\n    \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\", // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::find(\n    $this->test_session, // Session\n    \"7yjf4v2we7gamku6a6h7tvm8h3mmvs4x\", // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -1658,7 +1658,7 @@
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
+          "request_path": "/admin/api/2022-07/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
@@ -1674,26 +1674,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"checkout\":{\"token\":\"exuw7apwoycchjuwtiqg8nytfhphr62a\",\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Smith\",\"address1\":\"126 York St.\",\"city\":\"Beverly Hills\",\"province_code\":\"CA\",\"country_code\":\"US\",\"phone\":\"(123)456-7890\",\"zip\":\"1234\"}}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"checkout\":{\"token\":\"exuw7apwoycchjuwtiqg8nytfhphr62a\",\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Smith\",\"address1\":\"126 York St.\",\"city\":\"Beverly Hills\",\"province_code\":\"CA\",\"country_code\":\"US\",\"phone\":\"(123)456-7890\",\"zip\":\"1234\"}}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\"\ncheckout.shipping_address = {\n  \"first_name\" => \"John\",\n  \"last_name\" => \"Smith\",\n  \"address1\" => \"126 York St.\",\n  \"city\" => \"Beverly Hills\",\n  \"province_code\" => \"CA\",\n  \"country_code\" => \"US\",\n  \"phone\" => \"(123)456-7890\",\n  \"zip\" => \"1234\"\n}\ncheckout.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\"\ncheckout.shipping_address = {\n  \"first_name\" => \"John\",\n  \"last_name\" => \"Smith\",\n  \"address1\" => \"126 York St.\",\n  \"city\" => \"Beverly Hills\",\n  \"province_code\" => \"CA\",\n  \"country_code\" => \"US\",\n  \"phone\" => \"(123)456-7890\",\n  \"zip\" => \"1234\"\n}\ncheckout.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\ncheckout.shipping_address = {\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"address1\": \"126 York St.\",\n  \"city\": \"Beverly Hills\",\n  \"province_code\": \"CA\",\n  \"country_code\": \"US\",\n  \"phone\": \"(123)456-7890\",\n  \"zip\": \"1234\"\n};\nawait checkout.save({});"
+              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\ncheckout.shipping_address = {\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"address1\": \"126 York St.\",\n  \"city\": \"Beverly Hills\",\n  \"province_code\": \"CA\",\n  \"country_code\": \"US\",\n  \"phone\": \"(123)456-7890\",\n  \"zip\": \"1234\"\n};\nawait checkout.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\n$checkout->shipping_address = [\n    \"first_name\" => \"John\",\n    \"last_name\" => \"Smith\",\n    \"address1\" => \"126 York St.\",\n    \"city\" => \"Beverly Hills\",\n    \"province_code\" => \"CA\",\n    \"country_code\" => \"US\",\n    \"phone\" => \"(123)456-7890\",\n    \"zip\" => \"1234\"\n];\n$checkout->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\n$checkout->shipping_address = [\n    \"first_name\" => \"John\",\n    \"last_name\" => \"Smith\",\n    \"address1\" => \"126 York St.\",\n    \"city\" => \"Beverly Hills\",\n    \"province_code\" => \"CA\",\n    \"country_code\" => \"US\",\n    \"phone\" => \"(123)456-7890\",\n    \"zip\" => \"1234\"\n];\n$checkout->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "202",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
+          "request_path": "/admin/api/2022-07/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
@@ -1715,26 +1715,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"checkout\":{\"token\":\"exuw7apwoycchjuwtiqg8nytfhphr62a\",\"email\":\"john.smith@example.com\",\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Smith\",\"address1\":\"126 York St.\",\"city\":\"Los Angeles\",\"province_code\":\"CA\",\"country_code\":\"US\",\"phone\":\"(123)456-7890\",\"zip\":\"90002\"}}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\" \\\n-H \"Retry-After: 1\"\n"
+              "example_code": "curl -d '{\"checkout\":{\"token\":\"exuw7apwoycchjuwtiqg8nytfhphr62a\",\"email\":\"john.smith@example.com\",\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Smith\",\"address1\":\"126 York St.\",\"city\":\"Los Angeles\",\"province_code\":\"CA\",\"country_code\":\"US\",\"phone\":\"(123)456-7890\",\"zip\":\"90002\"}}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\" \\\n-H \"Retry-After: 1\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\"\ncheckout.email = \"john.smith@example.com\"\ncheckout.shipping_address = {\n  \"first_name\" => \"John\",\n  \"last_name\" => \"Smith\",\n  \"address1\" => \"126 York St.\",\n  \"city\" => \"Los Angeles\",\n  \"province_code\" => \"CA\",\n  \"country_code\" => \"US\",\n  \"phone\" => \"(123)456-7890\",\n  \"zip\" => \"90002\"\n}\ncheckout.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\"\ncheckout.email = \"john.smith@example.com\"\ncheckout.shipping_address = {\n  \"first_name\" => \"John\",\n  \"last_name\" => \"Smith\",\n  \"address1\" => \"126 York St.\",\n  \"city\" => \"Los Angeles\",\n  \"province_code\" => \"CA\",\n  \"country_code\" => \"US\",\n  \"phone\" => \"(123)456-7890\",\n  \"zip\" => \"90002\"\n}\ncheckout.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\ncheckout.email = \"john.smith@example.com\";\ncheckout.shipping_address = {\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"address1\": \"126 York St.\",\n  \"city\": \"Los Angeles\",\n  \"province_code\": \"CA\",\n  \"country_code\": \"US\",\n  \"phone\": \"(123)456-7890\",\n  \"zip\": \"90002\"\n};\nawait checkout.save({});"
+              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\ncheckout.email = \"john.smith@example.com\";\ncheckout.shipping_address = {\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"address1\": \"126 York St.\",\n  \"city\": \"Los Angeles\",\n  \"province_code\": \"CA\",\n  \"country_code\": \"US\",\n  \"phone\": \"(123)456-7890\",\n  \"zip\": \"90002\"\n};\nawait checkout.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\n$checkout->email = \"john.smith@example.com\";\n$checkout->shipping_address = [\n    \"first_name\" => \"John\",\n    \"last_name\" => \"Smith\",\n    \"address1\" => \"126 York St.\",\n    \"city\" => \"Los Angeles\",\n    \"province_code\" => \"CA\",\n    \"country_code\" => \"US\",\n    \"phone\" => \"(123)456-7890\",\n    \"zip\" => \"90002\"\n];\n$checkout->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\n$checkout->email = \"john.smith@example.com\";\n$checkout->shipping_address = [\n    \"first_name\" => \"John\",\n    \"last_name\" => \"Smith\",\n    \"address1\" => \"126 York St.\",\n    \"city\" => \"Los Angeles\",\n    \"province_code\" => \"CA\",\n    \"country_code\" => \"US\",\n    \"phone\" => \"(123)456-7890\",\n    \"zip\" => \"90002\"\n];\n$checkout->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
+          "request_path": "/admin/api/2022-07/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json",
@@ -1754,19 +1754,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"checkout\":{\"token\":\"exuw7apwoycchjuwtiqg8nytfhphr62a\",\"shipping_line\":{\"handle\":\"shopify-Free%20Shipping-0.00\"}}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\"\n"
+              "example_code": "curl -d '{\"checkout\":{\"token\":\"exuw7apwoycchjuwtiqg8nytfhphr62a\",\"shipping_line\":{\"handle\":\"shopify-Free%20Shipping-0.00\"}}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a.json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\"\ncheckout.shipping_line = {\n  \"handle\" => \"shopify-Free%20Shipping-0.00\"\n}\ncheckout.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncheckout = ShopifyAPI::Checkout.new(session: test_session)\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\"\ncheckout.shipping_line = {\n  \"handle\" => \"shopify-Free%20Shipping-0.00\"\n}\ncheckout.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\ncheckout.shipping_line = {\n  \"handle\": \"shopify-Free%20Shipping-0.00\"\n};\nawait checkout.save({});"
+              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst checkout = new Checkout({session: test_session});\ncheckout.token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\ncheckout.shipping_line = {\n  \"handle\": \"shopify-Free%20Shipping-0.00\"\n};\nawait checkout.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\n$checkout->shipping_line = [\n    \"handle\" => \"shopify-Free%20Shipping-0.00\"\n];\n$checkout->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$checkout = new Checkout($this->test_session);\n$checkout->token = \"exuw7apwoycchjuwtiqg8nytfhphr62a\";\n$checkout->shipping_line = [\n    \"handle\" => \"shopify-Free%20Shipping-0.00\"\n];\n$checkout->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -1850,7 +1850,7 @@
         {
           "status": "202",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json",
+          "request_path": "/admin/api/2022-07/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json",
@@ -1872,7 +1872,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json\" \\\n-H \"Retry-After: 1\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json\" \\\n-H \"Retry-After: 1\"\n"
             },
             {
               "language": "ruby",
@@ -1880,18 +1880,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.shipping_rates({\n  session: test_session,\n  token: \"exuw7apwoycchjuwtiqg8nytfhphr62a\",\n});"
+              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.shipping_rates({\n  session: test_session,\n  token: \"exuw7apwoycchjuwtiqg8nytfhphr62a\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::shipping_rates(\n    $this->test_session, // Session\n    \"exuw7apwoycchjuwtiqg8nytfhphr62a\", // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::shipping_rates(\n    $this->test_session, // Session\n    \"exuw7apwoycchjuwtiqg8nytfhphr62a\", // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json",
+          "request_path": "/admin/api/2022-07/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json",
@@ -1911,7 +1911,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/exuw7apwoycchjuwtiqg8nytfhphr62a/shipping_rates.json\"\n"
             },
             {
               "language": "ruby",
@@ -1919,18 +1919,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.shipping_rates({\n  session: test_session,\n  token: \"exuw7apwoycchjuwtiqg8nytfhphr62a\",\n});"
+              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.shipping_rates({\n  session: test_session,\n  token: \"exuw7apwoycchjuwtiqg8nytfhphr62a\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::shipping_rates(\n    $this->test_session, // Session\n    \"exuw7apwoycchjuwtiqg8nytfhphr62a\", // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::shipping_rates(\n    $this->test_session, // Session\n    \"exuw7apwoycchjuwtiqg8nytfhphr62a\", // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts/zs9ru89kuqcdagk8bz4r9hnxt22wwd42/shipping_rates.json",
+          "request_path": "/admin/api/2022-07/checkouts/zs9ru89kuqcdagk8bz4r9hnxt22wwd42/shipping_rates.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/checkouts/zs9ru89kuqcdagk8bz4r9hnxt22wwd42/shipping_rates.json",
@@ -1950,7 +1950,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts/zs9ru89kuqcdagk8bz4r9hnxt22wwd42/shipping_rates.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/zs9ru89kuqcdagk8bz4r9hnxt22wwd42/shipping_rates.json\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts/zs9ru89kuqcdagk8bz4r9hnxt22wwd42/shipping_rates.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Location: https://jsmith.myshopify.com/admin/api/unstable/checkouts/zs9ru89kuqcdagk8bz4r9hnxt22wwd42/shipping_rates.json\"\n"
             },
             {
               "language": "ruby",
@@ -1958,11 +1958,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.shipping_rates({\n  session: test_session,\n  token: \"zs9ru89kuqcdagk8bz4r9hnxt22wwd42\",\n});"
+              "example_code": "import {Checkout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Checkout.shipping_rates({\n  session: test_session,\n  token: \"zs9ru89kuqcdagk8bz4r9hnxt22wwd42\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::shipping_rates(\n    $this->test_session, // Session\n    \"zs9ru89kuqcdagk8bz4r9hnxt22wwd42\", // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Checkout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCheckout::shipping_rates(\n    $this->test_session, // Session\n    \"zs9ru89kuqcdagk8bz4r9hnxt22wwd42\", // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -2361,5 +2361,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

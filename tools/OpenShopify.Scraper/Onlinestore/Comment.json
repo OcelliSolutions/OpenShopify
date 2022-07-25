@@ -5,7 +5,7 @@
     "description": "        <p>A comment is a reader's response to an article in a blog. Comments appear on the article page in reverse chronological order, typically after the article body. Just as a blog can have any number of articles, an article can have any number of comments.</p>\n        {{ '/api/reference/comment.png' | image }}\n        <p>Article comments are a target for spammers, so Shopify blogs use a spam detection system to identify comments that are likely to be spam. Shop owners can also can mark comments as spam or not spam. Comments that are marked as spam are removed from the Shopify admin and don't appear in the blog.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/469",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -285,7 +285,7 @@
         {
           "status": "200",
           "request_query": "article_id=134645308&blog_id=241253187",
-          "request_path": "/admin/api/2022-04/comments.json",
+          "request_path": "/admin/api/2022-07/comments.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/comments.json",
@@ -301,7 +301,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/comments.json?article_id=134645308&blog_id=241253187\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/comments.json?article_id=134645308&blog_id=241253187\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -309,18 +309,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.all({\n  session: test_session,\n  article_id: \"134645308\",\n  blog_id: \"241253187\",\n});"
+              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.all({\n  session: test_session,\n  article_id: \"134645308\",\n  blog_id: \"241253187\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"article_id\" => \"134645308\", \"blog_id\" => \"241253187\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"article_id\" => \"134645308\", \"blog_id\" => \"241253187\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "blog_id=241253187",
-          "request_path": "/admin/api/2022-04/comments.json",
+          "request_path": "/admin/api/2022-07/comments.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/comments.json",
@@ -336,7 +336,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/comments.json?blog_id=241253187\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/comments.json?blog_id=241253187\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -344,18 +344,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.all({\n  session: test_session,\n  blog_id: \"241253187\",\n});"
+              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.all({\n  session: test_session,\n  blog_id: \"241253187\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"blog_id\" => \"241253187\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"blog_id\" => \"241253187\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/comments.json",
+          "request_path": "/admin/api/2022-07/comments.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/comments.json",
@@ -371,7 +371,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/comments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/comments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -379,18 +379,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.all({\n  session: test_session,\n});"
+              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "since_id=118373535",
-          "request_path": "/admin/api/2022-04/comments.json",
+          "request_path": "/admin/api/2022-07/comments.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/comments.json",
@@ -406,7 +406,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/comments.json?since_id=118373535\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/comments.json?since_id=118373535\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -414,11 +414,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.all({\n  session: test_session,\n  since_id: \"118373535\",\n});"
+              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.all({\n  session: test_session,\n  since_id: \"118373535\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"118373535\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"118373535\"], // Params\n);"
             }
           ]
         }
@@ -563,7 +563,7 @@
         {
           "status": "200",
           "request_query": "article_id=134645308&blog_id=241253187",
-          "request_path": "/admin/api/2022-04/comments/count.json",
+          "request_path": "/admin/api/2022-07/comments/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/comments/count.json",
@@ -579,7 +579,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/comments/count.json?article_id=134645308&blog_id=241253187\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/comments/count.json?article_id=134645308&blog_id=241253187\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -587,18 +587,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.count({\n  session: test_session,\n  article_id: \"134645308\",\n  blog_id: \"241253187\",\n});"
+              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.count({\n  session: test_session,\n  article_id: \"134645308\",\n  blog_id: \"241253187\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"article_id\" => \"134645308\", \"blog_id\" => \"241253187\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"article_id\" => \"134645308\", \"blog_id\" => \"241253187\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "blog_id=241253187",
-          "request_path": "/admin/api/2022-04/comments/count.json",
+          "request_path": "/admin/api/2022-07/comments/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/comments/count.json",
@@ -614,7 +614,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/comments/count.json?blog_id=241253187\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/comments/count.json?blog_id=241253187\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -622,18 +622,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.count({\n  session: test_session,\n  blog_id: \"241253187\",\n});"
+              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.count({\n  session: test_session,\n  blog_id: \"241253187\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"blog_id\" => \"241253187\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"blog_id\" => \"241253187\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/comments/count.json",
+          "request_path": "/admin/api/2022-07/comments/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/comments/count.json",
@@ -649,7 +649,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/comments/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/comments/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -657,11 +657,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.count({\n  session: test_session,\n});"
+              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.count({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -733,7 +733,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/comments/118373535.json",
+          "request_path": "/admin/api/2022-07/comments/118373535.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/comments/118373535.json",
@@ -749,7 +749,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/comments/118373535.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/comments/118373535.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -757,11 +757,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.find({\n  session: test_session,\n  id: 118373535,\n});"
+              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Comment.find({\n  session: test_session,\n  id: 118373535,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::find(\n    $this->test_session, // Session\n    118373535, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nComment::find(\n    $this->test_session, // Session\n    118373535, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -825,7 +825,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/comments/118373535.json",
+          "request_path": "/admin/api/2022-07/comments/118373535.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/comments/118373535.json",
@@ -841,19 +841,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"comment\":{\"id\":118373535,\"body\":\"You can even update through a web service.\",\"author\":\"Your new name\",\"email\":\"your@updated-email.com\",\"published_at\":\"2022-04-05T17:14:00.495Z\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/comments/118373535.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"comment\":{\"id\":118373535,\"body\":\"You can even update through a web service.\",\"author\":\"Your new name\",\"email\":\"your@updated-email.com\",\"published_at\":\"2022-04-05T17:14:00.495Z\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/comments/118373535.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncomment = ShopifyAPI::Comment.new(session: test_session)\ncomment.id = 118373535\ncomment.body = \"You can even update through a web service.\"\ncomment.author = \"Your new name\"\ncomment.email = \"your@updated-email.com\"\ncomment.published_at = \"2022-04-05T17:14:00.495Z\"\ncomment.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncomment = ShopifyAPI::Comment.new(session: test_session)\ncomment.id = 118373535\ncomment.body = \"You can even update through a web service.\"\ncomment.author = \"Your new name\"\ncomment.email = \"your@updated-email.com\"\ncomment.published_at = \"2022-04-05T17:14:00.495Z\"\ncomment.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 118373535;\ncomment.body = \"You can even update through a web service.\";\ncomment.author = \"Your new name\";\ncomment.email = \"your@updated-email.com\";\ncomment.published_at = \"2022-04-05T17:14:00.495Z\";\nawait comment.save({});"
+              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 118373535;\ncomment.body = \"You can even update through a web service.\";\ncomment.author = \"Your new name\";\ncomment.email = \"your@updated-email.com\";\ncomment.published_at = \"2022-04-05T17:14:00.495Z\";\nawait comment.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->id = 118373535;\n$comment->body = \"You can even update through a web service.\";\n$comment->author = \"Your new name\";\n$comment->email = \"your@updated-email.com\";\n$comment->published_at = \"2022-04-05T17:14:00.495Z\";\n$comment->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->id = 118373535;\n$comment->body = \"You can even update through a web service.\";\n$comment->author = \"Your new name\";\n$comment->email = \"your@updated-email.com\";\n$comment->published_at = \"2022-04-05T17:14:00.495Z\";\n$comment->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -933,7 +933,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/comments.json",
+          "request_path": "/admin/api/2022-07/comments.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/comments.json",
@@ -949,26 +949,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"comment\":{\"body\":\"I like comments\\nAnd I like posting them *RESTfully*.\",\"author\":\"Your name\",\"email\":\"your@email.com\",\"ip\":\"107.20.160.121\",\"blog_id\":241253187,\"article_id\":134645308}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/comments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"comment\":{\"body\":\"I like comments\\nAnd I like posting them *RESTfully*.\",\"author\":\"Your name\",\"email\":\"your@email.com\",\"ip\":\"107.20.160.121\",\"blog_id\":241253187,\"article_id\":134645308}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/comments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncomment = ShopifyAPI::Comment.new(session: test_session)\ncomment.body = \"I like comments\\nAnd I like posting them *RESTfully*.\"\ncomment.author = \"Your name\"\ncomment.email = \"your@email.com\"\ncomment.ip = \"107.20.160.121\"\ncomment.blog_id = 241253187\ncomment.article_id = 134645308\ncomment.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncomment = ShopifyAPI::Comment.new(session: test_session)\ncomment.body = \"I like comments\\nAnd I like posting them *RESTfully*.\"\ncomment.author = \"Your name\"\ncomment.email = \"your@email.com\"\ncomment.ip = \"107.20.160.121\"\ncomment.blog_id = 241253187\ncomment.article_id = 134645308\ncomment.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.body = \"I like comments\\nAnd I like posting them *RESTfully*.\";\ncomment.author = \"Your name\";\ncomment.email = \"your@email.com\";\ncomment.ip = \"107.20.160.121\";\ncomment.blog_id = 241253187;\ncomment.article_id = 134645308;\nawait comment.save({});"
+              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.body = \"I like comments\\nAnd I like posting them *RESTfully*.\";\ncomment.author = \"Your name\";\ncomment.email = \"your@email.com\";\ncomment.ip = \"107.20.160.121\";\ncomment.blog_id = 241253187;\ncomment.article_id = 134645308;\nawait comment.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->body = \"I like comments\\nAnd I like posting them *RESTfully*.\";\n$comment->author = \"Your name\";\n$comment->email = \"your@email.com\";\n$comment->ip = \"107.20.160.121\";\n$comment->blog_id = 241253187;\n$comment->article_id = 134645308;\n$comment->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->body = \"I like comments\\nAnd I like posting them *RESTfully*.\";\n$comment->author = \"Your name\";\n$comment->email = \"your@email.com\";\n$comment->ip = \"107.20.160.121\";\n$comment->blog_id = 241253187;\n$comment->article_id = 134645308;\n$comment->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/comments.json",
+          "request_path": "/admin/api/2022-07/comments.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/comments.json",
@@ -984,19 +984,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"comment\":{\"article_id\":134645308}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/comments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"comment\":{\"article_id\":134645308}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/comments.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncomment = ShopifyAPI::Comment.new(session: test_session)\ncomment.article_id = 134645308\ncomment.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncomment = ShopifyAPI::Comment.new(session: test_session)\ncomment.article_id = 134645308\ncomment.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.article_id = 134645308;\nawait comment.save({});"
+              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.article_id = 134645308;\nawait comment.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->article_id = 134645308;\n$comment->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->article_id = 134645308;\n$comment->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -1058,7 +1058,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/comments/653537639/spam.json",
+          "request_path": "/admin/api/2022-07/comments/653537639/spam.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/comments/653537639/spam.json",
@@ -1074,7 +1074,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/comments/653537639/spam.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/comments/653537639/spam.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1082,11 +1082,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 653537639;\nawait comment.spam({});"
+              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 653537639;\nawait comment.spam({});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->id = 653537639;\n$comment->spam(\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->id = 653537639;\n$comment->spam(\n    [], // Params\n);"
             }
           ]
         }
@@ -1148,7 +1148,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/comments/653537639/not_spam.json",
+          "request_path": "/admin/api/2022-07/comments/653537639/not_spam.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/comments/653537639/not_spam.json",
@@ -1164,7 +1164,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/comments/653537639/not_spam.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/comments/653537639/not_spam.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1172,11 +1172,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 653537639;\nawait comment.not_spam({});"
+              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 653537639;\nawait comment.not_spam({});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->id = 653537639;\n$comment->not_spam(\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->id = 653537639;\n$comment->not_spam(\n    [], // Params\n);"
             }
           ]
         }
@@ -1238,7 +1238,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/comments/653537639/approve.json",
+          "request_path": "/admin/api/2022-07/comments/653537639/approve.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/comments/653537639/approve.json",
@@ -1254,7 +1254,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/comments/653537639/approve.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/comments/653537639/approve.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1262,11 +1262,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 653537639;\nawait comment.approve({});"
+              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 653537639;\nawait comment.approve({});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->id = 653537639;\n$comment->approve(\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->id = 653537639;\n$comment->approve(\n    [], // Params\n);"
             }
           ]
         }
@@ -1328,7 +1328,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/comments/653537639/remove.json",
+          "request_path": "/admin/api/2022-07/comments/653537639/remove.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/comments/653537639/remove.json",
@@ -1344,7 +1344,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/comments/653537639/remove.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/comments/653537639/remove.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1352,11 +1352,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 653537639;\nawait comment.remove({});"
+              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 653537639;\nawait comment.remove({});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->id = 653537639;\n$comment->remove(\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->id = 653537639;\n$comment->remove(\n    [], // Params\n);"
             }
           ]
         }
@@ -1418,7 +1418,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/comments/653537639/restore.json",
+          "request_path": "/admin/api/2022-07/comments/653537639/restore.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/comments/653537639/restore.json",
@@ -1434,7 +1434,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/comments/653537639/restore.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/comments/653537639/restore.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -1442,11 +1442,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 653537639;\nawait comment.restore({});"
+              "example_code": "import {Comment} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst comment = new Comment({session: test_session});\ncomment.id = 653537639;\nawait comment.restore({});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->id = 653537639;\n$comment->restore(\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Comment;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$comment = new Comment($this->test_session);\n$comment->id = 653537639;\n$comment->restore(\n    [], // Params\n);"
             }
           ]
         }
@@ -1566,5 +1566,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

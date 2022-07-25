@@ -12,52 +12,43 @@ namespace OpenShopify.Admin.Builder.Controllers.Products;
 public class CollectController : CollectControllerBase
 {
     /// <inheritdoc />
-    [IgnoreApi, HttpPost, Route("collects.invalid")]
+    [IgnoreApi]
+    [HttpPost]
+    [Route("collects.invalid")]
     [ProducesResponseType(typeof(CollectItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(CollectError), StatusCodes.Status422UnprocessableEntity)]
-    public override Task AddProductToCustomCollection()
-    {
-        throw new NotImplementedException();
-    }
+    public override Task AddProductToCustomCollection() => throw new NotImplementedException();
 
     /// <inheritdoc cref="CollectControllerBase.AddProductToCustomCollection" />
-    [HttpPost, Route("collects.json")]
+    [HttpPost]
+    [Route("collects.json")]
     [ProducesResponseType(typeof(CollectItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(CollectError), StatusCodes.Status422UnprocessableEntity)]
-    public Task AddProductToCustomCollection(CollectItem request)
-    {
-        throw new NotImplementedException();
-    }
+    public Task AddProductToCustomCollection(CollectItem request) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpGet, Route("collects.json")]
+    [HttpGet]
+    [Route("collects.json")]
     [ProducesResponseType(typeof(CollectList), StatusCodes.Status200OK)]
-    public override Task ListCollects(string? fields = null, int? limit = null, string? page_info = null, long? since_id = null)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task ListCollects(string? fields = null, int? limit = null, string? page_info = null,
+        long? since_id = null) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpDelete, Route("collects/{collect_id:long}.json")]
+    [HttpDelete]
+    [Route("collects/{collect_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteProductFromCollection([Required] long collect_id)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task DeleteProductFromCollection([Required] long collect_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpGet, Route("collects/{collect_id:long}.json")]
+    [HttpGet]
+    [Route("collects/{collect_id:long}.json")]
     [ProducesResponseType(typeof(CollectItem), StatusCodes.Status200OK)]
-    public override Task GetCollect([Required] long collect_id, string? fields = null)
-    {
+    public override Task GetCollect([Required] long collect_id, string? fields = null) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpGet, Route("collects/count.json")]
+    [HttpGet]
+    [Route("collects/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountCollects()
-    {
-        throw new NotImplementedException();
-    }
+    public override Task CountCollects() => throw new NotImplementedException();
 }

@@ -5,7 +5,7 @@
     "description": "        <div class=\"note note-plus\">\n        <h4>Shopify Plus</h4>\n          <p>The Gift Card resource is available for <a href=\"/concepts/apps#private-apps\">private apps</a> installed on <strong><a href=\"https://help.shopify.com/en/manual/intro-to-shopify/pricing-plans/shopify-plus\">Shopify Plus</a></strong> stores. As of API version 2021-04, the Gift Card resource is also available for <a href=\"/concepts/apps#custom-apps\">custom apps</a> installed on Shopify Plus stores.</p>\n          <p>Your app must request the <code>write_gift_cards</code> and <code>read_gift_cards</code> <a href=\"/docs/admin-api/access-scopes\">access scopes</a>. Merchants that want to sell or issue gift cards also need to <a href=\"https://help.shopify.com/en/manual/products/gift-card-products/add-update-gift-card-products#activate-the-gift-card-feature\">activate the gift card feature</a> in the Shopify admin.</p>\n        </div>\n        <p>A gift card is an alternative payment method. Each gift card has a unique code that is entered during checkout.\n        Its balance can be redeemed over multiple checkouts. Optionally, a gift card can assigned to a specific customer.\n        Gift card codes cannot be retrieved after they're created&mdash;only the last four characters can be retrieved.</p>\n        <p>You can use the GiftCard resource to create, retrieve, and update gift cards for a store. After a gift card is\n        created, only the expiry date, note, and template suffix can be updated.</p>\n\n        <div class=\"note\">\n          <h4>Note</h4>\n          <p>You can't delete gift cards, but you can disable them. You can't enable gift cards that were previously\n           disabled.</p>\n        </div>\n\n",
     "x-owner": "https://vault.shopify.io/teams/680",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -183,7 +183,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/gift_cards.json",
+          "request_path": "/admin/api/2022-07/gift_cards.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/gift_cards.json",
@@ -199,7 +199,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/gift_cards.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/gift_cards.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -207,18 +207,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait GiftCard.all({\n  session: test_session,\n});"
+              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait GiftCard.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "status=enabled",
-          "request_path": "/admin/api/2022-04/gift_cards.json",
+          "request_path": "/admin/api/2022-07/gift_cards.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/gift_cards.json",
@@ -234,7 +234,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/gift_cards.json?status=enabled\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/gift_cards.json?status=enabled\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -242,11 +242,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait GiftCard.all({\n  session: test_session,\n  status: \"enabled\",\n});"
+              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait GiftCard.all({\n  session: test_session,\n  status: \"enabled\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"enabled\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"enabled\"], // Params\n);"
             }
           ]
         }
@@ -329,7 +329,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/gift_cards.json",
+          "request_path": "/admin/api/2022-07/gift_cards.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/gift_cards.json",
@@ -345,26 +345,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"gift_card\":{\"note\":\"This is a note\",\"initial_value\":100.0,\"code\":\"ABCD EFGH IJKL MNOP\",\"template_suffix\":\"gift_cards.birthday.liquid\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/gift_cards.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"gift_card\":{\"note\":\"This is a note\",\"initial_value\":100.0,\"code\":\"ABCD EFGH IJKL MNOP\",\"template_suffix\":\"gift_cards.birthday.liquid\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/gift_cards.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ngift_card = ShopifyAPI::GiftCard.new(session: test_session)\ngift_card.note = \"This is a note\"\ngift_card.initial_value = 100.0\ngift_card.code = \"ABCD EFGH IJKL MNOP\"\ngift_card.template_suffix = \"gift_cards.birthday.liquid\"\ngift_card.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ngift_card = ShopifyAPI::GiftCard.new(session: test_session)\ngift_card.note = \"This is a note\"\ngift_card.initial_value = 100.0\ngift_card.code = \"ABCD EFGH IJKL MNOP\"\ngift_card.template_suffix = \"gift_cards.birthday.liquid\"\ngift_card.save!"
             },
             {
               "language": "node",
-              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst gift_card = new GiftCard({session: test_session});\ngift_card.note = \"This is a note\";\ngift_card.initial_value = 100.0;\ngift_card.code = \"ABCD EFGH IJKL MNOP\";\ngift_card.template_suffix = \"gift_cards.birthday.liquid\";\nawait gift_card.save({});"
+              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst gift_card = new GiftCard({session: test_session});\ngift_card.note = \"This is a note\";\ngift_card.initial_value = 100.0;\ngift_card.code = \"ABCD EFGH IJKL MNOP\";\ngift_card.template_suffix = \"gift_cards.birthday.liquid\";\nawait gift_card.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->note = \"This is a note\";\n$gift_card->initial_value = 100.0;\n$gift_card->code = \"ABCD EFGH IJKL MNOP\";\n$gift_card->template_suffix = \"gift_cards.birthday.liquid\";\n$gift_card->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->note = \"This is a note\";\n$gift_card->initial_value = 100.0;\n$gift_card->code = \"ABCD EFGH IJKL MNOP\";\n$gift_card->template_suffix = \"gift_cards.birthday.liquid\";\n$gift_card->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/gift_cards.json",
+          "request_path": "/admin/api/2022-07/gift_cards.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/gift_cards.json",
@@ -380,19 +380,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"gift_card\":{\"initial_value\":25.0}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/gift_cards.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"gift_card\":{\"initial_value\":25.0}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/gift_cards.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ngift_card = ShopifyAPI::GiftCard.new(session: test_session)\ngift_card.initial_value = 25.0\ngift_card.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ngift_card = ShopifyAPI::GiftCard.new(session: test_session)\ngift_card.initial_value = 25.0\ngift_card.save!"
             },
             {
               "language": "node",
-              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst gift_card = new GiftCard({session: test_session});\ngift_card.initial_value = 25.0;\nawait gift_card.save({});"
+              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst gift_card = new GiftCard({session: test_session});\ngift_card.initial_value = 25.0;\nawait gift_card.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->initial_value = 25.0;\n$gift_card->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->initial_value = 25.0;\n$gift_card->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -459,7 +459,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/gift_cards/1035197676.json",
+          "request_path": "/admin/api/2022-07/gift_cards/1035197676.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/gift_cards/1035197676.json",
@@ -475,7 +475,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/gift_cards/1035197676.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/gift_cards/1035197676.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -483,11 +483,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait GiftCard.find({\n  session: test_session,\n  id: 1035197676,\n});"
+              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait GiftCard.find({\n  session: test_session,\n  id: 1035197676,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::find(\n    $this->test_session, // Session\n    1035197676, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::find(\n    $this->test_session, // Session\n    1035197676, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -576,7 +576,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/gift_cards/1035197676.json",
+          "request_path": "/admin/api/2022-07/gift_cards/1035197676.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/gift_cards/1035197676.json",
@@ -592,26 +592,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"gift_card\":{\"id\":1035197676,\"note\":\"Updating with a new note\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/gift_cards/1035197676.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"gift_card\":{\"id\":1035197676,\"note\":\"Updating with a new note\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/gift_cards/1035197676.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ngift_card = ShopifyAPI::GiftCard.new(session: test_session)\ngift_card.id = 1035197676\ngift_card.note = \"Updating with a new note\"\ngift_card.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ngift_card = ShopifyAPI::GiftCard.new(session: test_session)\ngift_card.id = 1035197676\ngift_card.note = \"Updating with a new note\"\ngift_card.save!"
             },
             {
               "language": "node",
-              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst gift_card = new GiftCard({session: test_session});\ngift_card.id = 1035197676;\ngift_card.note = \"Updating with a new note\";\nawait gift_card.save({});"
+              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst gift_card = new GiftCard({session: test_session});\ngift_card.id = 1035197676;\ngift_card.note = \"Updating with a new note\";\nawait gift_card.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->id = 1035197676;\n$gift_card->note = \"Updating with a new note\";\n$gift_card->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->id = 1035197676;\n$gift_card->note = \"Updating with a new note\";\n$gift_card->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/gift_cards/1035197676.json",
+          "request_path": "/admin/api/2022-07/gift_cards/1035197676.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/gift_cards/1035197676.json",
@@ -627,19 +627,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"gift_card\":{\"id\":1035197676,\"expires_on\":\"2020-01-01\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/gift_cards/1035197676.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"gift_card\":{\"id\":1035197676,\"expires_on\":\"2020-01-01\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/gift_cards/1035197676.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ngift_card = ShopifyAPI::GiftCard.new(session: test_session)\ngift_card.id = 1035197676\ngift_card.expires_on = \"2020-01-01\"\ngift_card.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ngift_card = ShopifyAPI::GiftCard.new(session: test_session)\ngift_card.id = 1035197676\ngift_card.expires_on = \"2020-01-01\"\ngift_card.save!"
             },
             {
               "language": "node",
-              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst gift_card = new GiftCard({session: test_session});\ngift_card.id = 1035197676;\ngift_card.expires_on = \"2020-01-01\";\nawait gift_card.save({});"
+              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst gift_card = new GiftCard({session: test_session});\ngift_card.id = 1035197676;\ngift_card.expires_on = \"2020-01-01\";\nawait gift_card.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->id = 1035197676;\n$gift_card->expires_on = \"2020-01-01\";\n$gift_card->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->id = 1035197676;\n$gift_card->expires_on = \"2020-01-01\";\n$gift_card->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -704,7 +704,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/gift_cards/count.json",
+          "request_path": "/admin/api/2022-07/gift_cards/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/gift_cards/count.json",
@@ -720,7 +720,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/gift_cards/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/gift_cards/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -728,18 +728,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait GiftCard.count({\n  session: test_session,\n});"
+              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait GiftCard.count({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "status=enabled",
-          "request_path": "/admin/api/2022-04/gift_cards/count.json",
+          "request_path": "/admin/api/2022-07/gift_cards/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/gift_cards/count.json",
@@ -755,7 +755,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/gift_cards/count.json?status=enabled\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/gift_cards/count.json?status=enabled\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -763,11 +763,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait GiftCard.count({\n  session: test_session,\n  status: \"enabled\",\n});"
+              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait GiftCard.count({\n  session: test_session,\n  status: \"enabled\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"enabled\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"enabled\"], // Params\n);"
             }
           ]
         }
@@ -834,7 +834,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/gift_cards/1035197676/disable.json",
+          "request_path": "/admin/api/2022-07/gift_cards/1035197676/disable.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/gift_cards/1035197676/disable.json",
@@ -850,7 +850,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"gift_card\":{\"id\":1035197676}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/gift_cards/1035197676/disable.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"gift_card\":{\"id\":1035197676}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/gift_cards/1035197676/disable.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -858,11 +858,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst gift_card = new GiftCard({session: test_session});\ngift_card.id = 1035197676;\nawait gift_card.disable({\n  body: {\"gift_card\": {\"id\": 1035197676}},\n});"
+              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst gift_card = new GiftCard({session: test_session});\ngift_card.id = 1035197676;\nawait gift_card.disable({\n  body: {\"gift_card\": {\"id\": 1035197676}},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->id = 1035197676;\n$gift_card->disable(\n    [], // Params\n    [\"gift_card\" => [\"id\" => 1035197676]], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$gift_card = new GiftCard($this->test_session);\n$gift_card->id = 1035197676;\n$gift_card->disable(\n    [], // Params\n    [\"gift_card\" => [\"id\" => 1035197676]], // Body\n);"
             }
           ]
         }
@@ -958,7 +958,7 @@
         {
           "status": "200",
           "request_query": "query=last_characters%3Amnop",
-          "request_path": "/admin/api/2022-04/gift_cards/search.json",
+          "request_path": "/admin/api/2022-07/gift_cards/search.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/gift_cards/search.json",
@@ -974,7 +974,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/gift_cards/search.json?query=last_characters%3Amnop\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/gift_cards/search.json?query=last_characters%3Amnop\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -982,11 +982,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait GiftCard.search({\n  session: test_session,\n  query: \"last_characters:mnop\",\n});"
+              "example_code": "import {GiftCard} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait GiftCard.search({\n  session: test_session,\n  query: \"last_characters:mnop\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::search(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"query\" => \"last_characters:mnop\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\GiftCard;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nGiftCard::search(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"query\" => \"last_characters:mnop\"], // Params\n);"
             }
           ]
         }
@@ -1127,5 +1127,6 @@
     "shopify_plus": true,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

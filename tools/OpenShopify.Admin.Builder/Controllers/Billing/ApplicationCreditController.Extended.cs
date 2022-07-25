@@ -12,27 +12,23 @@ namespace OpenShopify.Admin.Builder.Controllers.Billing;
 public class ApplicationCreditController : ApplicationCreditControllerBase
 {
     /// <inheritdoc />
-    [HttpPost, Route("application_credits.json")]
+    [HttpPost]
+    [Route("application_credits.json")]
     [ProducesResponseType(typeof(ApplicationCreditItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ApplicationCreditError), StatusCodes.Status422UnprocessableEntity)]
-    public override Task CreateApplicationCredit([Required] CreateApplicationCreditRequest request)
-    {
+    public override Task CreateApplicationCredit([Required] CreateApplicationCreditRequest request) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpGet, Route("application_credits.json")]
+    [HttpGet]
+    [Route("application_credits.json")]
     [ProducesResponseType(typeof(ApplicationCreditList), StatusCodes.Status200OK)]
-    public override Task ListApplicationCredits(string? fields = null)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task ListApplicationCredits(string? fields = null) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpGet, Route("application_credits/{application_credit_id:long}.json")]
+    [HttpGet]
+    [Route("application_credits/{application_credit_id:long}.json")]
     [ProducesResponseType(typeof(ApplicationCreditItem), StatusCodes.Status200OK)]
-    public override Task GetApplicationCredit([Required] long application_credit_id, string? fields = null)
-    {
+    public override Task GetApplicationCredit([Required] long application_credit_id, string? fields = null) =>
         throw new NotImplementedException();
-    }
 }

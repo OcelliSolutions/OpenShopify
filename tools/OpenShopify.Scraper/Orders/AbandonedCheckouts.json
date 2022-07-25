@@ -5,7 +5,7 @@
     "description": "<p>You can use the <a href=\"/api/admin-rest/latest/resources/abandoned-checkouts#resource_object\">Abandoned checkouts</a> resource to retrieve a list and a count of abandoned checkouts. A checkout is considered abandoned after the customer has added contact information, but before the customer has completed their purchase.</p>\n  <p>This resource may be helpful to complete the following actions:</p>\n  <ul>\n    <li>Gather marketing information on customers who have abandoned their cart.</li>\n    <li>Use information to remarket to abandoned checkout customers.</li>\n    <li>Understand customers’ behavior.</li>\n    <li>Track abandoned checkouts over time.</li>\n    <li>View abandoned checkout items.</li>\n  </ul>\n",
     "x-owner": "https://vault.shopify.io/teams/2453",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -1074,7 +1074,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/checkouts.json",
+          "request_path": "/admin/api/2022-07/checkouts.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/checkouts.json",
@@ -1090,7 +1090,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -1098,18 +1098,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {AbandonedCheckout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AbandonedCheckout.checkouts({\n  session: test_session,\n});"
+              "example_code": "import {AbandonedCheckout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AbandonedCheckout.checkouts({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\AbandonedCheckout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAbandonedCheckout::checkouts(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\AbandonedCheckout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAbandonedCheckout::checkouts(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "limit=1",
-          "request_path": "/admin/api/2022-04/checkouts.json",
+          "request_path": "/admin/api/2022-07/checkouts.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/checkouts.json",
@@ -1125,7 +1125,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts.json?limit=1\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts.json?limit=1\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -1133,18 +1133,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {AbandonedCheckout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AbandonedCheckout.checkouts({\n  session: test_session,\n  limit: \"1\",\n});"
+              "example_code": "import {AbandonedCheckout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AbandonedCheckout.checkouts({\n  session: test_session,\n  limit: \"1\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\AbandonedCheckout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAbandonedCheckout::checkouts(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"limit\" => \"1\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\AbandonedCheckout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAbandonedCheckout::checkouts(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"limit\" => \"1\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "status=closed",
-          "request_path": "/admin/api/2022-04/checkouts.json",
+          "request_path": "/admin/api/2022-07/checkouts.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/checkouts.json",
@@ -1160,7 +1160,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts.json?status=closed\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts.json?status=closed\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -1168,18 +1168,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {AbandonedCheckout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AbandonedCheckout.checkouts({\n  session: test_session,\n  status: \"closed\",\n});"
+              "example_code": "import {AbandonedCheckout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AbandonedCheckout.checkouts({\n  session: test_session,\n  status: \"closed\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\AbandonedCheckout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAbandonedCheckout::checkouts(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"closed\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\AbandonedCheckout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAbandonedCheckout::checkouts(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"status\" => \"closed\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "created_at_max=2013-10-12T07%3A05%3A27-02%3A00",
-          "request_path": "/admin/api/2022-04/checkouts.json",
+          "request_path": "/admin/api/2022-07/checkouts.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/checkouts.json",
@@ -1195,7 +1195,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/checkouts.json?created_at_max=2013-10-12T07%3A05%3A27-02%3A00\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/checkouts.json?created_at_max=2013-10-12T07%3A05%3A27-02%3A00\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -1203,11 +1203,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {AbandonedCheckout} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AbandonedCheckout.checkouts({\n  session: test_session,\n  created_at_max: \"2013-10-12T07:05:27-02:00\",\n});"
+              "example_code": "import {AbandonedCheckout} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AbandonedCheckout.checkouts({\n  session: test_session,\n  created_at_max: \"2013-10-12T07:05:27-02:00\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\AbandonedCheckout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAbandonedCheckout::checkouts(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"created_at_max\" => \"2013-10-12T07:05:27-02:00\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\AbandonedCheckout;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAbandonedCheckout::checkouts(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"created_at_max\" => \"2013-10-12T07:05:27-02:00\"], // Params\n);"
             }
           ]
         }
@@ -1564,5 +1564,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

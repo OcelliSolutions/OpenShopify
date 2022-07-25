@@ -5,7 +5,7 @@
     "description": "        <p>The Collect resource connects a product to a custom collection.</p>\n        {{ '/api/reference/collect.png' | image }}\n        <p>Collects are meant for managing the relationship between products and custom collections. For every product in a custom collection there is a collect that tracks the ID of both the product and the custom collection. A product can be in more than one collection, and will have a collect connecting it to each collection. Unlike many Shopify resources, collects aren't apparent to store owners.</p>\n        <p>Collects are for placing products in custom collections only. <a href=\"/docs/admin-api/rest/reference/products/smartcollection\">Smart collections</a> use rules to determine which products are their members. Creating a collect that links a product to a smart collection results in a <strong>403 Forbidden</strong> error.</p>\n        <p>For more information on custom collections, see the <a href=\"/docs/admin-api/rest/reference/products/customcollection\">CustomCollection</a> resource.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/146",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -71,7 +71,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/collects.json",
+          "request_path": "/admin/api/2022-07/collects.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/collects.json",
@@ -87,26 +87,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"collect\":{\"product_id\":921728736,\"collection_id\":841564295}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/collects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"collect\":{\"product_id\":921728736,\"collection_id\":841564295}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/collects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncollect = ShopifyAPI::Collect.new(session: test_session)\ncollect.product_id = 921728736\ncollect.collection_id = 841564295\ncollect.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncollect = ShopifyAPI::Collect.new(session: test_session)\ncollect.product_id = 921728736\ncollect.collection_id = 841564295\ncollect.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst collect = new Collect({session: test_session});\ncollect.product_id = 921728736;\ncollect.collection_id = 841564295;\nawait collect.save({});"
+              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst collect = new Collect({session: test_session});\ncollect.product_id = 921728736;\ncollect.collection_id = 841564295;\nawait collect.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$collect = new Collect($this->test_session);\n$collect->product_id = 921728736;\n$collect->collection_id = 841564295;\n$collect->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$collect = new Collect($this->test_session);\n$collect->product_id = 921728736;\n$collect->collection_id = 841564295;\n$collect->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/collects.json",
+          "request_path": "/admin/api/2022-07/collects.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/collects.json",
@@ -122,19 +122,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"collect\":{\"body\":\"foobar\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/collects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"collect\":{\"body\":\"foobar\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/collects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncollect = ShopifyAPI::Collect.new(session: test_session)\ncollect.body = \"foobar\"\ncollect.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\ncollect = ShopifyAPI::Collect.new(session: test_session)\ncollect.body = \"foobar\"\ncollect.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst collect = new Collect({session: test_session});\ncollect.body = \"foobar\";\nawait collect.save({});"
+              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst collect = new Collect({session: test_session});\ncollect.body = \"foobar\";\nawait collect.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$collect = new Collect($this->test_session);\n$collect->body = \"foobar\";\n$collect->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$collect = new Collect($this->test_session);\n$collect->body = \"foobar\";\n$collect->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -296,7 +296,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/collects.json",
+          "request_path": "/admin/api/2022-07/collects.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-07/collects.json",
@@ -312,7 +312,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/collects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/collects.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -320,18 +320,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.all({\n  session: test_session,\n});"
+              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "product_id=632910392",
-          "request_path": "/admin/api/2022-04/collects.json",
+          "request_path": "/admin/api/2022-07/collects.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-07/collects.json",
@@ -347,7 +347,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/collects.json?product_id=632910392\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/collects.json?product_id=632910392\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -355,18 +355,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.all({\n  session: test_session,\n  product_id: \"632910392\",\n});"
+              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.all({\n  session: test_session,\n  product_id: \"632910392\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"product_id\" => \"632910392\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"product_id\" => \"632910392\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "collection_id=841564295",
-          "request_path": "/admin/api/2022-04/collects.json",
+          "request_path": "/admin/api/2022-07/collects.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-07/collects.json",
@@ -382,7 +382,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/collects.json?collection_id=841564295\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/collects.json?collection_id=841564295\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -390,11 +390,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.all({\n  session: test_session,\n  collection_id: \"841564295\",\n});"
+              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.all({\n  session: test_session,\n  collection_id: \"841564295\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"collection_id\" => \"841564295\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"collection_id\" => \"841564295\"], // Params\n);"
             }
           ]
         }
@@ -442,7 +442,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/collects/455204334.json",
+          "request_path": "/admin/api/2022-07/collects/455204334.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/collects/455204334.json",
@@ -458,7 +458,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/collects/455204334.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-07/collects/455204334.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -466,11 +466,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.delete({\n  session: test_session,\n  id: 455204334,\n});"
+              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.delete({\n  session: test_session,\n  id: 455204334,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::delete(\n    $this->test_session, // Session\n    455204334, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::delete(\n    $this->test_session, // Session\n    455204334, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -536,7 +536,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/collects/455204334.json",
+          "request_path": "/admin/api/2022-07/collects/455204334.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/collects/455204334.json",
@@ -552,7 +552,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/collects/455204334.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/collects/455204334.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -560,11 +560,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.find({\n  session: test_session,\n  id: 455204334,\n});"
+              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.find({\n  session: test_session,\n  id: 455204334,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::find(\n    $this->test_session, // Session\n    455204334, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::find(\n    $this->test_session, // Session\n    455204334, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -616,7 +616,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/collects/count.json",
+          "request_path": "/admin/api/2022-07/collects/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2020-01/collects/count.json",
@@ -632,7 +632,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/collects/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/collects/count.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -640,18 +640,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.count({\n  session: test_session,\n});"
+              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.count({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "product_id=632910392",
-          "request_path": "/admin/api/2022-04/collects/count.json",
+          "request_path": "/admin/api/2022-07/collects/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2020-01/collects/count.json",
@@ -667,7 +667,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/collects/count.json?product_id=632910392\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/collects/count.json?product_id=632910392\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -675,18 +675,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.count({\n  session: test_session,\n  product_id: \"632910392\",\n});"
+              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.count({\n  session: test_session,\n  product_id: \"632910392\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"product_id\" => \"632910392\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"product_id\" => \"632910392\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "collection_id=841564295",
-          "request_path": "/admin/api/2022-04/collects/count.json",
+          "request_path": "/admin/api/2022-07/collects/count.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2020-01/collects/count.json",
@@ -702,7 +702,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/collects/count.json?collection_id=841564295\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/collects/count.json?collection_id=841564295\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -710,11 +710,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.count({\n  session: test_session,\n  collection_id: \"841564295\",\n});"
+              "example_code": "import {Collect} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Collect.count({\n  session: test_session,\n  collection_id: \"841564295\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"collection_id\" => \"841564295\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Collect;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCollect::count(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"collection_id\" => \"841564295\"], // Params\n);"
             }
           ]
         }
@@ -793,5 +793,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

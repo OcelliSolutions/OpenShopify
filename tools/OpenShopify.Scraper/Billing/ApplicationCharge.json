@@ -5,7 +5,7 @@
     "description": "        <p>The ApplicationCharge resource facilitates one-time charges. This type of charge is recommended for apps that\n        aren’t billed on a recurring basis. You can create an application charge by sending a request with the name the charge should\n        appear under, the price your app is charging, and a return URL where Shopify redirects the merchant\n        after the charge is accepted. After you've created the charge, redirect the merchant to the confirmation URL returned by Shopify.\n        If the charge is declined, then Shopify redirects the merchant and provides a notification message that the app charge was declined.\n        For step-by-step guidance that walks through this flow using examples, see our <a href=\"/apps/billing/rest/implement-billing-model\">implementation guide</a>.</p>\n\n        <div class=\"note\">\n          <h4>Note</h4>\n          <p>For testing purposes you can include <code>\"test\": true</code> when creating the charge. This prevents the credit card from being charged.\n          Test shops and demo shops can't be charged.</p>\n        </div>\n",
     "x-owner": "https://vault.shopify.io/teams/1750",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -103,7 +103,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/application_charges.json",
+          "request_path": "/admin/api/2022-07/application_charges.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/application_charges.json",
@@ -119,26 +119,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"application_charge\":{\"name\":\"Super Duper Expensive action\",\"price\":100.0,\"return_url\":\"http://super-duper.shopifyapps.com\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"application_charge\":{\"name\":\"Super Duper Expensive action\",\"price\":100.0,\"return_url\":\"http://super-duper.shopifyapps.com\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_charge = ShopifyAPI::ApplicationCharge.new(session: test_session)\napplication_charge.name = \"Super Duper Expensive action\"\napplication_charge.price = 100.0\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\"\napplication_charge.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_charge = ShopifyAPI::ApplicationCharge.new(session: test_session)\napplication_charge.name = \"Super Duper Expensive action\"\napplication_charge.price = 100.0\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\"\napplication_charge.save!"
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_charge = new ApplicationCharge({session: test_session});\napplication_charge.name = \"Super Duper Expensive action\";\napplication_charge.price = 100.0;\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\";\nawait application_charge.save({});"
+              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_charge = new ApplicationCharge({session: test_session});\napplication_charge.name = \"Super Duper Expensive action\";\napplication_charge.price = 100.0;\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\";\nawait application_charge.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_charge = new ApplicationCharge($this->test_session);\n$application_charge->name = \"Super Duper Expensive action\";\n$application_charge->price = 100.0;\n$application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$application_charge->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_charge = new ApplicationCharge($this->test_session);\n$application_charge->name = \"Super Duper Expensive action\";\n$application_charge->price = 100.0;\n$application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$application_charge->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/application_charges.json",
+          "request_path": "/admin/api/2022-07/application_charges.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/application_charges.json",
@@ -154,26 +154,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"application_charge\":{\"name\":\"Super Duper Expensive action\",\"price\":100.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"test\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"application_charge\":{\"name\":\"Super Duper Expensive action\",\"price\":100.0,\"return_url\":\"http://super-duper.shopifyapps.com\",\"test\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_charge = ShopifyAPI::ApplicationCharge.new(session: test_session)\napplication_charge.name = \"Super Duper Expensive action\"\napplication_charge.price = 100.0\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\"\napplication_charge.test = true\napplication_charge.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_charge = ShopifyAPI::ApplicationCharge.new(session: test_session)\napplication_charge.name = \"Super Duper Expensive action\"\napplication_charge.price = 100.0\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\"\napplication_charge.test = true\napplication_charge.save!"
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_charge = new ApplicationCharge({session: test_session});\napplication_charge.name = \"Super Duper Expensive action\";\napplication_charge.price = 100.0;\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\";\napplication_charge.test = true;\nawait application_charge.save({});"
+              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_charge = new ApplicationCharge({session: test_session});\napplication_charge.name = \"Super Duper Expensive action\";\napplication_charge.price = 100.0;\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\";\napplication_charge.test = true;\nawait application_charge.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_charge = new ApplicationCharge($this->test_session);\n$application_charge->name = \"Super Duper Expensive action\";\n$application_charge->price = 100.0;\n$application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$application_charge->test = true;\n$application_charge->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_charge = new ApplicationCharge($this->test_session);\n$application_charge->name = \"Super Duper Expensive action\";\n$application_charge->price = 100.0;\n$application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$application_charge->test = true;\n$application_charge->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/application_charges.json",
+          "request_path": "/admin/api/2022-07/application_charges.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/application_charges.json",
@@ -189,26 +189,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"application_charge\":{\"name\":\"\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"application_charge\":{\"name\":\"\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_charge = ShopifyAPI::ApplicationCharge.new(session: test_session)\napplication_charge.name = \"\"\napplication_charge.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_charge = ShopifyAPI::ApplicationCharge.new(session: test_session)\napplication_charge.name = \"\"\napplication_charge.save!"
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_charge = new ApplicationCharge({session: test_session});\napplication_charge.name = \"\";\nawait application_charge.save({});"
+              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_charge = new ApplicationCharge({session: test_session});\napplication_charge.name = \"\";\nawait application_charge.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_charge = new ApplicationCharge($this->test_session);\n$application_charge->name = \"\";\n$application_charge->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_charge = new ApplicationCharge($this->test_session);\n$application_charge->name = \"\";\n$application_charge->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/application_charges.json",
+          "request_path": "/admin/api/2022-07/application_charges.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/application_charges.json",
@@ -224,19 +224,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"application_charge\":{\"name\":\"Super Duper Expensive action\",\"price\":0.4,\"return_url\":\"http://super-duper.shopifyapps.com\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"application_charge\":{\"name\":\"Super Duper Expensive action\",\"price\":0.4,\"return_url\":\"http://super-duper.shopifyapps.com\"}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_charge = ShopifyAPI::ApplicationCharge.new(session: test_session)\napplication_charge.name = \"Super Duper Expensive action\"\napplication_charge.price = 0.4\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\"\napplication_charge.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_charge = ShopifyAPI::ApplicationCharge.new(session: test_session)\napplication_charge.name = \"Super Duper Expensive action\"\napplication_charge.price = 0.4\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\"\napplication_charge.save!"
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_charge = new ApplicationCharge({session: test_session});\napplication_charge.name = \"Super Duper Expensive action\";\napplication_charge.price = 0.4;\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\";\nawait application_charge.save({});"
+              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_charge = new ApplicationCharge({session: test_session});\napplication_charge.name = \"Super Duper Expensive action\";\napplication_charge.price = 0.4;\napplication_charge.return_url = \"http://super-duper.shopifyapps.com\";\nawait application_charge.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_charge = new ApplicationCharge($this->test_session);\n$application_charge->name = \"Super Duper Expensive action\";\n$application_charge->price = 0.4;\n$application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$application_charge->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_charge = new ApplicationCharge($this->test_session);\n$application_charge->name = \"Super Duper Expensive action\";\n$application_charge->price = 0.4;\n$application_charge->return_url = \"http://super-duper.shopifyapps.com\";\n$application_charge->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -366,7 +366,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/application_charges.json",
+          "request_path": "/admin/api/2022-07/application_charges.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/application_charges.json",
@@ -382,7 +382,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/application_charges.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -390,18 +390,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCharge.all({\n  session: test_session,\n});"
+              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCharge.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nApplicationCharge::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nApplicationCharge::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "since_id=556467234",
-          "request_path": "/admin/api/2022-04/application_charges.json",
+          "request_path": "/admin/api/2022-07/application_charges.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/application_charges.json",
@@ -417,7 +417,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/application_charges.json?since_id=556467234\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/application_charges.json?since_id=556467234\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -425,11 +425,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCharge.all({\n  session: test_session,\n  since_id: \"556467234\",\n});"
+              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCharge.all({\n  session: test_session,\n  since_id: \"556467234\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nApplicationCharge::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"556467234\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nApplicationCharge::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"since_id\" => \"556467234\"], // Params\n);"
             }
           ]
         }
@@ -499,7 +499,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/application_charges/675931192.json",
+          "request_path": "/admin/api/2022-07/application_charges/675931192.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/application_charges/675931192.json",
@@ -515,7 +515,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/application_charges/675931192.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/application_charges/675931192.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -523,11 +523,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCharge.find({\n  session: test_session,\n  id: 675931192,\n});"
+              "example_code": "import {ApplicationCharge} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCharge.find({\n  session: test_session,\n  id: 675931192,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nApplicationCharge::find(\n    $this->test_session, // Session\n    675931192, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCharge;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nApplicationCharge::find(\n    $this->test_session, // Session\n    675931192, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -618,5 +618,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

@@ -12,43 +12,35 @@ namespace OpenShopify.Admin.Builder.Controllers.OnlineStore;
 public class ThemeController : ThemeControllerBase
 {
     /// <inheritdoc />
-    [HttpGet, Route("themes.json")]
+    [HttpGet]
+    [Route("themes.json")]
     [ProducesResponseType(typeof(ThemeList), StatusCodes.Status200OK)]
-    public override Task ListThemes(string? fields = null)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task ListThemes(string? fields = null) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpPost, Route("themes.json")]
+    [HttpPost]
+    [Route("themes.json")]
     [ProducesResponseType(typeof(ThemeItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ThemeError), StatusCodes.Status400BadRequest)]
-    public override Task CreateTheme([Required] CreateThemeRequest request)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task CreateTheme([Required] CreateThemeRequest request) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpGet, Route("themes/{theme_id:long}.json")]
+    [HttpGet]
+    [Route("themes/{theme_id:long}.json")]
     [ProducesResponseType(typeof(ThemeItem), StatusCodes.Status200OK)]
-    public override Task GetTheme([Required] long theme_id, string? fields = null)
-    {
+    public override Task GetTheme([Required] long theme_id, string? fields = null) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpPut, Route("themes/{theme_id:long}.json")]
+    [HttpPut]
+    [Route("themes/{theme_id:long}.json")]
     [ProducesResponseType(typeof(ThemeItem), StatusCodes.Status200OK)]
-    public override Task UpdateTheme([Required] UpdateThemeRequest request, [Required] long theme_id)
-    {
+    public override Task UpdateTheme([Required] UpdateThemeRequest request, [Required] long theme_id) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpDelete, Route("themes/{theme_id:long}.json")]
+    [HttpDelete]
+    [Route("themes/{theme_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteTheme([Required] long theme_id)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task DeleteTheme([Required] long theme_id) => throw new NotImplementedException();
 }

@@ -5,7 +5,7 @@
     "description": "<p>Merchants who use Shopify Payments can allow customers to pay in their local currency on the online store.\n  When a customer selects a currency, all prices on the online store and checkout are automatically converted\n  to that currency.\n  Merchants enable the currencies that they want to offer to customers from their Shopify Payments settings.\n</p>\n\n<p>The Currency resource represents a currency that the merchant has enabled. For each enabled currency, the Currency resource returns the currency code and the time when its conversion rate was last updated.</p>\n\n",
     "x-owner": "https://vault.shopify.io/teams/2795",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -58,7 +58,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/currencies.json",
+          "request_path": "/admin/api/2022-07/currencies.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/currencies.json",
@@ -74,7 +74,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/currencies.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/currencies.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -82,11 +82,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Currency} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Currency.all({\n  session: test_session,\n});"
+              "example_code": "import {Currency} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Currency.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Currency;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCurrency::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Currency;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nCurrency::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -135,5 +135,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
-using OpenShopify.Admin.Builder.Models;
 
 namespace OpenShopify.Admin.Builder.Controllers.OnlineStore;
 
@@ -12,51 +12,44 @@ namespace OpenShopify.Admin.Builder.Controllers.OnlineStore;
 public class RedirectController : RedirectControllerBase
 {
     /// <inheritdoc />
-    [HttpGet, Route("redirects.json")]
+    [HttpGet]
+    [Route("redirects.json")]
     [ProducesResponseType(typeof(RedirectList), StatusCodes.Status200OK)]
-    public override Task ListUrlRedirects(string? fields = null, int? limit = null, string? page_info = null, string? path = null, long? since_id = null, string? target = null)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task ListUrlRedirects(string? fields = null, int? limit = null, string? page_info = null,
+        string? path = null, long? since_id = null, string? target = null) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpPost, Route("redirects.json")]
+    [HttpPost]
+    [Route("redirects.json")]
     [ProducesResponseType(typeof(RedirectItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(RedirectError), StatusCodes.Status400BadRequest)]
-    public override Task CreateRedirect([Required] CreateRedirectRequest request)
-    {
+    public override Task CreateRedirect([Required] CreateRedirectRequest request) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpGet, Route("redirects/count.json")]
+    [HttpGet]
+    [Route("redirects/count.json")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
-    public override Task CountUrlRedirects(string? path = null, string? target = null)
-    {
+    public override Task CountUrlRedirects(string? path = null, string? target = null) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpGet, Route("redirects/{redirect_id:long}.json")]
+    [HttpGet]
+    [Route("redirects/{redirect_id:long}.json")]
     [ProducesResponseType(typeof(RedirectItem), StatusCodes.Status200OK)]
-    public override Task GetRedirect([Required] long redirect_id, string? fields = null)
-    {
+    public override Task GetRedirect([Required] long redirect_id, string? fields = null) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpPut, Route("redirects/{redirect_id:long}.json")]
+    [HttpPut]
+    [Route("redirects/{redirect_id:long}.json")]
     [ProducesResponseType(typeof(RedirectItem), StatusCodes.Status200OK)]
-    public override Task UpdateRedirect([Required] UpdateRedirectRequest request, [Required] long redirect_id)
-    {
+    public override Task UpdateRedirect([Required] UpdateRedirectRequest request, [Required] long redirect_id) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpDelete, Route("redirects/{redirect_id:long}.json")]
+    [HttpDelete]
+    [Route("redirects/{redirect_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteRedirect([Required] long redirect_id)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task DeleteRedirect([Required] long redirect_id) => throw new NotImplementedException();
 }

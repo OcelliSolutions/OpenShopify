@@ -5,7 +5,7 @@
     "description": "        <p>Theme assets are the individual files that make up a shop's theme.</p>\n        {{ '/api/reference/asset.png' | image }}\n        <p>A theme's assets include its templates, images, stylesheets, and extra snippets of code. They are arranged among the theme's directories, such as <strong>layout</strong>, <strong>templates</strong>, and <strong>assets</strong>. You can use the Asset resource to add, change, or remove asset files from a shop's theme. For a complete list of theme directories, see <a href=\"/themes/architecture\"><em>Theme architecture</em></a>.</p>\n        <p>To learn how to create your own theme, see <a href=\"/concepts/themes\"><em>Building themes</em></a>.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/469",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -329,7 +329,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/themes/828155753/assets.json",
+          "request_path": "/admin/api/2022-07/themes/828155753/assets.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/themes/828155753/assets.json",
@@ -345,7 +345,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753/assets.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/themes/828155753/assets.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -353,11 +353,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Asset.all({\n  session: test_session,\n  theme_id: 828155753,\n});"
+              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Asset.all({\n  session: test_session,\n  theme_id: 828155753,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAsset::all(\n    $this->test_session, // Session\n    [\"theme_id\" => \"828155753\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAsset::all(\n    $this->test_session, // Session\n    [\"theme_id\" => \"828155753\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -474,7 +474,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/themes/828155753/assets.json",
+          "request_path": "/admin/api/2022-07/themes/828155753/assets.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/themes/828155753/assets.json",
@@ -490,26 +490,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"asset\":{\"key\":\"templates/index.liquid\",\"value\":\"<img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753/assets.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"asset\":{\"key\":\"templates/index.liquid\",\"value\":\"<img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/themes/828155753/assets.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nasset = ShopifyAPI::Asset.new(session: test_session)\nasset.theme_id = 828155753\nasset.key = \"templates/index.liquid\"\nasset.value = \"<img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>\"\nasset.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nasset = ShopifyAPI::Asset.new(session: test_session)\nasset.theme_id = 828155753\nasset.key = \"templates/index.liquid\"\nasset.value = \"<img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>\"\nasset.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst asset = new Asset({session: test_session});\nasset.theme_id = 828155753;\nasset.key = \"templates/index.liquid\";\nasset.value = \"<img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>\";\nawait asset.save({});"
+              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst asset = new Asset({session: test_session});\nasset.theme_id = 828155753;\nasset.key = \"templates/index.liquid\";\nasset.value = \"<img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>\";\nawait asset.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$asset = new Asset($this->test_session);\n$asset->theme_id = 828155753;\n$asset->key = \"templates/index.liquid\";\n$asset->value = \"<img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>\";\n$asset->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$asset = new Asset($this->test_session);\n$asset->theme_id = 828155753;\n$asset->key = \"templates/index.liquid\";\n$asset->value = \"<img src='backsoon-postit.png'><p>We are busy updating the store for you and will be back within the hour.</p>\";\n$asset->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/themes/828155753/assets.json",
+          "request_path": "/admin/api/2022-07/themes/828155753/assets.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/themes/828155753/assets.json",
@@ -525,26 +525,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"asset\":{\"key\":\"assets/empty.gif\",\"attachment\":\"R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\\n\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753/assets.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"asset\":{\"key\":\"assets/empty.gif\",\"attachment\":\"R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\\n\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/themes/828155753/assets.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nasset = ShopifyAPI::Asset.new(session: test_session)\nasset.theme_id = 828155753\nasset.key = \"assets/empty.gif\"\nasset.attachment = \"R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\\n\"\nasset.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nasset = ShopifyAPI::Asset.new(session: test_session)\nasset.theme_id = 828155753\nasset.key = \"assets/empty.gif\"\nasset.attachment = \"R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\\n\"\nasset.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst asset = new Asset({session: test_session});\nasset.theme_id = 828155753;\nasset.key = \"assets/empty.gif\";\nasset.attachment = \"R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\\n\";\nawait asset.save({});"
+              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst asset = new Asset({session: test_session});\nasset.theme_id = 828155753;\nasset.key = \"assets/empty.gif\";\nasset.attachment = \"R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\\n\";\nawait asset.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$asset = new Asset($this->test_session);\n$asset->theme_id = 828155753;\n$asset->key = \"assets/empty.gif\";\n$asset->attachment = \"R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\\n\";\n$asset->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$asset = new Asset($this->test_session);\n$asset->theme_id = 828155753;\n$asset->key = \"assets/empty.gif\";\n$asset->attachment = \"R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\\n\";\n$asset->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/themes/828155753/assets.json",
+          "request_path": "/admin/api/2022-07/themes/828155753/assets.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/themes/828155753/assets.json",
@@ -560,26 +560,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"asset\":{\"key\":\"assets/bg-body.gif\",\"src\":\"http://apple.com/new_bg.gif\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753/assets.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"asset\":{\"key\":\"assets/bg-body.gif\",\"src\":\"http://apple.com/new_bg.gif\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/themes/828155753/assets.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nasset = ShopifyAPI::Asset.new(session: test_session)\nasset.theme_id = 828155753\nasset.key = \"assets/bg-body.gif\"\nasset.src = \"http://apple.com/new_bg.gif\"\nasset.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nasset = ShopifyAPI::Asset.new(session: test_session)\nasset.theme_id = 828155753\nasset.key = \"assets/bg-body.gif\"\nasset.src = \"http://apple.com/new_bg.gif\"\nasset.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst asset = new Asset({session: test_session});\nasset.theme_id = 828155753;\nasset.key = \"assets/bg-body.gif\";\nasset.src = \"http://apple.com/new_bg.gif\";\nawait asset.save({});"
+              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst asset = new Asset({session: test_session});\nasset.theme_id = 828155753;\nasset.key = \"assets/bg-body.gif\";\nasset.src = \"http://apple.com/new_bg.gif\";\nawait asset.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$asset = new Asset($this->test_session);\n$asset->theme_id = 828155753;\n$asset->key = \"assets/bg-body.gif\";\n$asset->src = \"http://apple.com/new_bg.gif\";\n$asset->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$asset = new Asset($this->test_session);\n$asset->theme_id = 828155753;\n$asset->key = \"assets/bg-body.gif\";\n$asset->src = \"http://apple.com/new_bg.gif\";\n$asset->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/themes/828155753/assets.json",
+          "request_path": "/admin/api/2022-07/themes/828155753/assets.json",
           "request_method": "PUT",
           "request": {
             "action": "PUT /admin/api/unstable/themes/828155753/assets.json",
@@ -595,19 +595,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"asset\":{\"key\":\"layout/alternate.liquid\",\"source_key\":\"layout/theme.liquid\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753/assets.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"asset\":{\"key\":\"layout/alternate.liquid\",\"source_key\":\"layout/theme.liquid\"}}' \\\n-X PUT \"https://your-development-store.myshopify.com/admin/api/2022-07/themes/828155753/assets.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nasset = ShopifyAPI::Asset.new(session: test_session)\nasset.theme_id = 828155753\nasset.key = \"layout/alternate.liquid\"\nasset.source_key = \"layout/theme.liquid\"\nasset.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\nasset = ShopifyAPI::Asset.new(session: test_session)\nasset.theme_id = 828155753\nasset.key = \"layout/alternate.liquid\"\nasset.source_key = \"layout/theme.liquid\"\nasset.save!"
             },
             {
               "language": "node",
-              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst asset = new Asset({session: test_session});\nasset.theme_id = 828155753;\nasset.key = \"layout/alternate.liquid\";\nasset.source_key = \"layout/theme.liquid\";\nawait asset.save({});"
+              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst asset = new Asset({session: test_session});\nasset.theme_id = 828155753;\nasset.key = \"layout/alternate.liquid\";\nasset.source_key = \"layout/theme.liquid\";\nawait asset.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$asset = new Asset($this->test_session);\n$asset->theme_id = 828155753;\n$asset->key = \"layout/alternate.liquid\";\n$asset->source_key = \"layout/theme.liquid\";\n$asset->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$asset = new Asset($this->test_session);\n$asset->theme_id = 828155753;\n$asset->key = \"layout/alternate.liquid\";\n$asset->source_key = \"layout/theme.liquid\";\n$asset->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -685,7 +685,7 @@
         {
           "status": "200",
           "request_query": "asset%5Bkey%5D=templates%2Findex.liquid",
-          "request_path": "/admin/api/2022-04/themes/828155753/assets.json",
+          "request_path": "/admin/api/2022-07/themes/828155753/assets.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/themes/828155753/assets.json",
@@ -701,7 +701,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753/assets.json?asset%5Bkey%5D=templates%2Findex.liquid\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/themes/828155753/assets.json?asset%5Bkey%5D=templates%2Findex.liquid\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -709,11 +709,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Asset.all({\n  session: test_session,\n  theme_id: 828155753,\n  asset: {\"key\": \"templates/index.liquid\"},\n});"
+              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Asset.all({\n  session: test_session,\n  theme_id: 828155753,\n  asset: {\"key\": \"templates/index.liquid\"},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAsset::all(\n    $this->test_session, // Session\n    [\"theme_id\" => \"828155753\"], // Url Ids\n    [\"asset\" => [\"key\" => \"templates/index.liquid\"]], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAsset::all(\n    $this->test_session, // Session\n    [\"theme_id\" => \"828155753\"], // Url Ids\n    [\"asset\" => [\"key\" => \"templates/index.liquid\"]], // Params\n);"
             }
           ]
         }
@@ -787,7 +787,7 @@
         {
           "status": "200",
           "request_query": "asset%5Bkey%5D=assets%2Fbg-body.gif",
-          "request_path": "/admin/api/2022-04/themes/828155753/assets.json",
+          "request_path": "/admin/api/2022-07/themes/828155753/assets.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/themes/828155753/assets.json",
@@ -803,7 +803,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753/assets.json?asset%5Bkey%5D=assets%2Fbg-body.gif\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-07/themes/828155753/assets.json?asset%5Bkey%5D=assets%2Fbg-body.gif\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -811,18 +811,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Asset.delete({\n  session: test_session,\n  theme_id: 828155753,\n  asset: {\"key\": \"assets/bg-body.gif\"},\n});"
+              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Asset.delete({\n  session: test_session,\n  theme_id: 828155753,\n  asset: {\"key\": \"assets/bg-body.gif\"},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAsset::delete(\n    $this->test_session, // Session\n    [\"theme_id\" => \"828155753\"], // Url Ids\n    [\"asset\" => [\"key\" => \"assets/bg-body.gif\"]], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAsset::delete(\n    $this->test_session, // Session\n    [\"theme_id\" => \"828155753\"], // Url Ids\n    [\"asset\" => [\"key\" => \"assets/bg-body.gif\"]], // Params\n);"
             }
           ]
         },
         {
           "status": "403",
           "request_query": "asset%5Bkey%5D=layout%2Ftheme.liquid",
-          "request_path": "/admin/api/2022-04/themes/828155753/assets.json",
+          "request_path": "/admin/api/2022-07/themes/828155753/assets.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/themes/828155753/assets.json",
@@ -838,7 +838,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/themes/828155753/assets.json?asset%5Bkey%5D=layout%2Ftheme.liquid\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-07/themes/828155753/assets.json?asset%5Bkey%5D=layout%2Ftheme.liquid\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -846,11 +846,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Asset.delete({\n  session: test_session,\n  theme_id: 828155753,\n  asset: {\"key\": \"layout/theme.liquid\"},\n});"
+              "example_code": "import {Asset} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait Asset.delete({\n  session: test_session,\n  theme_id: 828155753,\n  asset: {\"key\": \"layout/theme.liquid\"},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAsset::delete(\n    $this->test_session, // Session\n    [\"theme_id\" => \"828155753\"], // Url Ids\n    [\"asset\" => [\"key\" => \"layout/theme.liquid\"]], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\Asset;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAsset::delete(\n    $this->test_session, // Session\n    [\"theme_id\" => \"828155753\"], // Url Ids\n    [\"asset\" => [\"key\" => \"layout/theme.liquid\"]], // Params\n);"
             }
           ]
         }
@@ -955,5 +955,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

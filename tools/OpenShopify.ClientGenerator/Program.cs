@@ -61,7 +61,7 @@ foreach (var shopifyFile in shopifyFiles)
             {
                 "TransactionList", "TransactionItem", "Transaction", "CurrencyExchangeAdjustment", "PaymentDetails",
                 "TransactionErrorCode", "TransactionKind", "ExtendedAuthorizationAttributes", "PaymentsRefundAttributeStatus",
-                "PaymentsRefundAttributes"
+                "PaymentsRefundAttributes", "Address"
             });
             break;
         case "ShippingAndFulfillment":

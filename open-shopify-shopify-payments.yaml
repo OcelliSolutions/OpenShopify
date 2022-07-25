@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Shopify Payments
   description: Shopify Payments
-  version: '2022-04'
+  version: '2022-07'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-04'
+        default: '2022-07'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.
@@ -119,6 +119,131 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DisputeItem'
+  '/shopify_payments/disputes/{dispute_id}/dispute_evidences.json':
+    get:
+      tags:
+        - DisputeEvidence
+      summary: Returns evidence associated with the dispute
+      operationId: GetEvidenceAssociatedWithDispute
+      parameters:
+        - name: dispute_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisputeEvidenceItem'
+    put:
+      tags:
+        - DisputeEvidence
+      summary: Updates dispute evidence
+      operationId: UpdateDisputeEvidence
+      parameters:
+        - name: dispute_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDisputeEvidenceRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateDisputeEvidenceRequest'
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisputeList'
+  '/shopify_payments/disputes/{dispute_id}/dispute_file_uploads.json':
+    post:
+      tags:
+        - DisputeFileUpload
+      summary: Upload a file to a dispute
+      operationId: UploadFileToDispute
+      parameters:
+        - name: dispute_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisputeFileUploadItem'
+  '/shopify_payments/disputes/{dispute_id}/dispute_file_uploads/{dispute_file_upload_id}.json':
+    delete:
+      tags:
+        - DisputeFileUpload
+      summary: Delete a dispute evidence file
+      operationId: DeleteDisputeEvidenceFile
+      parameters:
+        - name: dispute_file_upload_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: dispute_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Shopify-Shop-Api-Call-Limit:
+              description: How many requests you’ve made for a particular store
+              schema:
+                type: string
+            Retry-After:
+              description: Contains the number of seconds to wait until you can make a request again.
+              schema:
+                type: string
   /shopify_payments/payouts.json:
     get:
       tags:
@@ -267,6 +392,80 @@ paths:
                 $ref: '#/components/schemas/TransactionList'
 components:
   schemas:
+    Address:
+      required:
+        - id
+      type: object
+      properties:
+        address1:
+          type: string
+          description: The customer's mailing address
+          nullable: true
+        address2:
+          type: string
+          description: An additional field for the customer's mailing address.
+          nullable: true
+        city:
+          type: string
+          description: 'The customer''s city, town, or village.'
+          nullable: true
+        country:
+          type: string
+          description: The customer's country.
+          nullable: true
+        country_code:
+          type: string
+          description: The two-letter country code corresponding to the customer's country.
+          nullable: true
+        country_name:
+          type: string
+          description: The customer’s normalized country name.
+          nullable: true
+        company:
+          type: string
+          description: The customer’s company.
+          nullable: true
+        customer_id:
+          type: integer
+          description: The unique identifier for the customer.
+          format: int64
+          nullable: true
+        first_name:
+          type: string
+          description: The customer’s first name.
+          nullable: true
+        last_name:
+          type: string
+          description: The customer’s last name.
+          nullable: true
+        name:
+          type: string
+          description: The customer’s first and last names.
+          nullable: true
+        phone:
+          type: string
+          description: The customer’s phone number at this address.
+          nullable: true
+        province:
+          type: string
+          description: 'The customer’s region name. Typically a province, a state, or a prefecture.'
+          nullable: true
+        province_code:
+          type: string
+          description: The two-letter code for the customer’s region.
+          nullable: true
+        zip:
+          type: string
+          description: 'The customer’s postal code, also known as zip, postcode, Eircode, etc.'
+          nullable: true
+        default:
+          type: boolean
+          description: Indicates whether this address is the default address.
+          nullable: true
+        id:
+          type: integer
+          format: int64
+      additionalProperties: { }
     Balance:
       type: object
       properties:
@@ -385,6 +584,205 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
+    DisputeEvidence:
+      required:
+        - id
+      type: object
+      properties:
+        payments_dispute_id:
+          type: integer
+          description: The ID of the dispute that the dispute evidence belongs to.
+          format: int64
+          nullable: true
+        access_activity_log:
+          type: string
+          description: The activity logs associated with the dispute evidence.
+          nullable: true
+        customer_email_address:
+          type: string
+          description: The customer's email address.
+          nullable: true
+        customer_first_name:
+          type: string
+          description: The customer's first name.
+          nullable: true
+        customer_last_name:
+          type: string
+          description: The customer's last name.
+          nullable: true
+        uncategorized_text:
+          type: string
+          description: The uncategorized text for the dispute evidence.
+          nullable: true
+        shipping_address_attributes:
+          type: string
+          description: The mailing address for shipping that is provided by the customer.
+          nullable: true
+        cancellation_policy_disclosure:
+          type: string
+          description: The cancellation policy disclosure associated with the dispute evidence.
+          nullable: true
+        cancellation_rebuttal:
+          type: string
+          description: The cancellation rebuttal associated with the dispute evidence.
+          nullable: true
+        refund_policy_disclosure:
+          type: string
+          description: The refund policy disclosure associated with the dispute evidence.
+          nullable: true
+        refund_refusal_explanation:
+          type: string
+          description: The refund refusal explanation associated with the dispute evidence.
+          nullable: true
+        product_description:
+          type: string
+          description: The product description for this dispute evidence.
+          nullable: true
+        submitted:
+          type: string
+          description: Whether the dispute evidence is submitted.
+          nullable: true
+        updated_on:
+          type: string
+          description: '"The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when dispute evidence was updated. Returns `null` if evidence has not yet been updated.'
+          nullable: true
+        dispute_evidence_files:
+          $ref: '#/components/schemas/DisputeEvidenceFiles'
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentShipping'
+          description: The fulfillments associated with the dispute evidence.
+          nullable: true
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        submitted_by_merchant_on:
+          type: string
+          format: date-time
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
+      additionalProperties: { }
+    DisputeEvidenceFiles:
+      type: object
+      properties:
+        cancellation_policy_file_id:
+          type: integer
+          format: int64
+          nullable: true
+        customer_communication_file_id:
+          type: integer
+          format: int64
+          nullable: true
+        customer_signature_file_id:
+          type: integer
+          format: int64
+          nullable: true
+        refund_policy_file_id:
+          type: integer
+          format: int64
+          nullable: true
+        service_documentation_file_id:
+          type: integer
+          format: int64
+          nullable: true
+        shipping_documentation_file_id:
+          type: integer
+          format: int64
+          nullable: true
+        uncategorized_file_id:
+          type: integer
+          format: int64
+          nullable: true
+      additionalProperties: { }
+    DisputeEvidenceItem:
+      required:
+        - dispute_evidence
+      type: object
+      properties:
+        dispute_evidence:
+          $ref: '#/components/schemas/DisputeEvidence'
+      additionalProperties: { }
+    DisputeFileUpload:
+      required:
+        - id
+      type: object
+      properties:
+        shop_id:
+          type: integer
+          description: The unique identifier of the shop
+          format: int64
+          nullable: true
+        file_size:
+          type: string
+          description: Size of the uploaded file in bytes
+          nullable: true
+        file_type:
+          type: string
+          description: Mime file type of uploaded file
+          nullable: true
+        original_filename:
+          type: string
+          description: Uploaded file's original name when it was first submitted
+          nullable: true
+        filename:
+          type: string
+          description: Uploaded file's new name in Shopify's system
+          nullable: true
+        dispute_evidence_id:
+          type: integer
+          description: Unique identifier for the dispute evidence this file belongs to
+          format: int64
+          nullable: true
+        dispute_evidence_type:
+          type: string
+          description: "Type of evidence this file represents. It can be one of the following: \r\n\r\n*   customer_signature_file  \r\n*   customer_communication_file  \r\n*   refund_policy_file  \r\n*   cancellation_policy_file  \r\n*   uncategorized_file  \r\n*   shipping_documentation_file  \r\n*   service_documentation_file"
+          nullable: true
+        url:
+          type: string
+          description: URL to uploaded file
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
+          format: date-time
+          nullable: true
+      additionalProperties: { }
+    DisputeFileUploadItem:
+      required:
+        - dispute_file_upload
+      type: object
+      properties:
+        dispute_file_upload:
+          $ref: '#/components/schemas/DisputeFileUpload'
+      additionalProperties: { }
     DisputeItem:
       required:
         - dispute
@@ -414,6 +812,20 @@ components:
         extended_authorization_expires_at:
           type: string
           description: 'The date and time (ISO 8601 format) when the extended authorization period expires. After expiry, the merchant can''t capture the payment.'
+          format: date-time
+          nullable: true
+      additionalProperties: { }
+    FulfillmentShipping:
+      type: object
+      properties:
+        shipping_carrier:
+          type: string
+          nullable: true
+        shipping_tracking_number:
+          type: string
+          nullable: true
+        shipping_date:
+          type: string
           format: date-time
           nullable: true
       additionalProperties: { }
@@ -657,6 +1069,99 @@ components:
           items:
             $ref: '#/components/schemas/Transaction'
       additionalProperties: { }
+    UpdateDisputeEvidence:
+      required:
+        - id
+      type: object
+      properties:
+        payments_dispute_id:
+          type: integer
+          description: The ID of the dispute that the dispute evidence belongs to.
+          format: int64
+          nullable: true
+        access_activity_log:
+          type: string
+          description: The activity logs associated with the dispute evidence.
+          nullable: true
+        customer_email_address:
+          type: string
+          description: The customer's email address.
+          nullable: true
+        customer_first_name:
+          type: string
+          description: The customer's first name.
+          nullable: true
+        customer_last_name:
+          type: string
+          description: The customer's last name.
+          nullable: true
+        uncategorized_text:
+          type: string
+          description: The uncategorized text for the dispute evidence.
+          nullable: true
+        shipping_address_attributes:
+          type: string
+          description: The mailing address for shipping that is provided by the customer.
+          nullable: true
+        cancellation_policy_disclosure:
+          type: string
+          description: The cancellation policy disclosure associated with the dispute evidence.
+          nullable: true
+        cancellation_rebuttal:
+          type: string
+          description: The cancellation rebuttal associated with the dispute evidence.
+          nullable: true
+        refund_policy_disclosure:
+          type: string
+          description: The refund policy disclosure associated with the dispute evidence.
+          nullable: true
+        refund_refusal_explanation:
+          type: string
+          description: The refund refusal explanation associated with the dispute evidence.
+          nullable: true
+        product_description:
+          type: string
+          description: The product description for this dispute evidence.
+          nullable: true
+        submitted:
+          type: string
+          description: Whether the dispute evidence is submitted.
+          nullable: true
+        updated_on:
+          type: string
+          description: '"The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when dispute evidence was updated. Returns `null` if evidence has not yet been updated.'
+          nullable: true
+        dispute_evidence_files:
+          $ref: '#/components/schemas/DisputeEvidenceFiles'
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentShipping'
+          description: The fulfillments associated with the dispute evidence.
+          nullable: true
+        shipping_address:
+          $ref: '#/components/schemas/Address'
+        submitted_by_merchant_on:
+          type: string
+          format: date-time
+          nullable: true
+        id:
+          type: integer
+          format: int64
+        admin_graphql_api_id:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UpdateDisputeEvidenceRequest:
+      required:
+        - dispute_evidence
+      type: object
+      properties:
+        dispute_evidence:
+          $ref: '#/components/schemas/UpdateDisputeEvidence'
+      additionalProperties: false
   securitySchemes:
     ApiKey:
       type: apiKey

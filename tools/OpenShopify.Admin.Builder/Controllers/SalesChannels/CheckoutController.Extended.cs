@@ -12,43 +12,36 @@ namespace OpenShopify.Admin.Builder.Controllers.SalesChannels;
 public class CheckoutController : CheckoutControllerBase
 {
     /// <inheritdoc />
-    [HttpPost, Route("checkouts.json")]
+    [HttpPost]
+    [Route("checkouts.json")]
     [ProducesResponseType(typeof(CheckoutItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(CheckoutError), StatusCodes.Status422UnprocessableEntity)]
-    public override Task CreateCheckout([Required] CreateCheckoutRequest request)
-    {
+    public override Task CreateCheckout([Required] CreateCheckoutRequest request) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpPost, Route("checkouts/{token}/complete.json")]
+    [HttpPost]
+    [Route("checkouts/{token}/complete.json")]
     [ProducesResponseType(typeof(CheckoutItem), StatusCodes.Status200OK)]
-    public override Task CompleteCheckout([Required] CompleteCheckoutRequest request, string? token)
-    {
+    public override Task CompleteCheckout([Required] CompleteCheckoutRequest request, string? token) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpGet, Route("checkouts/{token}.json")]
+    [HttpGet]
+    [Route("checkouts/{token}.json")]
     [ProducesResponseType(typeof(CheckoutItem), StatusCodes.Status200OK)]
-    public override Task GetCheckout(string token)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task GetCheckout(string token) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpPut, Route("checkouts/{token}.json")]
+    [HttpPut]
+    [Route("checkouts/{token}.json")]
     [ProducesResponseType(typeof(CheckoutItem), StatusCodes.Status200OK)]
-    public override Task UpdateCheckout([Required] UpdateCheckoutRequest request, string token)
-    {
+    public override Task UpdateCheckout([Required] UpdateCheckoutRequest request, string token) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpGet, Route("checkouts/{token}/shipping_rates.json")]
+    [HttpGet]
+    [Route("checkouts/{token}/shipping_rates.json")]
     [ProducesResponseType(typeof(CheckoutList), StatusCodes.Status200OK)]
-    public override Task ListShippingRates(string token)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task ListShippingRates(string token) => throw new NotImplementedException();
 }

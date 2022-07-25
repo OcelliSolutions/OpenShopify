@@ -34,16 +34,6 @@ builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(opt =>
     opt.SerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
 });
 
-//builder.Services.TryAddEnumerable(ServiceDescriptor.Transient<IApplicationModelProvider, ProduceResponseTypeModelProvider>());
-/*
-var openApiInfo = new OpenApiInfo
-{
-    Version = "2022-04",
-    Title = "Shopify Admin API",
-    Description = "This document is created and maintained by the community and is designed to be a non-state specific specification. Please refer to your regions documentation for specific details and deviations." +
-                  "Please keep in mind that there are rate limits and other terms of use enforced by Shopify. This document is only designed to give developers a standard used for code generation and testing."
-};
-*/
 builder.Services.AddSwaggerGen(c =>
 {
     c.MapType<decimal>(() => new OpenApiSchema { Type = "number", Format = "decimal" });
@@ -88,7 +78,7 @@ builder.Services.AddSwaggerGen(c =>
         Variables = new Dictionary<string, OpenApiServerVariable>(new List<KeyValuePair<string, OpenApiServerVariable>>()
         {
             new("store_name", new OpenApiServerVariable(){Default = "{{store_name}}", Description = "The sub-domain of the storefront."}),
-            new("api_version", new OpenApiServerVariable(){Default = "2022-04", Description = "The api version."})
+            new("api_version", new OpenApiServerVariable(){Default = "2022-07", Description = "The api version."})
         })
     });
     c.AddServer(new OpenApiServer

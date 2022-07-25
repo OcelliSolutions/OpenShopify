@@ -40,7 +40,7 @@ public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
 
     #region Create
 
-    [Fact(Skip = "Unknown required scope.")]
+    [SkippableFact]
     [TestPriority(10)]
     public async Task CreateApplicationCreditAsync_CanCreate()
     {
@@ -66,7 +66,7 @@ public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
 
     #region Read
 
-    [SkippableFact(Skip = "Unknown required scope.")]
+    [SkippableFact]
     [TestPriority(20)]
     public async Task GetApplicationCreditAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
@@ -84,8 +84,8 @@ public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
         Assert.True(credit is { Test: { } } && credit.Test.Value);
         Assert.True(credit.Amount > 0);
     }
-
-    [SkippableFact(Skip = "Unknown required scope.")]
+    
+    [SkippableFact]
     [TestPriority(20)]
     public async Task GetAllApplicationCreditsAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {

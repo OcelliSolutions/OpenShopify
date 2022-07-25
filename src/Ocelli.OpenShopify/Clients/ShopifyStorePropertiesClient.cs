@@ -1615,7 +1615,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Receive a list of all ShippingZones
         /// </summary>
-        /// <param name="fields">comma-separated list of fields to include in the response</param>
+        /// <param name="fields">A comma-separated list of field names to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ShopifyResponse<ShippingZoneList>> ListShippingZonesAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1658,7 +1658,7 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Receive a list of all ShippingZones
         /// </summary>
-        /// <param name="fields">comma-separated list of fields to include in the response</param>
+        /// <param name="fields">A comma-separated list of field names to include in the response.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ShopifyResponse<ShippingZoneList>> ListShippingZonesAsync(string? fields = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))

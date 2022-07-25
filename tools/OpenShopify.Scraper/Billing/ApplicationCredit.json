@@ -5,7 +5,7 @@
     "description": "      <p>\n        The ApplicationCredit resource is used to issue credits to merchants that can be used towards future app purchases\n        in Shopify. You can create an application credit by sending a request that includes the credit amount and a\n        description explaining the reason for the credit. A corresponding deduction based on your revenue share is entered\n        in your Partner account by Shopify. For example, if you create a credit for $10.00, then a deduction of $8.00 is applied.\n      </p>\n      <p>The total amount of all application credits requested by an app must not exceed the total amount the shop owner was charged\n         in the last 30 days, or the total amount of pending payouts in the app's Partner account.</p>\n\n      <div class=\"note\">\n        <h4>Note</h4>\n        <p>The ApplicationCredit resource can be used only by apps that use Shopify's Billing API (<a href=\"/docs/admin-api/rest/reference/billing/applicationcharge\">ApplicationCharge</a>, <a href=\"/docs/admin-api/rest/reference/billing/recurringapplicationcharge\">RecurringApplicationCharge</a>, or <a href=\"/docs/admin-api/rest/reference/billing/usagecharge\">UsageCharge</a>).</p>\n      </div>\n",
     "x-owner": "https://vault.shopify.io/teams/1750",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -93,7 +93,7 @@
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/application_credits.json",
+          "request_path": "/admin/api/2022-07/application_credits.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/application_credits.json",
@@ -109,26 +109,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/application_credits.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/application_credits.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_credit = ShopifyAPI::ApplicationCredit.new(session: test_session)\napplication_credit.description = \"application credit for refund\"\napplication_credit.amount = 5.0\napplication_credit.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_credit = ShopifyAPI::ApplicationCredit.new(session: test_session)\napplication_credit.description = \"application credit for refund\"\napplication_credit.amount = 5.0\napplication_credit.save!"
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_credit = new ApplicationCredit({session: test_session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\nawait application_credit.save({});"
+              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_credit = new ApplicationCredit({session: test_session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\nawait application_credit.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_credit = new ApplicationCredit($this->test_session);\n$application_credit->description = \"application credit for refund\";\n$application_credit->amount = 5.0;\n$application_credit->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_credit = new ApplicationCredit($this->test_session);\n$application_credit->description = \"application credit for refund\";\n$application_credit->amount = 5.0;\n$application_credit->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/application_credits.json",
+          "request_path": "/admin/api/2022-07/application_credits.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/application_credits.json",
@@ -144,26 +144,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/application_credits.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/application_credits.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_credit = ShopifyAPI::ApplicationCredit.new(session: test_session)\napplication_credit.description = \"application credit for refund\"\napplication_credit.amount = 5.0\napplication_credit.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_credit = ShopifyAPI::ApplicationCredit.new(session: test_session)\napplication_credit.description = \"application credit for refund\"\napplication_credit.amount = 5.0\napplication_credit.save!"
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_credit = new ApplicationCredit({session: test_session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\nawait application_credit.save({});"
+              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_credit = new ApplicationCredit({session: test_session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\nawait application_credit.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_credit = new ApplicationCredit($this->test_session);\n$application_credit->description = \"application credit for refund\";\n$application_credit->amount = 5.0;\n$application_credit->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_credit = new ApplicationCredit($this->test_session);\n$application_credit->description = \"application credit for refund\";\n$application_credit->amount = 5.0;\n$application_credit->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/application_credits.json",
+          "request_path": "/admin/api/2022-07/application_credits.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/application_credits.json",
@@ -179,26 +179,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/application_credits.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/application_credits.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_credit = ShopifyAPI::ApplicationCredit.new(session: test_session)\napplication_credit.description = \"application credit for refund\"\napplication_credit.amount = 5.0\napplication_credit.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_credit = ShopifyAPI::ApplicationCredit.new(session: test_session)\napplication_credit.description = \"application credit for refund\"\napplication_credit.amount = 5.0\napplication_credit.save!"
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_credit = new ApplicationCredit({session: test_session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\nawait application_credit.save({});"
+              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_credit = new ApplicationCredit({session: test_session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\nawait application_credit.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_credit = new ApplicationCredit($this->test_session);\n$application_credit->description = \"application credit for refund\";\n$application_credit->amount = 5.0;\n$application_credit->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_credit = new ApplicationCredit($this->test_session);\n$application_credit->description = \"application credit for refund\";\n$application_credit->amount = 5.0;\n$application_credit->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/application_credits.json",
+          "request_path": "/admin/api/2022-07/application_credits.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/application_credits.json",
@@ -214,26 +214,26 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0,\"test\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/application_credits.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0,\"test\":true}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/application_credits.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_credit = ShopifyAPI::ApplicationCredit.new(session: test_session)\napplication_credit.description = \"application credit for refund\"\napplication_credit.amount = 5.0\napplication_credit.test = true\napplication_credit.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_credit = ShopifyAPI::ApplicationCredit.new(session: test_session)\napplication_credit.description = \"application credit for refund\"\napplication_credit.amount = 5.0\napplication_credit.test = true\napplication_credit.save!"
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_credit = new ApplicationCredit({session: test_session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\napplication_credit.test = true;\nawait application_credit.save({});"
+              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_credit = new ApplicationCredit({session: test_session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\napplication_credit.test = true;\nawait application_credit.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_credit = new ApplicationCredit($this->test_session);\n$application_credit->description = \"application credit for refund\";\n$application_credit->amount = 5.0;\n$application_credit->test = true;\n$application_credit->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_credit = new ApplicationCredit($this->test_session);\n$application_credit->description = \"application credit for refund\";\n$application_credit->amount = 5.0;\n$application_credit->test = true;\n$application_credit->save(\n    true, // Update Object\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/application_credits.json",
+          "request_path": "/admin/api/2022-07/application_credits.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/application_credits.json",
@@ -249,19 +249,19 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/application_credits.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"application_credit\":{\"description\":\"application credit for refund\",\"amount\":5.0}}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/application_credits.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
-              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_credit = ShopifyAPI::ApplicationCredit.new(session: test_session)\napplication_credit.description = \"application credit for refund\"\napplication_credit.amount = 5.0\napplication_credit.save()"
+              "example_code": "test_session = ShopifyAPI::Utils::SessionUtils.load_current_session(\n  auth_header: request.auth_header,\n  cookies: request.cookies,\n  is_online: true\n)\n\napplication_credit = ShopifyAPI::ApplicationCredit.new(session: test_session)\napplication_credit.description = \"application credit for refund\"\napplication_credit.amount = 5.0\napplication_credit.save!"
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_credit = new ApplicationCredit({session: test_session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\nawait application_credit.save({});"
+              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst application_credit = new ApplicationCredit({session: test_session});\napplication_credit.description = \"application credit for refund\";\napplication_credit.amount = 5.0;\nawait application_credit.save({\n  update: true,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_credit = new ApplicationCredit($this->test_session);\n$application_credit->description = \"application credit for refund\";\n$application_credit->amount = 5.0;\n$application_credit->save();"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$application_credit = new ApplicationCredit($this->test_session);\n$application_credit->description = \"application credit for refund\";\n$application_credit->amount = 5.0;\n$application_credit->save(\n    true, // Update Object\n);"
             }
           ]
         }
@@ -318,7 +318,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/application_credits.json",
+          "request_path": "/admin/api/2022-07/application_credits.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/application_credits.json",
@@ -334,7 +334,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/application_credits.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/application_credits.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -342,11 +342,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCredit.all({\n  session: test_session,\n});"
+              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCredit.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nApplicationCredit::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nApplicationCredit::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -409,7 +409,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/application_credits/140583599.json",
+          "request_path": "/admin/api/2022-07/application_credits/140583599.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/unstable/application_credits/140583599.json",
@@ -425,7 +425,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/application_credits/140583599.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/application_credits/140583599.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -433,11 +433,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCredit.find({\n  session: test_session,\n  id: 140583599,\n});"
+              "example_code": "import {ApplicationCredit} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait ApplicationCredit.find({\n  session: test_session,\n  id: 140583599,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nApplicationCredit::find(\n    $this->test_session, // Session\n    140583599, // Id\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\ApplicationCredit;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nApplicationCredit::find(\n    $this->test_session, // Session\n    140583599, // Id\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -498,5 +498,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

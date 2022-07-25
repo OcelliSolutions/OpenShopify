@@ -12,36 +12,32 @@ namespace OpenShopify.Admin.Builder.Controllers.ShippingAndFulfillment;
 public class FulfillmentEventController : FulfillmentEventControllerBase
 {
     /// <inheritdoc />
-    [HttpGet, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events.json")]
+    [HttpGet]
+    [Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events.json")]
     [ProducesResponseType(typeof(FulfillmentEventList), StatusCodes.Status200OK)]
-    public override Task ListFulfillmentEventsForSpecificFulfillment([Required] long fulfillment_id, [Required] long order_id)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task ListFulfillmentEventsForSpecificFulfillment([Required] long fulfillment_id,
+        [Required] long order_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpPost, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events.json")]
+    [HttpPost]
+    [Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events.json")]
     [ProducesResponseType(typeof(FulfillmentEventItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(FulfillmentEventError), StatusCodes.Status422UnprocessableEntity)]
     [ProducesResponseType(typeof(FulfillmentEventGeneralError), StatusCodes.Status400BadRequest)]
-    public override Task CreateFulfillmentEvent([Required] CreateFulfillmentEventRequest request, [Required] long fulfillment_id, [Required] long order_id)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task CreateFulfillmentEvent([Required] CreateFulfillmentEventRequest request,
+        [Required] long fulfillment_id, [Required] long order_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpGet, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events/{event_id:long}.json")]
+    [HttpGet]
+    [Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events/{event_id:long}.json")]
     [ProducesResponseType(typeof(FulfillmentEventItem), StatusCodes.Status200OK)]
-    public override Task GetFulfillmentEvent([Required] long event_id, [Required] long fulfillment_id, [Required] long order_id)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task GetFulfillmentEvent([Required] long event_id, [Required] long fulfillment_id,
+        [Required] long order_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpDelete, Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events/{event_id:long}.json")]
+    [HttpDelete]
+    [Route("orders/{order_id:long}/fulfillments/{fulfillment_id:long}/events/{event_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteFulfillmentEvent([Required] long event_id, [Required] long fulfillment_id, [Required] long order_id)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task DeleteFulfillmentEvent([Required] long event_id, [Required] long fulfillment_id,
+        [Required] long order_id) => throw new NotImplementedException();
 }

@@ -11,10 +11,8 @@ namespace OpenShopify.Admin.Builder.Controllers.StoreProperties;
 public class ShopController : ShopControllerBase
 {
     /// <inheritdoc />
-    [HttpGet, Route("shop.json")]
+    [HttpGet]
+    [Route("shop.json")]
     [ProducesResponseType(typeof(ShopItem), StatusCodes.Status200OK)]
-    public override Task GetShopsConfiguration(string? fields = null)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task GetShopsConfiguration(string? fields = null) => throw new NotImplementedException();
 }

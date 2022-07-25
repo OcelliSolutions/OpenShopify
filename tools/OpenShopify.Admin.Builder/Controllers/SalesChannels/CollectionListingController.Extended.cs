@@ -12,44 +12,39 @@ namespace OpenShopify.Admin.Builder.Controllers.SalesChannels;
 public class CollectionListingController : CollectionListingControllerBase
 {
     /// <inheritdoc />
-    [HttpGet, Route("collection_listings.json")]
+    [HttpGet]
+    [Route("collection_listings.json")]
     [ProducesResponseType(typeof(CollectionListingList), StatusCodes.Status200OK)]
-    public override Task GetCollectionListings(int? limit = null, string? page_info = null)
-    {
+    public override Task GetCollectionListings(int? limit = null, string? page_info = null) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpGet, Route("collection_listings/{collection_listing_id:long}/product_ids.json")]
+    [HttpGet]
+    [Route("collection_listings/{collection_listing_id:long}/product_ids.json")]
     [ProducesResponseType(typeof(ProductList), StatusCodes.Status200OK)]
-    public override Task GetProductIdsThatArePublishedToCollectionId([Required] long collection_listing_id, int? limit = null, string? page_info = null)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task GetProductIdsThatArePublishedToCollectionId([Required] long collection_listing_id,
+        int? limit = null, string? page_info = null) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpGet, Route("collection_listings/{collection_listing_id:long}.json")]
+    [HttpGet]
+    [Route("collection_listings/{collection_listing_id:long}.json")]
     [ProducesResponseType(typeof(CollectionListingItem), StatusCodes.Status200OK)]
-    public override Task GetCollectionListing([Required] long collection_listing_id)
-    {
+    public override Task GetCollectionListing([Required] long collection_listing_id) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpPut, Route("collection_listings/{collection_listing_id:long}.json")]
+    [HttpPut]
+    [Route("collection_listings/{collection_listing_id:long}.json")]
     [ProducesResponseType(typeof(CollectionListingItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(CollectionListingError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateCollectionListing([Required] CreateCollectionListingRequest request,
-        [Required] long collection_listing_id)
-    {
+        [Required] long collection_listing_id) =>
         throw new NotImplementedException();
-    }
 
     /// <inheritdoc />
-    [HttpDelete, Route("collection_listings/{collection_listing_id:long}.json")]
+    [HttpDelete]
+    [Route("collection_listings/{collection_listing_id:long}.json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public override Task DeleteCollectionListing([Required] long collection_listing_id)
-    {
+    public override Task DeleteCollectionListing([Required] long collection_listing_id) =>
         throw new NotImplementedException();
-    }
 }

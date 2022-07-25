@@ -5,7 +5,7 @@
     "description": "        <p>\n          The LocationsForMove resource represents the locations that a fulfillment order can potentially move to.\n        </p>\n",
     "x-owner": "https://vault.shopify.io/teams/457",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -75,7 +75,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/fulfillment_orders/1046000783/locations_for_move.json",
+          "request_path": "/admin/api/2022-07/fulfillment_orders/1046000783/locations_for_move.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2020-01/fulfillment_orders/1046000783/locations_for_move.json",
@@ -91,7 +91,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/fulfillment_orders/1046000783/locations_for_move.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/fulfillment_orders/1046000783/locations_for_move.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -99,11 +99,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {LocationsForMove} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait LocationsForMove.all({\n  session: test_session,\n  fulfillment_order_id: 1046000783,\n});"
+              "example_code": "import {LocationsForMove} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait LocationsForMove.all({\n  session: test_session,\n  fulfillment_order_id: 1046000783,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\LocationsForMove;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocationsForMove::all(\n    $this->test_session, // Session\n    [\"fulfillment_order_id\" => \"1046000783\"], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\LocationsForMove;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nLocationsForMove::all(\n    $this->test_session, // Session\n    [\"fulfillment_order_id\" => \"1046000783\"], // Url Ids\n    [], // Params\n);"
             }
           ]
         }
@@ -185,5 +185,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

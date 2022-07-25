@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Access
   description: Authentication and Authorization
-  version: '2022-04'
+  version: '2022-07'
 servers:
   - url: 'https://{store_name}.myshopify.com/admin/api/{api_version}'
     variables:
@@ -10,7 +10,7 @@ servers:
         default: '{{store_name}}'
         description: The sub-domain of the storefront.
       api_version:
-        default: '2022-04'
+        default: '2022-07'
         description: The api version.
   - url: 'https://{store_name}.myshopify.com/admin'
     description: Some endpoints do not use the standard routing. This is an alternate.

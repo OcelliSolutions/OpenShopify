@@ -5,7 +5,7 @@
     "description": "        <p>An inventory level represents the quantities of an inventory item for a location.</p>\n\n        <p>Each inventory level belongs to one inventory item and has one location. For every location where an inventory item can be stocked, there's an inventory level that represents the inventory item's quantities relating to that location.</p>\n        {{ '/api/reference/inventory.png' | image }}\n\n        <h2 id=\"inventory-levels-and-fulfillment-service-locations\">Inventory levels and fulfillment service locations</h2>\n        <p>A fulfillment service <a href=\"/api/admin-rest/latest/resources/location\">location</a> has a 1:1\n        relationship with a third-party fulfillment service. When an app <a href=\"/api/admin-rest/latest/resources/fulfillmentservice\">creates a new fulfillment service</a>\n        on a store, Shopify automatically creates a location that's associated with that fulfillment service. The FulfillmentService resource has a\n        <code>location_id</code> property, which identifies the associated location.</p>\n        <p>An inventory item connected to a fulfillment service location can't be connected to any other locations at the same time:</p>\n        {{ '/api/reference/location-types.png' | image }}\n\n        <h3>Connecting an inventory item to a fulfillment service location</h3>\n        <p>When you work with items that have been or will be connected a fulfillment location, you should include\n        <code>\"relocate_if_necessary\": true</code> in the body of the request. There are two situations where you might\n        do this:</p>\n          <ul>\n            <li>connecting an inventory item to a fulfillment service location and disconnecting it from all standard locations</li>\n            <li>connecting an inventory item to one or more standard locations and disconnecting it from a fulfillment service location</li>\n          </ul>\n\n        <p>If <code>relocate_if_necessary</code> is <code>true</code>, then all\n        inventory for the item is relocated to the new location and disconnected from any other locations. If a fulfillment service location is involved but\n        <code>relocate_if_necessary</code> is <code>false</code>, then the connection will fail. If no fulfillment service is involved, then the\n        property is ignored and no inventory is relocated.</p>\n\n\n        <h3>Setting the inventory level at a fulfillment service location</h3>\n        <p>When you set inventory for a location, the inventory item is connected to the location if they are not already connected.\n        If the item has been or will be connected to a fulfillment service location, then you should include <code>\"disconnect_if_necessary\": true</code> in the body of the request.\n        There are two situations where you might do this:</p>\n          <ul>\n            <li>setting inventory for an inventory item at a fulfillment service location when the item is already connected to\n            one or more standard locations</li>\n            <li>setting inventory for an inventory item at a standard location when the item is already connected to a fulfillment\n            service location</li>\n          </ul>\n\n        <p>The inventory at the new location is set to the value of the <code>available</code> property. The inventory for\n        other locations is set to 0 and the locations are disconnected from the inventory item.</p>\n        <p>If <code>disconnect_if_necessary</code> is set to <code>false</code> when you set inventory at a location and a fulfillment service\n        location is involved, then the action will fail. If no fulfillment service location is involved, then this property is ignored.</p>\n",
     "x-owner": "https://vault.shopify.io/teams/126",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -173,7 +173,7 @@
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/inventory_levels.json",
+          "request_path": "/admin/api/2022-07/inventory_levels.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/inventory_levels.json",
@@ -189,7 +189,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_levels.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/inventory_levels.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -197,18 +197,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryLevel.all({\n  session: test_session,\n});"
+              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryLevel.all({\n  session: test_session,\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nInventoryLevel::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nInventoryLevel::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "inventory_item_ids=808950810%2C39072856&location_ids=655441491%2C487838322",
-          "request_path": "/admin/api/2022-04/inventory_levels.json",
+          "request_path": "/admin/api/2022-07/inventory_levels.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/inventory_levels.json",
@@ -224,7 +224,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_levels.json?inventory_item_ids=808950810%2C39072856&location_ids=655441491%2C487838322\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/inventory_levels.json?inventory_item_ids=808950810%2C39072856&location_ids=655441491%2C487838322\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -232,18 +232,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryLevel.all({\n  session: test_session,\n  inventory_item_ids: \"808950810,39072856\",\n  location_ids: \"655441491,487838322\",\n});"
+              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryLevel.all({\n  session: test_session,\n  inventory_item_ids: \"808950810,39072856\",\n  location_ids: \"655441491,487838322\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nInventoryLevel::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"inventory_item_ids\" => \"808950810,39072856\", \"location_ids\" => \"655441491,487838322\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nInventoryLevel::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"inventory_item_ids\" => \"808950810,39072856\", \"location_ids\" => \"655441491,487838322\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "inventory_item_ids=808950810",
-          "request_path": "/admin/api/2022-04/inventory_levels.json",
+          "request_path": "/admin/api/2022-07/inventory_levels.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/inventory_levels.json",
@@ -259,7 +259,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_levels.json?inventory_item_ids=808950810\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/inventory_levels.json?inventory_item_ids=808950810\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -267,18 +267,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryLevel.all({\n  session: test_session,\n  inventory_item_ids: \"808950810\",\n});"
+              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryLevel.all({\n  session: test_session,\n  inventory_item_ids: \"808950810\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nInventoryLevel::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"inventory_item_ids\" => \"808950810\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nInventoryLevel::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"inventory_item_ids\" => \"808950810\"], // Params\n);"
             }
           ]
         },
         {
           "status": "200",
           "request_query": "location_ids=655441491",
-          "request_path": "/admin/api/2022-04/inventory_levels.json",
+          "request_path": "/admin/api/2022-07/inventory_levels.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2019-10/inventory_levels.json",
@@ -294,7 +294,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_levels.json?location_ids=655441491\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/inventory_levels.json?location_ids=655441491\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -302,11 +302,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryLevel.all({\n  session: test_session,\n  location_ids: \"655441491\",\n});"
+              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryLevel.all({\n  session: test_session,\n  location_ids: \"655441491\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nInventoryLevel::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"location_ids\" => \"655441491\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nInventoryLevel::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"location_ids\" => \"655441491\"], // Params\n);"
             }
           ]
         }
@@ -407,7 +407,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/inventory_levels/adjust.json",
+          "request_path": "/admin/api/2022-07/inventory_levels/adjust.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/inventory_levels/adjust.json",
@@ -423,7 +423,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"location_id\":655441491,\"inventory_item_id\":808950810,\"available_adjustment\":5}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_levels/adjust.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"location_id\":655441491,\"inventory_item_id\":808950810,\"available_adjustment\":5}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/inventory_levels/adjust.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -431,18 +431,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.adjust({\n  body: {\"location_id\": 655441491, \"inventory_item_id\": 808950810, \"available_adjustment\": 5},\n});"
+              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.adjust({\n  body: {\"location_id\": 655441491, \"inventory_item_id\": 808950810, \"available_adjustment\": 5},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->adjust(\n    [], // Params\n    [\"location_id\" => 655441491, \"inventory_item_id\" => 808950810, \"available_adjustment\" => 5], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->adjust(\n    [], // Params\n    [\"location_id\" => 655441491, \"inventory_item_id\" => 808950810, \"available_adjustment\" => 5], // Body\n);"
             }
           ]
         },
         {
           "status": "404",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/inventory_levels/adjust.json",
+          "request_path": "/admin/api/2022-07/inventory_levels/adjust.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/inventory_levels/adjust.json",
@@ -458,7 +458,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"location_id\":655441491,\"inventory_item_id\":808950810,\"available_adjustment\":5}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_levels/adjust.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"location_id\":655441491,\"inventory_item_id\":808950810,\"available_adjustment\":5}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/inventory_levels/adjust.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -466,18 +466,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.adjust({\n  body: {\"location_id\": 655441491, \"inventory_item_id\": 808950810, \"available_adjustment\": 5},\n});"
+              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.adjust({\n  body: {\"location_id\": 655441491, \"inventory_item_id\": 808950810, \"available_adjustment\": 5},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->adjust(\n    [], // Params\n    [\"location_id\" => 655441491, \"inventory_item_id\" => 808950810, \"available_adjustment\" => 5], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->adjust(\n    [], // Params\n    [\"location_id\" => 655441491, \"inventory_item_id\" => 808950810, \"available_adjustment\" => 5], // Body\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/inventory_levels/adjust.json",
+          "request_path": "/admin/api/2022-07/inventory_levels/adjust.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/inventory_levels/adjust.json",
@@ -493,7 +493,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"location_id\":655441491,\"inventory_item_id\":808950810,\"available_adjustment\":5}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_levels/adjust.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"location_id\":655441491,\"inventory_item_id\":808950810,\"available_adjustment\":5}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/inventory_levels/adjust.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -501,11 +501,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.adjust({\n  body: {\"location_id\": 655441491, \"inventory_item_id\": 808950810, \"available_adjustment\": 5},\n});"
+              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.adjust({\n  body: {\"location_id\": 655441491, \"inventory_item_id\": 808950810, \"available_adjustment\": 5},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->adjust(\n    [], // Params\n    [\"location_id\" => 655441491, \"inventory_item_id\" => 808950810, \"available_adjustment\" => 5], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->adjust(\n    [], // Params\n    [\"location_id\" => 655441491, \"inventory_item_id\" => 808950810, \"available_adjustment\" => 5], // Body\n);"
             }
           ]
         }
@@ -563,7 +563,7 @@
         {
           "status": "204",
           "request_query": "inventory_item_id=808950810&location_id=655441491",
-          "request_path": "/admin/api/2022-04/inventory_levels.json",
+          "request_path": "/admin/api/2022-07/inventory_levels.json",
           "request_method": "DELETE",
           "request": {
             "action": "DELETE /admin/api/unstable/inventory_levels.json",
@@ -579,7 +579,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_levels.json?inventory_item_id=808950810&location_id=655441491\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X DELETE \"https://your-development-store.myshopify.com/admin/api/2022-07/inventory_levels.json?inventory_item_id=808950810&location_id=655441491\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -587,11 +587,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryLevel.delete({\n  session: test_session,\n  inventory_item_id: \"808950810\",\n  location_id: \"655441491\",\n});"
+              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait InventoryLevel.delete({\n  session: test_session,\n  inventory_item_id: \"808950810\",\n  location_id: \"655441491\",\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nInventoryLevel::delete(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"inventory_item_id\" => \"808950810\", \"location_id\" => \"655441491\"], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nInventoryLevel::delete(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"inventory_item_id\" => \"808950810\", \"location_id\" => \"655441491\"], // Params\n);"
             }
           ]
         }
@@ -696,7 +696,7 @@
         {
           "status": "201",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/inventory_levels/connect.json",
+          "request_path": "/admin/api/2022-07/inventory_levels/connect.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/inventory_levels/connect.json",
@@ -712,7 +712,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"location_id\":844681632,\"inventory_item_id\":457924702}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_levels/connect.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"location_id\":844681632,\"inventory_item_id\":457924702}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/inventory_levels/connect.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -720,18 +720,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.connect({\n  body: {\"location_id\": 844681632, \"inventory_item_id\": 457924702},\n});"
+              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.connect({\n  body: {\"location_id\": 844681632, \"inventory_item_id\": 457924702},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->connect(\n    [], // Params\n    [\"location_id\" => 844681632, \"inventory_item_id\" => 457924702], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->connect(\n    [], // Params\n    [\"location_id\" => 844681632, \"inventory_item_id\" => 457924702], // Body\n);"
             }
           ]
         },
         {
           "status": "404",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/inventory_levels/connect.json",
+          "request_path": "/admin/api/2022-07/inventory_levels/connect.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/inventory_levels/connect.json",
@@ -747,7 +747,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"location_id\":123,\"inventory_item_id\":457924702}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_levels/connect.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"location_id\":123,\"inventory_item_id\":457924702}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/inventory_levels/connect.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -755,18 +755,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.connect({\n  body: {\"location_id\": 123, \"inventory_item_id\": 457924702},\n});"
+              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.connect({\n  body: {\"location_id\": 123, \"inventory_item_id\": 457924702},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->connect(\n    [], // Params\n    [\"location_id\" => 123, \"inventory_item_id\" => 457924702], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->connect(\n    [], // Params\n    [\"location_id\" => 123, \"inventory_item_id\" => 457924702], // Body\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/inventory_levels/connect.json",
+          "request_path": "/admin/api/2022-07/inventory_levels/connect.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/inventory_levels/connect.json",
@@ -782,7 +782,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"location_id\":24826418,\"inventory_item_id\":808950810}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_levels/connect.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"location_id\":24826418,\"inventory_item_id\":808950810}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/inventory_levels/connect.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -790,11 +790,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.connect({\n  body: {\"location_id\": 24826418, \"inventory_item_id\": 808950810},\n});"
+              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.connect({\n  body: {\"location_id\": 24826418, \"inventory_item_id\": 808950810},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->connect(\n    [], // Params\n    [\"location_id\" => 24826418, \"inventory_item_id\" => 808950810], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->connect(\n    [], // Params\n    [\"location_id\" => 24826418, \"inventory_item_id\" => 808950810], // Body\n);"
             }
           ]
         }
@@ -894,7 +894,7 @@
         {
           "status": "200",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/inventory_levels/set.json",
+          "request_path": "/admin/api/2022-07/inventory_levels/set.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/inventory_levels/set.json",
@@ -910,7 +910,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"location_id\":655441491,\"inventory_item_id\":808950810,\"available\":42}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_levels/set.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"location_id\":655441491,\"inventory_item_id\":808950810,\"available\":42}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/inventory_levels/set.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -918,18 +918,18 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.set({\n  body: {\"location_id\": 655441491, \"inventory_item_id\": 808950810, \"available\": 42},\n});"
+              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.set({\n  body: {\"location_id\": 655441491, \"inventory_item_id\": 808950810, \"available\": 42},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->set(\n    [], // Params\n    [\"location_id\" => 655441491, \"inventory_item_id\" => 808950810, \"available\" => 42], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->set(\n    [], // Params\n    [\"location_id\" => 655441491, \"inventory_item_id\" => 808950810, \"available\" => 42], // Body\n);"
             }
           ]
         },
         {
           "status": "422",
           "request_query": "",
-          "request_path": "/admin/api/2022-04/inventory_levels/set.json",
+          "request_path": "/admin/api/2022-07/inventory_levels/set.json",
           "request_method": "POST",
           "request": {
             "action": "POST /admin/api/unstable/inventory_levels/set.json",
@@ -945,7 +945,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -d '{\"location_id\":611870435,\"inventory_item_id\":808950810,\"available\":42}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-04/inventory_levels/set.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
+              "example_code": "curl -d '{\"location_id\":611870435,\"inventory_item_id\":808950810,\"available\":42}' \\\n-X POST \"https://your-development-store.myshopify.com/admin/api/2022-07/inventory_levels/set.json\" \\\n-H \"X-Shopify-Access-Token: {access_token}\" \\\n-H \"Content-Type: application/json\"\n"
             },
             {
               "language": "ruby",
@@ -953,11 +953,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.set({\n  body: {\"location_id\": 611870435, \"inventory_item_id\": 808950810, \"available\": 42},\n});"
+              "example_code": "import {InventoryLevel} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nconst inventory_level = new InventoryLevel({session: test_session});\n\nawait inventory_level.set({\n  body: {\"location_id\": 611870435, \"inventory_item_id\": 808950810, \"available\": 42},\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->set(\n    [], // Params\n    [\"location_id\" => 611870435, \"inventory_item_id\" => 808950810, \"available\" => 42], // Body\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\InventoryLevel;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\n$inventory_level = new InventoryLevel($this->test_session);\n\n$inventory_level->set(\n    [], // Params\n    [\"location_id\" => 611870435, \"inventory_item_id\" => 808950810, \"available\" => 42], // Body\n);"
             }
           ]
         }
@@ -1020,5 +1020,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

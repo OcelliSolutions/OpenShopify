@@ -5,7 +5,7 @@
     "description": "        <p>\n          A list of all the <a href=\"/api/admin-rest/latest/resources/fulfillmentorder\">fulfillment orders</a>\n          that are assigned to an app  at the shop level. The list of fulfillment orders can be filtered\n          by <a href=\"/api/admin-rest/latest/resources/location\">location</a> and assignment status.\n        </p>\n",
     "x-owner": "https://vault.shopify.io/teams/457",
     "x-description-list": null,
-    "version": "2022-04"
+    "version": "2022-07"
   },
   "paths": [
     {
@@ -124,7 +124,7 @@
         {
           "status": "200",
           "request_query": "assignment_status=cancellation_requested&location_ids%5B%5D=24826418",
-          "request_path": "/admin/api/2022-04/assigned_fulfillment_orders.json",
+          "request_path": "/admin/api/2022-07/assigned_fulfillment_orders.json",
           "request_method": "GET",
           "request": {
             "action": "GET /admin/api/2020-01/assigned_fulfillment_orders.json",
@@ -140,7 +140,7 @@
           "codeSamples": [
             {
               "language": "curl",
-              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-04/assigned_fulfillment_orders.json?assignment_status=cancellation_requested&location_ids%5B%5D=24826418\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
+              "example_code": "curl -X GET \"https://your-development-store.myshopify.com/admin/api/2022-07/assigned_fulfillment_orders.json?assignment_status=cancellation_requested&location_ids%5B%5D=24826418\" \\\n-H \"X-Shopify-Access-Token: {access_token}\"\n"
             },
             {
               "language": "ruby",
@@ -148,11 +148,11 @@
             },
             {
               "language": "node",
-              "example_code": "import {AssignedFulfillmentOrder} from '@shopify/shopify-api/dist/rest-resources/2022-04/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AssignedFulfillmentOrder.all({\n  session: test_session,\n  assignment_status: \"cancellation_requested\",\n  location_ids: [\"24826418\"],\n});"
+              "example_code": "import {AssignedFulfillmentOrder} from '@shopify/shopify-api/dist/rest-resources/2022-07/index.js';\n\nconst test_session = await Shopify.Utils.loadCurrentSession(request, response);\n\nawait AssignedFulfillmentOrder.all({\n  session: test_session,\n  assignment_status: \"cancellation_requested\",\n  location_ids: [\"24826418\"],\n});"
             },
             {
               "language": "php",
-              "example_code": "use Shopify\\Rest\\Admin2022_04\\AssignedFulfillmentOrder;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAssignedFulfillmentOrder::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"assignment_status\" => \"cancellation_requested\", \"location_ids\" => [\"24826418\"]], // Params\n);"
+              "example_code": "use Shopify\\Rest\\Admin2022_07\\AssignedFulfillmentOrder;\nuse Shopify\\Utils;\n\n$this->test_session = Utils::loadCurrentSession(\n    $requestHeaders,\n    $requestCookies,\n    $isOnline\n);\n\nAssignedFulfillmentOrder::all(\n    $this->test_session, // Session\n    [], // Url Ids\n    [\"assignment_status\" => \"cancellation_requested\", \"location_ids\" => [\"24826418\"]], // Params\n);"
             }
           ]
         }
@@ -260,5 +260,6 @@
     "shopify_plus": false,
     "weight": null,
     "usage-notes": null
-  }
+  },
+  "personal_data_fields": []
 }

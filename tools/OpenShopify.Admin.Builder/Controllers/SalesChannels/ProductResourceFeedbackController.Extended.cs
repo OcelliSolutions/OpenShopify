@@ -12,19 +12,17 @@ namespace OpenShopify.Admin.Builder.Controllers.SalesChannels;
 public class ProductResourceFeedbackController : ProductResourceFeedbackControllerBase
 {
     /// <inheritdoc />
-    [HttpPost, Route("products/{product_id:long}/resource_feedback.json")]
+    [HttpPost]
+    [Route("products/{product_id:long}/resource_feedback.json")]
     [ProducesResponseType(typeof(ProductResourceFeedbackItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ProductResourceFeedbackError), StatusCodes.Status422UnprocessableEntity)]
-    public override Task CreateProductResourceFeedback([Required] CreateProductResourceFeedbackRequest request, [Required] long product_id)
-    {
-        throw new NotImplementedException();
-    }
+    public override Task CreateProductResourceFeedback([Required] CreateProductResourceFeedbackRequest request,
+        [Required] long product_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    [HttpGet, Route("products/{product_id:long}/resource_feedback.json")]
+    [HttpGet]
+    [Route("products/{product_id:long}/resource_feedback.json")]
     [ProducesResponseType(typeof(ProductResourceFeedbackList), StatusCodes.Status200OK)]
-    public override Task ListProductResourceFeedbacks([Required] long product_id)
-    {
+    public override Task ListProductResourceFeedbacks([Required] long product_id) =>
         throw new NotImplementedException();
-    }
 }
