@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.MarketingEvent;
 
 public class MarketingEventFixture : SharedFixture, IAsyncLifetime
 {
     public List<OpenShopify.MarketingEvent> CreatedMarketingEvents = new();
-    public MarketingEventService Service;
+    public IMarketingEventService Service;
 
     public MarketingEventFixture() =>
         Service = new MarketingEventService(MyShopifyUrl, AccessToken);
@@ -35,11 +29,17 @@ public class MarketingEventFixture : SharedFixture, IAsyncLifetime
 public class MarketingEventTests : IClassFixture<MarketingEventFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly MarketingEventMockClient _badRequestMockClient;
+    private readonly MarketingEventMockClient _okEmptyMockClient;
+    private readonly MarketingEventMockClient _okInvalidJsonMockClient;
 
     public MarketingEventTests(MarketingEventFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new MarketingEventMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new MarketingEventMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new MarketingEventMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private MarketingEventFixture Fixture { get; }
@@ -155,4 +155,27 @@ public class MarketingEventTests : IClassFixture<MarketingEventFixture>
     }
 
     #endregion Delete
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class MarketingEventMockClient : MarketingEventClient, IMockTests
+{
+    public MarketingEventMockClient(HttpClient httpClient, MarketingEventFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
+}

@@ -1,11 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Billing;
 
@@ -16,7 +10,7 @@ public class ApplicationCreditFixture : SharedFixture, IAsyncLifetime
     public ApplicationCreditFixture() =>
         Service = new BillingService(MyShopifyUrl, AccessToken);
 
-    public BillingService Service { get; set; }
+    public IBillingService Service { get; set; }
 
     public Task InitializeAsync() => Task.CompletedTask;
 
@@ -28,13 +22,18 @@ public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
 {
     private const string ApplicationCreditPrefix = "Refund for Foo";
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    
+    private readonly ApplicationCreditMockClient _badRequestMockClient;
+    private readonly ApplicationCreditMockClient _okEmptyMockClient;
+    private readonly ApplicationCreditMockClient _okInvalidJsonMockClient;
 
     public ApplicationCreditTests(ApplicationCreditFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-            }
+        _badRequestMockClient = new ApplicationCreditMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new ApplicationCreditMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new ApplicationCreditMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
+    }
 
     private ApplicationCreditFixture Fixture { get; }
 
@@ -49,7 +48,9 @@ public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
         {
             ApplicationCredit = new CreateApplicationCredit
             {
-                Test = true, Description = name, Amount = (decimal)0.01
+                Test = true,
+                Description = name,
+                Amount = (decimal)0.01
             }
         };
         var created =
@@ -84,7 +85,7 @@ public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
         Assert.True(credit is { Test: { } } && credit.Test.Value);
         Assert.True(credit.Amount > 0);
     }
-    
+
     [SkippableFact]
     [TestPriority(20)]
     public async Task GetAllApplicationCreditsAsync_AdditionalPropertiesAreEmpty_ShouldPass()
@@ -110,4 +111,27 @@ public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
     #region Delete
 
     #endregion Delete
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class ApplicationCreditMockClient : ApplicationCreditClient, IMockTests
+{
+    public ApplicationCreditMockClient(HttpClient httpClient, ApplicationCreditFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

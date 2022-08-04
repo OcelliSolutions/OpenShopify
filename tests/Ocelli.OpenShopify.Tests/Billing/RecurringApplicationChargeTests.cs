@@ -1,10 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Billing;
 
@@ -15,7 +9,7 @@ public class RecurringApplicationChargeFixture : SharedFixture, IAsyncLifetime
     public RecurringApplicationChargeFixture() =>
         Service = new BillingService(MyShopifyUrl, AccessToken);
 
-    public BillingService Service { get; set; }
+    public IBillingService Service { get; set; }
 
     public Task InitializeAsync() => Task.CompletedTask;
 
@@ -26,13 +20,18 @@ public class RecurringApplicationChargeFixture : SharedFixture, IAsyncLifetime
 public class RecurringApplicationChargeTests : IClassFixture<RecurringApplicationChargeFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-    
-    
+    private readonly RecurringApplicationChargeMockClient _badRequestMockClient;
+    private readonly RecurringApplicationChargeMockClient _okEmptyMockClient;
+    private readonly RecurringApplicationChargeMockClient _okInvalidJsonMockClient;
+
     public RecurringApplicationChargeTests(RecurringApplicationChargeFixture fixture, ITestOutputHelper testOutputHelper)
     {
-                Fixture = fixture;
+        Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-            }
+        _badRequestMockClient = new RecurringApplicationChargeMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new RecurringApplicationChargeMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new RecurringApplicationChargeMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
+    }
 
     private RecurringApplicationChargeFixture Fixture { get; }
     
@@ -68,4 +67,27 @@ public class RecurringApplicationChargeTests : IClassFixture<RecurringApplicatio
     }
 
     #endregion Read
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class RecurringApplicationChargeMockClient : RecurringApplicationChargeClient, IMockTests
+{
+    public RecurringApplicationChargeMockClient(HttpClient httpClient, RecurringApplicationChargeFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

@@ -1,10 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Discounts;
 
@@ -13,7 +7,7 @@ public class DiscountCodeFixture : SharedFixture, IAsyncLifetime
     public List<DiscountCodeCreation> CreatedDiscountCodeCreations = new();
     public List<DiscountCode> CreatedDiscountCodes = new();
     public PriceRule PriceRule = new();
-    public DiscountsService Service;
+    public IDiscountsService Service;
 
     public DiscountCodeFixture() =>
         Service = new DiscountsService(MyShopifyUrl, AccessToken);
@@ -54,13 +48,18 @@ public class DiscountCodeFixture : SharedFixture, IAsyncLifetime
 public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly DiscountCodeMockClient _badRequestMockClient;
+    private readonly DiscountCodeMockClient _okEmptyMockClient;
+    private readonly DiscountCodeMockClient _okInvalidJsonMockClient;
 
     public DiscountCodeTests(DiscountCodeFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new DiscountCodeMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new DiscountCodeMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new DiscountCodeMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
-
     private DiscountCodeFixture Fixture { get; }
 
     #region Update
@@ -242,4 +241,27 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
     */
 
     #endregion Read
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class DiscountCodeMockClient : DiscountCodeClient, IMockTests
+{
+    public DiscountCodeMockClient(HttpClient httpClient, DiscountCodeFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

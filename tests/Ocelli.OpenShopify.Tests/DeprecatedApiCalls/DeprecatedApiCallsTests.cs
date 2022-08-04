@@ -1,16 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.DeprecatedApiCalls;
 
 public class DeprecatedApiCallsFixture : SharedFixture, IAsyncLifetime
 {
     public List<DeprecatedApiCall> CreatedDeprecatedApiCalls = new();
-    public DeprecatedApiCallsService Service;
+    public IDeprecatedApiCallsService Service;
 
     public DeprecatedApiCallsFixture() =>
         Service = new DeprecatedApiCallsService(MyShopifyUrl, AccessToken);
@@ -23,12 +18,17 @@ public class DeprecatedApiCallsFixture : SharedFixture, IAsyncLifetime
 public class DeprecatedApiCallsTests : IClassFixture<DeprecatedApiCallsFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-
+    private readonly DeprecatedApiCallMockClient _badRequestMockClient;
+    private readonly DeprecatedApiCallMockClient _okEmptyMockClient;
+    private readonly DeprecatedApiCallMockClient _okInvalidJsonMockClient;
 
     public DeprecatedApiCallsTests(DeprecatedApiCallsFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new DeprecatedApiCallMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new DeprecatedApiCallMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new DeprecatedApiCallMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     public DeprecatedApiCallsFixture Fixture { get; set; }
@@ -49,4 +49,27 @@ public class DeprecatedApiCallsTests : IClassFixture<DeprecatedApiCallsFixture>
     }
 
     #endregion Read
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class DeprecatedApiCallMockClient : DeprecatedApiCallsClient, IMockTests
+{
+    public DeprecatedApiCallMockClient(HttpClient httpClient, DeprecatedApiCallsFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

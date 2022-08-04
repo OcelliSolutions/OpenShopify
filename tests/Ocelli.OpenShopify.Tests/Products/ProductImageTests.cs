@@ -1,10 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Products;
 
@@ -12,7 +6,7 @@ public class ProductImageFixture : SharedFixture, IAsyncLifetime
 {
     public List<ProductImage> CreatedProductImages = new();
     public Product Product = new();
-    public ProductsService Service;
+    public IProductsService Service;
 
     public ProductImageFixture() =>
         Service = new ProductsService(MyShopifyUrl, AccessToken);
@@ -53,11 +47,17 @@ public class ProductImageFixture : SharedFixture, IAsyncLifetime
 public class ProductImageTests : IClassFixture<ProductImageFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly ProductImageMockClient _badRequestMockClient;
+    private readonly ProductImageMockClient _okEmptyMockClient;
+    private readonly ProductImageMockClient _okInvalidJsonMockClient;
 
     public ProductImageTests(ProductImageFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new ProductImageMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new ProductImageMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new ProductImageMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private ProductImageFixture Fixture { get; }
@@ -169,4 +169,27 @@ public class ProductImageTests : IClassFixture<ProductImageFixture>
     }
 
     #endregion Delete
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class ProductImageMockClient : ProductImageClient, IMockTests
+{
+    public ProductImageMockClient(HttpClient httpClient, ProductImageFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
+}

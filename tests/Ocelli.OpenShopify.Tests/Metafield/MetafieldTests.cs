@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Metafield;
 
 public class MetafieldFixture : SharedFixture, IAsyncLifetime
 {
     public List<OpenShopify.Metafield> CreatedMetafields = new();
-    public MetafieldService Service;
+    public IMetafieldService Service;
 
     public MetafieldFixture() =>
         Service = new MetafieldService(MyShopifyUrl, AccessToken);
@@ -34,11 +28,17 @@ public class MetafieldFixture : SharedFixture, IAsyncLifetime
 public class MetafieldTests : IClassFixture<MetafieldFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly MetafieldMockClient _badRequestMockClient;
+    private readonly MetafieldMockClient _okEmptyMockClient;
+    private readonly MetafieldMockClient _okInvalidJsonMockClient;
 
     public MetafieldTests(MetafieldFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new MetafieldMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new MetafieldMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new MetafieldMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private MetafieldFixture Fixture { get; }
@@ -145,4 +145,27 @@ public class MetafieldTests : IClassFixture<MetafieldFixture>
     }
 
     #endregion Delete
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class MetafieldMockClient : MetafieldClient, IMockTests
+{
+    public MetafieldMockClient(HttpClient httpClient, MetafieldFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
+}

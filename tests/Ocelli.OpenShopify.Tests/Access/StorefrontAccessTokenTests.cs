@@ -1,10 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Access;
 
@@ -32,12 +26,17 @@ public class StorefrontAccessTokenFixture : SharedFixture, IAsyncLifetime
 public class StorefrontAccessTokenTests : IClassFixture<StorefrontAccessTokenFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-
+    private readonly StorefrontAccessTokenMockClient _badRequestMockClient;
+    private readonly StorefrontAccessTokenMockClient _okEmptyMockClient;
+    private readonly StorefrontAccessTokenMockClient _okInvalidJsonMockClient;
 
     public StorefrontAccessTokenTests(StorefrontAccessTokenFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new StorefrontAccessTokenMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new StorefrontAccessTokenMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new StorefrontAccessTokenMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private StorefrontAccessTokenFixture Fixture { get; }
@@ -111,4 +110,26 @@ public class StorefrontAccessTokenTests : IClassFixture<StorefrontAccessTokenFix
     }
 
     #endregion Delete
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class StorefrontAccessTokenMockClient : StorefrontAccessTokenClient, IMockTests
+{
+    public StorefrontAccessTokenMockClient(HttpClient httpClient, StorefrontAccessTokenFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {throw new XunitException("Not implemented.");
+        throw new XunitException("Not implemented.");
+    }
 }

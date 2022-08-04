@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.OnlineStore;
 
 public class BlogFixture : SharedFixture, IAsyncLifetime
 {
     public List<Blog> CreatedBlogs = new();
-    public OnlineStoreService Service;
+    public IOnlineStoreService Service;
 
     public BlogFixture() =>
         Service = new OnlineStoreService(MyShopifyUrl, AccessToken);
@@ -37,11 +31,17 @@ public class BlogFixture : SharedFixture, IAsyncLifetime
 public class BlogTests : IClassFixture<BlogFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly BlogMockClient _badRequestMockClient;
+    private readonly BlogMockClient _okEmptyMockClient;
+    private readonly BlogMockClient _okInvalidJsonMockClient;
 
     public BlogTests(BlogFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new BlogMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new BlogMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new BlogMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private BlogFixture Fixture { get; }
@@ -146,4 +146,27 @@ public class BlogTests : IClassFixture<BlogFixture>
     }
 
     #endregion Delete
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class BlogMockClient : BlogClient, IMockTests
+{
+    public BlogMockClient(HttpClient httpClient, BlogFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
+}

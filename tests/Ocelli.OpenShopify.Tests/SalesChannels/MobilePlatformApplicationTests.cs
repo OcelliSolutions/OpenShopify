@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.SalesChannels;
 
 public class MobilePlatformApplicationFixture : SharedFixture, IAsyncLifetime
 {
     public List<MobilePlatformApplication> CreatedMobilePlatformApplications = new();
-    public SalesChannelsService Service;
+    public ISalesChannelsService Service;
 
     public MobilePlatformApplicationFixture() =>
         Service = new SalesChannelsService(MyShopifyUrl, AccessToken);
@@ -35,11 +29,17 @@ public class MobilePlatformApplicationFixture : SharedFixture, IAsyncLifetime
 public class MobilePlatformApplicationTests : IClassFixture<MobilePlatformApplicationFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly MobilePlatformApplicationMockClient _badRequestMockClient;
+    private readonly MobilePlatformApplicationMockClient _okEmptyMockClient;
+    private readonly MobilePlatformApplicationMockClient _okInvalidJsonMockClient;
 
     public MobilePlatformApplicationTests(MobilePlatformApplicationFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new MobilePlatformApplicationMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new MobilePlatformApplicationMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new MobilePlatformApplicationMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private MobilePlatformApplicationFixture Fixture { get; }
@@ -144,4 +144,27 @@ public class MobilePlatformApplicationTests : IClassFixture<MobilePlatformApplic
 
 
     #endregion Delete
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class MobilePlatformApplicationMockClient : MobilePlatformApplicationClient, IMockTests
+{
+    public MobilePlatformApplicationMockClient(HttpClient httpClient, MobilePlatformApplicationFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
+}

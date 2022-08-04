@@ -1,10 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Orders;
 
@@ -13,7 +7,7 @@ public class RefundFixture : SharedFixture, IAsyncLifetime
     public List<Refund> CreatedRefunds = new();
     public Order Order = new();
     public Product Product = new();
-    public OrdersService Service;
+    public IOrdersService Service;
 
     public RefundFixture() =>
         Service = new OrdersService(MyShopifyUrl, AccessToken);
@@ -44,11 +38,17 @@ public class RefundFixture : SharedFixture, IAsyncLifetime
 public class RefundTests : IClassFixture<RefundFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly RefundMockClient _badRequestMockClient;
+    private readonly RefundMockClient _okEmptyMockClient;
+    private readonly RefundMockClient _okInvalidJsonMockClient;
 
     public RefundTests(RefundFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new RefundMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new RefundMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new RefundMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private RefundFixture Fixture { get; }
@@ -213,4 +213,27 @@ public class RefundTests : IClassFixture<RefundFixture>
     }
 
     #endregion Read
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class RefundMockClient : RefundClient, IMockTests
+{
+    public RefundMockClient(HttpClient httpClient, RefundFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

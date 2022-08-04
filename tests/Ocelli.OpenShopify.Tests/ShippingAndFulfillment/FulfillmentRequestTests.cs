@@ -1,14 +1,7 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
-
-namespace Ocelli.OpenShopify.Tests.ShippingAndFulfillment;
+﻿namespace Ocelli.OpenShopify.Tests.ShippingAndFulfillment;
 public class FulfillmentRequestFixture : SharedFixture, IAsyncLifetime
 {
-    public ShippingAndFulfillmentService Service;
+    public IShippingAndFulfillmentService Service;
     public FulfillmentService FulfillmentService = new();
     public Product Product = new();
     public ProductVariant ProductVariant = new();
@@ -72,11 +65,17 @@ public class FulfillmentRequestFixture : SharedFixture, IAsyncLifetime
 public class FulfillmentRequestTests : IClassFixture<FulfillmentRequestFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly FulfillmentRequestMockClient _badRequestMockClient;
+    private readonly FulfillmentRequestMockClient _okEmptyMockClient;
+    private readonly FulfillmentRequestMockClient _okInvalidJsonMockClient;
+
     public FulfillmentRequestTests(FulfillmentRequestFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
-        _testOutputHelper = testOutputHelper;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new FulfillmentRequestMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new FulfillmentRequestMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new FulfillmentRequestMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private FulfillmentRequestFixture Fixture { get; }
@@ -134,4 +133,28 @@ public class FulfillmentRequestTests : IClassFixture<FulfillmentRequestFixture>
         Assert.Equal(RequestStatus.Rejected, acceptedResponse.RequestStatus);
         Assert.Equal(FulfillmentOrderStatus.Open, acceptedResponse.Status);
     }
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
 }
+
+internal class FulfillmentRequestMockClient : FulfillmentRequestClient, IMockTests
+{
+    public FulfillmentRequestMockClient(HttpClient httpClient, FulfillmentRequestFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
+}
+

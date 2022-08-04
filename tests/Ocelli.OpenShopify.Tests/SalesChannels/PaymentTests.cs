@@ -1,10 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.SalesChannels;
 
@@ -12,7 +6,7 @@ public class PaymentFixture : SharedFixture, IAsyncLifetime
 {
     public List<Payment> CreatedPayments = new();
 
-    public SalesChannelsService Service;
+    public ISalesChannelsService Service;
 
     //TODO: figure out how to get a token for testing.
     public string Token = string.Empty;
@@ -28,11 +22,17 @@ public class PaymentFixture : SharedFixture, IAsyncLifetime
 public class PaymentTests : IClassFixture<PaymentFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly PaymentMockClient _badRequestMockClient;
+    private readonly PaymentMockClient _okEmptyMockClient;
+    private readonly PaymentMockClient _okInvalidJsonMockClient;
 
     public PaymentTests(PaymentFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new PaymentMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new PaymentMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new PaymentMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private PaymentFixture Fixture { get; }
@@ -102,4 +102,27 @@ public class PaymentTests : IClassFixture<PaymentFixture>
     }
 
     #endregion Read
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class PaymentMockClient : PaymentClient, IMockTests
+{
+    public PaymentMockClient(HttpClient httpClient, PaymentFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

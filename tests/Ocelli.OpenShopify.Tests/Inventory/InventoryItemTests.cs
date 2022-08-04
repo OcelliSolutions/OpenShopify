@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Inventory;
 
 public class InventoryItemFixture : SharedFixture, IAsyncLifetime
 {
     public List<InventoryItem> CreatedInventoryItems = new();
-    public InventoryService Service;
+    public IInventoryService Service;
 
     public InventoryItemFixture() =>
         Service = new InventoryService(MyShopifyUrl, AccessToken);
@@ -24,11 +18,17 @@ public class InventoryItemFixture : SharedFixture, IAsyncLifetime
 public class InventoryItemTests : IClassFixture<InventoryItemFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly InventoryItemMockClient _badRequestMockClient;
+    private readonly InventoryItemMockClient _okEmptyMockClient;
+    private readonly InventoryItemMockClient _okInvalidJsonMockClient;
 
     public InventoryItemTests(InventoryItemFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new InventoryItemMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new InventoryItemMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new InventoryItemMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private InventoryItemFixture Fixture { get; }
@@ -89,4 +89,27 @@ public class InventoryItemTests : IClassFixture<InventoryItemFixture>
     }
 
     #endregion Read
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class InventoryItemMockClient : InventoryItemClient, IMockTests
+{
+    public InventoryItemMockClient(HttpClient httpClient, InventoryItemFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

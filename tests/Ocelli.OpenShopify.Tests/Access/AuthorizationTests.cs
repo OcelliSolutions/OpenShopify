@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Primitives;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Xunit;
 
 namespace Ocelli.OpenShopify.Tests.Access;
 public class AuthorizationScopeFixture : SharedFixture, IAsyncLifetime
@@ -17,7 +10,7 @@ public class AuthorizationScopeFixture : SharedFixture, IAsyncLifetime
     public AuthorizationScopeFixture() =>
         Service = new AccessService(MyShopifyUrl, AccessToken);
 
-    public AccessService Service { get; set; }
+    public IAccessService Service { get; set; }
 
     public Task InitializeAsync() => Task.CompletedTask;
 

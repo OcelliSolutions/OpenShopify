@@ -1,16 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.ShippingAndFulfillment;
 
 public class CancellationRequestFixture : SharedFixture, IAsyncLifetime
 {
-    public ShippingAndFulfillmentService Service;
+    public IShippingAndFulfillmentService Service;
     public FulfillmentService FulfillmentService = new();
     public Product Product = new();
     public ProductVariant ProductVariant = new();
@@ -57,10 +51,17 @@ public class CancellationRequestFixture : SharedFixture, IAsyncLifetime
 public class CancellationRequestTests : IClassFixture<CancellationRequestFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly CancellationRequestMockClient _badRequestMockClient;
+    private readonly CancellationRequestMockClient _okEmptyMockClient;
+    private readonly CancellationRequestMockClient _okInvalidJsonMockClient;
+
     public CancellationRequestTests(CancellationRequestFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new CancellationRequestMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new CancellationRequestMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new CancellationRequestMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private CancellationRequestFixture Fixture { get; }
@@ -119,4 +120,27 @@ public class CancellationRequestTests : IClassFixture<CancellationRequestFixture
 
     */
     #endregion Create
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class CancellationRequestMockClient : CancellationRequestClient, IMockTests
+{
+    public CancellationRequestMockClient(HttpClient httpClient, CancellationRequestFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

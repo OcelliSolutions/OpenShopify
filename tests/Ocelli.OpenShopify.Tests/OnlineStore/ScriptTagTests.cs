@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.OnlineStore;
 
 public class ScriptTagFixture : SharedFixture, IAsyncLifetime
 {
     public List<ScriptTag> CreatedScriptTags = new();
-    public OnlineStoreService Service;
+    public IOnlineStoreService Service;
 
     public ScriptTagFixture() =>
         Service = new OnlineStoreService(MyShopifyUrl, AccessToken);
@@ -37,11 +31,17 @@ public class ScriptTagFixture : SharedFixture, IAsyncLifetime
 public class ScriptTagTests : IClassFixture<ScriptTagFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly ScriptTagMockClient _badRequestMockClient;
+    private readonly ScriptTagMockClient _okEmptyMockClient;
+    private readonly ScriptTagMockClient _okInvalidJsonMockClient;
 
     public ScriptTagTests(ScriptTagFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new ScriptTagMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new ScriptTagMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new ScriptTagMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private ScriptTagFixture Fixture { get; }
@@ -152,4 +152,27 @@ public class ScriptTagTests : IClassFixture<ScriptTagFixture>
     }
 
     #endregion Delete
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class ScriptTagMockClient : ScriptTagClient, IMockTests
+{
+    public ScriptTagMockClient(HttpClient httpClient, ScriptTagFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
+}

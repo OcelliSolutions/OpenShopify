@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.StoreProperties;
 
 public class CurrencyFixture : SharedFixture, IAsyncLifetime
 {
     public List<Currency> CreatedCurrencies = new();
-    public StorePropertiesService Service;
+    public IStorePropertiesService Service;
 
     public CurrencyFixture() =>
         Service = new StorePropertiesService(MyShopifyUrl, AccessToken);
@@ -24,11 +18,17 @@ public class CurrencyFixture : SharedFixture, IAsyncLifetime
 public class CurrencyTests : IClassFixture<CurrencyFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly CurrencyMockClient _badRequestMockClient;
+    private readonly CurrencyMockClient _okEmptyMockClient;
+    private readonly CurrencyMockClient _okInvalidJsonMockClient;
 
     public CurrencyTests(CurrencyFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new CurrencyMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new CurrencyMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new CurrencyMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private CurrencyFixture Fixture { get; }
@@ -50,4 +50,26 @@ public class CurrencyTests : IClassFixture<CurrencyFixture>
     }
 
     #endregion Read
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class CurrencyMockClient : CurrencyClient, IMockTests
+{
+    public CurrencyMockClient(HttpClient httpClient, CurrencyFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

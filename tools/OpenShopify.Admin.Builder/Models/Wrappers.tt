@@ -3,7 +3,6 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 <#@ import namespace="System.Text.RegularExpressions" #>
-<#@ import namespace="System.Threading" #>
 <#
 	var sections = new List<SectionTemplate>()
 	{

@@ -17,6 +17,7 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Ocelli.OpenShopify.Tests")]
 namespace Ocelli.OpenShopify
 {
     using System = global::System;
@@ -101,7 +102,7 @@ namespace Ocelli.OpenShopify
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/inventory_items.json?");
             if (ids != null)
             {
-                {urlBuilder_.Append(System.Uri.EscapeDataString("ids") + "=").Append(System.Uri.EscapeDataString(string.Join(",", ids))).Append("&"); }
+                foreach (var item_ in ids) { urlBuilder_.Append(System.Uri.EscapeDataString("ids") + "=").Append(System.Uri.EscapeDataString(ConvertToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
             }
             if (limit != null)
             {

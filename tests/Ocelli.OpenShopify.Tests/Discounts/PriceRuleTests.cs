@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
+﻿using System.Collections.Generic;
 
 namespace Ocelli.OpenShopify.Tests.Discounts;
 
 public class PriceRuleFixture : SharedFixture, IAsyncLifetime
 {
-    public DiscountsService Service;
+    public IDiscountsService Service;
     public List<PriceRule> CreatedPriceRules = new();
 
     public PriceRuleFixture()
@@ -38,13 +31,18 @@ public class PriceRuleFixture : SharedFixture, IAsyncLifetime
 public class PriceRuleTests : IClassFixture<PriceRuleFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-        
+    private readonly PriceRuleMockClient _badRequestMockClient;
+    private readonly PriceRuleMockClient _okEmptyMockClient;
+    private readonly PriceRuleMockClient _okInvalidJsonMockClient;
 
     public PriceRuleTests(PriceRuleFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
-                _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-            }
+        _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new PriceRuleMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new PriceRuleMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new PriceRuleMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
+    }
 
     private PriceRuleFixture Fixture { get; }
 
@@ -146,4 +144,27 @@ public class PriceRuleTests : IClassFixture<PriceRuleFixture>
         Fixture.CreatedPriceRules.Clear();
     }
     #endregion Delete
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class PriceRuleMockClient : PriceRuleClient, IMockTests
+{
+    public PriceRuleMockClient(HttpClient httpClient, PriceRuleFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

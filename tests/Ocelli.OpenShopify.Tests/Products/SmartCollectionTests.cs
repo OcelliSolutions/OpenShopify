@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Products;
 
 public class SmartCollectionFixture : SharedFixture, IAsyncLifetime
 {
     public List<SmartCollection> CreatedSmartCollections = new();
-    public ProductsService Service;
+    public IProductsService Service;
 
     public SmartCollectionFixture() =>
         Service = new ProductsService(MyShopifyUrl, AccessToken);
@@ -37,11 +31,17 @@ public class SmartCollectionFixture : SharedFixture, IAsyncLifetime
 public class SmartCollectionTests : IClassFixture<SmartCollectionFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly SmartCollectionMockClient _badRequestMockClient;
+    private readonly SmartCollectionMockClient _okEmptyMockClient;
+    private readonly SmartCollectionMockClient _okInvalidJsonMockClient;
 
     public SmartCollectionTests(SmartCollectionFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new SmartCollectionMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new SmartCollectionMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new SmartCollectionMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private SmartCollectionFixture Fixture { get; }
@@ -159,4 +159,27 @@ public class SmartCollectionTests : IClassFixture<SmartCollectionFixture>
 
 
     #endregion Delete
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class SmartCollectionMockClient : SmartCollectionClient, IMockTests
+{
+    public SmartCollectionMockClient(HttpClient httpClient, SmartCollectionFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
+}

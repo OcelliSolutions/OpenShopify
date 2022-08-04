@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.OnlineStore;
 
 public class RedirectFixture : SharedFixture, IAsyncLifetime
 {
     public List<Redirect> CreatedRedirects = new();
-    public OnlineStoreService Service;
+    public IOnlineStoreService Service;
 
     public RedirectFixture() =>
         Service = new OnlineStoreService(MyShopifyUrl, AccessToken);
@@ -37,11 +31,17 @@ public class RedirectFixture : SharedFixture, IAsyncLifetime
 public class RedirectTests : IClassFixture<RedirectFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly RedirectMockClient _badRequestMockClient;
+    private readonly RedirectMockClient _okEmptyMockClient;
+    private readonly RedirectMockClient _okInvalidJsonMockClient;
 
     public RedirectTests(RedirectFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new RedirectMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new RedirectMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new RedirectMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private RedirectFixture Fixture { get; }
@@ -152,4 +152,27 @@ public class RedirectTests : IClassFixture<RedirectFixture>
     }
 
     #endregion Delete
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class RedirectMockClient : RedirectClient, IMockTests
+{
+    public RedirectMockClient(HttpClient httpClient, RedirectFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
+}

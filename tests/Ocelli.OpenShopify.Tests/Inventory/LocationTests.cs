@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Inventory;
 
 public class LocationFixture : SharedFixture, IAsyncLifetime
 {
     public List<Location> CreatedLocations = new();
-    public InventoryService Service;
+    public IInventoryService Service;
 
     public LocationFixture() =>
         Service = new InventoryService(MyShopifyUrl, AccessToken);
@@ -24,11 +18,17 @@ public class LocationFixture : SharedFixture, IAsyncLifetime
 public class LocationTests : IClassFixture<LocationFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly LocationMockClient _badRequestMockClient;
+    private readonly LocationMockClient _okEmptyMockClient;
+    private readonly LocationMockClient _okInvalidJsonMockClient;
 
     public LocationTests(LocationFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new LocationMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new LocationMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new LocationMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private LocationFixture Fixture { get; }
@@ -71,4 +71,27 @@ public class LocationTests : IClassFixture<LocationFixture>
     }
 
     #endregion Read
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class LocationMockClient : LocationClient, IMockTests
+{
+    public LocationMockClient(HttpClient httpClient, LocationFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

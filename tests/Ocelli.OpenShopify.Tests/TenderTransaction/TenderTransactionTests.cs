@@ -1,24 +1,37 @@
-﻿using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
+﻿namespace Ocelli.OpenShopify.Tests.TenderTransaction;
 
-namespace Ocelli.OpenShopify.Tests.TenderTransaction;
+public class TenderTransactionFixture : SharedFixture, IAsyncLifetime
+{
+    public TenderTransactionFixture() =>
+        Service = new AccessService(MyShopifyUrl, AccessToken);
+
+    public IAccessService Service { get; set; }
+
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+}
+
 [Collection("Shared collection")]
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
 public class TenderTransactionTests : IClassFixture<TenderTransactionFixture>
 {
     private TenderTransactionFixture Fixture { get; }
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-        
+    private readonly TenderTransactionMockClient _badRequestMockClient;
+    private readonly TenderTransactionMockClient _okEmptyMockClient;
+    private readonly TenderTransactionMockClient _okInvalidJsonMockClient;
 
     public TenderTransactionTests(TenderTransactionFixture fixture, ITestOutputHelper testOutputHelper)
     {
-                Fixture = fixture;
+        Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
-            }
+        _badRequestMockClient = new TenderTransactionMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new TenderTransactionMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new TenderTransactionMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
+    }
 
-    
+
     #region Create
 
     #endregion Create
@@ -34,9 +47,26 @@ public class TenderTransactionTests : IClassFixture<TenderTransactionFixture>
     #region Delete
 
     #endregion Delete
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
 }
 
-public class TenderTransactionFixture
+internal class TenderTransactionMockClient : TenderTransactionClient, IMockTests
 {
-    public ITestOutputHelper TestOutputHelper { get; set; }
+    public TenderTransactionMockClient(HttpClient httpClient, TenderTransactionFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

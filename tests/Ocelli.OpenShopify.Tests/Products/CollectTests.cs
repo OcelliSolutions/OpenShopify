@@ -1,16 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Products;
 
 public class CollectFixture : SharedFixture, IAsyncLifetime
 {
-    public ProductsService Service;
+    public IProductsService Service;
     public List<Collect> CreatedCollects = new();
 
     public CollectFixture()
@@ -38,10 +32,17 @@ public class CollectFixture : SharedFixture, IAsyncLifetime
 public class CollectTests : IClassFixture<CollectFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly CollectMockClient _badRequestMockClient;
+    private readonly CollectMockClient _okEmptyMockClient;
+    private readonly CollectMockClient _okInvalidJsonMockClient;
+
     public CollectTests(CollectFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new CollectMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new CollectMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new CollectMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private CollectFixture Fixture { get; }
@@ -114,4 +115,28 @@ public class CollectTests : IClassFixture<CollectFixture>
 
 
     #endregion
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class CollectMockClient : CollectClient, IMockTests
+{
+    public CollectMockClient(HttpClient httpClient, CollectFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
+}
+

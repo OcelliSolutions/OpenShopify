@@ -1,10 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Orders;
 
@@ -12,7 +6,7 @@ public class OrderFixture : SharedFixture, IAsyncLifetime
 {
     public List<Order> CreatedOrders = new();
     public Product Product = new();
-    public OrdersService Service;
+    public IOrdersService Service;
 
     public OrderFixture() =>
         Service = new OrdersService(MyShopifyUrl, AccessToken);
@@ -55,11 +49,17 @@ public class OrderFixture : SharedFixture, IAsyncLifetime
 public class OrderTests : IClassFixture<OrderFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly OrderMockClient _badRequestMockClient;
+    private readonly OrderMockClient _okEmptyMockClient;
+    private readonly OrderMockClient _okInvalidJsonMockClient;
 
     public OrderTests(OrderFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new OrderMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new OrderMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new OrderMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private OrderFixture Fixture { get; }
@@ -180,4 +180,27 @@ public class OrderTests : IClassFixture<OrderFixture>
     }
 
     #endregion Read
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class OrderMockClient : OrderClient, IMockTests
+{
+    public OrderMockClient(HttpClient httpClient, OrderFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

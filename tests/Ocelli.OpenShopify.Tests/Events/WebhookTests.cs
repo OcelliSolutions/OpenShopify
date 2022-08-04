@@ -1,16 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Events;
 
 public class WebhookFixture : SharedFixture, IAsyncLifetime
 {
-    public EventsService Service;
+    public IEventsService Service;
     public List<Webhook> CreatedWebhooks = new();
 
     public WebhookFixture()
@@ -38,10 +32,17 @@ public class WebhookFixture : SharedFixture, IAsyncLifetime
 public class WebhookTests : IClassFixture<WebhookFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly WebhookMockClient _badRequestMockClient;
+    private readonly WebhookMockClient _okEmptyMockClient;
+    private readonly WebhookMockClient _okInvalidJsonMockClient;
+
     public WebhookTests(WebhookFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new WebhookMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new WebhookMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new WebhookMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private WebhookFixture Fixture { get; }
@@ -77,7 +78,7 @@ public class WebhookTests : IClassFixture<WebhookFixture>
         var request = new CreateWebhookRequest
         {
             Webhook = new CreateWebhook()
-            { 
+            {
                 Topic = WebhookTopic.AppUninstalled
             }
         };
@@ -107,6 +108,7 @@ public class WebhookTests : IClassFixture<WebhookFixture>
         {
             _additionalPropertiesHelper.CheckAdditionalProperties(webhook, Fixture.MyShopifyUrl);
         }
+
         Skip.If(!response.Result.Webhooks.Any(), "No results returned. Unable to test");
     }
 
@@ -132,8 +134,8 @@ public class WebhookTests : IClassFixture<WebhookFixture>
         {
             Webhook = new()
             {
-                Id = originalWebhook.Id, 
-                Fields = new List<string>{"id"}
+                Id = originalWebhook.Id,
+                Fields = new List<string> { "id" }
             }
         };
         var response = await Fixture.Service.Webhook.UpdateWebhookAsync(originalWebhook.Id, request);
@@ -154,4 +156,26 @@ public class WebhookTests : IClassFixture<WebhookFixture>
     }
 
     #endregion Delete
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class WebhookMockClient : WebhookClient, IMockTests
+{
+    public WebhookMockClient(HttpClient httpClient, WebhookFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
+}

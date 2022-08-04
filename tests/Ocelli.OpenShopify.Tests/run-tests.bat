@@ -6,6 +6,7 @@ SET TestFolder=TestResults
 ::
 : Run coverage
 ::
+:: dotnet test --filter "FullyQualifiedName~MiscellaneousTests|FullyQualifiedName~ReportTests" --collect:"XPlat Code Coverage"
 dotnet test --collect:"XPlat Code Coverage"
 ::
 : Get the path for the most recent coverage results folder

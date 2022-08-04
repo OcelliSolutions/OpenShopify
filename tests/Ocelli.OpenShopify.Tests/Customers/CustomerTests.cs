@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Customers;
 
 public class CustomerFixture : SharedFixture, IAsyncLifetime
 {
     public List<Customer> CreatedCustomers = new();
-    public CustomersService Service;
+    public ICustomersService Service;
 
     public CustomerFixture() =>
         Service = new CustomersService(MyShopifyUrl, AccessToken);
@@ -35,11 +29,17 @@ public class CustomerFixture : SharedFixture, IAsyncLifetime
 public class CustomerTests : IClassFixture<CustomerFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly CustomerMockClient _badRequestMockClient;
+    private readonly CustomerMockClient _okEmptyMockClient;
+    private readonly CustomerMockClient _okInvalidJsonMockClient;
 
     public CustomerTests(CustomerFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new CustomerMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new CustomerMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new CustomerMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private CustomerFixture Fixture { get; }
@@ -141,4 +141,27 @@ public class CustomerTests : IClassFixture<CustomerFixture>
     }
 
     #endregion Read
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class CustomerMockClient : CustomerClient, IMockTests
+{
+    public CustomerMockClient(HttpClient httpClient, CustomerFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

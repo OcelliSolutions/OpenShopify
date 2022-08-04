@@ -1,19 +1,11 @@
-﻿using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
-
-namespace Ocelli.OpenShopify.Tests.Access;
+﻿namespace Ocelli.OpenShopify.Tests.Access;
 
 public class AccessScopeFixture : SharedFixture, IAsyncLifetime
 {
     public AccessScopeFixture() =>
         Service = new AccessService(MyShopifyUrl, AccessToken);
 
-    public AccessService Service { get; set; }
+    public IAccessService Service { get; set; }
 
     public Task InitializeAsync() => Task.CompletedTask;
 
@@ -24,11 +16,17 @@ public class AccessScopeFixture : SharedFixture, IAsyncLifetime
 public class AccessScopeTests : IClassFixture<AccessScopeFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly AccessScopeMockClient _badRequestMockClient;
+    private readonly AccessScopeMockClient _okEmptyMockClient;
+    private readonly AccessScopeMockClient _okInvalidJsonMockClient;
 
     public AccessScopeTests(AccessScopeFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new AccessScopeMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new AccessScopeMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new AccessScopeMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private AccessScopeFixture Fixture { get; }
@@ -62,5 +60,29 @@ public class AccessScopeTests : IClassFixture<AccessScopeFixture>
         var service = new AccessService("invalid", "invalid");
         await Assert.ThrowsAsync<HttpRequestException>(async () =>
             await service.AccessScope.ListAccessScopesAsync());
+    }
+    
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class AccessScopeMockClient : AccessScopeClient, IMockTests
+{
+    public AccessScopeMockClient(HttpClient httpClient, AccessScopeFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+    
+    public async Task TestAllMethodsThatReturnData()
+    {
+        var textTest = new ObjectResponseResult<string>();
+        Assert.Empty(textTest.Text);
+        await Assert.ThrowsAsync<ApiException>(async () => await ListAccessScopesAsync(CancellationToken.None));
     }
 }

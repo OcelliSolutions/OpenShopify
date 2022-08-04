@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.SalesChannels;
 
 public class ResourceFeedbackFixture : SharedFixture, IAsyncLifetime
 {
     public List<ResourceFeedback> CreatedResourceFeedbacks = new();
-    public SalesChannelsService Service;
+    public ISalesChannelsService Service;
 
     public ResourceFeedbackFixture() =>
         Service = new SalesChannelsService(MyShopifyUrl, AccessToken);
@@ -25,11 +19,17 @@ public class ResourceFeedbackFixture : SharedFixture, IAsyncLifetime
 public class ResourceFeedbackTests : IClassFixture<ResourceFeedbackFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly ResourceFeedbackMockClient _badRequestMockClient;
+    private readonly ResourceFeedbackMockClient _okEmptyMockClient;
+    private readonly ResourceFeedbackMockClient _okInvalidJsonMockClient;
 
     public ResourceFeedbackTests(ResourceFeedbackFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new ResourceFeedbackMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new ResourceFeedbackMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new ResourceFeedbackMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private ResourceFeedbackFixture Fixture { get; }
@@ -89,4 +89,27 @@ public class ResourceFeedbackTests : IClassFixture<ResourceFeedbackFixture>
     }
 
     #endregion Create
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class ResourceFeedbackMockClient : ResourceFeedbackClient, IMockTests
+{
+    public ResourceFeedbackMockClient(HttpClient httpClient, ResourceFeedbackFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

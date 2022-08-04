@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.OnlineStore;
 
 public class AssetFixture : SharedFixture, IAsyncLifetime
 {
     public List<Asset> CreatedAssets = new();
-    public OnlineStoreService Service;
+    public IOnlineStoreService Service;
     public Theme Theme = new();
 
     public AssetFixture() =>
@@ -50,11 +44,17 @@ public class AssetFixture : SharedFixture, IAsyncLifetime
 public class AssetTests : IClassFixture<AssetFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly AssetMockClient _badRequestMockClient;
+    private readonly AssetMockClient _okEmptyMockClient;
+    private readonly AssetMockClient _okInvalidJsonMockClient;
 
     public AssetTests(AssetFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new AssetMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new AssetMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new AssetMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private AssetFixture Fixture { get; }
@@ -121,4 +121,27 @@ public class AssetTests : IClassFixture<AssetFixture>
     }
 
     #endregion Delete
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class AssetMockClient : AssetClient, IMockTests
+{
+    public AssetMockClient(HttpClient httpClient, AssetFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

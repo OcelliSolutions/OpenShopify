@@ -1,15 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.SalesChannels;
 public class CheckoutFixture : SharedFixture, IAsyncLifetime
 {
-    public SalesChannelsService Service;
+    public ISalesChannelsService Service;
     public List<Checkout> CreatedCheckouts = new();
 
     public CheckoutFixture()
@@ -19,15 +13,23 @@ public class CheckoutFixture : SharedFixture, IAsyncLifetime
     public Task InitializeAsync() => Task.CompletedTask;
     public Task DisposeAsync() => Task.CompletedTask;
 }
+//TODO:Build Checkout Tests
 /*
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
 public class CheckoutTests : IClassFixture<CheckoutFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly CheckoutMockClient _badRequestMockClient;
+    private readonly CheckoutMockClient _okEmptyMockClient;
+    private readonly CheckoutMockClient _okInvalidJsonMockClient;
+
     public CheckoutTests(CheckoutFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new CheckoutMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new CheckoutMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new CheckoutMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private CheckoutFixture Fixture { get; }
@@ -120,5 +122,29 @@ public class CheckoutTests : IClassFixture<CheckoutFixture>
     }
 
     #endregion Update
+
+    
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
 }
+
+internal class CheckoutMockClient : CheckoutClient, IMockTests
+{
+    public CheckoutMockClient(HttpClient httpClient, CheckoutFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+    
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
+}
+
 */

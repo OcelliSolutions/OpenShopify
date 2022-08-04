@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.ShopifyPayments;
 
 public class DisputeFixture : SharedFixture, IAsyncLifetime
 {
     public List<Dispute> CreatedDisputes = new();
-    public ShopifyPaymentsService Service;
+    public IShopifyPaymentsService Service;
 
     public DisputeFixture() =>
         Service = new ShopifyPaymentsService(MyShopifyUrl, AccessToken);
@@ -24,11 +18,17 @@ public class DisputeFixture : SharedFixture, IAsyncLifetime
 public class DisputeTests : IClassFixture<DisputeFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly DisputeMockClient _badRequestMockClient;
+    private readonly DisputeMockClient _okEmptyMockClient;
+    private readonly DisputeMockClient _okInvalidJsonMockClient;
 
     public DisputeTests(DisputeFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new DisputeMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new DisputeMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new DisputeMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private DisputeFixture Fixture { get; }
@@ -62,4 +62,27 @@ public class DisputeTests : IClassFixture<DisputeFixture>
     }
 
     #endregion Read
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class DisputeMockClient : DisputeClient, IMockTests
+{
+    public DisputeMockClient(HttpClient httpClient, DisputeFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

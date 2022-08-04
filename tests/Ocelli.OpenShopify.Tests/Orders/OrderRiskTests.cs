@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
+﻿using System.Collections.Generic;
 
 namespace Ocelli.OpenShopify.Tests.Orders;
 
@@ -15,7 +8,7 @@ public class OrderRiskFixture : SharedFixture, IAsyncLifetime
     public Order Order = new();
     public Product Product = new();
     public Checkout Checkout = new();
-    public OrdersService Service;
+    public IOrdersService Service;
 
     public OrderRiskFixture() =>
         Service = new OrdersService(MyShopifyUrl, AccessToken);
@@ -57,11 +50,17 @@ public class OrderRiskFixture : SharedFixture, IAsyncLifetime
 public class OrderRiskTests : IClassFixture<OrderRiskFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly OrderRiskMockClient _badRequestMockClient;
+    private readonly OrderRiskMockClient _okEmptyMockClient;
+    private readonly OrderRiskMockClient _okInvalidJsonMockClient;
 
     public OrderRiskTests(OrderRiskFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new OrderRiskMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new OrderRiskMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new OrderRiskMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private OrderRiskFixture Fixture { get; }
@@ -151,4 +150,27 @@ public class OrderRiskTests : IClassFixture<OrderRiskFixture>
     }
 
     #endregion Delete
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class OrderRiskMockClient : OrderRiskClient, IMockTests
+{
+    public OrderRiskMockClient(HttpClient httpClient, OrderRiskFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
+}

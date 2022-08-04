@@ -1,10 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.OnlineStore;
 
@@ -13,7 +7,7 @@ public class CommentFixture : SharedFixture, IAsyncLifetime
     public Article Article = new();
     public Blog Blog = new();
     public List<Comment> CreatedComments = new();
-    public OnlineStoreService Service;
+    public IOnlineStoreService Service;
 
     public CommentFixture() =>
         Service = new OnlineStoreService(MyShopifyUrl, AccessToken);
@@ -61,11 +55,17 @@ public class CommentFixture : SharedFixture, IAsyncLifetime
 public class CommentTests : IClassFixture<CommentFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly CommentMockClient _badRequestMockClient;
+    private readonly CommentMockClient _okEmptyMockClient;
+    private readonly CommentMockClient _okInvalidJsonMockClient;
 
     public CommentTests(CommentFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new CommentMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new CommentMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new CommentMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private CommentFixture Fixture { get; }
@@ -180,4 +180,27 @@ public class CommentTests : IClassFixture<CommentFixture>
     }
 
     #endregion Delete
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class CommentMockClient : CommentClient, IMockTests
+{
+    public CommentMockClient(HttpClient httpClient, CommentFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
+}

@@ -1,10 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.StoreProperties;
 
@@ -12,7 +6,7 @@ public class ProvinceFixture : SharedFixture, IAsyncLifetime
 {
     public List<Country> Countries = new();
     public List<Province> Provinces = new();
-    public StorePropertiesService Service;
+    public IStorePropertiesService Service;
 
     public ProvinceFixture() =>
         Service = new StorePropertiesService(MyShopifyUrl, AccessToken);
@@ -32,11 +26,17 @@ public class ProvinceFixture : SharedFixture, IAsyncLifetime
 public class ProvinceTests : IClassFixture<ProvinceFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly ProvinceMockClient _badRequestMockClient;
+    private readonly ProvinceMockClient _okEmptyMockClient;
+    private readonly ProvinceMockClient _okInvalidJsonMockClient;
 
     public ProvinceTests(ProvinceFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new ProvinceMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new ProvinceMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new ProvinceMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private ProvinceFixture Fixture { get; }
@@ -107,4 +107,26 @@ public class ProvinceTests : IClassFixture<ProvinceFixture>
     }
 
     #endregion Read
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class ProvinceMockClient : ProvinceClient, IMockTests
+{
+    public ProvinceMockClient(HttpClient httpClient, ProvinceFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

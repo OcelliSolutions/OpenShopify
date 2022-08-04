@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Events;
 
 public class EventFixture : SharedFixture, IAsyncLifetime
 {
     public List<Event> CreatedEvents = new();
-    public EventsService Service;
+    public IEventsService Service;
 
     public EventFixture() =>
         Service = new EventsService(MyShopifyUrl, AccessToken);
@@ -24,11 +18,17 @@ public class EventFixture : SharedFixture, IAsyncLifetime
 public class EventTests : IClassFixture<EventFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly EventMockClient _badRequestMockClient;
+    private readonly EventMockClient _okEmptyMockClient;
+    private readonly EventMockClient _okInvalidJsonMockClient;
 
     public EventTests(EventFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new EventMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new EventMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new EventMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private EventFixture Fixture { get; }
@@ -71,4 +71,27 @@ public class EventTests : IClassFixture<EventFixture>
     }
 
     #endregion Read
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class EventMockClient : EventClient, IMockTests
+{
+    public EventMockClient(HttpClient httpClient, EventFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

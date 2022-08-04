@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Orders;
 
 public class DraftOrderFixture : SharedFixture, IAsyncLifetime
 {
     public List<DraftOrder> CreatedDraftOrders = new();
-    public OrdersService Service;
+    public IOrdersService Service;
 
     public DraftOrderFixture() =>
         Service = new OrdersService(MyShopifyUrl, AccessToken);
@@ -34,11 +28,17 @@ public class DraftOrderFixture : SharedFixture, IAsyncLifetime
 public class DraftOrderTests : IClassFixture<DraftOrderFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly DraftOrderMockClient _badRequestMockClient;
+    private readonly DraftOrderMockClient _okEmptyMockClient;
+    private readonly DraftOrderMockClient _okInvalidJsonMockClient;
 
     public DraftOrderTests(DraftOrderFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new DraftOrderMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new DraftOrderMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new DraftOrderMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private DraftOrderFixture Fixture { get; }
@@ -146,4 +146,27 @@ public class DraftOrderTests : IClassFixture<DraftOrderFixture>
     }
 
     #endregion Delete
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class DraftOrderMockClient : DraftOrderClient, IMockTests
+{
+    public DraftOrderMockClient(HttpClient httpClient, DraftOrderFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
+}

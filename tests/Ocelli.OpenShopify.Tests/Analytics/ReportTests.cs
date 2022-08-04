@@ -1,17 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Ocelli.OpenShopify.Tests.Analytics;
 
 public class ReportFixture : SharedFixture, IAsyncLifetime
 {
     public List<Report> CreatedReports = new();
-    public AnalyticsService Service;
+    public IAnalyticsService Service;
 
     public ReportFixture() =>
         Service = new AnalyticsService(MyShopifyUrl, AccessToken);
@@ -33,12 +28,17 @@ public class ReportFixture : SharedFixture, IAsyncLifetime
 public class ReportTests : IClassFixture<ReportFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-
+    private readonly ReportMockClient _badRequestMockClient;
+    private readonly ReportMockClient _okEmptyMockClient;
+    private readonly ReportMockClient _okInvalidJsonMockClient;
 
     public ReportTests(ReportFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new ReportMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new ReportMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new ReportMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private ReportFixture Fixture { get; }
@@ -145,4 +145,28 @@ public class ReportTests : IClassFixture<ReportFixture>
     }
 
     #endregion Read
+    
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class ReportMockClient : ReportClient, IMockTests
+{
+    public ReportMockClient(HttpClient httpClient, SharedFixture fixture) : base(httpClient)
+    {
+        BaseUrl = fixture.CommonBaseUrl();
+    }
+    public async Task TestAllMethodsThatReturnData()
+    {
+        await Assert.ThrowsAsync<ApiException>(async () => await ListReportsAsync(fields: "test", ids: new List<long>{0}, limit: 10, pageInfo: "NA", sinceId: 0, updatedAtMax: DateTimeOffset.Now, updatedAtMin: DateTimeOffset.Now.AddDays(-1)));
+        await Assert.ThrowsAsync<ApiException>(async () => await CreateReportAsync(new CreateReportRequest()));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetReportAsync(reportId: 0, fields: "test"));
+        await Assert.ThrowsAsync<ApiException>(async () => await UpdateReportAsync(0, new UpdateReportRequest()));
+    }
 }

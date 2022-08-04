@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.ShippingAndFulfillment;
 
 public class FulfillmentServiceFixture : SharedFixture, IAsyncLifetime
 {
     public List<FulfillmentService> CreatedFulfillmentServices = new();
-    public ShippingAndFulfillmentService Service;
+    public IShippingAndFulfillmentService Service;
 
     public FulfillmentServiceFixture() =>
         Service = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
@@ -37,11 +31,17 @@ public class FulfillmentServiceFixture : SharedFixture, IAsyncLifetime
 public class FulfillmentServiceTests : IClassFixture<FulfillmentServiceFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly FulfillmentServiceMockClient _badRequestMockClient;
+    private readonly FulfillmentServiceMockClient _okEmptyMockClient;
+    private readonly FulfillmentServiceMockClient _okInvalidJsonMockClient;
 
     public FulfillmentServiceTests(FulfillmentServiceFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new FulfillmentServiceMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new FulfillmentServiceMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new FulfillmentServiceMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private FulfillmentServiceFixture Fixture { get; }
@@ -154,4 +154,27 @@ public class FulfillmentServiceTests : IClassFixture<FulfillmentServiceFixture>
     }
 
     #endregion
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class FulfillmentServiceMockClient : FulfillmentServiceClient, IMockTests
+{
+    public FulfillmentServiceMockClient(HttpClient httpClient, FulfillmentServiceFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

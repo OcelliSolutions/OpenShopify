@@ -1,12 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
-
-namespace Ocelli.OpenShopify.Tests.ShippingAndFulfillment;
+﻿namespace Ocelli.OpenShopify.Tests.ShippingAndFulfillment;
 
 public class AssignedFulfillmentOrderFixture : SharedFixture, IAsyncLifetime
 {
@@ -18,7 +10,7 @@ public class AssignedFulfillmentOrderFixture : SharedFixture, IAsyncLifetime
     public AssignedFulfillmentOrderFixture() =>
         Service = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
 
-    public ShippingAndFulfillmentService Service { get; set; }
+    public IShippingAndFulfillmentService Service { get; set; }
 
     public async Task InitializeAsync()
     {
@@ -55,12 +47,17 @@ public class AssignedFulfillmentOrderFixture : SharedFixture, IAsyncLifetime
 public class AssignedFulfillmentOrderTests : IClassFixture<AssignedFulfillmentOrderFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-
+    private readonly AssignedFulfillmentOrderMockClient _badRequestMockClient;
+    private readonly AssignedFulfillmentOrderMockClient _okEmptyMockClient;
+    private readonly AssignedFulfillmentOrderMockClient _okInvalidJsonMockClient;
 
     public AssignedFulfillmentOrderTests(AssignedFulfillmentOrderFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new AssignedFulfillmentOrderMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new AssignedFulfillmentOrderMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new AssignedFulfillmentOrderMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private AssignedFulfillmentOrderFixture Fixture { get; }
@@ -84,4 +81,27 @@ public class AssignedFulfillmentOrderTests : IClassFixture<AssignedFulfillmentOr
     }
 
     #endregion Read
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class AssignedFulfillmentOrderMockClient : AssignedFulfillmentOrderClient, IMockTests
+{
+    public AssignedFulfillmentOrderMockClient(HttpClient httpClient, AssignedFulfillmentOrderFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

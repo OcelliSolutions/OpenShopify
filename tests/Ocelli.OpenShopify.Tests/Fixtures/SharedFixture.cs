@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Ocelli.OpenShopify.Tests.Models;
+using RichardSzalay.MockHttp;
 using shortid;
 using shortid.Configuration;
-using Xunit;
-using Xunit.Abstractions;
-using Xunit.Sdk;
 
 namespace Ocelli.OpenShopify.Tests.Fixtures;
 
@@ -41,6 +38,22 @@ public class SharedFixture
         WebhookTest = config.Webhook;
         //Scopes = new List<AuthorizationScope?>();
 
+
+        var badRequest = new MockHttpMessageHandler();
+        badRequest.When("*").Respond(HttpStatusCode.BadRequest); // Respond with JSON
+        BadRequestMockHttpClient = badRequest.ToHttpClient();
+
+        var okEmpty = new MockHttpMessageHandler();
+        okEmpty.When("*").Respond(HttpStatusCode.OK, "application/json", (string?)null); // Respond with JSON
+        OkEmptyMockHttpClient = okEmpty.ToHttpClient();
+
+        var okInvalidJson = new MockHttpMessageHandler();
+        var invalidContent = new { Error = "Sample" };
+        okInvalidJson.When("*").Respond(HttpStatusCode.OK, "application/json", "{ bad\"name: 'sample'}"); // Respond with JSON
+        OkInvalidJsonMockHttpClient = okInvalidJson.ToHttpClient();
+
+
+
         Task.Run(async () => await LoadScopes()).Wait();
     }
 
@@ -59,8 +72,10 @@ public class SharedFixture
     public string Note => "Test note about this customer.";
     public string Email => $@"foo+{BatchId}@example.com";
     public string CallbackUrl => @"https://sample.com/callback";
+    internal HttpClient BadRequestMockHttpClient { get; set; }
+    internal HttpClient OkEmptyMockHttpClient { get; set; }
+    internal HttpClient OkInvalidJsonMockHttpClient { get; set; }
 
-    
     public void ValidateScopes(List<AuthorizationScope> requiredPermissions)
     {
         foreach (var requiredPermission in requiredPermissions)
@@ -69,6 +84,15 @@ public class SharedFixture
                 $@"`{MyShopifyUrl}` credentials do not have the `{requiredPermission}` scope(s). Endpoint cannot be tested.");
         }
     }
+
+    internal string CommonBaseUrl() =>
+        new UriBuilder()
+        {
+            Scheme = "https://",
+            Host = MyShopifyUrl,
+            Port = 443,
+            Path = $"admin/api/2022-07/"
+        }.ToString();
 
     public string UniqueString([CallerMemberName] string callerName = "") => $@"{Company} {callerName} ({BatchId})";
 

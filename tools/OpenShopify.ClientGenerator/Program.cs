@@ -107,13 +107,12 @@ foreach (var shopifyFile in shopifyFiles)
     var generator = new CSharpClientGenerator(document, settings);
     var code = generator.GenerateFile();
     code = code.Replace("JsonStringEnumConverter", "JsonStringEnumMemberConverter");
-
-    var pattern = @"foreach \(var item_ in (\w+).*?\}";
-    if(Regex.IsMatch(code, pattern))
-        Console.WriteLine(Regex.Match(code, pattern));
-    code = Regex.Replace(code, $@"foreach \(var item_ in (\w+).*?\}}", $@"{{urlBuilder_.Append(System.Uri.EscapeDataString(""$1"") + ""="").Append(System.Uri.EscapeDataString(string.Join("","", $1))).Append(""&""); }}");
     
+    code = Regex.Replace(code, @"foreach \(var item_ in (\w+).*?\}}", $@"{{urlBuilder_.Append(System.Uri.EscapeDataString(""$1"") + ""="").Append(System.Uri.EscapeDataString(string.Join("","", $1))).Append(""&""); }}");
 
+    code = Regex.Replace(code, @"namespace Ocelli.OpenShopify", $@"[assembly: System.Runtime.CompilerServices.InternalsVisibleTo(""Ocelli.OpenShopify.Tests"")]
+namespace Ocelli.OpenShopify");
+    
     await File.WriteAllTextAsync($@"../../../../../src/Ocelli.OpenShopify/Clients/Shopify{className}Client.cs", code);
 
 }

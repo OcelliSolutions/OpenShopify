@@ -1,16 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.StoreProperties;
 
 public class CountryFixture : SharedFixture, IAsyncLifetime
 {
-    public StorePropertiesService Service;
+    public IStorePropertiesService Service;
     public List<Country> CreatedCountries = new();
 
     public CountryFixture()
@@ -39,10 +33,17 @@ public class CountryFixture : SharedFixture, IAsyncLifetime
 public class CountryTests : IClassFixture<CountryFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly CountryMockClient _badRequestMockClient;
+    private readonly CountryMockClient _okEmptyMockClient;
+    private readonly CountryMockClient _okInvalidJsonMockClient;
+
     public CountryTests(CountryFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new CountryMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new CountryMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new CountryMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private CountryFixture Fixture { get; }
@@ -134,4 +135,26 @@ public class CountryTests : IClassFixture<CountryFixture>
     }
 
     #endregion Update
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class CountryMockClient : CountryClient, IMockTests
+{
+    public CountryMockClient(HttpClient httpClient, CountryFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

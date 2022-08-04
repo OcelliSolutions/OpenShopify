@@ -1,5 +1,4 @@
-﻿using System.Dynamic;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
 using NJsonSchema;
@@ -9,9 +8,7 @@ using NSwag;
 using NSwag.CodeGeneration.CSharp;
 using NSwag.CodeGeneration.CSharp.Models;
 using NSwag.CodeGeneration.OperationNameGenerators;
-using PluralizationService.Core.Builder.Base;
 using PluralizeService.Core;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 dynamic GetMainMenu(string url)
 {

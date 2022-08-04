@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Plus;
 
 public class GiftCardFixture : SharedFixture, IAsyncLifetime
 {
     public List<GiftCard> CreatedGiftCards = new();
-    public PlusService Service;
+    public IPlusService Service;
 
     public GiftCardFixture() =>
         Service = new PlusService(MyShopifyUrl, AccessToken);
@@ -35,11 +29,17 @@ public class GiftCardFixture : SharedFixture, IAsyncLifetime
 public class GiftCardTests : IClassFixture<GiftCardFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly GiftCardMockClient _badRequestMockClient;
+    private readonly GiftCardMockClient _okEmptyMockClient;
+    private readonly GiftCardMockClient _okInvalidJsonMockClient;
 
     public GiftCardTests(GiftCardFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new GiftCardMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new GiftCardMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new GiftCardMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private GiftCardFixture Fixture { get; }
@@ -144,4 +144,27 @@ public class GiftCardTests : IClassFixture<GiftCardFixture>
     }
 
     #endregion Delete
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class GiftCardMockClient : GiftCardClient, IMockTests
+{
+    public GiftCardMockClient(HttpClient httpClient, GiftCardFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

@@ -17,6 +17,7 @@ using System.Text.Json;
 #pragma warning disable 3016 // Disable "CS3016 Arrays as attribute arguments is not CLS-compliant"
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Ocelli.OpenShopify.Tests")]
 namespace Ocelli.OpenShopify
 {
     using System = global::System;

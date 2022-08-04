@@ -1,10 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.Customers;
 
@@ -12,7 +6,7 @@ public class CustomerAddressFixture : SharedFixture, IAsyncLifetime
 {
     public List<CustomerAddress> CreatedCustomerAddresses = new();
     public Customer Customer = new();
-    public CustomersService Service;
+    public ICustomersService Service;
 
     public CustomerAddressFixture() =>
         Service = new CustomersService(MyShopifyUrl, AccessToken);
@@ -52,11 +46,17 @@ public class CustomerAddressFixture : SharedFixture, IAsyncLifetime
 public class CustomerAddressTests : IClassFixture<CustomerAddressFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
+    private readonly CustomerAddressMockClient _badRequestMockClient;
+    private readonly CustomerAddressMockClient _okEmptyMockClient;
+    private readonly CustomerAddressMockClient _okInvalidJsonMockClient;
 
     public CustomerAddressTests(CustomerAddressFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new CustomerAddressMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new CustomerAddressMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new CustomerAddressMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private CustomerAddressFixture Fixture { get; }
@@ -153,4 +153,27 @@ public class CustomerAddressTests : IClassFixture<CustomerAddressFixture>
     public async Task DeleteCustomerAddressAsync_CanDelete() => await Fixture.DeleteCustomerAddressAsync_CanDelete();
 
     #endregion Delete
+
+
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class CustomerAddressMockClient : CustomerAddressClient, IMockTests
+{
+    public CustomerAddressMockClient(HttpClient httpClient, CustomerAddressFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }

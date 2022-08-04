@@ -1,10 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ocelli.OpenShopify.Tests.Fixtures;
-using Ocelli.OpenShopify.Tests.Helpers;
-using Xunit;
-using Xunit.Abstractions;
 
 namespace Ocelli.OpenShopify.Tests.ShopifyPayments;
 
@@ -15,7 +9,7 @@ public class TransactionsFixture : SharedFixture, IAsyncLifetime
     public TransactionsFixture() =>
         Service = new ShopifyPaymentsService(MyShopifyUrl, AccessToken);
 
-    public ShopifyPaymentsService Service { get; set; }
+    public IShopifyPaymentsService Service { get; set; }
 
     public Task InitializeAsync() => Task.CompletedTask;
 
@@ -26,12 +20,17 @@ public class TransactionsFixture : SharedFixture, IAsyncLifetime
 public class TransactionsTests : IClassFixture<TransactionsFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
-
+    private readonly TransactionsMockClient _badRequestMockClient;
+    private readonly TransactionsMockClient _okEmptyMockClient;
+    private readonly TransactionsMockClient _okInvalidJsonMockClient;
 
     public TransactionsTests(TransactionsFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
         _additionalPropertiesHelper = new AdditionalPropertiesHelper(testOutputHelper);
+        _badRequestMockClient = new TransactionsMockClient(fixture.BadRequestMockHttpClient, fixture);
+        _okEmptyMockClient = new TransactionsMockClient(fixture.OkEmptyMockHttpClient, fixture);
+        _okInvalidJsonMockClient = new TransactionsMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
     private TransactionsFixture Fixture { get; }
@@ -66,4 +65,26 @@ public class TransactionsTests : IClassFixture<TransactionsFixture>
     #region Delete - NA
 
     #endregion Delete - NA
+    
+    [Fact]
+    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+}
+
+internal class TransactionsMockClient : TransactionsClient, IMockTests
+{
+    public TransactionsMockClient(HttpClient httpClient, TransactionsFixture fixture) : base(httpClient)
+    {
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public Task TestAllMethodsThatReturnData()
+    {
+        throw new XunitException("Not implemented.");
+    }
 }
