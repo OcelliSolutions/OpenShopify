@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Ocelli.OpenShopify.Tests.DeprecatedApiCalls;
+﻿namespace Ocelli.OpenShopify.Tests.DeprecatedApiCalls;
 
 public class DeprecatedApiCallsFixture : SharedFixture, IAsyncLifetime
 {
@@ -15,6 +13,7 @@ public class DeprecatedApiCallsFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
+[Collection("DeprecatedApiCallsTests")]
 public class DeprecatedApiCallsTests : IClassFixture<DeprecatedApiCallsFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
@@ -48,28 +47,36 @@ public class DeprecatedApiCallsTests : IClassFixture<DeprecatedApiCallsFixture>
         }
     }
 
+    [SkippableFact]
+    [TestPriority(20)]
+    // If this one fails, enable the one above and see if it validates correctly. Once complete, delete this test.
+    public async Task ListDeprecatedAPICallsAsync_Returns404()
+    {
+        await Assert.ThrowsAsync<ApiException>(async () => await Fixture.Service.DeprecatedApiCalls.ListDeprecatedAPICallsAsync());
+    }
+
     #endregion Read
 
 
-    [Fact]
+    [SkippableFact]
     public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
 
-    [Fact]
+    [SkippableFact]
     public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
 
-    [Fact]
+    [SkippableFact]
     public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
 }
 
 internal class DeprecatedApiCallMockClient : DeprecatedApiCallsClient, IMockTests
 {
-    public DeprecatedApiCallMockClient(HttpClient httpClient, DeprecatedApiCallsFixture fixture) : base(httpClient)
+    public DeprecatedApiCallMockClient(HttpClient httpClient, SharedFixture fixture) : base(httpClient)
     {
         BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
 
-    public Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnData()
     {
-        throw new XunitException("Not implemented.");
+        await Assert.ThrowsAsync<ApiException>(async () => await ListDeprecatedAPICallsAsync());
     }
 }

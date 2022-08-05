@@ -1,20 +1,29 @@
-﻿using System.Collections.Generic;
-
-namespace Ocelli.OpenShopify.Tests.Inventory;
+﻿namespace Ocelli.OpenShopify.Tests.Inventory;
 
 public class InventoryItemFixture : SharedFixture, IAsyncLifetime
 {
     public List<InventoryItem> CreatedInventoryItems = new();
+    public List<ProductVariant> ProductVariants = new();
     public IInventoryService Service;
 
     public InventoryItemFixture() =>
         Service = new InventoryService(MyShopifyUrl, AccessToken);
 
-    public Task InitializeAsync() => Task.CompletedTask;
+    public async Task InitializeAsync()
+    {
+        var productService = new ProductsService(MyShopifyUrl, AccessToken);
+        var products = await productService.Product.ListProductsAsync();
+        foreach (var product in products.Result.Products.Take(1))
+        {
+            var productVariants = await productService.ProductVariant.ListProductVariantsAsync(product.Id);
+            ProductVariants.AddRange(productVariants.Result.Variants);
+        }
+    }
     public Task DisposeAsync() => Task.CompletedTask;
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
+[Collection("InventoryItemTests")]
 public class InventoryItemTests : IClassFixture<InventoryItemFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
@@ -66,8 +75,9 @@ public class InventoryItemTests : IClassFixture<InventoryItemFixture>
     [TestPriority(20)]
     public async Task ListInventoryItemsAsync_AdditionalPropertiesAreEmpty()
     {
-        Skip.If(!Fixture.CreatedInventoryItems.Any(), "Must be run with create test");
-        var response = await Fixture.Service.InventoryItem.ListInventoryItemsAsync();
+        Skip.If(!Fixture.ProductVariants.Any(), "No available product variants");
+        var ids = Fixture.ProductVariants.Where(v => v.InventoryItemId > 0).Select(v => v.InventoryItemId ?? 0);
+        var response = await Fixture.Service.InventoryItem.ListInventoryItemsAsync(ids);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var inventoryItem in response.Result.InventoryItems)
         {
@@ -75,13 +85,14 @@ public class InventoryItemTests : IClassFixture<InventoryItemFixture>
         }
 
         Skip.If(!response.Result.InventoryItems.Any(), "No results returned. Unable to test");
+        Fixture.CreatedInventoryItems.AddRange(response.Result.InventoryItems);
     }
 
     [SkippableFact]
-    [TestPriority(20)]
+    [TestPriority(21)]
     public async Task GetInventoryItemAsync_TestCreated_AdditionalPropertiesAreEmpty()
     {
-        Skip.If(!Fixture.CreatedInventoryItems.Any(), "Must be run with create test");
+        Skip.If(!Fixture.CreatedInventoryItems.Any(), "Must be run with list test");
         var inventoryItem = Fixture.CreatedInventoryItems.First();
         var response = await Fixture.Service.InventoryItem.GetInventoryItemAsync(inventoryItem.Id);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
@@ -91,25 +102,27 @@ public class InventoryItemTests : IClassFixture<InventoryItemFixture>
     #endregion Read
 
 
-    [Fact]
+    [SkippableFact]
     public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
 
-    [Fact]
+    [SkippableFact]
     public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
 
-    [Fact]
+    [SkippableFact]
     public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
 }
 
 internal class InventoryItemMockClient : InventoryItemClient, IMockTests
 {
-    public InventoryItemMockClient(HttpClient httpClient, InventoryItemFixture fixture) : base(httpClient)
+    public InventoryItemMockClient(HttpClient httpClient, SharedFixture fixture) : base(httpClient)
     {
         BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
 
-    public Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnData()
     {
-        throw new XunitException("Not implemented.");
+        await Assert.ThrowsAsync<ApiException>(async () => await ListInventoryItemsAsync(new List<long> {0}, 0, "NA"));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetInventoryItemAsync(0));
+        await Assert.ThrowsAsync<ApiException>(async () => await UpdateInventoryItemAsync(0, new UpdateInventoryItemRequest()));
     }
 }

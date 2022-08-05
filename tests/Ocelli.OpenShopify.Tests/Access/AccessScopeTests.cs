@@ -13,6 +13,7 @@ public class AccessScopeFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
+[Collection("AccessScopeTests")]
 public class AccessScopeTests : IClassFixture<AccessScopeFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
@@ -62,27 +63,25 @@ public class AccessScopeTests : IClassFixture<AccessScopeFixture>
             await service.AccessScope.ListAccessScopesAsync());
     }
     
-    [Fact]
+    [SkippableFact]
     public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
 
-    [Fact]
+    [SkippableFact]
     public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
 
-    [Fact]
+    [SkippableFact]
     public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
 }
 
 internal class AccessScopeMockClient : AccessScopeClient, IMockTests
 {
-    public AccessScopeMockClient(HttpClient httpClient, AccessScopeFixture fixture) : base(httpClient)
+    public AccessScopeMockClient(HttpClient httpClient, SharedFixture fixture) : base(httpClient)
     {
         BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
     
     public async Task TestAllMethodsThatReturnData()
     {
-        var textTest = new ObjectResponseResult<string>();
-        Assert.Empty(textTest.Text);
         await Assert.ThrowsAsync<ApiException>(async () => await ListAccessScopesAsync(CancellationToken.None));
     }
 }

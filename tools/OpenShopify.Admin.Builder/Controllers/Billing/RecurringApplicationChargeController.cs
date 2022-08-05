@@ -44,7 +44,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}.json")]
-        public abstract System.Threading.Tasks.Task GetCharge(long recurring_application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public abstract System.Threading.Tasks.Task GetRecurringApplicationCharge(long recurring_application_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
         /// <summary>
         /// Cancels a recurring application charge
@@ -100,7 +100,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("capped_amount")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? CappedAmount { get; set; } = default!;
+        public decimal? CappedAmount { get; set; } = default!;
 
         /// <summary>
         /// The URL where the merchant accepts or declines the recurring application charge.

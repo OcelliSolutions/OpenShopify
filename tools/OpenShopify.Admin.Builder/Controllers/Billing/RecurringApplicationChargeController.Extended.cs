@@ -30,7 +30,7 @@ public class RecurringApplicationChargeController : RecurringApplicationChargeCo
     [HttpGet]
     [Route("recurring_application_charges/{recurring_application_charge_id:long}.json")]
     [ProducesResponseType(typeof(RecurringApplicationChargeItem), StatusCodes.Status200OK)]
-    public override Task GetCharge([Required] long recurring_application_charge_id, string? fields = null) =>
+    public override Task GetRecurringApplicationCharge([Required] long recurring_application_charge_id, string? fields = null) =>
         throw new NotImplementedException();
 
     /// <inheritdoc />

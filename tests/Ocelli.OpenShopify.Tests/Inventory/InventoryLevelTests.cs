@@ -1,34 +1,64 @@
-﻿using System.Collections.Generic;
-
-namespace Ocelli.OpenShopify.Tests.Inventory;
+﻿namespace Ocelli.OpenShopify.Tests.Inventory;
 public class InventoryLevelFixture : SharedFixture, IAsyncLifetime
 {
     public IInventoryService Service;
     public InventoryItem InventoryItem = new();
     public Location Location = new();
     public List<InventoryLevel> CreatedInventoryLevels = new();
+    public List<FulfillmentService> CreatedFulfillmentServices = new();
+    public List<Product> CreatedProducts = new();
+    public List<ProductVariant> ProductVariants = new();
 
-    public InventoryLevelFixture()
+    public InventoryLevelFixture() => Service = new InventoryService(MyShopifyUrl, AccessToken);
+
+    public async Task InitializeAsync()
     {
-        Service = new InventoryService(MyShopifyUrl, AccessToken);
+        var fulfillmentService = await CreateFulfillmentService();
+        CreatedFulfillmentServices.Add(fulfillmentService);
+        var productService = new ProductsService(MyShopifyUrl, AccessToken);
+        var product = await CreateProduct(fulfillmentService);
+        CreatedProducts.Add(product);
+        var productVariants = await productService.ProductVariant.ListProductVariantsAsync(product.Id);
+        ProductVariants.AddRange(productVariants.Result.Variants);
     }
-    public Task InitializeAsync() => Task.CompletedTask;
 
     async Task IAsyncLifetime.DisposeAsync()
     {
-        await DeleteInventoryLevelAsync_CanDelete();
+        //await DeleteInventoryLevelAsync_CanDelete();
+        await DeleteProductAsync_CanDelete();
+        await DeleteFulfillmentServiceAsync_CanDelete();
     }
-    
+
+    public async Task DeleteFulfillmentServiceAsync_CanDelete()
+    {
+        var shippingAndFulfillmentService = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
+        foreach (var fulfillmentService in CreatedFulfillmentServices)
+        {
+            _ = await shippingAndFulfillmentService.FulfillmentService.DeleteFulfillmentServiceAsync(fulfillmentService.Id);
+        }
+        CreatedFulfillmentServices.Clear();
+    }
+
     public async Task DeleteInventoryLevelAsync_CanDelete()
     {
-        foreach (var inventoryLevel in CreatedInventoryLevels)
+        foreach (var inventoryLevel in CreatedInventoryLevels.Take(1))
         {
-            _ = await Service.InventoryLevel.DeleteInventoryLevelFromLocationAsync(inventoryLevel.Id, Location.Id);
+            _ = await Service.InventoryLevel.DeleteInventoryLevelFromLocationAsync(inventoryLevel.InventoryItemId, inventoryLevel.LocationId ?? 0);
         }
         CreatedInventoryLevels.Clear();
     }
+    public async Task DeleteProductAsync_CanDelete()
+    {
+        var productService = new ProductsService(MyShopifyUrl, AccessToken);
+        foreach (var product in CreatedProducts)
+        {
+            _ = await productService.Product.DeleteProductAsync(product.Id);
+        }
+        CreatedProducts.Clear();
+    }
 }
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
+[Collection("InventoryLevelTests")]
 public class InventoryLevelTests : IClassFixture<InventoryLevelFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
@@ -47,96 +77,75 @@ public class InventoryLevelTests : IClassFixture<InventoryLevelFixture>
 
     private InventoryLevelFixture Fixture { get; }
 
-    /*
-        #region Create
+    #region Read
 
-        [SkippableFact, TestPriority(10)]
-        public async Task CreateInventoryLevelAsync_CanCreate()
+    [SkippableFact, TestPriority(20)]
+    public async Task ListInventoryLevelsAsync_AdditionalPropertiesAreEmpty()
+    {
+        var inventoryItemIds = Fixture.ProductVariants.Where(v => v.InventoryItemId > 0).Select(v => v.InventoryItemId ?? 0 ).Take(50);
+        var response = await Fixture.Service.InventoryLevel.ListInventoryLevelsAsync(inventoryItemIds);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        foreach (var inventoryLevel in response.Result.InventoryLevels)
         {
-            var request = new CreateInventoryLevelRequest()
-            {
-                InventoryLevel = new()
-                {
-                    Topic = InventoryLevelTopic.FulfillmentEventsCreate,
-                    Address = $@"{Fixture.CallbackUrl}/fulfillment_events_create"
-                }
-            };
-            var response = await Fixture.Service.InventoryLevel.CreateInventoryLevelAsync(request);
-            _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-
-            Fixture.CreatedInventoryLevels.Add(response.Result.InventoryLevel);
+            _additionalPropertiesHelper.CheckAdditionalProperties(inventoryLevel, Fixture.MyShopifyUrl);
         }
 
-        [SkippableFact, TestPriority(10)]
-        public async Task CreateInventoryLevelAsync_IsUnprocessableEntityError()
-        {
-            var request = new CreateInventoryLevelRequest()
-            {
-                InventoryLevel = new()
-            };
-            await Assert.ThrowsAsync<ApiException<InventoryLevelError>>(async () => await Fixture.Service.InventoryLevel.CreateInventoryLevelAsync(request));
-        }
+        Skip.If(!response.Result.InventoryLevels.Any(), "No results returned. Unable to test");
+        Fixture.CreatedInventoryLevels.AddRange(response.Result.InventoryLevels);
+    }
 
-        #endregion Create
-
-        #region Read
-
-        [SkippableFact, TestPriority(20)]
-        public async Task CountInventoryLevelsAsync_CanGet()
-        {
-            var response = await Fixture.Service.InventoryLevel.CountInventoryLevelsAsync();
-            _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-            var count = response.Result.Count;
-            Skip.If(count == 0, "No results returned. Unable to test");
-        }
-
-        [SkippableFact, TestPriority(20)]
-        public async Task ListInventoryLevelsAsync_AdditionalPropertiesAreEmpty()
-        {
-            var response = await Fixture.Service.InventoryLevel.ListInventoryLevelsAsync();
-            _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-            foreach (var inventoryLevel in response.Result.InventoryLevels)
-            {
-                _additionalPropertiesHelper.CheckAdditionalProperties(inventoryLevel, Fixture.MyShopifyUrl);
-            }
-            Skip.If(!response.Result.InventoryLevels.Any(), "No results returned. Unable to test");
-        }
-
-        [SkippableFact, TestPriority(20)]
-        public async Task GetInventoryLevelAsync_TestCreated_AdditionalPropertiesAreEmpty()
-        {
-            Skip.If(!Fixture.CreatedInventoryLevels.Any(), "Must be run with create test");
-            var inventoryLevel = Fixture.CreatedInventoryLevels.First();
-            var response = await Fixture.Service.InventoryLevel.GetInventoryLevelAsync(inventoryLevel.Id);
-            _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-            _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.InventoryLevel, Fixture.MyShopifyUrl);
-        }
-
-        #endregion Read
+    #endregion Read
 
         #region Update
 
         [SkippableFact, TestPriority(30)]
-        public async Task UpdateInventoryLevelAsync_CanUpdate()
+        public async Task AdjustInventoryLevelOfInventoryItemAtLocationAsync_CanUpdate()
+    {
+        var productVariant = Fixture.ProductVariants.First();
+        var fulfillmentService =
+            Fixture.CreatedFulfillmentServices.First(fs => fs.Handle == productVariant.FulfillmentService);
+        var request = new AdjustInventoryLevelOfInventoryItemAtLocationRequest()
+            {
+                InventoryItemId = productVariant.InventoryItemId ?? 0,
+                LocationId = fulfillmentService.LocationId ?? 0, 
+                AvailableAdjustment = 2
+            };
+            var response = await Fixture.Service.InventoryLevel.AdjustInventoryLevelOfInventoryItemAtLocationAsync(request);
+            _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+    }
+
+        [SkippableFact, TestPriority(31)]
+        public async Task ConnectInventoryItemToLocationAsync_CanUpdate()
         {
             var originalInventoryLevel = Fixture.CreatedInventoryLevels.First();
-            var request = new UpdateInventoryLevelRequest()
+            var request = new ConnectInventoryItemToLocationRequest()
             {
-                InventoryLevel = new()
-                {
-                    Id = originalInventoryLevel.Id,
-                    Fields = new List<string> { "id" }
-                }
+                InventoryItemId = originalInventoryLevel.InventoryItemId,
+                LocationId = originalInventoryLevel.LocationId ?? 0,
+                RelocateIfNecessary = true
             };
-            var response = await Fixture.Service.InventoryLevel.UpdateInventoryLevelAsync(request.InventoryLevel.Id, request);
+            var response = await Fixture.Service.InventoryLevel.ConnectInventoryItemToLocationAsync(request);
             _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+    }
 
-            Fixture.CreatedInventoryLevels.Remove(originalInventoryLevel);
-            Fixture.CreatedInventoryLevels.Add(response.Result.InventoryLevel);
+        [SkippableFact, TestPriority(32)]
+        public async Task SetInventoryLevelForInventoryItemAtLocationAsync_CanUpdate()
+        {
+            var productVariant = Fixture.ProductVariants.First();
+            var fulfillmentService =
+                Fixture.CreatedFulfillmentServices.First(fs => fs.Handle == productVariant.FulfillmentService);
+            var request = new SetInventoryLevelForInventoryItemAtLocationRequest()
+            {
+                InventoryItemId = productVariant.InventoryItemId ?? 0,
+                LocationId = fulfillmentService.LocationId ?? 0,
+                Available = 23
+            };
+            var response = await Fixture.Service.InventoryLevel.SetInventoryLevelForInventoryItemAtLocationAsync(request);
+            _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+            Assert.Equal(request.Available, response.Result.InventoryLevel.Available ?? 0);
         }
 
-        #endregion Update
-    */
+    #endregion Update
 
     #region Delete
 
@@ -149,26 +158,35 @@ public class InventoryLevelTests : IClassFixture<InventoryLevelFixture>
     #endregion Delete
 
 
-    [Fact]
+    [SkippableFact]
     public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
 
-    [Fact]
+    [SkippableFact]
     public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
 
-    [Fact]
+    [SkippableFact]
     public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
 }
 
 internal class InventoryLevelMockClient : InventoryLevelClient, IMockTests
 {
-    public InventoryLevelMockClient(HttpClient httpClient, InventoryLevelFixture fixture) : base(httpClient)
+    public InventoryLevelMockClient(HttpClient httpClient, SharedFixture fixture) : base(httpClient)
     {
         BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
 
-    public Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnData()
     {
-        throw new XunitException("Not implemented.");
+        await Assert.ThrowsAsync<ApiException>(
+            async () => await ListInventoryLevelsAsync(new List<long> { 0 }, 0, "NA"));
+        await Assert.ThrowsAsync<ApiException>(async () =>
+            await AdjustInventoryLevelOfInventoryItemAtLocationAsync(
+                new AdjustInventoryLevelOfInventoryItemAtLocationRequest()));
+        await Assert.ThrowsAsync<ApiException>(async () =>
+            await ConnectInventoryItemToLocationAsync(new ConnectInventoryItemToLocationRequest()));
+        await Assert.ThrowsAsync<ApiException>(async () =>
+            await SetInventoryLevelForInventoryItemAtLocationAsync(
+                new SetInventoryLevelForInventoryItemAtLocationRequest()));
+        await Assert.ThrowsAsync<ApiException>(async () => await DeleteInventoryLevelFromLocationAsync(0, 0));
     }
 }
-

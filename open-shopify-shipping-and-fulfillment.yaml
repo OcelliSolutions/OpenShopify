@@ -1229,7 +1229,7 @@ paths:
     post:
       tags:
         - FulfillmentOrder
-      summary: Applies a fulfillment hold on a fulfillment order with status OPEN
+      summary: Applies a fulfillment hold on a fulfillment order with status <code>OPEN</code>
       operationId: ApplyFulfillmentHoldOnFulfillmentOrder
       parameters:
         - name: fulfillment_order_id
@@ -2135,7 +2135,7 @@ components:
           description: 'Whether the fulfillment service wants to register for APIs related to fulfillment orders. To manage fulfillments using fulfillment orders, see [*Manage fulfillments with Fulfillment and FulfillmentOrder resources*](/apps/fulfillment/fulfillment-service-apps).'
           nullable: true
         permits_sku_sharing:
-          type: string
+          type: boolean
           description: Whether the fulfillment service can stock inventory alongside other locations.
           nullable: true
         handle:
@@ -2562,7 +2562,7 @@ components:
           $ref: '#/components/schemas/DeliveryMethod'
         fulfill_at:
           type: string
-          description: 'The date and time at which the fulfillment order will be fulfillable. When this date and time is reached, a `scheduled` fulfillment order is automatically transitioned to `open`. For more information about fulfillment statuses, refer to the **status** property.'
+          description: 'The date and time at which the fulfillment order will be fulfillable. When this date and time is reached, a `scheduled` fulfillment order is automatically transitioned to `open`. For example, the `fulfill_at` date for a subscription order might be the 1st of each month, a pre-order `fulfill_at` date would be `nil`, and a standard order `fulfill_at` date would be the order creation date. For more information about fulfillment statuses, refer to the **status** property.'
           format: date-time
           nullable: true
         fulfill_by:
@@ -2813,7 +2813,7 @@ components:
           $ref: '#/components/schemas/DeliveryMethod'
         fulfill_at:
           type: string
-          description: 'The date and time at which the fulfillment order will be fulfillable. When this date and time is reached, a `scheduled` fulfillment order is automatically transitioned to `open`. For more information about fulfillment statuses, refer to the **status** property.'
+          description: 'The date and time at which the fulfillment order will be fulfillable. When this date and time is reached, a `scheduled` fulfillment order is automatically transitioned to `open`. For example, the `fulfill_at` date for a subscription order might be the 1st of each month, a pre-order `fulfill_at` date would be `nil`, and a standard order `fulfill_at` date would be the order creation date. For more information about fulfillment statuses, refer to the **status** property.'
           format: date-time
           nullable: true
         fulfill_by:
@@ -2937,7 +2937,7 @@ components:
           description: 'Whether the fulfillment service wants to register for APIs related to fulfillment orders. To manage fulfillments using fulfillment orders, see [*Manage fulfillments with Fulfillment and FulfillmentOrder resources*](/apps/fulfillment/fulfillment-service-apps).'
           nullable: true
         permits_sku_sharing:
-          type: string
+          type: boolean
           description: Whether the fulfillment service can stock inventory alongside other locations.
           nullable: true
         handle:
@@ -3602,7 +3602,7 @@ components:
           description: 'Whether the fulfillment service wants to register for APIs related to fulfillment orders. To manage fulfillments using fulfillment orders, see [*Manage fulfillments with Fulfillment and FulfillmentOrder resources*](/apps/fulfillment/fulfillment-service-apps).'
           nullable: true
         permits_sku_sharing:
-          type: string
+          type: boolean
           description: Whether the fulfillment service can stock inventory alongside other locations.
           nullable: true
         handle:

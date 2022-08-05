@@ -29,5 +29,9 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         [JsonPropertyName("email")]
         public string? Email { get; set; }
+
+        /// <inheritdoc cref="FulfillmentServiceOrig.PermitsSkuSharing"/>
+        [JsonPropertyName("permits_sku_sharing")]
+        public new bool? PermitsSkuSharing { get; set; } = default!;
     }
 }

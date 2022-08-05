@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Net.Http.Headers;
 using System.Text.Json;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Primitives;
@@ -20,6 +20,7 @@ public class AuthorizationScopeFixture : SharedFixture, IAsyncLifetime
 
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
+[Collection("AuthorizationTests")]
 public class AuthorizationTests : IClassFixture<AuthorizationScopeFixture>
 {
     public AuthorizationTests(AuthorizationScopeFixture fixture)
@@ -153,7 +154,7 @@ public class AuthorizationTests : IClassFixture<AuthorizationScopeFixture>
     }
 
     [SkippableFact]
-    public void Validates_Webhook()
+    public void Validates_Webhook_ByStream()
     {
         Skip.If(Fixture.WebhookTest?.Hmac == null, "Define a test webhook response in `api_key.json`");
         var qs = new List<KeyValuePair<string, StringValues>>()
@@ -161,8 +162,30 @@ public class AuthorizationTests : IClassFixture<AuthorizationScopeFixture>
             new ("X-Shopify-Hmac-SHA256" , Fixture.WebhookTest.Hmac )
         };
         var data = JsonSerializer.Serialize(Fixture.WebhookTest.Data);
-        //var stream = Ser<dynamic>.SerializeToStream(Fixture.WebhookTest.Data);
         var isValid = AuthorizationService.IsAuthenticWebhook(qs, data, Fixture.SecretKey);
+        Assert.True(isValid);
+    }
+
+    [SkippableFact]
+    public void Validates_Webhook_ByString()
+    {
+        Skip.If(Fixture.WebhookTest?.Hmac == null, "Define a test webhook response in `api_key.json`");
+        var qs = new List<KeyValuePair<string, StringValues>>()
+        {
+            new ("X-Shopify-Hmac-SHA256" , Fixture.WebhookTest.Hmac )
+        };
+        var isValid = AuthorizationService.IsAuthenticWebhook(qs, Fixture.WebhookTest.Data, Fixture.SecretKey);
+        Assert.True(isValid);
+    }
+
+    [SkippableFact]
+    public void Validates_Webhook_ByStringWithHeaders()
+    {
+        Skip.If(Fixture.WebhookTest?.Hmac == null, "Define a test webhook response in `api_key.json`");
+        var headers = new HttpRequestMessage().Headers;
+        headers.Add("X-Shopify-Hmac-SHA256", Fixture.WebhookTest.Hmac);
+        var data = JsonSerializer.Serialize(Fixture.WebhookTest.Data);
+        var isValid = AuthorizationService.IsAuthenticWebhook(headers, data, Fixture.SecretKey);
         Assert.True(isValid);
     }
 

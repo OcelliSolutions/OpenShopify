@@ -153,8 +153,8 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// Whether the product is published to the Point of Sale channel. Valid values: 
         /// 
-        /// *   `web`: The product is published to the Online Store channel but not published to the Point of Sale channel. 
-        /// *   `global`: The product is published to both the Online Store channel and the Point of Sale channel. 
+        /// *   `web`: The product isn't published to the Point of Sale channel. 
+        /// *   `global`: The product is published to the Point of Sale channel. 
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("published_scope")]

@@ -68,7 +68,7 @@ namespace OpenShopify.Admin.Builder.Models
         public abstract System.Threading.Tasks.Task RescheduleFulfillAtTimeOfScheduledFulfillmentOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.RescheduleFulfillAtTimeOfScheduledFulfillmentOrderRequest request, long fulfillment_order_id);
 
         /// <summary>
-        /// Applies a fulfillment hold on a fulfillment order with status OPEN
+        /// Applies a fulfillment hold on a fulfillment order with status &lt;code&gt;OPEN&lt;/code&gt;
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("fulfillment_orders/{fulfillment_order_id}/hold.json")]
         public abstract System.Threading.Tasks.Task ApplyFulfillmentHoldOnFulfillmentOrder([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.ApplyFulfillmentHoldOnFulfillmentOrderRequest request, long fulfillment_order_id);
@@ -142,7 +142,7 @@ namespace OpenShopify.Admin.Builder.Models
         public string? DeliveryMethod { get; set; } = default!;
 
         /// <summary>
-        /// The date and time at which the fulfillment order will be fulfillable. When this date and time is reached, a `scheduled` fulfillment order is automatically transitioned to `open`. For more information about fulfillment statuses, refer to the **status** property.
+        /// The date and time at which the fulfillment order will be fulfillable. When this date and time is reached, a `scheduled` fulfillment order is automatically transitioned to `open`. For example, the `fulfill_at` date for a subscription order might be the 1st of each month, a pre-order `fulfill_at` date would be `nil`, and a standard order `fulfill_at` date would be the order creation date. For more information about fulfillment statuses, refer to the **status** property.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfill_at")]

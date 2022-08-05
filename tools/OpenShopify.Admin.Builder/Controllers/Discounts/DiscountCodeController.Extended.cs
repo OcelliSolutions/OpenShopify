@@ -15,7 +15,6 @@ public class DiscountCodeController : DiscountCodeControllerBase
     [HttpPost]
     [Route("price_rules/{price_rule_id:long}/discount_codes.json")]
     [ProducesResponseType(typeof(DiscountCodeItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(DiscountCodeError), StatusCodes.Status400BadRequest)]
     public override Task CreateDiscountCode([Required] CreateDiscountCodeRequest creationJobRequest,
         [Required] long price_rule_id) => throw new NotImplementedException();
 
@@ -49,7 +48,7 @@ public class DiscountCodeController : DiscountCodeControllerBase
     /// <inheritdoc />
     [HttpGet]
     [Route("discount_codes/lookup.json")]
-    [ProducesResponseType(StatusCodes.Status303SeeOther)]
+    [ProducesResponseType(typeof(DiscountCodeItem), StatusCodes.Status200OK)]
     public override Task GetLocationOfDiscountCode(string code) => throw new NotImplementedException();
 
     /// <inheritdoc />

@@ -29,6 +29,7 @@ paths:
         - name: ids
           in: query
           description: Show only inventory items specified by a comma-separated list of IDs.
+          required: true
           style: form
           explode: false
           schema:
@@ -143,8 +144,13 @@ paths:
         - name: inventory_item_ids
           in: query
           description: 'A comma-separated list of inventory item IDs. To find the ID of an inventory item, use the [Inventory Item resource](/api/admin-rest/latest/resources/inventoryitem)'
+          style: form
+          explode: false
           schema:
-            type: string
+            type: array
+            items:
+              type: integer
+              format: int64
         - name: limit
           in: query
           description: The maximum number of results to show.
@@ -425,10 +431,43 @@ paths:
 components:
   schemas:
     AdjustInventoryLevelOfInventoryItemAtLocationRequest:
+      required:
+        - available_adjustment
+        - inventory_item_id
+        - location_id
       type: object
+      properties:
+        inventory_item_id:
+          type: integer
+          description: The unique identifier of the inventory item that the inventory level belongs to.
+          format: int64
+        location_id:
+          type: integer
+          description: The unique identifier of the location that the inventory level belongs to.
+          format: int64
+        available_adjustment:
+          type: integer
+          description: The quantity adjust of inventory items.
+          format: int32
       additionalProperties: false
     ConnectInventoryItemToLocationRequest:
+      required:
+        - inventory_item_id
+        - location_id
       type: object
+      properties:
+        inventory_item_id:
+          type: integer
+          description: The ID of the inventory item.
+          format: int64
+        location_id:
+          type: integer
+          description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.'
+          format: int64
+        relocate_if_necessary:
+          type: boolean
+          description: 'Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, refer to Inventory levels and fulfillment service locations.'
+          nullable: true
       additionalProperties: false
     CountItem:
       type: object
@@ -536,6 +575,7 @@ components:
     InventoryLevel:
       required:
         - id
+        - inventory_item_id
       type: object
       properties:
         available:
@@ -547,7 +587,6 @@ components:
           type: integer
           description: 'The ID of the inventory item associated with the inventory level. To find the ID of an inventory item, use the [Inventory Item resource](/api/admin-rest/latest/resources/inventoryitem)'
           format: int64
-          nullable: true
         location_id:
           type: integer
           description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the [Location resource](/api/admin-rest/latest/resources/location)'
@@ -688,7 +727,28 @@ components:
             $ref: '#/components/schemas/Location'
       additionalProperties: { }
     SetInventoryLevelForInventoryItemAtLocationRequest:
+      required:
+        - available
+        - inventory_item_id
+        - location_id
       type: object
+      properties:
+        inventory_item_id:
+          type: integer
+          description: The ID of the inventory item.
+          format: int64
+        location_id:
+          type: integer
+          description: 'The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.'
+          format: int64
+        available:
+          type: number
+          description: Sets the available inventory quantity.
+          format: decimal
+        disconnect_if_necessary:
+          type: boolean
+          description: 'Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service is involved. For more information, refer to Inventory levels and fulfillment service locations.'
+          nullable: true
       additionalProperties: false
     UpdateInventoryItem:
       required:

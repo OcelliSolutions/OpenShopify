@@ -177,7 +177,7 @@ OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
         {
             Description = HtmlToMarkdown((string)path.description),
             Summary = path.summary,
-            OperationId = CreateOperationId((string)path.summary)
+            OperationId = CreateOperationId((string)path.summary, pathKey)
         };
 
         // add the input parameters
@@ -476,7 +476,7 @@ JsonSchema GetSchema(string propertyName)
         "total_line_items_price", "total_price", "total_tax", "total_weight", "tax", "total_spent", "balance",
         "initial_value", "cost", "total_tip_received", "score", "compare_at_price", "weight",
         "size", "grams", "height", "width", "inventory_quantity", "tax_percentage", "maximum_refundable",
-        "old_inventory_quantity", "total_price_usd"
+        "old_inventory_quantity", "total_price_usd", "capped_amount"
     };
     var stringProperties = new List<string>()
     {
@@ -487,7 +487,7 @@ JsonSchema GetSchema(string propertyName)
         "entitled_product_ids", "prerequisite_saved_search_ids", "prerequisite_customer_ids", "entitles_variant_ids",
         "entitles_collection_ids", "entitles_country_ids", "prerequisite_product_ids", "prerequisite_variant_ids",
         "prerequisite_collection_ids", "customer_segment_prerequisite_ids", "variant_ids", "entitled_variant_ids",
-        "entitled_country_ids", "entitled_collection_ids", "ids" 
+        "entitled_country_ids", "entitled_collection_ids", "ids", "inventory_item_ids"
     };
     var stringListProperties = new List<string>()
     {
@@ -562,7 +562,7 @@ string? HtmlToMarkdown(string? html)
 }
 
 //Remove key words from a string that can be used to create a proper OperationId/Parameter name.
-string CreateOperationId(string summary)
+string CreateOperationId(string summary, string path)
 {
     summary = RemoveHtmlFromString(summary)!.Replace("-", " ").Replace("_", " ");
     summary = TitleCase(summary).Replace(" A ", " ")
@@ -615,6 +615,11 @@ string CreateOperationId(string summary)
         .Replace("WithStatusOPEN","")
         .Replace("ByItsID", "")
         .Replace("ByID", "");
+
+    if (path.Contains("usage_charges") && summary == "GetCharge")
+        summary = "GetUsageCharge"; 
+    else if (path.Contains("recurring_application_charges") && summary == "GetCharge")
+        summary = "GetRecurringApplicationCharge";
 
     return summary;
 }

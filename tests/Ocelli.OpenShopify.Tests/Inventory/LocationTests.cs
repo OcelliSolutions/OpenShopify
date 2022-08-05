@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Ocelli.OpenShopify.Tests.Inventory;
+﻿namespace Ocelli.OpenShopify.Tests.Inventory;
 
 public class LocationFixture : SharedFixture, IAsyncLifetime
 {
@@ -15,6 +13,7 @@ public class LocationFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
+[Collection("LocationTests")]
 public class LocationTests : IClassFixture<LocationFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
@@ -57,11 +56,12 @@ public class LocationTests : IClassFixture<LocationFixture>
         }
 
         Skip.If(!response.Result.Locations.Any(), "No results returned. Unable to test");
+        Fixture.CreatedLocations.AddRange(response.Result.Locations);
     }
 
     [SkippableFact]
-    [TestPriority(20)]
-    public async Task GetLocationAsync_TestCreated_AdditionalPropertiesAreEmpty()
+    [TestPriority(21)]
+    public async Task GetLocationAsync_AdditionalPropertiesAreEmpty()
     {
         Skip.If(!Fixture.CreatedLocations.Any(), "Must be run with create test");
         var location = Fixture.CreatedLocations.First();
@@ -73,25 +73,28 @@ public class LocationTests : IClassFixture<LocationFixture>
     #endregion Read
 
 
-    [Fact]
+    [SkippableFact]
     public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
 
-    [Fact]
+    [SkippableFact]
     public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
 
-    [Fact]
+    [SkippableFact]
     public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
 }
 
 internal class LocationMockClient : LocationClient, IMockTests
 {
-    public LocationMockClient(HttpClient httpClient, LocationFixture fixture) : base(httpClient)
+    public LocationMockClient(HttpClient httpClient, SharedFixture fixture) : base(httpClient)
     {
         BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
 
-    public Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnData()
     {
-        throw new XunitException("Not implemented.");
+        await Assert.ThrowsAsync<ApiException>(async () => await ListInventoryLevelsForLocationAsync(0));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListLocationsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await CountLocationsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await GetLocationAsync(0));
     }
 }

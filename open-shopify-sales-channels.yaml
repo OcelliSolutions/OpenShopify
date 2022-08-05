@@ -2123,7 +2123,7 @@ components:
       properties:
         accepts_marketing:
           type: boolean
-          description: 'As of API version 2022-04, this field is deprecated. Use `email_marketing_consent` instead.Whether the customer has consented to receive marketing material by email.'
+          description: 'As of API version 2022-04, this property is deprecated. Use `email_marketing_consent` instead.Whether the customer has consented to receive marketing material by email.'
           nullable: true
           deprecated: true
         addresses:
@@ -2167,12 +2167,12 @@ components:
           nullable: true
         marketing_opt_in_level:
           type: string
-          description: "As of API version 2022-04, this field is deprecated. Use `email_marketing_consent` instead.The marketing subscription opt-in level, as described in the [M3AAWG Sender Best Common Practices](https://www.m3aawg.org/sites/default/files/document/M3AAWG_Senders_BCP_Ver3-2015-02.pdf), that the customer gave when they consented to receive marketing material by email.If the customer does not accept email marketing, then this property will be set to `null`.Valid values:\r\n\r\n*   `single_opt_in` \r\n*   `confirmed_opt_in` \r\n*   `unknown`"
+          description: "As of API version 2022-04, this property is deprecated. Use `email_marketing_consent` instead.The marketing subscription opt-in level, as described in the [M3AAWG Sender Best Common Practices](https://www.m3aawg.org/sites/default/files/document/M3AAWG_Senders_BCP_Ver3-2015-02.pdf), that the customer gave when they consented to receive marketing material by email.If the customer does not accept email marketing, then this property will be set to `null`.Valid values:\r\n\r\n*   `single_opt_in` \r\n*   `confirmed_opt_in` \r\n*   `unknown`"
           nullable: true
           deprecated: true
         multipass_identifier:
           type: string
-          description: 'A unique identifier for the customer that''s used with '' ''[Multipass login](/docs/admin-api/rest/reference/plus/multipass).'
+          description: 'A unique identifier for the customer that''s used with [Multipass login](/api/multipass).'
           nullable: true
         note:
           type: string
@@ -2182,6 +2182,14 @@ components:
           type: integer
           description: The number of orders associated with this customer. Test and archived orders aren't counted.
           format: int32
+          nullable: true
+        password:
+          type: string
+          description: The customer's password.
+          nullable: true
+        password_confirmation:
+          type: string
+          description: The customer's password that's confirmed.
           nullable: true
         phone:
           type: string
@@ -2224,7 +2232,7 @@ components:
           nullable: true
         accepts_marketing_updated_at:
           type: string
-          description: 'As of API version 2022-04, this field is deprecated. Use `email_marketing_consent` instead.The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format)when the customer consented or objected to receiving marketing material by email. Set this value wheneverthe customer consents or objects to marketing materials.'
+          description: 'As of API version 2022-04, this property is deprecated. Use `email_marketing_consent` instead.The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format)when the customer consented or objected to receiving marketing material by email. Set this value wheneverthe customer consents or objects to marketing materials.'
           format: date-time
           nullable: true
           deprecated: true
@@ -2813,7 +2821,7 @@ components:
           nullable: true
         published_scope:
           type: string
-          description: "Whether the product is published to the Point of Sale channel. Valid values: \r\n\r\n*   `web`: The product is published to the Online Store channel but not published to the Point of Sale channel. \r\n*   `global`: The product is published to both the Online Store channel and the Point of Sale channel."
+          description: "Whether the product is published to the Point of Sale channel. Valid values: \r\n\r\n*   `web`: The product isn't published to the Point of Sale channel. \r\n*   `global`: The product is published to the Point of Sale channel."
           nullable: true
         status:
           type: string

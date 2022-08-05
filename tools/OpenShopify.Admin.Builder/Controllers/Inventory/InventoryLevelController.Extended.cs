@@ -15,8 +15,7 @@ public class InventoryLevelController : InventoryLevelControllerBase
     [HttpGet]
     [Route("inventory_levels.json")]
     [ProducesResponseType(typeof(InventoryLevelList), StatusCodes.Status200OK)]
-    public override Task ListInventoryLevels(string? inventory_item_ids = null, int? limit = null,
-        string? page_info = null,
+    public override Task ListInventoryLevels(IEnumerable<long>? inventory_item_ids = null, int? limit = null, string? page_info = null,
         string? location_ids = null, DateTimeOffset? updated_at_min = null) =>
         throw new NotImplementedException();
 

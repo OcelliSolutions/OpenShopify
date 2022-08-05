@@ -335,7 +335,7 @@ paths:
       tags:
         - RecurringApplicationCharge
       summary: Retrieves a single charge
-      operationId: GetCharge
+      operationId: GetRecurringApplicationCharge
       parameters:
         - name: recurring_application_charge_id
           in: path
@@ -541,7 +541,7 @@ paths:
       tags:
         - UsageCharge
       summary: Retrieves a single charge
-      operationId: GetCharge
+      operationId: GetUsageCharge
       parameters:
         - name: recurring_application_charge_id
           in: path
@@ -842,8 +842,9 @@ components:
           format: date-time
           nullable: true
         capped_amount:
-          type: string
+          type: number
           description: 'The limit a customer can be charged for usage based billing. If this property is provided, then you must also provide the `terms` property. See [usage charges](/docs/admin-api/rest/reference/billing/usagecharge) for more information.'
+          format: decimal
           nullable: true
         confirmation_url:
           type: string
@@ -863,9 +864,7 @@ components:
           description: The URL where the merchant is redirected after accepting the charge.
           nullable: true
         status:
-          type: string
-          description: "The status of the recurring charge. Valid values:\r\n\r\n*   **pending**: The recurring charge is pending. \r\n*   **accepted**: **Removed in version 2021-01**. The recurring charge has been accepted. As of API version 2021-01, when a merchant accepts a charge, the charge immediately transitions from `pending` to `active`. \r\n*   **active**: The recurring charge is activated. This is the only status that actually causes a merchant to be charged. As of API version 2021-01, when a merchant accepts a charge, the charge immediately transitions from `pending` to `active`. \r\n*   **declined**: The recurring charge has been declined. \r\n*   **expired**: The recurring charge was not accepted within 2 days of being created. \r\n*   **frozen**: The recurring charge is on hold due to a shop subscription non-payment. The charge will re-activate once subscription payments resume. \r\n*   **cancelled**: The developer cancelled the charge."
-          nullable: true
+          $ref: '#/components/schemas/RecurringApplicationChargeStatus'
         terms:
           type: string
           description: 'The terms and conditions of usage based billing charges. Must be present in order to create usage charges, for example when the `capped_amount` property is provided. Presented to the merchant when they approve an app''s usage charges.'
@@ -889,6 +888,18 @@ components:
           format: int64
         decorated_return_url:
           type: string
+          nullable: true
+        balance_used:
+          type: number
+          format: decimal
+          nullable: true
+        balance_remaining:
+          type: number
+          format: decimal
+          nullable: true
+        risk_level:
+          type: number
+          format: decimal
           nullable: true
       additionalProperties: false
     CreateRecurringApplicationChargeRequest:
@@ -915,6 +926,22 @@ components:
           type: integer
           description: The ID of the recurring application charge that the usage charge belongs to.
           format: int64
+          nullable: true
+        billing_on:
+          type: string
+          format: date-time
+          nullable: true
+        balance_used:
+          type: number
+          format: decimal
+          nullable: true
+        balance_remaining:
+          type: number
+          format: decimal
+          nullable: true
+        risk_level:
+          type: number
+          format: decimal
           nullable: true
       additionalProperties: false
     CreateUsageChargeRequest:
@@ -946,8 +973,9 @@ components:
           format: date-time
           nullable: true
         capped_amount:
-          type: string
+          type: number
           description: 'The limit a customer can be charged for usage based billing. If this property is provided, then you must also provide the `terms` property. See [usage charges](/docs/admin-api/rest/reference/billing/usagecharge) for more information.'
+          format: decimal
           nullable: true
         confirmation_url:
           type: string
@@ -967,9 +995,7 @@ components:
           description: The URL where the merchant is redirected after accepting the charge.
           nullable: true
         status:
-          type: string
-          description: "The status of the recurring charge. Valid values:\r\n\r\n*   **pending**: The recurring charge is pending. \r\n*   **accepted**: **Removed in version 2021-01**. The recurring charge has been accepted. As of API version 2021-01, when a merchant accepts a charge, the charge immediately transitions from `pending` to `active`. \r\n*   **active**: The recurring charge is activated. This is the only status that actually causes a merchant to be charged. As of API version 2021-01, when a merchant accepts a charge, the charge immediately transitions from `pending` to `active`. \r\n*   **declined**: The recurring charge has been declined. \r\n*   **expired**: The recurring charge was not accepted within 2 days of being created. \r\n*   **frozen**: The recurring charge is on hold due to a shop subscription non-payment. The charge will re-activate once subscription payments resume. \r\n*   **cancelled**: The developer cancelled the charge."
-          nullable: true
+          $ref: '#/components/schemas/RecurringApplicationChargeStatus'
         terms:
           type: string
           description: 'The terms and conditions of usage based billing charges. Must be present in order to create usage charges, for example when the `capped_amount` property is provided. Presented to the merchant when they approve an app''s usage charges.'
@@ -993,6 +1019,18 @@ components:
           format: int64
         decorated_return_url:
           type: string
+          nullable: true
+        balance_used:
+          type: number
+          format: decimal
+          nullable: true
+        balance_remaining:
+          type: number
+          format: decimal
+          nullable: true
+        risk_level:
+          type: number
+          format: decimal
           nullable: true
         id:
           type: integer
@@ -1051,6 +1089,17 @@ components:
           items:
             $ref: '#/components/schemas/RecurringApplicationCharge'
       additionalProperties: { }
+    RecurringApplicationChargeStatus:
+      enum:
+        - pending
+        - accepted
+        - active
+        - declined
+        - expired
+        - frozen
+        - cancelled
+      type: string
+      additionalProperties: { }
     UpdateCappedAmountOfRecurringApplicationChargeRequest:
       type: object
       additionalProperties: false
@@ -1072,6 +1121,22 @@ components:
           type: integer
           description: The ID of the recurring application charge that the usage charge belongs to.
           format: int64
+          nullable: true
+        billing_on:
+          type: string
+          format: date-time
+          nullable: true
+        balance_used:
+          type: number
+          format: decimal
+          nullable: true
+        balance_remaining:
+          type: number
+          format: decimal
+          nullable: true
+        risk_level:
+          type: number
+          format: decimal
           nullable: true
         id:
           type: integer

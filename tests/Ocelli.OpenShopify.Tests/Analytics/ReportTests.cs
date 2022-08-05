@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Ocelli.OpenShopify.Tests.Analytics;
 
@@ -25,6 +24,7 @@ public class ReportFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
+[Collection("ReportTests")]
 public class ReportTests : IClassFixture<ReportFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
@@ -146,13 +146,13 @@ public class ReportTests : IClassFixture<ReportFixture>
 
     #endregion Read
     
-    [Fact]
+    [SkippableFact]
     public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
 
-    [Fact]
+    [SkippableFact]
     public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
 
-    [Fact]
+    [SkippableFact]
     public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
 }
 

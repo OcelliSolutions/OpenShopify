@@ -1,21 +1,10 @@
 {
   "features": [
-    "app_bridge",
-    "b2b_liquid",
-    "bfs_cli",
-    "bfs_distro",
-    "bfs_qr_tutorial",
     "cg_fe_comment",
     "cg_ownership",
     "cg_slack_notifications",
-    "data_protection",
-    "editions_banner",
-    "editions_footer_cta",
-    "getting_featured",
     "liquid_api_next",
-    "liquid_example_rendering",
-    "marketplace_kit2",
-    "web_pixels"
+    "liquid_example_rendering"
   ],
   "enable_theme_mode": true,
   "api": {

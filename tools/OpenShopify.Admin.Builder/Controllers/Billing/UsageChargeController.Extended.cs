@@ -31,6 +31,6 @@ public class UsageChargeController : UsageChargeControllerBase
     [Route(
         "recurring_application_charges/{recurring_application_charge_id:long}/usage_charges/{usage_charge_id:long}.json")]
     [ProducesResponseType(typeof(UsageChargeItem), StatusCodes.Status200OK)]
-    public override Task GetCharge([Required] long recurring_application_charge_id, [Required] long usage_charge_id,
+    public override Task GetUsageCharge([Required] long recurring_application_charge_id, [Required] long usage_charge_id,
         string? fields = null) => throw new NotImplementedException();
 }

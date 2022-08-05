@@ -35,7 +35,7 @@ namespace Ocelli.OpenShopify
         /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<InventoryItemList>> ListInventoryItemsAsync(System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<InventoryItemList>> ListInventoryItemsAsync(System.Collections.Generic.IEnumerable<long> ids, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -96,14 +96,14 @@ namespace Ocelli.OpenShopify
         /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryItemList>> ListInventoryItemsAsync(System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryItemList>> ListInventoryItemsAsync(System.Collections.Generic.IEnumerable<long> ids, int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            if (ids == null)
+                throw new System.ArgumentNullException("ids");
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/inventory_items.json?");
-            if (ids != null)
-            {
-                foreach (var item_ in ids) { urlBuilder_.Append(System.Uri.EscapeDataString("ids") + "=").Append(System.Uri.EscapeDataString(ConvertToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
-            }
+            foreach (var item_ in ids) { urlBuilder_.Append(System.Uri.EscapeDataString("ids") + "=").Append(System.Uri.EscapeDataString(ConvertToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
             if (limit != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("limit") + "=").Append(System.Uri.EscapeDataString(ConvertToString(limit, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -442,7 +442,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelList>> ListInventoryLevelsAsync(string? inventoryItemIds = null, int? limit = null, string? pageInfo = null, string? locationIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelList>> ListInventoryLevelsAsync(System.Collections.Generic.IEnumerable<long>? inventoryItemIds = null, int? limit = null, string? pageInfo = null, string? locationIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -523,13 +523,13 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelList>> ListInventoryLevelsAsync(string? inventoryItemIds = null, int? limit = null, string? pageInfo = null, string? locationIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<InventoryLevelList>> ListInventoryLevelsAsync(System.Collections.Generic.IEnumerable<long>? inventoryItemIds = null, int? limit = null, string? pageInfo = null, string? locationIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/inventory_levels.json?");
             if (inventoryItemIds != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("inventory_item_ids") + "=").Append(System.Uri.EscapeDataString(ConvertToString(inventoryItemIds, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                foreach (var item_ in inventoryItemIds) { urlBuilder_.Append(System.Uri.EscapeDataString("inventory_item_ids") + "=").Append(System.Uri.EscapeDataString(ConvertToString(item_, System.Globalization.CultureInfo.InvariantCulture))).Append("&"); }
             }
             if (limit != null)
             {
@@ -1472,12 +1472,64 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class AdjustInventoryLevelOfInventoryItemAtLocationRequest
     {
+        /// <summary>
+        /// The unique identifier of the inventory item that the inventory level belongs to.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_item_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long InventoryItemId { get; set; } = default!;
+
+        /// <summary>
+        /// The unique identifier of the location that the inventory level belongs to.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long LocationId { get; set; } = default!;
+
+        /// <summary>
+        /// The quantity adjust of inventory items.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("available_adjustment")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public int AvailableAdjustment { get; set; } = default!;
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class ConnectInventoryItemToLocationRequest
     {
+        /// <summary>
+        /// The ID of the inventory item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_item_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long InventoryItemId { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long LocationId { get; set; } = default!;
+
+        /// <summary>
+        /// Whether inventory for any previously connected locations will be relocated. This property is ignored when no fulfillment service location is involved. For more information, refer to Inventory levels and fulfillment service locations.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("relocate_if_necessary")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? RelocateIfNecessary { get; set; } = default!;
 
     }
 
@@ -1701,8 +1753,8 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("inventory_item_id")]
 
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public long? InventoryItemId { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long InventoryItemId { get; set; } = default!;
 
         /// <summary>
         /// The ID of the location that the inventory level belongs to. To find the ID of the location, use the [Location resource](/api/admin-rest/latest/resources/location)
@@ -2012,6 +2064,41 @@ namespace Ocelli.OpenShopify
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class SetInventoryLevelForInventoryItemAtLocationRequest
     {
+        /// <summary>
+        /// The ID of the inventory item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("inventory_item_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long InventoryItemId { get; set; } = default!;
+
+        /// <summary>
+        /// The ID of the location that the inventory level belongs to. To find the ID of the location, use the Location resource.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("location_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public long LocationId { get; set; } = default!;
+
+        /// <summary>
+        /// Sets the available inventory quantity.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("available")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public decimal Available { get; set; } = default!;
+
+        /// <summary>
+        /// Whether inventory for any previously connected locations will be set to 0 and the locations disconnected. This property is ignored when no fulfillment service is involved. For more information, refer to Inventory levels and fulfillment service locations.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("disconnect_if_necessary")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? DisconnectIfNecessary { get; set; } = default!;
 
     }
 

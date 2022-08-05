@@ -71,8 +71,9 @@ namespace Ocelli.OpenShopify
         /// Retrieves the location of a discount code
         /// </summary>
         /// <param name="code">Retrieves the location of a discount code by code name.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse> GetLocationOfDiscountCodeAsync(string? code = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> GetLocationOfDiscountCodeAsync(string? code = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -546,8 +547,9 @@ namespace Ocelli.OpenShopify
         /// Retrieves the location of a discount code
         /// </summary>
         /// <param name="code">Retrieves the location of a discount code by code name.</param>
+        /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse> GetLocationOfDiscountCodeAsync(string? code = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<DiscountCodeItem>> GetLocationOfDiscountCodeAsync(string? code = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/discount_codes/lookup.json?");
@@ -564,6 +566,7 @@ namespace Ocelli.OpenShopify
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -586,16 +589,14 @@ namespace Ocelli.OpenShopify
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 303)
+                        if (status_ == 200)
                         {
-                            string responseText_ = ( response_.Content == null ) ? string.Empty : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("Redirect", status_, responseText_, headers_, null);
-                        }
-                        else
-
-                        if (status_ == 200 || status_ == 204)
-                        {
-                            return new ShopifyResponse(status_, headers_);
+                            var objectResponse_ = await ReadObjectResponseAsync<DiscountCodeItem>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return new ShopifyResponse<DiscountCodeItem>(status_, headers_, objectResponse_.Object);
                         }
                         else
                         {

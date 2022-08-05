@@ -5345,8 +5345,8 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Whether the product is published to the Point of Sale channel. Valid values: 
         /// <br/>
-        /// <br/>*   `web`: The product is published to the Online Store channel but not published to the Point of Sale channel. 
-        /// <br/>*   `global`: The product is published to both the Online Store channel and the Point of Sale channel.
+        /// <br/>*   `web`: The product isn't published to the Point of Sale channel. 
+        /// <br/>*   `global`: The product is published to the Point of Sale channel.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
@@ -6395,8 +6395,8 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Whether the product is published to the Point of Sale channel. Valid values: 
         /// <br/>
-        /// <br/>*   `web`: The product is published to the Online Store channel but not published to the Point of Sale channel. 
-        /// <br/>*   `global`: The product is published to both the Online Store channel and the Point of Sale channel.
+        /// <br/>*   `web`: The product isn't published to the Point of Sale channel. 
+        /// <br/>*   `global`: The product is published to the Point of Sale channel.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("published_scope")]
@@ -7936,8 +7936,8 @@ namespace Ocelli.OpenShopify
         /// <summary>
         /// Whether the product is published to the Point of Sale channel. Valid values: 
         /// <br/>
-        /// <br/>*   `web`: The product is published to the Online Store channel but not published to the Point of Sale channel. 
-        /// <br/>*   `global`: The product is published to both the Online Store channel and the Point of Sale channel.
+        /// <br/>*   `web`: The product isn't published to the Point of Sale channel. 
+        /// <br/>*   `global`: The product is published to the Point of Sale channel.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("published_scope")]

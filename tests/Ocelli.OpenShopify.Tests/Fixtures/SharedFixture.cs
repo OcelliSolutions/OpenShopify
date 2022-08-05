@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Runtime.CompilerServices;
@@ -44,7 +42,7 @@ public class SharedFixture
         BadRequestMockHttpClient = badRequest.ToHttpClient();
 
         var okEmpty = new MockHttpMessageHandler();
-        okEmpty.When("*").Respond(HttpStatusCode.OK, "application/json", (string?)null); // Respond with JSON
+        okEmpty.When("*").Respond(HttpStatusCode.OK, "application/json", string.Empty); // Respond with JSON
         OkEmptyMockHttpClient = okEmpty.ToHttpClient();
 
         var okInvalidJson = new MockHttpMessageHandler();
@@ -94,7 +92,11 @@ public class SharedFixture
             Path = $"admin/api/2022-07/"
         }.ToString();
 
-    public string UniqueString([CallerMemberName] string callerName = "") => $@"{Company} {callerName} ({BatchId})";
+    public string UniqueString([CallerMemberName] string callerName = "")
+    {
+        var instanceHash = ShortId.Generate(new GenerationOptions(true, false, 8));
+        return $@"{Company} {callerName} ({BatchId}:{instanceHash})";
+    }
 
     public async Task LoadScopes()
     {
@@ -149,7 +151,8 @@ public class SharedFixture
                 Sku = BatchId,
                 FulfillmentService = fulfillmentService.Handle,
                 Option1 = variant.Option1,
-                Price = variant.Price ?? (decimal)10.00
+                Price = variant.Price ?? (decimal)10.00, 
+                InventoryManagement = fulfillmentService.Handle
             }
         };
         var variantResponse = await productService.ProductVariant.UpdateProductVariantAsync(variant.Id, variantRequest);
@@ -157,6 +160,21 @@ public class SharedFixture
         product.Variants.Add(variantResponse.Result.Variant);
 
         return product;
+    }
+    
+    public async Task<RecurringApplicationCharge> CreateRecurringApplicationCharge([CallerMemberName] string callerName = "")
+    {
+        var billingService = new BillingService(MyShopifyUrl, AccessToken);
+        var request = CreateRecurringApplicationChargeRequest(callerName);
+        var response = await billingService.RecurringApplicationCharge.CreateRecurringApplicationChargeAsync(request);
+        return response.Result.RecurringApplicationCharge;
+    }
+    public async Task<PriceRule> CreatePriceRule([CallerMemberName] string callerName = "")
+    {
+        var discountsService = new DiscountsService(MyShopifyUrl, AccessToken);
+        var request = CreatePriceRuleRequest(callerName);
+        var response = await discountsService.PriceRule.CreatePriceRuleAsync(request);
+        return response.Result.PriceRule;
     }
 
     public async Task<Order> CreateOrder(ProductVariant productVariant, [CallerMemberName] string callerName = "")
@@ -227,6 +245,16 @@ public class SharedFixture
                 Note = UniqueString(callerName),
                 VerifiedEmail = true,
                 State = "enabled"
+            }
+        };
+
+    public CreateDiscountCodeRequest CreateDiscountCodeRequest(long priceRuleId, [CallerMemberName] string callerName = "") =>
+        new()
+        {
+            DiscountCode = new CreateDiscountCode
+            {
+                Code = UniqueString(callerName),
+                PriceRuleId = priceRuleId
             }
         };
 
@@ -302,7 +330,7 @@ public class SharedFixture
                 Title = UniqueString(callerName),
                 BodyHtml = @"\u003cstrong\u003eGood snowboard!\u003c\/strong\u003e",
                 Vendor = Company,
-                ProductType = "Snowboard",
+                ProductType = "Sample",
                 Tags = @"Barnes \u0026 Noble, Big Air, John's Fav"
             }
         };
@@ -345,7 +373,10 @@ public class SharedFixture
             {
                 Test = true,
                 Name = UniqueString(callerName), 
-                Price = (decimal)5.00
+                Price = (decimal)5.00,
+                ReturnUrl = AuthorizationService.BuildShopUri(MyShopifyUrl, true).ToString(), 
+                CappedAmount = (decimal)50.00,
+                Terms = "Monthly Fee"
             }
         };
 
@@ -563,7 +594,7 @@ public class SharedFixture
         }
     };
 
-    [CollectionDefinition("Shared collection")]
+    //[CollectionDefinition("Shared collection")]
     public class SharedCollection : ICollectionFixture<SharedFixture>
     {
         // This class has no code, and is never created. Its purpose is simply

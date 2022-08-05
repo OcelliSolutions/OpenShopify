@@ -2120,7 +2120,7 @@ components:
           nullable: true
         published_scope:
           type: string
-          description: "Whether the product is published to the Point of Sale channel. Valid values: \r\n\r\n*   `web`: The product is published to the Online Store channel but not published to the Point of Sale channel. \r\n*   `global`: The product is published to both the Online Store channel and the Point of Sale channel."
+          description: "Whether the product is published to the Point of Sale channel. Valid values: \r\n\r\n*   `web`: The product isn't published to the Point of Sale channel. \r\n*   `global`: The product is published to the Point of Sale channel."
           nullable: true
         status:
           type: string
@@ -2690,7 +2690,7 @@ components:
           nullable: true
         published_scope:
           type: string
-          description: "Whether the product is published to the Point of Sale channel. Valid values: \r\n\r\n*   `web`: The product is published to the Online Store channel but not published to the Point of Sale channel. \r\n*   `global`: The product is published to both the Online Store channel and the Point of Sale channel."
+          description: "Whether the product is published to the Point of Sale channel. Valid values: \r\n\r\n*   `web`: The product isn't published to the Point of Sale channel. \r\n*   `global`: The product is published to the Point of Sale channel."
           nullable: true
         status:
           type: string
@@ -3396,7 +3396,7 @@ components:
           nullable: true
         published_scope:
           type: string
-          description: "Whether the product is published to the Point of Sale channel. Valid values: \r\n\r\n*   `web`: The product is published to the Online Store channel but not published to the Point of Sale channel. \r\n*   `global`: The product is published to both the Online Store channel and the Point of Sale channel."
+          description: "Whether the product is published to the Point of Sale channel. Valid values: \r\n\r\n*   `web`: The product isn't published to the Point of Sale channel. \r\n*   `global`: The product is published to the Point of Sale channel."
           nullable: true
         status:
           type: string

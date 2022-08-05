@@ -2636,7 +2636,7 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Applies a fulfillment hold on a fulfillment order with status OPEN
+        /// Applies a fulfillment hold on a fulfillment order with status &lt;code&gt;OPEN&lt;/code&gt;
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -3292,7 +3292,7 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Applies a fulfillment hold on a fulfillment order with status OPEN
+        /// Applies a fulfillment hold on a fulfillment order with status &lt;code&gt;OPEN&lt;/code&gt;
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -5517,7 +5517,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("permits_sku_sharing")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? PermitsSkuSharing { get; set; } = default!;
+        public bool? PermitsSkuSharing { get; set; } = default!;
 
         /// <summary>
         /// Human-readable unique identifier for this fulfillment service.
@@ -6521,7 +6521,7 @@ namespace Ocelli.OpenShopify
         public DeliveryMethod? DeliveryMethod { get; set; } = default!;
 
         /// <summary>
-        /// The date and time at which the fulfillment order will be fulfillable. When this date and time is reached, a `scheduled` fulfillment order is automatically transitioned to `open`. For more information about fulfillment statuses, refer to the **status** property.
+        /// The date and time at which the fulfillment order will be fulfillable. When this date and time is reached, a `scheduled` fulfillment order is automatically transitioned to `open`. For example, the `fulfill_at` date for a subscription order might be the 1st of each month, a pre-order `fulfill_at` date would be `nil`, and a standard order `fulfill_at` date would be the order creation date. For more information about fulfillment statuses, refer to the **status** property.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfill_at")]
@@ -7068,7 +7068,7 @@ namespace Ocelli.OpenShopify
         public DeliveryMethod? DeliveryMethod { get; set; } = default!;
 
         /// <summary>
-        /// The date and time at which the fulfillment order will be fulfillable. When this date and time is reached, a `scheduled` fulfillment order is automatically transitioned to `open`. For more information about fulfillment statuses, refer to the **status** property.
+        /// The date and time at which the fulfillment order will be fulfillable. When this date and time is reached, a `scheduled` fulfillment order is automatically transitioned to `open`. For example, the `fulfill_at` date for a subscription order might be the 1st of each month, a pre-order `fulfill_at` date would be `nil`, and a standard order `fulfill_at` date would be the order creation date. For more information about fulfillment statuses, refer to the **status** property.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("fulfill_at")]
@@ -7358,7 +7358,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("permits_sku_sharing")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? PermitsSkuSharing { get; set; } = default!;
+        public bool? PermitsSkuSharing { get; set; } = default!;
 
         /// <summary>
         /// Human-readable unique identifier for this fulfillment service.
@@ -8226,7 +8226,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("permits_sku_sharing")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? PermitsSkuSharing { get; set; } = default!;
+        public bool? PermitsSkuSharing { get; set; } = default!;
 
         /// <summary>
         /// Human-readable unique identifier for this fulfillment service.

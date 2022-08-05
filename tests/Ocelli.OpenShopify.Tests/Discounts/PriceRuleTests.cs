@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 
 namespace Ocelli.OpenShopify.Tests.Discounts;
 
@@ -28,6 +28,7 @@ public class PriceRuleFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
+[Collection("PriceRuleTests")]
 public class PriceRuleTests : IClassFixture<PriceRuleFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
@@ -146,25 +147,33 @@ public class PriceRuleTests : IClassFixture<PriceRuleFixture>
     #endregion Delete
 
 
-    [Fact]
+    [SkippableFact]
     public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
 
-    [Fact]
+    [SkippableFact]
     public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
 
-    [Fact]
+    [SkippableFact]
     public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
 }
 
 internal class PriceRuleMockClient : PriceRuleClient, IMockTests
 {
-    public PriceRuleMockClient(HttpClient httpClient, PriceRuleFixture fixture) : base(httpClient)
+    public PriceRuleMockClient(HttpClient httpClient, SharedFixture fixture) : base(httpClient)
     {
         BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
 
-    public Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnData()
     {
-        throw new XunitException("Not implemented.");
+        await Assert.ThrowsAsync<ApiException>(async () => await ListPriceRulesAsync(createdAtMax: DateTimeOffset.Now, createdAtMin: DateTimeOffset.Now.AddMonths(-1)));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListPriceRulesAsync(updatedAtMax: DateTimeOffset.Now, updatedAtMin: DateTimeOffset.Now.AddMonths(-1)));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListPriceRulesAsync(startsAtMax: DateTimeOffset.Now, startsAtMin: DateTimeOffset.Now.AddMonths(-1)));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListPriceRulesAsync(endsAtMax: DateTimeOffset.Now, endsAtMin: DateTimeOffset.Now.AddMonths(-1)));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListPriceRulesAsync(limit: 1, sinceId: 0, pageInfo: "", timesUsed: 1));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetPriceRuleAsync(0));
+        await Assert.ThrowsAsync<ApiException>(async () => await CreatePriceRuleAsync(new CreatePriceRuleRequest()));
+        await Assert.ThrowsAsync<ApiException>(async () => await UpdatePriceRuleAsync(0, new UpdatePriceRuleRequest()));
+        await Assert.ThrowsAsync<ApiException>(async () => await DeletePriceRuleAsync(0));
     }
 }

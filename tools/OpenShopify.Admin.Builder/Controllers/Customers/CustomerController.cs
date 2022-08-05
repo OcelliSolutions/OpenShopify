@@ -105,7 +105,7 @@ namespace OpenShopify.Admin.Builder.Models
     public partial record CustomerOrig
     {
         /// <summary>
-        /// As of API version 2022-04, this field is deprecated. Use `email_marketing_consent` instead.Whether the customer has consented to receive marketing material by email.
+        /// As of API version 2022-04, this property is deprecated. Use `email_marketing_consent` instead.Whether the customer has consented to receive marketing material by email.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("accepts_marketing")]
@@ -115,7 +115,7 @@ namespace OpenShopify.Admin.Builder.Models
         public bool? AcceptsMarketing { get; set; } = default!;
 
         /// <summary>
-        /// As of API version 2022-04, this field is deprecated. Use `email_marketing_consent` instead.The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format)when the customer consented or objected to receiving marketing material by email. Set this value wheneverthe customer consents or objects to marketing materials.
+        /// As of API version 2022-04, this property is deprecated. Use `email_marketing_consent` instead.The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format)when the customer consented or objected to receiving marketing material by email. Set this value wheneverthe customer consents or objects to marketing materials.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("accepts_marketing_updated_at")]
@@ -219,7 +219,7 @@ namespace OpenShopify.Admin.Builder.Models
         public string? Metafield { get; set; } = default!;
 
         /// <summary>
-        /// As of API version 2022-04, this field is deprecated. Use `email_marketing_consent` instead.The marketing subscription opt-in level, as described in the [M3AAWG Sender Best Common Practices](https://www.m3aawg.org/sites/default/files/document/M3AAWG_Senders_BCP_Ver3-2015-02.pdf), that the customer gave when they consented to receive marketing material by email.If the customer does not accept email marketing, then this property will be set to `null`.Valid values:
+        /// As of API version 2022-04, this property is deprecated. Use `email_marketing_consent` instead.The marketing subscription opt-in level, as described in the [M3AAWG Sender Best Common Practices](https://www.m3aawg.org/sites/default/files/document/M3AAWG_Senders_BCP_Ver3-2015-02.pdf), that the customer gave when they consented to receive marketing material by email.If the customer does not accept email marketing, then this property will be set to `null`.Valid values:
         /// 
         /// *   `single_opt_in` 
         /// *   `confirmed_opt_in` 
@@ -233,7 +233,7 @@ namespace OpenShopify.Admin.Builder.Models
         public string? MarketingOptInLevel { get; set; } = default!;
 
         /// <summary>
-        /// A unique identifier for the customer that's used with ' '[Multipass login](/docs/admin-api/rest/reference/plus/multipass).
+        /// A unique identifier for the customer that's used with [Multipass login](/api/multipass).
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("multipass_identifier")]
@@ -258,6 +258,24 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public int? OrdersCount { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's password.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("password")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Password { get; set; } = default!;
+
+        /// <summary>
+        /// The customer's password that's confirmed.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("password_confirmation")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? PasswordConfirmation { get; set; } = default!;
 
         /// <summary>
         /// The unique phone number ([E.164 format](https://en.wikipedia.org/wiki/E.164)) for this customer. Attempting to assign the same phone number to multiple customers returns an error. The property can be set using different formats, but each format must represent a number that can be dialed from anywhere in the world. The following formats are all valid:

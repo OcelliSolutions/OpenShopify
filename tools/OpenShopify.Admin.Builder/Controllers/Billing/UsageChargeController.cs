@@ -43,7 +43,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         /// <param name="fields">A comma-separated list of fields to include in the response.</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("recurring_application_charges/{recurring_application_charge_id}/usage_charges/{usage_charge_id}.json")]
-        public abstract System.Threading.Tasks.Task GetCharge(long recurring_application_charge_id, long usage_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
+        public abstract System.Threading.Tasks.Task GetUsageCharge(long recurring_application_charge_id, long usage_charge_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null);
 
     }
 

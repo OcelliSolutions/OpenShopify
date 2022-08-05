@@ -34,7 +34,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="location_ids">A comma-separated list of location IDs. To find the ID of a location, use the [Location resource](/api/admin-rest/latest/resources/location)</param>
         /// <param name="updated_at_min">Show inventory levels updated at or after date (format: 2019-03-19T01:21:44-04:00).</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("inventory_levels.json")]
-        public abstract System.Threading.Tasks.Task ListInventoryLevels([Microsoft.AspNetCore.Mvc.FromQuery] string? inventory_item_ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? location_ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task ListInventoryLevels([Microsoft.AspNetCore.Mvc.FromQuery] System.Collections.Generic.IEnumerable<long>? inventory_item_ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? location_ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Deletes an inventory level from a location
