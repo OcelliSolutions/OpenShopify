@@ -73,7 +73,7 @@ paths:
           in: query
           description: 'The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).'
           schema:
-            type: string
+            $ref: '#/components/schemas/MetafieldType'
         - name: updated_at_max
           in: query
           description: 'Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)'
@@ -86,11 +86,6 @@ paths:
           schema:
             type: string
             format: date-time
-        - name: value_type
-          in: query
-          description: The legacy type information for the stored value. Replaced by `type`
-          schema:
-            type: string
       responses:
         '200':
           description: Success
@@ -116,6 +111,13 @@ paths:
         - Metafield
       summary: Create a metafield
       operationId: CreateMetafield
+      parameters:
+        - name: order_id
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -124,7 +126,6 @@ paths:
           application/*+json:
             schema:
               $ref: '#/components/schemas/CreateMetafieldRequest'
-        required: true
       responses:
         '201':
           description: Created
@@ -311,11 +312,6 @@ components:
           nullable: true
         type:
           $ref: '#/components/schemas/MetafieldType'
-        value_type:
-          type: string
-          description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\n`value_type` is deprecated and replaced by `type` in API version 2021-07.\r\n </aside> The legacy type information for the stored value. Valid values: `string`, `integer`, `json_string`."
-          nullable: true
-          deprecated: true
       additionalProperties: false
     CreateMetafieldRequest:
       required:
@@ -356,11 +352,6 @@ components:
           nullable: true
         type:
           $ref: '#/components/schemas/MetafieldType'
-        value_type:
-          type: string
-          description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\n`value_type` is deprecated and replaced by `type` in API version 2021-07.\r\n </aside> The legacy type information for the stored value. Valid values: `string`, `integer`, `json_string`."
-          nullable: true
-          deprecated: true
         id:
           type: integer
           format: int64
@@ -475,11 +466,6 @@ components:
           nullable: true
         type:
           $ref: '#/components/schemas/MetafieldType'
-        value_type:
-          type: string
-          description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\n`value_type` is deprecated and replaced by `type` in API version 2021-07.\r\n </aside> The legacy type information for the stored value. Valid values: `string`, `integer`, `json_string`."
-          nullable: true
-          deprecated: true
         id:
           type: integer
           format: int64

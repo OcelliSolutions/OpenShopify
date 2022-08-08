@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Data;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
@@ -12,14 +13,26 @@ namespace OpenShopify.Admin.Builder.Controllers.Metafield;
 public class MetafieldController : MetafieldControllerBase
 {
     /// <inheritdoc />
+    [IgnoreApi]
+    [HttpGet]
+    [Route("metafields.invalid")]
+    [ProducesResponseType(typeof(MetafieldList), StatusCodes.Status200OK)]
+    public override Task ListMetafieldsFromResourcesEndpoint(DateTimeOffset? created_at_max = null, 
+        DateTimeOffset? created_at_min = null,
+        string? fields = null, string? key = null, int? limit = null, string? page_info = null, 
+        string? @namespace = null, long? since_id = null, string? type = null, 
+        DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null) =>
+        throw new NotImplementedException();
+
+    /// <inheritdoc cref="MetafieldControllerBase.ListMetafieldsFromResourcesEndpoint" />
     [HttpGet]
     [Route("metafields.json")]
     [ProducesResponseType(typeof(MetafieldList), StatusCodes.Status200OK)]
-    public override Task ListMetafieldsFromResourcesEndpoint(DateTimeOffset? created_at_max = null,
+    public Task ListMetafieldsFromResourcesEndpoint(DateTimeOffset? created_at_max = null,
         DateTimeOffset? created_at_min = null,
         string? fields = null, string? key = null, int? limit = null, string? page_info = null,
-        string? @namespace = null, long? since_id = null, string? type = null,
-        DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null, string? value_type = null) =>
+        string? @namespace = null, long? since_id = null, MetafieldType? type = null,
+        DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null) =>
         throw new NotImplementedException();
 
     /// <inheritdoc />
@@ -27,8 +40,7 @@ public class MetafieldController : MetafieldControllerBase
     [Route("metafields.json")]
     [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(MetafieldError), StatusCodes.Status400BadRequest)]
-    public override Task CreateMetafield([Required] CreateMetafieldRequest request) =>
-        throw new NotImplementedException();
+    public override Task CreateMetafield(CreateMetafieldRequest request, [Required] long order_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
     [HttpGet]

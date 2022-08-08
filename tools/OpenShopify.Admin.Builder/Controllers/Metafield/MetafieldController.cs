@@ -39,15 +39,8 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
         /// <param name="updated_at_max">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <param name="updated_at_min">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="value_type">The legacy type information for the stored value. Replaced by `type`</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("metafields.json")]
-        public abstract System.Threading.Tasks.Task ListMetafieldsFromResourcesEndpoint([Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? key = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery(Name = "namespace")] string? @namespace = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? type = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? value_type = null);
-
-        /// <summary>
-        /// Create a metafield
-        /// </summary>
-        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("metafields.json")]
-        public abstract System.Threading.Tasks.Task CreateMetafield([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateMetafieldRequest request);
+        public abstract System.Threading.Tasks.Task ListMetafieldsFromResourcesEndpoint([Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? created_at_min = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? fields = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? key = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery(Name = "namespace")] string? @namespace = null, [Microsoft.AspNetCore.Mvc.FromQuery] long? since_id = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? type = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_max = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Retrieve a count of a resource's metafields.
@@ -73,6 +66,12 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         [Microsoft.AspNetCore.Mvc.HttpDelete, Microsoft.AspNetCore.Mvc.Route("metafields/{metafield_id}.json")]
         public abstract System.Threading.Tasks.Task DeleteMetafield(long metafield_id);
+
+        /// <summary>
+        /// Create a metafield
+        /// </summary>
+        [Microsoft.AspNetCore.Mvc.HttpPost, Microsoft.AspNetCore.Mvc.Route("orders/{order_id}/metafields.json")]
+        public abstract System.Threading.Tasks.Task CreateMetafield([System.ComponentModel.DataAnnotations.Required] OpenShopify.Admin.Builder.Models.CreateMetafieldRequest request, long order_id);
 
     }
 
@@ -141,21 +140,6 @@ namespace OpenShopify.Admin.Builder.Models
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? Type { get; set; } = default!;
-
-        /// <summary>
-        /// &lt;aside class="note caution"&gt; 
-        /// 
-        /// #### Caution
-        /// 
-        /// `value_type` is deprecated and replaced by `type` in API version 2021-07.
-        ///  &lt;/aside&gt; The legacy type information for the stored value. Valid values: `string`, `integer`, `json_string`.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        [System.Obsolete]
-        public string? ValueType { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

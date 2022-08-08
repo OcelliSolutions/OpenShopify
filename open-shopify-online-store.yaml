@@ -3000,11 +3000,6 @@ components:
           nullable: true
         type:
           $ref: '#/components/schemas/MetafieldType'
-        value_type:
-          type: string
-          description: "<aside class=\"note caution\"> \r\n\r\n#### Caution\r\n\r\n`value_type` is deprecated and replaced by `type` in API version 2021-07.\r\n </aside> The legacy type information for the stored value. Valid values: `string`, `integer`, `json_string`."
-          nullable: true
-          deprecated: true
         id:
           type: integer
           format: int64

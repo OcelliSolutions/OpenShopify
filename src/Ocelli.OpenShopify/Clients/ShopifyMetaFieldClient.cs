@@ -40,10 +40,9 @@ namespace Ocelli.OpenShopify
         /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
         /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="valueType">The legacy type information for the stored value. Replaced by `type`</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsFromResourcesEndpointAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, string? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, string? valueType = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsFromResourcesEndpointAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -51,7 +50,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldAsync(CreateMetafieldRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldAsync(long orderId, CreateMetafieldRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -134,10 +133,9 @@ namespace Ocelli.OpenShopify
         /// <param name="type">The type of data that the metafield stores in the `value` field.Refer to the list of [supported types](/apps/metafields/types).</param>
         /// <param name="updatedAtMax">Show metafields last updated before date (format: 2022-02-25T16:15:47-04:00)</param>
         /// <param name="updatedAtMin">Show metafields last updated after date (format: 2022-02-25T16:15:47-04:00)</param>
-        /// <param name="valueType">The legacy type information for the stored value. Replaced by `type`</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsFromResourcesEndpointAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, string? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, string? valueType = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldList>> ListMetafieldsFromResourcesEndpointAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? key = null, int? limit = null, string? pageInfo = null, string? @namespace = null, long? sinceId = null, MetafieldType? type = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/metafields.json?");
@@ -184,10 +182,6 @@ namespace Ocelli.OpenShopify
             if (updatedAtMin != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("updated_at_min") + "=").Append(System.Uri.EscapeDataString(updatedAtMin.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
-            }
-            if (valueType != null)
-            {
-                urlBuilder_.Append(System.Uri.EscapeDataString("value_type") + "=").Append(System.Uri.EscapeDataString(ConvertToString(valueType, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -256,13 +250,15 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Created</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldAsync(CreateMetafieldRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<MetafieldItem>> CreateMetafieldAsync(long orderId, CreateMetafieldRequest? body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            if (body == null)
-                throw new System.ArgumentNullException("body");
+            if (orderId == null)
+                throw new System.ArgumentNullException("orderId");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/metafields.json");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/metafields.json?");
+            urlBuilder_.Append(System.Uri.EscapeDataString("order_id") + "=").Append(System.Uri.EscapeDataString(ConvertToString(orderId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            urlBuilder_.Length--;
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -797,21 +793,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
         public MetafieldType? Type { get; set; } = default!;
 
-        /// <summary>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>`value_type` is deprecated and replaced by `type` in API version 2021-07.
-        /// <br/> &lt;/aside&gt; The legacy type information for the stored value. Valid values: `string`, `integer`, `json_string`.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        [System.Obsolete]
-        public string? ValueType { get; set; } = default!;
-
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
@@ -888,21 +869,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
         public MetafieldType? Type { get; set; } = default!;
-
-        /// <summary>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>`value_type` is deprecated and replaced by `type` in API version 2021-07.
-        /// <br/> &lt;/aside&gt; The legacy type information for the stored value. Valid values: `string`, `integer`, `json_string`.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        [System.Obsolete]
-        public string? ValueType { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
 
@@ -1155,21 +1121,6 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
         public MetafieldType? Type { get; set; } = default!;
-
-        /// <summary>
-        /// &lt;aside class="note caution"&gt; 
-        /// <br/>
-        /// <br/>#### Caution
-        /// <br/>
-        /// <br/>`value_type` is deprecated and replaced by `type` in API version 2021-07.
-        /// <br/> &lt;/aside&gt; The legacy type information for the stored value. Valid values: `string`, `integer`, `json_string`.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value_type")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        [System.Obsolete]
-        public string? ValueType { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
 
