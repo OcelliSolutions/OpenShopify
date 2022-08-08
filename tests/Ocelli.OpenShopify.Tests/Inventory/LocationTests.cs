@@ -38,7 +38,7 @@ public class LocationTests : IClassFixture<LocationFixture>
     [TestPriority(20)]
     public async Task CountLocationsAsync_CanGet()
     {
-        var response = await Fixture.Service.Location.CountLocationsAsync();
+        var response = await Fixture.Service.Location.CountLocationsAsync(CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -48,7 +48,7 @@ public class LocationTests : IClassFixture<LocationFixture>
     [TestPriority(20)]
     public async Task ListLocationsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.Location.ListLocationsAsync();
+        var response = await Fixture.Service.Location.ListLocationsAsync(CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var location in response.Result.Locations)
         {
@@ -65,7 +65,7 @@ public class LocationTests : IClassFixture<LocationFixture>
     {
         Skip.If(!Fixture.CreatedLocations.Any(), "Must be run with create test");
         var location = Fixture.CreatedLocations.First();
-        var response = await Fixture.Service.Location.GetLocationAsync(location.Id);
+        var response = await Fixture.Service.Location.GetLocationAsync(location.Id, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Location, Fixture.MyShopifyUrl);
     }
@@ -74,13 +74,13 @@ public class LocationTests : IClassFixture<LocationFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -99,11 +99,15 @@ internal class LocationMockClient : LocationClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
-        await Assert.ThrowsAsync<ApiException>(async () => await ListInventoryLevelsForLocationAsync(0));
-        await Assert.ThrowsAsync<ApiException>(async () => await ListLocationsAsync());
-        await Assert.ThrowsAsync<ApiException>(async () => await CountLocationsAsync());
-        await Assert.ThrowsAsync<ApiException>(async () => await GetLocationAsync(0));
+        ReadResponseAsString = true;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListInventoryLevelsForLocationAsync(0, CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListLocationsAsync(CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CountLocationsAsync(CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetLocationAsync(0, CancellationToken.None));
+
+        ReadResponseAsString = false;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListInventoryLevelsForLocationAsync(0, CancellationToken.None));
     }
 }

@@ -462,6 +462,14 @@ components:
           type: boolean
           description: Indicates whether this address is the default address.
           nullable: true
+        latitude:
+          type: number
+          format: decimal
+          nullable: true
+        longitude:
+          type: number
+          format: decimal
+          nullable: true
         id:
           type: integer
           format: int64

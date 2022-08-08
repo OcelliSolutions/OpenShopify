@@ -16,8 +16,8 @@ public class MobilePlatformApplicationFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var mobilePlatformApplication in CreatedMobilePlatformApplications)
         {
-            _ = await Service.MobilePlatformApplication.DeleteMobilePlatformApplicationAsync(mobilePlatformApplication
-                .Id);
+            _ = await Service.MobilePlatformApplication.DeleteMobilePlatformApplicationAsync(
+                mobilePlatformApplication.Id, CancellationToken.None);
         }
         CreatedMobilePlatformApplications.Clear();
     }
@@ -63,7 +63,7 @@ public class MobilePlatformApplicationTests : IClassFixture<MobilePlatformApplic
         };
         var response =
             await Fixture.Service.MobilePlatformApplication.UpdateMobilePlatformApplicationAsync(
-                originalMobilePlatformApplication.Id, request);
+                originalMobilePlatformApplication.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedMobilePlatformApplications.Remove(originalMobilePlatformApplication);
@@ -79,7 +79,7 @@ public class MobilePlatformApplicationTests : IClassFixture<MobilePlatformApplic
     public async Task CreateMobilePlatformApplicationAsync_CanCreate()
     {
         var request = Fixture.CreateMobilePlatformApplicationRequest();
-        var response = await Fixture.Service.MobilePlatformApplication.CreateMobilePlatformApplicationAsync(request);
+        var response = await Fixture.Service.MobilePlatformApplication.CreateMobilePlatformApplicationAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedMobilePlatformApplications.Add(response.Result.MobilePlatformApplication);
@@ -94,7 +94,7 @@ public class MobilePlatformApplicationTests : IClassFixture<MobilePlatformApplic
             MobilePlatformApplication = new CreateMobilePlatformApplication()
         };
         await Assert.ThrowsAsync<ApiException<MobilePlatformApplicationError>>(async () =>
-            await Fixture.Service.MobilePlatformApplication.CreateMobilePlatformApplicationAsync(request));
+            await Fixture.Service.MobilePlatformApplication.CreateMobilePlatformApplicationAsync(request, CancellationToken.None));
     }
 
     #endregion Create
@@ -106,7 +106,7 @@ public class MobilePlatformApplicationTests : IClassFixture<MobilePlatformApplic
     public async Task ListMobilePlatformApplicationsAsync_AdditionalPropertiesAreEmpty()
     {
         var response = await Fixture.Service.MobilePlatformApplication
-            .ListMobilePlatformApplicationsAssociatedWithAppAsync();
+            .ListMobilePlatformApplicationsAssociatedWithAppAsync(CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var mobilePlatformApplication in response.Result.MobilePlatformApplications)
         {
@@ -123,8 +123,8 @@ public class MobilePlatformApplicationTests : IClassFixture<MobilePlatformApplic
         Skip.If(!Fixture.CreatedMobilePlatformApplications.Any(), "Must be run with create test");
         var mobilePlatformApplication = Fixture.CreatedMobilePlatformApplications.First();
         var response =
-            await Fixture.Service.MobilePlatformApplication.GetMobilePlatformApplicationAsync(mobilePlatformApplication
-                .Id);
+            await Fixture.Service.MobilePlatformApplication.GetMobilePlatformApplicationAsync(
+                mobilePlatformApplication.Id, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.MobilePlatformApplication,
             Fixture.MyShopifyUrl);
@@ -146,13 +146,13 @@ public class MobilePlatformApplicationTests : IClassFixture<MobilePlatformApplic
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -171,7 +171,7 @@ internal class MobilePlatformApplicationMockClient : MobilePlatformApplicationCl
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section

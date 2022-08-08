@@ -29,7 +29,7 @@ public class CommentFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var comment in CreatedComments)
         {
-            _ = await Service.Comment.DeleteCommentAsync(comment.Id);
+            _ = await Service.Comment.DeleteCommentAsync(comment.Id, CancellationToken.None);
         }
         CreatedComments.Clear();
     }
@@ -85,7 +85,7 @@ public class CommentTests : IClassFixture<CommentFixture>
                 Body = "You can even update through a web service."
             }
         };
-        var response = await Fixture.Service.Comment.UpdateCommentAsync(request.Comment.Id, request);
+        var response = await Fixture.Service.Comment.UpdateCommentAsync(request.Comment.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedComments.Remove(originalComment);
@@ -112,7 +112,7 @@ public class CommentTests : IClassFixture<CommentFixture>
                 ArticleId = Fixture.Article.Id
             }
         };
-        var response = await Fixture.Service.Comment.CreateCommentAsync(request);
+        var response = await Fixture.Service.Comment.CreateCommentAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedComments.Add(response.Result.Comment);
@@ -127,7 +127,7 @@ public class CommentTests : IClassFixture<CommentFixture>
             Comment = new CreateComment()
         };
         await Assert.ThrowsAsync<ApiException<CommentError>>(async () =>
-            await Fixture.Service.Comment.CreateCommentAsync(request));
+            await Fixture.Service.Comment.CreateCommentAsync(request, CancellationToken.None));
     }
 
     #endregion Create
@@ -138,7 +138,7 @@ public class CommentTests : IClassFixture<CommentFixture>
     [TestPriority(20)]
     public async Task CountCommentsAsync_CanGet()
     {
-        var response = await Fixture.Service.Comment.CountCommentsAsync();
+        var response = await Fixture.Service.Comment.CountCommentsAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -148,7 +148,7 @@ public class CommentTests : IClassFixture<CommentFixture>
     [TestPriority(20)]
     public async Task ListCommentsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.Comment.ListCommentsAsync();
+        var response = await Fixture.Service.Comment.ListCommentsAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var comment in response.Result.Comments)
         {
@@ -164,7 +164,7 @@ public class CommentTests : IClassFixture<CommentFixture>
     {
         Skip.If(!Fixture.CreatedComments.Any(), "Must be run with create test");
         var comment = Fixture.CreatedComments.First();
-        var response = await Fixture.Service.Comment.GetCommentAsync(comment.Id);
+        var response = await Fixture.Service.Comment.GetCommentAsync(comment.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Comment, Fixture.MyShopifyUrl);
     }
@@ -183,13 +183,13 @@ public class CommentTests : IClassFixture<CommentFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -208,13 +208,13 @@ internal class CommentMockClient : CommentClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListCommentsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListCommentsAsync(cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListCommentsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListCommentsAsync(cancellationToken: CancellationToken.None));
     }
 }

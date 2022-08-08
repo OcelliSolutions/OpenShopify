@@ -32,7 +32,7 @@ public class CheckoutFixture : SharedFixture, IAsyncLifetime
         var productService = new ProductsService(MyShopifyUrl, AccessToken);
         foreach (var product in CreatedProducts)
         {
-            _ = await productService.Product.DeleteProductAsync(product.Id);
+            _ = await productService.Product.DeleteProductAsync(product.Id, CancellationToken.None);
         }
         CreatedProducts.Clear();
     }
@@ -87,7 +87,7 @@ public class CheckoutTests : IClassFixture<CheckoutFixture>
                 }
             }
         };
-        var response = await Fixture.Service.Checkout.CreateCheckoutAsync(request);
+        var response = await Fixture.Service.Checkout.CreateCheckoutAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Checkout, Fixture.MyShopifyUrl);
 
@@ -174,7 +174,7 @@ public class CheckoutTests : IClassFixture<CheckoutFixture>
                 }
             }
         };
-        var response = await Fixture.Service.Checkout.UpdateCheckoutAsync(request.Checkout.Token, request);
+        var response = await Fixture.Service.Checkout.UpdateCheckoutAsync(request.Checkout.Token, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedCheckouts.Remove(originalCheckout);
@@ -185,13 +185,13 @@ public class CheckoutTests : IClassFixture<CheckoutFixture>
 
     
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -210,7 +210,7 @@ internal class CheckoutMockClient : CheckoutClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section

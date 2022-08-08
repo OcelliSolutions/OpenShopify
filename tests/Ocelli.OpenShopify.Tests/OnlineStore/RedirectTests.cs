@@ -19,7 +19,7 @@ public class RedirectFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var redirect in CreatedRedirects)
         {
-            _ = await Service.Redirect.DeleteRedirectAsync(redirect.Id);
+            _ = await Service.Redirect.DeleteRedirectAsync(redirect.Id, CancellationToken.None);
         }
         CreatedRedirects.Clear();
     }
@@ -60,7 +60,7 @@ public class RedirectTests : IClassFixture<RedirectFixture>
                 Target = @"/pages/itunes_archive"
             }
         };
-        var response = await Fixture.Service.Redirect.UpdateRedirectAsync(request.Redirect.Id, request);
+        var response = await Fixture.Service.Redirect.UpdateRedirectAsync(request.Redirect.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedRedirects.Remove(originalRedirect);
@@ -83,7 +83,7 @@ public class RedirectTests : IClassFixture<RedirectFixture>
                 Target = $@"/pages/itunes/{Fixture.BatchId}"
             }
         };
-        var response = await Fixture.Service.Redirect.CreateRedirectAsync(request);
+        var response = await Fixture.Service.Redirect.CreateRedirectAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedRedirects.Add(response.Result.Redirect);
@@ -98,7 +98,7 @@ public class RedirectTests : IClassFixture<RedirectFixture>
             Redirect = new CreateRedirect()
         };
         await Assert.ThrowsAsync<ApiException<RedirectError>>(async () =>
-            await Fixture.Service.Redirect.CreateRedirectAsync(request));
+            await Fixture.Service.Redirect.CreateRedirectAsync(request, CancellationToken.None));
     }
 
     #endregion Create
@@ -109,7 +109,7 @@ public class RedirectTests : IClassFixture<RedirectFixture>
     [TestPriority(20)]
     public async Task CountRedirectsAsync_CanGet()
     {
-        var response = await Fixture.Service.Redirect.CountUrlRedirectsAsync();
+        var response = await Fixture.Service.Redirect.CountUrlRedirectsAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -119,7 +119,7 @@ public class RedirectTests : IClassFixture<RedirectFixture>
     [TestPriority(20)]
     public async Task ListRedirectsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.Redirect.ListUrlRedirectsAsync();
+        var response = await Fixture.Service.Redirect.ListUrlRedirectsAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var redirect in response.Result.Redirects)
         {
@@ -135,7 +135,7 @@ public class RedirectTests : IClassFixture<RedirectFixture>
     {
         Skip.If(!Fixture.CreatedRedirects.Any(), "Must be run with create test");
         var redirect = Fixture.CreatedRedirects.First();
-        var response = await Fixture.Service.Redirect.GetRedirectAsync(redirect.Id);
+        var response = await Fixture.Service.Redirect.GetRedirectAsync(redirect.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Redirect, Fixture.MyShopifyUrl);
     }
@@ -154,13 +154,13 @@ public class RedirectTests : IClassFixture<RedirectFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -179,13 +179,13 @@ internal class RedirectMockClient : RedirectClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListUrlRedirectsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListUrlRedirectsAsync(cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListUrlRedirectsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListUrlRedirectsAsync(cancellationToken: CancellationToken.None));
     }
 }

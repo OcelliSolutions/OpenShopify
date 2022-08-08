@@ -1297,7 +1297,7 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CancelFulfillmentAsync(long fulfillmentId, CancelFulfillmentRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CancelFulfillmentAsync(long fulfillmentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -1880,13 +1880,10 @@ namespace Ocelli.OpenShopify
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CancelFulfillmentAsync(long fulfillmentId, CancelFulfillmentRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<FulfillmentItem>> CancelFulfillmentAsync(long fulfillmentId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (fulfillmentId == null)
                 throw new System.ArgumentNullException("fulfillmentId");
-
-            if (body == null)
-                throw new System.ArgumentNullException("body");
 
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/fulfillments/{fulfillment_id}/cancel.json");
@@ -1898,9 +1895,7 @@ namespace Ocelli.OpenShopify
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
+                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
@@ -5097,6 +5092,12 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? AdminGraphqlApiId { get; set; } = default!;
 
+        [System.Text.Json.Serialization.JsonPropertyName("format")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public CarrierServiceFormat? Format { get; set; } = default!;
+
         [System.Text.Json.Serialization.JsonPropertyName("id")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
@@ -5169,6 +5170,18 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum CarrierServiceFormat
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"json")]
+        Json = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"xml")]
+        Xml = 1,
 
     }
 
@@ -5311,6 +5324,12 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("format")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public CarrierServiceFormat? Format { get; set; } = default!;
 
     }
 
@@ -5467,8 +5486,147 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CreateFulfillmentForOneOrManyFulfillmentOrders
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("line_items_by_fulfillment_order")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<LineItemsByFulfillmentOrder>? LineItemsByFulfillmentOrder { get; set; } = default!;
+
+        /// <summary>
+        /// Whether the customer should be notified. If set to `true`, then an email will be sent when the fulfillment is created or updated. For orders that were initially created using the API, the default value is `false`. For all other orders, the default value is `true`.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("notify_customer")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? NotifyCustomer { get; set; } = default!;
+
+        /// <summary>
+        /// The unique numeric identifier for the fulfillment order.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_order_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? FulfillmentOrderId { get; set; } = default!;
+
+        /// <summary>
+        /// The fulfillment service associated with the fulfillment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("service")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Service { get; set; } = default!;
+
+        /// <summary>
+        /// The name of the tracking company. The following tracking companies display for shops located in any country: 
+        /// <br/>
+        /// <br/>*   **4PX** 
+        /// <br/>*   **Amazon Logistics UK** 
+        /// <br/>*   **Amazon Logistics US** 
+        /// <br/>*   **Anjun Logistics** 
+        /// <br/>*   **APC** 
+        /// <br/>*   **Australia Post** 
+        /// <br/>*   **Bluedart** 
+        /// <br/>*   **Canada Post** 
+        /// <br/>*   **Canpar** 
+        /// <br/>*   **China Post** 
+        /// <br/>*   **Chukou1** 
+        /// <br/>*   **Correios** 
+        /// <br/>*   **Couriers Please** 
+        /// <br/>*   **Delhivery** 
+        /// <br/>*   **DHL eCommerce** 
+        /// <br/>*   **DHL eCommerce Asia** 
+        /// <br/>*   **DHL Express** 
+        /// <br/>*   **DPD** 
+        /// <br/>*   **DPD Local** 
+        /// <br/>*   **DPD UK** 
+        /// <br/>*   **Eagle** 
+        /// <br/>*   **FedEx** 
+        /// <br/>*   **FSC** 
+        /// <br/>*   **Asendia USA** 
+        /// <br/>*   **GLS** 
+        /// <br/>*   **GLS (US)** 
+        /// <br/>*   **Japan Post** 
+        /// <br/>*   **La Poste** 
+        /// <br/>*   **New Zealand Post** 
+        /// <br/>*   **Newgistics** 
+        /// <br/>*   **PostNL** 
+        /// <br/>*   **PostNord** 
+        /// <br/>*   **Purolator** 
+        /// <br/>*   **Royal Mail** 
+        /// <br/>*   **Sagawa** 
+        /// <br/>*   **Sendle** 
+        /// <br/>*   **SF Express** 
+        /// <br/>*   **SFC Fulfilllment** 
+        /// <br/>*   **Singapore Post** 
+        /// <br/>*   **StarTrack** 
+        /// <br/>*   **TNT** 
+        /// <br/>*   **Toll IPEC** 
+        /// <br/>*   **UPS** 
+        /// <br/>*   **USPS** 
+        /// <br/>*   **Whistl** 
+        /// <br/>*   **Yamato** 
+        /// <br/>*   **YunExpress**  
+        /// <br/>
+        /// <br/>The following tracking companies are displayed for shops located in specific countries:
+        /// <br/>
+        /// <br/>*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL 
+        /// <br/>*   **Ireland**: An Post, Fastway 
+        /// <br/>*   **Australia**: Aramex Australia, Australia Post, Sendle 
+        /// <br/>*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 
+        /// <br/>*   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress  &lt;div class="note"&gt; 
+        /// <br/>
+        /// <br/>#### Important
+        /// <br/>
+        /// <br/>When creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.
+        /// <br/> &lt;/div&gt;
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_company")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? TrackingCompany { get; set; } = default!;
+
+        /// <summary>
+        /// A list of tracking numbers, provided by the shipping company. &lt;div class="note"&gt; 
+        /// <br/>
+        /// <br/>#### Important
+        /// <br/>
+        /// <br/>It is highly recommended that you send the tracking company and the tracking URL as well. If neither one of these is sent, then the tracking company will be determined automatically. This can result in an invalid tracking URL.
+        /// <br/>
+        /// <br/>The tracking URL is displayed in the shipping confirmation email, which can optionally be sent to the customer. When accounts are enabled, it is also displayed in the customer's order history.
+        /// <br/> &lt;/div&gt;
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_numbers")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<string>? TrackingNumbers { get; set; } = default!;
+
+        /// <summary>
+        /// The URLs of tracking pages for the fulfillment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tracking_urls")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<string>? TrackingUrls { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CreateFulfillmentForOneOrManyFulfillmentOrdersRequest
     {
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public CreateFulfillmentForOneOrManyFulfillmentOrders Fulfillment { get; set; } = new CreateFulfillmentForOneOrManyFulfillmentOrders();
 
     }
 
@@ -7666,6 +7824,38 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class LineItemsByFulfillmentOrder
+    {
+        /// <summary>
+        /// The ID of the fulfillment order associated with this line item.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_order_id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? FulfillmentOrderId { get; set; } = default!;
+
+        /// <summary>
+        /// The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("fulfillment_order_line_items")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<FulfillmentRequestOrderLineItems>? FulfillmentOrderLineItems { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class LocationsForMove
     {
 
@@ -8164,6 +8354,12 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? AdminGraphqlApiId { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("format")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        [System.Text.Json.Serialization.JsonConverter(typeof(System.Text.Json.Serialization.JsonStringEnumMemberConverter))]
+        public CarrierServiceFormat? Format { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
 

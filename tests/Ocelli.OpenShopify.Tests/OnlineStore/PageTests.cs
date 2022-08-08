@@ -21,7 +21,7 @@ public class PageFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var page in CreatedPages)
         {
-            _ = await Service.Page.DeletePageAsync(page.Id);
+            _ = await Service.Page.DeletePageAsync(page.Id, CancellationToken.None);
         }
         CreatedPages.Clear();
     }
@@ -63,7 +63,7 @@ public class PageTests : IClassFixture<PageFixture>
                 Title = Fixture.UniqueString()
             }
         };
-        var response = await Fixture.Service.Page.UpdatePageAsync(request.Page.Id, request);
+        var response = await Fixture.Service.Page.UpdatePageAsync(request.Page.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedPages.Remove(originalPage);
@@ -79,7 +79,7 @@ public class PageTests : IClassFixture<PageFixture>
     public async Task CreatePageAsync_CanCreate()
     {
         var request = Fixture.CreatePageRequest();
-        var response = await Fixture.Service.Page.CreatePageAsync(request);
+        var response = await Fixture.Service.Page.CreatePageAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedPages.Add(response.Result.Page);
@@ -94,7 +94,7 @@ public class PageTests : IClassFixture<PageFixture>
             Page = new CreatePage()
         };
         await Assert.ThrowsAsync<ApiException<PageError>>(async () =>
-            await Fixture.Service.Page.CreatePageAsync(request));
+            await Fixture.Service.Page.CreatePageAsync(request, CancellationToken.None));
     }
 
     #endregion Create
@@ -105,7 +105,7 @@ public class PageTests : IClassFixture<PageFixture>
     [TestPriority(20)]
     public async Task CountPagesAsync_CanGet()
     {
-        var response = await Fixture.Service.Page.GetPageCountAsync();
+        var response = await Fixture.Service.Page.GetPageCountAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -115,7 +115,7 @@ public class PageTests : IClassFixture<PageFixture>
     [TestPriority(20)]
     public async Task ListPagesAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.Page.ListPagesAsync();
+        var response = await Fixture.Service.Page.ListPagesAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var page in response.Result.Pages)
         {
@@ -131,7 +131,7 @@ public class PageTests : IClassFixture<PageFixture>
     {
         Skip.If(!Fixture.CreatedPages.Any(), "Must be run with create test");
         var page = Fixture.CreatedPages.First();
-        var response = await Fixture.Service.Page.GetPageAsync(page.Id);
+        var response = await Fixture.Service.Page.GetPageAsync(page.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Page, Fixture.MyShopifyUrl);
     }
@@ -151,13 +151,13 @@ public class PageTests : IClassFixture<PageFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -176,20 +176,24 @@ internal class PageMockClient : PageClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
-        await Assert.ThrowsAsync<ApiException>(async () => await ListPagesAsync(createdAtMax: DateTimeOffset.Now, createdAtMin: DateTimeOffset.Now.AddMonths(-1)));
-        await Assert.ThrowsAsync<ApiException>(async () => await ListPagesAsync(updatedAtMax: DateTimeOffset.Now, updatedAtMin: DateTimeOffset.Now.AddMonths(-1)));
-        await Assert.ThrowsAsync<ApiException>(async () => await ListPagesAsync(publishedAtMax: DateTimeOffset.Now, publishedAtMin: DateTimeOffset.Now.AddMonths(-1)));
-        await Assert.ThrowsAsync<ApiException>(async () => await ListPagesAsync(fields: "id,name", limit:1, handle:"NA", pageInfo:"NA", sinceId: 0, publishedStatus: PagePublishStatus.Any, title: "NA"));
+        ReadResponseAsString = true;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListPagesAsync(createdAtMax: DateTimeOffset.Now, createdAtMin: DateTimeOffset.Now.AddMonths(-1), cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListPagesAsync(updatedAtMax: DateTimeOffset.Now, updatedAtMin: DateTimeOffset.Now.AddMonths(-1), cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListPagesAsync(publishedAtMax: DateTimeOffset.Now, publishedAtMin: DateTimeOffset.Now.AddMonths(-1), cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListPagesAsync(fields: "id,name", limit:1, handle:"NA", pageInfo:"NA", sinceId: 0, publishedStatus: PagePublishStatus.Any, title: "NA", cancellationToken: CancellationToken.None));
 
-        await Assert.ThrowsAsync<ApiException>(async () => await GetPageCountAsync(createdAtMax: DateTimeOffset.Now, createdAtMin: DateTimeOffset.Now.AddMonths(-1)));
-        await Assert.ThrowsAsync<ApiException>(async () => await GetPageCountAsync(updatedAtMax: DateTimeOffset.Now, updatedAtMin: DateTimeOffset.Now.AddMonths(-1)));
-        await Assert.ThrowsAsync<ApiException>(async () => await GetPageCountAsync(publishedAtMax: DateTimeOffset.Now, publishedAtMin: DateTimeOffset.Now.AddMonths(-1)));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetPageCountAsync(createdAtMax: DateTimeOffset.Now, createdAtMin: DateTimeOffset.Now.AddMonths(-1), cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetPageCountAsync(updatedAtMax: DateTimeOffset.Now, updatedAtMin: DateTimeOffset.Now.AddMonths(-1), cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetPageCountAsync(publishedAtMax: DateTimeOffset.Now, publishedAtMin: DateTimeOffset.Now.AddMonths(-1), cancellationToken: CancellationToken.None));
 
-        await Assert.ThrowsAsync<ApiException>(async () => await GetPageAsync(0, "id"));
-        await Assert.ThrowsAsync<ApiException>(async () => await CreatePageAsync(new CreatePageRequest()));
-        await Assert.ThrowsAsync<ApiException>(async () => await UpdatePageAsync(0, new UpdatePageRequest()));
-        await Assert.ThrowsAsync<ApiException>(async () => await DeletePageAsync(0));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetPageAsync(0, "id", CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CreatePageAsync(new CreatePageRequest(), CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await UpdatePageAsync(0, new UpdatePageRequest(), CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await DeletePageAsync(0, CancellationToken.None));
+
+        ReadResponseAsString = false;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListPagesAsync(createdAtMax: DateTimeOffset.Now, createdAtMin: DateTimeOffset.Now.AddMonths(-1), cancellationToken: CancellationToken.None));
     }
 }

@@ -55,6 +55,7 @@ public class FulfillmentController : FulfillmentControllerBase
     public override Task CreateFulfillmentForOneOrManyFulfillmentOrders(
         [Required] CreateFulfillmentForOneOrManyFulfillmentOrdersRequest request) =>
         throw new NotImplementedException();
+    
 
     /// TODO: change the request type
     /// <inheritdoc />
@@ -67,10 +68,18 @@ public class FulfillmentController : FulfillmentControllerBase
         throw new NotImplementedException();
 
     /// <inheritdoc />
+    [IgnoreApi]
+    [HttpPost]
+    [Route("fulfillments/{fulfillment_id:long}/cancel.invalid")]
+    [ProducesResponseType(typeof(FulfillmentItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(FulfillmentGeneralError), StatusCodes.Status400BadRequest)]
+    public override Task CancelFulfillment([Required] CancelFulfillmentRequest request,[Required] long fulfillment_id) =>
+        throw new NotImplementedException();
+
+    /// <inheritdoc cref="FulfillmentControllerBase.CancelFulfillment" />
     [HttpPost]
     [Route("fulfillments/{fulfillment_id:long}/cancel.json")]
     [ProducesResponseType(typeof(FulfillmentItem), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(FulfillmentGeneralError), StatusCodes.Status400BadRequest)]
-    public override Task CancelFulfillment([Required] CancelFulfillmentRequest request, long fulfillment_id) =>
-        throw new NotImplementedException();
+    public Task CancelFulfillment([Required] long fulfillment_id) => throw new NotImplementedException();
 }

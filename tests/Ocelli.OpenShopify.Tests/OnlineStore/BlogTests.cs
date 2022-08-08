@@ -19,7 +19,7 @@ public class BlogFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var blog in CreatedBlogs)
         {
-            _ = await Service.Blog.DeleteBlogAsync(blog.Id);
+            _ = await Service.Blog.DeleteBlogAsync(blog.Id, CancellationToken.None);
         }
         CreatedBlogs.Clear();
     }
@@ -60,7 +60,7 @@ public class BlogTests : IClassFixture<BlogFixture>
                 Title = Fixture.UniqueString()
             }
         };
-        var response = await Fixture.Service.Blog.UpdateBlogAsync(request.Blog.Id, request);
+        var response = await Fixture.Service.Blog.UpdateBlogAsync(request.Blog.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedBlogs.Remove(originalBlog);
@@ -76,7 +76,7 @@ public class BlogTests : IClassFixture<BlogFixture>
     public async Task CreateBlogAsync_CanCreate()
     {
         var request = Fixture.CreateBlogRequest();
-        var response = await Fixture.Service.Blog.CreateBlogAsync(request);
+        var response = await Fixture.Service.Blog.CreateBlogAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedBlogs.Add(response.Result.Blog);
@@ -91,7 +91,7 @@ public class BlogTests : IClassFixture<BlogFixture>
             Blog = new CreateBlog()
         };
         await Assert.ThrowsAsync<ApiException<BlogError>>(async () =>
-            await Fixture.Service.Blog.CreateBlogAsync(request));
+            await Fixture.Service.Blog.CreateBlogAsync(request, CancellationToken.None));
     }
 
     #endregion Create
@@ -102,7 +102,7 @@ public class BlogTests : IClassFixture<BlogFixture>
     [TestPriority(20)]
     public async Task CountBlogsAsync_CanGet()
     {
-        var response = await Fixture.Service.Blog.CountBlogsAsync();
+        var response = await Fixture.Service.Blog.CountBlogsAsync(CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -112,7 +112,7 @@ public class BlogTests : IClassFixture<BlogFixture>
     [TestPriority(20)]
     public async Task ListBlogsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.Blog.ListBlogsAsync();
+        var response = await Fixture.Service.Blog.ListBlogsAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var blog in response.Result.Blogs)
         {
@@ -128,7 +128,7 @@ public class BlogTests : IClassFixture<BlogFixture>
     {
         Skip.If(!Fixture.CreatedBlogs.Any(), "Must be run with create test");
         var blog = Fixture.CreatedBlogs.First();
-        var response = await Fixture.Service.Blog.GetBlogAsync(blog.Id);
+        var response = await Fixture.Service.Blog.GetBlogAsync(blog.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Blog, Fixture.MyShopifyUrl);
     }
@@ -148,13 +148,13 @@ public class BlogTests : IClassFixture<BlogFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -173,13 +173,13 @@ internal class BlogMockClient : BlogClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListBlogsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListBlogsAsync(cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListBlogsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListBlogsAsync(cancellationToken: CancellationToken.None));
     }
 }

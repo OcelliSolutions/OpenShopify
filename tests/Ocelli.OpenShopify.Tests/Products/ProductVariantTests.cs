@@ -32,7 +32,7 @@ public class ProductVariantFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var productVariant in CreatedProductVariants)
         {
-            _ = await Service.ProductVariant.DeleteProductVariantAsync(Product.Id, productVariant.Id);
+            _ = await Service.ProductVariant.DeleteProductVariantAsync(Product.Id, productVariant.Id, CancellationToken.None);
         }
         CreatedProductVariants.Clear();
     }
@@ -76,7 +76,7 @@ public class ProductVariantTests : IClassFixture<ProductVariantFixture>
             }
         };
         var response =
-            await Fixture.Service.ProductVariant.UpdateProductVariantAsync(originalProductVariant.Id, request);
+            await Fixture.Service.ProductVariant.UpdateProductVariantAsync(originalProductVariant.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedProductVariants.Remove(originalProductVariant);
@@ -92,7 +92,7 @@ public class ProductVariantTests : IClassFixture<ProductVariantFixture>
     public async Task CreateProductVariantAsync_CanCreate()
     {
         var request = Fixture.CreateProductVariantRequest();
-        var response = await Fixture.Service.ProductVariant.CreateProductVariantAsync(Fixture.Product.Id, request);
+        var response = await Fixture.Service.ProductVariant.CreateProductVariantAsync(Fixture.Product.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedProductVariants.Add(response.Result.Variant);
@@ -107,7 +107,7 @@ public class ProductVariantTests : IClassFixture<ProductVariantFixture>
             Variant = new CreateProductVariant()
         };
         await Assert.ThrowsAsync<ApiException<ProductVariantError>>(async () =>
-            await Fixture.Service.ProductVariant.CreateProductVariantAsync(Fixture.Product.Id, request));
+            await Fixture.Service.ProductVariant.CreateProductVariantAsync(Fixture.Product.Id, request, CancellationToken.None));
     }
 
     #endregion Create
@@ -118,7 +118,7 @@ public class ProductVariantTests : IClassFixture<ProductVariantFixture>
     [TestPriority(20)]
     public async Task CountProductVariantsAsync_CanGet()
     {
-        var response = await Fixture.Service.ProductVariant.CountProductVariantsAsync(Fixture.Product.Id);
+        var response = await Fixture.Service.ProductVariant.CountProductVariantsAsync(Fixture.Product.Id, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -128,7 +128,7 @@ public class ProductVariantTests : IClassFixture<ProductVariantFixture>
     [TestPriority(20)]
     public async Task ListProductVariantsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.ProductVariant.ListProductVariantsAsync(Fixture.Product.Id);
+        var response = await Fixture.Service.ProductVariant.ListProductVariantsAsync(Fixture.Product.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var productVariant in response.Result.Variants)
         {
@@ -144,7 +144,7 @@ public class ProductVariantTests : IClassFixture<ProductVariantFixture>
     {
         Skip.If(!Fixture.CreatedProductVariants.Any(), "Must be run with create test");
         var productVariant = Fixture.CreatedProductVariants.First();
-        var response = await Fixture.Service.ProductVariant.GetProductVariantAsync(productVariant.Id);
+        var response = await Fixture.Service.ProductVariant.GetProductVariantAsync(productVariant.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Variant, Fixture.MyShopifyUrl);
     }
@@ -164,13 +164,13 @@ public class ProductVariantTests : IClassFixture<ProductVariantFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -189,13 +189,13 @@ internal class ProductVariantMockClient : ProductVariantClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListProductVariantsAsync(0));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListProductVariantsAsync(0, cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListProductVariantsAsync(0));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListProductVariantsAsync(0, cancellationToken: CancellationToken.None));
     }
 }

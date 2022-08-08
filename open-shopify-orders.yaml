@@ -59,7 +59,7 @@ paths:
           in: query
           description: Show only checkouts with a given status.
           schema:
-            type: string
+            $ref: '#/components/schemas/AbandonedCheckoutStatusRequest'
         - name: updated_at_max
           in: query
           description: 'Show checkouts last updated before the specified date. (format: 2014-04-25T16:15:47-04:00)'
@@ -508,12 +508,12 @@ paths:
           in: query
           description: Filter orders by their financial status.
           schema:
-            type: string
+            $ref: '#/components/schemas/FinancialStatusRequest'
         - name: fulfillment_status
           in: query
           description: Filter orders by their fulfillment status.
           schema:
-            type: string
+            $ref: '#/components/schemas/FulfillmentStatusRequest'
         - name: ids
           in: query
           description: Retrieve only orders specified by a comma-separated list of order IDs.
@@ -557,7 +557,7 @@ paths:
           in: query
           description: Filter orders by their status.
           schema:
-            type: string
+            $ref: '#/components/schemas/OrderStatusRequest'
         - name: updated_at_max
           in: query
           description: Show orders last updated at or before date.
@@ -687,7 +687,7 @@ paths:
     put:
       tags:
         - Order
-      summary: Update an order
+      summary: Retrieve a list of orders
       operationId: UpdateOrder
       parameters:
         - name: order_id
@@ -783,17 +783,17 @@ paths:
           in: query
           description: Orders of a given financial status.
           schema:
-            type: string
+            $ref: '#/components/schemas/FinancialStatusRequest'
         - name: fulfillment_status
           in: query
           description: Orders of a given fulfillment status.
           schema:
-            type: string
+            $ref: '#/components/schemas/FulfillmentStatusRequest'
         - name: status
           in: query
           description: Orders of a given status.
           schema:
-            type: string
+            $ref: '#/components/schemas/OrderStatusRequest'
         - name: updated_at_max
           in: query
           description: Orders last updated before date specified.
@@ -1566,6 +1566,12 @@ components:
           items:
             $ref: '#/components/schemas/Checkout'
       additionalProperties: { }
+    AbandonedCheckoutStatusRequest:
+      enum:
+        - open
+        - closed
+      type: string
+      additionalProperties: { }
     Address:
       required:
         - id
@@ -1635,6 +1641,14 @@ components:
         default:
           type: boolean
           description: Indicates whether this address is the default address.
+          nullable: true
+        latitude:
+          type: number
+          format: decimal
+          nullable: true
+        longitude:
+          type: number
+          format: decimal
           nullable: true
         id:
           type: integer
@@ -1916,9 +1930,9 @@ components:
           description: Undocumented
           nullable: true
         note_attributes:
-          type: object
-          additionalProperties:
-            type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteAttribute'
           description: Undocumented
           nullable: true
         payments:
@@ -1946,6 +1960,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ShippingRate'
+          description: Undocumented
+          nullable: true
+        buyer_accepts_sms_marketing:
+          type: boolean
           description: Undocumented
           nullable: true
         id:
@@ -3095,6 +3113,14 @@ components:
           type: boolean
           description: Indicates whether this address is the default address.
           nullable: true
+        latitude:
+          type: number
+          format: decimal
+          nullable: true
+        longitude:
+          type: number
+          format: decimal
+          nullable: true
         id:
           type: integer
           format: int64
@@ -3645,6 +3671,19 @@ components:
         - voided
       type: string
       additionalProperties: { }
+    FinancialStatusRequest:
+      enum:
+        - pending
+        - authorized
+        - partially_paid
+        - paid
+        - partially_refunded
+        - refunded
+        - voided
+        - any
+        - unpaid
+      type: string
+      additionalProperties: { }
     Fulfillment:
       required:
         - id
@@ -3738,6 +3777,15 @@ components:
         - fulfilled
         - partial
         - restocked
+      type: string
+      additionalProperties: { }
+    FulfillmentStatusRequest:
+      enum:
+        - shipped
+        - partial
+        - unshipped
+        - any
+        - unfulfilled
       type: string
       additionalProperties: { }
     LineItem:
@@ -4536,6 +4584,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/OrderRisk'
+      additionalProperties: { }
+    OrderStatusRequest:
+      enum:
+        - open
+        - closed
+        - any
+      type: string
       additionalProperties: { }
     PaymentDetails:
       type: object

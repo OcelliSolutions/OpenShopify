@@ -40,7 +40,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Show checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<AbandonedCheckoutList>> ListAbandonedCheckoutsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<AbandonedCheckoutList>> ListAbandonedCheckoutsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, int? limit = null, string? pageInfo = null, long? sinceId = null, AbandonedCheckoutStatusRequest? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
     }
 
@@ -90,7 +90,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Show checkouts last updated after the specified date. (format: 2014-04-25T16:15:47-04:00)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<AbandonedCheckoutList>> ListAbandonedCheckoutsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, int? limit = null, string? pageInfo = null, long? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<AbandonedCheckoutList>> ListAbandonedCheckoutsAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, int? limit = null, string? pageInfo = null, long? sinceId = null, AbandonedCheckoutStatusRequest? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/checkouts.json?");
@@ -1231,7 +1231,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Show orders last updated at or after date.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<OrderList>> ListOrdersAsync(long? attributionAppId = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? financialStatus = null, string? fulfillmentStatus = null, System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, long? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<OrderList>> ListOrdersAsync(long? attributionAppId = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, FinancialStatusRequest? financialStatus = null, FulfillmentStatusRequest? fulfillmentStatus = null, System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, long? sinceId = null, OrderStatusRequest? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1252,7 +1252,7 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Update an order
+        /// Retrieve a list of orders
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1279,7 +1279,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Orders last updated after date specified.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountOrdersAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? financialStatus = null, string? fulfillmentStatus = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountOrdersAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, FinancialStatusRequest? financialStatus = null, FulfillmentStatusRequest? fulfillmentStatus = null, OrderStatusRequest? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1360,7 +1360,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Show orders last updated at or after date.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderList>> ListOrdersAsync(long? attributionAppId = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? financialStatus = null, string? fulfillmentStatus = null, System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, long? sinceId = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<OrderList>> ListOrdersAsync(long? attributionAppId = null, System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, FinancialStatusRequest? financialStatus = null, FulfillmentStatusRequest? fulfillmentStatus = null, System.Collections.Generic.IEnumerable<long>? ids = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? processedAtMax = null, System.DateTimeOffset? processedAtMin = null, long? sinceId = null, OrderStatusRequest? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders.json?");
@@ -1663,7 +1663,7 @@ namespace Ocelli.OpenShopify
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Update an order
+        /// Retrieve a list of orders
         /// </summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1832,7 +1832,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Orders last updated after date specified.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountOrdersAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? financialStatus = null, string? fulfillmentStatus = null, string? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> CountOrdersAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, FinancialStatusRequest? financialStatus = null, FulfillmentStatusRequest? fulfillmentStatus = null, OrderStatusRequest? status = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/orders/count.json?");
@@ -3957,6 +3957,18 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum AbandonedCheckoutStatusRequest
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"open")]
+        Open = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"closed")]
+        Closed = 1,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class AppliedDiscount
     {
         /// <summary>
@@ -4574,7 +4586,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.Collections.Generic.IDictionary<string, string>? NoteAttributes { get; set; } = default!;
+        public System.Collections.Generic.ICollection<NoteAttribute>? NoteAttributes { get; set; } = default!;
 
         /// <summary>
         /// Undocumented
@@ -4620,6 +4632,15 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.ICollection<ShippingRate>? ShippingRates { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("buyer_accepts_sms_marketing")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? BuyerAcceptsSmsMarketing { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
 
@@ -7703,6 +7724,39 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum FinancialStatusRequest
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"pending")]
+        Pending = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"authorized")]
+        Authorized = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"partially_paid")]
+        PartiallyPaid = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"paid")]
+        Paid = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"partially_refunded")]
+        PartiallyRefunded = 4,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"refunded")]
+        Refunded = 5,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"voided")]
+        Voided = 6,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"any")]
+        Any = 7,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unpaid")]
+        Unpaid = 8,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
     public enum FulfillmentStatus
     {
 
@@ -7714,6 +7768,27 @@ namespace Ocelli.OpenShopify
 
         [System.Runtime.Serialization.EnumMember(Value = @"restocked")]
         Restocked = 2,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum FulfillmentStatusRequest
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"shipped")]
+        Shipped = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"partial")]
+        Partial = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unshipped")]
+        Unshipped = 2,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"any")]
+        Any = 3,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unfulfilled")]
+        Unfulfilled = 4,
 
     }
 
@@ -8136,41 +8211,6 @@ namespace Ocelli.OpenShopify
     /// </summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class LineItemProperty
-    {
-        /// <summary>
-        /// The name of the note attribute.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("name")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Name { get; set; } = default!;
-
-        /// <summary>
-        /// The value of the note attribute.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("value")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Value { get; set; } = default!;
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-    /// <summary>
-    /// An object representing a note attribute for OpenShopify.Admin.Builder.Models.OrderBase.NoteAttributes
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
-    public partial class NoteAttribute
     {
         /// <summary>
         /// The name of the note attribute.
@@ -9377,6 +9417,21 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum OrderStatusRequest
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"open")]
+        Open = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"closed")]
+        Closed = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"any")]
+        Any = 2,
 
     }
 

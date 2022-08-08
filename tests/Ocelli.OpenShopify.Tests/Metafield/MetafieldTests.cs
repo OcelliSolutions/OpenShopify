@@ -29,7 +29,7 @@ public class MetafieldFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var metafield in CreatedMetafields)
         {
-            _ = await Service.Metafield.DeleteMetafieldAsync(metafield.Id);
+            _ = await Service.Metafield.DeleteMetafieldAsync(metafield.Id, CancellationToken.None);
         }
         CreatedMetafields.Clear();
     }
@@ -38,7 +38,7 @@ public class MetafieldFixture : SharedFixture, IAsyncLifetime
         var orderService = new OrdersService(MyShopifyUrl, AccessToken);
         foreach (var order in CreatedOrders)
         {
-            _ = await orderService.Order.DeleteOrderAsync(order.Id);
+            _ = await orderService.Order.DeleteOrderAsync(order.Id, CancellationToken.None);
         }
         CreatedOrders.Clear();
     }
@@ -81,7 +81,7 @@ public class MetafieldTests : IClassFixture<MetafieldFixture>
                 Type = MetafieldType.SingleLineTextField
             }
         };
-        var response = await Fixture.Service.Metafield.UpdateMetafieldAsync(originalMetafield.Id, request);
+        var response = await Fixture.Service.Metafield.UpdateMetafieldAsync(originalMetafield.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedMetafields.Remove(originalMetafield);
@@ -98,7 +98,7 @@ public class MetafieldTests : IClassFixture<MetafieldFixture>
     {
         var order = Fixture.CreatedOrders.First();
         var request = Fixture.CreateMetafieldRequest();
-        var response = await Fixture.Service.Metafield.CreateMetafieldAsync(order.Id, request);
+        var response = await Fixture.Service.Metafield.CreateMetafieldAsync(order.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedMetafields.Add(response.Result.Metafield);
@@ -114,7 +114,7 @@ public class MetafieldTests : IClassFixture<MetafieldFixture>
             Metafield = new CreateMetafield()
         };
         await Assert.ThrowsAsync<ApiException<MetafieldError>>(async () =>
-            await Fixture.Service.Metafield.CreateMetafieldAsync(order.Id, request));
+            await Fixture.Service.Metafield.CreateMetafieldAsync(order.Id, request, CancellationToken.None));
     }
 
     #endregion Create
@@ -125,7 +125,7 @@ public class MetafieldTests : IClassFixture<MetafieldFixture>
     [TestPriority(20)]
     public async Task CountMetafieldsAsync_CanGet()
     {
-        var response = await Fixture.Service.Metafield.CountResourcesMetafieldsAsync();
+        var response = await Fixture.Service.Metafield.CountResourcesMetafieldsAsync(CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -135,7 +135,7 @@ public class MetafieldTests : IClassFixture<MetafieldFixture>
     [TestPriority(20)]
     public async Task ListMetafieldsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.Metafield.ListMetafieldsFromResourcesEndpointAsync();
+        var response = await Fixture.Service.Metafield.ListMetafieldsFromResourcesEndpointAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var metafield in response.Result.Metafields)
         {
@@ -151,7 +151,7 @@ public class MetafieldTests : IClassFixture<MetafieldFixture>
     {
         Skip.If(!Fixture.CreatedMetafields.Any(), "Must be run with create test");
         var metafield = Fixture.CreatedMetafields.First();
-        var response = await Fixture.Service.Metafield.GetMetafieldAsync(metafield.Id);
+        var response = await Fixture.Service.Metafield.GetMetafieldAsync(metafield.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Metafield, Fixture.MyShopifyUrl);
     }
@@ -171,13 +171,13 @@ public class MetafieldTests : IClassFixture<MetafieldFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -196,10 +196,9 @@ internal class MetafieldMockClient : MetafieldClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
-        //TODO: Validate that all methods are tested in this first section
         await Assert.ThrowsAsync<ApiException>(async () => await ListMetafieldsFromResourcesEndpointAsync(createdAtMax: DateTimeOffset.Now, createdAtMin: DateTimeOffset.Now.AddDays(-1), cancellationToken: CancellationToken.None));
         await Assert.ThrowsAsync<ApiException>(async () => await ListMetafieldsFromResourcesEndpointAsync(updatedAtMax: DateTimeOffset.Now, updatedAtMin: DateTimeOffset.Now.AddDays(-1), cancellationToken: CancellationToken.None));
         await Assert.ThrowsAsync<ApiException>(async () => await ListMetafieldsFromResourcesEndpointAsync(fields: "id", limit: 1, pageInfo: "", key: "", @namespace: "", type: MetafieldType.Boolean, sinceId: 0, cancellationToken: CancellationToken.None));
@@ -210,6 +209,6 @@ internal class MetafieldMockClient : MetafieldClient, IMockTests
 
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListMetafieldsFromResourcesEndpointAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListMetafieldsFromResourcesEndpointAsync(cancellationToken: CancellationToken.None));
     }
 }

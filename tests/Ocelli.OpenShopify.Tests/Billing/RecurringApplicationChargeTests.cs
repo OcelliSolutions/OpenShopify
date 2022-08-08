@@ -85,7 +85,7 @@ public class RecurringApplicationChargeTests : IClassFixture<RecurringApplicatio
     [TestPriority(20)]
     public async Task ListRecurringApplicationChargesAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.RecurringApplicationCharge.ListRecurringApplicationChargesAsync();
+        var response = await Fixture.Service.RecurringApplicationCharge.ListRecurringApplicationChargesAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var recurringApplicationCharge in response.Result.RecurringApplicationCharges)
         {
@@ -105,11 +105,11 @@ public class RecurringApplicationChargeTests : IClassFixture<RecurringApplicatio
     public async Task GetRecurringApplicationChargeAsync_AdditionalPropertiesAreEmpty()
     {
         var recurringApplicationChargeListResponse =
-            await Fixture.Service.RecurringApplicationCharge.ListRecurringApplicationChargesAsync();
+            await Fixture.Service.RecurringApplicationCharge.ListRecurringApplicationChargesAsync(cancellationToken: CancellationToken.None);
 
         Skip.If(!recurringApplicationChargeListResponse.Result.RecurringApplicationCharges.Any(), "No results returned. Unable to test");
         var response = await Fixture.Service.RecurringApplicationCharge.GetRecurringApplicationChargeAsync(recurringApplicationChargeListResponse
-            .Result.RecurringApplicationCharges.First().Id);
+            .Result.RecurringApplicationCharges.First().Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.RecurringApplicationCharge,
             Fixture.MyShopifyUrl);
@@ -152,13 +152,13 @@ public class RecurringApplicationChargeTests : IClassFixture<RecurringApplicatio
     #endregion Delete
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -176,10 +176,14 @@ internal class RecurringApplicationChargeMockClient : RecurringApplicationCharge
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
-        await Assert.ThrowsAsync<ApiException>(async () => await CreateRecurringApplicationChargeAsync(new CreateRecurringApplicationChargeRequest()));
-        await Assert.ThrowsAsync<ApiException>(async () => await GetRecurringApplicationChargeAsync(0, "test"));
-        await Assert.ThrowsAsync<ApiException>(async () => await ListRecurringApplicationChargesAsync("test"));
+        ReadResponseAsString = true;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListRecurringApplicationChargesAsync("test", cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetRecurringApplicationChargeAsync(0, "test", CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CreateRecurringApplicationChargeAsync(new CreateRecurringApplicationChargeRequest(), CancellationToken.None));
+        
+        ReadResponseAsString = false;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListRecurringApplicationChargesAsync("test", cancellationToken: CancellationToken.None));
     }
 }

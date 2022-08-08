@@ -1,4 +1,6 @@
-﻿namespace Ocelli.OpenShopify.Tests.OnlineStore;
+﻿using System;
+
+namespace Ocelli.OpenShopify.Tests.OnlineStore;
 
 public class ScriptTagFixture : SharedFixture, IAsyncLifetime
 {
@@ -19,7 +21,7 @@ public class ScriptTagFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var scriptTag in CreatedScriptTags)
         {
-            _ = await Service.ScriptTag.DeleteScriptTagAsync(scriptTag.Id);
+            _ = await Service.ScriptTag.DeleteScriptTagAsync(scriptTag.Id, CancellationToken.None);
         }
         CreatedScriptTags.Clear();
     }
@@ -60,7 +62,7 @@ public class ScriptTagTests : IClassFixture<ScriptTagFixture>
                 Src = Fixture.CallbackUrl
             }
         };
-        var response = await Fixture.Service.ScriptTag.UpdateScriptTagAsync(request.ScriptTag.Id, request);
+        var response = await Fixture.Service.ScriptTag.UpdateScriptTagAsync(request.ScriptTag.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedScriptTags.Remove(originalScriptTag);
@@ -83,7 +85,7 @@ public class ScriptTagTests : IClassFixture<ScriptTagFixture>
                 Src = "https://djavaskripped.org/fancy.js"
             }
         };
-        var response = await Fixture.Service.ScriptTag.CreateScriptTagAsync(request);
+        var response = await Fixture.Service.ScriptTag.CreateScriptTagAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedScriptTags.Add(response.Result.ScriptTag);
@@ -98,7 +100,7 @@ public class ScriptTagTests : IClassFixture<ScriptTagFixture>
             ScriptTag = new CreateScriptTag()
         };
         await Assert.ThrowsAsync<ApiException<ScriptTagError>>(async () =>
-            await Fixture.Service.ScriptTag.CreateScriptTagAsync(request));
+            await Fixture.Service.ScriptTag.CreateScriptTagAsync(request, CancellationToken.None));
     }
 
     #endregion Create
@@ -109,7 +111,7 @@ public class ScriptTagTests : IClassFixture<ScriptTagFixture>
     [TestPriority(20)]
     public async Task CountScriptTagsAsync_CanGet()
     {
-        var response = await Fixture.Service.ScriptTag.CountScriptTagsAsync();
+        var response = await Fixture.Service.ScriptTag.CountScriptTagsAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -119,7 +121,7 @@ public class ScriptTagTests : IClassFixture<ScriptTagFixture>
     [TestPriority(20)]
     public async Task ListScriptTagsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.ScriptTag.ListScriptTagsAsync();
+        var response = await Fixture.Service.ScriptTag.ListScriptTagsAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var scriptTag in response.Result.ScriptTags)
         {
@@ -135,7 +137,7 @@ public class ScriptTagTests : IClassFixture<ScriptTagFixture>
     {
         Skip.If(!Fixture.CreatedScriptTags.Any(), "Must be run with create test");
         var scriptTag = Fixture.CreatedScriptTags.First();
-        var response = await Fixture.Service.ScriptTag.GetScriptTagAsync(scriptTag.Id);
+        var response = await Fixture.Service.ScriptTag.GetScriptTagAsync(scriptTag.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.ScriptTag, Fixture.MyShopifyUrl);
     }
@@ -154,13 +156,13 @@ public class ScriptTagTests : IClassFixture<ScriptTagFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -179,13 +181,20 @@ internal class ScriptTagMockClient : ScriptTagClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListScriptTagsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListScriptTagsAsync(createdAtMax: DateTimeOffset.Now, DateTimeOffset.Now.AddMonths(-1), cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListScriptTagsAsync(updatedAtMax: DateTimeOffset.Now, updatedAtMin: DateTimeOffset.Now.AddMonths(-1), cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListScriptTagsAsync(fields:"id", limit:1, pageInfo:"", sinceId:0, src: "", cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CountScriptTagsAsync(cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetScriptTagAsync(0, cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await UpdateScriptTagAsync(0, new UpdateScriptTagRequest(), CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await DeleteScriptTagAsync(0, CancellationToken.None));
+
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListScriptTagsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListScriptTagsAsync(cancellationToken: CancellationToken.None));
     }
 }

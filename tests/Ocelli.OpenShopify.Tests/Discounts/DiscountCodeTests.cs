@@ -28,7 +28,7 @@ public class DiscountCodeFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var priceRule in CreatedPriceRules)
         {
-            _ = await Service.PriceRule.DeletePriceRuleAsync(priceRule.Id);
+            _ = await Service.PriceRule.DeletePriceRuleAsync(priceRule.Id, CancellationToken.None);
         }
     }
 
@@ -37,7 +37,7 @@ public class DiscountCodeFixture : SharedFixture, IAsyncLifetime
         foreach (var discountCode in CreatedDiscountCodes)
         {
             if(discountCode.Id > 0 && discountCode.PriceRuleId > 0)
-                _ = await Service.DiscountCode.DeleteDiscountCodeAsync(discountCode.Id ?? 0, discountCode.PriceRuleId ?? 0);
+                _ = await Service.DiscountCode.DeleteDiscountCodeAsync(discountCode.Id ?? 0, discountCode.PriceRuleId ?? 0, CancellationToken.None);
         }
         CreatedDiscountCodes.Clear();
     }
@@ -81,7 +81,7 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
             }
         };
         var response = await Fixture.Service.DiscountCode.UpdateDiscountCodeAsync(request.DiscountCode.Id ?? 0,
-            priceRule.Id, request);
+            priceRule.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedDiscountCodes.Remove(originalDiscountCode);
@@ -109,7 +109,7 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
     {
         var priceRule = Fixture.CreatedPriceRules.First();
         var request = Fixture.CreateDiscountCodeRequest(priceRule.Id);
-        var response = await Fixture.Service.DiscountCode.CreateDiscountCodeAsync(priceRule.Id, request);
+        var response = await Fixture.Service.DiscountCode.CreateDiscountCodeAsync(priceRule.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedDiscountCodes.Add(response.Result.DiscountCode);
@@ -131,13 +131,13 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
             }
         };
         var response =
-            await Fixture.Service.DiscountCode.CreateDiscountCodeCreationJobAsync(priceRule.Id, request);
+            await Fixture.Service.DiscountCode.CreateDiscountCodeCreationJobAsync(priceRule.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         var batch = response.Result.DiscountCodeCreation;
         Fixture.CreatedDiscountCodeCreations.Add(batch);
         var list = await Fixture.Service.DiscountCode.ListDiscountCodesForDiscountCodeCreationJobAsync(batch.Id ?? 0,
-            priceRule.Id);
+            priceRule.Id, CancellationToken.None);
         Fixture.CreatedDiscountCodes.AddRange(list.Result.DiscountCodes);
     }
 
@@ -164,7 +164,7 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
     [TestPriority(20)]
     public async Task CountDiscountCodesAsync_CanGet()
     {
-        var response = await Fixture.Service.DiscountCode.CountDiscountCodesForShopAsync();
+        var response = await Fixture.Service.DiscountCode.CountDiscountCodesForShopAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -175,7 +175,7 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
     public async Task ListDiscountCodesAsync_AdditionalPropertiesAreEmpty()
     {
         var priceRule = Fixture.CreatedPriceRules.First();
-        var response = await Fixture.Service.DiscountCode.ListDiscountCodesAsync(priceRule.Id);
+        var response = await Fixture.Service.DiscountCode.ListDiscountCodesAsync(priceRule.Id, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var discountCode in response.Result.DiscountCodes)
         {
@@ -194,7 +194,7 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
         var batch = Fixture.CreatedDiscountCodeCreations.First();
         var response =
             await Fixture.Service.DiscountCode.ListDiscountCodesForDiscountCodeCreationJobAsync(batch.Id ?? 0,
-                priceRule.Id);
+                priceRule.Id, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var discountCode in response.Result.DiscountCodes)
         {
@@ -212,7 +212,7 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
         Skip.If(!Fixture.CreatedDiscountCodes.Any(), "Must be run with create test");
         var discountCode = Fixture.CreatedDiscountCodes.First();
         var response =
-            await Fixture.Service.DiscountCode.GetDiscountCodeAsync(discountCode.Id ?? 0, priceRule.Id);
+            await Fixture.Service.DiscountCode.GetDiscountCodeAsync(discountCode.Id ?? 0, priceRule.Id, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.DiscountCode, Fixture.MyShopifyUrl);
     }
@@ -225,7 +225,7 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
         Skip.If(!Fixture.CreatedDiscountCodeCreations.Any(), "Must be run with create test");
         var batch = Fixture.CreatedDiscountCodeCreations.First();
         var response =
-            await Fixture.Service.DiscountCode.GetDiscountCodeCreationJobAsync(batch.Id ?? 0, priceRule.Id);
+            await Fixture.Service.DiscountCode.GetDiscountCodeCreationJobAsync(batch.Id ?? 0, priceRule.Id, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.DiscountCodeCreation,
             Fixture.MyShopifyUrl);
@@ -237,7 +237,7 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
     {
         Skip.If(!Fixture.CreatedDiscountCodes.Any(), "Must be run with create test");
         var discountCode = Fixture.CreatedDiscountCodes.First();
-        var response = await Fixture.Service.DiscountCode.GetLocationOfDiscountCodeAsync(discountCode.Code);
+        var response = await Fixture.Service.DiscountCode.GetLocationOfDiscountCodeAsync(discountCode.Code, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.DiscountCode,
             Fixture.MyShopifyUrl);
@@ -246,13 +246,13 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
     #endregion Read
     
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -271,16 +271,20 @@ internal class DiscountCodeMockClient : DiscountCodeClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
-        await Assert.ThrowsAsync<ApiException>(async () => await ListDiscountCodesForDiscountCodeCreationJobAsync(0, 0));
-        await Assert.ThrowsAsync<ApiException>(async () => await ListDiscountCodesAsync(0));
-        await Assert.ThrowsAsync<ApiException>(async () => await GetDiscountCodeCreationJobAsync(0, 0));
-        await Assert.ThrowsAsync<ApiException>(async () => await GetDiscountCodeAsync(0, 0));
-        await Assert.ThrowsAsync<ApiException>(async () => await GetLocationOfDiscountCodeAsync("NA"));
-        await Assert.ThrowsAsync<ApiException>(async () => await CreateDiscountCodeCreationJobAsync(0, new CreateDiscountCodeBatchRequest()));
-        await Assert.ThrowsAsync<ApiException>(async () => await CreateDiscountCodeAsync(0, new CreateDiscountCodeRequest()));
-        await Assert.ThrowsAsync<ApiException>(async () => await UpdateDiscountCodeAsync(0, 0, new UpdateDiscountCodeRequest()));
-        await Assert.ThrowsAsync<ApiException>(async () => await DeleteDiscountCodeAsync(0, 0));
+        ReadResponseAsString = true;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListDiscountCodesForDiscountCodeCreationJobAsync(0, 0, CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListDiscountCodesAsync(0, CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetDiscountCodeCreationJobAsync(0, 0, CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetDiscountCodeAsync(0, 0, CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetLocationOfDiscountCodeAsync("NA", CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CreateDiscountCodeCreationJobAsync(0, new CreateDiscountCodeBatchRequest(), CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CreateDiscountCodeAsync(0, new CreateDiscountCodeRequest(), CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await UpdateDiscountCodeAsync(0, 0, new UpdateDiscountCodeRequest(), CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await DeleteDiscountCodeAsync(0, 0, CancellationToken.None));
+
+        ReadResponseAsString = false;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListDiscountCodesForDiscountCodeCreationJobAsync(0, 0, CancellationToken.None));
     }
 }

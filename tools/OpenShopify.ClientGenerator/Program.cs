@@ -43,7 +43,7 @@ foreach (var shopifyFile in shopifyFiles)
             excludeNamesForClient.AddRange(new List<string>
             {
                 "Address", "ClientDetails", "Customer", "CustomerAddress","EmailMarketingConsent", "SmsMarketingConsent", 
-                "CustomerMetafield", "DiscountCode", "DiscountCodeErrors","Price", "Fulfillment"
+                "CustomerMetafield", "DiscountCode", "DiscountCodeErrors","Price", "Fulfillment", "NoteAttribute"
             });
             break;
         case "SalesChannels":

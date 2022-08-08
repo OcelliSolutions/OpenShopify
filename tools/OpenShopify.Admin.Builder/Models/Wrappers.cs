@@ -3054,6 +3054,66 @@ public partial record Fulfillment : FulfillmentBase
 public partial record FulfillmentBase : FulfillmentOrig{}
 
 	
+public partial record FulfillmentForOneOrManyFulfillmentOrdersItem
+{
+    [JsonPropertyName("fulfillment"), Required]
+    public FulfillmentForOneOrManyFulfillmentOrders FulfillmentForOneOrManyFulfillmentOrders { get; set; } = null!;
+}
+
+public partial record FulfillmentForOneOrManyFulfillmentOrdersList
+{
+    [JsonPropertyName("fulfillments"), Required]
+    public IEnumerable<FulfillmentForOneOrManyFulfillmentOrders> FulfillmentForOneOrManyFulfillmentOrderss { get; set; } = null!;
+}
+public partial record CreateFulfillmentForOneOrManyFulfillmentOrdersRequest
+{
+    [JsonPropertyName("fulfillment"), Required]
+    public CreateFulfillmentForOneOrManyFulfillmentOrders FulfillmentForOneOrManyFulfillmentOrders { get; set; } = null!;
+}
+
+/// <inheritdoc cref="FulfillmentForOneOrManyFulfillmentOrdersBase"/>
+public partial record CreateFulfillmentForOneOrManyFulfillmentOrders : FulfillmentForOneOrManyFulfillmentOrdersBase {}
+public partial record UpdateFulfillmentForOneOrManyFulfillmentOrdersRequest
+{
+    [JsonPropertyName("fulfillment"), Required]
+    public UpdateFulfillmentForOneOrManyFulfillmentOrders FulfillmentForOneOrManyFulfillmentOrders { get; set; } = null!;
+}
+
+/// <inheritdoc cref="FulfillmentForOneOrManyFulfillmentOrders"/>
+public partial record UpdateFulfillmentForOneOrManyFulfillmentOrders : FulfillmentForOneOrManyFulfillmentOrders
+{
+    [JsonIgnore]
+    public new System.DateTimeOffset? CreatedAt { get; set; }
+    [JsonIgnore]
+    public new System.DateTimeOffset? UpdatedAt { get; set; }
+}
+
+		
+/// <inheritdoc cref="FulfillmentForOneOrManyFulfillmentOrdersBase"/>
+public partial record FulfillmentForOneOrManyFulfillmentOrders : FulfillmentForOneOrManyFulfillmentOrdersBase
+{
+    [JsonPropertyName("id"), Required]
+    public long Id { get; set; }
+    [JsonPropertyName("admin_graphql_api_id")]
+    public string? AdminGraphQLAPIId { get; set; }
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
+}
+
+/// <inheritdoc cref="FulfillmentForOneOrManyFulfillmentOrdersOrig"/>
+public partial record FulfillmentForOneOrManyFulfillmentOrdersBase : FulfillmentForOneOrManyFulfillmentOrdersOrig{}
+
+	
 public partial record FulfillmentEventItem
 {
     [JsonPropertyName("fulfillment_event"), Required]

@@ -669,15 +669,6 @@ paths:
           schema:
             type: integer
             format: int64
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CancelFulfillmentRequest'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/CancelFulfillmentRequest'
-        required: true
       responses:
         '200':
           description: Success
@@ -1837,6 +1828,14 @@ components:
           type: boolean
           description: Indicates whether this address is the default address.
           nullable: true
+        latitude:
+          type: number
+          format: decimal
+          nullable: true
+        longitude:
+          type: number
+          format: decimal
+          nullable: true
         id:
           type: integer
           format: int64
@@ -1934,6 +1933,8 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+        format:
+          $ref: '#/components/schemas/CarrierServiceFormat'
         id:
           type: integer
           format: int64
@@ -1964,6 +1965,12 @@ components:
           items:
             type: string
           nullable: true
+      additionalProperties: { }
+    CarrierServiceFormat:
+      enum:
+        - json
+        - xml
+      type: string
       additionalProperties: { }
     CarrierServiceGeneralError:
       required:
@@ -2032,6 +2039,8 @@ components:
           type: string
           description: The GraphQL GID for this carrier service.
           nullable: true
+        format:
+          $ref: '#/components/schemas/CarrierServiceFormat'
       additionalProperties: false
     CreateCarrierServiceRequest:
       required:
@@ -2114,8 +2123,50 @@ components:
         fulfillment_event:
           $ref: '#/components/schemas/CreateFulfillmentEvent'
       additionalProperties: false
-    CreateFulfillmentForOneOrManyFulfillmentOrdersRequest:
+    CreateFulfillmentForOneOrManyFulfillmentOrders:
       type: object
+      properties:
+        line_items_by_fulfillment_order:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemsByFulfillmentOrder'
+        notify_customer:
+          type: boolean
+          description: 'Whether the customer should be notified. If set to `true`, then an email will be sent when the fulfillment is created or updated. For orders that were initially created using the API, the default value is `false`. For all other orders, the default value is `true`.'
+          nullable: true
+        fulfillment_order_id:
+          type: integer
+          description: The unique numeric identifier for the fulfillment order.
+          format: int64
+          nullable: true
+        service:
+          type: string
+          description: The fulfillment service associated with the fulfillment.
+          nullable: true
+        tracking_company:
+          type: string
+          description: "The name of the tracking company. The following tracking companies display for shops located in any country: \r\n\r\n*   **4PX** \r\n*   **Amazon Logistics UK** \r\n*   **Amazon Logistics US** \r\n*   **Anjun Logistics** \r\n*   **APC** \r\n*   **Australia Post** \r\n*   **Bluedart** \r\n*   **Canada Post** \r\n*   **Canpar** \r\n*   **China Post** \r\n*   **Chukou1** \r\n*   **Correios** \r\n*   **Couriers Please** \r\n*   **Delhivery** \r\n*   **DHL eCommerce** \r\n*   **DHL eCommerce Asia** \r\n*   **DHL Express** \r\n*   **DPD** \r\n*   **DPD Local** \r\n*   **DPD UK** \r\n*   **Eagle** \r\n*   **FedEx** \r\n*   **FSC** \r\n*   **Asendia USA** \r\n*   **GLS** \r\n*   **GLS (US)** \r\n*   **Japan Post** \r\n*   **La Poste** \r\n*   **New Zealand Post** \r\n*   **Newgistics** \r\n*   **PostNL** \r\n*   **PostNord** \r\n*   **Purolator** \r\n*   **Royal Mail** \r\n*   **Sagawa** \r\n*   **Sendle** \r\n*   **SF Express** \r\n*   **SFC Fulfilllment** \r\n*   **Singapore Post** \r\n*   **StarTrack** \r\n*   **TNT** \r\n*   **Toll IPEC** \r\n*   **UPS** \r\n*   **USPS** \r\n*   **Whistl** \r\n*   **Yamato** \r\n*   **YunExpress**  \r\n\r\nThe following tracking companies are displayed for shops located in specific countries:\r\n\r\n*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL \r\n*   **Ireland**: An Post, Fastway \r\n*   **Australia**: Aramex Australia, Australia Post, Sendle \r\n*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 \r\n*   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress  <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nWhen creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.\r\n </div>"
+          nullable: true
+        tracking_numbers:
+          type: array
+          items:
+            type: string
+          description: "A list of tracking numbers, provided by the shipping company. <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nIt is highly recommended that you send the tracking company and the tracking URL as well. If neither one of these is sent, then the tracking company will be determined automatically. This can result in an invalid tracking URL.\r\n\r\nThe tracking URL is displayed in the shipping confirmation email, which can optionally be sent to the customer. When accounts are enabled, it is also displayed in the customer's order history.\r\n </div>"
+          nullable: true
+        tracking_urls:
+          type: array
+          items:
+            type: string
+          description: The URLs of tracking pages for the fulfillment.
+          nullable: true
+      additionalProperties: false
+    CreateFulfillmentForOneOrManyFulfillmentOrdersRequest:
+      required:
+        - fulfillment
+      type: object
+      properties:
+        fulfillment:
+          $ref: '#/components/schemas/CreateFulfillmentForOneOrManyFulfillmentOrders'
       additionalProperties: false
     CreateFulfillmentService:
       type: object
@@ -3286,6 +3337,21 @@ components:
           nullable: true
       additionalProperties: { }
       description: An object representing a properties for OpenShopify.Admin.Builder.Models.LineItem.Properties
+    LineItemsByFulfillmentOrder:
+      type: object
+      properties:
+        fulfillment_order_id:
+          type: integer
+          description: The ID of the fulfillment order associated with this line item.
+          format: int64
+          nullable: true
+        fulfillment_order_line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FulfillmentRequestOrderLineItems'
+          description: 'The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.'
+          nullable: true
+      additionalProperties: { }
     LocationsForMove:
       type: object
       properties:
@@ -3571,6 +3637,8 @@ components:
         admin_graphql_api_id:
           type: string
           nullable: true
+        format:
+          $ref: '#/components/schemas/CarrierServiceFormat'
         id:
           type: integer
           format: int64

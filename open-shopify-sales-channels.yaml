@@ -1134,6 +1134,14 @@ components:
           type: boolean
           description: Indicates whether this address is the default address.
           nullable: true
+        latitude:
+          type: number
+          format: decimal
+          nullable: true
+        longitude:
+          type: number
+          format: decimal
+          nullable: true
         id:
           type: integer
           format: int64
@@ -1357,9 +1365,9 @@ components:
           description: Undocumented
           nullable: true
         note_attributes:
-          type: object
-          additionalProperties:
-            type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteAttribute'
           description: Undocumented
           nullable: true
         payments:
@@ -1387,6 +1395,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ShippingRate'
+          description: Undocumented
+          nullable: true
+        buyer_accepts_sms_marketing:
+          type: boolean
           description: Undocumented
           nullable: true
         id:
@@ -1916,9 +1928,9 @@ components:
           description: Undocumented
           nullable: true
         note_attributes:
-          type: object
-          additionalProperties:
-            type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteAttribute'
           description: Undocumented
           nullable: true
         payments:
@@ -1946,6 +1958,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ShippingRate'
+          description: Undocumented
+          nullable: true
+        buyer_accepts_sms_marketing:
+          type: boolean
           description: Undocumented
           nullable: true
       additionalProperties: false
@@ -2417,6 +2433,14 @@ components:
           type: boolean
           description: Indicates whether this address is the default address.
           nullable: true
+        latitude:
+          type: number
+          format: decimal
+          nullable: true
+        longitude:
+          type: number
+          format: decimal
+          nullable: true
         id:
           type: integer
           format: int64
@@ -2736,6 +2760,19 @@ components:
           items:
             $ref: '#/components/schemas/MobilePlatformApplication'
       additionalProperties: { }
+    NoteAttribute:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the note attribute.
+          nullable: true
+        value:
+          type: string
+          description: The value of the note attribute.
+          nullable: true
+      additionalProperties: { }
+      description: An object representing a note attribute for OpenShopify.Admin.Builder.Models.OrderBase.NoteAttributes
     Payment:
       required:
         - id
@@ -3860,9 +3897,9 @@ components:
           description: Undocumented
           nullable: true
         note_attributes:
-          type: object
-          additionalProperties:
-            type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteAttribute'
           description: Undocumented
           nullable: true
         payments:
@@ -3890,6 +3927,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ShippingRate'
+          description: Undocumented
+          nullable: true
+        buyer_accepts_sms_marketing:
+          type: boolean
           description: Undocumented
           nullable: true
         id:

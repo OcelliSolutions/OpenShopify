@@ -20,7 +20,7 @@ public class WebhookFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var webhook in CreatedWebhooks)
         {
-            _ = await Service.Webhook.DeleteWebhookAsync(webhook.Id);
+            _ = await Service.Webhook.DeleteWebhookAsync(webhook.Id, CancellationToken.None);
         }
         CreatedWebhooks.Clear();
     }
@@ -52,7 +52,7 @@ public class WebhookTests : IClassFixture<WebhookFixture>
     public async Task CreateWebhookAsync_CanCreate()
     {
         var request = Fixture.CreateWebhookRequest();
-        var response = await Fixture.Service.Webhook.CreateWebhookAsync(request);
+        var response = await Fixture.Service.Webhook.CreateWebhookAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedWebhooks.Add(response.Result.Webhook);
@@ -82,7 +82,7 @@ public class WebhookTests : IClassFixture<WebhookFixture>
             }
         };
         await Assert.ThrowsAsync<ApiException<WebhookError>>(async () =>
-            await Fixture.Service.Webhook.CreateWebhookAsync(request));
+            await Fixture.Service.Webhook.CreateWebhookAsync(request, CancellationToken.None));
     }
 
     #endregion Create
@@ -92,7 +92,7 @@ public class WebhookTests : IClassFixture<WebhookFixture>
     [SkippableFact, TestPriority(20)]
     public async Task CountWebhooksAsync_CanGet()
     {
-        var response = await Fixture.Service.Webhook.CountWebhooksAsync();
+        var response = await Fixture.Service.Webhook.CountWebhooksAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -101,7 +101,7 @@ public class WebhookTests : IClassFixture<WebhookFixture>
     [SkippableFact, TestPriority(20)]
     public async Task ListWebhooksAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.Webhook.ListWebhooksAsync();
+        var response = await Fixture.Service.Webhook.ListWebhooksAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var webhook in response.Result.Webhooks)
         {
@@ -116,7 +116,7 @@ public class WebhookTests : IClassFixture<WebhookFixture>
     {
         Skip.If(!Fixture.CreatedWebhooks.Any(), "Must be run with create test");
         var webhook = Fixture.CreatedWebhooks.First();
-        var response = await Fixture.Service.Webhook.GetWebhookAsync(webhook.Id);
+        var response = await Fixture.Service.Webhook.GetWebhookAsync(webhook.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Webhook, Fixture.MyShopifyUrl);
     }
@@ -128,6 +128,7 @@ public class WebhookTests : IClassFixture<WebhookFixture>
     [SkippableFact, TestPriority(30)]
     public async Task UpdateWebhookAsync_CanUpdate()
     {
+        Skip.If(!Fixture.CreatedWebhooks.Any(), "No available items to update.");
         var originalWebhook = Fixture.CreatedWebhooks.First();
         var request = new UpdateWebhookRequest()
         {
@@ -137,7 +138,7 @@ public class WebhookTests : IClassFixture<WebhookFixture>
                 Fields = new List<string> { "id" }
             }
         };
-        var response = await Fixture.Service.Webhook.UpdateWebhookAsync(originalWebhook.Id, request);
+        var response = await Fixture.Service.Webhook.UpdateWebhookAsync(originalWebhook.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedWebhooks.Remove(originalWebhook);
@@ -157,13 +158,13 @@ public class WebhookTests : IClassFixture<WebhookFixture>
     #endregion Delete
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -182,13 +183,13 @@ internal class WebhookMockClient : WebhookClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListWebhooksAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListWebhooksAsync(cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListWebhooksAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListWebhooksAsync(cancellationToken: CancellationToken.None));
     }
 }

@@ -65,7 +65,7 @@ public class UsageChargeTests : IClassFixture<UsageChargeFixture>
         };
 
         var created =
-            await Fixture.Service.UsageCharge.CreateUsageChargeAsync(Fixture.CreatedRecurringApplicationCharges.First().Id, request);
+            await Fixture.Service.UsageCharge.CreateUsageChargeAsync(Fixture.CreatedRecurringApplicationCharges.First().Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(created, Fixture.MyShopifyUrl);
 
         Assert.Equal(name, created.Result.UsageCharge.Description);
@@ -83,7 +83,7 @@ public class UsageChargeTests : IClassFixture<UsageChargeFixture>
     public async Task ListUsageChargesAsync_AdditionalPropertiesAreEmpty()
     {
         Skip.If(!Fixture.CreatedRecurringApplicationCharges.Any(), "No valid recurring application charges to add usage to.");
-        var response = await Fixture.Service.UsageCharge.ListUsageChargesAsync(Fixture.CreatedRecurringApplicationCharges.First().Id);
+        var response = await Fixture.Service.UsageCharge.ListUsageChargesAsync(Fixture.CreatedRecurringApplicationCharges.First().Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var usageCharge in response.Result.UsageCharges)
         {
@@ -99,11 +99,11 @@ public class UsageChargeTests : IClassFixture<UsageChargeFixture>
     {
         Skip.If(!Fixture.CreatedRecurringApplicationCharges.Any(), "No valid recurring application charges to add usage to.");
         var usageChargeListResponse =
-            await Fixture.Service.UsageCharge.ListUsageChargesAsync(Fixture.CreatedRecurringApplicationCharges.First().Id);
+            await Fixture.Service.UsageCharge.ListUsageChargesAsync(Fixture.CreatedRecurringApplicationCharges.First().Id, cancellationToken: CancellationToken.None);
 
         Skip.If(!usageChargeListResponse.Result.UsageCharges.Any(), "No results returned. Unable to test");
         var response = await Fixture.Service.UsageCharge.GetUsageChargeAsync(Fixture.CreatedRecurringApplicationCharges.First().Id, usageChargeListResponse
-            .Result.UsageCharges.First().Id);
+            .Result.UsageCharges.First().Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.UsageCharge,
             Fixture.MyShopifyUrl);
@@ -121,13 +121,13 @@ public class UsageChargeTests : IClassFixture<UsageChargeFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -146,10 +146,14 @@ internal class UsageChargeMockClient : UsageChargeClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
-        await Assert.ThrowsAsync<ApiException>(async () => await CreateUsageChargeAsync(0, new CreateUsageChargeRequest()));
-        await Assert.ThrowsAsync<ApiException>(async () => await GetUsageChargeAsync(0, 0, "test"));
-        await Assert.ThrowsAsync<ApiException>(async () => await ListUsageChargesAsync(0, "test"));
+        ReadResponseAsString = true;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListUsageChargesAsync(0, "test", CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetUsageChargeAsync(0, 0, "test", CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CreateUsageChargeAsync(0, new CreateUsageChargeRequest(), CancellationToken.None));
+
+        ReadResponseAsString = false;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListUsageChargesAsync(0, "test", CancellationToken.None));
     }
 }

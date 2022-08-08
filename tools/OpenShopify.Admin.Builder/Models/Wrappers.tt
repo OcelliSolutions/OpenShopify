@@ -63,6 +63,8 @@
 		//new (modelName:"FulfillmentOrder", "CancellationRequest", "CancellationRequest", origClass:"FulfillmentOrderOrig", baseClass:"FulfillmentOrderBase", hasId:false),
 		new (modelName:"CarrierService"),
 		new (modelName:"Fulfillment"),
+		new (modelName: "FulfillmentForOneOrManyFulfillmentOrders", propertyName:"fulfillment", propertyNamePlural:"fulfillments"),
+		//new (modelName:"Fulfillment", "CreateFulfillmentForOneOrManyFulfillmentOrdersRequest", "CreateFulfillmentForOneOrManyFulfillmentOrdersRequest",origClass:"FulfillmentOrig", baseClass:"FulfillmentBase", propertyName:"fulfillment", propertyNamePlural:"fulfillments"),
 		new (modelName:"FulfillmentEvent"),
 		new (modelName:"FulfillmentOrder"),
 		//new (modelName:"FulfillmentRequest", hasId:false),

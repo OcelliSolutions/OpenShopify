@@ -26,7 +26,7 @@ public class CustomerAddressFixture : SharedFixture, IAsyncLifetime
         foreach (var customerAddress in CreatedCustomerAddresses)
         {
             _ = await Service.CustomerAddress.DeleteAddressFromCustomersAddressListAsync(customerAddress.Id,
-                Customer.Id);
+                Customer.Id, CancellationToken.None);
         }
 
         CreatedCustomerAddresses.Clear();
@@ -77,7 +77,7 @@ public class CustomerAddressTests : IClassFixture<CustomerAddressFixture>
         };
         var response =
             await Fixture.Service.CustomerAddress.UpdateCustomerAddressAsync(request.CustomerAddress.Id,
-                Fixture.Customer.Id, request);
+                Fixture.Customer.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedCustomerAddresses.Remove(originalCustomerAddress);
@@ -94,7 +94,7 @@ public class CustomerAddressTests : IClassFixture<CustomerAddressFixture>
     {
         var request = Fixture.CreateAddressForCustomerRequest();
         var response =
-            await Fixture.Service.CustomerAddress.CreateAddressForCustomerAsync(Fixture.Customer.Id, request);
+            await Fixture.Service.CustomerAddress.CreateAddressForCustomerAsync(Fixture.Customer.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedCustomerAddresses.Add(response.Result.CustomerAddress);
@@ -109,7 +109,7 @@ public class CustomerAddressTests : IClassFixture<CustomerAddressFixture>
             CustomerAddress = new CreateCustomerAddress()
         };
         await Assert.ThrowsAsync<ApiException<CustomerAddressError>>(async () =>
-            await Fixture.Service.CustomerAddress.CreateAddressForCustomerAsync(Fixture.Customer.Id, request));
+            await Fixture.Service.CustomerAddress.CreateAddressForCustomerAsync(Fixture.Customer.Id, request, CancellationToken.None));
     }
 
     #endregion Create
@@ -120,7 +120,7 @@ public class CustomerAddressTests : IClassFixture<CustomerAddressFixture>
     [TestPriority(20)]
     public async Task ListCustomerAddressesAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.CustomerAddress.ListAddressesForCustomerAsync(Fixture.Customer.Id);
+        var response = await Fixture.Service.CustomerAddress.ListAddressesForCustomerAsync(Fixture.Customer.Id, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var customerAddress in response.Result.Addresses)
         {
@@ -137,7 +137,7 @@ public class CustomerAddressTests : IClassFixture<CustomerAddressFixture>
         Skip.If(!Fixture.CreatedCustomerAddresses.Any(), "Must be run with create test");
         var customerAddress = Fixture.CreatedCustomerAddresses.First();
         var response =
-            await Fixture.Service.CustomerAddress.GetCustomerAddressAsync(customerAddress.Id, Fixture.Customer.Id);
+            await Fixture.Service.CustomerAddress.GetCustomerAddressAsync(customerAddress.Id, Fixture.Customer.Id, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.CustomerAddress, Fixture.MyShopifyUrl);
     }
@@ -155,13 +155,13 @@ public class CustomerAddressTests : IClassFixture<CustomerAddressFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -180,7 +180,7 @@ internal class CustomerAddressMockClient : CustomerAddressClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section

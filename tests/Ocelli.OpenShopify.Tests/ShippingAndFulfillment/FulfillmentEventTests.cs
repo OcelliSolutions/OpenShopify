@@ -58,7 +58,7 @@ public class FulfillmentEventFixture : SharedFixture, IAsyncLifetime
         foreach (var fulfillmentEvent in CreatedFulfillmentEvents)
         {
             _ = await Service.FulfillmentEvent.DeleteFulfillmentEventAsync(fulfillmentEvent.Id, Fulfillment.Id,
-                Order.Id);
+                Order.Id, CancellationToken.None);
         }
         CreatedFulfillmentEvents.Clear();
     }
@@ -99,7 +99,7 @@ public class FulfillmentEventTests : IClassFixture<FulfillmentEventFixture>
         };
         var response =
             await Fixture.Service.FulfillmentEvent.CreateFulfillmentEventAsync(Fixture.Fulfillment.Id, Fixture.Order.Id,
-                request);
+                request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedFulfillmentEvents.Add(response.Result.FulfillmentEvent);
@@ -115,7 +115,7 @@ public class FulfillmentEventTests : IClassFixture<FulfillmentEventFixture>
         };
         await Assert.ThrowsAsync<ApiException<FulfillmentEventError>>(async () =>
             await Fixture.Service.FulfillmentEvent.CreateFulfillmentEventAsync(Fixture.Fulfillment.Id, Fixture.Order.Id,
-                request));
+                request, CancellationToken.None));
     }
 
     #endregion Create
@@ -126,9 +126,12 @@ public class FulfillmentEventTests : IClassFixture<FulfillmentEventFixture>
     [TestPriority(20)]
     public async Task ListFulfillmentEventsAsync_AdditionalPropertiesAreEmpty()
     {
+        Skip.If(Fixture.Fulfillment.Id <= 0, "`fulfillment_id` is invalid.");
+        Skip.If(Fixture.Fulfillment.OrderId == null , "`order_id` is null.");
+        Skip.If(Fixture.Fulfillment.OrderId <= 0, "`order_id` is invalid.");
         var response =
             await Fixture.Service.FulfillmentEvent.ListFulfillmentEventsForSpecificFulfillmentAsync(
-                Fixture.Fulfillment.Id, Fixture.Order.Id);
+                Fixture.Fulfillment.Id, Fixture.Fulfillment.OrderId ?? 0, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var fulfillmentEvent in response.Result.FulfillmentEvents)
         {
@@ -146,7 +149,7 @@ public class FulfillmentEventTests : IClassFixture<FulfillmentEventFixture>
         var fulfillmentEvent = Fixture.CreatedFulfillmentEvents.First();
         var response =
             await Fixture.Service.FulfillmentEvent.GetFulfillmentEventAsync(fulfillmentEvent.Id, Fixture.Fulfillment.Id,
-                Fixture.Order.Id);
+                Fixture.Order.Id, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.FulfillmentEvent, Fixture.MyShopifyUrl);
     }
@@ -166,13 +169,13 @@ public class FulfillmentEventTests : IClassFixture<FulfillmentEventFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -191,7 +194,7 @@ internal class FulfillmentEventMockClient : FulfillmentEventClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section

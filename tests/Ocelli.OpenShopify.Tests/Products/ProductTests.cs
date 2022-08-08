@@ -16,7 +16,7 @@ public class ProductFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var product in CreatedProducts)
         {
-            _ = await Service.Product.DeleteProductAsync(product.Id);
+            _ = await Service.Product.DeleteProductAsync(product.Id, CancellationToken.None);
         }
         CreatedProducts.Clear();
     }
@@ -57,7 +57,7 @@ public class ProductTests : IClassFixture<ProductFixture>
                 Title = $@"New product title ({Fixture.BatchId})"
             }
         };
-        var response = await Fixture.Service.Product.UpdateProductAsync(request.Product.Id, request);
+        var response = await Fixture.Service.Product.UpdateProductAsync(request.Product.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedProducts.Remove(originalProduct);
@@ -73,7 +73,7 @@ public class ProductTests : IClassFixture<ProductFixture>
     public async Task CreateProductAsync_CanCreate()
     {
         var request = Fixture.CreateProductRequest();
-        var response = await Fixture.Service.Product.CreateProductAsync(request);
+        var response = await Fixture.Service.Product.CreateProductAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedProducts.Add(response.Result.Product);
@@ -91,7 +91,7 @@ public class ProductTests : IClassFixture<ProductFixture>
             }
         };
         await Assert.ThrowsAsync<ApiException<ProductError>>(async () =>
-            await Fixture.Service.Product.CreateProductAsync(request));
+            await Fixture.Service.Product.CreateProductAsync(request, CancellationToken.None));
     }
 
     #endregion Create
@@ -174,9 +174,9 @@ public class ProductTests : IClassFixture<ProductFixture>
     [TestPriority(20)]
     public async Task GetProductAsync_AdditionalPropertiesAreEmpty()
     {
-        var productListResponse = await Fixture.Service.Product.ListProductsAsync(limit: 1);
+        var productListResponse = await Fixture.Service.Product.ListProductsAsync(limit: 1, cancellationToken: CancellationToken.None);
         Skip.If(!productListResponse.Result.Products.Any(), "No results returned. Unable to test");
-        var response = await Fixture.Service.Product.GetProductAsync(productListResponse.Result.Products.First().Id);
+        var response = await Fixture.Service.Product.GetProductAsync(productListResponse.Result.Products.First().Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Product, Fixture.MyShopifyUrl);
     }
@@ -187,7 +187,7 @@ public class ProductTests : IClassFixture<ProductFixture>
     {
         Skip.If(!Fixture.CreatedProducts.Any(), "No results returned. Unable to test");
         var product = Fixture.CreatedProducts.First();
-        var response = await Fixture.Service.Product.GetProductAsync(product.Id);
+        var response = await Fixture.Service.Product.GetProductAsync(product.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Product, Fixture.MyShopifyUrl);
     }
@@ -207,13 +207,13 @@ public class ProductTests : IClassFixture<ProductFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -232,13 +232,13 @@ internal class ProductMockClient : ProductClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await CountProductsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await CountProductsAsync(cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await CountProductsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await CountProductsAsync(cancellationToken: CancellationToken.None));
     }
 }

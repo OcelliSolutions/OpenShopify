@@ -16,7 +16,7 @@ public class DraftOrderFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var draftOrder in CreatedDraftOrders)
         {
-            _ = await Service.DraftOrder.DeleteDraftOrderAsync(draftOrder.Id);
+            _ = await Service.DraftOrder.DeleteDraftOrderAsync(draftOrder.Id, CancellationToken.None);
         }
         CreatedDraftOrders.Clear();
     }
@@ -57,7 +57,7 @@ public class DraftOrderTests : IClassFixture<DraftOrderFixture>
                 Note = "Customer contacted us about a custom engraving on this iPod"
             }
         };
-        var response = await Fixture.Service.DraftOrder.UpdateDraftOrderAsync(originalDraftOrder.Id, request);
+        var response = await Fixture.Service.DraftOrder.UpdateDraftOrderAsync(originalDraftOrder.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedDraftOrders.Remove(originalDraftOrder);
@@ -73,7 +73,7 @@ public class DraftOrderTests : IClassFixture<DraftOrderFixture>
     public async Task CreateDraftOrderAsync_CanCreate()
     {
         var request = Fixture.CreateDraftOrderRequest();
-        var response = await Fixture.Service.DraftOrder.CreateDraftOrderAsync(body: request);
+        var response = await Fixture.Service.DraftOrder.CreateDraftOrderAsync(body: request, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedDraftOrders.Add(response.Result.DraftOrder);
@@ -91,7 +91,7 @@ public class DraftOrderTests : IClassFixture<DraftOrderFixture>
             }
         };
         await Assert.ThrowsAsync<ApiException<DraftOrderError>>(async () =>
-            await Fixture.Service.DraftOrder.CreateDraftOrderAsync(body: request));
+            await Fixture.Service.DraftOrder.CreateDraftOrderAsync(body: request, cancellationToken: CancellationToken.None));
     }
 
     #endregion Create
@@ -102,7 +102,7 @@ public class DraftOrderTests : IClassFixture<DraftOrderFixture>
     [TestPriority(20)]
     public async Task CountDraftOrdersAsync_CanGet()
     {
-        var response = await Fixture.Service.DraftOrder.CountDraftOrdersAsync();
+        var response = await Fixture.Service.DraftOrder.CountDraftOrdersAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -112,7 +112,7 @@ public class DraftOrderTests : IClassFixture<DraftOrderFixture>
     [TestPriority(20)]
     public async Task ListDraftOrdersAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.DraftOrder.ListDraftOrdersAsync();
+        var response = await Fixture.Service.DraftOrder.ListDraftOrdersAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var draftOrder in response.Result.DraftOrders)
         {
@@ -128,7 +128,7 @@ public class DraftOrderTests : IClassFixture<DraftOrderFixture>
     {
         Skip.If(!Fixture.CreatedDraftOrders.Any(), "Must be run with create test");
         var draftOrder = Fixture.CreatedDraftOrders.First();
-        var response = await Fixture.Service.DraftOrder.GetDraftOrderAsync(draftOrder.Id);
+        var response = await Fixture.Service.DraftOrder.GetDraftOrderAsync(draftOrder.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.DraftOrder, Fixture.MyShopifyUrl);
     }
@@ -148,13 +148,13 @@ public class DraftOrderTests : IClassFixture<DraftOrderFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -173,13 +173,13 @@ internal class DraftOrderMockClient : DraftOrderClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListDraftOrdersAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListDraftOrdersAsync(cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListDraftOrdersAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListDraftOrdersAsync(cancellationToken: CancellationToken.None));
     }
 }

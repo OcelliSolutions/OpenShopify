@@ -22,7 +22,7 @@ public class PriceRuleFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var priceRule in CreatedPriceRules)
         {
-            _ = await Service.PriceRule.DeletePriceRuleAsync(priceRule.Id);
+            _ = await Service.PriceRule.DeletePriceRuleAsync(priceRule.Id, CancellationToken.None);
         }
     }
 }
@@ -140,7 +140,7 @@ public class PriceRuleTests : IClassFixture<PriceRuleFixture>
     {
         foreach (var priceRule in Fixture.CreatedPriceRules)
         {
-            _ = await Fixture.Service.PriceRule.DeletePriceRuleAsync(priceRule.Id);
+            _ = await Fixture.Service.PriceRule.DeletePriceRuleAsync(priceRule.Id, CancellationToken.None);
         }
         Fixture.CreatedPriceRules.Clear();
     }
@@ -148,13 +148,13 @@ public class PriceRuleTests : IClassFixture<PriceRuleFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -173,16 +173,19 @@ internal class PriceRuleMockClient : PriceRuleClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
-        await Assert.ThrowsAsync<ApiException>(async () => await ListPriceRulesAsync(createdAtMax: DateTimeOffset.Now, createdAtMin: DateTimeOffset.Now.AddMonths(-1)));
-        await Assert.ThrowsAsync<ApiException>(async () => await ListPriceRulesAsync(updatedAtMax: DateTimeOffset.Now, updatedAtMin: DateTimeOffset.Now.AddMonths(-1)));
-        await Assert.ThrowsAsync<ApiException>(async () => await ListPriceRulesAsync(startsAtMax: DateTimeOffset.Now, startsAtMin: DateTimeOffset.Now.AddMonths(-1)));
-        await Assert.ThrowsAsync<ApiException>(async () => await ListPriceRulesAsync(endsAtMax: DateTimeOffset.Now, endsAtMin: DateTimeOffset.Now.AddMonths(-1)));
-        await Assert.ThrowsAsync<ApiException>(async () => await ListPriceRulesAsync(limit: 1, sinceId: 0, pageInfo: "", timesUsed: 1));
-        await Assert.ThrowsAsync<ApiException>(async () => await GetPriceRuleAsync(0));
-        await Assert.ThrowsAsync<ApiException>(async () => await CreatePriceRuleAsync(new CreatePriceRuleRequest()));
-        await Assert.ThrowsAsync<ApiException>(async () => await UpdatePriceRuleAsync(0, new UpdatePriceRuleRequest()));
-        await Assert.ThrowsAsync<ApiException>(async () => await DeletePriceRuleAsync(0));
+        ReadResponseAsString = true;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListPriceRulesAsync(createdAtMax: DateTimeOffset.Now, createdAtMin: DateTimeOffset.Now.AddMonths(-1), cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListPriceRulesAsync(updatedAtMax: DateTimeOffset.Now, updatedAtMin: DateTimeOffset.Now.AddMonths(-1), cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListPriceRulesAsync(startsAtMax: DateTimeOffset.Now, startsAtMin: DateTimeOffset.Now.AddMonths(-1), cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListPriceRulesAsync(endsAtMax: DateTimeOffset.Now, endsAtMin: DateTimeOffset.Now.AddMonths(-1), cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListPriceRulesAsync(limit: 1, sinceId: 0, pageInfo: "", timesUsed: 1, cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetPriceRuleAsync(0, CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CreatePriceRuleAsync(new CreatePriceRuleRequest(), CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await UpdatePriceRuleAsync(0, new UpdatePriceRuleRequest(), CancellationToken.None));
+
+        ReadResponseAsString = false;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListPriceRulesAsync(createdAtMax: DateTimeOffset.Now, createdAtMin: DateTimeOffset.Now.AddMonths(-1), cancellationToken: CancellationToken.None));
     }
 }

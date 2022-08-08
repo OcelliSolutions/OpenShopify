@@ -10,16 +10,13 @@ public class SmartCollectionFixture : SharedFixture, IAsyncLifetime
 
     public Task InitializeAsync() => Task.CompletedTask;
 
-    async Task IAsyncLifetime.DisposeAsync()
-    {
-        await DeleteSmartCollectionAsync_CanDelete();
-    }
-    
+    async Task IAsyncLifetime.DisposeAsync() => await DeleteSmartCollectionAsync_CanDelete();
+
     public async Task DeleteSmartCollectionAsync_CanDelete()
     {
         foreach (var smartCollection in CreatedSmartCollections)
         {
-            _ = await Service.SmartCollection.DeleteSmartCollectionAsync(smartCollection.Id);
+            _ = await Service.SmartCollection.DeleteSmartCollectionAsync(smartCollection.Id, CancellationToken.None);
         }
         CreatedSmartCollections.Clear();
     }
@@ -60,7 +57,7 @@ public class SmartCollectionTests : IClassFixture<SmartCollectionFixture>
             }
         };
         var response =
-            await Fixture.Service.SmartCollection.UpdateSmartCollectionAsync(request.SmartCollection.Id, request);
+            await Fixture.Service.SmartCollection.UpdateSmartCollectionAsync(request.SmartCollection.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedSmartCollections.Remove(originalSmartCollection);
@@ -86,7 +83,7 @@ public class SmartCollectionTests : IClassFixture<SmartCollectionFixture>
                 }
             }
         };
-        var response = await Fixture.Service.SmartCollection.CreateSmartCollectionAsync(request);
+        var response = await Fixture.Service.SmartCollection.CreateSmartCollectionAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedSmartCollections.Add(response.Result.SmartCollection);
@@ -104,7 +101,7 @@ public class SmartCollectionTests : IClassFixture<SmartCollectionFixture>
             }
         };
         await Assert.ThrowsAsync<ApiException<SmartCollectionError>>(async () =>
-            await Fixture.Service.SmartCollection.CreateSmartCollectionAsync(request));
+            await Fixture.Service.SmartCollection.CreateSmartCollectionAsync(request, CancellationToken.None));
     }
 
     #endregion Create
@@ -115,7 +112,7 @@ public class SmartCollectionTests : IClassFixture<SmartCollectionFixture>
     [TestPriority(20)]
     public async Task CountSmartCollectionsAsync_CanGet()
     {
-        var response = await Fixture.Service.SmartCollection.CountSmartCollectionsAsync();
+        var response = await Fixture.Service.SmartCollection.CountSmartCollectionsAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -125,7 +122,7 @@ public class SmartCollectionTests : IClassFixture<SmartCollectionFixture>
     [TestPriority(20)]
     public async Task ListSmartCollectionsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.SmartCollection.ListSmartCollectionsAsync();
+        var response = await Fixture.Service.SmartCollection.ListSmartCollectionsAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var smartCollection in response.Result.SmartCollections)
         {
@@ -141,7 +138,7 @@ public class SmartCollectionTests : IClassFixture<SmartCollectionFixture>
     {
         Skip.If(!Fixture.CreatedSmartCollections.Any(), "Must be run with create test");
         var smartCollection = Fixture.CreatedSmartCollections.First();
-        var response = await Fixture.Service.SmartCollection.GetSmartCollectionAsync(smartCollection.Id);
+        var response = await Fixture.Service.SmartCollection.GetSmartCollectionAsync(smartCollection.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.SmartCollection, Fixture.MyShopifyUrl);
     }
@@ -161,13 +158,13 @@ public class SmartCollectionTests : IClassFixture<SmartCollectionFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -186,13 +183,13 @@ internal class SmartCollectionMockClient : SmartCollectionClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListSmartCollectionsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListSmartCollectionsAsync(cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListSmartCollectionsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListSmartCollectionsAsync(cancellationToken: CancellationToken.None));
     }
 }

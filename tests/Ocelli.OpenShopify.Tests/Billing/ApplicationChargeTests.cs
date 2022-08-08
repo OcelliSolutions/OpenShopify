@@ -50,7 +50,7 @@ public class ApplicationChargeTests : IClassFixture<ApplicationChargeFixture>
             }
         };
         var created =
-            await Fixture.Service.ApplicationCharge.CreateApplicationChargeAsync(request);
+            await Fixture.Service.ApplicationCharge.CreateApplicationChargeAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(created, Fixture.MyShopifyUrl);
 
         Assert.Equal(name, created.Result.ApplicationCharge.Name);
@@ -71,7 +71,7 @@ public class ApplicationChargeTests : IClassFixture<ApplicationChargeFixture>
         var applicationCharge = Fixture.CreatedApplicationCharges.First();
 
         var single =
-            await Fixture.Service.ApplicationCharge.GetApplicationChargeAsync(applicationCharge.Id);
+            await Fixture.Service.ApplicationCharge.GetApplicationChargeAsync(applicationCharge.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(single, Fixture.MyShopifyUrl);
 
         var charge = single.Result.ApplicationCharge;
@@ -87,7 +87,7 @@ public class ApplicationChargeTests : IClassFixture<ApplicationChargeFixture>
     public async Task ListApplicationChargesAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
         var result =
-            await Fixture.Service.ApplicationCharge.ListApplicationChargesAsync();
+            await Fixture.Service.ApplicationCharge.ListApplicationChargesAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
 
         Skip.If(!result.Result.ApplicationCharges.Any(), "WARN: No data returned. Could not test");
@@ -110,13 +110,13 @@ public class ApplicationChargeTests : IClassFixture<ApplicationChargeFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -135,10 +135,14 @@ internal class ApplicationChargeMockClient : ApplicationChargeClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
-        await Assert.ThrowsAsync<ApiException>(async () => await CreateApplicationChargeAsync(new CreateApplicationChargeRequest()));
-        await Assert.ThrowsAsync<ApiException>(async () => await GetApplicationChargeAsync(0, "test"));
-        await Assert.ThrowsAsync<ApiException>(async () => await ListApplicationChargesAsync("test", 0));
+        ReadResponseAsString = true;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListApplicationChargesAsync("test", 0, CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetApplicationChargeAsync(0, "test", CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CreateApplicationChargeAsync(new CreateApplicationChargeRequest(), CancellationToken.None));
+
+        ReadResponseAsString = false;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListApplicationChargesAsync("test", 0, CancellationToken.None));
     }
 }

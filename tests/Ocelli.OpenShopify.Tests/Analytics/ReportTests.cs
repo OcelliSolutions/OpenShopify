@@ -18,7 +18,7 @@ public class ReportFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var webhook in CreatedReports)
         {
-            _ = await Service.Report.DeleteReportAsync(webhook.Id);
+            _ = await Service.Report.DeleteReportAsync(webhook.Id, CancellationToken.None);
         }
     }
 }
@@ -58,7 +58,7 @@ public class ReportTests : IClassFixture<ReportFixture>
                 Name = $@"Something simple {Fixture.BatchId}"
             }
         };
-        var response = await Fixture.Service.Report.UpdateReportAsync(request.Report.Id, request);
+        var response = await Fixture.Service.Report.UpdateReportAsync(request.Report.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedReports.Remove(originalReport);
@@ -75,7 +75,7 @@ public class ReportTests : IClassFixture<ReportFixture>
     {
         foreach (var webhook in Fixture.CreatedReports)
         {
-            _ = await Fixture.Service.Report.DeleteReportAsync(webhook.Id);
+            _ = await Fixture.Service.Report.DeleteReportAsync(webhook.Id, CancellationToken.None);
         }
 
         Fixture.CreatedReports.Clear();
@@ -97,7 +97,7 @@ public class ReportTests : IClassFixture<ReportFixture>
                 ShopifyQl = @"SHOW total_sales BY order_id FROM sales SINCE -1m UNTIL today ORDER BY total_sales"
             }
         };
-        var response = await Fixture.Service.Report.CreateReportAsync(request);
+        var response = await Fixture.Service.Report.CreateReportAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedReports.Add(response.Result.Report);
@@ -112,7 +112,7 @@ public class ReportTests : IClassFixture<ReportFixture>
             Report = new CreateReport()
         };
         await Assert.ThrowsAsync<ApiException<ReportError>>(async () =>
-            await Fixture.Service.Report.CreateReportAsync(request));
+            await Fixture.Service.Report.CreateReportAsync(request, CancellationToken.None));
     }
 
     #endregion Create
@@ -123,7 +123,7 @@ public class ReportTests : IClassFixture<ReportFixture>
     [TestPriority(20)]
     public async Task ListReportsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.Report.ListReportsAsync();
+        var response = await Fixture.Service.Report.ListReportsAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var report in response.Result.Reports)
         {
@@ -139,7 +139,7 @@ public class ReportTests : IClassFixture<ReportFixture>
     {
         Skip.If(!Fixture.CreatedReports.Any(), "Must be run with create test");
         var report = Fixture.CreatedReports.First();
-        var response = await Fixture.Service.Report.GetReportAsync(report.Id);
+        var response = await Fixture.Service.Report.GetReportAsync(report.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Report, Fixture.MyShopifyUrl);
     }
@@ -147,13 +147,13 @@ public class ReportTests : IClassFixture<ReportFixture>
     #endregion Read
     
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -171,15 +171,15 @@ internal class ReportMockClient : ReportClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
-        await Assert.ThrowsAsync<ApiException>(async () => await ListReportsAsync(fields: "test", ids: new List<long>{0}, limit: 10, pageInfo: "NA", sinceId: 0, updatedAtMax: DateTimeOffset.Now, updatedAtMin: DateTimeOffset.Now.AddDays(-1)));
-        await Assert.ThrowsAsync<ApiException>(async () => await CreateReportAsync(new CreateReportRequest()));
-        await Assert.ThrowsAsync<ApiException>(async () => await GetReportAsync(reportId: 0, fields: "test"));
-        await Assert.ThrowsAsync<ApiException>(async () => await UpdateReportAsync(0, new UpdateReportRequest()));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListReportsAsync(fields: "test", ids: new List<long>{0}, limit: 10, pageInfo: "NA", sinceId: 0, updatedAtMax: DateTimeOffset.Now, updatedAtMin: DateTimeOffset.Now.AddDays(-1), cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CreateReportAsync(new CreateReportRequest(), CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetReportAsync(reportId: 0, fields: "test", cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await UpdateReportAsync(0, new UpdateReportRequest(), CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListReportsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListReportsAsync(cancellationToken: CancellationToken.None));
     }
 }

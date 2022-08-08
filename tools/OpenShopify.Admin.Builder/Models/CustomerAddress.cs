@@ -9,4 +9,10 @@ public partial record CustomerAddressBase
     /// </summary>
     [JsonPropertyName("default")]
     public bool? Default { get; set; }
+
+    [JsonPropertyName("latitude")]
+    public decimal? Latitude { get; set; }
+
+    [JsonPropertyName("longitude")]
+    public decimal? Longitude { get; set; }
 }

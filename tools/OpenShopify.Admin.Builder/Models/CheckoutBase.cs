@@ -152,7 +152,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Undocumented
         /// </summary>
         [JsonPropertyName("note_attributes")]
-        public IDictionary<string, string>? NoteAttributes { get; set; }
+        public IEnumerable<NoteAttribute>? NoteAttributes { get; set; }
 
         /// <summary>
         /// Undocumented
@@ -189,5 +189,11 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         [JsonPropertyName("shipping_rates")]
         public IEnumerable<ShippingRate>? ShippingRates { get; set; }
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+        [JsonPropertyName("buyer_accepts_sms_marketing")]
+        public bool? BuyerAcceptsSmsMarketing { get; set; }
     }
 }

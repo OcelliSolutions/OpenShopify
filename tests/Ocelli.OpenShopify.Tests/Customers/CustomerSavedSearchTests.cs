@@ -16,7 +16,7 @@ public class CustomerSavedSearchFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var customerSavedSearch in CreatedCustomerSavedSearches)
         {
-            _ = await Service.CustomerSavedSearch.DeleteCustomerSavedSearchAsync(customerSavedSearch.Id);
+            _ = await Service.CustomerSavedSearch.DeleteCustomerSavedSearchAsync(customerSavedSearch.Id, CancellationToken.None);
         }
 
         CreatedCustomerSavedSearches.Clear();
@@ -61,7 +61,7 @@ public class CustomerSavedSearchTests : IClassFixture<CustomerSavedSearchFixture
         };
         var response =
             await Fixture.Service.CustomerSavedSearch.UpdateCustomerSavedSearchAsync(request.CustomerSavedSearch.Id,
-                request);
+                request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedCustomerSavedSearches.Remove(originalCustomerSavedSearch);
@@ -86,7 +86,7 @@ public class CustomerSavedSearchTests : IClassFixture<CustomerSavedSearchFixture
     public async Task CreateCustomerSavedSearchAsync_CanCreate()
     {
         var request = Fixture.CreateCustomerSavedSearchRequest();
-        var response = await Fixture.Service.CustomerSavedSearch.CreateCustomerSavedSearchAsync(request);
+        var response = await Fixture.Service.CustomerSavedSearch.CreateCustomerSavedSearchAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedCustomerSavedSearches.Add(response.Result.CustomerSavedSearch);
@@ -101,7 +101,7 @@ public class CustomerSavedSearchTests : IClassFixture<CustomerSavedSearchFixture
             CustomerSavedSearch = new CreateCustomerSavedSearch()
         };
         await Assert.ThrowsAsync<ApiException<CustomerSavedSearchError>>(async () =>
-            await Fixture.Service.CustomerSavedSearch.CreateCustomerSavedSearchAsync(request));
+            await Fixture.Service.CustomerSavedSearch.CreateCustomerSavedSearchAsync(request, CancellationToken.None));
     }
 
     #endregion Create
@@ -122,11 +122,11 @@ public class CustomerSavedSearchTests : IClassFixture<CustomerSavedSearchFixture
     [TestPriority(20)]
     public async Task ListCustomerSavedSearchesAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.CustomerSavedSearch.ListCustomerSavedSearchesAsync();
+        var response = await Fixture.Service.CustomerSavedSearch.ListCustomerSavedSearchesAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        foreach (var customerSavedSearche in response.Result.CustomerSavedSearches)
+        foreach (var customerSavedSearch in response.Result.CustomerSavedSearches)
         {
-            _additionalPropertiesHelper.CheckAdditionalProperties(customerSavedSearche, Fixture.MyShopifyUrl);
+            _additionalPropertiesHelper.CheckAdditionalProperties(customerSavedSearch, Fixture.MyShopifyUrl);
         }
 
         Skip.If(!response.Result.CustomerSavedSearches.Any(), "No results returned. Unable to test");
@@ -137,8 +137,8 @@ public class CustomerSavedSearchTests : IClassFixture<CustomerSavedSearchFixture
     public async Task GetCustomerSavedSearchAsync_TestCreated_AdditionalPropertiesAreEmpty()
     {
         Skip.If(!Fixture.CreatedCustomerSavedSearches.Any(), "Must be run with create test");
-        var customerSavedSearche = Fixture.CreatedCustomerSavedSearches.First();
-        var response = await Fixture.Service.CustomerSavedSearch.GetCustomerSavedSearchAsync(customerSavedSearche.Id);
+        var customerSavedSearch = Fixture.CreatedCustomerSavedSearches.First();
+        var response = await Fixture.Service.CustomerSavedSearch.GetCustomerSavedSearchAsync(customerSavedSearch.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.CustomerSavedSearch,
             Fixture.MyShopifyUrl);
@@ -148,13 +148,13 @@ public class CustomerSavedSearchTests : IClassFixture<CustomerSavedSearchFixture
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -173,13 +173,13 @@ internal class CustomerSavedSearchMockClient : CustomerSavedSearchClient, IMockT
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListCustomerSavedSearchesAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListCustomerSavedSearchesAsync(cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListCustomerSavedSearchesAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListCustomerSavedSearchesAsync(cancellationToken: CancellationToken.None));
     }
 }

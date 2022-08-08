@@ -1,4 +1,6 @@
-﻿namespace Ocelli.OpenShopify.Tests.Orders;
+﻿using System;
+
+namespace Ocelli.OpenShopify.Tests.Orders;
 
 public class OrderFixture : SharedFixture, IAsyncLifetime
 {
@@ -36,7 +38,7 @@ public class OrderFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var order in CreatedOrders)
         {
-            _ = await Service.Order.DeleteOrderAsync(order.Id);
+            _ = await Service.Order.DeleteOrderAsync(order.Id, CancellationToken.None);
         }
 
         CreatedOrders.Clear();
@@ -79,7 +81,7 @@ public class OrderTests : IClassFixture<OrderFixture>
                 Note = $@"{originalOrder.Note} | Customer contacted us about a custom engraving on this iPod"
             }
         };
-        var response = await Fixture.Service.Order.UpdateOrderAsync(request.Order.Id, request);
+        var response = await Fixture.Service.Order.UpdateOrderAsync(request.Order.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedOrders.Remove(originalOrder);
@@ -103,7 +105,7 @@ public class OrderTests : IClassFixture<OrderFixture>
     public async Task CreateOrderAsync_CanCreate()
     {
         var request = Fixture.CreateOrderRequest(Fixture.Product.Variants!.First().Id);
-        var response = await Fixture.Service.Order.CreateOrderAsync(request);
+        var response = await Fixture.Service.Order.CreateOrderAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedOrders.Add(response.Result.Order);
@@ -132,7 +134,7 @@ public class OrderTests : IClassFixture<OrderFixture>
     [TestPriority(20)]
     public async Task CountOrdersAsync_CanGet()
     {
-        var response = await Fixture.Service.Order.CountOrdersAsync();
+        var response = await Fixture.Service.Order.CountOrdersAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -183,13 +185,13 @@ public class OrderTests : IClassFixture<OrderFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -208,13 +210,29 @@ internal class OrderMockClient : OrderClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
-        //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListOrdersAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListOrdersAsync(createdAtMax: DateTimeOffset.Now, createdAtMin: DateTimeOffset.Now, cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListOrdersAsync(updatedAtMax: DateTimeOffset.Now, updatedAtMin: DateTimeOffset.Now, cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListOrdersAsync(processedAtMax: DateTimeOffset.Now, processedAtMin: DateTimeOffset.Now, cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListOrdersAsync(fields: "id", limit: 1, attributionAppId: 0, financialStatus: FinancialStatusRequest.Any, 
+            fulfillmentStatus: FulfillmentStatusRequest.Any, ids: new List<long>(), pageInfo: "", sinceId: 0, status: OrderStatusRequest.Any, cancellationToken: CancellationToken.None));
+
+        await Assert.ThrowsAsync<ApiException>(async () => await CountOrdersAsync(createdAtMax: DateTimeOffset.Now, createdAtMin: DateTimeOffset.Now, cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CountOrdersAsync(updatedAtMax: DateTimeOffset.Now, updatedAtMin: DateTimeOffset.Now, cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CountOrdersAsync(financialStatus: FinancialStatusRequest.Any, fulfillmentStatus: FulfillmentStatusRequest.Any, 
+            status: OrderStatusRequest.Any, cancellationToken: CancellationToken.None));
+
+        await Assert.ThrowsAsync<ApiException>(async () => await GetOrderAsync(0, "id", CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CreateOrderAsync(new CreateOrderRequest(), CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await UpdateOrderAsync(0, new UpdateOrderRequest(), CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CancelOrderAsync(0, new CancelOrderRequest(), CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CloseOrderAsync(0, CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ReOpenClosedOrderAsync(0, CancellationToken.None));
+
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListOrdersAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListOrdersAsync(cancellationToken: CancellationToken.None));
     }
 }

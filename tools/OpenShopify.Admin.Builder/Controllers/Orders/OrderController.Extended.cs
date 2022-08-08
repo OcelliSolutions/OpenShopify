@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using OpenShopify.Admin.Builder.Data;
 using OpenShopify.Admin.Builder.Models;
 using OpenShopify.Common.Attributes;
 using OpenShopify.Common.Data;
@@ -31,10 +32,10 @@ public class OrderController : OrderControllerBase
     [ProducesResponseType(typeof(OrderList), StatusCodes.Status200OK)]
     public Task ListOrders(long? attribution_app_id, DateTimeOffset? created_at_max = null,
         DateTimeOffset? created_at_min = null,
-        string? fields = null, string? financial_status = null, string? fulfillment_status = null,
+        string? fields = null, FinancialStatusRequest? financial_status = null, FulfillmentStatusRequest? fulfillment_status = null,
         [FromQuery] IEnumerable<long>? ids = null,
         int? limit = null, string? page_info = null, DateTimeOffset? processed_at_max = null,
-        DateTimeOffset? processed_at_min = null, long? since_id = null, string? status = null,
+        DateTimeOffset? processed_at_min = null, long? since_id = null, OrderStatusRequest? status = null,
         DateTimeOffset? updated_at_max = null, DateTimeOffset? updated_at_min = null) =>
         throw new NotImplementedException();
 
@@ -54,11 +55,20 @@ public class OrderController : OrderControllerBase
         throw new NotImplementedException();
 
     /// <inheritdoc />
+    [IgnoreApi]
+    [HttpPut]
+    [Route("orders/{order_id:long}.invalid")]
+    [ProducesResponseType(typeof(OrderItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(OrderError), StatusCodes.Status422UnprocessableEntity)]
+    public override Task UpdateOrder([Required] UpdateOrderRequest request, [Required] long order_id) =>
+        throw new NotImplementedException();
+
+    /// <inheritdoc cref="OrderControllerBase.ListOrders" />
     [HttpPut]
     [Route("orders/{order_id:long}.json")]
     [ProducesResponseType(typeof(OrderItem), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(OrderError), StatusCodes.Status422UnprocessableEntity)]
-    public override Task UpdateOrder([Required] UpdateOrderRequest request, [Required] long order_id) =>
+    public Task UpdateOrder([Required] long order_id, [Required] UpdateOrderRequest request) =>
         throw new NotImplementedException();
 
     /// <inheritdoc />
@@ -68,12 +78,23 @@ public class OrderController : OrderControllerBase
     public override Task DeleteOrder([Required] long order_id) => throw new NotImplementedException();
 
     /// <inheritdoc />
+    [IgnoreApi]
     [HttpGet]
-    [Route("orders/count.json")]
+    [Route("orders/count.invalid")]
     [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
     public override Task CountOrders(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null,
         string? financial_status = null,
         string? fulfillment_status = null, string? status = null, DateTimeOffset? updated_at_max = null,
+        DateTimeOffset? updated_at_min = null) =>
+        throw new NotImplementedException();
+
+    /// <inheritdoc cref="OrderControllerBase.CountOrders" />
+    [HttpGet]
+    [Route("orders/count.json")]
+    [ProducesResponseType(typeof(CountItem), StatusCodes.Status200OK)]
+    public Task CountOrders(DateTimeOffset? created_at_max = null, DateTimeOffset? created_at_min = null,
+        FinancialStatusRequest? financial_status = null,
+        FulfillmentStatusRequest? fulfillment_status = null, OrderStatusRequest? status = null, DateTimeOffset? updated_at_max = null,
         DateTimeOffset? updated_at_min = null) =>
         throw new NotImplementedException();
 

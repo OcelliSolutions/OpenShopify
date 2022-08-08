@@ -25,7 +25,7 @@ public class AssetFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var asset in CreatedAssets)
         {
-            _ = await Service.Asset.DeleteAssetFromThemeAsync(Theme.Id, asset.Key);
+            _ = await Service.Asset.DeleteAssetFromThemeAsync(Theme.Id, asset.Key, CancellationToken.None);
         }
         CreatedAssets.Clear();
     }
@@ -64,7 +64,7 @@ public class AssetTests : IClassFixture<AssetFixture>
     [TestPriority(20)]
     public async Task ListAssetsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.Asset.ListAssetsForThemeAsync(Fixture.Theme.Id);
+        var response = await Fixture.Service.Asset.ListAssetsForThemeAsync(Fixture.Theme.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var asset in response.Result.Assets)
         {
@@ -90,7 +90,7 @@ public class AssetTests : IClassFixture<AssetFixture>
                 Attachment = @"R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==\n"
             }
         };
-        var response = await Fixture.Service.Asset.CreateOrUpdatesAssetForThemeAsync(Fixture.Theme.Id, request);
+        var response = await Fixture.Service.Asset.CreateOrUpdatesAssetForThemeAsync(Fixture.Theme.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedAssets.Add(response.Result.Asset);
@@ -105,7 +105,7 @@ public class AssetTests : IClassFixture<AssetFixture>
             Asset = new CreateAsset()
         };
         await Assert.ThrowsAsync<ApiException>(async () =>
-            await Fixture.Service.Asset.CreateOrUpdatesAssetForThemeAsync(Fixture.Theme.Id, request));
+            await Fixture.Service.Asset.CreateOrUpdatesAssetForThemeAsync(Fixture.Theme.Id, request, CancellationToken.None));
     }
 
     #endregion Create
@@ -123,13 +123,13 @@ public class AssetTests : IClassFixture<AssetFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -148,13 +148,13 @@ internal class AssetMockClient : AssetClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListAssetsForThemeAsync(0));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListAssetsForThemeAsync(0, cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListAssetsForThemeAsync(0));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListAssetsForThemeAsync(0, cancellationToken: CancellationToken.None));
     }
 }

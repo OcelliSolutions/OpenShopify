@@ -60,7 +60,7 @@ public class InventoryItemTests : IClassFixture<InventoryItemFixture>
                 Sku = Fixture.BatchId
             }
         };
-        var response = await Fixture.Service.InventoryItem.UpdateInventoryItemAsync(originalInventoryItem.Id, request);
+        var response = await Fixture.Service.InventoryItem.UpdateInventoryItemAsync(originalInventoryItem.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedInventoryItems.Remove(originalInventoryItem);
@@ -77,7 +77,7 @@ public class InventoryItemTests : IClassFixture<InventoryItemFixture>
     {
         Skip.If(!Fixture.ProductVariants.Any(), "No available product variants");
         var ids = Fixture.ProductVariants.Where(v => v.InventoryItemId > 0).Select(v => v.InventoryItemId ?? 0);
-        var response = await Fixture.Service.InventoryItem.ListInventoryItemsAsync(ids);
+        var response = await Fixture.Service.InventoryItem.ListInventoryItemsAsync(ids, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var inventoryItem in response.Result.InventoryItems)
         {
@@ -94,7 +94,7 @@ public class InventoryItemTests : IClassFixture<InventoryItemFixture>
     {
         Skip.If(!Fixture.CreatedInventoryItems.Any(), "Must be run with list test");
         var inventoryItem = Fixture.CreatedInventoryItems.First();
-        var response = await Fixture.Service.InventoryItem.GetInventoryItemAsync(inventoryItem.Id);
+        var response = await Fixture.Service.InventoryItem.GetInventoryItemAsync(inventoryItem.Id, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.InventoryItem, Fixture.MyShopifyUrl);
     }
@@ -103,13 +103,13 @@ public class InventoryItemTests : IClassFixture<InventoryItemFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -128,10 +128,14 @@ internal class InventoryItemMockClient : InventoryItemClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
-        await Assert.ThrowsAsync<ApiException>(async () => await ListInventoryItemsAsync(new List<long> {0}, 0, "NA"));
-        await Assert.ThrowsAsync<ApiException>(async () => await GetInventoryItemAsync(0));
-        await Assert.ThrowsAsync<ApiException>(async () => await UpdateInventoryItemAsync(0, new UpdateInventoryItemRequest()));
+        ReadResponseAsString = true;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListInventoryItemsAsync(new List<long> {0}, 0, "NA", CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetInventoryItemAsync(0, CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await UpdateInventoryItemAsync(0, new UpdateInventoryItemRequest(), CancellationToken.None));
+
+        ReadResponseAsString = false;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListInventoryItemsAsync(new List<long> { 0 }, 0, "NA", CancellationToken.None));
     }
 }

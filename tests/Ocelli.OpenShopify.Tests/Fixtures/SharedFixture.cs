@@ -188,22 +188,23 @@ public class SharedFixture
         var response = await service.FulfillmentOrder.ListFulfillmentOrdersForSpecificOrderAsync(order.Id);
         return response.Result.FulfillmentOrders;
     }
+
     /*
     public async Task<Fulfillment> CreateFulfillment(Order order, FulfillmentService fulfillmentService)
     {
         //TODO: Figure out what objects can have a `test` property and validate accordingly.
         var service = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
-        var request = CreateFulfillmentRequest(fulfillmentService);
-        var response = await service.Fulfillment.CreateFulfillmentAsync(order.Id, request);
+        var request = CreateFulfillmentRequest(order, fulfillmentService);
+        var response = await service.Fulfillment.CreateFulfillmentForOneOrManyFulfillmentOrdersAsync(request);
         return response.Result.Fulfillment;
     }
-    
-    public CreateFulfillmentRequest CreateFulfillmentRequest(FulfillmentService fulfillmentService) =>
+    public CreateFulfillmentForOneOrManyFulfillmentOrdersRequest CreateFulfillmentRequest(Order order, FulfillmentService fulfillmentService) =>
         new()
         {
-            Fulfillment = new CreateFulfillment
+            Fulfillment = new CreateFulfillmentForOneOrManyFulfillmentOrders()
             {
                 LocationId = fulfillmentService.LocationId,
+                LineItems = order.LineItems?.Select(li => new LineItem() { VariantId = li.VariantId, Quantity = li.Quantity }).ToList(),
                 TrackingNumbers = new List<string> { "123456789" },
                 TrackingUrls = new List<string>
                 {
@@ -211,7 +212,8 @@ public class SharedFixture
                 },
                 NotifyCustomer = true
             }
-        };*/
+        };
+    */
 
     public CreateCustomerRequest CreateCustomerRequest([CallerMemberName] string callerName = "") =>
         new()
@@ -482,8 +484,8 @@ public class SharedFixture
     {
         Webhook = new CreateWebhook
         {
-            Topic = WebhookTopic.FulfillmentEventsCreate,
-            Address = $@"{CallbackUrl}/fulfillment_events_create"
+            Topic = WebhookTopic.ShopUpdate,
+            Address = $@"{CallbackUrl}/shop_update"
         }
     };
 

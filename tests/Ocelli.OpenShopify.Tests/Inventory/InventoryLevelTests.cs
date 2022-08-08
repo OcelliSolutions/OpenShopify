@@ -34,7 +34,7 @@ public class InventoryLevelFixture : SharedFixture, IAsyncLifetime
         var shippingAndFulfillmentService = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
         foreach (var fulfillmentService in CreatedFulfillmentServices)
         {
-            _ = await shippingAndFulfillmentService.FulfillmentService.DeleteFulfillmentServiceAsync(fulfillmentService.Id);
+            _ = await shippingAndFulfillmentService.FulfillmentService.DeleteFulfillmentServiceAsync(fulfillmentService.Id, CancellationToken.None);
         }
         CreatedFulfillmentServices.Clear();
     }
@@ -43,7 +43,7 @@ public class InventoryLevelFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var inventoryLevel in CreatedInventoryLevels.Take(1))
         {
-            _ = await Service.InventoryLevel.DeleteInventoryLevelFromLocationAsync(inventoryLevel.InventoryItemId, inventoryLevel.LocationId ?? 0);
+            _ = await Service.InventoryLevel.DeleteInventoryLevelFromLocationAsync(inventoryLevel.InventoryItemId, inventoryLevel.LocationId ?? 0, CancellationToken.None);
         }
         CreatedInventoryLevels.Clear();
     }
@@ -52,7 +52,7 @@ public class InventoryLevelFixture : SharedFixture, IAsyncLifetime
         var productService = new ProductsService(MyShopifyUrl, AccessToken);
         foreach (var product in CreatedProducts)
         {
-            _ = await productService.Product.DeleteProductAsync(product.Id);
+            _ = await productService.Product.DeleteProductAsync(product.Id, CancellationToken.None);
         }
         CreatedProducts.Clear();
     }
@@ -83,7 +83,7 @@ public class InventoryLevelTests : IClassFixture<InventoryLevelFixture>
     public async Task ListInventoryLevelsAsync_AdditionalPropertiesAreEmpty()
     {
         var inventoryItemIds = Fixture.ProductVariants.Where(v => v.InventoryItemId > 0).Select(v => v.InventoryItemId ?? 0 ).Take(50);
-        var response = await Fixture.Service.InventoryLevel.ListInventoryLevelsAsync(inventoryItemIds);
+        var response = await Fixture.Service.InventoryLevel.ListInventoryLevelsAsync(inventoryItemIds, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var inventoryLevel in response.Result.InventoryLevels)
         {
@@ -110,7 +110,7 @@ public class InventoryLevelTests : IClassFixture<InventoryLevelFixture>
                 LocationId = fulfillmentService.LocationId ?? 0, 
                 AvailableAdjustment = 2
             };
-            var response = await Fixture.Service.InventoryLevel.AdjustInventoryLevelOfInventoryItemAtLocationAsync(request);
+            var response = await Fixture.Service.InventoryLevel.AdjustInventoryLevelOfInventoryItemAtLocationAsync(request, CancellationToken.None);
             _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
     }
 
@@ -124,7 +124,7 @@ public class InventoryLevelTests : IClassFixture<InventoryLevelFixture>
                 LocationId = originalInventoryLevel.LocationId ?? 0,
                 RelocateIfNecessary = true
             };
-            var response = await Fixture.Service.InventoryLevel.ConnectInventoryItemToLocationAsync(request);
+            var response = await Fixture.Service.InventoryLevel.ConnectInventoryItemToLocationAsync(request, CancellationToken.None);
             _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
     }
 
@@ -140,7 +140,7 @@ public class InventoryLevelTests : IClassFixture<InventoryLevelFixture>
                 LocationId = fulfillmentService.LocationId ?? 0,
                 Available = 23
             };
-            var response = await Fixture.Service.InventoryLevel.SetInventoryLevelForInventoryItemAtLocationAsync(request);
+            var response = await Fixture.Service.InventoryLevel.SetInventoryLevelForInventoryItemAtLocationAsync(request, CancellationToken.None);
             _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
             Assert.Equal(request.Available, response.Result.InventoryLevel.Available ?? 0);
         }
@@ -159,13 +159,13 @@ public class InventoryLevelTests : IClassFixture<InventoryLevelFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -184,18 +184,22 @@ internal class InventoryLevelMockClient : InventoryLevelClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
+        ReadResponseAsString = true;
         await Assert.ThrowsAsync<ApiException>(
-            async () => await ListInventoryLevelsAsync(new List<long> { 0 }, 0, "NA"));
+            async () => await ListInventoryLevelsAsync(new List<long> { 0 }, 0, "NA", cancellationToken: CancellationToken.None));
         await Assert.ThrowsAsync<ApiException>(async () =>
             await AdjustInventoryLevelOfInventoryItemAtLocationAsync(
-                new AdjustInventoryLevelOfInventoryItemAtLocationRequest()));
+                new AdjustInventoryLevelOfInventoryItemAtLocationRequest(), CancellationToken.None));
         await Assert.ThrowsAsync<ApiException>(async () =>
-            await ConnectInventoryItemToLocationAsync(new ConnectInventoryItemToLocationRequest()));
+            await ConnectInventoryItemToLocationAsync(new ConnectInventoryItemToLocationRequest(), CancellationToken.None));
         await Assert.ThrowsAsync<ApiException>(async () =>
             await SetInventoryLevelForInventoryItemAtLocationAsync(
-                new SetInventoryLevelForInventoryItemAtLocationRequest()));
-        await Assert.ThrowsAsync<ApiException>(async () => await DeleteInventoryLevelFromLocationAsync(0, 0));
+                new SetInventoryLevelForInventoryItemAtLocationRequest(), CancellationToken.None));
+        
+        ReadResponseAsString = false;
+        await Assert.ThrowsAsync<ApiException>(
+            async () => await ListInventoryLevelsAsync(new List<long> { 0 }, 0, "NA", cancellationToken: CancellationToken.None));
     }
 }

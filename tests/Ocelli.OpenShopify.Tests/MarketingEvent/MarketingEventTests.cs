@@ -18,7 +18,7 @@ public class MarketingEventFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var marketingEvent in CreatedMarketingEvents)
         {
-            _ = await Service.MarketingEvent.DeleteMarketingEventAsync(marketingEvent.Id);
+            _ = await Service.MarketingEvent.DeleteMarketingEventAsync(marketingEvent.Id, CancellationToken.None);
         }
         CreatedMarketingEvents.Clear();
     }
@@ -70,7 +70,7 @@ public class MarketingEventTests : IClassFixture<MarketingEventFixture>
             }
         };
         var response =
-            await Fixture.Service.MarketingEvent.UpdateMarketingEventAsync(originalMarketingEvent.Id, request);
+            await Fixture.Service.MarketingEvent.UpdateMarketingEventAsync(originalMarketingEvent.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedMarketingEvents.Remove(originalMarketingEvent);
@@ -86,7 +86,7 @@ public class MarketingEventTests : IClassFixture<MarketingEventFixture>
     public async Task CreateMarketingEventAsync_CanCreate()
     {
         var request = Fixture.CreateMarketingEventRequest();
-        var response = await Fixture.Service.MarketingEvent.CreateMarketingEventAsync(request);
+        var response = await Fixture.Service.MarketingEvent.CreateMarketingEventAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedMarketingEvents.Add(response.Result.MarketingEvent);
@@ -101,7 +101,7 @@ public class MarketingEventTests : IClassFixture<MarketingEventFixture>
             MarketingEvent = new CreateMarketingEvent()
         };
         await Assert.ThrowsAsync<ApiException<MarketingEventError>>(async () =>
-            await Fixture.Service.MarketingEvent.CreateMarketingEventAsync(request));
+            await Fixture.Service.MarketingEvent.CreateMarketingEventAsync(request, CancellationToken.None));
     }
 
     #endregion Create
@@ -112,7 +112,7 @@ public class MarketingEventTests : IClassFixture<MarketingEventFixture>
     [TestPriority(20)]
     public async Task CountMarketingEventsAsync_CanGet()
     {
-        var response = await Fixture.Service.MarketingEvent.CountMarketingEventsAsync();
+        var response = await Fixture.Service.MarketingEvent.CountMarketingEventsAsync(CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -122,7 +122,7 @@ public class MarketingEventTests : IClassFixture<MarketingEventFixture>
     [TestPriority(20)]
     public async Task ListMarketingEventsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.MarketingEvent.ListMarketingEventsAsync();
+        var response = await Fixture.Service.MarketingEvent.ListMarketingEventsAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var marketingEvent in response.Result.MarketingEvents)
         {
@@ -138,7 +138,7 @@ public class MarketingEventTests : IClassFixture<MarketingEventFixture>
     {
         Skip.If(!Fixture.CreatedMarketingEvents.Any(), "Must be run with create test");
         var marketingEvent = Fixture.CreatedMarketingEvents.First();
-        var response = await Fixture.Service.MarketingEvent.GetMarketingEventAsync(marketingEvent.Id);
+        var response = await Fixture.Service.MarketingEvent.GetMarketingEventAsync(marketingEvent.Id, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.MarketingEvent, Fixture.MyShopifyUrl);
     }
@@ -158,13 +158,13 @@ public class MarketingEventTests : IClassFixture<MarketingEventFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -183,13 +183,13 @@ internal class MarketingEventMockClient : MarketingEventClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListMarketingEventsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListMarketingEventsAsync(cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListMarketingEventsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListMarketingEventsAsync(cancellationToken: CancellationToken.None));
     }
 }

@@ -72,7 +72,7 @@ public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
         var applicationCredit = Fixture.CreatedApplicationCredits.First();
 
         var single =
-            await Fixture.Service.ApplicationCredit.GetApplicationCreditAsync(applicationCredit.Id);
+            await Fixture.Service.ApplicationCredit.GetApplicationCreditAsync(applicationCredit.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(single, Fixture.MyShopifyUrl);
 
         var credit = single.Result.ApplicationCredit;
@@ -88,7 +88,7 @@ public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
     public async Task ListApplicationCreditsAsync_AdditionalPropertiesAreEmpty_ShouldPass()
     {
         var result =
-            await Fixture.Service.ApplicationCredit.ListApplicationCreditsAsync();
+            await Fixture.Service.ApplicationCredit.ListApplicationCreditsAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(result, Fixture.MyShopifyUrl);
 
         Skip.If(!result.Result.ApplicationCredits.Any(), "WARN: No data returned. Could not test");
@@ -111,13 +111,13 @@ public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -136,10 +136,14 @@ internal class ApplicationCreditMockClient : ApplicationCreditClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
-        await Assert.ThrowsAsync<ApiException>(async () => await CreateApplicationCreditAsync(new CreateApplicationCreditRequest()));
-        await Assert.ThrowsAsync<ApiException>(async () => await GetApplicationCreditAsync(0, "test"));
-        await Assert.ThrowsAsync<ApiException>(async () => await ListApplicationCreditsAsync("test"));
+        ReadResponseAsString = true;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListApplicationCreditsAsync("test", CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetApplicationCreditAsync(0, "test", CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CreateApplicationCreditAsync(new CreateApplicationCreditRequest(), CancellationToken.None));
+
+        ReadResponseAsString = true;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListApplicationCreditsAsync("test", CancellationToken.None));
     }
 }

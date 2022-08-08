@@ -16,7 +16,7 @@ public class CarrierServiceFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var carrierService in CreatedCarrierServices)
         {
-            _ = await Service.CarrierService.DeleteCarrierServiceAsync(carrierService.Id);
+            _ = await Service.CarrierService.DeleteCarrierServiceAsync(carrierService.Id, CancellationToken.None);
         }
 
         CreatedCarrierServices.Clear();
@@ -49,6 +49,7 @@ public class CarrierServiceTests : IClassFixture<CarrierServiceFixture>
     [TestPriority(30)]
     public async Task UpdateCarrierServiceAsync_CanUpdate()
     {
+        Skip.If(!Fixture.CreatedCarrierServices.Any(), "No Carrier services provided.");
         var originalCarrierService = Fixture.CreatedCarrierServices.First();
         var request = new UpdateCarrierServiceRequest
         {
@@ -59,7 +60,7 @@ public class CarrierServiceTests : IClassFixture<CarrierServiceFixture>
             }
         };
         var response =
-            await Fixture.Service.CarrierService.UpdateCarrierServiceAsync(request.CarrierService.Id, request);
+            await Fixture.Service.CarrierService.UpdateCarrierServiceAsync(request.CarrierService.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedCarrierServices.Remove(originalCarrierService);
@@ -77,26 +78,16 @@ public class CarrierServiceTests : IClassFixture<CarrierServiceFixture>
     #endregion
 
     #region Create
-
+    //8r8DH7bR
     [SkippableFact]
     [TestPriority(10)]
     public async Task CreateCarrierServiceAsync_CanCreate()
     {
         var request = Fixture.CreateCarrierServiceRequest();
-        var response = await Fixture.Service.CarrierService.CreateCarrierServiceAsync(request);
+        var response = await Fixture.Service.CarrierService.CreateCarrierServiceAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedCarrierServices.Add(response.Result.CarrierService);
-    }
-
-    [SkippableFact]
-    [TestPriority(11)]
-    public async Task CreateCarrierServiceAsync_IsUnprocessableEntityError()
-    {
-        Skip.If(!Fixture.CreatedCarrierServices.Any(), "This needs the create test to run at the same time.");
-        var request = Fixture.CreateCarrierServiceRequest();
-        await Assert.ThrowsAsync<ApiException<CarrierServiceError>>(async () =>
-            await Fixture.Service.CarrierService.CreateCarrierServiceAsync(request));
     }
 
     [SkippableFact]
@@ -144,13 +135,13 @@ public class CarrierServiceTests : IClassFixture<CarrierServiceFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -169,11 +160,12 @@ internal class CarrierServiceMockClient : CarrierServiceClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
-        //TODO: Validate that all methods are tested in this first section
         await Assert.ThrowsAsync<ApiException>(async () => await ListCarrierServicesAsync(CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetCarrierServiceAsync(0, CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await UpdateCarrierServiceAsync(0, new UpdateCarrierServiceRequest(), CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
         await Assert.ThrowsAsync<ApiException>(async () => await ListCarrierServicesAsync(CancellationToken.None));

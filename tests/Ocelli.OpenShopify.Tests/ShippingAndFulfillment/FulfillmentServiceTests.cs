@@ -19,7 +19,7 @@ public class FulfillmentServiceFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var fulfillmentService in CreatedFulfillmentServices)
         {
-            _ = await Service.FulfillmentService.DeleteFulfillmentServiceAsync(fulfillmentService.Id);
+            _ = await Service.FulfillmentService.DeleteFulfillmentServiceAsync(fulfillmentService.Id, CancellationToken.None);
         }
         CreatedFulfillmentServices.Clear();
     }
@@ -62,7 +62,7 @@ public class FulfillmentServiceTests : IClassFixture<FulfillmentServiceFixture>
         };
         var response =
             await Fixture.Service.FulfillmentService.UpdateFulfillmentServiceAsync(request.FulfillmentService.Id,
-                request);
+                request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedFulfillmentServices.Remove(originalFulfillmentService);
@@ -78,7 +78,7 @@ public class FulfillmentServiceTests : IClassFixture<FulfillmentServiceFixture>
     public async Task CreateFulfillmentServiceAsync_CanCreate()
     {
         var request = Fixture.CreateFulfillmentServiceRequest();
-        var response = await Fixture.Service.FulfillmentService.CreateFulfillmentServiceAsync(request);
+        var response = await Fixture.Service.FulfillmentService.CreateFulfillmentServiceAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedFulfillmentServices.Add(response.Result.FulfillmentService);
@@ -120,7 +120,7 @@ public class FulfillmentServiceTests : IClassFixture<FulfillmentServiceFixture>
     [TestPriority(20)]
     public async Task ListFulfillmentServicesAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.FulfillmentService.ListFulfillmentServicesAsync(FulfillmentServiceScope.CurrentClient);
+        var response = await Fixture.Service.FulfillmentService.ListFulfillmentServicesAsync(FulfillmentServiceScope.CurrentClient, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var fulfillmentService in response.Result.FulfillmentServices)
         {
@@ -138,7 +138,7 @@ public class FulfillmentServiceTests : IClassFixture<FulfillmentServiceFixture>
     {
         Skip.If(!Fixture.CreatedFulfillmentServices.Any(), "Must be run with create test");
         var fulfillmentService = Fixture.CreatedFulfillmentServices.First();
-        var response = await Fixture.Service.FulfillmentService.GetFulfillmentServiceAsync(fulfillmentService.Id);
+        var response = await Fixture.Service.FulfillmentService.GetFulfillmentServiceAsync(fulfillmentService.Id, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.FulfillmentService, Fixture.MyShopifyUrl);
     }
@@ -158,13 +158,13 @@ public class FulfillmentServiceTests : IClassFixture<FulfillmentServiceFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -183,11 +183,15 @@ internal class FulfillmentServiceMockClient : FulfillmentServiceClient, IMockTes
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
-        await Assert.ThrowsAsync<ApiException>(async () => await ListFulfillmentServicesAsync(FulfillmentServiceScope.All));
-        await Assert.ThrowsAsync<ApiException>(async () => await GetFulfillmentServiceAsync(0));
-        await Assert.ThrowsAsync<ApiException>(async () => await CreateFulfillmentServiceAsync(new CreateFulfillmentServiceRequest()));
-        await Assert.ThrowsAsync<ApiException>(async () => await UpdateFulfillmentServiceAsync(0, new UpdateFulfillmentServiceRequest()));
+        ReadResponseAsString = true;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListFulfillmentServicesAsync(FulfillmentServiceScope.All, CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await GetFulfillmentServiceAsync(0, CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await CreateFulfillmentServiceAsync(new CreateFulfillmentServiceRequest(), CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await UpdateFulfillmentServiceAsync(0, new UpdateFulfillmentServiceRequest(), CancellationToken.None));
+
+        ReadResponseAsString = false;
+        await Assert.ThrowsAsync<ApiException>(async () => await ListFulfillmentServicesAsync(FulfillmentServiceScope.All, CancellationToken.None));
     }
 }

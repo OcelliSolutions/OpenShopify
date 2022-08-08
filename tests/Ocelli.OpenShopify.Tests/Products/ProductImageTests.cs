@@ -35,7 +35,7 @@ public class ProductImageFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var productImage in CreatedProductImages)
         {
-            _ = await Service.ProductImage.DeleteProductImageAsync(productImage.Id, Product.Id);
+            _ = await Service.ProductImage.DeleteProductImageAsync(productImage.Id, Product.Id, CancellationToken.None);
         }
         CreatedProductImages.Clear();
     }
@@ -79,7 +79,7 @@ public class ProductImageTests : IClassFixture<ProductImageFixture>
             }
         };
         var response = await Fixture.Service.ProductImage.UpdateProductImageAsync(originalProductImage.Id,
-            Fixture.Product.Id, request);
+            Fixture.Product.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedProductImages.Remove(originalProductImage);
@@ -95,7 +95,7 @@ public class ProductImageTests : IClassFixture<ProductImageFixture>
     public async Task CreateProductImageAsync_CanCreate()
     {
         var request = Fixture.CreateProductImageRequest();
-        var response = await Fixture.Service.ProductImage.CreateProductImageAsync(Fixture.Product.Id, request);
+        var response = await Fixture.Service.ProductImage.CreateProductImageAsync(Fixture.Product.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedProductImages.Add(response.Result.Image);
@@ -113,7 +113,7 @@ public class ProductImageTests : IClassFixture<ProductImageFixture>
             }
         };
         await Assert.ThrowsAsync<ApiException<ProductImageError>>(async () =>
-            await Fixture.Service.ProductImage.CreateProductImageAsync(Fixture.Product.Id, request));
+            await Fixture.Service.ProductImage.CreateProductImageAsync(Fixture.Product.Id, request, CancellationToken.None));
     }
 
     #endregion Create
@@ -124,7 +124,7 @@ public class ProductImageTests : IClassFixture<ProductImageFixture>
     [TestPriority(20)]
     public async Task CountProductImagesAsync_CanGet()
     {
-        var response = await Fixture.Service.ProductImage.CountProductImagesAsync(Fixture.Product.Id);
+        var response = await Fixture.Service.ProductImage.CountProductImagesAsync(Fixture.Product.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -134,7 +134,7 @@ public class ProductImageTests : IClassFixture<ProductImageFixture>
     [TestPriority(20)]
     public async Task ListProductImagesAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.ProductImage.ListProductImagesAsync(Fixture.Product.Id);
+        var response = await Fixture.Service.ProductImage.ListProductImagesAsync(Fixture.Product.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var productImage in response.Result.Images)
         {
@@ -151,7 +151,7 @@ public class ProductImageTests : IClassFixture<ProductImageFixture>
         Skip.If(!Fixture.CreatedProductImages.Any(), "Must be run with create test");
         var productImage = Fixture.CreatedProductImages.First();
         var response =
-            await Fixture.Service.ProductImage.GetProductImageAsync(productImage.Id, Fixture.Product.Id);
+            await Fixture.Service.ProductImage.GetProductImageAsync(productImage.Id, Fixture.Product.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Image, Fixture.MyShopifyUrl);
     }
@@ -172,13 +172,13 @@ public class ProductImageTests : IClassFixture<ProductImageFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -197,13 +197,13 @@ internal class ProductImageMockClient : ProductImageClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListProductImagesAsync(0));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListProductImagesAsync(0, cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListProductImagesAsync(0));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListProductImagesAsync(0, cancellationToken: CancellationToken.None));
     }
 }

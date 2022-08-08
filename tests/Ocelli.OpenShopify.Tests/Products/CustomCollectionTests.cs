@@ -20,7 +20,7 @@ public class CustomCollectionFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var customCollection in CreatedCustomCollections)
         {
-            _ = await Service.CustomCollection.DeleteCustomCollectionAsync(customCollection.Id);
+            _ = await Service.CustomCollection.DeleteCustomCollectionAsync(customCollection.Id, CancellationToken.None);
         }
         CreatedCustomCollections.Clear();
     }
@@ -62,7 +62,7 @@ public class CustomCollectionTests : IClassFixture<CustomCollectionFixture>
             }
         };
         var response =
-            await Fixture.Service.CustomCollection.UpdateCustomCollectionAsync(request.CustomCollection.Id, request);
+            await Fixture.Service.CustomCollection.UpdateCustomCollectionAsync(request.CustomCollection.Id, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedCustomCollections.Remove(originalCustomCollection);
@@ -84,7 +84,7 @@ public class CustomCollectionTests : IClassFixture<CustomCollectionFixture>
                 Title = "Macbooks"
             }
         };
-        var response = await Fixture.Service.CustomCollection.CreateCustomCollectionAsync(request);
+        var response = await Fixture.Service.CustomCollection.CreateCustomCollectionAsync(request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedCustomCollections.Add(response.Result.CustomCollection);
@@ -98,7 +98,7 @@ public class CustomCollectionTests : IClassFixture<CustomCollectionFixture>
     [TestPriority(20)]
     public async Task CountCustomCollectionsAsync_CanGet()
     {
-        var response = await Fixture.Service.CustomCollection.CountCustomCollectionsAsync();
+        var response = await Fixture.Service.CustomCollection.CountCustomCollectionsAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -108,7 +108,7 @@ public class CustomCollectionTests : IClassFixture<CustomCollectionFixture>
     [TestPriority(20)]
     public async Task ListCustomCollectionsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.CustomCollection.ListCustomCollectionsAsync();
+        var response = await Fixture.Service.CustomCollection.ListCustomCollectionsAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var customCollection in response.Result.CustomCollections)
         {
@@ -124,7 +124,7 @@ public class CustomCollectionTests : IClassFixture<CustomCollectionFixture>
     {
         Skip.If(!Fixture.CreatedCustomCollections.Any(), "Must be run with create test");
         var customCollection = Fixture.CreatedCustomCollections.First();
-        var response = await Fixture.Service.CustomCollection.GetCustomCollectionAsync(customCollection.Id);
+        var response = await Fixture.Service.CustomCollection.GetCustomCollectionAsync(customCollection.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.CustomCollection, Fixture.MyShopifyUrl);
     }
@@ -143,13 +143,13 @@ public class CustomCollectionTests : IClassFixture<CustomCollectionFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -168,13 +168,13 @@ internal class CustomCollectionMockClient : CustomCollectionClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListCustomCollectionsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListCustomCollectionsAsync(cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListCustomCollectionsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListCustomCollectionsAsync(cancellationToken: CancellationToken.None));
     }
 }

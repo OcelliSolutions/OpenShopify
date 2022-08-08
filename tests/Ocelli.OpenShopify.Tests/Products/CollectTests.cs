@@ -20,7 +20,7 @@ public class CollectFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var collect in CreatedCollects)
         {
-            _ = await Service.Collect.DeleteProductFromCollectionAsync(collect.Id);
+            _ = await Service.Collect.DeleteProductFromCollectionAsync(collect.Id, CancellationToken.None);
         }
         CreatedCollects.Clear();
     }
@@ -51,7 +51,7 @@ public class CollectTests : IClassFixture<CollectFixture>
     [SkippableFact, TestPriority(20)]
     public async Task CountCollectsAsync_CanGet()
     {
-        var response = await Fixture.Service.Collect.CountCollectsAsync();
+        var response = await Fixture.Service.Collect.CountCollectsAsync(CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -60,7 +60,7 @@ public class CollectTests : IClassFixture<CollectFixture>
     [SkippableFact, TestPriority(20)]
     public async Task ListCollectsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.Collect.ListCollectsAsync();
+        var response = await Fixture.Service.Collect.ListCollectsAsync(cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var collect in response.Result.Collects)
         {
@@ -74,7 +74,7 @@ public class CollectTests : IClassFixture<CollectFixture>
     {
         Skip.If(!Fixture.CreatedCollects.Any(), "Must be run with create test");
         var collect = Fixture.CreatedCollects.First();
-        var response = await Fixture.Service.Collect.GetCollectAsync(collect.Id);
+        var response = await Fixture.Service.Collect.GetCollectAsync(collect.Id, cancellationToken: CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.Collect, Fixture.MyShopifyUrl);
     }
@@ -117,13 +117,13 @@ public class CollectTests : IClassFixture<CollectFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -142,14 +142,14 @@ internal class CollectMockClient : CollectClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await ListCollectsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListCollectsAsync(cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await ListCollectsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await ListCollectsAsync(cancellationToken: CancellationToken.None));
     }
 }
 

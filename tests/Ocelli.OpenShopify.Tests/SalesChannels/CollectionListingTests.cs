@@ -10,16 +10,13 @@ public class CollectionListingFixture : SharedFixture, IAsyncLifetime
     }
     public Task InitializeAsync() => Task.CompletedTask;
 
-    async Task IAsyncLifetime.DisposeAsync()
-    {
-        await DeleteCollectionListingAsync_CanDelete();
-    }
-    
+    async Task IAsyncLifetime.DisposeAsync() => await DeleteCollectionListingAsync_CanDelete();
+
     public async Task DeleteCollectionListingAsync_CanDelete()
     {
         foreach (var collectionListing in CreatedCollectionListings)
         {
-            _ = await Service.CollectionListing.DeleteCollectionListingAsync(collectionListing.Id);
+            _ = await Service.CollectionListing.DeleteCollectionListingAsync(collectionListing.Id, CancellationToken.None);
         }
         CreatedCollectionListings.Clear();
     }
@@ -148,13 +145,13 @@ public class CollectionListingTests : IClassFixture<CollectionListingFixture>
 
 
     [SkippableFact]
-    public async Task BadRequestResponses() => await _badRequestMockClient.TestAllMethodsThatReturnData();
+    public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkEmptyResponses() => await _okEmptyMockClient.TestAllMethodsThatReturnData();
+    public async Task OkEmptyResponsesAsync() => await _okEmptyMockClient.TestAllMethodsThatReturnDataAsync();
 
     [SkippableFact]
-    public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+    public async Task OkInvalidJsonResponsesAsync() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnDataAsync();
 
     [Fact]
     public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
@@ -173,14 +170,14 @@ internal class CollectionListingMockClient : CollectionListingClient, IMockTests
         Assert.Equal(obj.Text, string.Empty);
     }
 
-    public async Task TestAllMethodsThatReturnData()
+    public async Task TestAllMethodsThatReturnDataAsync()
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await GetCollectionListingsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await GetCollectionListingsAsync(cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await GetCollectionListingsAsync());
+        await Assert.ThrowsAsync<ApiException>(async () => await GetCollectionListingsAsync(cancellationToken: CancellationToken.None));
     }
 }
 
