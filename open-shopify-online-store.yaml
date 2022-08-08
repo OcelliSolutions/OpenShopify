@@ -1290,7 +1290,7 @@ paths:
           in: query
           description: 'Restrict results to pages with a given published status:'
           schema:
-            type: string
+            $ref: '#/components/schemas/PagePublishStatus'
         - name: since_id
           in: query
           description: Restrict results to after the specified ID.
@@ -1414,7 +1414,7 @@ paths:
           in: query
           description: 'Count pages with a given published status:'
           schema:
-            type: string
+            $ref: '#/components/schemas/PagePublishStatus'
         - name: title
           in: query
           description: Count pages with a given title.
@@ -3139,6 +3139,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Page'
+      additionalProperties: { }
+    PagePublishStatus:
+      enum:
+        - published
+        - unpublished
+        - any
+      type: string
       additionalProperties: { }
     Redirect:
       required:

@@ -38,7 +38,7 @@ public class RecurringApplicationChargeFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("RecurringApplicationChargeTests")]
+//[Collection("RecurringApplicationChargeTests")]
 public class RecurringApplicationChargeTests : IClassFixture<RecurringApplicationChargeFixture>
 {
     private readonly ITestOutputHelper _testOutputHelper;

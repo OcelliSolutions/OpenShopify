@@ -24,7 +24,7 @@ public class MobilePlatformApplicationFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("MobilePlatformApplicationTests")]
+//[Collection("MobilePlatformApplicationTests")]
 public class MobilePlatformApplicationTests : IClassFixture<MobilePlatformApplicationFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

@@ -21,7 +21,7 @@ public class ProvinceFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("ProvinceTests")]
+//[Collection("ProvinceTests")]
 public class ProvinceTests : IClassFixture<ProvinceFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

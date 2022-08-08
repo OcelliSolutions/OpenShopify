@@ -1,9 +1,14 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
 {
     public partial record CheckoutBase
     {
+        /// <inheritdoc cref="CheckoutOrig.Token" />
+        [JsonPropertyName("token"), Required]
+        public new string Token { get; set; } = default!;
+
         /// <summary>
         /// The full recovery URL to be sent to a customer to recover their abandoned checkout.
         /// </summary>
@@ -69,9 +74,9 @@ namespace OpenShopify.Admin.Builder.Models
         public string? LandingSite { get; set; }
 
         /// <inheritdoc cref="CheckoutOrig.LineItems"/>
-        [JsonPropertyName("line_items")]
-        public new IEnumerable<CheckoutLineItem>? LineItems { get; set; }
-        
+        [JsonPropertyName("line_items"), Required]
+        public new IEnumerable<CheckoutLineItem> LineItems { get; set; } = null!;
+
         /// <summary>
         /// The ID of the physical location where the checkout was processed.
         /// </summary>
@@ -87,7 +92,13 @@ namespace OpenShopify.Admin.Builder.Models
         /// <inheritdoc cref="CheckoutOrig.ShippingAddress"/>
         [JsonPropertyName("shipping_address")]
         public new Address? ShippingAddress { get; set; }
-        
+
+        /// <summary>
+        /// A shipping line object, which details the shipping method used.
+        /// </summary>
+        [JsonPropertyName("shipping_line")]
+        public new ShippingLine? ShippingLine { get; set; }
+
         /// <summary>
         /// An array of shipping line objects, each of which details the shipping methods used.
         /// </summary>
@@ -121,5 +132,62 @@ namespace OpenShopify.Admin.Builder.Models
         /// </summary>
         [JsonPropertyName("total_weight")]
         public decimal? TotalWeight { get; set; }
+
+        /// <inheritdoc cref="CheckoutOrig.ReservationTimeLeft"/>
+        [JsonPropertyName("reservation_time_left")]
+        [Obsolete]
+        public new long? ReservationTimeLeft { get; set; }
+
+        /// <inheritdoc cref="CheckoutOrig.GiftCards"/>
+        [JsonPropertyName("gift_cards")]
+        public new IEnumerable<CheckoutGiftCard>? GiftCards { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+        [JsonPropertyName("note_attributes")]
+        public IDictionary<string, string>? NoteAttributes { get; set; }
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+        [JsonPropertyName("payments")]
+        public IEnumerable<string>? Payments { get; set; }
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+        [JsonPropertyName("tax_exempt")]
+        public bool? TaxExempt { get; set; }
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+        [JsonPropertyName("total_tip_received")]
+        public decimal? TotalTipReceived { get; set; }
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+        [JsonPropertyName("tax_manipulations")]
+        public IEnumerable<string>? TaxManipulations { get; set; }
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+        [JsonPropertyName("shipping_rate")]
+        public new ShippingRate? ShippingRate { get; set; }
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+        [JsonPropertyName("shipping_rates")]
+        public IEnumerable<ShippingRate>? ShippingRates { get; set; }
     }
 }

@@ -3284,7 +3284,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Show pages last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<PageList>> ListPagesAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? handle = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, long? sinceId = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<PageList>> ListPagesAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? handle = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, PagePublishStatus? publishedStatus = null, long? sinceId = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3308,7 +3308,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Count pages last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetPageCountAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetPageCountAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, PagePublishStatus? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -3388,7 +3388,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Show pages last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PageList>> ListPagesAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? handle = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, long? sinceId = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<PageList>> ListPagesAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, string? fields = null, string? handle = null, int? limit = null, string? pageInfo = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, PagePublishStatus? publishedStatus = null, long? sinceId = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/pages.json?");
@@ -3605,7 +3605,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Count pages last updated after date (format: 2014-04-25T16:15:47-04:00).</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetPageCountAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, string? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CountItem>> GetPageCountAsync(System.DateTimeOffset? createdAtMax = null, System.DateTimeOffset? createdAtMin = null, System.DateTimeOffset? publishedAtMax = null, System.DateTimeOffset? publishedAtMin = null, PagePublishStatus? publishedStatus = null, string? title = null, System.DateTimeOffset? updatedAtMax = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/pages/count.json?");
@@ -7842,6 +7842,21 @@ namespace Ocelli.OpenShopify
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
+    public enum PagePublishStatus
+    {
+
+        [System.Runtime.Serialization.EnumMember(Value = @"published")]
+        Published = 0,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"unpublished")]
+        Unpublished = 1,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"any")]
+        Any = 2,
 
     }
 

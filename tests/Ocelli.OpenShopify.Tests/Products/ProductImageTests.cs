@@ -42,7 +42,7 @@ public class ProductImageFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("ProductImageTests")]
+//[Collection("ProductImageTests")]
 public class ProductImageTests : IClassFixture<ProductImageFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
@@ -67,6 +67,7 @@ public class ProductImageTests : IClassFixture<ProductImageFixture>
     [TestPriority(30)]
     public async Task UpdateProductImageAsync_CanUpdate()
     {
+        Skip.If(!Fixture.CreatedProductImages.Any(), "Must be run with create test");
         var originalProductImage = Fixture.CreatedProductImages.First();
         var request = new UpdateProductImageRequest
         {

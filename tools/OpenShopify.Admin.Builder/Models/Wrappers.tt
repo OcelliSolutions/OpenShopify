@@ -82,7 +82,8 @@
 		new (modelName:"TenderTransaction"),
 		new (modelName:"DiscountCodeCreation", nullableId:true),
 		new (modelName:"Engagement"), 
-		new (modelName:"CustomerInvite", baseClass:"CustomerInviteBase")
+		new (modelName:"CustomerInvite", baseClass:"CustomerInviteBase"),
+		new (modelName:"ShippingRate", canCreate:false, canUpdate:false, hasId:false)
 	};
 #>
 using System.ComponentModel.DataAnnotations;

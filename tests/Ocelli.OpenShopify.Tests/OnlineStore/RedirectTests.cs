@@ -26,7 +26,7 @@ public class RedirectFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("RedirectTests")]
+//[Collection("RedirectTests")]
 public class RedirectTests : IClassFixture<RedirectFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

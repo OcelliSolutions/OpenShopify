@@ -7,6 +7,12 @@ namespace OpenShopify.Admin.Builder.Models
         /// <summary>
         /// The carrier provided identifier.
         /// </summary>
+        [JsonPropertyName("handle")]
+        public string? Handle { get; set; }
+
+        /// <summary>
+        /// The carrier provided identifier.
+        /// </summary>
         [JsonPropertyName("carrier_identifier")]
         public string? CarrierIdentifier { get; set; }
 

@@ -58,7 +58,7 @@ public class InventoryLevelFixture : SharedFixture, IAsyncLifetime
     }
 }
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("InventoryLevelTests")]
+//[Collection("InventoryLevelTests")]
 public class InventoryLevelTests : IClassFixture<InventoryLevelFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

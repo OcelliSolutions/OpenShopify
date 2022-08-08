@@ -15,15 +15,24 @@ public class CheckoutController : CheckoutControllerBase
     [HttpPost]
     [Route("checkouts.json")]
     [ProducesResponseType(typeof(CheckoutItem), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(CheckoutItem), StatusCodes.Status202Accepted)]
     [ProducesResponseType(typeof(CheckoutError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateCheckout([Required] CreateCheckoutRequest request) =>
         throw new NotImplementedException();
 
     /// <inheritdoc />
+    [IgnoreApi]
+    [HttpPost]
+    [Route("checkouts/{token}/complete.invalid")]
+    [ProducesResponseType(typeof(CheckoutItem), StatusCodes.Status202Accepted)]
+    public override Task CompleteCheckout([Required] CompleteCheckoutRequest request, string? token) =>
+        throw new NotImplementedException();
+
+    /// <inheritdoc cref="CheckoutControllerBase.CompleteCheckout" />
     [HttpPost]
     [Route("checkouts/{token}/complete.json")]
-    [ProducesResponseType(typeof(CheckoutItem), StatusCodes.Status200OK)]
-    public override Task CompleteCheckout([Required] CompleteCheckoutRequest request, string? token) =>
+    [ProducesResponseType(typeof(CheckoutItem), StatusCodes.Status202Accepted)]
+    public Task CompleteCheckout([Required] string token) =>
         throw new NotImplementedException();
 
     /// <inheritdoc />
@@ -42,6 +51,6 @@ public class CheckoutController : CheckoutControllerBase
     /// <inheritdoc />
     [HttpGet]
     [Route("checkouts/{token}/shipping_rates.json")]
-    [ProducesResponseType(typeof(CheckoutList), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ShippingRateList), StatusCodes.Status200OK)]
     public override Task ListShippingRates(string token) => throw new NotImplementedException();
 }

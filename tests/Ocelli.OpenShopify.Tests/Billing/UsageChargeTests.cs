@@ -27,7 +27,7 @@ public class UsageChargeFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("UsageChargeTests")]
+//[Collection("UsageChargeTests")]
 public class UsageChargeTests : IClassFixture<UsageChargeFixture>
 {
     private const string UsageChargePrefix = "Usage charge for Foo";

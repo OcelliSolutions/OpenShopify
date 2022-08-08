@@ -23,7 +23,7 @@ public class MetafieldFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("MetafieldTests")]
+//[Collection("MetafieldTests")]
 public class MetafieldTests : IClassFixture<MetafieldFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

@@ -3006,6 +3006,10 @@ components:
     ShippingLine:
       type: object
       properties:
+        handle:
+          type: string
+          description: The carrier provided identifier.
+          nullable: true
         carrier_identifier:
           type: string
           description: The carrier provided identifier.

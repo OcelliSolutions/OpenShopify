@@ -1,6 +1,6 @@
 ﻿namespace Ocelli.OpenShopify.Tests.Products;
 
-[Collection("Shared collection")]
+//[Collection("Shared collection")]
 public class CustomCollectionFixture : SharedFixture, IAsyncLifetime
 {
     public List<CustomCollection> CreatedCustomCollections = new();
@@ -27,7 +27,7 @@ public class CustomCollectionFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("CustomCollectionTests")]
+//[Collection("CustomCollectionTests")]
 public class CustomCollectionTests : IClassFixture<CustomCollectionFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

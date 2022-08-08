@@ -28,7 +28,7 @@ public class CountryFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("CountryTests")]
+//[Collection("CountryTests")]
 public class CountryTests : IClassFixture<CountryFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
@@ -56,7 +56,7 @@ public class CountryTests : IClassFixture<CountryFixture>
         {
             Country = new()
             {
-                Code = "FR"
+                Code = "GB"
             }
         };
         var response = await Fixture.Service.Country.CreateCountryAsync(request);

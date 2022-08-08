@@ -53,7 +53,7 @@ foreach (var shopifyFile in shopifyFiles)
                 "CustomerMetafield", "DiscountAllocation", "DiscountCode", "DiscountCodeErrors","LineItem", "LineItemDuty", 
                 "LineItemOriginLocation", "LineItemProperty", "Price", "PriceSet", "ShippingLine", "TaxLine",
                 "ProductImage", "Product", "PresentmentPrice", "ProductList", "ProductOption", "ProductVariant",
-                "Checkout", "CheckoutLineItem", "Transaction", "TransactionItem", "TransactionList"
+                "Checkout", "CheckoutLineItem", "CheckoutGiftCard", "ShippingRateCheckout", "ShippingRate", "Transaction", "TransactionItem", "TransactionList"
             });
             break;
         case "ShopifyPayments":

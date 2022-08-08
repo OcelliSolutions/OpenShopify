@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Net;
 using System.Web;
 
 // ReSharper disable once CheckNamespace
@@ -9,6 +10,7 @@ internal class RateLimitHttpMessageHandler : DelegatingHandler
     private static readonly ConcurrentDictionary<string, AsyncRateLimitedSemaphore> CallsPerMinuteSemaphore = new();
     
     public int CallsPerMinute = 40;
+    public int MaxRetries = 3;
 
     protected override async Task<HttpResponseMessage> SendAsync(
         HttpRequestMessage request,
@@ -26,7 +28,15 @@ internal class RateLimitHttpMessageHandler : DelegatingHandler
             new AsyncRateLimitedSemaphore(CallsPerMinute, TimeSpan.FromMinutes(1)));
         
         await CallsPerMinuteSemaphore[integrator].WaitAsync();
-        var result = await base.SendAsync(request, cancellationToken);
+        var retryAttempt = 0;
+        HttpResponseMessage result;
+        do
+        {
+            result = await base.SendAsync(request, cancellationToken);
+            if (result.StatusCode != HttpStatusCode.TooManyRequests) return result;
+            retryAttempt++;
+            await Task.Delay(TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)), cancellationToken);
+        } while (retryAttempt <= MaxRetries);
 
         return result;
     }

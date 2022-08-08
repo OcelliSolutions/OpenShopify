@@ -39,7 +39,7 @@ public class ProductVariantFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("ProductVariantTests")]
+//[Collection("ProductVariantTests")]
 public class ProductVariantTests : IClassFixture<ProductVariantFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
@@ -64,6 +64,7 @@ public class ProductVariantTests : IClassFixture<ProductVariantFixture>
     [TestPriority(30)]
     public async Task UpdateProductVariantAsync_CanUpdate()
     {
+        Skip.If(!Fixture.CreatedProductVariants.Any(), "Must be run with create test");
         var originalProductVariant = Fixture.CreatedProductVariants.First();
         var request = new UpdateProductVariantRequest
         {

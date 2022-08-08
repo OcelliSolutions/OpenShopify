@@ -24,7 +24,7 @@ public class GiftCardFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("GiftCardTests")]
+//[Collection("GiftCardTests")]
 public class GiftCardTests : IClassFixture<GiftCardFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

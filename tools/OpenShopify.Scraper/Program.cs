@@ -192,7 +192,8 @@ OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
             "discount_code_id", "dispute_id", "draft_order_id", "event_id", "fulfillment_id", "fulfillment_order_id", "fulfillment_service_id", "gift_card_id", "image_id",
             "inventory_item_id", "last_id", "location_id", "marketing_event_id", "metafield_id", "mobile_platform_application_id", "new_location_id", "order_id", "page_id",
             "payment_id", "payout_id", "price_rule_id", "product_id", "product_listing_id", "province_id", "risk_id", "recurring_application_charge_id", "redirect_id", "refund_id",
-            "report_id", "script_tag_id", "smart_collection_id", "storefront_access_token_id", "theme_id", "transaction_id", "usage_charge_id", "user_id", "variant_id", "webhook_id", "since_id"
+            "report_id", "script_tag_id", "smart_collection_id", "storefront_access_token_id", "theme_id", "transaction_id", "usage_charge_id", "user_id", "variant_id", "webhook_id", 
+            "since_id", "reservation_time_left"
         };
 
         var intParameters =

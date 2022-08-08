@@ -13,7 +13,7 @@ public class AccessScopeFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("AccessScopeTests")]
+//[Collection("AccessScopeTests")]
 public class AccessScopeTests : IClassFixture<AccessScopeFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

@@ -1962,6 +1962,14 @@ components:
         collection_type:
           type: string
           nullable: true
+        disjunctive:
+          type: boolean
+          nullable: true
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/CollectionRules'
+          nullable: true
         id:
           type: integer
           format: int64
@@ -2016,6 +2024,19 @@ components:
         collection:
           $ref: '#/components/schemas/Collection'
       additionalProperties: { }
+    CollectionRules:
+      type: object
+      properties:
+        relation:
+          $ref: '#/components/schemas/RuleRelation'
+        condition:
+          type: string
+          description: 'Select products for a collection using a condition. Conditions are either strings or numbers, depending on the relation.'
+          nullable: true
+        column:
+          $ref: '#/components/schemas/RuleColumn'
+      additionalProperties: { }
+      description: An entity representing a Shopify Collection Rule.
     CountItem:
       type: object
       properties:

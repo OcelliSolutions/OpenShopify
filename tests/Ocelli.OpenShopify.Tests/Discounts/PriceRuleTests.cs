@@ -28,7 +28,7 @@ public class PriceRuleFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("PriceRuleTests")]
+//[Collection("PriceRuleTests")]
 public class PriceRuleTests : IClassFixture<PriceRuleFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

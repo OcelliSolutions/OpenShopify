@@ -65,7 +65,7 @@ public class FulfillmentEventFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("FulfillmentEventTests")]
+//[Collection("FulfillmentEventTests")]
 public class FulfillmentEventTests : IClassFixture<FulfillmentEventFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

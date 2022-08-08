@@ -13,5 +13,11 @@ namespace OpenShopify.Admin.Builder.Models
 
         [JsonPropertyName("collection_type")]
         public string? CollectionType { get; set; }
+
+        [JsonPropertyName("disjunctive")]
+        public bool? Disjunctive { get; set; }
+
+        [JsonPropertyName("rules")]
+        public IEnumerable<CollectionRules>? Rules { get; set; }
     }
 }

@@ -13,7 +13,7 @@ public class CurrencyFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("CurrencyTests")]
+//[Collection("CurrencyTests")]
 public class CurrencyTests : IClassFixture<CurrencyFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

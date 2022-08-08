@@ -46,7 +46,7 @@ public class CancellationRequestFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("CancellationRequestTests")]
+//[Collection("CancellationRequestTests")]
 public class CancellationRequestTests : IClassFixture<CancellationRequestFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

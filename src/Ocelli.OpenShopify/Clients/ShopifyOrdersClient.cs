@@ -4185,7 +4185,7 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonPropertyName("gift_cards")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? GiftCards { get; set; } = default!;
+        public System.Collections.Generic.ICollection<CheckoutGiftCard>? GiftCards { get; set; } = default!;
 
         /// <summary>
         /// A list of line item objects, each containing information about an item in the checkout. Each line item object has the following properties: 
@@ -4212,8 +4212,9 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonPropertyName("line_items")]
 
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.Collections.Generic.ICollection<CheckoutLineItem>? LineItems { get; set; } = default!;
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<CheckoutLineItem> LineItems { get; set; } = new System.Collections.ObjectModel.Collection<CheckoutLineItem>();
 
         /// <summary>
         /// An object containing the ID, name, and status page URL of the associated order when the checkout is complete. Default value: `null`.
@@ -4287,30 +4288,22 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         [System.Obsolete]
-        public string? ReservationTimeLeft { get; set; } = default!;
+        public long? ReservationTimeLeft { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("shipping_address")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public Address? ShippingAddress { get; set; } = default!;
 
-        /// <summary>
-        /// The selected shipping rate. A new shipping rate can be selected by updating the value for `handle`. A shipping line is required when `requires_shipping` is `true`. Learn more about [selecting shipping rates](#shipping_rates).
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("shipping_line")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ShippingLine { get; set; } = default!;
-
-        /// <summary>
-        /// The selected shipping rate. This property is not writable.
-        /// </summary>
+        public ShippingLine? ShippingLine { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("shipping_rate")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? ShippingRate { get; set; } = default!;
+        public ShippingRate? ShippingRate { get; set; } = default!;
 
         /// <summary>
         /// The source of the checkout. To use this field for sales attribution, you must register the channels that your app is managing. You can register the channels that your app is managing by completing [this Google Form](https://docs.google.com/forms/d/e/1FAIpQLScmVTZRQNjOJ7RD738mL1lGeFjqKVe_FM2tO9xsm21QEo5Ozg/viewform?usp=sf_link). After you've submited your request, you need to wait for your request to be processed by Shopify. You can find a list of your channels in the Partner Dashboard, in your app's Marketplace extension. You can specify a handle as the `source_name` value in your request.
@@ -4371,15 +4364,6 @@ namespace Ocelli.OpenShopify
         public bool? TaxesIncluded { get; set; } = default!;
 
         /// <summary>
-        /// A unique identifier for a particular checkout.
-        /// </summary>
-
-        [System.Text.Json.Serialization.JsonPropertyName("token")]
-
-        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public string? Token { get; set; } = default!;
-
-        /// <summary>
         /// The sum of the the checkout line prices, taxes, shipping costs, tips, and discounts in presentment currency.
         /// </summary>
 
@@ -4414,6 +4398,16 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public string? WebUrl { get; set; } = default!;
+
+        /// <summary>
+        /// A unique identifier for a particular checkout.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("token")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public string Token { get; set; } = default!;
 
         /// <summary>
         /// The full recovery URL to be sent to a customer to recover their abandoned checkout.
@@ -4564,6 +4558,69 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public decimal? TotalWeight { get; set; } = default!;
 
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Name { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("note_attributes")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.IDictionary<string, string>? NoteAttributes { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("payments")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<string>? Payments { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_exempt")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? TaxExempt { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tip_received")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? TotalTipReceived { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("tax_manipulations")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<string>? TaxManipulations { get; set; } = default!;
+
+        /// <summary>
+        /// Undocumented
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("shipping_rates")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.Collections.Generic.ICollection<ShippingRate>? ShippingRates { get; set; } = default!;
+
         [System.Text.Json.Serialization.JsonPropertyName("id")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
@@ -4604,16 +4661,77 @@ namespace Ocelli.OpenShopify
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class CheckoutGiftCard
+    {
+        /// <summary>
+        /// The ID for the applied gift card
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? Id { get; set; } = default!;
+
+        /// <summary>
+        /// The amount of the gift card used by this checkout in presentment currency.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("amount_used")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? AmountUsed { get; set; } = default!;
+
+        /// <summary>
+        /// The gift card code
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Code { get; set; } = default!;
+
+        /// <summary>
+        /// The amount left on the gift card after being applied to this checkout in presentment currency.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("balance")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? Balance { get; set; } = default!;
+
+        /// <summary>
+        /// The last four characters of the applied gift card for display back to the user.
+        /// <br/>Updating the gift card list overwrites any previous list already defined in the checkout.To remove a gift card from the list of applied gift cards, re-apply the `gift_cards` array without that gift card.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("last_characters")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? LastCharacters { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class CheckoutLineItem
     {
         /// <summary>
-        /// The object's unique id.
+        /// The checkout-specific ID of the line item.
         /// </summary>
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
-        public long Id { get; set; } = default!;
+        [System.ComponentModel.DataAnnotations.Required]
+        public string Id { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("admin_graphql_api_id")]
 
@@ -4814,16 +4932,10 @@ namespace Ocelli.OpenShopify
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public System.Collections.Generic.ICollection<DiscountAllocation>? DiscountAllocations { get; set; } = default!;
 
-        /// <summary>
-        /// An array of custom information for an item that has been added to the cart.
-        /// <br/>Often used to provide product customization options.
-        /// <br/>An array of OpenShopify.Admin.Builder.Models.TaxLine objects, each of which details the taxes applicable to this OpenShopify.Admin.Builder.Models.LineItem.
-        /// </summary>
-
         [System.Text.Json.Serialization.JsonPropertyName("properties")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public System.Collections.Generic.ICollection<LineItemProperty>? Properties { get; set; } = default!;
+        public LineItemProperty? Properties { get; set; } = default!;
 
         /// <summary>
         /// This property is undocumented by Shopify.
@@ -10060,6 +10172,15 @@ namespace Ocelli.OpenShopify
         /// The carrier provided identifier.
         /// </summary>
 
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Handle { get; set; } = default!;
+
+        /// <summary>
+        /// The carrier provided identifier.
+        /// </summary>
+
         [System.Text.Json.Serialization.JsonPropertyName("carrier_identifier")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
@@ -10146,6 +10267,110 @@ namespace Ocelli.OpenShopify
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
         public PriceSet? DiscountedPriceSet { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ShippingRate
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        [System.ComponentModel.DataAnnotations.Required]
+        public string Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("price")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? Price { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Title { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("checkout")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public ShippingRateCheckout? Checkout { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("phone_required")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public bool? PhoneRequired { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("delivery_range")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? DeliveryRange { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("estimated_time_in_transit")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public long? EstimatedTimeInTransit { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("handle")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public string? Handle { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? CreatedAt { get; set; } = default!;
+
+        /// <summary>
+        /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+        /// </summary>
+
+        [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public System.DateTimeOffset? UpdatedAt { get; set; } = default!;
+
+        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
+
+        [System.Text.Json.Serialization.JsonExtensionData]
+        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        {
+            get { return _additionalProperties; }
+            set { _additionalProperties = value; }
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v9.0.0.0))")]
+    public partial class ShippingRateCheckout
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_tax")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? TotalTax { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("total_price")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? TotalPrice { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("subtotal_price")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
+        public decimal? SubtotalPrice { get; set; } = default!;
 
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
 

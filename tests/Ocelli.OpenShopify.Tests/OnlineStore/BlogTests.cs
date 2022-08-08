@@ -26,7 +26,7 @@ public class BlogFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("BlogTests")]
+//[Collection("BlogTests")]
 public class BlogTests : IClassFixture<BlogFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

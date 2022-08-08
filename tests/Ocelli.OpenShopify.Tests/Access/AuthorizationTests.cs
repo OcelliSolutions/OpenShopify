@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Http.Headers;
 using System.Text.Json;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Primitives;
@@ -20,7 +19,7 @@ public class AuthorizationScopeFixture : SharedFixture, IAsyncLifetime
 
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("AuthorizationTests")]
+//[Collection("AuthorizationTests")]
 public class AuthorizationTests : IClassFixture<AuthorizationScopeFixture>
 {
     public AuthorizationTests(AuthorizationScopeFixture fixture)

@@ -4178,3 +4178,36 @@ public partial record CustomerInvite : CustomerInviteBase
 public partial record CustomerInviteBase : CustomerInviteOrig{}
 
 	
+public partial record ShippingRateItem
+{
+    [JsonPropertyName("shipping_rate"), Required]
+    public ShippingRate ShippingRate { get; set; } = null!;
+}
+
+public partial record ShippingRateList
+{
+    [JsonPropertyName("shipping_rates"), Required]
+    public IEnumerable<ShippingRate> ShippingRates { get; set; } = null!;
+}
+		
+/// <inheritdoc cref="ShippingRateBase"/>
+public partial record ShippingRate : ShippingRateBase
+{
+	
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("created_at")]
+    public System.DateTimeOffset? CreatedAt { get; set; }
+
+    /// <summary>
+    /// The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+    public System.DateTimeOffset? UpdatedAt { get; set; }
+}
+
+/// <inheritdoc cref="ShippingRateOrig"/>
+public partial record ShippingRateBase : ShippingRateOrig{}
+
+	

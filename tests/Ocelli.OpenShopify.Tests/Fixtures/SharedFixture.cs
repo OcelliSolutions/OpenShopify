@@ -50,8 +50,6 @@ public class SharedFixture
         okInvalidJson.When("*").Respond(HttpStatusCode.OK, "application/json", "{ bad\"name: 'sample'}"); // Respond with JSON
         OkInvalidJsonMockHttpClient = okInvalidJson.ToHttpClient();
 
-
-
         Task.Run(async () => await LoadScopes()).Wait();
     }
 
@@ -114,8 +112,7 @@ public class SharedFixture
             Console.WriteLine($@"SubDomain: {MyShopifyUrl} - {ex.Message}");
         }
     }
-
-
+    
     public async Task<FulfillmentService> CreateFulfillmentService([CallerMemberName] string callerName = "")
     {
         var fulfillmentService = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
@@ -130,7 +127,7 @@ public class SharedFixture
         var productService = new ProductsService(MyShopifyUrl, AccessToken);
         var request = CreateProductRequest(callerName);
         request.Product.Variants ??= new List<ProductVariant>();
-        request.Product.Variants.Add(new ProductVariant { Sku = BatchId });
+        request.Product.Variants.Add(new ProductVariant { Sku = BatchId, InventoryManagement = "shopify" });
         var productResponse = await productService.Product.CreateProductAsync(request);
         return productResponse.Result.Product;
     }
@@ -366,6 +363,23 @@ public class SharedFixture
             }
         };
 
+    public CreatePageRequest CreatePageRequest([CallerMemberName] string callerName = "") =>
+        new()
+        {
+            Page = new CreatePage
+            {
+                Title = UniqueString(callerName),
+                BodyHtml = @"<h2>Warranty</h2>\n<p>Returns accepted if we receive items <strong>30 days after purchase</strong>.</p>", 
+                Metafields = new List<OpenShopify.Metafield>{new()
+                {
+                    Key = "new", 
+                    Value = "new value", 
+                    Type = MetafieldType.SingleLineTextField, 
+                    Namespace = "global"
+                }}
+            }
+        };
+
     public CreateRecurringApplicationChargeRequest CreateRecurringApplicationChargeRequest([CallerMemberName] string callerName = "") =>
         new()
         {
@@ -594,11 +608,11 @@ public class SharedFixture
         }
     };
 
-    //[CollectionDefinition("Shared collection")]
+    [CollectionDefinition("Shared collection")]
     public class SharedCollection : ICollectionFixture<SharedFixture>
     {
         // This class has no code, and is never created. Its purpose is simply
-        // to be the place to apply [CollectionDefinition] and all the
+        // to be the place to apply //[CollectionDefinition] and all the
         // ICollectionFixture<> interfaces.
     }
 }

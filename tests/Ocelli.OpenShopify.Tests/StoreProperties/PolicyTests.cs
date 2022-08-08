@@ -13,7 +13,7 @@ public class PolicyFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("PolicyTests")]
+//[Collection("PolicyTests")]
 public class PolicyTests : IClassFixture<PolicyFixture>
 {
     private PolicyFixture Fixture { get; }

@@ -20,12 +20,13 @@ public abstract class ShopifyService
     {
         var httpClient = new HttpClient(new RateLimitHttpMessageHandler
         {
-            InnerHandler = new HttpClientHandler(), 
-            CallsPerMinute = isPlusStore ? 75 : 35
+            InnerHandler = new HttpClientHandler(),
+            CallsPerMinute = isPlusStore ? 80 : 40
         });
+
         httpClient.DefaultRequestHeaders.Clear();
         httpClient.DefaultRequestHeaders.TryAddWithoutValidation("X-Shopify-Access-Token", shopAccessToken);
-
+        httpClient.Timeout = TimeSpan.FromMinutes(3);
         ShopifyHttpClients.TryAdd(myShopifyUrl, httpClient);
     }
 

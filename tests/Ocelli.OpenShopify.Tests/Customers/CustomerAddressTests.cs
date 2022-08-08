@@ -41,7 +41,7 @@ public class CustomerAddressFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("CustomerAddressTests")]
+//[Collection("CustomerAddressTests")]
 public class CustomerAddressTests : IClassFixture<CustomerAddressFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

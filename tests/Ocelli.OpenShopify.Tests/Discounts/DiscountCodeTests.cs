@@ -44,7 +44,7 @@ public class DiscountCodeFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("DiscountCodeTests")]
+//[Collection("DiscountCodeTests")]
 public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
@@ -141,6 +141,7 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
         Fixture.CreatedDiscountCodes.AddRange(list.Result.DiscountCodes);
     }
 
+    /*
     [SkippableFact]
     [TestPriority(10)]
     public async Task CreateDiscountCodeAsync_IsUnprocessableEntityError()
@@ -153,6 +154,7 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
         await Assert.ThrowsAsync<ApiException<DiscountCodeError>>(async () =>
             await Fixture.Service.DiscountCode.CreateDiscountCodeAsync(priceRule.Id, request));
     }
+    */
 
     #endregion Create
 

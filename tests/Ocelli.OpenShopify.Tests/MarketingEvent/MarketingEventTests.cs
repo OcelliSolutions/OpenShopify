@@ -25,7 +25,7 @@ public class MarketingEventFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-[Collection("MarketingEventTests")]
+//[Collection("MarketingEventTests")]
 public class MarketingEventTests : IClassFixture<MarketingEventFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
