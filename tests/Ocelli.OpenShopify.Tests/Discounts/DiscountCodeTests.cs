@@ -253,6 +253,9 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
 
     [SkippableFact]
     public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
 }
 
 internal class DiscountCodeMockClient : DiscountCodeClient, IMockTests
@@ -260,6 +263,12 @@ internal class DiscountCodeMockClient : DiscountCodeClient, IMockTests
     public DiscountCodeMockClient(HttpClient httpClient, SharedFixture fixture) : base(httpClient)
     {
         BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public void ObjectResponseResult_CanReadText()
+    {
+        var obj = new ObjectResponseResult<ApiException>(default!, string.Empty);
+        Assert.Equal(obj.Text, string.Empty);
     }
 
     public async Task TestAllMethodsThatReturnData()

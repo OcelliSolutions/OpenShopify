@@ -87,7 +87,8 @@ public class CollectionListingTests : IClassFixture<CollectionListingFixture>
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
     }
-
+    
+    //TODO: try to rename this function to `List` instead of `Get`
     [SkippableFact, TestPriority(20)]
     public async Task ListCollectionListingsAsync_AdditionalPropertiesAreEmpty()
     {
@@ -154,6 +155,9 @@ public class CollectionListingTests : IClassFixture<CollectionListingFixture>
 
     [SkippableFact]
     public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
 }
 
 internal class CollectionListingMockClient : CollectionListingClient, IMockTests
@@ -163,10 +167,20 @@ internal class CollectionListingMockClient : CollectionListingClient, IMockTests
         BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
 
-    public Task TestAllMethodsThatReturnData()
+    public void ObjectResponseResult_CanReadText()
     {
-        Skip.If(0==1,"Not implemented.");
-        return Task.CompletedTask;
+        var obj = new ObjectResponseResult<ApiException>(default!, string.Empty);
+        Assert.Equal(obj.Text, string.Empty);
+    }
+
+    public async Task TestAllMethodsThatReturnData()
+    {
+        ReadResponseAsString = true;
+        //TODO: Validate that all methods are tested in this first section
+        await Assert.ThrowsAsync<ApiException>(async () => await GetCollectionListingsAsync());
+        ReadResponseAsString = false;
+        //Only one method needs to be tested with `ReadResponseAsString = false`
+        await Assert.ThrowsAsync<ApiException>(async () => await GetCollectionListingsAsync());
     }
 }
 

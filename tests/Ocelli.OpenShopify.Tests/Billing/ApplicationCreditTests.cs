@@ -118,6 +118,9 @@ public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
 
     [SkippableFact]
     public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
 }
 
 internal class ApplicationCreditMockClient : ApplicationCreditClient, IMockTests
@@ -125,6 +128,12 @@ internal class ApplicationCreditMockClient : ApplicationCreditClient, IMockTests
     public ApplicationCreditMockClient(HttpClient httpClient, SharedFixture fixture) : base(httpClient)
     {
         BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+    }
+
+    public void ObjectResponseResult_CanReadText()
+    {
+        var obj = new ObjectResponseResult<ApiException>(default!, string.Empty);
+        Assert.Equal(obj.Text, string.Empty);
     }
 
     public async Task TestAllMethodsThatReturnData()

@@ -154,6 +154,9 @@ public class ReportTests : IClassFixture<ReportFixture>
 
     [SkippableFact]
     public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
 }
 
 internal class ReportMockClient : ReportClient, IMockTests
@@ -162,11 +165,21 @@ internal class ReportMockClient : ReportClient, IMockTests
     {
         BaseUrl = fixture.CommonBaseUrl();
     }
+    public void ObjectResponseResult_CanReadText()
+    {
+        var obj = new ObjectResponseResult<ApiException>(default!, string.Empty);
+        Assert.Equal(obj.Text, string.Empty);
+    }
+
     public async Task TestAllMethodsThatReturnData()
     {
+        ReadResponseAsString = true;
         await Assert.ThrowsAsync<ApiException>(async () => await ListReportsAsync(fields: "test", ids: new List<long>{0}, limit: 10, pageInfo: "NA", sinceId: 0, updatedAtMax: DateTimeOffset.Now, updatedAtMin: DateTimeOffset.Now.AddDays(-1)));
         await Assert.ThrowsAsync<ApiException>(async () => await CreateReportAsync(new CreateReportRequest()));
         await Assert.ThrowsAsync<ApiException>(async () => await GetReportAsync(reportId: 0, fields: "test"));
         await Assert.ThrowsAsync<ApiException>(async () => await UpdateReportAsync(0, new UpdateReportRequest()));
+        ReadResponseAsString = false;
+        //Only one method needs to be tested with `ReadResponseAsString = false`
+        await Assert.ThrowsAsync<ApiException>(async () => await ListReportsAsync());
     }
 }

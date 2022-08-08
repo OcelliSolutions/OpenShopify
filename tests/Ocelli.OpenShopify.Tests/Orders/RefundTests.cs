@@ -222,6 +222,9 @@ public class RefundTests : IClassFixture<RefundFixture>
 
     [SkippableFact]
     public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
 }
 
 internal class RefundMockClient : RefundClient, IMockTests
@@ -231,9 +234,19 @@ internal class RefundMockClient : RefundClient, IMockTests
         BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
     }
 
-    public Task TestAllMethodsThatReturnData()
+    public void ObjectResponseResult_CanReadText()
     {
-        Skip.If(0==1,"Not implemented.");
-        return Task.CompletedTask;
+        var obj = new ObjectResponseResult<ApiException>(default!, string.Empty);
+        Assert.Equal(obj.Text, string.Empty);
+    }
+
+    public async Task TestAllMethodsThatReturnData()
+    {
+        ReadResponseAsString = true;
+        //TODO: Validate that all methods are tested in this first section
+        await Assert.ThrowsAsync<ApiException>(async () => await ListRefundsAsync(0));
+        ReadResponseAsString = false;
+        //Only one method needs to be tested with `ReadResponseAsString = false`
+        await Assert.ThrowsAsync<ApiException>(async () => await ListRefundsAsync(0));
     }
 }

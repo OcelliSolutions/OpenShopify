@@ -46,8 +46,7 @@ public class SharedFixture
         OkEmptyMockHttpClient = okEmpty.ToHttpClient();
 
         var okInvalidJson = new MockHttpMessageHandler();
-        var invalidContent = new { Error = "Sample" };
-        okInvalidJson.When("*").Respond(HttpStatusCode.OK, "application/json", "{ bad\"name: 'sample'}"); // Respond with JSON
+        okInvalidJson.When("*").Respond(HttpStatusCode.OK, "application/json", "{ 'bad-value': abc }"); // Respond with JSON
         OkInvalidJsonMockHttpClient = okInvalidJson.ToHttpClient();
 
         Task.Run(async () => await LoadScopes()).Wait();
@@ -89,6 +88,8 @@ public class SharedFixture
             Port = 443,
             Path = $"admin/api/2022-07/"
         }.ToString();
+
+    internal string MockShopifyUrl => $@"{ShortId.Generate(new GenerationOptions(false, false, 8))}.myshopify.com";
 
     public string UniqueString([CallerMemberName] string callerName = "")
     {

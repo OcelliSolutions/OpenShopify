@@ -71,17 +71,31 @@ public class AccessScopeTests : IClassFixture<AccessScopeFixture>
 
     [SkippableFact]
     public async Task OkInvalidJsonResponses() => await _okInvalidJsonMockClient.TestAllMethodsThatReturnData();
+
+    [Fact]
+    public void ObjectResponseResult_CanReadText() => _okEmptyMockClient.ObjectResponseResult_CanReadText();
 }
 
 internal class AccessScopeMockClient : AccessScopeClient, IMockTests
 {
     public AccessScopeMockClient(HttpClient httpClient, SharedFixture fixture) : base(httpClient)
     {
-        BaseUrl = AuthorizationService.BuildShopUri(fixture.MyShopifyUrl, true).ToString();
+        BaseUrl = AuthorizationService.BuildShopUri(fixture.MockShopifyUrl, true).ToString();
     }
     
+    public void ObjectResponseResult_CanReadText()
+    {
+        var obj = new ObjectResponseResult<ApiException>(default!, string.Empty);
+        Assert.Equal(obj.Text, string.Empty);
+    }
+
     public async Task TestAllMethodsThatReturnData()
     {
+        ReadResponseAsString = true;
+        //TODO: Validate that all methods are tested in this first section
+        await Assert.ThrowsAsync<ApiException>(async () => await ListAccessScopesAsync(CancellationToken.None));
+        ReadResponseAsString = false;
+        //Only one method needs to be tested with `ReadResponseAsString = false`
         await Assert.ThrowsAsync<ApiException>(async () => await ListAccessScopesAsync(CancellationToken.None));
     }
 }
