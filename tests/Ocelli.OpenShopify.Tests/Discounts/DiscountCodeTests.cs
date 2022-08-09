@@ -44,7 +44,7 @@ public class DiscountCodeFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("DiscountCodeTests")]
+[Collection("DiscountCodeTests")]
 public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

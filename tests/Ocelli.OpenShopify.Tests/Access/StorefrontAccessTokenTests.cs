@@ -21,7 +21,7 @@ public class StorefrontAccessTokenFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("StorefrontAccessTokenTests")]
+[Collection("StorefrontAccessTokenTests")]
 public class StorefrontAccessTokenTests : IClassFixture<StorefrontAccessTokenFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

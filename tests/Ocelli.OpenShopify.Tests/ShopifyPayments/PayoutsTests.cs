@@ -12,7 +12,7 @@ public class PayoutsFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("PayoutsTests")]
+[Collection("PayoutsTests")]
 public class PayoutsTests : IClassFixture<PayoutsFixture>
 {
     private PayoutsFixture Fixture { get; }

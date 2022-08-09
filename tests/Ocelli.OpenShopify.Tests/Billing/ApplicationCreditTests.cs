@@ -14,7 +14,7 @@ public class ApplicationCreditFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("ApplicationCreditTests")]
+[Collection("ApplicationCreditTests")]
 public class ApplicationCreditTests : IClassFixture<ApplicationCreditFixture>
 {
     private const string ApplicationCreditPrefix = "Refund for Foo";

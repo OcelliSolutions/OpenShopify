@@ -15,7 +15,7 @@ public class ApplicationChargeFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("ApplicationChargeTests")]
+[Collection("ApplicationChargeTests")]
 public class ApplicationChargeTests : IClassFixture<ApplicationChargeFixture>
 {
     private const string ApplicationChargePrefix = "Charge to Foo";

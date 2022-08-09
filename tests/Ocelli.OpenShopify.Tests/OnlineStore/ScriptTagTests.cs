@@ -28,7 +28,7 @@ public class ScriptTagFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("ScriptTagTests")]
+[Collection("ScriptTagTests")]
 public class ScriptTagTests : IClassFixture<ScriptTagFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

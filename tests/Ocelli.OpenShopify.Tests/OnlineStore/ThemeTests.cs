@@ -13,7 +13,7 @@ public class ThemeFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("ThemeTests")]
+[Collection("ThemeTests")]
 public class ThemeTests : IClassFixture<ThemeFixture>
 {
     private ThemeFixture Fixture { get; }

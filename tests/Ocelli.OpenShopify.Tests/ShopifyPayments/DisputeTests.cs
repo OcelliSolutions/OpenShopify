@@ -13,7 +13,7 @@ public class DisputeFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("DisputeTests")]
+[Collection("DisputeTests")]
 public class DisputeTests : IClassFixture<DisputeFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

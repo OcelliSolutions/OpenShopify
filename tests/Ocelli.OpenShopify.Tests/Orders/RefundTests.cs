@@ -33,7 +33,7 @@ public class RefundFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("RefundTests")]
+[Collection("RefundTests")]
 public class RefundTests : IClassFixture<RefundFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

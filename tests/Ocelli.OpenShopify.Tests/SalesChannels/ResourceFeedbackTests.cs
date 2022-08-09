@@ -15,7 +15,7 @@ public class ResourceFeedbackFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("ResourceFeedbackTests")]
+[Collection("ResourceFeedbackTests")]
 public class ResourceFeedbackTests : IClassFixture<ResourceFeedbackFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

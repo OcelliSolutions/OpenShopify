@@ -27,7 +27,7 @@ public class WebhookFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("WebhookTests")]
+[Collection("WebhookTests")]
 public class WebhookTests : IClassFixture<WebhookFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

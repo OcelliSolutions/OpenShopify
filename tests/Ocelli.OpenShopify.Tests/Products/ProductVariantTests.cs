@@ -39,7 +39,7 @@ public class ProductVariantFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("ProductVariantTests")]
+[Collection("ProductVariantTests")]
 public class ProductVariantTests : IClassFixture<ProductVariantFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

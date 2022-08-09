@@ -19,7 +19,7 @@ public class AuthorizationScopeFixture : SharedFixture, IAsyncLifetime
 
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("AuthorizationTests")]
+[Collection("AuthorizationTests")]
 public class AuthorizationTests : IClassFixture<AuthorizationScopeFixture>
 {
     public AuthorizationTests(AuthorizationScopeFixture fixture)

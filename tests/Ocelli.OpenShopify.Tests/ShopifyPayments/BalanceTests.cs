@@ -13,7 +13,7 @@ public class BalanceFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("BalanceTests")]
+[Collection("BalanceTests")]
 public class BalanceTests : IClassFixture<BalanceFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

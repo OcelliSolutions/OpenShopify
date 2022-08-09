@@ -14,7 +14,7 @@ public class ShippingZoneFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("ShippingZoneTests")]
+[Collection("ShippingZoneTests")]
 public class ShippingZoneTests : IClassFixture<ShippingZoneFixture>
 {
     private ShippingZoneFixture Fixture { get; }

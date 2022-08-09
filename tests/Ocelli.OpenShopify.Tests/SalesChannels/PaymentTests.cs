@@ -17,7 +17,7 @@ public class PaymentFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("PaymentTests")]
+[Collection("PaymentTests")]
 public class PaymentTests : IClassFixture<PaymentFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;

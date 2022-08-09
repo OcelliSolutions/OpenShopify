@@ -13,7 +13,7 @@ public class TenderTransactionFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("TenderTransactionTests")]
+[Collection("TenderTransactionTests")]
 public class TenderTransactionTests : IClassFixture<TenderTransactionFixture>
 {
     private TenderTransactionFixture Fixture { get; }

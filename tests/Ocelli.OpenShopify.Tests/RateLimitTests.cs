@@ -17,7 +17,7 @@ public class RateLimitFixture : SharedFixture, IAsyncLifetime
     Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
 }
 
-//[Collection("RateLimitTests")]
+[Collection("RateLimitTests")]
 public class RateLimitTests : IClassFixture<RateLimitFixture>
 {
     private readonly ITestOutputHelper _testOutputHelper;
