@@ -22,8 +22,6 @@ public class RefundController : RefundControllerBase
     [HttpPost]
     [Route("orders/{order_id:long}/refunds.json")]
     [ProducesResponseType(typeof(RefundItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(RefundError), StatusCodes.Status422UnprocessableEntity)]
-    [ProducesResponseType(typeof(RefundGeneralError), StatusCodes.Status400BadRequest)]
     public override Task CreateRefund([Required] CreateRefundRequest request, long order_id) =>
         throw new NotImplementedException();
 
@@ -38,7 +36,6 @@ public class RefundController : RefundControllerBase
     [HttpPost]
     [Route("orders/{order_id:long}/refunds/calculate.json")]
     [ProducesResponseType(typeof(RefundItem), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(RefundError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CalculateRefund([Required] CalculateRefundRequest request, long order_id) =>
         throw new NotImplementedException();
 }

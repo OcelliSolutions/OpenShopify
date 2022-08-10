@@ -151,7 +151,7 @@ public class DiscountCodeTests : IClassFixture<DiscountCodeFixture>
         {
             DiscountCode = new CreateDiscountCode()
         };
-        await Assert.ThrowsAsync<ApiException<DiscountCodeError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.DiscountCode.CreateDiscountCodeAsync(priceRule.Id, request));
     }
     */

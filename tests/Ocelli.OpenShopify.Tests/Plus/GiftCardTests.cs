@@ -88,7 +88,7 @@ public class GiftCardTests : IClassFixture<GiftCardFixture>
         {
             GiftCard = new CreateGiftCard()
         };
-        await Assert.ThrowsAsync<ApiException<GiftCardError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.GiftCard.CreateGiftCardAsync(request));
     }
 

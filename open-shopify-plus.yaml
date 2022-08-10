@@ -103,21 +103,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GiftCardItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GiftCardError'
   '/gift_cards/{gift_card_id}.json':
     get:
       tags:
@@ -550,23 +535,6 @@ components:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
           format: date-time
-          nullable: true
-      additionalProperties: { }
-    GiftCardError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/GiftCardErrorDetails'
-      additionalProperties: { }
-    GiftCardErrorDetails:
-      type: object
-      properties:
-        base:
-          type: array
-          items:
-            type: string
           nullable: true
       additionalProperties: { }
     GiftCardItem:

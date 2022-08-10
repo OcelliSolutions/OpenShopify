@@ -36,7 +36,6 @@ public class CollectionListingController : CollectionListingControllerBase
     [HttpPut]
     [Route("collection_listings/{collection_listing_id:long}.json")]
     [ProducesResponseType(typeof(CollectionListingItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(CollectionListingError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateCollectionListing([Required] CreateCollectionListingRequest request,
         [Required] long collection_listing_id) =>
         throw new NotImplementedException();

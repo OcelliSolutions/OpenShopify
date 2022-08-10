@@ -69,7 +69,7 @@ public class CollectionListingTests : IClassFixture<CollectionListingFixture>
         {
             CollectionListing = new()
         };
-        await Assert.ThrowsAsync<ApiException<CollectionListingError>>(async () => await Fixture.Service.CollectionListing.CreateCollectionListingAsync(request));
+        await Assert.ThrowsAsync<ApiException>(async () => await Fixture.Service.CollectionListing.CreateCollectionListingAsync(request));
     }
 
     #endregion Create

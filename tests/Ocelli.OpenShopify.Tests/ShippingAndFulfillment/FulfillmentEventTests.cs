@@ -2,12 +2,13 @@
 
 public class FulfillmentEventFixture : SharedFixture, IAsyncLifetime
 {
-    public List<FulfillmentEvent> CreatedFulfillmentEvents = new();
-    public Fulfillment Fulfillment = new();
     public FulfillmentService FulfillmentService = new();
-    public Order Order = new();
     public Product Product = new();
     public ProductVariant ProductVariant = new();
+    public List<Order> CreatedOrders = new();
+    public List<Fulfillment> CreatedFulfillments = new();
+    public List<FulfillmentOrder> CreatedFulfillmentOrders = new();
+    public List<FulfillmentEvent> CreatedFulfillmentEvents = new();
     public IShippingAndFulfillmentService Service;
 
     public FulfillmentEventFixture() =>
@@ -16,40 +17,29 @@ public class FulfillmentEventFixture : SharedFixture, IAsyncLifetime
     public async Task InitializeAsync()
     {
         FulfillmentService = await CreateFulfillmentService();
-        Product = await CreateProduct();
-        ProductVariant = Product.Variants!.First();
-        Order = await CreateOrder(ProductVariant);
-        //Fulfillment = await CreateFulfillment(Order, FulfillmentService);
-        await GetFulfillment();
-    }
-
-    public async Task GetFulfillment()
-    {
-        var response = await Service.Fulfillment.GetFulfillmentsAssociatedWithOrderAsync(Order.Id);
-        if(response.Result.Fulfillments.Any())
-            Fulfillment = response.Result.Fulfillments.First();
+        Product = await CreateProduct(FulfillmentService);
+        ProductVariant = Product.Variants!.First(v => v.FulfillmentService != null);
     }
 
     async Task IAsyncLifetime.DisposeAsync()
     {
         await DeleteFulfillmentEventAsync_CanDelete();
 
-        if (Order.Id > 0)
+        var orderService = new OrdersService(MyShopifyUrl, AccessToken);
+        foreach (var order in CreatedOrders)
         {
-            var orderService = new OrdersService(MyShopifyUrl, AccessToken);
-            await orderService.Order.DeleteOrderAsync(Order.Id);
+            await orderService.Order.DeleteOrderAsync(order.Id);
         }
 
+        var productService = new ProductsService(MyShopifyUrl, AccessToken);
         if (Product.Id > 0)
         {
-            var productService = new ProductsService(MyShopifyUrl, AccessToken);
             await productService.Product.DeleteProductAsync(Product.Id);
         }
-
+        
         if (FulfillmentService.Id > 0)
         {
-            var fulfillmentService = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
-            await fulfillmentService.FulfillmentService.DeleteFulfillmentServiceAsync(FulfillmentService.Id);
+            await Service.FulfillmentService.DeleteFulfillmentServiceAsync(FulfillmentService.Id);
         }
     }
     
@@ -57,8 +47,8 @@ public class FulfillmentEventFixture : SharedFixture, IAsyncLifetime
     {
         foreach (var fulfillmentEvent in CreatedFulfillmentEvents)
         {
-            _ = await Service.FulfillmentEvent.DeleteFulfillmentEventAsync(fulfillmentEvent.Id, Fulfillment.Id,
-                Order.Id, CancellationToken.None);
+            _ = await Service.FulfillmentEvent.DeleteFulfillmentEventAsync(fulfillmentEvent.Id,
+                fulfillmentEvent.FulfillmentId ?? 0, fulfillmentEvent.OrderId ?? 0, CancellationToken.None);
         }
         CreatedFulfillmentEvents.Clear();
     }
@@ -90,48 +80,89 @@ public class FulfillmentEventTests : IClassFixture<FulfillmentEventFixture>
     [TestPriority(10)]
     public async Task CreateFulfillmentEventAsync_CanCreate()
     {
+        var order = await Fixture.CreateOrder(Fixture.ProductVariant);
+        Fixture.CreatedOrders.Add(order);
+        var sendFulfillmentResponse = await Fixture.SendFulfillmentRequest(order);
+
+        var submittedFulfillmentOrder = sendFulfillmentResponse.SubmittedFulfillmentOrder;
+
+        var acceptFulfillment = await Fixture.Service.FulfillmentRequest.AcceptFulfillmentRequestAsync(
+            submittedFulfillmentOrder?.Id ?? 0,
+            new AcceptFulfillmentRequestRequest() { FulfillmentRequest = new MessageDetail() { Message = "We will start processing your fulfillment on the next business day." } });
+
+        var acceptedResponse = acceptFulfillment.Result.FulfillmentOrder;
+
+        var fulfillmentOrder = new FulfillmentOrder()
+        {
+            Id = acceptedResponse.Id,
+            OrderId = acceptedResponse.OrderId,
+            AssignedLocationId = acceptedResponse.Id, 
+            LineItems = acceptedResponse.LineItems
+        };
+
+        var createFulfillmentRequest = Fixture.CreateFulfillmentRequest(fulfillmentOrder, Fixture.FulfillmentService);
+        var fulfillmentResponse = await Fixture.Service.Fulfillment.CreateFulfillmentForOneOrManyFulfillmentOrdersAsync(createFulfillmentRequest, CancellationToken.None);
+
+        var fulfillment = fulfillmentResponse.Result.Fulfillment;
         var request = new CreateFulfillmentEventRequest
         {
             FulfillmentEvent = new CreateFulfillmentEvent
             {
-                Status = FulfillmentEventStatus.InTransit
+                Status = FulfillmentEventStatus.InTransit, FulfillmentId = fulfillment.Id, OrderId = fulfillment.OrderId
             }
         };
-        var response =
-            await Fixture.Service.FulfillmentEvent.CreateFulfillmentEventAsync(Fixture.Fulfillment.Id, Fixture.Order.Id,
-                request, CancellationToken.None);
+        var response = await Fixture.Service.FulfillmentEvent.CreateFulfillmentEventAsync(fulfillment.Id,
+            fulfillment.OrderId ?? 0, request, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
         Fixture.CreatedFulfillmentEvents.Add(response.Result.FulfillmentEvent);
     }
-
+    /*
     [SkippableFact]
     [TestPriority(10)]
     public async Task CreateFulfillmentEventAsync_IsUnprocessableEntityError()
     {
+        var order = await Fixture.CreateOrder(Fixture.ProductVariant);
+        Fixture.CreatedOrders.Add(order);
+        var fulfillment = await Fixture.CreateFulfillment(order, Fixture.FulfillmentService);
+        Fixture.CreatedFulfillments.Add(fulfillment);
         var request = new CreateFulfillmentEventRequest
         {
             FulfillmentEvent = new CreateFulfillmentEvent()
         };
-        await Assert.ThrowsAsync<ApiException<FulfillmentEventError>>(async () =>
-            await Fixture.Service.FulfillmentEvent.CreateFulfillmentEventAsync(Fixture.Fulfillment.Id, Fixture.Order.Id,
+        await Assert.ThrowsAsync<ApiException>(async () =>
+            await Fixture.Service.FulfillmentEvent.CreateFulfillmentEventAsync(fulfillment.Id, fulfillment.OrderId ?? 0,
                 request, CancellationToken.None));
     }
-
+    */
     #endregion Create
 
     #region Read
-
+    
     [SkippableFact]
     [TestPriority(20)]
     public async Task ListFulfillmentEventsAsync_AdditionalPropertiesAreEmpty()
     {
-        Skip.If(Fixture.Fulfillment.Id <= 0, "`fulfillment_id` is invalid.");
-        Skip.If(Fixture.Fulfillment.OrderId == null , "`order_id` is null.");
-        Skip.If(Fixture.Fulfillment.OrderId <= 0, "`order_id` is invalid.");
+        var order = await Fixture.CreateOrder(Fixture.ProductVariant);
+        Fixture.CreatedOrders.Add(order);
+        var fulfillmentOrders = await Fixture.GetFulfillmentOrders(order);
+        var fulfillmentOrder = fulfillmentOrders.First();
+        var sendFulfillmentResponse = await Fixture.SendFulfillmentRequest(order);
+
+        var submittedFulfillmentOrder = sendFulfillmentResponse.SubmittedFulfillmentOrder;
+
+        var acceptFulfillment = await Fixture.Service.FulfillmentRequest.AcceptFulfillmentRequestAsync(
+            submittedFulfillmentOrder?.Id ?? 0,
+            new AcceptFulfillmentRequestRequest() { FulfillmentRequest = new MessageDetail() { Message = "We will start processing your fulfillment on the next business day." } });
+
+        var createFulfillmentRequest = Fixture.CreateFulfillmentRequest(fulfillmentOrder, Fixture.FulfillmentService);
+        var fulfillmentResponse = await Fixture.Service.Fulfillment.CreateFulfillmentForOneOrManyFulfillmentOrdersAsync(createFulfillmentRequest, CancellationToken.None);
+
+        var fulfillment = fulfillmentResponse.Result.Fulfillment;
+
         var response =
             await Fixture.Service.FulfillmentEvent.ListFulfillmentEventsForSpecificFulfillmentAsync(
-                Fixture.Fulfillment.Id, Fixture.Fulfillment.OrderId ?? 0, CancellationToken.None);
+                fulfillment.Id, fulfillment.OrderId ?? 0, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var fulfillmentEvent in response.Result.FulfillmentEvents)
         {
@@ -140,20 +171,24 @@ public class FulfillmentEventTests : IClassFixture<FulfillmentEventFixture>
 
         Skip.If(!response.Result.FulfillmentEvents.Any(), "No results returned. Unable to test");
     }
-
+    /*
     [SkippableFact]
     [TestPriority(20)]
     public async Task GetFulfillmentEventAsync_TestCreated_AdditionalPropertiesAreEmpty()
     {
-        Skip.If(!Fixture.CreatedFulfillmentEvents.Any(), "Must be run with create test");
+        var order = await Fixture.CreateOrder(Fixture.ProductVariant);
+        Fixture.CreatedOrders.Add(order);
+        var fulfillment = await Fixture.CreateFulfillment(order, Fixture.FulfillmentService);
+        Fixture.CreatedFulfillments.Add(fulfillment);
+
         var fulfillmentEvent = Fixture.CreatedFulfillmentEvents.First();
         var response =
-            await Fixture.Service.FulfillmentEvent.GetFulfillmentEventAsync(fulfillmentEvent.Id, Fixture.Fulfillment.Id,
-                Fixture.Order.Id, CancellationToken.None);
+            await Fixture.Service.FulfillmentEvent.GetFulfillmentEventAsync(fulfillmentEvent.Id, fulfillmentEvent.FulfillmentId ?? 0,
+                fulfillmentEvent.OrderId ?? 0, CancellationToken.None);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result.FulfillmentEvent, Fixture.MyShopifyUrl);
     }
-
+    */
     #endregion Read
 
     #region Delete

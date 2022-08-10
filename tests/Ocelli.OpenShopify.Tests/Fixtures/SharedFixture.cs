@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using Ocelli.OpenShopify.Tests.Models;
 using RichardSzalay.MockHttp;
 using shortid;
@@ -23,7 +24,7 @@ public class SharedFixture
 
         var config = JsonSerializer.Deserialize<ShopifyConfig>(apiKeyJson) ??
                      throw new InvalidOperationException("Could not deserialize the api_key.json file");
-        BatchId = ShortId.Generate(new GenerationOptions(true, false, 8));
+        BatchId = RandomString;
 
         DaysToTest = 1;
 #if DEBUG
@@ -34,8 +35,8 @@ public class SharedFixture
         AccessToken = config.AccessToken;
         MyShopifyUrl = config.MyShopifyUrl;
         WebhookTest = config.Webhook;
+        CallbackUrl = config.CallbackUrl;
         //Scopes = new List<AuthorizationScope?>();
-
 
         var badRequest = new MockHttpMessageHandler();
         badRequest.When("*").Respond(HttpStatusCode.BadRequest); // Respond with JSON
@@ -53,33 +54,25 @@ public class SharedFixture
     }
 
     internal string ApiKey { get; set; }
-
     internal string SecretKey { get; set; }
-
     internal string BatchId { get; }
     public int DaysToTest { get; set; }
     public string AccessToken { get; set; }
     public string MyShopifyUrl { get; set; }
     public WebhookTest? WebhookTest { get; set; }
+    public string CallbackUrl { get; set; }
+    public string Email => $@"foo+{BatchId}@example.com";
     public string FirstName => "John (OpenShopify)";
     public string LastName => "Doe";
     public string Company => "OpenShopify";
     public string Note => "Test note about this customer.";
-    public string Email => $@"foo+{BatchId}@example.com";
-    public string CallbackUrl => @"https://sample.com/callback";
+    internal string MockShopifyUrl => $@"{RandomString}.myshopify.com";
+    internal static string RandomString => ShortId.Generate(new GenerationOptions(true, false, 8));
+    public string UniqueString([CallerMemberName] string callerName = "") => $@"{Company} {callerName} ({BatchId}:{RandomString})";
+
     internal HttpClient BadRequestMockHttpClient { get; set; }
     internal HttpClient OkEmptyMockHttpClient { get; set; }
     internal HttpClient OkInvalidJsonMockHttpClient { get; set; }
-
-    public void ValidateScopes(List<AuthorizationScope> requiredPermissions)
-    {
-        foreach (var requiredPermission in requiredPermissions)
-        {
-            Skip.If(!Scopes.Contains(requiredPermission),
-                $@"`{MyShopifyUrl}` credentials do not have the `{requiredPermission}` scope(s). Endpoint cannot be tested.");
-        }
-    }
-
     internal string CommonBaseUrl() =>
         new UriBuilder()
         {
@@ -89,12 +82,13 @@ public class SharedFixture
             Path = $"admin/api/2022-07/"
         }.ToString();
 
-    internal string MockShopifyUrl => $@"{ShortId.Generate(new GenerationOptions(false, false, 8))}.myshopify.com";
-
-    public string UniqueString([CallerMemberName] string callerName = "")
+    public void ValidateScopes(List<AuthorizationScope> requiredPermissions)
     {
-        var instanceHash = ShortId.Generate(new GenerationOptions(true, false, 8));
-        return $@"{Company} {callerName} ({BatchId}:{instanceHash})";
+        foreach (var requiredPermission in requiredPermissions)
+        {
+            Skip.If(!Scopes.Contains(requiredPermission),
+                $@"`{MyShopifyUrl}` credentials do not have the `{requiredPermission}` scope(s). Endpoint cannot be tested.");
+        }
     }
 
     public async Task LoadScopes()
@@ -182,6 +176,37 @@ public class SharedFixture
         var response = await orderService.Order.CreateOrderAsync(request);
         return response.Result.Order;
     }
+    
+    public async Task<SendFulfillmentRequestItem> SendFulfillmentRequest(Order order, [CallerMemberName] string callerName = "")
+    {
+        var shippingAndFulfillmentService = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
+        var fulfillmentOrders = await GetFulfillmentOrders(order);
+        var fulfillmentOrder = fulfillmentOrders.First();
+        var sendFulfillmentRequest = new SendFulfillmentRequestRequest()
+        {
+            FulfillmentRequest = new()
+            {
+                Message = $@"@{BatchId}, Fulfill this ASAP please."
+            }
+        };
+        var sendFulfillmentResponse = await shippingAndFulfillmentService.FulfillmentRequest.SendFulfillmentRequestAsync(fulfillmentOrder.Id, sendFulfillmentRequest);
+        return sendFulfillmentResponse.Result;
+    }
+    public async Task<FulfillmentOrderWithOrigin> AcceptFulfillmentRequest(FulfillmentOrderWithOrigin fulfillmentOrder, [CallerMemberName] string callerName = "")
+    {
+        var shippingAndFulfillmentService = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
+        var request = new AcceptFulfillmentRequestRequest()
+        {
+            FulfillmentRequest = new ()
+            {
+                Message = "We will start processing your fulfillment on the next business day."
+            }
+        };
+        var response = await shippingAndFulfillmentService.FulfillmentRequest.AcceptFulfillmentRequestAsync(
+            fulfillmentOrder.Id, request);
+        return response.Result.FulfillmentOrder;
+    }
+
     public async Task<IEnumerable<FulfillmentOrder>> GetFulfillmentOrders(Order order)
     {
         var service = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
@@ -189,31 +214,43 @@ public class SharedFixture
         return response.Result.FulfillmentOrders;
     }
 
-    /*
-    public async Task<Fulfillment> CreateFulfillment(Order order, FulfillmentService fulfillmentService)
+    
+    public async Task<Fulfillment> CreateFulfillment(FulfillmentOrder fulfillmentOrder, FulfillmentService fulfillmentService)
     {
         //TODO: Figure out what objects can have a `test` property and validate accordingly.
         var service = new ShippingAndFulfillmentService(MyShopifyUrl, AccessToken);
-        var request = CreateFulfillmentRequest(order, fulfillmentService);
+        var request = CreateFulfillmentRequest(fulfillmentOrder, fulfillmentService);
         var response = await service.Fulfillment.CreateFulfillmentForOneOrManyFulfillmentOrdersAsync(request);
         return response.Result.Fulfillment;
     }
-    public CreateFulfillmentForOneOrManyFulfillmentOrdersRequest CreateFulfillmentRequest(Order order, FulfillmentService fulfillmentService) =>
-        new()
+
+    public CreateFulfillmentForOneOrManyFulfillmentOrdersRequest CreateFulfillmentRequest(FulfillmentOrder fulfillmentOrder,
+        FulfillmentService fulfillmentService)
+    {
+        if (fulfillmentOrder.LineItems == null)
+        {
+            throw new ArgumentNullException(nameof(fulfillmentOrder), "No line items were provided.");
+        }
+
+        var lineItems = fulfillmentOrder.LineItems.Select(li => new FulfillmentRequestOrderLineItem()
+            { Id = li.Id, Quantity = li.Quantity });
+        return new CreateFulfillmentForOneOrManyFulfillmentOrdersRequest
         {
             Fulfillment = new CreateFulfillmentForOneOrManyFulfillmentOrders()
             {
-                LocationId = fulfillmentService.LocationId,
-                LineItems = order.LineItems?.Select(li => new LineItem() { VariantId = li.VariantId, Quantity = li.Quantity }).ToList(),
-                TrackingNumbers = new List<string> { "123456789" },
-                TrackingUrls = new List<string>
+                Message = "The package was shipped this morning.",
+                TrackingInfo = new TrackingInfo()
                 {
-                    "https://shipping.xyz/track.php?num=123456789", "https://anothershipper.corp/track.php?code=abc"
+                    Number = BatchId, 
+                    Url = "https://www.my-shipping-company.com", 
+                    Company = "my-shipping-company"
                 },
-                NotifyCustomer = true
+                LineItemsByFulfillmentOrder = new List<LineItemsByFulfillmentOrder>()
+                    { new() { FulfillmentOrderId = fulfillmentOrder.Id, FulfillmentOrderLineItems = lineItems.ToList() } },
+                NotifyCustomer = false
             }
         };
-    */
+    }
 
     public CreateCustomerRequest CreateCustomerRequest([CallerMemberName] string callerName = "") =>
         new()
@@ -444,7 +481,8 @@ public class SharedFixture
             {
                 Name = UniqueString(callerName),
                 CallbackUrl = CallbackUrl,
-                ServiceDiscovery = true
+                ServiceDiscovery = true, 
+                Format = CarrierServiceFormat.Json
             }
         };
 
@@ -602,7 +640,7 @@ public class SharedFixture
     {
         Risk = new CreateOrderRisk
         {
-            Message = "This order came from an anonymous proxy",
+            Message = "This fulfillmentOrder came from an anonymous proxy",
             Recommendation = RiskRecommendation.Cancel,
             Score = (decimal)1.0,
             Source = "External",

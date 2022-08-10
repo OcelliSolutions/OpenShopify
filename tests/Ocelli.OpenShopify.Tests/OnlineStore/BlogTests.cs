@@ -90,7 +90,7 @@ public class BlogTests : IClassFixture<BlogFixture>
         {
             Blog = new CreateBlog()
         };
-        await Assert.ThrowsAsync<ApiException<BlogError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.Blog.CreateBlogAsync(request, CancellationToken.None));
     }
 

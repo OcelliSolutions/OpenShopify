@@ -152,7 +152,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// Undocumented
         /// </summary>
         [JsonPropertyName("note_attributes")]
-        public IEnumerable<NoteAttribute>? NoteAttributes { get; set; }
+        public NoteAttribute? NoteAttributes { get; set; }
 
         /// <summary>
         /// Undocumented

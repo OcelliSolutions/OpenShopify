@@ -5,8 +5,7 @@ public class FulfillmentRequestFixture : SharedFixture, IAsyncLifetime
     public FulfillmentService FulfillmentService = new();
     public Product Product = new();
     public ProductVariant ProductVariant = new();
-    public FulfillmentOrder FulfillmentOrder = new();
-    public Order Order = new();
+    public List<Order> CreatedOrders = new ();
 
     public FulfillmentRequestFixture()
     {
@@ -14,35 +13,17 @@ public class FulfillmentRequestFixture : SharedFixture, IAsyncLifetime
     }
     public async Task InitializeAsync()
     {
-        FulfillmentService = await CreateFulfillmentService(GetType().Name);
-        Product = await CreateProduct(FulfillmentService, GetType().Name);
+        FulfillmentService = await CreateFulfillmentService();
+        Product = await CreateProduct(FulfillmentService);
         ProductVariant = Product.Variants!.First(v => v.FulfillmentService != null);
-        Order = await CreateOrder(ProductVariant, GetType().Name);
-        var fulfillmentOrders = await GetFulfillmentOrders(Order);
-        FulfillmentOrder = fulfillmentOrders.First();
-        //Figure out how to populate FulfillmentOrder
-    }
-
-    public async Task<ShopifyResponse<SendFulfillmentRequestItem>> SendFulfillmentRequestAsync(string? message)
-    {
-
-        var request = new SendFulfillmentRequestRequest()
-        {
-            FulfillmentRequest = new SendFulfillmentRequestDetail()
-            {
-                Message = message
-            }
-        };
-        var response = await Service.FulfillmentRequest.SendFulfillmentRequestAsync(FulfillmentOrder.Id, request);
-        return response;
     }
 
     async Task IAsyncLifetime.DisposeAsync()
     {
-        if (Order.Id > 0)
+        foreach (var order in CreatedOrders)
         {
             var orderService = new OrdersService(MyShopifyUrl, AccessToken);
-            await orderService.Order.DeleteOrderAsync(Order.Id);
+            await orderService.Order.DeleteOrderAsync(order.Id);
         }
 
         if (Product.Id > 0)
@@ -85,44 +66,47 @@ public class FulfillmentRequestTests : IClassFixture<FulfillmentRequestFixture>
     [SkippableFact, TestPriority(10)]
     public async Task SendFulfillmentRequestAsync_CanCreate()
     {
-        var response = await Fixture.SendFulfillmentRequestAsync($@"@{Fixture.BatchId}, Fulfill this ASAP please.");
+        var order = await Fixture.CreateOrder(Fixture.ProductVariant);
+        Fixture.CreatedOrders.Add(order);
+        var response = await Fixture.SendFulfillmentRequest(order);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
-        var originalFulfillmentOrder = response.Result.OriginalFulfillmentOrder;
-        var submittedFulfillmentOrder = response.Result.SubmittedFulfillmentOrder;
-        var unsubmittedFulfillmentOrder = response.Result.UnsubmittedFulfillmentOrder;
+        var originalFulfillmentOrder = response.OriginalFulfillmentOrder;
+        var submittedFulfillmentOrder = response.SubmittedFulfillmentOrder;
+        var unsubmittedFulfillmentOrder = response.UnsubmittedFulfillmentOrder;
 
         Assert.Equal(RequestStatus.Submitted, submittedFulfillmentOrder?.RequestStatus);
         Assert.Equal(FulfillmentOrderStatus.Open, submittedFulfillmentOrder?.Status);
         Assert.Null(unsubmittedFulfillmentOrder); //no line items were specified, so there is nothing unsubmitted.
     }
 
-    [SkippableFact, TestPriority(10)]
+    [SkippableFact, TestPriority(11)]
     public async Task AcceptFulfillmentRequestAsync_CanCreate()
     {
-        var sendFulfillmentResponse = await Fixture.SendFulfillmentRequestAsync($@"@{Fixture.BatchId}, Fulfill this ASAP please.");
+        var order = await Fixture.CreateOrder(Fixture.ProductVariant);
+        Fixture.CreatedOrders.Add(order);
+        var sendFulfillmentResponse = await Fixture.SendFulfillmentRequest(order);
         
-        var submittedFulfillmentOrder = sendFulfillmentResponse.Result.SubmittedFulfillmentOrder;
+        var submittedFulfillmentOrder = sendFulfillmentResponse.SubmittedFulfillmentOrder;
 
-        var response = await Fixture.Service.FulfillmentRequest.AcceptFulfillmentRequestAsync(
-            submittedFulfillmentOrder?.Id ?? 0,
-            new AcceptFulfillmentRequestRequest() { FulfillmentRequest = new MessageDetail() { Message = "We will start processing your fulfillment on the next business day." } });
+        var response = await Fixture.AcceptFulfillmentRequest(submittedFulfillmentOrder);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response.Result, Fixture.MyShopifyUrl);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
 
-        var acceptedResponse = response.Result.FulfillmentOrder;
-        Assert.Equal(RequestStatus.Accepted, acceptedResponse.RequestStatus);
-        Assert.Equal(FulfillmentOrderStatus.InProgress, acceptedResponse.Status);
+        Assert.Equal(RequestStatus.Accepted, response.RequestStatus);
+        Assert.Equal(FulfillmentOrderStatus.InProgress, response.Status);
     }
 
 
-    [SkippableFact, TestPriority(10)]
+    [SkippableFact, TestPriority(12)]
     public async Task RejectFulfillmentRequestAsync_CanCreate()
     {
-        var sendFulfillmentResponse = await Fixture.SendFulfillmentRequestAsync($@"@{Fixture.BatchId}, Fulfill this ASAP please.");
+        var order = await Fixture.CreateOrder(Fixture.ProductVariant);
+        Fixture.CreatedOrders.Add(order);
+        var sendFulfillmentResponse = await Fixture.SendFulfillmentRequest(order);
 
-        var submittedFulfillmentOrder = sendFulfillmentResponse.Result.SubmittedFulfillmentOrder;
+        var submittedFulfillmentOrder = sendFulfillmentResponse.SubmittedFulfillmentOrder;
 
         var response = await Fixture.Service.FulfillmentRequest.RejectFulfillmentRequestAsync(
             submittedFulfillmentOrder?.Id ?? 0,
@@ -134,7 +118,6 @@ public class FulfillmentRequestTests : IClassFixture<FulfillmentRequestFixture>
         Assert.Equal(RequestStatus.Rejected, acceptedResponse.RequestStatus);
         Assert.Equal(FulfillmentOrderStatus.Open, acceptedResponse.Status);
     }
-
 
     [SkippableFact]
     public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();

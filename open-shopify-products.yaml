@@ -49,21 +49,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CollectItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CollectError'
     get:
       tags:
         - Collect
@@ -404,21 +389,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomCollectionItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CustomCollectionError'
   /custom_collections/count.json:
     get:
       tags:
@@ -553,21 +523,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomCollectionItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CustomCollectionError'
     delete:
       tags:
         - CustomCollection
@@ -758,21 +713,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProductError'
   /products/count.json:
     get:
       tags:
@@ -924,21 +864,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProductError'
     delete:
       tags:
         - Product
@@ -1044,21 +969,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductImageItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProductImageError'
   '/products/{product_id}/images/count.json':
     get:
       tags:
@@ -1177,21 +1087,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductImageItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProductImageError'
     delete:
       tags:
         - ProductImage
@@ -1319,21 +1214,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductVariantItem'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProductVariantError'
   '/products/{product_id}/variants/count.json':
     get:
       tags:
@@ -1434,21 +1314,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductVariantItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProductVariantError'
   '/products/{product_id}/variants/{variant_id}.json':
     delete:
       tags:
@@ -1614,21 +1479,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SmartCollectionItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SmartCollectionError'
   /smart_collections/count.json:
     get:
       tags:
@@ -1763,21 +1613,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SmartCollectionItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SmartCollectionError'
     delete:
       tags:
         - SmartCollection
@@ -1877,28 +1712,6 @@ components:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
           format: date-time
-          nullable: true
-      additionalProperties: { }
-    CollectError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/CollectErrorDetails'
-      additionalProperties: { }
-    CollectErrorDetails:
-      type: object
-      properties:
-        product:
-          type: array
-          items:
-            type: string
-          nullable: true
-        collection:
-          type: array
-          items:
-            type: string
           nullable: true
       additionalProperties: { }
     CollectItem:
@@ -2513,23 +2326,6 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    CustomCollectionError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/CustomCollectionErrorDetails'
-      additionalProperties: { }
-    CustomCollectionErrorDetails:
-      type: object
-      properties:
-        title:
-          type: array
-          items:
-            type: string
-          nullable: true
-      additionalProperties: { }
     CustomCollectionImage:
       type: object
       properties:
@@ -2759,23 +2555,6 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    ProductError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/ProductErrorDetails'
-      additionalProperties: { }
-    ProductErrorDetails:
-      type: object
-      properties:
-        title:
-          type: array
-          items:
-            type: string
-          nullable: true
-      additionalProperties: { }
     ProductImage:
       required:
         - id
@@ -2842,23 +2621,6 @@ components:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
           format: date-time
-          nullable: true
-      additionalProperties: { }
-    ProductImageError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/ProductImageErrorDetails'
-      additionalProperties: { }
-    ProductImageErrorDetails:
-      type: object
-      properties:
-        base:
-          type: array
-          items:
-            type: string
           nullable: true
       additionalProperties: { }
     ProductImageItem:
@@ -3077,21 +2839,6 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    ProductVariantError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/ProductVariantErrorDetails'
-      additionalProperties: { }
-    ProductVariantErrorDetails:
-      type: object
-      properties:
-        variant:
-          type: string
-          nullable: true
-      additionalProperties: { }
     ProductVariantItem:
       required:
         - variant
@@ -3202,23 +2949,6 @@ components:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
           format: date-time
-          nullable: true
-      additionalProperties: { }
-    SmartCollectionError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/SmartCollectionErrorDetails'
-      additionalProperties: { }
-    SmartCollectionErrorDetails:
-      type: object
-      properties:
-        title:
-          type: array
-          items:
-            type: string
           nullable: true
       additionalProperties: { }
     SmartCollectionImage:

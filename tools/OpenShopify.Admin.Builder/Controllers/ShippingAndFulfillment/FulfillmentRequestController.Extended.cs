@@ -15,7 +15,6 @@ public class FulfillmentRequestController : FulfillmentRequestControllerBase
     [HttpPost]
     [Route("fulfillment_orders/{fulfillment_order_id:long}/fulfillment_request.json")]
     [ProducesResponseType(typeof(SendFulfillmentRequestItem), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(FulfillmentRequestGeneralError), StatusCodes.Status400BadRequest)]
     public override Task SendFulfillmentRequest([Required] SendFulfillmentRequestRequest request,
         long fulfillment_order_id) => throw new NotImplementedException();
 
@@ -23,7 +22,6 @@ public class FulfillmentRequestController : FulfillmentRequestControllerBase
     [HttpPost]
     [Route("fulfillment_orders/{fulfillment_order_id:long}/fulfillment_request/accept.json")]
     [ProducesResponseType(typeof(AcceptFulfillmentRequestItem), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(FulfillmentRequestGeneralError), StatusCodes.Status400BadRequest)]
     public override Task AcceptFulfillmentRequest([Required] AcceptFulfillmentRequestRequest request,
         long fulfillment_order_id) => throw new NotImplementedException();
 
@@ -31,7 +29,6 @@ public class FulfillmentRequestController : FulfillmentRequestControllerBase
     [HttpPost]
     [Route("fulfillment_orders/{fulfillment_order_id:long}/fulfillment_request/reject.json")]
     [ProducesResponseType(typeof(RejectFulfillmentRequestItem), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(FulfillmentRequestGeneralError), StatusCodes.Status400BadRequest)]
     public override Task RejectFulfillmentRequest([Required] RejectFulfillmentRequestRequest request,
         long fulfillment_order_id) => throw new NotImplementedException();
 }

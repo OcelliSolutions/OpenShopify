@@ -15,7 +15,6 @@ public class UsageChargeController : UsageChargeControllerBase
     [HttpPost]
     [Route("recurring_application_charges/{recurring_application_charge_id:long}/usage_charges.json")]
     [ProducesResponseType(typeof(UsageChargeItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(UsageChargeError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateUsageCharge([Required] CreateUsageChargeRequest request,
         [Required] long recurring_application_charge_id) => throw new NotImplementedException();
 

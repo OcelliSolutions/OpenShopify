@@ -66,7 +66,7 @@ public class WebhookTests : IClassFixture<WebhookFixture>
         {
             Webhook = new CreateWebhook()
         };
-        await Assert.ThrowsAsync<ApiException<WebhookError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.Webhook.CreateWebhookAsync(request));
     }
 
@@ -81,7 +81,7 @@ public class WebhookTests : IClassFixture<WebhookFixture>
                 Topic = WebhookTopic.AppUninstalled
             }
         };
-        await Assert.ThrowsAsync<ApiException<WebhookError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.Webhook.CreateWebhookAsync(request, CancellationToken.None));
     }
 

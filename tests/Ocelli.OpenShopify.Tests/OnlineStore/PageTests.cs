@@ -93,7 +93,7 @@ public class PageTests : IClassFixture<PageFixture>
         {
             Page = new CreatePage()
         };
-        await Assert.ThrowsAsync<ApiException<PageError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.Page.CreatePageAsync(request, CancellationToken.None));
     }
 

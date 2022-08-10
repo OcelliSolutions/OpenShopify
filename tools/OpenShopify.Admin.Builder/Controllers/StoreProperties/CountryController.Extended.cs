@@ -22,7 +22,6 @@ public class CountryController : CountryControllerBase
     [HttpPost]
     [Route("countries.json")]
     [ProducesResponseType(typeof(CountryItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(CountryError), StatusCodes.Status400BadRequest)]
     public override Task CreateCountry([Required] CreateCountryRequest request) => throw new NotImplementedException();
 
     /// <inheritdoc />

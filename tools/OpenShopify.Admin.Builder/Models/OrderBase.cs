@@ -13,7 +13,7 @@ namespace OpenShopify.Admin.Builder.Models
 
         /// <inheritdoc cref="OrderOrig.FulfillmentStatus"/>
         [JsonPropertyName("fulfillment_status")]
-        public new FulfillmentStatus? FulfillmentStatus { get; set; }
+        public new OrderFulfillmentStatus? FulfillmentStatus { get; set; }
 
         /// <inheritdoc cref="OrderOrig.FinancialStatus"/>
         [JsonPropertyName("financial_status")]

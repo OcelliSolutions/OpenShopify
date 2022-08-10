@@ -17,4 +17,7 @@ internal class ShopifyConfig
 
     [JsonPropertyName("webhook")]
     public WebhookTest? Webhook { get; set; }
+
+    [JsonPropertyName("callback_url")]
+    public string CallbackUrl { get; set; } = null!;
 }

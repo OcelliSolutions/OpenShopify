@@ -16,7 +16,6 @@ public class CheckoutController : CheckoutControllerBase
     [Route("checkouts.json")]
     [ProducesResponseType(typeof(CheckoutItem), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(CheckoutItem), StatusCodes.Status202Accepted)]
-    [ProducesResponseType(typeof(CheckoutError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateCheckout([Required] CreateCheckoutRequest request) =>
         throw new NotImplementedException();
 

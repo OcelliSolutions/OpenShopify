@@ -83,7 +83,7 @@ public class TransactionTests : IClassFixture<TransactionFixture>
         {
             Transaction = new CreateTransaction()
         };
-        await Assert.ThrowsAsync<ApiException<TransactionGeneralError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.Transaction.CreateTransactionAsync(Fixture.Order.Id, request));
     }
 

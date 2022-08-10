@@ -100,7 +100,7 @@ public class CustomerSavedSearchTests : IClassFixture<CustomerSavedSearchFixture
         {
             CustomerSavedSearch = new CreateCustomerSavedSearch()
         };
-        await Assert.ThrowsAsync<ApiException<CustomerSavedSearchError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.CustomerSavedSearch.CreateCustomerSavedSearchAsync(request, CancellationToken.None));
     }
 

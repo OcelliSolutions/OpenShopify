@@ -92,7 +92,7 @@ public class FulfillmentServiceTests : IClassFixture<FulfillmentServiceFixture>
         {
             FulfillmentService = new CreateFulfillmentService()
         };
-        await Assert.ThrowsAsync<ApiException<FulfillmentServiceError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.FulfillmentService.CreateFulfillmentServiceAsync(request));
     }
 
@@ -107,7 +107,7 @@ public class FulfillmentServiceTests : IClassFixture<FulfillmentServiceFixture>
                 Name = Fixture.UniqueString()
             }
         };
-        await Assert.ThrowsAsync<ApiException<FulfillmentServiceError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.FulfillmentService.CreateFulfillmentServiceAsync(request));
     }
     */

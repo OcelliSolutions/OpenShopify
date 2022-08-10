@@ -25,7 +25,6 @@ public class WebhookController : WebhookControllerBase
     [HttpPost]
     [Route("webhooks.json")]
     [ProducesResponseType(typeof(WebhookItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(WebhookError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateWebhook([Required] CreateWebhookRequest request) => throw new NotImplementedException();
 
     /// <inheritdoc />
@@ -46,7 +45,6 @@ public class WebhookController : WebhookControllerBase
     [HttpPut]
     [Route("webhooks/{webhook_id:long}.json")]
     [ProducesResponseType(typeof(WebhookItem), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(WebhookError), StatusCodes.Status422UnprocessableEntity)]
     public override Task UpdateWebhook([Required] UpdateWebhookRequest request, [Required] long webhook_id) =>
         throw new NotImplementedException();
 

@@ -22,7 +22,6 @@ public class ProductImageController : ProductImageControllerBase
     [HttpPost]
     [Route("products/{product_id:long}/images.json")]
     [ProducesResponseType(typeof(ProductImageItem), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProductImageError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateProductImage([Required] CreateProductImageRequest request, [Required] long product_id) =>
         throw new NotImplementedException();
 
@@ -44,7 +43,6 @@ public class ProductImageController : ProductImageControllerBase
     [HttpPut]
     [Route("products/{product_id:long}/images/{image_id:long}.json")]
     [ProducesResponseType(typeof(ProductImageItem), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ProductImageError), StatusCodes.Status422UnprocessableEntity)]
     public override Task UpdateProductImage([Required] UpdateProductImageRequest request, [Required] long image_id,
         [Required] long product_id) => throw new NotImplementedException();
 

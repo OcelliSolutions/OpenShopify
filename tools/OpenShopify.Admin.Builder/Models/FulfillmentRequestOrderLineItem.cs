@@ -1,5 +1,3 @@
-
-
 using System.Text.Json.Serialization;
 
 namespace OpenShopify.Admin.Builder.Models
@@ -7,7 +5,7 @@ namespace OpenShopify.Admin.Builder.Models
     /// <summary>
     /// An object representing a Shopify fulfillment request order line items.
     /// </summary>
-    public partial record FulfillmentRequestOrderLineItems
+    public partial record FulfillmentRequestOrderLineItem
     {
         /// <summary>
         /// The ID of the fulfillment order line item.
@@ -23,6 +21,11 @@ namespace OpenShopify.Admin.Builder.Models
 
     }
 
+    public partial record FulfillmentOrderWithOriginItem
+    {
+        [JsonPropertyName("fulfillment_order")]
+        public FulfillmentOrderWithOrigin FulfillmentOrder { get; set; } = null!;
+    }
     public partial record SendFulfillmentRequestItem
     {
         [JsonPropertyName("original_fulfillment_order")]

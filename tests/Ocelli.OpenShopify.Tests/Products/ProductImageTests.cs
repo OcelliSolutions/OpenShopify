@@ -112,7 +112,7 @@ public class ProductImageTests : IClassFixture<ProductImageFixture>
                 Attachment = string.Empty
             }
         };
-        await Assert.ThrowsAsync<ApiException<ProductImageError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.ProductImage.CreateProductImageAsync(Fixture.Product.Id, request, CancellationToken.None));
     }
 

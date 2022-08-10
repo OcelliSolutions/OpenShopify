@@ -16,14 +16,12 @@ public class CollectController : CollectControllerBase
     [HttpPost]
     [Route("collects.invalid")]
     [ProducesResponseType(typeof(CollectItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(CollectError), StatusCodes.Status422UnprocessableEntity)]
     public override Task AddProductToCustomCollection() => throw new NotImplementedException();
 
     /// <inheritdoc cref="CollectControllerBase.AddProductToCustomCollection" />
     [HttpPost]
     [Route("collects.json")]
     [ProducesResponseType(typeof(CollectItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(CollectError), StatusCodes.Status422UnprocessableEntity)]
     public Task AddProductToCustomCollection(CollectItem request) => throw new NotImplementedException();
 
     /// <inheritdoc />

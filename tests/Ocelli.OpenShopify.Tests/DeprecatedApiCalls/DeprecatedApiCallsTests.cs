@@ -13,7 +13,7 @@ public class DeprecatedApiCallsFixture : SharedFixture, IAsyncLifetime
 }
 
 [TestCaseOrderer("Ocelli.OpenShopify.Tests.Fixtures.PriorityOrderer", "Ocelli.OpenShopify.Tests")]
-//[Collection("DeprecatedApiCallsTests")]
+[Collection("DeprecatedApiCallsTests")]
 public class DeprecatedApiCallsTests : IClassFixture<DeprecatedApiCallsFixture>
 {
     private readonly AdditionalPropertiesHelper _additionalPropertiesHelper;
@@ -84,9 +84,8 @@ internal class DeprecatedApiCallMockClient : DeprecatedApiCallsClient, IMockTest
         Assert.Equal(obj.Text, string.Empty);
     }
 
-
     public async Task TestAllMethodsThatReturnDataAsync()
     {
-        await Assert.ThrowsAsync<ApiException>(async () => await ListDeprecatedAPICallsAsync(CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListDeprecatedAPICallsAsync());
     }
 }

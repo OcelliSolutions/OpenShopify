@@ -50,21 +50,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApplicationChargeItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApplicationChargeError'
     get:
       tags:
         - ApplicationCharge
@@ -167,21 +152,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApplicationCreditItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApplicationCreditError'
     get:
       tags:
         - ApplicationCredit
@@ -278,21 +248,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RecurringApplicationChargeItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RecurringApplicationChargeError'
     get:
       tags:
         - RecurringApplicationCharge
@@ -431,21 +386,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RecurringApplicationChargeItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RecurringApplicationChargeError'
   '/recurring_application_charges/{recurring_application_charge_id}/usage_charges.json':
     post:
       tags:
@@ -484,21 +424,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UsageChargeItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UsageChargeError'
     get:
       tags:
         - UsageCharge
@@ -632,28 +557,6 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    ApplicationChargeError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/ApplicationChargeErrorDetails'
-      additionalProperties: { }
-    ApplicationChargeErrorDetails:
-      type: object
-      properties:
-        name:
-          type: array
-          items:
-            type: string
-          nullable: true
-        price:
-          type: array
-          items:
-            type: string
-          nullable: true
-      additionalProperties: { }
     ApplicationChargeItem:
       required:
         - application_charge
@@ -714,23 +617,6 @@ components:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
           format: date-time
-          nullable: true
-      additionalProperties: { }
-    ApplicationCreditError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/ApplicationCreditErrorDetails'
-      additionalProperties: { }
-    ApplicationCreditErrorDetails:
-      type: object
-      properties:
-        base:
-          type: array
-          items:
-            type: string
           nullable: true
       additionalProperties: { }
     ApplicationCreditItem:
@@ -1049,28 +935,6 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    RecurringApplicationChargeError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/RecurringApplicationChargeErrorDetails'
-      additionalProperties: { }
-    RecurringApplicationChargeErrorDetails:
-      type: object
-      properties:
-        name:
-          type: array
-          items:
-            type: string
-          nullable: true
-        price:
-          type: array
-          items:
-            type: string
-          nullable: true
-      additionalProperties: { }
     RecurringApplicationChargeItem:
       required:
         - recurring_application_charge
@@ -1153,28 +1017,6 @@ components:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
           format: date-time
-          nullable: true
-      additionalProperties: { }
-    UsageChargeError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/UsageChargeErrorDetails'
-      additionalProperties: { }
-    UsageChargeErrorDetails:
-      type: object
-      properties:
-        description:
-          type: array
-          items:
-            type: string
-          nullable: true
-        price:
-          type: array
-          items:
-            type: string
           nullable: true
       additionalProperties: { }
     UsageChargeItem:

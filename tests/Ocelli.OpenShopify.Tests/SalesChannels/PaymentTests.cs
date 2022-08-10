@@ -57,7 +57,7 @@ public class PaymentTests : IClassFixture<PaymentFixture>
         {
             Payment = new CreatePayment()
         };
-        await Assert.ThrowsAsync<ApiException<PaymentError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.Payment.CreatePaymentAsync(Fixture.Token, body: request));
     }
 

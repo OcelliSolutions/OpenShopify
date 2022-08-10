@@ -78,7 +78,11 @@ public class CarrierServiceTests : IClassFixture<CarrierServiceFixture>
     #endregion
 
     #region Create
-    //8r8DH7bR
+
+    /// <summary>
+    /// If this tests fails, please note that only one carrier service can be created per application. The existing one may need to be deleted manually in Postman.
+    /// </summary>
+    /// <returns></returns>
     [SkippableFact]
     [TestPriority(10)]
     public async Task CreateCarrierServiceAsync_CanCreate()
@@ -98,7 +102,7 @@ public class CarrierServiceTests : IClassFixture<CarrierServiceFixture>
         {
             CarrierService = new CreateCarrierService()
         };
-        await Assert.ThrowsAsync<ApiException<CarrierServiceGeneralError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.CarrierService.CreateCarrierServiceAsync(request));
     }
 

@@ -28,7 +28,6 @@ public class ArticleController : ArticleControllerBase
     [HttpPost]
     [Route("blogs/{blog_id:long}/articles.json")]
     [ProducesResponseType(typeof(ArticleItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ArticleError), StatusCodes.Status406NotAcceptable)]
     public override Task CreateArticle([Required] CreateArticleRequest forBlogRequest, [Required] long blog_id) =>
         throw new NotImplementedException();
 

@@ -108,7 +108,7 @@ public class CustomerAddressTests : IClassFixture<CustomerAddressFixture>
         {
             CustomerAddress = new CreateCustomerAddress()
         };
-        await Assert.ThrowsAsync<ApiException<CustomerAddressError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.CustomerAddress.CreateAddressForCustomerAsync(Fixture.Customer.Id, request, CancellationToken.None));
     }
 

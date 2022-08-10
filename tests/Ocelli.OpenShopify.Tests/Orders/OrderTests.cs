@@ -122,7 +122,7 @@ public class OrderTests : IClassFixture<OrderFixture>
                 Name = Fixture.UniqueString()
             }
         };
-        await Assert.ThrowsAsync<ApiException<OrderError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.Order.CreateOrderAsync(request));
     }
 
@@ -166,7 +166,7 @@ public class OrderTests : IClassFixture<OrderFixture>
             _additionalPropertiesHelper.CheckAdditionalProperties(order, Fixture.MyShopifyUrl);
         }
         Assert.True(initialList.Result.Orders.Count > 0);
-        //Assert.Equal(initialList.Result.Orders.Count, response.Result.Orders.Count);
+        //Assert.Equal(initialList.Result.CreatedOrders.Count, response.Result.CreatedOrders.Count);
         Skip.If(!response.Result.Orders.Any(), "No results returned. Unable to test");
     }
 

@@ -96,7 +96,7 @@ public class CustomerTests : IClassFixture<CustomerFixture>
         {
             Customer = new CreateCustomer()
         };
-        await Assert.ThrowsAsync<ApiException<CustomerError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.Customer.CreateCustomerAsync(request, CancellationToken.None));
     }
 

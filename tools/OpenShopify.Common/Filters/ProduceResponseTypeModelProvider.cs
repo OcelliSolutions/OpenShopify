@@ -49,13 +49,10 @@ public class ProduceResponseTypeModelProvider : IApplicationModelProvider
 
     public void AddUniversalStatusCodes(ActionModel action, Type returnType)
     {
-        AddProducesResponseTypeAttribute(action, returnType, StatusCodes.Status401Unauthorized);
     }
 
     public void AddPostStatusCodes(ActionModel action, Type returnType)
     {
         AddProducesResponseTypeAttribute(action, null, StatusCodes.Status200OK);
-        AddProducesResponseTypeAttribute(action, returnType, StatusCodes.Status400BadRequest);
-        AddProducesResponseTypeAttribute(action, returnType, StatusCodes.Status404NotFound);
     }
 }

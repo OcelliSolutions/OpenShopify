@@ -50,7 +50,6 @@ public class FulfillmentController : FulfillmentControllerBase
     [HttpPost]
     [Route("fulfillments.json")]
     [ProducesResponseType(typeof(FulfillmentItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(FulfillmentGeneralError), StatusCodes.Status400BadRequest)]
     //TODO: wrong request type
     public override Task CreateFulfillmentForOneOrManyFulfillmentOrders(
         [Required] CreateFulfillmentForOneOrManyFulfillmentOrdersRequest request) =>
@@ -62,7 +61,6 @@ public class FulfillmentController : FulfillmentControllerBase
     [HttpPost]
     [Route("fulfillments/{fulfillment_id:long}/update_tracking.json")]
     [ProducesResponseType(typeof(FulfillmentItem), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(FulfillmentGeneralError), StatusCodes.Status400BadRequest)]
     public override Task UpdateTrackingInformationForFulfillment(
         [Required] UpdateTrackingInformationForFulfillmentRequest request, [Required] long fulfillment_id) =>
         throw new NotImplementedException();
@@ -72,7 +70,6 @@ public class FulfillmentController : FulfillmentControllerBase
     [HttpPost]
     [Route("fulfillments/{fulfillment_id:long}/cancel.invalid")]
     [ProducesResponseType(typeof(FulfillmentItem), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(FulfillmentGeneralError), StatusCodes.Status400BadRequest)]
     public override Task CancelFulfillment([Required] CancelFulfillmentRequest request,[Required] long fulfillment_id) =>
         throw new NotImplementedException();
 
@@ -80,6 +77,5 @@ public class FulfillmentController : FulfillmentControllerBase
     [HttpPost]
     [Route("fulfillments/{fulfillment_id:long}/cancel.json")]
     [ProducesResponseType(typeof(FulfillmentItem), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(FulfillmentGeneralError), StatusCodes.Status400BadRequest)]
     public Task CancelFulfillment([Required] long fulfillment_id) => throw new NotImplementedException();
 }

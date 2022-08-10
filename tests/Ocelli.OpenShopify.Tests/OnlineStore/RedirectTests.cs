@@ -97,7 +97,7 @@ public class RedirectTests : IClassFixture<RedirectFixture>
         {
             Redirect = new CreateRedirect()
         };
-        await Assert.ThrowsAsync<ApiException<RedirectError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.Redirect.CreateRedirectAsync(request, CancellationToken.None));
     }
 

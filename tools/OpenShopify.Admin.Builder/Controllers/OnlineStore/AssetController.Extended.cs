@@ -22,7 +22,6 @@ public class AssetController : AssetControllerBase
     [HttpPut]
     [Route("themes/{theme_id:long}/assets.json")]
     [ProducesResponseType(typeof(AssetItem), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status406NotAcceptable)]
     public override Task CreateOrUpdatesAssetForTheme([Required] CreateOrUpdatesAssetForThemeRequest request,
         [Required] long theme_id) => throw new NotImplementedException();
 

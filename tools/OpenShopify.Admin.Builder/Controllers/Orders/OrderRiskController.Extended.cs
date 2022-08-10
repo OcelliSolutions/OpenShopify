@@ -15,8 +15,6 @@ public class OrderRiskController : OrderRiskControllerBase
     [HttpPost]
     [Route("orders/{order_id:long}/risks.json")]
     [ProducesResponseType(typeof(OrderRiskItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(OrderRiskError), StatusCodes.Status422UnprocessableEntity)]
-    [ProducesResponseType(typeof(OrderRiskGeneralError), StatusCodes.Status400BadRequest)]
     public override Task CreateOrderRisk([Required] CreateOrderRiskRequest forOrderRequest, [Required] long order_id) =>
         throw new NotImplementedException();
 
@@ -37,7 +35,6 @@ public class OrderRiskController : OrderRiskControllerBase
     [HttpPut]
     [Route("orders/{order_id:long}/risks/{risk_id:long}.json")]
     [ProducesResponseType(typeof(OrderRiskItem), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(OrderRiskError), StatusCodes.Status422UnprocessableEntity)]
     public override Task UpdateOrderRisk([Required] UpdateOrderRiskRequest request, [Required] long order_id,
         [Required] long risk_id) => throw new NotImplementedException();
 

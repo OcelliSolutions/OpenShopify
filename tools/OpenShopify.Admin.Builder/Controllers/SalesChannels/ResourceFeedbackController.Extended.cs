@@ -15,7 +15,6 @@ public class ResourceFeedbackController : ResourceFeedbackControllerBase
     [HttpPost]
     [Route("resource_feedback.json")]
     [ProducesResponseType(typeof(ResourceFeedbackItem), StatusCodes.Status202Accepted)]
-    [ProducesResponseType(typeof(ResourceFeedbackError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateResourceFeedback([Required] CreateResourceFeedbackRequest request) =>
         throw new NotImplementedException();
 

@@ -99,7 +99,7 @@ public class ScriptTagTests : IClassFixture<ScriptTagFixture>
         {
             ScriptTag = new CreateScriptTag()
         };
-        await Assert.ThrowsAsync<ApiException<ScriptTagError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.ScriptTag.CreateScriptTagAsync(request, CancellationToken.None));
     }
 

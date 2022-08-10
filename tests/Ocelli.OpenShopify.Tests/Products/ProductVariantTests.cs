@@ -106,7 +106,7 @@ public class ProductVariantTests : IClassFixture<ProductVariantFixture>
         {
             Variant = new CreateProductVariant()
         };
-        await Assert.ThrowsAsync<ApiException<ProductVariantError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.ProductVariant.CreateProductVariantAsync(Fixture.Product.Id, request, CancellationToken.None));
     }
 

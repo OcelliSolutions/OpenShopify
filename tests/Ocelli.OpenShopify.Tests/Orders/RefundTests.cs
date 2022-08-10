@@ -95,7 +95,7 @@ public class RefundTests : IClassFixture<RefundFixture>
         {
             Refund = new CreateRefund()
         };
-        await Assert.ThrowsAsync<ApiException<RefundGeneralError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.Refund.CreateRefundAsync(Fixture.Order.Id, request));
     }
 

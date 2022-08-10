@@ -22,7 +22,6 @@ public class CustomerSavedSearchController : CustomerSavedSearchControllerBase
     [HttpPost]
     [Route("customer_saved_searches.json")]
     [ProducesResponseType(typeof(CustomerSavedSearchItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(CustomerSavedSearchError), StatusCodes.Status400BadRequest)]
     public override Task CreateCustomerSavedSearch([Required] CreateCustomerSavedSearchRequest request) =>
         throw new NotImplementedException();
 

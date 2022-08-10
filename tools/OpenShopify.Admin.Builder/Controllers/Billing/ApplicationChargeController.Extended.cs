@@ -15,7 +15,6 @@ public class ApplicationChargeController : ApplicationChargeControllerBase
     [HttpPost]
     [Route("application_charges.json")]
     [ProducesResponseType(typeof(ApplicationChargeItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ApplicationChargeError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateApplicationCharge([Required] CreateApplicationChargeRequest request) =>
         throw new NotImplementedException();
 

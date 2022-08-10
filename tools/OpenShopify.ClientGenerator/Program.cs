@@ -15,7 +15,9 @@ foreach (var shopifyFile in shopifyFiles)
     className = className.Replace("open-shopify-", string.Empty).Replace(".yaml", string.Empty);
     className = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(className).Replace("-", string.Empty);
     var document = OpenApiYamlDocument.FromFileAsync(shopifyFile).Result;
-    
+
+    // Since multiple OpenApi documents are being used to create clients that all share the same namespace,
+    // there can be collisions when the object from multiple specs are added. This allows specific ones to be ignored on build.
     var excludeNamesForClient = new List<string> { "ErrorResponse", "ShopifyResponse", "CountItem" };
     if (className != "Metafield")
         excludeNamesForClient.AddRange(new List<string>
@@ -34,16 +36,17 @@ foreach (var shopifyFile in shopifyFiles)
                 "LineItem", "Fulfillment", "DiscountCode", "DiscountCodeErrors", "DiscountApplication", "DiscountAllocation", "PaymentDetails",
                 "Price", "PriceSet", "Refund", "RefundDuty", "RefundDutyType", "RefundLineItem", "RefundLineItem",
                 "RefundOrderAdjustment", "Shipping", "ShippingLine", "TaxLine", "Transaction", "CurrencyExchangeAdjustment",
-                "Order", "OrderList", "CancelReason", "FinancialStatus", "FulfillmentStatus", "ProcessingMethod",
+                "Order", "OrderList", "CancelReason", "FinancialStatus", "OrderFulfillmentStatus", "ProcessingMethod",
                 "TransactionErrorCode", "TransactionKind", "ExtendedAuthorizationAttributes", "PaymentsRefundAttributeStatus",
-                "PaymentsRefundAttributes", "RestockType"
+                "PaymentsRefundAttributes", "RestockType", "Receipt", "ShipmentStatus", "FulfillmentStatus"
             });
             break;
         case "Orders":
             excludeNamesForClient.AddRange(new List<string>
             {
                 "Address", "ClientDetails", "Customer", "CustomerAddress","EmailMarketingConsent", "SmsMarketingConsent", 
-                "CustomerMetafield", "DiscountCode", "DiscountCodeErrors","Price", "Fulfillment", "NoteAttribute"
+                "CustomerMetafield", "DiscountCode", "DiscountCodeErrors","Price", "Fulfillment", "NoteAttribute", "Receipt", 
+                "ShipmentStatus", "FulfillmentStatus"
             });
             break;
         case "SalesChannels":

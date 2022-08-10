@@ -111,7 +111,7 @@ public class ReportTests : IClassFixture<ReportFixture>
         {
             Report = new CreateReport()
         };
-        await Assert.ThrowsAsync<ApiException<ReportError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.Report.CreateReportAsync(request, CancellationToken.None));
     }
 

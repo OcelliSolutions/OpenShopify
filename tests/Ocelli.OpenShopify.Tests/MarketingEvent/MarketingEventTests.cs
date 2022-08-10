@@ -100,7 +100,7 @@ public class MarketingEventTests : IClassFixture<MarketingEventFixture>
         {
             MarketingEvent = new CreateMarketingEvent()
         };
-        await Assert.ThrowsAsync<ApiException<MarketingEventError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.MarketingEvent.CreateMarketingEventAsync(request, CancellationToken.None));
     }
 

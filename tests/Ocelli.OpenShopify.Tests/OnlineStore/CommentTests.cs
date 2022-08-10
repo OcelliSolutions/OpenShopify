@@ -126,7 +126,7 @@ public class CommentTests : IClassFixture<CommentFixture>
         {
             Comment = new CreateComment()
         };
-        await Assert.ThrowsAsync<ApiException<CommentError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.Comment.CreateCommentAsync(request, CancellationToken.None));
     }
 

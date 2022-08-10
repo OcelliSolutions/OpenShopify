@@ -39,7 +39,6 @@ public class MetafieldController : MetafieldControllerBase
     [HttpPost]
     [Route("metafields.json")]
     [ProducesResponseType(typeof(MetafieldItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(MetafieldError), StatusCodes.Status400BadRequest)]
     public override Task CreateMetafield(CreateMetafieldRequest request, [Required] long order_id) => throw new NotImplementedException();
 
     /// <inheritdoc />

@@ -65,21 +65,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CheckoutItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CheckoutError'
   '/checkouts/{token}/complete.json':
     post:
       tags:
@@ -344,21 +329,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CollectionListingItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CollectionListingError'
     delete:
       tags:
         - CollectionListing
@@ -439,21 +409,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MobilePlatformApplicationItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MobilePlatformApplicationError'
   '/mobile_platform_applications/{mobile_platform_application_id}.json':
     get:
       tags:
@@ -581,21 +536,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaymentItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaymentError'
     get:
       tags:
         - Payment
@@ -867,21 +807,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductListingItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProductListingError'
     delete:
       tags:
         - ProductListing
@@ -944,21 +869,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProductResourceFeedbackItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProductResourceFeedbackError'
     get:
       tags:
         - ProductResourceFeedback
@@ -1022,21 +932,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResourceFeedbackItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResourceFeedbackError'
     get:
       tags:
         - ResourceFeedback
@@ -1365,11 +1260,7 @@ components:
           description: Undocumented
           nullable: true
         note_attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/NoteAttribute'
-          description: Undocumented
-          nullable: true
+          $ref: '#/components/schemas/NoteAttribute'
         payments:
           type: array
           items:
@@ -1416,23 +1307,6 @@ components:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
           format: date-time
-          nullable: true
-      additionalProperties: { }
-    CheckoutError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/CheckoutErrorDetails'
-      additionalProperties: { }
-    CheckoutErrorDetails:
-      type: object
-      properties:
-        base:
-          type: array
-          items:
-            type: string
           nullable: true
       additionalProperties: { }
     CheckoutGiftCard:
@@ -1663,23 +1537,6 @@ components:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
           format: date-time
-          nullable: true
-      additionalProperties: { }
-    CollectionListingError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/CollectionListingErrorDetails'
-      additionalProperties: { }
-    CollectionListingErrorDetails:
-      type: object
-      properties:
-        base:
-          type: array
-          items:
-            type: string
           nullable: true
       additionalProperties: { }
     CollectionListingItem:
@@ -1928,11 +1785,7 @@ components:
           description: Undocumented
           nullable: true
         note_attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/NoteAttribute'
-          description: Undocumented
-          nullable: true
+          $ref: '#/components/schemas/NoteAttribute'
         payments:
           type: array
           items:
@@ -2725,23 +2578,6 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    MobilePlatformApplicationError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/MobilePlatformApplicationErrorDetails'
-      additionalProperties: { }
-    MobilePlatformApplicationErrorDetails:
-      type: object
-      properties:
-        base:
-          type: array
-          items:
-            type: string
-          nullable: true
-      additionalProperties: { }
     MobilePlatformApplicationItem:
       required:
         - mobile_platform_application
@@ -2822,33 +2658,6 @@ components:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
           format: date-time
-          nullable: true
-      additionalProperties: { }
-    PaymentError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/PaymentErrorDetails'
-      additionalProperties: { }
-    PaymentErrorDetails:
-      type: object
-      properties:
-        amount:
-          type: array
-          items:
-            type: string
-          nullable: true
-        payment_gateway:
-          type: array
-          items:
-            type: string
-          nullable: true
-        checkout:
-          type: array
-          items:
-            type: string
           nullable: true
       additionalProperties: { }
     PaymentItem:
@@ -3146,23 +2955,6 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    ProductListingError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/ProductListingErrorDetails'
-      additionalProperties: { }
-    ProductListingErrorDetails:
-      type: object
-      properties:
-        base:
-          type: array
-          items:
-            type: string
-          nullable: true
-      additionalProperties: { }
     ProductListingItem:
       required:
         - product_listing
@@ -3254,23 +3046,6 @@ components:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
           format: date-time
-          nullable: true
-      additionalProperties: { }
-    ProductResourceFeedbackError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/ProductResourceFeedbackErrorDetails'
-      additionalProperties: { }
-    ProductResourceFeedbackErrorDetails:
-      type: object
-      properties:
-        base:
-          type: array
-          items:
-            type: string
           nullable: true
       additionalProperties: { }
     ProductResourceFeedbackItem:
@@ -3472,23 +3247,6 @@ components:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
           format: date-time
-          nullable: true
-      additionalProperties: { }
-    ResourceFeedbackError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/ResourceFeedbackErrorDetails'
-      additionalProperties: { }
-    ResourceFeedbackErrorDetails:
-      type: object
-      properties:
-        messages:
-          type: array
-          items:
-            type: string
           nullable: true
       additionalProperties: { }
     ResourceFeedbackItem:
@@ -3897,11 +3655,7 @@ components:
           description: Undocumented
           nullable: true
         note_attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/NoteAttribute'
-          description: Undocumented
-          nullable: true
+          $ref: '#/components/schemas/NoteAttribute'
         payments:
           type: array
           items:

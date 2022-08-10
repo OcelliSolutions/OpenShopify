@@ -84,7 +84,7 @@ public class ResourceFeedbackTests : IClassFixture<ResourceFeedbackFixture>
         {
             ResourceFeedback = new CreateResourceFeedback()
         };
-        await Assert.ThrowsAsync<ApiException<ResourceFeedbackError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.ResourceFeedback.CreateResourceFeedbackAsync(request));
     }
 

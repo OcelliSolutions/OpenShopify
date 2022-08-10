@@ -26,7 +26,6 @@ public class CommentController : CommentControllerBase
     [HttpPost]
     [Route("comments.json")]
     [ProducesResponseType(typeof(CommentItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(CommentError), StatusCodes.Status400BadRequest)]
     public override Task CreateComment([Required] CreateCommentRequest request) => throw new NotImplementedException();
 
     /// <inheritdoc />

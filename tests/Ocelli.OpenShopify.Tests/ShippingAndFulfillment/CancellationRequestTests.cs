@@ -7,7 +7,7 @@ public class CancellationRequestFixture : SharedFixture, IAsyncLifetime
     public Product Product = new();
     public ProductVariant ProductVariant = new();
     public FulfillmentOrder FulfillmentOrder = new();
-    public IEnumerable<Order> Orders = new List<Order>();
+    public IEnumerable<Order> CreatedOrders = new List<Order>();
 
     public CancellationRequestFixture()
     {
@@ -15,22 +15,19 @@ public class CancellationRequestFixture : SharedFixture, IAsyncLifetime
     }
     public async Task InitializeAsync()
     {
-        FulfillmentService = await CreateFulfillmentService(GetType().Name);
-        Product = await CreateProduct(FulfillmentService, GetType().Name);
+        FulfillmentService = await CreateFulfillmentService();
+        Product = await CreateProduct(FulfillmentService);
         ProductVariant = Product.Variants!.First(v => v.FulfillmentService != null);
     }
 
     async Task IAsyncLifetime.DisposeAsync()
     {
-        if (Orders.Any())
+        foreach (var order in CreatedOrders)
         {
-            foreach (var order in Orders)
-            {
-                var orderService = new OrdersService(MyShopifyUrl, AccessToken);
-                await orderService.Order.DeleteOrderAsync(order.Id);
-            }
+            var orderService = new OrdersService(MyShopifyUrl, AccessToken);
+            await orderService.Order.DeleteOrderAsync(order.Id);
         }
-
+     
         if (Product.Id > 0)
         {
             var productService = new ProductsService(MyShopifyUrl, AccessToken);
@@ -70,10 +67,11 @@ public class CancellationRequestTests : IClassFixture<CancellationRequestFixture
     [SkippableFact, TestPriority(10)]
     public async Task SendCancellationRequestAsync_CanCreate()
     {
-        var order = await Fixture.CreateOrder(Fixture.ProductVariant, GetType().Name);
-        var fulfillmentOrders = await Fixture.GetFulfillmentOrders(order);
-        var fulfillmentOrder = fulfillmentOrders.First();
-        //Fixture.Service.FulfillmentRequest.AcceptFulfillmentRequestAsync(fulfillmentOrder.Id,new AcceptFulfillmentRequestRequest() { });
+        var order = await Fixture.CreateOrder(Fixture.ProductVariant);
+        var sendFulfillmentResponse = await Fixture.SendFulfillmentRequest(order);
+
+        var fulfillmentOrderWithOrigin = await Fixture.AcceptFulfillmentRequest(sendFulfillmentResponse.SubmittedFulfillmentOrder);
+
         var request = new SendCancellationRequestRequest()
         {
             CancellationRequest = new MessageDetail()
@@ -82,7 +80,7 @@ public class CancellationRequestTests : IClassFixture<CancellationRequestFixture
             }
         };
         var response =
-            await Fixture.Service.CancellationRequest.SendCancellationRequestAsync(fulfillmentOrder.Id, request);
+            await Fixture.Service.CancellationRequest.SendCancellationRequestAsync(sendFulfillmentResponse.SubmittedFulfillmentOrder.Id, request);
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         _additionalPropertiesHelper.CheckAdditionalProperties(response.Result, Fixture.MyShopifyUrl);
 
@@ -98,7 +96,7 @@ public class CancellationRequestTests : IClassFixture<CancellationRequestFixture
         {
             CancellationRequest = new CreateCancellationRequest()
         };
-        await Assert.ThrowsAsync<ApiException<CancellationRequestError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.CancellationRequest.CreateCancellationRequestAsync(request));
     }
 
@@ -113,7 +111,7 @@ public class CancellationRequestTests : IClassFixture<CancellationRequestFixture
                 Topic = CancellationRequestTopic.AppUninstalled
             }
         };
-        await Assert.ThrowsAsync<ApiException<CancellationRequestError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.CancellationRequest.CreateCancellationRequestAsync(request));
     }
 

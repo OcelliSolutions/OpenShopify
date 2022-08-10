@@ -49,6 +49,7 @@ public class MobilePlatformApplicationTests : IClassFixture<MobilePlatformApplic
     [TestPriority(30)]
     public async Task UpdateMobilePlatformApplicationAsync_CanUpdate()
     {
+        Skip.If(!Fixture.CreatedMobilePlatformApplications.Any(), "Must be run with create test");
         var originalMobilePlatformApplication = Fixture.CreatedMobilePlatformApplications.First();
         var request = new UpdateMobilePlatformApplicationRequest
         {
@@ -93,7 +94,7 @@ public class MobilePlatformApplicationTests : IClassFixture<MobilePlatformApplic
         {
             MobilePlatformApplication = new CreateMobilePlatformApplication()
         };
-        await Assert.ThrowsAsync<ApiException<MobilePlatformApplicationError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.MobilePlatformApplication.CreateMobilePlatformApplicationAsync(request, CancellationToken.None));
     }
 

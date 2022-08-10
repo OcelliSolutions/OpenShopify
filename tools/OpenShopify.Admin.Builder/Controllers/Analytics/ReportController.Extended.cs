@@ -24,7 +24,6 @@ public class ReportController : ReportControllerBase
     [HttpPost]
     [Route("reports.json")]
     [ProducesResponseType(typeof(ReportItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ReportError), StatusCodes.Status400BadRequest)]
     public override Task CreateReport([Required] CreateReportRequest request) => throw new NotImplementedException();
 
     /// <inheritdoc />
@@ -38,7 +37,6 @@ public class ReportController : ReportControllerBase
     [HttpPut]
     [Route("reports/{report_id:long}.json")]
     [ProducesResponseType(typeof(ReportItem), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ReportError), StatusCodes.Status422UnprocessableEntity)]
     public override Task UpdateReport([Required] UpdateReportRequest request, [Required] long report_id) =>
         throw new NotImplementedException();
 

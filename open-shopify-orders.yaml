@@ -123,36 +123,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DraftOrderItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DraftOrderError'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DraftOrderGeneralError'
     get:
       tags:
         - DraftOrder
@@ -265,36 +235,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DraftOrderItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DraftOrderError'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DraftOrderGeneralError'
     get:
       tags:
         - DraftOrder
@@ -620,36 +560,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OrderError'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OrderGeneralError'
   '/orders/{order_id}.json':
     get:
       tags:
@@ -721,21 +631,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OrderError'
     delete:
       tags:
         - Order
@@ -956,36 +851,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderRiskItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OrderRiskError'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OrderRiskGeneralError'
     get:
       tags:
         - OrderRisk
@@ -1096,21 +961,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderRiskItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OrderRiskError'
     delete:
       tags:
         - OrderRisk
@@ -1236,36 +1086,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RefundItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RefundError'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RefundGeneralError'
   '/orders/{order_id}/refunds/{refund_id}.json':
     get:
       tags:
@@ -1349,21 +1169,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RefundItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RefundError'
   '/orders/{order_id}/transactions.json':
     get:
       tags:
@@ -1450,36 +1255,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TransactionItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TransactionError'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TransactionGeneralError'
   '/orders/{order_id}/transactions/count.json':
     get:
       tags:
@@ -1930,11 +1705,7 @@ components:
           description: Undocumented
           nullable: true
         note_attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/NoteAttribute'
-          description: Undocumented
-          nullable: true
+          $ref: '#/components/schemas/NoteAttribute'
         payments:
           type: array
           items:
@@ -2422,7 +2193,7 @@ components:
           description: 'An array of fulfillments associated with the order. For more information, see the [Fulfillment API](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment).'
           nullable: true
         fulfillment_status:
-          $ref: '#/components/schemas/FulfillmentStatus'
+          $ref: '#/components/schemas/OrderFulfillmentStatus'
         gateway:
           type: string
           description: The payment gateway used.
@@ -3519,38 +3290,6 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    DraftOrderError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/DraftOrderErrorDetails'
-      additionalProperties: { }
-    DraftOrderErrorDetails:
-      type: object
-      properties:
-        base:
-          type: array
-          items:
-            type: string
-          nullable: true
-      additionalProperties: { }
-    DraftOrderGeneralError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/DraftOrderGeneralErrorDetails'
-      additionalProperties: { }
-    DraftOrderGeneralErrorDetails:
-      type: object
-      properties:
-        base:
-          type: string
-          nullable: true
-      additionalProperties: { }
     DraftOrderInvoice:
       type: object
       properties:
@@ -3714,25 +3453,17 @@ components:
           format: int64
           nullable: true
         origin_address:
-          type: string
-          description: "The address from which the fulfillment occurred:\r\n\r\n*   **address1**: The street address of the fulfillment location. \r\n*   **address2**: The second line of the address. Typically the number of the apartment, suite, or unit. \r\n*   **city**: The city of the fulfillment location. \r\n*   **country_code**: The country of the fulfillment location. \r\n*   **province_code**: The province of the fulfillment location. \r\n*   **zip**: The zip code of the fulfillment location."
-          nullable: true
+          $ref: '#/components/schemas/Address'
         receipt:
-          type: string
-          description: "A text field that provides information about the receipt:\r\n\r\n*   **testcase**: Whether the fulfillment was a testcase. \r\n*   **authorization**: The authorization code."
-          nullable: true
+          $ref: '#/components/schemas/Receipt'
         service:
           type: string
           description: The fulfillment service associated with the fulfillment.
           nullable: true
         shipment_status:
-          type: string
-          description: "The current shipment status of the fulfillment. Valid values:\r\n\r\n*   **label_printed**: A label for the shipment was purchased and printed. \r\n*   **label_purchased**: A label for the shipment was purchased, but not printed. \r\n*   **attempted_delivery**: Delivery of the shipment was attempted, but unable to be completed. \r\n*   **ready_for_pickup**: The shipment is ready for pickup at a shipping depot. \r\n*   **confirmed**: The carrier is aware of the shipment, but hasn't received it yet. \r\n*   **in_transit**: The shipment is being transported between shipping facilities on the way to its destination. \r\n*   **out_for_delivery**: The shipment is being delivered to its final destination. \r\n*   **delivered**: The shipment was succesfully delivered. \r\n*   **failure**: Something went wrong when pulling tracking information for the shipment, such as the tracking number was invalid or the shipment was canceled."
-          nullable: true
+          $ref: '#/components/schemas/ShipmentStatus'
         status:
-          type: string
-          description: "The status of the fulfillment. Valid values:\r\n\r\n*   **pending**: Shopify has created the fulfillment and is waiting for the third-party fulfillment service to transition it to 'open' or 'success'. \r\n*   **open**: The fulfillment has been acknowledged by the service and is in processing. \r\n*   **success**: The fulfillment was successful. \r\n*   **cancelled**: The fulfillment was cancelled. \r\n*   **error**: There was an error with the fulfillment request. \r\n*   **failure**: The fulfillment request failed."
-          nullable: true
+          $ref: '#/components/schemas/FulfillmentStatus'
         tracking_company:
           type: string
           description: "The name of the tracking company. The following tracking companies display for shops located in any country: \r\n\r\n*   **4PX** \r\n*   **Amazon Logistics UK** \r\n*   **Amazon Logistics US** \r\n*   **Anjun Logistics** \r\n*   **APC** \r\n*   **Australia Post** \r\n*   **Bluedart** \r\n*   **Canada Post** \r\n*   **Canpar** \r\n*   **China Post** \r\n*   **Chukou1** \r\n*   **Correios** \r\n*   **Couriers Please** \r\n*   **Delhivery** \r\n*   **DHL eCommerce** \r\n*   **DHL eCommerce Asia** \r\n*   **DHL Express** \r\n*   **DPD** \r\n*   **DPD Local** \r\n*   **DPD UK** \r\n*   **Eagle** \r\n*   **FedEx** \r\n*   **FSC** \r\n*   **Asendia USA** \r\n*   **GLS** \r\n*   **GLS (US)** \r\n*   **Japan Post** \r\n*   **La Poste** \r\n*   **New Zealand Post** \r\n*   **Newgistics** \r\n*   **PostNL** \r\n*   **PostNord** \r\n*   **Purolator** \r\n*   **Royal Mail** \r\n*   **Sagawa** \r\n*   **Sendle** \r\n*   **SF Express** \r\n*   **SFC Fulfilllment** \r\n*   **Singapore Post** \r\n*   **StarTrack** \r\n*   **TNT** \r\n*   **Toll IPEC** \r\n*   **UPS** \r\n*   **USPS** \r\n*   **Whistl** \r\n*   **Yamato** \r\n*   **YunExpress**  \r\n\r\nThe following tracking companies are displayed for shops located in specific countries:\r\n\r\n*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL \r\n*   **Ireland**: An Post, Fastway \r\n*   **Australia**: Aramex Australia, Australia Post, Sendle \r\n*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 \r\n*   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress  <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nWhen creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.\r\n </div>"
@@ -3753,8 +3484,13 @@ components:
           type: string
           description: The name of the inventory management service.
           nullable: true
-        destination:
-          $ref: '#/components/schemas/Address'
+        tracking_number:
+          type: string
+          nullable: true
+        tracking_url:
+          type: string
+          description: The URLs of tracking pages for the fulfillment.
+          nullable: true
         id:
           type: integer
           format: int64
@@ -3774,9 +3510,12 @@ components:
       additionalProperties: { }
     FulfillmentStatus:
       enum:
-        - fulfilled
-        - partial
-        - restocked
+        - pending
+        - open
+        - success
+        - cancelled
+        - error
+        - failure
       type: string
       additionalProperties: { }
     FulfillmentStatusRequest:
@@ -4193,7 +3932,7 @@ components:
           description: 'An array of fulfillments associated with the order. For more information, see the [Fulfillment API](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment).'
           nullable: true
         fulfillment_status:
-          $ref: '#/components/schemas/FulfillmentStatus'
+          $ref: '#/components/schemas/OrderFulfillmentStatus'
         gateway:
           type: string
           description: The payment gateway used.
@@ -4425,37 +4164,12 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    OrderError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/OrderErrorDetails'
-      additionalProperties: { }
-    OrderErrorDetails:
-      type: object
-      properties:
-        order:
-          type: array
-          items:
-            type: string
-          nullable: true
-      additionalProperties: { }
-    OrderGeneralError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/OrderGeneralErrorDetails'
-      additionalProperties: { }
-    OrderGeneralErrorDetails:
-      type: object
-      properties:
-        order:
-          type: string
-          nullable: true
+    OrderFulfillmentStatus:
+      enum:
+        - fulfilled
+        - partial
+        - restocked
+      type: string
       additionalProperties: { }
     OrderItem:
       required:
@@ -4533,38 +4247,6 @@ components:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when an asset was last updated.'
           format: date-time
-          nullable: true
-      additionalProperties: { }
-    OrderRiskError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/OrderRiskErrorDetails'
-      additionalProperties: { }
-    OrderRiskErrorDetails:
-      type: object
-      properties:
-        base:
-          type: array
-          items:
-            type: string
-          nullable: true
-      additionalProperties: { }
-    OrderRiskGeneralError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/OrderRiskGeneralErrorDetails'
-      additionalProperties: { }
-    OrderRiskGeneralErrorDetails:
-      type: object
-      properties:
-        base:
-          type: string
           nullable: true
       additionalProperties: { }
     OrderRiskItem:
@@ -4660,6 +4342,16 @@ components:
         - express
         - free
       type: string
+      additionalProperties: { }
+    Receipt:
+      type: object
+      properties:
+        testcase:
+          type: boolean
+          nullable: true
+        authorization:
+          type: string
+          nullable: true
       additionalProperties: { }
     Refund:
       required:
@@ -4767,38 +4459,6 @@ components:
           format: int64
           nullable: true
         refund_type:
-          type: string
-          nullable: true
-      additionalProperties: { }
-    RefundError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/RefundErrorDetails'
-      additionalProperties: { }
-    RefundErrorDetails:
-      type: object
-      properties:
-        base:
-          type: array
-          items:
-            type: string
-          nullable: true
-      additionalProperties: { }
-    RefundGeneralError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/RefundGeneralErrorDetails'
-      additionalProperties: { }
-    RefundGeneralErrorDetails:
-      type: object
-      properties:
-        base:
           type: string
           nullable: true
       additionalProperties: { }
@@ -4934,6 +4594,19 @@ components:
         draft_order_invoice:
           $ref: '#/components/schemas/DraftOrderInvoice'
       additionalProperties: false
+    ShipmentStatus:
+      enum:
+        - label_printed
+        - label_purchased
+        - attempted_delivery
+        - ready_for_pickup
+        - confirmed
+        - in_transit
+        - out_for_delivery
+        - delivered
+        - failure
+      type: string
+      additionalProperties: { }
     Shipping:
       type: object
       properties:
@@ -5219,14 +4892,6 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    TransactionError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/TransactionErrorDetails'
-      additionalProperties: { }
     TransactionErrorCode:
       enum:
         - incorrect_number
@@ -5242,30 +4907,6 @@ components:
         - call_issuer
         - pick_up_card
       type: string
-      additionalProperties: { }
-    TransactionErrorDetails:
-      type: object
-      properties:
-        base:
-          type: array
-          items:
-            type: string
-          nullable: true
-      additionalProperties: { }
-    TransactionGeneralError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/TransactionGeneralErrorDetails'
-      additionalProperties: { }
-    TransactionGeneralErrorDetails:
-      type: object
-      properties:
-        base:
-          type: string
-          nullable: true
       additionalProperties: { }
     TransactionItem:
       required:
@@ -5539,7 +5180,7 @@ components:
           description: 'An array of fulfillments associated with the order. For more information, see the [Fulfillment API](/docs/admin-api/rest/reference/shipping-and-fulfillment/fulfillment).'
           nullable: true
         fulfillment_status:
-          $ref: '#/components/schemas/FulfillmentStatus'
+          $ref: '#/components/schemas/OrderFulfillmentStatus'
         gateway:
           type: string
           description: The payment gateway used.

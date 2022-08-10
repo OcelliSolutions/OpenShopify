@@ -93,7 +93,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FulfillmentOrderItem'
+                $ref: '#/components/schemas/FulfillmentOrderWithOriginItem'
   '/fulfillment_orders/{fulfillment_order_id}/cancellation_request/accept.json':
     post:
       tags:
@@ -131,7 +131,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FulfillmentOrderItem'
+                $ref: '#/components/schemas/FulfillmentOrderWithOriginItem'
   '/fulfillment_orders/{fulfillment_order_id}/cancellation_request/reject.json':
     post:
       tags:
@@ -169,7 +169,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FulfillmentOrderItem'
+                $ref: '#/components/schemas/FulfillmentOrderWithOriginItem'
   /carrier_services.json:
     post:
       tags:
@@ -201,36 +201,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CarrierServiceItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CarrierServiceError'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CarrierServiceGeneralError'
     get:
       tags:
         - CarrierService
@@ -294,21 +264,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CarrierServiceItem'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CarrierServiceGeneralError'
     get:
       tags:
         - CarrierService
@@ -589,21 +544,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentItem'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentGeneralError'
   '/fulfillments/{fulfillment_id}/update_tracking.json':
     post:
       tags:
@@ -641,21 +581,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentItem'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentGeneralError'
   '/fulfillments/{fulfillment_id}/cancel.json':
     post:
       tags:
@@ -685,21 +610,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentItem'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentGeneralError'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/events.json':
     get:
       tags:
@@ -782,36 +692,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentEventItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentEventError'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentEventGeneralError'
   '/orders/{order_id}/fulfillments/{fulfillment_id}/events/{event_id}.json':
     get:
       tags:
@@ -964,15 +844,6 @@ paths:
           schema:
             type: integer
             format: int64
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CancelFulfillmentOrderRequest'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/CancelFulfillmentOrderRequest'
-        required: true
       responses:
         '200':
           description: Success
@@ -989,21 +860,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentOrderItem'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentOrderGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/close.json':
     post:
       tags:
@@ -1042,21 +898,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentOrderItem'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentOrderGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/move.json':
     post:
       tags:
@@ -1095,21 +936,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentOrderItem'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentOrderGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/open.json':
     post:
       tags:
@@ -1123,15 +949,6 @@ paths:
           schema:
             type: integer
             format: int64
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MarkFulfillmentOrderAsOpenRequest'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/MarkFulfillmentOrderAsOpenRequest'
-        required: true
       responses:
         '200':
           description: Success
@@ -1148,21 +965,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentOrderItem'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentOrderGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/reschedule.json':
     post:
       tags:
@@ -1201,21 +1003,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentOrderItem'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentOrderGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/hold.json':
     post:
       tags:
@@ -1254,21 +1041,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentOrderItem'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentOrderGeneralError'
   /fulfillment_orders/set_fulfillment_orders_deadline.json:
     post:
       tags:
@@ -1308,15 +1080,6 @@ paths:
           schema:
             type: integer
             format: int64
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReleaseFulfillmentHoldOnFulfillmentOrderRequest'
-          application/*+json:
-            schema:
-              $ref: '#/components/schemas/ReleaseFulfillmentHoldOnFulfillmentOrderRequest'
-        required: true
       responses:
         '200':
           description: Success
@@ -1333,21 +1096,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentOrderItem'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentOrderGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/fulfillment_request.json':
     post:
       tags:
@@ -1386,21 +1134,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SendFulfillmentRequestItem'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentRequestGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/accept.json':
     post:
       tags:
@@ -1439,21 +1172,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AcceptFulfillmentRequestItem'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentRequestGeneralError'
   '/fulfillment_orders/{fulfillment_order_id}/fulfillment_request/reject.json':
     post:
       tags:
@@ -1492,21 +1210,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RejectFulfillmentRequestItem'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentRequestGeneralError'
   /fulfillment_services.json:
     get:
       tags:
@@ -1568,36 +1271,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentServiceItem'
-        '422':
-          description: Client Error
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentServiceError'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentServiceGeneralError'
   '/fulfillment_services/{fulfillment_service_id}.json':
     get:
       tags:
@@ -1664,21 +1337,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FulfillmentServiceItem'
-        '400':
-          description: Bad Request
-          headers:
-            X-Shopify-Shop-Api-Call-Limit:
-              description: How many requests you’ve made for a particular store
-              schema:
-                type: string
-            Retry-After:
-              description: Contains the number of seconds to wait until you can make a request again.
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FulfillmentServiceGeneralError'
     delete:
       tags:
         - FulfillmentService
@@ -1949,43 +1607,11 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    CarrierServiceError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/CarrierServiceErrorDetails'
-      additionalProperties: { }
-    CarrierServiceErrorDetails:
-      type: object
-      properties:
-        base:
-          type: array
-          items:
-            type: string
-          nullable: true
-      additionalProperties: { }
     CarrierServiceFormat:
       enum:
         - json
         - xml
       type: string
-      additionalProperties: { }
-    CarrierServiceGeneralError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/CarrierServiceGeneralErrorDetails'
-      additionalProperties: { }
-    CarrierServiceGeneralErrorDetails:
-      type: object
-      properties:
-        base:
-          type: string
-          nullable: true
       additionalProperties: { }
     CarrierServiceItem:
       required:
@@ -2126,6 +1752,9 @@ components:
     CreateFulfillmentForOneOrManyFulfillmentOrders:
       type: object
       properties:
+        message:
+          type: string
+          nullable: true
         line_items_by_fulfillment_order:
           type: array
           items:
@@ -2134,31 +1763,8 @@ components:
           type: boolean
           description: 'Whether the customer should be notified. If set to `true`, then an email will be sent when the fulfillment is created or updated. For orders that were initially created using the API, the default value is `false`. For all other orders, the default value is `true`.'
           nullable: true
-        fulfillment_order_id:
-          type: integer
-          description: The unique numeric identifier for the fulfillment order.
-          format: int64
-          nullable: true
-        service:
-          type: string
-          description: The fulfillment service associated with the fulfillment.
-          nullable: true
-        tracking_company:
-          type: string
-          description: "The name of the tracking company. The following tracking companies display for shops located in any country: \r\n\r\n*   **4PX** \r\n*   **Amazon Logistics UK** \r\n*   **Amazon Logistics US** \r\n*   **Anjun Logistics** \r\n*   **APC** \r\n*   **Australia Post** \r\n*   **Bluedart** \r\n*   **Canada Post** \r\n*   **Canpar** \r\n*   **China Post** \r\n*   **Chukou1** \r\n*   **Correios** \r\n*   **Couriers Please** \r\n*   **Delhivery** \r\n*   **DHL eCommerce** \r\n*   **DHL eCommerce Asia** \r\n*   **DHL Express** \r\n*   **DPD** \r\n*   **DPD Local** \r\n*   **DPD UK** \r\n*   **Eagle** \r\n*   **FedEx** \r\n*   **FSC** \r\n*   **Asendia USA** \r\n*   **GLS** \r\n*   **GLS (US)** \r\n*   **Japan Post** \r\n*   **La Poste** \r\n*   **New Zealand Post** \r\n*   **Newgistics** \r\n*   **PostNL** \r\n*   **PostNord** \r\n*   **Purolator** \r\n*   **Royal Mail** \r\n*   **Sagawa** \r\n*   **Sendle** \r\n*   **SF Express** \r\n*   **SFC Fulfilllment** \r\n*   **Singapore Post** \r\n*   **StarTrack** \r\n*   **TNT** \r\n*   **Toll IPEC** \r\n*   **UPS** \r\n*   **USPS** \r\n*   **Whistl** \r\n*   **Yamato** \r\n*   **YunExpress**  \r\n\r\nThe following tracking companies are displayed for shops located in specific countries:\r\n\r\n*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL \r\n*   **Ireland**: An Post, Fastway \r\n*   **Australia**: Aramex Australia, Australia Post, Sendle \r\n*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 \r\n*   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress  <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nWhen creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.\r\n </div>"
-          nullable: true
-        tracking_numbers:
-          type: array
-          items:
-            type: string
-          description: "A list of tracking numbers, provided by the shipping company. <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nIt is highly recommended that you send the tracking company and the tracking URL as well. If neither one of these is sent, then the tracking company will be determined automatically. This can result in an invalid tracking URL.\r\n\r\nThe tracking URL is displayed in the shipping confirmation email, which can optionally be sent to the customer. When accounts are enabled, it is also displayed in the customer's order history.\r\n </div>"
-          nullable: true
-        tracking_urls:
-          type: array
-          items:
-            type: string
-          description: The URLs of tracking pages for the fulfillment.
-          nullable: true
+        tracking_info:
+          $ref: '#/components/schemas/TrackingInfo'
       additionalProperties: false
     CreateFulfillmentForOneOrManyFulfillmentOrdersRequest:
       required:
@@ -2314,25 +1920,17 @@ components:
           format: int64
           nullable: true
         origin_address:
-          type: string
-          description: "The address from which the fulfillment occurred:\r\n\r\n*   **address1**: The street address of the fulfillment location. \r\n*   **address2**: The second line of the address. Typically the number of the apartment, suite, or unit. \r\n*   **city**: The city of the fulfillment location. \r\n*   **country_code**: The country of the fulfillment location. \r\n*   **province_code**: The province of the fulfillment location. \r\n*   **zip**: The zip code of the fulfillment location."
-          nullable: true
+          $ref: '#/components/schemas/Address'
         receipt:
-          type: string
-          description: "A text field that provides information about the receipt:\r\n\r\n*   **testcase**: Whether the fulfillment was a testcase. \r\n*   **authorization**: The authorization code."
-          nullable: true
+          $ref: '#/components/schemas/Receipt'
         service:
           type: string
           description: The fulfillment service associated with the fulfillment.
           nullable: true
         shipment_status:
-          type: string
-          description: "The current shipment status of the fulfillment. Valid values:\r\n\r\n*   **label_printed**: A label for the shipment was purchased and printed. \r\n*   **label_purchased**: A label for the shipment was purchased, but not printed. \r\n*   **attempted_delivery**: Delivery of the shipment was attempted, but unable to be completed. \r\n*   **ready_for_pickup**: The shipment is ready for pickup at a shipping depot. \r\n*   **confirmed**: The carrier is aware of the shipment, but hasn't received it yet. \r\n*   **in_transit**: The shipment is being transported between shipping facilities on the way to its destination. \r\n*   **out_for_delivery**: The shipment is being delivered to its final destination. \r\n*   **delivered**: The shipment was succesfully delivered. \r\n*   **failure**: Something went wrong when pulling tracking information for the shipment, such as the tracking number was invalid or the shipment was canceled."
-          nullable: true
+          $ref: '#/components/schemas/ShipmentStatus'
         status:
-          type: string
-          description: "The status of the fulfillment. Valid values:\r\n\r\n*   **pending**: Shopify has created the fulfillment and is waiting for the third-party fulfillment service to transition it to 'open' or 'success'. \r\n*   **open**: The fulfillment has been acknowledged by the service and is in processing. \r\n*   **success**: The fulfillment was successful. \r\n*   **cancelled**: The fulfillment was cancelled. \r\n*   **error**: There was an error with the fulfillment request. \r\n*   **failure**: The fulfillment request failed."
-          nullable: true
+          $ref: '#/components/schemas/FulfillmentStatus'
         tracking_company:
           type: string
           description: "The name of the tracking company. The following tracking companies display for shops located in any country: \r\n\r\n*   **4PX** \r\n*   **Amazon Logistics UK** \r\n*   **Amazon Logistics US** \r\n*   **Anjun Logistics** \r\n*   **APC** \r\n*   **Australia Post** \r\n*   **Bluedart** \r\n*   **Canada Post** \r\n*   **Canpar** \r\n*   **China Post** \r\n*   **Chukou1** \r\n*   **Correios** \r\n*   **Couriers Please** \r\n*   **Delhivery** \r\n*   **DHL eCommerce** \r\n*   **DHL eCommerce Asia** \r\n*   **DHL Express** \r\n*   **DPD** \r\n*   **DPD Local** \r\n*   **DPD UK** \r\n*   **Eagle** \r\n*   **FedEx** \r\n*   **FSC** \r\n*   **Asendia USA** \r\n*   **GLS** \r\n*   **GLS (US)** \r\n*   **Japan Post** \r\n*   **La Poste** \r\n*   **New Zealand Post** \r\n*   **Newgistics** \r\n*   **PostNL** \r\n*   **PostNord** \r\n*   **Purolator** \r\n*   **Royal Mail** \r\n*   **Sagawa** \r\n*   **Sendle** \r\n*   **SF Express** \r\n*   **SFC Fulfilllment** \r\n*   **Singapore Post** \r\n*   **StarTrack** \r\n*   **TNT** \r\n*   **Toll IPEC** \r\n*   **UPS** \r\n*   **USPS** \r\n*   **Whistl** \r\n*   **Yamato** \r\n*   **YunExpress**  \r\n\r\nThe following tracking companies are displayed for shops located in specific countries:\r\n\r\n*   **Germany**: Deutsche Post (DE), Deutsche Post (EN), DHL \r\n*   **Ireland**: An Post, Fastway \r\n*   **Australia**: Aramex Australia, Australia Post, Sendle \r\n*   **Japan**: エコ配, 西濃運輸, 西濃スーパーエキスプレス, 福山通運, 日本通運, 名鉄運輸, 第一貨物 \r\n*   **China**: Anjun Logistics, China Post, DHL eCommerce Asia, FSC, SFC Fulfillment, WanbExpress, YunExpress  <div class=\"note\"> \r\n\r\n#### Important\r\n\r\nWhen creating a fulfillment for a supported carrier, send the `tracking_company` exactly as written in the list above. If the tracking company doesn't match one of the supported entries, then the shipping status might not be updated properly during the fulfillment process.\r\n </div>"
@@ -2353,8 +1951,13 @@ components:
           type: string
           description: The name of the inventory management service.
           nullable: true
-        destination:
-          $ref: '#/components/schemas/Address'
+        tracking_number:
+          type: string
+          nullable: true
+        tracking_url:
+          type: string
+          description: The URLs of tracking pages for the fulfillment.
+          nullable: true
         id:
           type: integer
           format: int64
@@ -2462,38 +2065,6 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    FulfillmentEventError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/FulfillmentEventErrorDetails'
-      additionalProperties: { }
-    FulfillmentEventErrorDetails:
-      type: object
-      properties:
-        base:
-          type: array
-          items:
-            type: string
-          nullable: true
-      additionalProperties: { }
-    FulfillmentEventGeneralError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/FulfillmentEventGeneralErrorDetails'
-      additionalProperties: { }
-    FulfillmentEventGeneralErrorDetails:
-      type: object
-      properties:
-        base:
-          type: string
-          nullable: true
-      additionalProperties: { }
     FulfillmentEventItem:
       required:
         - fulfillment_event
@@ -2525,21 +2096,6 @@ components:
         - delivered
         - failure
       type: string
-      additionalProperties: { }
-    FulfillmentGeneralError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/FulfillmentGeneralErrorDetails'
-      additionalProperties: { }
-    FulfillmentGeneralErrorDetails:
-      type: object
-      properties:
-        base:
-          type: string
-          nullable: true
       additionalProperties: { }
     FulfillmentHold:
       type: object
@@ -2757,21 +2313,6 @@ components:
           description: The ZIP code of the destination.
           nullable: true
       additionalProperties: { }
-    FulfillmentOrderGeneralError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/FulfillmentOrderGeneralErrorDetails'
-      additionalProperties: { }
-    FulfillmentOrderGeneralErrorDetails:
-      type: object
-      properties:
-        base:
-          type: string
-          nullable: true
-      additionalProperties: { }
     FulfillmentOrderItem:
       required:
         - fulfillment_order
@@ -2939,22 +2480,13 @@ components:
         origin:
           $ref: '#/components/schemas/AssignedLocation'
       additionalProperties: { }
-    FulfillmentRequestGeneralError:
-      required:
-        - errors
+    FulfillmentOrderWithOriginItem:
       type: object
       properties:
-        errors:
-          $ref: '#/components/schemas/FulfillmentRequestGeneralErrorDetails'
+        fulfillment_order:
+          $ref: '#/components/schemas/FulfillmentOrderWithOrigin'
       additionalProperties: { }
-    FulfillmentRequestGeneralErrorDetails:
-      type: object
-      properties:
-        base:
-          type: string
-          nullable: true
-      additionalProperties: { }
-    FulfillmentRequestOrderLineItems:
+    FulfillmentRequestOrderLineItem:
       type: object
       properties:
         id:
@@ -3047,43 +2579,11 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    FulfillmentServiceError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/FulfillmentServiceErrorDetails'
-      additionalProperties: { }
-    FulfillmentServiceErrorDetails:
-      type: object
-      properties:
-        base:
-          type: array
-          items:
-            type: string
-          nullable: true
-      additionalProperties: { }
     FulfillmentServiceFormat:
       enum:
         - json
         - xml
       type: string
-      additionalProperties: { }
-    FulfillmentServiceGeneralError:
-      required:
-        - errors
-      type: object
-      properties:
-        errors:
-          $ref: '#/components/schemas/FulfillmentServiceGeneralErrorDetails'
-      additionalProperties: { }
-    FulfillmentServiceGeneralErrorDetails:
-      type: object
-      properties:
-        base:
-          type: string
-          nullable: true
       additionalProperties: { }
     FulfillmentServiceItem:
       required:
@@ -3107,6 +2607,16 @@ components:
       enum:
         - all
         - current_client
+      type: string
+      additionalProperties: { }
+    FulfillmentStatus:
+      enum:
+        - pending
+        - open
+        - success
+        - cancelled
+        - error
+        - failure
       type: string
       additionalProperties: { }
     IncoTerm:
@@ -3348,7 +2858,7 @@ components:
         fulfillment_order_line_items:
           type: array
           items:
-            $ref: '#/components/schemas/FulfillmentRequestOrderLineItems'
+            $ref: '#/components/schemas/FulfillmentRequestOrderLineItem'
           description: 'The fulfillment order line items to be requested for fulfillment. If left blank, all line items of the fulfillment order are requested for fulfillment.'
           nullable: true
       additionalProperties: { }
@@ -3392,9 +2902,6 @@ components:
       properties:
         fulfillment_order:
           $ref: '#/components/schemas/FulfillmentOrderCancellationRequestDetail'
-      additionalProperties: { }
-    MarkFulfillmentOrderAsOpenRequest:
-      type: object
       additionalProperties: { }
     MerchantRequest:
       type: object
@@ -3503,6 +3010,16 @@ components:
         presentment_money:
           $ref: '#/components/schemas/Price'
       additionalProperties: { }
+    Receipt:
+      type: object
+      properties:
+        testcase:
+          type: boolean
+          nullable: true
+        authorization:
+          type: string
+          nullable: true
+      additionalProperties: { }
     RejectCancellationRequestRequest:
       type: object
       properties:
@@ -3538,8 +3055,22 @@ components:
         - closed
       type: string
       additionalProperties: { }
-    RescheduleFulfillAtTimeOfScheduledFulfillmentOrderRequest:
+    RescheduleFulfillAtTimeOfScheduledFulfillmentOrderDetailRequest:
+      required:
+        - new_fulfill_at
       type: object
+      properties:
+        new_fulfill_at:
+          type: string
+          format: date-time
+      additionalProperties: false
+    RescheduleFulfillAtTimeOfScheduledFulfillmentOrderRequest:
+      required:
+        - fulfillment_order
+      type: object
+      properties:
+        fulfillment_order:
+          $ref: '#/components/schemas/RescheduleFulfillAtTimeOfScheduledFulfillmentOrderDetailRequest'
       additionalProperties: false
     SendCancellationRequestRequest:
       type: object
@@ -3556,7 +3087,7 @@ components:
         fulfillment_order_line_items:
           type: array
           items:
-            $ref: '#/components/schemas/FulfillmentRequestOrderLineItems'
+            $ref: '#/components/schemas/FulfillmentOrderLineItem'
           nullable: true
       additionalProperties: false
     SendFulfillmentRequestItem:
@@ -3589,6 +3120,19 @@ components:
           type: string
           format: date-time
       additionalProperties: false
+    ShipmentStatus:
+      enum:
+        - label_printed
+        - label_purchased
+        - attempted_delivery
+        - ready_for_pickup
+        - confirmed
+        - in_transit
+        - out_for_delivery
+        - delivered
+        - failure
+      type: string
+      additionalProperties: { }
     TaxLine:
       type: object
       properties:
@@ -3608,6 +3152,22 @@ components:
           nullable: true
         price_set:
           $ref: '#/components/schemas/PriceSet'
+      additionalProperties: { }
+    TrackingInfo:
+      type: object
+      properties:
+        number:
+          type: string
+          description: The tracking number.
+          nullable: true
+        url:
+          type: string
+          description: The public URL to the tracking company.
+          nullable: true
+        company:
+          type: string
+          description: The tracking company name.
+          nullable: true
       additionalProperties: { }
     UpdateCarrierService:
       required:

@@ -90,7 +90,7 @@ public class ProductTests : IClassFixture<ProductFixture>
                 BodyHtml = "A mystery!"
             }
         };
-        await Assert.ThrowsAsync<ApiException<ProductError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.Product.CreateProductAsync(request, CancellationToken.None));
     }
 

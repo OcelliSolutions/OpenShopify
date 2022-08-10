@@ -25,7 +25,6 @@ public class ScriptTagController : ScriptTagControllerBase
     [HttpPost]
     [Route("script_tags.json")]
     [ProducesResponseType(typeof(ScriptTagItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ScriptTagError), StatusCodes.Status400BadRequest)]
     public override Task CreateScriptTag([Required] CreateScriptTagRequest request) =>
         throw new NotImplementedException();
 

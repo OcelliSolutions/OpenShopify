@@ -13,6 +13,6 @@ public class SendFulfillmentRequestDetail
 {
     [JsonPropertyName("message")] public string? Message { get; set; }
     [JsonPropertyName("fulfillment_order_line_items")]
-    public IEnumerable<FulfillmentRequestOrderLineItems>? FulfillmentOrderLineItems { get; set; }
+    public IEnumerable<FulfillmentOrderLineItem>? FulfillmentOrderLineItems { get; set; }
 
 }

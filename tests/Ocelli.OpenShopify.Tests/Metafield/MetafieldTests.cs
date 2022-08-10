@@ -113,7 +113,7 @@ public class MetafieldTests : IClassFixture<MetafieldFixture>
         {
             Metafield = new CreateMetafield()
         };
-        await Assert.ThrowsAsync<ApiException<MetafieldError>>(async () =>
+        await Assert.ThrowsAsync<ApiException>(async () =>
             await Fixture.Service.Metafield.CreateMetafieldAsync(order.Id, request, CancellationToken.None));
     }
 

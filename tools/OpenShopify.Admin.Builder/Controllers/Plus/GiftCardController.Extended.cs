@@ -22,7 +22,6 @@ public class GiftCardController : GiftCardControllerBase
     [HttpPost]
     [Route("gift_cards.json")]
     [ProducesResponseType(typeof(GiftCardItem), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(GiftCardError), StatusCodes.Status422UnprocessableEntity)]
     public override Task CreateGiftCard([Required] CreateGiftCardRequest request) =>
         throw new NotImplementedException();
 
