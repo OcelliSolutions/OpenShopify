@@ -24,6 +24,7 @@
 
 	<ItemGroup>
     <None Include="app_icon_128_128.png" Pack="true" PackagePath="" />
+    <None Include="README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 
 </Project>
