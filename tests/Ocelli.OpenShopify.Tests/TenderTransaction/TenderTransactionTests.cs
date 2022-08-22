@@ -3,9 +3,9 @@
 public class TenderTransactionFixture : SharedFixture, IAsyncLifetime
 {
     public TenderTransactionFixture() =>
-        Service = new AccessService(MyShopifyUrl, AccessToken);
+        Service = new TenderTransactionService(MyShopifyUrl, AccessToken);
 
-    public IAccessService Service { get; set; }
+    public ITenderTransactionService Service { get; set; }
 
     public Task InitializeAsync() => Task.CompletedTask;
 
@@ -31,22 +31,18 @@ public class TenderTransactionTests : IClassFixture<TenderTransactionFixture>
         _okInvalidJsonMockClient = new TenderTransactionMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
-
-    #region Create
-
-    #endregion Create
-
     #region Read
 
+    [SkippableFact]
+    [TestPriority(20)]
+    public async Task ListShippingZonesAsync_AdditionalPropertiesAreEmpty()
+    {
+        var response = await Fixture.Service.TenderTransaction.ListTenderTransactionsAsync();
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        Skip.If(!response.Result.TenderTransactions.Any(), "No available tender transactions to test");
+    }
+
     #endregion Read
-
-    #region Update
-
-    #endregion Update
-
-    #region Delete
-
-    #endregion Delete
 
     [SkippableFact]
     public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();

@@ -53,7 +53,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("profile_id")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public long? ProfileId { get; set; } = default!;
+        public string? ProfileId { get; set; } = default!;
 
         /// <summary>
         /// The ID of the shipping zone's location group. Location groups allow merchants to create shipping rates that apply only to the specific locations in the group.
@@ -62,7 +62,7 @@ namespace OpenShopify.Admin.Builder.Models
         [System.Text.Json.Serialization.JsonPropertyName("location_group_id")]
 
         [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]   
-        public long? LocationGroupId { get; set; } = default!;
+        public string? LocationGroupId { get; set; } = default!;
 
         /// <summary>
         /// A list of countries that belong to the shipping zone.

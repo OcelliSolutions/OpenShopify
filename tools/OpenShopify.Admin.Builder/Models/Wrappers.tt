@@ -70,7 +70,7 @@
 		//new (modelName:"FulfillmentRequest", hasId:false),
 		new (modelName:"FulfillmentService"),
 		new (modelName:"LocationsForMove", propertyNamePlural:"locations_for_move", hasId:false),
-		new (modelName:"Balance", hasId:false),
+		new (modelName:"Balance", hasId:false, propertyNamePlural: "balance"),
 		new (modelName:"Dispute"),
 		new (modelName:"DisputeEvidence"),
 		new (modelName:"DisputeFileUpload"),

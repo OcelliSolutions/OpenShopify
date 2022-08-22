@@ -3,7 +3,6 @@ using System.IO;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 using Ocelli.OpenShopify.Tests.Models;
 using RichardSzalay.MockHttp;
 using shortid;

@@ -3358,7 +3358,7 @@ public partial record BalanceItem
 
 public partial record BalanceList
 {
-    [JsonPropertyName("balances"), Required]
+    [JsonPropertyName("balance"), Required]
     public IEnumerable<Balance> Balances { get; set; } = null!;
 }
 public partial record CreateBalanceRequest

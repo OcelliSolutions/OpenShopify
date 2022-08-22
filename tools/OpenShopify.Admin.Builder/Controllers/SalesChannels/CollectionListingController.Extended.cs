@@ -15,7 +15,7 @@ public class CollectionListingController : CollectionListingControllerBase
     [HttpGet]
     [Route("collection_listings.json")]
     [ProducesResponseType(typeof(CollectionListingList), StatusCodes.Status200OK)]
-    public override Task GetCollectionListings(int? limit = null, string? page_info = null) =>
+    public override Task ListCollectionListings(int? limit = null, string? page_info = null) =>
         throw new NotImplementedException();
 
     /// <inheritdoc />

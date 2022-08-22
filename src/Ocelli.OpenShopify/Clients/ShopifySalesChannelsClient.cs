@@ -601,7 +601,7 @@ namespace Ocelli.OpenShopify
         /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<CollectionListingList>> GetCollectionListingsAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<CollectionListingList>> ListCollectionListingsAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -679,7 +679,7 @@ namespace Ocelli.OpenShopify
         /// <param name="pageInfo">A unique ID used to access a certain page of results.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CollectionListingList>> GetCollectionListingsAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<CollectionListingList>> ListCollectionListingsAsync(int? limit = null, string? pageInfo = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/collection_listings.json?");
@@ -2197,7 +2197,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Filter by product listings last updated after a certain date and time (formatted in ISO 8601)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ShopifyResponse<ProductListingList>> GetProductListingsAsync(long? collectionId = null, string? handle = null, int? limit = null, string? pageInfo = null, string? productIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ShopifyResponse<ProductListingList>> ListProductListingsAsync(long? collectionId = null, string? handle = null, int? limit = null, string? pageInfo = null, string? productIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -2287,7 +2287,7 @@ namespace Ocelli.OpenShopify
         /// <param name="updatedAtMin">Filter by product listings last updated after a certain date and time (formatted in ISO 8601)</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductListingList>> GetProductListingsAsync(long? collectionId = null, string? handle = null, int? limit = null, string? pageInfo = null, string? productIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<ShopifyResponse<ProductListingList>> ListProductListingsAsync(long? collectionId = null, string? handle = null, int? limit = null, string? pageInfo = null, string? productIds = null, System.DateTimeOffset? updatedAtMin = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/product_listings.json?");

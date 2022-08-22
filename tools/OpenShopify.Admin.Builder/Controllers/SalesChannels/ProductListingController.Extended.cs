@@ -15,7 +15,7 @@ public class ProductListingController : ProductListingControllerBase
     [HttpGet]
     [Route("product_listings.json")]
     [ProducesResponseType(typeof(ProductListingList), StatusCodes.Status200OK)]
-    public override Task GetProductListings(long collection_id, string? handle = null, int? limit = null,
+    public override Task ListProductListings(long collection_id, string? handle = null, int? limit = null,
         string? page_info = null, string? product_ids = null, DateTimeOffset? updated_at_min = null) =>
         throw new NotImplementedException();
 

@@ -32,23 +32,18 @@ public class BalanceTests : IClassFixture<BalanceFixture>
 
     public BalanceFixture Fixture { get; set; }
 
-
-    #region Create
-
-    #endregion Create
-
     #region Read
 
+    [SkippableFact]
+    [TestPriority(20)]
+    public async Task GetCurrentBalanceAsync_AdditionalPropertiesAreEmpty()
+    {
+        var response = await Fixture.Service.Balance.GetCurrentBalanceAsync();
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+    }
+
     #endregion Read
-
-    #region Update
-
-    #endregion Update
-
-    #region Delete
-
-    #endregion Delete
-
+    
     [SkippableFact]
     public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 

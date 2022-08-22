@@ -41,10 +41,9 @@ public class CollectionListingTests : IClassFixture<CollectionListingFixture>
 
     private CollectionListingFixture Fixture { get; }
 
-    //TODO: Build Collection Listing Tests
-    /*
     #region Create
-
+    //TODO: this endpoint makes no sense. Documentation says *Create a collection listing to publish a collection to your app* while requiring a collection_listing_id parameter.
+    /*
     [SkippableFact, TestPriority(10)]
     public async Task CreateCollectionListingAsync_CanCreate()
     {
@@ -71,20 +70,11 @@ public class CollectionListingTests : IClassFixture<CollectionListingFixture>
         };
         await Assert.ThrowsAsync<ApiException>(async () => await Fixture.Service.CollectionListing.CreateCollectionListingAsync(request));
     }
-
+    */
     #endregion Create
 
     #region Read
-
-    [SkippableFact, TestPriority(20)]
-    public async Task CountCollectionListingsAsync_CanGet()
-    {
-        var response = await Fixture.Service.CollectionListing.CountCollectionListingsAsync();
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-        var count = response.Result.Count;
-        Skip.If(count == 0, "No results returned. Unable to test");
-    }
-    
+        
     //TODO: try to rename this function to `List` instead of `Get`
     [SkippableFact, TestPriority(20)]
     public async Task ListCollectionListingsAsync_AdditionalPropertiesAreEmpty()
@@ -109,30 +99,7 @@ public class CollectionListingTests : IClassFixture<CollectionListingFixture>
     }
 
     #endregion Read
-
-    #region Update
-
-    [SkippableFact, TestPriority(30)]
-    public async Task UpdateCollectionListingAsync_CanUpdate()
-    {
-        var originalCollectionListing = Fixture.CreatedCollectionListings.First();
-        var request = new UpdateCollectionListingRequest()
-        {
-            CollectionListing = new()
-            {
-                Id = originalCollectionListing.Id,
-                Fields = new List<string> { "id" }
-            }
-        };
-        var response = await Fixture.Service.CollectionListing.UpdateCollectionListingAsync(request.CollectionListing.Id, request);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-
-        Fixture.CreatedCollectionListings.Remove(originalCollectionListing);
-        Fixture.CreatedCollectionListings.Add(response.Result.CollectionListing);
-    }
-
-    #endregion Update
-*/
+    
     #region Delete
 
     [SkippableFact, TestPriority(99)]
@@ -174,10 +141,10 @@ internal class CollectionListingMockClient : CollectionListingClient, IMockTests
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await GetCollectionListingsAsync(cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListCollectionListingsAsync(cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await GetCollectionListingsAsync(cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListCollectionListingsAsync(cancellationToken: CancellationToken.None));
     }
 }
 

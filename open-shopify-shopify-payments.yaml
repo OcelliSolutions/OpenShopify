@@ -40,7 +40,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BalanceItem'
+                $ref: '#/components/schemas/BalanceList'
   /shopify_payments/disputes.json:
     get:
       tags:
@@ -477,6 +477,11 @@ components:
     Balance:
       type: object
       properties:
+        currency:
+          type: string
+        amount:
+          type: number
+          format: decimal
         created_at:
           type: string
           description: 'The date and time ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when the asset was created.'
@@ -488,13 +493,15 @@ components:
           format: date-time
           nullable: true
       additionalProperties: { }
-    BalanceItem:
+    BalanceList:
       required:
         - balance
       type: object
       properties:
         balance:
-          $ref: '#/components/schemas/Balance'
+          type: array
+          items:
+            $ref: '#/components/schemas/Balance'
       additionalProperties: { }
     CurrencyExchangeAdjustment:
       required:

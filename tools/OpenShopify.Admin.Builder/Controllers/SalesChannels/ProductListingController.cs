@@ -35,7 +35,7 @@ namespace OpenShopify.Admin.Builder.Models
         /// <param name="product_ids">A comma-separated list of product ids</param>
         /// <param name="updated_at_min">Filter by product listings last updated after a certain date and time (formatted in ISO 8601)</param>
         [Microsoft.AspNetCore.Mvc.HttpGet, Microsoft.AspNetCore.Mvc.Route("product_listings.json")]
-        public abstract System.Threading.Tasks.Task GetProductListings([Microsoft.AspNetCore.Mvc.FromQuery] long collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
+        public abstract System.Threading.Tasks.Task ListProductListings([Microsoft.AspNetCore.Mvc.FromQuery] long collection_id, [Microsoft.AspNetCore.Mvc.FromQuery] string? handle = null, [Microsoft.AspNetCore.Mvc.FromQuery] int? limit = null, string? page_info = null, [Microsoft.AspNetCore.Mvc.FromQuery] string? product_ids = null, [Microsoft.AspNetCore.Mvc.FromQuery] System.DateTimeOffset? updated_at_min = null);
 
         /// <summary>
         /// Retrieve &lt;code&gt;product_ids&lt;/code&gt; that are published to your app

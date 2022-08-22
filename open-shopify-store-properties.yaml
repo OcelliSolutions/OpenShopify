@@ -804,14 +804,12 @@ components:
           description: 'The name of the shipping zone, specified by the user.'
           nullable: true
         profile_id:
-          type: integer
+          type: string
           description: The ID of the shipping zone's delivery profile. Shipping profiles allow merchants to create product-based or location-based shipping rates.
-          format: int64
           nullable: true
         location_group_id:
-          type: integer
+          type: string
           description: The ID of the shipping zone's location group. Location groups allow merchants to create shipping rates that apply only to the specific locations in the group.
-          format: int64
           nullable: true
         countries:
           type: array

@@ -209,7 +209,7 @@ OpenApiDocument ConvertToOpenApiDocument(dynamic openApi)
 
         var stringParameters = new List<string>()
         {
-            "fields", "messages"
+            "fields", "messages", "profile_id", "location_group_id"
         };
 
         var longListParameters = new List<string>()
@@ -481,7 +481,7 @@ JsonSchema GetSchema(string propertyName)
     };
     var stringProperties = new List<string>()
     {
-        "admin_graphql_api_id", "remote_id", "application_id"
+        "admin_graphql_api_id", "remote_id", "application_id", "profile_id", "location_group_id"
     };
     var longListProperties = new List<string>()
     {
@@ -615,7 +615,9 @@ string CreateOperationId(string summary, string path)
         .Replace("ToUnpublishProductFromYourApp", "")
         .Replace("WithStatusOPEN","")
         .Replace("ByItsID", "")
-        .Replace("ByID", "");
+        .Replace("ByID", "")
+        .Replace("GetCollectionListings", "ListCollectionListings")
+        .Replace("GetProductListings", "ListProductListings");
 
     if (path.Contains("usage_charges") && summary == "GetCharge")
         summary = "GetUsageCharge"; 

@@ -13,6 +13,6 @@ public class BalanceController : BalanceControllerBase
     /// <inheritdoc />
     [HttpGet]
     [Route("shopify_payments/balance.json")]
-    [ProducesResponseType(typeof(BalanceItem), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(BalanceList), StatusCodes.Status200OK)]
     public override Task GetCurrentBalance() => throw new NotImplementedException();
 }

@@ -45,15 +45,41 @@ public class ProductListingTests : IClassFixture<ProductListingFixture>
         _okInvalidJsonMockClient = new ProductListingMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
-    //TODO: Build Product Listing Tests
+    #region Create
+
+    //TODO: this endpoint makes no sense. Documentation says *Create a product listing to publish a product to your app* while requiring a product_listing_id parameter.
     /*
-    
+    [SkippableFact]
+    [TestPriority(10)]
+    public async Task CreatePaymentAsync_CanCreate()
+    {
+        var productService = new ProductsService(Fixture.MyShopifyUrl, Fixture.AccessToken);
+        var products = await productService.Product.ListProductsAsync(limit: 1);
+        Assert.NotNull(products);
+        var product = products.Result.Products.First();
+        var request = new CreateProductListingRequest()
+        {
+            ProductListing = new()
+            {
+                ProductId = product.Id,
+                BodyHtml =
+                    "<p>The iPod Touch has the iPhone's multi-touch interface, with a physical home button off the touch screen. The home screen has a list of buttons for the available applications.</p>"
+            }
+        };
+        var response = await Fixture.Service.ProductListing.CreateProductListingAsync("", body: request);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+
+        Fixture.CreatedPayments.Add(response.Result.Payment);
+    }
+    */
+    #endregion Create
+
     #region Read
 
     [SkippableFact, TestPriority(20)]
-    public async Task CountProductsThatArePublishedToYourAppAsync_CanGet()
+    public async Task CountProductsAsync_CanGet()
     {
-        var response = await Fixture.Service.ProductListing.CountProductsThatArePublishedToYourAppAsync();
+        var response = await Fixture.Service.ProductListing.CountProductsAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         var count = response.Result.Count;
         Skip.If(count == 0, "No results returned. Unable to test");
@@ -62,7 +88,7 @@ public class ProductListingTests : IClassFixture<ProductListingFixture>
     [SkippableFact, TestPriority(20)]
     public async Task ListProductListingsAsync_AdditionalPropertiesAreEmpty()
     {
-        var response = await Fixture.Service.ProductListing.list();
+        var response = await Fixture.Service.ProductListing.ListProductListingsAsync();
         _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
         foreach (var productListing in response.Result.ProductListings)
         {
@@ -82,30 +108,6 @@ public class ProductListingTests : IClassFixture<ProductListingFixture>
     }
 
     #endregion Read
-
-    #region Update
-
-    [SkippableFact, TestPriority(30)]
-    public async Task UpdateProductListingAsync_CanUpdate()
-    {
-        var originalProductListing = Fixture.CreatedProductListings.First();
-        var request = new UpdateProductListingRequest()
-        {
-            ProductListing = new()
-            {
-                Id = originalProductListing.Id,
-                Fields = new List<string> { "id" }
-            }
-        };
-        var response = await Fixture.Service.ProductListing.UpdateProductListingAsync(request.ProductListing.Id, request);
-        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
-
-        Fixture.CreatedProductListings.Remove(originalProductListing);
-        Fixture.CreatedProductListings.Add(response.Result.ProductListing);
-    }
-
-    #endregion Update
-    */
 
     #region Delete
 
@@ -148,9 +150,9 @@ internal class ProductListingMockClient : ProductListingClient, IMockTests
     {
         ReadResponseAsString = true;
         //TODO: Validate that all methods are tested in this first section
-        await Assert.ThrowsAsync<ApiException>(async () => await GetProductListingsAsync(cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListProductListingsAsync(cancellationToken: CancellationToken.None));
         ReadResponseAsString = false;
         //Only one method needs to be tested with `ReadResponseAsString = false`
-        await Assert.ThrowsAsync<ApiException>(async () => await GetProductListingsAsync(cancellationToken: CancellationToken.None));
+        await Assert.ThrowsAsync<ApiException>(async () => await ListProductListingsAsync(cancellationToken: CancellationToken.None));
     }
 }

@@ -32,23 +32,18 @@ public class ShippingZoneTests : IClassFixture<ShippingZoneFixture>
         _okInvalidJsonMockClient = new ShippingZoneMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
-
-    #region Create
-
-    #endregion Create
-
     #region Read
 
+    [SkippableFact]
+    [TestPriority(20)]
+    public async Task ListShippingZonesAsync_AdditionalPropertiesAreEmpty()
+    {
+        var response = await Fixture.Service.ShippingZone.ListShippingZonesAsync();
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        Skip.If(!response.Result.ShippingZones.Any(), "No available shipping zones to test");
+    }
+
     #endregion Read
-
-    #region Update
-
-    #endregion Update
-
-    #region Delete
-
-    #endregion Delete
-
     [SkippableFact]
     public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
 

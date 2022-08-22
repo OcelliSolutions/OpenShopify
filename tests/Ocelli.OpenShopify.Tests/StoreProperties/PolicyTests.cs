@@ -2,7 +2,6 @@
 
 public class PolicyFixture : SharedFixture, IAsyncLifetime
 {
-    public List<Policy> CreatedPolicies = new();
     public IStorePropertiesService Service;
 
     public PolicyFixture() =>
@@ -31,22 +30,18 @@ public class PolicyTests : IClassFixture<PolicyFixture>
         _okInvalidJsonMockClient = new PolicyMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
-
-    #region Create
-
-    #endregion Create
-
     #region Read
 
+    [SkippableFact]
+    [TestPriority(20)]
+    public async Task ListShopsPoliciesAsync_AdditionalPropertiesAreEmpty()
+    {
+        var response = await Fixture.Service.Policy.ListShopsPoliciesAsync();
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        Skip.If(!response.Result.Policies.Any(), "No available policies to test");
+    }
+
     #endregion Read
-
-    #region Update
-
-    #endregion Update
-
-    #region Delete
-
-    #endregion Delete
 
     [SkippableFact]
     public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();

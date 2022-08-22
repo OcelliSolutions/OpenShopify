@@ -1,6 +1,7 @@
 ﻿namespace Ocelli.OpenShopify.Tests.ShopifyPayments;
 public class PayoutsFixture : SharedFixture, IAsyncLifetime
 {
+    public List<Payout> Payouts = new ();
     public PayoutsFixture() =>
         Service = new ShopifyPaymentsService(MyShopifyUrl, AccessToken);
 
@@ -30,23 +31,29 @@ public class PayoutsTests : IClassFixture<PayoutsFixture>
         _okInvalidJsonMockClient = new PayoutsMockClient(fixture.OkInvalidJsonMockHttpClient, fixture);
     }
 
-
-    #region Create
-
-    #endregion Create
-
     #region Read
 
+    [SkippableFact]
+    [TestPriority(20)]
+    public async Task ListPayoutsAsync_AdditionalPropertiesAreEmpty()
+    {
+        var response = await Fixture.Service.Payouts.ListPayoutsAsync();
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+        Skip.If(!response.Result.Payouts.Any(), "No available payouts to test");
+        Fixture.Payouts.AddRange(response.Result.Payouts);
+    }
+
+    [SkippableFact]
+    [TestPriority(21)]
+    public async Task GetPayoutAsync_AdditionalPropertiesAreEmpty()
+    {
+        Skip.If(!Fixture.Payouts.Any(), "No available payouts to test");
+        var payout = Fixture.Payouts.First();
+        var response = await Fixture.Service.Payouts.GetPayoutAsync(payout.Id);
+        _additionalPropertiesHelper.CheckAdditionalProperties(response, Fixture.MyShopifyUrl);
+    }
+
     #endregion Read
-
-    #region Update
-
-    #endregion Update
-
-    #region Delete
-
-    #endregion Delete
-
 
     [SkippableFact]
     public async Task BadRequestResponsesAsync() => await _badRequestMockClient.TestAllMethodsThatReturnDataAsync();
