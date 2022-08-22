@@ -18,8 +18,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="app_icon_128_128.png" />
+  </ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\app_icon_128_128.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Macross.Json.Extensions" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Primitives" Version="6.0.0" />
   </ItemGroup>
+
+	<ItemGroup>
+		<None Update="icon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Update="readme.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>
